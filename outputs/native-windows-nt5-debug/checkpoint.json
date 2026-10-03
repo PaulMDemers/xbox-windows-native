@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-03",
+  "windows_kernel_entered": false,
+  "physical_xbox_tested": false,
+  "real_uart_debugger_tested": false,
+  "ram_mib": 64,
+  "hal_test_groups_passed": 30,
+  "selected_offsets_matched": {
+    "hal": 49,
+    "loader": 45
+  },
+  "all_pe_name_bindings_resolve": true,
+  "normal_loader_and_original_hal_regression_build_passed": true,
+  "base_disk_sha256_after_tests": "59d7e920b19f10a05ba3a914f05c90e43764f2a7506a8bb16e816b781c54785e",
+  "runs": [
+    {
+      "id": "nt5-volume-read-001",
+      "final_probe": false,
+      "observation_method": "visual inspection of guest framebuffer capture",
+      "observation": "Original probe: file 0 content hash matched but EOF returned an error; expected failure reproduced."
+    },
+    {
+      "id": "nt5-volume-read-002",
+      "final_probe": false,
+      "observation_method": "visual inspection of guest framebuffer capture",
+      "observation": "Intermediate EOF fix: all eight file checks and XWN98 visually verified."
+    },
+    {
+      "id": "nt5-volume-wrong-disk-001",
+      "final_probe": false,
+      "observation_method": "visual inspection of guest framebuffer capture",
+      "observation": "Intermediate negative: file 0 open status 14; no XWN98."
+    },
+    {
+      "id": "nt5-volume-boundaries-001",
+      "final_probe": true,
+      "observation_method": "visual inspection of guest framebuffer capture",
+      "observation": "Final positive: all eight content/zero/short/EOF markers plus XWN98 visually verified in frame-015.png."
+    },
+    {
+      "id": "nt5-volume-boundaries-wrong-disk-001",
+      "final_probe": true,
+      "observation_method": "visual inspection of guest framebuffer capture",
+      "observation": "Final negative: file 0 open status 14; no XWN98, visually verified in frame-015.png."
+    }
+  ],
+  "remaining": [
+    "Loader extension size/content contract",
+    "Boot driver selection from SYSTEM hive and Xbox hardware mapping",
+    "Remaining software interrupts, BIOS paths and ABI accesses",
+    "Pre-handoff loader-state inspection, followed by traced kernel entry"
+  ]
+}

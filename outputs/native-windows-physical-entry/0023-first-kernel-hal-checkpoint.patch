@@ -1,0 +1,288 @@
+diff --git a/boot/freeldr/freeldr/ntldr/winldr.c b/boot/freeldr/freeldr/ntldr/winldr.c
+index 0d73ada5..80501d3c 100644
+--- a/boot/freeldr/freeldr/ntldr/winldr.c
++++ b/boot/freeldr/freeldr/ntldr/winldr.c
+@@ -231,6 +231,10 @@ static VOID XwnPreparePagingDisplay(PLOADER_PARAMETER_BLOCK LoaderBlock)
+     XwnPagingText(17, "Kernel NOT entered. Photograph the final screen.", 0xFFFFFFFF);
+ }
+ 
++#ifdef XBOX_NATIVE_FATX_ENTRY_PREFLIGHT
++#include "xwnentryprobe.h"
++#endif
++
+ static DECLSPEC_NORETURN VOID
+ XwnFinishPagingProbe(PLOADER_PARAMETER_BLOCK LoaderBlock, volatile ULONG *Record)
+ {
+@@ -240,6 +244,9 @@ XwnFinishPagingProbe(PLOADER_PARAMETER_BLOCK LoaderBlock, volatile ULONG *Record
+                     Record[14] == 14 && LoaderBlock->RegistryLength == 1810432;
+     Record[3] = Valid ? 99 : 40;
+     Record[19] = 0x50414745;
++#ifdef XBOX_NATIVE_FATX_ENTRY_PREFLIGHT
++    if (Valid) XwnEnterKernelProbe(LoaderBlock);
++#endif
+     XwnPagingClear();
+     XwnPagingText(4, "XWN Windows 2000 paging diagnostic", 0xFFFFFFFF);
+     XwnPagingText(7, "Phase-1 loader block and memory descriptors prepared.", 0xFFFFFFFF);
+diff --git a/boot/freeldr/freeldr/ntldr/xwnentryprobe.h b/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
+new file mode 100644
+index 00000000..d92d2c09
+--- /dev/null
++++ b/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
+@@ -0,0 +1,123 @@
++/* Explicit early-kernel diagnostic. Included only in the opt-in rosload. */
++static volatile ULONG XwnEntryRecord[24] = {0x454e5758, 0x35544e50, 1, 0};
++
++static DECLSPEC_NORETURN VOID NTAPI
++XwnFirstHalCheckpoint(ULONG Processor, PLOADER_PARAMETER_BLOCK LoaderBlock,
++                      PVOID Caller)
++{
++    CHAR Text[128];
++    BOOLEAN Valid;
++    _disable();
++    XwnEntryRecord[12] = Processor;
++    XwnEntryRecord[13] = (ULONG_PTR)LoaderBlock;
++    XwnEntryRecord[14] = (ULONG_PTR)Caller;
++    XwnEntryRecord[15] = __readcr0();
++    XwnEntryRecord[16] = __readcr3();
++    Valid = XwnEntryRecord[3] == 30 && Processor == 0 &&
++            (ULONG_PTR)LoaderBlock == XwnEntryRecord[4] &&
++            (ULONG_PTR)Caller >= XwnEntryRecord[6] &&
++            (ULONG_PTR)Caller - XwnEntryRecord[6] < XwnEntryRecord[7] &&
++            (__readcr0() & 0x80000000) && __readcr3() == XwnEntryRecord[11];
++    XwnEntryRecord[3] = Valid ? 90 : 40;
++    XwnPagingClear();
++    XwnPagingText(4, "XWN Windows 2000 first HAL checkpoint", 0xFFFFFFFF);
++    XwnPagingText(7, Valid ? "XWNK90: Windows kernel reached first HAL checkpoint."
++                          : "XWNKFAIL: First HAL checkpoint validation failed.",
++                  Valid ? 0xFF00FF00 : 0xFFFF0000);
++    RtlStringCbPrintfA(Text, sizeof(Text), "CPU: %lu  Caller: %08lx  Loader: %08lx",
++                      Processor, (ULONG_PTR)Caller, (ULONG_PTR)LoaderBlock);
++    XwnPagingText(10, Text, 0xFFFFFFFF);
++    RtlStringCbPrintfA(Text, sizeof(Text), "CR0: %08lx  CR3: %08lx", __readcr0(), __readcr3());
++    XwnPagingText(12, Text, 0xFFFFFFFF);
++    XwnPagingText(15, "Stopped BEFORE original HAL processor initialization.", 0xFFFFFFFF);
++    XwnPagingText(17, "Boot-driver entry and Windows desktop NOT reached.", 0xFFFFFFFF);
++    XwnPagingText(20, "Photograph this screen, then reboot to the dashboard.", 0xFFFFFFFF);
++    for (;;) __halt();
++}
++
++/* The loaded image is already PE-validated. Reject malformed export extents. */
++static PVOID XwnFindHalExport(PLDR_DATA_TABLE_ENTRY Module, PCSTR Name)
++{
++    PUCHAR Base = Module->DllBase;
++    PIMAGE_NT_HEADERS Nt = RtlImageNtHeader(Base);
++    PIMAGE_EXPORT_DIRECTORY Ex;
++    ULONG Rva, Size, I, *Names, *Functions;
++    PUSHORT Ordinals;
++    if (!Nt) return NULL;
++    Rva = Nt->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_EXPORT].VirtualAddress;
++    Size = Nt->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_EXPORT].Size;
++    if (!Rva || Size < sizeof(*Ex) || Rva >= Module->SizeOfImage ||
++        Size > Module->SizeOfImage - Rva) return NULL;
++    Ex = (PIMAGE_EXPORT_DIRECTORY)(Base + Rva);
++    if (Ex->NumberOfNames > 4096 || Ex->NumberOfFunctions > 4096 ||
++        Ex->AddressOfNames >= Module->SizeOfImage ||
++        Ex->NumberOfNames * 4 > Module->SizeOfImage - Ex->AddressOfNames ||
++        Ex->AddressOfNameOrdinals >= Module->SizeOfImage ||
++        Ex->NumberOfNames * 2 > Module->SizeOfImage - Ex->AddressOfNameOrdinals ||
++        Ex->AddressOfFunctions >= Module->SizeOfImage ||
++        Ex->NumberOfFunctions * 4 > Module->SizeOfImage - Ex->AddressOfFunctions) return NULL;
++    Names = (PULONG)(Base + Ex->AddressOfNames);
++    Ordinals = (PUSHORT)(Base + Ex->AddressOfNameOrdinals);
++    Functions = (PULONG)(Base + Ex->AddressOfFunctions);
++    for (I = 0; I < Ex->NumberOfNames; ++I)
++    {
++        ULONG Length = (ULONG)strlen(Name) + 1, Function;
++        if (Names[I] >= Module->SizeOfImage || Length > Module->SizeOfImage - Names[I]) continue;
++        if (memcmp(Base + Names[I], Name, Length)) continue;
++        if (Ordinals[I] >= Ex->NumberOfFunctions) return NULL;
++        Function = Functions[Ordinals[I]];
++        if (!Function || Function >= Module->SizeOfImage ||
++            (Function >= Rva && Function - Rva < Size)) return NULL;
++        return Base + Function;
++    }
++    return NULL;
++}
++
++static DECLSPEC_NORETURN VOID XwnEnterKernelProbe(PLOADER_PARAMETER_BLOCK LoaderBlock)
++{
++    PLIST_ENTRY Link;
++    PLDR_DATA_TABLE_ENTRY Hal = NULL, Kernel = NULL;
++    ULONG Count = 0;
++    typedef ULONG (NTAPI *CONFIGURE)(PVOID, ULONG);
++    CONFIGURE Configure = NULL;
++    for (Link = LoaderBlock->LoadOrderListHead.Flink;
++         Link != &LoaderBlock->LoadOrderListHead && Count++ < 64; Link = Link->Flink)
++    {
++        PLDR_DATA_TABLE_ENTRY M = CONTAINING_RECORD(Link, LDR_DATA_TABLE_ENTRY, InLoadOrderLinks);
++        if (M->BaseDllName.Length == 14 && !_wcsnicmp(M->BaseDllName.Buffer, L"hal.dll", 7)) Hal = M;
++        if (M->BaseDllName.Length == 24 && !_wcsnicmp(M->BaseDllName.Buffer, L"ntoskrnl.exe", 12)) Kernel = M;
++    }
++    if (Hal && Kernel && Count < 64)
++        Configure = (CONFIGURE)XwnFindHalExport(Hal, "XwnConfigureEntryProbe");
++    if (!Configure || Configure(XwnFirstHalCheckpoint, 0x58454E54) != 0x58484C54)
++    {
++        XwnEntryRecord[3] = 40;
++        XwnEntryRecord[22] = 1;
++        XwnPagingClear();
++        XwnPagingText(7, "XWNKFAIL: Required halt-only HAL was not armed.", 0xFFFF0000);
++        XwnPagingText(11, "Windows kernel NOT entered. Photograph, then reboot.", 0xFFFFFFFF);
++        _disable(); for (;;) __halt();
++    }
++    XwnEntryRecord[4] = (ULONG_PTR)LoaderBlock;
++    XwnEntryRecord[5] = XwnHandoffRecord[6];
++    XwnEntryRecord[6] = (ULONG_PTR)Kernel->DllBase;
++    XwnEntryRecord[7] = Kernel->SizeOfImage;
++    XwnEntryRecord[8] = (ULONG_PTR)Hal->DllBase;
++    XwnEntryRecord[9] = (ULONG_PTR)Configure;
++    XwnEntryRecord[10] = (ULONG_PTR)XwnFirstHalCheckpoint;
++    XwnEntryRecord[11] = __readcr3();
++    XwnEntryRecord[17] = XwnDisplayWidth;
++    XwnEntryRecord[18] = XwnDisplayHeight;
++    XwnEntryRecord[19] = XwnDisplayPitch;
++    XwnEntryRecord[20] = XwnPagingFramebuffer;
++    XwnEntryRecord[21] = XwnFramebufferBytes;
++    XwnEntryRecord[23] = (ULONG_PTR)XwnFindHalExport(Hal, "HalInitSystem");
++    XwnPagingClear();
++    XwnPagingText(7, "XWNK30: Entering Windows; first HAL checkpoint armed.", 0xFFFFFF00);
++    XwnPagingText(11, "If this remains, kernel entry has NOT been confirmed.", 0xFFFFFFFF);
++    XwnEntryRecord[3] = 30;
++    ((KERNEL_ENTRY_POINT)XwnEntryRecord[5])(LoaderBlock);
++    XwnEntryRecord[3] = 40;
++    XwnEntryRecord[22] = 2;
++    _disable(); for (;;) __halt();
++}
+diff --git a/boot/freeldr/freeldr/pcat.cmake b/boot/freeldr/freeldr/pcat.cmake
+index 0039d125..ebd7adc8 100644
+--- a/boot/freeldr/freeldr/pcat.cmake
++++ b/boot/freeldr/freeldr/pcat.cmake
+@@ -325,3 +325,9 @@ if(XBOX_NATIVE_FATX_PAGING_PREFLIGHT AND
+    (NOT XBOX_NATIVE_FATX_NT5_PREFLIGHT OR XBOX_NATIVE_NT5_ENTER OR XBOX_NATIVE_NT5_AUTORUN))
+     message(FATAL_ERROR "FATX paging probe requires FATX NT5 preflight with kernel entry OFF")
+ endif()
++
++option(XBOX_NATIVE_FATX_ENTRY_PREFLIGHT "Enter NT5 only to an armed first-HAL halt" OFF)
++if(XBOX_NATIVE_FATX_ENTRY_PREFLIGHT AND
++   (NOT XBOX_NATIVE_FATX_PAGING_PREFLIGHT OR XBOX_NATIVE_NT5_ENTER OR XBOX_NATIVE_NT5_AUTORUN))
++    message(FATAL_ERROR "FATX entry probe requires paging diagnostic and forbids general entry/autorun")
++endif()
+diff --git a/boot/freeldr/freeldr/rosload.cmake b/boot/freeldr/freeldr/rosload.cmake
+index c60c36ea..fa80dd36 100644
+--- a/boot/freeldr/freeldr/rosload.cmake
++++ b/boot/freeldr/freeldr/rosload.cmake
+@@ -127,3 +127,7 @@ if(XBOX_NATIVE_FATX_PAGING_PREFLIGHT)
+     target_compile_definitions(rosload PRIVATE XBOX_NATIVE_FATX_PAGING_PREFLIGHT=1)
+     target_sources(rosload PRIVATE arch/vgafont.c)
+ endif()
++
++if(XBOX_NATIVE_FATX_ENTRY_PREFLIGHT)
++    target_compile_definitions(rosload PRIVATE XBOX_NATIVE_FATX_ENTRY_PREFLIGHT=1)
++endif()
+diff --git a/hal/halx86/generic/halinit.c b/hal/halx86/generic/halinit.c
+index 29377539..62e9930b 100644
+--- a/hal/halx86/generic/halinit.c
++++ b/hal/halx86/generic/halinit.c
+@@ -12,6 +12,10 @@
+ #define NDEBUG
+ #include <debug.h>
+ 
++#ifdef XBOX_NT5_ENTRY_PREFLIGHT
++DECLSPEC_NORETURN VOID HalpXwnFirstProcessor(ULONG, PLOADER_PARAMETER_BLOCK, PVOID);
++#endif
++
+ /* GLOBALS *******************************************************************/
+ 
+ //#ifdef CONFIG_SMP // FIXME: Reenable conditional once HAL is consistently compiled for SMP mode
+@@ -58,6 +62,9 @@ HalInitializeProcessor(
+     IN ULONG ProcessorNumber,
+     IN PLOADER_PARAMETER_BLOCK LoaderBlock)
+ {
++#ifdef XBOX_NT5_ENTRY_PREFLIGHT
++    HalpXwnFirstProcessor(ProcessorNumber, LoaderBlock, _ReturnAddress());
++#else
+     /* Hal specific initialization for this cpu */
+     HalpInitProcessor(ProcessorNumber, LoaderBlock);
+ 
+@@ -73,6 +80,7 @@ HalInitializeProcessor(
+         /* Register routines for KDCOM */
+         HalpRegisterKdSupportFunctions();
+     }
++#endif
+ }
+ 
+ /*
+@@ -85,6 +93,10 @@ HalInitSystem(
+     _In_ ULONG BootPhase,
+     _In_ PLOADER_PARAMETER_BLOCK LoaderBlock)
+ {
++#ifdef XBOX_NT5_ENTRY_PREFLIGHT
++    /* Defense in depth: this build cannot continue into HAL system init. */
++    _disable(); for (;;) __halt();
++#endif
+     PKPRCB Prcb = KeGetCurrentPrcb();
+     NTSTATUS Status;
+ 
+diff --git a/hal/halx86/xboxnt5/CMakeLists.txt b/hal/halx86/xboxnt5/CMakeLists.txt
+index 9782be80..5805a70b 100644
+--- a/hal/halx86/xboxnt5/CMakeLists.txt
++++ b/hal/halx86/xboxnt5/CMakeLists.txt
+@@ -17,7 +17,7 @@ foreach(source ${HAL_XBOX_SOURCE} ${HAL_XBOX_ASM_SOURCE} ${HAL_UP_SOURCE})
+ endforeach()
+ spec2def(halxboxnt5.dll halnt5.spec)
+ add_asm_files(nt5_boundary_asm boundary.S)
+-add_library(halxboxnt5 MODULE ${NT5_SOURCE} ${nt5_boundary_asm} fmutex.c trapentry.c kdport.c translate.c rootbus.c ../xbox/halxbox.rc
++add_library(halxboxnt5 MODULE ${NT5_SOURCE} ${nt5_boundary_asm} fmutex.c trapentry.c kdport.c translate.c rootbus.c entryprobe.c ../xbox/halxbox.rc
+             ${CMAKE_CURRENT_BINARY_DIR}/halxboxnt5.def)
+ target_link_libraries(halxboxnt5 cportlib libcntpr setjmp fast486 ${PSEH_LIB})
+ add_importlibs(halxboxnt5 ntoskrnl)
+@@ -28,3 +28,8 @@ if(NOT MSVC)
+     target_link_options(halxboxnt5 PRIVATE -Wl,--subsystem,native:5.0
+         -Wl,--minor-image-version,0 -Wl,--minor-os-version,0)
+ endif()
++
++option(XBOX_NT5_ENTRY_PREFLIGHT "Unconditional first-processor HAL diagnostic halt" OFF)
++if(XBOX_NT5_ENTRY_PREFLIGHT)
++    target_compile_definitions(halxboxnt5 PRIVATE XBOX_NT5_ENTRY_PREFLIGHT=1)
++endif()
+diff --git a/hal/halx86/xboxnt5/entryprobe.c b/hal/halx86/xboxnt5/entryprobe.c
+new file mode 100644
+index 00000000..797eeeef
+--- /dev/null
++++ b/hal/halx86/xboxnt5/entryprobe.c
+@@ -0,0 +1,26 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++#include <hal.h>
++
++#ifdef XBOX_NT5_ENTRY_PREFLIGHT
++typedef VOID (NTAPI *XWN_CHECKPOINT)(ULONG, PLOADER_PARAMETER_BLOCK, PVOID);
++static XWN_CHECKPOINT XwnCheckpoint;
++
++DECLSPEC_NORETURN VOID
++HalpXwnFirstProcessor(ULONG Processor, PLOADER_PARAMETER_BLOCK LoaderBlock, PVOID Caller)
++{
++    _disable();
++    if (XwnCheckpoint) XwnCheckpoint(Processor, LoaderBlock, Caller);
++    for (;;) __halt();
++}
++#endif
++
++ULONG NTAPI XwnConfigureEntryProbe(PVOID Callback, ULONG Signature)
++{
++#ifdef XBOX_NT5_ENTRY_PREFLIGHT
++    if (Signature != 0x58454E54 || !Callback || XwnCheckpoint) return 0;
++    XwnCheckpoint = (XWN_CHECKPOINT)Callback;
++    return 0x58484C54;
++#else
++    return 0; /* Ordinary HALs cannot arm this diagnostic. */
++#endif
++}
+diff --git a/hal/halx86/xboxnt5/halnt5.spec b/hal/halx86/xboxnt5/halnt5.spec
+index 41ed2ae6..9fa5ab2d 100644
+--- a/hal/halx86/xboxnt5/halnt5.spec
++++ b/hal/halx86/xboxnt5/halnt5.spec
+@@ -117,3 +117,5 @@
+ @ stdcall -version=0x0600+ -arch=i386,x86_64 x86BiosReadMemory(long long ptr long)
+ @ stdcall -version=0x0502 -arch=x86_64 x86BiosWriteMemory(long long ptr long)
+ @ stdcall -version=0x0600+ -arch=i386,x86_64 x86BiosWriteMemory(long long ptr long)
++
++@ stdcall XwnConfigureEntryProbe(ptr long)

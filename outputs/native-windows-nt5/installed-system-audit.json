@@ -1,0 +1,166 @@
+{
+  "scope": "Read-only registry and file inspection; these PC IDE settings do not prove Xbox MCPX compatibility.",
+  "system_hive_sequences": [
+    17,
+    17
+  ],
+  "system_hive_clean": true,
+  "select": {
+    "Current": 1,
+    "Default": 1,
+    "Failed": 0,
+    "LastKnownGood": 2
+  },
+  "setup": {
+    "SetupType": 0,
+    "SystemSetupInProgress": 0,
+    "CmdLine": "setup -newsetup"
+  },
+  "system_control_set": "ControlSet001",
+  "services": {
+    "Atapi": {
+      "Start": 0,
+      "Type": 1,
+      "Group": "SCSI miniport",
+      "ImagePath": "system32\\DRIVERS\\atapi.sys",
+      "ErrorControl": 1,
+      "Tag": 25
+    },
+    "IntelIde": {
+      "Start": 0,
+      "Type": 1,
+      "Group": "System Bus Extender",
+      "ImagePath": "system32\\DRIVERS\\intelide.sys",
+      "ErrorControl": 1,
+      "Tag": 4
+    },
+    "PciIde": {
+      "Start": 4,
+      "Type": 1,
+      "Group": "System Bus Extender",
+      "ErrorControl": 1,
+      "Tag": 3
+    },
+    "Pci": {
+      "Start": 0,
+      "Type": 1,
+      "Group": "Boot Bus Extender",
+      "ImagePath": "system32\\DRIVERS\\pci.sys",
+      "ErrorControl": 3,
+      "Tag": 2
+    },
+    "Isapnp": {
+      "Start": 0,
+      "Type": 1,
+      "Group": "Boot Bus Extender",
+      "ImagePath": "system32\\DRIVERS\\isapnp.sys",
+      "ErrorControl": 3,
+      "Tag": 3
+    },
+    "Disk": {
+      "Start": 0,
+      "Type": 1,
+      "Group": "SCSI Class",
+      "ImagePath": "system32\\DRIVERS\\disk.sys",
+      "ErrorControl": 1,
+      "Tag": 2
+    },
+    "Classpnp": null,
+    "Ntfs": {
+      "Start": 4,
+      "Type": 2,
+      "Group": "File system",
+      "ErrorControl": 1
+    },
+    "Fastfat": {
+      "Start": 4,
+      "Type": 2,
+      "Group": "Boot file system",
+      "ErrorControl": 1
+    },
+    "Scsiport": null,
+    "Mountmgr": {
+      "Start": 0,
+      "Type": 1,
+      "Group": "System Bus Extender",
+      "ErrorControl": 1,
+      "Tag": 8
+    },
+    "Ftdisk": {
+      "Start": 0,
+      "Type": 1,
+      "Group": "System Bus Extender",
+      "ImagePath": "system32\\DRIVERS\\ftdisk.sys",
+      "ErrorControl": 1,
+      "Tag": 9
+    },
+    "Dmio": {
+      "Start": 0,
+      "Type": 1,
+      "Group": "System Bus Extender",
+      "ImagePath": "System32\\drivers\\dmio.sys",
+      "ErrorControl": 1,
+      "Tag": 13
+    },
+    "Dmload": {
+      "Start": 0,
+      "Type": 1,
+      "Group": "System Bus Extender",
+      "ImagePath": "System32\\drivers\\dmload.sys",
+      "ErrorControl": 1,
+      "Tag": 12
+    },
+    "Partmgr": {
+      "Start": 0,
+      "Type": 1,
+      "Group": "System Bus Extender",
+      "ErrorControl": 1,
+      "Tag": 2
+    },
+    "Ksecdd": {
+      "Start": 0,
+      "Type": 1,
+      "Group": "Base",
+      "ErrorControl": 1,
+      "Tag": 1
+    }
+  },
+  "ide_critical_device_database": [
+    {
+      "id": "pci#ven_8086&dev_7010",
+      "values": {
+        "Service": "intelide",
+        "ClassGUID": "{4D36E96A-E325-11CE-BFC1-08002BE10318}"
+      }
+    },
+    {
+      "id": "primary_ide_channel",
+      "values": {
+        "Service": "atapi",
+        "ClassGUID": "{4D36E96A-E325-11CE-BFC1-08002BE10318}"
+      }
+    },
+    {
+      "id": "secondary_ide_channel",
+      "values": {
+        "Service": "atapi",
+        "ClassGUID": "{4D36E96A-E325-11CE-BFC1-08002BE10318}"
+      }
+    }
+  ],
+  "versions": {
+    "ntoskrnl.exe": {
+      "version": "5.0.2195.7376",
+      "sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+    },
+    "hal.dll": {
+      "version": "5.0.2195.6801",
+      "sha256": "f46175c62987b045fb795520adb16bc9b11127f4d5a9c2c35fb168ff1a0127f0"
+    },
+    "bootvid.dll": {
+      "version": "5.0.2172.1",
+      "sha256": "01c2b2965418a98758f725c75145088ef94456a85cb91a5d0a3d11efa37efd20"
+    }
+  },
+  "boot_ini": "[boot loader]\ntimeout=30\ndefault=multi(0)disk(0)rdisk(0)partition(1)\\WINNT\n[operating systems]\nmulti(0)disk(0)rdisk(0)partition(1)\\WINNT=\"Microsoft Windows 2000 Professional\" /fastdetect\n"
+}

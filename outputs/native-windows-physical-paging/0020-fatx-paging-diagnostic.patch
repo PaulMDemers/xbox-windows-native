@@ -1,0 +1,285 @@
+diff --git a/boot/freeldr/freeldr/ntldr/winldr.c b/boot/freeldr/freeldr/ntldr/winldr.c
+index 44fd06d2..3edae03a 100644
+--- a/boot/freeldr/freeldr/ntldr/winldr.c
++++ b/boot/freeldr/freeldr/ntldr/winldr.c
+@@ -81,10 +81,141 @@ NtLdrOutputLoadMsg(
+  * Words 4..: LPB PA, LPB VA, kernel entry, CR0, CR3, extension size,
+  * major, minor, hive size, module count, boot-driver count, descriptor count.
+  */
++#ifdef XBOX_NATIVE_FATX_PAGING_PREFLIGHT
++/* Separate magic prevents host entry-gate tools mistaking this for an entry build. */
++static volatile ULONG XwnHandoffRecord[20] = {0x504e5758, 0x35544e50, 1, 0};
++#else
+ static volatile ULONG XwnHandoffRecord[17] = {0x484e5758, 0x35544e50, 1, 0};
+ #endif
++#endif
+ 
+-#ifdef XBOX_NATIVE_FATX_NT5_PREFLIGHT
++#ifdef XBOX_NATIVE_FATX_PAGING_PREFLIGHT
++/* Diagnostic-only framebuffer output. No Windows code is invoked. */
++#include "../arch/vgafont.h"
++#include <drivers/xbox/xgpu.h>
++#if defined(XBOX_NATIVE_NT5_ENTER) || defined(XBOX_NATIVE_NT5_AUTORUN)
++#error Paging diagnostic must not enable Windows kernel entry
++#endif
++
++extern PHARDWARE_PTE PDE;
++static ULONG XwnPagingFramebuffer;
++static PULONG XwnPagingTable;
++#define XWN_FB_BYTES (640 * 480 * sizeof(ULONG))
++
++static VOID XwnPagingText(ULONG Row, PCSTR Text, ULONG Color)
++{
++    ULONG Char, X, Y;
++    volatile ULONG *Pixels = (volatile ULONG *)(ULONG_PTR)XwnPagingFramebuffer;
++    for (Char = 0; Text[Char] && Char < 74; ++Char)
++    {
++        const UCHAR *Glyph = BitmapFont8x16 + (UCHAR)Text[Char] * 16;
++        for (Y = 0; Y < 16; ++Y)
++            for (X = 0; X < 8; ++X)
++                Pixels[(Row * 16 + Y) * 640 + (Char + 3) * 8 + X] =
++                    (Glyph[Y] & (0x80 >> X)) ? Color : 0xFF000000;
++    }
++}
++
++static VOID XwnPagingClear(VOID)
++{
++    ULONG Index;
++    volatile ULONG *Pixels = (volatile ULONG *)(ULONG_PTR)XwnPagingFramebuffer;
++    for (Index = 0; Index < 640 * 480; ++Index) Pixels[Index] = 0xFF000000;
++}
++
++static DECLSPEC_NORETURN VOID XwnPagingStop(PCSTR Reason)
++{
++    printf("XWNPFAIL: %s; kernel NOT entered\n", Reason);
++    _disable(); for (;;) __halt();
++}
++
++static VOID XwnPreparePagingDisplay(PLOADER_PARAMETER_BLOCK LoaderBlock)
++{
++    ULONG Width, Height, Pitch, Index, BasePage, Pages, Count = 0;
++    UCHAR SavedIndex, LowPitch, HighPitch;
++    BOOLEAN Reserved = FALSE;
++    PLIST_ENTRY Link, Head = &LoaderBlock->MemoryDescriptorListHead;
++    const ULONG Gpu = 0xFD000000;
++    Width = READ_REGISTER_ULONG((PULONG)(Gpu + NV2A_RAMDAC_FP_HVALID_END)) + 1;
++    Height = READ_REGISTER_ULONG((PULONG)(Gpu + NV2A_RAMDAC_FP_VVALID_END)) + 1;
++    SavedIndex = READ_REGISTER_UCHAR((PUCHAR)(Gpu + NV2A_CRTC_REGISTER_INDEX));
++    WRITE_REGISTER_UCHAR((PUCHAR)(Gpu + NV2A_CRTC_REGISTER_INDEX), 0x13);
++    LowPitch = READ_REGISTER_UCHAR((PUCHAR)(Gpu + NV2A_CRTC_REGISTER_VALUE));
++    WRITE_REGISTER_UCHAR((PUCHAR)(Gpu + NV2A_CRTC_REGISTER_INDEX), 0x19);
++    HighPitch = READ_REGISTER_UCHAR((PUCHAR)(Gpu + NV2A_CRTC_REGISTER_VALUE));
++    WRITE_REGISTER_UCHAR((PUCHAR)(Gpu + NV2A_CRTC_REGISTER_INDEX), SavedIndex);
++    Pitch = 8 * (((HighPitch & 0xE0) << 3) | LowPitch);
++    XwnPagingFramebuffer = READ_REGISTER_ULONG((PULONG)(Gpu + NV2A_CRTC_FRAMEBUFFER_START)) & 0x0FFFFFFF;
++    if (Width != 640 || Height != 480 || Pitch != 640 * 4 ||
++        (XwnPagingFramebuffer & 0xFFF) || XwnPagingFramebuffer < 0x03C00000 ||
++        XwnPagingFramebuffer > 0x04000000 - XWN_FB_BYTES ||
++        MmGetTotalPagesInLookupTable() != 0x3C00)
++        XwnPagingStop("unsupported framebuffer or RAM layout");
++
++    BasePage = XwnPagingFramebuffer >> 12;
++    Pages = XWN_FB_BYTES >> 12;
++    /* Layout construction already converted the descriptor links to VAs. */
++    for (Link = VaToPa(Head->Flink); Link != Head && Count++ < 200;
++         Link = VaToPa(Link->Flink))
++    {
++        PMEMORY_ALLOCATION_DESCRIPTOR D = CONTAINING_RECORD(Link, MEMORY_ALLOCATION_DESCRIPTOR, ListEntry);
++        if (D->MemoryType == LoaderFirmwarePermanent && D->BasePage <= BasePage &&
++            D->PageCount >= Pages && D->BasePage + D->PageCount >= BasePage + Pages)
++            Reserved = TRUE;
++    }
++    if (!Reserved || Count >= 200) XwnPagingStop("framebuffer is not firmware-reserved");
++    /* Only the display window gains an identity mapping; its descriptor stays reserved. */
++    if (((PULONG)PDE)[BasePage >> 10] != 0)
++        XwnPagingStop("unexpected existing display PDE");
++    ((PULONG)PDE)[BasePage >> 10] = (ULONG_PTR)XwnPagingTable | 3;
++    for (Index = BasePage; Index < BasePage + Pages; ++Index)
++    {
++        PULONG Pt = (PULONG)(ULONG_PTR)(((PULONG)PDE)[Index >> 10] & ~0xFFF);
++        Pt[Index & 1023] = Index * 4096 | 0x1B; /* Present, write, PCD and PWT. */
++        if ((Pt[Index & 1023] & ~0xFFF) != Index * 4096 ||
++            (Pt[Index & 1023] & 3) != 3) XwnPagingStop("framebuffer PTE validation");
++        if (((PULONG)PDE)[(Index >> 10) + 512] & 1)
++        {
++            Pt = (PULONG)(ULONG_PTR)(((PULONG)PDE)[(Index >> 10) + 512] & ~0xFFF);
++            if (Pt[Index & 1023] & 1) Pt[Index & 1023] |= 0x18;
++        }
++    }
++    XwnHandoffRecord[17] = XwnPagingFramebuffer;
++    XwnHandoffRecord[18] = XWN_FB_BYTES;
++    XwnPagingClear();
++    XwnPagingText(4, "XWN Windows 2000 paging diagnostic", 0xFFFFFFFF);
++    XwnPagingText(8, "XWNP30: Page tables ready. Switching next.", 0xFFFFFF00);
++    XwnPagingText(12, "If this message remains, paging has NOT been confirmed.", 0xFFFFFFFF);
++    XwnPagingText(17, "Kernel NOT entered. Photograph the final screen.", 0xFFFFFFFF);
++}
++
++static DECLSPEC_NORETURN VOID
++XwnFinishPagingProbe(PLOADER_PARAMETER_BLOCK LoaderBlock, volatile ULONG *Record)
++{
++    CHAR Text[128];
++    BOOLEAN Valid = Record[3] == 99 && (__readcr0() & 0x80000000) &&
++                    __readcr3() == (ULONG_PTR)PDE && Record[13] == 20 &&
++                    Record[14] == 14 && LoaderBlock->RegistryLength == 1810432;
++    Record[3] = Valid ? 99 : 40;
++    Record[19] = 0x50414745;
++    XwnPagingClear();
++    XwnPagingText(4, "XWN Windows 2000 paging diagnostic", 0xFFFFFFFF);
++    XwnPagingText(7, "Phase-1 loader block and memory descriptors prepared.", 0xFFFFFFFF);
++    RtlStringCbPrintfA(Text, sizeof(Text), "CR0: %08lx  CR3: %08lx  Descriptors: %lu",
++                      __readcr0(), __readcr3(), Record[15]);
++    XwnPagingText(10, Text, 0xFFFFFFFF);
++    RtlStringCbPrintfA(Text, sizeof(Text), "Hive: %lu bytes  Modules: %lu  Boot drivers: %lu",
++                      Record[12], Record[13], Record[14]);
++    XwnPagingText(12, Text, 0xFFFFFFFF);
++    XwnPagingText(15, Valid ? "XWNP90: Paging active. Kernel NOT entered."
++                          : "XWNPFAIL: Paged-mode validation failed.",
++                  Valid ? 0xFF00FF00 : 0xFFFF0000);
++    XwnPagingText(19, "Diagnostic halted. Photograph this screen, then reboot.", 0xFFFFFFFF);
++    _disable(); for (;;) __halt();
++}
++#endif
++
++#if defined(XBOX_NATIVE_FATX_NT5_PREFLIGHT) && !defined(XBOX_NATIVE_FATX_PAGING_PREFLIGHT)
+ #if defined(XBOX_NATIVE_NT5_ENTER) || defined(XBOX_NATIVE_NT5_AUTORUN)
+ #error FATX file-loading preflight must never enable Windows execution
+ #endif
+@@ -1544,7 +1675,7 @@ LoadAndBootWindowsCommon(
+     /* Reset the PE loader import-DLL callback */
+     PeLdrImportDllLoadCallback = NULL;
+ 
+-#ifdef XBOX_NATIVE_FATX_NT5_PREFLIGHT
++#if defined(XBOX_NATIVE_FATX_NT5_PREFLIGHT) && !defined(XBOX_NATIVE_FATX_PAGING_PREFLIGHT)
+     XwnFinishFatxFileProbe(LoaderBlock);
+ #endif
+ 
+@@ -1594,18 +1725,38 @@ LoadAndBootWindowsCommon(
+     /* Debugging... */
+     //DumpMemoryAllocMap();
+ 
++#ifdef XBOX_NATIVE_FATX_PAGING_PREFLIGHT
++    /* Allocate before the memory descriptors are finalized. The video PDE lies
++     * outside the loader allocator's 60 MiB page-table pool. */
++    XwnPagingTable = MmAllocateMemoryWithType(PAGE_SIZE, LoaderMemoryData);
++    if (!XwnPagingTable || ((ULONG_PTR)XwnPagingTable & 0xFFF))
++        XwnPagingStop("display page-table allocation");
++    RtlZeroMemory(XwnPagingTable, PAGE_SIZE);
++#endif
++
+     /* Do the machine specific initialization */
+     WinLdrSetupMachineDependent(LoaderBlock);
+ 
+     /* Map pages and create memory descriptors */
++#ifdef XBOX_NATIVE_FATX_PAGING_PREFLIGHT
++    if (!WinLdrSetupMemoryLayout(LoaderBlock))
++    {
++        printf("XWNPFAIL: memory layout; kernel NOT entered\n");
++        _disable(); for (;;) __halt();
++    }
++    XwnPreparePagingDisplay(LoaderBlock);
++#else
+     WinLdrSetupMemoryLayout(LoaderBlock);
++#endif
+ 
+ #ifdef XBOX_NATIVE_NT5_HANDOFF
+     XwnHandoffRecord[3] = 30;
+     XwnHandoffRecord[4] = (ULONG_PTR)LoaderBlock;
+     XwnHandoffRecord[5] = (ULONG_PTR)LoaderBlockVA;
+     XwnHandoffRecord[6] = (ULONG_PTR)KiSystemStartup;
++#ifndef XBOX_NATIVE_FATX_PAGING_PREFLIGHT
+     printf("XWNH30: Layout prepared. Record PA=%p; paging next\n", XwnHandoffRecord);
++#endif
+ #endif
+     /* Set processor context */
+     WinLdrSetProcessorContext(OperatingSystemVersion);
+@@ -1650,6 +1801,9 @@ LoadAndBootWindowsCommon(
+             Modules && Modules < 256 && Drivers && Drivers < 256 && Descriptors && Descriptors < 256 &&
+             LoaderBlockVA->RegistryBase && LoaderBlockVA->NlsData)
+             XwnHandoffRecord[3] = 99;
++#ifdef XBOX_NATIVE_FATX_PAGING_PREFLIGHT
++        XwnFinishPagingProbe(LoaderBlockVA, XwnHandoffRecord);
++#endif
+ #ifdef XBOX_NATIVE_NT5_ENTER
+         _disable();
+         if (XwnHandoffRecord[3] != 99) for (;;) __halt();
+diff --git a/boot/freeldr/freeldr/ntldr/wlmemory.c b/boot/freeldr/freeldr/ntldr/wlmemory.c
+index 9bd32bdf..c13f6546 100644
+--- a/boot/freeldr/freeldr/ntldr/wlmemory.c
++++ b/boot/freeldr/freeldr/ntldr/wlmemory.c
+@@ -217,6 +217,11 @@ WinLdrSetupMemoryLayout(IN OUT PLOADER_PARAMETER_BLOCK LoaderBlock)
+         return FALSE;
+     }
+ 
++#ifdef XBOX_NATIVE_FATX_PAGING_PREFLIGHT
++    /* Page zero remains read-only in the identity map; do not advertise it free. */
++    MemoryMap[0].PageAllocated = LoaderFirmwarePermanent;
++#endif
++
+     // Calculate parameters of the memory map
+     MemoryMapStartPage = (ULONG_PTR)MemoryMap >> MM_PAGE_SHIFT;
+     MemoryMapSizeInPages = (NoEntries * sizeof(PAGE_LOOKUP_TABLE_ITEM) + MM_PAGE_SIZE - 1) / MM_PAGE_SIZE;
+@@ -280,6 +285,12 @@ WinLdrSetupMemoryLayout(IN OUT PLOADER_PARAMETER_BLOCK LoaderBlock)
+         }
+     }
+ 
++#ifdef XBOX_NATIVE_FATX_PAGING_PREFLIGHT
++    /* The boundary loop emits the run preceding the final lookup-table page. */
++    MempAddMemoryBlock(LoaderBlock, NoEntries - 1, 1,
++                       MemoryMap[NoEntries - 1].PageAllocated);
++#endif
++
+     // TEMP, DEBUG!
+     // adding special reserved memory zones for vmware workstation
+ #if 0
+@@ -312,7 +323,12 @@ WinLdrSetupMemoryLayout(IN OUT PLOADER_PARAMETER_BLOCK LoaderBlock)
+     for (i = 0; i < BiosMemoryMapEntryCount; i++)
+     {
+         /* Check if its higher than the lookup table */
++#ifdef XBOX_NATIVE_FATX_PAGING_PREFLIGHT
++        /* NoEntries is an exclusive bound: video RAM begins exactly there. */
++        if (BiosMemoryMap->BasePage >= NoEntries)
++#else
+         if (BiosMemoryMap->BasePage > MmGetHighestPhysicalPage())
++#endif
+         {
+             /* Copy this descriptor */
+             MempAddMemoryBlock(LoaderBlock,
+@@ -320,6 +336,10 @@ WinLdrSetupMemoryLayout(IN OUT PLOADER_PARAMETER_BLOCK LoaderBlock)
+                                BiosMemoryMap->PageCount,
+                                BiosMemoryMap->MemoryType);
+         }
++#ifdef XBOX_NATIVE_FATX_PAGING_PREFLIGHT
++        /* Examine every firmware descriptor, including the reserved video RAM. */
++        ++BiosMemoryMap;
++#endif
+     }
+ 
+     TRACE("MadCount: %d\n", MadCount);
+diff --git a/boot/freeldr/freeldr/pcat.cmake b/boot/freeldr/freeldr/pcat.cmake
+index ed12de04..0039d125 100644
+--- a/boot/freeldr/freeldr/pcat.cmake
++++ b/boot/freeldr/freeldr/pcat.cmake
+@@ -319,3 +319,9 @@ if(XBOX_NATIVE_FATX_NT5_PREFLIGHT)
+     endif()
+     target_compile_definitions(freeldr_pe PRIVATE XBOX_NATIVE_FATX_NT5_PREFLIGHT=1)
+ endif()
++
++option(XBOX_NATIVE_FATX_PAGING_PREFLIGHT "Switch NT5 page tables and halt with a framebuffer result" OFF)
++if(XBOX_NATIVE_FATX_PAGING_PREFLIGHT AND
++   (NOT XBOX_NATIVE_FATX_NT5_PREFLIGHT OR XBOX_NATIVE_NT5_ENTER OR XBOX_NATIVE_NT5_AUTORUN))
++    message(FATAL_ERROR "FATX paging probe requires FATX NT5 preflight with kernel entry OFF")
++endif()
+diff --git a/boot/freeldr/freeldr/rosload.cmake b/boot/freeldr/freeldr/rosload.cmake
+index 8b856a1e..c60c36ea 100644
+--- a/boot/freeldr/freeldr/rosload.cmake
++++ b/boot/freeldr/freeldr/rosload.cmake
+@@ -122,3 +122,8 @@ endif()
+ if(XBOX_NATIVE_FATX_NT5_PREFLIGHT)
+     target_compile_definitions(rosload PRIVATE XBOX_NATIVE_FATX_NT5_PREFLIGHT=1)
+ endif()
++
++if(XBOX_NATIVE_FATX_PAGING_PREFLIGHT)
++    target_compile_definitions(rosload PRIVATE XBOX_NATIVE_FATX_PAGING_PREFLIGHT=1)
++    target_sources(rosload PRIVATE arch/vgafont.c)
++endif()

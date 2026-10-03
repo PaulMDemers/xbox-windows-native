@@ -1,0 +1,22 @@
+{
+  "scope": "Execute the experimental ACI resource and register boundaries, not sound emulation.",
+  "driver_sha256": "9cccf729317efb34b1350c12ca2cc9b285fa57a8746147b93632bb1cce177efa",
+  "tests": [
+    {
+      "test": "8/16/32-bit bus-master accesses use MMIO at the ACI +0x100 aperture and preserve the stdcall ABI",
+      "passed": true
+    },
+    {
+      "test": "Rejects PC I/O-port resources, absent IRQs, extra memory/DMA resources, absent descriptors and undersized MMIO",
+      "passed": true
+    },
+    {
+      "test": "Mapping failures propagate without touching unmapped registers; maps only 0x180 uncached bytes",
+      "passed": true
+    },
+    {
+      "test": "Absent surround/LFE codec registers return not-supported without an MMIO write",
+      "passed": true
+    }
+  ]
+}

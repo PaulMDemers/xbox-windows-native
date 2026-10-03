@@ -1,0 +1,240 @@
+diff --git a/boot/freeldr/freeldr/ntldr/xwnentryprobe.h b/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
+index cba80adb..fa92f0b0 100644
+--- a/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
++++ b/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
+@@ -1,6 +1,10 @@
+ /* Explicit early-kernel diagnostic. Included only in the opt-in rosload. */
+ #ifdef XBOX_NATIVE_FATX_PHASE0_PREFLIGHT
+-#if defined(XBOX_NATIVE_FATX_TIMER_PREFLIGHT)
++#if defined(XBOX_NATIVE_FATX_CLOCK_PREFLIGHT)
++static volatile ULONG XwnEntryRecord[80] = {0x434e5758, 0x35544e50, 1, 0};
++#define XWN_ARM_SIGNATURE 0x434C4E54
++#define XWN_ARM_REPLY 0x434C4854
++#elif defined(XBOX_NATIVE_FATX_TIMER_PREFLIGHT)
+ static volatile ULONG XwnEntryRecord[64] = {0x544e5758, 0x35544e50, 1, 0};
+ #define XWN_ARM_SIGNATURE 0x54494E54
+ #define XWN_ARM_REPLY 0x54494854
+@@ -133,7 +137,9 @@ static DECLSPEC_NORETURN VOID XwnEnterKernelProbe(PLOADER_PARAMETER_BLOCK Loader
+     XwnEntryRecord[21] = XwnFramebufferBytes;
+     XwnEntryRecord[23] = (ULONG_PTR)XwnFindHalExport(Hal, "HalInitSystem");
+     XwnPagingClear();
+-#if defined(XBOX_NATIVE_FATX_TIMER_PREFLIGHT)
++#if defined(XBOX_NATIVE_FATX_CLOCK_PREFLIGHT)
++    XwnPagingText(7, "XWNC30: Entering Windows; pre-storage stop armed.", 0xFFFFFF00);
++#elif defined(XBOX_NATIVE_FATX_TIMER_PREFLIGHT)
+     XwnPagingText(7, "XWNT30: Entering Windows; post-calibration stop armed.", 0xFFFFFF00);
+ #elif defined(XBOX_NATIVE_FATX_HALBASE_PREFLIGHT)
+     XwnPagingText(7, "XWNB30: Entering Windows; pre-timer HAL stop armed.", 0xFFFFFF00);
+diff --git a/boot/freeldr/freeldr/ntldr/xwnphase0callback.h b/boot/freeldr/freeldr/ntldr/xwnphase0callback.h
+index e3150c93..59149520 100644
+--- a/boot/freeldr/freeldr/ntldr/xwnphase0callback.h
++++ b/boot/freeldr/freeldr/ntldr/xwnphase0callback.h
+@@ -77,6 +77,32 @@ XwnFirstHalCheckpoint(ULONG Stage, PLOADER_PARAMETER_BLOCK LoaderBlock,
+         for (I = 0; I < 8; ++I) XwnEntryRecord[46 + I] = State[5 + I];
+         XwnEntryRecord[54] = State[2];
+     }
++#endif
++#ifdef XBOX_NATIVE_FATX_CLOCK_PREFLIGHT
++    if (Valid && Stage == 50)
++    {
++        XwnEntryRecord[24] = 50;
++        XwnPagingClear();
++        XwnPagingText(4, "XWN Windows 2000 clock setup", 0xFFFFFFFF);
++        XwnPagingText(7, "XWNC50: RTC calibration passed; configuring clock.", 0xFFFFFF00);
++        XwnPagingText(12, "Clock completion NOT confirmed; storage NOT entered.", 0xFFFFFFFF);
++        return 0x50524330;
++    }
++    Valid = XwnEntryRecord[3] == 30 && State && Stage == 60 &&
++            XwnEntryRecord[24] == 50 && XwnEntryRecord[25] == 1 &&
++            (ULONG_PTR)LoaderBlock == XwnEntryRecord[4] &&
++            (ULONG_PTR)Caller == XwnEntryRecord[45] &&
++            (__readcr0() & 0x80000000) && __readcr3() == XwnEntryRecord[11] &&
++            State[0] == 0 && State[2] == XwnEntryRecord[54] &&
++            State[5] == 16875 && State[6] == 150000 && State[7] == 15 &&
++            State[8] == State[5] && State[9] == State[6] && State[10] == 1 &&
++            State[11] == 0xffff && (State[12] & 0x200) && !(State[13] & 0x40) &&
++            State[14] <= State[5] && State[15] == 10000;
++    if (State && Stage == 60)
++    {
++        ULONG I;
++        for (I = 0; I < 11; ++I) XwnEntryRecord[55 + I] = State[5 + I];
++    }
+ #endif
+     XwnEntryRecord[12] = State ? State[0] : ~0;
+     XwnEntryRecord[13] = (ULONG_PTR)LoaderBlock;
+@@ -93,7 +119,22 @@ XwnFirstHalCheckpoint(ULONG Stage, PLOADER_PARAMETER_BLOCK LoaderBlock,
+     XwnEntryRecord[24] = Stage;
+     XwnEntryRecord[3] = Valid ? 90 : 40;
+     XwnPagingClear();
+-#if defined(XBOX_NATIVE_FATX_TIMER_PREFLIGHT)
++#if defined(XBOX_NATIVE_FATX_CLOCK_PREFLIGHT)
++    XwnPagingText(4, "XWN Windows 2000 clock setup", 0xFFFFFFFF);
++    XwnPagingText(7, Valid ? "XWNC90: Clock configured; stopped before storage."
++                          : "XWNCFAIL: Clock state validation failed.",
++                  Valid ? 0xFF00FF00 : 0xFFFF0000);
++    RtlStringCbPrintfA(Text, sizeof(Text), "Increment: %lu x100ns  PIT reload: %lu",
++                      XwnEntryRecord[56], XwnEntryRecord[55]);
++    XwnPagingText(10, Text, 0xFFFFFFFF);
++    RtlStringCbPrintfA(Text, sizeof(Text), "PIC: %04lx  RTC B: %02lx  Profile stopped: %lu",
++                      XwnEntryRecord[61], XwnEntryRecord[63], XwnEntryRecord[60]);
++    XwnPagingText(12, Text, 0xFFFFFFFF);
++    RtlStringCbPrintfA(Text, sizeof(Text), "PIT count snapshot: %lu  Stall factor: %lu",
++                      XwnEntryRecord[64], XwnEntryRecord[54]);
++    XwnPagingText(14, Text, 0xFFFFFFFF);
++    XwnPagingText(17, "Storage, boot-driver entry and desktop NOT reached.", 0xFFFFFFFF);
++#elif defined(XBOX_NATIVE_FATX_TIMER_PREFLIGHT)
+     XwnPagingText(4, "XWN Windows 2000 RTC timer calibration", 0xFFFFFFFF);
+     XwnPagingText(7, Valid ? "XWNT90: RTC calibration returned; interrupt state restored."
+                           : "XWNTFAIL: RTC calibration state validation failed.",
+diff --git a/boot/freeldr/freeldr/pcat.cmake b/boot/freeldr/freeldr/pcat.cmake
+index 0a77c011..710a74e3 100644
+--- a/boot/freeldr/freeldr/pcat.cmake
++++ b/boot/freeldr/freeldr/pcat.cmake
+@@ -346,3 +346,8 @@ option(XBOX_NATIVE_FATX_TIMER_PREFLIGHT "Stop after RTC stall calibration" OFF)
+ if(XBOX_NATIVE_FATX_TIMER_PREFLIGHT AND NOT XBOX_NATIVE_FATX_HALBASE_PREFLIGHT)
+     message(FATAL_ERROR "Timer probe requires HAL-base preflight")
+ endif()
++
++option(XBOX_NATIVE_FATX_CLOCK_PREFLIGHT "Stop after clock setup before storage" OFF)
++if(XBOX_NATIVE_FATX_CLOCK_PREFLIGHT AND NOT XBOX_NATIVE_FATX_TIMER_PREFLIGHT)
++    message(FATAL_ERROR "Clock probe requires timer preflight")
++endif()
+diff --git a/boot/freeldr/freeldr/rosload.cmake b/boot/freeldr/freeldr/rosload.cmake
+index 6315dfac..1ef22374 100644
+--- a/boot/freeldr/freeldr/rosload.cmake
++++ b/boot/freeldr/freeldr/rosload.cmake
+@@ -143,3 +143,7 @@ endif()
+ if(XBOX_NATIVE_FATX_TIMER_PREFLIGHT)
+     target_compile_definitions(rosload PRIVATE XBOX_NATIVE_FATX_TIMER_PREFLIGHT=1)
+ endif()
++
++if(XBOX_NATIVE_FATX_CLOCK_PREFLIGHT)
++    target_compile_definitions(rosload PRIVATE XBOX_NATIVE_FATX_CLOCK_PREFLIGHT=1)
++endif()
+diff --git a/hal/halx86/generic/halinit.c b/hal/halx86/generic/halinit.c
+index ee887066..35ca6e0a 100644
+--- a/hal/halx86/generic/halinit.c
++++ b/hal/halx86/generic/halinit.c
+@@ -18,7 +18,12 @@ VOID HalpXwnProcessorBoundary(BOOLEAN, ULONG, PLOADER_PARAMETER_BLOCK, PVOID);
+ VOID HalpXwnPhase0(ULONG, PLOADER_PARAMETER_BLOCK, PVOID);
+ #ifdef XBOX_NT5_TIMER_PREFLIGHT
+ VOID HalpXwnBaseReady(ULONG, PLOADER_PARAMETER_BLOCK, PVOID, NTSTATUS);
++#ifdef XBOX_NT5_CLOCK_PREFLIGHT
++VOID HalpXwnTimerReady(ULONG, PLOADER_PARAMETER_BLOCK, PVOID);
++DECLSPEC_NORETURN VOID HalpXwnClockReady(ULONG, PLOADER_PARAMETER_BLOCK, PVOID);
++#else
+ DECLSPEC_NORETURN VOID HalpXwnTimerReady(ULONG, PLOADER_PARAMETER_BLOCK, PVOID);
++#endif
+ #else
+ DECLSPEC_NORETURN VOID HalpXwnBaseReady(ULONG, PLOADER_PARAMETER_BLOCK, PVOID, NTSTATUS);
+ #endif
+@@ -207,6 +212,9 @@ HalInitSystem(
+          * so clear it here before interrupts are enabled
+          */
+         HalStopProfileInterrupt(ProfileTime);
++#ifdef XBOX_NT5_CLOCK_PREFLIGHT
++        HalpXwnClockReady(BootPhase, LoaderBlock, _ReturnAddress());
++#endif
+ 
+         /* Do some HAL-specific initialization */
+         HalpInitPhase0(LoaderBlock);
+diff --git a/hal/halx86/xboxnt5/CMakeLists.txt b/hal/halx86/xboxnt5/CMakeLists.txt
+index de86ffc4..c67fecd6 100644
+--- a/hal/halx86/xboxnt5/CMakeLists.txt
++++ b/hal/halx86/xboxnt5/CMakeLists.txt
+@@ -57,3 +57,11 @@ endif()
+ if(XBOX_NT5_TIMER_PREFLIGHT)
+     target_compile_definitions(halxboxnt5 PRIVATE XBOX_NT5_TIMER_PREFLIGHT=1)
+ endif()
++
++option(XBOX_NT5_CLOCK_PREFLIGHT "Stop clock setup before Xbox storage initialization" OFF)
++if(XBOX_NT5_CLOCK_PREFLIGHT AND NOT XBOX_NT5_TIMER_PREFLIGHT)
++    message(FATAL_ERROR "Clock HAL probe requires timer preflight")
++endif()
++if(XBOX_NT5_CLOCK_PREFLIGHT)
++    target_compile_definitions(halxboxnt5 PRIVATE XBOX_NT5_CLOCK_PREFLIGHT=1)
++endif()
+diff --git a/hal/halx86/xboxnt5/entryprobe.c b/hal/halx86/xboxnt5/entryprobe.c
+index 99e26be3..191b1e0f 100644
+--- a/hal/halx86/xboxnt5/entryprobe.c
++++ b/hal/halx86/xboxnt5/entryprobe.c
+@@ -62,7 +62,11 @@ HalpXwnFirstProcessor(ULONG Processor, PLOADER_PARAMETER_BLOCK LoaderBlock, PVOI
+ 
+ ULONG NTAPI XwnConfigureEntryProbe(PVOID Callback, ULONG Signature)
+ {
+-#if defined(XBOX_NT5_TIMER_PREFLIGHT)
++#if defined(XBOX_NT5_CLOCK_PREFLIGHT)
++    if (Signature != 0x434C4E54 || !Callback || XwnPhaseCallback) return 0;
++    XwnPhaseCallback = (XWN_PHASE_CALLBACK)Callback;
++    return 0x434C4854;
++#elif defined(XBOX_NT5_TIMER_PREFLIGHT)
+     if (Signature != 0x54494E54 || !Callback || XwnPhaseCallback) return 0;
+     XwnPhaseCallback = (XWN_PHASE_CALLBACK)Callback;
+     return 0x54494854;
+@@ -141,7 +145,10 @@ VOID HalpXwnBaseReady(ULONG Phase, PLOADER_PARAMETER_BLOCK LoaderBlock,
+ #endif
+ 
+ #ifdef XBOX_NT5_TIMER_PREFLIGHT
+-DECLSPEC_NORETURN VOID HalpXwnTimerReady(ULONG Phase, PLOADER_PARAMETER_BLOCK LoaderBlock, PVOID Caller)
++#ifndef XBOX_NT5_CLOCK_PREFLIGHT
++DECLSPEC_NORETURN
++#endif
++VOID HalpXwnTimerReady(ULONG Phase, PLOADER_PARAMETER_BLOCK LoaderBlock, PVOID Caller)
+ {
+     ULONG State[14], Flags = __readeflags();
+     KDESCRIPTOR Idt;
+@@ -165,7 +172,54 @@ DECLSPEC_NORETURN VOID HalpXwnTimerReady(ULONG Phase, PLOADER_PARAMETER_BLOCK Lo
+     State[12] = Flags;
+     State[13] = 0;
+     XwnPhaseStep = 5;
++#ifdef XBOX_NT5_CLOCK_PREFLIGHT
++    if (XwnPhaseCallback(50, LoaderBlock, Caller, State) == 0x50524330)
++    {
++        __writeeflags(Flags);
++        return;
++    }
++#else
+     XwnPhaseCallback(50, LoaderBlock, Caller, State);
++#endif
++    for (;;) __halt();
++}
++#endif
++
++#ifdef XBOX_NT5_CLOCK_PREFLIGHT
++extern ULONG HalpCurrentRollOver, HalpCurrentTimeIncrement, HalpLargestClockMS;
++extern HALP_ROLLOVER HalpRolloverTable[15];
++extern BOOLEAN HalpProfilingStopped;
++DECLSPEC_NORETURN VOID HalpXwnClockReady(ULONG Phase, PLOADER_PARAMETER_BLOCK LoaderBlock, PVOID Caller)
++{
++    ULONG State[16], Flags = __readeflags(), Counter;
++    _disable();
++    if (!XwnPhaseCallback || XwnPhaseStep != 5 || Phase != 0) for (;;) __halt();
++    State[0] = Phase;
++    State[1] = KeGetPcr()->IDR;
++    State[2] = KeGetPcr()->StallScaleFactor;
++    State[3] = (ULONG)HalpActiveProcessors;
++    State[4] = (ULONG)HalpDefaultInterruptAffinity;
++    State[5] = HalpCurrentRollOver;
++    State[6] = HalpCurrentTimeIncrement;
++    State[7] = HalpLargestClockMS;
++    State[8] = HalpRolloverTable[14].RollOver;
++    State[9] = HalpRolloverTable[14].Increment;
++    State[10] = HalpProfilingStopped;
++    State[11] = __inbyte(0x21) | (__inbyte(0xa1) << 8);
++    State[12] = Flags;
++    HalpAcquireCmosSpinLock();
++    State[13] = HalpReadCmos(0x0b);
++    HalpReleaseCmosSpinLock();
++    /* Same channel-0 latch sequence as HalpRead8254Value; no reprogramming. */
++    __outbyte(0x43, 0);
++    __nop();
++    Counter = __inbyte(0x40);
++    __nop();
++    Counter |= __inbyte(0x40) << 8;
++    State[14] = Counter;
++    State[15] = HalpRolloverTable[0].Increment;
++    XwnPhaseStep = 6;
++    XwnPhaseCallback(60, LoaderBlock, Caller, State);
+     for (;;) __halt();
+ }
+ #endif

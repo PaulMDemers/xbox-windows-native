@@ -1,0 +1,45 @@
+Next development stage after physical XWNP90
+
+Confirmed on the physical console: Xromwell/FreeLoader boot, FATX file
+loading, rosload handoff, NT files and hive staged, phase-1 loader-block
+conversion, processor-context/paging transition and visible framebuffer
+output. XWNP90 intentionally stops before calling Windows. The latest
+console photo is evidence/physical-xwnp90/console.jpg.
+
+Proposed next test: execute the pinned Windows 2000 kernel only as far as
+the first HalInitializeProcessor boundary, show a distinct kernel-entry
+marker, then halt unconditionally before the original HAL function runs.
+The earlier xemu trace nt5-kernel-016 observes KernelEntry followed by
+HalInitializeProcessor with the loader's page directory still active.
+next-entry-reference.json extracts that evidence. It does not prove the
+same behavior on physical hardware or validate a new probe binary.
+
+Required implementation and validation before physical deployment:
+- Use a separately named, explicit kernel-entry diagnostic build and HAL
+  checkpoint. Retain XWNP90 as the known-good rollback package.
+- Carry the validated memory-map and 1024x576 framebuffer handling into
+  that build. Existing autorun packages do not include all these changes.
+- Prove the halt is unconditional, before original processor/HAL init;
+  verify return address, processor number, loader-block pointer and CR3.
+- Keep the supplied Windows kernel unchanged on disk; audit imports and
+  relocated code again against any diagnostic HAL change.
+- Trace both display modes in xemu, verify the checkpoint was called from
+  native Windows instructions, and distinguish it from a loader-only
+  marker. Audit no progression to HalInitSystem or boot-driver entry.
+- Retain visible failure output and a manual reboot path. No unattended
+  FTP/run/reboot loop is established.
+
+Update: patch 0023 in ../native-windows-physical-entry implements this test.
+Its emulator audits and native breakpoint trace pass. validation.json and
+ftp-upload.json in that kit record actual readiness/deployment. Physical
+XWNK90 is not yet confirmed.
+Reaching the first HAL boundary would establish only early kernel entry,
+not functional hardware initialization, driver startup or a Windows boot.
+
+Subsequent work: bounded HAL initialization, then a recoverable Windows
+boot-volume plan and filesystem/IDE access. The current PC SYSTEM hive and
+FATX-staged files are not a configured native Windows boot volume. Choose
+and inspect the test disk/volume before preparing an installation. Never
+write a private emulator QCOW2 over the working Xbox drive. Physical audio
+must remain disabled until its differing I/O BARs are handled and tested.
+No additional ISO is currently required.

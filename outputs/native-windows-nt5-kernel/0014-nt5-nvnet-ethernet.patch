@@ -1,0 +1,433 @@
+diff --git a/drivers/network/dd/nvnet/CMakeLists.txt b/drivers/network/dd/nvnet/CMakeLists.txt
+index e3fbe130..f47f5cc2 100644
+--- a/drivers/network/dd/nvnet/CMakeLists.txt
++++ b/drivers/network/dd/nvnet/CMakeLists.txt
+@@ -1,7 +1,5 @@
+ 
+-add_definitions(
+-    -DNDIS51_MINIPORT
+-    -DNDIS_MINIPORT_DRIVER)
++
+ 
+ list(APPEND SOURCE
+     backoff.c
+@@ -18,9 +16,18 @@ list(APPEND SOURCE
+     send.c)
+ 
+ add_library(nvnet MODULE ${SOURCE} nvnet.rc)
++target_compile_definitions(nvnet PRIVATE NDIS51_MINIPORT NDIS_MINIPORT_DRIVER)
+ target_link_libraries(nvnet memcmp)
+ add_pch(nvnet nvnet.h SOURCE)
+ set_module_type(nvnet kernelmodedriver)
+ add_importlibs(nvnet ndis ntoskrnl hal)
+ add_cd_file(TARGET nvnet DESTINATION reactos/system32/drivers FOR all)
+ add_driver_inf(nvnet netnv.inf)
++
++if(XBOX_NT5_HAL)
++    add_library(nvnetnt5 MODULE ${SOURCE} nt5.c nvnet.rc)
++    target_compile_definitions(nvnetnt5 PRIVATE NDIS50_MINIPORT NDIS_MINIPORT_DRIVER XBOX_NVNET_NT5=1)
++    target_link_libraries(nvnetnt5 memcmp)
++    set_module_type(nvnetnt5 kernelmodedriver)
++    add_importlibs(nvnetnt5 ndis ntoskrnl hal)
++endif()
+diff --git a/drivers/network/dd/nvnet/init.c b/drivers/network/dd/nvnet/init.c
+index a83c7413..ad023e6a 100644
+--- a/drivers/network/dd/nvnet/init.c
++++ b/drivers/network/dd/nvnet/init.c
+@@ -630,8 +630,12 @@ NvNetFreeAdapter(
+     if (Adapter->TbdOriginal)
+     {
+         NdisMFreeSharedMemory(Adapter->AdapterHandle,
+-                              DescriptorSize * NVNET_TRANSMIT_DESCRIPTORS,
+-                              FALSE,
++                              DescriptorSize * NVNET_TRANSMIT_DESCRIPTORS
++#ifdef XBOX_NVNET_NT5
++                              + NVNET_ALIGNMENT, TRUE,
++#else
++                              , FALSE,
++#endif
+                               Adapter->TbdOriginal,
+                               Adapter->TbdPhysOriginal);
+         Adapter->TbdOriginal = NULL;
+@@ -639,15 +643,24 @@ NvNetFreeAdapter(
+     if (Adapter->RbdOriginal)
+     {
+         NdisMFreeSharedMemory(Adapter->AdapterHandle,
+-                              DescriptorSize * NVNET_RECEIVE_DESCRIPTORS,
+-                              FALSE,
++                              DescriptorSize * NVNET_RECEIVE_DESCRIPTORS
++#ifdef XBOX_NVNET_NT5
++                              + NVNET_ALIGNMENT, TRUE,
++#else
++                              , FALSE,
++#endif
+                               Adapter->RbdOriginal,
+                               Adapter->RbdPhysOriginal);
+         Adapter->RbdOriginal = NULL;
+     }
+     if (Adapter->SendBuffer)
+     {
+-        ULONG Length = ALIGN_UP_BY(Adapter->MaximumFrameSize, NVNET_ALIGNMENT);
++        ULONG Length =
++#ifdef XBOX_NVNET_NT5
++            Adapter->MaximumFrameSize + NVNET_ALIGNMENT;
++#else
++            ALIGN_UP_BY(Adapter->MaximumFrameSize, NVNET_ALIGNMENT);
++#endif
+ 
+         for (i = 0; i < NVNET_TRANSMIT_BUFFERS; ++i)
+         {
+@@ -671,7 +684,11 @@ NvNetFreeAdapter(
+     {
+         NdisMFreeSharedMemory(Adapter->AdapterHandle,
+                               NVNET_RECEIVE_BUFFER_SIZE * NVNET_RECEIVE_DESCRIPTORS,
++#ifdef XBOX_NVNET_NT5
++                              TRUE,
++#else
+                               FALSE,
++#endif
+                               Adapter->ReceiveBuffer,
+                               Adapter->ReceiveBufferPhys);
+         Adapter->ReceiveBuffer = NULL;
+@@ -692,7 +709,13 @@ NvNetFreeAdapter(
+     if (Adapter->Receive.Lock.SpinLock)
+         NdisFreeSpinLock(&Adapter->Receive.Lock);
+ 
++#ifdef XBOX_NVNET_NT5
++    if (Adapter->Nt5MapRegistersAllocated)
++        NdisMFreeMapRegisters(Adapter->AdapterHandle);
++    NdisFreeMemory(Adapter->AdapterOriginal, sizeof(NVNET_ADAPTER) + NVNET_ALIGNMENT, 0);
++#else
+     NdisFreeMemory(Adapter->AdapterOriginal, sizeof(NVNET_ADAPTER), 0);
++#endif
+ }
+ 
+ CODE_SEG("PAGE")
+@@ -782,10 +805,18 @@ MiniportInitialize(
+         goto Failure;
+     }
+ 
++#ifdef XBOX_NVNET_NT5
++    /* NT5's SG entry point rejects this serialized miniport. Establish the
++     * legacy DMA adapter; sends use the existing contiguous coalesce buffer. */
++    Status = NdisMAllocateMapRegisters(Adapter->AdapterHandle, 0, NDIS_DMA_32BITS,
++                                      NVNET_TRANSMIT_BUFFERS, NVNET_MAXIMUM_FRAME_SIZE);
++    if (Status == NDIS_STATUS_SUCCESS) Adapter->Nt5MapRegistersAllocated = TRUE;
++#else
+     Status = NdisMInitializeScatterGatherDma(Adapter->AdapterHandle,
+                                              !!(Adapter->Features & DEV_HAS_HIGH_DMA),
+                                              NVNET_MAXIMUM_FRAME_SIZE);
+                                              // ^TODO: NVNET_MAX_DMA_TRANSFER);
++#endif
+     if (Status != NDIS_STATUS_SUCCESS)
+     {
+         NvNetLogError(Adapter, NDIS_ERROR_CODE_OUT_OF_RESOURCES);
+@@ -875,6 +906,9 @@ MiniportInitialize(
+         goto Failure;
+     }
+ 
++#ifdef XBOX_NVNET_NT5
++    NvNetNt5RegisterShutdown(Adapter);
++#endif
+     NvNetStartAdapter(Adapter);
+ 
+     return NDIS_STATUS_SUCCESS;
+diff --git a/drivers/network/dd/nvnet/nt5.c b/drivers/network/dd/nvnet/nt5.c
+new file mode 100644
+index 00000000..9db317ef
+--- /dev/null
++++ b/drivers/network/dd/nvnet/nt5.c
+@@ -0,0 +1,40 @@
++/* Experimental Windows 2000 support, GPL-2.0-or-later.
++ * Only linked into nvnetnt5. DriverEntry rejects multiprocessor systems.
++ */
++#include "nvnet.h"
++
++static VOID NTAPI
++NvNetNt5DpcBarrier(PKDPC Dpc, PVOID Context, PVOID Argument1, PVOID Argument2)
++{
++    KeSetEvent((PKEVENT)Context, IO_NO_INCREMENT, FALSE);
++}
++
++VOID
++NvNetNt5FlushDpcs(VOID)
++{
++    KEVENT Event;
++    KDPC Dpc;
++    /* On a single CPU a low-importance tail entry runs after all DPCs already
++     * queued. The waiter cannot resume until this DPC has returned. Producers
++     * are disabled by NvNetStopAdapter before this barrier is inserted. */
++    ASSERT(KeGetCurrentIrql() == PASSIVE_LEVEL);
++    KeInitializeEvent(&Event, NotificationEvent, FALSE);
++    KeInitializeDpc(&Dpc, NvNetNt5DpcBarrier, &Event);
++    KeSetImportanceDpc(&Dpc, LowImportance);
++    KeInsertQueueDpc(&Dpc, NULL, NULL);
++    KeWaitForSingleObject(&Event, Executive, KernelMode, FALSE, NULL);
++}
++
++VOID NTAPI
++NvNetNt5SendPackets(NDIS_HANDLE Context, PPNDIS_PACKET Packets, UINT Count)
++{
++    UINT Index;
++    for (Index = 0; Index < Count; ++Index)
++    {
++        NDIS_STATUS Status = MiniportSend(Context, Packets[Index], 0);
++        NDIS_SET_PACKET_STATUS(Packets[Index], Status);
++        /* NDIS requeues this packet and the untouched remainder, preserving
++         * order. None of them has been accepted by the hardware yet. */
++        if (Status == NDIS_STATUS_RESOURCES) break;
++    }
++}
+diff --git a/drivers/network/dd/nvnet/nvnet.c b/drivers/network/dd/nvnet/nvnet.c
+index 18193b6b..136405f0 100644
+--- a/drivers/network/dd/nvnet/nvnet.c
++++ b/drivers/network/dd/nvnet/nvnet.c
+@@ -66,7 +66,13 @@ NvNetStopAdapter(
+ 
+     NvNetDisableInterrupts(Adapter);
+ 
++#ifdef XBOX_NVNET_NT5
++    /* Flush the posted interrupt-mask write before draining queued work. */
++    (VOID)NV_READ(Adapter, NvRegIrqMask);
++    NvNetNt5FlushDpcs();
++#else
+     KeFlushQueuedDpcs();
++#endif
+ }
+ 
+ CODE_SEG("PAGE")
+@@ -173,6 +179,10 @@ MiniportHalt(
+         NvNetPauseProcessing(Adapter);
+     }
+ 
++#ifdef XBOX_NVNET_NT5
++    NdisMDeregisterAdapterShutdownHandler(Adapter->AdapterHandle);
++#endif
++
+     NvNetStopAdapter(Adapter);
+ 
+     if (IsActive)
+@@ -255,6 +265,13 @@ MiniportShutdown(
+     NvNetSetPowerState(Adapter, NdisDeviceStateD3, 0);
+ }
+ 
++#ifdef XBOX_NVNET_NT5
++VOID NvNetNt5RegisterShutdown(PNVNET_ADAPTER Adapter)
++{
++    NdisMRegisterAdapterShutdownHandler(Adapter->AdapterHandle, Adapter, MiniportShutdown);
++}
++#endif
++
+ CODE_SEG("INIT")
+ NTSTATUS
+ NTAPI
+@@ -266,6 +283,11 @@ DriverEntry(
+     NDIS_MINIPORT_CHARACTERISTICS Characteristics = { 0 };
+     NDIS_STATUS Status;
+ 
++#ifdef XBOX_NVNET_NT5
++    /* The DPC barrier is deliberately UP-only. Never load it on an MP host. */
++    if (KeNumberProcessors != 1) return STATUS_NOT_SUPPORTED;
++    C_ASSERT(sizeof(NDIS_MINIPORT_CHARACTERISTICS) == 96); /* Native NDIS 5.0 */
++#endif
+     NdisMInitializeWrapper(&WrapperHandle, DriverObject, RegistryPath, NULL);
+     if (!WrapperHandle)
+     {
+@@ -281,11 +303,18 @@ DriverEntry(
+     Characteristics.ISRHandler = MiniportISR;
+     Characteristics.QueryInformationHandler = MiniportQueryInformation;
+     Characteristics.ResetHandler = MiniportReset;
++#ifdef XBOX_NVNET_NT5
++    /* Keep serialization and report ownership in each packet's OOB status. */
++    Characteristics.SendPacketsHandler = NvNetNt5SendPackets;
++#else
+     Characteristics.SendHandler = MiniportSend; /* TODO */
++#endif
+     Characteristics.SetInformationHandler = MiniportSetInformation;
+     // Characteristics.ReturnPacketHandler = MiniportReturnPacket; /* TODO */
+     // Characteristics.SendPacketsHandler = MiniportSendPackets; /* TODO */
++#ifndef XBOX_NVNET_NT5
+     Characteristics.AdapterShutdownHandler = MiniportShutdown;
++#endif
+ 
+     Status = NdisMRegisterMiniport(WrapperHandle, &Characteristics, sizeof(Characteristics));
+     if (Status != NDIS_STATUS_SUCCESS)
+diff --git a/drivers/network/dd/nvnet/nvnet.h b/drivers/network/dd/nvnet/nvnet.h
+index d4bef9c4..a27cd6a5 100644
+--- a/drivers/network/dd/nvnet/nvnet.h
++++ b/drivers/network/dd/nvnet/nvnet.h
+@@ -36,6 +36,14 @@
+ 
+ #define NVNET_ALIGNMENT    64
+ 
++#ifdef XBOX_NVNET_NT5
++/* This target supports only the uniprocessor Xbox. Its conservative 64-byte
++ * alignment also preserves the explicit NVNET descriptor alignment. */
++#define NdisGetSharedDataAlignment() NVNET_ALIGNMENT
++VOID NvNetNt5FlushDpcs(VOID);
++#endif
++
++
+ #define NVNET_RECEIVE_BUFFER_SIZE    2048
+ 
+ #define NVNET_RECEIVE_PROCESSING_LIMIT   64
+@@ -382,6 +390,9 @@ typedef struct _NVNET_ADAPTER
+     NDIS_PHYSICAL_ADDRESS TbdPhysOriginal;
+     NDIS_PHYSICAL_ADDRESS RbdPhysOriginal;
+     NVNET_TX_BUFFER_DATA SendBufferAllocationData[NVNET_TRANSMIT_BUFFERS];
++#ifdef XBOX_NVNET_NT5
++    BOOLEAN Nt5MapRegistersAllocated;
++#endif
+ } NVNET_ADAPTER, *PNVNET_ADAPTER;
+ 
+ #define NvNetLogError(Adapter, ErrorCode) \
+@@ -394,6 +405,10 @@ NVNET_PROCESS_TRANSMIT ProcessTransmitDescriptors32;
+ NVNET_PROCESS_TRANSMIT ProcessTransmitDescriptors64;
+ 
+ CODE_SEG("PAGE")
++#ifdef XBOX_NVNET_NT5
++VOID NvNetNt5RegisterShutdown(PNVNET_ADAPTER Adapter);
++#endif
++
+ NDIS_STATUS
+ NTAPI
+ MiniportInitialize(
+@@ -669,4 +684,8 @@ NV_READ(
+ #define NvNetApplyInterruptMask(Adapter) \
+     NV_WRITE(Adapter, NvRegIrqMask, (Adapter)->InterruptMask);
+ 
++#ifdef XBOX_NVNET_NT5
++VOID NTAPI NvNetNt5SendPackets(NDIS_HANDLE Context, PPNDIS_PACKET Packets, UINT Count);
++#endif
++
+ #endif /* _NVNET_PCH_ */
+diff --git a/drivers/network/dd/nvnet/send.c b/drivers/network/dd/nvnet/send.c
+index 60d8afb2..68f3beb3 100644
+--- a/drivers/network/dd/nvnet/send.c
++++ b/drivers/network/dd/nvnet/send.c
+@@ -203,6 +203,7 @@ NvNetTransmitPacket64(
+     NV_WRITE(Adapter, NvRegTxRxControl, Adapter->TxRxControl | NVREG_TXRXCTL_KICK);
+ }
+ 
++#ifndef XBOX_NVNET_NT5
+ static
+ DECLSPEC_NOINLINE
+ ULONG
+@@ -255,12 +256,18 @@ NvNetQueryTcpIpHeaders(
+     return IP_HEADER_LENGTH(IpHeader) + TCP_HEADER_LENGTH(TcpHeader);
+ }
+ 
++#endif
++
+ static
+ BOOLEAN
+ NvNetCopyPacket(
+     _In_ PNVNET_ADAPTER Adapter,
+     _In_ PNDIS_PACKET Packet,
+-    _In_ PNVNET_TX_BUFFER Buffer)
++    _In_ PNVNET_TX_BUFFER Buffer
++#ifdef XBOX_NVNET_NT5
++    , _In_ UINT ExpectedLength
++#endif
++    )
+ {
+     PNDIS_BUFFER CurrentBuffer;
+     PVOID Address;
+@@ -276,11 +283,19 @@ NvNetCopyPacket(
+                                      HighPagePriority);
+     if (!Address)
+         return FALSE;
++#ifdef XBOX_NVNET_NT5
++    if (!PacketLength || PacketLength != ExpectedLength ||
++        PacketLength > Adapter->MaximumFrameSize) return FALSE;
++#endif
+ 
+     Destination = Buffer->VirtualAddress;
+ 
+     while (TRUE)
+     {
++#ifdef XBOX_NVNET_NT5
++        if (CurrentLength > PacketLength) return FALSE;
++        PacketLength -= CurrentLength;
++#endif
+         NdisMoveMemory(Destination, Address, CurrentLength);
+         Destination += CurrentLength;
+ 
+@@ -297,9 +312,14 @@ NvNetCopyPacket(
+             return FALSE;
+     }
+ 
++#ifdef XBOX_NVNET_NT5
++    return PacketLength == 0;
++#else
+     return TRUE;
++#endif
+ }
+ 
++#ifndef XBOX_NVNET_NT5
+ static
+ NDIS_STATUS
+ NvNetSendPacketLargeSend(
+@@ -358,6 +378,7 @@ NvNetSendPacketLargeSend(
+     return NDIS_STATUS_SUCCESS;
+ }
+ 
++#endif
+ static
+ ULONG
+ NvNetGetChecksumInfo(
+@@ -414,9 +435,15 @@ NvNetSendPacket(
+ 
+     Flags = NvNetGetChecksumInfo(Adapter, Packet);
+ 
++#ifdef XBOX_NVNET_NT5
++    /* A serialized NT5 send owns one preallocated DMA-safe frame buffer.
++     * The normal completion path returns it to the free list. */
++    if (TRUE)
++#else
+     SgList = NDIS_PER_PACKET_INFO_FROM_PACKET(Packet, ScatterGatherListPacketInfo);
+ 
+     if (SgList->NumberOfElements > NVNET_FRAGMENTATION_THRESHOLD)
++#endif
+     {
+         if (!Adapter->Send.TbdSlots || !Adapter->Send.BufferList.Next)
+         {
+@@ -433,7 +460,11 @@ NvNetSendPacket(
+ 
+             NdisDprReleaseSpinLock(&Adapter->Send.Lock);
+ 
+-            Success = NvNetCopyPacket(Adapter, Packet, CoalesceBuffer);
++            Success = NvNetCopyPacket(Adapter, Packet, CoalesceBuffer
++#ifdef XBOX_NVNET_NT5
++                                      , TotalLength
++#endif
++                                      );
+ 
+             NdisDprAcquireSpinLock(&Adapter->Send.Lock);
+ 
+@@ -498,6 +529,10 @@ MiniportSend(
+     NDIS_DbgPrint(MIN_TRACE, ("()\n"));
+ 
+     NdisQueryPacketLength(Packet, &TotalLength);
++#ifdef XBOX_NVNET_NT5
++    if (!TotalLength || TotalLength > Adapter->MaximumFrameSize)
++        return NDIS_STATUS_INVALID_LENGTH;
++#endif
+ 
+     NdisDprAcquireSpinLock(&Adapter->Send.Lock);
+ 
+@@ -508,12 +543,14 @@ MiniportSend(
+         return NDIS_STATUS_FAILURE;
+     }
+ 
++#ifndef XBOX_NVNET_NT5
+     if (Adapter->Flags & NV_SEND_LARGE_SEND &&
+         PtrToUlong(NDIS_PER_PACKET_INFO_FROM_PACKET(Packet, TcpLargeSendPacketInfo)))
+     {
+         Status = NvNetSendPacketLargeSend(Adapter, Packet, TotalLength);
+     }
+     else
++#endif
+     {
+         Status = NvNetSendPacket(Adapter, Packet, TotalLength);
+     }

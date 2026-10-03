@@ -1,0 +1,74 @@
+{
+  "scope": "Shutdown diagnostics in private Xbox emulation; physical console untested",
+  "status": "unresolved",
+  "request": "SeShutdownPrivilege enabled; ExitWindowsEx(EWX_SHUTDOWN | EWX_FORCE)",
+  "runs": [
+    {
+      "run": "nt5-kernel-053",
+      "last_capture": "state-405.json",
+      "last_status": "kernel_running",
+      "last_tick_count": 23711,
+      "bugcheck_data": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "processes_at_last_capture": [
+        "System",
+        "smss.exe",
+        "csrss.exe",
+        "winlogon.exe",
+        "services.exe",
+        "lsass.exe",
+        "svchost.exe",
+        "svchost.exe",
+        "regsvc.exe"
+      ]
+    },
+    {
+      "run": "nt5-kernel-054",
+      "last_capture": "state-525.json",
+      "last_status": "kernel_running",
+      "last_tick_count": 33832,
+      "bugcheck_data": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "processes_at_last_capture": [
+        "System",
+        "smss.exe",
+        "csrss.exe",
+        "winlogon.exe",
+        "services.exe",
+        "lsass.exe",
+        "svchost.exe",
+        "svchost.exe",
+        "regsvc.exe"
+      ]
+    }
+  ],
+  "observations": [
+    "Explorer exits and desktop becomes blank",
+    "Kernel tick count continues advancing",
+    "Services remain resident",
+    "No completed shutdown, safe-to-power-off indication, or power-off verified"
+  ],
+  "investigation_leads": [
+    "Run 054 winlogon thread 160 waits for an in-page completion; scanned stack includes PortCls addresses",
+    "Investigate audio power path alongside paging/storage completion; this is not a proven root cause"
+  ],
+  "stack_capture_caveat": "Stack code candidates are scanned addresses, not a validated unwind",
+  "next_experiments": [
+    "Repeat shutdown with audio device disabled on a fresh private fixture",
+    "Compare idle shutdown with shutdown after audio stress",
+    "Capture outstanding paging IRPs and storage interrupt state during the wait",
+    "Do not enable physical audio until codec-specific behavior is implemented"
+  ],
+  "managed_test_finished_utc": "2026-10-03T12:57:49.3762235Z",
+  "final_guest_log_extraction_verified": true
+}

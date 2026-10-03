@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-03",
+  "cases": [
+    {
+      "case": "io-001",
+      "expected": "XWN80",
+      "result": "PASS (observed framebuffer reviewed)",
+      "frame": "evidence\\io-001\\frame-015.png",
+      "framebuffer_sha256": "0c61fd051934e7a8e48f623d8cf4312b1dcb00f6e3320c1d67544c328c8ccc2e",
+      "eip": "021610bf",
+      "halted": true
+    },
+    {
+      "case": "io-corrupt-001",
+      "expected": "XWNFAIL",
+      "result": "PASS (observed framebuffer reviewed)",
+      "frame": "evidence\\io-corrupt-001\\frame-015.png",
+      "framebuffer_sha256": "bd446fdbea1fa6171db0bc4887508364b725be1621a084594e3a560ec2d7f440",
+      "eip": "00010b3d",
+      "halted": true
+    },
+    {
+      "case": "io-bad-token-001",
+      "expected": "XWNFAIL",
+      "result": "PASS (observed framebuffer reviewed)",
+      "frame": "evidence\\io-bad-token-001\\frame-015.png",
+      "framebuffer_sha256": "e276dd9fbb8dd90e5df198695da45c1225a4fb1eb62c7ebcfaab715031d4f75c",
+      "eip": "021610bf",
+      "halted": true
+    },
+    {
+      "case": "unleashx-ftp-003",
+      "expected": "XWN80",
+      "result": "PASS (observed framebuffer reviewed)",
+      "frame": "evidence\\unleashx-ftp-003\\frame-045.png",
+      "framebuffer_sha256": "0c61fd051934e7a8e48f623d8cf4312b1dcb00f6e3320c1d67544c328c8ccc2e",
+      "eip": "021610bf",
+      "halted": true
+    },
+    {
+      "case": "unleashx-ftp-004",
+      "expected": "XWN80",
+      "result": "PASS (observed framebuffer reviewed)",
+      "frame": "evidence\\unleashx-ftp-004\\frame-045.png",
+      "framebuffer_sha256": "0c61fd051934e7a8e48f623d8cf4312b1dcb00f6e3320c1d67544c328c8ccc2e",
+      "eip": "021610bf",
+      "halted": true
+    }
+  ],
+  "normal_loader_build_and_packaging_check": true,
+  "successful_boot_paths": [
+    "Cromwell ROM -> FreeLoader -> rosload",
+    "Complex BIOS -> UnleashX -> Xromwell XBE -> FreeLoader -> rosload"
+  ],
+  "hal_import_gate": "FAIL as expected: six absent HAL names, seven absent kernel names, three unresolved forwarders",
+  "windows_kernel_entered": false,
+  "physical_hardware_tested": false,
+  "gamepad_menu_navigation_tested": false,
+  "earlier_investigations": {
+    "unleashx-001": "Dashboard booted; USB keyboard did not activate menu",
+    "unleashx-ftp-001": "FTP unavailable with first network setup",
+    "unleashx-ftp-002": "FTP login passed; concurrent HMP capture failed before launch"
+  }
+}

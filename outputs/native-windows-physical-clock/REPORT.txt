@@ -1,0 +1,62 @@
+XWN Windows 2000 clock-setup diagnostic, patch 0027
+
+Physical baseline: XWNT90 passed on Paul's console with stall factor 367,
+PIC mask ffff and matching RTC IDT words. The photo and reported reboot are
+recorded under native-windows-physical-timer/evidence/physical-xwnt90.
+
+This candidate continues through HalpInitializeClock and
+HalStopProfileInterrupt(ProfileTime), then halts before HalpInitPhase0.
+Xbox storage initialization, boot-driver entry and desktop are not reached.
+HAL phase 0 has not returned. Device IRQs remain masked at the final halt;
+periodic kernel-clock delivery and scheduler progress are not established.
+
+Clock initialization calls the native Windows KeSetTimeIncrement, programs
+PIT channel 0 in mode 2, and stores the rollover and increment. Profiling
+stop clears the RTC periodic-interrupt bit. The checkpoint reads the RTC B
+register with the HAL CMOS lock and latches the PIT count without changing
+its programmed mode/reload.
+
+This Xbox HAL links hal/halx86/xbox/clock.c, not generic/clock.c. Its 15 ms
+entry is reload 16875 and maximum increment 150000 in 100 ns units; the
+minimum increment is 10000. The initial diagnostic incorrectly expected
+generic PC values and halted with XWNCFAIL. Its rejected artifact, framebuffer
+and values are retained under evidence/development-generic-clock-assumption.
+Only the validation expectations were corrected; the original HAL clock
+implementation was unchanged. All final executable tests use that fix.
+
+The final callback checks the preceding calibration sequence, native
+caller/loader block, active paging/CR3, preserved calibrated stall factor,
+the Xbox clock-table values, profile-stopped flag, PIC masks ffff, IF,
+RTC periodic interrupt disabled, and PIT count bounded by the reload.
+Success is green XWNC90: Clock configured; stopped before storage.
+Yellow XWNT40 is RTC calibration in progress; XWNC50 is clock setup in
+progress. Neither yellow marker confirms completion.
+
+Validation additionally reads the native kernel's time-increment global
+through the pinned KeQueryTimeIncrement accessor (RVA 29e62, mov eax,[...];
+ret) and requires 150000. The independent debugger trace observes both RTC
+interrupts, calibration return, clock entry, native KeSetTimeIncrement with
+150000/10000 arguments, the three inlined PIT OUT instructions (mode 34,
+reload low/high bytes eb/41), clock return, profiling
+stop/return and the final callback. Forbidden breakpoints cover Xbox
+phase-0/storage and every loaded .sys entry point. Mapped imports, all core
+executable sections, loader lists and memory reservations remain audited.
+See validation.json for completed checks and the current physical status.
+
+Clock flags default OFF and require timer preflight. A distinct signature
+rejects the preceding XWNT90 HAL before kernel entry. The final callback
+cannot return. Normal builds, flag guards, both display modes and the
+old-HAL pairing are checked in isolated xemu snapshots. The task harness
+uses explicit final captures to avoid background dashboard dump failures.
+
+Only rosload.exe, loader/halxboxnt5.dll and README.txt change on the Xbox.
+The preceding controls are preserved as rosload-xwnt90.exe,
+loader/hal-xwnt90.dll and README-xwnt90.txt. FTP verifies unchanged files,
+stages and reads back replacements, and switches rosload last. No remote
+physical launch. Run Applications -> XWN Loader Diagnostic, photograph the
+full screen and reboot. If a yellow marker remains after 15 seconds,
+photograph it and reboot. No automatic return or additional ISO is needed.
+
+Uploaded and read back successfully at 2026-10-03T21:38:58.552385+00:00.
+All 33 package files verified; 3 changed and 30 retained. Not launched.
+Physical XWNC90 PASSED. Increment 150000, PIT reload 16875, PIC ffff, RTC B 02, profile stopped 1; user reports rebooted.

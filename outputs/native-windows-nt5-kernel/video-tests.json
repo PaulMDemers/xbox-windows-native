@@ -1,0 +1,39 @@
+{
+  "scope": "Execute the miniport binary with modeled video-port calls and NV2A registers.",
+  "miniport_sha256": "72d33dc578e202979c1bf224337c7daa8a2b3e78889d47e5aa1ce1bf1308c3f5",
+  "all_imports_resolve": true,
+  "tests": [
+    {
+      "test": "Native 80-byte W2K initialization and required callbacks with stdcall ABI",
+      "passed": true
+    },
+    {
+      "test": "Firmware NV2A mode is decoded into the native 32-bit RGB descriptor",
+      "passed": true
+    },
+    {
+      "test": "One firmware mode is enumerated with correct output sizes",
+      "passed": true
+    },
+    {
+      "test": "Mode zero accepts documented mapping flags and rejects unsupported modes",
+      "passed": true
+    },
+    {
+      "test": "Framebuffer mapping uses the reserved GPU aperture and bounds the visible surface",
+      "passed": true
+    },
+    {
+      "test": "Short buffers and unsupported controls return explicit errors",
+      "passed": true
+    },
+    {
+      "test": "Invalid firmware mode or unreserved framebuffer fails and releases the register mapping",
+      "passed": true
+    },
+    {
+      "test": "VideoPort mapping failure propagates without publishing a bogus framebuffer",
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "scope": "Source-based prediction only; BIOS initializer NOT executed in XWNR90.",
+  "source_files": [
+    "hal/halx86/generic/x86bios.c",
+    "hal/halx86/generic/memory.c"
+  ],
+  "phase0_calls": 2,
+  "pages_per_call": 1,
+  "max_address": "0x100000",
+  "aligned": false,
+  "predicted_physical_addresses_from_emulator_descriptors": [
+    "0x1000",
+    "0x2000"
+  ],
+  "allocation_type": "LoaderHALCachedMemory",
+  "required_next_checks": [
+    "Verify low-memory pages are no longer live loader storage.",
+    "Record allocated PFNs and nonzero distinct addresses below 1 MiB.",
+    "Re-audit modified descriptor list, links and exact 64 MiB coverage.",
+    "Keep phase-0 return, phase 1, partition routines and driver entries unreachable."
+  ]
+}

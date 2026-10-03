@@ -1,0 +1,47 @@
+XWN Windows 2000 HAL phase-0 boundary, patch 0024
+
+This diagnostic follows the physically confirmed XWNK90 kernel-entry test.
+It lets the Xbox HAL's original HalInitializeProcessor body execute and
+return, then halts at the entrance to HalInitSystem(0, LoaderBlock).
+It does not execute the original HAL phase-0 body, initialize storage,
+start boot drivers, or reach the Windows desktop.
+
+The loader and HAL both require explicit phase-0 build flags, default OFF,
+with the prior entry-preflight flags as parents. A distinct arming signature
+rejects the preceding XWNK90 HAL before kernel entry. The HAL calls the
+loader before and after processor initialization; only these two validated
+callbacks can return. The final phase-0 callback cannot return.
+
+The after-processor checkpoint requires PCR.IDR fffffffb, initial stall
+count 100, and active/default processor masks 1/1. The final checkpoint
+requires the exact sequence, processor/boot phase zero, expected loader
+block and CR3, active paging, and native return addresses inside the pinned
+Windows kernel. Success is green XWNH90. Yellow XWNH30 alone is not success.
+
+Validation checks both 640x480 and 1024x576, the rejected old-HAL pairing,
+and native debugger events: KernelEntry, HalInitializeProcessor,
+ProcessorReturned, HalInitSystem, and final LoaderCheckpoint. Breakpoints
+at HalpInitPhase0, HalpXboxInitPartIo and every loaded boot-driver entry
+must remain untouched. Compiled-code inspection independently verifies
+the phase-0 no-return redirect and before/after processor calls.
+
+Mapped imports, loader lists, memory reservations and all executable
+sections of the kernel, HAL and bootvid are audited. The exact known NT5
+IDT-template startup transformation is reproduced as in patch 0023.
+No whole executable section is excluded. The on-disk kernel is unchanged.
+validation.json records actual completed tests, including any limitations.
+
+Only rosload.exe, loader/halxboxnt5.dll and README.txt change on the Xbox.
+The previous physical XWNK90 controls are backed up as rosload-xwnk90.exe,
+loader/hal-xwnk90.dll and README-xwnk90.txt. FTP stages and reads back each
+replacement, verifies all unchanged package files, and switches rosload
+last. There is no remote launch or automatic dashboard return.
+
+Run Applications -> XWN Loader Diagnostic. Photograph the complete screen,
+then reboot to UnleashX. Physical XWNH90 has now passed; see the result appended below.
+
+Uploaded and read back successfully at 2026-10-03T20:48:55.531028+00:00.
+All 33 package files verified; 3 changed and 30 retained. Not launched.
+
+Physical XWNH90 PASSED: photo confirms stage 30, phase 0, IDR fffffffb,
+stall 100, masks 1/1. User reports rebooted to dashboard.

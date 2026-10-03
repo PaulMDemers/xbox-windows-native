@@ -1,0 +1,403 @@
+diff --git a/hal/halx86/legacy/halpnpdd.c b/hal/halx86/legacy/halpnpdd.c
+index 9e8633f0..4810943c 100644
+--- a/hal/halx86/legacy/halpnpdd.c
++++ b/hal/halx86/legacy/halpnpdd.c
+@@ -346,6 +346,9 @@ HalpQueryResources(IN PDEVICE_OBJECT DeviceObject,
+     /* Only the ACPI PDO has requirements */
+     if (DeviceExtension->PdoType == AcpiPdo)
+     {
++#ifdef XBOX_NT5_HAL
++        return HalpNt5QueryRootResources(Resources);
++#endif
+ #if 0
+         /* Query ACPI requirements */
+         Status = HalpQueryAcpiResourceRequirements(&RequirementsList);
+@@ -435,6 +438,9 @@ HalpQueryResourceRequirements(IN PDEVICE_OBJECT DeviceObject,
+     /* Only the ACPI PDO has requirements */
+     if (DeviceExtension->PdoType == AcpiPdo)
+     {
++#ifdef XBOX_NT5_HAL
++        return HalpNt5QueryRootRequirements(Requirements);
++#endif
+         /* Query ACPI requirements */
+ //        return HalpQueryAcpiResourceRequirements(Requirements);
+         return STATUS_SUCCESS;
+diff --git a/hal/halx86/xboxnt5/CMakeLists.txt b/hal/halx86/xboxnt5/CMakeLists.txt
+index 0c601152..9782be80 100644
+--- a/hal/halx86/xboxnt5/CMakeLists.txt
++++ b/hal/halx86/xboxnt5/CMakeLists.txt
+@@ -17,7 +17,7 @@ foreach(source ${HAL_XBOX_SOURCE} ${HAL_XBOX_ASM_SOURCE} ${HAL_UP_SOURCE})
+ endforeach()
+ spec2def(halxboxnt5.dll halnt5.spec)
+ add_asm_files(nt5_boundary_asm boundary.S)
+-add_library(halxboxnt5 MODULE ${NT5_SOURCE} ${nt5_boundary_asm} fmutex.c trapentry.c kdport.c translate.c ../xbox/halxbox.rc
++add_library(halxboxnt5 MODULE ${NT5_SOURCE} ${nt5_boundary_asm} fmutex.c trapentry.c kdport.c translate.c rootbus.c ../xbox/halxbox.rc
+             ${CMAKE_CURRENT_BINARY_DIR}/halxboxnt5.def)
+ target_link_libraries(halxboxnt5 cportlib libcntpr setjmp fast486 ${PSEH_LIB})
+ add_importlibs(halxboxnt5 ntoskrnl)
+diff --git a/hal/halx86/xboxnt5/boundary.h b/hal/halx86/xboxnt5/boundary.h
+index 0db26fab..fad63d71 100644
+--- a/hal/halx86/xboxnt5/boundary.h
++++ b/hal/halx86/xboxnt5/boundary.h
+@@ -12,3 +12,6 @@ VOID FASTCALL HalpNt5EnterInterruptTrap(PKTRAP_FRAME TrapFrame);
+ #define KiEnterInterruptTrap HalpNt5EnterInterruptTrap
+ 
+ NTSTATUS NTAPI HalpNt5GetInterruptTranslator(INTERFACE_TYPE, ULONG, INTERFACE_TYPE, USHORT, USHORT, PTRANSLATOR_INTERFACE, PULONG);
++
++NTSTATUS NTAPI HalpNt5QueryRootResources(PCM_RESOURCE_LIST *);
++NTSTATUS NTAPI HalpNt5QueryRootRequirements(PIO_RESOURCE_REQUIREMENTS_LIST *);
+diff --git a/hal/halx86/xboxnt5/rootbus.c b/hal/halx86/xboxnt5/rootbus.c
+new file mode 100644
+index 00000000..b7b2d886
+--- /dev/null
++++ b/hal/halx86/xboxnt5/rootbus.c
+@@ -0,0 +1,149 @@
++/*
++ * PROJECT: Xbox NT5 HAL experiment
++ * LICENSE: GPL-2.0-or-later (see ReactOS COPYING)
++ * PURPOSE: Root PCI apertures for Windows 2000 resource arbitration.
++ * The original empty root resource list leaves every PCI address reserved.
++ * Report PNPBus resources in the native NT5 format: shared, fixed windows.
++ */
++#include <hal.h>
++
++#define NT5_MAX_PORT_RANGES 64
++#define NT5_ROOT_DESCRIPTORS (NT5_MAX_PORT_RANGES + 3)
++
++NTSTATUS NTAPI
++HalpNt5QueryRootResources(PCM_RESOURCE_LIST *Resources)
++{
++    struct { ULONG Start, End; } Reserved[NT5_MAX_PORT_RANGES], Swap;
++    ULONG Used = 0, i, j, Start, End, Cursor, Count = 0, Bytes;
++    PADDRESS_USAGE Usage;
++    PCM_RESOURCE_LIST List;
++    PCM_PARTIAL_RESOURCE_DESCRIPTOR Desc;
++    if (!Resources) return STATUS_INVALID_PARAMETER;
++    *Resources = NULL;
++    /* Complement the HAL's actual reservations instead of advertising PIC,
++       timer, CMOS, DMA, debugger or PCI configuration ports to child devices. */
++    for (Usage = HalpAddressUsageList; Usage; Usage = Usage->Next)
++    {
++        if (Usage->Type != CmResourceTypePort) continue;
++        for (i = 0; Usage->Element[i].Length; ++i)
++        {
++            Start = Usage->Element[i].Start;
++            if (Start >= 0x10000) continue;
++            if (Used == NT5_MAX_PORT_RANGES) return STATUS_INSUFFICIENT_RESOURCES;
++            End = Start + min(Usage->Element[i].Length, 0x10000 - Start);
++            Reserved[Used].Start = Start;
++            Reserved[Used++].End = End;
++        }
++    }
++    for (i = 1; i < Used; ++i)
++    {
++        Swap = Reserved[i]; j = i;
++        while (j && Reserved[j - 1].Start > Swap.Start)
++        {
++            Reserved[j] = Reserved[j - 1]; --j;
++        }
++        Reserved[j] = Swap;
++    }
++    Bytes = FIELD_OFFSET(CM_RESOURCE_LIST, List[0].PartialResourceList.PartialDescriptors) +
++            NT5_ROOT_DESCRIPTORS * sizeof(*Desc);
++    List = ExAllocatePoolWithTag(PagedPool, Bytes, TAG_HAL);
++    if (!List) return STATUS_INSUFFICIENT_RESOURCES;
++    RtlZeroMemory(List, Bytes);
++    List->Count = 1;
++    List->List[0].InterfaceType = PNPBus;
++    List->List[0].BusNumber = (ULONG)-1;
++    List->List[0].PartialResourceList.Version = 1;
++    List->List[0].PartialResourceList.Revision = 1;
++    Desc = List->List[0].PartialResourceList.PartialDescriptors;
++    Desc[Count].Type = CmResourceTypeBusNumber;
++    Desc[Count].ShareDisposition = CmResourceShareShared;
++    Desc[Count++].u.BusNumber.Length = 256;
++    Cursor = 0;
++    for (i = 0; i <= Used; ++i)
++    {
++        Start = (i == Used) ? 0x10000 : Reserved[i].Start;
++        if (Start > Cursor)
++        {
++            Desc[Count].Type = CmResourceTypePort;
++            Desc[Count].ShareDisposition = CmResourceShareShared;
++            Desc[Count].Flags = CM_RESOURCE_PORT_IO;
++            Desc[Count].u.Port.Start.QuadPart = Cursor;
++            Desc[Count++].u.Port.Length = Start - Cursor;
++        }
++        if (i != Used) Cursor = max(Cursor, Reserved[i].End);
++    }
++    /* Xbox PCI device/bridge apertures observed in firmware configuration:
++       NV2A framebuffer at F0000000, GPU at FD000000, MCP devices at FE8xxxxx
++       through FEFxxxxx. Exclude RAM and the FFxxxxxx flash/firmware window. */
++    Desc[Count].Type = CmResourceTypeMemory;
++    Desc[Count].ShareDisposition = CmResourceShareShared;
++    Desc[Count].u.Memory.Start.QuadPart = 0xf0000000ULL;
++    Desc[Count++].u.Memory.Length = 0x0f000000;
++    ASSERT(Count <= NT5_ROOT_DESCRIPTORS);
++    List->List[0].PartialResourceList.Count = Count;
++    *Resources = List;
++    return STATUS_SUCCESS;
++}
++
++NTSTATUS NTAPI
++HalpNt5QueryRootRequirements(PIO_RESOURCE_REQUIREMENTS_LIST *Requirements)
++{
++    PCM_RESOURCE_LIST Resources;
++    PCM_PARTIAL_RESOURCE_DESCRIPTOR Source;
++    PIO_RESOURCE_REQUIREMENTS_LIST Result;
++    PIO_RESOURCE_DESCRIPTOR Target;
++    ULONG Count, Bytes, i;
++    NTSTATUS Status;
++    if (!Requirements) return STATUS_INVALID_PARAMETER;
++    *Requirements = NULL;
++    Status = HalpNt5QueryRootResources(&Resources);
++    if (!NT_SUCCESS(Status)) return Status;
++    Count = Resources->List[0].PartialResourceList.Count;
++    Bytes = FIELD_OFFSET(IO_RESOURCE_REQUIREMENTS_LIST, List[0].Descriptors) +
++            (Count + 1) * sizeof(*Target);
++    Result = ExAllocatePoolWithTag(PagedPool, Bytes, TAG_HAL);
++    if (!Result)
++    {
++        ExFreePool(Resources);
++        return STATUS_INSUFFICIENT_RESOURCES;
++    }
++    RtlZeroMemory(Result, Bytes);
++    Result->ListSize = Bytes;
++    Result->InterfaceType = PNPBus;
++    Result->BusNumber = (ULONG)-1;
++    Result->AlternativeLists = 1;
++    Result->List[0].Version = Result->List[0].Revision = 1;
++    Result->List[0].Count = Count + 1;
++    Target = Result->List[0].Descriptors;
++    Target->Type = CmResourceTypeConfigData;
++    Target->ShareDisposition = CmResourceShareShared;
++    Target->Option = IO_RESOURCE_PREFERRED;
++    Target->u.ConfigData.Priority = 1;
++    ++Target;
++    Source = Resources->List[0].PartialResourceList.PartialDescriptors;
++    for (i = 0; i < Count; ++i, ++Target, ++Source)
++    {
++        Target->Option = IO_RESOURCE_PREFERRED;
++        Target->Type = Source->Type;
++        Target->ShareDisposition = Source->ShareDisposition;
++        Target->Flags = Source->Flags;
++        if (Source->Type == CmResourceTypeBusNumber)
++        {
++            Target->u.BusNumber.Length = 256;
++            Target->u.BusNumber.MinBusNumber = 0;
++            Target->u.BusNumber.MaxBusNumber = 255;
++        }
++        else
++        {
++            /* Port and Memory union layouts share the same fields. */
++            Target->u.Memory.Length = Source->u.Memory.Length;
++            Target->u.Memory.Alignment = 1;
++            Target->u.Memory.MinimumAddress = Source->u.Memory.Start;
++            Target->u.Memory.MaximumAddress.QuadPart = Source->u.Memory.Start.QuadPart +
++                                                     Source->u.Memory.Length - 1;
++        }
++    }
++    ExFreePool(Resources);
++    *Requirements = Result;
++    return STATUS_SUCCESS;
++}
+diff --git a/win32ss/drivers/miniport/xboxvmp/CMakeLists.txt b/win32ss/drivers/miniport/xboxvmp/CMakeLists.txt
+index 4c50cee9..dde91ad6 100644
+--- a/win32ss/drivers/miniport/xboxvmp/CMakeLists.txt
++++ b/win32ss/drivers/miniport/xboxvmp/CMakeLists.txt
+@@ -15,3 +15,7 @@ if(SARCH STREQUAL "xbox")
+     add_registry_inf(xboxvmp_reg.inf)
+     add_driver_inf(xboxvmp xboxdisp.inf)
+ endif()
++
++if(XBOX_NT5_HAL)
++    add_subdirectory(nt5)
++endif()
+diff --git a/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt b/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt
+new file mode 100644
+index 00000000..990d30b1
+--- /dev/null
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt
+@@ -0,0 +1,10 @@
++remove_definitions(-D_WIN32_WINNT=0x502 -DWINVER=0x502)
++add_definitions(-D_WIN32_WINNT=0x500 -DWINVER=0x500 -DNTDDI_VERSION=0x05000000)
++add_library(xboxvnt5 MODULE xboxvnt5.c ../xboxvmp.rc)
++set_module_type(xboxvnt5 kernelmodedriver)
++add_importlibs(xboxvnt5 videoprt)
++target_link_libraries(xboxvnt5 libcntpr)
++if(NOT MSVC)
++    target_link_options(xboxvnt5 PRIVATE -Wl,--subsystem,native:5.0
++        -Wl,--minor-image-version,0 -Wl,--minor-os-version,0)
++endif()
+diff --git a/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c b/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c
+new file mode 100644
+index 00000000..13a07a17
+--- /dev/null
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c
+@@ -0,0 +1,166 @@
++/*
++ * PROJECT: Experimental native Windows 2000 Xbox framebuffer miniport
++ * LICENSE: GPL-2.0-or-later
++ * Derived from ReactOS xboxvmp (Ge van Geldorp, Filip Navara,
++ * Stanislav Motylkov). See ../xboxvmp.c and ReactOS COPYING.
++ * Retains firmware's mode; no acceleration, palette or mode switching.
++ */
++#include "../xboxvmp.h"
++#include <drivers/xbox/xgpu.h>
++
++typedef struct {
++    PVOID Control;
++    PHYSICAL_ADDRESS ControlPhysical, FramebufferAperture, Framebuffer;
++    ULONG ApertureLength, Offset;
++    VIDEO_MODE_INFORMATION Mode;
++    BOOLEAN Ready;
++} NT5_VIDEO, *PNT5_VIDEO;
++
++C_ASSERT(SIZE_OF_W2K_VIDEO_HW_INITIALIZATION_DATA == 80);
++C_ASSERT(sizeof(VIDEO_MODE_INFORMATION) == 80);
++C_ASSERT(sizeof(VIDEO_MEMORY_INFORMATION) == 16);
++
++static UCHAR Crtc(PNT5_VIDEO V, UCHAR Index)
++{
++    WRITE_REGISTER_UCHAR((PUCHAR)V->Control + NV2A_CRTC_REGISTER_INDEX, Index);
++    return READ_REGISTER_UCHAR((PUCHAR)V->Control + NV2A_CRTC_REGISTER_VALUE);
++}
++
++VP_STATUS NTAPI
++Nt5VideoFindAdapter(PVOID Extension, PVOID Context, PWSTR Arguments,
++                   PVIDEO_PORT_CONFIG_INFO Config, PUCHAR Again)
++{
++    PNT5_VIDEO V = Extension;
++    VIDEO_ACCESS_RANGE Ranges[3];
++    USHORT Vendor = 0x10de, Device = 0x02a0;
++    ULONG Slot = 0;
++    VP_STATUS Status;
++    *Again = FALSE;
++    VideoPortZeroMemory(Ranges, sizeof(Ranges));
++    Status = VideoPortGetAccessRanges(Extension, 0, NULL, 3, Ranges, &Vendor, &Device, &Slot);
++    if (Status != NO_ERROR) return Status;
++    if (Ranges[0].RangeInIoSpace || Ranges[1].RangeInIoSpace ||
++        Ranges[0].RangeLength < NV2A_RAMDAC_FP_HVALID_END + sizeof(ULONG) ||
++        Ranges[1].RangeLength < NV2A_VIDEO_MEMORY_SIZE) return ERROR_DEV_NOT_EXIST;
++    V->ControlPhysical = Ranges[0].RangeStart;
++    V->FramebufferAperture = Ranges[1].RangeStart;
++    V->ApertureLength = Ranges[1].RangeLength;
++    return NO_ERROR;
++}
++
++BOOLEAN NTAPI
++Nt5VideoInitialize(PVOID Extension)
++{
++    PNT5_VIDEO V = Extension;
++    ULONG Width, Height, Pitch, Bytes, Format;
++    V->Ready = FALSE;
++    V->Control = VideoPortGetDeviceBase(Extension, V->ControlPhysical, 0x681000, 0);
++    if (!V->Control) return FALSE;
++    Width = READ_REGISTER_ULONG((PULONG)((PUCHAR)V->Control + NV2A_RAMDAC_FP_HVALID_END)) + 1;
++    Height = READ_REGISTER_ULONG((PULONG)((PUCHAR)V->Control + NV2A_RAMDAC_FP_VVALID_END)) + 1;
++    Pitch = 8 * (((Crtc(V, 0x19) & 0xe0) << 3) | Crtc(V, 0x13));
++    Format = Crtc(V, 0x28) & 15;
++    Bytes = (Format == 3) ? 4 : Format;
++    V->Offset = READ_REGISTER_ULONG((PULONG)((PUCHAR)V->Control + NV2A_CRTC_FRAMEBUFFER_START)) & 0x0fffffff;
++    /* This experiment supports the firmware's direct RGB mode only. The
++       framebuffer must stay inside Cromwell's reserved top-four-MiB area. */
++    if (Width < 320 || Width > 1920 || Height < 200 || Height > 1080 || Bytes != 4 ||
++        Pitch < Width * Bytes || Pitch > 8192 || Height > NV2A_VIDEO_MEMORY_SIZE / Pitch ||
++        (V->Offset != 0x03c00000 && V->Offset != 0x07c00000) ||
++        V->Offset > V->ApertureLength - NV2A_VIDEO_MEMORY_SIZE)
++    {
++        VideoPortFreeDeviceBase(Extension, V->Control);V->Control = NULL;return FALSE;
++    }
++    V->Framebuffer.QuadPart = V->FramebufferAperture.QuadPart + V->Offset;
++    VideoPortZeroMemory(&V->Mode, sizeof(V->Mode));
++    V->Mode.Length = sizeof(V->Mode);
++    V->Mode.VisScreenWidth = Width; V->Mode.VisScreenHeight = Height;
++    V->Mode.ScreenStride = Pitch; V->Mode.NumberOfPlanes = 1; V->Mode.BitsPerPlane = 32;
++    V->Mode.Frequency = 60;
++    V->Mode.NumberRedBits = V->Mode.NumberGreenBits = V->Mode.NumberBlueBits = 8;
++    V->Mode.RedMask = 0xff0000; V->Mode.GreenMask = 0xff00; V->Mode.BlueMask = 0xff;
++    V->Mode.AttributeFlags = VIDEO_MODE_GRAPHICS | VIDEO_MODE_COLOR | VIDEO_MODE_NO_OFF_SCREEN;
++    V->Mode.VideoMemoryBitmapWidth = Pitch / 4; V->Mode.VideoMemoryBitmapHeight = Height;
++    V->Ready = TRUE;
++    return TRUE;
++}
++
++BOOLEAN NTAPI
++Nt5VideoStartIO(PVOID Extension, PVIDEO_REQUEST_PACKET Request)
++{
++    PNT5_VIDEO V = Extension;
++    VP_STATUS Status = ERROR_INVALID_FUNCTION;
++    Request->StatusBlock->Information = 0;
++    if (!V->Ready) { Request->StatusBlock->Status = ERROR_DEV_NOT_EXIST; return TRUE; }
++    switch (Request->IoControlCode)
++    {
++    case IOCTL_VIDEO_QUERY_NUM_AVAIL_MODES:
++        if (!Request->OutputBuffer || Request->OutputBufferLength < sizeof(VIDEO_NUM_MODES))
++            { Status = ERROR_INSUFFICIENT_BUFFER; break; }
++        ((PVIDEO_NUM_MODES)Request->OutputBuffer)->NumModes = 1;
++        ((PVIDEO_NUM_MODES)Request->OutputBuffer)->ModeInformationLength = sizeof(V->Mode);
++        Request->StatusBlock->Information = sizeof(VIDEO_NUM_MODES);Status = NO_ERROR;break;
++    case IOCTL_VIDEO_QUERY_AVAIL_MODES:
++    case IOCTL_VIDEO_QUERY_CURRENT_MODE:
++        if (!Request->OutputBuffer || Request->OutputBufferLength < sizeof(V->Mode))
++            { Status = ERROR_INSUFFICIENT_BUFFER; break; }
++        *(PVIDEO_MODE_INFORMATION)Request->OutputBuffer = V->Mode;
++        Request->StatusBlock->Information = sizeof(V->Mode);Status = NO_ERROR;break;
++    case IOCTL_VIDEO_SET_CURRENT_MODE:
++        if (!Request->InputBuffer || Request->InputBufferLength < sizeof(VIDEO_MODE))
++            { Status = ERROR_INSUFFICIENT_BUFFER; break; }
++        Status = (((PVIDEO_MODE)Request->InputBuffer)->RequestedMode &
++                  ~(VIDEO_MODE_MAP_MEM_LINEAR | VIDEO_MODE_NO_ZERO_MEMORY)) ? ERROR_INVALID_PARAMETER : NO_ERROR;
++        break;
++    case IOCTL_VIDEO_RESET_DEVICE:
++        Status = NO_ERROR;break;
++    case IOCTL_VIDEO_MAP_VIDEO_MEMORY:
++        if (!Request->InputBuffer || !Request->OutputBuffer ||
++            Request->InputBufferLength < sizeof(VIDEO_MEMORY) ||
++            Request->OutputBufferLength < sizeof(VIDEO_MEMORY_INFORMATION))
++            { Status = ERROR_INSUFFICIENT_BUFFER; break; }
++        {
++            VIDEO_MEMORY_INFORMATION Result;
++            ULONG Space = VIDEO_MEMORY_SPACE_MEMORY;
++            VideoPortZeroMemory(&Result, sizeof(Result));
++            Result.VideoRamBase = ((PVIDEO_MEMORY)Request->InputBuffer)->RequestedVirtualAddress;
++            Result.VideoRamLength = NV2A_VIDEO_MEMORY_SIZE;
++            Status = VideoPortMapMemory(Extension, V->Framebuffer, &Result.VideoRamLength,
++                                        &Space, &Result.VideoRamBase);
++            if (Status != NO_ERROR) break;
++            Result.FrameBufferBase = Result.VideoRamBase;
++            Result.FrameBufferLength = V->Mode.ScreenStride * V->Mode.VisScreenHeight;
++            *(PVIDEO_MEMORY_INFORMATION)Request->OutputBuffer = Result;
++            Request->StatusBlock->Information = sizeof(Result);
++        }
++        break;
++    case IOCTL_VIDEO_UNMAP_VIDEO_MEMORY:
++        if (!Request->InputBuffer || Request->InputBufferLength < sizeof(VIDEO_MEMORY))
++            { Status = ERROR_INSUFFICIENT_BUFFER; break; }
++        Status = VideoPortUnmapMemory(Extension, ((PVIDEO_MEMORY)Request->InputBuffer)->RequestedVirtualAddress, NULL);
++        break;
++    }
++    Request->StatusBlock->Status = Status;
++    return TRUE;
++}
++
++BOOLEAN NTAPI Nt5VideoReset(PVOID Extension, ULONG Columns, ULONG Rows) { return TRUE; }
++VP_STATUS NTAPI Nt5VideoPower(PVOID Extension, ULONG Id, PVIDEO_POWER_MANAGEMENT Power)
++{ return Power->PowerState == VideoPowerOn ? NO_ERROR : ERROR_INVALID_FUNCTION; }
++VP_STATUS NTAPI Nt5VideoChild(PVOID Extension, PVIDEO_CHILD_ENUM_INFO Info,
++                             PVIDEO_CHILD_TYPE Type, PUCHAR Descriptor, PULONG Id, PULONG Unused)
++{ return VIDEO_ENUM_NO_MORE_DEVICES; }
++
++ULONG NTAPI DriverEntry(PVOID Context1, PVOID Context2)
++{
++    VIDEO_HW_INITIALIZATION_DATA Init;
++    VideoPortZeroMemory(&Init, sizeof(Init));
++    Init.HwInitDataSize = SIZE_OF_W2K_VIDEO_HW_INITIALIZATION_DATA;
++    Init.AdapterInterfaceType = PCIBus;
++    Init.HwDeviceExtensionSize = sizeof(NT5_VIDEO);
++    Init.HwFindAdapter = Nt5VideoFindAdapter; Init.HwInitialize = Nt5VideoInitialize;
++    Init.HwStartIO = Nt5VideoStartIO; Init.HwResetHw = Nt5VideoReset;
++    Init.HwGetPowerState = Nt5VideoPower; Init.HwSetPowerState = Nt5VideoPower;
++    Init.HwGetVideoChildDescriptor = Nt5VideoChild;
++    return VideoPortInitialize(Context1, Context2, &Init, NULL);
++}

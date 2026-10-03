@@ -1,0 +1,13 @@
+After physical XWNR90 success, preserve this package as the control.
+Audit HalpAllocPhysicalMemory and low-memory descriptors for the two BIOS
+phase-0 allocations before allowing HalInitializeBios to execute. Continue
+to halt before returning HAL phase 0 to the kernel until that boundary is
+independently checked. Phase 1 enables IRQs and initializes DMA; it remains
+unreachable in this probe.
+
+Before any native Windows storage driver is allowed to enumerate/mount the
+physical drive, resolve the test-volume and recovery plan. The user was
+asked spare-drive versus a dedicated area of the current drive; no answer
+has been received. Do not interpret an app upload or successful hook
+registration as authorization for formatting or repartitioning. The FATX
+application folder and current PC SYSTEM hive are not a native boot volume.

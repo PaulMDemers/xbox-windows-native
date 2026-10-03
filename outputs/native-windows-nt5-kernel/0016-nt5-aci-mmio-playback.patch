@@ -1,0 +1,161 @@
+diff --git a/drivers/wdm/audio/drivers/ac97/CMakeLists.txt b/drivers/wdm/audio/drivers/ac97/CMakeLists.txt
+index ef182eee..61c2efa1 100644
+--- a/drivers/wdm/audio/drivers/ac97/CMakeLists.txt
++++ b/drivers/wdm/audio/drivers/ac97/CMakeLists.txt
+@@ -28,3 +28,16 @@ endif()
+ 
+ add_cd_file(TARGET ac97 DESTINATION reactos/system32/drivers FOR all)
+ add_driver_inf(ac97 ac97.inf)
++
++# Experimental Xbox ACI MMIO path. Codec probing is still the PC model;
++# this target is for isolated emulator bring-up, not physical-console audio.
++if(XBOX_NT5_HAL)
++    add_library(ac97xnt5 MODULE ${SOURCE} ac97.rc)
++    target_compile_definitions(ac97xnt5 PRIVATE XBOX_NT5_AC97_MMIO=1)
++    target_link_libraries(ac97xnt5 stdunk libcntpr uuid)
++    set_module_type(ac97xnt5 wdmdriver)
++    add_importlibs(ac97xnt5 portcls hal ntoskrnl)
++    if(CMAKE_C_COMPILER_ID STREQUAL "GNU" OR CMAKE_C_COMPILER_ID STREQUAL "Clang")
++        target_compile_options(ac97xnt5 PRIVATE -Wno-write-strings -Wno-switch)
++    endif()
++endif()
+diff --git a/drivers/wdm/audio/drivers/ac97/adapter.cpp b/drivers/wdm/audio/drivers/ac97/adapter.cpp
+index 341abf7e..8d835263 100644
+--- a/drivers/wdm/audio/drivers/ac97/adapter.cpp
++++ b/drivers/wdm/audio/drivers/ac97/adapter.cpp
+@@ -186,7 +186,14 @@ NTSTATUS ValidateResources
+     ULONG countDMA = ResourceList->NumberOfDmas ();
+ 
+     // validate resources
++#ifdef XBOX_NT5_AC97_MMIO
++    if ((countIO != 0) || (ResourceList->NumberOfMemories() != 1) ||
++        (countIRQ != 1) || (countDMA != 0) ||
++        !ResourceList->FindTranslatedMemory(0) ||
++        ResourceList->FindTranslatedMemory(0)->u.Memory.Length < 0x180)
++#else
+     if ((countIO != 2) || (countIRQ != 1) || (countDMA != 0))
++#endif
+     {
+         DOUT (DBG_ERROR, ("Unknown configuration:\n"
+                           "   IO  count: %d\n"
+diff --git a/drivers/wdm/audio/drivers/ac97/common.cpp b/drivers/wdm/audio/drivers/ac97/common.cpp
+index fd55d166..19f4042a 100644
+--- a/drivers/wdm/audio/drivers/ac97/common.cpp
++++ b/drivers/wdm/audio/drivers/ac97/common.cpp
+@@ -12,6 +12,15 @@
+ 
+ #include "common.h"
+ 
++#ifdef XBOX_NT5_AC97_MMIO
++#define READ_PORT_UCHAR READ_REGISTER_UCHAR
++#define READ_PORT_USHORT READ_REGISTER_USHORT
++#define READ_PORT_ULONG READ_REGISTER_ULONG
++#define WRITE_PORT_UCHAR WRITE_REGISTER_UCHAR
++#define WRITE_PORT_USHORT WRITE_REGISTER_USHORT
++#define WRITE_PORT_ULONG WRITE_REGISTER_ULONG
++#endif
++
+ 
+ /*****************************************************************************
+  * Static Members
+@@ -169,6 +178,16 @@ STDMETHODIMP_(NTSTATUS) CAC97AdapterCommon::Init
+     //
+     // Get the base address for the AC97 codec and bus master.
+     //
++#ifdef XBOX_NT5_AC97_MMIO
++    PCM_PARTIAL_RESOURCE_DESCRIPTOR memory = ResourceList->FindTranslatedMemory(0);
++    if (!memory || memory->u.Memory.Length < 0x180)
++        return STATUS_DEVICE_CONFIGURATION_ERROR;
++    m_pAciMapping = MmMapIoSpace(memory->u.Memory.Start, 0x180, MmNonCached);
++    if (!m_pAciMapping)
++        return STATUS_INSUFFICIENT_RESOURCES;
++    m_pCodecBase = (PUSHORT)m_pAciMapping;
++    m_pBusMasterBase = (PUCHAR)m_pAciMapping + 0x100;
++#else
+     ASSERT (ResourceList->FindTranslatedPort (0));
+     m_pCodecBase = (PUSHORT)ResourceList->FindTranslatedPort (0)->
+                            u.Port.Start.QuadPart;
+@@ -177,6 +196,8 @@ STDMETHODIMP_(NTSTATUS) CAC97AdapterCommon::Init
+     m_pBusMasterBase = (PUCHAR)ResourceList->FindTranslatedPort (1)->
+                               u.Port.Start.QuadPart;
+ 
++#endif
++
+     DOUT (DBG_SYSINFO, ("Configuration:\n"
+                         "   Bus Master = 0x%p\n"
+                         "   Codec      = 0x%p",
+@@ -237,6 +258,10 @@ CAC97AdapterCommon::~CAC97AdapterCommon ()
+     PAGED_CODE ();
+ 
+     DOUT (DBG_PRINT, ("[CAC97AdapterCommon::~CAC97AdapterCommon]"));
++#ifdef XBOX_NT5_AC97_MMIO
++    if (m_pAciMapping)
++        MmUnmapIoSpace(m_pAciMapping, 0x180);
++#endif
+ }
+ 
+ 
+@@ -1197,6 +1222,16 @@ STDMETHODIMP_(NTSTATUS) CAC97AdapterCommon::WriteCodecRegister
+ {
+     PAGED_CODE ();
+ 
++#ifdef XBOX_NT5_AC97_MMIO
++    /* This ACI prototype has only the stereo PCM output engine. These
++     * optional multichannel codec registers are absent from xemu's model;
++     * do not probe/write them or pretend they were programmed.
++     */
++    if (reg == AC97REG_CENTER_LFE_VOLUME || reg == AC97REG_SURROUND_VOLUME ||
++        reg == AC97REG_SURROUND_SAMPLERATE || reg == AC97REG_LFE_SAMPLERATE)
++        return STATUS_NOT_SUPPORTED;
++#endif
++
+     ASSERT (reg < AC97REG_INVALID);    // audio can only be in the primary codec
+ 
+     WORD TempData = 0;
+diff --git a/drivers/wdm/audio/drivers/ac97/common.h b/drivers/wdm/audio/drivers/ac97/common.h
+index 8b5162dd..f82fbb37 100644
+--- a/drivers/wdm/audio/drivers/ac97/common.h
++++ b/drivers/wdm/audio/drivers/ac97/common.h
+@@ -91,6 +91,9 @@ class CAC97AdapterCommon : public IAC97AdapterCommon,
+ private:
+     static tAC97Registers m_stAC97Registers[64];    // The shadow registers.
+     static tHardwareConfig m_stHardwareConfig;      // The hardware configuration.
++#ifdef XBOX_NT5_AC97_MMIO
++    PVOID          m_pAciMapping;
++#endif
+     PDEVICE_OBJECT m_pDeviceObject;     // Device object used for registry access.
+     PWORD          m_pCodecBase;        // The AC97 I/O port address.
+     PUCHAR         m_pBusMasterBase;    // The Bus Master base address.
+@@ -165,7 +168,11 @@ private:
+ 
+ public:
+     DECLARE_STD_UNKNOWN();
++#ifdef XBOX_NT5_AC97_MMIO
++    CAC97AdapterCommon(PUNKNOWN outer) : CUnknown(outer), m_pAciMapping(NULL) { }
++#else
+     DEFINE_STD_CONSTRUCTOR(CAC97AdapterCommon);
++#endif
+     ~CAC97AdapterCommon();
+ 
+     /*************************************************************************
+diff --git a/drivers/wdm/audio/drivers/ac97/wavecyclicminiport.cpp b/drivers/wdm/audio/drivers/ac97/wavecyclicminiport.cpp
+index 58832714..c76cf6ae 100644
+--- a/drivers/wdm/audio/drivers/ac97/wavecyclicminiport.cpp
++++ b/drivers/wdm/audio/drivers/ac97/wavecyclicminiport.cpp
+@@ -126,6 +126,16 @@ STDMETHODIMP CMiniportWaveCyclic::NewStream
+     NTSTATUS ntStatus = STATUS_SUCCESS;
+ 
+     DOUT (DBG_PRINT, ("[CMiniportWaveCyclic::NewStream]"));
++#ifdef XBOX_NT5_AC97_MMIO
++    if (Capture)
++    {
++        *Stream = NULL;
++        *DmaChannel_ = NULL;
++        *ServiceGroup = NULL;
++        return STATUS_NOT_SUPPORTED;
++    }
++#endif
++
+ 
+     //
+     // Check parameters.

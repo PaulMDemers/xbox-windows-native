@@ -1,0 +1,33 @@
+diff --git a/include/memory_layout.h b/include/memory_layout.h
+--- a/include/memory_layout.h
++++ b/include/memory_layout.h
+@@ -19,10 +19,11 @@
+ #define KERNEL_LOAD_TMP    0x01000000
+ 
+ /*
+- * Modern bzImages prefer to decompress at 16 MB and can occupy roughly
+- * 13 MB there. Keep the initrd above that kernel image window.
++ * The legacy allocator always manages 16 MB, ignoring its length argument.
++ * Its heap starts at 22 MB and ends at 38 MB. Keep the initrd at 40 MB so
++ * live USB allocations cannot overwrite it while FATX files are loading.
+  */
+-#define INITRD_START       0x02000000
++#define INITRD_START       0x02800000
+ #define MAX_INITRD_END     0x03800000
+ 
+ #define MAX_KERNEL_SIZE    (KERNEL_PM_CODE_END - KERNEL_PM_CODE)
+@@ -32,12 +33,10 @@
+ #define FREELDR_MAX_SIZE   0x80000
+ 
+ /*
+- * Keep Cromwell's heap below the initrd. The old layout put the heap above
+- * MAX_INITRD_END; widening the initrd window for Tiny Core left too little
+- * heap for early video/FATX setup and xemu stayed black.
++ * Reserve the full 16 MB actually used by t_malloc (1024 x 16 KB blocks).
+  */
+ #define MEMORYMANAGERSTART 0x01600000
+-#define MEMORYMANAGEREND   0x01FFFFFF
++#define MEMORYMANAGEREND   0x02600000
+ #define MEMORYMANAGERSIZE  (MEMORYMANAGEREND - MEMORYMANAGERSTART)
+ 
+ #define STACK_TOP 0x03C00000

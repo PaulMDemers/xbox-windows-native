@@ -1,0 +1,13 @@
+After physical XWNT90, retain this build as the control. Next audit and
+instrument HalpInitializeClock and HalStopProfileInterrupt, stopping before
+HalpInitPhase0 / HalpXboxInitPartIo. The clock initializer calls the native
+KeSetTimeIncrement and programs the PIT rollover, then stores the rollover
+and increment. Verify kernel time values, PIT configuration and the halt
+with emulator breakpoints before the physical test.
+
+RTC calibration completion alone does not establish periodic kernel-clock
+interrupt delivery, scheduler progress, storage or desktop operation.
+
+Before enabling Xbox storage initialization or boot drivers, resolve the
+test disk/volume layout and recovery plan. Existing FATX staged files and
+the PC SYSTEM hive are not a configured native Windows boot volume.

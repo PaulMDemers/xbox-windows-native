@@ -1,0 +1,53 @@
+XWN Windows 2000 base HAL initialization diagnostic, patch 0025
+
+Previous physical milestone: XWNH90 confirmed processor initialization and
+the HalInitSystem phase-0 entrance. Its photo and user-reported reboot are
+recorded under native-windows-physical-hal0/evidence/physical-xwnh90.
+
+This candidate executes the original HalInitSystem phase-0 body through
+loader-option parsing, PRCB compatibility checks, the legacy ACPI-success
+stub, PIC initialization, CMOS bookkeeping, HAL dispatch-table setup and
+I/O-space bookkeeping. It halts before HalpCalibrateStallExecution.
+Timer calibration, clock setup, storage setup, drivers and desktop are not
+reached. A complete HalInitSystem phase-0 return is not claimed.
+
+The PIC routine programs both controllers with all IRQs masked and restores
+IF=1. The final diagnostic immediately disables interrupts, reads PIC masks,
+and verifies the observed initialization state. It does not enable device
+IRQs. The CMOS initializer only sets the century-offset field to 50; this
+stage does not write CMOS settings. The source routines were inspected.
+
+Success requires the previous processor/checkpoint sequence; boot phase 0;
+matching loader block, CR3 and native HalInitSystem caller; PRCB major 1;
+matching HAL/kernel build type; saved ELCR 1800; PIC masks ffff; CMOS offset
+50; all seven dispatch entries assigned; IF enabled before the final halt;
+and successful legacy ACPI status. The green message is:
+XWNB90: Base HAL checks and PIC setup completed.
+
+The new loader/HAL flags default OFF and require the previous phase-0
+preflight. A distinct arming signature rejects the prior XWNH90 HAL before
+kernel entry. Only the processor before/after callbacks and phase-0
+entrance callback may return. The final base-HAL callback cannot return.
+
+Validation includes both observed display modes, rejection of the prior
+HAL, and native debugger observations of kernel entry, processor entry and
+return, HalInitSystem, BaseHalReady, and the final loader callback.
+Forbidden breakpoints cover timer calibration, clock initialization, Xbox
+phase-0/storage initialization and all 17 loaded .sys modules (14 boot
+drivers plus dependencies). Mapped imports, all core executable sections,
+loader lists, framebuffer mapping and memory reservations are audited.
+Only the exact, previously verified kernel IDT-template transformation is
+allowed in addition to relocations and loader import binding.
+See validation.json for the actual completed checks and physical status.
+
+Only three files change: rosload.exe, loader/halxboxnt5.dll and README.txt.
+The preceding XWNH90 files are retained as rosload-xwnh90.exe,
+loader/hal-xwnh90.dll and README-xwnh90.txt. FTP verifies all package files,
+stages/readbacks replacements and switches rosload last. No remote launch.
+
+Run Applications -> XWN Loader Diagnostic. Photograph the complete screen,
+then reboot to UnleashX. Manual reboot remains required. No new ISO needed.
+
+Uploaded and read back successfully at 2026-10-03T21:04:22.532696+00:00.
+All 33 package files verified; 3 changed and 30 retained. Not launched.
+Physical XWNB90 PASSED: supplied photo confirms expected checkpoint and fields. User reports rebooted.

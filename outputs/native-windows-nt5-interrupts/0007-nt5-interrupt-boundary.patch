@@ -1,0 +1,171 @@
+diff --git a/hal/halx86/generic/halinit.c b/hal/halx86/generic/halinit.c
+index e1639c00..2908209d 100644
+--- a/hal/halx86/generic/halinit.c
++++ b/hal/halx86/generic/halinit.c
+@@ -101,7 +101,7 @@ HalInitSystem(
+         HalBootViaEfi = LoaderBlock->FirmwareInformation.FirmwareTypeEfi;
+ #else
+         HalBootViaEfi = FALSE;
+-#ifdef __REACTOS__
++#if defined(__REACTOS__) && !defined(XBOX_NT5_HAL)
+         ASSERT(LoaderBlock->Extension != NULL);
+         if (LoaderBlock->Extension->Size >= FIELD_OFFSET(LOADER_PARAMETER_EXTENSION, LoaderPerformanceData))
+             HalBootViaEfi = LoaderBlock->Extension->BootViaEFI;
+diff --git a/hal/halx86/include/hal.h b/hal/halx86/include/hal.h
+index 4aacf962..d6548e3d 100644
+--- a/hal/halx86/include/hal.h
++++ b/hal/halx86/include/hal.h
+@@ -85,4 +85,8 @@
+ #include "mps.h"
+ #include "halacpi.h"
+ 
++#ifdef XBOX_NT5_HAL
++#include "../xboxnt5/boundary.h"
++#endif
++
+ #endif /* _HAL_PCH_ */
+diff --git a/hal/halx86/xboxnt5/CMakeLists.txt b/hal/halx86/xboxnt5/CMakeLists.txt
+index ba9cacc4..0fe6cf4d 100644
+--- a/hal/halx86/xboxnt5/CMakeLists.txt
++++ b/hal/halx86/xboxnt5/CMakeLists.txt
+@@ -16,7 +16,8 @@ foreach(source ${HAL_XBOX_SOURCE} ${HAL_XBOX_ASM_SOURCE} ${HAL_UP_SOURCE})
+     endif()
+ endforeach()
+ spec2def(halxboxnt5.dll halnt5.spec)
+-add_library(halxboxnt5 MODULE ${NT5_SOURCE} fmutex.c ../xbox/halxbox.rc
++add_asm_files(nt5_boundary_asm boundary.S)
++add_library(halxboxnt5 MODULE ${NT5_SOURCE} ${nt5_boundary_asm} fmutex.c trapentry.c ../xbox/halxbox.rc
+             ${CMAKE_CURRENT_BINARY_DIR}/halxboxnt5.def)
+ target_link_libraries(halxboxnt5 libcntpr setjmp fast486 ${PSEH_LIB})
+ add_importlibs(halxboxnt5 ntoskrnl)
+diff --git a/hal/halx86/xboxnt5/boundary.S b/hal/halx86/xboxnt5/boundary.S
+new file mode 100644
+index 00000000..d82a1442
+--- /dev/null
++++ b/hal/halx86/xboxnt5/boundary.S
+@@ -0,0 +1,58 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later
++ * Windows 2000 i386 boundary. Contracts verified against supplied 2195.7376.
++ * These entry points adapt the HAL's C interfaces to the native NT5 ABI.
++ */
++#include <asm.inc>
++.code
++EXTERN __imp__Kei386EoiHelper@0:DWORD
++EXTERN __imp_@KeUpdateSystemTime@12:DWORD
++EXTERN __imp__KiDispatchInterrupt@0:DWORD
++EXTERN _HalEndSystemInterrupt@8:PROC
++
++PUBLIC @HalpNt5Eoi@4
++.PROC @HalpNt5Eoi@4
++    /* Discard every C frame. The kernel restores registers and executes IRET. */
++    mov ebp, ecx
++    mov esp, ecx
++    jmp dword ptr [__imp__Kei386EoiHelper@0]
++.ENDP
++
++PUBLIC @HalpNt5UpdateSystemTime@12
++.PROC @HalpNt5UpdateSystemTime@12
++    /* ECX=trap, EDX=increment, [ESP+4]=old IRQL. Native NT expects no return
++     * address: [ESP]=old IRQL, [ESP+4]=vector, [ESP+8]=trap frame. */
++    movzx eax, byte ptr [esp+4]
++    mov ebp, ecx
++    mov esp, ecx
++    push HEX(30) /* Xbox PIC primary vector + IRQ0 */
++    push eax
++    mov eax, edx
++    jmp dword ptr [__imp_@KeUpdateSystemTime@12]
++.ENDP
++
++PUBLIC _HalpNt5EndSystemInterrupt@8
++.PROC _HalpNt5EndSystemInterrupt@8
++    /* Native NT passes a vector as argument 2; our PIC code needs EBP's trap.
++     * Keep the internal HalEndSystemInterrupt ABI for all HAL C callers. */
++    push ebp
++    push dword ptr [esp+8]
++    call _HalEndSystemInterrupt@8
++    ret 8
++.ENDP
++
++PUBLIC _HalpNt5DispatchInterrupt@0
++.PROC _HalpNt5DispatchInterrupt@0
++    /* NT's assembly DPC helper clobbers EBX. Isolate the C caller from all
++     * native nonvolatile-register assumptions. */
++    push ebp
++    push ebx
++    push esi
++    push edi
++    call dword ptr [__imp__KiDispatchInterrupt@0]
++    pop edi
++    pop esi
++    pop ebx
++    pop ebp
++    ret
++.ENDP
++END
+diff --git a/hal/halx86/xboxnt5/boundary.h b/hal/halx86/xboxnt5/boundary.h
+new file mode 100644
+index 00000000..59303d69
+--- /dev/null
++++ b/hal/halx86/xboxnt5/boundary.h
+@@ -0,0 +1,12 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++#pragma once
++DECLSPEC_NORETURN VOID FASTCALL HalpNt5Eoi(PKTRAP_FRAME TrapFrame);
++DECLSPEC_NORETURN VOID FASTCALL HalpNt5UpdateSystemTime(PKTRAP_FRAME TrapFrame, ULONG Increment, KIRQL OldIrql);
++VOID NTAPI HalpNt5DispatchInterrupt(VOID);
++VOID FASTCALL HalpNt5EnterTrap(PKTRAP_FRAME TrapFrame);
++VOID FASTCALL HalpNt5EnterInterruptTrap(PKTRAP_FRAME TrapFrame);
++#define KiEoiHelper HalpNt5Eoi
++#define KeUpdateSystemTime HalpNt5UpdateSystemTime
++#define KiDispatchInterrupt HalpNt5DispatchInterrupt
++#define KiEnterTrap HalpNt5EnterTrap
++#define KiEnterInterruptTrap HalpNt5EnterInterruptTrap
+diff --git a/hal/halx86/xboxnt5/halnt5.spec b/hal/halx86/xboxnt5/halnt5.spec
+index 03e3d898..dc92d92a 100644
+--- a/hal/halx86/xboxnt5/halnt5.spec
++++ b/hal/halx86/xboxnt5/halnt5.spec
+@@ -18,7 +18,7 @@
+ @ stdcall HalDisableSystemInterrupt(long long)
+ @ stdcall HalDisplayString(str)
+ @ stdcall HalEnableSystemInterrupt(long long long)
+-@ stdcall -arch=i386,arm HalEndSystemInterrupt(long long)
++@ stdcall -arch=i386,arm HalEndSystemInterrupt(long long) HalpNt5EndSystemInterrupt
+ @ stdcall HalFlushCommonBuffer(long long long long long)
+ @ stdcall HalFreeCommonBuffer(ptr long long long ptr long)
+ @ stdcall HalGetAdapter(ptr ptr)
+diff --git a/hal/halx86/xboxnt5/trapentry.c b/hal/halx86/xboxnt5/trapentry.c
+new file mode 100644
+index 00000000..a1088d5e
+--- /dev/null
++++ b/hal/halx86/xboxnt5/trapentry.c
+@@ -0,0 +1,30 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later
++ * Use the NT5 PCR debug flag, not the newer KTHREAD dispatcher-header byte.
++ * Offsets below are verified against the matching Windows 2000 public PDB.
++ */
++#include <hal.h>
++// The newer shared KPCR no longer names this byte DebugActive.
++#define NT5_PCR_DEBUG_ACTIVE 0x50
++C_ASSERT(FIELD_OFFSET(KPRCB, ProcessorState) == 0x1c);
++C_ASSERT(FIELD_OFFSET(KPRCB, ProcessorState.SpecialRegisters.KernelDr0) == 0x2f8);
++C_ASSERT(FIELD_OFFSET(KPRCB, ProcessorState.SpecialRegisters.KernelDr7) == 0x30c);
++C_ASSERT(FIELD_OFFSET(KTRAP_FRAME, Eip) == 0x68);
++C_ASSERT(FIELD_OFFSET(KTRAP_FRAME, EFlags) == 0x70);
++C_ASSERT(FIELD_OFFSET(KTRAP_FRAME, ExceptionList) == 0x4c);
++C_ASSERT(PRIMARY_VECTOR_BASE + PIC_TIMER_IRQ == 0x30);
++
++VOID FASTCALL HalpNt5EnterTrap(PKTRAP_FRAME TrapFrame)
++{
++    TrapFrame->Dr7 = 0;
++    if ((KiUserTrap(TrapFrame) || (TrapFrame->EFlags & EFLAGS_V86_MASK)) &&
++        *((volatile UCHAR *)KeGetPcr() + NT5_PCR_DEBUG_ACTIVE))
++    {
++        KiHandleDebugRegistersOnTrapEntry(TrapFrame);
++    }
++}
++
++VOID FASTCALL HalpNt5EnterInterruptTrap(PKTRAP_FRAME TrapFrame)
++{
++    KeGetPcr()->NtTib.ExceptionList = EXCEPTION_CHAIN_END;
++    HalpNt5EnterTrap(TrapFrame);
++}

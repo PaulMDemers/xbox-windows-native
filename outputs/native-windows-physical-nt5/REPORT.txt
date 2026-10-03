@@ -1,0 +1,54 @@
+Physical Windows 2000 file-loading diagnostic (XWNF90)
+
+Purpose: read the Windows 2000 kernel, experimental Xbox HAL and bootvid,
+SYSTEM registry hive, NLS data, and selected boot drivers from
+E:\Applications\XWNLoader. Stop before phase 1, page-table switching,
+and every Windows kernel/driver entry point.
+
+The XWN80 physical photo is the preceding hardware milestone. XWNF90
+has passed in 64 MiB xemu and now on the physical console, as reported
+by the supplied XWNF90 photograph.
+Expected success: 1810432 hive bytes, 20 modules, 14 boot drivers.
+The emulator audit verified 1388 imported function addresses and the
+relocated executable sections of ntoskrnl.exe, hal.dll and bootvid.dll.
+The CPU is halted with paging off. The display says:
+XWNF90: Windows files loaded. Kernel NOT entered.
+
+This is a read-only boot-file staging test, not a native Windows volume.
+FreeLoader identifies FATX as vfatfs. The unmodified PC SYSTEM hive has
+no vfatfs service; its 14 Start=0 services are loaded. This does not prove
+that Windows can mount FATX or that those drivers work on the real Xbox.
+The hive has PC IDE configuration; it must not be used for native entry.
+Windows storage layout, final memory mapping and kernel/HAL execution
+on physical hardware remain separate stages. Audio remains disabled.
+
+CMake forbids combining FATX_NT5_PREFLIGHT with ENTER or AUTORUN.
+The diagnostic and ordinary loader builds both compile successfully.
+0019 extends the recorded 0005-0018 source patch chain. The package
+uses locally supplied Windows media/installation files. It includes
+no SAM or SOFTWARE hive. Original installation disk hash is unchanged.
+
+Launch Applications > XWN Loader Diagnostic after upload completes.
+Photograph the final screen before rebooting to UnleashX. There is no
+automatic return to the dashboard or persistent diagnostic result log.
+The upload report records exact transfers, readbacks and XWN80 backups.
+
+FTP transfer findings: continuous uploads of the 2417528-byte HAL slowed
+severely on this dashboard connection. Reducing only the Python send block
+size did not resolve it. STOR of the first 32768-byte piece followed by
+APPE of successive pieces uploaded and read back a 164272-byte NDIS file
+in about two seconds. The final uploader uses this method, validates any
+interrupted HAL prefix before appending, then compares the complete staged
+file byte-for-byte. Earlier attempts never switched the active loader.
+These measurements concern this connection; no global network settings
+were changed. The small/chunked transfer JSON reports preserve timings.
+
+Upload completed 2026-10-03T18:28:11.885097+00:00. All 31 changed/new files passed
+staging readback; the four loader/control files also passed final readback.
+The unchanged launcher and probe were checked. XWN80 backups are retained.
+No physical launch was sent by the uploader. The user subsequently ran
+the diagnostic; their photo confirms XWNF90 with matching counts.
+
+Physical evidence is archived in evidence/physical-xwnf90. This confirms
+file loading only. Next: a visible diagnostic for phase-1 loader block
+conversion, final memory layout and paging, still without kernel entry.

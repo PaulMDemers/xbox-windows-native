@@ -1,0 +1,54 @@
+XWN physical paging diagnostic, patch 0020
+
+Preceding milestone: the physical Xbox photo confirms XWNF90 file loading.
+This candidate advances through phase-1 loader-block conversion, final
+memory descriptors, page-table switch, GDT/IDT/PCR setup and a visible halt.
+Expected green marker: XWNP90: Paging active. Kernel NOT entered.
+The yellow XWNP30 screen means paging has not yet been confirmed.
+
+The 64 MiB xemu test passed with CR0=80010033, 24 descriptors, 20 modules,
+14 boot drivers and the 1810432-byte SYSTEM hive. Host inspection verified
+1388 import slots, relocated executable sections of the kernel/HAL/bootvid,
+page-table self-mapping, and all 300 identity-mapped framebuffer pages.
+The 64 MiB descriptor coverage has no gaps or overlaps. No free descriptor
+overlaps a loaded image, hive, page zero, framebuffer, page directory or
+the diagnostic framebuffer page table. Physical confirmation is pending.
+
+The loader manages 60 MiB; upper 4 MiB is firmware-reserved video RAM.
+A separate, previously allocated page table maps the 640x480x32 diagnostic
+display, with cache-disable and write-through flags. No GPU mode is changed.
+Rendering after paging uses the existing VGA font and direct framebuffer
+writes, without calling Windows display code or touching GPU registers.
+
+The paging-only memory-map path now walks every firmware descriptor,
+uses an inclusive comparison at the exclusive managed-memory boundary,
+emits the final managed page, and reserves page zero. These changes are
+currently scoped to this diagnostic, not enabled in the older autorun
+build. They need subsequent native-entry validation before adoption there.
+The ordinary loader build and two incompatible-configuration checks pass.
+
+XBOX_NATIVE_FATX_PAGING_PREFLIGHT requires FATX_NT5_PREFLIGHT, which forbids
+kernel entry/autorun. A separate record magic prevents the older host
+entry-gate helper from mistaking this build for an entry candidate. The
+post-paging diagnostic halts unconditionally before the kernel entry call.
+
+This package retains the prior PC SYSTEM hive for read-only staging.
+It does not establish a native Windows boot volume or Windows FATX support.
+No disk image or partition layout is changed. No Windows driver entry point
+executes. Automatic dashboard return and persistent results remain absent.
+
+Launch Applications > XWN Loader Diagnostic after upload completion.
+Photograph the final result, then reboot to UnleashX. Earlier XWNF90 rosload
+and README files are backed up. Only these two files differ from XWNF90.
+The uploader checks unchanged files, uses 32 KiB STOR/APPE pieces and
+byte-for-byte readback, then switches rosload last. The FTP report records
+actual completion; the physical diagnostic is not remotely launched.
+
+Deployment completed 2026-10-03T19:12:12.592517+00:00. Both changed files were
+read back byte-for-byte; 31 unchanged files were verified. XWNF90 controls
+were backed up as rosload-xwnf90.exe and README-xwnf90.txt. Physical launch
+is left to Paul; no XWNP90 physical result has been claimed.
+
+Physical test: the console reported XWNPFAIL: unsupported framebuffer or
+RAM layout. Paging was not reached. The original build does not display
+which of the six checks failed. See evidence/physical-guard-failure.

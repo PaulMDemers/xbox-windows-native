@@ -1,0 +1,109 @@
+{
+  "validated_utc": "2026-10-03T21:38:09.240360+00:00",
+  "ready_for_physical_upload": true,
+  "physical_tested": true,
+  "installed_on_physical_console": true,
+  "source_tree": "c97117d50c19bf53b44254ff46515aba1ec9d2d5",
+  "scope": "RTC calibration and clock setup returned; native time-increment values, PIT programming and RTC profiling stop checked. Halt before Xbox storage and drivers.",
+  "normal_loader_build_passed": true,
+  "normal_hal_build_passed": true,
+  "missing_timer_parent_rejected": true,
+  "post_clock_halt_statically_verified": true,
+  "kernel_file_unchanged": true,
+  "changed_files": [
+    "loader/halxboxnt5.dll",
+    "README.txt",
+    "rosload.exe"
+  ],
+  "package_files_verified": 33,
+  "emulator_tests": [
+    {
+      "run": "physical-clock-wide-002",
+      "status": "clock_setup_boundary_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "identity_pages_verified": 576,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-clock-normal-001",
+      "status": "clock_setup_boundary_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 640,
+        "height": 480,
+        "pitch": 2560,
+        "pa": "0x3c00000",
+        "bytes": 1228800,
+        "identity_pages_verified": 300,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-clock-bad-hal-001",
+      "status": "unarmed_hal_rejected_before_kernel",
+      "kernel_entered": false,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "identity_pages_verified": 576,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-clock-trace-001",
+      "status": "clock_setup_boundary_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "identity_pages_verified": 576,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    }
+  ],
+  "native_trace_passed": true,
+  "development_findings": [
+    "The first diagnostic used generic PC clock-table constants. Its guard rejected the actual Xbox-specific values and halted before storage. The check was corrected to the linked hal/halx86/xbox/clock.c values: 16875 reload, 150000 maximum and 10000 minimum increment."
+  ],
+  "expected_physical_success": "XWNC90: Clock configured; stopped before storage.",
+  "fixture_package_includes_final_readme": true,
+  "uploaded_utc": "2026-10-03T21:38:58.552385+00:00",
+  "physical_result": {
+    "recorded_utc": "2026-10-03T21:41:06.423598+00:00",
+    "status": "physical_clock_setup_passed",
+    "checkpoint": "XWNC90: Clock configured; stopped before storage.",
+    "increment_100ns": 150000,
+    "pit_reload": 16875,
+    "pic_mask": "0xffff",
+    "rtc_b": "0x02",
+    "profile_stopped": true,
+    "stall_factor": 367,
+    "storage_initialization_reached": false,
+    "boot_driver_entry_reached": false,
+    "windows_desktop_reached": false,
+    "user_reports_rebooted": true,
+    "photo_sha256": "fcc1e7de27b3633cd450ff5f56f14e9688f120b86b8f64a974893fd07410ba25",
+    "evidence_scope": "Photo confirms checkpoint and reported values. Native kernel-global and PIT-write debugger audits remain emulator evidence."
+  }
+}

@@ -1,0 +1,40 @@
+Next bounded HAL stage after physical XWNK90
+
+The physical console now confirms early Windows 2000 kernel execution,
+ending at the first HalInitializeProcessor call. Preserve this working
+package as rollback evidence and do not enable the desktop autorun build.
+
+Source review: Xbox HalpInitProcessor sets the PCR interrupt-disable mask.
+The generic HalInitializeProcessor then sets StallScaleFactor and updates
+the active/default affinity masks. HalpRegisterKdSupportFunctions is empty
+for the Windows 2000 target because its body requires NTDDI_WINXP or later.
+Thus the original processor-initialization routine is a bounded next step.
+
+A useful next diagnostic should allow that routine to complete, then
+continue the Windows startup sequence to the entrance of HalInitSystem
+phase 0 and halt visibly BEFORE the original HalInitSystem body executes.
+This is more informative than another halt after only a few PCR writes.
+
+Required before deployment:
+- Use a distinct opt-in stage/arming signature so a loader cannot mistake
+  a first-checkpoint HAL for the next-stage HAL, or vice versa.
+- Preserve the first-call provenance checks, record completion of original
+  processor initialization, and validate the observed PCR/affinity values.
+- At the new boundary, check BootPhase=0, loader-block identity and native
+  caller; show a distinct result. Keep an unconditional stop if called
+  unarmed, out of order or for any unexpected phase.
+- Trace the intervening Windows instructions and HAL calls in xemu. Check
+  that no boot-driver entry or storage initialization occurs before the
+  new boundary, rather than assuming this from the source layout.
+- Retest both display modes and mismatched-stage rejection. Extend the
+  integrity audit only for exact additional startup mutations supported
+  by the pinned Windows binary and observed execution.
+
+Do not execute original Xbox HalpInitPhase0 yet: it calls HalpXboxInitPartIo,
+which introduces disk-specific behavior. Full HAL initialization, memory
+manager progress and boot storage require their own review and tests.
+The test-disk/volume choice remains unanswered; no installation or disk
+layout change is authorized by a successful checkpoint photo alone.
+
+This next-stage candidate has not been implemented or uploaded. The physical
+console still has the XWNK90 first-checkpoint diagnostic installed.

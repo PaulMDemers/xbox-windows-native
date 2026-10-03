@@ -1,0 +1,77 @@
+--- a/boot/freeldr/freeldr/bootmgr.c
++++ b/boot/freeldr/freeldr/bootmgr.c
+@@ -70,6 +70,7 @@
+ #endif /* _M_IX86 || _M_AMD64 */
+ #ifdef _M_IX86
+     {"WindowsNT40" , EditCustomBootNTOS, NULL, LoadAndBootWindows},
++    {"Windows2000" , EditCustomBootNTOS, MenuNTOptions, LoadAndBootWindows},
+ #endif
+     {"Windows"     , EditCustomBootNTOS, MenuNTOptions, LoadAndBootWindows},
+     {"Windows2003" , EditCustomBootNTOS, MenuNTOptions, LoadAndBootWindows},
+--- a/boot/freeldr/freeldr/pcat.cmake
++++ b/boot/freeldr/freeldr/pcat.cmake
+@@ -216,6 +216,14 @@
+                     COMMAND ${CMAKE_STRIP} --strip-all $<TARGET_FILE:freeldr_pe>)
+ endif()
+ 
++option(XBOX_NATIVE_PREFLIGHT "Stop Xbox loader after platform and disk diagnostics" OFF)
++if(XBOX_NATIVE_PREFLIGHT)
++    if(NOT ARCH STREQUAL "i386" OR NOT SARCH STREQUAL "xbox")
++        message(FATAL_ERROR "XBOX_NATIVE_PREFLIGHT requires ARCH=i386 and SARCH=xbox")
++    endif()
++    target_compile_definitions(freeldr_pe PRIVATE XBOX_NATIVE_PREFLIGHT=1)
++endif()
++
+ set_image_base(freeldr_pe 0x10000)
+ set_subsystem(freeldr_pe native)
+ set_entrypoint(freeldr_pe RealEntryPoint)
+--- a/boot/freeldr/freeldr/freeldr.c
++++ b/boot/freeldr/freeldr/freeldr.c
+@@ -103,6 +103,10 @@
+     MachInit(CmdLine);
+ 
+     TRACE("BootMain() called.\n");
++#ifdef XBOX_NATIVE_PREFLIGHT
++    printf("XWN10: Xbox platform initialized\n");
++#endif
++
+ 
+ #ifndef UEFIBOOT
+     /* Check if the CPU is new enough */
+@@ -123,6 +127,10 @@
+         goto Quit;
+     }
+ 
++#ifdef XBOX_NATIVE_PREFLIGHT
++    printf("XWN20: Memory manager initialized\n");
++#endif
++
+     /* Initialize I/O subsystem */
+     FsInit();
+ 
+@@ -140,6 +148,25 @@
+     }
+     
+ #ifndef SARCH_APPLETV
++#ifdef XBOX_NATIVE_PREFLIGHT
++    {
++        PFREELDR_MEMORY_DESCRIPTOR Map;
++        ULONG Count = MmGetBiosMemoryMap(&Map);
++        ULONG Index;
++        printf("XWN30: Boot devices initialized; path=%s\n", FrLdrBootPath);
++        printf("Firmware descriptors (page units): %lu\n", Count);
++        for (Index = 0; Index < Count; ++Index)
++        {
++            printf("%02lu base=%08lx pages=%08lx type=%lu\n",
++                   Index, (ULONG)Map[Index].BasePage,
++                   (ULONG)Map[Index].PageCount, (ULONG)Map[Index].MemoryType);
++        }
++        printf("XWN40: Diagnostic complete. Windows NOT entered.\n");
++        _disable();
++        for (;;) __halt();
++    }
++#endif
++
+     /* Launch second stage loader */
+     if (LaunchSecondStageLoader() != ESUCCESS)
+     {

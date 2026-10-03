@@ -1,0 +1,88 @@
+diff --git a/boot/freeldr/freeldr/arch/i386/xbox/machxbox.c b/boot/freeldr/freeldr/arch/i386/xbox/machxbox.c
+index 3860d4bc..5e782dc8 100644
+--- a/boot/freeldr/freeldr/arch/i386/xbox/machxbox.c
++++ b/boot/freeldr/freeldr/arch/i386/xbox/machxbox.c
+@@ -266,6 +266,19 @@ DetectIsaBios(
+ 
+     /* Detect ISA/BIOS devices */
+     DetectBiosDisks(SystemKey, BusKey);
++#ifdef XBOX_NATIVE_NT5_HANDOFF
++    /* DetectBiosDisks records the boot disk geometry on SystemKey, but its
++     * shared PC implementation also invents an ISA floppy controller (IRQ 6,
++     * DMA 2, ports 3f0-3f7). Xbox has no such controller: IRQ 6 belongs to ACI.
++     * Keep the system geometry and let native PCIIDE enumerate the real disks.
++     * This ISA node is new and DetectBiosDisks is its only child producer here.
++     */
++    ASSERT(!BusKey->Child ||
++           (BusKey->Child->ComponentEntry.Type == DiskController &&
++            BusKey->Child->Sibling == NULL));
++    BusKey->Child = NULL;
++#endif
++
+     DetectSerialPorts(Options, BusKey, XboxGetSerialPort, MAX_XBOX_COM_PORTS);
+ 
+     /* FIXME: Detect more ISA devices */
+diff --git a/boot/freeldr/freeldr/pcat.cmake b/boot/freeldr/freeldr/pcat.cmake
+index be04747f..28b8e66d 100644
+--- a/boot/freeldr/freeldr/pcat.cmake
++++ b/boot/freeldr/freeldr/pcat.cmake
+@@ -292,3 +292,7 @@ option(XBOX_NATIVE_VOLUME_PREFLIGHT "Read and verify the private installed Windo
+ if(XBOX_NATIVE_VOLUME_PREFLIGHT AND NOT XBOX_NATIVE_IO_PREFLIGHT)
+     message(FATAL_ERROR "Volume preflight requires the IO preflight")
+ endif()
++
++if(XBOX_NATIVE_NT5_HANDOFF)
++    target_compile_definitions(freeldr_common PRIVATE XBOX_NATIVE_NT5_HANDOFF=1)
++endif()
+diff --git a/hal/halx86/xboxnt5/translate.c b/hal/halx86/xboxnt5/translate.c
+index 426034fc..cd32e702 100644
+--- a/hal/halx86/xboxnt5/translate.c
++++ b/hal/halx86/xboxnt5/translate.c
+@@ -12,6 +12,19 @@ C_ASSERT(sizeof(TRANSLATOR_INTERFACE) == 24);
+ #undef HalGetInterruptTranslator
+ C_ASSERT(FIELD_OFFSET(HAL_DISPATCH, HalGetInterruptTranslator) == 0x40);
+ 
++/* The firmware's PIC ELCR, recorded by HalpInitializePICs. PCI's generic
++ * level-sensitive descriptors are not the trigger mode of every Xbox line
++ * (notably USB0 is wired to the edge-only PIC IRQ 1). Match the translated
++ * contract to the actual PIC; preserve unrelated descriptor flag bits.
++ */
++extern LONG HalpEisaELCR;
++static USHORT HalpNt5PciInterruptFlags(USHORT Flags, ULONG Line)
++{
++    return (Flags & ~CM_RESOURCE_INTERRUPT_LATCHED) |
++           ((HalpEisaELCR & (1 << Line)) ? CM_RESOURCE_INTERRUPT_LEVEL_SENSITIVE :
++                                         CM_RESOURCE_INTERRUPT_LATCHED);
++}
++
+ static VOID NTAPI HalpNt5TranslatorReference(PVOID Context) { }
+ 
+ static NTSTATUS
+@@ -67,6 +80,9 @@ HalpNt5TranslateResource(PVOID Context, PCM_PARTIAL_RESOURCE_DESCRIPTOR Source,
+         Vector = HalpNt5TranslateLine(Source->u.Interrupt.Vector, &Irql, &Affinity);
+         if (!Vector) return STATUS_UNSUCCESSFUL;
+         *Target = *Source;
++        if ((ULONG_PTR)Context == PCIBus)
++            Target->Flags = HalpNt5PciInterruptFlags(Source->Flags,
++                                                    Source->u.Interrupt.Vector);
+         Target->u.Interrupt.Vector = Vector;
+         Target->u.Interrupt.Level = Irql;
+         Target->u.Interrupt.Affinity = Affinity;
+@@ -98,6 +114,8 @@ HalpNt5TranslateResource(PVOID Context, PCM_PARTIAL_RESOURCE_DESCRIPTOR Source,
+     }
+ Found:
+     *Target = *Source;
++    if ((ULONG_PTR)Context == PCIBus)
++        Target->Flags = HalpNt5PciInterruptFlags(Source->Flags, Line);
+     Target->u.Interrupt.Vector = Target->u.Interrupt.Level = Line;
+     Target->u.Interrupt.Affinity = (KAFFINITY)-1;
+     return STATUS_SUCCESS;
+@@ -140,6 +158,8 @@ HalpNt5TranslateRequirements(PVOID Context, PIO_RESOURCE_DESCRIPTOR Source,
+     for (Line = 0; Line < Count; ++Line)
+     {
+         Result[Line] = *Source;
++        if ((ULONG_PTR)Context == PCIBus)
++            Result[Line].Flags = HalpNt5PciInterruptFlags(Source->Flags, Minimum);
+         if (Line) Result[Line].Option |= IO_RESOURCE_ALTERNATIVE;
+         Result[Line].u.Interrupt.MinimumVector = Vectors[Line];
+         Result[Line].u.Interrupt.MaximumVector = Vectors[Line];

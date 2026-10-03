@@ -1,0 +1,56 @@
+{
+  "scope": "Execute the built debugger exports and cportlib instructions with UART I/O\nmodeled through Unicorn IN/OUT hooks. No kernel debugger or real UART attached.\n",
+  "hal_sha256": "14d3daab55a9694bc276e9e46ad35f9a93db3bf49fa007e59d53f4f22971e2a6",
+  "kernel_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+  "tests": [
+    {
+      "test": "Uninitialized reads return no-data, null output returns error, early transmit performs no I/O",
+      "passed": true
+    },
+    {
+      "test": "Invalid selections/rates rejected without I/O; missing UARTs fail discovery",
+      "passed": true
+    },
+    {
+      "test": "Discovery/activation phases preserve selection and configure 38400 baud, 8N1, FIFO, interrupts off",
+      "passed": true
+    },
+    {
+      "test": "Automatic selection prefers COM2 then COM1, with native 19200 default",
+      "passed": true
+    },
+    {
+      "test": "Explicit COM1 through COM4 activate the requested detected UART",
+      "passed": true
+    },
+    {
+      "test": "Poll consumes exactly one byte; get consumes next byte; empty polling is bounded",
+      "passed": true
+    },
+    {
+      "test": "UART overrun/parity/framing errors report error; waiting receive handles delayed data",
+      "passed": true
+    },
+    {
+      "test": "Waiting receive returns no-data after the actual cportlib timeout loop",
+      "passed": true
+    },
+    {
+      "test": "Transmit waits for readiness; save/restore toggles native debugger state without changing direct UART settings",
+      "passed": true
+    },
+    {
+      "test": "Disconnected UART produces no-data and failed reinitialization releases the claimed port",
+      "passed": true
+    },
+    {
+      "test": "Installed kernel receive and break-in polling helpers consume bytes through the actual new HAL",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "IN/OUT model, not physical UART or xemu transport",
+    "Direct UART only; modem command protocol and ARC enumeration unsupported",
+    "No connected WinDbg session"
+  ]
+}

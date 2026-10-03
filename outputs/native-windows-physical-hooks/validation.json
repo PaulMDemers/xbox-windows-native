@@ -1,0 +1,91 @@
+{
+  "validated_utc": "2026-10-03T21:56:37.388940+00:00",
+  "ready_for_physical_upload": true,
+  "physical_tested": true,
+  "installed_on_physical_console": true,
+  "source_tree": "b0b16bc9e64090b9103586a9b1035a7bd9341a23",
+  "scope": "Four Xbox partition hooks registered and originals saved; halt before BIOS allocation, partition handlers and boot drivers.",
+  "normal_loader_build_passed": true,
+  "normal_hal_build_passed": true,
+  "missing_clock_parent_rejected": true,
+  "post_registration_halt_statically_verified": true,
+  "kernel_file_unchanged": true,
+  "changed_files": [
+    "loader/halxboxnt5.dll",
+    "README.txt",
+    "rosload.exe"
+  ],
+  "package_files_verified": 33,
+  "emulator_tests": [
+    {
+      "run": "physical-hooks-wide-001",
+      "status": "partition_hooks_boundary_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "identity_pages_verified": 576,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-hooks-normal-002",
+      "status": "partition_hooks_boundary_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 640,
+        "height": 480,
+        "pitch": 2560,
+        "pa": "0x3c00000",
+        "bytes": 1228800,
+        "identity_pages_verified": 300,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-hooks-bad-hal-001",
+      "status": "unarmed_hal_rejected_before_kernel",
+      "kernel_entered": false,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "identity_pages_verified": 576,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-hooks-trace-001",
+      "status": "partition_hooks_boundary_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "identity_pages_verified": 576,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    }
+  ],
+  "native_trace_passed": true,
+  "expected_physical_success": "XWNR90: Partition hooks registered; no disk access.",
+  "fixture_package_includes_final_readme": true,
+  "uploaded_utc": "2026-10-03T21:57:40.093706+00:00",
+  "physical_result": "physical_partition_hook_registration_passed",
+  "physical_evidence": "evidence/physical-xwnr90/result.json"
+}

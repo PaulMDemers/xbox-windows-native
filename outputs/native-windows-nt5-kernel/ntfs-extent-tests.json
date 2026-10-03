@@ -1,0 +1,14 @@
+{
+  "scope": "Execute the built loader's NTFS read code against modeled disk I/O and extent lookup.",
+  "loader_sha256": "11051c9e10e680cd8f930440c5b69d78042f0e9e8c4e8386c454a6e8b1904703",
+  "passed": 6,
+  "tests": [
+    "Complete read spanning two separately located DATA extents",
+    "Unaligned request crosses the extent boundary without losing or repeating bytes",
+    "Seek into later extent and clamp request at logical EOF",
+    "EOF and zero-byte reads do not access disk",
+    "Missing later extent reports I/O failure with the actual partial count",
+    "Short underlying disk transfer is rejected"
+  ],
+  "limitation": "Extent lookup is modeled; real ATTRIBUTE_LIST lookup is separately exercised by the unchanged fragmented SYSTEM hive in xemu run 051."
+}

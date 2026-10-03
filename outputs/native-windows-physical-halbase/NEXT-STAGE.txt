@@ -1,0 +1,16 @@
+After physical XWNB90 success, retain this package as the control.
+
+Next: instrument stall calibration, then clock initialization, with a hard
+stop before HalpInitPhase0 / HalpXboxInitPartIo. The generic calibration
+routine saves PIC masks and the RTC IDT entry, unmasks RTC IRQ8 and cascade,
+installs a temporary RTC handler and programs RTC registers A/B. Audit its
+restoration paths and wait behavior against actual MCPX hardware before
+allowing it on the console. Preserve a visible before/after checkpoint.
+
+The current test stops before those writes and interrupt-driven waits.
+It has not proved timer calibration, device interrupt delivery, storage
+access under Windows, boot-driver startup or desktop operation.
+
+Before any storage-enabled test, resolve the test-disk/volume and recovery
+plan. The app-local FATX staging folder and PC hive are not a configured
+Windows boot volume. Keep audio disabled and existing softmod/Linux intact.

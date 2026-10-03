@@ -1,0 +1,274 @@
+diff --git a/boot/freeldr/freeldr/ntldr/winldr.c b/boot/freeldr/freeldr/ntldr/winldr.c
+index 2b950782..6dd11806 100644
+--- a/boot/freeldr/freeldr/ntldr/winldr.c
++++ b/boot/freeldr/freeldr/ntldr/winldr.c
+@@ -81,7 +81,7 @@ NtLdrOutputLoadMsg(
+  * Words 4..: LPB PA, LPB VA, kernel entry, CR0, CR3, extension size,
+  * major, minor, hive size, module count, boot-driver count, descriptor count.
+  */
+-static volatile ULONG XwnHandoffRecord[16] = {0x484e5758, 0x35544e50, 1, 0};
++static volatile ULONG XwnHandoffRecord[17] = {0x484e5758, 0x35544e50, 1, 0};
+ #endif
+ 
+ // Init "phase 0"
+@@ -1581,7 +1581,16 @@ LoadAndBootWindowsCommon(
+             Modules && Modules < 256 && Drivers && Drivers < 256 && Descriptors && Descriptors < 256 &&
+             LoaderBlockVA->RegistryBase && LoaderBlockVA->NlsData)
+             XwnHandoffRecord[3] = 99;
++#ifdef XBOX_NATIVE_NT5_ENTER
++        _disable();
++        if (XwnHandoffRecord[3] != 99) for (;;) __halt();
++        /* The host must verify the record and set word 16 over its debugger.
++         * A separate opt-in build is required; the ordinary diagnostic halts. */
++        while (XwnHandoffRecord[16] != 0x574e454e) __asm__ __volatile__("pause");
++        XwnHandoffRecord[3] = 100;
++#else
+         _disable(); for (;;) __halt();
++#endif
+     }
+ #endif
+     /* Pass control */
+diff --git a/boot/freeldr/freeldr/pcat.cmake b/boot/freeldr/freeldr/pcat.cmake
+index 0690747d..2204ee6e 100644
+--- a/boot/freeldr/freeldr/pcat.cmake
++++ b/boot/freeldr/freeldr/pcat.cmake
+@@ -273,6 +273,11 @@ endif()
+ 
+ add_cd_file(TARGET freeldr FILE ${CMAKE_CURRENT_BINARY_DIR}/freeldr.sys DESTINATION loader NO_CAB FOR bootcd regtest)
+ 
++option(XBOX_NATIVE_NT5_ENTER "Permit debugger-gated experimental Windows kernel entry" OFF)
++if(XBOX_NATIVE_NT5_ENTER AND NOT XBOX_NATIVE_NT5_HANDOFF)
++    message(FATAL_ERROR "NT5 entry requires the handoff diagnostic")
++endif()
++
+ option(XBOX_NATIVE_NT5_HANDOFF "Load installed NT5 files and halt before kernel entry" OFF)
+ if(XBOX_NATIVE_NT5_HANDOFF AND (NOT XBOX_NATIVE_IO_PREFLIGHT OR XBOX_NATIVE_VOLUME_PREFLIGHT))
+     message(FATAL_ERROR "NT5 handoff requires I/O preflight, excludes volume-only preflight")
+diff --git a/boot/freeldr/freeldr/rosload.cmake b/boot/freeldr/freeldr/rosload.cmake
+index 63828933..9d0e5437 100644
+--- a/boot/freeldr/freeldr/rosload.cmake
++++ b/boot/freeldr/freeldr/rosload.cmake
+@@ -110,3 +110,7 @@ endif()
+ if(XBOX_NATIVE_NT5_HANDOFF)
+     target_compile_definitions(rosload PRIVATE XBOX_NATIVE_NT5_HANDOFF=1)
+ endif()
++
++if(XBOX_NATIVE_NT5_ENTER)
++    target_compile_definitions(rosload PRIVATE XBOX_NATIVE_NT5_ENTER=1)
++endif()
+diff --git a/hal/halx86/generic/halinit.c b/hal/halx86/generic/halinit.c
+index 2908209d..29377539 100644
+--- a/hal/halx86/generic/halinit.c
++++ b/hal/halx86/generic/halinit.c
+@@ -144,7 +144,11 @@ HalInitSystem(
+         HalInitPnpDriver = HaliInitPnpDriver;
+         HalGetDmaAdapter = HalpGetDmaAdapter;
+ 
++#ifdef XBOX_NT5_HAL
++        HalGetInterruptTranslator = HalpNt5GetInterruptTranslator;
++#else
+         HalGetInterruptTranslator = NULL;  // FIXME: TODO
++#endif
+         HalResetDisplay = HalpBiosDisplayReset;
+         HalHaltSystem = HaliHaltSystem;
+ 
+diff --git a/hal/halx86/xboxnt5/CMakeLists.txt b/hal/halx86/xboxnt5/CMakeLists.txt
+index cdb07887..0c601152 100644
+--- a/hal/halx86/xboxnt5/CMakeLists.txt
++++ b/hal/halx86/xboxnt5/CMakeLists.txt
+@@ -17,7 +17,7 @@ foreach(source ${HAL_XBOX_SOURCE} ${HAL_XBOX_ASM_SOURCE} ${HAL_UP_SOURCE})
+ endforeach()
+ spec2def(halxboxnt5.dll halnt5.spec)
+ add_asm_files(nt5_boundary_asm boundary.S)
+-add_library(halxboxnt5 MODULE ${NT5_SOURCE} ${nt5_boundary_asm} fmutex.c trapentry.c kdport.c ../xbox/halxbox.rc
++add_library(halxboxnt5 MODULE ${NT5_SOURCE} ${nt5_boundary_asm} fmutex.c trapentry.c kdport.c translate.c ../xbox/halxbox.rc
+             ${CMAKE_CURRENT_BINARY_DIR}/halxboxnt5.def)
+ target_link_libraries(halxboxnt5 cportlib libcntpr setjmp fast486 ${PSEH_LIB})
+ add_importlibs(halxboxnt5 ntoskrnl)
+diff --git a/hal/halx86/xboxnt5/boundary.h b/hal/halx86/xboxnt5/boundary.h
+index 59303d69..0db26fab 100644
+--- a/hal/halx86/xboxnt5/boundary.h
++++ b/hal/halx86/xboxnt5/boundary.h
+@@ -10,3 +10,5 @@ VOID FASTCALL HalpNt5EnterInterruptTrap(PKTRAP_FRAME TrapFrame);
+ #define KiDispatchInterrupt HalpNt5DispatchInterrupt
+ #define KiEnterTrap HalpNt5EnterTrap
+ #define KiEnterInterruptTrap HalpNt5EnterInterruptTrap
++
++NTSTATUS NTAPI HalpNt5GetInterruptTranslator(INTERFACE_TYPE, ULONG, INTERFACE_TYPE, USHORT, USHORT, PTRANSLATOR_INTERFACE, PULONG);
+diff --git a/hal/halx86/xboxnt5/translate.c b/hal/halx86/xboxnt5/translate.c
+new file mode 100644
+index 00000000..426034fc
+--- /dev/null
++++ b/hal/halx86/xboxnt5/translate.c
+@@ -0,0 +1,171 @@
++/*
++ * PROJECT: Xbox NT5 HAL experiment
++ * LICENSE: GPL-2.0-or-later (see ReactOS COPYING)
++ * PURPOSE: Fixed PIC interrupt translation for NT5 PnP.
++ * Based on the public ReactOS translator contract (fstub/translate.c).
++ * PCI routes are the firmware-programmed InterruptLine values; this does not
++ * implement an ACPI/APIC router or change chipset routing registers.
++ */
++#include <hal.h>
++
++C_ASSERT(sizeof(TRANSLATOR_INTERFACE) == 24);
++#undef HalGetInterruptTranslator
++C_ASSERT(FIELD_OFFSET(HAL_DISPATCH, HalGetInterruptTranslator) == 0x40);
++
++static VOID NTAPI HalpNt5TranslatorReference(PVOID Context) { }
++
++static NTSTATUS
++HalpNt5PciLine(PDEVICE_OBJECT Pdo, PULONG Line)
++{
++    ULONG Bus, Address, Length;
++    PCI_SLOT_NUMBER Slot;
++    UCHAR Interrupt[2];
++    NTSTATUS Status;
++    if (!Pdo) return STATUS_INVALID_PARAMETER;
++    Status = IoGetDeviceProperty(Pdo, DevicePropertyBusNumber,
++                                sizeof(Bus), &Bus, &Length);
++    if (!NT_SUCCESS(Status)) return Status;
++    if (Length != sizeof(Bus) || Bus > 255) return STATUS_INVALID_PARAMETER;
++    Status = IoGetDeviceProperty(Pdo, DevicePropertyAddress,
++                                sizeof(Address), &Address, &Length);
++    if (!NT_SUCCESS(Status)) return Status;
++    if (Length != sizeof(Address) || (Address >> 16) > 31 ||
++        (Address & 0xffff) > 7) return STATUS_INVALID_PARAMETER;
++    Slot.u.AsULONG = 0;
++    Slot.u.bits.DeviceNumber = Address >> 16;
++    Slot.u.bits.FunctionNumber = Address & 0xffff;
++    if (HalGetBusDataByOffset(PCIConfiguration, Bus, Slot.u.AsULONG,
++                             Interrupt, 0x3c, sizeof(Interrupt)) != sizeof(Interrupt))
++        return STATUS_UNSUCCESSFUL;
++    if (!Interrupt[1] || Interrupt[1] > 4 || !Interrupt[0] || Interrupt[0] >= 16)
++        return STATUS_UNSUCCESSFUL;
++    *Line = Interrupt[0];
++    return STATUS_SUCCESS;
++}
++
++static ULONG
++HalpNt5TranslateLine(ULONG Line, PKIRQL Irql, PKAFFINITY Affinity)
++{
++    if (Line >= 16) return 0;
++    return HalGetInterruptVector(Isa, 0, Line, Line, Irql, Affinity);
++}
++
++NTSTATUS NTAPI
++HalpNt5TranslateResource(PVOID Context, PCM_PARTIAL_RESOURCE_DESCRIPTOR Source,
++                        RESOURCE_TRANSLATION_DIRECTION Direction,
++                        ULONG AlternativesCount, PIO_RESOURCE_DESCRIPTOR Alternatives,
++                        PDEVICE_OBJECT Pdo, PCM_PARTIAL_RESOURCE_DESCRIPTOR Target)
++{
++    ULONG Line, Vector, i, Minimum, Maximum;
++    KIRQL Irql;
++    KAFFINITY Affinity;
++    NTSTATUS Status;
++    if (!Source || !Target || Source->Type != CmResourceTypeInterrupt)
++        return STATUS_INVALID_PARAMETER;
++    if (Direction == TranslateChildToParent)
++    {
++        Vector = HalpNt5TranslateLine(Source->u.Interrupt.Vector, &Irql, &Affinity);
++        if (!Vector) return STATUS_UNSUCCESSFUL;
++        *Target = *Source;
++        Target->u.Interrupt.Vector = Vector;
++        Target->u.Interrupt.Level = Irql;
++        Target->u.Interrupt.Affinity = Affinity;
++        return STATUS_TRANSLATION_COMPLETE;
++    }
++    if (Direction != TranslateParentToChild) return STATUS_INVALID_PARAMETER;
++    if ((ULONG_PTR)Context == PCIBus)
++    {
++        Status = HalpNt5PciLine(Pdo, &Line);
++        if (!NT_SUCCESS(Status)) return Status;
++        Vector = HalpNt5TranslateLine(Line, &Irql, &Affinity);
++        if (!Vector || Vector != Source->u.Interrupt.Vector) return STATUS_UNSUCCESSFUL;
++    }
++    else
++    {
++        if (!Alternatives || !AlternativesCount) return STATUS_INVALID_PARAMETER;
++        for (i = 0; i < AlternativesCount; ++i)
++        {
++            if (Alternatives[i].Type != CmResourceTypeInterrupt) continue;
++            Minimum = Alternatives[i].u.Interrupt.MinimumVector;
++            Maximum = min(Alternatives[i].u.Interrupt.MaximumVector, 15);
++            for (Line = Minimum; Line <= Maximum; ++Line)
++            {
++                Vector = HalpNt5TranslateLine(Line, &Irql, &Affinity);
++                if (Vector && Vector == Source->u.Interrupt.Vector) goto Found;
++            }
++        }
++        return STATUS_UNSUCCESSFUL;
++    }
++Found:
++    *Target = *Source;
++    Target->u.Interrupt.Vector = Target->u.Interrupt.Level = Line;
++    Target->u.Interrupt.Affinity = (KAFFINITY)-1;
++    return STATUS_SUCCESS;
++}
++
++NTSTATUS NTAPI
++HalpNt5TranslateRequirements(PVOID Context, PIO_RESOURCE_DESCRIPTOR Source,
++                            PDEVICE_OBJECT Pdo, PULONG TargetCount,
++                            PIO_RESOURCE_DESCRIPTOR *Target)
++{
++    ULONG Minimum, Maximum, Line, Vector, Count = 0, Vectors[16];
++    KIRQL Irql;
++    KAFFINITY Affinity;
++    NTSTATUS Status;
++    PIO_RESOURCE_DESCRIPTOR Result;
++    if (!Target || !TargetCount) return STATUS_INVALID_PARAMETER;
++    *Target = NULL;
++    *TargetCount = 0;
++    if (!Source || Source->Type != CmResourceTypeInterrupt)
++        return STATUS_INVALID_PARAMETER;
++    if ((ULONG_PTR)Context == PCIBus)
++    {
++        Status = HalpNt5PciLine(Pdo, &Minimum);
++        if (!NT_SUCCESS(Status)) return Status;
++        Maximum = Minimum;
++    }
++    else
++    {
++        Minimum = Source->u.Interrupt.MinimumVector;
++        Maximum = min(Source->u.Interrupt.MaximumVector, 15);
++    }
++    for (Line = Minimum; Line <= Maximum; ++Line)
++    {
++        Vector = HalpNt5TranslateLine(Line, &Irql, &Affinity);
++        if (Vector) Vectors[Count++] = Vector;
++    }
++    if (!Count) return STATUS_UNSUCCESSFUL;
++    Result = ExAllocatePoolWithTag(PagedPool, Count * sizeof(*Result), TAG_HAL);
++    if (!Result) return STATUS_INSUFFICIENT_RESOURCES;
++    for (Line = 0; Line < Count; ++Line)
++    {
++        Result[Line] = *Source;
++        if (Line) Result[Line].Option |= IO_RESOURCE_ALTERNATIVE;
++        Result[Line].u.Interrupt.MinimumVector = Vectors[Line];
++        Result[Line].u.Interrupt.MaximumVector = Vectors[Line];
++    }
++    *Target = Result;
++    *TargetCount = Count;
++    return STATUS_TRANSLATION_COMPLETE;
++}
++
++NTSTATUS NTAPI
++HalpNt5GetInterruptTranslator(INTERFACE_TYPE Parent, ULONG ParentBus,
++                             INTERFACE_TYPE Bridge, USHORT Size, USHORT Version,
++                             PTRANSLATOR_INTERFACE Translator, PULONG BridgeBus)
++{
++    if (!Translator || Size < sizeof(*Translator) || Version != 0)
++        return STATUS_INVALID_PARAMETER;
++    if (Bridge != PCIBus && Bridge != Isa && Bridge != Eisa &&
++        Bridge != InterfaceTypeUndefined) return STATUS_NOT_IMPLEMENTED;
++    if (Parent != Internal && Parent != PCIBus && Parent != Isa && Parent != Eisa)
++        return STATUS_NOT_IMPLEMENTED;
++    Translator->Size = sizeof(*Translator);
++    Translator->Version = 0;
++    Translator->Context = UlongToPtr(Bridge == PCIBus ? PCIBus : Isa);
++    Translator->InterfaceReference = HalpNt5TranslatorReference;
++    Translator->InterfaceDereference = HalpNt5TranslatorReference;
++    Translator->TranslateResources = HalpNt5TranslateResource;
++    Translator->TranslateResourceRequirements = HalpNt5TranslateRequirements;
++    return STATUS_SUCCESS;
++}

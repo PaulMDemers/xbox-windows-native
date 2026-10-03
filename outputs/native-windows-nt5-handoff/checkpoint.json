@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-03",
+  "stage": "Full loader path completed; CPU halted before kernel call",
+  "windows_kernel_entered": false,
+  "physical_xbox_tested": false,
+  "ram_mib": 64,
+  "module_count": 21,
+  "boot_driver_count": 15,
+  "mapped_import_entries_verified": 1673,
+  "extension": {
+    "size": 40,
+    "version": [
+      5,
+      0
+    ],
+    "bytes": "2800000002000000000000000000000000000000050000000000000000e03b823f53000000000000"
+  },
+  "executable_code_verified": [
+    "ntoskrnl.exe",
+    "hal.dll",
+    "bootvid.dll"
+  ],
+  "base_disk_sha256_after_tests": "59d7e920b19f10a05ba3a914f05c90e43764f2a7506a8bb16e816b781c54785e",
+  "regression_build_passed": true,
+  "kernel_entry_enabled_in_saved_iso": false,
+  "runs": [
+    {
+      "id": "nt5-handoff-001",
+      "result": "Initial post-paging display diagnostic reset; superseded by traced reproduction."
+    },
+    {
+      "id": "nt5-handoff-002",
+      "result": "CPU trace confirmed framebuffer page fault followed by triple fault before kernel entry."
+    },
+    {
+      "id": "nt5-handoff-003",
+      "result": "Memory-report version reached pre-entry halt; initial list and layout inspection passed."
+    },
+    {
+      "id": "nt5-handoff-004",
+      "result": "Host import verifier misinterpreted converted lookup-table addresses; guest diagnostic had reached pre-entry halt."
+    },
+    {
+      "id": "nt5-handoff-005",
+      "result": "Host code verifier did not yet account for kernel import tables in executable section; guest diagnostic had reached pre-entry halt."
+    },
+    {
+      "id": "nt5-handoff-006",
+      "result": "Final full inspection passed at 15 and 30 seconds in the same cold run."
+    }
+  ],
+  "remaining": [
+    "Trace early kernel entry and HAL initialization, checking remaining software-interrupt and BIOS paths",
+    "Review remaining native ABI and OEM-font assumptions",
+    "Prepare a separate Xbox IDE boot-driver configuration and test its initialization; existing PC hive remains unchanged"
+  ]
+}

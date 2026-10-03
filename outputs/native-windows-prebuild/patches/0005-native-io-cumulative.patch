@@ -1,0 +1,212 @@
+diff --git a/boot/freeldr/freeldr/bootmgr.c b/boot/freeldr/freeldr/bootmgr.c
+index dbab13bd..5f5c0b8a 100644
+--- a/boot/freeldr/freeldr/bootmgr.c
++++ b/boot/freeldr/freeldr/bootmgr.c
+@@ -22,6 +22,9 @@
+ #include <freeldr.h>
+ 
+ #include <debug.h>
++#ifdef XBOX_NATIVE_IO_PREFLIGHT
++#include <xwnprobe.h>
++#endif
+ DBG_DEFAULT_CHANNEL(WARNING);
+ 
+ /* GLOBALS ********************************************************************/
+@@ -70,6 +73,7 @@ OSLoadingMethods[] =
+ #endif /* _M_IX86 || _M_AMD64 */
+ #ifdef _M_IX86
+     {"WindowsNT40" , EditCustomBootNTOS, NULL, LoadAndBootWindows},
++    {"Windows2000" , EditCustomBootNTOS, MenuNTOptions, LoadAndBootWindows},
+ #endif
+     {"Windows"     , EditCustomBootNTOS, MenuNTOptions, LoadAndBootWindows},
+     {"Windows2003" , EditCustomBootNTOS, MenuNTOptions, LoadAndBootWindows},
+@@ -390,6 +394,19 @@ MainBootMenuKeyPressFilter(
+ 
+ VOID RunLoader(VOID)
+ {
++#ifdef XBOX_NATIVE_IO_PREFLIGHT
++    ULONG_PTR ProbeSection;
++    CHAR Token[64];
++    printf("XWN60: rosload entry reached; imported services active\n");
++    if (!XwnVerifyFile()) XwnStop("XWNFAIL: second-stage file verification");
++    if (!IniFileInitialize() ||
++        !IniOpenSection("XwnProbe", &ProbeSection) ||
++        !IniReadSettingByName(ProbeSection, "Token", Token, sizeof(Token)) ||
++        strcmp(Token, "XWN-SECOND-STAGE-20261003") != 0)
++        XwnStop("XWNFAIL: second-stage configuration verification");
++    printf("XWN70: second-stage file and configuration verified\n");
++    XwnStop("XWN80: Handoff diagnostic complete. Windows NOT entered.");
++#endif
+     OperatingSystemItem* OperatingSystemList;
+     PCSTR* OperatingSystemDisplayNames;
+     ULONG OperatingSystemCount;
+diff --git a/boot/freeldr/freeldr/freeldr.c b/boot/freeldr/freeldr/freeldr.c
+index bf9254a5..820ec284 100644
+--- a/boot/freeldr/freeldr/freeldr.c
++++ b/boot/freeldr/freeldr/freeldr.c
+@@ -22,6 +22,9 @@
+ #include <freeldr.h>
+ 
+ #include <debug.h>
++#ifdef XBOX_NATIVE_IO_PREFLIGHT
++#include <xwnprobe.h>
++#endif
+ DBG_DEFAULT_CHANNEL(WARNING);
+ 
+ /* GLOBALS ********************************************************************/
+@@ -103,6 +106,10 @@ VOID __cdecl BootMain(IN PCCH CmdLine)
+     MachInit(CmdLine);
+ 
+     TRACE("BootMain() called.\n");
++#if defined(XBOX_NATIVE_PREFLIGHT) || defined(XBOX_NATIVE_IO_PREFLIGHT)
++    printf("XWN10: Xbox platform initialized\n");
++#endif
++
+ 
+ #ifndef UEFIBOOT
+     /* Check if the CPU is new enough */
+@@ -123,6 +130,10 @@ VOID __cdecl BootMain(IN PCCH CmdLine)
+         goto Quit;
+     }
+ 
++#if defined(XBOX_NATIVE_PREFLIGHT) || defined(XBOX_NATIVE_IO_PREFLIGHT)
++    printf("XWN20: Memory manager initialized\n");
++#endif
++
+     /* Initialize I/O subsystem */
+     FsInit();
+ 
+@@ -140,6 +151,30 @@ VOID __cdecl BootMain(IN PCCH CmdLine)
+     }
+     
+ #ifndef SARCH_APPLETV
++#ifdef XBOX_NATIVE_PREFLIGHT
++    {
++        PFREELDR_MEMORY_DESCRIPTOR Map;
++        ULONG Count = MmGetBiosMemoryMap(&Map);
++        ULONG Index;
++        printf("XWN30: Boot devices initialized; path=%s\n", FrLdrBootPath);
++        printf("Firmware descriptors (page units): %lu\n", Count);
++        for (Index = 0; Index < Count; ++Index)
++        {
++            printf("%02lu base=%08lx pages=%08lx type=%lu\n",
++                   Index, (ULONG)Map[Index].BasePage,
++                   (ULONG)Map[Index].PageCount, (ULONG)Map[Index].MemoryType);
++        }
++        printf("XWN40: Diagnostic complete. Windows NOT entered.\n");
++        _disable();
++        for (;;) __halt();
++    }
++#endif
++
++#ifdef XBOX_NATIVE_IO_PREFLIGHT
++    printf("XWN30: Boot path=%s\n", FrLdrBootPath);
++    if (!XwnVerifyFile()) XwnStop("XWNFAIL: first-stage file verification");
++    printf("XWN50: 131075 bytes, EOF and cross-sector seek verified\n");
++#endif
+     /* Launch second stage loader */
+     if (LaunchSecondStageLoader() != ESUCCESS)
+     {
+diff --git a/boot/freeldr/freeldr/include/xwnprobe.h b/boot/freeldr/freeldr/include/xwnprobe.h
+new file mode 100644
+index 00000000..b8768516
+--- /dev/null
++++ b/boot/freeldr/freeldr/include/xwnprobe.h
+@@ -0,0 +1,55 @@
++/* Task-local Xbox CD/second-stage diagnostic. GPL-2.0-or-later. */
++#pragma once
++
++static VOID XwnStop(PCSTR Message)
++{
++    printf("%s\n", Message);
++    _disable();
++    for (;;) __halt();
++}
++
++static BOOLEAN XwnVerifyFile(VOID)
++{
++    CHAR Path[MAX_PATH];
++    UCHAR Buffer[1024];
++    ULONG FileId, Read, Offset = 0, Index, Wanted;
++    FILEINFORMATION Info;
++    LARGE_INTEGER Seek;
++    ARC_STATUS Status;
++    BOOLEAN Good = FALSE;
++    RtlStringCbPrintfA(Path, sizeof(Path), "%s\\probe.bin", FrLdrGetBootPath());
++    Status = ArcOpen(Path, OpenReadOnly, &FileId);
++    if (Status != ESUCCESS)
++    {
++        printf("XWNFAIL: probe open status=%lu\n", Status);
++        return FALSE;
++    }
++    Status = ArcGetFileInformation(FileId, &Info);
++    if (Status != ESUCCESS || Info.EndingAddress.QuadPart != 131075)
++        goto Done;
++    while (Offset < 131075)
++    {
++        Wanted = min(sizeof(Buffer), 131075 - Offset);
++        Status = ArcRead(FileId, Buffer, Wanted, &Read);
++        if (Status != ESUCCESS || Read != Wanted) goto Done;
++        for (Index = 0; Index < Read; ++Index)
++            if (Buffer[Index] != (UCHAR)((Offset + Index) * 37 + ((Offset + Index) >> 8) + 0x5a))
++                goto Done;
++        Offset += Read;
++    }
++    Status = ArcRead(FileId, Buffer, 1, &Read);
++    if (Status != ESUCCESS || Read != 0) goto Done;
++    Seek.QuadPart = 2041;
++    Status = ArcSeek(FileId, &Seek, SeekAbsolute);
++    if (Status != ESUCCESS) goto Done;
++    Status = ArcRead(FileId, Buffer, 31, &Read);
++    if (Status != ESUCCESS || Read != 31) goto Done;
++    for (Index = 0; Index < Read; ++Index)
++        if (Buffer[Index] != (UCHAR)((2041 + Index) * 37 + ((2041 + Index) >> 8) + 0x5a))
++            goto Done;
++    Good = TRUE;
++Done:
++    ArcClose(FileId);
++    if (!Good) printf("XWNFAIL: file data/size/seek/EOF offset=%lu status=%lu\n", Offset, Status);
++    return Good;
++}
+diff --git a/boot/freeldr/freeldr/pcat.cmake b/boot/freeldr/freeldr/pcat.cmake
+index 0ac637f0..ba41c601 100644
+--- a/boot/freeldr/freeldr/pcat.cmake
++++ b/boot/freeldr/freeldr/pcat.cmake
+@@ -216,6 +216,22 @@ else()
+                     COMMAND ${CMAKE_STRIP} --strip-all $<TARGET_FILE:freeldr_pe>)
+ endif()
+ 
++option(XBOX_NATIVE_PREFLIGHT "Stop Xbox loader after platform and disk diagnostics" OFF)
++if(XBOX_NATIVE_PREFLIGHT)
++    if(NOT ARCH STREQUAL "i386" OR NOT SARCH STREQUAL "xbox")
++        message(FATAL_ERROR "XBOX_NATIVE_PREFLIGHT requires ARCH=i386 and SARCH=xbox")
++    endif()
++    target_compile_definitions(freeldr_pe PRIVATE XBOX_NATIVE_PREFLIGHT=1)
++endif()
++
++option(XBOX_NATIVE_IO_PREFLIGHT "Verify Xbox CD reads and rosload handoff, then halt" OFF)
++if(XBOX_NATIVE_IO_PREFLIGHT)
++    if(NOT ARCH STREQUAL "i386" OR NOT SARCH STREQUAL "xbox" OR XBOX_NATIVE_PREFLIGHT)
++        message(FATAL_ERROR "IO preflight requires i386/xbox and the first preflight OFF")
++    endif()
++    target_compile_definitions(freeldr_pe PRIVATE XBOX_NATIVE_IO_PREFLIGHT=1)
++endif()
++
+ set_image_base(freeldr_pe 0x10000)
+ set_subsystem(freeldr_pe native)
+ set_entrypoint(freeldr_pe RealEntryPoint)
+diff --git a/boot/freeldr/freeldr/rosload.cmake b/boot/freeldr/freeldr/rosload.cmake
+index 240b2700..e3b968bf 100644
+--- a/boot/freeldr/freeldr/rosload.cmake
++++ b/boot/freeldr/freeldr/rosload.cmake
+@@ -75,6 +75,10 @@ set_target_properties(rosload
+     ENABLE_EXPORTS TRUE
+     DEFINE_SYMBOL "")
+ 
++if(XBOX_NATIVE_IO_PREFLIGHT)
++    target_compile_definitions(rosload PRIVATE XBOX_NATIVE_IO_PREFLIGHT=1)
++endif()
++
+ set_image_base(rosload 0x10000) # 0x200000
+ set_subsystem(rosload native)
+ set_entrypoint(rosload RunLoader)

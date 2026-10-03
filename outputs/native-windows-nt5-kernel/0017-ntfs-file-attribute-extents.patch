@@ -1,0 +1,223 @@
+diff --git a/boot/freeldr/freeldr/include/fs/ntfs.h b/boot/freeldr/freeldr/include/fs/ntfs.h
+index fe57e6a7..fe6567f3 100644
+--- a/boot/freeldr/freeldr/include/fs/ntfs.h
++++ b/boot/freeldr/freeldr/include/fs/ntfs.h
+@@ -252,6 +252,7 @@ typedef struct _NTFS_FILE_HANDLE
+ {
+     PNTFS_VOLUME_INFO Volume;
+     PNTFS_ATTR_CONTEXT DataContext;
++    ULONGLONG MftIndex;
+     ULONGLONG Offset;
+     ULONG FileNameLength;
+     UCHAR Attributes;
+diff --git a/boot/freeldr/freeldr/lib/fs/ntfs.c b/boot/freeldr/freeldr/lib/fs/ntfs.c
+index 67c9e26f..5f5ad568 100644
+--- a/boot/freeldr/freeldr/lib/fs/ntfs.c
++++ b/boot/freeldr/freeldr/lib/fs/ntfs.c
+@@ -266,10 +266,11 @@ static ULONG NtfsReadAttribute(PNTFS_VOLUME_INFO Volume, PNTFS_ATTR_CONTEXT Cont
+     {
+         LastLCN = 0;
+         DataRun = (PUCHAR)&Context->Record + Context->Record.NonResident.MappingPairsOffset;
+-        CurrentOffset = 0;
++        CurrentOffset = Context->Record.NonResident.LowestVCN * Volume->ClusterSize;
+ 
+         while (1)
+         {
++            if (*DataRun == 0) return AlreadyRead;
+             DataRun = NtfsDecodeRun(DataRun, &DataRunOffset, &DataRunLength);
+             if (DataRunOffset != -1)
+             {
+@@ -311,6 +312,9 @@ static ULONG NtfsReadAttribute(PNTFS_VOLUME_INFO Volume, PNTFS_ATTR_CONTEXT Cont
+         Buffer += ReadLength;
+         AlreadyRead += ReadLength;
+ 
++        if (Length == 0 || *DataRun == 0)
++            return AlreadyRead;
++
+         if (ReadLength == DataRunLength * Volume->ClusterSize - (Offset - CurrentOffset))
+         {
+             CurrentOffset += DataRunLength * Volume->ClusterSize;
+@@ -382,7 +386,8 @@ static PNTFS_ATTR_CONTEXT NtfsFindAttributeHelper(
+     const WCHAR *Name,
+     ULONG NameLength,
+     ULONG RecursionLimit,
+-    ULONG Instance);
++    ULONG Instance,
++    ULONGLONG TargetVCN);
+ static BOOLEAN NtfsReadMftRecord(PNTFS_VOLUME_INFO Volume, ULONGLONG MFTIndex, PNTFS_MFT_RECORD Buffer);
+ 
+ static PNTFS_ATTR_CONTEXT NtfsFindAttributeHelperList(
+@@ -393,7 +398,8 @@ static PNTFS_ATTR_CONTEXT NtfsFindAttributeHelperList(
+     ULONG Type,
+     const WCHAR *Name,
+     ULONG NameLength,
+-    ULONG RecursionLimit)
++    ULONG RecursionLimit,
++    ULONGLONG TargetVCN)
+ {
+     ULONGLONG PrevMftIndex = -1;
+     PNTFS_ATTR_CONTEXT Context = NULL;
+@@ -446,7 +452,7 @@ static PNTFS_ATTR_CONTEXT NtfsFindAttributeHelperList(
+                 Context = NtfsFindAttributeHelper(Volume, MftIndex,
+                                                   AttrRecord, AttrRecordEnd,
+                                                   Type, Name, NameLength,
+-                                                  RecursionLimit - 1, AttrId);
++                                                  RecursionLimit - 1, AttrId, TargetVCN);
+                 if (Context)
+                     break;
+             }
+@@ -473,7 +479,8 @@ static PNTFS_ATTR_CONTEXT NtfsFindAttributeHelper(
+     const WCHAR *Name,
+     ULONG NameLength,
+     ULONG RecursionLimit,
+-    ULONG Instance)
++    ULONG Instance,
++    ULONGLONG TargetVCN)
+ {
+     PNTFS_ATTR_CONTEXT Context = NULL;
+     PNTFS_ATTR_CONTEXT ListContext = NULL;
+@@ -527,7 +534,7 @@ static PNTFS_ATTR_CONTEXT NtfsFindAttributeHelper(
+                 Context = NtfsFindAttributeHelperList(Volume, CurrentMftIndex,
+                                                       ListAttrRecord, ListAttrRecordEnd,
+                                                       Type, Name, NameLength,
+-                                                      RecursionLimit - 1);
++                                                      RecursionLimit - 1, TargetVCN);
+ 
+                 if (Context != NULL)
+                     break;
+@@ -538,7 +545,11 @@ static PNTFS_ATTR_CONTEXT NtfsFindAttributeHelper(
+             AttrRecord->NameLength == NameLength &&
+             /* HACK for ntfs3 driver on linux! Because the ntfs3 likes to generate invalid
+              * attribute size when mft record increases and I don't know how I will handle this */
+-            NtfsGetAttributeSize(AttrRecord) != 0 &&
++            (NtfsGetAttributeSize(AttrRecord) != 0 ||
++             (AttrRecord->IsNonResident && TargetVCN != 0)) &&
++            (!AttrRecord->IsNonResident ||
++             (TargetVCN >= AttrRecord->NonResident.LowestVCN &&
++              TargetVCN <= AttrRecord->NonResident.HighestVCN)) &&
+             (Instance == (ULONG)-1 || AttrInstance == Instance))
+         {
+             PWCHAR AttrName;
+@@ -566,7 +577,7 @@ skip:
+     return Context;
+ }
+ 
+-static PNTFS_ATTR_CONTEXT NtfsFindAttribute(PNTFS_VOLUME_INFO Volume, PNTFS_MFT_RECORD MftRecord, ULONGLONG MftIndex, ULONG Type, const WCHAR *Name)
++static PNTFS_ATTR_CONTEXT NtfsFindAttributeAtVCN(PNTFS_VOLUME_INFO Volume, PNTFS_MFT_RECORD MftRecord, ULONGLONG MftIndex, ULONG Type, const WCHAR *Name, ULONGLONG TargetVCN)
+ {
+     PNTFS_ATTR_RECORD AttrRecord;
+     PNTFS_ATTR_RECORD AttrRecordEnd;
+@@ -577,7 +588,12 @@ static PNTFS_ATTR_CONTEXT NtfsFindAttribute(PNTFS_VOLUME_INFO Volume, PNTFS_MFT_
+     for (NameLength = 0; Name[NameLength] != 0; NameLength++)
+         ;
+ 
+-    return NtfsFindAttributeHelper(Volume, MftIndex, AttrRecord, AttrRecordEnd, Type, Name, NameLength, NTFS_MAX_ATTRIBUTE_LIST_RECURSION, -1);
++    return NtfsFindAttributeHelper(Volume, MftIndex, AttrRecord, AttrRecordEnd, Type, Name, NameLength, NTFS_MAX_ATTRIBUTE_LIST_RECURSION, -1, TargetVCN);
++}
++
++static PNTFS_ATTR_CONTEXT NtfsFindAttribute(PNTFS_VOLUME_INFO Volume, PNTFS_MFT_RECORD MftRecord, ULONGLONG MftIndex, ULONG Type, const WCHAR *Name)
++{
++    return NtfsFindAttributeAtVCN(Volume, MftRecord, MftIndex, Type, Name, 0);
+ }
+ 
+ static BOOLEAN NtfsFixupRecord(PNTFS_VOLUME_INFO Volume, PNTFS_RECORD Record)
+@@ -890,6 +906,7 @@ static BOOLEAN NtfsLookupFile(PNTFS_VOLUME_INFO Volume, PCSTR FileName, PNTFS_MF
+         return FALSE;
+     }
+ 
++    FileHandle->MftIndex = CurrentMFTIndex;
+     FileHandle->DataContext = NtfsFindAttribute(Volume, MftRecord, CurrentMFTIndex, NTFS_ATTR_TYPE_DATA, L"");
+     if (FileHandle->DataContext == NULL)
+     {
+@@ -1012,14 +1029,46 @@ ARC_STATUS NtfsRead(ULONG FileId, VOID* Buffer, ULONG N, ULONG* Count)
+     if (FileSize - FileHandle->Offset < N)
+         N = (ULONG)(FileSize - FileHandle->Offset);
+ 
+-    /* Read data */
+-    BytesRead64 = NtfsReadAttribute(FileHandle->Volume, FileHandle->DataContext, FileHandle->Offset, Buffer, N);
+-    FileHandle->Offset += BytesRead64;
+-    *Count = (ULONG)BytesRead64;
+-    if (BytesRead64 > 0)
+-        return ESUCCESS;
+-    else
+-        return EIO;
++    /* A growing file may place later $DATA extents in other MFT records.
++     * Resolve the extent covering each requested VCN and never treat a short
++     * extent read as completion of the caller's entire file request. */
++    while (*Count < N)
++    {
++        PNTFS_ATTR_CONTEXT Context = FileHandle->DataContext;
++        ULONGLONG Vcn = FileHandle->Offset / FileHandle->Volume->ClusterSize;
++        ULONG ReadLength = N - *Count;
++        BOOLEAN Temporary = FALSE;
++
++        if (Context->Record.IsNonResident &&
++            (Vcn < Context->Record.NonResident.LowestVCN ||
++             Vcn > Context->Record.NonResident.HighestVCN))
++        {
++            Context = NtfsFindAttributeAtVCN(FileHandle->Volume,
++                        (PNTFS_MFT_RECORD)(FileHandle + 1), FileHandle->MftIndex,
++                        NTFS_ATTR_TYPE_DATA, L"", Vcn);
++            if (!Context) return EIO;
++            Temporary = TRUE;
++        }
++        if (Context->Record.IsNonResident)
++        {
++            ULONGLONG End = (Context->Record.NonResident.HighestVCN + 1) *
++                            FileHandle->Volume->ClusterSize;
++            if (End <= FileHandle->Offset)
++            {
++                if (Temporary) NtfsReleaseAttributeContext(Context);
++                return EIO;
++            }
++            if (End - FileHandle->Offset < ReadLength)
++                ReadLength = (ULONG)(End - FileHandle->Offset);
++        }
++        BytesRead64 = NtfsReadAttribute(FileHandle->Volume, Context,
++                            FileHandle->Offset, (PCHAR)Buffer + *Count, ReadLength);
++        if (Temporary) NtfsReleaseAttributeContext(Context);
++        FileHandle->Offset += BytesRead64;
++        *Count += (ULONG)BytesRead64;
++        if (BytesRead64 != ReadLength) return EIO;
++    }
++    return ESUCCESS;
+ }
+ 
+ ARC_STATUS NtfsSeek(ULONG FileId, LARGE_INTEGER* Position, SEEKMODE SeekMode)
+diff --git a/boot/freeldr/freeldr/ntldr/registry.c b/boot/freeldr/freeldr/ntldr/registry.c
+index 0b81b71c..29dfa95d 100644
+--- a/boot/freeldr/freeldr/ntldr/registry.c
++++ b/boot/freeldr/freeldr/ntldr/registry.c
+@@ -118,6 +118,9 @@ RegInitializeHive(
+     if (!NT_SUCCESS(Status))
+     {
+         ERR("Failed to initialize the flat hive (Status 0x%lx)\n", Status);
++#ifdef XBOX_NATIVE_NT5_HANDOFF
++        UiMessageBox("NT5 hive initialize status %lx", Status);
++#endif
+         return FALSE;
+     }
+ 
+@@ -126,6 +129,9 @@ RegInitializeHive(
+     if (!CM_CHECK_REGISTRY_SUCCESS(CmStatusCode))
+     {
+         ERR("CmCheckRegistry detected problems with the loaded flat hive (check code %lu)\n", CmStatusCode);
++#ifdef XBOX_NATIVE_NT5_HANDOFF
++        UiMessageBox("NT5 hive check code %lu", CmStatusCode);
++#endif
+         return FALSE;
+     }
+ 
+diff --git a/boot/freeldr/freeldr/ntldr/wlregistry.c b/boot/freeldr/freeldr/ntldr/wlregistry.c
+index 124dc5fc..898bcbf8 100644
+--- a/boot/freeldr/freeldr/ntldr/wlregistry.c
++++ b/boot/freeldr/freeldr/ntldr/wlregistry.c
+@@ -106,7 +106,7 @@ WinLdrLoadSystemHive(
+ 
+     /* Finally read from file to the memory */
+     Status = ArcRead(FileId, HiveDataPhysical, HiveFileSize, &BytesRead);
+-    if (Status != ESUCCESS)
++    if (Status != ESUCCESS || BytesRead != HiveFileSize)
+     {
+         WARN("Error while reading '%s', Status: %u\n", FullHiveName, Status);
+         *Reason = CorruptHive;

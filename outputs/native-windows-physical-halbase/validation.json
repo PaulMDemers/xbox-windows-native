@@ -1,0 +1,111 @@
+{
+  "validated_utc": "2026-10-03T21:03:35.537580+00:00",
+  "ready_for_physical_upload": true,
+  "physical_tested": true,
+  "installed_on_physical_console": true,
+  "source_tree": "60d4474d5a720c1297ce7265f1d4923debe9ed40",
+  "scope": "HAL compatibility checks, PIC and CMOS initialization, and dispatch setup complete; stop before timer calibration, clock setup, storage and drivers.",
+  "normal_loader_build_passed": true,
+  "normal_hal_build_passed": true,
+  "missing_phase0_parent_rejected": true,
+  "pre_timer_halt_statically_verified": true,
+  "kernel_file_unchanged": true,
+  "changed_files": [
+    "loader/halxboxnt5.dll",
+    "README.txt",
+    "rosload.exe"
+  ],
+  "package_files_verified": 33,
+  "emulator_tests": [
+    {
+      "run": "physical-halbase-wide-001",
+      "status": "hal_base_boundary_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "identity_pages_verified": 576,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-halbase-normal-001",
+      "status": "hal_base_boundary_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 640,
+        "height": 480,
+        "pitch": 2560,
+        "pa": "0x3c00000",
+        "bytes": 1228800,
+        "identity_pages_verified": 300,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-halbase-bad-hal-001",
+      "status": "unarmed_hal_rejected_before_kernel",
+      "kernel_entered": false,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "identity_pages_verified": 576,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-halbase-trace-001",
+      "status": "hal_base_boundary_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "identity_pages_verified": 576,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    }
+  ],
+  "native_trace_passed": true,
+  "development_findings": [],
+  "expected_physical_success": "XWNB90: Base HAL checks and PIC setup completed.",
+  "fixture_package_includes_final_readme": true,
+  "uploaded_utc": "2026-10-03T21:04:22.532696+00:00",
+  "physical_result": {
+    "recorded_utc": "2026-10-03T21:09:37.020320+00:00",
+    "status": "physical_hal_base_initialization_passed",
+    "checkpoint": "XWNB90: Base HAL checks and PIC setup completed.",
+    "prcb_major": 1,
+    "build_types": [
+      2,
+      2
+    ],
+    "elcr": "0x1800",
+    "pic_mask": "0xffff",
+    "cmos_century_offset": 50,
+    "dispatch_mask": "0x7f",
+    "timer_calibration_reached": false,
+    "storage_initialization_reached": false,
+    "boot_driver_entry_reached": false,
+    "windows_desktop_reached": false,
+    "user_reports_rebooted": true,
+    "photo_sha256": "519edd7c27ec3fd9d63a989e24ebb955988a153ae4c48a6728bf5ccf8b560b8a",
+    "evidence_scope": "Photo confirms checkpoint and reported fields. Full code/import and debugger audits remain emulator evidence."
+  }
+}

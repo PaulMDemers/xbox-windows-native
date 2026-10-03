@@ -1,0 +1,198 @@
+diff --git a/boot/freeldr/freeldr/bootmgr.c b/boot/freeldr/freeldr/bootmgr.c
+index 818ab9e3..2699c02a 100644
+--- a/boot/freeldr/freeldr/bootmgr.c
++++ b/boot/freeldr/freeldr/bootmgr.c
+@@ -411,7 +411,21 @@ VOID RunLoader(VOID)
+ #ifdef XBOX_NATIVE_VOLUME_PREFLIGHT
+     XwnVerifyInstalledVolume();
+ #endif
++#ifdef XBOX_NATIVE_NT5_HANDOFF
++    {
++        PCHAR Args[] = {"rosload", "BootType=Windows2000",
++                       "SystemPartition=multi(0)disk(0)rdisk(0)partition(1)",
++                       "SystemPath=\\WINNT", "Options=/NODEBUG /SOS"};
++        ARC_STATUS Status;
++        LoadSettings(NULL);
++        if (!UiInitialize(TRUE)) XwnStop("XWNHFAIL: UI initialization");
++        Status = LoadAndBootWindows(RTL_NUMBER_OF(Args), Args, NULL);
++        printf("XWNHFAIL: NT5 loader returned status=%lu\n", Status);
++        XwnStop("XWNHFAIL: Kernel NOT entered");
++    }
++#else
+     XwnStop("XWN80: Handoff diagnostic complete. Windows NOT entered.");
++#endif
+ #endif
+     OperatingSystemItem* OperatingSystemList;
+     PCSTR* OperatingSystemDisplayNames;
+diff --git a/boot/freeldr/freeldr/ntldr/winldr.c b/boot/freeldr/freeldr/ntldr/winldr.c
+index 7348f564..2b950782 100644
+--- a/boot/freeldr/freeldr/ntldr/winldr.c
++++ b/boot/freeldr/freeldr/ntldr/winldr.c
+@@ -75,6 +75,15 @@ NtLdrOutputLoadMsg(
+     }
+ }
+ 
++#ifdef XBOX_NATIVE_NT5_HANDOFF
++/* Monitor-readable record: no framebuffer access after switching page tables.
++ * Words 0..3: magic, magic, format, completion (99 success, 40 failure).
++ * Words 4..: LPB PA, LPB VA, kernel entry, CR0, CR3, extension size,
++ * major, minor, hive size, module count, boot-driver count, descriptor count.
++ */
++static volatile ULONG XwnHandoffRecord[16] = {0x484e5758, 0x35544e50, 1, 0};
++#endif
++
+ // Init "phase 0"
+ VOID
+ AllocateAndInitLPB(
+@@ -102,6 +111,14 @@ AllocateAndInitLPB(
+     Extension = &WinLdrSystemBlock->Extension;
+     LoaderBlock->Extension = Extension;
+     Extension->Size = sizeof(LOADER_PARAMETER_EXTENSION);
++#if defined(_M_IX86)
++    /* The supplied Windows 2000 x86 PDB defines precisely this prefix.
++     * Keep the larger allocation for loader-private fields, but advertise
++     * only the native structure through TriageDumpBlock (40 bytes). */
++    C_ASSERT(FIELD_OFFSET(LOADER_PARAMETER_EXTENSION, TriageDumpBlock) == 36);
++    if (VersionToBoot == _WIN32_WINNT_WIN2K)
++        Extension->Size = FIELD_OFFSET(LOADER_PARAMETER_EXTENSION, TriageDumpBlock) + sizeof(PVOID);
++#endif
+     Extension->MajorVersion = (VersionToBoot & 0xFF00) >> 8;
+     Extension->MinorVersion = (VersionToBoot & 0xFF);
+ 
+@@ -752,6 +769,10 @@ LoadWindowsCore(IN USHORT OperatingSystemVersion,
+     CHAR KernelFileName[MAX_PATH];
+     CHAR KdDllName[MAX_PATH];
+     CHAR BootVidName[MAX_PATH];
++#ifdef XBOX_NATIVE_NT5_HANDOFF
++    CHAR ProbeDir[MAX_PATH];
++    RtlStringCbPrintfA(ProbeDir, sizeof(ProbeDir), "%s\\loader\\", FrLdrGetBootPath());
++#endif
+ 
+     /* Initialize SystemRoot\System32 path */
+     RtlStringCbCopyA(DirPath, sizeof(DirPath), BootPath);
+@@ -891,7 +912,11 @@ LoadWindowsCore(IN USHORT OperatingSystemVersion,
+ 
+     /* Load the HAL */
+     HalBase = LoadModule(&LoaderBlock->LoadOrderListHead,
++#ifdef XBOX_NATIVE_NT5_HANDOFF
++                         ProbeDir, "halxboxnt5.dll",
++#else
+                          DirPath, HalFileName,
++#endif
+                          "hal.dll", LoaderHalCode,
+                          &HalDTE, 35);
+     if (!HalBase)
+@@ -1020,7 +1045,11 @@ LoadWindowsCore(IN USHORT OperatingSystemVersion,
+ 
+         /* Load the BootVid */
+         BootVidBase = LoadModule(&LoaderBlock->LoadOrderListHead,
++#ifdef XBOX_NATIVE_NT5_HANDOFF
++                                 ProbeDir, "xboxbvid.dll",
++#else
+                                  DirPath, BootVidName,
++#endif
+                                  "bootvid.dll", LoaderSystemCode,
+                                  &BootVidDTE, 45);
+         if (!BootVidBase)
+@@ -1420,6 +1449,9 @@ LoadAndBootWindowsCommon(
+         return ENOEXEC;
+     }
+ 
++#ifdef XBOX_NATIVE_NT5_HANDOFF
++    printf("XWNH10: NT5 kernel/HAL/bootvid loaded and imports bound\n");
++#endif
+     /* Cleanup INI file */
+     IniCleanup();
+ 
+@@ -1433,6 +1465,14 @@ LoadAndBootWindowsCommon(
+     UiSetProgressBarText("Loading boot drivers...");
+     Success = WinLdrLoadBootDrivers(LoaderBlock, BootPath);
+     TRACE("Boot drivers loading %s\n", Success ? "successful" : "failed");
++#ifdef XBOX_NATIVE_NT5_HANDOFF
++    if (!Success)
++    {
++        printf("XWNHFAIL: Boot driver loading failed; kernel NOT entered\n");
++        _disable(); for (;;) __halt();
++    }
++    printf("XWNH20: All selected boot drivers loaded\n");
++#endif
+ 
+     UiSetProgressBarSubset(0, 100);
+ 
+@@ -1491,6 +1531,13 @@ LoadAndBootWindowsCommon(
+     /* Map pages and create memory descriptors */
+     WinLdrSetupMemoryLayout(LoaderBlock);
+ 
++#ifdef XBOX_NATIVE_NT5_HANDOFF
++    XwnHandoffRecord[3] = 30;
++    XwnHandoffRecord[4] = (ULONG_PTR)LoaderBlock;
++    XwnHandoffRecord[5] = (ULONG_PTR)LoaderBlockVA;
++    XwnHandoffRecord[6] = (ULONG_PTR)KiSystemStartup;
++    printf("XWNH30: Layout prepared. Record PA=%p; paging next\n", XwnHandoffRecord);
++#endif
+     /* Set processor context */
+     WinLdrSetProcessorContext(OperatingSystemVersion);
+ 
+@@ -1509,6 +1556,34 @@ LoadAndBootWindowsCommon(
+     WinLdrpDumpArcDisks(LoaderBlockVA);
+ #endif
+ 
++#ifdef XBOX_NATIVE_NT5_HANDOFF
++    {
++        PLIST_ENTRY Link;
++        ULONG Modules = 0, Drivers = 0, Descriptors = 0;
++        PLOADER_PARAMETER_EXTENSION Ext = LoaderBlockVA->Extension;
++        for (Link = LoaderBlockVA->LoadOrderListHead.Flink;
++             Link != &LoaderBlockVA->LoadOrderListHead && Modules < 256; Link = Link->Flink) ++Modules;
++        for (Link = LoaderBlockVA->BootDriverListHead.Flink;
++             Link != &LoaderBlockVA->BootDriverListHead && Drivers < 256; Link = Link->Flink) ++Drivers;
++        for (Link = LoaderBlockVA->MemoryDescriptorListHead.Flink;
++             Link != &LoaderBlockVA->MemoryDescriptorListHead && Descriptors < 256; Link = Link->Flink) ++Descriptors;
++        XwnHandoffRecord[7] = __readcr0();
++        XwnHandoffRecord[8] = __readcr3();
++        XwnHandoffRecord[9] = Ext->Size;
++        XwnHandoffRecord[10] = Ext->MajorVersion;
++        XwnHandoffRecord[11] = Ext->MinorVersion;
++        XwnHandoffRecord[12] = LoaderBlockVA->RegistryLength;
++        XwnHandoffRecord[13] = Modules;
++        XwnHandoffRecord[14] = Drivers;
++        XwnHandoffRecord[15] = Descriptors;
++        XwnHandoffRecord[3] = 40;
++        if (Ext->Size == 40 && Ext->MajorVersion == 5 && Ext->MinorVersion == 0 &&
++            Modules && Modules < 256 && Drivers && Drivers < 256 && Descriptors && Descriptors < 256 &&
++            LoaderBlockVA->RegistryBase && LoaderBlockVA->NlsData)
++            XwnHandoffRecord[3] = 99;
++        _disable(); for (;;) __halt();
++    }
++#endif
+     /* Pass control */
+     (*KiSystemStartup)(LoaderBlockVA);
+ 
+diff --git a/boot/freeldr/freeldr/pcat.cmake b/boot/freeldr/freeldr/pcat.cmake
+index 78bce0ff..0690747d 100644
+--- a/boot/freeldr/freeldr/pcat.cmake
++++ b/boot/freeldr/freeldr/pcat.cmake
+@@ -273,6 +273,11 @@ endif()
+ 
+ add_cd_file(TARGET freeldr FILE ${CMAKE_CURRENT_BINARY_DIR}/freeldr.sys DESTINATION loader NO_CAB FOR bootcd regtest)
+ 
++option(XBOX_NATIVE_NT5_HANDOFF "Load installed NT5 files and halt before kernel entry" OFF)
++if(XBOX_NATIVE_NT5_HANDOFF AND (NOT XBOX_NATIVE_IO_PREFLIGHT OR XBOX_NATIVE_VOLUME_PREFLIGHT))
++    message(FATAL_ERROR "NT5 handoff requires I/O preflight, excludes volume-only preflight")
++endif()
++
+ option(XBOX_NATIVE_VOLUME_PREFLIGHT "Read and verify the private installed Windows NTFS fixture, then halt" OFF)
+ if(XBOX_NATIVE_VOLUME_PREFLIGHT AND NOT XBOX_NATIVE_IO_PREFLIGHT)
+     message(FATAL_ERROR "Volume preflight requires the IO preflight")
+diff --git a/boot/freeldr/freeldr/rosload.cmake b/boot/freeldr/freeldr/rosload.cmake
+index d76bb748..63828933 100644
+--- a/boot/freeldr/freeldr/rosload.cmake
++++ b/boot/freeldr/freeldr/rosload.cmake
+@@ -106,3 +106,7 @@ add_cd_file(TARGET rosload DESTINATION loader NO_CAB FOR bootcd regtest)
+ if(XBOX_NATIVE_VOLUME_PREFLIGHT)
+     target_compile_definitions(rosload PRIVATE XBOX_NATIVE_VOLUME_PREFLIGHT=1)
+ endif()
++
++if(XBOX_NATIVE_NT5_HANDOFF)
++    target_compile_definitions(rosload PRIVATE XBOX_NATIVE_NT5_HANDOFF=1)
++endif()

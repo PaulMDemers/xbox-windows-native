@@ -1,0 +1,18 @@
+After physical XWNC90 success, preserve this package as the control.
+
+Source inspection of xbox/part_xbox.c: HalpXboxInitPartIo itself only saves
+and replaces four HAL partition-dispatch pointers. It does not read/write
+the disk at registration time. A further bounded HAL phase-0 completion
+probe may therefore be prepared independently of a disk-layout decision,
+provided no registered partition routine or boot driver is entered. Audit
+HalInitializeBios before choosing that next boundary.
+
+Before letting Windows storage drivers enumerate or mount a real volume,
+resolve the test disk/volume and recovery plan. Review all Xbox partition
+hooks against the actual disk layout; do not present the current FATX app
+folder or PC hive as a bootable native Windows volume. The user has been
+asked whether to plan for a spare drive or a test area on the current one;
+no answer or destructive storage authorization is implied.
+
+Clock setup success does not establish kernel timer delivery, scheduler
+progress, storage access, boot-driver startup or a Windows desktop.

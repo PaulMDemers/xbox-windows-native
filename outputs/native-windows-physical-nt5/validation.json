@@ -1,0 +1,84 @@
+{
+  "ready_for_physical_upload": true,
+  "physical_tested": true,
+  "kernel_entered": false,
+  "scope": "FATX Windows file loading; halt before phase 1, paging, and kernel entry",
+  "success_run": "physical-nt5-good-004",
+  "screen_marker": "XWNF90: Windows files loaded. Kernel NOT entered.",
+  "modules": 20,
+  "boot_drivers": 14,
+  "hive_bytes": 1810432,
+  "mapped_import_entries_verified": 1388,
+  "mapped_core_code_integrity": [
+    {
+      "module": "hal.dll",
+      "source_sha256": "d079bfb5eb40b9af74a25a61a8a06d0207114edef4a1d9a87e6bb360a65547f1",
+      "relocated_executable_sections_equal_after_expected_import_binding": [
+        ".text",
+        "INIT"
+      ]
+    },
+    {
+      "module": "bootvid.dll",
+      "source_sha256": "dd47579d9a3200e99806529f5e2a054e563d4a2e4b6dfdd1a2db63c08c4db8b4",
+      "relocated_executable_sections_equal_after_expected_import_binding": [
+        ".text"
+      ]
+    },
+    {
+      "module": "ntoskrnl.exe",
+      "source_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+      "relocated_executable_sections_equal_after_expected_import_binding": [
+        ".text",
+        "POOLCODE",
+        "POOLMI",
+        "MISYSPTE",
+        "PAGELK",
+        "PAGE",
+        "PAGEVRFY",
+        "PAGEKD",
+        "PAGEHYDR",
+        "PAGESPEC",
+        "PAGEWMI",
+        "INIT"
+      ]
+    }
+  ],
+  "negative_test": {
+    "run": "physical-nt5-bad-nls-002",
+    "removed_file": "WINNT/system32/c_1252.nls",
+    "observed_screen": "Error reading NLS file",
+    "success_record_absent": true,
+    "waiting_in_error_dialog": true
+  },
+  "forbidden_entry_configuration_rejected": true,
+  "ordinary_loader_build_passed": true,
+  "flags": {
+    "XBOX_NATIVE_FATX_IO_PREFLIGHT": "OFF",
+    "XBOX_NATIVE_FATX_NT5_PREFLIGHT": "ON",
+    "XBOX_NATIVE_IO_PREFLIGHT": "ON",
+    "XBOX_NATIVE_NT5_AUTORUN": "OFF",
+    "XBOX_NATIVE_NT5_ENTER": "OFF",
+    "XBOX_NATIVE_NT5_HANDOFF": "ON",
+    "XBOX_NATIVE_PREFLIGHT": "OFF",
+    "XBOX_NATIVE_VOLUME_PREFLIGHT": "OFF"
+  },
+  "source_tree": "33b5c16443021736bafb75b159869ca08263ff2c",
+  "development_runs": {
+    "physical-nt5-good-001": "Missing FREELOADER INI section; corrected",
+    "physical-nt5-good-002": "Missing WMILIB dependency; corrected",
+    "physical-nt5-good-003": "Success record reached; final UI not flushed; corrected",
+    "physical-nt5-bad-nls-001": "Host monitor RAM-save timeout; harness stopped before launch; repeated"
+  },
+  "limitations": [
+    "No full handoff or Windows execution on physical hardware",
+    "PC SYSTEM hive is for file loading only; not configured for Xbox Windows storage",
+    "No dashboard auto-return or persistent result log"
+  ],
+  "upload_completed_utc": "2026-10-03T18:28:11.885097+00:00",
+  "installed_on_physical_console": true,
+  "physical_launch_sent": false,
+  "physical_file_loading_passed": true,
+  "physical_evidence": "evidence/physical-xwnf90/result.json",
+  "physical_validation_scope": "The photo confirms the diagnostic reported successful file loading. The 1388 import-slot and executable-code checks were performed in xemu, not independently on physical RAM."
+}

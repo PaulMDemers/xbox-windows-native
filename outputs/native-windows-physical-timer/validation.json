@@ -1,0 +1,108 @@
+{
+  "validated_utc": "2026-10-03T21:21:42.659363+00:00",
+  "ready_for_physical_upload": true,
+  "physical_tested": true,
+  "installed_on_physical_console": true,
+  "source_tree": "afbfe610a75646b361b3829672ec04a78cee18cd",
+  "scope": "RTC stall calibration returned after two interrupts; PIC masks, RTC IDT entry and IF restored. Stop before clock setup, storage and drivers.",
+  "normal_loader_build_passed": true,
+  "normal_hal_build_passed": true,
+  "missing_halbase_parent_rejected": true,
+  "post_calibration_halt_statically_verified": true,
+  "kernel_file_unchanged": true,
+  "changed_files": [
+    "loader/halxboxnt5.dll",
+    "README.txt",
+    "rosload.exe"
+  ],
+  "package_files_verified": 33,
+  "emulator_tests": [
+    {
+      "run": "physical-timer-wide-001",
+      "status": "timer_calibration_boundary_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "identity_pages_verified": 576,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-timer-normal-003",
+      "status": "timer_calibration_boundary_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 640,
+        "height": 480,
+        "pitch": 2560,
+        "pa": "0x3c00000",
+        "bytes": 1228800,
+        "identity_pages_verified": 300,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-timer-bad-hal-001",
+      "status": "unarmed_hal_rejected_before_kernel",
+      "kernel_entered": false,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "identity_pages_verified": 576,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-timer-trace-001",
+      "status": "timer_calibration_boundary_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "identity_pages_verified": 576,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    }
+  ],
+  "native_trace_passed": true,
+  "development_findings": [
+    "Two standard-resolution runs failed before probe launch during background dashboard captures/FTP. Memory-dump timeout increased to thirty seconds and lock wait to forty-five seconds; an opt-in ManualCapture harness mode avoids periodic dashboard dumps and retains the full final diagnostic audit."
+  ],
+  "expected_physical_success": "XWNT90: RTC calibration returned; interrupt state restored.",
+  "fixture_package_includes_final_readme": true,
+  "uploaded_utc": "2026-10-03T21:22:25.968986+00:00",
+  "physical_result": {
+    "recorded_utc": "2026-10-03T21:24:36.620501+00:00",
+    "status": "physical_rtc_calibration_passed",
+    "checkpoint": "XWNT90: RTC calibration returned; interrupt state restored.",
+    "stall_factor": 367,
+    "pic_mask": "0xffff",
+    "eflags_before_final_halt": "0x286",
+    "rtc_idt_before_after_equal": true,
+    "clock_initialization_reached": false,
+    "storage_initialization_reached": false,
+    "boot_driver_entry_reached": false,
+    "windows_desktop_reached": false,
+    "user_reports_rebooted": true,
+    "photo_sha256": "bf9cd4a06dd8baa6dbc921aa697fda0e4a3762117186b845719170f50de6ac4f",
+    "evidence_scope": "Photo confirms checkpoint, stall factor and reported restoration. RTC debugger trace and full audits remain emulator evidence."
+  }
+}

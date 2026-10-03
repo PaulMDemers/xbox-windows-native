@@ -1,0 +1,66 @@
+diff --git a/boot/freeldr/freeldr/ntldr/winldr.c b/boot/freeldr/freeldr/ntldr/winldr.c
+index 3edae03a..bf5634a5 100644
+--- a/boot/freeldr/freeldr/ntldr/winldr.c
++++ b/boot/freeldr/freeldr/ntldr/winldr.c
+@@ -100,6 +100,8 @@ static volatile ULONG XwnHandoffRecord[17] = {0x484e5758, 0x35544e50, 1, 0};
+ extern PHARDWARE_PTE PDE;
+ static ULONG XwnPagingFramebuffer;
+ static PULONG XwnPagingTable;
++static ULONG XwnDisplayWidth, XwnDisplayHeight, XwnDisplayPitch, XwnLookupPages;
++static ULONG XwnDisplayStartRaw, XwnPitchLowRaw, XwnPitchHighRaw;
+ #define XWN_FB_BYTES (640 * 480 * sizeof(ULONG))
+ 
+ static VOID XwnPagingText(ULONG Row, PCSTR Text, ULONG Color)
+@@ -125,7 +127,30 @@ static VOID XwnPagingClear(VOID)
+ 
+ static DECLSPEC_NORETURN VOID XwnPagingStop(PCSTR Reason)
+ {
+-    printf("XWNPFAIL: %s; kernel NOT entered\n", Reason);
++    CHAR Text[128];
++    /* Use the already-working loader UI, never the unvalidated direct writer. */
++    UiDrawBackdrop(UiGetScreenHeight());
++    UiDrawText(3, 3, "XWN paging guard details v2 - stopped before paging", 0x0F);
++    RtlStringCbPrintfA(Text, sizeof(Text), "XWNPFAIL: %s", Reason);
++    UiDrawText(3, 5, Text, 0x0F);
++    RtlStringCbPrintfA(Text, sizeof(Text), "Width %lu  Height %lu  Pitch %lu bytes",
++                      XwnDisplayWidth, XwnDisplayHeight, XwnDisplayPitch);
++    UiDrawText(3, 8, Text, 0x0F);
++    UiDrawText(3, 9, "Expected: width 640, height 480, pitch 2560", 0x0F);
++    RtlStringCbPrintfA(Text, sizeof(Text), "FB %08lx  Raw start %08lx  Bytes %08lx",
++                      XwnPagingFramebuffer, XwnDisplayStartRaw, (ULONG)XWN_FB_BYTES);
++    UiDrawText(3, 11, Text, 0x0F);
++    UiDrawText(3, 12, "Expected: page-aligned FB in 03c00000..03ed4000", 0x0F);
++    RtlStringCbPrintfA(Text, sizeof(Text), "Lookup pages %08lx  CR0 %08lx",
++                      XwnLookupPages, __readcr0());
++    UiDrawText(3, 14, Text, 0x0F);
++    UiDrawText(3, 15, "Expected: lookup pages 00003c00, paging bit clear", 0x0F);
++    RtlStringCbPrintfA(Text, sizeof(Text), "Pitch registers: low %02lx  high %02lx",
++                      XwnPitchLowRaw, XwnPitchHighRaw);
++    UiDrawText(3, 17, Text, 0x0F);
++    UiDrawText(3, 19, "Kernel NOT entered. Photograph this screen, then reboot.", 0x0F);
++    UiDrawProgressBarCenter("Guard halted. Windows NOT entered.");
++    UiUpdateProgressBar(100, NULL);
+     _disable(); for (;;) __halt();
+ }
+ 
+@@ -145,11 +170,18 @@ static VOID XwnPreparePagingDisplay(PLOADER_PARAMETER_BLOCK LoaderBlock)
+     HighPitch = READ_REGISTER_UCHAR((PUCHAR)(Gpu + NV2A_CRTC_REGISTER_VALUE));
+     WRITE_REGISTER_UCHAR((PUCHAR)(Gpu + NV2A_CRTC_REGISTER_INDEX), SavedIndex);
+     Pitch = 8 * (((HighPitch & 0xE0) << 3) | LowPitch);
+-    XwnPagingFramebuffer = READ_REGISTER_ULONG((PULONG)(Gpu + NV2A_CRTC_FRAMEBUFFER_START)) & 0x0FFFFFFF;
++    XwnDisplayStartRaw = READ_REGISTER_ULONG((PULONG)(Gpu + NV2A_CRTC_FRAMEBUFFER_START));
++    XwnPagingFramebuffer = XwnDisplayStartRaw & 0x0FFFFFFF;
++    XwnDisplayWidth = Width;
++    XwnDisplayHeight = Height;
++    XwnDisplayPitch = Pitch;
++    XwnLookupPages = MmGetTotalPagesInLookupTable();
++    XwnPitchLowRaw = LowPitch;
++    XwnPitchHighRaw = HighPitch;
+     if (Width != 640 || Height != 480 || Pitch != 640 * 4 ||
+         (XwnPagingFramebuffer & 0xFFF) || XwnPagingFramebuffer < 0x03C00000 ||
+         XwnPagingFramebuffer > 0x04000000 - XWN_FB_BYTES ||
+-        MmGetTotalPagesInLookupTable() != 0x3C00)
++        XwnLookupPages != 0x3C00)
+         XwnPagingStop("unsupported framebuffer or RAM layout");
+ 
+     BasePage = XwnPagingFramebuffer >> 12;

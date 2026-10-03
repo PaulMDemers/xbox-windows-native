@@ -1,0 +1,114 @@
+{
+  "validated_utc": "2026-10-03T20:48:04.191408+00:00",
+  "ready_for_physical_upload": true,
+  "physical_tested": true,
+  "installed_on_physical_console": true,
+  "source_tree": "a8f65a2d297f1efbcc5bd846305aa177fbdea8f2",
+  "scope": "Original Xbox HAL processor initialization executes and returns; stop at HalInitSystem phase-0 entrance before original body, storage initialization or driver startup.",
+  "normal_loader_build_passed": true,
+  "normal_hal_build_passed": true,
+  "missing_entry_parent_rejected": true,
+  "diagnostic_hal_phase0_redirect_statically_verified": true,
+  "kernel_file_unchanged": true,
+  "changed_files": [
+    "loader/halxboxnt5.dll",
+    "README.txt",
+    "rosload.exe"
+  ],
+  "package_files_verified": 33,
+  "emulator_tests": [
+    {
+      "run": "physical-hal0-wide-001",
+      "status": "hal_phase0_boundary_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "identity_pages_verified": 576,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-hal0-normal-003",
+      "status": "hal_phase0_boundary_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 640,
+        "height": 480,
+        "pitch": 2560,
+        "pa": "0x3c00000",
+        "bytes": 1228800,
+        "identity_pages_verified": 300,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-hal0-bad-hal-001",
+      "status": "unarmed_hal_rejected_before_kernel",
+      "kernel_entered": false,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "identity_pages_verified": 576,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-hal0-trace-001",
+      "status": "hal_phase0_boundary_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "identity_pages_verified": 576,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    }
+  ],
+  "native_trace_passed": true,
+  "development_findings": [
+    "Two standard-resolution emulator runs failed to launch the probe due to dashboard/FTP timing; a later launch passed all audits. No binary changes were needed."
+  ],
+  "expected_physical_success": "XWNH90: Processor initialized; HAL phase 0 reached.",
+  "fixture_readme_note": "Fixture README predates phase-0 wording; executable inputs match the final package. README is not executable.",
+  "uploaded_utc": "2026-10-03T20:48:55.531028+00:00",
+  "physical_result": {
+    "recorded_utc": "2026-10-03T20:52:40.155644+00:00",
+    "status": "physical_hal_phase0_entrance_passed",
+    "checkpoint": "XWNH90: Processor initialized; HAL phase 0 reached.",
+    "stage": 30,
+    "phase": 0,
+    "caller": "0x8250cda6",
+    "processor_idr": "0xfffffffb",
+    "stall_count": 100,
+    "processor_masks": [
+      1,
+      1
+    ],
+    "original_hal_processor_initialization_completed": true,
+    "original_hal_phase0_body_executed": false,
+    "storage_initialization_reached": false,
+    "boot_driver_entry_reached": false,
+    "windows_desktop_reached": false,
+    "user_reports_rebooted": true,
+    "photo_sha256": "ede5251771df36a8e48a8a6b5953624d41a6092ded50207dfdf427be33ddaa0c",
+    "evidence_scope": "Physical photo confirms visible checkpoint and reported values. Full mapped-code and debugger audits remain emulator evidence."
+  }
+}

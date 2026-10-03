@@ -1,0 +1,94 @@
+{
+  "recorded_date": "2026-10-03",
+  "timezone": "America/New_York",
+  "sources": [
+    {
+      "name": "reactos-ntatv",
+      "url": "https://github.com/DistroHopper39B/reactos.git",
+      "revision": "afc0127e8f937ab68503d715d948844973756aa1",
+      "reference_path": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\work\\reference-sources\\reactos-ntatv"
+    },
+    {
+      "name": "reactos-xbox-reference",
+      "url": "https://github.com/binarymaster/reactos.git",
+      "revision": "7c35fc4ead884e1bd0640a9613f652c40bca8b2e",
+      "reference_path": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\work\\reference-sources\\reactos-xbox"
+    },
+    {
+      "name": "cromwell",
+      "url": "https://github.com/PaulMDemers/cromwell.git",
+      "revision": "9fc54d0c7cbed7bc3c70373642d833684853011f",
+      "native_path": "/home/paul/xbox-windows-native/sources/cromwell"
+    }
+  ],
+  "native_root": "/home/paul/xbox-windows-native",
+  "native_branch": "codex/native-windows-preflight",
+  "windows_baseline": {
+    "name": "EN_WIN2000_PRO_SP4.ISO",
+    "sha256": "e3816f6e80b66ff686ead03eeafffe9daf020a5e4717b8bd4736b7c51733ba22"
+  },
+  "rosbe": {
+    "version": "2.2.1",
+    "url": "https://download.reactos.org/reactos/RosBE-Unix/2.2.1/RosBE-Unix-2.2.1.tar.bz2",
+    "archive_sha256": "d720c0a77dc08c6da3929fd282de3fe7af6d697b6fb104889a0362e770742565",
+    "compiled": true,
+    "host_compilers": "GCC/G++ 15.2.0; bootstrap succeeded with task-local Ninja shlex compatibility patch"
+  },
+  "patches": {
+    "0001-win2000-dispatch-and-preflight.patch": "0b4409fbb95bc8a15fa1e988773bbfa4cbae23c728b4381f4eb0394adaa5d382",
+    "0002-Reserve-full-legacy-heap.patch": "a95fc01e1d496b616ce5a8595bf23e49ebe3b53beaedab300014f89af4fe409f",
+    "0003-rosbe-four-jobs.patch": "2ee9090d535cb1256eec0baf7fd065001a16fe6586a0fc7fb71d879fb816b7ea",
+    "0004-ninja-python-shlex.patch": "df1603c722f4c3f777a5db23d6ee97e5abaa87f4c664d68807d9602adbb864c3",
+    "0005-native-io-cumulative.patch": "85dfebe1bb73c50286bb29dcbb8bd15dd0d7d03ef30603d3c07f5452dfe105f4"
+  },
+  "emulator_inputs": [
+    {
+      "Algorithm": "SHA256",
+      "Hash": "392C3FEE86E47A5452A32ED31E280B62D2074C260A2C1195441ED5DDCC0A3D55",
+      "Path": "C:\\Users\\Paul\\Desktop\\ogxbox-linux\\tools\\xemu-nvnet-fresh\\xemu.exe"
+    },
+    {
+      "Algorithm": "SHA256",
+      "Hash": "7DA537938EA2AC09F894186BA793C9AE51DFF37C95903B0002273B8D363818B7",
+      "Path": "C:\\Emulators\\xemu\\xemu.exe"
+    },
+    {
+      "Algorithm": "SHA256",
+      "Hash": "34F1C8DED59116436065783F8AD2EF0939DF3CBFC76277EC9E5C41BF9CCB93CD",
+      "Path": "C:\\Emulators\\xemu\\system\\bios\\Complex_4627.bin"
+    },
+    {
+      "Algorithm": "SHA256",
+      "Hash": "E99E3A772BF5F5D262786AEE895664EB96136196E37732FE66E14AE062F20335",
+      "Path": "C:\\Emulators\\xemu\\system\\mcpx\\mcpx_1.0.bin"
+    }
+  ],
+  "validation": {
+    "loader_validator_tests_passed": 7,
+    "source_patch_checks": true,
+    "shell_and_powershell_syntax": true,
+    "host_utilities_available": true,
+    "source_compilation": true,
+    "emulator_run": true,
+    "windows_boot": false,
+    "synthetic_iso_packaging_readback": true,
+    "diagnostic_cold_boots_passed": 3,
+    "normal_loader_compiled": true,
+    "second_stage_io_probe": true,
+    "negative_io_cases_passed": 2,
+    "unleashx_xromwell_launches_passed": 2,
+    "hal_debug_and_release_compiled": true,
+    "hal_windows2000_import_gate_passed": false
+  },
+  "ready_for": "Windows 2000 HAL ABI adaptation and installed Windows boot-volume fixture development.",
+  "not_ready_for": [
+    "Retail Windows kernel run with unadapted ReactOS HAL",
+    "Hardware deployment",
+    "Writable Windows system-volume test"
+  ],
+  "reactos_patch_application": {
+    "base": "afc0127e8f937ab68503d715d948844973756aa1",
+    "current": "0005-native-io-cumulative.patch",
+    "replaces": "0001-win2000-dispatch-and-preflight.patch"
+  }
+}

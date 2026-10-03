@@ -1,0 +1,5693 @@
+{
+  "runtime_approved": false,
+  "scope": "Name binding only; not kernel runtime approval. Selected timer/interrupt paths and field offsets are tested separately. Full scheduler, interrupt delivery, loader and hardware initialization remain unvalidated.",
+  "checks": [
+    {
+      "source": "ntoskrnl.exe",
+      "target": "hal.dll",
+      "count": 57,
+      "missing": []
+    },
+    {
+      "source": "ntoskrnl.exe",
+      "target": "bootvid.dll",
+      "count": 10,
+      "missing": []
+    },
+    {
+      "source": "hal.dll",
+      "target": "ntoskrnl.exe",
+      "count": 81,
+      "missing": []
+    },
+    {
+      "source": "bootvid.dll",
+      "target": "ntoskrnl.exe",
+      "count": 9,
+      "missing": []
+    }
+  ],
+  "records": {
+    "ntoskrnl.exe": {
+      "file": "outputs\\native-windows-nt5\\installed-files\\WINNT\\system32\\ntoskrnl.exe",
+      "sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+      "native_version": [
+        5,
+        0
+      ],
+      "imports": {
+        "hal.dll": [
+          "HalSetEnvironmentVariable",
+          "HalQueryRealTimeClock",
+          "HalSetTimeIncrement",
+          "KeQueryPerformanceCounter",
+          "HalRequestSoftwareInterrupt",
+          "HalSetRealTimeClock",
+          "HalGetInterruptVector",
+          "IoReadPartitionTable",
+          "HalInitSystem",
+          "HalReportResourceUsage",
+          "HalGetEnvironmentVariable",
+          "HalAllProcessorsStarted",
+          "IoAssignDriveLetters",
+          "HalTranslateBusAddress",
+          "KdPortSave",
+          "KdPortRestore",
+          "KdPortPollByte",
+          "KdPortInitialize",
+          "KdPortGetByte",
+          "KdPortPutByte",
+          "READ_PORT_UCHAR",
+          "READ_PORT_USHORT",
+          "READ_PORT_ULONG",
+          "HalAllocateAdapterChannel",
+          "ExTryToAcquireFastMutex",
+          "WRITE_PORT_ULONG",
+          "HalInitializeProcessor",
+          "HalClearSoftwareInterrupt",
+          "HalCalibratePerformanceCounter",
+          "HalHandleNMI",
+          "HalBeginSystemInterrupt",
+          "HalEndSystemInterrupt",
+          "KeRaiseIrqlToSynchLevel",
+          "HalReturnToFirmware",
+          "HalEnableSystemInterrupt",
+          "HalDisableSystemInterrupt",
+          "HalSystemVectorDispatchEntry",
+          "KeRaiseIrql",
+          "KeLowerIrql",
+          "HalSetProfileInterval",
+          "HalStartProfileInterrupt",
+          "HalStopProfileInterrupt",
+          "KeReleaseSpinLock",
+          "KeAcquireSpinLock",
+          "KeFlushWriteBuffer",
+          "HalProcessorIdle",
+          "KeStallExecutionProcessor",
+          "KeGetCurrentIrql",
+          "KeRaiseIrqlToDpcLevel",
+          "KfAcquireSpinLock",
+          "KfReleaseSpinLock",
+          "ExAcquireFastMutex",
+          "KfRaiseIrql",
+          "KfLowerIrql",
+          "WRITE_PORT_UCHAR",
+          "ExReleaseFastMutex",
+          "WRITE_PORT_USHORT"
+        ],
+        "bootvid.dll": [
+          "VidSetScrollRegion",
+          "VidInitialize",
+          "VidSetTextColor",
+          "VidSolidColorFill",
+          "VidDisplayString",
+          "VidBufferToScreenBlt",
+          "VidScreenToBufferBlt",
+          "VidBitBlt",
+          "VidResetDisplay",
+          "VidCleanUp"
+        ]
+      },
+      "exports": {
+        "CcCanIWrite": {
+          "rva": "0xc474",
+          "forwarder": null
+        },
+        "CcCopyRead": {
+          "rva": "0xae1c",
+          "forwarder": null
+        },
+        "CcCopyWrite": {
+          "rva": "0xbbb4",
+          "forwarder": null
+        },
+        "CcDeferWrite": {
+          "rva": "0xc600",
+          "forwarder": null
+        },
+        "CcFastCopyRead": {
+          "rva": "0xb576",
+          "forwarder": null
+        },
+        "CcFastCopyWrite": {
+          "rva": "0xc0b6",
+          "forwarder": null
+        },
+        "CcFastMdlReadWait": {
+          "rva": "0x7443c",
+          "forwarder": null
+        },
+        "CcFastReadNotPossible": {
+          "rva": "0x742c0",
+          "forwarder": null
+        },
+        "CcFastReadWait": {
+          "rva": "0x743a0",
+          "forwarder": null
+        },
+        "CcFlushCache": {
+          "rva": "0xe748",
+          "forwarder": null
+        },
+        "CcGetDirtyPages": {
+          "rva": "0xf96c",
+          "forwarder": null
+        },
+        "CcGetFileObjectFromBcb": {
+          "rva": "0x1169e",
+          "forwarder": null
+        },
+        "CcGetFileObjectFromSectionPtrs": {
+          "rva": "0x11676",
+          "forwarder": null
+        },
+        "CcGetFlushedValidData": {
+          "rva": "0xe60e",
+          "forwarder": null
+        },
+        "CcGetLsnForFileObject": {
+          "rva": "0xfbe8",
+          "forwarder": null
+        },
+        "CcInitializeCacheMap": {
+          "rva": "0xfc9c",
+          "forwarder": null
+        },
+        "CcIsThereDirtyData": {
+          "rva": "0xfb3a",
+          "forwarder": null
+        },
+        "CcMapData": {
+          "rva": "0x116ac",
+          "forwarder": null
+        },
+        "CcMdlRead": {
+          "rva": "0x11da0",
+          "forwarder": null
+        },
+        "CcMdlReadComplete": {
+          "rva": "0x1206a",
+          "forwarder": null
+        },
+        "CcMdlWriteComplete": {
+          "rva": "0x1239c",
+          "forwarder": null
+        },
+        "CcPinMappedData": {
+          "rva": "0x11822",
+          "forwarder": null
+        },
+        "CcPinRead": {
+          "rva": "0x11990",
+          "forwarder": null
+        },
+        "CcPrepareMdlWrite": {
+          "rva": "0x120cc",
+          "forwarder": null
+        },
+        "CcPreparePinWrite": {
+          "rva": "0x11af4",
+          "forwarder": null
+        },
+        "CcPurgeCacheSection": {
+          "rva": "0x10cc4",
+          "forwarder": null
+        },
+        "CcRemapBcb": {
+          "rva": "0xedbe",
+          "forwarder": null
+        },
+        "CcRepinBcb": {
+          "rva": "0xedfc",
+          "forwarder": null
+        },
+        "CcScheduleReadAhead": {
+          "rva": "0xcd46",
+          "forwarder": null
+        },
+        "CcSetAdditionalCacheAttributes": {
+          "rva": "0xf908",
+          "forwarder": null
+        },
+        "CcSetBcbOwnerPointer": {
+          "rva": "0x11c8e",
+          "forwarder": null
+        },
+        "CcSetDirtyPageThreshold": {
+          "rva": "0x10f58",
+          "forwarder": null
+        },
+        "CcSetDirtyPinnedData": {
+          "rva": "0xd7b4",
+          "forwarder": null
+        },
+        "CcSetFileSizes": {
+          "rva": "0x10852",
+          "forwarder": null
+        },
+        "CcSetLogHandleForFile": {
+          "rva": "0xf94a",
+          "forwarder": null
+        },
+        "CcSetReadAheadGranularity": {
+          "rva": "0xcd34",
+          "forwarder": null
+        },
+        "CcUninitializeCacheMap": {
+          "rva": "0x102fa",
+          "forwarder": null
+        },
+        "CcUnpinData": {
+          "rva": "0x11c48",
+          "forwarder": null
+        },
+        "CcUnpinDataForThread": {
+          "rva": "0x11cc6",
+          "forwarder": null
+        },
+        "CcUnpinRepinnedBcb": {
+          "rva": "0xee08",
+          "forwarder": null
+        },
+        "CcWaitForCurrentLazyWriterActivity": {
+          "rva": "0x1253e",
+          "forwarder": null
+        },
+        "CcZeroData": {
+          "rva": "0x110d2",
+          "forwarder": null
+        },
+        "DbgBreakPoint": {
+          "rva": "0x55568",
+          "forwarder": null
+        },
+        "DbgBreakPointWithStatus": {
+          "rva": "0x55570",
+          "forwarder": null
+        },
+        "DbgLoadImageSymbols": {
+          "rva": "0x556cc",
+          "forwarder": null
+        },
+        "DbgPrint": {
+          "rva": "0x55578",
+          "forwarder": null
+        },
+        "DbgPrintReturnControlC": {
+          "rva": "0x55644",
+          "forwarder": null
+        },
+        "DbgPrompt": {
+          "rva": "0x5568e",
+          "forwarder": null
+        },
+        "ExAcquireFastMutexUnsafe": {
+          "rva": "0x640c0",
+          "forwarder": null
+        },
+        "ExAcquireResourceExclusive": {
+          "rva": "0x1536c",
+          "forwarder": null
+        },
+        "ExAcquireResourceExclusiveLite": {
+          "rva": "0x1458e",
+          "forwarder": null
+        },
+        "ExAcquireResourceSharedLite": {
+          "rva": "0x14620",
+          "forwarder": null
+        },
+        "ExAcquireSharedStarveExclusive": {
+          "rva": "0x14760",
+          "forwarder": null
+        },
+        "ExAcquireSharedWaitForExclusive": {
+          "rva": "0x14890",
+          "forwarder": null
+        },
+        "ExAllocateFromPagedLookasideList": {
+          "rva": "0x1598c",
+          "forwarder": null
+        },
+        "ExAllocatePool": {
+          "rva": "0x15b1e",
+          "forwarder": null
+        },
+        "ExAllocatePoolWithQuota": {
+          "rva": "0x161c6",
+          "forwarder": null
+        },
+        "ExAllocatePoolWithQuotaTag": {
+          "rva": "0x161dc",
+          "forwarder": null
+        },
+        "ExAllocatePoolWithTag": {
+          "rva": "0x6a540",
+          "forwarder": null
+        },
+        "ExAllocatePoolWithTagPriority": {
+          "rva": "0x15b34",
+          "forwarder": null
+        },
+        "ExConvertExclusiveToSharedLite": {
+          "rva": "0x14c72",
+          "forwarder": null
+        },
+        "ExCreateCallback": {
+          "rva": "0x8e99c",
+          "forwarder": null
+        },
+        "ExDeleteNPagedLookasideList": {
+          "rva": "0x1587c",
+          "forwarder": null
+        },
+        "ExDeletePagedLookasideList": {
+          "rva": "0x15950",
+          "forwarder": null
+        },
+        "ExDeleteResource": {
+          "rva": "0x15470",
+          "forwarder": null
+        },
+        "ExDeleteResourceLite": {
+          "rva": "0x14ca6",
+          "forwarder": null
+        },
+        "ExDesktopObjectType": {
+          "rva": "0x74c5c",
+          "forwarder": null
+        },
+        "ExDisableResourceBoostLite": {
+          "rva": "0x1450e",
+          "forwarder": null
+        },
+        "ExEnumHandleTable": {
+          "rva": "0x8ec88",
+          "forwarder": null
+        },
+        "ExEventObjectType": {
+          "rva": "0x74c08",
+          "forwarder": null
+        },
+        "ExExtendZone": {
+          "rva": "0x166dc",
+          "forwarder": null
+        },
+        "ExFreePool": {
+          "rva": "0x6ab24",
+          "forwarder": null
+        },
+        "ExFreePoolWithTag": {
+          "rva": "0x6abb2",
+          "forwarder": null
+        },
+        "ExFreeToPagedLookasideList": {
+          "rva": "0x15a06",
+          "forwarder": null
+        },
+        "ExGetExclusiveWaiterCount": {
+          "rva": "0x14cf2",
+          "forwarder": null
+        },
+        "ExGetPreviousMode": {
+          "rva": "0x167a8",
+          "forwarder": null
+        },
+        "ExGetSharedWaiterCount": {
+          "rva": "0x14cfe",
+          "forwarder": null
+        },
+        "ExInitializeNPagedLookasideList": {
+          "rva": "0x157f8",
+          "forwarder": null
+        },
+        "ExInitializePagedLookasideList": {
+          "rva": "0x158b8",
+          "forwarder": null
+        },
+        "ExInitializeResource": {
+          "rva": "0x152d4",
+          "forwarder": null
+        },
+        "ExInitializeResourceLite": {
+          "rva": "0x1445c",
+          "forwarder": null
+        },
+        "ExInitializeZone": {
+          "rva": "0x1667c",
+          "forwarder": null
+        },
+        "ExInterlockedAddLargeInteger": {
+          "rva": "0x642b4",
+          "forwarder": null
+        },
+        "ExInterlockedAddLargeStatistic": {
+          "rva": "0x640f0",
+          "forwarder": null
+        },
+        "ExInterlockedAddUlong": {
+          "rva": "0x6430c",
+          "forwarder": null
+        },
+        "ExInterlockedCompareExchange64": {
+          "rva": "0x6425c",
+          "forwarder": null
+        },
+        "ExInterlockedDecrementLong": {
+          "rva": "0x643c0",
+          "forwarder": null
+        },
+        "ExInterlockedExchangeUlong": {
+          "rva": "0x643d0",
+          "forwarder": null
+        },
+        "ExInterlockedExtendZone": {
+          "rva": "0x16738",
+          "forwarder": null
+        },
+        "ExInterlockedFlushSList": {
+          "rva": "0x641b8",
+          "forwarder": null
+        },
+        "ExInterlockedIncrementLong": {
+          "rva": "0x643b0",
+          "forwarder": null
+        },
+        "ExInterlockedInsertHeadList": {
+          "rva": "0x64320",
+          "forwarder": null
+        },
+        "ExInterlockedInsertTailList": {
+          "rva": "0x64340",
+          "forwarder": null
+        },
+        "ExInterlockedPopEntryList": {
+          "rva": "0x64384",
+          "forwarder": null
+        },
+        "ExInterlockedPopEntrySList": {
+          "rva": "0x64170",
+          "forwarder": null
+        },
+        "ExInterlockedPushEntryList": {
+          "rva": "0x6439c",
+          "forwarder": null
+        },
+        "ExInterlockedPushEntrySList": {
+          "rva": "0x64194",
+          "forwarder": null
+        },
+        "ExInterlockedRemoveHeadList": {
+          "rva": "0x64364",
+          "forwarder": null
+        },
+        "ExIsProcessorFeaturePresent": {
+          "rva": "0x169d8",
+          "forwarder": null
+        },
+        "ExIsResourceAcquiredExclusiveLite": {
+          "rva": "0x14d0a",
+          "forwarder": null
+        },
+        "ExIsResourceAcquiredSharedLite": {
+          "rva": "0x14d2e",
+          "forwarder": null
+        },
+        "ExLocalTimeToSystemTime": {
+          "rva": "0x16a76",
+          "forwarder": null
+        },
+        "ExNotifyCallback": {
+          "rva": "0x16592",
+          "forwarder": null
+        },
+        "ExQueryPoolBlockSize": {
+          "rva": "0x16302",
+          "forwarder": null
+        },
+        "ExQueueWorkItem": {
+          "rva": "0x16a98",
+          "forwarder": null
+        },
+        "ExRaiseAccessViolation": {
+          "rva": "0x944fe",
+          "forwarder": null
+        },
+        "ExRaiseDatatypeMisalignment": {
+          "rva": "0x9450a",
+          "forwarder": null
+        },
+        "ExRaiseException": {
+          "rva": "0x697a4",
+          "forwarder": null
+        },
+        "ExRaiseHardError": {
+          "rva": "0x94a84",
+          "forwarder": null
+        },
+        "ExRaiseStatus": {
+          "rva": "0x6985c",
+          "forwarder": null
+        },
+        "ExRegisterCallback": {
+          "rva": "0x16480",
+          "forwarder": null
+        },
+        "ExReinitializeResourceLite": {
+          "rva": "0x1448c",
+          "forwarder": null
+        },
+        "ExReleaseFastMutexUnsafe": {
+          "rva": "0x640dc",
+          "forwarder": null
+        },
+        "ExReleaseResourceForThread": {
+          "rva": "0x64420",
+          "forwarder": null
+        },
+        "ExReleaseResourceForThreadLite": {
+          "rva": "0x14b16",
+          "forwarder": null
+        },
+        "ExReleaseResourceLite": {
+          "rva": "0x149ec",
+          "forwarder": null
+        },
+        "ExSemaphoreObjectType": {
+          "rva": "0x74788",
+          "forwarder": null
+        },
+        "ExSetResourceOwnerPointer": {
+          "rva": "0x14c18",
+          "forwarder": null
+        },
+        "ExSetTimerResolution": {
+          "rva": "0x93cbc",
+          "forwarder": null
+        },
+        "ExSystemExceptionFilter": {
+          "rva": "0x16794",
+          "forwarder": null
+        },
+        "ExSystemTimeToLocalTime": {
+          "rva": "0x16a54",
+          "forwarder": null
+        },
+        "ExUnregisterCallback": {
+          "rva": "0x16522",
+          "forwarder": null
+        },
+        "ExUuidCreate": {
+          "rva": "0x955e2",
+          "forwarder": null
+        },
+        "ExWindowStationObjectType": {
+          "rva": "0x74c58",
+          "forwarder": null
+        },
+        "ExfInterlockedAddUlong": {
+          "rva": "0x640f8",
+          "forwarder": null
+        },
+        "ExfInterlockedInsertHeadList": {
+          "rva": "0x64104",
+          "forwarder": null
+        },
+        "ExfInterlockedInsertTailList": {
+          "rva": "0x6411c",
+          "forwarder": null
+        },
+        "ExfInterlockedPopEntryList": {
+          "rva": "0x64150",
+          "forwarder": null
+        },
+        "ExfInterlockedPushEntryList": {
+          "rva": "0x64164",
+          "forwarder": null
+        },
+        "ExfInterlockedRemoveHeadList": {
+          "rva": "0x64138",
+          "forwarder": null
+        },
+        "Exfi386InterlockedDecrementLong": {
+          "rva": "0x64224",
+          "forwarder": null
+        },
+        "Exfi386InterlockedExchangeUlong": {
+          "rva": "0x64230",
+          "forwarder": null
+        },
+        "Exfi386InterlockedIncrementLong": {
+          "rva": "0x64218",
+          "forwarder": null
+        },
+        "Exi386InterlockedDecrementLong": {
+          "rva": "0x643f4",
+          "forwarder": null
+        },
+        "Exi386InterlockedExchangeUlong": {
+          "rva": "0x64404",
+          "forwarder": null
+        },
+        "Exi386InterlockedIncrementLong": {
+          "rva": "0x643e4",
+          "forwarder": null
+        },
+        "FsRtlAcquireFileExclusive": {
+          "rva": "0x98fac",
+          "forwarder": null
+        },
+        "FsRtlAddLargeMcbEntry": {
+          "rva": "0x1791a",
+          "forwarder": null
+        },
+        "FsRtlAddMcbEntry": {
+          "rva": "0x17528",
+          "forwarder": null
+        },
+        "FsRtlAddToTunnelCache": {
+          "rva": "0x99742",
+          "forwarder": null
+        },
+        "FsRtlAllocateFileLock": {
+          "rva": "0x18c14",
+          "forwarder": null
+        },
+        "FsRtlAllocatePool": {
+          "rva": "0x1a828",
+          "forwarder": null
+        },
+        "FsRtlAllocatePoolWithQuota": {
+          "rva": "0x1a852",
+          "forwarder": null
+        },
+        "FsRtlAllocatePoolWithQuotaTag": {
+          "rva": "0x1a8a4",
+          "forwarder": null
+        },
+        "FsRtlAllocatePoolWithTag": {
+          "rva": "0x1a87c",
+          "forwarder": null
+        },
+        "FsRtlAllocateResource": {
+          "rva": "0x99db2",
+          "forwarder": null
+        },
+        "FsRtlAreNamesEqual": {
+          "rva": "0x99eac",
+          "forwarder": null
+        },
+        "FsRtlBalanceReads": {
+          "rva": "0x9a3c0",
+          "forwarder": null
+        },
+        "FsRtlCheckLockForReadAccess": {
+          "rva": "0x18d5c",
+          "forwarder": null
+        },
+        "FsRtlCheckLockForWriteAccess": {
+          "rva": "0x18dce",
+          "forwarder": null
+        },
+        "FsRtlCheckOplock": {
+          "rva": "0x1aa7a",
+          "forwarder": null
+        },
+        "FsRtlCopyRead": {
+          "rva": "0x97528",
+          "forwarder": null
+        },
+        "FsRtlCopyWrite": {
+          "rva": "0x97816",
+          "forwarder": null
+        },
+        "FsRtlCreateSectionForDataScan": {
+          "rva": "0x1be0c",
+          "forwarder": null
+        },
+        "FsRtlCurrentBatchOplock": {
+          "rva": "0x9a58a",
+          "forwarder": null
+        },
+        "FsRtlDeleteKeyFromTunnelCache": {
+          "rva": "0x99ac6",
+          "forwarder": null
+        },
+        "FsRtlDeleteTunnelCache": {
+          "rva": "0x99b76",
+          "forwarder": null
+        },
+        "FsRtlDeregisterUncProvider": {
+          "rva": "0x9ab1c",
+          "forwarder": null
+        },
+        "FsRtlDissectDbcs": {
+          "rva": "0x9af50",
+          "forwarder": null
+        },
+        "FsRtlDissectName": {
+          "rva": "0x99dca",
+          "forwarder": null
+        },
+        "FsRtlDoesDbcsContainWildCards": {
+          "rva": "0x9affe",
+          "forwarder": null
+        },
+        "FsRtlDoesNameContainWildCards": {
+          "rva": "0x99e5a",
+          "forwarder": null
+        },
+        "FsRtlFastCheckLockForRead": {
+          "rva": "0x193dc",
+          "forwarder": null
+        },
+        "FsRtlFastCheckLockForWrite": {
+          "rva": "0x194be",
+          "forwarder": null
+        },
+        "FsRtlFastUnlockAll": {
+          "rva": "0x19b3e",
+          "forwarder": null
+        },
+        "FsRtlFastUnlockAllByKey": {
+          "rva": "0x19b5a",
+          "forwarder": null
+        },
+        "FsRtlFastUnlockSingle": {
+          "rva": "0x197c0",
+          "forwarder": null
+        },
+        "FsRtlFindInTunnelCache": {
+          "rva": "0x9998a",
+          "forwarder": null
+        },
+        "FsRtlFreeFileLock": {
+          "rva": "0x18c3a",
+          "forwarder": null
+        },
+        "FsRtlGetFileSize": {
+          "rva": "0x993be",
+          "forwarder": null
+        },
+        "FsRtlGetNextFileLock": {
+          "rva": "0x190c0",
+          "forwarder": null
+        },
+        "FsRtlGetNextLargeMcbEntry": {
+          "rva": "0x18120",
+          "forwarder": null
+        },
+        "FsRtlGetNextMcbEntry": {
+          "rva": "0x17638",
+          "forwarder": null
+        },
+        "FsRtlInitializeFileLock": {
+          "rva": "0x18a26",
+          "forwarder": null
+        },
+        "FsRtlInitializeLargeMcb": {
+          "rva": "0x1767a",
+          "forwarder": null
+        },
+        "FsRtlInitializeMcb": {
+          "rva": "0x99582",
+          "forwarder": null
+        },
+        "FsRtlInitializeOplock": {
+          "rva": "0x8ea6c",
+          "forwarder": null
+        },
+        "FsRtlInitializeTunnelCache": {
+          "rva": "0x9970e",
+          "forwarder": null
+        },
+        "FsRtlInsertFilterContext": {
+          "rva": "0x1c0c0",
+          "forwarder": null
+        },
+        "FsRtlInsertPerFileObjectContext": {
+          "rva": "0x1c25a",
+          "forwarder": null
+        },
+        "FsRtlInsertPerStreamContext": {
+          "rva": "0x1c118",
+          "forwarder": null
+        },
+        "FsRtlIsDbcsInExpression": {
+          "rva": "0x9b06c",
+          "forwarder": null
+        },
+        "FsRtlIsFatDbcsLegal": {
+          "rva": "0x9aba0",
+          "forwarder": null
+        },
+        "FsRtlIsHpfsDbcsLegal": {
+          "rva": "0x9ade4",
+          "forwarder": null
+        },
+        "FsRtlIsNameInExpression": {
+          "rva": "0x99f88",
+          "forwarder": null
+        },
+        "FsRtlIsNtstatusExpected": {
+          "rva": "0x1a7fe",
+          "forwarder": null
+        },
+        "FsRtlIsPagingFile": {
+          "rva": "0x1c42e",
+          "forwarder": null
+        },
+        "FsRtlIsTotalDeviceFailure": {
+          "rva": "0x1a8cc",
+          "forwarder": null
+        },
+        "FsRtlLegalAnsiCharacterArray": {
+          "rva": "0x6cc78",
+          "forwarder": null
+        },
+        "FsRtlLookupFilterContextInternal": {
+          "rva": "0x1c08e",
+          "forwarder": null
+        },
+        "FsRtlLookupLargeMcbEntry": {
+          "rva": "0x17e14",
+          "forwarder": null
+        },
+        "FsRtlLookupLastLargeMcbEntry": {
+          "rva": "0x17f5c",
+          "forwarder": null
+        },
+        "FsRtlLookupLastLargeMcbEntryAndIndex": {
+          "rva": "0x1802a",
+          "forwarder": null
+        },
+        "FsRtlLookupLastMcbEntry": {
+          "rva": "0x175fa",
+          "forwarder": null
+        },
+        "FsRtlLookupMcbEntry": {
+          "rva": "0x175ae",
+          "forwarder": null
+        },
+        "FsRtlLookupPerFileObjectContext": {
+          "rva": "0x1c318",
+          "forwarder": null
+        },
+        "FsRtlLookupPerStreamContextInternal": {
+          "rva": "0x1c15a",
+          "forwarder": null
+        },
+        "FsRtlMdlRead": {
+          "rva": "0x98190",
+          "forwarder": null
+        },
+        "FsRtlMdlReadComplete": {
+          "rva": "0x1744e",
+          "forwarder": null
+        },
+        "FsRtlMdlReadCompleteDev": {
+          "rva": "0x174b0",
+          "forwarder": null
+        },
+        "FsRtlMdlReadDev": {
+          "rva": "0x97f70",
+          "forwarder": null
+        },
+        "FsRtlMdlWriteComplete": {
+          "rva": "0x986a0",
+          "forwarder": null
+        },
+        "FsRtlMdlWriteCompleteDev": {
+          "rva": "0x98708",
+          "forwarder": null
+        },
+        "FsRtlNormalizeNtstatus": {
+          "rva": "0x1a7e6",
+          "forwarder": null
+        },
+        "FsRtlNotifyChangeDirectory": {
+          "rva": "0x9b5ea",
+          "forwarder": null
+        },
+        "FsRtlNotifyCleanup": {
+          "rva": "0x9beda",
+          "forwarder": null
+        },
+        "FsRtlNotifyFilterChangeDirectory": {
+          "rva": "0x9b63e",
+          "forwarder": null
+        },
+        "FsRtlNotifyFilterReportChange": {
+          "rva": "0x9b90a",
+          "forwarder": null
+        },
+        "FsRtlNotifyFullChangeDirectory": {
+          "rva": "0x9b612",
+          "forwarder": null
+        },
+        "FsRtlNotifyFullReportChange": {
+          "rva": "0x9b8e0",
+          "forwarder": null
+        },
+        "FsRtlNotifyInitializeSync": {
+          "rva": "0x9b590",
+          "forwarder": null
+        },
+        "FsRtlNotifyReportChange": {
+          "rva": "0x9b8b6",
+          "forwarder": null
+        },
+        "FsRtlNotifyUninitializeSync": {
+          "rva": "0x9b5d2",
+          "forwarder": null
+        },
+        "FsRtlNotifyVolumeEvent": {
+          "rva": "0x9c31c",
+          "forwarder": null
+        },
+        "FsRtlNumberOfRunsInLargeMcb": {
+          "rva": "0x18100",
+          "forwarder": null
+        },
+        "FsRtlNumberOfRunsInMcb": {
+          "rva": "0x1762c",
+          "forwarder": null
+        },
+        "FsRtlOplockFsctrl": {
+          "rva": "0x9a430",
+          "forwarder": null
+        },
+        "FsRtlOplockIsFastIoPossible": {
+          "rva": "0x9a570",
+          "forwarder": null
+        },
+        "FsRtlPostPagingFileStackOverflow": {
+          "rva": "0x1c830",
+          "forwarder": null
+        },
+        "FsRtlPostStackOverflow": {
+          "rva": "0x1c81a",
+          "forwarder": null
+        },
+        "FsRtlPrepareMdlWrite": {
+          "rva": "0x98626",
+          "forwarder": null
+        },
+        "FsRtlPrepareMdlWriteDev": {
+          "rva": "0x9820a",
+          "forwarder": null
+        },
+        "FsRtlPrivateLock": {
+          "rva": "0x19b78",
+          "forwarder": null
+        },
+        "FsRtlProcessFileLock": {
+          "rva": "0x18c54",
+          "forwarder": null
+        },
+        "FsRtlRegisterFileSystemFilterCallbacks": {
+          "rva": "0x174c2",
+          "forwarder": null
+        },
+        "FsRtlRegisterUncProvider": {
+          "rva": "0x9a958",
+          "forwarder": null
+        },
+        "FsRtlReleaseFile": {
+          "rva": "0x991ee",
+          "forwarder": null
+        },
+        "FsRtlRemoveFilterContext": {
+          "rva": "0x1c0e4",
+          "forwarder": null
+        },
+        "FsRtlRemoveLargeMcbEntry": {
+          "rva": "0x17daa",
+          "forwarder": null
+        },
+        "FsRtlRemoveMcbEntry": {
+          "rva": "0x17546",
+          "forwarder": null
+        },
+        "FsRtlRemovePerFileObjectContext": {
+          "rva": "0x1c39c",
+          "forwarder": null
+        },
+        "FsRtlRemovePerStreamContext": {
+          "rva": "0x1c1cc",
+          "forwarder": null
+        },
+        "FsRtlResetLargeMcb": {
+          "rva": "0x178ec",
+          "forwarder": null
+        },
+        "FsRtlSplitLargeMcb": {
+          "rva": "0x181f4",
+          "forwarder": null
+        },
+        "FsRtlSyncVolumes": {
+          "rva": "0x9a42a",
+          "forwarder": null
+        },
+        "FsRtlTeardownFilterContexts": {
+          "rva": "0x1c108",
+          "forwarder": null
+        },
+        "FsRtlTeardownPerStreamContexts": {
+          "rva": "0x9b4c4",
+          "forwarder": null
+        },
+        "FsRtlTruncateLargeMcb": {
+          "rva": "0x17792",
+          "forwarder": null
+        },
+        "FsRtlTruncateMcb": {
+          "rva": "0x17516",
+          "forwarder": null
+        },
+        "FsRtlUninitializeFileLock": {
+          "rva": "0x18b02",
+          "forwarder": null
+        },
+        "FsRtlUninitializeLargeMcb": {
+          "rva": "0x17752",
+          "forwarder": null
+        },
+        "FsRtlUninitializeMcb": {
+          "rva": "0x99592",
+          "forwarder": null
+        },
+        "FsRtlUninitializeOplock": {
+          "rva": "0x1a8ec",
+          "forwarder": null
+        },
+        "HalDispatchTable": {
+          "rva": "0x6cd48",
+          "forwarder": null
+        },
+        "HalPrivateDispatchTable": {
+          "rva": "0x6cd90",
+          "forwarder": null
+        },
+        "InbvAcquireDisplayOwnership": {
+          "rva": "0x1cef0",
+          "forwarder": null
+        },
+        "InbvCheckDisplayOwnership": {
+          "rva": "0x1cf24",
+          "forwarder": null
+        },
+        "InbvDisplayString": {
+          "rva": "0x1cd66",
+          "forwarder": null
+        },
+        "InbvEnableBootDriver": {
+          "rva": "0x1cc0e",
+          "forwarder": null
+        },
+        "InbvEnableDisplayString": {
+          "rva": "0x1cc50",
+          "forwarder": null
+        },
+        "InbvInstallDisplayStringFilter": {
+          "rva": "0x1cd5a",
+          "forwarder": null
+        },
+        "InbvIsBootDriverInstalled": {
+          "rva": "0x1cc62",
+          "forwarder": null
+        },
+        "InbvNotifyDisplayOwnershipLost": {
+          "rva": "0x1cea4",
+          "forwarder": null
+        },
+        "InbvResetDisplay": {
+          "rva": "0x1cc68",
+          "forwarder": null
+        },
+        "InbvSetScrollRegion": {
+          "rva": "0x1cf32",
+          "forwarder": null
+        },
+        "InbvSetTextColor": {
+          "rva": "0x1cd4e",
+          "forwarder": null
+        },
+        "InbvSolidColorFill": {
+          "rva": "0x1cd16",
+          "forwarder": null
+        },
+        "InitSafeBootMode": {
+          "rva": "0x75f34",
+          "forwarder": null
+        },
+        "InterlockedCompareExchange": {
+          "rva": "0x64250",
+          "forwarder": null
+        },
+        "InterlockedDecrement": {
+          "rva": "0x64244",
+          "forwarder": null
+        },
+        "InterlockedExchange": {
+          "rva": "0x64230",
+          "forwarder": null
+        },
+        "InterlockedExchangeAdd": {
+          "rva": "0x642ac",
+          "forwarder": null
+        },
+        "InterlockedIncrement": {
+          "rva": "0x64238",
+          "forwarder": null
+        },
+        "IoAcquireCancelSpinLock": {
+          "rva": "0x1d240",
+          "forwarder": null
+        },
+        "IoAcquireRemoveLockEx": {
+          "rva": "0x2020a",
+          "forwarder": null
+        },
+        "IoAcquireVpbSpinLock": {
+          "rva": "0x1d240",
+          "forwarder": null
+        },
+        "IoAdapterObjectType": {
+          "rva": "0x77f34",
+          "forwarder": null
+        },
+        "IoAllocateAdapterChannel": {
+          "rva": "0x1d250",
+          "forwarder": null
+        },
+        "IoAllocateController": {
+          "rva": "0x1d27c",
+          "forwarder": null
+        },
+        "IoAllocateDriverObjectExtension": {
+          "rva": "0x1d2c2",
+          "forwarder": null
+        },
+        "IoAllocateErrorLogEntry": {
+          "rva": "0x1d356",
+          "forwarder": null
+        },
+        "IoAllocateIrp": {
+          "rva": "0x1d498",
+          "forwarder": null
+        },
+        "IoAllocateMdl": {
+          "rva": "0x1d698",
+          "forwarder": null
+        },
+        "IoAllocateWorkItem": {
+          "rva": "0x2039a",
+          "forwarder": null
+        },
+        "IoAssignResources": {
+          "rva": "0xa13a4",
+          "forwarder": null
+        },
+        "IoAttachDevice": {
+          "rva": "0x9ecb2",
+          "forwarder": null
+        },
+        "IoAttachDeviceByPointer": {
+          "rva": "0x1d860",
+          "forwarder": null
+        },
+        "IoAttachDeviceToDeviceStack": {
+          "rva": "0x1d87e",
+          "forwarder": null
+        },
+        "IoAttachDeviceToDeviceStackSafe": {
+          "rva": "0x1d890",
+          "forwarder": null
+        },
+        "IoBuildAsynchronousFsdRequest": {
+          "rva": "0x1d940",
+          "forwarder": null
+        },
+        "IoBuildDeviceIoControlRequest": {
+          "rva": "0x1da9e",
+          "forwarder": null
+        },
+        "IoBuildPartialMdl": {
+          "rva": "0x1dcb2",
+          "forwarder": null
+        },
+        "IoBuildSynchronousFsdRequest": {
+          "rva": "0x1dd62",
+          "forwarder": null
+        },
+        "IoCallDriver": {
+          "rva": "0x1fca4",
+          "forwarder": null
+        },
+        "IoCancelFileOpen": {
+          "rva": "0xa0a9a",
+          "forwarder": null
+        },
+        "IoCancelIrp": {
+          "rva": "0x1ddfa",
+          "forwarder": null
+        },
+        "IoCheckDesiredAccess": {
+          "rva": "0x9ede4",
+          "forwarder": null
+        },
+        "IoCheckEaBufferValidity": {
+          "rva": "0x9ee10",
+          "forwarder": null
+        },
+        "IoCheckFunctionAccess": {
+          "rva": "0x9ee70",
+          "forwarder": null
+        },
+        "IoCheckQuerySetFileInformation": {
+          "rva": "0x1de84",
+          "forwarder": null
+        },
+        "IoCheckQuerySetVolumeInformation": {
+          "rva": "0x1debe",
+          "forwarder": null
+        },
+        "IoCheckQuotaBufferValidity": {
+          "rva": "0x9efb6",
+          "forwarder": null
+        },
+        "IoCheckShareAccess": {
+          "rva": "0x9f030",
+          "forwarder": null
+        },
+        "IoCompleteRequest": {
+          "rva": "0x1fcb4",
+          "forwarder": null
+        },
+        "IoConnectInterrupt": {
+          "rva": "0x9f13e",
+          "forwarder": null
+        },
+        "IoCreateController": {
+          "rva": "0x9f28c",
+          "forwarder": null
+        },
+        "IoCreateDevice": {
+          "rva": "0x9f38c",
+          "forwarder": null
+        },
+        "IoCreateDriver": {
+          "rva": "0xa1d04",
+          "forwarder": null
+        },
+        "IoCreateFile": {
+          "rva": "0x9f692",
+          "forwarder": null
+        },
+        "IoCreateFileSpecifyDeviceObjectHint": {
+          "rva": "0x9f6cc",
+          "forwarder": null
+        },
+        "IoCreateNotificationEvent": {
+          "rva": "0x9fc4c",
+          "forwarder": null
+        },
+        "IoCreateStreamFileObject": {
+          "rva": "0x9fcbc",
+          "forwarder": null
+        },
+        "IoCreateStreamFileObjectLite": {
+          "rva": "0x1e1fe",
+          "forwarder": null
+        },
+        "IoCreateSymbolicLink": {
+          "rva": "0x9fdcc",
+          "forwarder": null
+        },
+        "IoCreateSynchronizationEvent": {
+          "rva": "0x9fe22",
+          "forwarder": null
+        },
+        "IoCreateUnprotectedSymbolicLink": {
+          "rva": "0x9fe94",
+          "forwarder": null
+        },
+        "IoDeleteController": {
+          "rva": "0xa1f14",
+          "forwarder": null
+        },
+        "IoDeleteDevice": {
+          "rva": "0x1e31a",
+          "forwarder": null
+        },
+        "IoDeleteDriver": {
+          "rva": "0xa1f14",
+          "forwarder": null
+        },
+        "IoDeleteSymbolicLink": {
+          "rva": "0x9ff0a",
+          "forwarder": null
+        },
+        "IoDetachDevice": {
+          "rva": "0x1e5a8",
+          "forwarder": null
+        },
+        "IoDeviceHandlerObjectSize": {
+          "rva": "0x781f8",
+          "forwarder": null
+        },
+        "IoDeviceHandlerObjectType": {
+          "rva": "0x77fd4",
+          "forwarder": null
+        },
+        "IoDeviceObjectType": {
+          "rva": "0x78238",
+          "forwarder": null
+        },
+        "IoDisconnectInterrupt": {
+          "rva": "0x9ff7a",
+          "forwarder": null
+        },
+        "IoDriverObjectType": {
+          "rva": "0x780e8",
+          "forwarder": null
+        },
+        "IoEnqueueIrp": {
+          "rva": "0x9ffae",
+          "forwarder": null
+        },
+        "IoEnumerateDeviceObjectList": {
+          "rva": "0x200e4",
+          "forwarder": null
+        },
+        "IoEnumerateRegisteredFiltersList": {
+          "rva": "0xa0b9c",
+          "forwarder": null
+        },
+        "IoFastQueryNetworkAttributes": {
+          "rva": "0x9ffe4",
+          "forwarder": null
+        },
+        "IoFileObjectType": {
+          "rva": "0x77f68",
+          "forwarder": null
+        },
+        "IoFreeController": {
+          "rva": "0x1e604",
+          "forwarder": null
+        },
+        "IoFreeIrp": {
+          "rva": "0x1e62e",
+          "forwarder": null
+        },
+        "IoFreeMdl": {
+          "rva": "0x1e700",
+          "forwarder": null
+        },
+        "IoFreeWorkItem": {
+          "rva": "0x382be",
+          "forwarder": null
+        },
+        "IoGetAttachedDevice": {
+          "rva": "0x1e736",
+          "forwarder": null
+        },
+        "IoGetAttachedDeviceReference": {
+          "rva": "0x1e748",
+          "forwarder": null
+        },
+        "IoGetBaseFileSystemDeviceObject": {
+          "rva": "0x1e770",
+          "forwarder": null
+        },
+        "IoGetBootDiskInformation": {
+          "rva": "0x1f848",
+          "forwarder": null
+        },
+        "IoGetConfigurationInformation": {
+          "rva": "0xa0072",
+          "forwarder": null
+        },
+        "IoGetCurrentProcess": {
+          "rva": "0x1e7a0",
+          "forwarder": null
+        },
+        "IoGetDeviceAttachmentBaseRef": {
+          "rva": "0x2015a",
+          "forwarder": null
+        },
+        "IoGetDeviceInterfaceAlias": {
+          "rva": "0xa46b4",
+          "forwarder": null
+        },
+        "IoGetDeviceInterfaces": {
+          "rva": "0xa37c4",
+          "forwarder": null
+        },
+        "IoGetDeviceObjectPointer": {
+          "rva": "0xa0078",
+          "forwarder": null
+        },
+        "IoGetDeviceProperty": {
+          "rva": "0xa1520",
+          "forwarder": null
+        },
+        "IoGetDeviceToVerify": {
+          "rva": "0x1e7aa",
+          "forwarder": null
+        },
+        "IoGetDiskDeviceObject": {
+          "rva": "0x20194",
+          "forwarder": null
+        },
+        "IoGetDmaAdapter": {
+          "rva": "0xa5b1e",
+          "forwarder": null
+        },
+        "IoGetDriverObjectExtension": {
+          "rva": "0x1e7b8",
+          "forwarder": null
+        },
+        "IoGetFileObjectGenericMapping": {
+          "rva": "0x1e7e0",
+          "forwarder": null
+        },
+        "IoGetInitialStack": {
+          "rva": "0x1e7e6",
+          "forwarder": null
+        },
+        "IoGetLowerDeviceObject": {
+          "rva": "0x20090",
+          "forwarder": null
+        },
+        "IoGetRelatedDeviceObject": {
+          "rva": "0x1e7f0",
+          "forwarder": null
+        },
+        "IoGetRequestorProcess": {
+          "rva": "0x1e870",
+          "forwarder": null
+        },
+        "IoGetRequestorProcessId": {
+          "rva": "0x1e856",
+          "forwarder": null
+        },
+        "IoGetRequestorSessionId": {
+          "rva": "0x1fe2a",
+          "forwarder": null
+        },
+        "IoGetStackLimits": {
+          "rva": "0x69a90",
+          "forwarder": null
+        },
+        "IoGetTopLevelIrp": {
+          "rva": "0x1e888",
+          "forwarder": null
+        },
+        "IoInitializeIrp": {
+          "rva": "0x1e896",
+          "forwarder": null
+        },
+        "IoInitializeRemoveLockEx": {
+          "rva": "0xa0c24",
+          "forwarder": null
+        },
+        "IoInitializeTimer": {
+          "rva": "0xa00f6",
+          "forwarder": null
+        },
+        "IoInvalidateDeviceRelations": {
+          "rva": "0x20412",
+          "forwarder": null
+        },
+        "IoInvalidateDeviceState": {
+          "rva": "0x2080e",
+          "forwarder": null
+        },
+        "IoIsFileOriginRemote": {
+          "rva": "0x1ffd6",
+          "forwarder": null
+        },
+        "IoIsOperationSynchronous": {
+          "rva": "0x1e996",
+          "forwarder": null
+        },
+        "IoIsSystemThread": {
+          "rva": "0x1e9c0",
+          "forwarder": null
+        },
+        "IoIsValidNameGraftingBuffer": {
+          "rva": "0x1e9ee",
+          "forwarder": null
+        },
+        "IoIsWdmVersionAvailable": {
+          "rva": "0xa5b06",
+          "forwarder": null
+        },
+        "IoMakeAssociatedIrp": {
+          "rva": "0x1ef28",
+          "forwarder": null
+        },
+        "IoOpenDeviceInterfaceRegistryKey": {
+          "rva": "0xa38b2",
+          "forwarder": null
+        },
+        "IoOpenDeviceRegistryKey": {
+          "rva": "0xa1b08",
+          "forwarder": null
+        },
+        "IoPageRead": {
+          "rva": "0x1f078",
+          "forwarder": null
+        },
+        "IoPnPDeliverServicePowerNotification": {
+          "rva": "0x20b34",
+          "forwarder": null
+        },
+        "IoQueryDeviceDescription": {
+          "rva": "0xa601e",
+          "forwarder": null
+        },
+        "IoQueryFileInformation": {
+          "rva": "0xa0164",
+          "forwarder": null
+        },
+        "IoQueryVolumeInformation": {
+          "rva": "0xa0182",
+          "forwarder": null
+        },
+        "IoQueueThreadIrp": {
+          "rva": "0x1f130",
+          "forwarder": null
+        },
+        "IoQueueWorkItem": {
+          "rva": "0x203c4",
+          "forwarder": null
+        },
+        "IoRaiseHardError": {
+          "rva": "0x1f166",
+          "forwarder": null
+        },
+        "IoRaiseInformationalHardError": {
+          "rva": "0x1f21c",
+          "forwarder": null
+        },
+        "IoReadOperationCount": {
+          "rva": "0x78048",
+          "forwarder": null
+        },
+        "IoReadTransferCount": {
+          "rva": "0x77fd8",
+          "forwarder": null
+        },
+        "IoRegisterBootDriverReinitialization": {
+          "rva": "0xa01a0",
+          "forwarder": null
+        },
+        "IoRegisterDeviceInterface": {
+          "rva": "0xa3ade",
+          "forwarder": null
+        },
+        "IoRegisterDriverReinitialization": {
+          "rva": "0xa01e0",
+          "forwarder": null
+        },
+        "IoRegisterFileSystem": {
+          "rva": "0xa0220",
+          "forwarder": null
+        },
+        "IoRegisterFsRegistrationChange": {
+          "rva": "0xa0304",
+          "forwarder": null
+        },
+        "IoRegisterFsRegistrationChangeEx": {
+          "rva": "0xa0316",
+          "forwarder": null
+        },
+        "IoRegisterLastChanceShutdownNotification": {
+          "rva": "0xa040a",
+          "forwarder": null
+        },
+        "IoRegisterPlugPlayNotification": {
+          "rva": "0xa555a",
+          "forwarder": null
+        },
+        "IoRegisterShutdownNotification": {
+          "rva": "0xa0446",
+          "forwarder": null
+        },
+        "IoReleaseCancelSpinLock": {
+          "rva": "0x1f45a",
+          "forwarder": null
+        },
+        "IoReleaseRemoveLockAndWaitEx": {
+          "rva": "0xa0ca6",
+          "forwarder": null
+        },
+        "IoReleaseRemoveLockEx": {
+          "rva": "0x202c4",
+          "forwarder": null
+        },
+        "IoReleaseVpbSpinLock": {
+          "rva": "0x1f45a",
+          "forwarder": null
+        },
+        "IoRemoveShareAccess": {
+          "rva": "0xa0482",
+          "forwarder": null
+        },
+        "IoReportDetectedDevice": {
+          "rva": "0xa2200",
+          "forwarder": null
+        },
+        "IoReportHalResourceUsage": {
+          "rva": "0x149628",
+          "forwarder": null
+        },
+        "IoReportResourceForDetection": {
+          "rva": "0xa6728",
+          "forwarder": null
+        },
+        "IoReportResourceUsage": {
+          "rva": "0xa677a",
+          "forwarder": null
+        },
+        "IoReportTargetDeviceChange": {
+          "rva": "0x2058c",
+          "forwarder": null
+        },
+        "IoReportTargetDeviceChangeAsynchronous": {
+          "rva": "0x2069c",
+          "forwarder": null
+        },
+        "IoRequestDeviceEject": {
+          "rva": "0x204b0",
+          "forwarder": null
+        },
+        "IoReuseIrp": {
+          "rva": "0x1e90e",
+          "forwarder": null
+        },
+        "IoSetDeviceInterfaceState": {
+          "rva": "0xa381a",
+          "forwarder": null
+        },
+        "IoSetDeviceToVerify": {
+          "rva": "0x1f468",
+          "forwarder": null
+        },
+        "IoSetFileOrigin": {
+          "rva": "0x1ffe6",
+          "forwarder": null
+        },
+        "IoSetHardErrorOrVerifyDevice": {
+          "rva": "0x1f47a",
+          "forwarder": null
+        },
+        "IoSetInformation": {
+          "rva": "0xa04ec",
+          "forwarder": null
+        },
+        "IoSetIoCompletion": {
+          "rva": "0xa70b2",
+          "forwarder": null
+        },
+        "IoSetShareAccess": {
+          "rva": "0xa07ba",
+          "forwarder": null
+        },
+        "IoSetThreadHardErrorMode": {
+          "rva": "0x1f48e",
+          "forwarder": null
+        },
+        "IoSetTopLevelIrp": {
+          "rva": "0x1f4b2",
+          "forwarder": null
+        },
+        "IoStartNextPacket": {
+          "rva": "0x1f4c8",
+          "forwarder": null
+        },
+        "IoStartNextPacketByKey": {
+          "rva": "0x1f524",
+          "forwarder": null
+        },
+        "IoStartPacket": {
+          "rva": "0x1f582",
+          "forwarder": null
+        },
+        "IoStartTimer": {
+          "rva": "0x1f626",
+          "forwarder": null
+        },
+        "IoStatisticsLock": {
+          "rva": "0x6cac0",
+          "forwarder": null
+        },
+        "IoStopTimer": {
+          "rva": "0x1f652",
+          "forwarder": null
+        },
+        "IoSynchronousInvalidateDeviceRelations": {
+          "rva": "0xa1f20",
+          "forwarder": null
+        },
+        "IoSynchronousPageWrite": {
+          "rva": "0x1f670",
+          "forwarder": null
+        },
+        "IoThreadToProcess": {
+          "rva": "0x1f71e",
+          "forwarder": null
+        },
+        "IoUnregisterFileSystem": {
+          "rva": "0xa0864",
+          "forwarder": null
+        },
+        "IoUnregisterFsRegistrationChange": {
+          "rva": "0xa08c2",
+          "forwarder": null
+        },
+        "IoUnregisterPlugPlayNotification": {
+          "rva": "0xa4cb4",
+          "forwarder": null
+        },
+        "IoUnregisterShutdownNotification": {
+          "rva": "0x850f2",
+          "forwarder": null
+        },
+        "IoUpdateShareAccess": {
+          "rva": "0xa091c",
+          "forwarder": null
+        },
+        "IoVerifyVolume": {
+          "rva": "0xa0964",
+          "forwarder": null
+        },
+        "IoVolumeDeviceToDosName": {
+          "rva": "0xe91c2",
+          "forwarder": null
+        },
+        "IoWMIAllocateInstanceIds": {
+          "rva": "0x105b80",
+          "forwarder": null
+        },
+        "IoWMIRegistrationControl": {
+          "rva": "0x105a6c",
+          "forwarder": null
+        },
+        "IoWMISuggestInstanceName": {
+          "rva": "0x105c84",
+          "forwarder": null
+        },
+        "IoWMIWriteEvent": {
+          "rva": "0x5db8e",
+          "forwarder": null
+        },
+        "IoWriteErrorLogEntry": {
+          "rva": "0x1f72c",
+          "forwarder": null
+        },
+        "IoWriteOperationCount": {
+          "rva": "0x781fc",
+          "forwarder": null
+        },
+        "IoWriteTransferCount": {
+          "rva": "0x78158",
+          "forwarder": null
+        },
+        "IofCallDriver": {
+          "rva": "0x1ddf4",
+          "forwarder": null
+        },
+        "IofCompleteRequest": {
+          "rva": "0x1def8",
+          "forwarder": null
+        },
+        "KdDebuggerEnabled": {
+          "rva": "0x73cbc",
+          "forwarder": null
+        },
+        "KdDebuggerNotPresent": {
+          "rva": "0x73cb8",
+          "forwarder": null
+        },
+        "KdDisableDebugger": {
+          "rva": "0x2983a",
+          "forwarder": null
+        },
+        "KdEnableDebugger": {
+          "rva": "0x298aa",
+          "forwarder": null
+        },
+        "KdEnteredDebugger": {
+          "rva": "0x73cc4",
+          "forwarder": null
+        },
+        "KdPollBreakIn": {
+          "rva": "0x2990a",
+          "forwarder": null
+        },
+        "Ke386CallBios": {
+          "rva": "0xc3c98",
+          "forwarder": null
+        },
+        "Ke386IoSetAccessProcess": {
+          "rva": "0x2a16e",
+          "forwarder": null
+        },
+        "Ke386QueryIoAccessMap": {
+          "rva": "0x2a10a",
+          "forwarder": null
+        },
+        "Ke386SetIoAccessMap": {
+          "rva": "0x2a096",
+          "forwarder": null
+        },
+        "KeAcquireSpinLockAtDpcLevel": {
+          "rva": "0x64524",
+          "forwarder": null
+        },
+        "KeAddSystemServiceTable": {
+          "rva": "0xc3c06",
+          "forwarder": null
+        },
+        "KeAttachProcess": {
+          "rva": "0x2a22c",
+          "forwarder": null
+        },
+        "KeBugCheck": {
+          "rva": "0x2a85e",
+          "forwarder": null
+        },
+        "KeBugCheckEx": {
+          "rva": "0x2ac4e",
+          "forwarder": null
+        },
+        "KeCancelTimer": {
+          "rva": "0x2b448",
+          "forwarder": null
+        },
+        "KeClearEvent": {
+          "rva": "0x2b656",
+          "forwarder": null
+        },
+        "KeConnectInterrupt": {
+          "rva": "0x2b84a",
+          "forwarder": null
+        },
+        "KeDcacheFlushCount": {
+          "rva": "0x73ce4",
+          "forwarder": null
+        },
+        "KeDelayExecutionThread": {
+          "rva": "0x2bbf4",
+          "forwarder": null
+        },
+        "KeDeregisterBugCheckCallback": {
+          "rva": "0x2b26e",
+          "forwarder": null
+        },
+        "KeDetachProcess": {
+          "rva": "0x2a3c0",
+          "forwarder": null
+        },
+        "KeDisconnectInterrupt": {
+          "rva": "0x2b956",
+          "forwarder": null
+        },
+        "KeEnterCriticalRegion": {
+          "rva": "0x29dc2",
+          "forwarder": null
+        },
+        "KeEnterKernelDebugger": {
+          "rva": "0x2b22c",
+          "forwarder": null
+        },
+        "KeFindConfigurationEntry": {
+          "rva": "0x152118",
+          "forwarder": null
+        },
+        "KeFindConfigurationNextEntry": {
+          "rva": "0x15213a",
+          "forwarder": null
+        },
+        "KeFlushEntireTb": {
+          "rva": "0x2c3ec",
+          "forwarder": null
+        },
+        "KeGetCurrentThread": {
+          "rva": "0x68608",
+          "forwarder": null
+        },
+        "KeGetPreviousMode": {
+          "rva": "0x68610",
+          "forwarder": null
+        },
+        "KeI386AbiosCall": {
+          "rva": "0x2c650",
+          "forwarder": null
+        },
+        "KeI386AllocateGdtSelectors": {
+          "rva": "0x2c6de",
+          "forwarder": null
+        },
+        "KeI386Call16BitCStyleFunction": {
+          "rva": "0x2cc0c",
+          "forwarder": null
+        },
+        "KeI386Call16BitFunction": {
+          "rva": "0x2ca68",
+          "forwarder": null
+        },
+        "KeI386FlatToGdtSelector": {
+          "rva": "0x2c78a",
+          "forwarder": null
+        },
+        "KeI386GetLid": {
+          "rva": "0x2c488",
+          "forwarder": null
+        },
+        "KeI386MachineType": {
+          "rva": "0x73d14",
+          "forwarder": null
+        },
+        "KeI386ReleaseGdtSelectors": {
+          "rva": "0x2c73c",
+          "forwarder": null
+        },
+        "KeI386ReleaseLid": {
+          "rva": "0x2c5e8",
+          "forwarder": null
+        },
+        "KeI386SetGdtSelector": {
+          "rva": "0xc3fc4",
+          "forwarder": null
+        },
+        "KeIcacheFlushCount": {
+          "rva": "0x73ce8",
+          "forwarder": null
+        },
+        "KeInitializeApc": {
+          "rva": "0x2cd88",
+          "forwarder": null
+        },
+        "KeInitializeDeviceQueue": {
+          "rva": "0x2cf0c",
+          "forwarder": null
+        },
+        "KeInitializeDpc": {
+          "rva": "0x2d0c0",
+          "forwarder": null
+        },
+        "KeInitializeEvent": {
+          "rva": "0x2b606",
+          "forwarder": null
+        },
+        "KeInitializeInterrupt": {
+          "rva": "0x2b7b6",
+          "forwarder": null
+        },
+        "KeInitializeMutant": {
+          "rva": "0x2d218",
+          "forwarder": null
+        },
+        "KeInitializeMutex": {
+          "rva": "0x2d27e",
+          "forwarder": null
+        },
+        "KeInitializeQueue": {
+          "rva": "0x2d380",
+          "forwarder": null
+        },
+        "KeInitializeSemaphore": {
+          "rva": "0x2d766",
+          "forwarder": null
+        },
+        "KeInitializeSpinLock": {
+          "rva": "0x64510",
+          "forwarder": null
+        },
+        "KeInitializeTimer": {
+          "rva": "0x2b40c",
+          "forwarder": null
+        },
+        "KeInitializeTimerEx": {
+          "rva": "0x2b41a",
+          "forwarder": null
+        },
+        "KeInsertByKeyDeviceQueue": {
+          "rva": "0x2cf7c",
+          "forwarder": null
+        },
+        "KeInsertDeviceQueue": {
+          "rva": "0x2cf36",
+          "forwarder": null
+        },
+        "KeInsertHeadQueue": {
+          "rva": "0x2d3ea",
+          "forwarder": null
+        },
+        "KeInsertQueue": {
+          "rva": "0x2d3c0",
+          "forwarder": null
+        },
+        "KeInsertQueueApc": {
+          "rva": "0x2ce4e",
+          "forwarder": null
+        },
+        "KeInsertQueueDpc": {
+          "rva": "0x2d0e6",
+          "forwarder": null
+        },
+        "KeIsExecutingDpc": {
+          "rva": "0x68620",
+          "forwarder": null
+        },
+        "KeLeaveCriticalRegion": {
+          "rva": "0x29dd0",
+          "forwarder": null
+        },
+        "KeLoaderBlock": {
+          "rva": "0x73cec",
+          "forwarder": null
+        },
+        "KeNumberProcessors": {
+          "rva": "0x73cf0",
+          "forwarder": null
+        },
+        "KeProfileInterrupt": {
+          "rva": "0x68910",
+          "forwarder": null
+        },
+        "KeProfileInterruptWithSource": {
+          "rva": "0x68918",
+          "forwarder": null
+        },
+        "KePulseEvent": {
+          "rva": "0x2b662",
+          "forwarder": null
+        },
+        "KeQueryActiveProcessors": {
+          "rva": "0xc3c92",
+          "forwarder": null
+        },
+        "KeQueryInterruptTime": {
+          "rva": "0x29dfe",
+          "forwarder": null
+        },
+        "KeQueryPriorityThread": {
+          "rva": "0x2dc82",
+          "forwarder": null
+        },
+        "KeQuerySystemTime": {
+          "rva": "0x29e16",
+          "forwarder": null
+        },
+        "KeQueryTickCount": {
+          "rva": "0x29e3c",
+          "forwarder": null
+        },
+        "KeQueryTimeIncrement": {
+          "rva": "0x29e62",
+          "forwarder": null
+        },
+        "KeRaiseUserException": {
+          "rva": "0x2ef28",
+          "forwarder": null
+        },
+        "KeReadStateEvent": {
+          "rva": "0x2b6bc",
+          "forwarder": null
+        },
+        "KeReadStateMutant": {
+          "rva": "0x2b6bc",
+          "forwarder": null
+        },
+        "KeReadStateMutex": {
+          "rva": "0x2b6bc",
+          "forwarder": null
+        },
+        "KeReadStateQueue": {
+          "rva": "0x2b6bc",
+          "forwarder": null
+        },
+        "KeReadStateSemaphore": {
+          "rva": "0x2b6bc",
+          "forwarder": null
+        },
+        "KeReadStateTimer": {
+          "rva": "0x2dc8e",
+          "forwarder": null
+        },
+        "KeRegisterBugCheckCallback": {
+          "rva": "0x2b2be",
+          "forwarder": null
+        },
+        "KeReleaseMutant": {
+          "rva": "0x2d2a8",
+          "forwarder": null
+        },
+        "KeReleaseMutex": {
+          "rva": "0x2d36c",
+          "forwarder": null
+        },
+        "KeReleaseSemaphore": {
+          "rva": "0x2d78a",
+          "forwarder": null
+        },
+        "KeReleaseSpinLockFromDpcLevel": {
+          "rva": "0x64534",
+          "forwarder": null
+        },
+        "KeRemoveByKeyDeviceQueue": {
+          "rva": "0x2d01e",
+          "forwarder": null
+        },
+        "KeRemoveDeviceQueue": {
+          "rva": "0x2cfde",
+          "forwarder": null
+        },
+        "KeRemoveEntryDeviceQueue": {
+          "rva": "0x2d08e",
+          "forwarder": null
+        },
+        "KeRemoveQueue": {
+          "rva": "0x2d414",
+          "forwarder": null
+        },
+        "KeRemoveQueueDpc": {
+          "rva": "0x2d1ce",
+          "forwarder": null
+        },
+        "KeResetEvent": {
+          "rva": "0x2b6c6",
+          "forwarder": null
+        },
+        "KeRestoreFloatingPointState": {
+          "rva": "0x2f22d",
+          "forwarder": null
+        },
+        "KeRevertToUserAffinityThread": {
+          "rva": "0x2dd0c",
+          "forwarder": null
+        },
+        "KeRundownQueue": {
+          "rva": "0x2d634",
+          "forwarder": null
+        },
+        "KeSaveFloatingPointState": {
+          "rva": "0x2efac",
+          "forwarder": null
+        },
+        "KeSaveStateForHibernate": {
+          "rva": "0x2f464",
+          "forwarder": null
+        },
+        "KeServiceDescriptorTable": {
+          "rva": "0x80920",
+          "forwarder": null
+        },
+        "KeSetAffinityThread": {
+          "rva": "0x2ddde",
+          "forwarder": null
+        },
+        "KeSetBasePriorityThread": {
+          "rva": "0x2df38",
+          "forwarder": null
+        },
+        "KeSetDmaIoCoherency": {
+          "rva": "0x29e68",
+          "forwarder": null
+        },
+        "KeSetEvent": {
+          "rva": "0x2b6e6",
+          "forwarder": null
+        },
+        "KeSetEventBoostPriority": {
+          "rva": "0x2b760",
+          "forwarder": null
+        },
+        "KeSetIdealProcessorThread": {
+          "rva": "0x2e046",
+          "forwarder": null
+        },
+        "KeSetImportanceDpc": {
+          "rva": "0x2d1fa",
+          "forwarder": null
+        },
+        "KeSetKernelStackSwapEnable": {
+          "rva": "0x2e094",
+          "forwarder": null
+        },
+        "KeSetPriorityThread": {
+          "rva": "0x2e0b2",
+          "forwarder": null
+        },
+        "KeSetProfileIrql": {
+          "rva": "0x29e74",
+          "forwarder": null
+        },
+        "KeSetSwapContextNotifyRoutine": {
+          "rva": "0xc3c7a",
+          "forwarder": null
+        },
+        "KeSetSystemAffinityThread": {
+          "rva": "0x2dede",
+          "forwarder": null
+        },
+        "KeSetTargetProcessorDpc": {
+          "rva": "0x2d208",
+          "forwarder": null
+        },
+        "KeSetThreadSelectNotifyRoutine": {
+          "rva": "0xc3c82",
+          "forwarder": null
+        },
+        "KeSetTimeIncrement": {
+          "rva": "0x2a062",
+          "forwarder": null
+        },
+        "KeSetTimeUpdateNotifyRoutine": {
+          "rva": "0xc3c8a",
+          "forwarder": null
+        },
+        "KeSetTimer": {
+          "rva": "0x2b478",
+          "forwarder": null
+        },
+        "KeSetTimerEx": {
+          "rva": "0x2b492",
+          "forwarder": null
+        },
+        "KeStackAttachProcess": {
+          "rva": "0x2a332",
+          "forwarder": null
+        },
+        "KeSynchronizeExecution": {
+          "rva": "0x68a20",
+          "forwarder": null
+        },
+        "KeTerminateThread": {
+          "rva": "0x2e15c",
+          "forwarder": null
+        },
+        "KeTickCount": {
+          "rva": "0x6cb84",
+          "forwarder": null
+        },
+        "KeUnstackDetachProcess": {
+          "rva": "0x2a492",
+          "forwarder": null
+        },
+        "KeUpdateRunTime": {
+          "rva": "0x687d8",
+          "forwarder": null
+        },
+        "KeUpdateSystemTime": {
+          "rva": "0x68670",
+          "forwarder": null
+        },
+        "KeUserModeCallback": {
+          "rva": "0x2f47a",
+          "forwarder": null
+        },
+        "KeWaitForMultipleObjects": {
+          "rva": "0x2bdda",
+          "forwarder": null
+        },
+        "KeWaitForMutexObject": {
+          "rva": "0x2c11e",
+          "forwarder": null
+        },
+        "KeWaitForSingleObject": {
+          "rva": "0x2c11e",
+          "forwarder": null
+        },
+        "KefAcquireSpinLockAtDpcLevel": {
+          "rva": "0x64520",
+          "forwarder": null
+        },
+        "KefReleaseSpinLockFromDpcLevel": {
+          "rva": "0x64530",
+          "forwarder": null
+        },
+        "Kei386EoiHelper": {
+          "rva": "0x656dc",
+          "forwarder": null
+        },
+        "KiAcquireSpinLock": {
+          "rva": "0x64540",
+          "forwarder": null
+        },
+        "KiBugCheckData": {
+          "rva": "0x810a0",
+          "forwarder": null
+        },
+        "KiCoprocessorError": {
+          "rva": "0x68448",
+          "forwarder": null
+        },
+        "KiDeliverApc": {
+          "rva": "0x2f572",
+          "forwarder": null
+        },
+        "KiDispatchInterrupt": {
+          "rva": "0x68ec0",
+          "forwarder": null
+        },
+        "KiEnableTimerWatchdog": {
+          "rva": "0x73d08",
+          "forwarder": null
+        },
+        "KiIpiServiceRoutine": {
+          "rva": "0x2f858",
+          "forwarder": null
+        },
+        "KiReleaseSpinLock": {
+          "rva": "0x64550",
+          "forwarder": null
+        },
+        "KiUnexpectedInterrupt": {
+          "rva": "0x68cf2",
+          "forwarder": null
+        },
+        "Kii386SpinOnSpinLock": {
+          "rva": "0x685f4",
+          "forwarder": null
+        },
+        "LdrAccessResource": {
+          "rva": "0xe936a",
+          "forwarder": null
+        },
+        "LdrEnumResources": {
+          "rva": "0xe98a6",
+          "forwarder": null
+        },
+        "LdrFindResourceDirectory_U": {
+          "rva": "0xe94de",
+          "forwarder": null
+        },
+        "LdrFindResource_U": {
+          "rva": "0xe94c2",
+          "forwarder": null
+        },
+        "LpcPortObjectType": {
+          "rva": "0x8112c",
+          "forwarder": null
+        },
+        "LpcRequestPort": {
+          "rva": "0xc587a",
+          "forwarder": null
+        },
+        "LpcRequestWaitReplyPort": {
+          "rva": "0xc5b04",
+          "forwarder": null
+        },
+        "LsaCallAuthenticationPackage": {
+          "rva": "0x5f6d1",
+          "forwarder": null
+        },
+        "LsaDeregisterLogonProcess": {
+          "rva": "0x5f75d",
+          "forwarder": null
+        },
+        "LsaFreeReturnBuffer": {
+          "rva": "0x5f42b",
+          "forwarder": null
+        },
+        "LsaLogonUser": {
+          "rva": "0x5f5e9",
+          "forwarder": null
+        },
+        "LsaLookupAuthenticationPackage": {
+          "rva": "0x5f55b",
+          "forwarder": null
+        },
+        "LsaRegisterLogonProcess": {
+          "rva": "0x5f44b",
+          "forwarder": null
+        },
+        "Mm64BitPhysicalAddress": {
+          "rva": "0x81aa4",
+          "forwarder": null
+        },
+        "MmAddPhysicalMemory": {
+          "rva": "0x34676",
+          "forwarder": null
+        },
+        "MmAddVerifierThunks": {
+          "rva": "0xc88dc",
+          "forwarder": null
+        },
+        "MmAdjustWorkingSetSize": {
+          "rva": "0x869d2",
+          "forwarder": null
+        },
+        "MmAllocateContiguousMemory": {
+          "rva": "0x38058",
+          "forwarder": null
+        },
+        "MmAllocateContiguousMemorySpecifyCache": {
+          "rva": "0x37f88",
+          "forwarder": null
+        },
+        "MmAllocateMappingAddress": {
+          "rva": "0x37778",
+          "forwarder": null
+        },
+        "MmAllocateNonCachedMemory": {
+          "rva": "0x87872",
+          "forwarder": null
+        },
+        "MmAllocatePagesForMdl": {
+          "rva": "0x871f4",
+          "forwarder": null
+        },
+        "MmBuildMdlForNonPagedPool": {
+          "rva": "0x37252",
+          "forwarder": null
+        },
+        "MmCanFileBeTruncated": {
+          "rva": "0x3a1b4",
+          "forwarder": null
+        },
+        "MmCommitSessionMappedView": {
+          "rva": "0xcaeac",
+          "forwarder": null
+        },
+        "MmCreateMdl": {
+          "rva": "0x383c8",
+          "forwarder": null
+        },
+        "MmCreateSection": {
+          "rva": "0x3b1e8",
+          "forwarder": null
+        },
+        "MmDisableModifiedWriteOfSection": {
+          "rva": "0x3d1f2",
+          "forwarder": null
+        },
+        "MmFlushImageSection": {
+          "rva": "0x3e452",
+          "forwarder": null
+        },
+        "MmForceSectionClosed": {
+          "rva": "0x39502",
+          "forwarder": null
+        },
+        "MmFreeContiguousMemory": {
+          "rva": "0x382be",
+          "forwarder": null
+        },
+        "MmFreeContiguousMemorySpecifyCache": {
+          "rva": "0x382ca",
+          "forwarder": null
+        },
+        "MmFreeMappingAddress": {
+          "rva": "0x377e4",
+          "forwarder": null
+        },
+        "MmFreeNonCachedMemory": {
+          "rva": "0x8797e",
+          "forwarder": null
+        },
+        "MmFreePagesFromMdl": {
+          "rva": "0x877ca",
+          "forwarder": null
+        },
+        "MmGetPhysicalAddress": {
+          "rva": "0x38312",
+          "forwarder": null
+        },
+        "MmGetPhysicalMemoryRanges": {
+          "rva": "0x35102",
+          "forwarder": null
+        },
+        "MmGetSystemRoutineAddress": {
+          "rva": "0xcf8ba",
+          "forwarder": null
+        },
+        "MmGetVirtualForPhysical": {
+          "rva": "0x3836e",
+          "forwarder": null
+        },
+        "MmGrowKernelStack": {
+          "rva": "0x3fd82",
+          "forwarder": null
+        },
+        "MmHighestUserAddress": {
+          "rva": "0x824b4",
+          "forwarder": null
+        },
+        "MmIsAddressValid": {
+          "rva": "0x42820",
+          "forwarder": null
+        },
+        "MmIsDriverVerifying": {
+          "rva": "0x354fa",
+          "forwarder": null
+        },
+        "MmIsNonPagedSystemAddressValid": {
+          "rva": "0x4337c",
+          "forwarder": null
+        },
+        "MmIsRecursiveIoFault": {
+          "rva": "0x38bb2",
+          "forwarder": null
+        },
+        "MmIsThisAnNtAsSystem": {
+          "rva": "0x433a0",
+          "forwarder": null
+        },
+        "MmIsVerifierEnabled": {
+          "rva": "0x354d6",
+          "forwarder": null
+        },
+        "MmLockPagableDataSection": {
+          "rva": "0xc9976",
+          "forwarder": null
+        },
+        "MmLockPagableImageSection": {
+          "rva": "0xc9976",
+          "forwarder": null
+        },
+        "MmLockPagableSectionByHandle": {
+          "rva": "0x386d4",
+          "forwarder": null
+        },
+        "MmMapIoSpace": {
+          "rva": "0x37d78",
+          "forwarder": null
+        },
+        "MmMapLockedPages": {
+          "rva": "0x3756c",
+          "forwarder": null
+        },
+        "MmMapLockedPagesSpecifyCache": {
+          "rva": "0x37584",
+          "forwarder": null
+        },
+        "MmMapLockedPagesWithReservedMapping": {
+          "rva": "0x37884",
+          "forwarder": null
+        },
+        "MmMapMemoryDumpMdl": {
+          "rva": "0x38bd0",
+          "forwarder": null
+        },
+        "MmMapUserAddressesToPage": {
+          "rva": "0x3814c",
+          "forwarder": null
+        },
+        "MmMapVideoDisplay": {
+          "rva": "0xc9cee",
+          "forwarder": null
+        },
+        "MmMapViewInSessionSpace": {
+          "rva": "0x89242",
+          "forwarder": null
+        },
+        "MmMapViewInSystemSpace": {
+          "rva": "0x89228",
+          "forwarder": null
+        },
+        "MmMapViewOfSection": {
+          "rva": "0xd04bc",
+          "forwarder": null
+        },
+        "MmPageEntireDriver": {
+          "rva": "0xce828",
+          "forwarder": null
+        },
+        "MmProbeAndLockPages": {
+          "rva": "0x369e2",
+          "forwarder": null
+        },
+        "MmProbeAndLockProcessPages": {
+          "rva": "0xc9232",
+          "forwarder": null
+        },
+        "MmProbeAndLockSelectedPages": {
+          "rva": "0xc92d4",
+          "forwarder": null
+        },
+        "MmQuerySystemSize": {
+          "rva": "0x4339a",
+          "forwarder": null
+        },
+        "MmRemovePhysicalMemory": {
+          "rva": "0x34ae6",
+          "forwarder": null
+        },
+        "MmResetDriverPaging": {
+          "rva": "0x8874e",
+          "forwarder": null
+        },
+        "MmSectionObjectType": {
+          "rva": "0x824ac",
+          "forwarder": null
+        },
+        "MmSecureVirtualMemory": {
+          "rva": "0xd07b6",
+          "forwarder": null
+        },
+        "MmSetAddressRangeModified": {
+          "rva": "0x3843c",
+          "forwarder": null
+        },
+        "MmSetBankedSection": {
+          "rva": "0xc9b0e",
+          "forwarder": null
+        },
+        "MmSizeOfMdl": {
+          "rva": "0x3839e",
+          "forwarder": null
+        },
+        "MmSystemRangeStart": {
+          "rva": "0x81ca4",
+          "forwarder": null
+        },
+        "MmTrimAllSystemPagableMemory": {
+          "rva": "0x45590",
+          "forwarder": null
+        },
+        "MmUnlockPagableImageSection": {
+          "rva": "0x38aca",
+          "forwarder": null
+        },
+        "MmUnlockPages": {
+          "rva": "0x37120",
+          "forwarder": null
+        },
+        "MmUnmapIoSpace": {
+          "rva": "0x37f1a",
+          "forwarder": null
+        },
+        "MmUnmapLockedPages": {
+          "rva": "0x37ccc",
+          "forwarder": null
+        },
+        "MmUnmapReservedMapping": {
+          "rva": "0x379da",
+          "forwarder": null
+        },
+        "MmUnmapVideoDisplay": {
+          "rva": "0xc9d06",
+          "forwarder": null
+        },
+        "MmUnmapViewInSessionSpace": {
+          "rva": "0x895fa",
+          "forwarder": null
+        },
+        "MmUnmapViewInSystemSpace": {
+          "rva": "0x895e8",
+          "forwarder": null
+        },
+        "MmUnmapViewOfSection": {
+          "rva": "0xd0daa",
+          "forwarder": null
+        },
+        "MmUnsecureVirtualMemory": {
+          "rva": "0xd0ca2",
+          "forwarder": null
+        },
+        "MmUserProbeAddress": {
+          "rva": "0x81b5c",
+          "forwarder": null
+        },
+        "NlsAnsiCodePage": {
+          "rva": "0x83336",
+          "forwarder": null
+        },
+        "NlsLeadByteInfo": {
+          "rva": "0x73080",
+          "forwarder": null
+        },
+        "NlsMbCodePageTag": {
+          "rva": "0x7412c",
+          "forwarder": null
+        },
+        "NlsMbOemCodePageTag": {
+          "rva": "0x74130",
+          "forwarder": null
+        },
+        "NlsOemCodePage": {
+          "rva": "0x83334",
+          "forwarder": null
+        },
+        "NlsOemLeadByteInfo": {
+          "rva": "0x73084",
+          "forwarder": null
+        },
+        "NtAddAtom": {
+          "rva": "0x9574e",
+          "forwarder": null
+        },
+        "NtAdjustPrivilegesToken": {
+          "rva": "0xf5fc6",
+          "forwarder": null
+        },
+        "NtAllocateLocallyUniqueId": {
+          "rva": "0x95bf6",
+          "forwarder": null
+        },
+        "NtAllocateUuids": {
+          "rva": "0x953e4",
+          "forwarder": null
+        },
+        "NtAllocateVirtualMemory": {
+          "rva": "0xc9d16",
+          "forwarder": null
+        },
+        "NtBuildNumber": {
+          "rva": "0x6cddc",
+          "forwarder": null
+        },
+        "NtClose": {
+          "rva": "0x4eb10",
+          "forwarder": null
+        },
+        "NtConnectPort": {
+          "rva": "0xc5b1a",
+          "forwarder": null
+        },
+        "NtCreateEvent": {
+          "rva": "0x8f90a",
+          "forwarder": null
+        },
+        "NtCreateFile": {
+          "rva": "0xa71b2",
+          "forwarder": null
+        },
+        "NtCreateSection": {
+          "rva": "0xcb154",
+          "forwarder": null
+        },
+        "NtDeleteAtom": {
+          "rva": "0x95a5e",
+          "forwarder": null
+        },
+        "NtDeleteFile": {
+          "rva": "0xa0e66",
+          "forwarder": null
+        },
+        "NtDeviceIoControlFile": {
+          "rva": "0xa73c6",
+          "forwarder": null
+        },
+        "NtDuplicateObject": {
+          "rva": "0xd61e8",
+          "forwarder": null
+        },
+        "NtDuplicateToken": {
+          "rva": "0xf6c46",
+          "forwarder": null
+        },
+        "NtFindAtom": {
+          "rva": "0x958d6",
+          "forwarder": null
+        },
+        "NtFreeVirtualMemory": {
+          "rva": "0xd0f28",
+          "forwarder": null
+        },
+        "NtFsControlFile": {
+          "rva": "0xa73f2",
+          "forwarder": null
+        },
+        "NtGlobalFlag": {
+          "rva": "0x76068",
+          "forwarder": null
+        },
+        "NtLockFile": {
+          "rva": "0xa741e",
+          "forwarder": null
+        },
+        "NtMapViewOfSection": {
+          "rva": "0xd00ec",
+          "forwarder": null
+        },
+        "NtNotifyChangeDirectoryFile": {
+          "rva": "0xa813c",
+          "forwarder": null
+        },
+        "NtOpenFile": {
+          "rva": "0xa8456",
+          "forwarder": null
+        },
+        "NtOpenProcess": {
+          "rva": "0xdeb64",
+          "forwarder": null
+        },
+        "NtOpenProcessToken": {
+          "rva": "0xf7bfe",
+          "forwarder": null
+        },
+        "NtQueryDirectoryFile": {
+          "rva": "0xa80dc",
+          "forwarder": null
+        },
+        "NtQueryEaFile": {
+          "rva": "0xa8480",
+          "forwarder": null
+        },
+        "NtQueryInformationAtom": {
+          "rva": "0x95a7c",
+          "forwarder": null
+        },
+        "NtQueryInformationFile": {
+          "rva": "0xa8d74",
+          "forwarder": null
+        },
+        "NtQueryInformationProcess": {
+          "rva": "0xdf0ce",
+          "forwarder": null
+        },
+        "NtQueryInformationToken": {
+          "rva": "0xf7fa6",
+          "forwarder": null
+        },
+        "NtQueryQuotaInformationFile": {
+          "rva": "0xa9c92",
+          "forwarder": null
+        },
+        "NtQuerySecurityObject": {
+          "rva": "0x4f022",
+          "forwarder": null
+        },
+        "NtQuerySystemInformation": {
+          "rva": "0x914c2",
+          "forwarder": null
+        },
+        "NtQueryVolumeInformationFile": {
+          "rva": "0xaa1d0",
+          "forwarder": null
+        },
+        "NtReadFile": {
+          "rva": "0xaa928",
+          "forwarder": null
+        },
+        "NtRequestPort": {
+          "rva": "0xc4b78",
+          "forwarder": null
+        },
+        "NtRequestWaitReplyPort": {
+          "rva": "0xc4f32",
+          "forwarder": null
+        },
+        "NtSetEaFile": {
+          "rva": "0xa89c8",
+          "forwarder": null
+        },
+        "NtSetEvent": {
+          "rva": "0x8fde4",
+          "forwarder": null
+        },
+        "NtSetInformationFile": {
+          "rva": "0xa93fa",
+          "forwarder": null
+        },
+        "NtSetInformationProcess": {
+          "rva": "0xdf998",
+          "forwarder": null
+        },
+        "NtSetInformationThread": {
+          "rva": "0xe0d12",
+          "forwarder": null
+        },
+        "NtSetQuotaInformationFile": {
+          "rva": "0xaa1b6",
+          "forwarder": null
+        },
+        "NtSetSecurityObject": {
+          "rva": "0x4ef30",
+          "forwarder": null
+        },
+        "NtSetVolumeInformationFile": {
+          "rva": "0xaa574",
+          "forwarder": null
+        },
+        "NtUnlockFile": {
+          "rva": "0xa7826",
+          "forwarder": null
+        },
+        "NtVdmControl": {
+          "rva": "0x102b68",
+          "forwarder": null
+        },
+        "NtWaitForSingleObject": {
+          "rva": "0xd75c2",
+          "forwarder": null
+        },
+        "NtWriteFile": {
+          "rva": "0xab4be",
+          "forwarder": null
+        },
+        "ObAssignSecurity": {
+          "rva": "0x4f5b4",
+          "forwarder": null
+        },
+        "ObCheckCreateObjectAccess": {
+          "rva": "0x4f3aa",
+          "forwarder": null
+        },
+        "ObCheckObjectAccess": {
+          "rva": "0x4f146",
+          "forwarder": null
+        },
+        "ObCreateObject": {
+          "rva": "0xd76ce",
+          "forwarder": null
+        },
+        "ObCreateObjectType": {
+          "rva": "0xd7ea8",
+          "forwarder": null
+        },
+        "ObDeleteCapturedInsertInfo": {
+          "rva": "0xd7ac6",
+          "forwarder": null
+        },
+        "ObDereferenceObject": {
+          "rva": "0x4eb04",
+          "forwarder": null
+        },
+        "ObFindHandleForObject": {
+          "rva": "0x501be",
+          "forwarder": null
+        },
+        "ObGetObjectPointerCount": {
+          "rva": "0xd5ab2",
+          "forwarder": null
+        },
+        "ObGetObjectSecurity": {
+          "rva": "0x4f47c",
+          "forwarder": null
+        },
+        "ObInsertObject": {
+          "rva": "0xd88c0",
+          "forwarder": null
+        },
+        "ObMakeTemporaryObject": {
+          "rva": "0xd61d4",
+          "forwarder": null
+        },
+        "ObOpenObjectByName": {
+          "rva": "0xd5abc",
+          "forwarder": null
+        },
+        "ObOpenObjectByPointer": {
+          "rva": "0xd5caa",
+          "forwarder": null
+        },
+        "ObQueryNameString": {
+          "rva": "0xd9306",
+          "forwarder": null
+        },
+        "ObQueryObjectAuditingByHandle": {
+          "rva": "0xd9920",
+          "forwarder": null
+        },
+        "ObReferenceObjectByHandle": {
+          "rva": "0x4e5b0",
+          "forwarder": null
+        },
+        "ObReferenceObjectByName": {
+          "rva": "0xd5d92",
+          "forwarder": null
+        },
+        "ObReferenceObjectByPointer": {
+          "rva": "0x4e7c8",
+          "forwarder": null
+        },
+        "ObReleaseObjectSecurity": {
+          "rva": "0x4f542",
+          "forwarder": null
+        },
+        "ObSetSecurityDescriptorInfo": {
+          "rva": "0x4f644",
+          "forwarder": null
+        },
+        "ObfDereferenceObject": {
+          "rva": "0x4e880",
+          "forwarder": null
+        },
+        "ObfReferenceObject": {
+          "rva": "0x4e868",
+          "forwarder": null
+        },
+        "PfxFindPrefix": {
+          "rva": "0xec33a",
+          "forwarder": null
+        },
+        "PfxInitialize": {
+          "rva": "0xec1d2",
+          "forwarder": null
+        },
+        "PfxInsertPrefix": {
+          "rva": "0xec1e6",
+          "forwarder": null
+        },
+        "PfxRemovePrefix": {
+          "rva": "0xec2be",
+          "forwarder": null
+        },
+        "PoCallDriver": {
+          "rva": "0x5136e",
+          "forwarder": null
+        },
+        "PoCancelDeviceNotify": {
+          "rva": "0x51c0c",
+          "forwarder": null
+        },
+        "PoRegisterDeviceForIdleDetection": {
+          "rva": "0x52286",
+          "forwarder": null
+        },
+        "PoRegisterDeviceNotify": {
+          "rva": "0x51b38",
+          "forwarder": null
+        },
+        "PoRegisterSystemState": {
+          "rva": "0x52518",
+          "forwarder": null
+        },
+        "PoRequestPowerIrp": {
+          "rva": "0x51996",
+          "forwarder": null
+        },
+        "PoSetHiberRange": {
+          "rva": "0x8a610",
+          "forwarder": null
+        },
+        "PoSetPowerState": {
+          "rva": "0x528ae",
+          "forwarder": null
+        },
+        "PoSetSystemState": {
+          "rva": "0x524ee",
+          "forwarder": null
+        },
+        "PoShutdownBugCheck": {
+          "rva": "0xdb77c",
+          "forwarder": null
+        },
+        "PoStartNextPowerIrp": {
+          "rva": "0x5164c",
+          "forwarder": null
+        },
+        "PoUnregisterSystemState": {
+          "rva": "0x52586",
+          "forwarder": null
+        },
+        "ProbeForRead": {
+          "rva": "0x95cfa",
+          "forwarder": null
+        },
+        "ProbeForWrite": {
+          "rva": "0x95ca4",
+          "forwarder": null
+        },
+        "PsAssignImpersonationToken": {
+          "rva": "0x5438a",
+          "forwarder": null
+        },
+        "PsChargePoolQuota": {
+          "rva": "0x54732",
+          "forwarder": null
+        },
+        "PsCreateSystemProcess": {
+          "rva": "0xe234c",
+          "forwarder": null
+        },
+        "PsCreateSystemThread": {
+          "rva": "0xe17e4",
+          "forwarder": null
+        },
+        "PsDisableImpersonation": {
+          "rva": "0x54176",
+          "forwarder": null
+        },
+        "PsEstablishWin32Callouts": {
+          "rva": "0xe14be",
+          "forwarder": null
+        },
+        "PsGetCurrentProcessId": {
+          "rva": "0x54b04",
+          "forwarder": null
+        },
+        "PsGetCurrentThreadId": {
+          "rva": "0x54b12",
+          "forwarder": null
+        },
+        "PsGetProcessExitTime": {
+          "rva": "0xe4094",
+          "forwarder": null
+        },
+        "PsGetProcessId": {
+          "rva": "0x54b92",
+          "forwarder": null
+        },
+        "PsGetProcessImageFileName": {
+          "rva": "0x54b86",
+          "forwarder": null
+        },
+        "PsGetVersion": {
+          "rva": "0x54b20",
+          "forwarder": null
+        },
+        "PsImpersonateClient": {
+          "rva": "0x53f34",
+          "forwarder": null
+        },
+        "PsInitialSystemProcess": {
+          "rva": "0x82fec",
+          "forwarder": null
+        },
+        "PsIsThreadTerminating": {
+          "rva": "0x54c58",
+          "forwarder": null
+        },
+        "PsJobType": {
+          "rva": "0x82fe8",
+          "forwarder": null
+        },
+        "PsLookupProcessByProcessId": {
+          "rva": "0x54d06",
+          "forwarder": null
+        },
+        "PsLookupProcessThreadByCid": {
+          "rva": "0x54c72",
+          "forwarder": null
+        },
+        "PsLookupThreadByThreadId": {
+          "rva": "0x54d6a",
+          "forwarder": null
+        },
+        "PsProcessType": {
+          "rva": "0x83004",
+          "forwarder": null
+        },
+        "PsReferenceImpersonationToken": {
+          "rva": "0x53de2",
+          "forwarder": null
+        },
+        "PsReferencePrimaryToken": {
+          "rva": "0x53da4",
+          "forwarder": null
+        },
+        "PsRestoreImpersonation": {
+          "rva": "0x541e0",
+          "forwarder": null
+        },
+        "PsReturnPoolQuota": {
+          "rva": "0x54834",
+          "forwarder": null
+        },
+        "PsRevertToSelf": {
+          "rva": "0x54206",
+          "forwarder": null
+        },
+        "PsSetCreateProcessNotifyRoutine": {
+          "rva": "0x549ce",
+          "forwarder": null
+        },
+        "PsSetCreateThreadNotifyRoutine": {
+          "rva": "0x54a2a",
+          "forwarder": null
+        },
+        "PsSetLegoNotifyRoutine": {
+          "rva": "0xe3282",
+          "forwarder": null
+        },
+        "PsSetLoadImageNotifyRoutine": {
+          "rva": "0xe3214",
+          "forwarder": null
+        },
+        "PsSetNewKSecDD": {
+          "rva": "0x54c6a",
+          "forwarder": null
+        },
+        "PsSetProcessPriorityByClass": {
+          "rva": "0xe14fe",
+          "forwarder": null
+        },
+        "PsTerminateSystemThread": {
+          "rva": "0x54c20",
+          "forwarder": null
+        },
+        "PsThreadType": {
+          "rva": "0x83008",
+          "forwarder": null
+        },
+        "READ_REGISTER_BUFFER_UCHAR": {
+          "rva": "0x5575c",
+          "forwarder": null
+        },
+        "READ_REGISTER_BUFFER_ULONG": {
+          "rva": "0x55794",
+          "forwarder": null
+        },
+        "READ_REGISTER_BUFFER_USHORT": {
+          "rva": "0x55778",
+          "forwarder": null
+        },
+        "READ_REGISTER_UCHAR": {
+          "rva": "0x55738",
+          "forwarder": null
+        },
+        "READ_REGISTER_ULONG": {
+          "rva": "0x55750",
+          "forwarder": null
+        },
+        "READ_REGISTER_USHORT": {
+          "rva": "0x55744",
+          "forwarder": null
+        },
+        "RtlAbsoluteToSelfRelativeSD": {
+          "rva": "0xecd78",
+          "forwarder": null
+        },
+        "RtlAddAccessAllowedAce": {
+          "rva": "0xed3c8",
+          "forwarder": null
+        },
+        "RtlAddAccessAllowedAceEx": {
+          "rva": "0xed3e4",
+          "forwarder": null
+        },
+        "RtlAddAce": {
+          "rva": "0xed22e",
+          "forwarder": null
+        },
+        "RtlAddAtomToAtomTable": {
+          "rva": "0x55e28",
+          "forwarder": null
+        },
+        "RtlAddRange": {
+          "rva": "0xed518",
+          "forwarder": null
+        },
+        "RtlAllocateHeap": {
+          "rva": "0xeea48",
+          "forwarder": null
+        },
+        "RtlAnsiCharToUnicodeChar": {
+          "rva": "0xf06f2",
+          "forwarder": null
+        },
+        "RtlAnsiStringToUnicodeSize": {
+          "rva": "0xf0f3c",
+          "forwarder": null
+        },
+        "RtlAnsiStringToUnicodeString": {
+          "rva": "0xf0646",
+          "forwarder": null
+        },
+        "RtlAppendAsciizToString": {
+          "rva": "0x57ac4",
+          "forwarder": null
+        },
+        "RtlAppendStringToString": {
+          "rva": "0x57b16",
+          "forwarder": null
+        },
+        "RtlAppendUnicodeStringToString": {
+          "rva": "0x577dc",
+          "forwarder": null
+        },
+        "RtlAppendUnicodeToString": {
+          "rva": "0x5776a",
+          "forwarder": null
+        },
+        "RtlAreAllAccessesGranted": {
+          "rva": "0xf1a9a",
+          "forwarder": null
+        },
+        "RtlAreAnyAccessesGranted": {
+          "rva": "0xf1aac",
+          "forwarder": null
+        },
+        "RtlAreBitsClear": {
+          "rva": "0x593ce",
+          "forwarder": null
+        },
+        "RtlAreBitsSet": {
+          "rva": "0x59450",
+          "forwarder": null
+        },
+        "RtlAssert": {
+          "rva": "0x5987f",
+          "forwarder": null
+        },
+        "RtlCaptureContext": {
+          "rva": "0x699d4",
+          "forwarder": null
+        },
+        "RtlCaptureStackBackTrace": {
+          "rva": "0x5993e",
+          "forwarder": null
+        },
+        "RtlCharToInteger": {
+          "rva": "0xf32f0",
+          "forwarder": null
+        },
+        "RtlCheckRegistryKey": {
+          "rva": "0xf419e",
+          "forwarder": null
+        },
+        "RtlClearAllBits": {
+          "rva": "0x589d4",
+          "forwarder": null
+        },
+        "RtlClearBits": {
+          "rva": "0x58f84",
+          "forwarder": null
+        },
+        "RtlCompareMemory": {
+          "rva": "0x69350",
+          "forwarder": null
+        },
+        "RtlCompareMemoryUlong": {
+          "rva": "0x693a0",
+          "forwarder": null
+        },
+        "RtlCompareString": {
+          "rva": "0x57924",
+          "forwarder": null
+        },
+        "RtlCompareUnicodeString": {
+          "rva": "0x574c8",
+          "forwarder": null
+        },
+        "RtlCompressBuffer": {
+          "rva": "0x8d810",
+          "forwarder": null
+        },
+        "RtlCompressChunks": {
+          "rva": "0x5a0ea",
+          "forwarder": null
+        },
+        "RtlConvertLongToLargeInteger": {
+          "rva": "0x69750",
+          "forwarder": null
+        },
+        "RtlConvertSidToUnicodeString": {
+          "rva": "0xf1438",
+          "forwarder": null
+        },
+        "RtlConvertUlongToLargeInteger": {
+          "rva": "0x69758",
+          "forwarder": null
+        },
+        "RtlCopyLuid": {
+          "rva": "0xf15f2",
+          "forwarder": null
+        },
+        "RtlCopyRangeList": {
+          "rva": "0xedd60",
+          "forwarder": null
+        },
+        "RtlCopySid": {
+          "rva": "0xf1372",
+          "forwarder": null
+        },
+        "RtlCopyString": {
+          "rva": "0x578e2",
+          "forwarder": null
+        },
+        "RtlCopyUnicodeString": {
+          "rva": "0x5770c",
+          "forwarder": null
+        },
+        "RtlCreateAcl": {
+          "rva": "0xecf32",
+          "forwarder": null
+        },
+        "RtlCreateAtomTable": {
+          "rva": "0x55a88",
+          "forwarder": null
+        },
+        "RtlCreateHeap": {
+          "rva": "0xee3a1",
+          "forwarder": null
+        },
+        "RtlCreateRegistryKey": {
+          "rva": "0xf41c4",
+          "forwarder": null
+        },
+        "RtlCreateSecurityDescriptor": {
+          "rva": "0xf1630",
+          "forwarder": null
+        },
+        "RtlCreateUnicodeString": {
+          "rva": "0xf106e",
+          "forwarder": null
+        },
+        "RtlCustomCPToUnicodeN": {
+          "rva": "0xeb424",
+          "forwarder": null
+        },
+        "RtlDecompressBuffer": {
+          "rva": "0xf4748",
+          "forwarder": null
+        },
+        "RtlDecompressChunks": {
+          "rva": "0x59f26",
+          "forwarder": null
+        },
+        "RtlDecompressFragment": {
+          "rva": "0xf478e",
+          "forwarder": null
+        },
+        "RtlDelete": {
+          "rva": "0x5a33a",
+          "forwarder": null
+        },
+        "RtlDeleteAce": {
+          "rva": "0xed2fe",
+          "forwarder": null
+        },
+        "RtlDeleteAtomFromAtomTable": {
+          "rva": "0x560dc",
+          "forwarder": null
+        },
+        "RtlDeleteElementGenericTable": {
+          "rva": "0x5a71a",
+          "forwarder": null
+        },
+        "RtlDeleteNoSplay": {
+          "rva": "0x5a3b0",
+          "forwarder": null
+        },
+        "RtlDeleteOwnersRanges": {
+          "rva": "0xedb38",
+          "forwarder": null
+        },
+        "RtlDeleteRange": {
+          "rva": "0xeda06",
+          "forwarder": null
+        },
+        "RtlDeleteRegistryValue": {
+          "rva": "0xf41ea",
+          "forwarder": null
+        },
+        "RtlDescribeChunk": {
+          "rva": "0xf47da",
+          "forwarder": null
+        },
+        "RtlDestroyAtomTable": {
+          "rva": "0x55b14",
+          "forwarder": null
+        },
+        "RtlDestroyHeap": {
+          "rva": "0xee98f",
+          "forwarder": null
+        },
+        "RtlDowncaseUnicodeString": {
+          "rva": "0xf0dcc",
+          "forwarder": null
+        },
+        "RtlEmptyAtomTable": {
+          "rva": "0x55bee",
+          "forwarder": null
+        },
+        "RtlEnlargedIntegerMultiply": {
+          "rva": "0x69530",
+          "forwarder": null
+        },
+        "RtlEnlargedUnsignedDivide": {
+          "rva": "0x69548",
+          "forwarder": null
+        },
+        "RtlEnlargedUnsignedMultiply": {
+          "rva": "0x6953c",
+          "forwarder": null
+        },
+        "RtlEnumerateGenericTable": {
+          "rva": "0x5a7c4",
+          "forwarder": null
+        },
+        "RtlEnumerateGenericTableWithoutSplaying": {
+          "rva": "0x5a8aa",
+          "forwarder": null
+        },
+        "RtlEqualLuid": {
+          "rva": "0xf15d2",
+          "forwarder": null
+        },
+        "RtlEqualSid": {
+          "rva": "0xf1252",
+          "forwarder": null
+        },
+        "RtlEqualString": {
+          "rva": "0x579ac",
+          "forwarder": null
+        },
+        "RtlEqualUnicodeString": {
+          "rva": "0xf0f5c",
+          "forwarder": null
+        },
+        "RtlExtendedIntegerMultiply": {
+          "rva": "0x69654",
+          "forwarder": null
+        },
+        "RtlExtendedLargeIntegerDivide": {
+          "rva": "0x69568",
+          "forwarder": null
+        },
+        "RtlExtendedMagicDivide": {
+          "rva": "0x695c4",
+          "forwarder": null
+        },
+        "RtlFillMemory": {
+          "rva": "0x693d0",
+          "forwarder": null
+        },
+        "RtlFillMemoryUlong": {
+          "rva": "0x69440",
+          "forwarder": null
+        },
+        "RtlFindClearBits": {
+          "rva": "0x58a1a",
+          "forwarder": null
+        },
+        "RtlFindClearBitsAndSet": {
+          "rva": "0x58f2c",
+          "forwarder": null
+        },
+        "RtlFindClearRuns": {
+          "rva": "0x590ba",
+          "forwarder": null
+        },
+        "RtlFindFirstRunClear": {
+          "rva": "0x5932a",
+          "forwarder": null
+        },
+        "RtlFindLastBackwardRunClear": {
+          "rva": "0x595ca",
+          "forwarder": null
+        },
+        "RtlFindLeastSignificantBit": {
+          "rva": "0x59738",
+          "forwarder": null
+        },
+        "RtlFindLongestRunClear": {
+          "rva": "0x592fa",
+          "forwarder": null
+        },
+        "RtlFindMessage": {
+          "rva": "0xf4886",
+          "forwarder": null
+        },
+        "RtlFindMostSignificantBit": {
+          "rva": "0x5969a",
+          "forwarder": null
+        },
+        "RtlFindNextForwardRunClear": {
+          "rva": "0x594da",
+          "forwarder": null
+        },
+        "RtlFindRange": {
+          "rva": "0xedf8e",
+          "forwarder": null
+        },
+        "RtlFindSetBits": {
+          "rva": "0x58c82",
+          "forwarder": null
+        },
+        "RtlFindSetBitsAndClear": {
+          "rva": "0x58f58",
+          "forwarder": null
+        },
+        "RtlFindUnicodePrefix": {
+          "rva": "0xec7d8",
+          "forwarder": null
+        },
+        "RtlFormatCurrentUserKeyPath": {
+          "rva": "0x59e30",
+          "forwarder": null
+        },
+        "RtlFreeAnsiString": {
+          "rva": "0xf0eec",
+          "forwarder": null
+        },
+        "RtlFreeHeap": {
+          "rva": "0xef252",
+          "forwarder": null
+        },
+        "RtlFreeOemString": {
+          "rva": "0xf0f08",
+          "forwarder": null
+        },
+        "RtlFreeRangeList": {
+          "rva": "0xede0e",
+          "forwarder": null
+        },
+        "RtlFreeUnicodeString": {
+          "rva": "0xf0eec",
+          "forwarder": null
+        },
+        "RtlGUIDFromString": {
+          "rva": "0xf4994",
+          "forwarder": null
+        },
+        "RtlGenerate8dot3Name": {
+          "rva": "0xf4b42",
+          "forwarder": null
+        },
+        "RtlGetAce": {
+          "rva": "0xed35e",
+          "forwarder": null
+        },
+        "RtlGetCallersAddress": {
+          "rva": "0x5a8f0",
+          "forwarder": null
+        },
+        "RtlGetCompressionWorkSpaceSize": {
+          "rva": "0x8d7cc",
+          "forwarder": null
+        },
+        "RtlGetDaclSecurityDescriptor": {
+          "rva": "0xf186c",
+          "forwarder": null
+        },
+        "RtlGetDefaultCodePage": {
+          "rva": "0xec1b2",
+          "forwarder": null
+        },
+        "RtlGetElementGenericTable": {
+          "rva": "0x5a820",
+          "forwarder": null
+        },
+        "RtlGetFirstRange": {
+          "rva": "0xee108",
+          "forwarder": null
+        },
+        "RtlGetGroupSecurityDescriptor": {
+          "rva": "0xf1a5e",
+          "forwarder": null
+        },
+        "RtlGetNextRange": {
+          "rva": "0xee15c",
+          "forwarder": null
+        },
+        "RtlGetNtGlobalFlags": {
+          "rva": "0xf4378",
+          "forwarder": null
+        },
+        "RtlGetOwnerSecurityDescriptor": {
+          "rva": "0xf19d6",
+          "forwarder": null
+        },
+        "RtlGetSaclSecurityDescriptor": {
+          "rva": "0xf192c",
+          "forwarder": null
+        },
+        "RtlImageDirectoryEntryToData": {
+          "rva": "0x5aaea",
+          "forwarder": null
+        },
+        "RtlImageNtHeader": {
+          "rva": "0x5a986",
+          "forwarder": null
+        },
+        "RtlInitAnsiString": {
+          "rva": "0x5ab7c",
+          "forwarder": null
+        },
+        "RtlInitCodePageTable": {
+          "rva": "0xebfb2",
+          "forwarder": null
+        },
+        "RtlInitString": {
+          "rva": "0x5ab44",
+          "forwarder": null
+        },
+        "RtlInitUnicodeString": {
+          "rva": "0x5abb4",
+          "forwarder": null
+        },
+        "RtlInitializeBitMap": {
+          "rva": "0xf3194",
+          "forwarder": null
+        },
+        "RtlInitializeGenericTable": {
+          "rva": "0x5a5aa",
+          "forwarder": null
+        },
+        "RtlInitializeRangeList": {
+          "rva": "0xed500",
+          "forwarder": null
+        },
+        "RtlInitializeSid": {
+          "rva": "0xf131a",
+          "forwarder": null
+        },
+        "RtlInitializeUnicodePrefix": {
+          "rva": "0xec57e",
+          "forwarder": null
+        },
+        "RtlInsertElementGenericTable": {
+          "rva": "0x5a5e2",
+          "forwarder": null
+        },
+        "RtlInsertElementGenericTableFull": {
+          "rva": "0x5a66e",
+          "forwarder": null
+        },
+        "RtlInsertUnicodePrefix": {
+          "rva": "0xec596",
+          "forwarder": null
+        },
+        "RtlIntegerToChar": {
+          "rva": "0xf31a8",
+          "forwarder": null
+        },
+        "RtlIntegerToUnicodeString": {
+          "rva": "0xf35d6",
+          "forwarder": null
+        },
+        "RtlInvertRangeList": {
+          "rva": "0xee2da",
+          "forwarder": null
+        },
+        "RtlIsGenericTableEmpty": {
+          "rva": "0x5a812",
+          "forwarder": null
+        },
+        "RtlIsNameLegalDOS8Dot3": {
+          "rva": "0xf5176",
+          "forwarder": null
+        },
+        "RtlIsRangeAvailable": {
+          "rva": "0xede4a",
+          "forwarder": null
+        },
+        "RtlIsValidOemCharacter": {
+          "rva": "0xf4f58",
+          "forwarder": null
+        },
+        "RtlLargeIntegerAdd": {
+          "rva": "0x6951c",
+          "forwarder": null
+        },
+        "RtlLargeIntegerArithmeticShift": {
+          "rva": "0x696fc",
+          "forwarder": null
+        },
+        "RtlLargeIntegerDivide": {
+          "rva": "0x5abf0",
+          "forwarder": null
+        },
+        "RtlLargeIntegerNegate": {
+          "rva": "0x69728",
+          "forwarder": null
+        },
+        "RtlLargeIntegerShiftLeft": {
+          "rva": "0x696ac",
+          "forwarder": null
+        },
+        "RtlLargeIntegerShiftRight": {
+          "rva": "0x696d4",
+          "forwarder": null
+        },
+        "RtlLargeIntegerSubtract": {
+          "rva": "0x6973c",
+          "forwarder": null
+        },
+        "RtlLengthRequiredSid": {
+          "rva": "0xf130c",
+          "forwarder": null
+        },
+        "RtlLengthSecurityDescriptor": {
+          "rva": "0xf1758",
+          "forwarder": null
+        },
+        "RtlLengthSid": {
+          "rva": "0xf1360",
+          "forwarder": null
+        },
+        "RtlLookupAtomInAtomTable": {
+          "rva": "0x55fd4",
+          "forwarder": null
+        },
+        "RtlLookupElementGenericTable": {
+          "rva": "0x5a76e",
+          "forwarder": null
+        },
+        "RtlLookupElementGenericTableFull": {
+          "rva": "0x5a788",
+          "forwarder": null
+        },
+        "RtlMapGenericMask": {
+          "rva": "0xf1abe",
+          "forwarder": null
+        },
+        "RtlMergeRangeLists": {
+          "rva": "0xee1f6",
+          "forwarder": null
+        },
+        "RtlMoveMemory": {
+          "rva": "0x69490",
+          "forwarder": null
+        },
+        "RtlMultiByteToUnicodeN": {
+          "rva": "0xe9adc",
+          "forwarder": null
+        },
+        "RtlMultiByteToUnicodeSize": {
+          "rva": "0xe9fc0",
+          "forwarder": null
+        },
+        "RtlNextUnicodePrefix": {
+          "rva": "0xec8a2",
+          "forwarder": null
+        },
+        "RtlNtStatusToDosError": {
+          "rva": "0xf52e0",
+          "forwarder": null
+        },
+        "RtlNtStatusToDosErrorNoTeb": {
+          "rva": "0x5ac68",
+          "forwarder": null
+        },
+        "RtlNumberGenericTableElements": {
+          "rva": "0x5a8a0",
+          "forwarder": null
+        },
+        "RtlNumberOfClearBits": {
+          "rva": "0x5933c",
+          "forwarder": null
+        },
+        "RtlNumberOfSetBits": {
+          "rva": "0x59382",
+          "forwarder": null
+        },
+        "RtlOemStringToCountedUnicodeString": {
+          "rva": "0xf0aba",
+          "forwarder": null
+        },
+        "RtlOemStringToUnicodeSize": {
+          "rva": "0xf0f3c",
+          "forwarder": null
+        },
+        "RtlOemStringToUnicodeString": {
+          "rva": "0xf08a4",
+          "forwarder": null
+        },
+        "RtlOemToUnicodeN": {
+          "rva": "0xe9dd4",
+          "forwarder": null
+        },
+        "RtlPinAtomInAtomTable": {
+          "rva": "0x561d8",
+          "forwarder": null
+        },
+        "RtlPrefetchMemoryNonTemporal": {
+          "rva": "0x694d4",
+          "forwarder": null
+        },
+        "RtlPrefixString": {
+          "rva": "0x57a1a",
+          "forwarder": null
+        },
+        "RtlPrefixUnicodeString": {
+          "rva": "0x575f4",
+          "forwarder": null
+        },
+        "RtlQueryAtomInAtomTable": {
+          "rva": "0x5629a",
+          "forwarder": null
+        },
+        "RtlQueryRegistryValues": {
+          "rva": "0xf3d8e",
+          "forwarder": null
+        },
+        "RtlQueryTimeZoneInformation": {
+          "rva": "0xf4454",
+          "forwarder": null
+        },
+        "RtlRaiseException": {
+          "rva": "0x5ad38",
+          "forwarder": null
+        },
+        "RtlRandom": {
+          "rva": "0xf5300",
+          "forwarder": null
+        },
+        "RtlRealPredecessor": {
+          "rva": "0x5a496",
+          "forwarder": null
+        },
+        "RtlRealSuccessor": {
+          "rva": "0x5a462",
+          "forwarder": null
+        },
+        "RtlRemoveUnicodePrefix": {
+          "rva": "0xec6bc",
+          "forwarder": null
+        },
+        "RtlReserveChunk": {
+          "rva": "0xf481c",
+          "forwarder": null
+        },
+        "RtlSecondsSince1970ToTime": {
+          "rva": "0x5b272",
+          "forwarder": null
+        },
+        "RtlSecondsSince1980ToTime": {
+          "rva": "0x5b202",
+          "forwarder": null
+        },
+        "RtlSelfRelativeToAbsoluteSD": {
+          "rva": "0xecafa",
+          "forwarder": null
+        },
+        "RtlSelfRelativeToAbsoluteSD2": {
+          "rva": "0xecea8",
+          "forwarder": null
+        },
+        "RtlSetAllBits": {
+          "rva": "0x589fc",
+          "forwarder": null
+        },
+        "RtlSetBits": {
+          "rva": "0x59020",
+          "forwarder": null
+        },
+        "RtlSetDaclSecurityDescriptor": {
+          "rva": "0xf180a",
+          "forwarder": null
+        },
+        "RtlSetGroupSecurityDescriptor": {
+          "rva": "0xf1a12",
+          "forwarder": null
+        },
+        "RtlSetOwnerSecurityDescriptor": {
+          "rva": "0xf198a",
+          "forwarder": null
+        },
+        "RtlSetSaclSecurityDescriptor": {
+          "rva": "0xf18ca",
+          "forwarder": null
+        },
+        "RtlSetTimeZoneInformation": {
+          "rva": "0xf4576",
+          "forwarder": null
+        },
+        "RtlSizeHeap": {
+          "rva": "0xef486",
+          "forwarder": null
+        },
+        "RtlSplay": {
+          "rva": "0x5a1d4",
+          "forwarder": null
+        },
+        "RtlStringFromGUID": {
+          "rva": "0xf4922",
+          "forwarder": null
+        },
+        "RtlSubAuthorityCountSid": {
+          "rva": "0xf1358",
+          "forwarder": null
+        },
+        "RtlSubAuthoritySid": {
+          "rva": "0xf1348",
+          "forwarder": null
+        },
+        "RtlSubtreePredecessor": {
+          "rva": "0x5a446",
+          "forwarder": null
+        },
+        "RtlSubtreeSuccessor": {
+          "rva": "0x5a42a",
+          "forwarder": null
+        },
+        "RtlTimeFieldsToTime": {
+          "rva": "0x5b028",
+          "forwarder": null
+        },
+        "RtlTimeToSecondsSince1970": {
+          "rva": "0x5b232",
+          "forwarder": null
+        },
+        "RtlTimeToSecondsSince1980": {
+          "rva": "0x5b1c2",
+          "forwarder": null
+        },
+        "RtlTimeToTimeFields": {
+          "rva": "0x5ae98",
+          "forwarder": null
+        },
+        "RtlTraceDatabaseAdd": {
+          "rva": "0x5b450",
+          "forwarder": null
+        },
+        "RtlTraceDatabaseCreate": {
+          "rva": "0x5b2a2",
+          "forwarder": null
+        },
+        "RtlTraceDatabaseDestroy": {
+          "rva": "0x5b3b7",
+          "forwarder": null
+        },
+        "RtlTraceDatabaseEnumerate": {
+          "rva": "0x5b7f8",
+          "forwarder": null
+        },
+        "RtlTraceDatabaseFind": {
+          "rva": "0x5b47e",
+          "forwarder": null
+        },
+        "RtlTraceDatabaseLock": {
+          "rva": "0x5b770",
+          "forwarder": null
+        },
+        "RtlTraceDatabaseUnlock": {
+          "rva": "0x5b77c",
+          "forwarder": null
+        },
+        "RtlTraceDatabaseValidate": {
+          "rva": "0x5b410",
+          "forwarder": null
+        },
+        "RtlUlongByteSwap": {
+          "rva": "0x69500",
+          "forwarder": null
+        },
+        "RtlUlonglongByteSwap": {
+          "rva": "0x69510",
+          "forwarder": null
+        },
+        "RtlUnicodeStringToAnsiSize": {
+          "rva": "0xf0f1e",
+          "forwarder": null
+        },
+        "RtlUnicodeStringToAnsiString": {
+          "rva": "0xf0738",
+          "forwarder": null
+        },
+        "RtlUnicodeStringToCountedOemString": {
+          "rva": "0xf0b6a",
+          "forwarder": null
+        },
+        "RtlUnicodeStringToInteger": {
+          "rva": "0xf3432",
+          "forwarder": null
+        },
+        "RtlUnicodeStringToOemSize": {
+          "rva": "0xf0f1e",
+          "forwarder": null
+        },
+        "RtlUnicodeStringToOemString": {
+          "rva": "0xf0950",
+          "forwarder": null
+        },
+        "RtlUnicodeToCustomCPN": {
+          "rva": "0xeb610",
+          "forwarder": null
+        },
+        "RtlUnicodeToMultiByteN": {
+          "rva": "0xea070",
+          "forwarder": null
+        },
+        "RtlUnicodeToMultiByteSize": {
+          "rva": "0xea01a",
+          "forwarder": null
+        },
+        "RtlUnicodeToOemN": {
+          "rva": "0xea9c8",
+          "forwarder": null
+        },
+        "RtlUnwind": {
+          "rva": "0x5b9b8",
+          "forwarder": null
+        },
+        "RtlUpcaseUnicodeChar": {
+          "rva": "0xf0e9a",
+          "forwarder": null
+        },
+        "RtlUpcaseUnicodeString": {
+          "rva": "0xf0cfe",
+          "forwarder": null
+        },
+        "RtlUpcaseUnicodeStringToAnsiString": {
+          "rva": "0xf07fc",
+          "forwarder": null
+        },
+        "RtlUpcaseUnicodeStringToCountedOemString": {
+          "rva": "0xf0c34",
+          "forwarder": null
+        },
+        "RtlUpcaseUnicodeStringToOemString": {
+          "rva": "0xf09f8",
+          "forwarder": null
+        },
+        "RtlUpcaseUnicodeToCustomCPN": {
+          "rva": "0xeb7b8",
+          "forwarder": null
+        },
+        "RtlUpcaseUnicodeToMultiByteN": {
+          "rva": "0xea208",
+          "forwarder": null
+        },
+        "RtlUpcaseUnicodeToOemN": {
+          "rva": "0xeab7c",
+          "forwarder": null
+        },
+        "RtlUpperChar": {
+          "rva": "0xf10b4",
+          "forwarder": null
+        },
+        "RtlUpperString": {
+          "rva": "0xf11ac",
+          "forwarder": null
+        },
+        "RtlUshortByteSwap": {
+          "rva": "0x694f0",
+          "forwarder": null
+        },
+        "RtlValidRelativeSecurityDescriptor": {
+          "rva": "0xf3038",
+          "forwarder": null
+        },
+        "RtlValidSecurityDescriptor": {
+          "rva": "0xf1656",
+          "forwarder": null
+        },
+        "RtlValidSid": {
+          "rva": "0xf11ea",
+          "forwarder": null
+        },
+        "RtlVolumeDeviceToDosName": {
+          "rva": "0xe91c2",
+          "forwarder": null
+        },
+        "RtlWalkFrameChain": {
+          "rva": "0x599df",
+          "forwarder": null
+        },
+        "RtlWriteRegistryValue": {
+          "rva": "0xf4148",
+          "forwarder": null
+        },
+        "RtlZeroHeap": {
+          "rva": "0xef4b6",
+          "forwarder": null
+        },
+        "RtlZeroMemory": {
+          "rva": "0x69460",
+          "forwarder": null
+        },
+        "RtlxAnsiStringToUnicodeSize": {
+          "rva": "0xf0f3c",
+          "forwarder": null
+        },
+        "RtlxOemStringToUnicodeSize": {
+          "rva": "0xf0f3c",
+          "forwarder": null
+        },
+        "RtlxUnicodeStringToAnsiSize": {
+          "rva": "0xf0f1e",
+          "forwarder": null
+        },
+        "RtlxUnicodeStringToOemSize": {
+          "rva": "0xf0f1e",
+          "forwarder": null
+        },
+        "SeAccessCheck": {
+          "rva": "0xfac6e",
+          "forwarder": null
+        },
+        "SeAppendPrivileges": {
+          "rva": "0xfb14a",
+          "forwarder": null
+        },
+        "SeAssignSecurity": {
+          "rva": "0xfb276",
+          "forwarder": null
+        },
+        "SeAssignSecurityEx": {
+          "rva": "0xfb2c6",
+          "forwarder": null
+        },
+        "SeAuditHardLinkCreation": {
+          "rva": "0x5c0d8",
+          "forwarder": null
+        },
+        "SeAuditingFileEvents": {
+          "rva": "0xfe3b6",
+          "forwarder": null
+        },
+        "SeAuditingFileOrGlobalEvents": {
+          "rva": "0x5c67a",
+          "forwarder": null
+        },
+        "SeAuditingHardLinkEvents": {
+          "rva": "0x5c2b2",
+          "forwarder": null
+        },
+        "SeCaptureSecurityDescriptor": {
+          "rva": "0xfe3e2",
+          "forwarder": null
+        },
+        "SeCaptureSubjectContext": {
+          "rva": "0xff6b2",
+          "forwarder": null
+        },
+        "SeCloseObjectAuditAlarm": {
+          "rva": "0xfdf26",
+          "forwarder": null
+        },
+        "SeCreateAccessState": {
+          "rva": "0xfb042",
+          "forwarder": null
+        },
+        "SeCreateClientSecurity": {
+          "rva": "0xff95c",
+          "forwarder": null
+        },
+        "SeCreateClientSecurityFromSubjectContext": {
+          "rva": "0xff9dc",
+          "forwarder": null
+        },
+        "SeDeassignSecurity": {
+          "rva": "0xfb2ea",
+          "forwarder": null
+        },
+        "SeDeleteAccessState": {
+          "rva": "0xfb10e",
+          "forwarder": null
+        },
+        "SeDeleteObjectAuditAlarm": {
+          "rva": "0xfdf78",
+          "forwarder": null
+        },
+        "SeExports": {
+          "rva": "0x838f4",
+          "forwarder": null
+        },
+        "SeFreePrivileges": {
+          "rva": "0xfac62",
+          "forwarder": null
+        },
+        "SeImpersonateClient": {
+          "rva": "0xff992",
+          "forwarder": null
+        },
+        "SeImpersonateClientEx": {
+          "rva": "0xff9a2",
+          "forwarder": null
+        },
+        "SeLockSubjectContext": {
+          "rva": "0xff718",
+          "forwarder": null
+        },
+        "SeMarkLogonSessionForTerminationNotification": {
+          "rva": "0x100056",
+          "forwarder": null
+        },
+        "SeOpenObjectAuditAlarm": {
+          "rva": "0xfdb90",
+          "forwarder": null
+        },
+        "SeOpenObjectForDeleteAuditAlarm": {
+          "rva": "0x5c310",
+          "forwarder": null
+        },
+        "SePrivilegeCheck": {
+          "rva": "0x100286",
+          "forwarder": null
+        },
+        "SePrivilegeObjectAuditAlarm": {
+          "rva": "0xfc734",
+          "forwarder": null
+        },
+        "SePublicDefaultDacl": {
+          "rva": "0x838d4",
+          "forwarder": null
+        },
+        "SeQueryAuthenticationIdToken": {
+          "rva": "0xf92a2",
+          "forwarder": null
+        },
+        "SeQueryInformationToken": {
+          "rva": "0xf930a",
+          "forwarder": null
+        },
+        "SeQuerySecurityDescriptorInfo": {
+          "rva": "0x10063a",
+          "forwarder": null
+        },
+        "SeQuerySessionIdToken": {
+          "rva": "0x5bddc",
+          "forwarder": null
+        },
+        "SeRegisterLogonSessionTerminatedRoutine": {
+          "rva": "0xfff2c",
+          "forwarder": null
+        },
+        "SeReleaseSecurityDescriptor": {
+          "rva": "0xfea68",
+          "forwarder": null
+        },
+        "SeReleaseSubjectContext": {
+          "rva": "0xff7d2",
+          "forwarder": null
+        },
+        "SeSetAccessStateGenericMapping": {
+          "rva": "0x5be6e",
+          "forwarder": null
+        },
+        "SeSetSecurityDescriptorInfo": {
+          "rva": "0x10060a",
+          "forwarder": null
+        },
+        "SeSetSecurityDescriptorInfoEx": {
+          "rva": "0x5c9cc",
+          "forwarder": null
+        },
+        "SeSinglePrivilegeCheck": {
+          "rva": "0x100480",
+          "forwarder": null
+        },
+        "SeSystemDefaultDacl": {
+          "rva": "0x838e8",
+          "forwarder": null
+        },
+        "SeTokenImpersonationLevel": {
+          "rva": "0x100916",
+          "forwarder": null
+        },
+        "SeTokenIsAdmin": {
+          "rva": "0x100906",
+          "forwarder": null
+        },
+        "SeTokenIsRestricted": {
+          "rva": "0x5cb3e",
+          "forwarder": null
+        },
+        "SeTokenType": {
+          "rva": "0x1008fc",
+          "forwarder": null
+        },
+        "SeUnlockSubjectContext": {
+          "rva": "0xff756",
+          "forwarder": null
+        },
+        "SeUnregisterLogonSessionTerminatedRoutine": {
+          "rva": "0xfffc0",
+          "forwarder": null
+        },
+        "SeValidSecurityDescriptor": {
+          "rva": "0x5c718",
+          "forwarder": null
+        },
+        "WRITE_REGISTER_BUFFER_UCHAR": {
+          "rva": "0x557ec",
+          "forwarder": null
+        },
+        "WRITE_REGISTER_BUFFER_ULONG": {
+          "rva": "0x5582c",
+          "forwarder": null
+        },
+        "WRITE_REGISTER_BUFFER_USHORT": {
+          "rva": "0x5580c",
+          "forwarder": null
+        },
+        "WRITE_REGISTER_UCHAR": {
+          "rva": "0x557b0",
+          "forwarder": null
+        },
+        "WRITE_REGISTER_ULONG": {
+          "rva": "0x557d8",
+          "forwarder": null
+        },
+        "WRITE_REGISTER_USHORT": {
+          "rva": "0x557c4",
+          "forwarder": null
+        },
+        "ZwAccessCheckAndAuditAlarm": {
+          "rva": "0x2f890",
+          "forwarder": null
+        },
+        "ZwAdjustPrivilegesToken": {
+          "rva": "0x2f910",
+          "forwarder": null
+        },
+        "ZwAlertThread": {
+          "rva": "0x2f930",
+          "forwarder": null
+        },
+        "ZwAllocateVirtualMemory": {
+          "rva": "0x2f970",
+          "forwarder": null
+        },
+        "ZwCancelIoFile": {
+          "rva": "0x2f9b0",
+          "forwarder": null
+        },
+        "ZwCancelTimer": {
+          "rva": "0x2f9c0",
+          "forwarder": null
+        },
+        "ZwClearEvent": {
+          "rva": "0x2f9e0",
+          "forwarder": null
+        },
+        "ZwClose": {
+          "rva": "0x2f9f0",
+          "forwarder": null
+        },
+        "ZwCloseObjectAuditAlarm": {
+          "rva": "0x2fa00",
+          "forwarder": null
+        },
+        "ZwConnectPort": {
+          "rva": "0x2fa20",
+          "forwarder": null
+        },
+        "ZwCreateDirectoryObject": {
+          "rva": "0x2fa40",
+          "forwarder": null
+        },
+        "ZwCreateEvent": {
+          "rva": "0x2fa50",
+          "forwarder": null
+        },
+        "ZwCreateFile": {
+          "rva": "0x2fa70",
+          "forwarder": null
+        },
+        "ZwCreateKey": {
+          "rva": "0x2faa0",
+          "forwarder": null
+        },
+        "ZwCreateSection": {
+          "rva": "0x2fb20",
+          "forwarder": null
+        },
+        "ZwCreateSymbolicLinkObject": {
+          "rva": "0x2fb40",
+          "forwarder": null
+        },
+        "ZwCreateTimer": {
+          "rva": "0x2fb60",
+          "forwarder": null
+        },
+        "ZwDeleteFile": {
+          "rva": "0x2fbb0",
+          "forwarder": null
+        },
+        "ZwDeleteKey": {
+          "rva": "0x2fbc0",
+          "forwarder": null
+        },
+        "ZwDeleteValueKey": {
+          "rva": "0x2fbe0",
+          "forwarder": null
+        },
+        "ZwDeviceIoControlFile": {
+          "rva": "0x2fbf0",
+          "forwarder": null
+        },
+        "ZwDisplayString": {
+          "rva": "0x2fc00",
+          "forwarder": null
+        },
+        "ZwDuplicateObject": {
+          "rva": "0x2fc10",
+          "forwarder": null
+        },
+        "ZwDuplicateToken": {
+          "rva": "0x2fc20",
+          "forwarder": null
+        },
+        "ZwEnumerateKey": {
+          "rva": "0x2fc30",
+          "forwarder": null
+        },
+        "ZwEnumerateValueKey": {
+          "rva": "0x2fc40",
+          "forwarder": null
+        },
+        "ZwFlushInstructionCache": {
+          "rva": "0x2fc90",
+          "forwarder": null
+        },
+        "ZwFlushKey": {
+          "rva": "0x2fca0",
+          "forwarder": null
+        },
+        "ZwFlushVirtualMemory": {
+          "rva": "0x2fcb0",
+          "forwarder": null
+        },
+        "ZwFreeVirtualMemory": {
+          "rva": "0x2fcdc",
+          "forwarder": null
+        },
+        "ZwFsControlFile": {
+          "rva": "0x2fcec",
+          "forwarder": null
+        },
+        "ZwInitiatePowerAction": {
+          "rva": "0x2fd88",
+          "forwarder": null
+        },
+        "ZwLoadDriver": {
+          "rva": "0x2fdb4",
+          "forwarder": null
+        },
+        "ZwLoadKey": {
+          "rva": "0x2fdc4",
+          "forwarder": null
+        },
+        "ZwMakeTemporaryObject": {
+          "rva": "0x2fe04",
+          "forwarder": null
+        },
+        "ZwMapViewOfSection": {
+          "rva": "0x2fe34",
+          "forwarder": null
+        },
+        "ZwNotifyChangeKey": {
+          "rva": "0x2fe54",
+          "forwarder": null
+        },
+        "ZwOpenDirectoryObject": {
+          "rva": "0x2fe74",
+          "forwarder": null
+        },
+        "ZwOpenEvent": {
+          "rva": "0x2fe84",
+          "forwarder": null
+        },
+        "ZwOpenFile": {
+          "rva": "0x2fea4",
+          "forwarder": null
+        },
+        "ZwOpenKey": {
+          "rva": "0x2fed4",
+          "forwarder": null
+        },
+        "ZwOpenProcess": {
+          "rva": "0x2ff04",
+          "forwarder": null
+        },
+        "ZwOpenProcessToken": {
+          "rva": "0x2ff14",
+          "forwarder": null
+        },
+        "ZwOpenSection": {
+          "rva": "0x2ff24",
+          "forwarder": null
+        },
+        "ZwOpenSymbolicLinkObject": {
+          "rva": "0x2ff44",
+          "forwarder": null
+        },
+        "ZwOpenThread": {
+          "rva": "0x2ff54",
+          "forwarder": null
+        },
+        "ZwOpenThreadToken": {
+          "rva": "0x2ff64",
+          "forwarder": null
+        },
+        "ZwOpenTimer": {
+          "rva": "0x2ff74",
+          "forwarder": null
+        },
+        "ZwPowerInformation": {
+          "rva": "0x2ff94",
+          "forwarder": null
+        },
+        "ZwPulseEvent": {
+          "rva": "0x2ffe4",
+          "forwarder": null
+        },
+        "ZwQueryDefaultLocale": {
+          "rva": "0x30014",
+          "forwarder": null
+        },
+        "ZwQueryDefaultUILanguage": {
+          "rva": "0x30024",
+          "forwarder": null
+        },
+        "ZwQueryDirectoryFile": {
+          "rva": "0x30034",
+          "forwarder": null
+        },
+        "ZwQueryDirectoryObject": {
+          "rva": "0x30044",
+          "forwarder": null
+        },
+        "ZwQueryEaFile": {
+          "rva": "0x30054",
+          "forwarder": null
+        },
+        "ZwQueryInformationFile": {
+          "rva": "0x30084",
+          "forwarder": null
+        },
+        "ZwQueryInformationProcess": {
+          "rva": "0x300c4",
+          "forwarder": null
+        },
+        "ZwQueryInformationToken": {
+          "rva": "0x300e4",
+          "forwarder": null
+        },
+        "ZwQueryInstallUILanguage": {
+          "rva": "0x300f4",
+          "forwarder": null
+        },
+        "ZwQueryKey": {
+          "rva": "0x30114",
+          "forwarder": null
+        },
+        "ZwQueryObject": {
+          "rva": "0x30144",
+          "forwarder": null
+        },
+        "ZwQuerySection": {
+          "rva": "0x30184",
+          "forwarder": null
+        },
+        "ZwQuerySecurityObject": {
+          "rva": "0x30194",
+          "forwarder": null
+        },
+        "ZwQuerySymbolicLinkObject": {
+          "rva": "0x301b4",
+          "forwarder": null
+        },
+        "ZwQuerySystemInformation": {
+          "rva": "0x301d4",
+          "forwarder": null
+        },
+        "ZwQueryValueKey": {
+          "rva": "0x30214",
+          "forwarder": null
+        },
+        "ZwQueryVolumeInformationFile": {
+          "rva": "0x30234",
+          "forwarder": null
+        },
+        "ZwReadFile": {
+          "rva": "0x30274",
+          "forwarder": null
+        },
+        "ZwReplaceKey": {
+          "rva": "0x302f4",
+          "forwarder": null
+        },
+        "ZwRequestWaitReplyPort": {
+          "rva": "0x30364",
+          "forwarder": null
+        },
+        "ZwResetEvent": {
+          "rva": "0x30384",
+          "forwarder": null
+        },
+        "ZwRestoreKey": {
+          "rva": "0x303a4",
+          "forwarder": null
+        },
+        "ZwSaveKey": {
+          "rva": "0x303c4",
+          "forwarder": null
+        },
+        "ZwSetDefaultLocale": {
+          "rva": "0x30424",
+          "forwarder": null
+        },
+        "ZwSetDefaultUILanguage": {
+          "rva": "0x30434",
+          "forwarder": null
+        },
+        "ZwSetEaFile": {
+          "rva": "0x30444",
+          "forwarder": null
+        },
+        "ZwSetEvent": {
+          "rva": "0x30454",
+          "forwarder": null
+        },
+        "ZwSetInformationFile": {
+          "rva": "0x30484",
+          "forwarder": null
+        },
+        "ZwSetInformationObject": {
+          "rva": "0x304b4",
+          "forwarder": null
+        },
+        "ZwSetInformationProcess": {
+          "rva": "0x304c4",
+          "forwarder": null
+        },
+        "ZwSetInformationThread": {
+          "rva": "0x304d4",
+          "forwarder": null
+        },
+        "ZwSetSecurityObject": {
+          "rva": "0x30544",
+          "forwarder": null
+        },
+        "ZwSetSystemInformation": {
+          "rva": "0x30564",
+          "forwarder": null
+        },
+        "ZwSetSystemTime": {
+          "rva": "0x30584",
+          "forwarder": null
+        },
+        "ZwSetTimer": {
+          "rva": "0x305a4",
+          "forwarder": null
+        },
+        "ZwSetValueKey": {
+          "rva": "0x305d4",
+          "forwarder": null
+        },
+        "ZwSetVolumeInformationFile": {
+          "rva": "0x305e4",
+          "forwarder": null
+        },
+        "ZwTerminateProcess": {
+          "rva": "0x30664",
+          "forwarder": null
+        },
+        "ZwUnloadDriver": {
+          "rva": "0x30690",
+          "forwarder": null
+        },
+        "ZwUnloadKey": {
+          "rva": "0x306a0",
+          "forwarder": null
+        },
+        "ZwUnmapViewOfSection": {
+          "rva": "0x306d0",
+          "forwarder": null
+        },
+        "ZwWaitForMultipleObjects": {
+          "rva": "0x306f0",
+          "forwarder": null
+        },
+        "ZwWaitForSingleObject": {
+          "rva": "0x30700",
+          "forwarder": null
+        },
+        "ZwWriteFile": {
+          "rva": "0x30730",
+          "forwarder": null
+        },
+        "ZwYieldExecution": {
+          "rva": "0x307d0",
+          "forwarder": null
+        },
+        "_abnormal_termination": {
+          "rva": "0x5f882",
+          "forwarder": null
+        },
+        "_alldiv": {
+          "rva": "0x5f8d0",
+          "forwarder": null
+        },
+        "_allmul": {
+          "rva": "0x5f980",
+          "forwarder": null
+        },
+        "_allrem": {
+          "rva": "0x5f9c0",
+          "forwarder": null
+        },
+        "_allshl": {
+          "rva": "0x5fa80",
+          "forwarder": null
+        },
+        "_allshr": {
+          "rva": "0x5faa0",
+          "forwarder": null
+        },
+        "_aulldiv": {
+          "rva": "0x5fad0",
+          "forwarder": null
+        },
+        "_aullrem": {
+          "rva": "0x5fb40",
+          "forwarder": null
+        },
+        "_aullshr": {
+          "rva": "0x5fbc0",
+          "forwarder": null
+        },
+        "_except_handler2": {
+          "rva": "0x5fbe8",
+          "forwarder": null
+        },
+        "_except_handler3": {
+          "rva": "0x5fca0",
+          "forwarder": null
+        },
+        "_global_unwind2": {
+          "rva": "0x5f7d8",
+          "forwarder": null
+        },
+        "_itoa": {
+          "rva": "0x5fd78",
+          "forwarder": null
+        },
+        "_itow": {
+          "rva": "0x5fe01",
+          "forwarder": null
+        },
+        "_local_unwind2": {
+          "rva": "0x5f81a",
+          "forwarder": null
+        },
+        "_purecall": {
+          "rva": "0x16cea",
+          "forwarder": null
+        },
+        "_snprintf": {
+          "rva": "0x5fe2f",
+          "forwarder": null
+        },
+        "_snwprintf": {
+          "rva": "0x5fe80",
+          "forwarder": null
+        },
+        "_stricmp": {
+          "rva": "0x5fef0",
+          "forwarder": null
+        },
+        "_strlwr": {
+          "rva": "0x5ff7c",
+          "forwarder": null
+        },
+        "_strnicmp": {
+          "rva": "0x5ffa0",
+          "forwarder": null
+        },
+        "_strnset": {
+          "rva": "0x60050",
+          "forwarder": null
+        },
+        "_strrev": {
+          "rva": "0x60080",
+          "forwarder": null
+        },
+        "_strset": {
+          "rva": "0x600b0",
+          "forwarder": null
+        },
+        "_strupr": {
+          "rva": "0x600d0",
+          "forwarder": null
+        },
+        "_vsnprintf": {
+          "rva": "0x600f3",
+          "forwarder": null
+        },
+        "_wcsicmp": {
+          "rva": "0x60143",
+          "forwarder": null
+        },
+        "_wcslwr": {
+          "rva": "0x6018a",
+          "forwarder": null
+        },
+        "_wcsnicmp": {
+          "rva": "0x601b4",
+          "forwarder": null
+        },
+        "_wcsnset": {
+          "rva": "0x6020d",
+          "forwarder": null
+        },
+        "_wcsrev": {
+          "rva": "0x60233",
+          "forwarder": null
+        },
+        "_wcsupr": {
+          "rva": "0x60263",
+          "forwarder": null
+        },
+        "atoi": {
+          "rva": "0x60318",
+          "forwarder": null
+        },
+        "atol": {
+          "rva": "0x6028d",
+          "forwarder": null
+        },
+        "isdigit": {
+          "rva": "0x603a1",
+          "forwarder": null
+        },
+        "islower": {
+          "rva": "0x60379",
+          "forwarder": null
+        },
+        "isprint": {
+          "rva": "0x6041e",
+          "forwarder": null
+        },
+        "isspace": {
+          "rva": "0x603f6",
+          "forwarder": null
+        },
+        "isupper": {
+          "rva": "0x60351",
+          "forwarder": null
+        },
+        "isxdigit": {
+          "rva": "0x603c9",
+          "forwarder": null
+        },
+        "mbstowcs": {
+          "rva": "0x6044c",
+          "forwarder": null
+        },
+        "mbtowc": {
+          "rva": "0x604bf",
+          "forwarder": null
+        },
+        "memchr": {
+          "rva": "0x60500",
+          "forwarder": null
+        },
+        "memcpy": {
+          "rva": "0x605b0",
+          "forwarder": null
+        },
+        "memmove": {
+          "rva": "0x608f0",
+          "forwarder": null
+        },
+        "memset": {
+          "rva": "0x60c30",
+          "forwarder": null
+        },
+        "qsort": {
+          "rva": "0x60c88",
+          "forwarder": null
+        },
+        "rand": {
+          "rva": "0x60e54",
+          "forwarder": null
+        },
+        "sprintf": {
+          "rva": "0x60e72",
+          "forwarder": null
+        },
+        "srand": {
+          "rva": "0x60e4a",
+          "forwarder": null
+        },
+        "strcat": {
+          "rva": "0x60ee0",
+          "forwarder": null
+        },
+        "strchr": {
+          "rva": "0x60fd0",
+          "forwarder": null
+        },
+        "strcmp": {
+          "rva": "0x61090",
+          "forwarder": null
+        },
+        "strcpy": {
+          "rva": "0x60ed0",
+          "forwarder": null
+        },
+        "strlen": {
+          "rva": "0x61120",
+          "forwarder": null
+        },
+        "strncat": {
+          "rva": "0x611a0",
+          "forwarder": null
+        },
+        "strncmp": {
+          "rva": "0x612d0",
+          "forwarder": null
+        },
+        "strncpy": {
+          "rva": "0x61310",
+          "forwarder": null
+        },
+        "strrchr": {
+          "rva": "0x61410",
+          "forwarder": null
+        },
+        "strspn": {
+          "rva": "0x61440",
+          "forwarder": null
+        },
+        "strstr": {
+          "rva": "0x61480",
+          "forwarder": null
+        },
+        "swprintf": {
+          "rva": "0x61500",
+          "forwarder": null
+        },
+        "tolower": {
+          "rva": "0x6156f",
+          "forwarder": null
+        },
+        "toupper": {
+          "rva": "0x615a3",
+          "forwarder": null
+        },
+        "towlower": {
+          "rva": "0x615f4",
+          "forwarder": null
+        },
+        "towupper": {
+          "rva": "0x6160f",
+          "forwarder": null
+        },
+        "vsprintf": {
+          "rva": "0x61619",
+          "forwarder": null
+        },
+        "wcscat": {
+          "rva": "0x6166a",
+          "forwarder": null
+        },
+        "wcschr": {
+          "rva": "0x616b9",
+          "forwarder": null
+        },
+        "wcscmp": {
+          "rva": "0x616e2",
+          "forwarder": null
+        },
+        "wcscpy": {
+          "rva": "0x61694",
+          "forwarder": null
+        },
+        "wcscspn": {
+          "rva": "0x6171b",
+          "forwarder": null
+        },
+        "wcslen": {
+          "rva": "0x6175c",
+          "forwarder": null
+        },
+        "wcsncat": {
+          "rva": "0x61779",
+          "forwarder": null
+        },
+        "wcsncmp": {
+          "rva": "0x617b9",
+          "forwarder": null
+        },
+        "wcsncpy": {
+          "rva": "0x617f1",
+          "forwarder": null
+        },
+        "wcsrchr": {
+          "rva": "0x6182e",
+          "forwarder": null
+        },
+        "wcsspn": {
+          "rva": "0x6186e",
+          "forwarder": null
+        },
+        "wcsstr": {
+          "rva": "0x618b0",
+          "forwarder": null
+        },
+        "wcstombs": {
+          "rva": "0x618f6",
+          "forwarder": null
+        },
+        "wctomb": {
+          "rva": "0x61969",
+          "forwarder": null
+        }
+      }
+    },
+    "hal.dll": {
+      "file": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\outputs\\native-windows-nt5-debug\\artifacts\\halxboxnt5.dll",
+      "sha256": "4b84950178d09cfac6859b6b05d910b1d280db14a28b46909c777c855d084495",
+      "native_version": [
+        5,
+        0
+      ],
+      "imports": {
+        "ntoskrnl.exe": [
+          "DbgBreakPoint",
+          "DbgPrint",
+          "ExAllocatePoolWithTag",
+          "ExFreePool",
+          "ExFreePoolWithTag",
+          "ExQueueWorkItem",
+          "HalDispatchTable",
+          "HalPrivateDispatchTable",
+          "InbvAcquireDisplayOwnership",
+          "InbvDisplayString",
+          "InbvEnableDisplayString",
+          "InbvInstallDisplayStringFilter",
+          "InbvIsBootDriverInstalled",
+          "InbvResetDisplay",
+          "InbvSetScrollRegion",
+          "InbvSetTextColor",
+          "InbvSolidColorFill",
+          "IoAdapterObjectType",
+          "IoAllocateAdapterChannel",
+          "IoAllocateMdl",
+          "IoAttachDeviceToDeviceStack",
+          "IoBuildSynchronousFsdRequest",
+          "IoCreateDevice",
+          "IoCreateDriver",
+          "IoDeleteDevice",
+          "IoReportDetectedDevice",
+          "IoReportHalResourceUsage",
+          "IofCallDriver",
+          "IofCompleteRequest",
+          "KdDebuggerEnabled",
+          "KdDebuggerNotPresent",
+          "KeBugCheckEx",
+          "KeEnterKernelDebugger",
+          "KeInitializeDeviceQueue",
+          "KeInitializeEvent",
+          "KeInsertDeviceQueue",
+          "KeProfileInterrupt",
+          "KeRemoveDeviceQueue",
+          "KeServiceDescriptorTable",
+          "KeSetEvent",
+          "KeSetEventBoostPriority",
+          "KeSetTimeIncrement",
+          "KeUpdateSystemTime",
+          "KeWaitForSingleObject",
+          "KefAcquireSpinLockAtDpcLevel",
+          "Kei386EoiHelper",
+          "KiBugCheckData",
+          "KiDeliverApc",
+          "KiDispatchInterrupt",
+          "KiEnableTimerWatchdog",
+          "KiUnexpectedInterrupt",
+          "MmAllocateContiguousMemorySpecifyCache",
+          "MmFreeContiguousMemorySpecifyCache",
+          "MmGetPhysicalAddress",
+          "MmMapLockedPagesSpecifyCache",
+          "ObCreateObject",
+          "ObInsertObject",
+          "ObfDereferenceObject",
+          "ObfReferenceObject",
+          "PoCallDriver",
+          "PoStartNextPowerIrp",
+          "RtlAnsiCharToUnicodeChar",
+          "RtlClearBits",
+          "RtlFindClearBitsAndSet",
+          "RtlInitUnicodeString",
+          "RtlInitializeBitMap",
+          "RtlIntegerToUnicodeString",
+          "RtlMultiByteToUnicodeN",
+          "RtlMultiByteToUnicodeSize",
+          "RtlSetAllBits",
+          "RtlSetBits",
+          "RtlUnicodeToMultiByteN",
+          "RtlUnicodeToMultiByteSize",
+          "RtlUnwind",
+          "ZwClose",
+          "ZwCreateKey",
+          "ZwEnumerateValueKey",
+          "ZwOpenKey",
+          "ZwQueryKey",
+          "ZwQueryValueKey",
+          "ZwSetValueKey"
+        ]
+      },
+      "exports": {
+        "ExAcquireFastMutex": {
+          "rva": "0xa8d0",
+          "forwarder": null
+        },
+        "ExReleaseFastMutex": {
+          "rva": "0xa940",
+          "forwarder": null
+        },
+        "ExTryToAcquireFastMutex": {
+          "rva": "0xa9a0",
+          "forwarder": null
+        },
+        "HalAcquireDisplayOwnership": {
+          "rva": "0x1990",
+          "forwarder": null
+        },
+        "HalAdjustResourceList": {
+          "rva": "0x74c0",
+          "forwarder": null
+        },
+        "HalAllProcessorsStarted": {
+          "rva": "0x9a10",
+          "forwarder": null
+        },
+        "HalAllocateAdapterChannel": {
+          "rva": "0x2c80",
+          "forwarder": null
+        },
+        "HalAllocateCommonBuffer": {
+          "rva": "0x1a30",
+          "forwarder": null
+        },
+        "HalAllocateCrashDumpRegisters": {
+          "rva": "0x3aa0",
+          "forwarder": null
+        },
+        "HalAssignSlotResources": {
+          "rva": "0x7520",
+          "forwarder": null
+        },
+        "HalBeginSystemInterrupt": {
+          "rva": "0x97f0",
+          "forwarder": null
+        },
+        "HalCalibratePerformanceCounter": {
+          "rva": "0x8700",
+          "forwarder": null
+        },
+        "HalClearSoftwareInterrupt": {
+          "rva": "0x9650",
+          "forwarder": null
+        },
+        "HalDisableSystemInterrupt": {
+          "rva": "0x97c0",
+          "forwarder": null
+        },
+        "HalDisplayString": {
+          "rva": "0x19a0",
+          "forwarder": null
+        },
+        "HalEnableSystemInterrupt": {
+          "rva": "0x9750",
+          "forwarder": null
+        },
+        "HalEndSystemInterrupt": {
+          "rva": "0xa8ae",
+          "forwarder": null
+        },
+        "HalFlushCommonBuffer": {
+          "rva": "0x3a90",
+          "forwarder": null
+        },
+        "HalFreeCommonBuffer": {
+          "rva": "0x1ca0",
+          "forwarder": null
+        },
+        "HalGetAdapter": {
+          "rva": "0x28d0",
+          "forwarder": null
+        },
+        "HalGetBusData": {
+          "rva": "0x7630",
+          "forwarder": null
+        },
+        "HalGetBusDataByOffset": {
+          "rva": "0x75c0",
+          "forwarder": null
+        },
+        "HalGetEnvironmentVariable": {
+          "rva": "0x1310",
+          "forwarder": null
+        },
+        "HalGetInterruptVector": {
+          "rva": "0x7670",
+          "forwarder": null
+        },
+        "HalHandleNMI": {
+          "rva": "0x42a0",
+          "forwarder": null
+        },
+        "HalInitSystem": {
+          "rva": "0x2080f0",
+          "forwarder": null
+        },
+        "HalInitializeProcessor": {
+          "rva": "0x3c10",
+          "forwarder": null
+        },
+        "HalMakeBeep": {
+          "rva": "0x1000",
+          "forwarder": null
+        },
+        "HalProcessorIdle": {
+          "rva": "0x9a20",
+          "forwarder": null
+        },
+        "HalQueryDisplayParameters": {
+          "rva": "0x19c0",
+          "forwarder": null
+        },
+        "HalQueryRealTimeClock": {
+          "rva": "0x14d0",
+          "forwarder": null
+        },
+        "HalReadDmaCounter": {
+          "rva": "0x1b00",
+          "forwarder": null
+        },
+        "HalReportResourceUsage": {
+          "rva": "0x20b9f0",
+          "forwarder": null
+        },
+        "HalRequestIpi": {
+          "rva": "0xa850",
+          "forwarder": null
+        },
+        "HalRequestSoftwareInterrupt": {
+          "rva": "0x9610",
+          "forwarder": null
+        },
+        "HalReturnToFirmware": {
+          "rva": "0x8e30",
+          "forwarder": null
+        },
+        "HalSetBusData": {
+          "rva": "0x7790",
+          "forwarder": null
+        },
+        "HalSetBusDataByOffset": {
+          "rva": "0x7720",
+          "forwarder": null
+        },
+        "HalSetDisplayParameters": {
+          "rva": "0x19d0",
+          "forwarder": null
+        },
+        "HalSetEnvironmentVariable": {
+          "rva": "0x13c0",
+          "forwarder": null
+        },
+        "HalSetProfileInterval": {
+          "rva": "0x8500",
+          "forwarder": null
+        },
+        "HalSetRealTimeClock": {
+          "rva": "0x16d0",
+          "forwarder": null
+        },
+        "HalSetTimeIncrement": {
+          "rva": "0x8720",
+          "forwarder": null
+        },
+        "HalStartNextProcessor": {
+          "rva": "0xa860",
+          "forwarder": null
+        },
+        "HalStartProfileInterrupt": {
+          "rva": "0x8480",
+          "forwarder": null
+        },
+        "HalStopProfileInterrupt": {
+          "rva": "0x8430",
+          "forwarder": null
+        },
+        "HalSystemVectorDispatchEntry": {
+          "rva": "0x4210",
+          "forwarder": null
+        },
+        "HalTranslateBusAddress": {
+          "rva": "0x77d0",
+          "forwarder": null
+        },
+        "IoAssignDriveLetters": {
+          "rva": "0x3b50",
+          "forwarder": null
+        },
+        "IoFlushAdapterBuffers": {
+          "rva": "0x3150",
+          "forwarder": null
+        },
+        "IoFreeAdapterChannel": {
+          "rva": "0x1cd0",
+          "forwarder": null
+        },
+        "IoFreeMapRegisters": {
+          "rva": "0x1e50",
+          "forwarder": null
+        },
+        "IoMapTransfer": {
+          "rva": "0x33a0",
+          "forwarder": null
+        },
+        "IoReadPartitionTable": {
+          "rva": "0x3b80",
+          "forwarder": null
+        },
+        "IoSetPartitionInformation": {
+          "rva": "0x3be0",
+          "forwarder": null
+        },
+        "IoWritePartitionTable": {
+          "rva": "0x3bb0",
+          "forwarder": null
+        },
+        "KdComPortInUse": {
+          "rva": "0x201904",
+          "forwarder": null
+        },
+        "KdPortGetByte": {
+          "rva": "0xac00",
+          "forwarder": null
+        },
+        "KdPortInitialize": {
+          "rva": "0xaaa0",
+          "forwarder": null
+        },
+        "KdPortPollByte": {
+          "rva": "0xac80",
+          "forwarder": null
+        },
+        "KdPortPutByte": {
+          "rva": "0xad00",
+          "forwarder": null
+        },
+        "KdPortRestore": {
+          "rva": "0xad70",
+          "forwarder": null
+        },
+        "KdPortSave": {
+          "rva": "0xad60",
+          "forwarder": null
+        },
+        "KeAcquireInStackQueuedSpinLock": {
+          "rva": "0xa740",
+          "forwarder": null
+        },
+        "KeAcquireInStackQueuedSpinLockRaiseToSynch": {
+          "rva": "0xa770",
+          "forwarder": null
+        },
+        "KeAcquireQueuedSpinLock": {
+          "rva": "0xa6e0",
+          "forwarder": null
+        },
+        "KeAcquireQueuedSpinLockRaiseToSynch": {
+          "rva": "0xa710",
+          "forwarder": null
+        },
+        "KeAcquireSpinLock": {
+          "rva": "0x4260",
+          "forwarder": null
+        },
+        "KeAcquireSpinLockRaiseToSynch": {
+          "rva": "0xa6a0",
+          "forwarder": null
+        },
+        "KeFlushWriteBuffer": {
+          "rva": "0x4220",
+          "forwarder": null
+        },
+        "KeGetCurrentIrql": {
+          "rva": "0x9570",
+          "forwarder": null
+        },
+        "KeLowerIrql": {
+          "rva": "0x4250",
+          "forwarder": null
+        },
+        "KeQueryPerformanceCounter": {
+          "rva": "0x8760",
+          "forwarder": null
+        },
+        "KeRaiseIrql": {
+          "rva": "0x4230",
+          "forwarder": null
+        },
+        "KeRaiseIrqlToDpcLevel": {
+          "rva": "0x9580",
+          "forwarder": null
+        },
+        "KeRaiseIrqlToSynchLevel": {
+          "rva": "0x9590",
+          "forwarder": null
+        },
+        "KeReleaseInStackQueuedSpinLock": {
+          "rva": "0xa7c0",
+          "forwarder": null
+        },
+        "KeReleaseQueuedSpinLock": {
+          "rva": "0xa7a0",
+          "forwarder": null
+        },
+        "KeReleaseSpinLock": {
+          "rva": "0x4280",
+          "forwarder": null
+        },
+        "KeStallExecutionProcessor": {
+          "rva": "0x9be7",
+          "forwarder": null
+        },
+        "KeTryToAcquireQueuedSpinLock": {
+          "rva": "0xa810",
+          "forwarder": null
+        },
+        "KeTryToAcquireQueuedSpinLockRaiseToSynch": {
+          "rva": "0xa7e0",
+          "forwarder": null
+        },
+        "KfAcquireSpinLock": {
+          "rva": "0xa6c0",
+          "forwarder": null
+        },
+        "KfLowerIrql": {
+          "rva": "0x95c0",
+          "forwarder": null
+        },
+        "KfRaiseIrql": {
+          "rva": "0x95b0",
+          "forwarder": null
+        },
+        "KfReleaseSpinLock": {
+          "rva": "0xa6d0",
+          "forwarder": null
+        },
+        "READ_PORT_BUFFER_UCHAR": {
+          "rva": "0x4f70",
+          "forwarder": null
+        },
+        "READ_PORT_BUFFER_ULONG": {
+          "rva": "0x4fb0",
+          "forwarder": null
+        },
+        "READ_PORT_BUFFER_USHORT": {
+          "rva": "0x4f90",
+          "forwarder": null
+        },
+        "READ_PORT_UCHAR": {
+          "rva": "0x4fd0",
+          "forwarder": null
+        },
+        "READ_PORT_ULONG": {
+          "rva": "0x4ff0",
+          "forwarder": null
+        },
+        "READ_PORT_USHORT": {
+          "rva": "0x4fe0",
+          "forwarder": null
+        },
+        "WRITE_PORT_BUFFER_UCHAR": {
+          "rva": "0x5000",
+          "forwarder": null
+        },
+        "WRITE_PORT_BUFFER_ULONG": {
+          "rva": "0x5040",
+          "forwarder": null
+        },
+        "WRITE_PORT_BUFFER_USHORT": {
+          "rva": "0x5020",
+          "forwarder": null
+        },
+        "WRITE_PORT_UCHAR": {
+          "rva": "0x5060",
+          "forwarder": null
+        },
+        "WRITE_PORT_ULONG": {
+          "rva": "0x5080",
+          "forwarder": null
+        },
+        "WRITE_PORT_USHORT": {
+          "rva": "0x5070",
+          "forwarder": null
+        }
+      }
+    },
+    "bootvid.dll": {
+      "file": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\outputs\\native-windows-nt5-debug\\artifacts\\xboxbvid.dll",
+      "sha256": "e5bd998ce5abe3c09b89ca45023fcf240c80b49a7cea6d02bb34d0b1278895cd",
+      "native_version": [
+        5,
+        1
+      ],
+      "imports": {
+        "ntoskrnl.exe": [
+          "DbgPrint",
+          "HalPrivateDispatchTable",
+          "MmMapIoSpace",
+          "MmUnmapIoSpace",
+          "READ_REGISTER_UCHAR",
+          "READ_REGISTER_ULONG",
+          "WRITE_REGISTER_UCHAR",
+          "memmove",
+          "memset"
+        ]
+      },
+      "exports": {
+        "VidBitBlt": {
+          "rva": "0x1a90",
+          "forwarder": null
+        },
+        "VidBufferToScreenBlt": {
+          "rva": "0x1a50",
+          "forwarder": null
+        },
+        "VidCleanUp": {
+          "rva": "0x17e0",
+          "forwarder": null
+        },
+        "VidDisplayString": {
+          "rva": "0x1ec0",
+          "forwarder": null
+        },
+        "VidDisplayStringXY": {
+          "rva": "0x1e60",
+          "forwarder": null
+        },
+        "VidInitialize": {
+          "rva": "0x1180",
+          "forwarder": null
+        },
+        "VidResetDisplay": {
+          "rva": "0x1dd0",
+          "forwarder": null
+        },
+        "VidScreenToBufferBlt": {
+          "rva": "0x18b0",
+          "forwarder": null
+        },
+        "VidSetScrollRegion": {
+          "rva": "0x1e20",
+          "forwarder": null
+        },
+        "VidSetTextColor": {
+          "rva": "0x1e00",
+          "forwarder": null
+        },
+        "VidSolidColorFill": {
+          "rva": "0x1710",
+          "forwarder": null
+        }
+      }
+    }
+  }
+}

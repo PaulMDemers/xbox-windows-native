@@ -1,0 +1,62 @@
+{
+  "scope": "Physical FATX second-stage test candidate; Windows entry forbidden in this build",
+  "flags": {
+    "XBOX_NATIVE_FATX_IO_PREFLIGHT": "ON",
+    "XBOX_NATIVE_IO_PREFLIGHT": "ON",
+    "XBOX_NATIVE_NT5_AUTORUN": "OFF",
+    "XBOX_NATIVE_NT5_ENTER": "OFF",
+    "XBOX_NATIVE_NT5_HANDOFF": "OFF",
+    "XBOX_NATIVE_PREFLIGHT": "OFF",
+    "XBOX_NATIVE_VOLUME_PREFLIGHT": "OFF"
+  },
+  "runs": [
+    {
+      "run": "physical-stage2-good-001",
+      "screen_observation": "XWN80: Handoff diagnostic complete. Windows NOT entered.",
+      "cpu_halted": true,
+      "eip": "021610bf",
+      "scope": "private 64 MiB xemu; launched through UnleashX and isolated FATX Xromwell",
+      "physical_tested": false
+    },
+    {
+      "run": "physical-stage2-bad-token-001",
+      "screen_observation": "XWNFAIL: second-stage configuration verification",
+      "cpu_halted": true,
+      "eip": "021610bf",
+      "scope": "private 64 MiB xemu; launched through UnleashX and isolated FATX Xromwell",
+      "physical_tested": false
+    }
+  ],
+  "files": {
+    "freeldr.ini": {
+      "bytes": 45,
+      "sha256": "2ad03a21dbb54eb85f2d2915fd59dc11055c340f57fa366fe0628b4ffd38290c"
+    },
+    "freeldr.sys": {
+      "bytes": 240640,
+      "sha256": "802e556afdf2ac662a3eb4293abf14721b3271576b4814e8efeb51f59b200f45"
+    },
+    "probe.bin": {
+      "bytes": 131075,
+      "sha256": "1027db9f49bac9176229e94c73b3d32b7dd408cb2a25aa54a73f7bb0c5f284b0"
+    },
+    "README.txt": {
+      "bytes": 467,
+      "sha256": "c499efac53adaac72f686c4c5a190b10590ee11714db5795814d021df6f199ad"
+    },
+    "rosload.exe": {
+      "bytes": 476672,
+      "sha256": "a92c22189c79e8978d83f34e8895a8d14456fc526eb1d8b4133b7bff1c49f0bc"
+    }
+  },
+  "source_patch": "0018-fatx-second-stage-diagnostic.patch",
+  "patch_chain": "patch-check-0018.json",
+  "normal_build": "normal-regression.json",
+  "physical_launch_verified": true,
+  "results_persistence": false,
+  "automatic_return": false,
+  "launcher": "../native-windows-physical-loader/package/default.xbe",
+  "target_folder": "E:\\Applications\\XWNLoader",
+  "physical_second_stage_pass": true,
+  "physical_evidence": "evidence/physical-xwn80/result.json"
+}

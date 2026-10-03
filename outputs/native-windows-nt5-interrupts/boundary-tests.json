@@ -1,0 +1,39 @@
+{
+  "hal_sha256": "9a33e77a58e444f226b36e0aa1ae2d3af8f315d6f359981387c9f014bb12c92b",
+  "kernel_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+  "scope": "Run built HAL boundary instructions and selected supplied-kernel paths.\n\nSynthetic trap/PCR state; PIC end handler mocked. Stop BEFORE IRET. This is\nnot a guest boot, interrupt delivery, scheduler, or full hardware validation.\n",
+  "tests": [
+    {
+      "test": "EOI adapter discards C stack, installs ESP/EBP trap pointer and preserves frame",
+      "passed": true
+    },
+    {
+      "test": "Clock adapter supplies EAX increment and native old-IRQL/vector stack for four levels",
+      "passed": true
+    },
+    {
+      "test": "Public interrupt-end translates native vector argument to EBP frame and cleans 8 bytes",
+      "passed": true
+    },
+    {
+      "test": "DPC wrapper preserves C nonvolatile registers despite native-helper clobbers",
+      "passed": true
+    },
+    {
+      "test": "Trap entry handles kernel, user debug-off, user debug-on and V86 register-save cases",
+      "passed": true
+    },
+    {
+      "test": "Actual installed NT5 EOI restores registers and exception chain up to IRET, kernel mode",
+      "passed": true
+    },
+    {
+      "test": "Actual NT5 timer consumes increment, handles 64-bit carry, calls adapter and reaches EOI",
+      "passed": true
+    },
+    {
+      "test": "Built IRQ0 entry and clock handler reach native EOI for accepted and spurious interrupts",
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,1026 @@
+{
+  "scope": "Selected loader prefixes under actual HAL and rosload flags, plus TSS fields used by BIOS helpers. Size differences are recorded, not silently approved. No kernel handoff or BIOS execution.",
+  "pdb_sha256": "29f5de2a8db7959875b8a615945bd6f16e50e5c5a9465dd8f71b37f37d671e9e",
+  "targets": {
+    "hal": {
+      "build_directory": "/home/paul/xbox-windows-native/build/hal-nt5",
+      "command": [
+        "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc",
+        "-DD3D_UMD_INTERFACE_VERSION=0x000C",
+        "-DDBG=0",
+        "-DDLL_EXPORT_VERSION=0x502",
+        "-DDXGKDDI_INTERFACE_VERSION=0x1052",
+        "-DMINGW_HAS_SECURE_API=1",
+        "-DNTDDI_VERSION=0x05000000",
+        "-DSARCH_XBOX",
+        "-DUSE_COMPILER_EXCEPTIONS",
+        "-DWINVER=0x500",
+        "-DXBOX_NT5_HAL",
+        "-D_CRT_SUPPRESS_RESTRICT",
+        "-D_GLIBCXX_HAVE_BROKEN_VSWPRINTF",
+        "-D_M_IX86",
+        "-D_NEW_DELETE_OPERATORS_",
+        "-D_NTHALDLL_",
+        "-D_NTHAL_",
+        "-D_SETUPAPI_VER=0x502",
+        "-D_USE_32BIT_TIME_T",
+        "-D_USE_PSEH3=1",
+        "-D_WIN32_IE=0x603",
+        "-D_WIN32_WINDOWS=0x502",
+        "-D_WIN32_WINNT=0x500",
+        "-D_X86_",
+        "-D__REACTOS__",
+        "-D__RELFILE__=&__FILE__[__FILE__[0] == '.' ? 21 : 47]",
+        "-D__i386__",
+        "-Di386",
+        "-Ihal/halx86/xboxnt5",
+        "-I/home/paul/xbox-windows-native/sources/reactos/hal/halx86/xboxnt5",
+        "-I/home/paul/xbox-windows-native/sources/reactos/sdk/include",
+        "-I/home/paul/xbox-windows-native/sources/reactos/sdk/include/crt",
+        "-I/home/paul/xbox-windows-native/sources/reactos/sdk/include/ddk",
+        "-I/home/paul/xbox-windows-native/sources/reactos/sdk/include/ndk",
+        "-I/home/paul/xbox-windows-native/sources/reactos/sdk/include/psdk",
+        "-I/home/paul/xbox-windows-native/sources/reactos/sdk/include/reactos",
+        "-I/home/paul/xbox-windows-native/sources/reactos/sdk/include/reactos/libs",
+        "-I/home/paul/xbox-windows-native/sources/reactos/sdk/include/vcruntime",
+        "-I/home/paul/xbox-windows-native/sources/reactos/sdk/include/winrt",
+        "-Isdk/include",
+        "-Isdk/include/psdk",
+        "-Isdk/include/ddk",
+        "-Isdk/include/dxsdk",
+        "-Isdk/include/reactos",
+        "-Isdk/include/reactos/mc",
+        "-I/home/paul/xbox-windows-native/sources/reactos/sdk/include/dxsdk",
+        "-I/home/paul/xbox-windows-native/sources/reactos/sdk/lib/pseh/include",
+        "-I/home/paul/xbox-windows-native/sources/reactos/hal/halx86/include",
+        "-I/home/paul/xbox-windows-native/sources/reactos/ntoskrnl/include",
+        "-I/home/paul/xbox-windows-native/sources/reactos/sdk/include/reactos/libs/fast486",
+        "-I/home/paul/xbox-windows-native/sources/reactos/drivers/bus/acpi/acpica/include",
+        "-Ihal/halx86/xboxnt5/..",
+        "-pipe",
+        "-fms-extensions",
+        "-fno-strict-aliasing",
+        "-fno-common",
+        "-mlong-double-64",
+        "-nostdinc",
+        "-fno-aggressive-loop-optimizations",
+        "-fno-builtin-acosf",
+        "-fno-builtin-acosl",
+        "-fno-builtin-asinf",
+        "-fno-builtin-asinl",
+        "-fno-builtin-atan2f",
+        "-fno-builtin-atan2l",
+        "-fno-builtin-atanf",
+        "-fno-builtin-atanl",
+        "-fno-builtin-ceilf",
+        "-fno-builtin-ceill",
+        "-fno-builtin-coshf",
+        "-fno-builtin-coshl",
+        "-fno-builtin-cosf",
+        "-fno-builtin-cosl",
+        "-fno-builtin-expf",
+        "-fno-builtin-expl",
+        "-fno-builtin-fabsf",
+        "-fno-builtin-fabsl",
+        "-fno-builtin-floorf",
+        "-fno-builtin-floorl",
+        "-fno-builtin-fmodf",
+        "-fno-builtin-fmodl",
+        "-fno-builtin-frexpf",
+        "-fno-builtin-frexpl",
+        "-fno-builtin-hypotf",
+        "-fno-builtin-hypotl",
+        "-fno-builtin-ldexpf",
+        "-fno-builtin-ldexpl",
+        "-fno-builtin-logf",
+        "-fno-builtin-logl",
+        "-fno-builtin-log10f",
+        "-fno-builtin-log10l",
+        "-fno-builtin-modff",
+        "-fno-builtin-modfl",
+        "-fno-builtin-powf",
+        "-fno-builtin-powl",
+        "-fno-builtin-sinhf",
+        "-fno-builtin-sinhl",
+        "-fno-builtin-sinf",
+        "-fno-builtin-sinl",
+        "-fno-builtin-sqrtf",
+        "-fno-builtin-sqrtl",
+        "-fno-builtin-tanhf",
+        "-fno-builtin-tanhl",
+        "-fno-builtin-tanf",
+        "-fno-builtin-tanl",
+        "-fno-builtin-feraiseexcept",
+        "-fno-builtin-feupdateenv",
+        "-march=pentium",
+        "-mtune=generic",
+        "-Wall",
+        "-Wpointer-arith",
+        "-Wno-char-subscripts",
+        "-Wno-multichar",
+        "-Wno-unused-value",
+        "-Wno-unused-const-variable",
+        "-Wno-unused-local-typedefs",
+        "-Wno-deprecated",
+        "-Wno-unused-result",
+        "-Wno-format",
+        "-Wno-maybe-uninitialized",
+        "-Wno-nonnull-compare",
+        "-Wno-unknown-pragmas",
+        "-O2",
+        "-DNDEBUG=",
+        "-Wno-unused-variable",
+        "-Wno-unused-but-set-variable",
+        "-fno-optimize-sibling-calls",
+        "-fno-omit-frame-pointer",
+        "-mstackrealign",
+        "-mpreferred-stack-boundary=3",
+        "-fno-set-stack-executable",
+        "-momit-leaf-frame-pointer",
+        "-std=gnu99",
+        "-S",
+        "-o",
+        "/home/paul/xbox-windows-native/build/hal-nt5/xwn-boot-layout.s",
+        "/home/paul/xbox-windows-native/build/hal-nt5/xwn-boot-layout.c"
+      ],
+      "values": {
+        "LOADER_PARAMETER_BLOCK_LoadOrderListHead": 0,
+        "LOADER_PARAMETER_BLOCK_MemoryDescriptorListHead": 8,
+        "LOADER_PARAMETER_BLOCK_BootDriverListHead": 16,
+        "LOADER_PARAMETER_BLOCK_KernelStack": 24,
+        "LOADER_PARAMETER_BLOCK_Prcb": 28,
+        "LOADER_PARAMETER_BLOCK_Process": 32,
+        "LOADER_PARAMETER_BLOCK_Thread": 36,
+        "LOADER_PARAMETER_BLOCK_RegistryLength": 40,
+        "LOADER_PARAMETER_BLOCK_RegistryBase": 44,
+        "LOADER_PARAMETER_BLOCK_ConfigurationRoot": 48,
+        "LOADER_PARAMETER_BLOCK_ArcBootDeviceName": 52,
+        "LOADER_PARAMETER_BLOCK_ArcHalDeviceName": 56,
+        "LOADER_PARAMETER_BLOCK_NtBootPathName": 60,
+        "LOADER_PARAMETER_BLOCK_NtHalPathName": 64,
+        "LOADER_PARAMETER_BLOCK_LoadOptions": 68,
+        "LOADER_PARAMETER_BLOCK_NlsData": 72,
+        "LOADER_PARAMETER_BLOCK_ArcDiskInformation": 76,
+        "LOADER_PARAMETER_BLOCK_OemFontFile": 80,
+        "LOADER_PARAMETER_BLOCK_SetupLoaderBlock": 84,
+        "LOADER_PARAMETER_BLOCK_Extension": 88,
+        "LOADER_PARAMETER_BLOCK_u": 92,
+        "LOADER_PARAMETER_BLOCK_size": 104,
+        "LOADER_PARAMETER_EXTENSION_Size": 0,
+        "LOADER_PARAMETER_EXTENSION_Profile": 4,
+        "LOADER_PARAMETER_EXTENSION_MajorVersion": 20,
+        "LOADER_PARAMETER_EXTENSION_MinorVersion": 24,
+        "LOADER_PARAMETER_EXTENSION_InfFileImage": 28,
+        "LOADER_PARAMETER_EXTENSION_InfFileSize": 32,
+        "LOADER_PARAMETER_EXTENSION_TriageDumpBlock": 36,
+        "LOADER_PARAMETER_EXTENSION_size": 76,
+        "I386_LOADER_BLOCK_CommonDataArea": 0,
+        "I386_LOADER_BLOCK_MachineType": 4,
+        "I386_LOADER_BLOCK_VirtualBias": 8,
+        "I386_LOADER_BLOCK_size": 12,
+        "NLS_DATA_BLOCK_AnsiCodePageData": 0,
+        "NLS_DATA_BLOCK_OemCodePageData": 4,
+        "NLS_DATA_BLOCK_UnicodeCaseTableData": 8,
+        "NLS_DATA_BLOCK_size": 12,
+        "PROFILE_PARAMETER_BLOCK_Status": 0,
+        "PROFILE_PARAMETER_BLOCK_Reserved": 2,
+        "PROFILE_PARAMETER_BLOCK_DockingState": 4,
+        "PROFILE_PARAMETER_BLOCK_Capabilities": 6,
+        "PROFILE_PARAMETER_BLOCK_DockID": 8,
+        "PROFILE_PARAMETER_BLOCK_SerialNumber": 12,
+        "PROFILE_PARAMETER_BLOCK_size": 16,
+        "CONFIGURATION_COMPONENT_DATA_Parent": 0,
+        "CONFIGURATION_COMPONENT_DATA_Child": 4,
+        "CONFIGURATION_COMPONENT_DATA_Sibling": 8,
+        "CONFIGURATION_COMPONENT_DATA_ComponentEntry": 12,
+        "CONFIGURATION_COMPONENT_DATA_ConfigurationData": 48,
+        "CONFIGURATION_COMPONENT_DATA_size": 52,
+        "KTSS_Esp0": 4,
+        "KTSS_IoMapBase": 102,
+        "KTSS_IoMaps": 104,
+        "KTSS_IntDirectionMap": 8332,
+        "KTSS_size": 8364
+      },
+      "checks": [
+        {
+          "field": "LOADER_PARAMETER_BLOCK_LoadOrderListHead",
+          "compiled": 0,
+          "windows": 0,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_MemoryDescriptorListHead",
+          "compiled": 8,
+          "windows": 8,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_BootDriverListHead",
+          "compiled": 16,
+          "windows": 16,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_KernelStack",
+          "compiled": 24,
+          "windows": 24,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_Prcb",
+          "compiled": 28,
+          "windows": 28,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_Process",
+          "compiled": 32,
+          "windows": 32,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_Thread",
+          "compiled": 36,
+          "windows": 36,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_RegistryLength",
+          "compiled": 40,
+          "windows": 40,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_RegistryBase",
+          "compiled": 44,
+          "windows": 44,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_ConfigurationRoot",
+          "compiled": 48,
+          "windows": 48,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_ArcBootDeviceName",
+          "compiled": 52,
+          "windows": 52,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_ArcHalDeviceName",
+          "compiled": 56,
+          "windows": 56,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_NtBootPathName",
+          "compiled": 60,
+          "windows": 60,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_NtHalPathName",
+          "compiled": 64,
+          "windows": 64,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_LoadOptions",
+          "compiled": 68,
+          "windows": 68,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_NlsData",
+          "compiled": 72,
+          "windows": 72,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_ArcDiskInformation",
+          "compiled": 76,
+          "windows": 76,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_OemFontFile",
+          "compiled": 80,
+          "windows": 80,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_SetupLoaderBlock",
+          "compiled": 84,
+          "windows": 84,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_Extension",
+          "compiled": 88,
+          "windows": 88,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_u",
+          "compiled": 92,
+          "windows": 92,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_EXTENSION_Size",
+          "compiled": 0,
+          "windows": 0,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_EXTENSION_Profile",
+          "compiled": 4,
+          "windows": 4,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_EXTENSION_MajorVersion",
+          "compiled": 20,
+          "windows": 20,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_EXTENSION_MinorVersion",
+          "compiled": 24,
+          "windows": 24,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_EXTENSION_InfFileImage",
+          "compiled": 28,
+          "windows": 28,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_EXTENSION_InfFileSize",
+          "compiled": 32,
+          "windows": 32,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_EXTENSION_TriageDumpBlock",
+          "compiled": 36,
+          "windows": 36,
+          "matches": true
+        },
+        {
+          "field": "I386_LOADER_BLOCK_CommonDataArea",
+          "compiled": 0,
+          "windows": 0,
+          "matches": true
+        },
+        {
+          "field": "I386_LOADER_BLOCK_MachineType",
+          "compiled": 4,
+          "windows": 4,
+          "matches": true
+        },
+        {
+          "field": "I386_LOADER_BLOCK_VirtualBias",
+          "compiled": 8,
+          "windows": 8,
+          "matches": true
+        },
+        {
+          "field": "NLS_DATA_BLOCK_AnsiCodePageData",
+          "compiled": 0,
+          "windows": 0,
+          "matches": true
+        },
+        {
+          "field": "NLS_DATA_BLOCK_OemCodePageData",
+          "compiled": 4,
+          "windows": 4,
+          "matches": true
+        },
+        {
+          "field": "NLS_DATA_BLOCK_UnicodeCaseTableData",
+          "compiled": 8,
+          "windows": 8,
+          "matches": true
+        },
+        {
+          "field": "PROFILE_PARAMETER_BLOCK_Status",
+          "compiled": 0,
+          "windows": 0,
+          "matches": true
+        },
+        {
+          "field": "PROFILE_PARAMETER_BLOCK_Reserved",
+          "compiled": 2,
+          "windows": 2,
+          "matches": true
+        },
+        {
+          "field": "PROFILE_PARAMETER_BLOCK_DockingState",
+          "compiled": 4,
+          "windows": 4,
+          "matches": true
+        },
+        {
+          "field": "PROFILE_PARAMETER_BLOCK_Capabilities",
+          "compiled": 6,
+          "windows": 6,
+          "matches": true
+        },
+        {
+          "field": "PROFILE_PARAMETER_BLOCK_DockID",
+          "compiled": 8,
+          "windows": 8,
+          "matches": true
+        },
+        {
+          "field": "PROFILE_PARAMETER_BLOCK_SerialNumber",
+          "compiled": 12,
+          "windows": 12,
+          "matches": true
+        },
+        {
+          "field": "CONFIGURATION_COMPONENT_DATA_Parent",
+          "compiled": 0,
+          "windows": 0,
+          "matches": true
+        },
+        {
+          "field": "CONFIGURATION_COMPONENT_DATA_Child",
+          "compiled": 4,
+          "windows": 4,
+          "matches": true
+        },
+        {
+          "field": "CONFIGURATION_COMPONENT_DATA_Sibling",
+          "compiled": 8,
+          "windows": 8,
+          "matches": true
+        },
+        {
+          "field": "CONFIGURATION_COMPONENT_DATA_ComponentEntry",
+          "compiled": 12,
+          "windows": 12,
+          "matches": true
+        },
+        {
+          "field": "CONFIGURATION_COMPONENT_DATA_ConfigurationData",
+          "compiled": 48,
+          "windows": 48,
+          "matches": true
+        },
+        {
+          "field": "KTSS_Esp0",
+          "compiled": 4,
+          "windows": 4,
+          "matches": true
+        },
+        {
+          "field": "KTSS_IoMapBase",
+          "compiled": 102,
+          "windows": 102,
+          "matches": true
+        },
+        {
+          "field": "KTSS_IoMaps",
+          "compiled": 104,
+          "windows": 104,
+          "matches": true
+        },
+        {
+          "field": "KTSS_IntDirectionMap",
+          "compiled": 8332,
+          "windows": 8332,
+          "matches": true
+        }
+      ],
+      "sizes": {
+        "LOADER_PARAMETER_BLOCK": {
+          "compiled": 104,
+          "windows": 104
+        },
+        "LOADER_PARAMETER_EXTENSION": {
+          "compiled": 76,
+          "windows": 40
+        },
+        "I386_LOADER_BLOCK": {
+          "compiled": 12,
+          "windows": 12
+        },
+        "NLS_DATA_BLOCK": {
+          "compiled": 12,
+          "windows": 12
+        },
+        "PROFILE_PARAMETER_BLOCK": {
+          "compiled": 16,
+          "windows": 16
+        },
+        "CONFIGURATION_COMPONENT_DATA": {
+          "compiled": 52,
+          "windows": 52
+        },
+        "KTSS": {
+          "compiled": 8364,
+          "windows": 8364
+        }
+      }
+    },
+    "loader": {
+      "build_directory": "/home/paul/xbox-windows-native/build/loader",
+      "command": [
+        "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc",
+        "-DD3D_UMD_INTERFACE_VERSION=0x000C",
+        "-DDBG=1",
+        "-DDLL_EXPORT_VERSION=0x502",
+        "-DDXGKDDI_INTERFACE_VERSION=0x1052",
+        "-DMINGW_HAS_SECURE_API=1",
+        "-DSARCH_XBOX",
+        "-DUSE_COMPILER_EXCEPTIONS",
+        "-DWINVER=0x502",
+        "-D_BLDR_",
+        "-D_CRT_SUPPRESS_RESTRICT",
+        "-D_GLIBCXX_HAVE_BROKEN_VSWPRINTF",
+        "-D_M_IX86",
+        "-D_NEW_DELETE_OPERATORS_",
+        "-D_NTHAL_",
+        "-D_NTSYSTEM_",
+        "-D_SEH_ENABLE_TRACE",
+        "-D_SETUPAPI_VER=0x502",
+        "-D_USE_32BIT_TIME_T",
+        "-D_USE_PSEH3=1",
+        "-D_WIN32_IE=0x603",
+        "-D_WIN32_WINDOWS=0x502",
+        "-D_WIN32_WINNT=0x502",
+        "-D_X86_",
+        "-D__REACTOS__",
+        "-D__RELFILE__=&__FILE__[__FILE__[0] == '.' ? 21 : 47]",
+        "-D__i386__",
+        "-Di386",
+        "-Iboot/freeldr/freeldr",
+        "-I/home/paul/xbox-windows-native/sources/reactos/boot/freeldr/freeldr",
+        "-I/home/paul/xbox-windows-native/sources/reactos/boot/freeldr/freeldr/include",
+        "-I/home/paul/xbox-windows-native/sources/reactos/sdk/include",
+        "-I/home/paul/xbox-windows-native/sources/reactos/sdk/include/crt",
+        "-I/home/paul/xbox-windows-native/sources/reactos/sdk/include/ddk",
+        "-I/home/paul/xbox-windows-native/sources/reactos/sdk/include/ndk",
+        "-I/home/paul/xbox-windows-native/sources/reactos/sdk/include/psdk",
+        "-I/home/paul/xbox-windows-native/sources/reactos/sdk/include/reactos",
+        "-I/home/paul/xbox-windows-native/sources/reactos/sdk/include/reactos/libs",
+        "-I/home/paul/xbox-windows-native/sources/reactos/sdk/include/vcruntime",
+        "-I/home/paul/xbox-windows-native/sources/reactos/sdk/include/winrt",
+        "-Isdk/include",
+        "-Isdk/include/psdk",
+        "-Isdk/include/ddk",
+        "-Isdk/include/dxsdk",
+        "-Isdk/include/reactos",
+        "-Isdk/include/reactos/mc",
+        "-I/home/paul/xbox-windows-native/sources/reactos/sdk/include/dxsdk",
+        "-I/home/paul/xbox-windows-native/sources/reactos/sdk/lib/pseh/include",
+        "-I/home/paul/xbox-windows-native/sources/reactos/ntoskrnl/include",
+        "-I/home/paul/xbox-windows-native/sources/reactos/sdk/lib/cmlib",
+        "-I/home/paul/xbox-windows-native/sources/reactos/sdk/include/reactos/elf",
+        "-pipe",
+        "-fms-extensions",
+        "-fno-strict-aliasing",
+        "-fno-common",
+        "-mlong-double-64",
+        "-nostdinc",
+        "-fno-aggressive-loop-optimizations",
+        "-Wold-style-declaration",
+        "-fno-builtin-acosf",
+        "-fno-builtin-acosl",
+        "-fno-builtin-asinf",
+        "-fno-builtin-asinl",
+        "-fno-builtin-atan2f",
+        "-fno-builtin-atan2l",
+        "-fno-builtin-atanf",
+        "-fno-builtin-atanl",
+        "-fno-builtin-ceilf",
+        "-fno-builtin-ceill",
+        "-fno-builtin-coshf",
+        "-fno-builtin-coshl",
+        "-fno-builtin-cosf",
+        "-fno-builtin-cosl",
+        "-fno-builtin-expf",
+        "-fno-builtin-expl",
+        "-fno-builtin-fabsf",
+        "-fno-builtin-fabsl",
+        "-fno-builtin-floorf",
+        "-fno-builtin-floorl",
+        "-fno-builtin-fmodf",
+        "-fno-builtin-fmodl",
+        "-fno-builtin-frexpf",
+        "-fno-builtin-frexpl",
+        "-fno-builtin-hypotf",
+        "-fno-builtin-hypotl",
+        "-fno-builtin-ldexpf",
+        "-fno-builtin-ldexpl",
+        "-fno-builtin-logf",
+        "-fno-builtin-logl",
+        "-fno-builtin-log10f",
+        "-fno-builtin-log10l",
+        "-fno-builtin-modff",
+        "-fno-builtin-modfl",
+        "-fno-builtin-powf",
+        "-fno-builtin-powl",
+        "-fno-builtin-sinhf",
+        "-fno-builtin-sinhl",
+        "-fno-builtin-sinf",
+        "-fno-builtin-sinl",
+        "-fno-builtin-sqrtf",
+        "-fno-builtin-sqrtl",
+        "-fno-builtin-tanhf",
+        "-fno-builtin-tanhl",
+        "-fno-builtin-tanf",
+        "-fno-builtin-tanl",
+        "-fno-builtin-feraiseexcept",
+        "-fno-builtin-feupdateenv",
+        "-gdwarf-2",
+        "-gstrict-dwarf",
+        "-femit-struct-debug-detailed=none",
+        "-feliminate-unused-debug-symbols",
+        "-march=pentium",
+        "-mtune=generic",
+        "-Werror",
+        "-Wall",
+        "-Wpointer-arith",
+        "-Wno-char-subscripts",
+        "-Wno-multichar",
+        "-Wno-unused-value",
+        "-Wno-unused-const-variable",
+        "-Wno-unused-local-typedefs",
+        "-Wno-deprecated",
+        "-Wno-unused-result",
+        "-Wno-format",
+        "-Wno-maybe-uninitialized",
+        "-Wno-nonnull-compare",
+        "-Wno-unknown-pragmas",
+        "-O1",
+        "-fno-optimize-sibling-calls",
+        "-fno-omit-frame-pointer",
+        "-mstackrealign",
+        "-mpreferred-stack-boundary=3",
+        "-fno-set-stack-executable",
+        "-std=gnu99",
+        "-S",
+        "-o",
+        "/home/paul/xbox-windows-native/build/loader/xwn-boot-layout.s",
+        "/home/paul/xbox-windows-native/build/loader/xwn-boot-layout.c"
+      ],
+      "values": {
+        "LOADER_PARAMETER_BLOCK_LoadOrderListHead": 0,
+        "LOADER_PARAMETER_BLOCK_MemoryDescriptorListHead": 8,
+        "LOADER_PARAMETER_BLOCK_BootDriverListHead": 16,
+        "LOADER_PARAMETER_BLOCK_KernelStack": 24,
+        "LOADER_PARAMETER_BLOCK_Prcb": 28,
+        "LOADER_PARAMETER_BLOCK_Process": 32,
+        "LOADER_PARAMETER_BLOCK_Thread": 36,
+        "LOADER_PARAMETER_BLOCK_RegistryLength": 40,
+        "LOADER_PARAMETER_BLOCK_RegistryBase": 44,
+        "LOADER_PARAMETER_BLOCK_ConfigurationRoot": 48,
+        "LOADER_PARAMETER_BLOCK_ArcBootDeviceName": 52,
+        "LOADER_PARAMETER_BLOCK_ArcHalDeviceName": 56,
+        "LOADER_PARAMETER_BLOCK_NtBootPathName": 60,
+        "LOADER_PARAMETER_BLOCK_NtHalPathName": 64,
+        "LOADER_PARAMETER_BLOCK_LoadOptions": 68,
+        "LOADER_PARAMETER_BLOCK_NlsData": 72,
+        "LOADER_PARAMETER_BLOCK_ArcDiskInformation": 76,
+        "LOADER_PARAMETER_BLOCK_OemFontFile": 80,
+        "LOADER_PARAMETER_BLOCK_SetupLoaderBlock": 84,
+        "LOADER_PARAMETER_BLOCK_Extension": 88,
+        "LOADER_PARAMETER_BLOCK_u": 92,
+        "LOADER_PARAMETER_BLOCK_size": 104,
+        "LOADER_PARAMETER_EXTENSION_Size": 0,
+        "LOADER_PARAMETER_EXTENSION_Profile": 4,
+        "LOADER_PARAMETER_EXTENSION_MajorVersion": 20,
+        "LOADER_PARAMETER_EXTENSION_MinorVersion": 24,
+        "LOADER_PARAMETER_EXTENSION_InfFileImage": 28,
+        "LOADER_PARAMETER_EXTENSION_InfFileSize": 32,
+        "LOADER_PARAMETER_EXTENSION_TriageDumpBlock": 36,
+        "LOADER_PARAMETER_EXTENSION_size": 124,
+        "I386_LOADER_BLOCK_CommonDataArea": 0,
+        "I386_LOADER_BLOCK_MachineType": 4,
+        "I386_LOADER_BLOCK_VirtualBias": 8,
+        "I386_LOADER_BLOCK_size": 12,
+        "NLS_DATA_BLOCK_AnsiCodePageData": 0,
+        "NLS_DATA_BLOCK_OemCodePageData": 4,
+        "NLS_DATA_BLOCK_UnicodeCaseTableData": 8,
+        "NLS_DATA_BLOCK_size": 12,
+        "PROFILE_PARAMETER_BLOCK_Status": 0,
+        "PROFILE_PARAMETER_BLOCK_Reserved": 2,
+        "PROFILE_PARAMETER_BLOCK_DockingState": 4,
+        "PROFILE_PARAMETER_BLOCK_Capabilities": 6,
+        "PROFILE_PARAMETER_BLOCK_DockID": 8,
+        "PROFILE_PARAMETER_BLOCK_SerialNumber": 12,
+        "PROFILE_PARAMETER_BLOCK_size": 16,
+        "CONFIGURATION_COMPONENT_DATA_Parent": 0,
+        "CONFIGURATION_COMPONENT_DATA_Child": 4,
+        "CONFIGURATION_COMPONENT_DATA_Sibling": 8,
+        "CONFIGURATION_COMPONENT_DATA_ComponentEntry": 12,
+        "CONFIGURATION_COMPONENT_DATA_ConfigurationData": 48,
+        "CONFIGURATION_COMPONENT_DATA_size": 52
+      },
+      "checks": [
+        {
+          "field": "LOADER_PARAMETER_BLOCK_LoadOrderListHead",
+          "compiled": 0,
+          "windows": 0,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_MemoryDescriptorListHead",
+          "compiled": 8,
+          "windows": 8,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_BootDriverListHead",
+          "compiled": 16,
+          "windows": 16,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_KernelStack",
+          "compiled": 24,
+          "windows": 24,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_Prcb",
+          "compiled": 28,
+          "windows": 28,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_Process",
+          "compiled": 32,
+          "windows": 32,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_Thread",
+          "compiled": 36,
+          "windows": 36,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_RegistryLength",
+          "compiled": 40,
+          "windows": 40,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_RegistryBase",
+          "compiled": 44,
+          "windows": 44,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_ConfigurationRoot",
+          "compiled": 48,
+          "windows": 48,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_ArcBootDeviceName",
+          "compiled": 52,
+          "windows": 52,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_ArcHalDeviceName",
+          "compiled": 56,
+          "windows": 56,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_NtBootPathName",
+          "compiled": 60,
+          "windows": 60,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_NtHalPathName",
+          "compiled": 64,
+          "windows": 64,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_LoadOptions",
+          "compiled": 68,
+          "windows": 68,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_NlsData",
+          "compiled": 72,
+          "windows": 72,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_ArcDiskInformation",
+          "compiled": 76,
+          "windows": 76,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_OemFontFile",
+          "compiled": 80,
+          "windows": 80,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_SetupLoaderBlock",
+          "compiled": 84,
+          "windows": 84,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_Extension",
+          "compiled": 88,
+          "windows": 88,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_BLOCK_u",
+          "compiled": 92,
+          "windows": 92,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_EXTENSION_Size",
+          "compiled": 0,
+          "windows": 0,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_EXTENSION_Profile",
+          "compiled": 4,
+          "windows": 4,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_EXTENSION_MajorVersion",
+          "compiled": 20,
+          "windows": 20,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_EXTENSION_MinorVersion",
+          "compiled": 24,
+          "windows": 24,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_EXTENSION_InfFileImage",
+          "compiled": 28,
+          "windows": 28,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_EXTENSION_InfFileSize",
+          "compiled": 32,
+          "windows": 32,
+          "matches": true
+        },
+        {
+          "field": "LOADER_PARAMETER_EXTENSION_TriageDumpBlock",
+          "compiled": 36,
+          "windows": 36,
+          "matches": true
+        },
+        {
+          "field": "I386_LOADER_BLOCK_CommonDataArea",
+          "compiled": 0,
+          "windows": 0,
+          "matches": true
+        },
+        {
+          "field": "I386_LOADER_BLOCK_MachineType",
+          "compiled": 4,
+          "windows": 4,
+          "matches": true
+        },
+        {
+          "field": "I386_LOADER_BLOCK_VirtualBias",
+          "compiled": 8,
+          "windows": 8,
+          "matches": true
+        },
+        {
+          "field": "NLS_DATA_BLOCK_AnsiCodePageData",
+          "compiled": 0,
+          "windows": 0,
+          "matches": true
+        },
+        {
+          "field": "NLS_DATA_BLOCK_OemCodePageData",
+          "compiled": 4,
+          "windows": 4,
+          "matches": true
+        },
+        {
+          "field": "NLS_DATA_BLOCK_UnicodeCaseTableData",
+          "compiled": 8,
+          "windows": 8,
+          "matches": true
+        },
+        {
+          "field": "PROFILE_PARAMETER_BLOCK_Status",
+          "compiled": 0,
+          "windows": 0,
+          "matches": true
+        },
+        {
+          "field": "PROFILE_PARAMETER_BLOCK_Reserved",
+          "compiled": 2,
+          "windows": 2,
+          "matches": true
+        },
+        {
+          "field": "PROFILE_PARAMETER_BLOCK_DockingState",
+          "compiled": 4,
+          "windows": 4,
+          "matches": true
+        },
+        {
+          "field": "PROFILE_PARAMETER_BLOCK_Capabilities",
+          "compiled": 6,
+          "windows": 6,
+          "matches": true
+        },
+        {
+          "field": "PROFILE_PARAMETER_BLOCK_DockID",
+          "compiled": 8,
+          "windows": 8,
+          "matches": true
+        },
+        {
+          "field": "PROFILE_PARAMETER_BLOCK_SerialNumber",
+          "compiled": 12,
+          "windows": 12,
+          "matches": true
+        },
+        {
+          "field": "CONFIGURATION_COMPONENT_DATA_Parent",
+          "compiled": 0,
+          "windows": 0,
+          "matches": true
+        },
+        {
+          "field": "CONFIGURATION_COMPONENT_DATA_Child",
+          "compiled": 4,
+          "windows": 4,
+          "matches": true
+        },
+        {
+          "field": "CONFIGURATION_COMPONENT_DATA_Sibling",
+          "compiled": 8,
+          "windows": 8,
+          "matches": true
+        },
+        {
+          "field": "CONFIGURATION_COMPONENT_DATA_ComponentEntry",
+          "compiled": 12,
+          "windows": 12,
+          "matches": true
+        },
+        {
+          "field": "CONFIGURATION_COMPONENT_DATA_ConfigurationData",
+          "compiled": 48,
+          "windows": 48,
+          "matches": true
+        }
+      ],
+      "sizes": {
+        "LOADER_PARAMETER_BLOCK": {
+          "compiled": 104,
+          "windows": 104
+        },
+        "LOADER_PARAMETER_EXTENSION": {
+          "compiled": 124,
+          "windows": 40
+        },
+        "I386_LOADER_BLOCK": {
+          "compiled": 12,
+          "windows": 12
+        },
+        "NLS_DATA_BLOCK": {
+          "compiled": 12,
+          "windows": 12
+        },
+        "PROFILE_PARAMETER_BLOCK": {
+          "compiled": 16,
+          "windows": 16
+        },
+        "CONFIGURATION_COMPONENT_DATA": {
+          "compiled": 52,
+          "windows": 52
+        }
+      }
+    }
+  }
+}

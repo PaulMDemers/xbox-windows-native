@@ -1,0 +1,83 @@
+{
+  "scope": "Exact 2195.7376 Microsoft PDB versus actual NT5 HAL compile flags. Selected offsets only; this is not complete ABI validation.",
+  "checks": [
+    {
+      "item": "fast_mutex_size",
+      "compiled": 32,
+      "windows_2000": 32,
+      "matches": true
+    },
+    {
+      "item": "ktrap_frame_size",
+      "compiled": 140,
+      "windows_2000": 140,
+      "matches": true
+    },
+    {
+      "item": "prcb_size",
+      "compiled": 3796,
+      "windows_2000": 2544,
+      "matches": false
+    },
+    {
+      "item": "thread_size",
+      "compiled": 440,
+      "windows_2000": 432,
+      "matches": false
+    },
+    {
+      "item": "pcr_prcb_offset",
+      "compiled": 32,
+      "windows_2000": 32,
+      "matches": true
+    },
+    {
+      "item": "prcb_current_thread_offset",
+      "compiled": 4,
+      "windows_2000": 4,
+      "matches": true
+    },
+    {
+      "item": "prcb_major_version_offset",
+      "compiled": 2,
+      "windows_2000": 2,
+      "matches": true
+    },
+    {
+      "item": "prcb_build_type_offset",
+      "compiled": 18,
+      "windows_2000": 18,
+      "matches": true
+    },
+    {
+      "item": "trap_eip_offset",
+      "compiled": 104,
+      "windows_2000": 104,
+      "matches": true
+    },
+    {
+      "item": "trap_eflags_offset",
+      "compiled": 112,
+      "windows_2000": 112,
+      "matches": true
+    },
+    {
+      "item": "trap_exception_list_offset",
+      "compiled": 76,
+      "windows_2000": 76,
+      "matches": true
+    },
+    {
+      "item": "thread_header_debug_active_offset",
+      "compiled": 3,
+      "windows_2000": 44,
+      "matches": false
+    }
+  ],
+  "known_execution_contracts": [
+    "Kei386EoiHelper expects a trap frame in both ESP and EBP, unlike the current KiEoiHelper C interface.",
+    "Windows KeUpdateSystemTime consumes the increment in EAX; the ReactOS fastcall declaration passes it in EDX.",
+    "KiEnterInterruptTrap reads KTHREAD.Header.DebugActive at offset 3; the Windows thread field is at offset 44.",
+    "Full KPRCB and KTHREAD layouts differ despite matching common prefix fields. Audit every inherited access before kernel entry."
+  ]
+}

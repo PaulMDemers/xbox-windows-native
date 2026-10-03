@@ -1,0 +1,240 @@
+diff --git a/boot/freeldr/freeldr/ntldr/xwnentryprobe.h b/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
+index 1f9ebd84..7a81cd5d 100644
+--- a/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
++++ b/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
+@@ -1,8 +1,14 @@
+ /* Explicit early-kernel diagnostic. Included only in the opt-in rosload. */
+ #ifdef XBOX_NATIVE_FATX_PHASE0_PREFLIGHT
++#ifdef XBOX_NATIVE_FATX_HALBASE_PREFLIGHT
++static volatile ULONG XwnEntryRecord[48] = {0x424e5758, 0x35544e50, 1, 0};
++#define XWN_ARM_SIGNATURE 0x42414E54
++#define XWN_ARM_REPLY 0x42414854
++#else
+ static volatile ULONG XwnEntryRecord[36] = {0x304e5758, 0x35544e50, 1, 0};
+ #define XWN_ARM_SIGNATURE 0x50304E54
+ #define XWN_ARM_REPLY 0x50304854
++#endif
+ #include "xwnphase0callback.h"
+ #else
+ static volatile ULONG XwnEntryRecord[24] = {0x454e5758, 0x35544e50, 1, 0};
+@@ -123,7 +129,9 @@ static DECLSPEC_NORETURN VOID XwnEnterKernelProbe(PLOADER_PARAMETER_BLOCK Loader
+     XwnEntryRecord[21] = XwnFramebufferBytes;
+     XwnEntryRecord[23] = (ULONG_PTR)XwnFindHalExport(Hal, "HalInitSystem");
+     XwnPagingClear();
+-#ifdef XBOX_NATIVE_FATX_PHASE0_PREFLIGHT
++#if defined(XBOX_NATIVE_FATX_HALBASE_PREFLIGHT)
++    XwnPagingText(7, "XWNB30: Entering Windows; pre-timer HAL stop armed.", 0xFFFFFF00);
++#elif defined(XBOX_NATIVE_FATX_PHASE0_PREFLIGHT)
+     XwnPagingText(7, "XWNH30: Entering Windows; HAL phase-0 stop armed.", 0xFFFFFF00);
+ #else
+     XwnPagingText(7, "XWNK30: Entering Windows; first HAL checkpoint armed.", 0xFFFFFF00);
+diff --git a/boot/freeldr/freeldr/ntldr/xwnphase0callback.h b/boot/freeldr/freeldr/ntldr/xwnphase0callback.h
+index 2037903e..3110cec8 100644
+--- a/boot/freeldr/freeldr/ntldr/xwnphase0callback.h
++++ b/boot/freeldr/freeldr/ntldr/xwnphase0callback.h
+@@ -31,6 +31,27 @@ XwnFirstHalCheckpoint(ULONG Stage, PLOADER_PARAMETER_BLOCK LoaderBlock,
+     }
+     Valid = Valid && Stage == 30 && XwnEntryRecord[24] == 20 &&
+             XwnEntryRecord[25] == 1 && State[0] == 0;
++#ifdef XBOX_NATIVE_FATX_HALBASE_PREFLIGHT
++    if (Valid)
++    {
++        XwnEntryRecord[24] = 30;
++        XwnEntryRecord[45] = (ULONG_PTR)Caller;
++        return 0x50524330;
++    }
++    Valid = XwnEntryRecord[3] == 30 && State && Stage == 40 &&
++            XwnEntryRecord[24] == 30 && XwnEntryRecord[25] == 1 &&
++            (ULONG_PTR)LoaderBlock == XwnEntryRecord[4] &&
++            (ULONG_PTR)Caller == XwnEntryRecord[45] &&
++            (__readcr0() & 0x80000000) && __readcr3() == XwnEntryRecord[11] &&
++            State[0] == 0 && State[5] == 1 && State[6] == State[7] &&
++            State[8] == 0x1800 && State[9] == 0xffff && State[10] == 50 &&
++            State[11] == 0x7f && (State[12] & 0x200) && State[13] == 0;
++    if (Stage == 40 && State)
++    {
++        ULONG I;
++        for (I = 0; I < 9; ++I) XwnEntryRecord[36 + I] = State[5 + I];
++    }
++#endif
+     XwnEntryRecord[12] = State ? State[0] : ~0;
+     XwnEntryRecord[13] = (ULONG_PTR)LoaderBlock;
+     XwnEntryRecord[14] = (ULONG_PTR)Caller;
+@@ -46,6 +67,20 @@ XwnFirstHalCheckpoint(ULONG Stage, PLOADER_PARAMETER_BLOCK LoaderBlock,
+     XwnEntryRecord[24] = Stage;
+     XwnEntryRecord[3] = Valid ? 90 : 40;
+     XwnPagingClear();
++#ifdef XBOX_NATIVE_FATX_HALBASE_PREFLIGHT
++    XwnPagingText(4, "XWN Windows 2000 base HAL initialization", 0xFFFFFFFF);
++    XwnPagingText(7, Valid ? "XWNB90: Base HAL checks and PIC setup completed."
++                          : "XWNBFAIL: Base HAL checkpoint validation failed.",
++                  Valid ? 0xFF00FF00 : 0xFFFF0000);
++    RtlStringCbPrintfA(Text, sizeof(Text), "PRCB: %lu  Build: %lu/%lu  ELCR: %04lx",
++                      XwnEntryRecord[36], XwnEntryRecord[37], XwnEntryRecord[38], XwnEntryRecord[39]);
++    XwnPagingText(10, Text, 0xFFFFFFFF);
++    RtlStringCbPrintfA(Text, sizeof(Text), "PIC mask: %04lx  CMOS: %lu  Dispatch: %02lx",
++                      XwnEntryRecord[40], XwnEntryRecord[41], XwnEntryRecord[42]);
++    XwnPagingText(12, Text, 0xFFFFFFFF);
++    XwnPagingText(15, "Stopped BEFORE timer calibration and storage setup.", 0xFFFFFFFF);
++    XwnPagingText(17, "Boot-driver entry and Windows desktop NOT reached.", 0xFFFFFFFF);
++#else
+     XwnPagingText(4, "XWN Windows 2000 HAL phase-0 boundary", 0xFFFFFFFF);
+     XwnPagingText(7, Valid ? "XWNH90: Processor initialized; HAL phase 0 reached."
+                           : "XWNHFAIL: HAL checkpoint sequence or state failed.",
+@@ -58,6 +93,7 @@ XwnFirstHalCheckpoint(ULONG Stage, PLOADER_PARAMETER_BLOCK LoaderBlock,
+     XwnPagingText(12, Text, 0xFFFFFFFF);
+     XwnPagingText(15, "Stopped BEFORE original HalInitSystem phase-0 body.", 0xFFFFFFFF);
+     XwnPagingText(17, "Storage initialization and boot-driver entry NOT reached.", 0xFFFFFFFF);
++#endif
+     XwnPagingText(20, "Photograph this screen, then reboot to the dashboard.", 0xFFFFFFFF);
+     for (;;) __halt();
+ }
+diff --git a/boot/freeldr/freeldr/pcat.cmake b/boot/freeldr/freeldr/pcat.cmake
+index 8d2a162d..89a60212 100644
+--- a/boot/freeldr/freeldr/pcat.cmake
++++ b/boot/freeldr/freeldr/pcat.cmake
+@@ -336,3 +336,8 @@ option(XBOX_NATIVE_FATX_PHASE0_PREFLIGHT "Continue only to HAL phase-0 entrance"
+ if(XBOX_NATIVE_FATX_PHASE0_PREFLIGHT AND NOT XBOX_NATIVE_FATX_ENTRY_PREFLIGHT)
+     message(FATAL_ERROR "Phase-0 probe requires entry preflight")
+ endif()
++
++option(XBOX_NATIVE_FATX_HALBASE_PREFLIGHT "Stop after base HAL setup before timers" OFF)
++if(XBOX_NATIVE_FATX_HALBASE_PREFLIGHT AND NOT XBOX_NATIVE_FATX_PHASE0_PREFLIGHT)
++    message(FATAL_ERROR "HAL-base probe requires phase-0 preflight")
++endif()
+diff --git a/boot/freeldr/freeldr/rosload.cmake b/boot/freeldr/freeldr/rosload.cmake
+index c890ac80..a562e4c0 100644
+--- a/boot/freeldr/freeldr/rosload.cmake
++++ b/boot/freeldr/freeldr/rosload.cmake
+@@ -135,3 +135,7 @@ endif()
+ if(XBOX_NATIVE_FATX_PHASE0_PREFLIGHT)
+     target_compile_definitions(rosload PRIVATE XBOX_NATIVE_FATX_PHASE0_PREFLIGHT=1)
+ endif()
++
++if(XBOX_NATIVE_FATX_HALBASE_PREFLIGHT)
++    target_compile_definitions(rosload PRIVATE XBOX_NATIVE_FATX_HALBASE_PREFLIGHT=1)
++endif()
+diff --git a/hal/halx86/generic/halinit.c b/hal/halx86/generic/halinit.c
+index b2c5aaef..fc00bba3 100644
+--- a/hal/halx86/generic/halinit.c
++++ b/hal/halx86/generic/halinit.c
+@@ -14,8 +14,13 @@
+ 
+ #ifdef XBOX_NT5_PHASE0_PREFLIGHT
+ VOID HalpXwnProcessorBoundary(BOOLEAN, ULONG, PLOADER_PARAMETER_BLOCK, PVOID);
++#ifdef XBOX_NT5_HALBASE_PREFLIGHT
++VOID HalpXwnPhase0(ULONG, PLOADER_PARAMETER_BLOCK, PVOID);
++DECLSPEC_NORETURN VOID HalpXwnBaseReady(ULONG, PLOADER_PARAMETER_BLOCK, PVOID, NTSTATUS);
++#else
+ DECLSPEC_NORETURN VOID HalpXwnPhase0(ULONG, PLOADER_PARAMETER_BLOCK, PVOID);
+ #endif
++#endif
+ #ifdef XBOX_NT5_ENTRY_PREFLIGHT
+ DECLSPEC_NORETURN VOID HalpXwnFirstProcessor(ULONG, PLOADER_PARAMETER_BLOCK, PVOID);
+ #endif
+@@ -180,6 +185,9 @@ HalInitSystem(
+         HalpDefaultIoSpace.Next = HalpAddressUsageList;
+         HalpAddressUsageList = &HalpDefaultIoSpace;
+ 
++#ifdef XBOX_NT5_HALBASE_PREFLIGHT
++        HalpXwnBaseReady(BootPhase, LoaderBlock, _ReturnAddress(), Status);
++#endif
+         /* Setup busy waiting */
+         HalpCalibrateStallExecution();
+ 
+diff --git a/hal/halx86/xboxnt5/CMakeLists.txt b/hal/halx86/xboxnt5/CMakeLists.txt
+index f11b6f7c..ace0c03e 100644
+--- a/hal/halx86/xboxnt5/CMakeLists.txt
++++ b/hal/halx86/xboxnt5/CMakeLists.txt
+@@ -41,3 +41,11 @@ endif()
+ if(XBOX_NT5_PHASE0_PREFLIGHT)
+     target_compile_definitions(halxboxnt5 PRIVATE XBOX_NT5_PHASE0_PREFLIGHT=1)
+ endif()
++
++option(XBOX_NT5_HALBASE_PREFLIGHT "Stop base HAL initialization before timers" OFF)
++if(XBOX_NT5_HALBASE_PREFLIGHT AND NOT XBOX_NT5_PHASE0_PREFLIGHT)
++    message(FATAL_ERROR "HAL-base HAL probe requires phase-0 preflight")
++endif()
++if(XBOX_NT5_HALBASE_PREFLIGHT)
++    target_compile_definitions(halxboxnt5 PRIVATE XBOX_NT5_HALBASE_PREFLIGHT=1)
++endif()
+diff --git a/hal/halx86/xboxnt5/entryprobe.c b/hal/halx86/xboxnt5/entryprobe.c
+index b18e1c8c..34eba60f 100644
+--- a/hal/halx86/xboxnt5/entryprobe.c
++++ b/hal/halx86/xboxnt5/entryprobe.c
+@@ -23,7 +23,10 @@ VOID HalpXwnProcessorBoundary(BOOLEAN Complete, ULONG Processor,
+     XwnPhaseStep = Complete ? 2 : 1;
+ }
+ 
+-DECLSPEC_NORETURN VOID HalpXwnPhase0(ULONG Phase, PLOADER_PARAMETER_BLOCK LoaderBlock, PVOID Caller)
++#ifndef XBOX_NT5_HALBASE_PREFLIGHT
++DECLSPEC_NORETURN
++#endif
++VOID HalpXwnPhase0(ULONG Phase, PLOADER_PARAMETER_BLOCK LoaderBlock, PVOID Caller)
+ {
+     ULONG State[5];
+     _disable();
+@@ -34,7 +37,11 @@ DECLSPEC_NORETURN VOID HalpXwnPhase0(ULONG Phase, PLOADER_PARAMETER_BLOCK Loader
+     State[3] = (ULONG)HalpActiveProcessors;
+     State[4] = (ULONG)HalpDefaultInterruptAffinity;
+     XwnPhaseStep = 3;
++#ifdef XBOX_NT5_HALBASE_PREFLIGHT
++    if (XwnPhaseCallback(30, LoaderBlock, Caller, State) == 0x50524330) return;
++#else
+     XwnPhaseCallback(30, LoaderBlock, Caller, State);
++#endif
+     for (;;) __halt();
+ }
+ #endif
+@@ -55,7 +62,11 @@ HalpXwnFirstProcessor(ULONG Processor, PLOADER_PARAMETER_BLOCK LoaderBlock, PVOI
+ 
+ ULONG NTAPI XwnConfigureEntryProbe(PVOID Callback, ULONG Signature)
+ {
+-#if defined(XBOX_NT5_PHASE0_PREFLIGHT)
++#if defined(XBOX_NT5_HALBASE_PREFLIGHT)
++    if (Signature != 0x42414E54 || !Callback || XwnPhaseCallback) return 0;
++    XwnPhaseCallback = (XWN_PHASE_CALLBACK)Callback;
++    return 0x42414854;
++#elif defined(XBOX_NT5_PHASE0_PREFLIGHT)
+     if (Signature != 0x50304E54 || !Callback || XwnPhaseCallback) return 0;
+     XwnPhaseCallback = (XWN_PHASE_CALLBACK)Callback;
+     return 0x50304854;
+@@ -67,3 +78,38 @@ ULONG NTAPI XwnConfigureEntryProbe(PVOID Callback, ULONG Signature)
+     return 0; /* Ordinary HALs cannot arm this diagnostic. */
+ #endif
+ }
++
++#ifdef XBOX_NT5_HALBASE_PREFLIGHT
++extern LONG HalpEisaELCR;
++extern UCHAR HalpCmosCenturyOffset;
++DECLSPEC_NORETURN VOID HalpXwnBaseReady(ULONG Phase, PLOADER_PARAMETER_BLOCK LoaderBlock,
++                                       PVOID Caller, NTSTATUS Status)
++{
++    ULONG State[14], Flags = __readeflags();
++    _disable();
++    if (!XwnPhaseCallback || XwnPhaseStep != 3 || Phase != 0) for (;;) __halt();
++    State[0] = Phase;
++    State[1] = KeGetPcr()->IDR;
++    State[2] = KeGetPcr()->StallScaleFactor;
++    State[3] = (ULONG)HalpActiveProcessors;
++    State[4] = (ULONG)HalpDefaultInterruptAffinity;
++    State[5] = KeGetCurrentPrcb()->MajorVersion;
++    State[6] = KeGetCurrentPrcb()->BuildType;
++    State[7] = HalpBuildType;
++    State[8] = HalpEisaELCR;
++    State[9] = __inbyte(0x21) | (__inbyte(0xa1) << 8);
++    State[10] = HalpCmosCenturyOffset;
++    State[11] = (HalQuerySystemInformation == HaliQuerySystemInformation) |
++                ((HalSetSystemInformation == HaliSetSystemInformation) << 1) |
++                ((HalInitPnpDriver == HaliInitPnpDriver) << 2) |
++                ((HalGetDmaAdapter == HalpGetDmaAdapter) << 3) |
++                ((HalGetInterruptTranslator == HalpNt5GetInterruptTranslator) << 4) |
++                ((HalResetDisplay == HalpBiosDisplayReset) << 5) |
++                ((HalHaltSystem == HaliHaltSystem) << 6);
++    State[12] = Flags;
++    State[13] = Status;
++    XwnPhaseStep = 4;
++    XwnPhaseCallback(40, LoaderBlock, Caller, State);
++    for (;;) __halt();
++}
++#endif

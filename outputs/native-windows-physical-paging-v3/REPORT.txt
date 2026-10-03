@@ -1,0 +1,51 @@
+XWN paging diagnostic v3, patch 0022
+
+The physical v2 photo identifies the rejected geometry: 1024x576 with
+4096-byte pitch, framebuffer 03c00000 (raw register f3c00000), managed
+lookup 3c00 pages. CR0 00010033 confirms the diagnostic stopped before
+paging. The framebuffer range and managed-memory checks were satisfied.
+See ../native-windows-physical-paging-v2/evidence/physical-mode-mismatch.
+
+The local Cromwell BootVgaInitialization.c selects 1024x576 for widescreen
+with a Conexant encoder. This explains the display layout without changing
+the console's video setting. Encoder identity is not independently proved
+by the photo. The diagnostic now accepts the two observed packed-32-bit
+layouts: 640x480/pitch2560 and 1024x576/pitch4096.
+
+Dimensions and pitch are validated before calculating buffer size. The
+whole page-aligned buffer must fit the upper reserved 4 MiB and remain
+covered by firmware-permanent descriptors. The larger mode maps 576 pages
+(2359296 bytes), versus 300 pages in 640x480. Both use one dedicated page
+table, uncached/write-through mappings and the current GPU mode. Rendering
+and clearing use the validated pitch and buffer size. No video-mode change
+or Windows driver/kernel execution is introduced. Kernel entry stays off.
+
+The record retains its existing first 20 words and appends width, height
+and pitch, allowing the host audit to check the actual mapping extent.
+The success screen also prints the mode, pitch and mapped-page count.
+
+Emulator tests use the same final rosload binary in both modes. Widescreen
+is enabled only in a private emulator EEPROM copy using Cromwell's existing
+EepromSetWidescreen checksum method. Shared EEPROM and physical console
+settings are unchanged. validation.json and evidence record actual test
+results; ftp-upload.json records actual physical deployment completion.
+
+Launch Applications > XWN Loader Diagnostic. Photograph the final screen
+before rebooting. Expected green XWNP90 with Display 1024x576, Pitch 4096,
+Mapped pages 576. Yellow XWNP30 alone does not confirm paging. If a guard
+still fails, photograph the detailed failure screen instead.
+
+Both emulator modes passed full host audits and framebuffer inspection.
+The old generic frame-NNN images assume 640x480; use the correctly sized
+audited-framebuffer.png in each archived evidence directory. The diagnostic
+binary is identical in both runs. Physical v3 has not yet been tested.
+
+Upload completed 2026-10-03T19:39:25.433802+00:00. Two replacements read back
+byte-for-byte, 31 unchanged files verified. Prior controls preserved as
+rosload-xwnp-v2.exe and README-xwnp-v2.txt. No physical launch issued.
+
+Physical XWNP90 confirmed by console photo: 24 descriptors, 20 modules,
+14 boot drivers, 1810432-byte hive, 1024x576 pitch4096, 576 mapped pages.
+The diagnostic reports paging active and halts before kernel entry.
+Full RAM/import/code audits remain emulator-only evidence. See
+evidence/physical-xwnp90/console.jpg and result.json.

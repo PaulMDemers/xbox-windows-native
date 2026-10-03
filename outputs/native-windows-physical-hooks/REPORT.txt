@@ -1,0 +1,44 @@
+Native Windows 2000: partition-hook registration diagnostic
+
+Physical control: the supplied XWNC90 photo confirms clock setup, increment
+150000, PIT reload 16875, PIC ffff, RTC B 02, profiling stopped and stall
+factor 367. It does not establish timer delivery or Windows storage access.
+
+This next opt-in probe runs the unchanged HalpInitPhase0 and
+HalpXboxInitPartIo functions after the verified clock setup. Registration
+only saves and replaces four partition-dispatch pointers. The compiled
+registration function contains moves and return, with alignment padding;
+it does not call a partition handler or perform port IO.
+
+XWNR90 requires all four installed and saved-original checks, the same
+loader block/CR3/native caller, unchanged CPU affinity and stall state,
+PIC ffff and incoming IF set. The HAL callback halts before
+HalInitializeBios. The Windows kernel binary is unchanged. General native
+boot and autorun remain disabled, and all new probe options default OFF.
+
+The follow-on BIOS initializer allocates two pages below 1 MiB during
+phase 0. That needs a separate loader-descriptor audit. Allowing phase 0
+to return to Windows is a later milestone. No storage driver, volume mount,
+partition handler, phase 1 or desktop success is claimed here.
+
+Only this application's HAL, second-stage loader and README are replaced.
+Physical upload and validation status are recorded in validation.json and
+ftp-upload.json. The preceding XWNC90 versions are retained as backups.
+Launch manually from Applications -> XWN Loader Diagnostic, photograph the
+complete result, then reboot to the dashboard.
+
+Validation completed: 1024x576 and 640x480 passed; old clock HAL rejected
+before Windows entry; 23 debugger checkpoints passed with 22 forbidden
+boundaries watched. All 1388 mapped imports, expected executable code and
+64 MiB descriptor coverage passed. Original partition pointer values were
+compared before/after registration and matched the saved values exactly.
+The first standard-display run failed at dashboard FTP before launching;
+its recorded retry passed. Ordinary builds and default-OFF guard checks passed.
+
+Physical FTP upload completed 2026-10-03T21:57:40.093706+00:00. All 33 app files
+verified by readback. The three preceding XWNC90 files are retained under
+xwnc90 backup names. The Xbox was not remotely launched. Hardware XWNR90 is now photo-confirmed.
+
+Physical XWNR90 photo received: installed hooks f/0f, saved originals f/0f,
+PIC ffff, stall factor 367, stage 70. BIOS allocation, partition-handler
+calls, boot-driver entry and desktop remain untested on physical hardware.

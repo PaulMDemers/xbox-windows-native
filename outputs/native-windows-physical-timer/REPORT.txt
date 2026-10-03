@@ -1,0 +1,57 @@
+XWN Windows 2000 RTC calibration diagnostic, patch 0026
+
+Physical baseline: XWNB90 passed on Paul's console. Its photo confirms PRCB
+major 1, HAL/kernel build types 2/2, ELCR 1800, PIC masks ffff, CMOS century
+offset 50 and dispatch mask 7f. The user reports rebooting to UnleashX.
+Evidence is under native-windows-physical-halbase/evidence/physical-xwnb90.
+
+This candidate continues from that checkpoint through the original
+HalpCalibrateStallExecution and halts immediately after it returns, before
+HalpInitializeClock. Clock initialization, Xbox storage setup, driver entry
+and the Windows desktop are not reached. HAL phase 0 has not returned.
+
+The existing calibration assembly temporarily unmasks RTC IRQ8 and the
+slave cascade, installs its RTC handler at vector 38, programs RTC registers
+A/B, ignores the first interrupt and measures the loop count until the
+second. It derives StallScaleFactor, disables the RTC periodic interrupt,
+and restores the RTC IDT entry, PIC masks and prior flags before returning.
+This changes RTC operational registers as part of normal HAL startup; it
+does not restore their previous register A/B values or set calendar time.
+
+The diagnostic saves the RTC IDT words and table base before calibration.
+The final callback requires the validated preceding checkpoint sequence,
+expected native caller and loader block, active paging and matching CR3,
+a positive bounded stall factor, exact RTC IDT restoration, PIC mask ffff
+and IF restored. It then disables interrupts and halts. The stall factor
+is machine-dependent; the emulator's value is not a hardware target.
+
+Yellow XWNT40 means base HAL setup passed and RTC calibration is starting.
+It is not evidence that RTC interrupts fired. The original calibration may
+wait if no RTC interrupt arrives; there is no automatic timeout or dashboard
+return. If yellow remains after 15 seconds, photograph it and reboot.
+Green XWNT90 means calibration returned and the restoration checks passed.
+
+Distinct loader/HAL arming signatures reject the preceding XWNB90 HAL
+before kernel entry. Timer flags default OFF and require HAL-base preflight.
+The compiled final callback has CLI/HLT and no return; the diagnostic
+HalInitSystem calls calibration but cannot continue to clock setup.
+
+Validation covers both display modes, an old-HAL negative fixture, normal
+builds and configuration guards, and a debugger trace through processor
+initialization, HAL base setup, calibration entry, both RTC interrupt
+paths, calibration return and the final checkpoint. Forbidden breakpoints
+cover clock setup, Xbox phase-0/storage and all loaded .sys entry points.
+Mapped imports, executable sections, loader lists and memory reservations
+remain audited. The on-disk Windows kernel is unchanged.
+validation.json records completed checks and the physical test status.
+
+Only rosload.exe, loader/halxboxnt5.dll and README.txt change on the Xbox.
+The previous files are preserved as rosload-xwnb90.exe, loader/hal-xwnb90.dll
+and README-xwnb90.txt. FTP stages and reads back replacements, verifies
+all unchanged files, and switches rosload last. The console is not launched
+remotely. Run Applications -> XWN Loader Diagnostic, photograph the full
+screen, then reboot to UnleashX. No additional ISO is needed.
+
+Uploaded and read back successfully at 2026-10-03T21:22:25.968986+00:00.
+All 33 package files verified; 3 changed and 30 retained. Not launched.
+Physical XWNT90 PASSED. Stall factor 367; PIC ffff; RTC IDT restored. User reports rebooted.

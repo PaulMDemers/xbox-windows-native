@@ -1,0 +1,272 @@
+diff --git a/boot/freeldr/freeldr/ntldr/xwnentryprobe.h b/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
+index d92d2c09..1f9ebd84 100644
+--- a/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
++++ b/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
+@@ -1,5 +1,13 @@
+ /* Explicit early-kernel diagnostic. Included only in the opt-in rosload. */
++#ifdef XBOX_NATIVE_FATX_PHASE0_PREFLIGHT
++static volatile ULONG XwnEntryRecord[36] = {0x304e5758, 0x35544e50, 1, 0};
++#define XWN_ARM_SIGNATURE 0x50304E54
++#define XWN_ARM_REPLY 0x50304854
++#include "xwnphase0callback.h"
++#else
+ static volatile ULONG XwnEntryRecord[24] = {0x454e5758, 0x35544e50, 1, 0};
++#define XWN_ARM_SIGNATURE 0x58454E54
++#define XWN_ARM_REPLY 0x58484C54
+ 
+ static DECLSPEC_NORETURN VOID NTAPI
+ XwnFirstHalCheckpoint(ULONG Processor, PLOADER_PARAMETER_BLOCK LoaderBlock,
+@@ -35,6 +43,8 @@ XwnFirstHalCheckpoint(ULONG Processor, PLOADER_PARAMETER_BLOCK LoaderBlock,
+     for (;;) __halt();
+ }
+ 
++#endif /* XBOX_NATIVE_FATX_PHASE0_PREFLIGHT */
++
+ /* The loaded image is already PE-validated. Reject malformed export extents. */
+ static PVOID XwnFindHalExport(PLDR_DATA_TABLE_ENTRY Module, PCSTR Name)
+ {
+@@ -89,7 +99,7 @@ static DECLSPEC_NORETURN VOID XwnEnterKernelProbe(PLOADER_PARAMETER_BLOCK Loader
+     }
+     if (Hal && Kernel && Count < 64)
+         Configure = (CONFIGURE)XwnFindHalExport(Hal, "XwnConfigureEntryProbe");
+-    if (!Configure || Configure(XwnFirstHalCheckpoint, 0x58454E54) != 0x58484C54)
++    if (!Configure || Configure(XwnFirstHalCheckpoint, XWN_ARM_SIGNATURE) != XWN_ARM_REPLY)
+     {
+         XwnEntryRecord[3] = 40;
+         XwnEntryRecord[22] = 1;
+@@ -113,7 +123,11 @@ static DECLSPEC_NORETURN VOID XwnEnterKernelProbe(PLOADER_PARAMETER_BLOCK Loader
+     XwnEntryRecord[21] = XwnFramebufferBytes;
+     XwnEntryRecord[23] = (ULONG_PTR)XwnFindHalExport(Hal, "HalInitSystem");
+     XwnPagingClear();
++#ifdef XBOX_NATIVE_FATX_PHASE0_PREFLIGHT
++    XwnPagingText(7, "XWNH30: Entering Windows; HAL phase-0 stop armed.", 0xFFFFFF00);
++#else
+     XwnPagingText(7, "XWNK30: Entering Windows; first HAL checkpoint armed.", 0xFFFFFF00);
++#endif
+     XwnPagingText(11, "If this remains, kernel entry has NOT been confirmed.", 0xFFFFFFFF);
+     XwnEntryRecord[3] = 30;
+     ((KERNEL_ENTRY_POINT)XwnEntryRecord[5])(LoaderBlock);
+diff --git a/boot/freeldr/freeldr/ntldr/xwnphase0callback.h b/boot/freeldr/freeldr/ntldr/xwnphase0callback.h
+new file mode 100644
+index 00000000..2037903e
+--- /dev/null
++++ b/boot/freeldr/freeldr/ntldr/xwnphase0callback.h
+@@ -0,0 +1,63 @@
++/* The opt-in phase-0 probe returns only for the two processor checkpoints. */
++static ULONG NTAPI
++XwnFirstHalCheckpoint(ULONG Stage, PLOADER_PARAMETER_BLOCK LoaderBlock,
++                      PVOID Caller, PULONG State)
++{
++    BOOLEAN Valid;
++    CHAR Text[128];
++    _disable();
++    Valid = XwnEntryRecord[3] == 30 && State &&
++            (ULONG_PTR)LoaderBlock == XwnEntryRecord[4] &&
++            (ULONG_PTR)Caller >= XwnEntryRecord[6] &&
++            (ULONG_PTR)Caller - XwnEntryRecord[6] < XwnEntryRecord[7] &&
++            (__readcr0() & 0x80000000) && __readcr3() == XwnEntryRecord[11];
++    if (Valid && Stage == 10 && XwnEntryRecord[24] == 0 && State[0] == 0)
++    {
++        XwnEntryRecord[24] = 10;
++        XwnEntryRecord[26] = (ULONG_PTR)Caller;
++        return 0x50524330;
++    }
++    if (Valid && Stage == 20 && XwnEntryRecord[24] == 10 && State[0] == 0 &&
++        State[1] == 0xFFFFFFFB && State[2] == 100 && State[3] == 1 && State[4] == 1)
++    {
++        XwnEntryRecord[24] = 20;
++        XwnEntryRecord[25] = 1;
++        XwnEntryRecord[27] = (ULONG_PTR)Caller;
++        XwnEntryRecord[28] = State[1];
++        XwnEntryRecord[29] = State[2];
++        XwnEntryRecord[30] = State[3];
++        XwnEntryRecord[31] = State[4];
++        return 0x50524330;
++    }
++    Valid = Valid && Stage == 30 && XwnEntryRecord[24] == 20 &&
++            XwnEntryRecord[25] == 1 && State[0] == 0;
++    XwnEntryRecord[12] = State ? State[0] : ~0;
++    XwnEntryRecord[13] = (ULONG_PTR)LoaderBlock;
++    XwnEntryRecord[14] = (ULONG_PTR)Caller;
++    XwnEntryRecord[15] = __readcr0();
++    XwnEntryRecord[16] = __readcr3();
++    if (State)
++    {
++        XwnEntryRecord[32] = State[1];
++        XwnEntryRecord[33] = State[2];
++        XwnEntryRecord[34] = State[3];
++        XwnEntryRecord[35] = State[4];
++    }
++    XwnEntryRecord[24] = Stage;
++    XwnEntryRecord[3] = Valid ? 90 : 40;
++    XwnPagingClear();
++    XwnPagingText(4, "XWN Windows 2000 HAL phase-0 boundary", 0xFFFFFFFF);
++    XwnPagingText(7, Valid ? "XWNH90: Processor initialized; HAL phase 0 reached."
++                          : "XWNHFAIL: HAL checkpoint sequence or state failed.",
++                  Valid ? 0xFF00FF00 : 0xFFFF0000);
++    RtlStringCbPrintfA(Text, sizeof(Text), "Stage: %lu  Phase/CPU: %lu  Caller: %08lx",
++                      Stage, XwnEntryRecord[12], (ULONG_PTR)Caller);
++    XwnPagingText(10, Text, 0xFFFFFFFF);
++    RtlStringCbPrintfA(Text, sizeof(Text), "IDR: %08lx  Stall: %lu  CPU masks: %lx/%lx",
++                      XwnEntryRecord[28], XwnEntryRecord[29], XwnEntryRecord[30], XwnEntryRecord[31]);
++    XwnPagingText(12, Text, 0xFFFFFFFF);
++    XwnPagingText(15, "Stopped BEFORE original HalInitSystem phase-0 body.", 0xFFFFFFFF);
++    XwnPagingText(17, "Storage initialization and boot-driver entry NOT reached.", 0xFFFFFFFF);
++    XwnPagingText(20, "Photograph this screen, then reboot to the dashboard.", 0xFFFFFFFF);
++    for (;;) __halt();
++}
+diff --git a/boot/freeldr/freeldr/pcat.cmake b/boot/freeldr/freeldr/pcat.cmake
+index ebd7adc8..8d2a162d 100644
+--- a/boot/freeldr/freeldr/pcat.cmake
++++ b/boot/freeldr/freeldr/pcat.cmake
+@@ -331,3 +331,8 @@ if(XBOX_NATIVE_FATX_ENTRY_PREFLIGHT AND
+    (NOT XBOX_NATIVE_FATX_PAGING_PREFLIGHT OR XBOX_NATIVE_NT5_ENTER OR XBOX_NATIVE_NT5_AUTORUN))
+     message(FATAL_ERROR "FATX entry probe requires paging diagnostic and forbids general entry/autorun")
+ endif()
++
++option(XBOX_NATIVE_FATX_PHASE0_PREFLIGHT "Continue only to HAL phase-0 entrance" OFF)
++if(XBOX_NATIVE_FATX_PHASE0_PREFLIGHT AND NOT XBOX_NATIVE_FATX_ENTRY_PREFLIGHT)
++    message(FATAL_ERROR "Phase-0 probe requires entry preflight")
++endif()
+diff --git a/boot/freeldr/freeldr/rosload.cmake b/boot/freeldr/freeldr/rosload.cmake
+index fa80dd36..c890ac80 100644
+--- a/boot/freeldr/freeldr/rosload.cmake
++++ b/boot/freeldr/freeldr/rosload.cmake
+@@ -131,3 +131,7 @@ endif()
+ if(XBOX_NATIVE_FATX_ENTRY_PREFLIGHT)
+     target_compile_definitions(rosload PRIVATE XBOX_NATIVE_FATX_ENTRY_PREFLIGHT=1)
+ endif()
++
++if(XBOX_NATIVE_FATX_PHASE0_PREFLIGHT)
++    target_compile_definitions(rosload PRIVATE XBOX_NATIVE_FATX_PHASE0_PREFLIGHT=1)
++endif()
+diff --git a/hal/halx86/generic/halinit.c b/hal/halx86/generic/halinit.c
+index 62e9930b..b2c5aaef 100644
+--- a/hal/halx86/generic/halinit.c
++++ b/hal/halx86/generic/halinit.c
+@@ -12,6 +12,10 @@
+ #define NDEBUG
+ #include <debug.h>
+ 
++#ifdef XBOX_NT5_PHASE0_PREFLIGHT
++VOID HalpXwnProcessorBoundary(BOOLEAN, ULONG, PLOADER_PARAMETER_BLOCK, PVOID);
++DECLSPEC_NORETURN VOID HalpXwnPhase0(ULONG, PLOADER_PARAMETER_BLOCK, PVOID);
++#endif
+ #ifdef XBOX_NT5_ENTRY_PREFLIGHT
+ DECLSPEC_NORETURN VOID HalpXwnFirstProcessor(ULONG, PLOADER_PARAMETER_BLOCK, PVOID);
+ #endif
+@@ -62,9 +66,12 @@ HalInitializeProcessor(
+     IN ULONG ProcessorNumber,
+     IN PLOADER_PARAMETER_BLOCK LoaderBlock)
+ {
+-#ifdef XBOX_NT5_ENTRY_PREFLIGHT
++#if defined(XBOX_NT5_PHASE0_PREFLIGHT)
++    HalpXwnProcessorBoundary(FALSE, ProcessorNumber, LoaderBlock, _ReturnAddress());
++#elif defined(XBOX_NT5_ENTRY_PREFLIGHT)
+     HalpXwnFirstProcessor(ProcessorNumber, LoaderBlock, _ReturnAddress());
+-#else
++#endif
++#if !defined(XBOX_NT5_ENTRY_PREFLIGHT) || defined(XBOX_NT5_PHASE0_PREFLIGHT)
+     /* Hal specific initialization for this cpu */
+     HalpInitProcessor(ProcessorNumber, LoaderBlock);
+ 
+@@ -80,6 +87,9 @@ HalInitializeProcessor(
+         /* Register routines for KDCOM */
+         HalpRegisterKdSupportFunctions();
+     }
++#ifdef XBOX_NT5_PHASE0_PREFLIGHT
++    HalpXwnProcessorBoundary(TRUE, ProcessorNumber, LoaderBlock, _ReturnAddress());
++#endif
+ #endif
+ }
+ 
+@@ -93,7 +103,9 @@ HalInitSystem(
+     _In_ ULONG BootPhase,
+     _In_ PLOADER_PARAMETER_BLOCK LoaderBlock)
+ {
+-#ifdef XBOX_NT5_ENTRY_PREFLIGHT
++#if defined(XBOX_NT5_PHASE0_PREFLIGHT)
++    HalpXwnPhase0(BootPhase, LoaderBlock, _ReturnAddress());
++#elif defined(XBOX_NT5_ENTRY_PREFLIGHT)
+     /* Defense in depth: this build cannot continue into HAL system init. */
+     _disable(); for (;;) __halt();
+ #endif
+diff --git a/hal/halx86/xboxnt5/CMakeLists.txt b/hal/halx86/xboxnt5/CMakeLists.txt
+index 5805a70b..f11b6f7c 100644
+--- a/hal/halx86/xboxnt5/CMakeLists.txt
++++ b/hal/halx86/xboxnt5/CMakeLists.txt
+@@ -33,3 +33,11 @@ option(XBOX_NT5_ENTRY_PREFLIGHT "Unconditional first-processor HAL diagnostic ha
+ if(XBOX_NT5_ENTRY_PREFLIGHT)
+     target_compile_definitions(halxboxnt5 PRIVATE XBOX_NT5_ENTRY_PREFLIGHT=1)
+ endif()
++
++option(XBOX_NT5_PHASE0_PREFLIGHT "Halt at HAL phase-0 entrance after processor init" OFF)
++if(XBOX_NT5_PHASE0_PREFLIGHT AND NOT XBOX_NT5_ENTRY_PREFLIGHT)
++    message(FATAL_ERROR "Phase-0 HAL probe requires entry preflight")
++endif()
++if(XBOX_NT5_PHASE0_PREFLIGHT)
++    target_compile_definitions(halxboxnt5 PRIVATE XBOX_NT5_PHASE0_PREFLIGHT=1)
++endif()
+diff --git a/hal/halx86/xboxnt5/entryprobe.c b/hal/halx86/xboxnt5/entryprobe.c
+index 797eeeef..b18e1c8c 100644
+--- a/hal/halx86/xboxnt5/entryprobe.c
++++ b/hal/halx86/xboxnt5/entryprobe.c
+@@ -1,6 +1,45 @@
+ /* SPDX-License-Identifier: GPL-2.0-or-later */
+ #include <hal.h>
+ 
++#ifdef XBOX_NT5_PHASE0_PREFLIGHT
++typedef ULONG (NTAPI *XWN_PHASE_CALLBACK)(ULONG, PLOADER_PARAMETER_BLOCK, PVOID, PULONG);
++static XWN_PHASE_CALLBACK XwnPhaseCallback;
++static ULONG XwnPhaseStep;
++
++VOID HalpXwnProcessorBoundary(BOOLEAN Complete, ULONG Processor,
++                             PLOADER_PARAMETER_BLOCK LoaderBlock, PVOID Caller)
++{
++    ULONG State[5];
++    _disable();
++    if (!XwnPhaseCallback || Processor != 0 || XwnPhaseStep != (Complete ? 1 : 0))
++        for (;;) __halt();
++    State[0] = Processor;
++    State[1] = KeGetPcr()->IDR;
++    State[2] = KeGetPcr()->StallScaleFactor;
++    State[3] = (ULONG)HalpActiveProcessors;
++    State[4] = (ULONG)HalpDefaultInterruptAffinity;
++    if (XwnPhaseCallback(Complete ? 20 : 10, LoaderBlock, Caller, State) != 0x50524330)
++        for (;;) __halt();
++    XwnPhaseStep = Complete ? 2 : 1;
++}
++
++DECLSPEC_NORETURN VOID HalpXwnPhase0(ULONG Phase, PLOADER_PARAMETER_BLOCK LoaderBlock, PVOID Caller)
++{
++    ULONG State[5];
++    _disable();
++    if (!XwnPhaseCallback || XwnPhaseStep != 2 || Phase != 0) for (;;) __halt();
++    State[0] = Phase;
++    State[1] = KeGetPcr()->IDR;
++    State[2] = KeGetPcr()->StallScaleFactor;
++    State[3] = (ULONG)HalpActiveProcessors;
++    State[4] = (ULONG)HalpDefaultInterruptAffinity;
++    XwnPhaseStep = 3;
++    XwnPhaseCallback(30, LoaderBlock, Caller, State);
++    for (;;) __halt();
++}
++#endif
++
++
+ #ifdef XBOX_NT5_ENTRY_PREFLIGHT
+ typedef VOID (NTAPI *XWN_CHECKPOINT)(ULONG, PLOADER_PARAMETER_BLOCK, PVOID);
+ static XWN_CHECKPOINT XwnCheckpoint;
+@@ -16,7 +55,11 @@ HalpXwnFirstProcessor(ULONG Processor, PLOADER_PARAMETER_BLOCK LoaderBlock, PVOI
+ 
+ ULONG NTAPI XwnConfigureEntryProbe(PVOID Callback, ULONG Signature)
+ {
+-#ifdef XBOX_NT5_ENTRY_PREFLIGHT
++#if defined(XBOX_NT5_PHASE0_PREFLIGHT)
++    if (Signature != 0x50304E54 || !Callback || XwnPhaseCallback) return 0;
++    XwnPhaseCallback = (XWN_PHASE_CALLBACK)Callback;
++    return 0x50304854;
++#elif defined(XBOX_NT5_ENTRY_PREFLIGHT)
+     if (Signature != 0x58454E54 || !Callback || XwnCheckpoint) return 0;
+     XwnCheckpoint = (XWN_CHECKPOINT)Callback;
+     return 0x58484C54;

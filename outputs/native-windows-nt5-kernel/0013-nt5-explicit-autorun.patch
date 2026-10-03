@@ -1,0 +1,45 @@
+diff --git a/boot/freeldr/freeldr/ntldr/winldr.c b/boot/freeldr/freeldr/ntldr/winldr.c
+index 6dd11806..52f67797 100644
+--- a/boot/freeldr/freeldr/ntldr/winldr.c
++++ b/boot/freeldr/freeldr/ntldr/winldr.c
+@@ -1586,7 +1586,12 @@ LoadAndBootWindowsCommon(
+         if (XwnHandoffRecord[3] != 99) for (;;) __halt();
+         /* The host must verify the record and set word 16 over its debugger.
+          * A separate opt-in build is required; the ordinary diagnostic halts. */
++#ifdef XBOX_NATIVE_NT5_AUTORUN
++        /* Separate opt-in image for repeating a verified boot without GDB. */
++        XwnHandoffRecord[16] = 0x4155544f; /* AUTO */
++#else
+         while (XwnHandoffRecord[16] != 0x574e454e) __asm__ __volatile__("pause");
++#endif
+         XwnHandoffRecord[3] = 100;
+ #else
+         _disable(); for (;;) __halt();
+diff --git a/boot/freeldr/freeldr/pcat.cmake b/boot/freeldr/freeldr/pcat.cmake
+index 2204ee6e..be04747f 100644
+--- a/boot/freeldr/freeldr/pcat.cmake
++++ b/boot/freeldr/freeldr/pcat.cmake
+@@ -278,6 +278,11 @@ if(XBOX_NATIVE_NT5_ENTER AND NOT XBOX_NATIVE_NT5_HANDOFF)
+     message(FATAL_ERROR "NT5 entry requires the handoff diagnostic")
+ endif()
+ 
++option(XBOX_NATIVE_NT5_AUTORUN "Enter experimental NT5 kernel without a host debugger gate" OFF)
++if(XBOX_NATIVE_NT5_AUTORUN AND NOT XBOX_NATIVE_NT5_ENTER)
++    message(FATAL_ERROR "NT5 autorun requires the explicit kernel-entry option")
++endif()
++
+ option(XBOX_NATIVE_NT5_HANDOFF "Load installed NT5 files and halt before kernel entry" OFF)
+ if(XBOX_NATIVE_NT5_HANDOFF AND (NOT XBOX_NATIVE_IO_PREFLIGHT OR XBOX_NATIVE_VOLUME_PREFLIGHT))
+     message(FATAL_ERROR "NT5 handoff requires I/O preflight, excludes volume-only preflight")
+diff --git a/boot/freeldr/freeldr/rosload.cmake b/boot/freeldr/freeldr/rosload.cmake
+index 9d0e5437..42ab70ae 100644
+--- a/boot/freeldr/freeldr/rosload.cmake
++++ b/boot/freeldr/freeldr/rosload.cmake
+@@ -114,3 +114,7 @@ endif()
+ if(XBOX_NATIVE_NT5_ENTER)
+     target_compile_definitions(rosload PRIVATE XBOX_NATIVE_NT5_ENTER=1)
+ endif()
++
++if(XBOX_NATIVE_NT5_AUTORUN)
++    target_compile_definitions(rosload PRIVATE XBOX_NATIVE_NT5_AUTORUN=1)
++endif()

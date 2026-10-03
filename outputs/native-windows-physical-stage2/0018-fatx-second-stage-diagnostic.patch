@@ -1,0 +1,37 @@
+diff --git a/boot/freeldr/freeldr/freeldr.c b/boot/freeldr/freeldr/freeldr.c
+index 820ec284..53900c8f 100644
+--- a/boot/freeldr/freeldr/freeldr.c
++++ b/boot/freeldr/freeldr/freeldr.c
+@@ -171,6 +171,13 @@ VOID __cdecl BootMain(IN PCCH CmdLine)
+ #endif
+ 
+ #ifdef XBOX_NATIVE_IO_PREFLIGHT
++#ifdef XBOX_NATIVE_FATX_IO_PREFLIGHT
++    /* The Xromwell launcher passes the FATX device, not the image directory. */
++    if (strcmp(FrLdrBootPath, "multi(0)disk(0)rdisk(0)partition(1)") != 0 ||
++        !NT_SUCCESS(RtlStringCbCatA(FrLdrBootPath, sizeof(FrLdrBootPath),
++                                   "\\Applications\\XWNLoader")))
++        XwnStop("XWNFAIL: unexpected FATX diagnostic boot device");
++#endif
+     printf("XWN30: Boot path=%s\n", FrLdrBootPath);
+     if (!XwnVerifyFile()) XwnStop("XWNFAIL: first-stage file verification");
+     printf("XWN50: 131075 bytes, EOF and cross-sector seek verified\n");
+diff --git a/boot/freeldr/freeldr/pcat.cmake b/boot/freeldr/freeldr/pcat.cmake
+index 28b8e66d..8f7f9eca 100644
+--- a/boot/freeldr/freeldr/pcat.cmake
++++ b/boot/freeldr/freeldr/pcat.cmake
+@@ -296,3 +296,14 @@ endif()
+ if(XBOX_NATIVE_NT5_HANDOFF)
+     target_compile_definitions(freeldr_common PRIVATE XBOX_NATIVE_NT5_HANDOFF=1)
+ endif()
++
++# Isolated physical FATX diagnostic; never combine with native kernel entry.
++option(XBOX_NATIVE_FATX_IO_PREFLIGHT "Run halt-only I/O probe from E Applications XWNLoader" OFF)
++if(XBOX_NATIVE_FATX_IO_PREFLIGHT)
++    if(NOT SARCH STREQUAL "xbox" OR NOT XBOX_NATIVE_IO_PREFLIGHT OR
++       XBOX_NATIVE_PREFLIGHT OR XBOX_NATIVE_VOLUME_PREFLIGHT OR
++       XBOX_NATIVE_NT5_HANDOFF OR XBOX_NATIVE_NT5_ENTER OR XBOX_NATIVE_NT5_AUTORUN)
++        message(FATAL_ERROR "FATX I/O preflight requires Xbox I/O-only mode with every kernel-entry option OFF")
++    endif()
++    target_compile_definitions(freeldr_pe PRIVATE XBOX_NATIVE_FATX_IO_PREFLIGHT=1)
++endif()

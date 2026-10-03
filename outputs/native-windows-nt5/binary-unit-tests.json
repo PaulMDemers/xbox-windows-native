@@ -1,0 +1,50 @@
+{
+  "hal_sha256": "72e46256627331c9f8eb43b2b553751a2d196143926b01b7dccfd9c81a42ae1b",
+  "scope": "Actual built x86 instructions; mocked kernel services and serialized wait. No scheduler, interrupts or Windows runtime tested.",
+  "tests": [
+    {
+      "test": "Uncontended acquire/release, owner, IRQL, stack and preserved registers",
+      "passed": true
+    },
+    {
+      "test": "Try-acquire succeeds and preserves caller APC level through release",
+      "passed": true
+    },
+    {
+      "test": "Failed try leaves ownership/count intact and restores caller IRQL",
+      "passed": true
+    },
+    {
+      "test": "Contended acquire records contention and waits on correct event",
+      "passed": true
+    },
+    {
+      "test": "Release wakes a waiter with priority boost before lowering IRQL",
+      "passed": true
+    },
+    {
+      "test": "IoAssignDriveLetters stdcall export forwards to fastcall dispatch with correct stack cleanup",
+      "passed": true
+    },
+    {
+      "test": "IoReadPartitionTable stdcall export forwards to fastcall dispatch with correct stack cleanup",
+      "passed": true
+    },
+    {
+      "test": "IoSetPartitionInformation stdcall export forwards to fastcall dispatch with correct stack cleanup",
+      "passed": true
+    },
+    {
+      "test": "IoWritePartitionTable stdcall export forwards to fastcall dispatch with correct stack cleanup",
+      "passed": true
+    },
+    {
+      "test": "KeTryToAcquireQueuedSpinLock free UP exclusion uses raised IRQL without a kernel helper",
+      "passed": true
+    },
+    {
+      "test": "KeTryToAcquireQueuedSpinLockRaiseToSynch free UP exclusion uses raised IRQL without a kernel helper",
+      "passed": true
+    }
+  ]
+}

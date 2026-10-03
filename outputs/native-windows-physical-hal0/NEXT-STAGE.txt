@@ -1,0 +1,23 @@
+After a physical XWNH90 success, retain this build as the rollback control.
+
+Next work should audit and instrument the original HalInitSystem phase-0
+body in bounded steps. Its current order is: loader options and PRCB
+compatibility checks; ACPI setup; PIC initialization; CMOS setup; dispatch
+tables; I/O-space bookkeeping; stall calibration; clock setup; profile
+interrupt stop; Xbox HalpInitPhase0; BIOS-emulation initialization.
+
+Xbox HalpInitPhase0 calls HalpXboxInitPartIo. Keep a hard stop before this
+routine while reviewing its disk assumptions, the intended test volume,
+and recovery arrangements. The current app-local FATX staging folder and
+PC SYSTEM hive are not a configured Windows boot volume.
+
+Do not simply remove the diagnostic guards and attempt a complete boot.
+Audit each initialization routine against the existing physical inventory,
+especially timer/interrupt behavior and known-dangerous PCI reads.
+Preserve failure display through any changes to IDT, PIC and clock state.
+Observe the next boundary in isolated xemu before replacing physical files.
+Keep audio disabled and preserve the dashboard, softmod and Linux setup.
+
+All previous physical test builds require manual reboot. FTP is available
+only after returning to UnleashX; this stage provides no persistent log or
+automatic return and does not authorize unattended physical launches.

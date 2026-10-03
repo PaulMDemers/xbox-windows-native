@@ -1,0 +1,11 @@
+--- a/RosBE-Builder.sh
++++ b/RosBE-Builder.sh
+@@ -174,7 +174,7 @@
+ 	rs_do_command $CC -s -o "$rs_prefixdir/bin/cpucount" "$rs_scriptdir/tools/cpucount.c"
+ fi
+ 
+-rs_cpucount=`$rs_prefixdir/bin/cpucount -x1`
++rs_cpucount=4 # Native Xbox Windows task: bounded build concurrency
+ 
+ if $rs_process_scut; then
+ 	rs_do_command $CC -s -o "$rs_prefixdir/bin/scut" "$rs_scriptdir/tools/scut.c"

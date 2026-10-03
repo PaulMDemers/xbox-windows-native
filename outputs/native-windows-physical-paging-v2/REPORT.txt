@@ -1,0 +1,35 @@
+XWN paging diagnostic v2, patch 0021
+
+The physical v1 test stopped before paging at the combined framebuffer/RAM
+guard. Its screen did not identify the failing input. The photo is archived
+under ../native-windows-physical-paging/evidence/physical-guard-failure.
+No physical paging or Windows execution is claimed.
+
+This revision preserves all guard conditions and reports their actual inputs:
+width, height, pitch, masked framebuffer address, raw start register, managed
+lookup page count, raw pitch registers and CR0. It uses the existing loader
+UI on failure, before paging and before using the unvalidated direct writer.
+A failure halts unconditionally, leaving the screen for a photograph.
+
+Emulator checks and deployment completion are recorded in validation.json
+and ftp-upload.json. The forced-guard test uses a separate emulator-only
+binary whose expected width is deliberately changed from 640 to 641.
+The final source/package retains 640; the forced binary is never uploaded.
+
+Only README.txt and rosload.exe change. The updater verifies 31 unchanged
+files, stages/readbacks the two replacements, keeps v1 control backups and
+switches rosload last. No physical launch is issued remotely.
+
+Launch Applications > XWN Loader Diagnostic, photograph the whole final
+screen, then reboot. Green XWNP90 is paging success; a detailed XWNPFAIL
+screen supplies the values needed for the next correction. Yellow XWNP30
+alone does not confirm paging. Windows kernel entry remains disabled.
+
+Deployment completed 2026-10-03T19:25:45.682515+00:00. Two replacement files
+passed byte-for-byte readback, with 31 unchanged files verified. v1 copies
+are preserved as rosload-xwnp-v1.exe and README-xwnp-v1.txt. No physical
+launch was issued. Both emulator tests passed; awaiting physical photo.
+
+Physical v2 photo: 1024x576, pitch 4096, framebuffer 03c00000, raw
+start f3c00000, lookup pages 3c00, CR0 00010033. The 640x480-only
+guard rejects the active display geometry. No paging/kernel entry.

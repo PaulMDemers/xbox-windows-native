@@ -1,0 +1,107 @@
+{
+  "validated_utc": "2026-10-03T19:11:50.943475+00:00",
+  "ready_for_physical_upload": true,
+  "physical_tested": true,
+  "installed_on_physical_console": true,
+  "kernel_entered": false,
+  "scope": "Emulator-verified paging diagnostic; unconditional halt before Windows kernel entry. Physical result pending.",
+  "source_tree": "0fa9c520d93c11b1ebc51b1dc77992223b34ddc7",
+  "build_flags": {
+    "XBOX_NATIVE_FATX_IO_PREFLIGHT": "OFF",
+    "XBOX_NATIVE_FATX_NT5_PREFLIGHT": "ON",
+    "XBOX_NATIVE_FATX_PAGING_PREFLIGHT": "ON",
+    "XBOX_NATIVE_IO_PREFLIGHT": "ON",
+    "XBOX_NATIVE_NT5_AUTORUN": "OFF",
+    "XBOX_NATIVE_NT5_ENTER": "OFF",
+    "XBOX_NATIVE_NT5_HANDOFF": "ON",
+    "XBOX_NATIVE_PREFLIGHT": "OFF",
+    "XBOX_NATIVE_VOLUME_PREFLIGHT": "OFF"
+  },
+  "normal_loader_build_passed": true,
+  "forbidden_entry_configuration_rejected": true,
+  "missing_parent_configuration_rejected": true,
+  "package_files_verified": 33,
+  "success_run": "physical-paging-good-003",
+  "negative_run": {
+    "id": "physical-paging-bad-nls-001",
+    "missing_file": "c_1252.nls",
+    "status": "no_completed_record",
+    "cr0": "0x10033",
+    "paging_reached": false,
+    "visible_error": "Error reading NLS file"
+  },
+  "emulator_checks": {
+    "mapped_import_entries_verified": 1388,
+    "mapped_code_integrity": [
+      {
+        "module": "hal.dll",
+        "source_sha256": "d079bfb5eb40b9af74a25a61a8a06d0207114edef4a1d9a87e6bb360a65547f1",
+        "relocated_executable_sections_equal_after_expected_import_binding": [
+          ".text",
+          "INIT"
+        ]
+      },
+      {
+        "module": "bootvid.dll",
+        "source_sha256": "dd47579d9a3200e99806529f5e2a054e563d4a2e4b6dfdd1a2db63c08c4db8b4",
+        "relocated_executable_sections_equal_after_expected_import_binding": [
+          ".text"
+        ]
+      },
+      {
+        "module": "ntoskrnl.exe",
+        "source_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+        "relocated_executable_sections_equal_after_expected_import_binding": [
+          ".text",
+          "POOLCODE",
+          "POOLMI",
+          "MISYSPTE",
+          "PAGELK",
+          "PAGE",
+          "PAGEVRFY",
+          "PAGEKD",
+          "PAGEHYDR",
+          "PAGESPEC",
+          "PAGEWMI",
+          "INIT"
+        ]
+      }
+    ],
+    "framebuffer_mapping": {
+      "pa": "0x3c00000",
+      "bytes": 1228800,
+      "identity_pages_verified": 300,
+      "uncached_write_through": true,
+      "firmware_reserved": true
+    },
+    "no_free_descriptor_overlaps_images_hive_framebuffer_or_page_zero": true,
+    "memory_descriptors_cover_64_mib_without_gaps_or_overlaps": true,
+    "lists_have_valid_backlinks": true,
+    "cr0": "0x80010033",
+    "cr3": "0x2869000",
+    "hive_bytes": 1810432
+  },
+  "modules": 20,
+  "boot_drivers": 14,
+  "memory_descriptors": 24,
+  "development_runs": [
+    {
+      "id": "physical-paging-good-001",
+      "result": "Guard rejected incorrect expectation of 64 MiB managed RAM; corrected to 60 MiB plus reserved video RAM."
+    },
+    {
+      "id": "physical-paging-good-002",
+      "result": "Guard detected omitted framebuffer reservation at exclusive managed-memory boundary; comparison corrected."
+    }
+  ],
+  "uploaded_utc": "2026-10-03T19:12:12.592517+00:00",
+  "physical_paging_passed": false,
+  "physical_result": {
+    "status": "framebuffer_or_ram_guard_rejected",
+    "visible_text": "XWNPFAIL: unsupported framebuffer or RAM layout; kernel NOT entered",
+    "paging_reached": false,
+    "kernel_entered": false,
+    "individual_failing_value": "not shown by v1",
+    "photo_sha256": "a190c3066e8ce69a9201528250f8a37b5dbe5b3f80766061476e08afa6595c5e"
+  }
+}

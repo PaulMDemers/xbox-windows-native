@@ -1,0 +1,34 @@
+{
+  "scope": "Execute NT5 miniport registration/glue instructions with modeled NDIS/kernel calls.\nThis does not model NIC DMA, networking, or a real kernel DPC scheduler.\n",
+  "sha256": "d4aafead757f43c46ba161d2d034aafe05b7024ae693c39d224da42d485927d1",
+  "tests": [
+    {
+      "test": "NDIS 5.0 registration uses the native 96-byte callback layout and preserves stdcall state",
+      "passed": true
+    },
+    {
+      "test": "UP-only compatibility path rejects other processor counts before NDIS registration",
+      "passed": true
+    },
+    {
+      "test": "Wrapper and miniport-registration failures propagate and release wrapper ownership",
+      "passed": true
+    },
+    {
+      "test": "Legacy shutdown registration passes the adapter context and real shutdown callback",
+      "passed": true
+    },
+    {
+      "test": "UP DPC barrier queues a low-importance entry before waiting and its callback signals the correct event",
+      "passed": true
+    },
+    {
+      "test": "Serialized array sends record each status and stop at resource exhaustion without touching the unaccepted tail",
+      "passed": true
+    },
+    {
+      "test": "Contiguous transmit copies valid MDL chains, rejects zero/oversized frames and inconsistent lengths, and restores resources on copy failure",
+      "passed": true
+    }
+  ]
+}

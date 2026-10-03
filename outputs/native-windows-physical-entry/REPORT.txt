@@ -1,0 +1,59 @@
+XWN first native Windows kernel/HAL checkpoint, patch 0023
+
+Purpose: continue from the physically confirmed XWNP90 paging checkpoint
+into the supplied, unchanged Windows 2000 kernel. Stop at its first call
+to HalInitializeProcessor, BEFORE original HAL processor initialization.
+No hardware-initialization, boot-driver-startup or desktop claim is made.
+
+The explicit XBOX_NATIVE_FATX_ENTRY_PREFLIGHT build requires the paging
+probe and forbids general entry/autorun flags. Its loader must resolve and
+arm XwnConfigureEntryProbe in a separately compiled halt-only HAL. Ordinary
+HALs cannot arm it. HalInitializeProcessor in the diagnostic HAL calls a
+loader checkpoint with the processor number, loader block and native return
+address, then cannot return. HalInitSystem also halts as defense in depth.
+
+The checkpoint checks processor 0, expected loader block, return address
+inside the loaded kernel, active paging and unchanged CR3. Success is green
+XWNK90: Windows kernel reached first HAL checkpoint. Yellow XWNK30 alone
+means entry is not confirmed. Manual reboot remains required.
+
+Host validation includes both actual Xromwell display modes, 640x480 and
+1024x576. The native call instruction and IAT target are checked; all 1388
+imports are audited. Kernel/HAL/bootvid executable sections are compared
+against relocated input plus documented loader import binding. The pinned
+kernel's startup routine at RVA 152894 swaps IDT template words at offsets
+2 and 6 for each of 256 entries starting at RVA 151918. The audit reproduces
+that exact mutation; it does not ignore the INIT section. The kernel file
+is unchanged on disk (SHA256 84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152).
+
+Debugger breakpoints independently observe KernelEntry, HalInitializeProcessor
+and LoaderCheckpoint in order, with forbidden breakpoints at HalInitSystem
+and boot-driver entry points. A negative fixture pairs the new loader with
+the old unarmed HAL and must halt before kernel entry. Normal loader and HAL
+builds, configuration guards and static HAL halt checks are also recorded.
+validation.json is the authoritative list of completed checks.
+
+Only README.txt, rosload.exe and loader/halxboxnt5.dll change. The physical-
+tested Xromwell launcher, freeldr.sys, Windows files and configuration are
+retained. FTP staging verifies every unchanged file and reads back all
+replacements. Previous controls are preserved as rosload-xwnp-v3.exe,
+README-xwnp-v3.txt and loader/hal-xwnp-v3.dll. rosload is switched last.
+The FTP report records actual completion; no physical launch is issued.
+
+Launch Applications > XWN Loader Diagnostic. Photograph the complete final
+screen, then reboot. Physical kernel entry is unconfirmed until that result
+arrives. No disk image, partition, dashboard or video setting is changed.
+Further progression requires bounded HAL initialization tests and a Windows-
+readable boot-volume plan. The FATX staging folder is not a native Windows
+boot volume. Physical audio remains disabled for later testing.
+
+Deployment completed 2026-10-03T20:20:56.536162+00:00. Three replacements
+passed byte-for-byte staging and final readback, and 30 unchanged files
+were verified. Previous XWNP90 controls are backed up under the names
+listed above. Xbox left at the dashboard; physical launch/result pending.
+
+PHYSICAL MILESTONE: console photo confirms green XWNK90, processor 0,
+and the halt before original HAL processor initialization. Windows 2000
+kernel entry is now confirmed on the physical Xbox. Boot-driver startup
+and desktop remain unachieved. Complete import/instruction/memory audits
+remain emulator evidence. See evidence/physical-xwnk90/console.jpg.

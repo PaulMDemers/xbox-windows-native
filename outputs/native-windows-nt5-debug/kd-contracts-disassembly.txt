@@ -1,0 +1,648 @@
+
+hal.dll!KdPortGetByte
+80016ad6 push     1
+80016ad8 push     dword ptr [esp + 8]
+80016adc push     0x80018af0
+80016ae1 call     0x8001507c
+80016ae6 movzx    eax, ax
+80016ae9 ret      4
+80016aec push     0
+80016aee push     dword ptr [esp + 8]
+80016af2 push     0x80018af0
+80016af7 call     0x8001507c
+80016afc movzx    eax, ax
+80016aff ret      4
+80016b02 push     dword ptr [esp + 4]
+80016b06 push     0x80018af0
+80016b0b call     0x80015018
+80016b10 .byte    0xc2
+80016b11 .byte    0x04
+
+hal.dll!KdPortInitialize
+800168d4 push     ebp
+800168d5 mov      ebp, esp
+800168d7 push     ecx
+800168d8 push     ecx
+800168d9 push     ebx
+800168da push     esi
+800168db xor      esi, esi
+800168dd push     edi
+800168de cmp      dword ptr [0x80018b10], esi
+800168e4 mov      dword ptr [ebp - 8], 0x4b00
+800168eb mov      dword ptr [ebp - 4], esi
+800168ee jne      0x80016a2f
+800168f4 cmp      byte ptr [0x80019044], 0
+800168fb jne      0x80016a2f
+80016901 mov      eax, dword ptr [ebp + 8]
+80016904 mov      ecx, dword ptr [eax + 4]
+80016907 cmp      ecx, esi
+80016909 je       0x80016917
+8001690b and      word ptr [0x80018af8], 0xfffe
+80016914 mov      dword ptr [ebp - 8], ecx
+80016917 mov      eax, dword ptr [eax]
+80016919 cmp      eax, esi
+8001691b je       0x80016945
+8001691d mov      edi, eax
+8001691f lea      eax, [edi - 1]
+80016922 mov      dword ptr [ebp + 8], eax
+80016925 mov      eax, dword ptr [ebp + 0xc]
+80016928 cmp      eax, esi
+8001692a je       0x800169bb
+80016930 lea      ecx, [ebp + 8]
+80016933 push     ecx
+80016934 push     0x11
+80016936 push     4
+80016938 push     dword ptr [eax + 0x30]
+8001693b call     dword ptr [0x800104c0]
+80016941 mov      esi, eax
+80016943 jmp      0x800169bb
+80016945 mov      ebx, dword ptr [ebp + 0xc]
+80016948 mov      edi, dword ptr [0x800104c0]
+8001694e cmp      ebx, esi
+80016950 mov      dword ptr [ebp + 8], 1
+80016957 je       0x80016968
+80016959 lea      eax, [ebp + 8]
+8001695c push     eax
+8001695d push     0x11
+8001695f push     4
+80016961 push     dword ptr [ebx + 0x30]
+80016964 call     edi
+80016966 mov      esi, eax
+80016968 test     esi, esi
+8001696a je       0x8001697f
+8001696c mov      eax, dword ptr [esi + 4]
+8001696f test     eax, eax
+80016971 je       0x8001697b
+80016973 cmp      dword ptr [eax + 0x10], 0x1f
+80016977 jne      0x8001697b
+80016979 xor      esi, esi
+8001697b test     esi, esi
+8001697d jne      0x800169b8
+8001697f and      dword ptr [ebp + 8], 0
+80016983 test     ebx, ebx
+80016985 je       0x80016998
+80016987 lea      eax, [ebp + 8]
+8001698a push     eax
+8001698b push     0x11
+8001698d push     4
+8001698f push     dword ptr [ebx + 0x30]
+80016992 call     edi
+80016994 mov      esi, eax
+80016996 jmp      0x8001699a
+80016998 xor      esi, esi
+8001699a test     esi, esi
+8001699c jne      0x80016acb
+800169a2 mov      edi, 0x2f8
+800169a7 push     edi
+800169a8 call     0x8001513c
+800169ad test     al, al
+800169af je       0x80016ab9
+800169b5 mov      dword ptr [ebp - 4], edi
+800169b8 push     2
+800169ba pop      edi
+800169bb test     esi, esi
+800169bd je       0x800169dd
+800169bf mov      eax, dword ptr [esi + 0x30]
+800169c2 mov      ecx, dword ptr [eax + 4]
+800169c5 test     ecx, ecx
+800169c7 jbe      0x800169dd
+800169c9 add      eax, 8
+800169cc cmp      byte ptr [eax], 1
+800169cf jne      0x800169d7
+800169d1 mov      edx, dword ptr [eax + 4]
+800169d4 mov      dword ptr [ebp - 4], edx
+800169d7 add      eax, 0x10
+800169da dec      ecx
+800169db jne      0x800169cc
+800169dd cmp      dword ptr [ebp - 4], 0
+800169e1 jne      0x80016a13
+800169e3 mov      eax, edi
+800169e5 dec      eax
+800169e6 je       0x80016a0c
+800169e8 dec      eax
+800169e9 je       0x80016a03
+800169eb dec      eax
+800169ec je       0x800169fa
+800169ee dec      eax
+800169ef jne      0x80016a13
+800169f1 mov      dword ptr [ebp - 4], 0x2e8
+800169f8 jmp      0x80016a13
+800169fa mov      dword ptr [ebp - 4], 0x3e8
+80016a01 jmp      0x80016a13
+80016a03 mov      dword ptr [ebp - 4], 0x2f8
+80016a0a jmp      0x80016a13
+80016a0c mov      dword ptr [ebp - 4], 0x3f8
+80016a13 mov      eax, dword ptr [ebp - 4]
+80016a16 mov      ecx, dword ptr [ebp - 8]
+80016a19 mov      dword ptr [0x8001903c], edi
+80016a1f mov      dword ptr [0x80018b10], eax
+80016a24 mov      dword ptr [0x80018b14], ecx
+80016a2a mov      dword ptr [0x80018b39], eax
+80016a2f cmp      byte ptr [ebp + 0x10], 1
+80016a33 jne      0x80016ab0
+80016a35 push     dword ptr [0x80018b14]
+80016a3b push     dword ptr [0x80018b10]
+80016a41 push     0x80018af0
+80016a46 call     0x80014cc4
+80016a4b mov      eax, dword ptr [0x80018b10]
+80016a50 cmp      byte ptr [0x80019044], 0
+80016a57 mov      dword ptr [0x80019040], eax
+80016a5c jne      0x80016a9c
+80016a5e mov      eax, dword ptr [0x80018b50]
+80016a63 xor      edx, edx
+80016a65 test     ax, ax
+80016a68 je       0x80016a9c
+80016a6a mov      ecx, 0x80018b50
+80016a6f movzx    eax, ax
+80016a72 cmp      eax, dword ptr [ebp - 4]
+80016a75 je       0x80016a86
+80016a77 mov      ax, word ptr [ecx + 4]
+80016a7b add      ecx, 4
+80016a7e inc      edx
+80016a7f test     ax, ax
+80016a82 jne      0x80016a6f
+80016a84 jmp      0x80016a9c
+80016a86 movzx    eax, word ptr [edx*4 - 0x7ffe74ae]
+80016a8e push     0x1f
+80016a90 lea      ecx, [eax + 0x30]
+80016a93 push     ecx
+80016a94 push     eax
+80016a95 push     0x23
+80016a97 call     0x800225ec
+80016a9c mov      eax, dword ptr [0x800196ac]
+80016aa1 mov      dword ptr [0x800196ac], 0x80018b30
+80016aab mov      dword ptr [0x80018b30], eax
+80016ab0 mov      al, 1
+80016ab2 pop      edi
+80016ab3 pop      esi
+80016ab4 pop      ebx
+80016ab5 leave    
+80016ab6 ret      0xc
+80016ab9 mov      edi, 0x3f8
+80016abe push     edi
+80016abf call     0x8001513c
+80016ac4 test     al, al
+80016ac6 je       0x80016ad2
+80016ac8 mov      dword ptr [ebp - 4], edi
+80016acb push     1
+80016acd jmp      0x800169ba
+80016ad2 xor      al, al
+80016ad4 jmp      0x80016ab2
+80016ad6 push     1
+80016ad8 push     dword ptr [esp + 8]
+80016adc push     0x80018af0
+80016ae1 call     0x8001507c
+80016ae6 movzx    eax, ax
+80016ae9 ret      4
+80016aec push     0
+80016aee push     dword ptr [esp + 8]
+80016af2 push     0x80018af0
+80016af7 call     0x8001507c
+80016afc movzx    eax, ax
+80016aff ret      4
+80016b02 push     dword ptr [esp + 4]
+80016b06 push     0x80018af0
+80016b0b call     0x80015018
+80016b10 ret      4
+80016b13 int3     
+80016b14 and      word ptr [0x80018af8], 0xfffb
+80016b1d ret      
+80016b1e or       byte ptr [0x80018af8], 4
+80016b25 ret      
+80016b26 push     ebp
+80016b27 mov      ebp, esp
+80016b29 cmp      dword ptr [ebp + 0x10], 0
+80016b2d push     ebx
+80016b2e push     esi
+80016b2f push     edi
+80016b30 mov      edi, 0x1000
+80016b35 jbe      0x80016b82
+80016b37 mov      ebx, dword ptr [0x80018b64]
+80016b3d xor      esi, esi
+80016b3f push     ebx
+80016b40 call     0x80016830
+80016b45 xor      ecx, ecx
+80016b47 cmp      byte ptr [0xffdf027d], cl
+80016b4d setne    cl
+80016b50 test     cl, cl
+80016b52 mov      ecx, dword ptr [eax]
+80016b54 je       0x80016b5b
+80016b56 mov      eax, dword ptr [eax + 4]
+80016b59 jmp      0x80016b5d
+80016b5b xor      eax, eax
+80016b5d or       ecx, eax
+80016b5f je       0x80016b67
+80016b61 xor      al, al
+80016b63 test     al, al
+80016b65 je       0x80016b71
+80016b67 add      ebx, edi
+80016b69 inc      esi
+80016b6a cmp      esi, dword ptr [ebp + 0x10]
+80016b6d jb       0x80016b3f
+80016b6f jmp      0x80016b7d
+80016b71 add      ebx, 0x1000
+80016b77 mov      dword ptr [0x80018b64], ebx
+80016b7d cmp      esi, dword ptr [ebp + 0x10]
+80016b80 jb       0x80016b37
+80016b82 mov      ebx, dword ptr [ebp + 8]
+80016b85 mov      eax, dword ptr [ebp + 0x10]
+80016b88 and      ebx, 0xfff
+80016b8e .byte    0x0b
+80016b8f .byte    0x1d
+
+hal.dll!KdPortPollByte
+80016aec push     0
+80016aee push     dword ptr [esp + 8]
+80016af2 push     0x80018af0
+80016af7 call     0x8001507c
+80016afc movzx    eax, ax
+80016aff ret      4
+80016b02 push     dword ptr [esp + 4]
+80016b06 push     0x80018af0
+80016b0b call     0x80015018
+80016b10 ret      4
+80016b13 int3     
+80016b14 and      word ptr [0x80018af8], 0xfffb
+80016b1d ret      
+80016b1e or       byte ptr [0x80018af8], 4
+80016b25 ret      
+80016b26 push     ebp
+80016b27 .byte    0x8b
+
+hal.dll!KdPortPutByte
+80016b02 push     dword ptr [esp + 4]
+80016b06 push     0x80018af0
+80016b0b call     0x80015018
+80016b10 ret      4
+80016b13 int3     
+80016b14 and      word ptr [0x80018af8], 0xfffb
+80016b1d ret      
+80016b1e or       byte ptr [0x80018af8], 4
+80016b25 ret      
+80016b26 push     ebp
+80016b27 mov      ebp, esp
+80016b29 cmp      dword ptr [ebp + 0x10], 0
+80016b2d push     ebx
+80016b2e push     esi
+80016b2f push     edi
+80016b30 mov      edi, 0x1000
+80016b35 jbe      0x80016b82
+80016b37 mov      ebx, dword ptr [0x80018b64]
+80016b3d .byte    0x33
+
+hal.dll!KdPortRestore
+80016b14 and      word ptr [0x80018af8], 0xfffb
+80016b1d ret      
+80016b1e or       byte ptr [0x80018af8], 4
+80016b25 ret      
+80016b26 push     ebp
+80016b27 mov      ebp, esp
+80016b29 cmp      dword ptr [ebp + 0x10], 0
+80016b2d push     ebx
+80016b2e push     esi
+80016b2f push     edi
+80016b30 mov      edi, 0x1000
+80016b35 jbe      0x80016b82
+80016b37 mov      ebx, dword ptr [0x80018b64]
+80016b3d xor      esi, esi
+80016b3f push     ebx
+80016b40 call     0x80016830
+80016b45 xor      ecx, ecx
+80016b47 cmp      byte ptr [0xffdf027d], cl
+80016b4d setne    cl
+
+hal.dll!KdPortSave
+80016b1e or       byte ptr [0x80018af8], 4
+80016b25 ret      
+80016b26 push     ebp
+80016b27 mov      ebp, esp
+80016b29 cmp      dword ptr [ebp + 0x10], 0
+80016b2d push     ebx
+80016b2e push     esi
+80016b2f push     edi
+80016b30 mov      edi, 0x1000
+80016b35 jbe      0x80016b82
+80016b37 mov      ebx, dword ptr [0x80018b64]
+80016b3d xor      esi, esi
+80016b3f push     ebx
+80016b40 call     0x80016830
+80016b45 xor      ecx, ecx
+80016b47 cmp      byte ptr [0xffdf027d], cl
+80016b4d setne    cl
+80016b50 test     cl, cl
+80016b52 mov      ecx, dword ptr [eax]
+80016b54 je       0x80016b5b
+80016b56 mov      eax, dword ptr [eax + 4]
+80016b59 .byte    0xeb
+
+CALLER KdPortSave
+004297f3 test     ecx, ecx
+004297f5 je       0x4297fc
+004297f7 call     0x44e880
+004297fc mov      eax, dword ptr [esp + 0xc]
+00429800 mov      dl, bl
+00429802 mov      ecx, esi
+00429804 mov      dword ptr [0x473c5c], eax
+00429809 call     dword ptr [0x400634]
+0042980f pop      esi
+00429810 pop      ebx
+00429811 ret      4
+00429814 push     ebx
+00429815 call     dword ptr [0x4005a4]
+0042981b push     dword ptr [esp + 0x10]
+0042981f push     dword ptr [esp + 0x10]
+00429823 push     dword ptr [esp + 0x10]
+00429827 call     0x52fc3a
+0042982c mov      bl, al
+0042982e call     dword ptr [0x4005a8]
+00429834 mov      al, bl
+00429836 pop      ebx
+00429837 ret      0xc
+
+CALLER KdPortRestore
+00429804 mov      dword ptr [0x473c5c], eax
+00429809 call     dword ptr [0x400634]
+0042980f pop      esi
+00429810 pop      ebx
+00429811 ret      4
+00429814 push     ebx
+00429815 call     dword ptr [0x4005a4]
+0042981b push     dword ptr [esp + 0x10]
+0042981f push     dword ptr [esp + 0x10]
+00429823 push     dword ptr [esp + 0x10]
+00429827 call     0x52fc3a
+0042982c mov      bl, al
+0042982e call     dword ptr [0x4005a8]
+00429834 mov      al, bl
+00429836 pop      ebx
+00429837 ret      0xc
+0042983a push     ebp
+0042983b mov      ebp, esp
+0042983d push     ecx
+0042983e mov      cl, 2
+00429840 call     dword ptr [0x40063c]
+00429846 mov      byte ptr [ebp - 1], al
+
+CALLER KdPortPollByte
+00429928 mov      byte ptr [ebp - 8], al
+0042992b je       0x429941
+0042992d and      byte ptr [0x5448a8], 0
+00429934 mov      byte ptr [0x5448ac], 1
+0042993b mov      byte ptr [ebp - 1], 1
+0042993f jmp      0x429973
+00429941 push     0x46cac8
+00429946 call     0x464570
+0042994b test     al, al
+0042994d je       0x429973
+0042994f lea      eax, [ebp - 2]
+00429952 push     eax
+00429953 call     dword ptr [0x4005ac]
+00429959 test     eax, eax
+0042995b jne      0x42996e
+0042995d cmp      byte ptr [ebp - 2], 0x62
+00429961 jne      0x42996e
+00429963 mov      byte ptr [ebp - 1], 1
+00429967 mov      byte ptr [0x5448ac], 1
+0042996e call     0x429900
+00429973 push     dword ptr [ebp - 8]
+00429976 call     0x431064
+
+CALLER KdPortPollByte
+00429981 mov      ebp, esp
+00429983 push     ecx
+00429984 and      byte ptr [ebp - 1], 0
+00429988 cmp      byte ptr [0x473cbc], 0
+0042998f je       0x4299bf
+00429991 cmp      byte ptr [0x5448a8], 0
+00429998 je       0x4299a7
+0042999a and      byte ptr [0x5448a8], 0
+004299a1 mov      byte ptr [ebp - 1], 1
+004299a5 jmp      0x4299bf
+004299a7 lea      eax, [ebp - 2]
+004299aa push     eax
+004299ab call     dword ptr [0x4005ac]
+004299b1 test     eax, eax
+004299b3 jne      0x4299bf
+004299b5 cmp      byte ptr [ebp - 2], 0x62
+004299b9 jne      0x4299bf
+004299bb mov      byte ptr [ebp - 1], 1
+004299bf mov      al, byte ptr [ebp - 1]
+004299c2 leave    
+004299c3 ret      
+004299c4 mov      eax, 0x46d4b0
+
+CALLER KdPortSave
+0052eba9 mov      dword ptr [0x543f48], eax
+0052ebae mov      dword ptr [0x543f4c], edx
+0052ebb4 jmp      0x52ebc0
+0052ebb6 mov      dword ptr [0x543f40], eax
+0052ebbb mov      dword ptr [0x543f44], eax
+0052ebc0 push     dword ptr [esp + 0xc]
+0052ebc4 push     dword ptr [esp + 0xc]
+0052ebc8 call     0x431324
+0052ebcd push     0x46cac8
+0052ebd2 mov      bl, al
+0052ebd4 call     0x464570
+0052ebd9 mov      byte ptr [0x543fb0], al
+0052ebde call     dword ptr [0x4005a4]
+0052ebe4 mov      al, bl
+0052ebe6 mov      dword ptr [0x473cc4], 1
+0052ebf0 pop      ebx
+0052ebf1 ret      8
+0052ebf4 push     ebp
+0052ebf5 mov      ebp, esp
+0052ebf7 push     ebx
+0052ebf8 call     dword ptr [0x4005a8]
+0052ebfe xor      ebx, ebx
+
+CALLER KdPortRestore
+0052ebcd push     0x46cac8
+0052ebd2 mov      bl, al
+0052ebd4 call     0x464570
+0052ebd9 mov      byte ptr [0x543fb0], al
+0052ebde call     dword ptr [0x4005a4]
+0052ebe4 mov      al, bl
+0052ebe6 mov      dword ptr [0x473cc4], 1
+0052ebf0 pop      ebx
+0052ebf1 ret      8
+0052ebf4 push     ebp
+0052ebf5 mov      ebp, esp
+0052ebf7 push     ebx
+0052ebf8 call     dword ptr [0x4005a8]
+0052ebfe xor      ebx, ebx
+0052ec00 cmp      byte ptr [0x543fb0], bl
+0052ec06 je       0x52ec0d
+0052ec08 call     0x429900
+0052ec0d push     dword ptr [ebp + 8]
+0052ec10 call     0x431340
+0052ec15 mov      eax, dword ptr [0x543f40]
+0052ec1a mov      ecx, dword ptr [0x543f44]
+0052ec20 mov      edx, eax
+
+CALLER KdPortRestore
+0052f24a jmp      0x52f27e
+0052f24c cmp      dword ptr [ebp - 0x3c], ebx
+0052f24f jl       0x52f260
+0052f251 lea      eax, [ebp - 0x4c]
+0052f254 push     esi
+0052f255 push     eax
+0052f256 call     0x5313fa
+0052f25b push     1
+0052f25d pop      eax
+0052f25e jmp      0x52f27e
+0052f260 xor      eax, eax
+0052f262 jmp      0x52f27e
+0052f264 call     dword ptr [0x4005a8]
+0052f26a movzx    eax, word ptr [ebp - 0x46]
+0052f26e push     eax
+0052f26f call     0x43133a
+0052f274 mov      esi, eax
+0052f276 call     dword ptr [0x4005a4]
+0052f27c mov      eax, esi
+0052f27e pop      esi
+0052f27f pop      ebx
+0052f280 leave    
+
+CALLER KdPortSave
+0052f255 push     eax
+0052f256 call     0x5313fa
+0052f25b push     1
+0052f25d pop      eax
+0052f25e jmp      0x52f27e
+0052f260 xor      eax, eax
+0052f262 jmp      0x52f27e
+0052f264 call     dword ptr [0x4005a8]
+0052f26a movzx    eax, word ptr [ebp - 0x46]
+0052f26e push     eax
+0052f26f call     0x43133a
+0052f274 mov      esi, eax
+0052f276 call     dword ptr [0x4005a4]
+0052f27c mov      eax, esi
+0052f27e pop      esi
+0052f27f pop      ebx
+0052f280 leave    
+0052f281 ret      0x10
+0052f284 push     ecx
+0052f285 .byte    0xf0
+0052f286 push     edx
+0052f287 add      byte ptr [ecx - 0x10], ah
+
+CALLER KdPortInitialize
+005305e2 pop      ecx
+005305e3 je       0x530600
+005305e5 mov      byte ptr [ebp - 4], bl
+005305e8 mov      byte ptr [0x46d724], bl
+005305ee jmp      0x530600
+005305f0 mov      byte ptr [0x46d724], 1
+005305f7 mov      byte ptr [ebp - 4], bl
+005305fa jmp      0x530600
+005305fc mov      byte ptr [ebp - 4], 1
+00530600 push     dword ptr [ebp - 4]
+00530603 push     dword ptr [ebp + 8]
+00530606 push     0x5448c0
+0053060b call     dword ptr [0x4005b0]
+00530611 test     al, al
+00530613 je       0x5306e2
+00530619 cmp      byte ptr [ebp - 4], bl
+0053061c je       0x5306e2
+00530622 cmp      byte ptr [0x473cc0], bl
+00530628 mov      dword ptr [0x480a3c], 0x531962
+00530632 jne      0x530699
+00530634 mov      dword ptr [0x480a10], 0x429814
+0053063e mov      byte ptr [0x5448b0], 0xcc
+
+CALLER KdPortGetByte
+00530abc pop      esi
+00530abd pop      ebx
+00530abe leave    
+00530abf ret      8
+00530ac2 push     ebp
+00530ac3 mov      ebp, esp
+00530ac5 cmp      dword ptr [ebp + 0xc], 0
+00530ac9 push     esi
+00530aca jbe      0x530ae8
+00530acc mov      esi, dword ptr [ebp + 8]
+00530acf lea      eax, [ebp + 8]
+00530ad2 push     eax
+00530ad3 call     dword ptr [0x4005b4]
+00530ad9 test     eax, eax
+00530adb jne      0x530aea
+00530add mov      al, byte ptr [ebp + 8]
+00530ae0 mov      byte ptr [esi], al
+00530ae2 inc      esi
+00530ae3 dec      dword ptr [ebp + 0xc]
+00530ae6 jne      0x530acf
+00530ae8 xor      eax, eax
+00530aea pop      esi
+
+CALLER KdPortPutByte
+00530af0 push     ebp
+00530af1 mov      ebp, esp
+00530af3 push     edi
+00530af4 mov      edi, dword ptr [ebp + 0xc]
+00530af7 test     edi, edi
+00530af9 jbe      0x530b12
+00530afb push     esi
+00530afc mov      esi, dword ptr [ebp + 8]
+00530aff mov      al, byte ptr [esi]
+00530b01 inc      esi
+00530b02 mov      byte ptr [ebp + 0xc], al
+00530b05 push     dword ptr [ebp + 0xc]
+00530b08 call     dword ptr [0x4005b8]
+00530b0e dec      edi
+00530b0f jne      0x530aff
+00530b11 pop      esi
+00530b12 pop      edi
+00530b13 pop      ebp
+00530b14 ret      8
+00530b17 int3     
+00530b18 push     ebp
+00530b19 mov      ebp, esp
+
+CALLER KdPortGetByte
+00530ca3 jne      0x530d23
+00530ca5 mov      word ptr [edi], si
+00530ca8 push     dword ptr [ebx]
+00530caa mov      esi, dword ptr [ebp + 0x10]
+00530cad push     dword ptr [esi + 4]
+00530cb0 call     0x530ac2
+00530cb5 test     eax, eax
+00530cb7 jne      0x530d23
+00530cb9 mov      ax, word ptr [ebx]
+00530cbc mov      word ptr [esi], ax
+00530cbf lea      eax, [ebp + 0x14]
+00530cc2 push     eax
+00530cc3 call     dword ptr [0x4005b4]
+00530cc9 test     eax, eax
+00530ccb jne      0x530d23
+00530ccd cmp      byte ptr [ebp + 0x14], 0xaa
+00530cd1 jne      0x530d23
+00530cd3 movzx    eax, word ptr [ebp - 0xc]
+00530cd7 cmp      dword ptr [ebp + 8], eax
+00530cda je       0x530ce1
+00530cdc push     dword ptr [ebp - 8]
+00530cdf jmp      0x530cfb
+
+CALLER KdPortPutByte
+00530e18 movzx    eax, word ptr [esi]
+00530e1b push     eax
+00530e1c push     dword ptr [esi + 4]
+00530e1f call     0x530af0
+00530e24 test     edi, edi
+00530e26 je       0x530e37
+00530e28 mov      eax, dword ptr [ebp + 0x10]
+00530e2b movzx    ecx, word ptr [eax]
+00530e2e push     ecx
+00530e2f push     dword ptr [eax + 4]
+00530e32 call     0x530af0
+00530e37 push     0xaa
+00530e3c call     dword ptr [0x4005b8]
+00530e42 xor      eax, eax
+00530e44 push     eax
+00530e45 push     eax
+00530e46 push     eax
+00530e47 push     4
+00530e49 call     0x530b50
+00530e4e cmp      eax, 1
+00530e51 jne      0x530e59
+00530e53 dec      dword ptr [0x5448a0]

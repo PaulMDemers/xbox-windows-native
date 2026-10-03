@@ -1,0 +1,241 @@
+diff --git a/boot/freeldr/freeldr/ntldr/xwnentryprobe.h b/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
+index fa92f0b0..05f4d3b0 100644
+--- a/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
++++ b/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
+@@ -1,6 +1,10 @@
+ /* Explicit early-kernel diagnostic. Included only in the opt-in rosload. */
+ #ifdef XBOX_NATIVE_FATX_PHASE0_PREFLIGHT
+-#if defined(XBOX_NATIVE_FATX_CLOCK_PREFLIGHT)
++#if defined(XBOX_NATIVE_FATX_HOOKS_PREFLIGHT)
++static volatile ULONG XwnEntryRecord[80] = {0x524e5758, 0x35544e50, 1, 0};
++#define XWN_ARM_SIGNATURE 0x52474E54
++#define XWN_ARM_REPLY 0x52474854
++#elif defined(XBOX_NATIVE_FATX_CLOCK_PREFLIGHT)
+ static volatile ULONG XwnEntryRecord[80] = {0x434e5758, 0x35544e50, 1, 0};
+ #define XWN_ARM_SIGNATURE 0x434C4E54
+ #define XWN_ARM_REPLY 0x434C4854
+@@ -137,7 +141,9 @@ static DECLSPEC_NORETURN VOID XwnEnterKernelProbe(PLOADER_PARAMETER_BLOCK Loader
+     XwnEntryRecord[21] = XwnFramebufferBytes;
+     XwnEntryRecord[23] = (ULONG_PTR)XwnFindHalExport(Hal, "HalInitSystem");
+     XwnPagingClear();
+-#if defined(XBOX_NATIVE_FATX_CLOCK_PREFLIGHT)
++#if defined(XBOX_NATIVE_FATX_HOOKS_PREFLIGHT)
++    XwnPagingText(7, "XWNR30: Entering Windows; partition-hook stop armed.", 0xFFFFFF00);
++#elif defined(XBOX_NATIVE_FATX_CLOCK_PREFLIGHT)
+     XwnPagingText(7, "XWNC30: Entering Windows; pre-storage stop armed.", 0xFFFFFF00);
+ #elif defined(XBOX_NATIVE_FATX_TIMER_PREFLIGHT)
+     XwnPagingText(7, "XWNT30: Entering Windows; post-calibration stop armed.", 0xFFFFFF00);
+diff --git a/boot/freeldr/freeldr/ntldr/xwnphase0callback.h b/boot/freeldr/freeldr/ntldr/xwnphase0callback.h
+index 59149520..acf8008e 100644
+--- a/boot/freeldr/freeldr/ntldr/xwnphase0callback.h
++++ b/boot/freeldr/freeldr/ntldr/xwnphase0callback.h
+@@ -103,6 +103,26 @@ XwnFirstHalCheckpoint(ULONG Stage, PLOADER_PARAMETER_BLOCK LoaderBlock,
+         ULONG I;
+         for (I = 0; I < 11; ++I) XwnEntryRecord[55 + I] = State[5 + I];
+     }
++#endif
++#ifdef XBOX_NATIVE_FATX_HOOKS_PREFLIGHT
++    if (Valid && Stage == 60)
++    {
++        XwnEntryRecord[24] = 60;
++        return 0x50524330;
++    }
++    Valid = XwnEntryRecord[3] == 30 && State && Stage == 70 &&
++            XwnEntryRecord[24] == 60 && XwnEntryRecord[25] == 1 &&
++            (ULONG_PTR)LoaderBlock == XwnEntryRecord[4] &&
++            (ULONG_PTR)Caller == XwnEntryRecord[45] &&
++            (__readcr0() & 0x80000000) && __readcr3() == XwnEntryRecord[11] &&
++            State[0] == 0 && State[1] == 0xFFFFFFFB && State[2] == XwnEntryRecord[54] &&
++            State[3] == 1 && State[4] == 1 && State[5] == 15 && State[6] == 15 &&
++            State[7] == 0xffff && (State[8] & 0x200);
++    if (State && Stage == 70)
++    {
++        ULONG I;
++        for (I = 0; I < 4; ++I) XwnEntryRecord[66 + I] = State[5 + I];
++    }
+ #endif
+     XwnEntryRecord[12] = State ? State[0] : ~0;
+     XwnEntryRecord[13] = (ULONG_PTR)LoaderBlock;
+@@ -119,7 +139,20 @@ XwnFirstHalCheckpoint(ULONG Stage, PLOADER_PARAMETER_BLOCK LoaderBlock,
+     XwnEntryRecord[24] = Stage;
+     XwnEntryRecord[3] = Valid ? 90 : 40;
+     XwnPagingClear();
+-#if defined(XBOX_NATIVE_FATX_CLOCK_PREFLIGHT)
++#if defined(XBOX_NATIVE_FATX_HOOKS_PREFLIGHT)
++    XwnPagingText(4, "XWN Windows 2000 partition-hook registration", 0xFFFFFFFF);
++    XwnPagingText(7, Valid ? "XWNR90: Partition hooks registered; no disk access."
++                          : "XWNRFAIL: Partition-hook validation failed.",
++                  Valid ? 0xFF00FF00 : 0xFFFF0000);
++    RtlStringCbPrintfA(Text, sizeof(Text), "Installed hooks: %lx/0f  Saved originals: %lx/0f",
++                      XwnEntryRecord[66], XwnEntryRecord[67]);
++    XwnPagingText(10, Text, 0xFFFFFFFF);
++    RtlStringCbPrintfA(Text, sizeof(Text), "PIC: %04lx  Stall factor: %lu  Stage: %lu",
++                      XwnEntryRecord[68], XwnEntryRecord[54], Stage);
++    XwnPagingText(12, Text, 0xFFFFFFFF);
++    XwnPagingText(15, "Stopped BEFORE BIOS allocation and partition calls.", 0xFFFFFFFF);
++    XwnPagingText(17, "Boot-driver entry and Windows desktop NOT reached.", 0xFFFFFFFF);
++#elif defined(XBOX_NATIVE_FATX_CLOCK_PREFLIGHT)
+     XwnPagingText(4, "XWN Windows 2000 clock setup", 0xFFFFFFFF);
+     XwnPagingText(7, Valid ? "XWNC90: Clock configured; stopped before storage."
+                           : "XWNCFAIL: Clock state validation failed.",
+diff --git a/boot/freeldr/freeldr/pcat.cmake b/boot/freeldr/freeldr/pcat.cmake
+index 710a74e3..2743e2d7 100644
+--- a/boot/freeldr/freeldr/pcat.cmake
++++ b/boot/freeldr/freeldr/pcat.cmake
+@@ -351,3 +351,8 @@ option(XBOX_NATIVE_FATX_CLOCK_PREFLIGHT "Stop after clock setup before storage"
+ if(XBOX_NATIVE_FATX_CLOCK_PREFLIGHT AND NOT XBOX_NATIVE_FATX_TIMER_PREFLIGHT)
+     message(FATAL_ERROR "Clock probe requires timer preflight")
+ endif()
++
++option(XBOX_NATIVE_FATX_HOOKS_PREFLIGHT "Stop after partition hook registration before BIOS allocation" OFF)
++if(XBOX_NATIVE_FATX_HOOKS_PREFLIGHT AND NOT XBOX_NATIVE_FATX_CLOCK_PREFLIGHT)
++    message(FATAL_ERROR "Hooks probe requires clock preflight")
++endif()
+diff --git a/boot/freeldr/freeldr/rosload.cmake b/boot/freeldr/freeldr/rosload.cmake
+index 1ef22374..9de65eb3 100644
+--- a/boot/freeldr/freeldr/rosload.cmake
++++ b/boot/freeldr/freeldr/rosload.cmake
+@@ -147,3 +147,7 @@ endif()
+ if(XBOX_NATIVE_FATX_CLOCK_PREFLIGHT)
+     target_compile_definitions(rosload PRIVATE XBOX_NATIVE_FATX_CLOCK_PREFLIGHT=1)
+ endif()
++
++if(XBOX_NATIVE_FATX_HOOKS_PREFLIGHT)
++    target_compile_definitions(rosload PRIVATE XBOX_NATIVE_FATX_HOOKS_PREFLIGHT=1)
++endif()
+diff --git a/hal/halx86/generic/halinit.c b/hal/halx86/generic/halinit.c
+index 35ca6e0a..87202cf1 100644
+--- a/hal/halx86/generic/halinit.c
++++ b/hal/halx86/generic/halinit.c
+@@ -20,7 +20,12 @@ VOID HalpXwnPhase0(ULONG, PLOADER_PARAMETER_BLOCK, PVOID);
+ VOID HalpXwnBaseReady(ULONG, PLOADER_PARAMETER_BLOCK, PVOID, NTSTATUS);
+ #ifdef XBOX_NT5_CLOCK_PREFLIGHT
+ VOID HalpXwnTimerReady(ULONG, PLOADER_PARAMETER_BLOCK, PVOID);
++#ifdef XBOX_NT5_HOOKS_PREFLIGHT
++VOID HalpXwnClockReady(ULONG, PLOADER_PARAMETER_BLOCK, PVOID);
++DECLSPEC_NORETURN VOID HalpXwnHooksReady(ULONG, PLOADER_PARAMETER_BLOCK, PVOID);
++#else
+ DECLSPEC_NORETURN VOID HalpXwnClockReady(ULONG, PLOADER_PARAMETER_BLOCK, PVOID);
++#endif
+ #else
+ DECLSPEC_NORETURN VOID HalpXwnTimerReady(ULONG, PLOADER_PARAMETER_BLOCK, PVOID);
+ #endif
+@@ -218,6 +223,9 @@ HalInitSystem(
+ 
+         /* Do some HAL-specific initialization */
+         HalpInitPhase0(LoaderBlock);
++#ifdef XBOX_NT5_HOOKS_PREFLIGHT
++        HalpXwnHooksReady(BootPhase, LoaderBlock, _ReturnAddress());
++#endif
+ 
+         /* Initialize Phase 0 of the x86 emulator */
+         HalInitializeBios(0, LoaderBlock);
+diff --git a/hal/halx86/xbox/part_xbox.c b/hal/halx86/xbox/part_xbox.c
+index a05d31d1..ca964473 100644
+--- a/hal/halx86/xbox/part_xbox.c
++++ b/hal/halx86/xbox/part_xbox.c
+@@ -341,3 +341,20 @@ HalpXboxInitPartIo(void)
+ }
+ 
+ /* EOF */
++
++#ifdef XBOX_NT5_HOOKS_PREFLIGHT
++ULONG HalpXwnPartitionHookMask(VOID)
++{
++    return (HalExamineMBR == HalpXboxExamineMBR) |
++           ((HalIoReadPartitionTable == HalpXboxIoReadPartitionTable) << 1) |
++           ((HalIoSetPartitionInformation == HalpXboxIoSetPartitionInformation) << 2) |
++           ((HalIoWritePartitionTable == HalpXboxIoWritePartitionTable) << 3);
++}
++ULONG HalpXwnSavedPartitionMask(VOID)
++{
++    return (NtoskrnlExamineMBR != NULL && NtoskrnlExamineMBR != HalExamineMBR) |
++           ((NtoskrnlIoReadPartitionTable != NULL && NtoskrnlIoReadPartitionTable != HalIoReadPartitionTable) << 1) |
++           ((NtoskrnlIoSetPartitionInformation != NULL && NtoskrnlIoSetPartitionInformation != HalIoSetPartitionInformation) << 2) |
++           ((NtoskrnlIoWritePartitionTable != NULL && NtoskrnlIoWritePartitionTable != HalIoWritePartitionTable) << 3);
++}
++#endif
+diff --git a/hal/halx86/xboxnt5/CMakeLists.txt b/hal/halx86/xboxnt5/CMakeLists.txt
+index c67fecd6..da329ba1 100644
+--- a/hal/halx86/xboxnt5/CMakeLists.txt
++++ b/hal/halx86/xboxnt5/CMakeLists.txt
+@@ -65,3 +65,11 @@ endif()
+ if(XBOX_NT5_CLOCK_PREFLIGHT)
+     target_compile_definitions(halxboxnt5 PRIVATE XBOX_NT5_CLOCK_PREFLIGHT=1)
+ endif()
++
++option(XBOX_NT5_HOOKS_PREFLIGHT "Stop after partition hook registration before BIOS allocation" OFF)
++if(XBOX_NT5_HOOKS_PREFLIGHT AND NOT XBOX_NT5_CLOCK_PREFLIGHT)
++    message(FATAL_ERROR "Hooks probe requires clock preflight")
++endif()
++if(XBOX_NT5_HOOKS_PREFLIGHT)
++    target_compile_definitions(halxboxnt5 PRIVATE XBOX_NT5_HOOKS_PREFLIGHT=1)
++endif()
+diff --git a/hal/halx86/xboxnt5/entryprobe.c b/hal/halx86/xboxnt5/entryprobe.c
+index 191b1e0f..2279a305 100644
+--- a/hal/halx86/xboxnt5/entryprobe.c
++++ b/hal/halx86/xboxnt5/entryprobe.c
+@@ -62,7 +62,11 @@ HalpXwnFirstProcessor(ULONG Processor, PLOADER_PARAMETER_BLOCK LoaderBlock, PVOI
+ 
+ ULONG NTAPI XwnConfigureEntryProbe(PVOID Callback, ULONG Signature)
+ {
+-#if defined(XBOX_NT5_CLOCK_PREFLIGHT)
++#if defined(XBOX_NT5_HOOKS_PREFLIGHT)
++    if (Signature != 0x52474E54 || !Callback || XwnPhaseCallback) return 0;
++    XwnPhaseCallback = (XWN_PHASE_CALLBACK)Callback;
++    return 0x52474854;
++#elif defined(XBOX_NT5_CLOCK_PREFLIGHT)
+     if (Signature != 0x434C4E54 || !Callback || XwnPhaseCallback) return 0;
+     XwnPhaseCallback = (XWN_PHASE_CALLBACK)Callback;
+     return 0x434C4854;
+@@ -189,7 +193,10 @@ VOID HalpXwnTimerReady(ULONG Phase, PLOADER_PARAMETER_BLOCK LoaderBlock, PVOID C
+ extern ULONG HalpCurrentRollOver, HalpCurrentTimeIncrement, HalpLargestClockMS;
+ extern HALP_ROLLOVER HalpRolloverTable[15];
+ extern BOOLEAN HalpProfilingStopped;
+-DECLSPEC_NORETURN VOID HalpXwnClockReady(ULONG Phase, PLOADER_PARAMETER_BLOCK LoaderBlock, PVOID Caller)
++#ifndef XBOX_NT5_HOOKS_PREFLIGHT
++DECLSPEC_NORETURN
++#endif
++VOID HalpXwnClockReady(ULONG Phase, PLOADER_PARAMETER_BLOCK LoaderBlock, PVOID Caller)
+ {
+     ULONG State[16], Flags = __readeflags(), Counter;
+     _disable();
+@@ -219,7 +226,38 @@ DECLSPEC_NORETURN VOID HalpXwnClockReady(ULONG Phase, PLOADER_PARAMETER_BLOCK Lo
+     State[14] = Counter;
+     State[15] = HalpRolloverTable[0].Increment;
+     XwnPhaseStep = 6;
++#ifdef XBOX_NT5_HOOKS_PREFLIGHT
++    if (XwnPhaseCallback(60, LoaderBlock, Caller, State) == 0x50524330)
++    {
++        __writeeflags(Flags);
++        return;
++    }
++#else
+     XwnPhaseCallback(60, LoaderBlock, Caller, State);
++#endif
++    for (;;) __halt();
++}
++#endif
++
++#ifdef XBOX_NT5_HOOKS_PREFLIGHT
++ULONG HalpXwnPartitionHookMask(VOID);
++ULONG HalpXwnSavedPartitionMask(VOID);
++DECLSPEC_NORETURN VOID HalpXwnHooksReady(ULONG Phase, PLOADER_PARAMETER_BLOCK LoaderBlock, PVOID Caller)
++{
++    ULONG State[9], Flags = __readeflags();
++    _disable();
++    if (!XwnPhaseCallback || XwnPhaseStep != 6 || Phase != 0) for (;;) __halt();
++    State[0] = Phase;
++    State[1] = KeGetPcr()->IDR;
++    State[2] = KeGetPcr()->StallScaleFactor;
++    State[3] = (ULONG)HalpActiveProcessors;
++    State[4] = (ULONG)HalpDefaultInterruptAffinity;
++    State[5] = HalpXwnPartitionHookMask();
++    State[6] = HalpXwnSavedPartitionMask();
++    State[7] = __inbyte(0x21) | (__inbyte(0xa1) << 8);
++    State[8] = Flags;
++    XwnPhaseStep = 7;
++    XwnPhaseCallback(70, LoaderBlock, Caller, State);
+     for (;;) __halt();
+ }
+ #endif

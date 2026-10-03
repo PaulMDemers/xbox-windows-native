@@ -1,0 +1,117 @@
+diff --git a/boot/freeldr/freeldr/ntldr/winldr.c b/boot/freeldr/freeldr/ntldr/winldr.c
+index bf5634a5..0d73ada5 100644
+--- a/boot/freeldr/freeldr/ntldr/winldr.c
++++ b/boot/freeldr/freeldr/ntldr/winldr.c
+@@ -83,7 +83,7 @@ NtLdrOutputLoadMsg(
+  */
+ #ifdef XBOX_NATIVE_FATX_PAGING_PREFLIGHT
+ /* Separate magic prevents host entry-gate tools mistaking this for an entry build. */
+-static volatile ULONG XwnHandoffRecord[20] = {0x504e5758, 0x35544e50, 1, 0};
++static volatile ULONG XwnHandoffRecord[23] = {0x504e5758, 0x35544e50, 1, 0};
+ #else
+ static volatile ULONG XwnHandoffRecord[17] = {0x484e5758, 0x35544e50, 1, 0};
+ #endif
+@@ -102,18 +102,19 @@ static ULONG XwnPagingFramebuffer;
+ static PULONG XwnPagingTable;
+ static ULONG XwnDisplayWidth, XwnDisplayHeight, XwnDisplayPitch, XwnLookupPages;
+ static ULONG XwnDisplayStartRaw, XwnPitchLowRaw, XwnPitchHighRaw;
+-#define XWN_FB_BYTES (640 * 480 * sizeof(ULONG))
++static ULONG XwnFramebufferBytes;
+ 
+ static VOID XwnPagingText(ULONG Row, PCSTR Text, ULONG Color)
+ {
+     ULONG Char, X, Y;
+     volatile ULONG *Pixels = (volatile ULONG *)(ULONG_PTR)XwnPagingFramebuffer;
++    if (Row >= XwnDisplayHeight / 16) return;
+     for (Char = 0; Text[Char] && Char < 74; ++Char)
+     {
+         const UCHAR *Glyph = BitmapFont8x16 + (UCHAR)Text[Char] * 16;
+         for (Y = 0; Y < 16; ++Y)
+             for (X = 0; X < 8; ++X)
+-                Pixels[(Row * 16 + Y) * 640 + (Char + 3) * 8 + X] =
++                Pixels[(Row * 16 + Y) * (XwnDisplayPitch / 4) + (Char + 3) * 8 + X] =
+                     (Glyph[Y] & (0x80 >> X)) ? Color : 0xFF000000;
+     }
+ }
+@@ -122,7 +123,7 @@ static VOID XwnPagingClear(VOID)
+ {
+     ULONG Index;
+     volatile ULONG *Pixels = (volatile ULONG *)(ULONG_PTR)XwnPagingFramebuffer;
+-    for (Index = 0; Index < 640 * 480; ++Index) Pixels[Index] = 0xFF000000;
++    for (Index = 0; Index < XwnFramebufferBytes / sizeof(ULONG); ++Index) Pixels[Index] = 0xFF000000;
+ }
+ 
+ static DECLSPEC_NORETURN VOID XwnPagingStop(PCSTR Reason)
+@@ -130,17 +131,17 @@ static DECLSPEC_NORETURN VOID XwnPagingStop(PCSTR Reason)
+     CHAR Text[128];
+     /* Use the already-working loader UI, never the unvalidated direct writer. */
+     UiDrawBackdrop(UiGetScreenHeight());
+-    UiDrawText(3, 3, "XWN paging guard details v2 - stopped before paging", 0x0F);
++    UiDrawText(3, 3, "XWN paging guard details v3 - stopped before paging", 0x0F);
+     RtlStringCbPrintfA(Text, sizeof(Text), "XWNPFAIL: %s", Reason);
+     UiDrawText(3, 5, Text, 0x0F);
+     RtlStringCbPrintfA(Text, sizeof(Text), "Width %lu  Height %lu  Pitch %lu bytes",
+                       XwnDisplayWidth, XwnDisplayHeight, XwnDisplayPitch);
+     UiDrawText(3, 8, Text, 0x0F);
+-    UiDrawText(3, 9, "Expected: width 640, height 480, pitch 2560", 0x0F);
++    UiDrawText(3, 9, "Allowed: 640x480/2560 or 1024x576/4096", 0x0F);
+     RtlStringCbPrintfA(Text, sizeof(Text), "FB %08lx  Raw start %08lx  Bytes %08lx",
+-                      XwnPagingFramebuffer, XwnDisplayStartRaw, (ULONG)XWN_FB_BYTES);
++                      XwnPagingFramebuffer, XwnDisplayStartRaw, (ULONG)XwnFramebufferBytes);
+     UiDrawText(3, 11, Text, 0x0F);
+-    UiDrawText(3, 12, "Expected: page-aligned FB in 03c00000..03ed4000", 0x0F);
++    UiDrawText(3, 12, "Expected: page-aligned FB wholly within top 4 MiB", 0x0F);
+     RtlStringCbPrintfA(Text, sizeof(Text), "Lookup pages %08lx  CR0 %08lx",
+                       XwnLookupPages, __readcr0());
+     UiDrawText(3, 14, Text, 0x0F);
+@@ -178,14 +179,20 @@ static VOID XwnPreparePagingDisplay(PLOADER_PARAMETER_BLOCK LoaderBlock)
+     XwnLookupPages = MmGetTotalPagesInLookupTable();
+     XwnPitchLowRaw = LowPitch;
+     XwnPitchHighRaw = HighPitch;
+-    if (Width != 640 || Height != 480 || Pitch != 640 * 4 ||
+-        (XwnPagingFramebuffer & 0xFFF) || XwnPagingFramebuffer < 0x03C00000 ||
+-        XwnPagingFramebuffer > 0x04000000 - XWN_FB_BYTES ||
++    /* These are the two observed Xromwell modes, both packed 32-bit pixels.
++     * Bound dimensions/pitch before multiplication or framebuffer access. */
++    if (!((Width == 640 && Height == 480 && Pitch == 2560) ||
++          (Width == 1024 && Height == 576 && Pitch == 4096)))
++        XwnPagingStop("unsupported display geometry");
++    XwnFramebufferBytes = Pitch * Height;
++    if ((XwnPagingFramebuffer & 0xFFF) || (XwnFramebufferBytes & 0xFFF) ||
++        XwnPagingFramebuffer < 0x03C00000 ||
++        XwnPagingFramebuffer > 0x04000000 - XwnFramebufferBytes ||
+         XwnLookupPages != 0x3C00)
+-        XwnPagingStop("unsupported framebuffer or RAM layout");
++        XwnPagingStop("framebuffer outside reserved RAM layout");
+ 
+     BasePage = XwnPagingFramebuffer >> 12;
+-    Pages = XWN_FB_BYTES >> 12;
++    Pages = XwnFramebufferBytes >> 12;
+     /* Layout construction already converted the descriptor links to VAs. */
+     for (Link = VaToPa(Head->Flink); Link != Head && Count++ < 200;
+          Link = VaToPa(Link->Flink))
+@@ -213,7 +220,10 @@ static VOID XwnPreparePagingDisplay(PLOADER_PARAMETER_BLOCK LoaderBlock)
+         }
+     }
+     XwnHandoffRecord[17] = XwnPagingFramebuffer;
+-    XwnHandoffRecord[18] = XWN_FB_BYTES;
++    XwnHandoffRecord[18] = XwnFramebufferBytes;
++    XwnHandoffRecord[20] = XwnDisplayWidth;
++    XwnHandoffRecord[21] = XwnDisplayHeight;
++    XwnHandoffRecord[22] = XwnDisplayPitch;
+     XwnPagingClear();
+     XwnPagingText(4, "XWN Windows 2000 paging diagnostic", 0xFFFFFFFF);
+     XwnPagingText(8, "XWNP30: Page tables ready. Switching next.", 0xFFFFFF00);
+@@ -242,7 +252,11 @@ XwnFinishPagingProbe(PLOADER_PARAMETER_BLOCK LoaderBlock, volatile ULONG *Record
+     XwnPagingText(15, Valid ? "XWNP90: Paging active. Kernel NOT entered."
+                           : "XWNPFAIL: Paged-mode validation failed.",
+                   Valid ? 0xFF00FF00 : 0xFFFF0000);
+-    XwnPagingText(19, "Diagnostic halted. Photograph this screen, then reboot.", 0xFFFFFFFF);
++    RtlStringCbPrintfA(Text, sizeof(Text), "Display: %lux%lu  Pitch: %lu  Mapped pages: %lu",
++                      XwnDisplayWidth, XwnDisplayHeight, XwnDisplayPitch,
++                      XwnFramebufferBytes >> 12);
++    XwnPagingText(17, Text, 0xFFFFFFFF);
++    XwnPagingText(20, "Diagnostic halted. Photograph this screen, then reboot.", 0xFFFFFFFF);
+     _disable(); for (;;) __halt();
+ }
+ #endif

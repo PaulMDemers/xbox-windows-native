@@ -1,0 +1,47 @@
+{
+  "scope": "Run compiled NT5 translator callbacks with modeled kernel/PCI/PIC services.\nNo claim about physical interrupt delivery, resource arbitration, or PCI routing.\n",
+  "hal_sha256": "d079bfb5eb40b9af74a25a61a8a06d0207114edef4a1d9a87e6bb360a65547f1",
+  "results": [
+    {
+      "test": "Actual Windows root PCI request installs the version-zero 24-byte translator and stdcall ABI",
+      "passed": true
+    },
+    {
+      "test": "Unsupported translator requests fail without publishing partial callbacks",
+      "passed": true
+    },
+    {
+      "test": "Child-to-parent supplies PIC vector/IRQL/affinity and uses the actual PIC trigger mode",
+      "passed": true
+    },
+    {
+      "test": "Invalid and HAL-reserved lines fail without changing the target",
+      "passed": true
+    },
+    {
+      "test": "PCI reverse translation reads the device firmware line and matches the parent vector",
+      "passed": true
+    },
+    {
+      "test": "Legacy reverse alternatives are bounded to 16 PIC lines even with ULONG_MAX upper bound",
+      "passed": true
+    },
+    {
+      "test": "PCI requirements use firmware IRQ instead of unrestricted descriptor range and retain attributes",
+      "passed": true
+    },
+    {
+      "test": "USB/audio edge lines and ELCR level lines agree across forward, reverse and requirement translation; unrelated flag bits survive",
+      "passed": true
+    },
+    {
+      "test": "Legacy requirements emit bounded valid alternatives, excluding reserved PIC lines",
+      "passed": true
+    },
+    {
+      "test": "Allocation, PCI property and unrouted interrupt failures leave empty requirement outputs",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

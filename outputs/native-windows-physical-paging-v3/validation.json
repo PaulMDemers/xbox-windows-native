@@ -1,0 +1,73 @@
+{
+  "validated_utc": "2026-10-03T19:39:07.464896+00:00",
+  "ready_for_physical_upload": true,
+  "physical_tested": true,
+  "installed_on_physical_console": true,
+  "kernel_entered": false,
+  "source_tree": "3cda5e93907aa0b269b6e2eac1fa48f96d2ccc96",
+  "normal_loader_build_passed": true,
+  "package_files_verified": 33,
+  "same_final_package_for_both_modes": true,
+  "shared_emulator_eeprom_preserved": true,
+  "physical_video_settings_changed": false,
+  "emulator_tests": [
+    {
+      "id": "physical-paging-v3-wide-002",
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "identity_pages_verified": 576,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "status": "physical_paging_halt_verified",
+      "imports_verified": 1388,
+      "modules": 20,
+      "boot_drivers": 14,
+      "memory_descriptors": 24,
+      "framebuffer_image_visually_checked": true
+    },
+    {
+      "id": "physical-paging-v3-normal-001",
+      "framebuffer": {
+        "width": 640,
+        "height": 480,
+        "pitch": 2560,
+        "pa": "0x3c00000",
+        "bytes": 1228800,
+        "identity_pages_verified": 300,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "status": "physical_paging_halt_verified",
+      "imports_verified": 1388,
+      "modules": 20,
+      "boot_drivers": 14,
+      "memory_descriptors": 24,
+      "framebuffer_image_visually_checked": true
+    }
+  ],
+  "scope": "Paging diagnostic; 640x480 and 1024x576 only, full framebuffer reservation/range checks, unconditional halt before kernel entry.",
+  "capture_limitation": "Legacy harness frame-NNN.png assumes 640x480. Use audited-framebuffer.png, decoded from guest RAM with validated dimensions/pitch, for widescreen evidence.",
+  "predecessor_physical_result": "v2 correctly reported 1024x576/4096; rejected by its fixed 640x480 guard.",
+  "uploaded_utc": "2026-10-03T19:39:25.433802+00:00",
+  "physical_paging_passed": true,
+  "physical_result": {
+    "status": "physical_paging_checkpoint_passed",
+    "checkpoint": "XWNP90: Paging active. Kernel NOT entered.",
+    "kernel_entered": false,
+    "memory_descriptors_reported": 24,
+    "modules_reported": 20,
+    "boot_drivers_reported": 14,
+    "hive_bytes_reported": 1810432,
+    "display_width": 1024,
+    "display_height": 576,
+    "pitch_bytes": 4096,
+    "mapped_framebuffer_pages_reported": 576,
+    "photo_sha256": "86cdb65f083bdc8f884ef83eed7518ef0f63987a0b3b705bdc8a5e9e186a18f2",
+    "evidence_scope": "Photo confirms the diagnostic success marker and displayed counts. Import-slot, code-integrity and full descriptor audits remain emulator evidence."
+  }
+}
