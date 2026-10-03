@@ -1,0 +1,44 @@
+Native Windows 2000: BIOS phase-0 memory boundary
+
+Control: physical XWNR90 passed, installed/saved partition masks f/0f,
+PIC ffff, stall factor 367 and stage 70. No partition handler was called.
+
+This probe extends the opt-in HAL/loader pair through the original
+HalInitializeBios(0, LoaderBlock). It allocates one fallback page and one
+BIOS buffer page below 1 MiB using the original HAL allocator. It does not
+execute firmware, allocate the phase-1 BIOS mapping, return HalInitSystem
+to Windows or enter partition routines/drivers.
+
+Expected XWNI90 requires two distinct nonzero page-aligned allocations
+below 1 MiB, exactly two allocation descriptors used, both pages recorded
+as LoaderHALCachedMemory, intact list traversal, unchanged processor masks,
+stall scale and PIC ffff. The final callback unconditionally halts.
+The diagnostic code and hook signatures differ from the previous package;
+a mismatched old HAL must fail before Windows entry.
+
+Host audits additionally verify the exact descriptor transition, memory
+coverage, protected allocations, every mapped import and executable section.
+The test fixture predicts fallback PFN 1, buffer PA 00002000 and 26 total
+memory descriptors. This reserves memory; no BIOS program or Windows disk
+I/O is performed by this new step.
+
+Compatibility note: this ReactOS allocator uses LoaderHALCachedMemory
+(type 26). Before returning phase 0 to Windows 2000, inspect the native
+kernel's memory-descriptor handling and the relevance of these BIOS pages
+on an Xbox without a conventional PC BIOS. A successful reservation probe
+does not establish that this descriptor type is valid for later NT5 MM use.
+
+Physical result is pending. Launch Applications -> XWN Loader Diagnostic,
+photograph the complete screen and reboot to UnleashX. Only the application's
+HAL, second-stage loader and README are replaced; the XWNR90 files are kept.
+
+Validation passed in 1024x576 and 640x480, plus rejection of the previous
+HAL before kernel entry. The native trace passed 30 checkpoints with
+22 forbidden boundaries monitored. Both allocator arguments/return values
+and the exact descriptor-list transition were verified. All 1388 imports,
+core executable sections and full 64 MiB descriptor coverage passed.
+Ordinary builds and default-OFF configuration guard checks passed.
+
+Uploaded 2026-10-03T22:20:16.593150+00:00. All 33 application files verified
+by readback; three prior files retained under xwnr90 backup names.
+The physical Xbox was not remotely launched; XWNI90 result is pending.

@@ -1,0 +1,27 @@
+{
+  "scope": "Preliminary static audit of supplied Windows 2000 kernel; memory manager not executed by this probe.",
+  "kernel_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+  "symbol_source": "outputs/native-windows-nt5-kernel/kernel-publics.json",
+  "routine": "MiInitMachineDependent",
+  "routine_rva": "0x157d78",
+  "observations": [
+    {
+      "rva": "0x157f53",
+      "finding": "Initial descriptor scan skips types 6, 23 and 22; type 26 is counted in physical pages."
+    },
+    {
+      "rva": "0x157fa7",
+      "finding": "Free candidate selection only accepts types 2,4,5,8; type 26 is not a free candidate."
+    },
+    {
+      "rva": "0x159707",
+      "finding": "Type values greater than 23 branch to generic allocated-page handling at RVA 0x159802, rather than the free-list branch at 0x159762."
+    }
+  ],
+  "conclusion": "Type 26 is not immediately classified as free in these inspected loops. This is not a complete compatibility proof.",
+  "remaining": [
+    "Audit later reclamation and phase-1 paths.",
+    "Check reserved low pages remain mapped and valid as NT5 initializes memory.",
+    "Select next halt before HAL return is enabled."
+  ]
+}

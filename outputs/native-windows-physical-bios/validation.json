@@ -1,0 +1,89 @@
+{
+  "validated_utc": "2026-10-03T22:19:33.608786+00:00",
+  "ready_for_physical_upload": true,
+  "physical_tested": false,
+  "installed_on_physical_console": true,
+  "source_tree": "fb2e8f460daf4400b5a54417eab601355553c169",
+  "scope": "BIOS phase-0 pages reserved; updated memory descriptors checked; halt before HAL return, partition handlers and boot drivers.",
+  "normal_loader_build_passed": true,
+  "normal_hal_build_passed": true,
+  "missing_hooks_parent_rejected": true,
+  "post_bios_halt_statically_verified": true,
+  "kernel_file_unchanged": true,
+  "changed_files": [
+    "loader/halxboxnt5.dll",
+    "README.txt",
+    "rosload.exe"
+  ],
+  "package_files_verified": 33,
+  "emulator_tests": [
+    {
+      "run": "physical-bios-wide-001",
+      "status": "bios_allocation_boundary_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "identity_pages_verified": 576,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-bios-normal-001",
+      "status": "bios_allocation_boundary_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 640,
+        "height": 480,
+        "pitch": 2560,
+        "pa": "0x3c00000",
+        "bytes": 1228800,
+        "identity_pages_verified": 300,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-bios-bad-hal-001",
+      "status": "unarmed_hal_rejected_before_kernel",
+      "kernel_entered": false,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "identity_pages_verified": 576,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-bios-trace-001",
+      "status": "bios_allocation_boundary_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "identity_pages_verified": 576,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    }
+  ],
+  "native_trace_passed": true,
+  "expected_physical_success": "XWNI90: BIOS pages reserved; HAL return blocked.",
+  "fixture_package_includes_final_readme": true,
+  "uploaded_utc": "2026-10-03T22:20:16.593150+00:00"
+}

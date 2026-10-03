@@ -1,0 +1,246 @@
+diff --git a/boot/freeldr/freeldr/ntldr/xwnentryprobe.h b/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
+index 05f4d3b0..5ad9a3b4 100644
+--- a/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
++++ b/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
+@@ -1,6 +1,10 @@
+ /* Explicit early-kernel diagnostic. Included only in the opt-in rosload. */
+ #ifdef XBOX_NATIVE_FATX_PHASE0_PREFLIGHT
+-#if defined(XBOX_NATIVE_FATX_HOOKS_PREFLIGHT)
++#if defined(XBOX_NATIVE_FATX_BIOS_PREFLIGHT)
++static volatile ULONG XwnEntryRecord[96] = {0x494e5758, 0x35544e50, 1, 0};
++#define XWN_ARM_SIGNATURE 0x42494E54
++#define XWN_ARM_REPLY 0x42494854
++#elif defined(XBOX_NATIVE_FATX_HOOKS_PREFLIGHT)
+ static volatile ULONG XwnEntryRecord[80] = {0x524e5758, 0x35544e50, 1, 0};
+ #define XWN_ARM_SIGNATURE 0x52474E54
+ #define XWN_ARM_REPLY 0x52474854
+@@ -141,7 +145,9 @@ static DECLSPEC_NORETURN VOID XwnEnterKernelProbe(PLOADER_PARAMETER_BLOCK Loader
+     XwnEntryRecord[21] = XwnFramebufferBytes;
+     XwnEntryRecord[23] = (ULONG_PTR)XwnFindHalExport(Hal, "HalInitSystem");
+     XwnPagingClear();
+-#if defined(XBOX_NATIVE_FATX_HOOKS_PREFLIGHT)
++#if defined(XBOX_NATIVE_FATX_BIOS_PREFLIGHT)
++    XwnPagingText(7, "XWNI30: Entering Windows; post-BIOS halt armed.", 0xFFFFFF00);
++#elif defined(XBOX_NATIVE_FATX_HOOKS_PREFLIGHT)
+     XwnPagingText(7, "XWNR30: Entering Windows; partition-hook stop armed.", 0xFFFFFF00);
+ #elif defined(XBOX_NATIVE_FATX_CLOCK_PREFLIGHT)
+     XwnPagingText(7, "XWNC30: Entering Windows; pre-storage stop armed.", 0xFFFFFF00);
+diff --git a/boot/freeldr/freeldr/ntldr/xwnphase0callback.h b/boot/freeldr/freeldr/ntldr/xwnphase0callback.h
+index acf8008e..ebe34c07 100644
+--- a/boot/freeldr/freeldr/ntldr/xwnphase0callback.h
++++ b/boot/freeldr/freeldr/ntldr/xwnphase0callback.h
+@@ -123,6 +123,30 @@ XwnFirstHalCheckpoint(ULONG Stage, PLOADER_PARAMETER_BLOCK LoaderBlock,
+         ULONG I;
+         for (I = 0; I < 4; ++I) XwnEntryRecord[66 + I] = State[5 + I];
+     }
++#endif
++#ifdef XBOX_NATIVE_FATX_BIOS_PREFLIGHT
++    if (Valid && Stage == 70)
++    {
++        XwnEntryRecord[24] = 70;
++        return 0x50524330;
++    }
++    Valid = XwnEntryRecord[3] == 30 && State && Stage == 80 &&
++            XwnEntryRecord[24] == 70 && XwnEntryRecord[25] == 1 &&
++            (ULONG_PTR)LoaderBlock == XwnEntryRecord[4] &&
++            (ULONG_PTR)Caller == XwnEntryRecord[45] &&
++            (__readcr0() & 0x80000000) && __readcr3() == XwnEntryRecord[11] &&
++            State[0] == 0 && State[1] == 0xFFFFFFFB && State[2] == XwnEntryRecord[54] &&
++            State[3] == 1 && State[4] == 1 && State[5] > 0 && State[5] < 0x100 &&
++            State[6] > 0 && State[6] < 0x100000 && !(State[6] & 0xfff) &&
++            State[5] != (State[6] >> 12) && State[7] == 0 &&
++            State[8] > 0 && State[8] < 128 && State[9] == 2 &&
++            State[10] == 0xffff && (State[11] & 0x200) && State[12] == 0 &&
++            State[13] == 3 && State[14] == 1;
++    if (State && Stage == 80)
++    {
++        ULONG I;
++        for (I = 0; I < 10; ++I) XwnEntryRecord[70 + I] = State[5 + I];
++    }
+ #endif
+     XwnEntryRecord[12] = State ? State[0] : ~0;
+     XwnEntryRecord[13] = (ULONG_PTR)LoaderBlock;
+@@ -139,7 +163,23 @@ XwnFirstHalCheckpoint(ULONG Stage, PLOADER_PARAMETER_BLOCK LoaderBlock,
+     XwnEntryRecord[24] = Stage;
+     XwnEntryRecord[3] = Valid ? 90 : 40;
+     XwnPagingClear();
+-#if defined(XBOX_NATIVE_FATX_HOOKS_PREFLIGHT)
++#if defined(XBOX_NATIVE_FATX_BIOS_PREFLIGHT)
++    XwnPagingText(4, "XWN Windows 2000 BIOS phase-0 allocation", 0xFFFFFFFF);
++    XwnPagingText(7, Valid ? "XWNI90: BIOS pages reserved; HAL return blocked."
++                          : "XWNIFAIL: BIOS allocation validation failed.",
++                  Valid ? 0xFF00FF00 : 0xFFFF0000);
++    RtlStringCbPrintfA(Text, sizeof(Text), "Fallback PFN: %08lx  Buffer PA: %08lx",
++                      XwnEntryRecord[70], XwnEntryRecord[71]);
++    XwnPagingText(10, Text, 0xFFFFFFFF);
++    RtlStringCbPrintfA(Text, sizeof(Text), "Descriptors: %lu  Allocations: %lu  Reserved: %lx/3",
++                      XwnEntryRecord[73], XwnEntryRecord[74], XwnEntryRecord[78]);
++    XwnPagingText(12, Text, 0xFFFFFFFF);
++    RtlStringCbPrintfA(Text, sizeof(Text), "PIC: %04lx  Stall: %lu  Stage: %lu",
++                      XwnEntryRecord[75], XwnEntryRecord[54], Stage);
++    XwnPagingText(14, Text, 0xFFFFFFFF);
++    XwnPagingText(16, "HAL phase-0 body finished; return to kernel blocked.", 0xFFFFFFFF);
++    XwnPagingText(18, "Partition calls, boot drivers and desktop NOT reached.", 0xFFFFFFFF);
++#elif defined(XBOX_NATIVE_FATX_HOOKS_PREFLIGHT)
+     XwnPagingText(4, "XWN Windows 2000 partition-hook registration", 0xFFFFFFFF);
+     XwnPagingText(7, Valid ? "XWNR90: Partition hooks registered; no disk access."
+                           : "XWNRFAIL: Partition-hook validation failed.",
+diff --git a/boot/freeldr/freeldr/pcat.cmake b/boot/freeldr/freeldr/pcat.cmake
+index 2743e2d7..8c92305e 100644
+--- a/boot/freeldr/freeldr/pcat.cmake
++++ b/boot/freeldr/freeldr/pcat.cmake
+@@ -356,3 +356,8 @@ option(XBOX_NATIVE_FATX_HOOKS_PREFLIGHT "Stop after partition hook registration
+ if(XBOX_NATIVE_FATX_HOOKS_PREFLIGHT AND NOT XBOX_NATIVE_FATX_CLOCK_PREFLIGHT)
+     message(FATAL_ERROR "Hooks probe requires clock preflight")
+ endif()
++
++option(XBOX_NATIVE_FATX_BIOS_PREFLIGHT "Stop after BIOS phase-0 allocation before HAL return" OFF)
++if(XBOX_NATIVE_FATX_BIOS_PREFLIGHT AND NOT XBOX_NATIVE_FATX_HOOKS_PREFLIGHT)
++    message(FATAL_ERROR "BIOS probe requires hooks preflight")
++endif()
+diff --git a/boot/freeldr/freeldr/rosload.cmake b/boot/freeldr/freeldr/rosload.cmake
+index 9de65eb3..ccb3c060 100644
+--- a/boot/freeldr/freeldr/rosload.cmake
++++ b/boot/freeldr/freeldr/rosload.cmake
+@@ -151,3 +151,7 @@ endif()
+ if(XBOX_NATIVE_FATX_HOOKS_PREFLIGHT)
+     target_compile_definitions(rosload PRIVATE XBOX_NATIVE_FATX_HOOKS_PREFLIGHT=1)
+ endif()
++
++if(XBOX_NATIVE_FATX_BIOS_PREFLIGHT)
++    target_compile_definitions(rosload PRIVATE XBOX_NATIVE_FATX_BIOS_PREFLIGHT=1)
++endif()
+diff --git a/hal/halx86/generic/halinit.c b/hal/halx86/generic/halinit.c
+index 87202cf1..be397f62 100644
+--- a/hal/halx86/generic/halinit.c
++++ b/hal/halx86/generic/halinit.c
+@@ -22,7 +22,12 @@ VOID HalpXwnBaseReady(ULONG, PLOADER_PARAMETER_BLOCK, PVOID, NTSTATUS);
+ VOID HalpXwnTimerReady(ULONG, PLOADER_PARAMETER_BLOCK, PVOID);
+ #ifdef XBOX_NT5_HOOKS_PREFLIGHT
+ VOID HalpXwnClockReady(ULONG, PLOADER_PARAMETER_BLOCK, PVOID);
++#ifdef XBOX_NT5_BIOS_PREFLIGHT
++VOID HalpXwnHooksReady(ULONG, PLOADER_PARAMETER_BLOCK, PVOID);
++DECLSPEC_NORETURN VOID HalpXwnBiosReady(ULONG, PLOADER_PARAMETER_BLOCK, PVOID);
++#else
+ DECLSPEC_NORETURN VOID HalpXwnHooksReady(ULONG, PLOADER_PARAMETER_BLOCK, PVOID);
++#endif
+ #else
+ DECLSPEC_NORETURN VOID HalpXwnClockReady(ULONG, PLOADER_PARAMETER_BLOCK, PVOID);
+ #endif
+@@ -229,6 +234,9 @@ HalInitSystem(
+ 
+         /* Initialize Phase 0 of the x86 emulator */
+         HalInitializeBios(0, LoaderBlock);
++#ifdef XBOX_NT5_BIOS_PREFLIGHT
++        HalpXwnBiosReady(BootPhase, LoaderBlock, _ReturnAddress());
++#endif
+     }
+     else if (BootPhase == 1)
+     {
+diff --git a/hal/halx86/xboxnt5/CMakeLists.txt b/hal/halx86/xboxnt5/CMakeLists.txt
+index da329ba1..450d28a9 100644
+--- a/hal/halx86/xboxnt5/CMakeLists.txt
++++ b/hal/halx86/xboxnt5/CMakeLists.txt
+@@ -73,3 +73,11 @@ endif()
+ if(XBOX_NT5_HOOKS_PREFLIGHT)
+     target_compile_definitions(halxboxnt5 PRIVATE XBOX_NT5_HOOKS_PREFLIGHT=1)
+ endif()
++
++option(XBOX_NT5_BIOS_PREFLIGHT "Stop after BIOS phase-0 allocation before HAL return" OFF)
++if(XBOX_NT5_BIOS_PREFLIGHT AND NOT XBOX_NT5_HOOKS_PREFLIGHT)
++    message(FATAL_ERROR "BIOS probe requires hooks preflight")
++endif()
++if(XBOX_NT5_BIOS_PREFLIGHT)
++    target_compile_definitions(halxboxnt5 PRIVATE XBOX_NT5_BIOS_PREFLIGHT=1)
++endif()
+diff --git a/hal/halx86/xboxnt5/entryprobe.c b/hal/halx86/xboxnt5/entryprobe.c
+index 2279a305..85b27e99 100644
+--- a/hal/halx86/xboxnt5/entryprobe.c
++++ b/hal/halx86/xboxnt5/entryprobe.c
+@@ -62,7 +62,11 @@ HalpXwnFirstProcessor(ULONG Processor, PLOADER_PARAMETER_BLOCK LoaderBlock, PVOI
+ 
+ ULONG NTAPI XwnConfigureEntryProbe(PVOID Callback, ULONG Signature)
+ {
+-#if defined(XBOX_NT5_HOOKS_PREFLIGHT)
++#if defined(XBOX_NT5_BIOS_PREFLIGHT)
++    if (Signature != 0x42494E54 || !Callback || XwnPhaseCallback) return 0;
++    XwnPhaseCallback = (XWN_PHASE_CALLBACK)Callback;
++    return 0x42494854;
++#elif defined(XBOX_NT5_HOOKS_PREFLIGHT)
+     if (Signature != 0x52474E54 || !Callback || XwnPhaseCallback) return 0;
+     XwnPhaseCallback = (XWN_PHASE_CALLBACK)Callback;
+     return 0x52474854;
+@@ -242,7 +246,10 @@ VOID HalpXwnClockReady(ULONG Phase, PLOADER_PARAMETER_BLOCK LoaderBlock, PVOID C
+ #ifdef XBOX_NT5_HOOKS_PREFLIGHT
+ ULONG HalpXwnPartitionHookMask(VOID);
+ ULONG HalpXwnSavedPartitionMask(VOID);
+-DECLSPEC_NORETURN VOID HalpXwnHooksReady(ULONG Phase, PLOADER_PARAMETER_BLOCK LoaderBlock, PVOID Caller)
++#ifndef XBOX_NT5_BIOS_PREFLIGHT
++DECLSPEC_NORETURN
++#endif
++VOID HalpXwnHooksReady(ULONG Phase, PLOADER_PARAMETER_BLOCK LoaderBlock, PVOID Caller)
+ {
+     ULONG State[9], Flags = __readeflags();
+     _disable();
+@@ -257,7 +264,61 @@ DECLSPEC_NORETURN VOID HalpXwnHooksReady(ULONG Phase, PLOADER_PARAMETER_BLOCK Lo
+     State[7] = __inbyte(0x21) | (__inbyte(0xa1) << 8);
+     State[8] = Flags;
+     XwnPhaseStep = 7;
++#ifdef XBOX_NT5_BIOS_PREFLIGHT
++    if (XwnPhaseCallback(70, LoaderBlock, Caller, State) == 0x50524330)
++    {
++        __writeeflags(Flags);
++        return;
++    }
++#else
+     XwnPhaseCallback(70, LoaderBlock, Caller, State);
++#endif
++    for (;;) __halt();
++}
++#endif
++
++#ifdef XBOX_NT5_BIOS_PREFLIGHT
++extern PFN_NUMBER x86BiosFallbackPfn;
++extern ULONG64 x86BiosBufferPhysical;
++extern BOOLEAN x86BiosIsInitialized;
++extern PUCHAR x86BiosMemoryMapping;
++extern LONG x86BiosBufferIsAllocated;
++extern ULONG HalpUsedAllocDescriptors;
++DECLSPEC_NORETURN VOID HalpXwnBiosReady(ULONG Phase, PLOADER_PARAMETER_BLOCK LoaderBlock, PVOID Caller)
++{
++    ULONG State[15], Flags = __readeflags(), Count = 0, Reserved = 0;
++    PLIST_ENTRY Link;
++    _disable();
++    if (!XwnPhaseCallback || XwnPhaseStep != 7 || Phase != 0) for (;;) __halt();
++    for (Link = LoaderBlock->MemoryDescriptorListHead.Flink;
++         Link != &LoaderBlock->MemoryDescriptorListHead && Count < 128;
++         Link = Link->Flink)
++    {
++        PMEMORY_ALLOCATION_DESCRIPTOR D = CONTAINING_RECORD(Link, MEMORY_ALLOCATION_DESCRIPTOR, ListEntry);
++        ++Count;
++        if (D->MemoryType == LoaderHALCachedMemory && D->PageCount == 1)
++        {
++            if (D->BasePage == x86BiosFallbackPfn) Reserved |= 1;
++            if (((ULONG64)D->BasePage << PAGE_SHIFT) == x86BiosBufferPhysical) Reserved |= 2;
++        }
++    }
++    State[0] = Phase;
++    State[1] = KeGetPcr()->IDR;
++    State[2] = KeGetPcr()->StallScaleFactor;
++    State[3] = (ULONG)HalpActiveProcessors;
++    State[4] = (ULONG)HalpDefaultInterruptAffinity;
++    State[5] = x86BiosFallbackPfn;
++    State[6] = (ULONG)x86BiosBufferPhysical;
++    State[7] = (ULONG)(x86BiosBufferPhysical >> 32);
++    State[8] = Count;
++    State[9] = HalpUsedAllocDescriptors;
++    State[10] = __inbyte(0x21) | (__inbyte(0xa1) << 8);
++    State[11] = Flags;
++    State[12] = x86BiosIsInitialized | ((x86BiosMemoryMapping != NULL) << 1) | ((x86BiosBufferIsAllocated != 0) << 2);
++    State[13] = Reserved;
++    State[14] = (Link == &LoaderBlock->MemoryDescriptorListHead);
++    XwnPhaseStep = 8;
++    XwnPhaseCallback(80, LoaderBlock, Caller, State);
+     for (;;) __halt();
+ }
+ #endif
