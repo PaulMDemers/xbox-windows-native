@@ -1,0 +1,12 @@
+After physical XWND90 is confirmed, preserve this package as the control.
+Before executing MiInitMachineDependent, design a checkpoint/display path
+that survives clearing low PDEs, and audit all live loader code/data and
+the HAL BIOS reserved pages against native memory-manager accounting.
+Pinned native code RVA 0x157f27..0x157f3c writes PDE slots C0300000 through
+C03007fc (the lower 2 GiB). Current loader callbacks and framebuffer use
+low identity mappings; merely advancing the current callback is unsafe.
+The following descriptor scan at 0x157f53 excludes types 6, 22 and 23 from
+physical RAM accounting, while type 26 is included. This differs from the
+earlier MmInitializeMemoryLimits filter and requires explicit reconciliation.
+The loader still reads FATX itself. Physical Windows filesystem mounting,
+storage drivers and a recoverable system-volume plan remain unfinished.

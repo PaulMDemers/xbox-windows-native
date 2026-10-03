@@ -1,0 +1,107 @@
+{
+  "validated_utc": "2026-10-03T23:19:27.249195+00:00",
+  "ready_for_physical_upload": true,
+  "physical_tested": false,
+  "installed_on_physical_console": true,
+  "source_tree": "7c6072a4b3cb11479ec41f2485a02fb957bbc172",
+  "scope": "MM prefix completed; halt before MiInitMachineDependent body and storage.",
+  "normal_loader_build_passed": true,
+  "normal_hal_build_passed": true,
+  "missing_mm_parent_rejected": true,
+  "mi_entry_halt_verified": true,
+  "kernel_file_unchanged": true,
+  "temporary_kernel_entry_patch_restored": true,
+  "unexpected_kernel_rejected": true,
+  "changed_files": [
+    "loader/halxboxnt5.dll",
+    "README.txt",
+    "rosload.exe"
+  ],
+  "package_files_verified": 33,
+  "emulator_tests": [
+    {
+      "run": "physical-mi-wide-002",
+      "status": "kernel_mi_entry_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "identity_pages_verified": 576,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-mi-normal-002",
+      "status": "kernel_mi_entry_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 640,
+        "height": 480,
+        "pitch": 2560,
+        "pa": "0x3c00000",
+        "bytes": 1228800,
+        "identity_pages_verified": 300,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-mi-bad-hal-001",
+      "status": "unarmed_hal_rejected_before_kernel",
+      "kernel_entered": false,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "identity_pages_verified": 576,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-mi-trace-003",
+      "status": "kernel_mi_entry_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "identity_pages_verified": 576,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-mi-bad-kernel-001",
+      "status": "kernel_contract_rejected_before_entry",
+      "kernel_entered": false,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "identity_pages_verified": 576,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    }
+  ],
+  "native_trace_passed": true,
+  "expected_physical_success": "XWND90: MM prefix completed; machine init reached.",
+  "fixture_package_includes_final_readme": true,
+  "uploaded_utc": "2026-10-03T23:20:12.344659+00:00"
+}

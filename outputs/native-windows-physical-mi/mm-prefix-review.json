@@ -1,0 +1,73 @@
+{
+  "kernel_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+  "prefix_rva": [
+    "0x15542c",
+    "0x155b55"
+  ],
+  "calls": [
+    {
+      "site": "0x1554a0",
+      "target": "0x16764",
+      "symbol": "_ExVerifySuite@4"
+    },
+    {
+      "site": "0x15570f",
+      "target": "0x5f980",
+      "symbol": "__allmul"
+    },
+    {
+      "site": "0x1557b2",
+      "target": "0x2d218",
+      "symbol": "_KeInitializeMutant@8"
+    },
+    {
+      "site": "0x1558b1",
+      "target": "0x2d0c0",
+      "symbol": "_KeInitializeDpc@12"
+    },
+    {
+      "site": "0x1558bc",
+      "target": "0x2b41a",
+      "symbol": "_KeInitializeTimerEx@8"
+    },
+    {
+      "site": "0x1558cc",
+      "target": "0x5f980",
+      "symbol": "__allmul"
+    },
+    {
+      "site": "0x155914",
+      "target": "0x64510",
+      "symbol": "_KeInitializeSpinLock@4"
+    },
+    {
+      "site": "0x15594a",
+      "target": "0x1565e8",
+      "symbol": "_MmInitializeMemoryLimits@12"
+    },
+    {
+      "site": "0x155a29",
+      "target": "0x61480",
+      "symbol": "_strstr"
+    },
+    {
+      "site": "0x155a69",
+      "target": "0x1579ac",
+      "symbol": "_MiTriageSystem@4"
+    },
+    {
+      "site": "0x155b48",
+      "target": "0x1445c",
+      "symbol": "_ExInitializeResourceLite@4"
+    },
+    {
+      "site": "0x155b50",
+      "target": "0x157d78",
+      "symbol": "_MiInitMachineDependent@4"
+    }
+  ],
+  "scope": "Phase-0 prefix only. Original MiInitMachineDependent is not allowed to execute.",
+  "memory_limits_review": "MmInitializeMemoryLimits compares descriptor type with 24 at RVA 0x156624 and skips types >=24. Type-26 BIOS allocations remain in the loader list but are omitted from this run count. This is not proof of later PFN compatibility.",
+  "triage_review": "MiTriageSystem reads loader extension TriageDump at +0x24. Fixture has zero; trace verifies it returns zero.",
+  "deferred": "MiInitMachineDependent clears low page-directory entries later. Relocate/preserve diagnostic code and display access before passing that boundary. Full physical memory-manager and storage paths remain untested."
+}

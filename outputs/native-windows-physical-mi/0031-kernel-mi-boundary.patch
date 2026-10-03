@@ -1,0 +1,181 @@
+diff --git a/boot/freeldr/freeldr/ntldr/xwnentryprobe.h b/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
+index 6f87ba51..997976a1 100644
+--- a/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
++++ b/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
+@@ -1,6 +1,10 @@
+ /* Explicit early-kernel diagnostic. Included only in the opt-in rosload. */
+ #ifdef XBOX_NATIVE_FATX_PHASE0_PREFLIGHT
+-#if defined(XBOX_NATIVE_FATX_MM_PREFLIGHT)
++#if defined(XBOX_NATIVE_FATX_MI_PREFLIGHT)
++static volatile ULONG XwnEntryRecord[96] = {0x444e5758, 0x35544e50, 1, 0};
++#define XWN_ARM_SIGNATURE 0x4D494E54
++#define XWN_ARM_REPLY 0x4D494854
++#elif defined(XBOX_NATIVE_FATX_MM_PREFLIGHT)
+ static volatile ULONG XwnEntryRecord[96] = {0x4d4e5758, 0x35544e50, 1, 0};
+ #define XWN_ARM_SIGNATURE 0x4D4D4E54
+ #define XWN_ARM_REPLY 0x4D4D4854
+@@ -71,7 +75,82 @@ XwnFirstHalCheckpoint(ULONG Processor, PLOADER_PARAMETER_BLOCK LoaderBlock,
+ 
+ #endif /* XBOX_NATIVE_FATX_PHASE0_PREFLIGHT */
+ 
+-#ifdef XBOX_NATIVE_FATX_MM_PREFLIGHT
++#ifdef XBOX_NATIVE_FATX_MI_PREFLIGHT
++static PUCHAR XwnMiTarget;
++static UCHAR XwnMiOriginal[10];
++
++static DECLSPEC_NORETURN VOID NTAPI
++XwnMiCheckpoint(PLOADER_PARAMETER_BLOCK LoaderBlock)
++{
++    const ULONG Phase = 0, Context = 0;
++    ULONG Flags = __readeflags(), Cr0 = __readcr0();
++    BOOLEAN Valid;
++    CHAR Text[128];
++    PVOID Caller = _ReturnAddress();
++    _disable();
++    Valid = XwnMiTarget && XwnEntryRecord[3] == 30 && XwnEntryRecord[24] == 80 &&
++            Phase == 0 && (ULONG_PTR)LoaderBlock == XwnEntryRecord[4] &&
++            (ULONG_PTR)Caller == XwnEntryRecord[6] + 0x155b55 &&
++            (Cr0 & 0x80000000) && __readcr3() == XwnEntryRecord[11];
++    if (XwnMiTarget)
++    {
++        __writecr0(Cr0 & ~0x10000);
++        RtlCopyMemory(XwnMiTarget, XwnMiOriginal, sizeof(XwnMiOriginal));
++        __writecr0(Cr0);
++        XwnEntryRecord[87] = memcmp(XwnMiTarget, XwnMiOriginal, sizeof(XwnMiOriginal)) == 0;
++    }
++    Valid = Valid && XwnEntryRecord[87];
++    XwnEntryRecord[81] = Phase;
++    XwnEntryRecord[82] = (ULONG_PTR)LoaderBlock;
++    XwnEntryRecord[83] = (ULONG_PTR)Caller;
++    XwnEntryRecord[84] = Cr0;
++    XwnEntryRecord[85] = __readcr3();
++    XwnEntryRecord[86] = Flags;
++    XwnEntryRecord[89] = Context;
++    XwnEntryRecord[24] = 90;
++    XwnEntryRecord[3] = Valid ? 90 : 40;
++    XwnPagingClear();
++    XwnPagingText(4, "XWN Windows 2000 machine-dependent MM entry", 0xFFFFFFFF);
++    XwnPagingText(7, Valid ? "XWND90: MM prefix completed; machine init reached."
++                          : "XWNDFAIL: Machine-init checkpoint failed.",
++                  Valid ? 0xFF00FF00 : 0xFFFF0000);
++    RtlStringCbPrintfA(Text, sizeof(Text), "Phase: %lu  Loader: %08lx  Caller: %08lx",
++                      Phase, (ULONG_PTR)LoaderBlock, (ULONG_PTR)Caller);
++    XwnPagingText(10, Text, 0xFFFFFFFF);
++    RtlStringCbPrintfA(Text, sizeof(Text), "CR3: %08lx  Entry bytes restored: %lu",
++                      __readcr3(), XwnEntryRecord[87]);
++    XwnPagingText(12, Text, 0xFFFFFFFF);
++    XwnPagingText(15, "Stopped BEFORE MiInitMachineDependent body.", 0xFFFFFFFF);
++    XwnPagingText(17, "Partition calls, boot drivers and desktop NOT reached.", 0xFFFFFFFF);
++    XwnPagingText(20, "Photograph this screen, then reboot to the dashboard.", 0xFFFFFFFF);
++    for (;;) __halt();
++}
++
++static BOOLEAN XwnArmMiCheckpoint(PLDR_DATA_TABLE_ENTRY Kernel)
++{
++    static const UCHAR Expected[14] = {
++        0x55,0x8b,0xec,0x83,0xec,0x68,0x80,0x65,0xfe,0,0x53,0x56,0x33,0xf6};
++    PIMAGE_NT_HEADERS Nt = RtlImageNtHeader(Kernel->DllBase);
++    PUCHAR Target = (PUCHAR)Kernel->DllBase + 0x157d78;
++    ULONG Cr0;
++    if (!Nt || Nt->FileHeader.TimeDateStamp != 1266293717 ||
++        Nt->OptionalHeader.CheckSum != 1747402 ||
++        Kernel->SizeOfImage != 1691648 || Nt->OptionalHeader.AddressOfEntryPoint != 44560 ||
++        memcmp(Target, Expected, sizeof(Expected))) return FALSE;
++    XwnMiTarget = Target;
++    RtlCopyMemory(XwnMiOriginal, Target, sizeof(XwnMiOriginal));
++    Cr0 = __readcr0();
++    _disable();
++    __writecr0(Cr0 & ~0x10000);
++    Target[0] = 0xe9;
++    *(PULONG)(Target + 1) = (ULONG_PTR)XwnMiCheckpoint - (ULONG_PTR)(Target + 5);
++    RtlFillMemory(Target + 5, 5, 0x90);
++    __writecr0(Cr0);
++    XwnEntryRecord[80] = (ULONG_PTR)Target;
++    XwnEntryRecord[88] = (ULONG_PTR)XwnMiCheckpoint;
++    return TRUE;
++}
++#elif defined(XBOX_NATIVE_FATX_MM_PREFLIGHT)
+ static PUCHAR XwnMmTarget;
+ static UCHAR XwnMmOriginal[9];
+ 
+@@ -226,7 +305,11 @@ static DECLSPEC_NORETURN VOID XwnEnterKernelProbe(PLOADER_PARAMETER_BLOCK Loader
+     XwnEntryRecord[21] = XwnFramebufferBytes;
+     XwnEntryRecord[23] = (ULONG_PTR)XwnFindHalExport(Hal, "HalInitSystem");
+ #ifdef XBOX_NATIVE_FATX_MM_PREFLIGHT
++#ifdef XBOX_NATIVE_FATX_MI_PREFLIGHT
++    if (!XwnArmMiCheckpoint(Kernel))
++#else
+     if (!XwnArmMmCheckpoint(Kernel))
++#endif
+     {
+         XwnEntryRecord[3] = 40;
+         XwnEntryRecord[22] = 3;
+@@ -236,7 +319,9 @@ static DECLSPEC_NORETURN VOID XwnEnterKernelProbe(PLOADER_PARAMETER_BLOCK Loader
+     }
+ #endif
+     XwnPagingClear();
+-#if defined(XBOX_NATIVE_FATX_MM_PREFLIGHT)
++#if defined(XBOX_NATIVE_FATX_MI_PREFLIGHT)
++    XwnPagingText(7, "XWND30: Entering Windows; machine-init stop armed.", 0xFFFFFF00);
++#elif defined(XBOX_NATIVE_FATX_MM_PREFLIGHT)
+     XwnPagingText(7, "XWNM30: Entering Windows; memory-manager stop armed.", 0xFFFFFF00);
+ #elif defined(XBOX_NATIVE_FATX_BIOS_PREFLIGHT)
+     XwnPagingText(7, "XWNI30: Entering Windows; post-BIOS halt armed.", 0xFFFFFF00);
+diff --git a/boot/freeldr/freeldr/pcat.cmake b/boot/freeldr/freeldr/pcat.cmake
+index bdd05828..6bb6c967 100644
+--- a/boot/freeldr/freeldr/pcat.cmake
++++ b/boot/freeldr/freeldr/pcat.cmake
+@@ -366,3 +366,8 @@ option(XBOX_NATIVE_FATX_MM_PREFLIGHT "Return HAL phase 0 and halt at NT5 memory-
+ if(XBOX_NATIVE_FATX_MM_PREFLIGHT AND NOT XBOX_NATIVE_FATX_BIOS_PREFLIGHT)
+     message(FATAL_ERROR "MM probe requires BIOS preflight")
+ endif()
++
++option(XBOX_NATIVE_FATX_MI_PREFLIGHT "Run MM prefix and halt before machine-dependent initialization" OFF)
++if(XBOX_NATIVE_FATX_MI_PREFLIGHT AND NOT XBOX_NATIVE_FATX_MM_PREFLIGHT)
++    message(FATAL_ERROR "MI probe requires MM preflight")
++endif()
+diff --git a/boot/freeldr/freeldr/rosload.cmake b/boot/freeldr/freeldr/rosload.cmake
+index 552a1410..b3819530 100644
+--- a/boot/freeldr/freeldr/rosload.cmake
++++ b/boot/freeldr/freeldr/rosload.cmake
+@@ -159,3 +159,7 @@ endif()
+ if(XBOX_NATIVE_FATX_MM_PREFLIGHT)
+     target_compile_definitions(rosload PRIVATE XBOX_NATIVE_FATX_MM_PREFLIGHT=1)
+ endif()
++
++if(XBOX_NATIVE_FATX_MI_PREFLIGHT)
++    target_compile_definitions(rosload PRIVATE XBOX_NATIVE_FATX_MI_PREFLIGHT=1)
++endif()
+diff --git a/hal/halx86/xboxnt5/CMakeLists.txt b/hal/halx86/xboxnt5/CMakeLists.txt
+index e1359f83..db8e6994 100644
+--- a/hal/halx86/xboxnt5/CMakeLists.txt
++++ b/hal/halx86/xboxnt5/CMakeLists.txt
+@@ -89,3 +89,11 @@ endif()
+ if(XBOX_NT5_MM_PREFLIGHT)
+     target_compile_definitions(halxboxnt5 PRIVATE XBOX_NT5_MM_PREFLIGHT=1)
+ endif()
++
++option(XBOX_NT5_MI_PREFLIGHT "Run MM prefix and halt before machine-dependent initialization" OFF)
++if(XBOX_NT5_MI_PREFLIGHT AND NOT XBOX_NT5_MM_PREFLIGHT)
++    message(FATAL_ERROR "MI probe requires MM preflight")
++endif()
++if(XBOX_NT5_MI_PREFLIGHT)
++    target_compile_definitions(halxboxnt5 PRIVATE XBOX_NT5_MI_PREFLIGHT=1)
++endif()
+diff --git a/hal/halx86/xboxnt5/entryprobe.c b/hal/halx86/xboxnt5/entryprobe.c
+index ff2a416b..951e611d 100644
+--- a/hal/halx86/xboxnt5/entryprobe.c
++++ b/hal/halx86/xboxnt5/entryprobe.c
+@@ -62,7 +62,11 @@ HalpXwnFirstProcessor(ULONG Processor, PLOADER_PARAMETER_BLOCK LoaderBlock, PVOI
+ 
+ ULONG NTAPI XwnConfigureEntryProbe(PVOID Callback, ULONG Signature)
+ {
+-#if defined(XBOX_NT5_MM_PREFLIGHT)
++#if defined(XBOX_NT5_MI_PREFLIGHT)
++    if (Signature != 0x4D494E54 || !Callback || XwnPhaseCallback) return 0;
++    XwnPhaseCallback = (XWN_PHASE_CALLBACK)Callback;
++    return 0x4D494854;
++#elif defined(XBOX_NT5_MM_PREFLIGHT)
+     if (Signature != 0x4D4D4E54 || !Callback || XwnPhaseCallback) return 0;
+     XwnPhaseCallback = (XWN_PHASE_CALLBACK)Callback;
+     return 0x4D4D4854;
