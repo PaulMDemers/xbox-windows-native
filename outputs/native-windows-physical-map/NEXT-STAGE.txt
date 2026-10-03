@@ -1,0 +1,11 @@
+After physical XWNV90, preserve this package and review the native RAM scan
+and PFN database construction. Reconcile type-26 BIOS page accounting with
+the native Windows 2000 descriptor enum before any page reclamation.
+The high HAL display now survives low mapping removal, but later PDE/PTE
+rebuilds and loader-memory reclamation may affect its framebuffer table.
+The framebuffer lies in firmware-reserved pages beyond the current usable
+RAM limit. Its temporary KSEG0 alias must be reviewed against PFN database
+walks; do not let later code treat that alias as ordinary managed RAM.
+Track the framebuffer table's physical allocation/type, kernel/HAL/loader
+pages, stack/PCR/GDT/IDT and BIOS buffers across each later memory phase.
+Do not infer completed memory initialization or physical storage support.

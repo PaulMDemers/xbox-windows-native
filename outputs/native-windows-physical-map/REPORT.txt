@@ -1,0 +1,49 @@
+XWN native low-mapping transition diagnostic (patch 0032)
+
+The preceding physical XWND90 confirms the MmInitSystem prefix completed.
+This candidate executes MiInitMachineDependent through its loop clearing
+the lower 2 GiB page-directory entries, then halts before the RAM descriptor
+scan. It does not complete the machine-dependent memory manager.
+
+The diagnostic moved into the HAL: state, renderer, font, assembly entry and
+checkpoint code live at high kernel virtual addresses. The loader adds a
+high alias of the existing reserved framebuffer table; this uses the same
+uncached/write-through PTEs and adds no allocation or memory descriptor.
+HAL takes a complete checkpoint-state copy before returning from phase 0;
+it drops its pointer to the low loader record before native mapping removal.
+
+The pinned kernel RVA 0x157f3e is temporarily replaced with a five-byte JMP.
+This is the first instruction after native low-PDE clearing. An assembly
+stub passes the original MiInitMachineDependent frame pointer to the HAL.
+The HAL checks caller/loader/CR3 and all 512 low PDEs, flushes translations
+(including global ones if PGE is enabled), restores the original five bytes,
+checks the high framebuffer mapping, writes status and halts. The Windows
+kernel file is unchanged. No low-mapped loader code is called after the loop.
+
+Both new MAP options default OFF and require the preceding MI mode. Separate
+HAL signatures reject old packages. Ordinary HAL exports reject arming.
+The original XWND90 mode and its low framebuffer view remain available.
+
+Expected: XWNV90: Low mappings cleared; high HAL display active.
+Absent low PDEs: 00000200. Framebuffer VA: 83c00000 for this console.
+Photograph the full screen, then reboot to UnleashX.
+Physical XWNV90 is pending. See validation.json and ftp-upload.json for status.
+
+Storage calls, boot drivers and desktop remain beyond the halt. Type-26 BIOS
+page accounting differs between the preceding memory-limits helper and the
+upcoming machine-dependent RAM scan; it is still a follow-on audit item.
+This candidate stops before that scan. Current FATX files are loader staging,
+not a proven native Windows filesystem mount or configured boot volume.
+
+Final validation: both display modes, old-HAL rejection, altered-kernel
+rejection and the native 44-checkpoint trace passed. The trace observes
+native PDE clearing and high HAL entry, with RAM scanning, four partition
+handlers and 17 loaded driver entries excluded. All 1388 imports and core
+executable sections pass the final memory audit. The original five bytes
+are restored; all 512 low PDEs are non-present and the high framebuffer
+alias has the expected physical pages and cache attributes. Normal builds,
+the parent-option guard and the complete source patch chain also pass.
+
+Uploaded 2026-10-03T23:43:36.256436+00:00. All 33 files verified by readback.
+Three physical-tested XWND90 files retained under xwnd90 backup names.
+The console was not remotely launched. Physical XWNV90 is pending.

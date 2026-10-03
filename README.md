@@ -27,8 +27,13 @@ manager entry, restoring its temporary in-memory checkpoint. See the
 The physical-tested **XWND90** runs the original memory-manager prefix and
 stops before MiInitMachineDependent changes page tables; see the [machine-init report](outputs/native-windows-physical-mi/REPORT.txt).
 
+The next candidate **XWNV90** moves diagnostic output into the high HAL,
+executes native low-mapping removal and stops before RAM descriptor scanning.
+Both display modes and the native trace pass in xemu; physical testing is
+pending. See the [mapping-transition report](outputs/native-windows-physical-map/REPORT.txt).
+
 See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
-[latest diagnostic](outputs/native-windows-physical-mi/REPORT.txt), and
+[latest diagnostic](outputs/native-windows-physical-map/REPORT.txt), and
 [development plan](outputs/native-windows-development-plan.md).
 
 ## Source and reproduction
@@ -36,7 +41,7 @@ See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
 This repository stores our source changes as an ordered patch series against
 ReactOS commit `afc0127e8f937ab68503d715d948844973756aa1`, plus build wrappers,
 validation tools and reports. The full series and resulting source tree are
-in [patch-check-0031.json](outputs/native-windows-physical-mi/patch-check-0031.json).
+in [patch-check-0032.json](outputs/native-windows-physical-map/patch-check-0032.json).
 Use `python tools/apply-series.py --source PATH --manifest MANIFEST` on a clean
 checkout at that exact upstream commit. The script checks the clean baseline,
 applies the ordered patches and verifies the resulting Git tree.
