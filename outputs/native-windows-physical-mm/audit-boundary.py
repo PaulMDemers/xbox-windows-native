@@ -1,0 +1,43 @@
+from pathlib import Path
+import hashlib,json,struct,sys
+kit=Path(__file__).resolve().parent
+sys.path.insert(0,str(kit.parents[1]/'work/python-packages'))
+import pefile,capstone
+p=kit/'package/loader/halxboxnt5.dll';data=p.read_bytes();pe=pefile.PE(data=data)
+symbols={};start=pe.FILE_HEADER.PointerToSymbolTable;count=pe.FILE_HEADER.NumberOfSymbols;strings=start+count*18;i=0
+while i<count:
+ raw,value,section,kind,storage,aux=struct.unpack_from('<8sIhHBB',data,start+i*18)
+ if raw[:4]==b'\0'*4:
+  off=strings+struct.unpack_from('<I',raw,4)[0];name=data[off:data.index(b'\0',off)].decode()
+ else:name=raw.rstrip(b'\0').decode()
+ if 0<section<=len(pe.sections):symbols[name]=pe.sections[section-1].VirtualAddress+value
+ i+=1+aux
+names=['_HalInitSystem@8','_HalInitializeProcessor@8','_HalpXwnPhase0','_HalpXwnProcessorBoundary','_HalpInitPhase0','_HalpXboxInitPartIo','_HalpXwnBaseReady','_HalpCalibrateStallExecution@0','_HalpInitializeClock@0','_HalpXwnTimerReady','OnlyOnePersonCanWriteHalCode','ComputeStall','_HalpXwnClockReady','_HalpSetTimerRollOver@4','_HalStopProfileInterrupt@4','_HalpXwnHooksReady','_HalInitializeBios@8','@HalpXboxExamineMBR@16','@HalpXboxIoReadPartitionTable@16','@HalpXboxIoSetPartitionInformation@16','@HalpXboxIoWritePartitionTable@20','_HalpXwnPartitionHookMask','_HalpXwnSavedPartitionMask','_HalpXwnBiosReady','_HalpAllocPhysicalMemory@20']
+md=capstone.Cs(capstone.CS_ARCH_X86,capstone.CS_MODE_32);image=pe.get_memory_mapped_image();blocks={}
+for name in names:
+ rva=symbols[name];end=min([v for v in symbols.values() if v>rva]+[rva+512])
+ blocks[name]=[{'rva':hex(x.address),'mnemonic':x.mnemonic,'operands':x.op_str} for x in md.disasm(image[rva:end],rva)]
+phase=blocks['_HalInitSystem@8'];calls=[x for x in phase if x['mnemonic']=='call']
+targets=[int(x['operands'],16) for x in calls if x['operands'].startswith('0x')]
+assert symbols['_HalpXwnPhase0'] in targets and symbols['_HalpXwnBaseReady'] in targets
+assert symbols['_HalpCalibrateStallExecution@0'] in targets and symbols['_HalpXwnTimerReady'] in targets
+assert symbols['_HalpInitializeClock@0'] in targets and symbols['_HalpXwnClockReady'] in targets
+assert symbols['_HalpInitPhase0'] in targets and symbols['_HalpXwnHooksReady'] in targets
+assert symbols['_HalInitializeBios@8'] in targets and symbols['_HalpXwnBiosReady'] in targets
+# BootPhase != 0 is rejected by HalpXwnPhase0 before any phase-1 path.
+processor=blocks['_HalInitializeProcessor@8'];targets=[int(x['operands'],16) for x in processor if x['mnemonic']=='call' and x['operands'].startswith('0x')]
+assert targets.count(symbols['_HalpXwnProcessorBoundary'])==2
+assert any(x['mnemonic'].startswith('ret') for x in processor)
+ready=blocks['_HalpXwnBiosReady']
+assert any(x['mnemonic']=='cli' for x in ready) and any(x['mnemonic']=='hlt' for x in ready)
+assert any(x['mnemonic'].startswith('ret') for x in ready)
+assert any(x['mnemonic'].startswith('ret') for x in phase)
+pit_writes=[x for x in blocks['_HalpInitializeClock@0'] if x['mnemonic']=='out']
+assert [x['operands'] for x in pit_writes]==['0x43, al','0x40, al','0x40, al']
+r={'sha256':hashlib.sha256(data).hexdigest(),'symbols_rva':{n:hex(symbols[n]) for n in names},'blocks':blocks,'hal_phase0_returns_only_for_mm_probe':True,'processor_has_before_after_calls_and_return':True}
+assert all(x['mnemonic'] in ['mov','ret','lea','nop'] for x in blocks['_HalpXboxInitPartIo'])
+r['partition_registration_only_moves_and_return']=True
+r['saved_handler_globals_rva']={n:hex(symbols[n]) for n in ['_NtoskrnlExamineMBR','_NtoskrnlIoReadPartitionTable','_NtoskrnlIoSetPartitionInformation','_NtoskrnlIoWritePartitionTable']}
+r['inlined_pit_writes']=pit_writes
+(kit/'hal-boundary-audit.json').write_text(json.dumps(r,indent=2)+'\n')
+print('MM HAL permits phase-0 return after validated BIOS callback; loader installs the bounded kernel checkpoint.')

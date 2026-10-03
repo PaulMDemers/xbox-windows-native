@@ -19,6 +19,11 @@ The physical-tested **XWNI90** reserves the two BIOS phase-0 pages and
 halts before HAL returns to Windows; see
 [BIOS diagnostic](outputs/native-windows-physical-bios/REPORT.txt).
 
+The next candidate, **XWNM90**, returns HAL phase 0 and stops at the memory-
+manager entry, restoring its temporary in-memory checkpoint. Emulator
+validation passed; physical testing is pending. See the
+[MM entry report](outputs/native-windows-physical-mm/REPORT.txt).
+
 See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
 [latest diagnostic](outputs/native-windows-physical-hooks/REPORT.txt), and
 [development plan](outputs/native-windows-development-plan.md).
@@ -28,7 +33,7 @@ See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
 This repository stores our source changes as an ordered patch series against
 ReactOS commit `afc0127e8f937ab68503d715d948844973756aa1`, plus build wrappers,
 validation tools and reports. The full series and resulting source tree are
-in [patch-check-0029.json](outputs/native-windows-physical-bios/patch-check-0029.json).
+in [patch-check-0030.json](outputs/native-windows-physical-mm/patch-check-0030.json).
 Use `python tools/apply-series.py --source PATH --manifest MANIFEST` on a clean
 checkout at that exact upstream commit. The script checks the clean baseline,
 applies the ordered patches and verifies the resulting Git tree.

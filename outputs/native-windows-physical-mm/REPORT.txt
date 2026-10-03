@@ -1,0 +1,51 @@
+Native Windows 2000: memory-manager entry checkpoint
+
+Physical control XWNI90 passed: fallback PFN 1, buffer PA 0x2000, 26
+memory descriptors, two allocations, reservation 3/3, PIC ffff, stage 80.
+
+This probe permits HalInitSystem phase 0 to return, then intercepts entry
+to the supplied kernel's MmInitSystem before the original function body.
+It uses an explicit temporary nine-byte JMP/NOP patch in the loaded kernel,
+not a modified kernel file. The intercepted function restores all nine
+original bytes before rendering and halting. The capture audit compares
+all executable sections against the original relocated/import-bound input,
+with the documented Windows IDT-template mutation and exact named INIT
+registry-data updates reconstructed from the pinned SYSTEM hive.
+
+Arming requires the expected kernel timestamp, checksum, image size, entry
+RVA and 24-byte MmInitSystem prefix. The stop verifies phase 0, loader block,
+CR3 and the exact native executive return address. A distinct HAL signature
+prevents pairing with earlier stages. HAL phase 1 remains rejected. No
+Windows storage driver, partition handler or MmInitSystem body is permitted.
+
+This advances executive initialization, but does not validate the memory
+manager, scheduler, Windows boot volume or desktop. The type-26 BIOS page
+reservations remain a follow-on memory-manager audit item. Current FATX
+files are loader staging only; no native Windows FATX mount is established.
+
+Expected: XWNM90: HAL returned; memory-manager entry reached.
+Photograph the complete screen and reboot to UnleashX.
+Validation and upload status are recorded separately; hardware pending.
+
+The first two emulator runs reached the checkpoint, but the older integrity
+check rejected 19 changed bytes in registry-related INIT data. Their values
+match the pinned hive: Default/InstallLanguage 0409, empty ProductSuite, and
+absent VerifyDrivers. These named fields are modeled explicitly; no code
+section or arbitrary byte range is excluded. Original kernel file unchanged.
+
+Rejection fixtures: previous BIOS HAL fails the distinct arming signature;
+a copy of the pinned kernel with only its PE checksum field altered fails
+the kernel contract before entry. Neither negative fixture is uploaded.
+
+Final validation: both display modes passed, old-HAL and kernel-mismatch
+fixtures rejected before entry, and all 37 debugger checkpoints passed
+with 22 forbidden boundaries watched. The trace confirms HAL returned TRUE,
+registry-data updates, executive initialization returned TRUE, the patched
+MmInitSystem entry led to the checkpoint, and original bytes were restored.
+All 1388 imports and core executable sections pass the final memory audit.
+Normal builds and the missing-parent guard passed. The first trace checker
+needed a 32-bit address-wrap correction; the final trace passes unchanged binaries.
+
+Uploaded 2026-10-03T22:48:12.700383+00:00. All 33 application files verified
+by readback. Three XWNI90 files retained under xwni90 backup names.
+The console was not remotely launched. Physical XWNM90 remains pending.

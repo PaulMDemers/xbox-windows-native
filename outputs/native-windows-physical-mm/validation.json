@@ -1,0 +1,107 @@
+{
+  "validated_utc": "2026-10-03T22:47:31.938970+00:00",
+  "ready_for_physical_upload": true,
+  "physical_tested": false,
+  "installed_on_physical_console": true,
+  "source_tree": "3d587da65bcbeca9e47ad64132266d2f716ac242",
+  "scope": "HAL phase 0 returned and executive initialized; halt before MmInitSystem body and storage.",
+  "normal_loader_build_passed": true,
+  "normal_hal_build_passed": true,
+  "missing_bios_parent_rejected": true,
+  "mm_entry_halt_verified": true,
+  "kernel_file_unchanged": true,
+  "temporary_kernel_entry_patch_restored": true,
+  "unexpected_kernel_rejected": true,
+  "changed_files": [
+    "loader/halxboxnt5.dll",
+    "README.txt",
+    "rosload.exe"
+  ],
+  "package_files_verified": 33,
+  "emulator_tests": [
+    {
+      "run": "physical-mm-wide-003",
+      "status": "kernel_mm_entry_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "identity_pages_verified": 576,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-mm-normal-001",
+      "status": "kernel_mm_entry_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 640,
+        "height": 480,
+        "pitch": 2560,
+        "pa": "0x3c00000",
+        "bytes": 1228800,
+        "identity_pages_verified": 300,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-mm-bad-hal-001",
+      "status": "unarmed_hal_rejected_before_kernel",
+      "kernel_entered": false,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "identity_pages_verified": 576,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-mm-trace-002",
+      "status": "kernel_mm_entry_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "identity_pages_verified": 576,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-mm-bad-kernel-001",
+      "status": "kernel_contract_rejected_before_entry",
+      "kernel_entered": false,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "identity_pages_verified": 576,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    }
+  ],
+  "native_trace_passed": true,
+  "expected_physical_success": "XWNM90: HAL returned; memory-manager entry reached.",
+  "fixture_package_includes_final_readme": true,
+  "uploaded_utc": "2026-10-03T22:48:12.700383+00:00"
+}
