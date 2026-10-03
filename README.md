@@ -8,10 +8,10 @@ host-side test harness.
 
 - Physical console: Windows kernel entry, processor initialization, HAL base
   setup, RTC calibration, clock setup and partition-hook registration and BIOS page allocation passed.
-- Latest physical checkpoint: **XWND90**. The original MmInitSystem prefix
-  completed and reached MiInitMachineDependent entry. The temporary patch
-  was restored before halting; the machine-dependent body, storage drivers
-  and desktop remain untested on physical hardware.
+- Latest physical checkpoint: **XWNV90**. Native low-mapping removal
+  completed; the high HAL display survived a TLB flush. All 512 low PDEs
+  are absent. RAM descriptor scanning, storage drivers and desktop remain
+  beyond the physical-tested stop.
 - Private emulator fixtures have reached a Windows 2000 desktop with NTFS,
   USB input, framebuffer, networking and experimental audio. Those results
   do not establish physical hardware compatibility.
@@ -27,10 +27,10 @@ manager entry, restoring its temporary in-memory checkpoint. See the
 The physical-tested **XWND90** runs the original memory-manager prefix and
 stops before MiInitMachineDependent changes page tables; see the [machine-init report](outputs/native-windows-physical-mi/REPORT.txt).
 
-The next candidate **XWNV90** moves diagnostic output into the high HAL,
+The physical-tested **XWNV90** moves diagnostic output into the high HAL,
 executes native low-mapping removal and stops before RAM descriptor scanning.
-Both display modes and the native trace pass in xemu; physical testing is
-pending. See the [mapping-transition report](outputs/native-windows-physical-map/REPORT.txt).
+Both display modes and the native trace pass in xemu; the physical
+checkpoint is photo-confirmed. See the [mapping-transition report](outputs/native-windows-physical-map/REPORT.txt).
 
 See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
 [latest diagnostic](outputs/native-windows-physical-map/REPORT.txt), and
