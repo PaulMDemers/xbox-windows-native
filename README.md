@@ -8,10 +8,10 @@ host-side test harness.
 
 - Physical console: Windows kernel entry, processor initialization, HAL base
   setup, RTC calibration, clock setup and partition-hook registration and BIOS page allocation passed.
-- Latest physical checkpoint: **XWNM90**. HAL phase 0 returned and Windows
-  reached MmInitSystem entry. The temporary entry patch was restored before
-  halting; the original memory-manager body, storage drivers and desktop
-  remain untested on physical hardware.
+- Latest physical checkpoint: **XWND90**. The original MmInitSystem prefix
+  completed and reached MiInitMachineDependent entry. The temporary patch
+  was restored before halting; the machine-dependent body, storage drivers
+  and desktop remain untested on physical hardware.
 - Private emulator fixtures have reached a Windows 2000 desktop with NTFS,
   USB input, framebuffer, networking and experimental audio. Those results
   do not establish physical hardware compatibility.
@@ -24,9 +24,8 @@ The physical-tested **XWNM90** returns HAL phase 0 and stops at the memory-
 manager entry, restoring its temporary in-memory checkpoint. See the
 [MM entry report](outputs/native-windows-physical-mm/REPORT.txt).
 
-The next candidate **XWND90** runs the original memory-manager prefix and
-stops before MiInitMachineDependent changes page tables. Physical testing
-is pending; see the [machine-init report](outputs/native-windows-physical-mi/REPORT.txt).
+The physical-tested **XWND90** runs the original memory-manager prefix and
+stops before MiInitMachineDependent changes page tables; see the [machine-init report](outputs/native-windows-physical-mi/REPORT.txt).
 
 See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
 [latest diagnostic](outputs/native-windows-physical-mi/REPORT.txt), and
