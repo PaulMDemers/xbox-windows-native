@@ -7,16 +7,16 @@ host-side test harness.
 ## Current evidence
 
 - Physical console: Windows kernel entry, processor initialization, HAL base
-  setup, RTC calibration, clock setup and partition-hook registration passed.
-- Latest physical checkpoint: **XWNR90**, stage 70. Four partition hooks are
-  registered and original handlers saved. The probe halts before BIOS memory
-  allocation, partition-handler calls, storage drivers or a desktop.
+  setup, RTC calibration, clock setup and partition-hook registration and BIOS page allocation passed.
+- Latest physical checkpoint: **XWNI90**, stage 80. Both BIOS pages are reserved
+  and the 26-descriptor memory map is reported. The probe halts before HAL
+  phase-0 return, partition-handler calls, storage drivers or a desktop.
 - Private emulator fixtures have reached a Windows 2000 desktop with NTFS,
   USB input, framebuffer, networking and experimental audio. Those results
   do not establish physical hardware compatibility.
 
-The next candidate, **XWNI90**, reserves the two BIOS phase-0 pages and
-halts before HAL returns to Windows. Its physical result is pending; see
+The physical-tested **XWNI90** reserves the two BIOS phase-0 pages and
+halts before HAL returns to Windows; see
 [BIOS diagnostic](outputs/native-windows-physical-bios/REPORT.txt).
 
 See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
