@@ -1,0 +1,21 @@
+{
+  "run_prefix": "physical-processinit-",
+  "positive": [
+    "wide-001",
+    "normal-001",
+    "trace-001"
+  ],
+  "contract_rejections": [
+    "bad-hal-001",
+    "bad-kernel-001"
+  ],
+  "corruption_cases": {
+    "init-input-001": "init-input",
+    "process-object-001": "process-object",
+    "hash-page-001": "hash-page",
+    "corrupt-001": "pfn"
+  },
+  "runner": "run-validation.py",
+  "emulator_only": true,
+  "notes": "Earlier unmodified guards retain predecessor evidence. These runs exercise the new native process return, its input guard and final data checks, plus an early-failure hook restoration regression."
+}

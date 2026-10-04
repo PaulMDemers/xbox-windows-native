@@ -1,0 +1,46 @@
+XWNW90 - initial process address space (patch 0044)
+
+Physical predecessor XWNZ90 is photo-confirmed. This candidate lets the native
+kernel publish its working-set page and execute MmInitializeProcessAddressSpace.
+It stops at the return site RVA 159cdc, before further machine-dependent MM
+initialization. Storage, boot-driver entry and desktop are not reached.
+
+The returning XWNZ guard validates the previously tested state, checks the
+initial-process inputs and predicts one additional native hash-page allocation.
+The final guard checks all 15360 PFN records and the color/free lists, the
+process object, restored thread state, page-table contents, the 1024-DWORD
+working-set page and a zeroed 4096-byte hash page. The native status must be zero.
+Existing mapping hashes are preserved with accessed/dirty bits normalized;
+PDE 769 is checked separately with only PTEs 0, 257 and 754 present.
+All six temporary hooks are restored. The disk kernel file is unchanged.
+PROCESSINIT defaults off and requires PROCESSPAGES.
+
+Two emulator-only scouts completed the function before candidate development.
+These are exploratory observations, not physical proof. The independent Python
+model reconstructs all PFN changes and working-set data. The trace separately
+checks the complete process delta and verifies that the original thread state
+is restored. Normal builds must reject diagnostic arming.
+
+Build: Invoke-BuildHal.ps1; copy artifacts/halxboxnt5.dll to
+package/loader/halxboxnt5.dll; Invoke-Build.ps1. Preserve paging-v3 freeldr.sys.
+Use prepare-fixture.py in WSL and run-validation.py for owned xemu snapshots.
+All physical launches remain manual. No emulator disk is copied to the Xbox.
+
+Expected success: XWNW90: Process address space initialized.
+Launch Applications > XWN Loader Diagnostic, photograph the result and reboot.
+
+Next boundary for investigation after physical confirmation: native execution
+at 159cdc continues with page-color bookkeeping and may allocate from the
+executive pool at 159d7c. The current guard deliberately stops before this.
+Later changes must stop assuming color-list backing stays at ffbdf000 once
+the native color-table relocation path is allowed to execute.
+
+Final validation: both display modes, 1358-event native trace, code/import
+audits and four injected-corruption tests passed. Unsafe process inputs,
+changed process data, a dirty hash page and corrupt PFN data are rejected.
+Old HAL and changed kernel are rejected before entry. Normal builds, parent
+option check and patch series 0044 passed.
+
+Uploaded 2026-10-04T06:32:34.844107+00:00. All 33 files verified by readback.
+Three previous XWNZ90 files retained under xwnz90 backup names.
+Physical XWNW90 testing is pending; no remote launch was performed.

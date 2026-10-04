@@ -93,8 +93,13 @@ allocates/zeros the first process page table and working-set page. It stops
 before working-set publication and process initialization. Emulator checks
 passed; the physical checkpoint is photo-confirmed.
 
+The next candidate **XWNW90** lets native process address-space initialization
+return, then verifies the process/thread state, working-set and hash pages,
+and all PFN records. It stops before further MM initialization and storage.
+Emulator checks passed; it is uploaded for physical testing.
+
 See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
-[latest diagnostic](outputs/native-windows-physical-processpages/REPORT.txt), and
+[latest diagnostic](outputs/native-windows-physical-processinit/REPORT.txt), and
 [development plan](outputs/native-windows-development-plan.md).
 
 ## Source and reproduction
@@ -102,7 +107,7 @@ See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
 This repository stores our source changes as an ordered patch series against
 ReactOS commit `afc0127e8f937ab68503d715d948844973756aa1`, plus build wrappers,
 validation tools and reports. The full series and resulting source tree are
-in [patch-check-0043.json](outputs/native-windows-physical-processpages/patch-check-0043.json).
+in [patch-check-0044.json](outputs/native-windows-physical-processinit/patch-check-0044.json).
 Use `python tools/apply-series.py --source PATH --manifest MANIFEST` on a clean
 checkout at that exact upstream commit. The script checks the clean baseline,
 applies the ordered patches and verifies the resulting Git tree.
