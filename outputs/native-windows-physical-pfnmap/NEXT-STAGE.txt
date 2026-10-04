@@ -1,0 +1,18 @@
+After physical XWNL90, audit the descriptor recommit at 1596c2..1596f3
+and the subsequent free/in-use PFN walk. Do not assume the final descriptor
+count is 1d91: the first commit already shortened the descriptor, while the
+original-base local is still 160. Measure the native arithmetic before
+deciding whether any adaptation is needed.
+
+The current mapped-PFN pass deliberately leaves most 80000000..9fffffff
+image mappings without ordinary PFN records. Their loader descriptors must
+keep the kernel, HAL (including its new model scratch), boot drivers, hive,
+stack and BIOS type26 pages in use. Check these before enabling allocation
+from constructed free lists. The framebuffer remains above highest=3bff
+and must keep its reserved descriptor, page table and high uncached alias.
+
+The first scout corrected an overly broad model condition for low mapped
+addresses. Its second run matched every PFN byte and paging entry before
+the TLB flush, but stopped on a debugger label collision at the return
+address. Candidate validation uses a corrected trace and the actual HAL
+halt; exploratory scouts are not accepted as completed release tests.

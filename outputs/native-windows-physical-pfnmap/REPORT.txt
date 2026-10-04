@@ -1,0 +1,46 @@
+XWN mapped PFN initialization (patch 0039)
+
+Physical XWNE90 confirmed allocation and clearing of 90 PFN backing pages
+plus one color page. This candidate initializes 64 color-list heads, walks
+the page directory and present page tables, creates mapped-page PFN records,
+and executes the native IRQL-wrapped TLB flush. It stops at kernel RVA
+159684 before the descriptor recommit and free-page-list construction.
+
+All prior guards on 623 candidate frames, pool geometry, BIOS pages,
+descriptor accounting, framebuffer and interrupt state remain active.
+The guard records the native permission-mask parameters and hashes the
+expected final state of every original high page table. The recursive
+directory and all newly allocated tables are checked separately. Only
+the expected OR permission changes and CPU accessed/dirty bits are allowed.
+
+The final HAL builds a model of all 15360 PFN records in a reserved scratch
+array inside its image. It compares all 368640 PFN bytes and all 4096 color
+bytes against the model, including otherwise unused words. The Python
+auditor independently models the native walk, including the recursive
+directory alias and order-dependent parent/PTE fields. Existing low-address
+image mappings do not receive ordinary PFN updates on this path; the later
+descriptor walk must account for them before memory becomes available.
+
+Expected XWNL90: Mapped PFNs initialized; TLB flushed.
+The display's directory count is the number of present PDEs processed.
+Counts of present PTEs can vary with display mode and image placement.
+The initial widescreen emulator reports 42 PDEs, 3006 present PTEs,
+639 populated PFN records and 64 color heads. The live candidate remains
+03cf / 1d91; its descriptor remains 03ce / 1d92 until the later recommit.
+
+PFNMAP defaults OFF and requires PFN. Its distinct arming signature rejects
+the preceding HAL. Both temporary kernel hooks are restored. Kernel file,
+bootvid and first-stage binaries remain unchanged. Physical XWNL90 is
+pending. Free-page lists, storage and the physical desktop are not reached.
+
+Final validation: both display modes, old-HAL and changed-kernel rejection,
+full code/import audits and the 1323-event native trace passed. All PFN and
+color bytes match the independent model before and after the native TLB
+flush. Original mappings have only expected permission changes. An occupied
+candidate and incompatible pool size halt before allocation; a corrupted
+unused PFN word is rejected before free-page lists. Normal builds, parent
+option checks and the source series through patch 0039 passed.
+
+Uploaded 2026-10-04T03:14:53.868278+00:00. All 33 files verified by readback.
+Three physical-tested XWNE90 files retained under xwne90 backup names.
+The console was not remotely launched. Physical XWNL90 is pending.

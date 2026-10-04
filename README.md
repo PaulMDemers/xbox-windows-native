@@ -65,8 +65,14 @@ Both display modes, allocation tracing and rejection checks pass in xemu;
 the physical checkpoint is photo-confirmed. See the
 [PFN backing report](outputs/native-windows-physical-pfn/REPORT.txt).
 
+The next candidate **XWNL90** initializes mapped-page PFN records and color
+heads, then returns from the native TLB flush. It stops before free-page
+list construction. Both display modes, the complete page-record model,
+execution trace and rejection tests pass in xemu; physical testing is
+pending. See the [mapped PFN report](outputs/native-windows-physical-pfnmap/REPORT.txt).
+
 See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
-[latest diagnostic](outputs/native-windows-physical-pfn/REPORT.txt), and
+[latest diagnostic](outputs/native-windows-physical-pfnmap/REPORT.txt), and
 [development plan](outputs/native-windows-development-plan.md).
 
 ## Source and reproduction
@@ -74,7 +80,7 @@ See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
 This repository stores our source changes as an ordered patch series against
 ReactOS commit `afc0127e8f937ab68503d715d948844973756aa1`, plus build wrappers,
 validation tools and reports. The full series and resulting source tree are
-in [patch-check-0038.json](outputs/native-windows-physical-pfn/patch-check-0038.json).
+in [patch-check-0039.json](outputs/native-windows-physical-pfnmap/patch-check-0039.json).
 Use `python tools/apply-series.py --source PATH --manifest MANIFEST` on a clean
 checkout at that exact upstream commit. The script checks the clean baseline,
 applies the ordered patches and verifies the resulting Git tree.

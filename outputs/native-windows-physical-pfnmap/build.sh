@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+[[ ${XWN_BUILD_LEASE:-} == held ]] || exit 2
+root=/home/paul/xbox-windows-native
+src="$root/sources/reactos"
+build="$root/build/physical-pfnmap-loader"
+kit=/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-windows-physical-pfnmap
+printf 'cmake -S %s -B %s -G Ninja -DCMAKE_TOOLCHAIN_FILE=%s/toolchain-gcc.cmake -DARCH=i386 -DSARCH=xbox -DOARCH=pentium -DCMAKE_BUILD_TYPE=Debug -DPCH=OFF -DENABLE_CCACHE=OFF -DXBOX_NATIVE_PREFLIGHT=OFF -DXBOX_NATIVE_IO_PREFLIGHT=ON -DXBOX_NATIVE_FATX_IO_PREFLIGHT=OFF -DXBOX_NATIVE_FATX_NT5_PREFLIGHT=ON -DXBOX_NATIVE_FATX_PAGING_PREFLIGHT=ON -DXBOX_NATIVE_FATX_ENTRY_PREFLIGHT=ON -DXBOX_NATIVE_FATX_PHASE0_PREFLIGHT=ON -DXBOX_NATIVE_FATX_HALBASE_PREFLIGHT=ON -DXBOX_NATIVE_FATX_TIMER_PREFLIGHT=ON -DXBOX_NATIVE_FATX_CLOCK_PREFLIGHT=ON -DXBOX_NATIVE_FATX_HOOKS_PREFLIGHT=ON -DXBOX_NATIVE_FATX_BIOS_PREFLIGHT=ON -DXBOX_NATIVE_FATX_MM_PREFLIGHT=ON -DXBOX_NATIVE_FATX_MI_PREFLIGHT=ON -DXBOX_NATIVE_FATX_MAP_PREFLIGHT=ON -DXBOX_NATIVE_FATX_SCAN_PREFLIGHT=ON -DXBOX_NATIVE_FATX_SIZE_PREFLIGHT=ON -DXBOX_NATIVE_FATX_PT_PREFLIGHT=ON -DXBOX_NATIVE_FATX_POOL_PREFLIGHT=ON -DXBOX_NATIVE_FATX_POOLINIT_PREFLIGHT=ON -DXBOX_NATIVE_FATX_PFN_PREFLIGHT=ON -DXBOX_NATIVE_FATX_PFNMAP_PREFLIGHT=ON -DXBOX_NATIVE_VOLUME_PREFLIGHT=OFF -DXBOX_NATIVE_NT5_HANDOFF=ON -DXBOX_NATIVE_NT5_ENTER=OFF -DXBOX_NATIVE_NT5_AUTORUN=OFF && cmake --build %s --target freeldr rosload -- -j4\n' "$src" "$build" "$src" "$build" | "$root/toolchains/RosBE-2.2.1/RosBE.sh" "$src" 0 i386 > "$kit/build-logs/io.log" 2>&1
+cp "$kit/../native-windows-physical-paging-v3/package/freeldr.sys" "$kit/package/" # Preserve the physical-tested first-stage ABI.
+cp "$build/boot/freeldr/freeldr/rosload.exe" "$kit/package/"
