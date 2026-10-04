@@ -1,0 +1,252 @@
+{
+  "scope": "Unassisted emulator; metadata query fix passes but name-boundary test exposes an existing create bug",
+  "run": "nt5-fatx-boot-metadata-001",
+  "fixture": {
+    "scope": "Offline emulator derivative; no physical access",
+    "source_sha256": "6d2899fa61a1f7e640096f80e8159cf6b32a96c4c4bd7bc5732f04b718803b57",
+    "files": [
+      {
+        "path": "/WINNT/system32/drivers/xwnfatx.sys",
+        "sha256": "4e5fcc9317a65d10a3f63aa0dcc33a0e7aad947223b28a6f79ed28295d0c3971",
+        "cold_readback_equal": true
+      },
+      {
+        "path": "/Documents and Settings/All Users/Start Menu/Programs/Startup/xwnsetup.cmd",
+        "sha256": "5e1b8ee2220d19243a5cb3ec0026cbd3b713ab5569a98c0348416373300bf633",
+        "cold_readback_equal": true
+      },
+      {
+        "path": "/xwnfs.exe",
+        "bytes": 11813,
+        "sha256": "3eba99b980fb231cee96f730359bf84a0605824ab9a9506e25e036ea9302127b",
+        "clusters": 1
+      }
+    ],
+    "driver_sha256": "4e5fcc9317a65d10a3f63aa0dcc33a0e7aad947223b28a6f79ed28295d0c3971",
+    "pagefile_physical_runs": 384,
+    "guard_sha256": "2a26a390d7d0c5a53f32d719c27f0f7952c319eb91519b02b0bad7f0564086f0",
+    "sha256": "66ed7d44fa987cef27a2e59df06722d43e1a4c64c30adeed62ca0d718b565b09",
+    "check": "No errors were found on the image.\n27430/131072 = 20.93% allocated, 0.00% fragmented, 0.00% compressed clusters\nImage end offset: 1798373376\n",
+    "source_preserved": true,
+    "temporary_raw_removed": true
+  },
+  "guest_log": "XWN FATX file API test\nPASS: GetVolumeInformation\nMaximum component: 42\nFlags: 2\nPASS: Filesystem name FATX\nPASS: 42-byte component limit advertised\nPASS: OEM case-preserved capabilities\nPASS: Create test directory\nPASS: Create child directory\nPASS: 42-byte ASCII name accepted\nPASS: 43-byte ASCII name rejected\nPASS: Create mixed-case data file\nPASS: Write 128 KiB plus one byte\nPASS: Flush data\nPASS: Case-insensitive reopen\nPASS: Reopened full data comparison\nPASS: Shrink at cluster-crossing boundary\nPASS: Shrunk size\nPASS: Regrow with explicit data\nPASS: Flush regrown file\nPASS: Rename across directories\nPASS: Open renamed file\nPASS: Renamed regrown data comparison\nPASS: Delete data file\nFAIL: Win32 error: 2\nDelete boundary-length file\nPASS: Remove child directory\nFAIL: Win32 error: 145\nRemove test directory\nFailures: 2\n",
+  "cold_integrity": {
+    "scope": "Cold read-only emulator disk audit; no physical access",
+    "source_sha256": "e4713458d7790dfe364266f3969530b715791bc2cef234b8a39fea2dbee995d5",
+    "directories": 322,
+    "files": 6555,
+    "allocated_clusters": 52087,
+    "immutable_files_checked": 3452,
+    "structural_errors": [
+      {
+        "path": "/xwnfstest",
+        "error": "UnicodeDecodeError('ascii', b'\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff', 0, 1, 'ordinal not in range(128)')"
+      }
+    ],
+    "immutable_mismatches": [],
+    "registry_headers": [
+      {
+        "path": "/documents and settings/default user/ntuser.dat",
+        "bytes": 122880,
+        "sequence1": 2,
+        "sequence2": 2,
+        "sequences_match": true,
+        "checksum_matches": true,
+        "tree": {
+          "scope": "Read-only reachable key/value traversal; no log replay or semantic validation",
+          "sha256": "411eae3eba07683a09df87b7374c180d47682c03512165b8acd3e159bb3a2e93",
+          "keys": 353,
+          "values": 730,
+          "value_bytes": 44512,
+          "maximum_depth": 8,
+          "source_preserved": true,
+          "passed": true
+        }
+      },
+      {
+        "path": "/documents and settings/win2k/local settings/application data/microsoft/windows/usrclass.dat",
+        "bytes": 8192,
+        "sequence1": 3,
+        "sequence2": 3,
+        "sequences_match": true,
+        "checksum_matches": true,
+        "tree": {
+          "scope": "Read-only reachable key/value traversal; no log replay or semantic validation",
+          "sha256": "f46d82f45b515b1022e0e5b32a871c64361ae2977cd67bdeeb5ed28a677a8512",
+          "keys": 1,
+          "values": 0,
+          "value_bytes": 0,
+          "maximum_depth": 0,
+          "source_preserved": true,
+          "passed": true
+        }
+      },
+      {
+        "path": "/documents and settings/win2k/ntuser.dat",
+        "bytes": 196608,
+        "sequence1": 124,
+        "sequence2": 124,
+        "sequences_match": true,
+        "checksum_matches": true,
+        "tree": {
+          "scope": "Read-only reachable key/value traversal; no log replay or semantic validation",
+          "sha256": "5244ce0224a048f769756c1d1b38a8f3071848fb6594b7b8472b50eed65ab92b",
+          "keys": 528,
+          "values": 1237,
+          "value_bytes": 66034,
+          "maximum_depth": 10,
+          "source_preserved": true,
+          "passed": true
+        }
+      },
+      {
+        "path": "/winnt/repair/ntuser.dat",
+        "bytes": 122880,
+        "sequence1": 2,
+        "sequence2": 2,
+        "sequences_match": true,
+        "checksum_matches": true,
+        "tree": {
+          "scope": "Read-only reachable key/value traversal; no log replay or semantic validation",
+          "sha256": "411eae3eba07683a09df87b7374c180d47682c03512165b8acd3e159bb3a2e93",
+          "keys": 353,
+          "values": 730,
+          "value_bytes": 44512,
+          "maximum_depth": 8,
+          "source_preserved": true,
+          "passed": true
+        }
+      },
+      {
+        "path": "/winnt/system32/config/default",
+        "bytes": 126976,
+        "sequence1": 6,
+        "sequence2": 6,
+        "sequences_match": true,
+        "checksum_matches": true,
+        "tree": {
+          "scope": "Read-only reachable key/value traversal; no log replay or semantic validation",
+          "sha256": "84e3c808e0efc7560191de49687704d93a67205c009d445cb47b0ac56cfb2208",
+          "keys": 356,
+          "values": 735,
+          "value_bytes": 44552,
+          "maximum_depth": 8,
+          "source_preserved": true,
+          "passed": true
+        }
+      },
+      {
+        "path": "/winnt/system32/config/sam",
+        "bytes": 20480,
+        "sequence1": 33,
+        "sequence2": 33,
+        "sequences_match": true,
+        "checksum_matches": true,
+        "tree": {
+          "scope": "Read-only reachable key/value traversal; no log replay or semantic validation",
+          "sha256": "f2d48b8013a4c2263cc86b1dab01887e83853c3f1631c7fa15d8b006f85b67a9",
+          "keys": 47,
+          "values": 51,
+          "value_bytes": 5936,
+          "maximum_depth": 7,
+          "source_preserved": true,
+          "passed": true
+        }
+      },
+      {
+        "path": "/winnt/system32/config/security",
+        "bytes": 20480,
+        "sequence1": 121,
+        "sequence2": 121,
+        "sequences_match": true,
+        "checksum_matches": true,
+        "tree": {
+          "scope": "Read-only reachable key/value traversal; no log replay or semantic validation",
+          "sha256": "6d8de777bcb0f8ccfebb4e3646501c2a5b7d52229a3105433f0f490af7d7fa72",
+          "keys": 70,
+          "values": 69,
+          "value_bytes": 3237,
+          "maximum_depth": 4,
+          "source_preserved": true,
+          "passed": true
+        }
+      },
+      {
+        "path": "/winnt/system32/config/software",
+        "bytes": 6696960,
+        "sequence1": 52,
+        "sequence2": 52,
+        "sequences_match": true,
+        "checksum_matches": true,
+        "tree": {
+          "scope": "Read-only reachable key/value traversal; no log replay or semantic validation",
+          "sha256": "b324ff5899f153d9e898e531e33543e86a91047ea8ce692dbfaa0c2818a2f6ab",
+          "keys": 26807,
+          "values": 39053,
+          "value_bytes": 1793944,
+          "maximum_depth": 10,
+          "source_preserved": true,
+          "passed": true
+        }
+      },
+      {
+        "path": "/winnt/system32/config/system",
+        "bytes": 2158592,
+        "sequence1": 123,
+        "sequence2": 123,
+        "sequences_match": true,
+        "checksum_matches": true,
+        "tree": {
+          "scope": "Read-only reachable key/value traversal; no log replay or semantic validation",
+          "sha256": "cd360c4e41708a2c418440da9f9e9ce58642072c6ffc17b231397ca128682731",
+          "keys": 5437,
+          "values": 16471,
+          "value_bytes": 671018,
+          "maximum_depth": 11,
+          "source_preserved": true,
+          "passed": true
+        }
+      }
+    ],
+    "paging_file": {
+      "bytes": 100663296,
+      "clusters": 6144,
+      "first_cluster": 45432,
+      "physical_runs": 384
+    },
+    "endurance": {
+      "bytes": 1305,
+      "sha256": "a909c2cfce08b66dbb3b4cf59f2239e4eb377b9ed9efcc3e9b0bbae98f998e79",
+      "passed": true
+    },
+    "fragment_guard": {
+      "sha256": "2a26a390d7d0c5a53f32d719c27f0f7952c319eb91519b02b0bad7f0564086f0",
+      "passed": true
+    },
+    "filesystem_api": {
+      "probe_sha256": "3eba99b980fb231cee96f730359bf84a0605824ab9a9506e25e036ea9302127b",
+      "log_sha256": "3146392aecfb3e169de25eecfb5ac80a5bd0dba7806f07482ae9cf8f09a9ab28",
+      "checks": {
+        "42-byte ASCII name accepted": true,
+        "43-byte ASCII name rejected": true,
+        "Case-insensitive reopen": true,
+        "Reopened full data comparison": true,
+        "Shrink at cluster-crossing boundary": true,
+        "Shrunk size": true,
+        "Regrow with explicit data": true,
+        "Rename across directories": true,
+        "Renamed regrown data comparison": true,
+        "Remove test directory": false,
+        "42-byte component limit advertised": true,
+        "OEM case-preserved capabilities": true
+      },
+      "test_directory_removed": false,
+      "passed": false
+    },
+    "source_preserved": true,
+    "passed": false,
+    "temporary_raw_removed": true
+  },
+  "next_fix": "FATXAddEntry must check OEM conversion status and allow temporary terminator space before copying up to42 bytes to the on-disk field."
+}

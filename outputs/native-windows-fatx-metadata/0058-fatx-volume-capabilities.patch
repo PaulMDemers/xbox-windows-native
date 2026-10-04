@@ -1,0 +1,27 @@
+diff --git a/drivers/filesystems/vfatfs/volume.c b/drivers/filesystems/vfatfs/volume.c
+index d3fb63d5..78b201b1 100644
+--- a/drivers/filesystems/vfatfs/volume.c
++++ b/drivers/filesystems/vfatfs/volume.c
+@@ -123,8 +123,18 @@ FsdGetFsAttributeInformation(
+     }
+
+-    FsAttributeInfo->FileSystemAttributes =
+-        FILE_CASE_PRESERVED_NAMES | FILE_UNICODE_ON_DISK;
+-
+-    FsAttributeInfo->MaximumComponentNameLength = 255;
++    if (DeviceExt->FatInfo.FatType == FATX16 ||
++        DeviceExt->FatInfo.FatType == FATX32)
++    {
++        /* FATX directory entries store at most 42 OEM bytes, not a Unicode
++         * long name. Do not advertise FAT's long-name capabilities. */
++        FsAttributeInfo->FileSystemAttributes = FILE_CASE_PRESERVED_NAMES;
++        FsAttributeInfo->MaximumComponentNameLength = 42;
++    }
++    else
++    {
++        FsAttributeInfo->FileSystemAttributes =
++            FILE_CASE_PRESERVED_NAMES | FILE_UNICODE_ON_DISK;
++        FsAttributeInfo->MaximumComponentNameLength = 255;
++    }
+
+     FsAttributeInfo->FileSystemNameLength = Length;

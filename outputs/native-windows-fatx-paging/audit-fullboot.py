@@ -1,11 +1,12 @@
 """Cold, read-only structural and immutable-file audit of a stopped test disk."""
-import argparse, hashlib, json, pathlib, re, shutil, struct, subprocess, sys
+import argparse, hashlib, json, os, pathlib, re, shutil, struct, subprocess, sys
 
 p = argparse.ArgumentParser()
 p.add_argument('--run', required=True)
 p.add_argument('--driver-manifest', default='outputs/native-windows-fatx-paging/fatx-full-paging-disk-001.json')
 p.add_argument('--pressure-manifest', help='Require the extra paging probe and all eight retention passes')
 p.add_argument('--filesystem-manifest', help='Require the bounded file API probe and its complete success log')
+p.add_argument('--registry-trees', action='store_true', help='Require read-only traversal of every reachable hive key/value')
 a = p.parse_args()
 assert re.fullmatch(r'nt5-fatx-boot-(?:paging|image-read|paging-flags|flush|power|wide|hal-paging|bootvid|bootvid-ram|pressure|metadata)-[0-9]+', a.run)
 ws = pathlib.Path('/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility')
@@ -105,6 +106,13 @@ try:
                 item.update(bytes=len(data), sequence1=first, sequence2=second,
                             sequences_match=first == second,
                             checksum_matches=stored == checksum)
+                if a.registry_trees:
+                    copy = temp / 'hive-audit-copy'
+                    copy.write_bytes(data)
+                    env = dict(os.environ, LD_LIBRARY_PATH=str(root / 'toolchains/offline-disk/root/usr/lib/x86_64-linux-gnu'))
+                    item['tree'] = json.loads(subprocess.check_output(
+                        [sys.executable, str(pathlib.Path(__file__).with_name('audit-hive.py')), str(copy)], env=env))
+                    copy.unlink()
             except Exception as ex:
                 item['error'] = repr(ex)
             r['registry_headers'].append(item)
@@ -175,6 +183,9 @@ try:
                    and r['endurance']['passed'] and r.get('fragment_guard', {'passed': True})['passed']
                    and r.get('paging_pressure', {'passed': True})['passed'])
     r['passed'] = r['passed'] and r.get('filesystem_api', {'passed': True})['passed']
+    if a.registry_trees:
+        r['passed'] = r['passed'] and bool(r['registry_headers']) and all(
+            h.get('tree', {}).get('passed', False) for h in r['registry_headers'])
 finally:
     assert temp.resolve().parent == (root / 'fixtures').resolve()
     shutil.rmtree(temp)

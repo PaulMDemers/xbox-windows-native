@@ -1,0 +1,28 @@
+FATX volume capabilities (0058), 4 October 2026
+
+FATX now reports MaximumComponentNameLength42 and case-preserved names,
+without FILE_UNICODE_ON_DISK. FAT12/16/32 retain their existing flags and
+255-character limit. Source-chain verification and126 native import names pass.
+
+Unassisted run nt5-fatx-boot-metadata-001 confirms the query results. It also
+passes case-insensitive reopen,128KiB+1 data retention, shrink/regrow with
+explicit data, cross-directory rename and ordinary delete. The test FAILED
+at the42-byte boundary: CreateFile succeeds, but DeleteFile cannot find the
+name. Cold audit finds42 bytes of FF instead of the expected ASCII name.
+The invalid entry prevents directory removal. This is not an overall pass.
+
+FATXAddEntry ignores the status of RtlUnicodeStringToOemString with a42-byte
+output buffer. The native conversion requires room for its terminator.
+The next patch uses a temporary43-byte buffer, checks conversion status and
+copies only the counted bytes into the42-byte on-disk field. The failing
+fixture is retained as evidence; it is not reused as a source for the fix.
+
+All3452 immutable Windows binaries and the fragmented-pagefile guard remain
+intact. All nine registry hives pass read-only reachable key/value traversal
+with hivex, in addition to header checks. The guest reaches the normal final
+shutdown bitmap and HAL halt. See validation-001.json for the failure log.
+
+Build-Driver.ps1 and Build-Probe.ps1 produce separate driver and guest probe
+artifacts. prepare-fixture.py derives a disposable emulator disk. The probe
+checks only ASCII boundary names; general OEM/codepage behavior is not proven.
+No physical hardware upload or testing occurred.
