@@ -1,0 +1,48 @@
+XWN native memory-sizing diagnostic (patch 0034)
+
+Physical XWNS90 confirms the native RAM descriptor scan and candidate checks.
+This candidate continues through nonpaged-pool sizing, cache-color sizing,
+PFN database size calculation and the first planned page-table range. It
+halts at RVA 0x158439 before descriptor consumption or page-table writes.
+Memory-manager allocation and PFN initialization are not completed here.
+
+Review of the pinned interval 0x158025..0x158439 finds explicit writes only
+to kernel globals and native stack locals. Its only call is the insufficient-
+memory bugcheck, guarded by a count below 0x44c; this profile has 0x3bff pages.
+The emulator trace guards that call, subsequent descriptor/page-table writes,
+all four partition handlers and all 17 loaded driver entries.
+
+The HAL checks the resulting sizes against the pinned 64 MiB profile with
+no pool-size override or virtual bias. Cache-color count may vary within the
+kernel's supported power-of-two range; the PFN/color calculation uses the
+actual count. It verifies candidate base/count, absent destination PDEs,
+unconsumed allocation counters, high display mapping and restored kernel
+bytes. The host independently checks native locals and globals. The Windows
+kernel file is unchanged; only the temporary in-memory stop moves.
+
+Expected: XWNQ90: Memory sizing complete; allocation blocked.
+Initial nonpaged pool bytes: 001f8000.
+PFN/color pages planned: 0000005b for the emulator's 32 cache colors.
+Page-table pages planned: 0000001c.
+First candidate PFN: 00000160.
+Photograph the full screen, then reboot to UnleashX.
+
+These are plans, not allocated pages. The first later descriptor write is
+RVA 0x15845f, first PDE write 0x1584f8 and page-table zeroing 0x158508.
+In this profile EBX is cleared because the largest and low-memory candidate
+are the same descriptor. The ensuing page-table loop would consume from
+the low candidate through stack counters. That future loop is not enabled.
+
+SIZE options default OFF and require SCAN. Distinct arming tokens reject
+the previous HAL. Preserve the physical-tested first-stage loader and all
+Windows files. Physical XWNQ90 is pending; see validation.json for test status.
+FATX remains loader staging; native Windows storage and desktop are unproven.
+
+Final validation: both display modes, old-HAL and changed-kernel rejection,
+full code/import audits and the 46-checkpoint trace passed. The descriptor
+list is unchanged and all target PDEs remain absent. Normal builds, parent
+option guard and the complete 34-patch source chain pass.
+
+Uploaded 2026-10-04T00:26:19.233443+00:00. All 33 files verified by readback.
+Three physical-tested XWNS90 files retained under xwns90 backup names.
+The console was not remotely launched. Physical XWNQ90 is pending.

@@ -37,8 +37,13 @@ and checks its counts and candidate spans before MM allocation or PFN setup.
 Both display modes and a 45-checkpoint trace pass in xemu; the physical
 checkpoint is photo-confirmed. See the [RAM scan report](outputs/native-windows-physical-scan/REPORT.txt).
 
+The next candidate **XWNQ90** completes native pool and page-table sizing
+and stops before consuming descriptors or allocating page tables. Both
+display modes and a 46-checkpoint trace pass in xemu; physical testing is
+pending. See the [memory sizing report](outputs/native-windows-physical-size/REPORT.txt).
+
 See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
-[latest diagnostic](outputs/native-windows-physical-scan/REPORT.txt), and
+[latest diagnostic](outputs/native-windows-physical-size/REPORT.txt), and
 [development plan](outputs/native-windows-development-plan.md).
 
 ## Source and reproduction
@@ -46,7 +51,7 @@ See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
 This repository stores our source changes as an ordered patch series against
 ReactOS commit `afc0127e8f937ab68503d715d948844973756aa1`, plus build wrappers,
 validation tools and reports. The full series and resulting source tree are
-in [patch-check-0033.json](outputs/native-windows-physical-scan/patch-check-0033.json).
+in [patch-check-0034.json](outputs/native-windows-physical-size/patch-check-0034.json).
 Use `python tools/apply-series.py --source PATH --manifest MANIFEST` on a clean
 checkout at that exact upstream commit. The script checks the clean baseline,
 applies the ordered patches and verifies the resulting Git tree.

@@ -1,0 +1,23 @@
+After physical XWNQ90, audit the first page-table creation loop through
+0x158518. In the pinned profile, the largest and low-memory candidate are
+the same, so EBX is zero and pages come from the low candidate via local
+counters. Model the exact 28 PFNs and 28 PDE slots before permitting writes.
+
+Capture each prospective destination PDE and candidate page before mutation.
+Verify candidate pages are unused and do not contain live kernel/HAL/loader,
+stack/PCR/GDT/IDT, hive, BIOS or framebuffer-table state. Verify all intended
+PDEs start absent and stay disjoint from the high HAL/display/recursive/PCR
+mappings. Check the loop's resulting PDE attributes, cleared page contents,
+remaining candidate counters and descriptor list before proceeding further.
+
+Later PFN setup and reclamation still need a separate review of type-26 BIOS
+pages and the reserved framebuffer above the usable RAM limit. Preserve the
+framebuffer page table until the high renderer is replaced or re-established.
+No storage or full memory-manager completion is implied by this checkpoint.
+
+Later static-review lead: at RVA 0x15970a, descriptor types greater than 23
+branch to 0x159802, while types 2, 4, 5 and 8 take the free-page path at
+0x159762. Thus type 26 does not enter that free-page branch. The later path
+derives a KSEG0 PTE and marks an unreferenced PFN as in use. This is a code
+observation only, not proof that BIOS mappings or earlier PFN setup are valid.
+Check actual PFNs 1 and 2 and their PTEs before accepting that later stage.
