@@ -1,11 +1,12 @@
 """Execute the diagnostic miniport with modeled VideoPort and physical geometry."""
-import pathlib,sys,struct,json,hashlib
+import pathlib,sys,struct,json,hashlib,argparse
 k=pathlib.Path(__file__).resolve().parent;old=k.parent/'native-windows-nt5-kernel';root=k.parents[1];sys.path.insert(0,str(root/'work/python-packages'))
 import pefile
 from unicorn import *
 from unicorn.x86_const import *
 ns={};text=(old/'test-boundary.py').read_text();exec(text[text.index('def symbols(p):'):text.index('sym=symbols(h)')],{'struct':struct},ns)
-path=k/'artifacts/xboxvnt5-trace.sys';pe=pefile.PE(str(path));sym=ns['symbols'](pe);base=pe.OPTIONAL_HEADER.ImageBase
+args=argparse.ArgumentParser();args.add_argument('--miniport',type=pathlib.Path,default=k/'artifacts/xboxvnt5-trace.sys');args.add_argument('--output',type=pathlib.Path,default=k/'video-trace-test.json');args=args.parse_args()
+path=args.miniport;pe=pefile.PE(str(path));sym=ns['symbols'](pe);base=pe.OPTIONAL_HEADER.ImageBase
 for lib in pe.DIRECTORY_ENTRY_IMPORT:
  name=lib.dll.decode();folder=k/'package/F/winnt/system32';folder=folder/'drivers' if name.lower()=='videoprt.sys' else folder
  dll=pefile.PE(str(folder/name.lower()));exports={s.name for s in dll.DIRECTORY_ENTRY_EXPORT.symbols if s.name}
@@ -94,4 +95,4 @@ m=TraceMachine();m.arm();before=len(m.saved);m.irql=2;m.run('_XwnVideoTrace@16',
 m.irql=0;m.run('_XwnVideoUnload@4',(DRIVER,));assert m.events()[-1][0]==6 and m.closed==[0x4567]
 results.append('Elevated IRQL skips file IO; unload records and closes owned handle')
 r={'scope':'Compiled bounded video trace with modeled NT file IO and PnP callbacks','sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'all_imports_resolve':True,'passed':True,'tests':results}
-(k/'video-trace-test.json').write_text(json.dumps(r,indent=2)+'\n');print(json.dumps(r,indent=2))
+args.output.write_text(json.dumps(r,indent=2)+'\n');print(json.dumps(r,indent=2))

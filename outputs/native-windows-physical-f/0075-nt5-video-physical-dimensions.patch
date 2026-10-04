@@ -1,0 +1,17 @@
+diff --git a/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c b/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c
+index 7a384f1f..93f94b8a 100644
+--- a/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c
+@@ -101,6 +101,12 @@ Nt5VideoInitialize(PVOID Extension)
+     V->Mode.VisScreenWidth = Width; V->Mode.VisScreenHeight = Height;
+     V->Mode.ScreenStride = Pitch; V->Mode.NumberOfPlanes = 1; V->Mode.BitsPerPlane = 32;
+     V->Mode.Frequency = 60;
++    /* No EDID is available for the retained firmware mode. Supply a 96-DPI
++     * logical size: NT5 framebuf passes these fields to GDI, and Paint divides
++     * by HORZSIZE/VERTSIZE when converting between pixels and physical units.
++     * These are fallback dimensions, not measurements of the connected TV. */
++    V->Mode.XMillimeter = (Width * 254 + 480) / 960;
++    V->Mode.YMillimeter = (Height * 254 + 480) / 960;
+     V->Mode.NumberRedBits = V->Mode.NumberGreenBits = V->Mode.NumberBlueBits = 8;
+     V->Mode.RedMask = 0xff0000; V->Mode.GreenMask = 0xff00; V->Mode.BlueMask = 0xff;
+     V->Mode.AttributeFlags = VIDEO_MODE_GRAPHICS | VIDEO_MODE_COLOR | VIDEO_MODE_NO_OFF_SCREEN;

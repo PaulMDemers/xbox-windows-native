@@ -6,29 +6,25 @@ host-side test harness.
 
 ## Current evidence
 
-- The isolated physical F launcher now passes an ordinary emulator desktop,
-  native read/write probe and normal restart, with a clean cold disk audit.
-  All 6,493 installation files are staged and readback-verified on the physical
-  console. The user observed Windows followed by a reboot to UnleashX, but no
-  native probe result was saved. The second physical test reveals STOP B4:
-  Windows cannot initialize graphics. The startup report remains untouched.
-  Driver entry is now physically confirmed. An emulator-validated adapter
-  discovery checkpoint is running on the console; the B4 cause is unresolved.
-  Full 1024x576 emulator desktop, native probe and restart now also pass.
-  Physical desktop and the bounded native storage probe have not passed. See the
-  [physical F deployment](outputs/native-windows-physical-f/README.md).
-- Extended F emulator milestone: native Windows desktop on a 250 GB FATX disk,
-  verified reads/writes beyond LBA28, and two normal restart cycles with clean
-  cold allocation, binary and registry audits. The actual console's F geometry
-  is confirmed by an automated metadata probe; physical Windows storage remains
-  untested. See [extended F results](outputs/native-windows-extended-storage/REPORT.md).
+- **Physical Windows 2000 desktop confirmed:** keyboard, mouse, drive browsing,
+  Notepad and Calculator work on the Xbox. Cycle009 passed a bounded native
+  FATX write/flush/reopen test with independent FTP payload verification.
+- **Not stable yet:** cycle010 produced repeated delayed writes, corrupted
+  appended setupapi.log data, and STOP 0xA. Its trace miniport remains the
+  physical baseline; the normal miniport still fails with B4 on hardware.
+  Paint's separate divide-by-zero has an emulator-validated display candidate.
+  See [desktop stability evidence](outputs/native-windows-physical-f/DESKTOP-STABILITY.md).
+- Extended F emulator milestone: desktop on a 250 GB native FATX disk, writes
+  beyond LBA28, and normal restart cycles with clean cold audits. These bounded
+  tests do not establish general physical storage reliability. See
+  [extended F results](outputs/native-windows-extended-storage/REPORT.md).
 - Physical console: Windows kernel entry, processor initialization, HAL base
   setup, RTC calibration, clock setup and partition-hook registration and BIOS page allocation passed.
 - Preserved physical baseline: **XWN390**. Windows 2000 draws its original
   boot graphic on the console after MM/executive phase zero and HAL phase one.
   The photo confirms the intended stop before native storage initialization.
-  The later F installation reaches a graphics-initialization failure; a working
-  physical desktop remains unverified.
+  This original boot-video checkpoint remains preserved alongside the later
+  physical F desktop milestone.
 - Private emulator fixtures have reached a Windows 2000 desktop with NTFS,
   USB input, framebuffer, networking and experimental audio. Those results
   do not establish physical hardware compatibility.

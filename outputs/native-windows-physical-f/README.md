@@ -427,3 +427,15 @@ Cycle010 restored that exact successful trace driver, kept automatic restart
 disabled, reset the trace only after preserving cycle009, and launched once at
 21:20:47 UTC. Await its photo; after reboot collect its trace before another
 launch. See physical-cycle-010.json. No new user-mode success is claimed yet.
+
+
+## Physical desktop confirmed; stability investigation
+
+Cycle010 reached the desktop with working keyboard, mouse and drive browsing.
+Notepad and Calculator opened; Paint crashed. Recovered logs identify a Paint
+divide-by-zero, a delayed write to SET1.tmp, and binary corruption in newly
+appended setupapi.log data. Repeated warnings were followed by STOP 0xA.
+The original trace driver/HAL baseline is preserved; no further physical launch
+was made. Patch0075 fixes zero display dimensions and launches Paint successfully
+in the emulator. Storage and physical stability remain unresolved.
+See [the current evidence and next tests](DESKTOP-STABILITY.md).
