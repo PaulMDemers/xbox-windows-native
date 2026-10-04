@@ -8,9 +8,9 @@ host-side test harness.
 
 - Physical console: Windows kernel entry, processor initialization, HAL base
   setup, RTC calibration, clock setup and partition-hook registration and BIOS page allocation passed.
-- Latest physical checkpoint: **XWNJ90**. Descriptor accounting reconciled:
-  622 omitted pages restored, with consumed frames still excluded.
-  Free-page lists, storage drivers and desktop remain beyond the
+- Latest physical checkpoint: **XWNG90**. Native free-page lists built,
+  all 15,360 PFN records checked and 20 loaded images protected. Further
+  memory initialization, storage drivers and desktop remain beyond the
   physical-tested stop.
 - Private emulator fixtures have reached a Windows 2000 desktop with NTFS,
   USB input, framebuffer, networking and experimental audio. Those results
@@ -77,11 +77,11 @@ subtraction. It validates mappings, page records and the original extent,
 then halts before free-page lists. Emulator validation passed; the physical
 checkpoint is photo-confirmed. See the [descriptor accounting report](outputs/native-windows-physical-pfncommit/REPORT.txt).
 
-The next candidate **XWNG90** runs the complete native descriptor walk to
+The physical-tested **XWNG90** runs the complete native descriptor walk to
 build free-page lists and mark reserved pages in use. It checks every PFN
 and color-list word, preserves all 20 loaded images and stops before the
-remaining MM initialization. Emulator validation passed; physical testing
-is pending. See the [free-page list report](outputs/native-windows-physical-freelist/REPORT.txt).
+remaining MM initialization. Emulator validation passed; the physical checkpoint
+is photo-confirmed. See the [free-page list report](outputs/native-windows-physical-freelist/REPORT.txt).
 
 See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
 [latest diagnostic](outputs/native-windows-physical-freelist/REPORT.txt), and
