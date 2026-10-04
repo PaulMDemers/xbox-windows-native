@@ -13,7 +13,13 @@ VFAT already mirrors the logical size into its buffered directory entry in
 normal writes/resizes and flushes dirty metadata in cleanup/flush paths.
 The FAT and directory metadata streams are not regular files to resize.
 The source includes0048 section-growth and0049 FATX32 representation fixes.
-125imports resolve to the native NT5 images. Runtime testing is in progress.
+125imports resolve to the native NT5 images. The180-file stress and mapped-file tests passed in nt5-fatx-runtime-stress-006.
+All181files also passed independent cold FATX chain traversal and byte checks,
+including properFFFFFFFF end markers. Full-system testing reached Explorer at75/90seconds, then crashed at105seconds
+with D1(18,1f,0,18). Cold extraction found a binary-corrupted endurance log
+and damaged directories. This is desktop-entry evidence, NOT a stable boot.
+See fullboot-validation-001.json. Paging-file offset translation is under
+investigation; data-volume-only success does not validate a system volume.
 
 Primary reference for the distinction between AdvanceOnly and real truncation:
 https://github.com/microsoft/Windows-driver-samples/blob/main/filesys/fastfat/fileinfo.c

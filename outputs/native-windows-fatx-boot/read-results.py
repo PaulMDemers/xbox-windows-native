@@ -1,6 +1,6 @@
 """Read selected diagnostic files from an owned, stopped private VM disk."""
 import argparse,pathlib,subprocess,struct,shutil,os,json,hashlib,re
-p=argparse.ArgumentParser();p.add_argument('--run',required=True);a=p.parse_args();assert re.fullmatch(r'nt5-fatx-boot-(?:eof-|format-)?[0-9]+',a.run)
+p=argparse.ArgumentParser();p.add_argument('--run',required=True);a=p.parse_args();assert re.fullmatch(r'nt5-fatx-boot-(?:eof-|format-|advance-|paging-)?[0-9]+',a.run)
 root=pathlib.Path('/home/paul/xbox-windows-native');ws=pathlib.Path('/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility');source=ws/'work/runs'/a.run/'hdd.qcow2';assert (source.parent/'cleanup.json').exists();temp=root/'fixtures'/('read-'+a.run);assert not temp.exists();temp.mkdir();out=source.parent/'guest-logs';out.mkdir(exist_ok=True)
 env=dict(os.environ,LD_LIBRARY_PATH=str(root/'toolchains/offline-disk/root/usr/lib/x86_64-linux-gnu'));bin=root/'toolchains/offline-disk/root/usr/bin'
 def sha(p):

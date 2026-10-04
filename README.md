@@ -131,9 +131,13 @@ has not been uploaded. See [boot-video report](outputs/native-windows-physical-b
 
 Native FATX runtime work uses a separate research filesystem driver alongside
 Microsoft's Fastfat. The loader's Xbox ARC identity fix reaches graphical logon
-on a private FATX system volume, but cache/metadata failures still prevent a
-usable desktop on that volume. The original NTFS emulator desktop fixture is
-preserved. The focused mapped-file extension test now passes, including rejection
+on a private FATX system volume. The paging-file offset repair now passes a
+full desktop/endurance run: 4 MiB disk verification, 8 MiB memory retention and GUI
+response, with a clean cold filesystem audit and 3,452 unchanged system binaries.
+This is a bounded emulator result; fragmented/repeat-boot tests and physical
+validation remain. See the [paging repair](outputs/native-windows-fatx-paging/REPORT.txt)
+and its [source manifest](outputs/native-windows-fatx-paging/patch-check-0051.json).
+The original NTFS emulator desktop fixture is preserved. The focused mapped-file extension test now passes, including rejection
 of mapped-file truncation. See the [FATX boot report](outputs/native-windows-fatx-boot/REPORT.txt)
 and [section-growth results](outputs/native-windows-fatx-cachefix/REPORT.txt).
 
@@ -149,8 +153,8 @@ Preserve the working softmod and dashboard. Hardware probes are manually
 launched and photographed; current probes do not automatically return to the
 dashboard. Do not write emulator disk images onto the physical Xbox drive.
 Native Windows FATX mounting and bounded file/mapping tests now work in the
-emulator. Full FATX system-volume boot reaches graphical logon but remains
-unstable; no physical Windows boot volume is proven yet.
+emulator. Full FATX system-volume boot now passes a bounded desktop/endurance test;
+long-term stability and a physical Windows boot volume remain unproven.
 
 Paul restarts to the dashboard after each diagnostic photo. Treat receipt
 of a photo as restart confirmation; only raise dashboard availability if

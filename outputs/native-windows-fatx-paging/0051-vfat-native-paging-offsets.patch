@@ -1,0 +1,261 @@
+diff --git a/drivers/filesystems/vfatfs/create.c b/drivers/filesystems/vfatfs/create.c
+index 3cd0c3c8..906331d6 100644
+--- a/drivers/filesystems/vfatfs/create.c
++++ b/drivers/filesystems/vfatfs/create.c
+@@ -1008,6 +1008,16 @@ VfatCreateFile(
+         }
+     }
+ 
++    if (PagingFileCreate)
++    {
++        Status = VfatBuildPagingMap(DeviceExt, pFcb);
++        if (!NT_SUCCESS(Status))
++        {
++            VfatCloseFile(DeviceExt, FileObject);
++            return Status;
++        }
++    }
++
+     if (pFcb->OpenHandleCount == 0)
+     {
+         IoSetShareAccess(Stack->Parameters.Create.SecurityContext->DesiredAccess,
+diff --git a/drivers/filesystems/vfatfs/fcb.c b/drivers/filesystems/vfatfs/fcb.c
+index 7fd1789b..0ca2f667 100644
+--- a/drivers/filesystems/vfatfs/fcb.c
++++ b/drivers/filesystems/vfatfs/fcb.c
+@@ -275,6 +275,13 @@ vfatDestroyFCB(
+     }
+ #endif
+ 
++    while (pFCB->PagingMap)
++    {
++        PVFAT_PAGING_MAP Old = pFCB->PagingMap;
++        pFCB->PagingMap = Old->Previous;
++        ExFreePool(Old);
++    }
++
+     FsRtlUninitializeFileLock(&pFCB->FileLock);
+ 
+     if (!vfatFCBIsRoot(pFCB) &&
+diff --git a/drivers/filesystems/vfatfs/finfo.c b/drivers/filesystems/vfatfs/finfo.c
+index 04355b87..1b19c920 100644
+--- a/drivers/filesystems/vfatfs/finfo.c
++++ b/drivers/filesystems/vfatfs/finfo.c
+@@ -1236,10 +1236,11 @@ VfatSetAllocationSizeInformation(
+         return STATUS_INVALID_PARAMETER;
+     }
+ 
++    /* Published paging mappings must survive outstanding I/O. */
++    if (Fcb->PagingMap && NewSize < Fcb->PagingMap->FileSize)
++        return STATUS_INVALID_PARAMETER;
+     if (OldSize == NewSize)
+-    {
+-        return STATUS_SUCCESS;
+-    }
++        return VfatBuildPagingMap(DeviceExt, Fcb);
+ 
+     FirstCluster = vfatDirEntryGetFirstCluster(DeviceExt, &Fcb->entry);
+ 
+@@ -1424,7 +1425,7 @@ VfatSetAllocationSizeInformation(
+ 
+         vfatReportChange(DeviceExt, Fcb, FILE_NOTIFY_CHANGE_SIZE, FILE_ACTION_MODIFIED);
+     }
+-    return STATUS_SUCCESS;
++    return VfatBuildPagingMap(DeviceExt, Fcb);
+ }
+ 
+ /*
+diff --git a/drivers/filesystems/vfatfs/rw.c b/drivers/filesystems/vfatfs/rw.c
+index 709b199e..d12784a9 100644
+--- a/drivers/filesystems/vfatfs/rw.c
++++ b/drivers/filesystems/vfatfs/rw.c
+@@ -30,6 +30,119 @@
+ 
+ /* FUNCTIONS *****************************************************************/
+ 
++/* NT supplies file-relative paging offsets. Resolve the chain before paging
++ * starts: paging I/O must not fault in the FAT cache to find its own backing. */
++NTSTATUS
++VfatBuildPagingMap(PDEVICE_EXTENSION DeviceExt, PVFATFCB Fcb)
++{
++    PVFAT_PAGING_MAP Map, Old;
++    ULONG Count, Cluster, i, Size, ClusterSize;
++    NTSTATUS Status;
++
++    if (!BooleanFlagOn(Fcb->Flags, FCB_IS_PAGE_FILE))
++        return STATUS_SUCCESS;
++    Old = Fcb->PagingMap;
++    Size = Fcb->RFCB.FileSize.LowPart;
++    ClusterSize = DeviceExt->FatInfo.BytesPerCluster;
++    if (Fcb->RFCB.FileSize.HighPart || !ClusterSize)
++        return STATUS_INVALID_PARAMETER;
++    if (Old && Size == Old->FileSize)
++        return STATUS_SUCCESS;
++    if (Old && Size < Old->FileSize)
++        return STATUS_INVALID_PARAMETER;
++    if (!Size)
++        return STATUS_SUCCESS;
++    Count = (Size - 1) / ClusterSize + 1;
++    if (Count > DeviceExt->FatInfo.NumberOfClusters ||
++        Count > (MAXULONG - FIELD_OFFSET(VFAT_PAGING_MAP, Clusters)) / sizeof(ULONG))
++        return STATUS_INVALID_PARAMETER;
++    Map = ExAllocatePoolWithTag(NonPagedPool,
++        FIELD_OFFSET(VFAT_PAGING_MAP, Clusters) + Count * sizeof(ULONG), 'mPfV');
++    if (!Map)
++        return STATUS_INSUFFICIENT_RESOURCES;
++    Map->Previous = Old;
++    Map->FileSize = Size;
++    Map->ClusterCount = Count;
++    Cluster = vfatDirEntryGetFirstCluster(DeviceExt, &Fcb->entry);
++    Status = STATUS_SUCCESS;
++    for (i = 0; i < Count; ++i)
++    {
++        if (Cluster < 2 || Cluster > DeviceExt->FatInfo.NumberOfClusters + 1 ||
++            (Old && i < Old->ClusterCount && Cluster != Old->Clusters[i]))
++        {
++            Status = STATUS_FILE_CORRUPT_ERROR;
++            break;
++        }
++        Map->Clusters[i] = Cluster;
++        Status = GetNextCluster(DeviceExt, Cluster, &Cluster);
++        if (!NT_SUCCESS(Status))
++            break;
++    }
++    if (NT_SUCCESS(Status) && Cluster != 0xffffffff)
++        Status = STATUS_FILE_CORRUPT_ERROR;
++    if (!NT_SUCCESS(Status))
++    {
++        ExFreePool(Map);
++        return Status;
++    }
++    /* Allocation callers hold DirResource. Retaining old immutable maps avoids
++     * freeing a map still in use by an outstanding page read/write on growth. */
++    InterlockedExchangePointer((PVOID volatile *)&Fcb->PagingMap, Map);
++    return STATUS_SUCCESS;
++}
++
++static NTSTATUS
++VfatPagingFileIo(PVFAT_IRP_CONTEXT IrpContext, BOOLEAN Write)
++{
++    PVFATFCB Fcb = IrpContext->FileObject->FsContext;
++    PVFAT_PAGING_MAP Map = Fcb->PagingMap;
++    PDEVICE_EXTENSION DeviceExt = IrpContext->DeviceExt;
++    LARGE_INTEGER Offset = IrpContext->Stack->Parameters.Read.ByteOffset;
++    LARGE_INTEGER DiskOffset;
++    ULONG Length = IrpContext->Stack->Parameters.Read.Length;
++    ULONG ClusterSize = DeviceExt->FatInfo.BytesPerCluster;
++    ULONG Done = 0, Index, Within, Run, Last;
++    NTSTATUS Status = STATUS_SUCCESS;
++
++    IrpContext->Irp->IoStatus.Information = 0;
++    if (!Map || Offset.QuadPart < 0 || Offset.HighPart ||
++        Offset.QuadPart + Length > Map->FileSize ||
++        Offset.LowPart % DeviceExt->FatInfo.BytesPerSector ||
++        Length % DeviceExt->FatInfo.BytesPerSector ||
++        !IrpContext->Irp->MdlAddress)
++    {
++        Status = STATUS_INVALID_PARAMETER;
++        goto Finished;
++    }
++    while (Done < Length)
++    {
++        Index = (Offset.LowPart + Done) / ClusterSize;
++        Within = (Offset.LowPart + Done) % ClusterSize;
++        Run = min(Length - Done, ClusterSize - Within);
++        Last = Index;
++        while (Run < Length - Done && Last + 1 < Map->ClusterCount &&
++               Map->Clusters[Last + 1] == Map->Clusters[Last] + 1)
++        {
++            ++Last;
++            Run += min(Length - Done - Run, ClusterSize);
++        }
++        DiskOffset.QuadPart = ClusterToSector(DeviceExt, Map->Clusters[Index]) *
++                             DeviceExt->FatInfo.BytesPerSector + Within;
++        IrpContext->Irp->IoStatus.Status = STATUS_SUCCESS;
++        if (Write)
++            Status = VfatWriteDiskPartial(IrpContext, &DiskOffset, Run, Done, TRUE);
++        else
++            Status = VfatReadDiskPartial(IrpContext, &DiskOffset, Run, Done, TRUE);
++        if (!NT_SUCCESS(Status))
++            break;
++        Done += Run;
++    }
++Finished:
++    IrpContext->Irp->IoStatus.Status = Status;
++    IrpContext->Irp->IoStatus.Information = Done;
++    return Status;
++}
++
+ /*
+  * Return the next cluster in a FAT chain, possibly extending the chain if
+  * necessary
+@@ -742,15 +855,8 @@ VfatRead(
+     IsVolume = BooleanFlagOn(Fcb->Flags, FCB_IS_VOLUME);
+ 
+     if (BooleanFlagOn(Fcb->Flags, FCB_IS_PAGE_FILE))
+-    {
+-        PFATINFO FatInfo = &IrpContext->DeviceExt->FatInfo;
+-        IrpContext->Stack->Parameters.Read.ByteOffset.QuadPart += FatInfo->dataStart * FatInfo->BytesPerSector;
+-        IoSkipCurrentIrpStackLocation(IrpContext->Irp);
+-        IrpContext->Flags &= ~IRPCONTEXT_COMPLETE;
+-        DPRINT("Read from page file, disk offset %I64x\n", IrpContext->Stack->Parameters.Read.ByteOffset.QuadPart);
+-        Status = IoCallDriver(IrpContext->DeviceExt->StorageDevice, IrpContext->Irp);
+-        return Status;
+-    }
++        return VfatPagingFileIo(IrpContext, FALSE);
++
+ 
+     DPRINT("<%wZ>\n", &Fcb->PathNameU);
+ 
+@@ -911,15 +1017,8 @@ VfatWrite(
+     IsFAT = BooleanFlagOn(Fcb->Flags, FCB_IS_FAT);
+ 
+     if (BooleanFlagOn(Fcb->Flags, FCB_IS_PAGE_FILE))
+-    {
+-        PFATINFO FatInfo = &IrpContext->DeviceExt->FatInfo;
+-        IrpContext->Stack->Parameters.Write.ByteOffset.QuadPart += FatInfo->dataStart * FatInfo->BytesPerSector;
+-        IoSkipCurrentIrpStackLocation(IrpContext->Irp);
+-        IrpContext->Flags &= ~IRPCONTEXT_COMPLETE;
+-        DPRINT("Write to page file, disk offset %I64x\n", IrpContext->Stack->Parameters.Write.ByteOffset.QuadPart);
+-        Status = IoCallDriver(IrpContext->DeviceExt->StorageDevice, IrpContext->Irp);
+-        return Status;
+-    }
++        return VfatPagingFileIo(IrpContext, TRUE);
++
+ 
+     DPRINT("<%wZ>\n", &Fcb->PathNameU);
+ 
+diff --git a/drivers/filesystems/vfatfs/vfat.h b/drivers/filesystems/vfatfs/vfat.h
+index a40fcd82..c7f9e7a3 100644
+--- a/drivers/filesystems/vfatfs/vfat.h
++++ b/drivers/filesystems/vfatfs/vfat.h
+@@ -444,6 +444,15 @@ extern PVFAT_GLOBAL_DATA VfatGlobalData;
+ 
+ #define NODE_TYPE_FCB ((CSHORT)0x0502)
+ 
++/* Immutable resident translation; old maps live until FCB destruction. */
++typedef struct _VFAT_PAGING_MAP
++{
++    struct _VFAT_PAGING_MAP *Previous;
++    ULONG FileSize;
++    ULONG ClusterCount;
++    ULONG Clusters[1];
++} VFAT_PAGING_MAP, *PVFAT_PAGING_MAP;
++
+ typedef struct _VFATFCB
+ {
+     /* FCB header required by ROS/NT */
+@@ -529,6 +538,7 @@ typedef struct _VFATFCB
+     ULONG LastOffset;
+ 
+     struct _VFAT_CLOSE_CONTEXT * CloseContext;
++    PVFAT_PAGING_MAP PagingMap;
+ } VFATFCB, *PVFATFCB;
+ 
+ #define CCB_DELETE_ON_CLOSE     0x0001
+@@ -1242,3 +1252,5 @@ VfatSetVolumeInformation(
+     PVFAT_IRP_CONTEXT IrpContext);
+ 
+ #endif /* _VFATFS_PCH_ */
++
++NTSTATUS VfatBuildPagingMap(PDEVICE_EXTENSION DeviceExt, PVFATFCB Fcb);
