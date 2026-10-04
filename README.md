@@ -8,10 +8,10 @@ host-side test harness.
 
 - Physical console: Windows kernel entry, processor initialization, HAL base
   setup, RTC calibration, clock setup and partition-hook registration and BIOS page allocation passed.
-- Latest physical checkpoint: **XWNV90**. Native low-mapping removal
-  completed; the high HAL display survived a TLB flush. All 512 low PDEs
-  are absent. RAM descriptor scanning, storage drivers and desktop remain
-  beyond the physical-tested stop.
+- Latest physical checkpoint: **XWNS90**. The native RAM descriptor scan
+  completed and checked candidate ranges: 15,359 native pages, 15,357
+  earlier-limit pages and two BIOS-reserved pages. MM allocation, PFN setup,
+  storage drivers and desktop remain beyond the physical-tested stop.
 - Private emulator fixtures have reached a Windows 2000 desktop with NTFS,
   USB input, framebuffer, networking and experimental audio. Those results
   do not establish physical hardware compatibility.
@@ -32,10 +32,10 @@ executes native low-mapping removal and stops before RAM descriptor scanning.
 Both display modes and the native trace pass in xemu; the physical
 checkpoint is photo-confirmed. See the [mapping-transition report](outputs/native-windows-physical-map/REPORT.txt).
 
-The next candidate **XWNS90** completes the native RAM descriptor scan
+The physical-tested **XWNS90** completes the native RAM descriptor scan
 and checks its counts and candidate spans before MM allocation or PFN setup.
-Both display modes and a 45-checkpoint trace pass in xemu; it is uploaded
-with physical testing pending. See the [RAM scan report](outputs/native-windows-physical-scan/REPORT.txt).
+Both display modes and a 45-checkpoint trace pass in xemu; the physical
+checkpoint is photo-confirmed. See the [RAM scan report](outputs/native-windows-physical-scan/REPORT.txt).
 
 See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
 [latest diagnostic](outputs/native-windows-physical-scan/REPORT.txt), and
