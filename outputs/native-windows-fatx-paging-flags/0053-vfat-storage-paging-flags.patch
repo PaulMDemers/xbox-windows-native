@@ -1,0 +1,26 @@
+diff --git a/drivers/filesystems/vfatfs/blockdev.c b/drivers/filesystems/vfatfs/blockdev.c
+index 451861e4..97dd9e13 100644
+--- a/drivers/filesystems/vfatfs/blockdev.c
++++ b/drivers/filesystems/vfatfs/blockdev.c
+@@ -175,6 +175,10 @@ again:
+         return STATUS_UNSUCCESSFUL;
+     }
+ 
++    /* Preserve paging semantics through the storage power/queue path.
++     * Buffer ownership and completion flags belong to this child IRP. */
++    Irp->Flags |= IrpContext->Irp->Flags &
++                  (IRP_NOCACHE | IRP_PAGING_IO | IRP_SYNCHRONOUS_PAGING_IO);
+     Irp->UserIosb = NULL;
+     Irp->Tail.Overlay.Thread = PsGetCurrentThread();
+ 
+@@ -357,6 +361,10 @@ again:
+         return STATUS_UNSUCCESSFUL;
+     }
+ 
++    /* Preserve paging semantics through the storage power/queue path.
++     * Buffer ownership and completion flags belong to this child IRP. */
++    Irp->Flags |= IrpContext->Irp->Flags &
++                  (IRP_NOCACHE | IRP_PAGING_IO | IRP_SYNCHRONOUS_PAGING_IO);
+     Irp->UserIosb = NULL;
+     Irp->Tail.Overlay.Thread = PsGetCurrentThread();
+ 

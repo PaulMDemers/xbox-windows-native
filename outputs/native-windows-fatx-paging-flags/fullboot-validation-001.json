@@ -1,0 +1,97 @@
+{
+  "scope": "Unassisted emulator boot with0053, followed by read-only shutdown diagnosis",
+  "run": "nt5-fatx-boot-paging-flags-001",
+  "fixture": {
+    "scope": "Private emulator full-FATX derivative; replace filesystem driver only. No hardware access.",
+    "source_sha256": "7679ca11d28b3b1e40aa93f3b0609e31a22ce26dde08fc45ff169e33d5a31cfd",
+    "driver_sha256": "ed67822bac991fc9059f369b43b82ef33bf02fa049731e2a1024910eb856cdd1",
+    "cold_readback_equal": true,
+    "check": "No errors were found on the image.\n26948/131072 = 20.56% allocated, 0.00% fragmented, 0.00% compressed clusters\nImage end offset: 1766785024\n",
+    "sha256": "4a9600a57dc552cebbc970725f83b2dcb91bc3106980465a90d7cae647476512",
+    "source_preserved": true,
+    "temporary_raw_removed": true
+  },
+  "cold_integrity": {
+    "scope": "Cold read-only emulator disk audit; no physical access",
+    "source_sha256": "96001b4f8399d38d6e3ca84e8b19d3f97a95eba63ddf2b3522e155fbbd9037d0",
+    "directories": 322,
+    "files": 6552,
+    "allocated_clusters": 51700,
+    "immutable_files_checked": 3452,
+    "structural_errors": [],
+    "immutable_mismatches": [],
+    "paging_file": {
+      "bytes": 100663296,
+      "clusters": 6144,
+      "first_cluster": 45551,
+      "physical_runs": 1
+    },
+    "endurance": {
+      "bytes": 1308,
+      "sha256": "8c27f89965029b9a05dda3e4bc5c65b4a98dbc6efcaaf9558068812967f10831",
+      "passed": true
+    },
+    "source_preserved": true,
+    "passed": true,
+    "temporary_raw_removed": true
+  },
+  "guest_endurance_log": "XWN native Windows endurance probe\nOS major: 5\nOS minor: 0\nOS build: 2195\nPhysical bytes: 62910464\nAvailable bytes before: 2871296\n4 MiB write/flush/reopen/read comparison passed\nDisk test milliseconds: 315\nNotepad input-idle result: 0\nNotepad window: xwn-check.log - Notepad\nGUI response passed\nMemory pass: 1\nUptime milliseconds: 69360\nMemory pass: 2\nUptime milliseconds: 74415\nMemory pass: 3\nUptime milliseconds: 79455\nMemory pass: 4\nUptime milliseconds: 84495\nMemory pass: 5\nUptime milliseconds: 89535\nMemory pass: 6\nUptime milliseconds: 94575\nMemory pass: 7\nUptime milliseconds: 99615\nMemory pass: 8\nUptime milliseconds: 104685\nMemory pass: 9\nUptime milliseconds: 109740\nMemory pass: 10\nUptime milliseconds: 114810\nMemory pass: 11\nUptime milliseconds: 119880\nMemory pass: 12\nUptime milliseconds: 124935\nMemory pass: 13\nUptime milliseconds: 129990\nMemory pass: 14\nUptime milliseconds: 135030\nMemory pass: 15\nUptime milliseconds: 140100\nMemory pass: 16\nUptime milliseconds: 145140\nMemory pass: 17\nUptime milliseconds: 150195\nMemory pass: 18\nUptime milliseconds: 155265\nMemory pass: 19\nUptime milliseconds: 160320\nMemory pass: 20\nUptime milliseconds: 165375\n8 MiB memory retention passed across 20 intervals\nAvailable bytes after: 12963840\nFailures: 0\n",
+  "desktop_storage_memory_passed": true,
+  "keyboard_menu_visually_verified": true,
+  "shutdown_passed": false,
+  "lock_cycle": {
+    "scope": "Read-only emulator lock ownership; no live patches",
+    "threads": [
+      {
+        "process": "winlogon.exe",
+        "thread": "0xfe514a80",
+        "directory": {
+          "address": "0xfe6180d0",
+          "active_count": 1,
+          "flags": "0x80",
+          "owners": [
+            {
+              "thread": "0xffad0800",
+              "count": 1
+            },
+            {
+              "thread": "0x0",
+              "count": 0
+            }
+          ],
+          "exclusive_waiters": 2,
+          "raw": "74a068feecd63efe00000000010080002845afffc8a35afe0008adff0100000000000000000000001e020000000002000000000000000000"
+        },
+        "file_main": {
+          "address": "0xfe531d7c",
+          "active_count": 1,
+          "flags": "0x80",
+          "owners": [
+            {
+              "thread": "0xfe514a80",
+              "count": 1
+            },
+            {
+              "thread": "0x0",
+              "count": 0
+            }
+          ],
+          "exclusive_waiters": 1,
+          "raw": "f41a53feb41d53fe00000000010080000000000008e6b7ff804a51fe01000000000000000000000001000000000001000000000000000000"
+        },
+        "fcb": "0xfe531d48"
+      }
+    ],
+    "volume_wait": {
+      "thread": "0xffad0800",
+      "resource": "0xfe531d7c"
+    },
+    "cycle_confirmed": true
+  },
+  "cleanup": {
+    "completedUtc": "2026-10-04T10:50:21.4559969Z",
+    "scratchDirectory": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\work\\scratch\\windows-native-354991a3441b4c3f95a9f76006d7ea62",
+    "retained": false,
+    "reason": ""
+  }
+}

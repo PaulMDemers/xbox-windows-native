@@ -1,0 +1,41 @@
+{
+  "scope": "Unassisted repeat boot from the first test disk; no Windows or filesystem patches applied through debugger",
+  "run": "nt5-fatx-boot-image-read-003",
+  "source_run": "nt5-fatx-boot-image-read-001",
+  "source_sha256": "949127fd3ca4a7d4ad62671394b8d4cc14a678d495717e5148f0b31c4bc55d45",
+  "cold_integrity": {
+    "scope": "Cold read-only emulator disk audit; no physical access",
+    "source_sha256": "44bf85664ae5a0425f87a465e2582dcac747285249ff2368ddbfab2b48713c48",
+    "directories": 322,
+    "files": 6552,
+    "allocated_clusters": 51696,
+    "immutable_files_checked": 3452,
+    "structural_errors": [],
+    "immutable_mismatches": [],
+    "paging_file": {
+      "bytes": 100663296,
+      "clusters": 6144,
+      "first_cluster": 45551,
+      "physical_runs": 1
+    },
+    "endurance": {
+      "bytes": 1305,
+      "sha256": "d9d8888f33a81d7c1c1b8a8e6e51c0a3fea2992d971cdb806ae134607406f1a8",
+      "passed": true
+    },
+    "source_preserved": true,
+    "passed": true,
+    "temporary_raw_removed": true
+  },
+  "guest_endurance_log": "XWN native Windows endurance probe\nOS major: 5\nOS minor: 0\nOS build: 2195\nPhysical bytes: 62910464\nAvailable bytes before: 4292608\n4 MiB write/flush/reopen/read comparison passed\nDisk test milliseconds: 210\nNotepad input-idle result: 0\nNotepad window: xwn-check.log - Notepad\nGUI response passed\nMemory pass: 1\nUptime milliseconds: 50820\nMemory pass: 2\nUptime milliseconds: 55860\nMemory pass: 3\nUptime milliseconds: 60900\nMemory pass: 4\nUptime milliseconds: 65940\nMemory pass: 5\nUptime milliseconds: 70980\nMemory pass: 6\nUptime milliseconds: 76020\nMemory pass: 7\nUptime milliseconds: 81060\nMemory pass: 8\nUptime milliseconds: 86115\nMemory pass: 9\nUptime milliseconds: 91170\nMemory pass: 10\nUptime milliseconds: 96225\nMemory pass: 11\nUptime milliseconds: 101280\nMemory pass: 12\nUptime milliseconds: 106335\nMemory pass: 13\nUptime milliseconds: 111390\nMemory pass: 14\nUptime milliseconds: 116445\nMemory pass: 15\nUptime milliseconds: 121500\nMemory pass: 16\nUptime milliseconds: 126555\nMemory pass: 17\nUptime milliseconds: 131610\nMemory pass: 18\nUptime milliseconds: 136665\nMemory pass: 19\nUptime milliseconds: 141705\nMemory pass: 20\nUptime milliseconds: 146760\n8 MiB memory retention passed across 20 intervals\nAvailable bytes after: 12587008\nFailures: 0\n",
+  "desktop_and_endurance_passed": true,
+  "shutdown_passed": false,
+  "shutdown_observation": "Shell exited, but two threads waited for pagefile reads through435seconds. Child storage IRPs lack parent paging flags. See paging-flags/shutdown-paging-flags-trace.json. First run flush lock inversion was not reproduced in this run.",
+  "debugging": "Read-only register, stack and RAM inspection after the shutdown stall; no live patches.",
+  "cleanup": {
+    "completedUtc": "2026-10-04T10:42:33.6353000Z",
+    "scratchDirectory": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\work\\scratch\\windows-native-c91b2e48765c4c37a361839d49fe90f7",
+    "retained": false,
+    "reason": ""
+  }
+}

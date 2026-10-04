@@ -24,4 +24,8 @@ Shutdown did NOT complete: shell exited but registry flushing waited on VFAT
 resources through the300second harness deadline. The run was then stopped.
 Thread stacks show concurrent volume flush (DirResource -> FCB MainResource)
 and file flush (FCB MainResource -> DirResource), suggesting lock inversion.
-This needs live resource-owner confirmation. Repeat-boot testing remains pending.
+This needs live resource-owner confirmation. Repeat boot003 from the first test disk passed desktop/endurance and the cold
+integrity audit again. Shutdown stalled in a different path: two pagefile reads
+remain queued with missing child paging flags. See repeat-validation-003.json
+and the separate paging-flags investigation. Widescreen run002 failed at a host
+capture before Windows launch; it supplies no Windows validation.

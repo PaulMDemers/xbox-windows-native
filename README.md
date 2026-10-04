@@ -135,8 +135,10 @@ on a private FATX system volume. The paging-file offset repair now passes a
 full desktop/endurance run: 4 MiB disk verification, 8 MiB memory retention and GUI
 response, with a clean cold filesystem audit and 3,452 unchanged system binaries.
 The fragmented paging-file test also passes across 384 disk regions, with an
-intact interleaved guard file. These are bounded emulator results; repeat-boot
-and physical validation remain. See the [paging repair](outputs/native-windows-fatx-paging/REPORT.txt)
+intact interleaved guard file. Repeat boot and USB keyboard/mouse input also
+pass after the image-paging tail fix. Shutdown still stalls and is under
+investigation; all of these results are emulator-only. See the
+[image-paging report](outputs/native-windows-fatx-image-read/REPORT.txt). See the [paging repair](outputs/native-windows-fatx-paging/REPORT.txt)
 and its [source manifest](outputs/native-windows-fatx-paging/patch-check-0051.json).
 The original NTFS emulator desktop fixture is preserved. The focused mapped-file extension test now passes, including rejection
 of mapped-file truncation. See the [FATX boot report](outputs/native-windows-fatx-boot/REPORT.txt)

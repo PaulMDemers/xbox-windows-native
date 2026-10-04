@@ -1,0 +1,45 @@
+{
+  "scope": "Read-only emulator debugging after repeat FATX boot; no live patches",
+  "run": "nt5-fatx-boot-image-read-003",
+  "parent_waits": [
+    {
+      "thread": "0xfe514340",
+      "process": "winlogon.exe",
+      "context": "0xffafb208",
+      "ref_count": 1,
+      "event": "0000040000000000ac4351feac4351fe",
+      "parent_flags": "0x43",
+      "path": "\\pagefile.sys",
+      "irp_context": "6839b6ff188061fed08061fe0300000000000000000000000000000000000000b03ab6ff03000000e8bd53fe010000000000040000000000ac4351feac4351fe0000000000000000"
+    },
+    {
+      "thread": "0xffb6d020",
+      "process": "svchost.exe",
+      "context": "0xffb54268",
+      "ref_count": 1,
+      "event": "00000400000000008cd0b6ff8cd0b6ff",
+      "parent_flags": "0x43",
+      "path": "\\pagefile.sys",
+      "irp_context": "48eab6ff188061fed08061fe030000000000000000000000000000000000000090ebb6ff03000000e8bd53fe0100000000000400000000008cd0b6ff8cd0b6ff00000000d01266fe"
+    }
+  ],
+  "child_irps": [
+    {
+      "context": "0xffafb208",
+      "physical_irp": "0x19c8a8",
+      "size": 328,
+      "flags": "0x0",
+      "stack_record": "030000e1001000000000000000404f2d0000000050cd65fe0000000000d043fe08b2afff",
+      "irp_header": "0600480108f0b3ff0000000000000000b8084dfeb8084dfe0000000000000000000006040000000c0000000000000000000000000000000000000000000000000000000000000000a09b6c0000000000404351fe00000000000000000000000084094dfe000000000000000000000000"
+    },
+    {
+      "context": "0xffb54268",
+      "physical_irp": "0x2f2dd88",
+      "size": 328,
+      "flags": "0x0",
+      "stack_record": "030000e1001000000000000000700b2e0000000050cd65fe0000000000d043fe6842b5ff",
+      "irp_header": "06004801c87cb3ff0000000000000000984db1ff984db1ff0000000000000000000006040000000c00000000000000000000000000000000000000000000000094e065fe68a650feb8f96c000100000020d0b6ff000000000000000000000000644eb1ff000000000000000000000000"
+    }
+  ],
+  "interpretation": "Two threads await pagefile reads. Original IRPs have flags0x43; each outstanding storage child has flags0, refcount1 and unsignaled completion event. Child flags omission is proven; shutdown causality is a hypothesis pending rebuilt validation."
+}

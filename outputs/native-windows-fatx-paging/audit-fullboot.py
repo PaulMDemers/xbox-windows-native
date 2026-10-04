@@ -5,7 +5,7 @@ p = argparse.ArgumentParser()
 p.add_argument('--run', required=True)
 p.add_argument('--driver-manifest', default='outputs/native-windows-fatx-paging/fatx-full-paging-disk-001.json')
 a = p.parse_args()
-assert re.fullmatch(r'nt5-fatx-boot-(?:paging|image-read)-[0-9]+', a.run)
+assert re.fullmatch(r'nt5-fatx-boot-(?:paging|image-read|paging-flags)-[0-9]+', a.run)
 ws = pathlib.Path('/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility')
 root = pathlib.Path('/home/paul/xbox-windows-native')
 run = ws / 'work/runs' / a.run

@@ -1,0 +1,23 @@
+Native storage paging flags, 2026-10-04
+
+Emulator only. 0052 fixes USB image loading and passes desktop/input/endurance,
+but shutdown waits. In repeat boot003, winlogon and svchost await pagefile reads
+with parent flags0x43, while both child disk IRPs have flags0. A read-only RAM
+scan correlates completion contexts, 328byte IRP headers and stack records.
+Each parent context has refcount1 and an unsignaled event. No live patches.
+
+0053 propagates only NOCACHE, PAGING_IO and SYNCHRONOUS_PAGING_IO to the child
+read/write IRPs. Buffer ownership/completion flags remain the child's own.
+This preserves native storage paging semantics; its impact on shutdown is not
+yet validated. A separate flush lock-order issue seen in first boot001 remains
+open; it did not reproduce as the blocking stack in repeat003.
+
+Build and source-chain checks pass; all 126 imports resolve. Rebuilt run001
+passes desktop, keyboard, 4 MiB disk comparison, 8 MiB retention and cold file
+integrity (3,452 system binaries unchanged). Shutdown still fails. Read-only
+resource inspection confirms the earlier independent lock cycle: volume flush
+thread ffad0800 owns DirResource fe6180d0 and waits for MainResource fe531d7c;
+Winlogon fe514a80 owns that MainResource and waits for DirResource. No live
+patches were applied. Missing paging flags are repaired, but this run cannot
+establish their independent effect on shutdown because the lock cycle blocks it.
+See fullboot-validation-001.json. Fixing that cycle is the next step.
