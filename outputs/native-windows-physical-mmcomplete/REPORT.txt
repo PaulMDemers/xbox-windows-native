@@ -1,0 +1,48 @@
+XWN290 - complete memory-manager phase zero (patch 0045)
+
+Emulator-only candidate. Physical predecessor XWNW90 is photo-confirmed.
+Hardware is unavailable during the October 4 overnight emulator session.
+Nothing from this kit has been uploaded to or launched on the physical Xbox.
+
+The native kernel now continues after process address-space initialization,
+relocates the color lists into nonpaged pool, releases the old backing page,
+finishes MiInitMachineDependent, reloads the boot images, initializes system
+cache and paged pool, and returns TRUE from MmInitSystem phase zero.
+The bounded stop is RVA 1564c3, before the native epilogue returns to executive
+initialization. Storage and boot-driver entry remain beyond this stop.
+
+The XWNW guard returns only after validating the prior physical-tested
+process/thread, page-table, PFN and working-set state. It restores its hook
+and preserves the native registers and flags. The final guard checks native
+BOOLEAN success, the saved parent frame/caller and CR3, complete free-page
+and color-list membership, PFN references for all 20 loaded images, the
+loader block, hive and live frame, page-directory backing and interrupt state.
+It restores all seven temporary hooks and flushes the TLB before displaying
+success. MMCOMPLETE defaults off and requires PROCESSINIT.
+
+Host validation independently traverses PFN and color lists and verifies all
+1388 live imports against exports using original PE import names. After
+MiReloadBootLoadedDrivers, lookup thunks can still refer to the original
+image locations. The earlier loader-only thunk parser is not applicable.
+Loader memory descriptors are historical input extents after native MM takes
+ownership; current allocation safety is checked against native PFN/free lists.
+Kernel, HAL and boot-video executable sections match their relocated inputs
+with only the existing documented loader/NT initialization mutations.
+
+Both 1024x576 and 640x480 boots pass without debugger register restoration.
+Observed result: native TRUE (1), 31fe free pages (12798), relocated color
+lists at fe6a6008, all 20 loaded images protected.
+A 12-checkpoint native trace, five injected-error tests, and old-HAL/changed-
+kernel pairing rejection passed. Ordinary HAL/loader builds and both parent-
+option rejection checks passed. See validation.json for run and artifact hashes.
+
+Exploratory debugger runs separately reached the native phase-1 thread after
+MM, object-manager and security initialization. They did not reach a boot
+bitmap and are not a reproducible later boot milestone. Further investigation
+will preserve their distinction from this unassisted bounded candidate.
+
+Build: Invoke-BuildHal.ps1, copy artifacts/halxboxnt5.dll into package/loader,
+then Invoke-Build.ps1. Reuse the preserved paging-v3 first-stage loader.
+prepare-fixture.py builds isolated good/bad-hal/bad-kernel emulator disks.
+run-validation.py operates only on loopback ports and owned xemu snapshots.
+No emulator disk is intended to replace the physical Xbox disk.

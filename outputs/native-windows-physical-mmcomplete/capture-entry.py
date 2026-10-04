@@ -1,0 +1,296 @@
+"""Read own paused guest memory, decode the pre-entry record, discard raw RAM."""
+import argparse,functools,hashlib,json,pathlib,re,struct,sys
+out=pathlib.Path(__file__).resolve().parent
+sys.path.insert(0,str(out.parent/'native-windows-prebuild'))
+from monitor_capture import command, acquire_monitor_lock
+p=argparse.ArgumentParser();p.add_argument('--port',type=int,required=True);p.add_argument('--output',type=pathlib.Path,required=True);p.add_argument('--unarmed',action='store_true');p.add_argument('--kernel-mismatch',action='store_true');a=p.parse_args();preentry=a.unarmed or a.kernel_mismatch
+raw=a.output.with_suffix('.ram')
+lock=acquire_monitor_lock(a.port)
+vm_status = command(a.port,'info status')
+was_running = 'VM status: running' in vm_status
+command(a.port,'stop')
+try:
+ regs=command(a.port,'info registers')
+ command(a.port,'pmemsave 0 67108864 '+json.dumps(raw.resolve().as_posix()))
+ ram=raw.read_bytes();assert len(ram)==64*1024*1024
+ matches=[];start=0
+ while True:
+  pos=ram.find(b'XWNPPNT5',start)
+  if pos<0:break
+  words=struct.unpack_from('<23I',ram,pos)
+  if words[2]==1 and words[3] in [30,40,99]:matches.append((pos,words))
+  start=pos+1
+ report={'scope':'Memory manager phase zero completed; executive phase zero and partition handlers must not have completed. Boot-driver and memory-descriptor layouts are decoded from pinned loader source, not the kernel PDB.','registers':regs,'record_candidates':[{'physical_address':hex(pos),'words':list(words)} for pos,words in matches]}
+ if not matches:
+  report['status']='no_completed_record'
+ else:
+  assert len(matches)==1
+  pos,w=matches[0];cr3=w[8];assert w[3] in [40,99]
+  def u32pa(addr):assert 0<=addr<=len(ram)-4;return struct.unpack_from('<I',ram,addr)[0]
+  def pa(va):
+   pde=u32pa((cr3&~4095)+4*(va>>22));assert pde&1,hex(va)
+   assert not pde&128,'Unexpected large page'
+   pte=u32pa((pde&~4095)+4*((va>>12)&1023));assert pte&1,hex(va)
+   return (pte&~4095)+(va&4095)
+  def read(va,size):
+   b=bytearray()
+   while size:
+    n=min(size,4096-(va&4095));at=pa(va);assert at+n<=len(ram);b+=ram[at:at+n];size-=n;va+=n
+   return bytes(b)
+  def u32(va):return struct.unpack('<I',read(va,4))[0]
+  def uni(va):
+   length,maximum,buf=struct.unpack('<HHI',read(va,8));assert length<=maximum and length<4096
+   return read(buf,length).decode('utf-16le') if length else ''
+  def asciiz(va):
+   b=bytearray()
+   for i in range(1024):
+    c=read(va+i,1)
+    if c==b'\0':return b.decode('ascii')
+    b+=c
+   raise AssertionError('Unterminated string')
+  def walk(head):
+   node=u32(head);prev=head;seen=set()
+   while node!=head:
+    assert node not in seen and len(seen)<256;seen.add(node)
+    assert u32(node+4)==prev,'Broken backlink'
+    yield node
+    prev=node;node=u32(node)
+   assert u32(head+4)==prev
+  lpb=w[5];assert pa(lpb)==w[4]
+  layouts=json.loads((out.parent/'native-windows-nt5-kernel/handoff-pdb-layouts.json').read_text())
+  df=layouts['_LDR_DATA_TABLE_ENTRY']['fields'];offset=lambda n:df[n]['offset']
+  modules=[]
+  for node in walk(lpb):
+   dte=node-offset('InLoadOrderLinks');base=u32(dte+offset('DllBase'));size=u32(dte+offset('SizeOfImage'))
+   assert read(base,2)==b'MZ'
+   modules.append({'dte':hex(dte),'name':uni(dte+offset('BaseDllName')),'base':hex(base),'size':size,'entry':hex(u32(dte+offset('EntryPoint')))})
+  drivers=[{'file':uni(n+8),'registry':uni(n+16),'dte':hex(u32(n+24))} for n in walk(lpb+16)]
+  descriptors=[{'type':u32(n+8),'base_page':u32(n+12),'pages':u32(n+16)} for n in walk(lpb+8)]
+  assert len(modules)==w[13] and len(drivers)==w[14] and len(descriptors)==w[15]+(0 if preentry else 2)
+  names={m['name'].lower() for m in modules};assert {'ntoskrnl.exe','hal.dll','bootvid.dll'}<=names
+  assert all(d['dte'] in {m['dte'] for m in modules} for d in drivers)
+  assert w[7]&0x80000000 and w[9:12]==(40,5,0)
+  ext=u32(lpb+88);assert u32(ext)==40
+  nls=u32(lpb+72)
+  nls_pointers=[u32(nls+i*4) for i in range(3)]
+  assert all(read(v,2) for v in nls_pointers)
+  assert read(u32(lpb+44),4)==b'regf'
+  assert read(w[6],1)
+  # Resolve every mapped import against mapped exports, including forwarders.
+  module_map={m['name'].lower():m for m in modules}
+  def directory(m,index):
+   base=int(m['base'],16);nt=base+u32(base+60)
+   assert read(nt,4)==b'PE\0\0' and read(nt+24,2)==b'\x0b\x01'
+   return base,u32(nt+24+96+index*8),u32(nt+24+100+index*8)
+  @functools.lru_cache(maxsize=None)
+  def export(lib,symbol,depth=0):
+   assert depth<8
+   if lib.lower() not in module_map:
+    lib=next(n for n in module_map if n.rsplit('.',1)[0]==lib.lower().rsplit('.',1)[0])
+   m=module_map[lib.lower()];base,rva,size=directory(m,0);assert rva
+   e=base+rva;count=u32(e+20);functions=base+u32(e+28)
+   if isinstance(symbol,int):index=symbol-u32(e+16)
+   else:
+    n=u32(e+24);names=base+u32(e+32);ordinals=base+u32(e+36);index=None
+    for j in range(n):
+     if asciiz(base+u32(names+j*4))==symbol:
+      index=struct.unpack('<H',read(ordinals+j*2,2))[0];break
+    assert index is not None,(lib,symbol)
+   assert 0<=index<count,(lib,symbol,index,count)
+   target=u32(functions+index*4);assert target
+   if rva<=target<rva+size:
+    forward=asciiz(base+target);other,name=forward.rsplit('.',1)
+    return export(other,int(name[1:]) if name.startswith('#') else name,depth+1)
+   return base+target
+  sys.path.insert(0,str(out.parents[1]/'work/python-packages'))
+  import pefile
+  sources={p.name.lower():p for p in (out/'package/WINNT').rglob('*') if p.is_file()}
+  sources['hal.dll']=out/'package/loader/halxboxnt5.dll'
+  if a.unarmed:sources['hal.dll']=out.parent/'native-windows-physical-processinit/package/loader/halxboxnt5.dll'
+  sources['bootvid.dll']=out/'package/loader/xboxbvid.dll'
+  report['modules']=modules
+  record_at=ram.find(b'XWN2PNT5')
+  if record_at>=0:report['early_record']=list(struct.unpack_from('<352I',ram,record_at))
+  a.output.write_text(json.dumps(report,indent=2)+'\n')
+  from PIL import Image
+  Image.frombytes('RGB',(w[20],w[21]),ram[w[17]:w[17]+w[18]],'raw','BGRX',w[22],1).save(a.output.with_name('unverified-framebuffer.png'))
+  bindings=[]
+  for m in modules:
+   base=int(m['base'],16);source=sources[m['name'].lower()];original_pe=pefile.PE(str(source))
+   for imp in getattr(original_pe,'DIRECTORY_ENTRY_IMPORT',[]):
+    lib=imp.dll.decode();count=0
+    for j,symbol in enumerate(imp.imports):
+     sym=symbol.name.decode() if symbol.name else symbol.ordinal
+     expected=export(lib,sym);actual=u32(base+imp.struct.FirstThunk+j*4)
+     assert actual==expected,(m['name'],lib,sym,hex(actual),hex(expected))
+     count+=1
+    bindings.append({'source':m['name'],'target':lib,'resolved_entries':count,'source_pe_sha256':hashlib.sha256(source.read_bytes()).hexdigest()})
+  report['mapped_import_bindings']=bindings
+  report['mapped_import_entries_verified']=sum(b['resolved_entries'] for b in bindings)
+  # HAL image includes relocations; compare its mapped .text with relocated input.
+  sys.path.insert(0,str(out.parents[1]/'work/python-packages'))
+  import pefile
+  integrity=[]
+  for name,file in [('hal.dll',(out.parent/'native-windows-physical-processinit/package/loader/halxboxnt5.dll' if a.unarmed else out/'package/loader/halxboxnt5.dll')),('bootvid.dll',out/'package/loader/xboxbvid.dll'),('ntoskrnl.exe',out.parent/'native-windows-nt5/installed-files/WINNT/system32/ntoskrnl.exe')]:
+   m=module_map[name];base=int(m['base'],16);pe=pefile.PE(str(file));pe.relocate_image(base)
+   image=bytearray(pe.get_memory_mapped_image());sections=[]
+   # NT5 places loader-modified import tables in an executable section.
+   # Reproduce only the documented binding edits from the original PE inputs.
+   for imp in getattr(pe,'DIRECTORY_ENTRY_IMPORT',[]):
+    lib=imp.dll.decode()
+    for j,symbol in enumerate(imp.imports):
+     sym=symbol.name.decode() if symbol.name else symbol.ordinal
+     struct.pack_into('<I',image,imp.struct.FirstThunk+j*4,export(lib,sym))
+     if symbol.name:
+      slot=imp.struct.OriginalFirstThunk+j*4
+      original=struct.unpack_from('<I',image,slot)[0]
+      struct.pack_into('<I',image,slot,base+original)
+   if name=='ntoskrnl.exe' and not preentry:
+    # Supplied 2195.7376 startup routine RVA 152894 swaps IDT high-offset
+    # and selector words for all 256 template entries before first HAL call.
+    assert hashlib.sha256(file.read_bytes()).hexdigest()=='84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152'
+    for entry in range(256):
+     pos=0x151918+entry*8
+     image[pos+2:pos+4],image[pos+6:pos+8]=image[pos+6:pos+8],image[pos+2:pos+4]
+    report['expected_kernel_mutation']={'routine_rva':'0x152894','idt_template_rva':'0x151918','entries':256,'operation':'swap 16-bit fields at offsets 2 and 6'}
+   if name=='ntoskrnl.exe' and not preentry:
+    registry=json.loads((out/'registry-init-inputs.json').read_text())
+    assert hashlib.sha256((out/'package/WINNT/system32/config/system').read_bytes()).hexdigest()==registry['hive_sha256']
+    values=registry['values'];assert values['Select\\Current']['bytes']=='01000000'
+    updates=[]
+    for suffix,buffer,length,kind in [('Nls\\Language\\Default',0x164f68,0x164f80,0x164f84),('Nls\\Language\\InstallLanguage',0x164f88,0x164fa0,0x164fa4)]:
+     value=values['ControlSet001\\Control\\'+suffix];data=bytes.fromhex(value['bytes']);assert value['type']==1 and len(data)==10
+     image[buffer:buffer+len(data)]=data
+     struct.pack_into('<I',image,length,len(data));struct.pack_into('<I',image,kind,value['type'])
+     updates.append({'source':suffix,'buffer_rva':hex(buffer),'data':data.hex(),'length':len(data),'type':value['type']})
+    suite=values['ControlSet001\\Control\\ProductOptions\\ProductSuite'];assert suite=={'type':7,'bytes':'0000'}
+    struct.pack_into('<II',image,0x164fa8,2,7)
+    assert values['ControlSet001\\Control\\Session Manager\\Memory Management\\VerifyDrivers'] is None
+    struct.pack_into('<I',image,0x164f54,0xffffffff)
+    report['expected_registry_initialization_mutations']={'routine':'CmGetSystemControlValues','language_buffers':updates,'suite_length_type':[2,7],'missing_verify_drivers_length':'0xffffffff','scope':'Only named INIT data fields are reproduced; no instruction range is ignored.'}
+   for sec in pe.sections:
+    if sec.Characteristics&0x20000000:
+     start=sec.VirtualAddress;size=sec.Misc_VirtualSize
+     expected=image[start:start+size];actual=read(base+start,size)
+     if actual!=expected:
+      differences=[{'rva':hex(start+i),'actual':aa,'expected':bb} for i,(aa,bb) in enumerate(zip(actual,expected)) if aa!=bb]
+      a.output.with_name('code-differences.json').write_text(json.dumps({'module':name,'section':sec.Name.rstrip(b'\0').decode(),'differences':differences},indent=2)+'\n')
+      from PIL import Image
+      Image.frombytes('RGB',(w[20],w[21]),ram[w[17]:w[17]+w[18]],'raw','BGRX',w[22],1).save(a.output.with_name('unverified-framebuffer.png'))
+     assert actual==expected,(name,sec.Name,[(hex(start+i),aa,bb) for i,(aa,bb) in enumerate(zip(actual,expected)) if aa!=bb][:16])
+     sections.append(sec.Name.rstrip(b'\0').decode())
+   integrity.append({'module':name,'source_sha256':hashlib.sha256(file.read_bytes()).hexdigest(),'relocated_executable_sections_equal_after_expected_import_binding':sections})
+  report['mapped_code_integrity']=integrity
+  assert w[3]==99 and w[19]==0x50414745 and 'HLT=1' in regs
+  assert len(modules)==20 and len(drivers)==14 and w[12]==1810432
+  assert tuple(w[20:23]) in [(640,480,2560),(1024,576,4096)]
+  assert w[18]==w[21]*w[22] and 0x03c00000<=w[17]<=0x04000000-w[18]
+  assert (u32pa((cr3&~4095)+768*4)&~4095)==(cr3&~4095)
+  fb_start=w[17]//4096;fb_end=(w[17]+w[18])//4096
+  assert any(d['type']==6 and d['base_page']<=fb_start and d['base_page']+d['pages']>=fb_end for d in descriptors)
+  for address in range(w[17],w[17]+w[18],4096):
+   if preentry:
+    assert pa(address)==address
+   else:
+    assert not u32pa((cr3&~4095)+4*(address>>22))&1
+   assert pa(address+0x80000000)==address
+   pde=u32pa((cr3&~4095)+4*((address+0x80000000)>>22));pte=u32pa((pde&~4095)+4*((address>>12)&1023))
+   assert pte&0x1b==0x1b
+  protected=[(pa(int(m['base'],16)),pa(int(m['base'],16))+m['size']) for m in modules]
+  protected.extend([(pa(u32(lpb+44)),pa(u32(lpb+44))+w[12]),(w[17],w[17]+w[18]),(0,4096)])
+  display_pt=u32pa((cr3&~4095)+4*((w[17]+0x80000000)>>22))&~4095
+  protected.extend([(cr3&~4095,(cr3&~4095)+4096),(display_pt,display_pt+4096)])
+  for d in descriptors:
+   if d['type']==2:
+    start=d['base_page']*4096;end=start+d['pages']*4096
+    # After native MM starts, these loader descriptors describe the input
+    # extents, not the allocator's live free pages. Relocated images may
+    # occupy their pages; the PFN/free-list audit below checks current use.
+    if preentry:assert all(end<=lo or start>=hi for lo,hi in protected),d
+  report['framebuffer_mapping']={'width':w[20],'height':w[21],'pitch':w[22],'pa':hex(w[17]),'bytes':w[18],'high_alias_pages_verified':w[18]//4096,'identity_mapping_present':preentry,'uncached_write_through':True,'firmware_reserved':True}
+  from PIL import Image
+  display_pixels=ram[w[17]:w[17]+w[18]]
+  display_path=a.output.with_name('audited-framebuffer.png')
+  Image.frombytes('RGB',(w[20],w[21]),display_pixels,'raw','BGRX',w[22],1).save(display_path)
+  report['framebuffer_image']={'file':display_path.name,'method':'audited guest RAM using record dimensions and pitch','sha256':hashlib.sha256(display_path.read_bytes()).hexdigest()}
+  report['loader_descriptors_are_historical_input_extents']=not preentry
+  expected_page=0
+  for d in descriptors:
+   assert d['base_page']==expected_page and d['pages']>0,d
+   expected_page+=d['pages']
+  assert expected_page==0x4000,hex(expected_page)
+  report['descriptors_and_native_allocations_cover_64_mib']=True
+  report['committed_native_allocation']={'base_page':0x160,'pages':623} if not preentry else None
+  report['kernel_entered']=False
+
+  report.update(status='physical_paging_halt_verified' if w[3]==99 else 'guest_validation_failed',lpb_va=hex(lpb),kernel_entry=hex(w[6]),cr0=hex(w[7]),cr3=hex(w[8]),extension={'size':w[9],'version':[w[10],w[11]],'bytes':read(ext,40).hex()},hive_bytes=w[12],modules=modules,boot_drivers=drivers,memory_descriptors=descriptors,nls_pointers=[hex(v) for v in nls_pointers],paths={n:asciiz(u32(lpb+o)) for n,o in [('arc_boot',52),('arc_hal',56),('nt_boot',60),('nt_hal',64),('options',68)]},lists_have_valid_backlinks=True,raw_ram_sha256=hashlib.sha256(ram).hexdigest())
+ entry_matches=[]
+ # Search the separate early-entry record, including failure state.
+ at=0
+ while True:
+  at=ram.find(b'XWNePNT5' if preentry else b'XWN2PNT5',at)
+  if at<0:break
+  e=struct.unpack_from('<96I' if preentry else '<352I',ram,at)
+  if e[0]==(0x654e5758 if preentry else 0x324e5758) and e[1]==0x35544e50 and e[2]==1 and e[3] in (30,40,90):entry_matches.append((at,e))
+  at+=1
+ if len(entry_matches)!=1:
+  report['status']='no_unique_mi_checkpoint'
+  report['entry_record_candidates']=[{'pa':hex(at),'words':list(words)} for at,words in entry_matches]
+  a.output.write_text(json.dumps(report,indent=2)+'\n')
+ assert len(entry_matches)==1,entry_matches
+ entry_pa,e=entry_matches[0]
+ report['entry_record']={'pa':hex(entry_pa),'words':list(e)}
+ if e[3]==90:
+  report['status']='mm_phase0_verified'
+  report['kernel_entered']=True
+  report['entry_record']={'pa':hex(entry_pa),'words':list(e)}
+  assert e[24]==230 and e[80]==e[6]+0x1564c3 and e[320]&255==1
+  assert e[308]==e[309]==e[326]==e[328]==e[335]==1
+  assert e[87]==1 and e[83]==e[311] and e[89]==e[310]==e[321]
+  assert e[90:94]==(512,1,e[20]+0x80000000,1)
+  assert pa(e[95])==entry_pa and e[85]==e[11]
+  assert e[329]==1 and e[330]==65535 and e[327]==20
+  for rva,expected in [(0x1564c3,'5f5e5bc9c20c0055'),(0x159cdc,'837de401756ea1b8'),(0x1596f3,'8b45088b400ce98e'),(0x158439,'8b721003720c3975')]:
+   assert read(e[6]+rva,8)==bytes.fromhex(expected),hex(rva)
+  # Independently traverse native PFN/free/color lists; do not trust guest counts.
+  K=e[6];head=struct.unpack('<4I',read(K+0x72768,16));pfn=u32(K+0x81ab0)
+  assert pfn==0xffb85000 and head[0]==u32(K+0x81bf8)==e[322]
+  free=set();prev=0xffffffff;at=head[2]
+  while at!=0xffffffff:
+   assert at<0x3c00 and at not in free
+   row=struct.unpack('<6I',read(pfn+at*24,24));assert row[2]==prev and row[3]>>16==0 and (row[3]>>8)&7==1
+   free.add(at);prev=at;at=row[0]
+  assert len(free)==head[0] and prev==head[3]
+  colors=u32(K+0x811b8);assert colors==e[323] and colors+256==u32(K+0x811bc)==e[324]
+  assert 0xfe4af000<=colors<0xfe6a7000
+  color_words=struct.unpack('<128I',read(colors,512));seen=set()
+  for i in range(64):
+   at=color_words[i*2];prev=0xffffffff
+   while at!=0xffffffff:
+    assert i>=32 and at in free and at not in seen and at&31==i&31
+    seen.add(at);prev=at;at=u32(pfn+at*24+16)
+   if prev!=0xffffffff:assert color_words[i*2+1]==pfn+prev*24
+  assert seen==free and len(seen)==e[325]
+  for m in modules:
+   base=int(m['base'],16)
+   for va in range(base&~4095,(base+m['size']+4095)&~4095,4096):
+    page=pa(va)>>12;row=struct.unpack('<6I',read(pfn+page*24,24))
+    assert page not in free and row[3]>>16 and (row[3]>>8)&7==6
+  assert all(not u32pa((cr3&~4095)+i*4)&1 for i in range(512))
+  assert u32(0xc03fef7c)==0 # Old color backing was unmapped and reclaimed.
+  report['mm_completion']={'native_boolean':e[320]&255,'free_pages':len(free),'relocated_colors':hex(colors),'color_membership_matches_free_list':True,'all_loaded_images_protected':True,'native_frame_verified':True,'code_and_imports_verified':True,'old_color_mapping_removed':True}
+  report['executive_phase0_completed']=False
+  report['partition_handlers_entered']=False
+  report['physical_tested']=False
+ elif e[3]==40 and e[22] in (1,3):
+  report['status']='kernel_contract_rejected_before_entry' if e[22]==3 else 'unarmed_hal_rejected_before_kernel'
+  report['kernel_entered']=False
+ else:raise AssertionError('Unexpected entry record state: '+str(e))
+ report['vm_status_before_capture']=vm_status.split('VM status:')[-1].splitlines()[0].strip()
+ a.output.write_text(json.dumps(report,indent=2)+'\n')
+ print(report['status'])
+finally:
+ raw.unlink(missing_ok=True)
+ try:
+  if was_running:command(a.port,'cont')
+ finally:lock.close()

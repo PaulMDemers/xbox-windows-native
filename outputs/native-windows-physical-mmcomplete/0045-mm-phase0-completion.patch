@@ -1,0 +1,350 @@
+diff --git a/boot/freeldr/freeldr/ntldr/xwnentryprobe.h b/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
+index c7a08f9f..e7bb8adf 100644
+--- a/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
++++ b/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
+@@ -1,6 +1,10 @@
+ /* Explicit early-kernel diagnostic. Included only in the opt-in rosload. */
+ #ifdef XBOX_NATIVE_FATX_PHASE0_PREFLIGHT
+-#if defined(XBOX_NATIVE_FATX_PROCESSINIT_PREFLIGHT)
++#if defined(XBOX_NATIVE_FATX_MMCOMPLETE_PREFLIGHT)
++static volatile ULONG XwnEntryRecord[96]={0x654e5758,0x35544e50,1,0};
++#define XWN_ARM_SIGNATURE 0x4d304e54
++#define XWN_ARM_REPLY 0x4d304854
++#elif defined(XBOX_NATIVE_FATX_PROCESSINIT_PREFLIGHT)
+ static volatile ULONG XwnEntryRecord[96] = {0x644e5758,0x35544e50,1,0};
+ #define XWN_ARM_SIGNATURE 0x57494e54
+ #define XWN_ARM_REPLY 0x57494854
+@@ -380,7 +384,9 @@ static DECLSPEC_NORETURN VOID XwnEnterKernelProbe(PLOADER_PARAMETER_BLOCK Loader
+ #endif
+ #endif
+     XwnPagingClear();
+-#if defined(XBOX_NATIVE_FATX_PROCESSINIT_PREFLIGHT)
++#if defined(XBOX_NATIVE_FATX_MMCOMPLETE_PREFLIGHT)
++    XwnPagingText(7,"XWN230: Entering Windows; MM phase-zero stop armed.",0xFFFFFF00);
++#elif defined(XBOX_NATIVE_FATX_PROCESSINIT_PREFLIGHT)
+     XwnPagingText(7,"XWNW30: Entering Windows; process-init stop armed.",0xFFFFFF00);
+ #elif defined(XBOX_NATIVE_FATX_PROCESSPAGES_PREFLIGHT)
+     XwnPagingText(7, "XWNZ30: Entering Windows; process-page stop armed.", 0xFFFFFF00);
+diff --git a/boot/freeldr/freeldr/pcat.cmake b/boot/freeldr/freeldr/pcat.cmake
+index 32321c09..658a6daa 100644
+--- a/boot/freeldr/freeldr/pcat.cmake
++++ b/boot/freeldr/freeldr/pcat.cmake
+@@ -436,3 +436,8 @@ option(XBOX_NATIVE_FATX_PROCESSINIT_PREFLIGHT "Halt after initial process addres
+ if(XBOX_NATIVE_FATX_PROCESSINIT_PREFLIGHT AND NOT XBOX_NATIVE_FATX_PROCESSPAGES_PREFLIGHT)
+  message(FATAL_ERROR "PROCESSINIT probe requires PROCESSPAGES preflight")
+ endif()
++
++option(XBOX_NATIVE_FATX_MMCOMPLETE_PREFLIGHT "Halt after complete MM phase zero" OFF)
++if(XBOX_NATIVE_FATX_MMCOMPLETE_PREFLIGHT AND NOT XBOX_NATIVE_FATX_PROCESSINIT_PREFLIGHT)
++ message(FATAL_ERROR "MMCOMPLETE probe requires PROCESSINIT preflight")
++endif()
+diff --git a/boot/freeldr/freeldr/rosload.cmake b/boot/freeldr/freeldr/rosload.cmake
+index c0e8ac69..b0587ccb 100644
+--- a/boot/freeldr/freeldr/rosload.cmake
++++ b/boot/freeldr/freeldr/rosload.cmake
+@@ -215,3 +215,7 @@ endif()
+ if(XBOX_NATIVE_FATX_PROCESSINIT_PREFLIGHT)
+  target_compile_definitions(rosload PRIVATE XBOX_NATIVE_FATX_PROCESSINIT_PREFLIGHT=1)
+ endif()
++
++if(XBOX_NATIVE_FATX_MMCOMPLETE_PREFLIGHT)
++ target_compile_definitions(rosload PRIVATE XBOX_NATIVE_FATX_MMCOMPLETE_PREFLIGHT=1)
++endif()
+diff --git a/hal/halx86/xboxnt5/CMakeLists.txt b/hal/halx86/xboxnt5/CMakeLists.txt
+index 070e42cd..42662d09 100644
+--- a/hal/halx86/xboxnt5/CMakeLists.txt
++++ b/hal/halx86/xboxnt5/CMakeLists.txt
+@@ -203,3 +203,11 @@ endif()
+ if(XBOX_NT5_PROCESSINIT_PREFLIGHT)
+  target_compile_definitions(halxboxnt5 PRIVATE XBOX_NT5_PROCESSINIT_PREFLIGHT=1)
+ endif()
++
++option(XBOX_NT5_MMCOMPLETE_PREFLIGHT "Halt after complete MM phase zero" OFF)
++if(XBOX_NT5_MMCOMPLETE_PREFLIGHT AND NOT XBOX_NT5_PROCESSINIT_PREFLIGHT)
++ message(FATAL_ERROR "MMCOMPLETE probe requires PROCESSINIT preflight")
++endif()
++if(XBOX_NT5_MMCOMPLETE_PREFLIGHT)
++ target_compile_definitions(halxboxnt5 PRIVATE XBOX_NT5_MMCOMPLETE_PREFLIGHT=1)
++endif()
+diff --git a/hal/halx86/xboxnt5/entryprobe.c b/hal/halx86/xboxnt5/entryprobe.c
+index 68157f3e..cd641c79 100644
+--- a/hal/halx86/xboxnt5/entryprobe.c
++++ b/hal/halx86/xboxnt5/entryprobe.c
+@@ -65,7 +65,10 @@ HalpXwnFirstProcessor(ULONG Processor, PLOADER_PARAMETER_BLOCK LoaderBlock, PVOI
+ 
+ ULONG NTAPI XwnConfigureEntryProbe(PVOID Callback, ULONG Signature)
+ {
+-#if defined(XBOX_NT5_PROCESSINIT_PREFLIGHT)
++#if defined(XBOX_NT5_MMCOMPLETE_PREFLIGHT)
++    if(Signature!=0x4d304e54 || !Callback || XwnPhaseCallback)return 0;
++    XwnPhaseCallback=(XWN_PHASE_CALLBACK)Callback;return 0x4d304854;
++#elif defined(XBOX_NT5_PROCESSINIT_PREFLIGHT)
+     if (Signature != 0x57494e54 || !Callback || XwnPhaseCallback) return 0;
+     XwnPhaseCallback = (XWN_PHASE_CALLBACK)Callback;
+     return 0x57494854;
+diff --git a/hal/halx86/xboxnt5/mapentry.S b/hal/halx86/xboxnt5/mapentry.S
+index b010d47d..9a0ab6e9 100644
+--- a/hal/halx86/xboxnt5/mapentry.S
++++ b/hal/halx86/xboxnt5/mapentry.S
+@@ -11,6 +11,10 @@ EXTERN _HalpXwnTailAfter@8:PROC
+ EXTERN _HalpXwnProcessAfter@8:PROC
+ #ifdef XBOX_NT5_PROCESSINIT_PREFLIGHT
+ EXTERN _HalpXwnInitAfter@12:PROC
++#ifdef XBOX_NT5_MMCOMPLETE_PREFLIGHT
++EXTERN _HalpXwnMmAfter@8:PROC
++EXTERN _XwnInitTarget:DWORD
++#endif
+ EXTERN _XwnProcessTarget:DWORD
+ #endif
+ EXTERN _XwnSysTarget:DWORD
+@@ -34,7 +38,12 @@ PUBLIC _HalpXwnMapEntry
+ #endif
+     push ebx
+     push ebp
+-#ifdef XBOX_NT5_PROCESSINIT_PREFLIGHT
++#ifdef XBOX_NT5_MMCOMPLETE_PREFLIGHT
++    add esp,12
++    push eax
++    push ebp
++    call _HalpXwnMmAfter@8
++#elif defined(XBOX_NT5_PROCESSINIT_PREFLIGHT)
+     call _HalpXwnInitAfter@12
+ #elif defined(XBOX_NT5_PROCESSPAGES_PREFLIGHT)
+     call _HalpXwnProcessAfter@8
+@@ -123,4 +132,18 @@ PUBLIC _HalpXwnProcessEntry
+     jmp dword ptr [_XwnProcessTarget]
+ .ENDP
+ #endif
++#ifdef XBOX_NT5_MMCOMPLETE_PREFLIGHT
++PUBLIC _HalpXwnInitEntry
++.PROC _HalpXwnInitEntry
++    pushfd
++    pushad
++    push eax
++    push ebx
++    push ebp
++    call _HalpXwnInitAfter@12
++    popad
++    popfd
++    jmp dword ptr [_XwnInitTarget]
++.ENDP
++#endif
+ END
+diff --git a/hal/halx86/xboxnt5/mapprobe.c b/hal/halx86/xboxnt5/mapprobe.c
+index 36aa7654..01d67918 100644
+--- a/hal/halx86/xboxnt5/mapprobe.c
++++ b/hal/halx86/xboxnt5/mapprobe.c
+@@ -5,7 +5,20 @@
+ extern const UCHAR XwnMapFont[4096];
+ VOID HalpXwnMapEntry(VOID);
+ #ifdef XBOX_NT5_PT_PREFLIGHT
+-#ifdef XBOX_NT5_PROCESSINIT_PREFLIGHT
++#ifdef XBOX_NT5_MMCOMPLETE_PREFLIGHT
++#define XWN_MAP_MAGIC 0x324e5758
++#define XWN_MAP_SIGNATURE 0x4d304e54
++#define XWN_MAP_REPLY 0x4d304854
++#define XWN_MAP_TARGET 0x1564c3
++#define XWN_EXPANSION_FREE 5340
++ULONG XwnCommitTarget,XwnFreeTarget,XwnSysTarget,XwnProcessTarget,XwnInitTarget;
++static UCHAR XwnCommitOriginal[5],XwnFreeOriginal[5],XwnSysOriginal[5],XwnProcessOriginal[5],XwnInitOriginal[5];
++VOID HalpXwnCommitEntry(VOID);
++VOID HalpXwnFreeEntry(VOID);
++VOID HalpXwnSysEntry(VOID);
++VOID HalpXwnProcessEntry(VOID);
++VOID HalpXwnInitEntry(VOID);
++#elif defined(XBOX_NT5_PROCESSINIT_PREFLIGHT)
+ #define XWN_MAP_MAGIC 0x574e5758
+ #define XWN_MAP_SIGNATURE 0x57494e54
+ #define XWN_MAP_REPLY 0x57494854
+@@ -84,7 +97,7 @@ VOID HalpXwnCommitEntry(VOID);
+ #ifndef XWN_EXPANSION_FREE
+ #define XWN_EXPANSION_FREE 5432
+ #endif
+-static volatile ULONG XwnMapRecord[320] = {XWN_MAP_MAGIC,0x35544e50,1,0};
++static volatile ULONG XwnMapRecord[352] = {XWN_MAP_MAGIC,0x35544e50,1,0};
+ ULONG XwnPtBeforeTarget;
+ static UCHAR XwnPtBeforeOriginal[5];
+ static ULONG XwnPtDirectory[1024];
+@@ -160,7 +173,11 @@ DECLSPEC_NORETURN VOID NTAPI HalpXwnMapCheckpoint(PULONG Frame)
+ #ifndef XBOX_NT5_FREELIST_PREFLIGHT
+             Frame[2] == XwnMapRecord[4] &&
+ #endif
++#ifdef XBOX_NT5_MMCOMPLETE_PREFLIGHT
++            ((XwnMapRecord[309] && (ULONG_PTR)Frame==XwnMapRecord[310] && Frame[1]==XwnMapRecord[311]) || (!XwnMapRecord[309] && Frame[1]==XwnMapRecord[6]+0x155b55)) &&
++#else
+             Frame[1] == XwnMapRecord[6] + 0x155b55 &&
++#endif
+             (Cr0 & 0x80000000) && __readcr3() == XwnMapRecord[11];
+     for (I = 0; I < 512; ++I) if (!(Directory[I] & 1)) ++Absent;
+     XwnMapRecord[90] = Absent;
+@@ -173,6 +190,10 @@ DECLSPEC_NORETURN VOID NTAPI HalpXwnMapCheckpoint(PULONG Frame)
+     XwnMapRecord[91] = 1;
+     __writecr0(Cr0 & ~0x10000);
+     RtlCopyMemory(XwnMapTarget, XwnMapOriginal, 5);
++#ifdef XBOX_NT5_MMCOMPLETE_PREFLIGHT
++    RtlCopyMemory((PVOID)XwnInitTarget,XwnInitOriginal,5);
++    XwnMapRecord[308]=memcmp((PVOID)XwnInitTarget,XwnInitOriginal,5)==0;
++#endif
+ #ifdef XBOX_NT5_PROCESSINIT_PREFLIGHT
+     RtlCopyMemory((PVOID)XwnProcessTarget,XwnProcessOriginal,5);
+     XwnMapRecord[290]=memcmp((PVOID)XwnProcessTarget,XwnProcessOriginal,5)==0;
+@@ -226,7 +247,12 @@ DECLSPEC_NORETURN VOID NTAPI HalpXwnMapCheckpoint(PULONG Frame)
+     Valid=Valid && XwnMapRecord[259] && XwnMapRecord[261] && XwnMapRecord[258];
+ #ifdef XBOX_NT5_PROCESSINIT_PREFLIGHT
+     Valid=Valid && XwnMapRecord[290] && XwnMapRecord[291] && XwnMapRecord[293];
++#ifdef XBOX_NT5_MMCOMPLETE_PREFLIGHT
++    Valid=Valid&&XwnMapRecord[308]&&XwnMapRecord[309]&&XwnMapRecord[335];
++    XwnMapRecord[24]=230;
++#else
+     XwnMapRecord[24]=220;
++#endif
+ #else
+     XwnMapRecord[24]=210;
+ #endif
+@@ -268,7 +294,15 @@ DECLSPEC_NORETURN VOID NTAPI HalpXwnMapCheckpoint(PULONG Frame)
+     {
+         volatile ULONG *Pixels = (volatile ULONG *)XwnMapRecord[92];
+         for (I = 0; I < XwnMapRecord[21] / 4; ++I) Pixels[I] = 0xff000000;
+-#ifdef XBOX_NT5_PROCESSINIT_PREFLIGHT
++#ifdef XBOX_NT5_MMCOMPLETE_PREFLIGHT
++        HalpXwnMapText(4,"XWN Windows 2000 MM phase zero completion",0xffffffff);
++        HalpXwnMapText(7,Valid?"XWN290: Memory manager phase 0 completed.":"XWN2FAIL: MM completion guard stopped.",Valid?0xff00ff00:0xffff0000);
++        HalpXwnMapHex(10,"Native BOOLEAN result: ",XwnMapRecord[320]&255);
++        HalpXwnMapHex(12,"Free pages verified: ",XwnMapRecord[322]);
++        HalpXwnMapHex(14,"Relocated color lists: ",XwnMapRecord[323]);
++        HalpXwnMapHex(16,"Loaded images protected: ",XwnMapRecord[327]);
++        HalpXwnMapText(19,"Stopped BEFORE executive phase 0 completes and storage.",0xffffffff);
++#elif defined(XBOX_NT5_PROCESSINIT_PREFLIGHT)
+         HalpXwnMapText(4,"XWN Windows 2000 process address space",0xffffffff);
+         HalpXwnMapText(7,Valid?"XWNW90: Process address space initialized.":"XWNWFAIL: Process initialization guard stopped.",Valid?0xff00ff00:0xffff0000);
+         HalpXwnMapHex(10,"Native return status: ",XwnMapRecord[304]);
+@@ -807,6 +841,66 @@ static BOOLEAN HalpXwnPrepareProcess(PULONG F)
+     XwnPfnExpected[Old][2]=0;XwnPfnExpected[Old][3]&=0xffff;
+     XwnMapRecord[260]=1;return TRUE;
+ }
++#ifdef XBOX_NT5_MMCOMPLETE_PREFLIGHT
++static ULONG XwnMmFreeSeen[480],XwnMmColorSeen[480];
++static BOOLEAN HalpXwnMmRange(ULONG Va,ULONG Size)
++{
++    ULONG End=Va+Size,Pte,Pfn;PULONG Row;
++    if(!Size||Va<0x80000000||End<Va)return FALSE;
++    for(Va&=~0xfffUL;Va<End;Va+=4096){
++        if(!(((PULONG)0xc0300000)[Va>>22]&1))return FALSE;
++        Pte=*(PULONG)(0xc0000000+(Va>>12)*4);Pfn=Pte>>12;
++        if(!(Pte&1)||Pfn>=0x3c00)return FALSE;
++        Row=(PULONG)(0xffb85000+Pfn*24);
++        if(!(Row[3]>>16)||((Row[3]>>8)&7)!=6||(XwnMmFreeSeen[Pfn>>5]&(1UL<<(Pfn&31))))return FALSE;
++    }
++    return TRUE;
++}
++static BOOLEAN HalpXwnMmLists(VOID)
++{
++    ULONG K=XwnMapRecord[6],P,Prev=MAXULONG,Count=0,I,J,N,Color,Total=0;PULONG R,H=(PULONG)(K+0x72768),C;
++    RtlZeroMemory(XwnMmFreeSeen,sizeof(XwnMmFreeSeen));RtlZeroMemory(XwnMmColorSeen,sizeof(XwnMmColorSeen));
++    if(H[1]!=1||H[0]>0x3c00||H[0]!=*(PULONG)(K+0x81bf8)||*(PULONG)(K+0x81ab0)!=0xffb85000)return FALSE;
++    for(P=H[2];P!=MAXULONG;P=R[0]){
++        if(P>=0x3c00||Count++>=0x3c00||(XwnMmFreeSeen[P>>5]&(1UL<<(P&31))))return FALSE;
++        XwnMmFreeSeen[P>>5]|=1UL<<(P&31);R=(PULONG)(0xffb85000+P*24);
++        if(R[2]!=Prev||(R[3]>>16)||((R[3]>>8)&7)!=1)return FALSE;Prev=P;
++    }
++    if(Count!=H[0]||Prev!=H[3])return FALSE;
++    XwnMapRecord[322]=Count;XwnMapRecord[323]=*(PULONG)(K+0x811b8);XwnMapRecord[324]=*(PULONG)(K+0x811bc);
++    if(!HalpXwnMmRange(XwnMapRecord[323],512)||XwnMapRecord[324]!=XwnMapRecord[323]+256||*(PULONG)(K+0x81b68)!=32)return FALSE;
++    C=(PULONG)XwnMapRecord[323];
++    for(I=0;I<64;++I){Prev=MAXULONG;N=0;
++        for(P=C[I*2];P!=MAXULONG;P=R[4]){
++            if(I<32||P>=0x3c00||N++>=0x3c00||(P&31)!=(I&31)||!(XwnMmFreeSeen[P>>5]&(1UL<<(P&31)))||(XwnMmColorSeen[P>>5]&(1UL<<(P&31))))return FALSE;
++            XwnMmColorSeen[P>>5]|=1UL<<(P&31);R=(PULONG)(0xffb85000+P*24);Prev=P;++Total;
++        }
++        if(Prev!=MAXULONG&&C[I*2+1]!=0xffb85000+Prev*24)return FALSE;
++    }
++    if(Total!=Count||memcmp(XwnMmFreeSeen,XwnMmColorSeen,sizeof(XwnMmFreeSeen)))return FALSE;
++    XwnMapRecord[325]=Total;
++    for(I=0;I<1024;++I){J=((PULONG)0xc0300000)[I];if(!(J&1))continue;
++        P=J>>12;if((J&0x80)||P>=0x3c00||(XwnMmFreeSeen[P>>5]&(1UL<<(P&31)))||!(((PULONG)(0xffb85000+P*24))[3]>>16))return FALSE;
++    }
++    return TRUE;
++}
++DECLSPEC_NORETURN VOID NTAPI HalpXwnMmAfter(PULONG F,ULONG Status)
++{
++    ULONG K=XwnMapRecord[6],Count=0;PLIST_ENTRY Head=(PLIST_ENTRY)XwnMapRecord[4],Link;BOOLEAN Valid;
++    XwnMapRecord[320]=Status;XwnMapRecord[321]=(ULONG_PTR)F;
++    Valid=XwnMapRecord[309]&&(Status&255)==1&&(ULONG_PTR)F==XwnMapRecord[310]&&F[1]==XwnMapRecord[311]&&__readcr3()==XwnMapRecord[132];
++    if(Valid)Valid=HalpXwnMmLists();XwnMapRecord[326]=Valid;
++    for(Link=Head->Flink;Valid&&Link!=Head&&Count<20;Link=Link->Flink,++Count){PULONG D=(PULONG)Link;Valid=HalpXwnMmRange(D[6],D[8]);}
++    XwnMapRecord[327]=Count;
++    Valid=Valid&&Count==20&&Link==Head&&HalpXwnMmRange(XwnMapRecord[4],92)&&HalpXwnMmRange((ULONG_PTR)F,16)&&HalpXwnMmRange(*(PULONG)(XwnMapRecord[4]+44),1810432);
++    XwnMapRecord[328]=Valid;XwnMapRecord[329]=KeGetPcr()->Irql;XwnMapRecord[330]=__inbyte(0x21)|(__inbyte(0xa1)<<8);
++    XwnMapRecord[331]=*(PULONG)(K+0x814c8);XwnMapRecord[332]=*(PULONG)(K+0x81b8c);
++    XwnMapRecord[333]=*(PULONG)(K+0x815c0);XwnMapRecord[334]=HalpXwnDescriptorHash();
++    XwnMapRecord[335]=Valid&&XwnMapRecord[329]==APC_LEVEL&&XwnMapRecord[330]==0xffff&&!KeGetPcr()->IRR&&(__readeflags()&0x200);
++    HalpXwnMapCheckpoint(F);
++}
++#endif
++
+ #ifdef XBOX_NT5_PROCESSINIT_PREFLIGHT
+ static ULONG XwnInitThread[112];
+ static BOOLEAN HalpXwnPrepareInit(ULONG Process)
+@@ -835,7 +929,10 @@ static BOOLEAN HalpXwnPrepareInit(ULONG Process)
+     XwnProcessBytes[0x1e8/4]=XwnProcessBytes[0x1ec/4]=Process+0x1e8;XwnProcessBytes[0x280/4]=0;
+     XwnMapRecord[292]=1;return TRUE;
+ }
+-DECLSPEC_NORETURN VOID NTAPI HalpXwnInitAfter(PULONG F,ULONG Process,ULONG Status)
++#ifndef XBOX_NT5_MMCOMPLETE_PREFLIGHT
++DECLSPEC_NORETURN
++#endif
++VOID NTAPI HalpXwnInitAfter(PULONG F,ULONG Process,ULONG Status)
+ {
+     ULONG I,J,K=XwnMapRecord[6],Value,Third=XwnMapRecord[294];BOOLEAN Valid;
+     XwnMapRecord[304]=Status;
+@@ -868,6 +965,15 @@ DECLSPEC_NORETURN VOID NTAPI HalpXwnInitAfter(PULONG F,ULONG Process,ULONG Statu
+         XwnMapRecord[303]==APC_LEVEL && !KeGetPcr()->IRR && KeGetPcr()->IDR==0xfffffffb &&
+         (__readeflags()&0x200) && __inbyte(0x21)==0xff && __inbyte(0xa1)==0xff &&
+         *(PULONG)(K+0x81e08)==1 && *(PULONG)(K+0x82340)==1 && HalpXwnDescriptorHash()==XwnMapRecord[144];
++#ifdef XBOX_NT5_MMCOMPLETE_PREFLIGHT
++    if(XwnMapRecord[293]){
++        ULONG Cr0=__readcr0();_disable();__writecr0(Cr0&~0x10000UL);
++        RtlCopyMemory((PVOID)XwnInitTarget,XwnInitOriginal,5);__writecr0(Cr0);
++        XwnMapRecord[308]=memcmp((PVOID)XwnInitTarget,XwnInitOriginal,5)==0;
++        XwnMapRecord[310]=F[0];XwnMapRecord[311]=((PULONG)F[0])[1];
++        XwnMapRecord[309]=XwnMapRecord[308];if(XwnMapRecord[309])return;
++    }
++#endif
+     HalpXwnMapCheckpoint(F);
+ }
+ #endif
+@@ -1290,7 +1396,12 @@ ULONG NTAPI XwnConfigureMapProbe(PULONG Seed, ULONG Signature)
+ {
+ #ifdef XBOX_NT5_PT_PREFLIGHT
+ #ifdef XBOX_NT5_PROCESSINIT_PREFLIGHT
++#ifdef XBOX_NT5_MMCOMPLETE_PREFLIGHT
++    UCHAR Expected[8]={0x5f,0x5e,0x5b,0xc9,0xc2,0x0c,0,0x55};
++    UCHAR InitExpected[8]={0x83,0x7d,0xe4,0x01,0x75,0x6e,0xa1,0xb8};
++#else
+     UCHAR Expected[8]={0x83,0x7d,0xe4,0x01,0x75,0x6e,0xa1,0xb8};
++#endif
+     UCHAR ProcessExpected[8]={0xa1,0,0,0,0,0x89,0x06,0x89};
+     static const UCHAR SysExpected[8]={0x6a,0,0x6a,0,0xe8,0x8c,0xb2,0xfe};
+     static const UCHAR CommitExpected[8]={0x8b,0x45,0x08,0x8b,0x40,0x0c,0xe9,0x8e};
+@@ -1337,6 +1448,9 @@ ULONG NTAPI XwnConfigureMapProbe(PULONG Seed, ULONG Signature)
+         Seed[21] != Seed[18]*Seed[19] || Seed[20] > 0x04000000-Seed[21]) return 0;
+ #ifdef XBOX_NT5_PT_PREFLIGHT
+ #ifdef XBOX_NT5_PROCESSINIT_PREFLIGHT
++#ifdef XBOX_NT5_MMCOMPLETE_PREFLIGHT
++    if(memcmp((PVOID)(Seed[6]+0x159cdc),InitExpected,8))return 0;
++#endif
+     *(PULONG)(ProcessExpected+1)=Seed[6]+0x73de8;
+     *(PUSHORT)(FreeExpected+6)=(USHORT)(Seed[6]+0x81ab0);
+     if(memcmp((PVOID)(Seed[6]+0x159ca0),ProcessExpected,8)||memcmp((PVOID)(Seed[6]+0x159bd7),SysExpected,8)||memcmp((PVOID)(Seed[6]+0x159898),FreeExpected,8)||memcmp((PVOID)(Seed[6]+0x1596f3),CommitExpected,8))return 0;
+@@ -1401,6 +1515,11 @@ ULONG NTAPI XwnConfigureMapProbe(PULONG Seed, ULONG Signature)
+     XwnProcessTarget=Seed[6]+0x159ca0;RtlCopyMemory(XwnProcessOriginal,(PVOID)XwnProcessTarget,5);
+     *(PUCHAR)XwnProcessTarget=0xe9;*(PULONG)(XwnProcessTarget+1)=(ULONG_PTR)HalpXwnProcessEntry-XwnProcessTarget-5;
+     XwnMapRecord[288]=XwnProcessTarget;XwnMapRecord[289]=(ULONG_PTR)HalpXwnProcessEntry;
++#endif
++#ifdef XBOX_NT5_MMCOMPLETE_PREFLIGHT
++    XwnInitTarget=Seed[6]+0x159cdc;RtlCopyMemory(XwnInitOriginal,(PVOID)XwnInitTarget,5);
++    *(PUCHAR)XwnInitTarget=0xe9;*(PULONG)(XwnInitTarget+1)=(ULONG_PTR)HalpXwnInitEntry-XwnInitTarget-5;
++    XwnMapRecord[307]=XwnInitTarget;XwnMapRecord[312]=(ULONG_PTR)HalpXwnInitEntry;
+ #endif
+     XwnMapTarget[0] = 0xe9;
+     *(PULONG)(XwnMapTarget+1) = (ULONG_PTR)HalpXwnMapEntry-(ULONG_PTR)(XwnMapTarget+5);

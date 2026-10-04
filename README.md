@@ -117,6 +117,12 @@ RosBE 2.2.1 compiler. They require local toolchains and user-supplied Windows,
 Xbox firmware, dashboard and test media. These are not a self-contained SDK.
 Most diagnostic packages also require the preceding preserved binaries.
 
+The emulator-only **XWN290** candidate completes MM phase zero without
+debugger assistance. Both display modes, 1388 import bindings, code audits,
+free/color-list checks and five injected errors pass. Physical testing is
+pending; no hardware upload occurred during the emulator-only session. See
+[MM completion report](outputs/native-windows-physical-mmcomplete/REPORT.txt).
+
 ## Repository contents
 
 Windows binaries, ISOs, registry hives, console firmware/EEPROM, dashboard
