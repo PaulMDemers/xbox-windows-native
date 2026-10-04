@@ -1,0 +1,37 @@
+{
+  "scope": "Read-only analysis of supplied Windows 2000 win32k.sys; no binary changes",
+  "sha256": "414cc2568ba7f11fa58490060c947477f44d6218e6c52e01deea1bbe8a364a92",
+  "bugcheck_helper_rva": "0x7d1a4",
+  "call_import": "KeBugCheckEx",
+  "instructions": [
+    {
+      "rva": "0x7d1a4",
+      "instruction": "xor eax, eax"
+    },
+    {
+      "rva": "0x7d1a6",
+      "instruction": "push 0x50000"
+    },
+    {
+      "rva": "0x7d1ab",
+      "instruction": "push eax"
+    },
+    {
+      "rva": "0x7d1ac",
+      "instruction": "push eax"
+    },
+    {
+      "rva": "0x7d1ad",
+      "instruction": "push eax"
+    },
+    {
+      "rva": "0x7d1ae",
+      "instruction": "push 0xb4"
+    },
+    {
+      "rva": "0x7d1b3",
+      "instruction": "call dword ptr [0xa01648bc]"
+    }
+  ],
+  "interpretation": "Matches photographed B4 parameters (0,0,0,50000). Identifies the Win32k stop helper, not the caller or root cause."
+}

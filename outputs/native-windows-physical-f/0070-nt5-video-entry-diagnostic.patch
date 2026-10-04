@@ -1,0 +1,31 @@
+diff --git a/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt b/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt
+index 204b96a9..e70c1a2b 100644
+--- a/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt
+@@ -14,3 +14,11 @@ if(XBOX_NT5_VIDEO_DIAGNOSTIC)
+     target_compile_definitions(xboxvnt5 PRIVATE XBOX_NT5_VIDEO_DIAGNOSTIC=1)
+     add_importlibs(xboxvnt5 ntoskrnl)
+ endif()
++
++option(XBOX_NT5_VIDEO_ENTRY_DIAGNOSTIC "Stop before NT5 video DriverEntry body" OFF)
++if(XBOX_NT5_VIDEO_ENTRY_DIAGNOSTIC)
++    if(NOT XBOX_NT5_VIDEO_DIAGNOSTIC)
++        message(FATAL_ERROR "Video entry diagnostic requires video failure diagnostic")
++    endif()
++    target_compile_definitions(xboxvnt5 PRIVATE XBOX_NT5_VIDEO_ENTRY_DIAGNOSTIC=1)
++endif()
+diff --git a/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c b/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c
+index 8619586d..f275be2b 100644
+--- a/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c
+@@ -174,6 +174,10 @@ ULONG NTAPI DriverEntry(PVOID Context1, PVOID Context2)
+ {
+     VIDEO_HW_INITIALIZATION_DATA Init;
+     ULONG Status;
++#ifdef XBOX_NT5_VIDEO_ENTRY_DIAGNOSTIC
++    /* Prove invocation independently of PnP or VideoPort callbacks. */
++    VIDEO_FAIL(0, (ULONG_PTR)Context1, (ULONG_PTR)Context2, 0x56454E54);
++#endif
+     VideoPortZeroMemory(&Init, sizeof(Init));
+     Init.HwInitDataSize = SIZE_OF_W2K_VIDEO_HW_INITIALIZATION_DATA;
+     Init.AdapterInterfaceType = PCIBus;

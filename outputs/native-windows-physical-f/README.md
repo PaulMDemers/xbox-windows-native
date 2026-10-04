@@ -206,3 +206,35 @@ manual-capture xemu harness. Audit with `--probe-version 2 --video-miniport`
 pointing to the exact compiled diagnostic binary. Older completed run disks
 were retired by hash to make room; the immutable v2 input fixture, normalized F
 source, original E baseline and current successful diagnostic run are retained.
+
+## Entry-point checkpoint (0070)
+
+The next supplied physical photo repeats B4 with the same four parameters.
+After reboot, FTP readback still matches the diagnostic driver exactly. No
+0069 failure-stage stop fired; it is not yet known whether the miniport ran.
+Read-only analysis of the supplied win32k.sys identifies a B4 helper at RVA
+0x7d1a4 that passes exactly (0,0,0,0x50000) to KeBugCheckEx. This identifies the
+stop helper, not its caller or root cause.
+
+The default-OFF `XBOX_NT5_VIDEO_ENTRY_DIAGNOSTIC` option deliberately stops at
+DriverEntry before any VideoPort call. It requires the failure-diagnostic
+option. Expected STOP is E0580001, parameter 1 is zero, parameters 2/3 are the
+entry arguments, and parameter 4 is the marker 56454E54. The compiled entry
+checkpoint and Windows import checks pass. Ordinary xemu execution of the
+compiled binary displays exactly that stop without debugger changes; this is
+an intentional checkpoint, not a successful boot or storage test.
+
+At 19:05:18 UTC, one accepted physical FTP launch followed readback-verified
+replacement with this entry-checkpoint binary. The preceding driver is saved
+as `xboxvnt5.xwn-v3`; the original remains `xboxvnt5.xwn-v2`. Only the owned
+Windows miniport was replaced in this cycle. The pending startup report was
+still unchanged. Await the photo: E0580001/0/.../56454E54 proves entry, while
+unchanged B4 indicates entry was not reached in that boot. Do not relaunch
+while the console is holding the result.
+
+The 0070 series and resulting tree are recorded separately. Reproduce with
+`Build-VideoEntry.ps1`, `test-video-entry.py` and `prepare-video-entry.py`.
+The entry fixture changes only the miniport and existing AutoReboot DWORDs;
+the snapshot emulator run's temporary disk is cleaned up by the harness. The
+immutable v2 input remains. The earlier successful 0069 run disk was retired
+by hash for space, while its cold-audit and screenshot evidence remain.
