@@ -8,10 +8,10 @@ host-side test harness.
 
 - Physical console: Windows kernel entry, processor initialization, HAL base
   setup, RTC calibration, clock setup and partition-hook registration and BIOS page allocation passed.
-- Latest physical checkpoint: **XWNS90**. The native RAM descriptor scan
-  completed and checked candidate ranges: 15,359 native pages, 15,357
-  earlier-limit pages and two BIOS-reserved pages. MM allocation, PFN setup,
-  storage drivers and desktop remain beyond the physical-tested stop.
+- Latest physical checkpoint: **XWNQ90**. Native memory sizing completed:
+  0x1f8000 initial pool bytes, 91 PFN/color pages and 28 page-table pages
+  planned, starting at PFN 0x160. Actual MM allocation, PFN setup, storage
+  drivers and desktop remain beyond the physical-tested stop.
 - Private emulator fixtures have reached a Windows 2000 desktop with NTFS,
   USB input, framebuffer, networking and experimental audio. Those results
   do not establish physical hardware compatibility.
@@ -37,10 +37,10 @@ and checks its counts and candidate spans before MM allocation or PFN setup.
 Both display modes and a 45-checkpoint trace pass in xemu; the physical
 checkpoint is photo-confirmed. See the [RAM scan report](outputs/native-windows-physical-scan/REPORT.txt).
 
-The next candidate **XWNQ90** completes native pool and page-table sizing
+The physical-tested **XWNQ90** completes native pool and page-table sizing
 and stops before consuming descriptors or allocating page tables. Both
-display modes and a 46-checkpoint trace pass in xemu; physical testing is
-pending. See the [memory sizing report](outputs/native-windows-physical-size/REPORT.txt).
+display modes and a 46-checkpoint trace pass in xemu; the physical checkpoint
+is photo-confirmed. See the [memory sizing report](outputs/native-windows-physical-size/REPORT.txt).
 
 See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
 [latest diagnostic](outputs/native-windows-physical-size/REPORT.txt), and
