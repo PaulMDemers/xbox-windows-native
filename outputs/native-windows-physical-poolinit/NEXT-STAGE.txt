@@ -1,0 +1,13 @@
+After physical XWNU90, audit the PFN backing allocation starting at 1590ab.
+The current profile skips the direct-map branch and calls
+MiReserveSystemPtes at 15918f for 91 PFN/color pages, then reserves another
+PTE. It walks descriptors and installs/zeros backing pages from the
+remaining PFN 0374 / 1dec candidate counters. Review those calls and the
+subsequent descriptor commit before allowing the whole interval.
+
+Keep the physical framebuffer, its page table, the high HAL, loader and
+BIOS pages reserved through actual PFN initialization. No physical Windows
+system-volume or native FATX mount is proven yet. Boot display remains a
+later phase-1 milestone.
+The type-1 MiReserveSystemPtes call takes its generic branch at RVA 6c362; audit that implementation, including IRQL and free-PTE bookkeeping, rather than the type-0 fast path.
+MiReserveSystemPtes2 raises and lowers IRQL through HAL imports (kernel IAT RVAs 063c/0640). Watch PIC masks, processor IDR and any clock interrupt delivery when extending past this stop.

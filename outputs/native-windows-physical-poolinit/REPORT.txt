@@ -1,0 +1,42 @@
+XWN native nonpaged-pool initialization (patch 0037)
+
+Physical XWNO90 confirms the 504 backing mappings. This candidate continues
+through MiInitializeNonPagedPool and its type-1 MiInitializeSystemPtes call,
+then halts at kernel RVA 1590ab before PFN backing allocation.
+
+The preallocation guard retains all previous checks on the 532 frames and
+adds a pinned 0x4000 must-succeed pool size, zero invalid-PTE pattern, and
+0x1731000 maximum pool. Unexpected inputs stop before page allocation.
+
+Windows initializes four must-succeed pages, links one 500-page free block,
+sets each free page's owner field, and initializes 5432 expansion PTEs.
+The final checkpoint checks pool list heads, all 500 owner links, four
+must-succeed links, accounting globals and expansion-PTE boundaries. Every
+new page-table entry is checked, including the invalid free-list sentinel
+and size entry. Unrelated PDEs, descriptor hash, allocation counters, CR3
+and the framebuffer mapping remain checked. Both kernel hooks are restored.
+
+Expected XWNU90: Pool initialized; PFN setup blocked.
+Must-succeed pages: 00000004. Free pool pages: 000001f4.
+Expansion PTEs: 00001538. Next candidate PFN: 00000374.
+Remaining candidate pages stay 00001dec. The descriptor still includes
+consumed frames; these local counters remain authoritative at this stop.
+
+POOLINIT defaults OFF and requires POOL preflight. Its distinct arming
+signature rejects the preceding HAL. The original Windows kernel, first
+stage and bootvid are preserved. Physical launch is manual; receipt of a
+photo implies restart to the dashboard per Paul's standing preference.
+Physical XWNU90 is pending. PFN setup, storage and desktop are not reached.
+
+Final validation: both display modes, old-HAL and changed-kernel rejection,
+full code/import audits and the 1120-event native trace passed. The full
+2064384-byte pool comparison permits only the expected 507 header/link
+DWORD updates. All pool lists, ownership links and expansion PTEs match
+the independent model. An injected alias to the first pool frame and an
+unexpected must-succeed size are rejected before allocation, preserving
+all 532 candidate frames and the descriptor list. Normal builds, the
+parent-option guard and the source series through patch 0037 passed.
+
+Uploaded 2026-10-04T02:01:25.122328+00:00. All 33 files verified by readback.
+Three physical-tested XWNO90 files retained under xwno90 backup names.
+The console was not remotely launched. Physical XWNU90 is pending.

@@ -1,0 +1,233 @@
+diff --git a/boot/freeldr/freeldr/ntldr/xwnentryprobe.h b/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
+index 0ed34ca5..08ea8662 100644
+--- a/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
++++ b/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
+@@ -1,6 +1,10 @@
+ /* Explicit early-kernel diagnostic. Included only in the opt-in rosload. */
+ #ifdef XBOX_NATIVE_FATX_PHASE0_PREFLIGHT
+-#if defined(XBOX_NATIVE_FATX_POOL_PREFLIGHT)
++#if defined(XBOX_NATIVE_FATX_POOLINIT_PREFLIGHT)
++static volatile ULONG XwnEntryRecord[96] = {0x4a4e5758, 0x35544e50, 1, 0};
++#define XWN_ARM_SIGNATURE 0x50494e54
++#define XWN_ARM_REPLY 0x50494854
++#elif defined(XBOX_NATIVE_FATX_POOL_PREFLIGHT)
+ static volatile ULONG XwnEntryRecord[96] = {0x454e5758, 0x35544e50, 1, 0};
+ #define XWN_ARM_SIGNATURE 0x504f4e54
+ #define XWN_ARM_REPLY 0x504f4854
+@@ -348,7 +352,9 @@ static DECLSPEC_NORETURN VOID XwnEnterKernelProbe(PLOADER_PARAMETER_BLOCK Loader
+ #endif
+ #endif
+     XwnPagingClear();
+-#if defined(XBOX_NATIVE_FATX_POOL_PREFLIGHT)
++#if defined(XBOX_NATIVE_FATX_POOLINIT_PREFLIGHT)
++    XwnPagingText(7, "XWNU30: Entering Windows; pool-initialization stop armed.", 0xFFFFFF00);
++#elif defined(XBOX_NATIVE_FATX_POOL_PREFLIGHT)
+     XwnPagingText(7, "XWNO30: Entering Windows; pool-mapping stop armed.", 0xFFFFFF00);
+ #elif defined(XBOX_NATIVE_FATX_PT_PREFLIGHT)
+     XwnPagingText(7, "XWNA30: Entering Windows; first page-table stop armed.", 0xFFFFFF00);
+diff --git a/boot/freeldr/freeldr/pcat.cmake b/boot/freeldr/freeldr/pcat.cmake
+index 5a0f43ee..0c461e63 100644
+--- a/boot/freeldr/freeldr/pcat.cmake
++++ b/boot/freeldr/freeldr/pcat.cmake
+@@ -396,3 +396,8 @@ option(XBOX_NATIVE_FATX_POOL_PREFLIGHT "Halt after initial nonpaged-pool mapping
+ if(XBOX_NATIVE_FATX_POOL_PREFLIGHT AND NOT XBOX_NATIVE_FATX_PT_PREFLIGHT)
+     message(FATAL_ERROR "POOL probe requires PT preflight")
+ endif()
++
++option(XBOX_NATIVE_FATX_POOLINIT_PREFLIGHT "Halt after native nonpaged-pool initialization" OFF)
++if(XBOX_NATIVE_FATX_POOLINIT_PREFLIGHT AND NOT XBOX_NATIVE_FATX_POOL_PREFLIGHT)
++    message(FATAL_ERROR "POOLINIT probe requires POOL preflight")
++endif()
+diff --git a/boot/freeldr/freeldr/rosload.cmake b/boot/freeldr/freeldr/rosload.cmake
+index 3449a6f9..67c07562 100644
+--- a/boot/freeldr/freeldr/rosload.cmake
++++ b/boot/freeldr/freeldr/rosload.cmake
+@@ -183,3 +183,7 @@ endif()
+ if(XBOX_NATIVE_FATX_POOL_PREFLIGHT)
+     target_compile_definitions(rosload PRIVATE XBOX_NATIVE_FATX_POOL_PREFLIGHT=1)
+ endif()
++
++if(XBOX_NATIVE_FATX_POOLINIT_PREFLIGHT)
++    target_compile_definitions(rosload PRIVATE XBOX_NATIVE_FATX_POOLINIT_PREFLIGHT=1)
++endif()
+diff --git a/hal/halx86/xboxnt5/CMakeLists.txt b/hal/halx86/xboxnt5/CMakeLists.txt
+index 251da7af..aa60bcf9 100644
+--- a/hal/halx86/xboxnt5/CMakeLists.txt
++++ b/hal/halx86/xboxnt5/CMakeLists.txt
+@@ -139,3 +139,11 @@ endif()
+ if(XBOX_NT5_POOL_PREFLIGHT)
+     target_compile_definitions(halxboxnt5 PRIVATE XBOX_NT5_POOL_PREFLIGHT=1)
+ endif()
++
++option(XBOX_NT5_POOLINIT_PREFLIGHT "Halt after native nonpaged-pool initialization" OFF)
++if(XBOX_NT5_POOLINIT_PREFLIGHT AND NOT XBOX_NT5_POOL_PREFLIGHT)
++    message(FATAL_ERROR "POOLINIT probe requires POOL preflight")
++endif()
++if(XBOX_NT5_POOLINIT_PREFLIGHT)
++    target_compile_definitions(halxboxnt5 PRIVATE XBOX_NT5_POOLINIT_PREFLIGHT=1)
++endif()
+diff --git a/hal/halx86/xboxnt5/entryprobe.c b/hal/halx86/xboxnt5/entryprobe.c
+index f6a861ad..a0512857 100644
+--- a/hal/halx86/xboxnt5/entryprobe.c
++++ b/hal/halx86/xboxnt5/entryprobe.c
+@@ -65,7 +65,11 @@ HalpXwnFirstProcessor(ULONG Processor, PLOADER_PARAMETER_BLOCK LoaderBlock, PVOI
+ 
+ ULONG NTAPI XwnConfigureEntryProbe(PVOID Callback, ULONG Signature)
+ {
+-#if defined(XBOX_NT5_POOL_PREFLIGHT)
++#if defined(XBOX_NT5_POOLINIT_PREFLIGHT)
++    if (Signature != 0x50494e54 || !Callback || XwnPhaseCallback) return 0;
++    XwnPhaseCallback = (XWN_PHASE_CALLBACK)Callback;
++    return 0x50494854;
++#elif defined(XBOX_NT5_POOL_PREFLIGHT)
+     if (Signature != 0x504f4e54 || !Callback || XwnPhaseCallback) return 0;
+     XwnPhaseCallback = (XWN_PHASE_CALLBACK)Callback;
+     return 0x504f4854;
+diff --git a/hal/halx86/xboxnt5/mapprobe.c b/hal/halx86/xboxnt5/mapprobe.c
+index b011eb42..eb300ea3 100644
+--- a/hal/halx86/xboxnt5/mapprobe.c
++++ b/hal/halx86/xboxnt5/mapprobe.c
+@@ -5,7 +5,12 @@
+ extern const UCHAR XwnMapFont[4096];
+ VOID HalpXwnMapEntry(VOID);
+ #ifdef XBOX_NT5_PT_PREFLIGHT
+-#ifdef XBOX_NT5_POOL_PREFLIGHT
++#ifdef XBOX_NT5_POOLINIT_PREFLIGHT
++#define XWN_MAP_MAGIC 0x554e5758
++#define XWN_MAP_SIGNATURE 0x50494e54
++#define XWN_MAP_REPLY 0x50494854
++#define XWN_MAP_TARGET 0x1590ab
++#elif defined(XBOX_NT5_POOL_PREFLIGHT)
+ #define XWN_MAP_MAGIC 0x4f4e5758
+ #define XWN_MAP_SIGNATURE 0x504f4e54
+ #define XWN_MAP_REPLY 0x504f4854
+@@ -16,7 +21,7 @@ VOID HalpXwnMapEntry(VOID);
+ #define XWN_MAP_REPLY 0x50544854
+ #define XWN_MAP_TARGET 0x158518
+ #endif
+-static volatile ULONG XwnMapRecord[160] = {XWN_MAP_MAGIC,0x35544e50,1,0};
++static volatile ULONG XwnMapRecord[176] = {XWN_MAP_MAGIC,0x35544e50,1,0};
+ ULONG XwnPtBeforeTarget;
+ static UCHAR XwnPtBeforeOriginal[5];
+ static ULONG XwnPtDirectory[1024];
+@@ -119,7 +124,12 @@ DECLSPEC_NORETURN VOID NTAPI HalpXwnMapCheckpoint(PULONG Frame)
+     Valid = Valid && XwnMapRecord[128] && XwnMapRecord[135];
+ #ifdef XBOX_NT5_POOL_PREFLIGHT
+     Valid = Valid && XwnMapRecord[147] && XwnMapRecord[149] == 504;
++#ifdef XBOX_NT5_POOLINIT_PREFLIGHT
++    Valid = Valid && XwnMapRecord[152] && XwnMapRecord[153];
++    XwnMapRecord[24] = 150;
++#else
+     XwnMapRecord[24] = 140;
++#endif
+ #else
+     XwnMapRecord[24] = 130;
+ #endif
+@@ -137,7 +147,16 @@ DECLSPEC_NORETURN VOID NTAPI HalpXwnMapCheckpoint(PULONG Frame)
+     {
+         volatile ULONG *Pixels = (volatile ULONG *)XwnMapRecord[92];
+         for (I = 0; I < XwnMapRecord[21] / 4; ++I) Pixels[I] = 0xff000000;
+-#ifdef XBOX_NT5_POOL_PREFLIGHT
++#ifdef XBOX_NT5_POOLINIT_PREFLIGHT
++        HalpXwnMapText(4, "XWN Windows 2000 nonpaged-pool initialization", 0xffffffff);
++        HalpXwnMapText(7, Valid ? "XWNU90: Pool initialized; PFN setup blocked."
++                             : "XWNUFAIL: Pool-initialization guard stopped execution.", Valid ? 0xff00ff00 : 0xffff0000);
++        HalpXwnMapHex(10, "Must-succeed pool pages: ", XwnMapRecord[154]);
++        HalpXwnMapHex(12, "Free nonpaged-pool pages: ", XwnMapRecord[155]);
++        HalpXwnMapHex(14, "Expansion PTEs initialized: ", XwnMapRecord[156]);
++        HalpXwnMapHex(16, "Next candidate PFN: ", XwnMapRecord[140]);
++        HalpXwnMapText(19, "Stopped BEFORE PFN backing allocation and storage.", 0xffffffff);
++#elif defined(XBOX_NT5_POOL_PREFLIGHT)
+         HalpXwnMapText(4, "XWN Windows 2000 initial nonpaged-pool mappings", 0xffffffff);
+         HalpXwnMapText(7, Valid ? "XWNO90: Pool backing mapped; initialization blocked."
+                              : "XWNOFAIL: Pool-mapping guard stopped execution.", Valid ? 0xff00ff00 : 0xffff0000);
+@@ -333,6 +352,11 @@ VOID NTAPI HalpXwnPtBefore(PULONG Frame, ULONG Largest)
+             !*(PUCHAR)(K+0x82384) && *(PULONG)(K+0x822a0) == 0xa0000000 &&
+             *(PULONG)(K+0x81bac) == 0x7f00 && !*(PULONG)(K+0x811a0) &&
+             XwnMapRecord[112] == 0x1f8000 && XwnMapRecord[116] == 0xfe4af000;
++#ifdef XBOX_NT5_POOLINIT_PREFLIGHT
++        Valid = Valid && *(PULONG)(K+0x727f4) == 0x4000 && !*(PULONG)(K+0x73dec) &&
++            XwnMapRecord[113] == 0x1731000;
++        XwnMapRecord[152] = Valid;
++#endif
+         Count += 504;
+         XwnMapRecord[147] = Valid; XwnMapRecord[148] = Count;
+     }
+@@ -403,6 +427,10 @@ DECLSPEC_NORETURN VOID NTAPI HalpXwnPtAfter(PULONG Frame, ULONG Largest)
+                     Expected = ((Base+Count+((Va-0xfe4af000)>>12))<<12) | 0x163;
+                     ++XwnMapRecord[149];
+                 }
++#ifdef XBOX_NT5_POOLINIT_PREFLIGHT
++                else if (Va == 0xfe6a8000) Expected = 0xfffff000;
++                else if (Va == 0xfe6a9000) Expected = 0x01538000;
++#endif
+ #endif
+                 if (((volatile ULONG *)(0xc0000000+I*4096))[J] != Expected) { Valid = FALSE; break; }
+             }
+@@ -412,6 +440,44 @@ DECLSPEC_NORETURN VOID NTAPI HalpXwnPtAfter(PULONG Frame, ULONG Largest)
+     }
+     XwnMapRecord[146] = Valid;
+     XwnMapRecord[135] = Valid && XwnMapRecord[139] == Count;
++#ifdef XBOX_NT5_POOLINIT_PREFLIGHT
++    if (XwnMapRecord[135])
++    {
++        ULONG K = XwnMapRecord[6], Pool = 0xfe4af000, Free = Pool+0x4000, Head = K+0x81338;
++        XwnMapRecord[154] = *(PULONG)(K+0x82268);
++        XwnMapRecord[155] = *(PULONG)(K+0x81b80);
++        XwnMapRecord[156] = *(PULONG)(K+0x8121c);
++        XwnMapRecord[157] = *(PULONG)(K+0x81384);
++        XwnMapRecord[158] = *(PULONG)(K+0x8125c);
++        XwnMapRecord[159] = *(PULONG)(K+0x81264);
++        XwnMapRecord[160] = Head; XwnMapRecord[161] = Free;
++        XwnMapRecord[165] = *(PULONG)(K+0x81388);
++        XwnMapRecord[166] = *(PULONG)(K+0x81378);
++        Valid = XwnMapRecord[152] && XwnMapRecord[154] == 4 && XwnMapRecord[155] == 500 &&
++            XwnMapRecord[156] == 5432 && XwnMapRecord[157] == 0xfe6a7000 &&
++            XwnMapRecord[158] == 0xc03f9aa0 && XwnMapRecord[159] == 0xc03fef7c &&
++            XwnMapRecord[165] == 0x373 && XwnMapRecord[166] == 0x9ff &&
++            *(PULONG)(K+0x824a4) == Pool && *(PULONG)(K+0x81ac0) == 504 &&
++            *(PULONG)(K+0x82334) == 0xc0200000 && *(PULONG)(K+0x8239c) == 0x7e6a8000 &&
++            *(PULONG)Head == Free && *(PULONG)(Head+4) == Free &&
++            *(PULONG)Free == Head && *(PULONG)(Free+4) == Head && *(PULONG)(Free+8) == 500;
++        for (I = 0; Valid && I < 3; ++I)
++            if (*(PULONG)(K+0x81320+I*8) != K+0x81320+I*8 ||
++                *(PULONG)(K+0x81324+I*8) != K+0x81320+I*8) Valid = FALSE;
++        for (I = 0; Valid && I < 4; ++I)
++        {
++            if (*(PULONG)(Pool+I*4096) != (I == 3 ? 0 : Pool+(I+1)*4096)) Valid = FALSE;
++            else ++XwnMapRecord[163];
++        }
++        for (I = 0; Valid && I < 500; ++I)
++        {
++            if (*(PULONG)(Free+I*4096+16) != Free) Valid = FALSE;
++            else ++XwnMapRecord[162];
++        }
++        XwnMapRecord[164] = XwnMapRecord[135];
++        XwnMapRecord[153] = Valid;
++    }
++#endif
+     HalpXwnMapCheckpoint(Frame);
+ }
+ #endif
+@@ -419,7 +485,9 @@ DECLSPEC_NORETURN VOID NTAPI HalpXwnPtAfter(PULONG Frame, ULONG Largest)
+ ULONG NTAPI XwnConfigureMapProbe(PULONG Seed, ULONG Signature)
+ {
+ #ifdef XBOX_NT5_PT_PREFLIGHT
+-#ifdef XBOX_NT5_POOL_PREFLIGHT
++#ifdef XBOX_NT5_POOLINIT_PREFLIGHT
++    UCHAR Expected[8] = {0xa1,0,0,0,0,0x33,0xff,0x48};
++#elif defined(XBOX_NT5_POOL_PREFLIGHT)
+     static const UCHAR Expected[8] = {0x8b,0x45,0xe8,0x89,0x4d,0xbc,0x03,0xc1};
+ #else
+     UCHAR Expected[8] = {0x33,0xc0,0x39,0x05,0,0,0,0};
+@@ -440,7 +508,9 @@ ULONG NTAPI XwnConfigureMapProbe(PULONG Seed, ULONG Signature)
+           (Seed[17]==1024 && Seed[18]==576 && Seed[19]==4096)) ||
+         Seed[21] != Seed[18]*Seed[19] || Seed[20] > 0x04000000-Seed[21]) return 0;
+ #ifdef XBOX_NT5_PT_PREFLIGHT
+-#ifndef XBOX_NT5_POOL_PREFLIGHT
++#ifdef XBOX_NT5_POOLINIT_PREFLIGHT
++    *(PULONG)(Expected+1) = Seed[6]+0x81b68;
++#elif !defined(XBOX_NT5_POOL_PREFLIGHT)
+     *(PULONG)(Expected+4) = Seed[6]+0x823e0;
+ #endif
+     if (memcmp((PVOID)(Seed[6]+0x158439), BeforeExpected, sizeof(BeforeExpected))) return 0;
