@@ -1,0 +1,13 @@
+After physical XWNS90, preserve this package and audit the post-scan native
+candidate selection, page-table construction and PFN database allocation.
+Explain the two type-26 BIOS pages throughout all later accounting and
+reclamation, rather than changing their descriptor type to hide the count
+difference. Verify the chosen allocation range never overlaps live loader,
+kernel, HAL, hive, stack, PCR, GDT, IDT, BIOS or framebuffer-table pages.
+
+Track the high framebuffer alias through each PDE/PTE rebuild. Its physical
+pages are reserved above the usable RAM limit; later PFN walks must not
+mistake that alias for ordinary managed RAM. The page table itself is a
+loader allocation whose lifetime must extend through diagnostic rendering.
+Select a bounded next checkpoint only after reviewing the intervening writes.
+Do not infer completed memory initialization or physical storage support.

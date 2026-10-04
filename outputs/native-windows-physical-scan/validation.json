@@ -1,0 +1,112 @@
+{
+  "validated_utc": "2026-10-04T00:02:34.461754+00:00",
+  "ready_for_physical_upload": true,
+  "physical_tested": false,
+  "installed_on_physical_console": true,
+  "source_tree": "0a05d6c0101df15ff68145451ad7e89b3b4addc5",
+  "scope": "Native RAM scan completed; high HAL stops before MM page allocation and storage.",
+  "normal_loader_build_passed": true,
+  "normal_hal_build_passed": true,
+  "missing_map_parent_rejected": true,
+  "ram_scan_halt_verified": true,
+  "kernel_file_unchanged": true,
+  "temporary_kernel_patch_restored": true,
+  "unexpected_kernel_rejected": true,
+  "changed_files": [
+    "loader/halxboxnt5.dll",
+    "README.txt",
+    "rosload.exe"
+  ],
+  "package_files_verified": 33,
+  "emulator_tests": [
+    {
+      "run": "physical-scan-wide-001",
+      "status": "kernel_ram_scan_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "high_alias_pages_verified": 576,
+        "identity_mapping_present": false,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-scan-normal-001",
+      "status": "kernel_ram_scan_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 640,
+        "height": 480,
+        "pitch": 2560,
+        "pa": "0x3c00000",
+        "bytes": 1228800,
+        "high_alias_pages_verified": 300,
+        "identity_mapping_present": false,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-scan-bad-hal-001",
+      "status": "unarmed_hal_rejected_before_kernel",
+      "kernel_entered": false,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "high_alias_pages_verified": 576,
+        "identity_mapping_present": true,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-scan-trace-001",
+      "status": "kernel_ram_scan_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "high_alias_pages_verified": 576,
+        "identity_mapping_present": false,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-scan-bad-kernel-001",
+      "status": "kernel_contract_rejected_before_entry",
+      "kernel_entered": false,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "high_alias_pages_verified": 576,
+        "identity_mapping_present": true,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    }
+  ],
+  "native_trace_passed": true,
+  "expected_physical_success": "XWNS90: RAM scan completed; allocation blocked.",
+  "fixture_package_includes_final_readme": true,
+  "uploaded_utc": "2026-10-04T00:04:52.069577+00:00"
+}

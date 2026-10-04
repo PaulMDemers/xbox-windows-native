@@ -1,0 +1,44 @@
+XWN native RAM descriptor scan diagnostic (patch 0033)
+
+The preceding physical XWNV90 confirms low mapping removal and high HAL
+display operation. This candidate runs the pinned Windows 2000 native RAM
+descriptor scan, then halts before post-scan selection, MM page allocation
+and PFN database setup. It does not complete memory initialization.
+
+The temporary five-byte checkpoint moves to kernel RVA 0x158025. An assembly
+entry preserves the native frame pointer and largest-candidate pointer for
+the high HAL checkpoint. The HAL compares native RAM totals, page bounds
+and candidate spans against an independent walk of the loader descriptors.
+It verifies 512 absent low PDEs, flushes translations, restores the original
+kernel bytes and displays the result through the existing high alias.
+The kernel file is unchanged. No descriptor is allocated or reclaimed here.
+
+Expected: XWNS90: RAM scan completed; allocation blocked.
+Native RAM pages: 00003bff (15359).
+Earlier limits pages: 00003bfd (15357).
+BIOS-reserved pages: 00000002.
+Photograph the full screen, then reboot to UnleashX.
+
+The two-page difference is observed and checked, not corrected by this
+diagnostic. The earlier limits helper excludes types at or above 24, while
+this native scan counts the two type-26 BIOS allocations. Later PFN and
+reclamation behavior still requires review before proceeding past this stop.
+The framebuffer alias and its page-table lifetime also need review before
+memory-manager page-table rebuilding or loader-memory reclamation.
+
+SCAN options default OFF and require MAP preflight. Distinct arming tokens
+reject an older HAL; ordinary builds cannot arm either diagnostic export.
+Both display modes, old-HAL rejection and altered-kernel rejection pass.
+The 45-checkpoint emulator trace observes the native scan, unchanged memory
+descriptors, and final HAL entry. Twenty-two forbidden breakpoints cover
+post-scan selection, four partition handlers and 17 loaded driver entries.
+All 1388 imports and core executable sections pass the final memory audit.
+Normal builds, the parent-option guard and all 33 source patches also pass.
+
+Physical XWNS90 remains pending. See validation.json and ftp-upload.json
+for deployment status. Storage and the Windows desktop remain unproven on
+hardware; the FATX files remain loader staging, not a native Windows mount.
+
+Uploaded 2026-10-04T00:04:52.069577+00:00. All 33 files verified by readback.
+Three physical-tested XWNV90 files retained under xwnv90 backup names.
+The console was not remotely launched. Physical XWNS90 is pending.
