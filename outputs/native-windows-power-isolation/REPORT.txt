@@ -1,0 +1,39 @@
+Native shutdown investigation, 4 October 2026
+
+Emulator only. No physical Xbox uploads or tests. Physical validation remains
+at XWNW90; native FATX desktop runs are a separate emulator result.
+
+The0054 flush change passes desktop/storage/memory and cold integrity tests,
+but normal shutdown still stops with outstanding paging reads during device
+power transitions. The older NTFS baseline also has an unresolved shutdown
+paging wait. A successful flush or consistent registry header is not proof of
+a completed shutdown.
+
+Isolation run nt5-fatx-boot-power-001 disables ac97xnt5 and nvnetnt5 Start values
+in both existing control sets of a private derivative. Runtime module lists
+confirm those drivers and PortCls are absent. Desktop and endurance pass, yet
+shutdown still hangs, now with a Win32k-related paging wait. This rules out
+those optional drivers being required to reproduce the failure. It does not
+establish the remaining root cause. IDE IRQ14 is unmasked; the ATA alternate
+status is50, with both bus-master command and status00 at the sampled stop.
+See isolation-validation-001.json.
+
+Read-only execution-breakpoint trace002 observes the real MiCheckPageFilePath
+call for pagefile.sys. Its device-usage request reaches VfatPnp, is forwarded
+to the Ftdisk volume, and returns STATUS_NOT_SUPPORTED. The return value is
+not modified. An earlier trace001 sampled the same native routine for an
+image path, audstub.sys, so it is not evidence about pagefile.sys itself.
+Trace004 includes fresh parent IRPs created by ATAPI, PCIIDE and PCI.
+The request reaches the PCI_HAL root PDO; that dispatch returns
+STATUS_NOT_SUPPORTED, which propagates back to MiCheckPageFilePath. The HAL
+source has no device-usage case. This identifies the rejection, but does not
+yet establish that fixing it resolves the independent shutdown wait.
+Trace003 tracked only the original IRP and therefore stopped attribution too
+early at ATAPI; use trace004 for the complete parent chain.
+
+capture-devices.py reads exact native driver/device structures and selected
+IDE/PIC registers. It removes its temporary RAM dump and resumes the owned
+emulator. The structure offsets are derived from the hash-pinned kernel PDB
+by read-device-layouts.py. Stack address scans remain candidates, not validated
+unwinds. Symbol lookup attempts for the supplied ATAPI/PCI binaries returned
+404 from Microsoft's server; no mismatched symbols are substituted.

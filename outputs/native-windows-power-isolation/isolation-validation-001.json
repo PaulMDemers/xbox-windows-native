@@ -1,0 +1,584 @@
+{
+  "scope": "Unassisted xemu boot with0054 and audio/network services disabled; no hardware access",
+  "run": "nt5-fatx-boot-power-001",
+  "fixture": {
+    "scope": "Offline emulator-only power isolation; not a hardware deployment",
+    "mode": "no-audio-network",
+    "services_disabled": [
+      "ac97xnt5",
+      "nvnetnt5"
+    ],
+    "source_sha256": "0c94140b312f4b74e5e0c2ce3109ac6e8e83520d5a6898ca652945fe160c2a57",
+    "changes": [
+      {
+        "key": "ControlSet001\\Services\\ac97xnt5",
+        "value": "Start",
+        "before": 3,
+        "after": 4
+      },
+      {
+        "key": "ControlSet001\\Services\\nvnetnt5",
+        "value": "Start",
+        "before": 3,
+        "after": 4
+      },
+      {
+        "key": "ControlSet002\\Services\\ac97xnt5",
+        "value": "Start",
+        "before": 3,
+        "after": 4
+      },
+      {
+        "key": "ControlSet002\\Services\\nvnetnt5",
+        "value": "Start",
+        "before": 3,
+        "after": 4
+      }
+    ],
+    "nt5_indexes": {
+      "keys_checked": 5307,
+      "indexes_checked": 1666,
+      "converted": []
+    },
+    "hive_sha256": "7375ed8b6b31f5274b4ef56df4e64cac5c1d518d4b52316926293279ee6d54bf",
+    "cold_readback_equal": true,
+    "check": "No errors were found on the image.\n26948/131072 = 20.56% allocated, 0.00% fragmented, 0.00% compressed clusters\nImage end offset: 1766785024\n",
+    "sha256": "002739261a194c6e70af766d866ebe56227c2c050fe2c69fe5a1d80db607bfdd",
+    "source_preserved": true,
+    "temporary_raw_removed": true
+  },
+  "cold_integrity": {
+    "scope": "Cold read-only emulator disk audit; no physical access",
+    "source_sha256": "23bc2149ddde0bee27358cd4ef396481c77f2ff38bca7cd515c2002f79d16aac",
+    "directories": 322,
+    "files": 6552,
+    "allocated_clusters": 51698,
+    "immutable_files_checked": 3452,
+    "structural_errors": [],
+    "immutable_mismatches": [],
+    "registry_headers": [
+      {
+        "path": "/documents and settings/default user/ntuser.dat",
+        "bytes": 122880,
+        "sequence1": 2,
+        "sequence2": 2,
+        "sequences_match": true,
+        "checksum_matches": true
+      },
+      {
+        "path": "/documents and settings/win2k/local settings/application data/microsoft/windows/usrclass.dat",
+        "bytes": 8192,
+        "sequence1": 3,
+        "sequence2": 3,
+        "sequences_match": true,
+        "checksum_matches": true
+      },
+      {
+        "path": "/documents and settings/win2k/ntuser.dat",
+        "bytes": 196608,
+        "sequence1": 122,
+        "sequence2": 122,
+        "sequences_match": true,
+        "checksum_matches": true
+      },
+      {
+        "path": "/winnt/repair/ntuser.dat",
+        "bytes": 122880,
+        "sequence1": 2,
+        "sequence2": 2,
+        "sequences_match": true,
+        "checksum_matches": true
+      },
+      {
+        "path": "/winnt/system32/config/default",
+        "bytes": 126976,
+        "sequence1": 6,
+        "sequence2": 6,
+        "sequences_match": true,
+        "checksum_matches": true
+      },
+      {
+        "path": "/winnt/system32/config/sam",
+        "bytes": 20480,
+        "sequence1": 33,
+        "sequence2": 33,
+        "sequences_match": true,
+        "checksum_matches": true
+      },
+      {
+        "path": "/winnt/system32/config/security",
+        "bytes": 20480,
+        "sequence1": 121,
+        "sequence2": 121,
+        "sequences_match": true,
+        "checksum_matches": true
+      },
+      {
+        "path": "/winnt/system32/config/software",
+        "bytes": 6696960,
+        "sequence1": 54,
+        "sequence2": 54,
+        "sequences_match": true,
+        "checksum_matches": true
+      },
+      {
+        "path": "/winnt/system32/config/system",
+        "bytes": 2158592,
+        "sequence1": 124,
+        "sequence2": 124,
+        "sequences_match": true,
+        "checksum_matches": true
+      }
+    ],
+    "paging_file": {
+      "bytes": 100663296,
+      "clusters": 6144,
+      "first_cluster": 45551,
+      "physical_runs": 1
+    },
+    "endurance": {
+      "bytes": 1307,
+      "sha256": "158ee27b39062881aedfd1cd5cae7ee4555489c1e891f02f22436f4ed3e63456",
+      "passed": true
+    },
+    "source_preserved": true,
+    "passed": true,
+    "temporary_raw_removed": true
+  },
+  "optional_driver_modules_present": [],
+  "shutdown_passed": false,
+  "result": "Hang persists with pending paging reads and no optional audio/network drivers loaded. This rules out those drivers being required to reproduce the hang, not all power-path defects.",
+  "winlogon_stack_candidates": {
+    "thread": "0xfe52a4e0",
+    "tid": 156,
+    "state": 5,
+    "wait_reason": 0,
+    "stack": "0xf8d4f5c0",
+    "initial_stack": "0xf8d50000",
+    "stack_code_candidates": [
+      {
+        "stack": "0xf8d4f5c8",
+        "value": "0x82479e75",
+        "candidate": "@KiSwapThread@0+0xc5"
+      },
+      {
+        "stack": "0xf8d4f5dc",
+        "value": "0x8243d2bf",
+        "candidate": "_KeWaitForSingleObject@20+0x1a1"
+      },
+      {
+        "stack": "0xf8d4f604",
+        "value": "0xfe44d26a",
+        "candidate": "xwnfatx.sys+0x1126a"
+      },
+      {
+        "stack": "0xf8d4f62c",
+        "value": "0x825b88f0",
+        "candidate": "hal.dll+0xa8f0"
+      },
+      {
+        "stack": "0xf8d4f630",
+        "value": "0x825b8880",
+        "candidate": "hal.dll+0xa880"
+      },
+      {
+        "stack": "0xf8d4f694",
+        "value": "0xfe44d59c",
+        "candidate": "xwnfatx.sys+0x1159c"
+      },
+      {
+        "stack": "0xf8d4f6e4",
+        "value": "0x825b868b",
+        "candidate": "hal.dll+0xa68b"
+      },
+      {
+        "stack": "0xf8d4f704",
+        "value": "0x8242efa9",
+        "candidate": "@IopfCompleteRequest@8+0xab"
+      },
+      {
+        "stack": "0xf8d4f734",
+        "value": "0xfe44db65",
+        "candidate": "xwnfatx.sys+0x11b65"
+      },
+      {
+        "stack": "0xf8d4f78c",
+        "value": "0xfe44beda",
+        "candidate": "xwnfatx.sys+0xfeda"
+      },
+      {
+        "stack": "0xf8d4f79c",
+        "value": "0x8242e54c",
+        "candidate": "_IopAllocateIrpPrivate@8+0xa2"
+      },
+      {
+        "stack": "0xf8d4f7c4",
+        "value": "0xfe44c1ba",
+        "candidate": "xwnfatx.sys+0x101ba"
+      },
+      {
+        "stack": "0xf8d4f7f4",
+        "value": "0x8242edf1",
+        "candidate": "@IopfCallDriver@8+0x35"
+      },
+      {
+        "stack": "0xf8d4f808",
+        "value": "0x82430129",
+        "candidate": "_IoPageRead@20+0xb1"
+      },
+      {
+        "stack": "0xf8d4f814",
+        "value": "0x825b7570",
+        "candidate": "hal.dll+0x9570"
+      },
+      {
+        "stack": "0xf8d4f81c",
+        "value": "0x82451e47",
+        "candidate": "_MiDispatchFault@24+0x23d"
+      },
+      {
+        "stack": "0xf8d4f838",
+        "value": "0xa00c6ed3",
+        "candidate": "win32k.sys+0xc6ed3"
+      },
+      {
+        "stack": "0xf8d4f85c",
+        "value": "0x8245ac60",
+        "candidate": "_MmAccessFault@16+0x682"
+      },
+      {
+        "stack": "0xf8d4f864",
+        "value": "0xa00c6ed3",
+        "candidate": "win32k.sys+0xc6ed3"
+      },
+      {
+        "stack": "0xf8d4f878",
+        "value": "0xa00c6ed3",
+        "candidate": "win32k.sys+0xc6ed3"
+      },
+      {
+        "stack": "0xf8d4f890",
+        "value": "0xf8f91470",
+        "candidate": "USBD.SYS+0x1470"
+      },
+      {
+        "stack": "0xf8d4f8a8",
+        "value": "0x82478ceb",
+        "candidate": "_KiTrap0E+0xc3"
+      },
+      {
+        "stack": "0xf8d4f8d8",
+        "value": "0xf8f791f4",
+        "candidate": "openhci.sys+0x11f4"
+      },
+      {
+        "stack": "0xf8d4f8e0",
+        "value": "0x8243ca16",
+        "candidate": "_KiGetVectorInfo@8+0x1c"
+      },
+      {
+        "stack": "0xf8d4f904",
+        "value": "0x8249d821",
+        "candidate": "_PopCompleteSystemPowerIrp@12+0xb1"
+      },
+      {
+        "stack": "0xf8d4f924",
+        "value": "0xa00c6ed3",
+        "candidate": "win32k.sys+0xc6ed3"
+      },
+      {
+        "stack": "0xf8d4f930",
+        "value": "0xa0087a9d",
+        "candidate": "win32k.sys+0x87a9d"
+      },
+      {
+        "stack": "0xf8d4f948",
+        "value": "0xf8c10e63",
+        "candidate": "pci.sys+0xe63"
+      },
+      {
+        "stack": "0xf8d4f95c",
+        "value": "0x8242edf1",
+        "candidate": "@IopfCallDriver@8+0x35"
+      },
+      {
+        "stack": "0xf8d4f968",
+        "value": "0x82493a38",
+        "candidate": "_PopIrpSerialLock+0x0"
+      },
+      {
+        "stack": "0xf8d4f970",
+        "value": "0x8246258e",
+        "candidate": "_PopPresentIrp@8+0x62"
+      },
+      {
+        "stack": "0xf8d4f974",
+        "value": "0x82493a38",
+        "candidate": "_PopIrpSerialLock+0x0"
+      },
+      {
+        "stack": "0xf8d4f988",
+        "value": "0x824624c5",
+        "candidate": "_PoCallDriver@8+0x157"
+      },
+      {
+        "stack": "0xf8d4f9ac",
+        "value": "0xf8f915ee",
+        "candidate": "USBD.SYS+0x15ee"
+      },
+      {
+        "stack": "0xf8d4f9d0",
+        "value": "0xf8f91971",
+        "candidate": "USBD.SYS+0x1971"
+      },
+      {
+        "stack": "0xf8d4fa00",
+        "value": "0x8247b88e",
+        "candidate": "_ExAllocatePoolWithTag@12+0x34e"
+      },
+      {
+        "stack": "0xf8d4fa2c",
+        "value": "0xa007f963",
+        "candidate": "win32k.sys+0x7f963"
+      },
+      {
+        "stack": "0xf8d4fa38",
+        "value": "0xa008791e",
+        "candidate": "win32k.sys+0x8791e"
+      },
+      {
+        "stack": "0xf8d4fa40",
+        "value": "0xa0087f80",
+        "candidate": "win32k.sys+0x87f80"
+      },
+      {
+        "stack": "0xf8d4fa54",
+        "value": "0xa00877c1",
+        "candidate": "win32k.sys+0x877c1"
+      },
+      {
+        "stack": "0xf8d4fa5c",
+        "value": "0xa00878ab",
+        "candidate": "win32k.sys+0x878ab"
+      },
+      {
+        "stack": "0xf8d4fa74",
+        "value": "0xa007fb49",
+        "candidate": "win32k.sys+0x7fb49"
+      },
+      {
+        "stack": "0xf8d4fa7c",
+        "value": "0xa0087c23",
+        "candidate": "win32k.sys+0x87c23"
+      },
+      {
+        "stack": "0xf8d4fa84",
+        "value": "0x8254351a",
+        "candidate": "_MmDispatchWin32Callout@16+0x4e"
+      },
+      {
+        "stack": "0xf8d4fa98",
+        "value": "0x825b868b",
+        "candidate": "hal.dll+0xa68b"
+      },
+      {
+        "stack": "0xf8d4fa9c",
+        "value": "0x825b8670",
+        "candidate": "hal.dll+0xa670"
+      },
+      {
+        "stack": "0xf8d4faa8",
+        "value": "0x825b8670",
+        "candidate": "hal.dll+0xa670"
+      },
+      {
+        "stack": "0xf8d4fab0",
+        "value": "0x825b868b",
+        "candidate": "hal.dll+0xa68b"
+      },
+      {
+        "stack": "0xf8d4fab8",
+        "value": "0x8249d5a9",
+        "candidate": "_PopWaitForSystemPowerIrp@8+0x36a"
+      },
+      {
+        "stack": "0xf8d4fac4",
+        "value": "0x824644d2",
+        "candidate": "_PopEventCalloutDispatch@8+0x24"
+      },
+      {
+        "stack": "0xf8d4fac8",
+        "value": "0xa0087c08",
+        "candidate": "win32k.sys+0x87c08"
+      },
+      {
+        "stack": "0xf8d4facc",
+        "value": "0xa0087c08",
+        "candidate": "win32k.sys+0x87c08"
+      },
+      {
+        "stack": "0xf8d4fae4",
+        "value": "0x8249cff1",
+        "candidate": "_PopSetDevicesSystemState@4+0xe3"
+      },
+      {
+        "stack": "0xf8d4fb08",
+        "value": "0x8249cb1f",
+        "candidate": "_NtSetSystemPowerState@12+0x329"
+      },
+      {
+        "stack": "0xf8d4fb18",
+        "value": "0x8249c7f6",
+        "candidate": "_NtSetSystemPowerState@12+0x0"
+      },
+      {
+        "stack": "0xf8d4fb24",
+        "value": "0x824e7d34",
+        "candidate": "_ObpIncrementHandleCount@28+0x3c6"
+      },
+      {
+        "stack": "0xf8d4fb28",
+        "value": "0x824e7d22",
+        "candidate": "_ObpIncrementHandleCount@28+0x3b4"
+      },
+      {
+        "stack": "0xf8d4fb3c",
+        "value": "0x824a07d4",
+        "candidate": "_ExpAllocateHandleTableEntry@8+0x246"
+      },
+      {
+        "stack": "0xf8d4fb5c",
+        "value": "0x82411288",
+        "candidate": "ntoskrnl.exe+0x288"
+      },
+      {
+        "stack": "0xf8d4fb6c",
+        "value": "0x82493500",
+        "candidate": "_MmSystemCacheWs+0x40"
+      },
+      {
+        "stack": "0xf8d4fb98",
+        "value": "0x8249faa0",
+        "candidate": "_ExUnlockHandleTableShared@4+0xc"
+      },
+      {
+        "stack": "0xf8d4fb9c",
+        "value": "0x824a0109",
+        "candidate": "_ExCreateHandle@8+0x8f"
+      },
+      {
+        "stack": "0xf8d4fba4",
+        "value": "0x824a00ed",
+        "candidate": "_ExCreateHandle@8+0x73"
+      },
+      {
+        "stack": "0xf8d4fbd4",
+        "value": "0x82470ca0",
+        "candidate": "__except_handler3+0x0"
+      },
+      {
+        "stack": "0xf8d4fbd8",
+        "value": "0x82417188",
+        "candidate": "??_C@_0BG@KMIE@Locked?5pages?5tracking?$AA@+0x598"
+      },
+      {
+        "stack": "0xf8d4fbe4",
+        "value": "0x82476034",
+        "candidate": "_KiSystemService+0xc4"
+      },
+      {
+        "stack": "0xf8d4fbf8",
+        "value": "0x82494860",
+        "candidate": "_SepTokenLock+0x0"
+      },
+      {
+        "stack": "0xf8d4fc00",
+        "value": "0x82511237",
+        "candidate": "_SepPrivilegeCheck@20+0x95"
+      },
+      {
+        "stack": "0xf8d4fc38",
+        "value": "0x825114dc",
+        "candidate": "_SeSinglePrivilegeCheck@12+0x5c"
+      },
+      {
+        "stack": "0xf8d4fc5c",
+        "value": "0x8244157f",
+        "candidate": "_ZwSetSystemPowerState@12+0xb"
+      },
+      {
+        "stack": "0xf8d4fc68",
+        "value": "0x8249c866",
+        "candidate": "_NtSetSystemPowerState@12+0x70"
+      },
+      {
+        "stack": "0xf8d4fc80",
+        "value": "0x824a14cc",
+        "candidate": "_NtShutdownSystem@4+0x0"
+      },
+      {
+        "stack": "0xf8d4fc90",
+        "value": "0x82452967",
+        "candidate": "_MiResolveProtoPteFault@28+0x157"
+      },
+      {
+        "stack": "0xf8d4fcac",
+        "value": "0x825b7570",
+        "candidate": "hal.dll+0x9570"
+      },
+      {
+        "stack": "0xf8d4fcbc",
+        "value": "0x82451cf9",
+        "candidate": "_MiDispatchFault@24+0xef"
+      },
+      {
+        "stack": "0xf8d4fcf8",
+        "value": "0x82508bfe",
+        "candidate": "_NtOpenProcessToken@12+0x0"
+      },
+      {
+        "stack": "0xf8d4fd04",
+        "value": "0x825b8919",
+        "candidate": "hal.dll+0xa919"
+      },
+      {
+        "stack": "0xf8d4fd1c",
+        "value": "0x8245b2a6",
+        "candidate": "_MmAccessFault@16+0xcc8"
+      },
+      {
+        "stack": "0xf8d4fd3c",
+        "value": "0x82470ca0",
+        "candidate": "__except_handler3+0x0"
+      },
+      {
+        "stack": "0xf8d4fd40",
+        "value": "0x82417188",
+        "candidate": "??_C@_0BG@KMIE@Locked?5pages?5tracking?$AA@+0x598"
+      },
+      {
+        "stack": "0xf8d4fd4c",
+        "value": "0x824a14fa",
+        "candidate": "_NtShutdownSystem@4+0x2e"
+      },
+      {
+        "stack": "0xf8d4fd5c",
+        "value": "0x82476034",
+        "candidate": "_KiSystemService+0xc4"
+      }
+    ]
+  },
+  "device_observations": {
+    "pic_irq14_unmasked": true,
+    "ata_alternate_status": "0x50",
+    "bus_master_command": "0x00",
+    "bus_master_status": "0x00"
+  },
+  "stack_caveat": "Scanned code candidates; not a validated unwind.",
+  "cleanup": {
+    "completedUtc": "2026-10-04T11:14:20.1227613Z",
+    "scratchDirectory": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\work\\scratch\\windows-native-29cd70e354a144d19af3dcbb234b632b",
+    "retained": false,
+    "reason": ""
+  }
+}

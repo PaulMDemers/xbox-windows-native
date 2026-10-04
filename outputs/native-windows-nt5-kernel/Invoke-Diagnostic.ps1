@@ -20,11 +20,17 @@ param(
     [switch]$ManualCapture,
     [switch]$StopOnCaptureComplete,
     [switch]$StopOnBugcheck,
+    [ValidateRange(1,1920)][int]$CaptureWidth = 640,
+    [ValidateRange(1,1080)][int]$CaptureHeight = 480,
+    [ValidateRange(4,8192)][int]$CapturePitch = 2560,
     [ValidateRange(1024,65535)][int]$MonitorPort = 4574,
     [ValidateRange(1024,65535)][int]$GdbPort = 4575,
     [ValidateRange(30,3600)][int]$Seconds = 120
 )
 $ErrorActionPreference = 'Stop'
+if ($CapturePitch -lt $CaptureWidth * 4 -or $CapturePitch % 4 -ne 0 -or $CapturePitch * $CaptureHeight -gt 4MB) {
+    throw 'Capture geometry must describe a 32-bit framebuffer within four MiB.'
+}
 if ($ManualCapture -and ($Autorun -or $LaunchXromwell -or $ExerciseInput -or $InstallNetwork -or $TraceNetwork)) {
     throw 'Manual capture requires explicit external launch/inspection; automatic actions cannot be combined with it.'
 }
@@ -102,7 +108,7 @@ enable = false
             if ($vm.HasExited) { throw "Task emulator exited: $($vm.ExitCode)" }
             if (-not $ManualCapture -and $clock.Elapsed.TotalSeconds -ge $nextCapture) {
                 $output = Join-Path $run ('frame-{0:D3}.png' -f $nextCapture)
-                $captureArguments = @('--port',$MonitorPort,'--output',$output)
+                $captureArguments = @('--port',$MonitorPort,'--output',$output,'--width',$CaptureWidth,'--height',$CaptureHeight,'--pitch',$CapturePitch)
                 if ($FtpPort) { $captureArguments += '--auto-framebuffer' }
                 & python (Join-Path (Join-Path $PSScriptRoot ../native-windows-prebuild) 'monitor_capture.py') @captureArguments
                 if ($LASTEXITCODE -ne 0) { throw 'Guest capture failed.' }
@@ -117,7 +123,7 @@ enable = false
                     $networkInstallSent = $true
                 }
                 if ($Autorun -and $state.status -eq 'shell_running' -and $ExerciseInput -and -not $inputSent -and $nextCapture -ge 60) {
-                    & C:/Python314/python.exe (Join-Path $PSScriptRoot 'exercise-input.py') --port $MonitorPort --run $run
+                    & C:/Python314/python.exe (Join-Path $PSScriptRoot 'exercise-input.py') --port $MonitorPort --run $run --width $CaptureWidth --height $CaptureHeight --pitch $CapturePitch
                     if ($LASTEXITCODE -ne 0) { throw 'Input exercise failed.' }
                     $inputSent = $true
                 }
@@ -130,9 +136,9 @@ enable = false
                     if ($TraceNetwork) { $traceOptions += '--trace-network' }
                     & C:/Python314/python.exe (Join-Path $PSScriptRoot 'trace-entry.py') @traceOptions --port $GdbPort --monitor $MonitorPort --state $statePath --output (Join-Path $run 'kernel-trace.json')
                     if ($LASTEXITCODE -ne 0) { throw 'Kernel trace helper failed.' }
-                    & python (Join-Path (Join-Path $PSScriptRoot ../native-windows-prebuild) 'monitor_capture.py') --port $MonitorPort --output (Join-Path $run 'after-kernel.png')
+                    & python (Join-Path (Join-Path $PSScriptRoot ../native-windows-prebuild) 'monitor_capture.py') --port $MonitorPort --output (Join-Path $run 'after-kernel.png') --width $CaptureWidth --height $CaptureHeight --pitch $CapturePitch
                     if ($ExerciseInput) {
-                        & C:/Python314/python.exe (Join-Path $PSScriptRoot 'exercise-input.py') --port $MonitorPort --run $run
+                        & C:/Python314/python.exe (Join-Path $PSScriptRoot 'exercise-input.py') --port $MonitorPort --run $run --width $CaptureWidth --height $CaptureHeight --pitch $CapturePitch
                         if ($LASTEXITCODE -ne 0) { throw 'Input exercise failed.' }
                     }
                     break

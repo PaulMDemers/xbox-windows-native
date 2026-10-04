@@ -16,6 +16,23 @@ host-side test harness.
   USB input, framebuffer, networking and experimental audio. Those results
   do not establish physical hardware compatibility.
 
+As of 4 October 2026, emulator-only work also reaches the interactive desktop
+with Windows installed directly on the existing **FATX E volume**. It uses the
+research FATX filesystem driver, not a virtual filesystem or a mounted NTFS
+image. Paging-file translation and native image-read alignment fixes restored
+storage integrity and USB driver loading. Repeated boots pass bounded disk,
+memory and GUI checks; cold audits verify 3,452 immutable Windows files.
+See the [FATX paging](outputs/native-windows-fatx-paging/REPORT.txt),
+[USB image-read](outputs/native-windows-fatx-image-read/REPORT.txt) and
+[volume-flush](outputs/native-windows-fatx-flush/REPORT.txt) evidence.
+Shutdown remains unresolved during device power transitions. FATX's 42-byte
+component limit also remains an application-compatibility constraint.
+
+The next bounded hardware candidate has reached a genuine Windows boot bitmap
+in both tested emulator display layouts, stopping before storage. It has not
+been uploaded or run on the physical console during the emulator-only session.
+See the [boot-video candidate](outputs/native-windows-physical-bootvideo/REPORT.txt).
+
 The physical-tested **XWNI90** reserves the two BIOS phase-0 pages and
 halts before HAL returns to Windows; see
 [BIOS diagnostic](outputs/native-windows-physical-bios/REPORT.txt).
@@ -162,3 +179,8 @@ long-term stability and a physical Windows boot volume remain unproven.
 Paul restarts to the dashboard after each diagnostic photo. Treat receipt
 of a photo as restart confirmation; only raise dashboard availability if
 FTP remains unavailable after a retry. Physical launches remain manual.
+
+The full FATX desktop also passes in the firmware 1024x576 display layout,
+including USB input and cold binary checks: [wide-mode evidence](outputs/native-windows-fatx-wide/REPORT.txt).
+The [power-path investigation](outputs/native-windows-power-isolation/REPORT.txt)
+separates the unresolved shutdown wait from the successful desktop runs.

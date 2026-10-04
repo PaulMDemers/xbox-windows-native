@@ -5,7 +5,7 @@ p = argparse.ArgumentParser()
 p.add_argument('--run', required=True)
 p.add_argument('--driver-manifest', default='outputs/native-windows-fatx-paging/fatx-full-paging-disk-001.json')
 a = p.parse_args()
-assert re.fullmatch(r'nt5-fatx-boot-(?:paging|image-read|paging-flags|flush)-[0-9]+', a.run)
+assert re.fullmatch(r'nt5-fatx-boot-(?:paging|image-read|paging-flags|flush|power|wide|hal-paging)-[0-9]+', a.run)
 ws = pathlib.Path('/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility')
 root = pathlib.Path('/home/paul/xbox-windows-native')
 run = ws / 'work/runs' / a.run
@@ -24,7 +24,7 @@ assert not temp.exists()
 temp.mkdir()
 r = {'scope': 'Cold read-only emulator disk audit; no physical access', 'source_sha256': sha(source),
      'directories': 0, 'files': 0, 'allocated_clusters': 0, 'immutable_files_checked': 0,
-     'structural_errors': [], 'immutable_mismatches': []}
+     'structural_errors': [], 'immutable_mismatches': [], 'registry_headers': []}
 try:
     raw = temp / 'disk.raw'
     subprocess.run(['qemu-img', 'convert', '-O', 'raw', str(source), str(raw)], check=True)
@@ -78,6 +78,34 @@ try:
                     r['structural_errors'].append({'path': full, 'error': repr(ex)})
         walk(1, '/')
         r['allocated_clusters'] = len(owners)
+        # Header consistency is separate from a full registry-tree audit and
+        # does not prove that the guest completed shutdown. A sequence mismatch
+        # can require log replay after a host-stopped run.
+        hive_paths = {'/winnt/system32/config/' + name
+                      for name in ('system', 'software', 'sam', 'security', 'default')}
+        hive_paths.update(path for path in found if pathlib.PurePosixPath(path).name in ('ntuser.dat', 'usrclass.dat'))
+        for path in sorted(hive_paths):
+            item = {'path': path}
+            try:
+                data = w.read(path)
+                assert len(data) >= 4096 and data[:4] == b'regf'
+                first, second = struct.unpack_from('<II', data, 4)
+                bins = struct.unpack_from('<I', data, 40)[0]
+                assert bins % 4096 == 0 and bins + 4096 <= len(data)
+                checksum = 0
+                for word in struct.unpack_from('<127I', data):
+                    checksum ^= word
+                if checksum == 0xffffffff:
+                    checksum = 0xfffffffe
+                if checksum == 0:
+                    checksum = 1
+                stored = struct.unpack_from('<I', data, 508)[0]
+                item.update(bytes=len(data), sequence1=first, sequence2=second,
+                            sequences_match=first == second,
+                            checksum_matches=stored == checksum)
+            except Exception as ex:
+                item['error'] = repr(ex)
+            r['registry_headers'].append(item)
         logs = run / 'guest-logs'
         logs.mkdir(exist_ok=True)
         try:
