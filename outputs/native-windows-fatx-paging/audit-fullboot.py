@@ -3,8 +3,9 @@ import argparse, hashlib, json, pathlib, re, shutil, struct, subprocess, sys
 
 p = argparse.ArgumentParser()
 p.add_argument('--run', required=True)
+p.add_argument('--driver-manifest', default='outputs/native-windows-fatx-paging/fatx-full-paging-disk-001.json')
 a = p.parse_args()
-assert re.fullmatch(r'nt5-fatx-boot-paging-[0-9]+', a.run)
+assert re.fullmatch(r'nt5-fatx-boot-(?:paging|image-read)-[0-9]+', a.run)
 ws = pathlib.Path('/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility')
 root = pathlib.Path('/home/paul/xbox-windows-native')
 run = ws / 'work/runs' / a.run
@@ -29,7 +30,7 @@ try:
     subprocess.run(['qemu-img', 'convert', '-O', 'raw', str(source), str(raw)], check=True)
     baseline = json.loads((ws / 'outputs/native-windows-fatx-runtime/fatx-boot-disk-001.json').read_text())
     expected = {item['path'].lower(): item for item in baseline['files']}
-    driver = json.loads((ws / 'outputs/native-windows-fatx-paging/fatx-full-paging-disk-001.json').read_text())['driver_sha256']
+    driver = json.loads((ws / a.driver_manifest).read_text())['driver_sha256']
     expected['/winnt/system32/drivers/xwnfatx.sys'] = {'sha256': driver}
     extensions = {'.exe', '.dll', '.sys', '.nls', '.fon', '.ttf', '.cpl', '.ocx'}
     with raw.open('rb') as fp:

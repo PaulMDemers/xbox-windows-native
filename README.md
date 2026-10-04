@@ -134,8 +134,9 @@ Microsoft's Fastfat. The loader's Xbox ARC identity fix reaches graphical logon
 on a private FATX system volume. The paging-file offset repair now passes a
 full desktop/endurance run: 4 MiB disk verification, 8 MiB memory retention and GUI
 response, with a clean cold filesystem audit and 3,452 unchanged system binaries.
-This is a bounded emulator result; fragmented/repeat-boot tests and physical
-validation remain. See the [paging repair](outputs/native-windows-fatx-paging/REPORT.txt)
+The fragmented paging-file test also passes across 384 disk regions, with an
+intact interleaved guard file. These are bounded emulator results; repeat-boot
+and physical validation remain. See the [paging repair](outputs/native-windows-fatx-paging/REPORT.txt)
 and its [source manifest](outputs/native-windows-fatx-paging/patch-check-0051.json).
 The original NTFS emulator desktop fixture is preserved. The focused mapped-file extension test now passes, including rejection
 of mapped-file truncation. See the [FATX boot report](outputs/native-windows-fatx-boot/REPORT.txt)

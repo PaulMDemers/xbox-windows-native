@@ -1,0 +1,93 @@
+diff --git a/drivers/filesystems/vfatfs/rw.c b/drivers/filesystems/vfatfs/rw.c
+index d12784a9..8330b7fd 100644
+--- a/drivers/filesystems/vfatfs/rw.c
++++ b/drivers/filesystems/vfatfs/rw.c
+@@ -654,6 +654,64 @@ VfatWriteFileData(
+     return Status;
+ }
+ 
++/* Native NT image paging can end before a sector boundary. Never extend
++ * its MDL to satisfy disk alignment: read the tail into a private sector. */
++static
++NTSTATUS
++VfatReadPagingTail(
++    PVFAT_IRP_CONTEXT IrpContext,
++    ULONG Length,
++    LARGE_INTEGER Offset,
++    PULONG LengthRead)
++{
++    ULONG Sector = IrpContext->DeviceExt->FatInfo.BytesPerSector;
++    ULONG Prefix = ROUND_DOWN(Length, Sector), Done = 0;
++    PUCHAR Buffer, Tail;
++    PMDL OriginalMdl, TailMdl;
++    NTSTATUS Status;
++
++    *LengthRead = 0;
++    Buffer = VfatGetUserBuffer(IrpContext->Irp, TRUE);
++    if (!Buffer)
++        return STATUS_INSUFFICIENT_RESOURCES;
++    Tail = ExAllocatePoolWithTag(NonPagedPool, Sector, 'tRfV');
++    if (!Tail)
++        return STATUS_INSUFFICIENT_RESOURCES;
++    TailMdl = IoAllocateMdl(Tail, Sector, FALSE, FALSE, NULL);
++    if (!TailMdl)
++    {
++        ExFreePoolWithTag(Tail, 'tRfV');
++        return STATUS_INSUFFICIENT_RESOURCES;
++    }
++    MmBuildMdlForNonPagedPool(TailMdl);
++    Status = STATUS_SUCCESS;
++    if (Prefix)
++    {
++        Status = VfatReadFileData(IrpContext, Prefix, Offset, &Done);
++        if (!NT_SUCCESS(Status) || Done != Prefix)
++            goto Finished;
++    }
++    OriginalMdl = IrpContext->Irp->MdlAddress;
++    IrpContext->Irp->MdlAddress = TailMdl;
++    Offset.QuadPart += Prefix;
++    Status = VfatReadFileData(IrpContext, Sector, Offset, &Done);
++    /* VfatReadFileData waits for every child IRP before returning. */
++    IrpContext->Irp->MdlAddress = OriginalMdl;
++    if (NT_SUCCESS(Status) && Done == Sector)
++    {
++        RtlCopyMemory(Buffer + Prefix, Tail, Length - Prefix);
++        *LengthRead = Length;
++    }
++    else if (NT_SUCCESS(Status))
++        Status = STATUS_UNEXPECTED_IO_ERROR;
++Finished:
++    if (NT_SUCCESS(Status) && !*LengthRead)
++        Status = STATUS_UNEXPECTED_IO_ERROR;
++    IoFreeMdl(TailMdl);
++    ExFreePoolWithTag(Tail, 'tRfV');
++    return Status;
++}
++
+ NTSTATUS
+ VfatCommonRead(
+     PVFAT_IRP_CONTEXT IrpContext)
+@@ -761,7 +819,10 @@ VfatCommonRead(
+             vfatAddToStat(IrpContext->DeviceExt, Base.MetaDataReadBytes, Length);
+         }
+ 
+-        Status = VfatReadFileData(IrpContext, Length, ByteOffset, &ReturnedLength);
++        if (PagingIo && Length % BytesPerSector)
++            Status = VfatReadPagingTail(IrpContext, Length, ByteOffset, &ReturnedLength);
++        else
++            Status = VfatReadFileData(IrpContext, Length, ByteOffset, &ReturnedLength);
+         if (NT_SUCCESS(Status))
+         {
+             IrpContext->Irp->IoStatus.Information = ReturnedLength;
+@@ -895,7 +956,10 @@ VfatRead(
+ 
+     if (NoCache || PagingIo || IsVolume)
+     {
+-        if (ByteOffset.u.LowPart % BytesPerSector != 0 || Length % BytesPerSector != 0)
++        if (ByteOffset.u.LowPart % BytesPerSector != 0 ||
++            (Length % BytesPerSector != 0 &&
++             (!PagingIo || IsVolume || vfatFCBIsDirectory(Fcb) ||
++              BooleanFlagOn(Fcb->Flags, FCB_IS_FAT))))
+         {
+             DPRINT("%u %u\n", ByteOffset.u.LowPart, Length);
+             // non cached read must be sector aligned

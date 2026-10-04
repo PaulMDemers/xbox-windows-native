@@ -1,0 +1,116 @@
+{
+  "emulator_only": true,
+  "debugger_read_only": true,
+  "events": [
+    {
+      "name": "\\SystemRoot\\system32\\DRIVERS\\audstub.sys",
+      "entry_esp": "0xf90175ac"
+    },
+    {
+      "name": "\\SystemRoot\\system32\\DRIVERS\\rasl2tp.sys",
+      "entry_esp": "0xf90175ac"
+    },
+    {
+      "name": "\\SystemRoot\\system32\\DRIVERS\\ndistapi.sys",
+      "entry_esp": "0xf90175ac"
+    },
+    {
+      "name": "\\SystemRoot\\system32\\DRIVERS\\ndiswan.sys",
+      "entry_esp": "0xf90175ac"
+    },
+    {
+      "name": "\\SystemRoot\\system32\\DRIVERS\\raspptp.sys",
+      "entry_esp": "0xf90175ac"
+    },
+    {
+      "name": "\\SystemRoot\\system32\\DRIVERS\\TDI.SYS",
+      "entry_esp": "0xf9017264"
+    },
+    {
+      "name": "\\SystemRoot\\system32\\DRIVERS\\ptilink.sys",
+      "entry_esp": "0xf90175ac"
+    },
+    {
+      "name": "\\SystemRoot\\system32\\DRIVERS\\raspti.sys",
+      "entry_esp": "0xf90175ac"
+    },
+    {
+      "name": "\\SystemRoot\\system32\\DRIVERS\\parallel.sys",
+      "entry_esp": "0xf90175ac"
+    },
+    {
+      "name": "\\SystemRoot\\system32\\drivers\\openhci.sys",
+      "entry_esp": "0xf9017554",
+      "driver_base": "0xfe43c000",
+      "stages": [
+        {
+          "stage": "ZwOpenFile",
+          "status": "0x0",
+          "name": "\\SystemRoot\\system32\\drivers\\openhci.sys"
+        },
+        {
+          "stage": "MmCheckSystemImage",
+          "status": "0x0",
+          "name": "\\SystemRoot\\system32\\drivers\\openhci.sys"
+        },
+        {
+          "stage": "ZwCreateSection",
+          "status": "0x0",
+          "name": "\\SystemRoot\\system32\\drivers\\openhci.sys"
+        },
+        {
+          "stage": "ObReferenceObjectByHandle",
+          "status": "0x0",
+          "name": "\\SystemRoot\\system32\\drivers\\openhci.sys"
+        },
+        {
+          "stage": "ZwCreateSection2",
+          "status": "0x0",
+          "name": "\\SystemRoot\\system32\\drivers\\openhci.sys"
+        },
+        {
+          "stage": "ObReferenceObjectByHandle2",
+          "status": "0x0",
+          "name": "\\SystemRoot\\system32\\drivers\\openhci.sys"
+        },
+        {
+          "stage": "MiLoadImageSection",
+          "status": "0xc000000d",
+          "name": "\\SystemRoot\\system32\\drivers\\openhci.sys"
+        }
+      ],
+      "invalid_reads": [
+        {
+          "path": "\\WINNT\\system32\\drivers\\openhci.sys",
+          "offset": 4096,
+          "length": 20416,
+          "irp_flags": "0x43",
+          "file_size": 24784
+        }
+      ],
+      "underlying_errors": [
+        {
+          "status": "0xc000000d",
+          "name": "\\SystemRoot\\system32\\drivers\\openhci.sys",
+          "frame": "5000500088ad68fe94010000687501f916001600c2ad68fe447501f918000000000000001c7601f940000000000000000000000006000000c86f61fe00000000010000007c0100008202000000000000000000009dae47823a003a0088ad68fefeffffff006f2020b07201f90200ee10cc7d01f9a0fc4682b0594182ffffffff507501f9dcdc4d821c7601f9000000000000000000000000f87501f9047601f900000000"
+        }
+      ],
+      "status": "0xc000026c",
+      "return_registers": {
+        "eax": 3221226092,
+        "ecx": 4177624524,
+        "edx": 4177621732,
+        "ebx": 0,
+        "esp": 4177622384,
+        "ebp": 4177622568,
+        "esi": 0,
+        "edi": 2185827712,
+        "eip": 2186007281,
+        "eflags": 582
+      }
+    }
+  ],
+  "launch": "200 EXEC command succeeded.",
+  "run": "nt5-fatx-usb-load-trace-004",
+  "interpretation": "Original driver rejects native image paging read: offset 4096, length 20416 (not sector multiple), IRP flags 0x43; MiLoadImageSection returns INVALID_PARAMETER and MmLoadSystemImage reports DRIVER_UNABLE_TO_LOAD. No live patches."
+}

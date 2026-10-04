@@ -1,0 +1,302 @@
+{
+  "scope": "Reproducible fragmented FATX paging-file emulator boot; no debugger patches or physical access",
+  "run": "nt5-fatx-boot-paging-002",
+  "fixture": {
+    "scope": "Private fragmented paging-file emulator fixture; no hardware access",
+    "source_sha256": "4f56a071d6548e5a71699a81a05d421b1b81ea8fa020c012a7f7bed31b346223",
+    "paging_file": {
+      "bytes": 100663296,
+      "clusters": 6144,
+      "first_cluster": 45432,
+      "physical_runs": 384
+    },
+    "guard_file": {
+      "path": "/xwn-fragment-guard.bin",
+      "bytes": 6291456,
+      "sha256": "2a26a390d7d0c5a53f32d719c27f0f7952c319eb91519b02b0bad7f0564086f0"
+    },
+    "cold_readback_equal": true,
+    "check": "No errors were found on the image.\n27429/131072 = 20.93% allocated, 0.00% fragmented, 0.00% compressed clusters\nImage end offset: 1798307840\n",
+    "sha256": "6d2899fa61a1f7e640096f80e8159cf6b32a96c4c4bd7bc5732f04b718803b57",
+    "source_preserved": true,
+    "temporary_raw_removed": true
+  },
+  "cold_integrity": {
+    "scope": "Cold read-only emulator disk audit; no physical access",
+    "source_sha256": "072f8c9f99c26b0f64ff6b2ecc7263ab49e16100de4f10e588cfaadb264d04c9",
+    "directories": 322,
+    "files": 6553,
+    "allocated_clusters": 52083,
+    "immutable_files_checked": 3452,
+    "structural_errors": [],
+    "immutable_mismatches": [],
+    "paging_file": {
+      "bytes": 100663296,
+      "clusters": 6144,
+      "first_cluster": 45432,
+      "physical_runs": 384
+    },
+    "endurance": {
+      "bytes": 1307,
+      "sha256": "ae744db66cde87e98dac56930a67b3d1ac1f1214864851f51a4854fd122d86cb",
+      "passed": true
+    },
+    "fragment_guard": {
+      "sha256": "2a26a390d7d0c5a53f32d719c27f0f7952c319eb91519b02b0bad7f0564086f0",
+      "passed": true
+    },
+    "source_preserved": true,
+    "passed": true,
+    "temporary_raw_removed": true
+  },
+  "guest_endurance_log": "XWN native Windows endurance probe\nOS major: 5\nOS minor: 0\nOS build: 2195\nPhysical bytes: 62910464\nAvailable bytes before: 2359296\n4 MiB write/flush/reopen/read comparison passed\nDisk test milliseconds: 120\nNotepad input-idle result: 0\nNotepad window: xwn-check.log - Notepad\nGUI response passed\nMemory pass: 1\nUptime milliseconds: 62565\nMemory pass: 2\nUptime milliseconds: 67605\nMemory pass: 3\nUptime milliseconds: 72645\nMemory pass: 4\nUptime milliseconds: 77685\nMemory pass: 5\nUptime milliseconds: 82725\nMemory pass: 6\nUptime milliseconds: 87765\nMemory pass: 7\nUptime milliseconds: 92805\nMemory pass: 8\nUptime milliseconds: 97875\nMemory pass: 9\nUptime milliseconds: 102915\nMemory pass: 10\nUptime milliseconds: 107985\nMemory pass: 11\nUptime milliseconds: 113040\nMemory pass: 12\nUptime milliseconds: 118095\nMemory pass: 13\nUptime milliseconds: 123150\nMemory pass: 14\nUptime milliseconds: 128205\nMemory pass: 15\nUptime milliseconds: 133260\nMemory pass: 16\nUptime milliseconds: 138330\nMemory pass: 17\nUptime milliseconds: 143400\nMemory pass: 18\nUptime milliseconds: 148470\nMemory pass: 19\nUptime milliseconds: 153525\nMemory pass: 20\nUptime milliseconds: 158565\n8 MiB memory retention passed across 20 intervals\nAvailable bytes after: 11489280\nFailures: 0\n",
+  "observations": [
+    {
+      "seconds": 45,
+      "status": "kernel_running",
+      "bugcheck_data": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "tick_count": 381
+    },
+    {
+      "seconds": 60,
+      "status": "kernel_running",
+      "bugcheck_data": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "tick_count": 1353
+    },
+    {
+      "seconds": 75,
+      "status": "shell_running",
+      "bugcheck_data": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "tick_count": 2323
+    },
+    {
+      "seconds": 90,
+      "status": "shell_running",
+      "bugcheck_data": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "tick_count": 3299
+    },
+    {
+      "seconds": 105,
+      "status": "shell_running",
+      "bugcheck_data": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "tick_count": 4272
+    },
+    {
+      "seconds": 120,
+      "status": "shell_running",
+      "bugcheck_data": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "tick_count": 5246
+    },
+    {
+      "seconds": 135,
+      "status": "shell_running",
+      "bugcheck_data": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "tick_count": 6232
+    },
+    {
+      "seconds": 150,
+      "status": "shell_running",
+      "bugcheck_data": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "tick_count": 7207
+    },
+    {
+      "seconds": 165,
+      "status": "shell_running",
+      "bugcheck_data": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "tick_count": 8180
+    },
+    {
+      "seconds": 180,
+      "status": "shell_running",
+      "bugcheck_data": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "tick_count": 9147
+    },
+    {
+      "seconds": 195,
+      "status": "shell_running",
+      "bugcheck_data": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "tick_count": 10136
+    },
+    {
+      "seconds": 210,
+      "status": "shell_running",
+      "bugcheck_data": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "tick_count": 11094
+    },
+    {
+      "seconds": 225,
+      "status": "shell_running",
+      "bugcheck_data": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "tick_count": 12071
+    },
+    {
+      "seconds": 240,
+      "status": "shell_running",
+      "bugcheck_data": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "tick_count": 13046
+    },
+    {
+      "seconds": 255,
+      "status": "shell_running",
+      "bugcheck_data": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "tick_count": 14010
+    },
+    {
+      "seconds": 270,
+      "status": "shell_running",
+      "bugcheck_data": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "tick_count": 14979
+    },
+    {
+      "seconds": 285,
+      "status": "shell_running",
+      "bugcheck_data": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "tick_count": 15947
+    }
+  ],
+  "cleanup": {
+    "completedUtc": "2026-10-04T10:08:24.0798413Z",
+    "scratchDirectory": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\work\\scratch\\windows-native-fa5d9b2eedae4d9ead50c0d1cd2a174b",
+    "retained": false,
+    "reason": ""
+  },
+  "storage_and_memory_passed": true,
+  "input": {
+    "passed": false,
+    "observation": "Ctrl+Esc did not display the Start menu; mouse movement was not visually established. Programmatic Notepad response is a separate test.",
+    "pnp_problems": [
+      {
+        "InstancePath": "PCI\\VEN_1B36&DEV_0005&SUBSYS_00000000&REV_00\\2&ebb567f&0&03",
+        "ServiceName": "",
+        "Problem": 1,
+        "FailureStatus": "0x0"
+      },
+      {
+        "InstancePath": "PCI\\VEN_10DE&DEV_01B4&SUBSYS_00000000&REV_B1\\2&ebb567f&0&09",
+        "ServiceName": "",
+        "Problem": 1,
+        "FailureStatus": "0x0"
+      },
+      {
+        "InstancePath": "PCI\\VEN_10DE&DEV_01C2&SUBSYS_00000000&REV_B1\\2&ebb567f&0&10",
+        "ServiceName": "openhci",
+        "Problem": 31,
+        "FailureStatus": "0x0"
+      },
+      {
+        "InstancePath": "PCI\\VEN_10DE&DEV_01C2&SUBSYS_00000000&REV_B1\\2&ebb567f&0&18",
+        "ServiceName": "openhci",
+        "Problem": 31,
+        "FailureStatus": "0x0"
+      },
+      {
+        "InstancePath": "PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+        "ServiceName": "",
+        "Problem": 1,
+        "FailureStatus": "0x0"
+      }
+    ]
+  }
+}

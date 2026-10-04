@@ -1,0 +1,27 @@
+Native NT image paging tail, 2026-10-04
+
+Emulator research only. Physical XWNW90 remains unchanged.
+Read-only trace004 proves original0051 rejects openhci.sys paging read:
+offset4096, length20416, IRPflags0x43. MiLoadImageSection returns
+STATUS_INVALID_PARAMETER; MmLoadSystemImage maps it to DRIVER_UNABLE_TO_LOAD.
+Both USB controllers consequently have PnP problem31 on full FATX boot.
+The files match the working NTFS baseline; image validation/section creation pass.
+
+0052 admits partial-sector lengths only for ordinary-file paging reads;
+nonpaging direct I/O, volume/FAT/directory and paging-file restrictions remain.
+Aligned prefix reads use the original MDL. A private nonpaged sector and MDL
+receive the final disk sector, then only requested bytes copy to the caller.
+The common read path retains locking/stack-overflow posting. The helper waits
+for all child IRPs before restoring the original MDL and freeing the sector.
+No Windows kernel or USB-driver image is modified.
+
+Build and chain/reverse/whitespace checks pass;126native imports resolve.
+Unassisted run001 reached Explorer; USB controllers, hubs, keyboard and mouse
+all enumerate with problem0. Ctrl+Esc visibly opens Start, Escape closes it,
+and relative mouse movement visibly changes the cursor position. The20interval8MiB memory check and4MiB disk test passed; all3452system binaries
+match in the cold audit, with no chain/cross-link errors. See validation001.
+Shutdown did NOT complete: shell exited but registry flushing waited on VFAT
+resources through the300second harness deadline. The run was then stopped.
+Thread stacks show concurrent volume flush (DirResource -> FCB MainResource)
+and file flush (FCB MainResource -> DirResource), suggesting lock inversion.
+This needs live resource-owner confirmation. Repeat-boot testing remains pending.

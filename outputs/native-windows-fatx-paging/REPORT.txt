@@ -26,7 +26,15 @@ Notepad responded,8MiB remained intact across20five-second intervals, failures0.
 A cold audit traversed322directories/6552files, verified3452immutable binary
 hashes, found no cross-linked/invalid chains, and confirmed a96MiB pagefile.
 This is reproducible native FATX desktop/endurance evidence in xemu; longer,
-fragmented and repeat-boot tests are still pending. See fullboot-validation-001.json.
+repeat-boot and longer tests are still pending. See fullboot-validation-001.json.
+
+The fragmented run nt5-fatx-boot-paging-002 also PASSED storage/memory at300sec:
+96MiB pagefile across384physical runs; all3452binary hashes match; the6MiB
+interleaved guard file stayed intact; zero directory/chain/cross-link errors;
+all20memory intervals and4MiB disk verification passed. See validation002.
+USB input did NOT pass: both openhci controllers report PnP problem31 and
+Ctrl+Esc did not open Start. Programmatic GUI response passed independently.
+The original NTFS fixture had working USB; FATX driver-load failure is next.
 
 Primary reference: Microsoft Fastfat FatPagingFileIo uses the file MCB to
 translate the incoming virtual byte offset before forwarding disk I/O:
