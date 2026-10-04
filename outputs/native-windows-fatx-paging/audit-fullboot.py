@@ -7,8 +7,12 @@ p.add_argument('--driver-manifest', default='outputs/native-windows-fatx-paging/
 p.add_argument('--pressure-manifest', help='Require the extra paging probe and all eight retention passes')
 p.add_argument('--filesystem-manifest', help='Require the bounded file API probe and its complete success log')
 p.add_argument('--registry-trees', action='store_true', help='Require read-only traversal of every reachable hive key/value')
+p.add_argument('--persistence-manifest', help='Require matching file/registry counters and a successful probe log')
+p.add_argument('--expected-count', type=int, help='Expected persistent counter after this boot')
 a = p.parse_args()
-assert re.fullmatch(r'nt5-fatx-boot-(?:paging|image-read|paging-flags|flush|power|wide|hal-paging|bootvid|bootvid-ram|pressure|metadata|name-boundary)-[0-9]+', a.run)
+assert bool(a.persistence_manifest) == (a.expected_count is not None)
+if a.expected_count is not None: assert 1 <= a.expected_count <= 100
+assert re.fullmatch(r'nt5-fatx-boot-(?:paging|image-read|paging-flags|flush|power|wide|hal-paging|bootvid|bootvid-ram|pressure|metadata|name-boundary|persistence)-[0-9]+', a.run)
 ws = pathlib.Path('/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility')
 root = pathlib.Path('/home/paul/xbox-windows-native')
 run = ws / 'work/runs' / a.run
@@ -174,6 +178,29 @@ try:
                               and 'FAIL:' not in text and 'Failures: 0\r\n' in text and directory_removed}
             except Exception as ex:
                 r['filesystem_api'] = {'passed': False, 'error': repr(ex)}
+        if a.persistence_manifest:
+            try:
+                manifest = json.loads((ws / a.persistence_manifest).read_text())
+                probe = next(f for f in manifest['files'] if f['path'].lower() == '/xwnpersist.exe')
+                probe_hash = hashlib.sha256(w.read('/xwnpersist.exe')).hexdigest()
+                log = w.read('/xwn-persist.log'); text = log.decode('ascii')
+                (logs / 'xwn-persist.log').write_bytes(log)
+                magic, count, checksum = struct.unpack('<III', w.read('/xwn-persist.bin'))
+                copy = temp / 'persistence-software-hive'; copy.write_bytes(w.read('/winnt/system32/config/software'))
+                env = dict(os.environ, LD_LIBRARY_PATH=str(root / 'toolchains/offline-disk/root/usr/lib/x86_64-linux-gnu'))
+                hive_count = json.loads(subprocess.check_output([sys.executable,
+                    str(ws / 'outputs/native-windows-fatx-persistence/read-hive-count.py'), str(copy)], env=env))['count']
+                copy.unlink()
+                r['persistence'] = {'file_count': count, 'registry_count': hive_count,
+                    'expected_count': a.expected_count, 'probe_sha256': probe_hash,
+                    'log_sha256': hashlib.sha256(log).hexdigest(),
+                    'passed': magic == 0x58574e50 and count == hive_count == a.expected_count
+                              and checksum == (count ^ 0xa55a1234) and probe_hash == probe['sha256']
+                              and 'Failures: 0\r\n' in text
+                              and f'Previous count: {a.expected_count - 1}\r\n' in text
+                              and f'Written count: {a.expected_count}\r\n' in text}
+            except Exception as ex:
+                r['persistence'] = {'passed': False, 'error': repr(ex)}
         for path, item in expected.items():
             if pathlib.PurePosixPath(path).suffix in extensions and path not in found:
                 r['immutable_mismatches'].append({'path': path, 'error': 'Missing file'})
@@ -183,6 +210,7 @@ try:
                    and r['endurance']['passed'] and r.get('fragment_guard', {'passed': True})['passed']
                    and r.get('paging_pressure', {'passed': True})['passed'])
     r['passed'] = r['passed'] and r.get('filesystem_api', {'passed': True})['passed']
+    r['passed'] = r['passed'] and r.get('persistence', {'passed': True})['passed']
     if a.registry_trees:
         r['passed'] = r['passed'] and bool(r['registry_headers']) and all(
             h.get('tree', {}).get('passed', False) for h in r['registry_headers'])
@@ -192,3 +220,4 @@ finally:
     r['temporary_raw_removed'] = True
     (run / 'cold-integrity.json').write_text(json.dumps(r, indent=2) + '\n')
 print(json.dumps(r, indent=2))
+raise SystemExit(0 if r['passed'] else 1)

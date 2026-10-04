@@ -1,0 +1,39 @@
+Native FATX file and registry persistence, 4 October 2026
+
+Two unassisted emulator boots pass with patch 0059's FATX driver, patch 0055's
+HAL and patch 0057's boot video, using the inherited 1024x576 display layout.
+Both reach the desktop, respond to USB keyboard/mouse input, and complete
+normal UI shutdown to Windows' genuine safe-to-turn-off bitmap. The final
+HAL halt has interrupts disabled and no bugcheck. Electrical power-off is
+not implemented. No physical Xbox was accessed.
+
+xwnpersist.exe keeps matching counters in C:\xwn-persist.bin and native
+HKLM\SOFTWARE\XWN\PersistenceProbe. It verifies the existing file signature,
+checkword and registry value, increments them, and explicitly flushes both.
+The first boot creates count 1. Its stopped, audited disk is cloned for the
+second boot, which reads count 1 and writes count 2. Separate cold audits
+read the actual FATX file and native SOFTWARE hive and confirm both values.
+This verifies persistence across a clean shutdown and cold restart; it does
+not establish atomicity or recovery after power loss between the two writes.
+
+Both cold audits pass: 3,452 immutable files, FATX allocation/crosslink checks,
+the interleaved guard beside the pagefile's 384 physical runs, bounded disk
+and memory endurance, the complete file API probe, and all nine reachable
+registry trees. Tree traversal checks readability, not registry semantics
+or unreachable cells. Validation JSON records each disk hash and final halt.
+
+Reproduction requires the pinned local fixture and user-supplied media:
+build with Build.ps1, resolve imports with audit-probe.py, and create the
+private fixture with prepare-fixture.py. Run-Persistence.ps1 -Wide starts
+the first boot; request Shut down through Windows after the probes finish.
+Stop capture only after the final screen and HAL halt are verified. Run
+the shared audit-fullboot.py with this persistence-fixture-001.json for
+--driver-manifest and --persistence-manifest, the 0059 manifest for
+--filesystem-manifest, --registry-trees and --expected-count 1. Start a new
+Run-Persistence.ps1 run with -SourceRun referring to that audited run and
+-Wide, then repeat with --expected-count 2. The wrapper verifies the source
+disk hash and clones it; it does not reboot by modifying the preserved disk.
+
+The shared cold audit now returns nonzero when its report fails, in addition
+to preserving the detailed JSON. The fixture and guest executable are local
+artifacts excluded from Git; source, build instructions and reports are kept.

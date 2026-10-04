@@ -30,7 +30,19 @@ The emulator now completes a normal UI shutdown and displays Windows' genuine
 bugcheck; automatic electrical power-off is not implemented. See the
 [boot-video ABI](outputs/native-windows-bootvid-nt5/REPORT.txt) and
 [shutdown display](outputs/native-windows-bootvid-framebuffer/REPORT.txt) fixes.
-FATX's 42-byte component limit remains an application-compatibility constraint.
+The 40 MiB paging-pressure probe passes eight complete retention checks on a
+fragmented pagefile. A separate debugger trace observes native pagefile read
+submissions. FATX name-boundary, shrink/regrow, rename and deletion checks also
+pass after fixing the 42-byte name conversion. See the
+[paging-pressure report](outputs/native-windows-paging-pressure/REPORT.txt) and
+[filename repair](outputs/native-windows-fatx-name-boundary/REPORT.txt).
+FATX's 42-byte component limit remains an application-compatibility constraint;
+general non-ASCII filename behavior remains unverified. The updated HAL and
+boot-video path also pass an independent
+[NTFS desktop/shutdown regression](outputs/native-windows-ntfs-shutdown/REPORT.txt).
+File and registry counters survive a full FATX shutdown and cold restart in
+the 1024x576 layout, with matching offline values and clean integrity checks:
+[persistence evidence](outputs/native-windows-fatx-persistence/REPORT.txt).
 
 The next bounded hardware candidate has reached a genuine Windows boot bitmap
 in both tested emulator display layouts, stopping before storage. It has not
@@ -128,7 +140,8 @@ See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
 This repository stores our source changes as an ordered patch series against
 ReactOS commit `afc0127e8f937ab68503d715d948844973756aa1`, plus build wrappers,
 validation tools and reports. The full series and resulting source tree are
-in [patch-check-0046.json](outputs/native-windows-physical-bootvideo/patch-check-0046.json).
+in [patch-check-0059.json](outputs/native-windows-fatx-name-boundary/patch-check-0059.json).
+The bounded physical candidate retains its separate patch-0046 manifest.
 Use `python tools/apply-series.py --source PATH --manifest MANIFEST` on a clean
 checkout at that exact upstream commit. The script checks the clean baseline,
 applies the ordered patches and verifies the resulting Git tree.
@@ -157,8 +170,9 @@ full desktop/endurance run: 4 MiB disk verification, 8 MiB memory retention and 
 response, with a clean cold filesystem audit and 3,452 unchanged system binaries.
 The fragmented paging-file test also passes across 384 disk regions, with an
 intact interleaved guard file. Repeat boot and USB keyboard/mouse input also
-pass after the image-paging tail fix. Shutdown still stalls and is under
-investigation; all of these results are emulator-only. See the
+pass after the image-paging tail fix. Later volume-flush, HAL paging-notification
+and boot-video repairs complete shutdown to the manual power-off screen;
+all of these results are emulator-only. See the
 [image-paging report](outputs/native-windows-fatx-image-read/REPORT.txt). See the [paging repair](outputs/native-windows-fatx-paging/REPORT.txt)
 and its [source manifest](outputs/native-windows-fatx-paging/patch-check-0051.json).
 The original NTFS emulator desktop fixture is preserved. The focused mapped-file extension test now passes, including rejection
@@ -187,4 +201,7 @@ FTP remains unavailable after a retry. Physical launches remain manual.
 The full FATX desktop also passes in the firmware 1024x576 display layout,
 including USB input and cold binary checks: [wide-mode evidence](outputs/native-windows-fatx-wide/REPORT.txt).
 The [power-path investigation](outputs/native-windows-power-isolation/REPORT.txt)
-separates the unresolved shutdown wait from the successful desktop runs.
+records the earlier shutdown wait. The subsequent
+[HAL repair](outputs/native-windows-hal-paging/REPORT.txt) and
+[boot-video repair](outputs/native-windows-bootvid-framebuffer/REPORT.txt)
+resolve that tested path through the final manual power-off screen.
