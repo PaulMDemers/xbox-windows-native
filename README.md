@@ -8,10 +8,10 @@ host-side test harness.
 
 - Physical console: Windows kernel entry, processor initialization, HAL base
   setup, RTC calibration, clock setup and partition-hook registration and BIOS page allocation passed.
-- Latest physical checkpoint: **XWNY90**. System PTEs initialized:
-  22,702 entries and 650 cache blocks verified. Executive-pool and
-  process-page allocation, storage drivers and desktop remain beyond
-  the physical-tested stop.
+- Latest physical checkpoint: **XWNZ90**. First process page table and
+  working-set page allocated and zeroed; 256 executive-pool list heads
+  verified. Working-set publication, process initialization, storage
+  drivers and desktop remain beyond the physical-tested stop.
 - Private emulator fixtures have reached a Windows 2000 desktop with NTFS,
   USB input, framebuffer, networking and experimental audio. Those results
   do not establish physical hardware compatibility.
@@ -88,10 +88,10 @@ original descriptor extent and initializes system-PTE caches. It stops
 before executive-pool initialization and process-page allocation. Emulator
 validation passed; the physical checkpoint is photo-confirmed. See the [system-PTE report](outputs/native-windows-physical-sysptes/REPORT.txt).
 
-The next candidate **XWNZ90** initializes executive-pool descriptors and
+The physical-tested **XWNZ90** initializes executive-pool descriptors and
 allocates/zeros the first process page table and working-set page. It stops
 before working-set publication and process initialization. Emulator checks
-passed; the candidate is uploaded and physical testing is pending.
+passed; the physical checkpoint is photo-confirmed.
 
 See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
 [latest diagnostic](outputs/native-windows-physical-processpages/REPORT.txt), and
