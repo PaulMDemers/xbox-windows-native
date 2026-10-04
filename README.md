@@ -8,10 +8,10 @@ host-side test harness.
 
 - Physical console: Windows kernel entry, processor initialization, HAL base
   setup, RTC calibration, clock setup and partition-hook registration and BIOS page allocation passed.
-- Latest physical checkpoint: **XWNW90**. Native process address-space
-  initialization returned success, with four working-set entries and the
-  hash page verified. Further MM initialization, storage drivers and desktop
-  remain beyond the physical-tested stop.
+- Latest physical checkpoint: **XWN390**. Windows 2000 draws its original
+  boot graphic on the console after MM/executive phase zero and HAL phase one.
+  The photo confirms the intended stop before native storage initialization.
+  Physical storage drivers and desktop remain untested.
 - Private emulator fixtures have reached a Windows 2000 desktop with NTFS,
   USB input, framebuffer, networking and experimental audio. Those results
   do not establish physical hardware compatibility.
@@ -51,8 +51,12 @@ they do not replace the verified 0059 persistence baseline. See the
 The next bounded hardware candidate has reached a genuine Windows boot bitmap
 in both tested emulator display layouts, stopping before storage. After
 hardware access resumed, **XWN390** was uploaded and all 33 files read back.
-It is ready for manual launch; its physical result remains pending.
+The supplied photo now confirms its native boot graphic and XWN390 halt.
 See the [boot-video candidate](outputs/native-windows-physical-bootvideo/REPORT.txt).
+The user selected **F:** on the upgraded physical drive for Windows. A
+[storage inventory](outputs/native-windows-physical-storage-preflight/REPORT.txt)
+is uploaded there for manual testing; no Windows installation has been staged
+and the existing games are preserved.
 
 The physical-tested **XWNI90** reserves the two BIOS phase-0 pages and
 halts before HAL returns to Windows; see

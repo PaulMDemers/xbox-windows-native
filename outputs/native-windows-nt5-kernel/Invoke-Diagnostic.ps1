@@ -13,6 +13,7 @@ param(
     [switch]$ExerciseInput,
     [switch]$Autorun,
     [switch]$RetainDisk,
+    [switch]$AllowGuestReboot,
     [switch]$InstallNetwork,
     [switch]$TraceNetwork,
     [switch]$TracePackets,
@@ -87,6 +88,7 @@ enable = false
         $vmArguments = @('-no-reboot','-no-shutdown','-gdb',"tcp:127.0.0.1:$GdbPort",'-d','cpu_reset,int,guest_errors','-D',(Join-Path $run cpu-trace.log),'-m','64','-snapshot','-dvd_path',$isoPath,'-machine','xbox,kernel-irqchip=off,avpack=composite','-device','usb-kbd','-monitor',"tcp:127.0.0.1:$MonitorPort,server,nowait")
         if ($UsbMouse) { $vmArguments += @('-device','usb-mouse') }
         if ($RetainDisk) { $vmArguments = @($vmArguments | Where-Object { $_ -ne '-snapshot' }) }
+        if ($AllowGuestReboot) { $vmArguments = @($vmArguments | Where-Object { $_ -ne '-no-reboot' }) }
         if ($FtpPort) { $vmArguments += @('-nic',"user,id=xemu-netdev,model=nvnet,restrict=on,hostfwd=tcp:127.0.0.1:${FtpPort}-:21") }
         if ($TracePackets) { $vmArguments += @('-object',"filter-dump,id=xwn-pcap,netdev=xemu-netdev,file=$(Join-Path $run 'nvnet.pcap')") }
         $vm = & (Join-Path $integration 'start_xemu_instance.ps1') -TaskId $InstanceTask -XemuPath $xemu -ConfigPath $config -RunDirectory $run -ScratchRoot (Join-Path $workspace 'work\scratch') -ArgumentList $vmArguments

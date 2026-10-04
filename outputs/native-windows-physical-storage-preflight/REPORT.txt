@@ -1,0 +1,38 @@
+XWN physical storage preflight
+
+Physical XWN390 is confirmed: native Windows boot graphic, stop before storage.
+The user selected F: for the Windows test installation and reports an upgraded
+drive. Existing F:/Games must be preserved. No Windows installation has been
+staged on F: in this step.
+
+The nxdk inventory is uploaded and readback-verified at
+F:\Applications\XWNStorage\default.xbe. Launch through the dashboard file
+manager; it saves xwn-storage.txt in the same folder and reboots after 15 seconds.
+Physical inventory is pending. XWNLoader and its XWN390 binaries are unchanged.
+
+The application requests only drive geometry, partition information and
+filesystem space through read-only Xbox-kernel handles. It does not issue
+raw-sector read/write, ATA passthrough, format, repartition or EEPROM requests.
+Its sole explicit file write is the app-local report. It flushes BEGIN/END
+markers and stops the inventory on report failure. Unavailable volumes are
+recorded with NTSTATUS rather than created. This does not test Windows drivers.
+
+Validation: built using the pinned shared nxdk environment. Emulator run
+storage-preflight-002 completed all eight partition queries; returned geometry,
+partition ranges and filesystem allocation/free counts agree with the private
+8 GiB fixture and have non-overlapping ranges. The completed log was read from
+the stopped private disk. A dashboard screenshot confirms automatic reboot.
+Partition 6 exists in that fixture but has no mounted filesystem; large-drive
+physical F: behavior remains pending. No raw disk contents or identity secrets
+are logged. Source fixture hashes matched before/after staging.
+
+An earlier host attempt, storage-preflight-001, could not upload using passive
+FTP because its data port was not forwarded. No inventory was launched in
+that attempt. Its VM was cleaned up; the successful run used offline staging.
+The harness now has an opt-in AllowGuestReboot switch; existing callers retain
+their previous no-reboot behavior. All owned VMs from this turn are stopped.
+
+Next: retrieve the physical report, establish F: bounds/free space/cluster
+size, and validate native Windows partition mapping and storage reads for those
+bounds. If addresses require LBA48, verify that entire I/O path before allowing
+Windows writes. Preserve existing games and the verified XWN390 rollback.

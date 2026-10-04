@@ -1,8 +1,8 @@
 XWN390 - native Windows 2000 boot video (patch 0046)
 
-Emulator-verified candidate, now uploaded for manual physical testing.
-Physical XWN390 success has not yet been established.
-The latest physical result remains XWNW90 process address-space initialization.
+Physical XWN390 success is photo-confirmed. The original Windows 2000
+Professional boot graphic is visible, with the intended storage-not-started
+checkpoint. XWNW90 remains preserved as the prior baseline.
 
 The native path now returns from MmInitSystem phase zero, completes executive
 phase zero, creates the phase-one initialization thread, executes the actual
@@ -35,8 +35,9 @@ The final free-page count is 12789 in the observed wide run; this is later than
 the MM completion snapshot and correctly differs from that snapshot's count.
 
 See validation.json for completed negative tests, source tree, artifact hashes
-and owned-VM cleanup. Source/binaries have distinct evidence status; nothing
-here claims physical validation. Hardware was unavailable during emulator validation.
+and owned-VM cleanup. Detailed memory/code audits remain emulator evidence;
+physical confirmation is limited to the photographed boot screen/checkpoint.
+Hardware was unavailable during the earlier emulator validation.
 
 Reproduce with the pinned RosBE build wrappers, preserving package inputs from
 0045; prepare-fixture.py writes only a private emulator derivative. Run
@@ -57,3 +58,9 @@ verified baseline is unchanged. Loader switched last; no remote launch.
 The inherited package README was corrected from XWN290 to XWN390; tested
 code and configuration are unchanged. Launch XWNLoader manually, photograph
 the original Windows boot graphic and XWN390 status, then reboot.
+
+Physical result 2026-10-04T15:04:44.057180+00:00
+User photo confirms the native Windows boot graphic and XWN390 status.
+Native storage initialization and desktop remain untested on this console.
+The user preference is to assume a reboot after each photo.
+See physical-result.json; the photo is retained locally and excluded from Git.

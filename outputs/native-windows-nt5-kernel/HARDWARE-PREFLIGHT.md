@@ -76,3 +76,12 @@ repeated restart confirmation. Retry transient FTP failure before reporting
 the dashboard unavailable. Continue to leave physical launch manual.
 
 Emulator-only overnight advancement: patches0045 and0046 complete MM phase zero and reach the original Windows2000 boot screen through the FATX loader path, unaided in both display modes. The final halt remains before storage. Neither candidate has been uploaded; the latest physical checkpoint remains XWNW90. See [boot-video validation](../native-windows-physical-bootvideo/validation.json).
+
+## Native boot graphic confirmed
+
+Physical **XWN390** is photo-confirmed on 4 October 2026. Windows drew its
+original boot graphic and halted before native storage initialization. See
+[physical evidence](../native-windows-physical-bootvideo/physical-result.json).
+Next: read-only inventory of the current disk layout and available space,
+then bounded native storage enumeration. Do not use emulator disk images
+as physical-drive replacements.
