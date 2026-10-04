@@ -5,9 +5,9 @@ sys.path.insert(0,str(out.parents[1]/'work/python-packages'))
 sys.path.insert(0,str(out.parent/'native-windows-prebuild'))
 import pycdlib
 from validate_loader import validate
-p=argparse.ArgumentParser();p.add_argument('--output',type=pathlib.Path,required=True);p.add_argument('--autorun',action='store_true');p.add_argument('--loader-directory',type=pathlib.Path);p.add_argument('--hal-directory',type=pathlib.Path);a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--output',type=pathlib.Path,required=True);p.add_argument('--autorun',action='store_true');p.add_argument('--loader-directory',type=pathlib.Path);p.add_argument('--hal-directory',type=pathlib.Path);p.add_argument('--bootvid-directory',type=pathlib.Path);a=p.parse_args()
 assert not a.output.exists()
-art=out/'artifacts';loader=a.loader_directory or (art/'autorun' if a.autorun else art);files={'/LOADER/'+n.upper()+';1':((loader if n in ['freeldr.sys','rosload.exe'] else (a.hal_directory if n == 'halxboxnt5.dll' and a.hal_directory else art))/n).read_bytes() for n in ['freeldr.sys','rosload.exe','halxboxnt5.dll','xboxbvid.dll']}
+art=out/'artifacts';loader=a.loader_directory or (art/'autorun' if a.autorun else art);files={'/LOADER/'+n.upper()+';1':((loader if n in ['freeldr.sys','rosload.exe'] else (a.hal_directory if n == 'halxboxnt5.dll' and a.hal_directory else (a.bootvid_directory if n == 'xboxbvid.dll' and a.bootvid_directory else art)))/n).read_bytes() for n in ['freeldr.sys','rosload.exe','halxboxnt5.dll','xboxbvid.dll']}
 assert b'XWNH30:' in files['/LOADER/ROSLOAD.EXE;1'] and b'XWNHPNT5' in files['/LOADER/ROSLOAD.EXE;1']
 files['/PROBE.BIN;1']=bytes((i*37+(i>>8)+0x5a)&255 for i in range(131075))
 files['/FREELDR.INI;1']=b'[XwnProbe]\r\nToken=XWN-SECOND-STAGE-20261003\r\n[FREELOADER]\r\nTimeOut=0\r\n[Display]\r\nDisplayMode=Normal\r\n'

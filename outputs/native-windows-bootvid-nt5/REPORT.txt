@@ -1,0 +1,34 @@
+Windows 2000 boot-video ABI adapter (0056), 4 October 2026
+
+The native NT5 kernel calls VidResetDisplay with no arguments. ReactOS exports
+VidResetDisplay(BOOLEAN), whose stdcall return removes four bytes. During the
+final shutdown display this corrupts the native caller's return stack. The
+first-fault capture in0055 records0A; its later D1 is secondary error handling.
+
+0056 adds a separate xboxbvidnt5 target with an NT5 export specification.
+VidResetDisplay() adapts to the existing Boolean helper. VidInitialize keeps
+its one argument and preserves the existing firmware scanout, avoiding a PC
+BIOS reset. Ordinary ReactOS bootvid targets retain their ABI and behavior.
+All10 imported NT5 bootvid names resolve; all9 bootvid imports resolve. The
+compiled reset adapter returns without popping arguments; initialization pops4.
+
+Unassisted run nt5-fatx-boot-bootvid-002 reaches Explorer and responds to USB
+input. A normal shutdown reaches the HAL's final CLI/HLT routine at825B69F2,
+with zero bugcheck data and tick count12066 stable through345seconds. This is
+native final shutdown halt, not electrical power-off. The first run reached
+an inaccessible NV2A register before the harness could observe the outcome.
+
+The final shutdown bitmap is not visible with this build: its GPU framebuffer
+aperture is no longer accessible after PCI power transitions. The explicitly
+recorded capture fallback reads the previously verified physical framebuffer
+address and shows a blank blue screen. The next patch retains a direct RAM
+mapping for boot-video drawing. No claim of a final bitmap is made here.
+
+Cold audit verifies3452 immutable binaries, FATX chains,20 memory intervals
+and4MiB disk comparison. Registry header sequences/checksums are consistent;
+this alone is not a full registry-tree audit. See shutdown-validation-002.json.
+
+Build using the ordered0056 patch chain and Build.ps1; run audit-abi.py. Package
+with the existing0047 loader,0055 HAL and this target via make-iso.py's explicit
+--bootvid-directory option. Source fixtures and the physical XWNW90 baseline
+are preserved. No physical Xbox upload or testing occurred.

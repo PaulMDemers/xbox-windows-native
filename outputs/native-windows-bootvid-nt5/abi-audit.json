@@ -1,0 +1,166 @@
+{
+  "sha256": "c6c1f3cb463a4686029d570092e6305ab0b3c4e93560c44d4dfce800f93fd280",
+  "required_exports": [
+    "VidSetScrollRegion",
+    "VidInitialize",
+    "VidSetTextColor",
+    "VidSolidColorFill",
+    "VidDisplayString",
+    "VidBufferToScreenBlt",
+    "VidScreenToBufferBlt",
+    "VidBitBlt",
+    "VidResetDisplay",
+    "VidCleanUp"
+  ],
+  "imports": [
+    {
+      "dll": "ntoskrnl.exe",
+      "name": "DbgPrint"
+    },
+    {
+      "dll": "ntoskrnl.exe",
+      "name": "HalPrivateDispatchTable"
+    },
+    {
+      "dll": "ntoskrnl.exe",
+      "name": "MmMapIoSpace"
+    },
+    {
+      "dll": "ntoskrnl.exe",
+      "name": "MmUnmapIoSpace"
+    },
+    {
+      "dll": "ntoskrnl.exe",
+      "name": "READ_REGISTER_UCHAR"
+    },
+    {
+      "dll": "ntoskrnl.exe",
+      "name": "READ_REGISTER_ULONG"
+    },
+    {
+      "dll": "ntoskrnl.exe",
+      "name": "WRITE_REGISTER_UCHAR"
+    },
+    {
+      "dll": "ntoskrnl.exe",
+      "name": "memmove"
+    },
+    {
+      "dll": "ntoskrnl.exe",
+      "name": "memset"
+    }
+  ],
+  "adapter_checks": [
+    {
+      "export": "VidResetDisplay",
+      "expected_stack_argument_bytes": 0,
+      "first_return": [
+        {
+          "rva": "0x19b0",
+          "instruction": "push ebp"
+        },
+        {
+          "rva": "0x19b1",
+          "instruction": "mov ebp, esp"
+        },
+        {
+          "rva": "0x19b3",
+          "instruction": "sub esp, 8"
+        },
+        {
+          "rva": "0x19b6",
+          "instruction": "mov dword ptr [esp], 0"
+        },
+        {
+          "rva": "0x19bd",
+          "instruction": "call 0x1e40"
+        },
+        {
+          "rva": "0x19c2",
+          "instruction": "sub esp, 4"
+        },
+        {
+          "rva": "0x19c5",
+          "instruction": "leave "
+        },
+        {
+          "rva": "0x19c6",
+          "instruction": "ret "
+        }
+      ]
+    },
+    {
+      "export": "VidInitialize",
+      "expected_stack_argument_bytes": 4,
+      "first_return": [
+        {
+          "rva": "0x1960",
+          "instruction": "push ebp"
+        },
+        {
+          "rva": "0x1961",
+          "instruction": "mov ebp, esp"
+        },
+        {
+          "rva": "0x1963",
+          "instruction": "push ebx"
+        },
+        {
+          "rva": "0x1964",
+          "instruction": "sub esp, 0x14"
+        },
+        {
+          "rva": "0x1967",
+          "instruction": "mov ebx, dword ptr [ebp + 8]"
+        },
+        {
+          "rva": "0x196a",
+          "instruction": "mov dword ptr [esp], 0"
+        },
+        {
+          "rva": "0x1971",
+          "instruction": "call 0x1180"
+        },
+        {
+          "rva": "0x1976",
+          "instruction": "sub esp, 4"
+        },
+        {
+          "rva": "0x1979",
+          "instruction": "test al, al"
+        },
+        {
+          "rva": "0x197b",
+          "instruction": "je 0x1986"
+        },
+        {
+          "rva": "0x197d",
+          "instruction": "mov eax, 1"
+        },
+        {
+          "rva": "0x1982",
+          "instruction": "test bl, bl"
+        },
+        {
+          "rva": "0x1984",
+          "instruction": "jne 0x1990"
+        },
+        {
+          "rva": "0x1986",
+          "instruction": "mov ebx, dword ptr [ebp - 4]"
+        },
+        {
+          "rva": "0x1989",
+          "instruction": "leave "
+        },
+        {
+          "rva": "0x198a",
+          "instruction": "ret 4"
+        }
+      ]
+    }
+  ],
+  "native_reset_caller_rva": "0x1cc68",
+  "native_reset_argument_bytes": 0,
+  "scope": "Static import and adapter ABI audit; emulator shutdown validation is separate"
+}

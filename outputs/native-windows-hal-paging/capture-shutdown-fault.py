@@ -47,4 +47,3 @@ with acquire_monitor_lock(4594):
         g.s.close();command(4594,'stop')
         (a.run/'first-shutdown-fault.json').write_text(json.dumps(r,indent=2)+'\n')
 print(json.dumps(r,indent=2))
-

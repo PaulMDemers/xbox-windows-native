@@ -33,6 +33,7 @@ if __name__=='__main__':
     parser.add_argument('--output',type=pathlib.Path);parser.add_argument('--command')
     parser.add_argument('--address',type=lambda value:int(value,0),default=0x03c00000)
     parser.add_argument('--auto-framebuffer',action='store_true')
+    parser.add_argument('--fallback-framebuffer',action='store_true', help='Use the explicit address if NV2A MMIO is inaccessible; record the failure')
     parser.add_argument('--width', type=int, default=640)
     parser.add_argument('--height', type=int, default=480)
     parser.add_argument('--pitch', type=int)
@@ -55,17 +56,26 @@ if __name__=='__main__':
         command(args.port,'stop')
         try:
             registers=command(args.port,'info registers')
+            address_source='explicit address'
+            framebuffer_query=None
             if args.auto_framebuffer:
                 reply=command(args.port,'xp /1wx 0xfd600800')
                 matches=re.findall(r'fd600800:\s+0x([0-9a-fA-F]+)',reply)
-                if not matches:raise RuntimeError('Could not read NV2A framebuffer address')
-                args.address=int(matches[-1],16)&0x0fffffff
+                if matches:
+                    args.address=int(matches[-1],16)&0x0fffffff
+                    address_source='NV2A register'
+                else:
+                    output.with_suffix('.framebuffer-query.json').write_text(json.dumps({'reply':reply,'registers':registers},indent=2)+'\n')
+                    if not args.fallback_framebuffer:
+                        raise RuntimeError('Could not read NV2A framebuffer address')
+                    framebuffer_query=reply
+                    address_source='explicit fallback after inaccessible NV2A MMIO'
             if not 0 <= args.address <= 64*1024*1024-size:raise ValueError('Framebuffer outside 64 MiB RAM')
             command(args.port,f'pmemsave {hex(args.address)} {size} {json.dumps(raw.as_posix())}')
             data=raw.read_bytes()
             if len(data)!=size:raise RuntimeError('Incomplete framebuffer dump')
             Image.frombytes('RGB',(args.width,args.height),data,'raw','BGRX',pitch,1).save(output)
-            output.with_suffix('.json').write_text(json.dumps({'method':'guest-memory','address':hex(args.address),'width':args.width,'height':args.height,'pitch':pitch,'geometry_source':'explicit capture parameters; not display-mode discovery','raw_sha256':hashlib.sha256(data).hexdigest(),'registers':registers},indent=2)+'\n')
+            output.with_suffix('.json').write_text(json.dumps({'method':'guest-memory','address':hex(args.address),'width':args.width,'height':args.height,'pitch':pitch,'address_source':address_source,'framebuffer_query_failure':framebuffer_query,'geometry_source':'explicit capture parameters; not display-mode discovery','raw_sha256':hashlib.sha256(data).hexdigest(),'registers':registers},indent=2)+'\n')
         finally:
             if was_running: command(args.port,'cont')
         raw.unlink()

@@ -20,6 +20,7 @@ param(
     [switch]$ManualCapture,
     [switch]$StopOnCaptureComplete,
     [switch]$StopOnBugcheck,
+    [switch]$AllowFramebufferFallback,
     [ValidateRange(1,1920)][int]$CaptureWidth = 640,
     [ValidateRange(1,1080)][int]$CaptureHeight = 480,
     [ValidateRange(4,8192)][int]$CapturePitch = 2560,
@@ -110,6 +111,7 @@ enable = false
                 $output = Join-Path $run ('frame-{0:D3}.png' -f $nextCapture)
                 $captureArguments = @('--port',$MonitorPort,'--output',$output,'--width',$CaptureWidth,'--height',$CaptureHeight,'--pitch',$CapturePitch)
                 if ($FtpPort) { $captureArguments += '--auto-framebuffer' }
+                if ($AllowFramebufferFallback) { $captureArguments += '--fallback-framebuffer' }
                 & python (Join-Path (Join-Path $PSScriptRoot ../native-windows-prebuild) 'monitor_capture.py') @captureArguments
                 if ($LASTEXITCODE -ne 0) { throw 'Guest capture failed.' }
                 $captureScript = if ($Autorun) { 'capture-runtime.py' } else { 'capture-state.py' }

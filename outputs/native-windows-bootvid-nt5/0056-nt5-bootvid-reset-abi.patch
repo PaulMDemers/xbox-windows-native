@@ -1,0 +1,81 @@
+diff --git a/drivers/base/bootvid/CMakeLists.txt b/drivers/base/bootvid/CMakeLists.txt
+index bea28436..79035e31 100644
+--- a/drivers/base/bootvid/CMakeLists.txt
++++ b/drivers/base/bootvid/CMakeLists.txt
+@@ -1,9 +1,12 @@
+ 
+ function(add_bootvid _target _configfile)
+-    cmake_parse_arguments(_bviddata "" "NAME_ON_CD" "SOURCES" ${ARGN})
++    cmake_parse_arguments(_bviddata "" "NAME_ON_CD;SPEC_FILE" "SOURCES" ${ARGN})
+ 
+     # Handle the spec file for the dll name
+-    spec2def(${_target}.dll bootvid.spec ADD_IMPORTLIB)
++    if(NOT _bviddata_SPEC_FILE)
++        set(_bviddata_SPEC_FILE bootvid.spec)
++    endif()
++    spec2def(${_target}.dll ${_bviddata_SPEC_FILE} ADD_IMPORTLIB)
+ 
+     # Set default values for the version resource file
+     set(REACTOS_STR_INTERNAL_NAME "$<TARGET_NAME:${_target}>")
+@@ -62,6 +65,10 @@ if(ARCH STREQUAL "i386")
+     endif()
+     add_bootvid(pc98bvid i386/pc98/pc98bvid.cmake NAME_ON_CD ${PC98BVID_NAME_ON_CD})
+     add_bootvid(xboxbvid i386/xbox/xboxbvid.cmake NAME_ON_CD ${XBOXBVID_NAME_ON_CD})
++    if(SARCH STREQUAL "xbox" AND XBOX_NT5_HAL)
++        add_bootvid(xboxbvidnt5 i386/xbox/xboxbvid.cmake
++                    SPEC_FILE bootvidnt5.spec SOURCES nt5.c)
++    endif()
+ endif()
+ if((ARCH STREQUAL "i386") OR (ARCH STREQUAL "amd64"))
+     add_bootvid(bootvid i386/pc/vgabvid.cmake NAME_ON_CD ${VGABVID_NAME_ON_CD})
+diff --git a/drivers/base/bootvid/bootvidnt5.spec b/drivers/base/bootvid/bootvidnt5.spec
+new file mode 100644
+index 00000000..91f82e43
+--- /dev/null
++++ b/drivers/base/bootvid/bootvidnt5.spec
+@@ -0,0 +1,11 @@
++@ stdcall VidBitBlt(ptr long long)
++@ stdcall VidBufferToScreenBlt(ptr long long long long long)
++@ stdcall VidCleanUp()
++@ stdcall VidDisplayString(str)
++@ stdcall VidDisplayStringXY(str long long long)
++@ stdcall VidInitialize(long) XwnNt5VidInitialize
++@ stdcall VidResetDisplay() XwnNt5VidResetDisplay
++@ stdcall VidScreenToBufferBlt(ptr long long long long long)
++@ stdcall VidSetScrollRegion(long long long long)
++@ stdcall VidSetTextColor(long)
++@ stdcall VidSolidColorFill(long long long long long)
+diff --git a/drivers/base/bootvid/nt5.c b/drivers/base/bootvid/nt5.c
+new file mode 100644
+index 00000000..71b8fd88
+--- /dev/null
++++ b/drivers/base/bootvid/nt5.c
+@@ -0,0 +1,28 @@
++/*
++ * PROJECT:     Xbox NT5 Boot Video
++ * LICENSE:     GPL-2.0-or-later
++ * PURPOSE:     Windows 2000 boot-video calling convention adapters
++ */
++#include "precomp.h"
++
++BOOLEAN
++NTAPI
++XwnNt5VidInitialize(BOOLEAN SetMode)
++{
++    /* Keep the firmware scanout used by the Xbox framebuffer miniport.
++     * Native NT5 does not provide a PC BIOS display-reset service here. */
++    if (!VidInitialize(FALSE))
++        return FALSE;
++    if (SetMode)
++        VidResetDisplay(FALSE);
++    return TRUE;
++}
++
++VOID
++NTAPI
++XwnNt5VidResetDisplay(VOID)
++{
++    /* NT5 InbvResetDisplay passes no arguments. ReactOS takes a BOOLEAN;
++     * exporting that routine directly corrupts NT5's return stack. */
++    VidResetDisplay(FALSE);
++}
