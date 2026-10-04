@@ -1,0 +1,27 @@
+After physical XWNG90, trace the remaining MiInitMachineDependent tail,
+starting at 159898. Audit additional page-table reference/flags updates,
+system-PTE/accounting work and return through MmInitSystem phase 0 before
+choosing the next hardware boundary. Keep the descriptor reconciliation
+and free/in-use model as guards. Do not let post-walk allocations invalidate
+the earlier PFN model without recording and modeling those changes.
+
+The isolated freewalk scout resumed a saved native register frame after
+the actual XWNJ90 guard ran. It is exploratory evidence, not the candidate
+execution path. Candidate execution uses a normal returning assembly guard.
+A capture-script offset typo stopped scout 001 before the new walk; corrected
+scout 002 completed and matched every PFN/color byte. No console failure
+was inferred from that capture error.
+
+Static tail review (not yet executed or proven on the console):
+- 159a1a..159a5b marks must-succeed pool PFN flags.
+- 159a5d..159a79 restores the original loader descriptor extent from
+  saved locals. The PFN database now carries allocation ownership; this
+  restoration must not be confused with the earlier double subtraction.
+- 159a81/159a8b initialize spin locks; 159ac2 initializes system PTE accounting.
+- 159bfa and 159c7e call MiRemoveAnyPage, the native free-page allocator for the first
+  post-walk page-table and working-set allocations. Capture the chosen
+  PFNs, free/color list removal, reference counts and new mappings.
+- 159bdb calls InitializePool and 159cd7 calls MmInitializeProcessAddressSpace.
+- 159d7c calls ExAllocatePoolWithTag for color heads on this profile. Audit
+  copying and pointer updates before accepting any old-page reclamation.
+Each observation is a disassembly finding, not a completed checkpoint.

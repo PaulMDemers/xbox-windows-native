@@ -1,0 +1,125 @@
+{
+  "validated_utc": "2026-10-04T04:35:46.691162+00:00",
+  "ready_for_physical_upload": true,
+  "physical_tested": false,
+  "installed_on_physical_console": true,
+  "source_tree": "940ed5b3602718b6634fb05aae7ffb869f7ec64d",
+  "scope": "Native descriptor reconciliation and free-page list construction verified; stops before further MM initialization.",
+  "normal_loader_build_passed": true,
+  "normal_hal_build_passed": true,
+  "missing_pfncommit_parent_rejected": true,
+  "free_page_list_halt_verified": true,
+  "kernel_file_unchanged": true,
+  "temporary_kernel_patch_restored": true,
+  "unexpected_kernel_rejected": true,
+  "changed_files": [
+    "loader/halxboxnt5.dll",
+    "README.txt",
+    "rosload.exe"
+  ],
+  "package_files_verified": 33,
+  "emulator_tests": [
+    {
+      "run": "physical-freelist-wide-001",
+      "status": "kernel_free_lists_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "high_alias_pages_verified": 576,
+        "identity_mapping_present": false,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-freelist-normal-001",
+      "status": "kernel_free_lists_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 640,
+        "height": 480,
+        "pitch": 2560,
+        "pa": "0x3c00000",
+        "bytes": 1228800,
+        "high_alias_pages_verified": 300,
+        "identity_mapping_present": false,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-freelist-bad-hal-001",
+      "status": "unarmed_hal_rejected_before_kernel",
+      "kernel_entered": false,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "high_alias_pages_verified": 576,
+        "identity_mapping_present": true,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-freelist-trace-001",
+      "status": "kernel_free_lists_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "high_alias_pages_verified": 576,
+        "identity_mapping_present": false,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-freelist-bad-kernel-001",
+      "status": "kernel_contract_rejected_before_entry",
+      "kernel_entered": false,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "high_alias_pages_verified": 576,
+        "identity_mapping_present": true,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    }
+  ],
+  "native_trace_passed": true,
+  "pfn_backing_zero_before_population_verified": true,
+  "full_pfn_population_model_verified": true,
+  "existing_mapping_permission_changes_verified": true,
+  "reservation_pic_masks_verified": true,
+  "pool_write_delta_verified": true,
+  "unexpected_pool_profile_rejected": true,
+  "mapped_candidate_rejected_before_allocation": true,
+  "corrupt_unused_pfn_word_rejected": true,
+  "unexpected_descriptor_count_rejected_without_repair": true,
+  "descriptor_pages_restored": 622,
+  "corrupt_free_link_rejected": true,
+  "native_event_calls_verified": 3,
+  "all_pfn_color_list_bytes_verified": true,
+  "expected_physical_success": "XWNG90: Free-page lists built; reserved pages protected.",
+  "fixture_package_includes_final_readme": true,
+  "uploaded_utc": "2026-10-04T04:36:41.786146+00:00"
+}
