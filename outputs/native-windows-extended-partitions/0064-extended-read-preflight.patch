@@ -1,0 +1,99 @@
+diff --git a/boot/freeldr/freeldr/bootmgr.c b/boot/freeldr/freeldr/bootmgr.c
+index 7299e8a9..68e7d3e1 100644
+--- a/boot/freeldr/freeldr/bootmgr.c
++++ b/boot/freeldr/freeldr/bootmgr.c
+@@ -24,6 +24,9 @@
+ #include <debug.h>
+ #ifdef XBOX_NATIVE_IO_PREFLIGHT
+ #include <xwnprobe.h>
++#ifdef XBOX_NATIVE_EXTENDED_READ_PREFLIGHT
++#include <xwnextended.h>
++#endif
+ #ifdef XBOX_NATIVE_VOLUME_PREFLIGHT
+ #include <xwnvolume.h>
+ #endif
+@@ -408,6 +411,9 @@ VOID RunLoader(VOID)
+         strcmp(Token, "XWN-SECOND-STAGE-20261003") != 0)
+         XwnStop("XWNFAIL: second-stage configuration verification");
+     printf("XWN70: second-stage file and configuration verified\n");
++#ifdef XBOX_NATIVE_EXTENDED_READ_PREFLIGHT
++    XwnExtendedReadPreflight();
++#endif
+ #ifdef XBOX_NATIVE_VOLUME_PREFLIGHT
+     XwnVerifyInstalledVolume();
+ #endif
+diff --git a/boot/freeldr/freeldr/include/xwnextended.h b/boot/freeldr/freeldr/include/xwnextended.h
+new file mode 100644
+index 00000000..f3ac0a44
+--- /dev/null
++++ b/boot/freeldr/freeldr/include/xwnextended.h
+@@ -0,0 +1,54 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++#pragma once
++/* Opt-in owned-emulator fixture test. No writes and no kernel entry. */
++static BOOLEAN XwnVerifyExtendedFile(VOID)
++{
++    CHAR Path[MAX_PATH];
++    UCHAR Buffer[1024];
++    ULONG FileId, Read, Offset = 0, Index, Wanted;
++    FILEINFORMATION Info;
++    LARGE_INTEGER Seek;
++    ARC_STATUS Status;
++    BOOLEAN Good = FALSE;
++    RtlStringCbCopyA(Path, sizeof(Path), "multi(0)disk(0)rdisk(0)partition(6)\\xwn-high.bin");
++    Status = ArcOpen(Path, OpenReadOnly, &FileId);
++    if (Status != ESUCCESS)
++    {
++        printf("XWNFAIL: probe open status=%lu\n", Status);
++        return FALSE;
++    }
++    Status = ArcGetFileInformation(FileId, &Info);
++    if (Status != ESUCCESS || Info.EndingAddress.QuadPart != 4097)
++        goto Done;
++    while (Offset < 4097)
++    {
++        Wanted = min(sizeof(Buffer), 4097 - Offset);
++        Status = ArcRead(FileId, Buffer, Wanted, &Read);
++        if (Status != ESUCCESS || Read != Wanted) goto Done;
++        for (Index = 0; Index < Read; ++Index)
++            if (Buffer[Index] != (UCHAR)((Offset + Index) * 37 + ((Offset + Index) >> 8) + 0x5a))
++                goto Done;
++        Offset += Read;
++    }
++    Status = ArcRead(FileId, Buffer, 1, &Read);
++    if (Status != ESUCCESS || Read != 0) goto Done;
++    Seek.QuadPart = 2041;
++    Status = ArcSeek(FileId, &Seek, SeekAbsolute);
++    if (Status != ESUCCESS) goto Done;
++    Status = ArcRead(FileId, Buffer, 31, &Read);
++    if (Status != ESUCCESS || Read != 31) goto Done;
++    for (Index = 0; Index < Read; ++Index)
++        if (Buffer[Index] != (UCHAR)((2041 + Index) * 37 + ((2041 + Index) >> 8) + 0x5a))
++            goto Done;
++    Good = TRUE;
++Done:
++    ArcClose(FileId);
++    if (!Good) printf("XWNFAIL: file data/size/seek/EOF offset=%lu status=%lu\n", Offset, Status);
++    return Good;
++}
++
++static VOID XwnExtendedReadPreflight(VOID)
++{
++    if (!XwnVerifyExtendedFile()) XwnStop("XWNFAIL: high-LBA F file");
++    XwnStop("XWNF90: F high-LBA file/size/seek/EOF verified. Windows NOT entered.");
++}
+diff --git a/boot/freeldr/freeldr/rosload.cmake b/boot/freeldr/freeldr/rosload.cmake
+index 33276231..36ac672f 100644
+--- a/boot/freeldr/freeldr/rosload.cmake
++++ b/boot/freeldr/freeldr/rosload.cmake
+@@ -223,3 +223,10 @@ endif()
+ if(XBOX_NATIVE_FATX_BOOTVIDEO_PREFLIGHT)
+  target_compile_definitions(rosload PRIVATE XBOX_NATIVE_FATX_BOOTVIDEO_PREFLIGHT=1)
+ endif()
++option(XBOX_NATIVE_EXTENDED_READ_PREFLIGHT "Read owned 250GB FATX fixture then halt" OFF)
++if(XBOX_NATIVE_EXTENDED_READ_PREFLIGHT)
++    if(NOT SARCH STREQUAL "xbox" OR NOT XBOX_NATIVE_IO_PREFLIGHT)
++        message(FATAL_ERROR "Extended read preflight requires Xbox IO preflight")
++    endif()
++    target_compile_definitions(rosload PRIVATE XBOX_NATIVE_EXTENDED_READ_PREFLIGHT=1)
++endif()

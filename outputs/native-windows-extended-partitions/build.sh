@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+[[ ${XWN_BUILD_LEASE:-} == held ]] || exit 2
+root=/home/paul/xbox-windows-native
+src="$root/sources/reactos-extended"
+kit=/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-windows-extended-partitions
+build="$root/build/extended-loader"
+printf 'cmake -S %s -B %s -G Ninja -DCMAKE_TOOLCHAIN_FILE=%s/toolchain-gcc.cmake -DARCH=i386 -DSARCH=xbox -DOARCH=pentium -DCMAKE_BUILD_TYPE=Release -DDBG=OFF -DKDBG=OFF -DPCH=OFF -DENABLE_CCACHE=OFF -DXBOX_NT5_HAL=ON -DXBOX_NATIVE_PREFLIGHT=OFF -DXBOX_NATIVE_IO_PREFLIGHT=ON -DXBOX_NATIVE_EXTENDED_READ_PREFLIGHT=ON -DXBOX_NATIVE_VOLUME_PREFLIGHT=OFF -DXBOX_NATIVE_NT5_HANDOFF=ON -DXBOX_NATIVE_NT5_ENTER=ON -DXBOX_NATIVE_NT5_AUTORUN=ON && cmake --build %s --target freeldr rosload halxboxnt5 -- -j4\n' "$src" "$build" "$src" "$build" | "$root/toolchains/RosBE-2.2.1/RosBE.sh" "$src" 0 i386
+cp "$build/boot/freeldr/freeldr/freeldr.sys" "$kit/artifacts/freeldr.sys"
+cp "$build/boot/freeldr/freeldr/rosload.exe" "$kit/artifacts/rosload.exe"
+
+cp "$build/hal/halx86/xboxnt5/halxboxnt5.dll" "$kit/artifacts/halxboxnt5.dll"

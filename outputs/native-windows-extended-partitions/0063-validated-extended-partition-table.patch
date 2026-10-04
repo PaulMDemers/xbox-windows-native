@@ -1,0 +1,249 @@
+diff --git a/boot/freeldr/freeldr/disk/part_brfr.c b/boot/freeldr/freeldr/disk/part_brfr.c
+index 2d07c79b..1e1ee063 100644
+--- a/boot/freeldr/freeldr/disk/part_brfr.c
++++ b/boot/freeldr/freeldr/disk/part_brfr.c
+@@ -7,6 +7,7 @@
+  */
+ 
+ #ifndef _M_ARM
++#include <xboxpart.h>
+ // #include <freeldr.h>
+ 
+ /* BRFR signature at disk offset 0x600 (== 3 * 0x200) */
+@@ -50,11 +51,37 @@ DiskGetBrfrPartitionEntry(
+     _In_ ULONG PartitionNumber,
+     _Out_ PPARTITION_INFORMATION PartitionEntry)
+ {
++    XWN_XBOX_PARTITION Parts[XWN_XBOX_MAX_PARTITIONS];
++    GEOMETRY Geometry;
++    unsigned int Count;
++    int TableStatus;
++
+     ASSERT(SectorSize >= 512);
+ 
+     if (!DiskIsBrfr(DriveNumber))
+         return FALSE; /* No magic Xbox partitions */
+ 
++    /* Extended metadata is authoritative when present, including E: size. */
++    if (SectorSize != 512 || !MachDiskGetDriveGeometry(DriveNumber, &Geometry) ||
++        !MachDiskReadLogicalSectors(DriveNumber, 0, 1, DiskReadBuffer))
++        return FALSE;
++    TableStatus = XwnXboxParsePartitionTable(DiskReadBuffer, SectorSize,
++                                           Geometry.Sectors, Parts, &Count);
++    if (TableStatus == XWN_XBOX_TABLE_INVALID)
++        return FALSE;
++    if (TableStatus == XWN_XBOX_TABLE_VALID)
++    {
++        if (PartitionNumber < 1 || PartitionNumber > Count) return FALSE;
++        RtlZeroMemory(PartitionEntry, sizeof(*PartitionEntry));
++        PartitionEntry->StartingOffset.QuadPart = (ULONGLONG)Parts[PartitionNumber-1].Start * SectorSize;
++        PartitionEntry->PartitionLength.QuadPart = (ULONGLONG)Parts[PartitionNumber-1].Count * SectorSize;
++        PartitionEntry->PartitionNumber = PartitionNumber;
++        PartitionEntry->PartitionType = PARTITION_FAT32;
++        PartitionEntry->BootIndicator = (PartitionNumber == FATX_DATA_PARTITION);
++        PartitionEntry->RecognizedPartition = TRUE;
++        return TRUE;
++    }
++
+     /* Get partition entry of an Xbox-standard BRFR partitioned disk */
+     if (!(1 <= PartitionNumber && PartitionNumber <= RTL_NUMBER_OF(XboxPartitions)))
+         return FALSE; /* Partition does not exist */
+diff --git a/hal/halx86/xbox/part_xbox.c b/hal/halx86/xbox/part_xbox.c
+index ca964473..aebd67a7 100644
+--- a/hal/halx86/xbox/part_xbox.c
++++ b/hal/halx86/xbox/part_xbox.c
+@@ -10,6 +10,7 @@
+ 
+ #include "halxbox.h"
+ #include <internal/tag.h>
++#include <xboxpart.h>
+ 
+ #define NDEBUG
+ #include <debug.h>
+@@ -186,6 +187,55 @@ HalpXboxExamineMBR(IN PDEVICE_OBJECT DeviceObject,
+     return;
+ }
+ 
++/* Require an exact device length before trusting extended on-disk extents.
++ * Unsupported length queries fail closed; CHS rounding is not a substitute.
++ */
++static NTSTATUS
++HalpXboxReadExtendedLayout(PDEVICE_OBJECT Device, ULONG SectorSize,
++                          XWN_XBOX_PARTITION *Parts, unsigned int *Count,
++                          int *TableStatus)
++{
++    PVOID Buffer;
++    LARGE_INTEGER Offset;
++    GET_LENGTH_INFORMATION Length;
++    IO_STATUS_BLOCK Io;
++    KEVENT Event;
++    PIRP Irp;
++    NTSTATUS Status;
++    *TableStatus = XWN_XBOX_TABLE_INVALID;
++    if (SectorSize != 512) return STATUS_NOT_SUPPORTED;
++    Buffer = ExAllocatePoolWithTag(PagedPool, SectorSize, TAG_HAL_XBOX);
++    if (!Buffer) return STATUS_INSUFFICIENT_RESOURCES;
++    Offset.QuadPart = 0;
++    Status = HalpXboxReadSector(Device, SectorSize, &Offset, Buffer);
++    if (!NT_SUCCESS(Status)) goto Done;
++    /* The first parse only detects absence. An unknown capacity cannot validate. */
++    *TableStatus = XwnXboxParsePartitionTable(Buffer, SectorSize, 0, Parts, Count);
++    if (*TableStatus == XWN_XBOX_TABLE_ABSENT) goto Done;
++    RtlZeroMemory(&Io, sizeof(Io));
++    RtlZeroMemory(&Length, sizeof(Length));
++    KeInitializeEvent(&Event, NotificationEvent, FALSE);
++    Irp = IoBuildDeviceIoControlRequest(IOCTL_DISK_GET_LENGTH_INFO, Device,
++            NULL, 0, &Length, sizeof(Length), FALSE, &Event, &Io);
++    if (!Irp) { Status = STATUS_INSUFFICIENT_RESOURCES; goto Done; }
++    Status = IoCallDriver(Device, Irp);
++    if (Status == STATUS_PENDING)
++    {
++        KeWaitForSingleObject(&Event, Executive, KernelMode, FALSE, NULL);
++        Status = Io.Status;
++    }
++    if (!NT_SUCCESS(Status)) goto Done;
++    if (Io.Information < sizeof(Length) || Length.Length.QuadPart <= 0 ||
++        (Length.Length.QuadPart & 511))
++    { Status = STATUS_DISK_CORRUPT_ERROR; goto Done; }
++    *TableStatus = XwnXboxParsePartitionTable(Buffer, SectorSize,
++                         (ULONGLONG)Length.Length.QuadPart / 512, Parts, Count);
++    if (*TableStatus != XWN_XBOX_TABLE_VALID) Status = STATUS_DISK_CORRUPT_ERROR;
++Done:
++    ExFreePoolWithTag(Buffer, TAG_HAL_XBOX);
++    return Status;
++}
++
+ static NTSTATUS FASTCALL
+ HalpXboxIoReadPartitionTable(IN PDEVICE_OBJECT DeviceObject,
+                              IN ULONG SectorSize,
+@@ -196,6 +246,9 @@ HalpXboxIoReadPartitionTable(IN PDEVICE_OBJECT DeviceObject,
+     NTSTATUS Status;
+     ULONG Part;
+     PPARTITION_INFORMATION PartInfo;
++    XWN_XBOX_PARTITION Parts[XWN_XBOX_MAX_PARTITIONS];
++    unsigned int PartCount = XBOX_PARTITION_COUNT;
++    int TableStatus;
+ 
+     DPRINT("HalpXboxIoReadPartitionTable(%p %lu %x %p)\n",
+            DeviceObject,
+@@ -216,27 +269,32 @@ HalpXboxIoReadPartitionTable(IN PDEVICE_OBJECT DeviceObject,
+                                             ReturnRecognizedPartitions, PartitionBuffer);
+     }
+ 
++    Status = HalpXboxReadExtendedLayout(DeviceObject, SectorSize, Parts,
++                                        &PartCount, &TableStatus);
++    if (!NT_SUCCESS(Status)) return Status;
++    if (TableStatus == XWN_XBOX_TABLE_ABSENT) PartCount = XBOX_PARTITION_COUNT;
++
+     *PartitionBuffer = (PDRIVE_LAYOUT_INFORMATION)ExAllocatePoolWithTag(
+                         PagedPool,
+                         sizeof(DRIVE_LAYOUT_INFORMATION) +
+-                        XBOX_PARTITION_COUNT * sizeof(PARTITION_INFORMATION),
++                        PartCount * sizeof(PARTITION_INFORMATION),
+                         TAG_FILE_SYSTEM);
+     if (*PartitionBuffer == NULL)
+     {
+         return STATUS_NO_MEMORY;
+     }
+-    (*PartitionBuffer)->PartitionCount = XBOX_PARTITION_COUNT;
++    (*PartitionBuffer)->PartitionCount = PartCount;
+     (*PartitionBuffer)->Signature = PARTITION_SIGNATURE;
+-    for (Part = 0; Part < XBOX_PARTITION_COUNT; Part++)
++    for (Part = 0; Part < PartCount; Part++)
+     {
+         PartInfo = (*PartitionBuffer)->PartitionEntry + Part;
+-        PartInfo->StartingOffset.QuadPart = (ULONGLONG) XboxPartitions[Part].SectorStart *
++        PartInfo->StartingOffset.QuadPart = (ULONGLONG) (TableStatus == XWN_XBOX_TABLE_VALID ? Parts[Part].Start : XboxPartitions[Part].SectorStart) *
+                                             (ULONGLONG) SectorSize;
+-        PartInfo->PartitionLength.QuadPart = (ULONGLONG) XboxPartitions[Part].SectorCount *
++        PartInfo->PartitionLength.QuadPart = (ULONGLONG) (TableStatus == XWN_XBOX_TABLE_VALID ? Parts[Part].Count : XboxPartitions[Part].SectorCount) *
+                                              (ULONGLONG) SectorSize;
+         PartInfo->HiddenSectors = 0;
+         PartInfo->PartitionNumber = Part + 1;
+-        PartInfo->PartitionType = XboxPartitions[Part].PartitionType;
++        PartInfo->PartitionType = TableStatus == XWN_XBOX_TABLE_VALID ? PARTITION_FAT32 : XboxPartitions[Part].PartitionType;
+         PartInfo->BootIndicator = FALSE;
+         PartInfo->RecognizedPartition = TRUE;
+         PartInfo->RewritePartition = FALSE;
+diff --git a/sdk/include/reactos/xboxpart.h b/sdk/include/reactos/xboxpart.h
+new file mode 100644
+index 00000000..531adf39
+--- /dev/null
++++ b/sdk/include/reactos/xboxpart.h
+@@ -0,0 +1,76 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later
++ * Bounded parser for the Xbox LBA48 PARTINFO format. No disk I/O or writes.
++ * Format reference: NKPatcher lba48.inc and xa_lba48.asm (see REFERENCES.txt).
++ */
++#ifndef XWN_XBOXPART_H
++#define XWN_XBOXPART_H
++
++typedef struct XWN_XBOX_PARTITION
++{
++    unsigned int Start;
++    unsigned int Count;
++} XWN_XBOX_PARTITION;
++
++#define XWN_XBOX_MAX_PARTITIONS 14
++#define XWN_XBOX_TABLE_ABSENT 0
++#define XWN_XBOX_TABLE_VALID 1
++#define XWN_XBOX_TABLE_INVALID (-1)
++
++static unsigned int XwnXboxReadU32(const unsigned char *p)
++{
++    return (unsigned int)p[0] | ((unsigned int)p[1] << 8) |
++           ((unsigned int)p[2] << 16) | ((unsigned int)p[3] << 24);
++}
++
++/* Output is usable only on TABLE_VALID. Reject unknown extensions, holes,
++ * overflow, overlap and out-of-disk extents; never fall back after bad magic-
++ * bearing metadata. Sector count must come from the device, not this table.
++ */
++static int XwnXboxParsePartitionTable(const unsigned char *sector,
++    unsigned int bytes, unsigned long long diskSectors,
++    XWN_XBOX_PARTITION *parts, unsigned int *partCount)
++{
++    static const char magic[] = "****PARTINFO****";
++    unsigned int i, j, active = 0;
++    int gap = 0;
++    *partCount = 0;
++    if (bytes < 16) return XWN_XBOX_TABLE_INVALID;
++    for (i = 0; i < 16; ++i)
++        if (sector[i] != (unsigned char)magic[i]) return XWN_XBOX_TABLE_ABSENT;
++    if (bytes != 512 || !diskSectors) return XWN_XBOX_TABLE_INVALID;
++    for (i = 16; i < 48; ++i)
++        if (sector[i]) return XWN_XBOX_TABLE_INVALID;
++    for (i = 496; i < 512; ++i)
++        if (sector[i]) return XWN_XBOX_TABLE_INVALID;
++    for (i = 0; i < XWN_XBOX_MAX_PARTITIONS; ++i)
++    {
++        const unsigned char *entry = sector + 48 + i * 32;
++        unsigned int flags = XwnXboxReadU32(entry + 16);
++        unsigned int start = XwnXboxReadU32(entry + 20);
++        unsigned int count = XwnXboxReadU32(entry + 24);
++        parts[i].Start = parts[i].Count = 0;
++        if (XwnXboxReadU32(entry + 28) || (flags & ~0x80000000U))
++            return XWN_XBOX_TABLE_INVALID;
++        if (!(flags & 0x80000000U))
++        {
++            gap = 1;
++            continue;
++        }
++        if (gap || start < 1024 || !count ||
++            (unsigned long long)start >= diskSectors ||
++            (unsigned long long)count > diskSectors - start)
++            return XWN_XBOX_TABLE_INVALID;
++        for (j = 0; j < i; ++j)
++            if ((unsigned long long)start < (unsigned long long)parts[j].Start + parts[j].Count &&
++                (unsigned long long)parts[j].Start < (unsigned long long)start + count)
++                return XWN_XBOX_TABLE_INVALID;
++        parts[i].Start = start;
++        parts[i].Count = count;
++        active = i + 1;
++    }
++    /* Existing Xbox volumes must remain represented; optional F/G follow. */
++    if (active < 5) return XWN_XBOX_TABLE_INVALID;
++    *partCount = active;
++    return XWN_XBOX_TABLE_VALID;
++}
++#endif

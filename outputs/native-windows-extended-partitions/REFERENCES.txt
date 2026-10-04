@@ -1,0 +1,17 @@
+Partition-table format and Shadow C behavior were checked against Rocky5's
+NKPatcher source at commit 53203aa1c1272468c9374f260233f92557c9f324.
+
+https://github.com/Rocky5/Xbox-Softmodding-Tool/blob/53203aa1c1272468c9374f260233f92557c9f324/App%20Sources/NKPatcher/Main%20NKP11/lba48.inc
+https://github.com/Rocky5/Xbox-Softmodding-Tool/blob/53203aa1c1272468c9374f260233f92557c9f324/App%20Sources/NKPatcher/Main%20NKP11/xa_lba48.asm
+https://github.com/Rocky5/Xbox-Softmodding-Tool/blob/53203aa1c1272468c9374f260233f92557c9f324/App%20Sources/NKPatcher/Main%20NKP11/diskimagedrv.asm
+
+The disk-image driver intentionally sets the virtual partition StartingOffset
+to the physical disk end. This exactly matches the observed C query. The
+installed softmod version has not been identified; source agreement does not
+prove that this exact revision is installed.
+
+PARTINFO has a 16-byte magic, 32 reserved bytes, and fourteen 32-byte entries
+starting at byte 48. Entries contain a 16-byte name, flags (in-use bit
+0x80000000), 32-bit start LBA, 32-bit sector count and a reserved word.
+Unknown extensions and gaps in active partition numbering are rejected as
+unsupported by this initial implementation.
