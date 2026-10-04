@@ -1,0 +1,29 @@
+diff --git a/boot/freeldr/freeldr/disk/disk.c b/boot/freeldr/freeldr/disk/disk.c
+index a7159d9a..5c5254fb 100644
+--- a/boot/freeldr/freeldr/disk/disk.c
++++ b/boot/freeldr/freeldr/disk/disk.c
+@@ -139,6 +139,24 @@ DiskInitialize(
+     TRACE("Checksum: %x\n", Checksum);
+ 
+     ValidPartitionTable = (IsCdRom || (Mbr->MasterBootRecordMagic == 0xAA55));
++#if defined(SARCH_XBOX)
++    /*
++     * Xbox disks use the BRFR layout rather than an MBR. The Xbox HAL
++     * exposes that layout with a synthetic signature of 0xAA55. NT uses
++     * this ARC record to match the loader's disk to the runtime device;
++     * an invalid partition flag or the raw (usually zero) MBR signature
++     * prevents creation of the boot device's ArcName link.
++     * Keep the checksum of the actual sector zero, which NT reads back.
++     * Match the HAL's detection precedence: a valid MBR always wins.
++     */
++    if (DeviceType == DiskPeripheral && !ValidPartitionTable &&
++        MachDiskReadLogicalSectors(DriveNumber, 3ULL, 1, DiskReadBuffer) &&
++        RtlCompareMemory(DiskReadBuffer, "BRFR", 4) == 4)
++    {
++        Signature = 0xAA55;
++        ValidPartitionTable = TRUE;
++    }
++#endif
+     TRACE("IsPartitionValid: %s\n", ValidPartitionTable ? "TRUE" : "FALSE");
+ 
+     /* Register the device */

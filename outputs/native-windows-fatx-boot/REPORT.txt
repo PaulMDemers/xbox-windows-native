@@ -1,0 +1,42 @@
+Native Xbox FATX boot: ARC disk identity (0047)
+
+The loader previously passed raw sector-zero signature 0 and an invalid
+partition-table flag for a BRFR Xbox disk. The Xbox HAL exposes the same disk
+with a synthetic signature 0xAA55. Windows therefore failed to create its
+ArcName boot link and stopped at IopMarkBootPartition with 7B/C0000034.
+
+0047 makes the Xbox loader report the HAL's synthetic identity only when the
+disk has no valid MBR and sector 3 contains BRFR. It preserves the checksum of
+the actual sector zero. Valid MBR disks retain their original identity.
+No disk sector is modified by this change.
+
+Emulator evidence:
+- Original loader: first bugcheck 7B/C0000034 captured before the secondary
+  error-handler crash. See validation.json.
+- Changing only the ARC record in a debugger gets past boot-driver startup.
+- Rebuilt source, without debugger edits: Windows reaches graphical logon
+  directly from the private FATX system volume.
+- Existing NTFS fixture still reaches Explorer with no bugcheck.
+
+This is not a usable FATX desktop yet. Profile-copy and delayed-write errors
+occur, and offline inspection confirms directory corruption after startup.
+The original input fixture is preserved; the damaged disk is an isolated run
+copy. Native FATX write behavior needs further debugging before deployment.
+Nothing from this experiment has been uploaded to physical hardware.
+
+Reproduction (existing project toolchains and supplied media required):
+1. Apply the ordered source patches in patch-check-0047.json to its base commit.
+2. Run Build.ps1 under PowerShell 7.4+. It acquires the shared build lease.
+3. Use ../native-windows-nt5-kernel/make-iso.py --autorun with this kit's
+   artifacts directory as --loader-directory and a new --output ISO path.
+   The existing normal HAL and bootvid are included by that packager.
+4. Build the private FATX driver and fixture with ../native-windows-fatx-runtime.
+   extract-ntfs-input.py extracts the verified NTFS source; inventory-ntfs.py
+   creates work/fullboot-file-inventory.json. prepare-fatx-boot.py requires the
+   offline hivex library path in LD_LIBRARY_PATH. Each preparation refuses to
+   overwrite an existing output image.
+5. Run Run.ps1 with a fresh run id. For offline inspection use read-results.py
+   after the harness has stopped and recorded cleanup.
+
+Media, binaries, hives, raw traces and emulator disks are local and ignored.
+Only source, build instructions, patch chain and diagnostic summaries are tracked.

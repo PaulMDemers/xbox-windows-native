@@ -4,8 +4,10 @@ Windows 2000 loads ReactOS vfatfs and mounts the existing Xbox FATX E extent.
 A guest test enumerates the root, creates a file, writes/flushes/reopens/reads
 one MiB and compares every byte with zero failures. Offline ntfscat retrieves
 the guest log; a separate FATX parser verifies the persistent one-MiB file.
-Windows itself still boots from NTFS in this test. A separate full-FATX boot experiment reaches boot-driver loading but currently
-fails while resolving the ARC boot device name (first bugcheck 7B, C0000034).
+Windows itself still boots from NTFS in this test. The separate
+../native-windows-fatx-boot experiment fixes the ARC boot identity and reaches
+graphical logon. It exposes corruption under system-volume workloads and is
+not a usable desktop; the bounded test here is not evidence of general reliability.
 Physical hardware behavior remains untested.
 
 The driver is unmodified ReactOS source at the pinned upstream revision,
