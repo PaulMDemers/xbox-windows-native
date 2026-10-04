@@ -1,0 +1,30 @@
+FATX counted OEM name conversion (0059), 4 October 2026
+
+FATXAddEntry now converts names into a temporary 43-byte buffer, checks the
+conversion status and byte length before requesting directory space, and
+copies only the counted bytes into the 42-byte FATX name field. This prevents
+successful creation of an invalid directory entry at the maximum name length.
+
+The exact supplied NT5 kernel's RtlUnicodeStringToOemString rejects a supplied
+buffer when Length >= MaximumLength. It sets Length before that check and
+requires room for its terminating NUL. The previous code used a 42-byte field
+directly and ignored the failure, retaining FF bytes as the recorded name.
+See native-conversion-contract.json for the pinned binary and disassembly.
+
+Unassisted run nt5-fatx-boot-name-boundary-001 uses the identical xwnfs probe
+that failed with 0058. All checks now pass: 42-byte ASCII create/delete,
+43-byte rejection, case-insensitive reopen, 128 KiB plus one byte comparison,
+shrink/regrow, cross-directory rename, deletion and empty-directory removal.
+General OEM codepage behavior is not established by these ASCII tests.
+
+The guest completes normal UI shutdown to the safe-to-turn-off bitmap and
+final HAL halt without a bugcheck. Cold audit verifies 3,452 immutable files,
+the fragmented-pagefile guard, disk/memory endurance and all nine reachable
+registry trees. The invalid directory from the earlier failure is absent;
+the test used a fresh fixture, not a repaired copy of the failed disk.
+
+Apply the ordered 0059 series, build with Build-Driver.ps1 and run the import
+audit. prepare-fixture.py pins its original disk and reuses the 0058 probe.
+Run-FullBoot.ps1 pins the new disk and 0057 boot-video ISO. Run-Wide.ps1 is a
+separate display-layout regression entry point; only completed runs listed
+in validation reports are evidence. No physical Xbox access occurred.

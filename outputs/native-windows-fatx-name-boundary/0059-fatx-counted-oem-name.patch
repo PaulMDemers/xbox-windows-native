@@ -1,0 +1,32 @@
+diff --git a/drivers/filesystems/vfatfs/dirwr.c b/drivers/filesystems/vfatfs/dirwr.c
+index 3de2d6d3..f4400ab7 100644
+--- a/drivers/filesystems/vfatfs/dirwr.c
++++ b/drivers/filesystems/vfatfs/dirwr.c
+@@ -843,2 +843,4 @@ FATXAddEntry(
+     OEM_STRING NameA;
++    CHAR NameBuffer[43];
++    NTSTATUS Status;
+     VFAT_DIRENTRY_CONTEXT DirContext;
+@@ -857,2 +859,14 @@ FATXAddEntry(
+
++    /* The conversion API needs temporary space for a terminator, but the
++     * FATX field is a counted 42-byte name. Validate before changing the
++     * directory, including multibyte OEM names that exceed the byte limit. */
++    NameA.Buffer = NameBuffer;
++    NameA.Length = 0;
++    NameA.MaximumLength = sizeof(NameBuffer);
++    Status = RtlUnicodeStringToOemString(&NameA, &DirContext.LongNameU, FALSE);
++    if (!NT_SUCCESS(Status))
++        return Status;
++    if (NameA.Length == 0 || NameA.Length > 42)
++        return STATUS_NAME_TOO_LONG;
++
+     /* try to find 1 entry free in directory */
+@@ -887,6 +901,3 @@ FATXAddEntry(
+     /* set file name */
+-    NameA.Buffer = (PCHAR)DirContext.DirEntry.FatX.Filename;
+-    NameA.Length = 0;
+-    NameA.MaximumLength = 42;
+-    RtlUnicodeStringToOemString(&NameA, &DirContext.LongNameU, FALSE);
++    RtlCopyMemory(DirContext.DirEntry.FatX.Filename, NameA.Buffer, NameA.Length);
+     DirContext.DirEntry.FatX.FilenameLength = (unsigned char)NameA.Length;

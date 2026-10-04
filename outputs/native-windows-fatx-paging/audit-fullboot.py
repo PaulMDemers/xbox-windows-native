@@ -8,7 +8,7 @@ p.add_argument('--pressure-manifest', help='Require the extra paging probe and a
 p.add_argument('--filesystem-manifest', help='Require the bounded file API probe and its complete success log')
 p.add_argument('--registry-trees', action='store_true', help='Require read-only traversal of every reachable hive key/value')
 a = p.parse_args()
-assert re.fullmatch(r'nt5-fatx-boot-(?:paging|image-read|paging-flags|flush|power|wide|hal-paging|bootvid|bootvid-ram|pressure|metadata)-[0-9]+', a.run)
+assert re.fullmatch(r'nt5-fatx-boot-(?:paging|image-read|paging-flags|flush|power|wide|hal-paging|bootvid|bootvid-ram|pressure|metadata|name-boundary)-[0-9]+', a.run)
 ws = pathlib.Path('/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility')
 root = pathlib.Path('/home/paul/xbox-windows-native')
 run = ws / 'work/runs' / a.run
