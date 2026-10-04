@@ -27,3 +27,13 @@ native-windows-fatx-paging/audit-fullboot.py with both --driver-manifest and
 --pressure-manifest pointing to pressure-fixture-001.json. See validation-001.json.
 Windows binaries, fixture disks and local screenshots remain untracked.
 No physical console access or upload occurred.
+
+Separate exploratory run nt5-fatx-boot-pressure-002 attaches read-only
+execution breakpoints to native IoPageRead after xwnpaging.exe appears.
+Eight4096-byte read submissions target the pagefile file object at offsets
+61997056 through62025728. This establishes actual pagefile read submissions,
+not a count of completed reads or an unassisted timing measurement. No guest
+registers, return values or data are patched; breakpoints are removed.
+The resumed guest completes all eight comparisons, then the verified UI
+shutdown reaches the final halt. Cold binary/guard checks and read-only
+traversal of all nine reachable registry trees pass. See trace-validation-002.json.
