@@ -8,10 +8,10 @@ host-side test harness.
 
 - Physical console: Windows kernel entry, processor initialization, HAL base
   setup, RTC calibration, clock setup and partition-hook registration and BIOS page allocation passed.
-- Latest physical checkpoint: **XWNL90**. Native mapped-page PFN initialization
-  completed: 639 populated records and 64 color-list heads, followed by
-  a successful native TLB flush. Free-page lists, storage drivers
-  and desktop remain beyond the physical-tested stop.
+- Latest physical checkpoint: **XWNJ90**. Descriptor accounting reconciled:
+  622 omitted pages restored, with consumed frames still excluded.
+  Free-page lists, storage drivers and desktop remain beyond the
+  physical-tested stop.
 - Private emulator fixtures have reached a Windows 2000 desktop with NTFS,
   USB input, framebuffer, networking and experimental audio. Those results
   do not establish physical hardware compatibility.
@@ -71,11 +71,11 @@ list construction. Both display modes, the complete page-record model,
 execution trace and rejection tests pass in xemu; the physical checkpoint is
 photo-confirmed. See the [mapped PFN report](outputs/native-windows-physical-pfnmap/REPORT.txt).
 
-The next candidate **XWNJ90** reconciles the native descriptor update on
+The physical-tested **XWNJ90** reconciles the native descriptor update on
 our pinned memory layout, restoring 622 pages omitted by a repeated
 subtraction. It validates mappings, page records and the original extent,
-then halts before free-page lists. Emulator validation passed; physical
-testing is pending. See the [descriptor accounting report](outputs/native-windows-physical-pfncommit/REPORT.txt).
+then halts before free-page lists. Emulator validation passed; the physical
+checkpoint is photo-confirmed. See the [descriptor accounting report](outputs/native-windows-physical-pfncommit/REPORT.txt).
 
 See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
 [latest diagnostic](outputs/native-windows-physical-pfncommit/REPORT.txt), and
