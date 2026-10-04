@@ -18,6 +18,7 @@ param(
     [switch]$TraceNetwork,
     [switch]$TracePackets,
     [switch]$TraceDiskWrites,
+    [switch]$CompactTrace,
     [switch]$CaptureAudio,
     [switch]$ManualCapture,
     [switch]$StopOnCaptureComplete,
@@ -87,6 +88,7 @@ enable = false
     $vm = $null
     try {
         $vmArguments = @('-no-reboot','-no-shutdown','-gdb',"tcp:127.0.0.1:$GdbPort",'-d','cpu_reset,int,guest_errors','-D',(Join-Path $run cpu-trace.log),'-m','64','-snapshot','-dvd_path',$isoPath,'-machine','xbox,kernel-irqchip=off,avpack=composite','-device','usb-kbd','-monitor',"tcp:127.0.0.1:$MonitorPort,server,nowait")
+        if ($CompactTrace) { $vmArguments = @($vmArguments | ForEach-Object { if ($_ -eq 'cpu_reset,int,guest_errors') { 'cpu_reset,guest_errors' } else { $_ } }) }
         if ($UsbMouse) { $vmArguments += @('-device','usb-mouse') }
         if ($RetainDisk) { $vmArguments = @($vmArguments | Where-Object { $_ -ne '-snapshot' }) }
         if ($AllowGuestReboot) { $vmArguments = @($vmArguments | Where-Object { $_ -ne '-no-reboot' }) }

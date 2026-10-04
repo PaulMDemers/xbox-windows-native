@@ -13,8 +13,38 @@ F. The user subsequently confirmed Windows appeared, with black/white text
 over it, and the console rebooted into UnleashX. The text was not photographed
 or identified, so neither successful probe execution nor native writes are
 established. No second launch was sent. `enable-desktop.py` has not been run.
-Next: print explicit file-operation errors and use a separately pre-created
-report to distinguish new-file creation from in-place writes.
+The second test now prints explicit file-operation errors and uses a separately
+pre-created report to distinguish new-file creation from in-place writes.
+
+## Second physical test
+
+`probe-v2.c` checks the Windows root and exact F geometry before diagnostic
+writes. It verifies a pre-created 4-KiB report seed, tests new-file creation and
+65,537-byte read/write/flush/reopen, then saves the report in place and verifies
+all 4 KiB after reopening. File-operation failures include their Win32 error
+codes on screen. If the report cannot be safely saved, the probe stays on screen.
+
+All 22 imports resolve against the deployed Windows DLLs. Ordinary emulator run
+`nt5-physical-f-probe-v2-001` completed PASS and a normal restart; its cold audit
+checks 6,494 files, 3,439 immutable binaries, registry trees and allocation
+ownership without errors. No debugger changes were used. `CompactTrace` is an
+optional harness setting to omit high-volume interrupt logging; execution is
+unchanged. The v2 fixture also uses the physical-compatible `com-plus.log` name.
+
+The physical SYSTEM hive differed from the upload baseline and passed a clean
+read-only registry-tree audit. Its CrashControl `AutoReboot` values were 1 in
+both control sets. `disable-crash-restart.py` changed only those two existing
+inline DWORDs to 0, preserving all other bytes. Header and complete hive-tree
+checks pass before and after. The original remains on the Xbox as
+`F:\winnt\system32\config\system.xwn-v1`, and a local binary backup is excluded
+from Git. This prevents an early crash from disappearing through auto-reboot.
+
+`launch-v2.py` readback-verified the new probe, pre-created report, updated owned
+startup command and changed SYSTEM hive before one accepted launch at
+18:38:46 UTC. FTP had not returned roughly two minutes later. No new native
+result has been retrieved; a console photo is needed to identify whether it
+is a Windows crash, probe failure or another stop. No automatic relaunch is
+pending. `collect-v2.py` can retrieve the report after the user's reboot.
 
 ## Evidence and limits
 

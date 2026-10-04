@@ -4,7 +4,7 @@ root=pathlib.Path('/home/paul/xbox-windows-native');ws=pathlib.Path('/mnt/c/User
 sys.path[:0]=[str(ws/'outputs/native-windows-fatx-runtime'),'/mnt/c/Users/Paul/Desktop/ogxbox-linux/scripts']
 import fatx_stage_boot as fatx
 from bulk_fatx import Writer
-p=argparse.ArgumentParser();g=p.add_mutually_exclusive_group(required=True);g.add_argument('--run');g.add_argument('--fixture',choices=['windows2000-f-001','windows2000-f-write-001','windows2000-f-reboot-001']);a=p.parse_args()
+p=argparse.ArgumentParser();g=p.add_mutually_exclusive_group(required=True);g.add_argument('--run');g.add_argument('--fixture',choices=['windows2000-f-001','windows2000-f-write-001','windows2000-f-reboot-001']);p.add_argument('--probe-version',choices=['1','2'],default='1');a=p.parse_args()
 if a.run:
  assert a.run.startswith(('nt5-extended-f-','nt5-physical-f-')) and a.run.replace('-','').isalnum()
  run=ws/'work/runs'/a.run;assert (run/'cleanup.json').exists();source=run/'hdd.qcow2'
@@ -35,8 +35,9 @@ try:
      r['immutable_files_checked']+=1
   walk(1,'/')
   if a.run.startswith('nt5-physical-f-'):
-   log=w.read('/xwn-physical.log');data=w.read('/xwn-physical-write.bin')
-   assert b'XWN-PHYSICAL-PASS\r\n' in log and b'Failures: 0\r\n' in log
+   log=w.read('/xwn-report-v2.txt' if a.probe_version=='2' else '/xwn-physical.log');data=w.read('/xwn-create-v2.bin' if a.probe_version=='2' else '/xwn-physical-write.bin')
+   assert (b'XWN-V2-PASS\r\n' if a.probe_version=='2' else b'XWN-PHYSICAL-PASS\r\n') in log and b'Failures: 0\r\n' in log
+   if a.probe_version=='2':assert len(log)==4096 and log.startswith(b'XWN-V2-STARTED\r\n')
    assert data==bytes(((i*37+(i>>8)+0x5a)&255)^0xa5 for i in range(65537))
    r['native_probe']={'log':log.decode('ascii'),'log_sha256':hashlib.sha256(log).hexdigest(),'payload_sha256':hashlib.sha256(data).hexdigest(),'payload_bytes':len(data),'passed':True}
   r['investigated_cluster_owners']={str(c):owners.get(c) for c in [16569,16571,16575]}

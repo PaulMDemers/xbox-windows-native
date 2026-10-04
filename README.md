@@ -10,7 +10,9 @@ host-side test harness.
   native read/write probe and normal restart, with a clean cold disk audit.
   All 6,493 installation files are staged and readback-verified on the physical
   console. The user observed Windows followed by a reboot to UnleashX, but no
-  native probe result was saved. Physical storage success is not yet established. See the
+  native probe result was saved. A second emulator-validated diagnostic is
+  running with crash auto-restart disabled; a console photo is needed.
+  Physical storage success is not yet established. See the
   [physical F deployment](outputs/native-windows-physical-f/README.md).
 - Extended F emulator milestone: native Windows desktop on a 250 GB FATX disk,
   verified reads/writes beyond LBA28, and two normal restart cycles with clean
