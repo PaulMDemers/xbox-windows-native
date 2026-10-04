@@ -1,0 +1,55 @@
+XWN first native page-table allocation diagnostic (patch 0035)
+
+Physical XWNQ90 confirms native memory sizing. This candidate permits the
+first native page-table creation loop, with a guard before any allocation
+and a halt immediately after the loop. Further memory allocation, PFN setup,
+storage and the Windows desktop remain beyond this stop.
+
+Two temporary five-byte jumps are armed in the pinned kernel. The first,
+at RVA 0x158439, enters a HAL guard that checks the sizing profile and scans
+all present PDEs/PTEs. The 28 proposed frames must not be a page directory,
+page table, or any other actively mapped frame. Large-page PDEs are rejected.
+The guard snapshots the directory and descriptor hash, restores its original
+kernel bytes, and resumes with all general registers and flags preserved.
+
+Windows executes the original loop. The profile's EBX is zero, so it uses
+candidate counters on the native stack rather than changing the descriptor
+list. It installs 28 PDEs and clears 28 physical pages. A second hook at
+RVA 0x158518 stops before the next allocation phase. Its expected absolute
+operand is checked against the loaded kernel base, not a fixed image base.
+
+The final HAL checkpoint verifies each PDE value and zeroed page, remaining
+candidate counters, unchanged descriptor hash, unchanged unrelated PDEs
+(allowing accessed/dirty flags), stable CR3 and the high framebuffer mapping.
+It restores the second hook and halts. The Windows kernel file is unchanged.
+
+Expected: XWNA90: First page tables created; halted.
+Tables created and zeroed: 0000001c (28).
+First allocated PFN: 00000160. Next candidate PFN: 0000017c.
+Candidate pages remaining: 00001fe4 (8164).
+Photograph the full screen, then reboot to UnleashX.
+
+The original physical-tested first-stage loader, Windows files and bootvid
+remain unchanged. PT options default OFF and require SIZE preflight. Distinct
+arming tokens reject the preceding HAL. Physical XWNA90 is pending; see
+validation.json and ftp-upload.json for test and deployment status.
+
+The genuine Windows boot screen is a later milestone. In this kernel,
+Phase1Initialization calls InbvDriverInitialize at RVA 0x148552 and
+DisplayBootBitmap at 0x14859b, after HAL phase-1 initialization. We are still
+inside phase-0 memory initialization. See BOOT-PROGRESS.txt for the remaining
+milestones and the distinction between a boot screen and a working desktop.
+
+Final validation: both display modes, old-HAL and changed-kernel rejection,
+full code/import audits and the 105-event trace passed. The trace watches
+each native PDE write and each cleared page. The injected mapped-candidate
+test is rejected before allocation with candidate bytes and descriptors
+unchanged. Normal builds, the parent-option guard and the complete source
+series through patch 0035 pass. One initial standard-display fixture launch
+failed at dashboard FTP before loading the diagnostic; its fresh rerun
+passed. The mapped-candidate test was rerun with paused physical-memory
+capture after its final debugger read timed out; the rerun passed.
+
+Uploaded 2026-10-04T01:02:47.890844+00:00. All 33 files verified by readback.
+Three physical-tested XWNQ90 files retained under xwnq90 backup names.
+The console was not remotely launched. Physical XWNA90 is pending.

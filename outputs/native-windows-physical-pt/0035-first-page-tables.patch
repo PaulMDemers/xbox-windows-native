@@ -1,0 +1,323 @@
+diff --git a/boot/freeldr/freeldr/ntldr/xwnentryprobe.h b/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
+index e9f6f382..7060d42a 100644
+--- a/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
++++ b/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
+@@ -1,6 +1,10 @@
+ /* Explicit early-kernel diagnostic. Included only in the opt-in rosload. */
+ #ifdef XBOX_NATIVE_FATX_PHASE0_PREFLIGHT
+-#if defined(XBOX_NATIVE_FATX_SIZE_PREFLIGHT)
++#if defined(XBOX_NATIVE_FATX_PT_PREFLIGHT)
++static volatile ULONG XwnEntryRecord[96] = {0x4c4e5758, 0x35544e50, 1, 0};
++#define XWN_ARM_SIGNATURE 0x50544E54
++#define XWN_ARM_REPLY 0x50544854
++#elif defined(XBOX_NATIVE_FATX_SIZE_PREFLIGHT)
+ static volatile ULONG XwnEntryRecord[96] = {0x4a4e5758, 0x35544e50, 1, 0};
+ #define XWN_ARM_SIGNATURE 0x535A4E54
+ #define XWN_ARM_REPLY 0x535A4854
+@@ -340,7 +344,9 @@ static DECLSPEC_NORETURN VOID XwnEnterKernelProbe(PLOADER_PARAMETER_BLOCK Loader
+ #endif
+ #endif
+     XwnPagingClear();
+-#if defined(XBOX_NATIVE_FATX_SIZE_PREFLIGHT)
++#if defined(XBOX_NATIVE_FATX_PT_PREFLIGHT)
++    XwnPagingText(7, "XWNA30: Entering Windows; first page-table stop armed.", 0xFFFFFF00);
++#elif defined(XBOX_NATIVE_FATX_SIZE_PREFLIGHT)
+     XwnPagingText(7, "XWNQ30: Entering Windows; sizing stop armed.", 0xFFFFFF00);
+ #elif defined(XBOX_NATIVE_FATX_SCAN_PREFLIGHT)
+     XwnPagingText(7, "XWNS30: Entering Windows; RAM-scan stop armed.", 0xFFFFFF00);
+diff --git a/boot/freeldr/freeldr/pcat.cmake b/boot/freeldr/freeldr/pcat.cmake
+index b256d837..d02c11ab 100644
+--- a/boot/freeldr/freeldr/pcat.cmake
++++ b/boot/freeldr/freeldr/pcat.cmake
+@@ -386,3 +386,8 @@ option(XBOX_NATIVE_FATX_SIZE_PREFLIGHT "Halt after sizing before MM allocation"
+ if(XBOX_NATIVE_FATX_SIZE_PREFLIGHT AND NOT XBOX_NATIVE_FATX_SCAN_PREFLIGHT)
+     message(FATAL_ERROR "SIZE probe requires SCAN preflight")
+ endif()
++
++option(XBOX_NATIVE_FATX_PT_PREFLIGHT "Halt after first page-table allocation" OFF)
++if(XBOX_NATIVE_FATX_PT_PREFLIGHT AND NOT XBOX_NATIVE_FATX_SIZE_PREFLIGHT)
++    message(FATAL_ERROR "PT probe requires SIZE preflight")
++endif()
+diff --git a/boot/freeldr/freeldr/rosload.cmake b/boot/freeldr/freeldr/rosload.cmake
+index 7329a2fe..38013d10 100644
+--- a/boot/freeldr/freeldr/rosload.cmake
++++ b/boot/freeldr/freeldr/rosload.cmake
+@@ -175,3 +175,7 @@ endif()
+ if(XBOX_NATIVE_FATX_SIZE_PREFLIGHT)
+     target_compile_definitions(rosload PRIVATE XBOX_NATIVE_FATX_SIZE_PREFLIGHT=1)
+ endif()
++
++if(XBOX_NATIVE_FATX_PT_PREFLIGHT)
++    target_compile_definitions(rosload PRIVATE XBOX_NATIVE_FATX_PT_PREFLIGHT=1)
++endif()
+diff --git a/hal/halx86/xboxnt5/CMakeLists.txt b/hal/halx86/xboxnt5/CMakeLists.txt
+index 0d611316..af4672da 100644
+--- a/hal/halx86/xboxnt5/CMakeLists.txt
++++ b/hal/halx86/xboxnt5/CMakeLists.txt
+@@ -123,3 +123,11 @@ endif()
+ if(XBOX_NT5_SIZE_PREFLIGHT)
+     target_compile_definitions(halxboxnt5 PRIVATE XBOX_NT5_SIZE_PREFLIGHT=1)
+ endif()
++
++option(XBOX_NT5_PT_PREFLIGHT "Halt after first page-table allocation" OFF)
++if(XBOX_NT5_PT_PREFLIGHT AND NOT XBOX_NT5_SIZE_PREFLIGHT)
++    message(FATAL_ERROR "PT probe requires SIZE preflight")
++endif()
++if(XBOX_NT5_PT_PREFLIGHT)
++    target_compile_definitions(halxboxnt5 PRIVATE XBOX_NT5_PT_PREFLIGHT=1)
++endif()
+diff --git a/hal/halx86/xboxnt5/entryprobe.c b/hal/halx86/xboxnt5/entryprobe.c
+index 3d28ec2d..d749fb2f 100644
+--- a/hal/halx86/xboxnt5/entryprobe.c
++++ b/hal/halx86/xboxnt5/entryprobe.c
+@@ -65,7 +65,11 @@ HalpXwnFirstProcessor(ULONG Processor, PLOADER_PARAMETER_BLOCK LoaderBlock, PVOI
+ 
+ ULONG NTAPI XwnConfigureEntryProbe(PVOID Callback, ULONG Signature)
+ {
+-#if defined(XBOX_NT5_SIZE_PREFLIGHT)
++#if defined(XBOX_NT5_PT_PREFLIGHT)
++    if (Signature != 0x50544E54 || !Callback || XwnPhaseCallback) return 0;
++    XwnPhaseCallback = (XWN_PHASE_CALLBACK)Callback;
++    return 0x50544854;
++#elif defined(XBOX_NT5_SIZE_PREFLIGHT)
+     if (Signature != 0x535A4E54 || !Callback || XwnPhaseCallback) return 0;
+     XwnPhaseCallback = (XWN_PHASE_CALLBACK)Callback;
+     return 0x535A4854;
+diff --git a/hal/halx86/xboxnt5/mapentry.S b/hal/halx86/xboxnt5/mapentry.S
+index 86988912..a9e683b3 100644
+--- a/hal/halx86/xboxnt5/mapentry.S
++++ b/hal/halx86/xboxnt5/mapentry.S
+@@ -1,14 +1,22 @@
+ /* SPDX-License-Identifier: GPL-2.0-or-later */
+ #include <asm.inc>
+ .code
+-#ifdef XBOX_NT5_SCAN_PREFLIGHT
++#ifdef XBOX_NT5_PT_PREFLIGHT
++EXTERN _HalpXwnPtAfter@8:PROC
++EXTERN _HalpXwnPtBefore@8:PROC
++EXTERN _XwnPtBeforeTarget:DWORD
++#elif defined(XBOX_NT5_SCAN_PREFLIGHT)
+ EXTERN _HalpXwnScanCheckpoint@8:PROC
+ #else
+ EXTERN _HalpXwnMapCheckpoint@4:PROC
+ #endif
+ PUBLIC _HalpXwnMapEntry
+ .PROC _HalpXwnMapEntry
+-#ifdef XBOX_NT5_SCAN_PREFLIGHT
++#ifdef XBOX_NT5_PT_PREFLIGHT
++    push ebx
++    push ebp
++    call _HalpXwnPtAfter@8
++#elif defined(XBOX_NT5_SCAN_PREFLIGHT)
+     push ebx
+     push ebp
+     call _HalpXwnScanCheckpoint@8
+@@ -21,4 +29,17 @@ MapHalt:
+     hlt
+     jmp MapHalt
+ .ENDP
++#ifdef XBOX_NT5_PT_PREFLIGHT
++PUBLIC _HalpXwnPtBeforeEntry
++.PROC _HalpXwnPtBeforeEntry
++    pushfd
++    pushad
++    push ebx
++    push ebp
++    call _HalpXwnPtBefore@8
++    popad
++    popfd
++    jmp dword ptr [_XwnPtBeforeTarget]
++.ENDP
++#endif
+ END
+diff --git a/hal/halx86/xboxnt5/mapprobe.c b/hal/halx86/xboxnt5/mapprobe.c
+index 36ff8974..f2b012ec 100644
+--- a/hal/halx86/xboxnt5/mapprobe.c
++++ b/hal/halx86/xboxnt5/mapprobe.c
+@@ -4,7 +4,17 @@
+ #ifdef XBOX_NT5_MAP_PREFLIGHT
+ extern const UCHAR XwnMapFont[4096];
+ VOID HalpXwnMapEntry(VOID);
+-#ifdef XBOX_NT5_SIZE_PREFLIGHT
++#ifdef XBOX_NT5_PT_PREFLIGHT
++#define XWN_MAP_MAGIC 0x414e5758
++#define XWN_MAP_SIGNATURE 0x50544e54
++#define XWN_MAP_REPLY 0x50544854
++#define XWN_MAP_TARGET 0x158518
++static volatile ULONG XwnMapRecord[152] = {XWN_MAP_MAGIC,0x35544e50,1,0};
++ULONG XwnPtBeforeTarget;
++static UCHAR XwnPtBeforeOriginal[5];
++static ULONG XwnPtDirectory[1024];
++VOID HalpXwnPtBeforeEntry(VOID);
++#elif defined(XBOX_NT5_SIZE_PREFLIGHT)
+ #define XWN_MAP_MAGIC 0x514e5758
+ #define XWN_MAP_SIGNATURE 0x535a4e54
+ #define XWN_MAP_REPLY 0x535a4854
+@@ -98,7 +108,10 @@ DECLSPEC_NORETURN VOID NTAPI HalpXwnMapCheckpoint(PULONG Frame)
+     XwnMapRecord[94] = (ULONG_PTR)HalpXwnMapCheckpoint;
+     XwnMapRecord[95] = (ULONG_PTR)XwnMapRecord;
+     Valid = Valid && XwnMapRecord[87] && XwnMapRecord[93];
+-#ifdef XBOX_NT5_SIZE_PREFLIGHT
++#ifdef XBOX_NT5_PT_PREFLIGHT
++    Valid = Valid && XwnMapRecord[128] && XwnMapRecord[135];
++    XwnMapRecord[24] = 130;
++#elif defined(XBOX_NT5_SIZE_PREFLIGHT)
+     Valid = Valid && XwnMapRecord[107] && XwnMapRecord[127];
+     XwnMapRecord[24] = 120;
+ #elif defined(XBOX_NT5_SCAN_PREFLIGHT)
+@@ -112,7 +125,16 @@ DECLSPEC_NORETURN VOID NTAPI HalpXwnMapCheckpoint(PULONG Frame)
+     {
+         volatile ULONG *Pixels = (volatile ULONG *)XwnMapRecord[92];
+         for (I = 0; I < XwnMapRecord[21] / 4; ++I) Pixels[I] = 0xff000000;
+-#ifdef XBOX_NT5_SIZE_PREFLIGHT
++#ifdef XBOX_NT5_PT_PREFLIGHT
++        HalpXwnMapText(4, "XWN Windows 2000 first page-table allocation", 0xffffffff);
++        HalpXwnMapText(7, Valid ? "XWNA90: First page tables created; halted."
++                             : "XWNAFAIL: Page-table guard stopped execution.", Valid ? 0xff00ff00 : 0xffff0000);
++        HalpXwnMapHex(10, "Tables created and zeroed: ", XwnMapRecord[139]);
++        HalpXwnMapHex(12, "First allocated PFN: ", XwnMapRecord[130]);
++        HalpXwnMapHex(14, "Next candidate PFN: ", XwnMapRecord[140]);
++        HalpXwnMapHex(16, "Candidate pages remaining: ", XwnMapRecord[141]);
++        HalpXwnMapText(19, "Stopped BEFORE further MM allocation and PFN setup.", 0xffffffff);
++#elif defined(XBOX_NT5_SIZE_PREFLIGHT)
+         HalpXwnMapText(4, "XWN Windows 2000 memory sizing", 0xffffffff);
+         HalpXwnMapText(7, Valid ? "XWNQ90: Memory sizing complete; allocation blocked."
+                              : "XWNQFAIL: Memory sizing validation failed.", Valid ? 0xff00ff00 : 0xffff0000);
+@@ -146,7 +168,7 @@ DECLSPEC_NORETURN VOID NTAPI HalpXwnMapCheckpoint(PULONG Frame)
+ }
+ 
+ #ifdef XBOX_NT5_SCAN_PREFLIGHT
+-DECLSPEC_NORETURN VOID NTAPI HalpXwnScanCheckpoint(PULONG Frame, ULONG Largest)
++static VOID HalpXwnInspectScan(PULONG Frame, ULONG Largest)
+ {
+     ULONG Count = 0, Total = 0, Limits = 0, Bios = 0, Low = MAXULONG, High = 0;
+     ULONG Max = 0, LowMax = 0, MidMax = 0, MaxNode = 0, LowNode = 0;
+@@ -248,13 +270,103 @@ DECLSPEC_NORETURN VOID NTAPI HalpXwnScanCheckpoint(PULONG Frame, ULONG Largest)
+         XwnMapRecord[127] = Valid;
+     }
+ #endif
++}
++DECLSPEC_NORETURN VOID NTAPI HalpXwnScanCheckpoint(PULONG Frame, ULONG Largest)
++{
++    HalpXwnInspectScan(Frame, Largest);
++    HalpXwnMapCheckpoint(Frame);
++}
++#endif
++
++#ifdef XBOX_NT5_PT_PREFLIGHT
++static ULONG HalpXwnDescriptorHash(VOID)
++{
++    PLIST_ENTRY Head = &((PLOADER_PARAMETER_BLOCK)XwnMapRecord[4])->MemoryDescriptorListHead, Link;
++    ULONG Hash = 2166136261UL, Count = 0, I;
++    for (Link = Head->Flink; Link != Head && Count < 128; Link = Link->Flink)
++    {
++        PULONG D = (PULONG)Link;
++        for (I = 0; I < 5; ++I) Hash = (Hash ^ D[I]) * 16777619UL;
++        ++Count;
++    }
++    return Link == Head && Count == 26 ? Hash : 0;
++}
++VOID NTAPI HalpXwnPtBefore(PULONG Frame, ULONG Largest)
++{
++    ULONG Base, Count, I, J, Cr0, Cr3 = __readcr3(), Pde, Pfn;
++    BOOLEAN Valid;
++    HalpXwnInspectScan(Frame, Largest);
++    Base = XwnMapRecord[120]; Count = XwnMapRecord[126];
++    Valid = XwnMapRecord[107] && XwnMapRecord[127] && !Largest && Count == 28 &&
++        Base == 0x160 && XwnMapRecord[121] == 0x2000 && (Frame[-6]&0xfff) == 0x163;
++    XwnMapRecord[129] = Count; XwnMapRecord[130] = Base; XwnMapRecord[131] = Frame[-3];
++    XwnMapRecord[132] = Cr3; XwnMapRecord[136] = (ULONG_PTR)Frame;
++    XwnMapRecord[137] = XwnPtBeforeTarget; XwnMapRecord[138] = (ULONG_PTR)HalpXwnPtBeforeEntry;
++    XwnMapRecord[143] = Frame[-6] & 0xfff;
++    /* Reject reuse of any actively mapped frame, directory or page table. */
++    if ((Cr3>>12) >= Base && (Cr3>>12) < Base+Count) Valid = FALSE;
++    for (I = 0; Valid && I < 1024; ++I)
++    {
++        Pde = ((volatile ULONG *)0xc0300000)[I];
++        if (!(Pde&1)) continue;
++        if (Pde&0x80) { Valid = FALSE; break; }
++        Pfn = Pde>>12;
++        if (Pfn >= Base && Pfn < Base+Count) { Valid = FALSE; break; }
++        for (J = 0; J < 1024; ++J)
++        {
++            ULONG Pte = ((volatile ULONG *)(0xc0000000 + I*4096))[J];
++            Pfn = Pte>>12;
++            if ((Pte&1) && Pfn >= Base && Pfn < Base+Count) { Valid = FALSE; break; }
++        }
++    }
++    XwnMapRecord[134] = Valid;
++    XwnMapRecord[144] = HalpXwnDescriptorHash();
++    Valid = Valid && XwnMapRecord[144] && *(PUCHAR)XwnPtBeforeTarget == 0xe9 &&
++        XwnPtBeforeTarget+5+*(PULONG)(XwnPtBeforeTarget+1) == (ULONG_PTR)HalpXwnPtBeforeEntry;
++    XwnMapRecord[128] = Valid;
++    if (!Valid) HalpXwnMapCheckpoint(Frame);
++    for (I = 0; I < 1024; ++I) XwnPtDirectory[I] = ((volatile ULONG *)0xc0300000)[I];
++    Cr0 = __readcr0(); _disable(); __writecr0(Cr0 & ~0x10000);
++    RtlCopyMemory((PVOID)XwnPtBeforeTarget, XwnPtBeforeOriginal, 5);
++    __writecr0(Cr0);
++    XwnMapRecord[133] = memcmp((PVOID)XwnPtBeforeTarget, XwnPtBeforeOriginal, 5) == 0;
++    if (!XwnMapRecord[133]) HalpXwnMapCheckpoint(Frame);
++}
++DECLSPEC_NORETURN VOID NTAPI HalpXwnPtAfter(PULONG Frame, ULONG Largest)
++{
++    ULONG I, J, Base = XwnMapRecord[130], Count = XwnMapRecord[129];
++    ULONG First = (XwnMapRecord[118]-0xc0300000)/4, Last = (XwnMapRecord[119]-0xc0300000)/4;
++    BOOLEAN Valid = XwnMapRecord[128] && XwnMapRecord[133] && (ULONG_PTR)Frame == XwnMapRecord[136] &&
++        __readcr3() == XwnMapRecord[132] && !Largest && Count == 28 && Last-First+1 == Count;
++    XwnMapRecord[140] = Frame[-2]; XwnMapRecord[141] = Frame[-3]; XwnMapRecord[142] = Frame[-4];
++    XwnMapRecord[145] = HalpXwnDescriptorHash();
++    Valid = Valid && XwnMapRecord[145] == XwnMapRecord[144] &&
++        Frame[-2] == Base+Count && Frame[-3] == XwnMapRecord[131]-Count &&
++        Frame[-4] == XwnMapRecord[119]+4 && !Frame[-8] && !Frame[-10] && !Frame[-11] && !Frame[-12];
++    for (I = 0; Valid && I < 1024; ++I)
++    {
++        ULONG Pde = ((volatile ULONG *)0xc0300000)[I];
++        if (I >= First && I <= Last)
++        {
++            if (Pde != ((Base+I-First)<<12 | XwnMapRecord[143])) { Valid = FALSE; break; }
++            for (J = 0; J < 1024; ++J)
++                if (((volatile ULONG *)(0xc0000000+I*4096))[J]) { Valid = FALSE; break; }
++            if (Valid) ++XwnMapRecord[139];
++        }
++        else if ((Pde & ~0x60) != (XwnPtDirectory[I] & ~0x60)) Valid = FALSE;
++    }
++    XwnMapRecord[146] = Valid;
++    XwnMapRecord[135] = Valid && XwnMapRecord[139] == Count;
+     HalpXwnMapCheckpoint(Frame);
+ }
+ #endif
+ 
+ ULONG NTAPI XwnConfigureMapProbe(PULONG Seed, ULONG Signature)
+ {
+-#ifdef XBOX_NT5_SIZE_PREFLIGHT
++#ifdef XBOX_NT5_PT_PREFLIGHT
++    UCHAR Expected[8] = {0x33,0xc0,0x39,0x05,0,0,0,0};
++    static const UCHAR BeforeExpected[8] = {0x8b,0x72,0x10,0x03,0x72,0x0c,0x39,0x75};
++#elif defined(XBOX_NT5_SIZE_PREFLIGHT)
+     static const UCHAR Expected[8] = {0x8b,0x72,0x10,0x03,0x72,0x0c,0x39,0x75};
+ #elif defined(XBOX_NT5_SCAN_PREFLIGHT)
+     static const UCHAR Expected[8] = {0x8b,0x4d,0xcc,0x3b,0xcb,0x75,0x02,0x33};
+@@ -268,6 +380,10 @@ ULONG NTAPI XwnConfigureMapProbe(PULONG Seed, ULONG Signature)
+         !((Seed[17]==640 && Seed[18]==480 && Seed[19]==2560) ||
+           (Seed[17]==1024 && Seed[18]==576 && Seed[19]==4096)) ||
+         Seed[21] != Seed[18]*Seed[19] || Seed[20] > 0x04000000-Seed[21]) return 0;
++#ifdef XBOX_NT5_PT_PREFLIGHT
++    *(PULONG)(Expected+4) = Seed[6]+0x823e0;
++    if (memcmp((PVOID)(Seed[6]+0x158439), BeforeExpected, sizeof(BeforeExpected))) return 0;
++#endif
+     Nt = (PIMAGE_NT_HEADERS)(Seed[6] + ((PIMAGE_DOS_HEADER)Seed[6])->e_lfanew);
+     if (Nt->Signature != IMAGE_NT_SIGNATURE || Nt->FileHeader.TimeDateStamp != 1266293717 ||
+         Nt->OptionalHeader.CheckSum != 1747402 || Nt->OptionalHeader.AddressOfEntryPoint != 44560 ||
+@@ -278,6 +394,12 @@ ULONG NTAPI XwnConfigureMapProbe(PULONG Seed, ULONG Signature)
+     XwnMapTarget = (PUCHAR)(Seed[6]+XWN_MAP_TARGET);
+     RtlCopyMemory(XwnMapOriginal, XwnMapTarget, 5);
+     Cr0 = __readcr0(); _disable(); __writecr0(Cr0 & ~0x10000);
++#ifdef XBOX_NT5_PT_PREFLIGHT
++    XwnPtBeforeTarget = Seed[6]+0x158439;
++    RtlCopyMemory(XwnPtBeforeOriginal, (PVOID)XwnPtBeforeTarget, 5);
++    *(PUCHAR)XwnPtBeforeTarget = 0xe9;
++    *(PULONG)(XwnPtBeforeTarget+1) = (ULONG_PTR)HalpXwnPtBeforeEntry-(XwnPtBeforeTarget+5);
++#endif
+     XwnMapTarget[0] = 0xe9;
+     *(PULONG)(XwnMapTarget+1) = (ULONG_PTR)HalpXwnMapEntry-(ULONG_PTR)(XwnMapTarget+5);
+     __writecr0(Cr0);

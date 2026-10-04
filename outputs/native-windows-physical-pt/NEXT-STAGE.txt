@@ -1,0 +1,15 @@
+After physical XWNA90, review the next allocation region starting at 0x158518.
+Track consumption through the kernel's local candidate counters: PFN 0x17c
+and 8164 pages remain after the first loop, while the original descriptor
+still reports base 0x160 and 8192 pages. That delayed descriptor update is
+native behavior, not permission to reuse already consumed frames.
+
+Audit later page-table ranges and nonpaged-pool/PFN backing allocations as
+a coherent interval where possible. Keep checks around mapping changes and
+allocation exhaustion. Preserve the HAL renderer, its reserved framebuffer,
+the framebuffer table and native CPU/loader state through each transition.
+Type-26 BIOS pages still require actual PFN/PTE validation at later stages.
+
+Next user-visible target is the genuine Windows boot-display path early in
+phase 1. See BOOT-PROGRESS.txt. Do not substitute a manually drawn logo for
+evidence that Windows reached that path. Physical storage remains unproven.

@@ -1,0 +1,35 @@
+What the current screens prove
+
+The physical console is executing the Windows 2000 kernel. XWNQ90 confirms
+that native phase-0 memory sizing ran. Green XWN screens are our checkpoints
+inside that startup sequence; they do not claim Windows completed startup.
+The XWNA90 candidate advances to the first real page-table allocation.
+
+Where the genuine boot screen occurs in the pinned 2195.7376 kernel
+
+Phase1Initialization starts at RVA 0x1484ce. It calls HAL phase 1 at 0x14851c.
+If that succeeds, InbvDriverInitialize is called at 0x148552. Depending on
+boot options and initialization success, DisplayBootBitmap is called at
+0x14859b. These addresses come from the supplied kernel and public symbols.
+They are not evidence that those calls have run on the physical Xbox.
+
+The captured loader options are NODEBUG SOS. This kernel tests SOS before
+passing its display-mode argument to DisplayBootBitmap. Initial Windows-
+controlled output may therefore be verbose startup text rather than the
+graphical logo. The current allocation diagnostic does not change options.
+
+Nearer milestone: finish phase-0 memory initialization, preserve the active
+display and essential mappings through PFN/pool setup, reach phase-1 startup,
+and make the boot-video path work on the physical display. Memory-manager
+work also continues later in phase 1, so a logo does not mean it is all done.
+
+Desktop milestone: physical boot drivers and a usable Windows system volume,
+then the remaining kernel/session/user-mode startup and display/input paths.
+Loader access to FATX is already working, but that is not a Windows FATX
+mount. No physical Windows system volume has been demonstrated. The earlier
+emulator desktop used private NTFS fixtures and does not resolve this gap.
+
+There is no defensible percentage, hour estimate, or fixed number of console
+tests yet. The boot screen is substantially nearer than a usable desktop,
+but both depend on untested startup paths. Checkpoints will be combined where
+the intervening writes and failure behavior have been reviewed and tested.

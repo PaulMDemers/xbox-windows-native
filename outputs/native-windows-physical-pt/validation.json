@@ -1,0 +1,113 @@
+{
+  "validated_utc": "2026-10-04T01:02:05.591824+00:00",
+  "ready_for_physical_upload": true,
+  "physical_tested": false,
+  "installed_on_physical_console": true,
+  "source_tree": "7d96caaabe1686a841771bb718d3ed1cae475705",
+  "scope": "First page tables created; high HAL stops before subsequent MM allocation.",
+  "normal_loader_build_passed": true,
+  "normal_hal_build_passed": true,
+  "missing_size_parent_rejected": true,
+  "first_page_tables_halt_verified": true,
+  "kernel_file_unchanged": true,
+  "temporary_kernel_patch_restored": true,
+  "unexpected_kernel_rejected": true,
+  "changed_files": [
+    "loader/halxboxnt5.dll",
+    "README.txt",
+    "rosload.exe"
+  ],
+  "package_files_verified": 33,
+  "emulator_tests": [
+    {
+      "run": "physical-pt-wide-001",
+      "status": "kernel_first_page_tables_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "high_alias_pages_verified": 576,
+        "identity_mapping_present": false,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-pt-normal-002",
+      "status": "kernel_first_page_tables_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 640,
+        "height": 480,
+        "pitch": 2560,
+        "pa": "0x3c00000",
+        "bytes": 1228800,
+        "high_alias_pages_verified": 300,
+        "identity_mapping_present": false,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-pt-bad-hal-001",
+      "status": "unarmed_hal_rejected_before_kernel",
+      "kernel_entered": false,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "high_alias_pages_verified": 576,
+        "identity_mapping_present": true,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-pt-trace-001",
+      "status": "kernel_first_page_tables_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "high_alias_pages_verified": 576,
+        "identity_mapping_present": false,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-pt-bad-kernel-001",
+      "status": "kernel_contract_rejected_before_entry",
+      "kernel_entered": false,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "high_alias_pages_verified": 576,
+        "identity_mapping_present": true,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    }
+  ],
+  "native_trace_passed": true,
+  "mapped_candidate_rejected_before_allocation": true,
+  "expected_physical_success": "XWNA90: First page tables created; halted.",
+  "fixture_package_includes_final_readme": true,
+  "uploaded_utc": "2026-10-04T01:02:47.890844+00:00"
+}
