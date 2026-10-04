@@ -1,0 +1,41 @@
+XWN initial nonpaged-pool backing mappings (patch 0036)
+
+Physical XWNA90 confirms the first 28 native page tables. This candidate
+continues through the kernel's initial nonpaged-pool PTE construction.
+Its preallocation guard checks all 532 proposed frames (28 page tables plus
+504 pool pages) against every active mapping, directory and page table.
+It also restricts execution to the reviewed no-bias, low-memory profile.
+
+Windows creates the original 28 tables, then maps 504 pages at FE4AF000.
+The kernel's local counters advance from PFN 017c to 0374; 1dec pages
+remain. The original descriptor is still unchanged at this point; it must
+not be used to infer that the consumed frames remain available.
+
+The final checkpoint at RVA 159067 checks all new page-table entries,
+unused entries, candidate counters, descriptor hash, unchanged unrelated
+PDEs, CR3 and the diagnostic framebuffer. Both temporary kernel hooks are
+restored. The original kernel file is unchanged. Pool contents are not
+initialized by this interval; a mapping alone is not a usable pool.
+
+Expected XWNO90: Pool backing mapped; initialization blocked.
+Pool pages mapped: 000001f8. Pool virtual address: fe4af000.
+Next candidate PFN: 00000374. Candidate pages remaining: 00001dec.
+Stopped before pool initialization, PFN setup, storage or boot drivers.
+
+POOL preflight defaults OFF and requires PT preflight. Distinct arming
+signatures reject a preceding HAL. The first-stage loader, Windows files,
+and bootvid are preserved. Physical launch is manual; Paul restarts after
+photographing each diagnostic. Physical XWNO90 is pending.
+
+Final validation: both display modes, old-HAL and changed-kernel rejection,
+full code/import audits and the 1115-event trace passed. Every pool PTE
+write was checked before and after execution. An injected alias to the
+first pool frame was rejected before any allocation; all 532 proposed
+frames and descriptors remained unchanged. Normal builds, the parent-option
+guard and the source series through patch 0036 passed. The first trace
+attempt counted a breakpoint twice; the debugger sequencing was fixed
+and the trace rerun successfully, without changing the diagnostic.
+
+Uploaded 2026-10-04T01:33:55.619832+00:00. All 33 files verified by readback.
+Three physical-tested XWNA90 files retained under xwna90 backup names.
+The console was not remotely launched. Physical XWNO90 is pending.

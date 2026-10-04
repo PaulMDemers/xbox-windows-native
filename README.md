@@ -48,8 +48,13 @@ includes each page write and refusal to use a mapped candidate; the physical
 checkpoint is photo-confirmed. See the [page-table report](outputs/native-windows-physical-pt/REPORT.txt)
 and [boot-screen milestones](outputs/native-windows-physical-pt/BOOT-PROGRESS.txt).
 
+The next candidate **XWNO90** maps 504 initial nonpaged-pool pages, then
+halts before pool initialization and PFN setup. Both display modes and
+an instruction trace pass in xemu; physical testing is pending. See the
+[pool mapping report](outputs/native-windows-physical-pool/REPORT.txt).
+
 See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
-[latest diagnostic](outputs/native-windows-physical-pt/REPORT.txt), and
+[latest diagnostic](outputs/native-windows-physical-pool/REPORT.txt), and
 [development plan](outputs/native-windows-development-plan.md).
 
 ## Source and reproduction
@@ -57,7 +62,7 @@ See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
 This repository stores our source changes as an ordered patch series against
 ReactOS commit `afc0127e8f937ab68503d715d948844973756aa1`, plus build wrappers,
 validation tools and reports. The full series and resulting source tree are
-in [patch-check-0035.json](outputs/native-windows-physical-pt/patch-check-0035.json).
+in [patch-check-0036.json](outputs/native-windows-physical-pool/patch-check-0036.json).
 Use `python tools/apply-series.py --source PATH --manifest MANIFEST` on a clean
 checkout at that exact upstream commit. The script checks the clean baseline,
 applies the ordered patches and verifies the resulting Git tree.

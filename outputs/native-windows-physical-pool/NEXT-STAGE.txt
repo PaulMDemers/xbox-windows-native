@@ -1,0 +1,14 @@
+After physical XWNO90, audit the native nonpaged-pool initializer at RVA
+157324 called from 159090. Preserve the PFN 0374 / remaining 1dec counters;
+the descriptor still includes already-consumed pages. Audit pool list and
+header writes, then PFN backing allocation and zeroing. Never assume a
+high direct mapping exists for unused physical frames.
+
+The genuine Windows boot display remains later, early in phase 1 after
+HAL phase 1. No additional ISO is needed. Physical Windows storage and a
+usable desktop remain unproven.
+
+The initializer builds pool list heads, page-linked structures and free
+block headers, then calls RVA 1575fa before returning at 15749c. Review that
+callee as well as the main initializer before widening the physical gate.
+The callee is MiInitializeSystemPtes@12. Validate MmSizeOfNonPagedMustSucceed (RVA 727f4), pool free-list heads and the expansion-PTE range before permitting these writes.
