@@ -14,7 +14,9 @@ host-side test harness.
   physical baseline; the normal miniport still fails with B4 on hardware.
   Paint's separate divide-by-zero has an emulator-validated display candidate.
   A deferred-write buffer fix improves emulator stress; replaying the physical
-  registry still reproduces a mapped-file flush error. Physical cycle011
+  registry exposed short paging writes and writes after truncation. A new
+  filesystem candidate now passes mapped/async stress, restart and cold audits
+  without new delayed-write events in that emulator run. Physical cycle011
   crashed during boot before its test started; automatic startup is disabled.
   See [desktop stability evidence](outputs/native-windows-physical-f/DESKTOP-STABILITY.md)
   and [cache test results](outputs/native-windows-physical-f/CACHE-STABILITY.md).

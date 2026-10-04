@@ -1,0 +1,85 @@
+diff --git a/drivers/filesystems/vfatfs/finfo.c b/drivers/filesystems/vfatfs/finfo.c
+index 1b19c920..9a1262e8 100644
+--- a/drivers/filesystems/vfatfs/finfo.c
++++ b/drivers/filesystems/vfatfs/finfo.c
+@@ -1207,8 +1207,8 @@ UpdateFileSize(
+     CcSetFileSizes(FileObject, (PCC_FILE_SIZES)&Fcb->RFCB.AllocationSize);
+ }
+ 
+-NTSTATUS
+-VfatSetAllocationSizeInformation(
++static NTSTATUS
++VfatSetAllocationSizeLocked(
+     PFILE_OBJECT FileObject,
+     PVFATFCB Fcb,
+     PDEVICE_EXTENSION DeviceExt,
+@@ -1428,6 +1428,34 @@ VfatSetAllocationSizeInformation(
+     return VfatBuildPagingMap(DeviceExt, Fcb);
+ }
+ 
++/* MainResource is held by the caller. Match paging I/O's shared resource
++ * before shrinking sizes or releasing the backing cluster chain. */
++NTSTATUS
++VfatSetAllocationSizeInformation(
++    PFILE_OBJECT FileObject,
++    PVFATFCB Fcb,
++    PDEVICE_EXTENSION DeviceExt,
++    PLARGE_INTEGER AllocationSize)
++{
++    NTSTATUS Status;
++    BOOLEAN LockPaging = !BooleanFlagOn(Fcb->Flags, FCB_IS_PAGE_FILE) &&
++                         AllocationSize->QuadPart < Fcb->RFCB.FileSize.QuadPart;
++
++    if (LockPaging)
++        ExAcquireResourceExclusiveLite(&Fcb->PagingIoResource, TRUE);
++    _SEH2_TRY
++    {
++        Status = VfatSetAllocationSizeLocked(FileObject, Fcb, DeviceExt, AllocationSize);
++    }
++    _SEH2_FINALLY
++    {
++        if (LockPaging)
++            ExReleaseResourceLite(&Fcb->PagingIoResource);
++    }
++    _SEH2_END;
++    return Status;
++}
++
+ /*
+  * FUNCTION: Retrieve the specified file information
+  */
+diff --git a/drivers/filesystems/vfatfs/rw.c b/drivers/filesystems/vfatfs/rw.c
+index 06af4566..a408a786 100644
+--- a/drivers/filesystems/vfatfs/rw.c
++++ b/drivers/filesystems/vfatfs/rw.c
+@@ -1253,6 +1253,21 @@ VfatWrite(
+         }
+     }
+ 
++    /* A cached page can outlive a truncate. Paging writes never extend EOF:
++     * discard an obsolete range and clip a crossing write while the paging
++     * resource keeps both EOF and the cluster chain stable. */
++    if (PagingIo && !IsVolume && !IsFAT && !vfatFCBIsDirectory(Fcb))
++    {
++        if (ByteOffset.QuadPart >= Fcb->RFCB.FileSize.QuadPart)
++        {
++            IrpContext->Irp->IoStatus.Information = 0;
++            Status = STATUS_SUCCESS;
++            goto ByeBye;
++        }
++        if (ByteOffset.QuadPart + Length > Fcb->RFCB.FileSize.QuadPart)
++            Length = (ULONG)(Fcb->RFCB.FileSize.QuadPart - ByteOffset.QuadPart);
++    }
++
+     /* Check the entire on-disk span after acquiring the paging resource.
+      * Use 64-bit arithmetic so rounding cannot wrap at the FAT file limit. */
+     if (PagingIo && ByteOffset.QuadPart + ROUND_UP_64(Length, BytesPerSector) >
+@@ -1377,7 +1392,7 @@ VfatWrite(
+         }
+ 
+         /* Aligned writes also participate, preventing them from racing the
+-         * tail sector's read/modify/write. No cache-manager calls while held. */
++         * tail sector's read/modify/write. Cache flushes above precede this lock. */
+         if (CanWait)
+             ExAcquireFastMutex(&Fcb->WriteMutex);
+         else if (!ExTryToAcquireFastMutex(&Fcb->WriteMutex))

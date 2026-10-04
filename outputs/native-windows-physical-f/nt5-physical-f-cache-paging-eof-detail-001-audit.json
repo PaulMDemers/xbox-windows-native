@@ -1,0 +1,39 @@
+{
+  "scope": "Read-only cold verification of an owned, stopped cache-regression overlay.",
+  "run": "nt5-physical-f-cache-paging-eof-detail-001",
+  "files": [
+    {
+      "path": "xwn-report-v2.txt",
+      "present": true,
+      "bytes": 4096,
+      "sha256": "70b8232a874e4279731a369366da16b126f47ae5840f27f0e3f6596e3475d154"
+    },
+    {
+      "path": "winnt/system32/config/sysevent.evt",
+      "present": true,
+      "bytes": 65536,
+      "sha256": "9607994f862a438917976adf5f8dda5afd4fb30dd3204c3bf6eef8f519fa4f81"
+    },
+    {
+      "path": "xwn-cache-append.tmp",
+      "present": true,
+      "bytes": 131073,
+      "sha256": "07b52aecb65f631d4484c11d82a4fa04493acf817f144352c55c8376e5fbd2a0",
+      "pattern_match": true
+    },
+    {
+      "path": "xwn-cache-map.tmp",
+      "present": true,
+      "bytes": 2577,
+      "sha256": "8ef1a5d8da41eb9c04636a52fa704c5af1905463e639cec5545fc752251ea50c",
+      "truncated_to_zero": false
+    },
+    {
+      "path": "xwn-cache-pressure.tmp",
+      "present": false
+    }
+  ],
+  "whole_filesystem_audit": false,
+  "report": "XWN-CACHE-START\r\ncached append passed\r\nmapped case=0\r\nmismatch offset=2560\r\nactual byte=88\r\nexpected byte=59\r\nread count=2577\r\nfailures=1\r\nXWN-CACHE-FAIL",
+  "probe_passed": false
+}

@@ -1,0 +1,15 @@
+diff --git a/drivers/filesystems/vfatfs/rw.c b/drivers/filesystems/vfatfs/rw.c
+index a408a786..5156d8a3 100644
+--- a/drivers/filesystems/vfatfs/rw.c
++++ b/drivers/filesystems/vfatfs/rw.c
+@@ -488,6 +488,10 @@ VfatWriteFileData(
+     ASSERT(WriteOffset.u.LowPart % BytesPerSector == 0);
+     ASSERT(Length % BytesPerSector == 0);
+ 
++    /* A tail RMW reuses this context after a completed read. Every new
++     * batch must start nonsignaled or its wait can return before disk I/O. */
++    KeInitializeEvent(&IrpContext->Event, NotificationEvent, FALSE);
++
+     /* Is this a write of the volume? */
+     if (BooleanFlagOn(Fcb->Flags, FCB_IS_VOLUME))
+     {

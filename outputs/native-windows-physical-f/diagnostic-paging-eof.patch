@@ -1,0 +1,19 @@
+diff --git a/drivers/filesystems/vfatfs/rw.c b/drivers/filesystems/vfatfs/rw.c
+index a408a786..5e2b2048 100644
+--- a/drivers/filesystems/vfatfs/rw.c
++++ b/drivers/filesystems/vfatfs/rw.c
+@@ -1253,6 +1253,14 @@ VfatWrite(
+         }
+     }
+ 
++#ifdef XWN_VFAT_WRITE_DIAGNOSTIC
++    if (PagingIo)
++    {
++        UNICODE_STRING ProbeName = RTL_CONSTANT_STRING(L"\\xwn-cache-map.tmp");
++        if (RtlEqualUnicodeString(&Fcb->PathNameU, &ProbeName, TRUE))
++            KeBugCheckEx(0xe058ca04, (ULONG_PTR)IrpContext, ByteOffset.LowPart, Length, (ULONG_PTR)Fcb);
++    }
++#endif
+     /* A cached page can outlive a truncate. Paging writes never extend EOF:
+      * discard an obsolete range and clip a crossing write while the paging
+      * resource keeps both EOF and the cluster chain stable. */

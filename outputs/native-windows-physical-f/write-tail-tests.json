@@ -1,0 +1,410 @@
+{
+  "scope": "Execute compiled VfatWrite with bounded caller MDLs and modeled disk/locks.",
+  "sha256": "9cf7fb2f3a65c8156647e12d2f8db8d4cf4ce615f79b17a5c433973cf2af60ec",
+  "cases": [
+    {
+      "length": 1,
+      "offset": 131072,
+      "paging": true,
+      "file_size": 262144,
+      "effective_length": 1,
+      "failure": null,
+      "status": "0x0",
+      "calls": [
+        "resource acquire",
+        "mutex acquire",
+        "pool allocate",
+        "mdl allocate",
+        [
+          "read",
+          131072,
+          512,
+          "private"
+        ],
+        [
+          "write",
+          131072,
+          512,
+          "private"
+        ]
+      ],
+      "mdl_restored": true,
+      "resources_released": true,
+      "outside_bytes_preserved": true
+    },
+    {
+      "length": 511,
+      "offset": 131072,
+      "paging": true,
+      "file_size": 262144,
+      "effective_length": 511,
+      "failure": null,
+      "status": "0x0",
+      "calls": [
+        "resource acquire",
+        "mutex acquire",
+        "pool allocate",
+        "mdl allocate",
+        [
+          "read",
+          131072,
+          512,
+          "private"
+        ],
+        [
+          "write",
+          131072,
+          512,
+          "private"
+        ]
+      ],
+      "mdl_restored": true,
+      "resources_released": true,
+      "outside_bytes_preserved": true
+    },
+    {
+      "length": 512,
+      "offset": 131072,
+      "paging": true,
+      "file_size": 262144,
+      "effective_length": 512,
+      "failure": null,
+      "status": "0x0",
+      "calls": [
+        "resource acquire",
+        "mutex acquire",
+        [
+          "write",
+          131072,
+          512,
+          "caller"
+        ]
+      ],
+      "mdl_restored": true,
+      "resources_released": true,
+      "outside_bytes_preserved": true
+    },
+    {
+      "length": 513,
+      "offset": 131072,
+      "paging": true,
+      "file_size": 262144,
+      "effective_length": 513,
+      "failure": null,
+      "status": "0x0",
+      "calls": [
+        "resource acquire",
+        "mutex acquire",
+        "pool allocate",
+        "mdl allocate",
+        [
+          "write",
+          131072,
+          512,
+          "caller"
+        ],
+        [
+          "read",
+          131584,
+          512,
+          "private"
+        ],
+        [
+          "write",
+          131584,
+          512,
+          "private"
+        ]
+      ],
+      "mdl_restored": true,
+      "resources_released": true,
+      "outside_bytes_preserved": true
+    },
+    {
+      "length": 1016,
+      "offset": 131072,
+      "paging": true,
+      "file_size": 262144,
+      "effective_length": 1016,
+      "failure": null,
+      "status": "0x0",
+      "calls": [
+        "resource acquire",
+        "mutex acquire",
+        "pool allocate",
+        "mdl allocate",
+        [
+          "write",
+          131072,
+          512,
+          "caller"
+        ],
+        [
+          "read",
+          131584,
+          512,
+          "private"
+        ],
+        [
+          "write",
+          131584,
+          512,
+          "private"
+        ]
+      ],
+      "mdl_restored": true,
+      "resources_released": true,
+      "outside_bytes_preserved": true
+    },
+    {
+      "length": 65537,
+      "offset": 131072,
+      "paging": true,
+      "file_size": 262144,
+      "effective_length": 65537,
+      "failure": null,
+      "status": "0x0",
+      "calls": [
+        "resource acquire",
+        "mutex acquire",
+        "pool allocate",
+        "mdl allocate",
+        [
+          "write",
+          131072,
+          65536,
+          "caller"
+        ],
+        [
+          "read",
+          196608,
+          512,
+          "private"
+        ],
+        [
+          "write",
+          196608,
+          512,
+          "private"
+        ]
+      ],
+      "mdl_restored": true,
+      "resources_released": true,
+      "outside_bytes_preserved": true
+    },
+    {
+      "length": 1016,
+      "offset": 131072,
+      "paging": true,
+      "file_size": 262144,
+      "effective_length": 1016,
+      "failure": "pool",
+      "status": "0xc000009a",
+      "calls": [
+        "resource acquire",
+        "mutex acquire",
+        "pool allocate"
+      ],
+      "mdl_restored": true,
+      "resources_released": true,
+      "outside_bytes_preserved": false
+    },
+    {
+      "length": 1016,
+      "offset": 131072,
+      "paging": true,
+      "file_size": 262144,
+      "effective_length": 1016,
+      "failure": "mdl",
+      "status": "0xc000009a",
+      "calls": [
+        "resource acquire",
+        "mutex acquire",
+        "pool allocate",
+        "mdl allocate"
+      ],
+      "mdl_restored": true,
+      "resources_released": true,
+      "outside_bytes_preserved": false
+    },
+    {
+      "length": 1016,
+      "offset": 131072,
+      "paging": true,
+      "file_size": 262144,
+      "effective_length": 1016,
+      "failure": "prefix",
+      "status": "0xc0000185",
+      "calls": [
+        "resource acquire",
+        "mutex acquire",
+        "pool allocate",
+        "mdl allocate",
+        [
+          "write",
+          131072,
+          512,
+          "caller"
+        ]
+      ],
+      "mdl_restored": true,
+      "resources_released": true,
+      "outside_bytes_preserved": false
+    },
+    {
+      "length": 1016,
+      "offset": 131072,
+      "paging": true,
+      "file_size": 262144,
+      "effective_length": 1016,
+      "failure": "read",
+      "status": "0xc0000185",
+      "calls": [
+        "resource acquire",
+        "mutex acquire",
+        "pool allocate",
+        "mdl allocate",
+        [
+          "write",
+          131072,
+          512,
+          "caller"
+        ],
+        [
+          "read",
+          131584,
+          512,
+          "private"
+        ]
+      ],
+      "mdl_restored": true,
+      "resources_released": true,
+      "outside_bytes_preserved": false
+    },
+    {
+      "length": 1016,
+      "offset": 131072,
+      "paging": true,
+      "file_size": 262144,
+      "effective_length": 1016,
+      "failure": "short_read",
+      "status": "0xc00000e9",
+      "calls": [
+        "resource acquire",
+        "mutex acquire",
+        "pool allocate",
+        "mdl allocate",
+        [
+          "write",
+          131072,
+          512,
+          "caller"
+        ],
+        [
+          "read",
+          131584,
+          512,
+          "private"
+        ]
+      ],
+      "mdl_restored": true,
+      "resources_released": true,
+      "outside_bytes_preserved": false
+    },
+    {
+      "length": 1016,
+      "offset": 131072,
+      "paging": true,
+      "file_size": 262144,
+      "effective_length": 1016,
+      "failure": "tail",
+      "status": "0xc0000185",
+      "calls": [
+        "resource acquire",
+        "mutex acquire",
+        "pool allocate",
+        "mdl allocate",
+        [
+          "write",
+          131072,
+          512,
+          "caller"
+        ],
+        [
+          "read",
+          131584,
+          512,
+          "private"
+        ],
+        [
+          "write",
+          131584,
+          512,
+          "private"
+        ]
+      ],
+      "mdl_restored": true,
+      "resources_released": true,
+      "outside_bytes_preserved": false
+    },
+    {
+      "length": 1016,
+      "offset": 131072,
+      "paging": false,
+      "file_size": 262144,
+      "effective_length": 1016,
+      "failure": null,
+      "status": "0xc000000d",
+      "calls": [],
+      "mdl_restored": true,
+      "resources_released": true,
+      "outside_bytes_preserved": false
+    },
+    {
+      "length": 1016,
+      "offset": 1,
+      "paging": true,
+      "file_size": 262144,
+      "effective_length": 1016,
+      "failure": null,
+      "status": "0xc000000d",
+      "calls": [],
+      "mdl_restored": true,
+      "resources_released": true,
+      "outside_bytes_preserved": false
+    },
+    {
+      "length": 1016,
+      "offset": 131072,
+      "paging": true,
+      "file_size": 262144,
+      "effective_length": 1016,
+      "failure": null,
+      "status": "0xc000000d",
+      "calls": [
+        "resource acquire"
+      ],
+      "mdl_restored": true,
+      "resources_released": true,
+      "outside_bytes_preserved": false
+    },
+    {
+      "length": 1016,
+      "offset": 131072,
+      "paging": true,
+      "file_size": 262144,
+      "effective_length": 1016,
+      "failure": "mutex_busy",
+      "status": "0x103",
+      "calls": [
+        "resource acquire",
+        "mutex busy"
+      ],
+      "mdl_restored": true,
+      "resources_released": true,
+      "outside_bytes_preserved": false
+    }
+  ],
+  "passed": true,
+  "limitation": "Models disk I/O and kernel locks; checks generated branch/order/cleanup, not actual scheduler contention."
+}

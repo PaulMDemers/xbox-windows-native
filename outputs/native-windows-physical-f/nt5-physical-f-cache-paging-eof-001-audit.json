@@ -1,0 +1,41 @@
+{
+  "scope": "Read-only cold verification of an owned, stopped cache-regression overlay.",
+  "run": "nt5-physical-f-cache-paging-eof-001",
+  "files": [
+    {
+      "path": "xwn-report-v2.txt",
+      "present": true,
+      "bytes": 4096,
+      "sha256": "ac41dd9e8028524db0efe12d24799a9ad9feb41e458f7d28b3a68a6c04c07e60"
+    },
+    {
+      "path": "winnt/system32/config/sysevent.evt",
+      "present": true,
+      "bytes": 65536,
+      "sha256": "c2c64ec2db664fdfabb321aeaa90881b6c458e2e05c8294a789c0ab357463be7"
+    },
+    {
+      "path": "xwn-cache-append.tmp",
+      "present": true,
+      "bytes": 131073,
+      "sha256": "07b52aecb65f631d4484c11d82a4fa04493acf817f144352c55c8376e5fbd2a0",
+      "pattern_match": true
+    },
+    {
+      "path": "xwn-cache-map.tmp",
+      "present": true,
+      "bytes": 2577,
+      "sha256": "3d7f349e7606408843c71bdc80cf301d6dc01bb884d28a371da1b78aa8ebb899",
+      "truncated_to_zero": false,
+      "head_hex": "31567ba0c5ea0f34597ea3c8ed12375c81a6cbf0153a5f84a9cef3183d6287acd1f61b40658aafd4f91e43688db2d7fc21466b90b5daff24496e93b8dd02274c",
+      "all_zero": false
+    },
+    {
+      "path": "xwn-cache-pressure.tmp",
+      "present": false
+    }
+  ],
+  "whole_filesystem_audit": false,
+  "report": "XWN-CACHE-START\r\ncached append passed\r\nmapped case=0\r\nmismatch offset=0\r\nfailures=1\r\nXWN-CACHE-FAIL",
+  "probe_passed": false
+}

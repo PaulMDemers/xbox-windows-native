@@ -141,3 +141,79 @@ screenshots retained. Physical startup remains disabled and no launch after
 cycle011 has been attempted. The installed filesystem is still 0076/f8c1f66a;
 HALa3 and video trace413 are unchanged. Both deliberate-stop filesystem
 variants remain emulator-only. The production source is restored through 0076.
+
+
+## Partial-sector paging writes and writes after truncation
+
+Patch0077 adds a private-sector read/modify/write for a short paging-write tail.
+The caller MDL stays bounded, and a per-file mutex serializes data writes so
+another writer cannot change the sector between its read and write. The driver
+checks the rounded allocation range under the paging resource. Sixteen compiled
+VfatWrite cases verify sector boundaries, neighboring bytes, allocation limits,
+allocation/I/O failures and cleanup. Deferred-buffer regression cases still pass.
+
+Run `nt5-physical-f-cache-write-tail-001` passed the 30 mapped cases, 131073-byte
+append and 32 MiB asynchronous pressure helper. Its stopped overlay has exact
+payload hashes, all 3439 expected immutable binaries and clean allocation/hive
+audits. However, a WMI CIM.$EC delayed-write popup remained. This build therefore
+did not qualify for hardware deployment.
+
+A separate emulator-only E058CA03 diagnostic captured C000000D for CIM.$EC:
+paging write flags43, offset1572864, length65536, with file size, valid data length
+and allocation all zero. See `write-tail-failure-checkpoint.json`. This is an
+obsolete paging write after truncation, distinct from the short-tail rejection
+and from the physical cache-list STOP0A. The checkpoint is deliberately inserted;
+it is not a spontaneous guest crash.
+
+Patch0078 makes ordinary paging writes respect the current EOF: a wholly obsolete
+range completes with zero bytes; a crossing range is clipped. The shrink path
+holds the paging resource exclusively while updating sizes and releasing clusters.
+Twenty-one compiled cases include the captured zero-size request and EOF crossing.
+The rule matches Microsoft's [FastFAT write path](https://github.com/microsoft/Windows-driver-samples/blob/main/filesys/fastfat/write.c).
+The first combined-candidate run (`nt5-physical-f-cache-paging-eof-001`) failed
+its first mapped readback at offset0 after truncating to2577 bytes. It restarted
+normally, but the report is FAIL and no pressure payload was produced. The cold
+file begins with the expected pattern; the immediate cached read remains under
+investigation. A first-write diagnostic sees offset0/length4096 with EOF/VDL2577
+and allocation65536, confirming the new clipping branch is exercised. A detailed
+readback repeat is in progress. Neither new patch
+has been uploaded to the physical Xbox. The physical cache-list crash remains
+unresolved and is not claimed fixed by these changes.
+
+
+## Completion-event reuse regression isolated
+
+The detailed repeat failed at byte2560, exactly the start of the short sector,
+with actual0x58 versus expected0x3b. The first-write and tail-copy diagnostic
+builds are emulator-only, and their deliberate stops are retained separately.
+The E058CA05 inspection shows the correct mapped source PFN, source bytes and
+17 copied bytes in the private sector before submission. No guest code or
+return value was altered through the debugger.
+
+The data-write helper had assumed one write batch per IRP context. A preceding
+read can leave its notification event signaled. The new RMW path then submitted
+a second write, observed the stale signal and freed its sector before the disk
+request completed. Patch0079 resets the event before each data-write batch.
+`test-completion-event.py` executes the compiled helper with pending lower I/O:
+both regular-file and FAT branches return prematurely in the old build; both
+wait for completion in the corrected build. `test-write-tail.py --completion`
+passes21 boundary/error cases and the deferred-buffer regression still passes.
+The earlier helper-only tests modeled synchronous I/O and did not cover this
+stale-event condition; the new test specifically closes that gap.
+
+Use patches0077-0079 together. Builds through0077 or0078 remain failed research
+artifacts, not deployment candidates. Apply the ordered manifest in
+`patch-check-0079.json` to the pinned base before running
+`Build-PagingCompletion.ps1`. Diagnostic patches require their matching source
+stage and `XWN_VFAT_WRITE_DIAGNOSTIC`; remove them before a production build.
+All binaries, firmware, full disk overlays and raw logs remain local and ignored.
+
+
+The final `nt5-physical-f-cache-paging-completion-001` run passes all30 mapped
+cases and the32MiB pressure test, restarts to the dashboard, and passes the cold
+allocation/registry/3439-binary audit. Both payloads match exact expected hashes.
+Current-boot event records36-42 contain no Ftdisk50 or delayed-write popup; the
+older baseline records remain. EventLog6006 records shutdown. DHCP, HID service,
+Ftdisk49 and shutdown rundll32 events remain and are not described as fixed.
+`paging-completion-validation.json` qualifies driver f686b0a1 for one controlled
+physical trial; it does not resolve the separate physical cache-list STOP0A.

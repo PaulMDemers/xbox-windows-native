@@ -1,0 +1,15 @@
+diff --git a/drivers/filesystems/vfatfs/rw.c b/drivers/filesystems/vfatfs/rw.c
+index a408a786..6ed69dcf 100644
+--- a/drivers/filesystems/vfatfs/rw.c
++++ b/drivers/filesystems/vfatfs/rw.c
+@@ -698,6 +698,10 @@ VfatWritePagingTail(PVFAT_IRP_CONTEXT IrpContext, ULONG Length, LARGE_INTEGER Of
+     if (NT_SUCCESS(Status))
+     {
+         RtlCopyMemory(Tail, Buffer + Prefix, Length - Prefix);
++#ifdef XWN_VFAT_WRITE_DIAGNOSTIC
++        if (Length == 2577)
++            KeBugCheckEx(0xe058ca05, (ULONG_PTR)Buffer, (ULONG_PTR)Tail, (ULONG_PTR)OriginalMdl, Length);
++#endif
+         Status = VfatWriteFileData(IrpContext, Sector, Offset);
+     }
+     /* Both data helpers wait for every child IRP before returning. */

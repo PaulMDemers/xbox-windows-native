@@ -1,0 +1,171 @@
+diff --git a/drivers/filesystems/vfatfs/fcb.c b/drivers/filesystems/vfatfs/fcb.c
+index 0ca2f667..2cd79bc8 100644
+--- a/drivers/filesystems/vfatfs/fcb.c
++++ b/drivers/filesystems/vfatfs/fcb.c
+@@ -151,6 +151,7 @@ vfatNewFCB(
+     ExInitializeResourceLite(&rcFCB->MainResource);
+     FsRtlInitializeFileLock(&rcFCB->FileLock, NULL, NULL);
+     ExInitializeFastMutex(&rcFCB->LastMutex);
++    ExInitializeFastMutex(&rcFCB->WriteMutex);
+     rcFCB->RFCB.PagingIoResource = &rcFCB->PagingIoResource;
+     rcFCB->RFCB.Resource = &rcFCB->MainResource;
+     rcFCB->RFCB.IsFastIoPossible = FastIoIsNotPossible;
+diff --git a/drivers/filesystems/vfatfs/rw.c b/drivers/filesystems/vfatfs/rw.c
+index 6b62e6ba..06af4566 100644
+--- a/drivers/filesystems/vfatfs/rw.c
++++ b/drivers/filesystems/vfatfs/rw.c
+@@ -268,7 +268,11 @@ VfatReadFileData(
+     BytesPerSector = DeviceExt->FatInfo.BytesPerSector;
+     BytesPerCluster = DeviceExt->FatInfo.BytesPerCluster;
+ 
+-    ASSERT(ReadOffset.QuadPart + Length <= ROUND_UP_64(Fcb->RFCB.FileSize.QuadPart, BytesPerSector));
++    /* A write-tail RMW reads allocated bytes, including sector padding. */
++    ASSERT(ReadOffset.QuadPart + Length <=
++           (IrpContext->Stack->MajorFunction == IRP_MJ_WRITE ?
++            Fcb->RFCB.AllocationSize.QuadPart :
++            ROUND_UP_64(Fcb->RFCB.FileSize.QuadPart, BytesPerSector)));
+     ASSERT(ReadOffset.u.LowPart % BytesPerSector == 0);
+     ASSERT(Length % BytesPerSector == 0);
+ 
+@@ -654,6 +658,56 @@ VfatWriteFileData(
+     return Status;
+ }
+ 
++/* The caller holds WriteMutex and the paging resource. Native NT can issue
++ * a paging write whose length ends inside a sector. Keep its MDL bounded and
++ * preserve the remaining bytes with a private, serialized read/modify/write. */
++static NTSTATUS
++VfatWritePagingTail(PVFAT_IRP_CONTEXT IrpContext, ULONG Length, LARGE_INTEGER Offset)
++{
++    ULONG Sector = IrpContext->DeviceExt->FatInfo.BytesPerSector;
++    ULONG Prefix = ROUND_DOWN(Length, Sector), Done = 0;
++    PUCHAR Buffer, Tail;
++    PMDL OriginalMdl, TailMdl;
++    NTSTATUS Status;
++
++    Buffer = VfatGetUserBuffer(IrpContext->Irp, TRUE);
++    if (!Buffer)
++        return STATUS_INSUFFICIENT_RESOURCES;
++    Tail = ExAllocatePoolWithTag(NonPagedPool, Sector, 'tWfV');
++    if (!Tail)
++        return STATUS_INSUFFICIENT_RESOURCES;
++    TailMdl = IoAllocateMdl(Tail, Sector, FALSE, FALSE, NULL);
++    if (!TailMdl)
++    {
++        ExFreePoolWithTag(Tail, 'tWfV');
++        return STATUS_INSUFFICIENT_RESOURCES;
++    }
++    MmBuildMdlForNonPagedPool(TailMdl);
++    if (Prefix)
++    {
++        Status = VfatWriteFileData(IrpContext, Prefix, Offset);
++        if (!NT_SUCCESS(Status))
++            goto Finished;
++    }
++    OriginalMdl = IrpContext->Irp->MdlAddress;
++    IrpContext->Irp->MdlAddress = TailMdl;
++    Offset.QuadPart += Prefix;
++    Status = VfatReadFileData(IrpContext, Sector, Offset, &Done);
++    if (NT_SUCCESS(Status) && Done != Sector)
++        Status = STATUS_UNEXPECTED_IO_ERROR;
++    if (NT_SUCCESS(Status))
++    {
++        RtlCopyMemory(Tail, Buffer + Prefix, Length - Prefix);
++        Status = VfatWriteFileData(IrpContext, Sector, Offset);
++    }
++    /* Both data helpers wait for every child IRP before returning. */
++    IrpContext->Irp->MdlAddress = OriginalMdl;
++Finished:
++    IoFreeMdl(TailMdl);
++    ExFreePoolWithTag(Tail, 'tWfV');
++    return Status;
++}
++
+ /* Native NT image paging can end before a sector boundary. Never extend
+  * its MDL to satisfy disk alignment: read the tail into a private sector. */
+ static
+@@ -1121,9 +1175,11 @@ VfatWrite(
+ 
+     if (PagingIo || NoCache || IsVolume)
+     {
+-        if (ByteOffset.u.LowPart % BytesPerSector != 0 || Length % BytesPerSector != 0)
++        if (ByteOffset.u.LowPart % BytesPerSector != 0 ||
++            (Length % BytesPerSector != 0 &&
++             (!PagingIo || IsVolume || IsFAT || vfatFCBIsDirectory(Fcb))))
+         {
+-            // non cached write must be sector aligned
++            // Only ordinary paging writes may have a short final sector.
+             Status = STATUS_INVALID_PARAMETER;
+             goto ByeBye;
+         }
+@@ -1139,20 +1195,6 @@ VfatWrite(
+         goto Metadata;
+     }
+ 
+-    if (PagingIo)
+-    {
+-        if (ByteOffset.u.LowPart + Length > Fcb->RFCB.AllocationSize.u.LowPart)
+-        {
+-            Status = STATUS_INVALID_PARAMETER;
+-            goto ByeBye;
+-        }
+-
+-        if (ByteOffset.u.LowPart + Length > ROUND_UP(Fcb->RFCB.AllocationSize.u.LowPart, BytesPerSector))
+-        {
+-            Length =  ROUND_UP(Fcb->RFCB.FileSize.u.LowPart, BytesPerSector) - ByteOffset.u.LowPart;
+-        }
+-    }
+-
+     if (!NoCache && !CcCanIWrite(IrpContext->FileObject, Length, CanWait,
+                                  BooleanFlagOn(IrpContext->Flags, IRPCONTEXT_DEFERRED_WRITE)))
+     {
+@@ -1211,6 +1253,15 @@ VfatWrite(
+         }
+     }
+ 
++    /* Check the entire on-disk span after acquiring the paging resource.
++     * Use 64-bit arithmetic so rounding cannot wrap at the FAT file limit. */
++    if (PagingIo && ByteOffset.QuadPart + ROUND_UP_64(Length, BytesPerSector) >
++                    Fcb->RFCB.AllocationSize.QuadPart)
++    {
++        Status = STATUS_INVALID_PARAMETER;
++        goto ByeBye;
++    }
++
+     if (!PagingIo &&
+         FsRtlAreThereCurrentFileLocks(&Fcb->FileLock))
+     {
+@@ -1325,7 +1376,20 @@ VfatWrite(
+             vfatAddToStat(IrpContext->DeviceExt, Base.MetaDataWriteBytes, Length);
+         }
+ 
+-        Status = VfatWriteFileData(IrpContext, Length, ByteOffset);
++        /* Aligned writes also participate, preventing them from racing the
++         * tail sector's read/modify/write. No cache-manager calls while held. */
++        if (CanWait)
++            ExAcquireFastMutex(&Fcb->WriteMutex);
++        else if (!ExTryToAcquireFastMutex(&Fcb->WriteMutex))
++        {
++            Status = STATUS_PENDING;
++            goto ByeBye;
++        }
++        if (PagingIo && Length % BytesPerSector)
++            Status = VfatWritePagingTail(IrpContext, Length, ByteOffset);
++        else
++            Status = VfatWriteFileData(IrpContext, Length, ByteOffset);
++        ExReleaseFastMutex(&Fcb->WriteMutex);
+         if (NT_SUCCESS(Status))
+         {
+             IrpContext->Irp->IoStatus.Information = Length;
+diff --git a/drivers/filesystems/vfatfs/vfat.h b/drivers/filesystems/vfatfs/vfat.h
+index 0bd41554..27b6ddfb 100644
+--- a/drivers/filesystems/vfatfs/vfat.h
++++ b/drivers/filesystems/vfatfs/vfat.h
+@@ -539,6 +539,7 @@ typedef struct _VFATFCB
+ 
+     struct _VFAT_CLOSE_CONTEXT * CloseContext;
+     PVFAT_PAGING_MAP PagingMap;
++    FAST_MUTEX WriteMutex; /* Serializes data writes, including tail-sector RMW. */
+ } VFATFCB, *PVFATFCB;
+ 
+ #define CCB_DELETE_ON_CLOSE     0x0001

@@ -1,0 +1,49 @@
+{
+  "scope": "Run the actual FATX deferred-write branch with modeled cache/MDL services.",
+  "driver_sha256": "4255b319bae28ca89a6bc5d23a78b08c6906e8a4595fbf84a1aabb8ea67d00fb",
+  "expect_pinned": true,
+  "cases": [
+    {
+      "calls": [
+        "CcCanIWrite",
+        "VfatLockUserBuffer",
+        "CcDeferWrite"
+      ],
+      "deferred": [
+        {
+          "mdl": 8417280,
+          "callback": "0x20230"
+        }
+      ],
+      "status": "0x103",
+      "caller_context": 0,
+      "worker_buffer_bytes": "ORIGINAL-WRITE!!"
+    },
+    {
+      "calls": [
+        "CcCanIWrite",
+        "VfatLockUserBuffer"
+      ],
+      "deferred": [],
+      "status": "0xc000009a",
+      "caller_context": 8388608
+    },
+    {
+      "calls": [
+        "CcCanIWrite",
+        "VfatLockUserBuffer",
+        "CcDeferWrite"
+      ],
+      "deferred": [
+        {
+          "mdl": 8417280,
+          "callback": "0x20230"
+        }
+      ],
+      "status": "0x103",
+      "caller_context": 0,
+      "worker_buffer_bytes": "ORIGINAL-WRITE!!"
+    }
+  ],
+  "limitation": "Models cache/MDL services; proves branch ordering, not physical corruption causality."
+}

@@ -1,0 +1,51 @@
+{
+  "scope": "Execute compiled write-data batches with a previously signaled event and pending disk I/O.",
+  "cases": [
+    {
+      "driver": "xwnfatx-paging-eof.sys",
+      "sha256": "4255b319bae28ca89a6bc5d23a78b08c6906e8a4595fbf84a1aabb8ea67d00fb",
+      "fat_branch": false,
+      "signaled": true,
+      "pending": true,
+      "waits": 1,
+      "resets": 0,
+      "done": true,
+      "premature_return": true
+    },
+    {
+      "driver": "xwnfatx-paging-eof.sys",
+      "sha256": "4255b319bae28ca89a6bc5d23a78b08c6906e8a4595fbf84a1aabb8ea67d00fb",
+      "fat_branch": true,
+      "signaled": true,
+      "pending": true,
+      "waits": 1,
+      "resets": 0,
+      "done": true,
+      "premature_return": true
+    },
+    {
+      "driver": "xwnfatx-paging-completion.sys",
+      "sha256": "f686b0a11395510176a60a23b90415f79c20e5a26dd4217130f27f32915b1884",
+      "fat_branch": false,
+      "signaled": true,
+      "pending": false,
+      "waits": 1,
+      "resets": 1,
+      "done": true,
+      "premature_return": false
+    },
+    {
+      "driver": "xwnfatx-paging-completion.sys",
+      "sha256": "f686b0a11395510176a60a23b90415f79c20e5a26dd4217130f27f32915b1884",
+      "fat_branch": true,
+      "signaled": true,
+      "pending": false,
+      "waits": 1,
+      "resets": 1,
+      "done": true,
+      "premature_return": false
+    }
+  ],
+  "passed": true,
+  "limitation": "Models lower disk submission and event wakeup; executes actual driver batching/refcount logic."
+}

@@ -1,0 +1,15 @@
+diff --git a/drivers/filesystems/vfatfs/rw.c b/drivers/filesystems/vfatfs/rw.c
+index 06af4566..d59a575b 100644
+--- a/drivers/filesystems/vfatfs/rw.c
++++ b/drivers/filesystems/vfatfs/rw.c
+@@ -1433,6 +1433,10 @@ Metadata:
+     }
+ 
+ ByeBye:
++#ifdef XWN_VFAT_WRITE_DIAGNOSTIC
++    if (!NT_SUCCESS(Status))
++        KeBugCheckEx(0xe058ca03, Status, (ULONG_PTR)IrpContext, (ULONG_PTR)Fcb, 0);
++#endif
+     if (Resource)
+     {
+         ExReleaseResourceLite(Resource);
