@@ -1,0 +1,31 @@
+diff --git a/drivers/base/bootvid/CMakeLists.txt b/drivers/base/bootvid/CMakeLists.txt
+index 79035e31..d25e2eaf 100644
+--- a/drivers/base/bootvid/CMakeLists.txt
++++ b/drivers/base/bootvid/CMakeLists.txt
+@@ -68,6 +68,7 @@ if(ARCH STREQUAL "i386")
+     if(SARCH STREQUAL "xbox" AND XBOX_NT5_HAL)
+         add_bootvid(xboxbvidnt5 i386/xbox/xboxbvid.cmake
+                     SPEC_FILE bootvidnt5.spec SOURCES nt5.c)
++        target_compile_definitions(xboxbvidnt5 PRIVATE XBOX_NT5_BOOTVID)
+     endif()
+ endif()
+ if((ARCH STREQUAL "i386") OR (ARCH STREQUAL "amd64"))
+diff --git a/drivers/base/bootvid/i386/xbox/bootvid.c b/drivers/base/bootvid/i386/xbox/bootvid.c
+index c83fba1e..565134a3 100644
+--- a/drivers/base/bootvid/i386/xbox/bootvid.c
++++ b/drivers/base/bootvid/i386/xbox/bootvid.c
+@@ -190,7 +190,14 @@ VidInitialize(
+     }
+
+     /* Return the address back to GPU memory mapped I/O */
++#ifdef XBOX_NT5_BOOTVID
++    /* The loader reserves these RAM pages from NT's allocator. The PCI
++     * display aperture can be disabled before the final shutdown bitmap,
++     * so retain a direct RAM mapping for boot/error/shutdown drawing. */
++    PhysFrameBufferStart.QuadPart = FrameBuffer;
++#else
+     PhysFrameBufferStart.QuadPart += FrameBuffer;
++#endif
+     FrameBufferStart = (ULONG_PTR)MmMapIoSpace(PhysFrameBufferStart, NV2A_VIDEO_MEMORY_SIZE, MmNonCached);
+     if (!FrameBufferStart)
+     {

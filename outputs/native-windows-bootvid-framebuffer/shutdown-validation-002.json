@@ -1,0 +1,147 @@
+{
+  "scope": "Unassisted xemu boot, normal UI shutdown; physical hardware untested",
+  "run": "nt5-fatx-boot-bootvid-ram-002",
+  "iso": {
+    "bytes": 240640,
+    "sha256": "fe63d45339b23257e0bbd7ac9567a6b2f8d0072783d53d2ed13be014522c1a3a",
+    "multiboot_header_offset": 2560,
+    "staging_address": "0x200000",
+    "entry_address": "0x200a20",
+    "relocated_pe_end": "0x4f4e0",
+    "scope": "Packaging constraints only; does not prove runtime memory safety or a working boot.",
+    "files": {
+      "/LOADER/FREELDR.SYS;1": "fe63d45339b23257e0bbd7ac9567a6b2f8d0072783d53d2ed13be014522c1a3a",
+      "/LOADER/ROSLOAD.EXE;1": "2b94983611b9df7e10c211bf7ca6d99a21ac720928384bc6a185052bcdc2ada9",
+      "/LOADER/HALXBOXNT5.DLL;1": "747b7fb8137757e8757b28b274107ea642a7236a95a54840e05f824aae1c710f",
+      "/LOADER/XBOXBVID.DLL;1": "2196f646653c4c944d73fee4944ee3d056c82cf01903e4f435e67d63c03ed4b7",
+      "/PROBE.BIN;1": "1027db9f49bac9176229e94c73b3d32b7dd408cb2a25aa54a73f7bb0c5f284b0",
+      "/FREELDR.INI;1": "9190d9e2a7fcdba3a304d5ca7208a311768906560fc8a0f2d323e23272dbc4e0"
+    },
+    "iso_sha256": "605dd66eff552538b2940159ddf1e41ec4efce9766739e5bd8ca6a0ac833a8ef",
+    "readback_verified": true,
+    "windows_included": false,
+    "kernel_entry_enabled": true,
+    "requires_debugger_gate": false
+  },
+  "native_final_halt_reached": true,
+  "halt_symbol": "HaliHaltSystem +2 (after CLI/HLT)",
+  "eip": "0x825b69f2",
+  "bugcheck_data": [
+    "0x0",
+    "0x0",
+    "0x0",
+    "0x0",
+    "0x0"
+  ],
+  "tick_count": 12042,
+  "stable_samples": [
+    240,
+    255,
+    270
+  ],
+  "electrical_power_off": false,
+  "final_bitmap_visible": true,
+  "frame_sha256": "26dfd1b0339c15065bdeddba09d6d5e5449c139fbb0c1616d4b94af2a8e1314d",
+  "earlier_attempt": {
+    "run": "nt5-fatx-boot-bootvid-ram-001",
+    "outcome": "Monitor timed out while capturing dashboard before loader launch; no Windows result"
+  },
+  "cold_integrity": {
+    "scope": "Cold read-only emulator disk audit; no physical access",
+    "source_sha256": "66f7c2f4b945cb0c9442e26b13455f22e563204281265e51a5a74a9b459cd419",
+    "directories": 322,
+    "files": 6552,
+    "allocated_clusters": 51698,
+    "immutable_files_checked": 3452,
+    "structural_errors": [],
+    "immutable_mismatches": [],
+    "registry_headers": [
+      {
+        "path": "/documents and settings/default user/ntuser.dat",
+        "bytes": 122880,
+        "sequence1": 2,
+        "sequence2": 2,
+        "sequences_match": true,
+        "checksum_matches": true
+      },
+      {
+        "path": "/documents and settings/win2k/local settings/application data/microsoft/windows/usrclass.dat",
+        "bytes": 8192,
+        "sequence1": 3,
+        "sequence2": 3,
+        "sequences_match": true,
+        "checksum_matches": true
+      },
+      {
+        "path": "/documents and settings/win2k/ntuser.dat",
+        "bytes": 196608,
+        "sequence1": 124,
+        "sequence2": 124,
+        "sequences_match": true,
+        "checksum_matches": true
+      },
+      {
+        "path": "/winnt/repair/ntuser.dat",
+        "bytes": 122880,
+        "sequence1": 2,
+        "sequence2": 2,
+        "sequences_match": true,
+        "checksum_matches": true
+      },
+      {
+        "path": "/winnt/system32/config/default",
+        "bytes": 126976,
+        "sequence1": 6,
+        "sequence2": 6,
+        "sequences_match": true,
+        "checksum_matches": true
+      },
+      {
+        "path": "/winnt/system32/config/sam",
+        "bytes": 20480,
+        "sequence1": 33,
+        "sequence2": 33,
+        "sequences_match": true,
+        "checksum_matches": true
+      },
+      {
+        "path": "/winnt/system32/config/security",
+        "bytes": 20480,
+        "sequence1": 121,
+        "sequence2": 121,
+        "sequences_match": true,
+        "checksum_matches": true
+      },
+      {
+        "path": "/winnt/system32/config/software",
+        "bytes": 6696960,
+        "sequence1": 54,
+        "sequence2": 54,
+        "sequences_match": true,
+        "checksum_matches": true
+      },
+      {
+        "path": "/winnt/system32/config/system",
+        "bytes": 2158592,
+        "sequence1": 123,
+        "sequence2": 123,
+        "sequences_match": true,
+        "checksum_matches": true
+      }
+    ],
+    "paging_file": {
+      "bytes": 100663296,
+      "clusters": 6144,
+      "first_cluster": 45551,
+      "physical_runs": 1
+    },
+    "endurance": {
+      "bytes": 1308,
+      "sha256": "48b553577601bab4c7d1537a9f6a0ba3d76ab09539278fe2b84741c52e2d55dc",
+      "passed": true
+    },
+    "source_preserved": true,
+    "passed": true,
+    "temporary_raw_removed": true
+  }
+}

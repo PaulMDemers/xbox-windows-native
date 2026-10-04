@@ -25,8 +25,12 @@ memory and GUI checks; cold audits verify 3,452 immutable Windows files.
 See the [FATX paging](outputs/native-windows-fatx-paging/REPORT.txt),
 [USB image-read](outputs/native-windows-fatx-image-read/REPORT.txt) and
 [volume-flush](outputs/native-windows-fatx-flush/REPORT.txt) evidence.
-Shutdown remains unresolved during device power transitions. FATX's 42-byte
-component limit also remains an application-compatibility constraint.
+The emulator now completes a normal UI shutdown and displays Windows' genuine
+"It is now safe to turn off your computer" screen. The final HAL halt has no
+bugcheck; automatic electrical power-off is not implemented. See the
+[boot-video ABI](outputs/native-windows-bootvid-nt5/REPORT.txt) and
+[shutdown display](outputs/native-windows-bootvid-framebuffer/REPORT.txt) fixes.
+FATX's 42-byte component limit remains an application-compatibility constraint.
 
 The next bounded hardware candidate has reached a genuine Windows boot bitmap
 in both tested emulator display layouts, stopping before storage. It has not

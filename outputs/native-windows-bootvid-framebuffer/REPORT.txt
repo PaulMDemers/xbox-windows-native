@@ -1,0 +1,27 @@
+Windows 2000 boot-video framebuffer mapping (0057), 4 October 2026
+
+The NT5 boot-video target now maps the reserved framebuffer RAM directly.
+Its former GPU aperture mapping becomes inaccessible during PCI shutdown,
+leaving a blank final display. The loader already excludes the framebuffer
+pages from Windows allocation. Other boot-video targets are unchanged.
+
+Unassisted xemu run nt5-fatx-boot-bootvid-ram-002 reaches Explorer, responds
+to USB input and completes a normal UI shutdown. The genuine Windows 2000
+"It is now safe to turn off your computer" bitmap is visible. The CPU is at
+HaliHaltSystem +2, after CLI/HLT, with zero bugcheck data. Tick count12042
+is stable across240,255 and270second captures. Electrical power-off is not
+implemented; this is Windows' final manual-power-off state.
+
+Run001 timed out in the emulator monitor while capturing the dashboard,
+before the loader launch command. It provides no Windows boot result.
+Run002 uses the same source artifacts and completes without debugger patches.
+
+See shutdown-validation-002.json for exact input hashes and cold disk audit.
+The local evidence image is work/runs/nt5-fatx-boot-bootvid-ram-002/frame-270.png;
+binary media and Windows binaries are excluded from the private source repo.
+
+Apply the recorded0057 patch series, build with Build.ps1, check audit-abi.py,
+then package with the0047 loader and0055 HAL through make-iso.py's explicit
+--bootvid-directory option. Run-FullBoot.ps1 pins the fixture and ISO hashes.
+Physical hardware remains verified only through XWNW90; no hardware access
+or upload was performed during this session.
