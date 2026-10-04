@@ -1,0 +1,34 @@
+Native FATX filesystem runtime experiment - emulator only
+
+Windows 2000 loads ReactOS vfatfs and mounts the existing Xbox FATX E extent.
+A guest test enumerates the root, creates a file, writes/flushes/reopens/reads
+one MiB and compares every byte with zero failures. Offline ntfscat retrieves
+the guest log; a separate FATX parser verifies the persistent one-MiB file.
+Windows itself still boots from NTFS in this test. A separate full-FATX boot experiment reaches boot-driver loading but currently
+fails while resolving the ARC boot device name (first bugcheck 7B, C0000034).
+Physical hardware behavior remains untested.
+
+The driver is unmodified ReactOS source at the pinned upstream revision,
+built with KDBG=OFF and _WIN2K_COMPAT_SLIST_USAGE. These resolve125imports on
+NT5 and use the Windows2000-compatible lookaside path. It registers a distinct
+\FatX filesystem device, so it coexists with Microsoft's Fastfat.
+173 SDK/PDB structure comparisons were inspected:172match. FILE_OBJECT has
+an appended16-byte SDK tail; all native field offsets match and the driver
+never uses the extra fields or sizeof(FILE_OBJECT). This is bounded ABI
+inspection, not a general filesystem compatibility certification.
+
+The private test disk preserves the original NTFS boot partition at8GiB and
+adds an MBR view of the existing FATX E extent as partition2. It is a derivative
+for xemu, not a disk image to write onto an Xbox. The guest helper maps Q: to
+that partition and refuses test writes unless the driver reports FATX.
+Original input hashes and readback checks are in fatx-runtime-disk-001.json.
+
+Known limitation: the driver currently advertises255-character component
+names; FATX entries hold42bytes. Bulk staging enforces42ASCIIbytes. Full Windows
+migration also has overlong crypto/profile names that require explicit handling.
+No claim is made that all installed files or Windows features work on FATX.
+
+Build-Driver.ps1 and Build-GuestTest.ps1 build locally. Use prepare-disk.py
+only for a new private fixture, Invoke-Diagnostic.ps1 with -RetainDisk for a
+bounded emulator run, then read-results.py --run nt5-fatx-runtime-NNN after
+cleanup. See validation.json for hashes and observed evidence.

@@ -1,0 +1,32 @@
+{
+  "recorded_utc": "2026-10-04T08:08:02.403627+00:00",
+  "scope": "Native FATX mount and bounded file I/O on private xemu disk; Windows system volume remains NTFS. No hardware test or FATX boot claim.",
+  "run": "nt5-fatx-runtime-002",
+  "guest_log": "Private emulator FATX runtime test\nStarting filesystem driver\nFilesystem driver loaded\nQuerying private FATX volume\nFilesystem: FATX\nMaximum component length: 255\nEntry: TDATA\nEntry: UDATA\nEntry: CACHE\nEntry: Apps\nOne MiB written and flushed\nOne MiB reopen/read comparison passed\nFailures: 0\n",
+  "guest_log_sha256": "95ec1f3b778c43da933f74cab8a2ca8748c7aeccb4dfd432540618d31602536d",
+  "offline_readback": {
+    "bytes": 1048576,
+    "sha256": "bd656ae3a09d0c3780a758e02d3dabb48e407dfe58a8156afffa083edb98a894",
+    "matches_expected": true
+  },
+  "driver_sha256": "dcf0c43789862b2833cbd928e120d7cfa9e5fb17d18dfcda7264ab380e08d721",
+  "source_tree": "fd7ee1255f2960f2de85a14cfb2daf875551bbdf",
+  "driver_source_unmodified": true,
+  "compile_flags": [
+    "KDBG=OFF",
+    "_WIN2K_COMPAT_SLIST_USAGE"
+  ],
+  "resolved_imports": 125,
+  "abi_comparisons": 173,
+  "equal_comparisons": 172,
+  "abi_exception": "SDK FILE_OBJECT size128 versus native112; every native FILE_OBJECT field offset matches. Source does not access appended IrpListLock/IrpList/FileObjectExtension fields or allocate/copy sizeof(FILE_OBJECT).",
+  "known_limitation": "Driver advertises component length255 despite FATX on-disk limit42; subsequent staging must enforce42.",
+  "first_run": "nt5-fatx-runtime-001 reached shell with driver loaded but snapshot-mode disk changes were discarded. RetainDisk used for002.",
+  "physical_tested": false,
+  "cleanup": {
+    "completedUtc": "2026-10-04T07:58:53.6262539Z",
+    "scratchDirectory": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\work\\scratch\\windows-native-e3f7b5b152f74c4a83107b2bae0d2d03",
+    "retained": false,
+    "reason": ""
+  }
+}
