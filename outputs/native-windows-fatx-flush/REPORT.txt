@@ -1,0 +1,33 @@
+Concurrent FATX volume flushing, 2026-10-04
+
+Emulator research only. The physical XWNW90 baseline is unchanged.
+Read-only resource and stack inspection confirms a shutdown deadlock in0053:
+the volume-flush thread owns DirResource and waits for an FCB MainResource;
+Winlogon owns that exact MainResource and waits for the same DirResource.
+See shutdown-lock-cycle.json for both owners and the matching wait address.
+
+0054 takes a snapshot of ordinary FCBs under DirResource and pins each with
+vfatGrabFCB. Ordinary volume flush and shutdown release DirResource before
+waiting for any file MainResource. They flush files before directories, then
+reacquire DirResource and release all references. The caller's directory lock
+is restored on every normal return, including allocation failure. The FAT and
+lower-device flush retain the existing path after the snapshot completes.
+
+Lock/dismount callers explicitly use the original serialized path so their
+namespace exclusion is not weakened. This change does not claim to repair or
+validate every lock/dismount path. Files created concurrently after the snapshot
+are outside that flush's snapshot; ordinary file flush remains available.
+
+Source chain/reverse/whitespace checks and 126 native import resolutions pass.
+Unassisted run nt5-fatx-boot-flush-001 reaches the desktop with USB input.
+The 4 MiB write/flush/reopen/read and 20 memory-retention intervals pass.
+Cold audit verifies 3,452 immutable Windows files and finds no chain/cross-link
+errors. No Windows kernel image is modified.
+
+Normal UI shutdown advances past the observed flush lock cycle but still hangs
+during device power transitions with pending paging reads. The earlier NTFS
+baseline also has an unresolved paging/power shutdown wait. Neither clean
+shutdown nor an isolated power-path cause is claimed. See fullboot-validation-001.json.
+The VM was stopped by the owned harness after evidence capture; this is not
+a clean guest shutdown. Next isolate optional audio/network drivers in a new
+private fixture, then inspect remaining storage/power waits.

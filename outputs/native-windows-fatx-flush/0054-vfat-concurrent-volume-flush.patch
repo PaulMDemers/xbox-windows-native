@@ -1,0 +1,218 @@
+diff --git a/drivers/filesystems/vfatfs/flush.c b/drivers/filesystems/vfatfs/flush.c
+index 2f9aadbb..65c82951 100644
+--- a/drivers/filesystems/vfatfs/flush.c
++++ b/drivers/filesystems/vfatfs/flush.c
+@@ -47,10 +47,76 @@ VfatFlushFile(
+     return IoStatus.Status;
+ }
+ 
++/* The caller holds DirResource once. Pin a stable set of FCBs before
++ * dropping it: ordinary file writes/flushes acquire MainResource first and
++ * may then need DirResource. Waiting for MainResource with DirResource held
++ * would deadlock those operations. Restore the caller's lock on every exit. */
++static
++NTSTATUS
++VfatFlushPinnedFiles(PDEVICE_EXTENSION DeviceExt)
++{
++    PLIST_ENTRY Entry;
++    PVFATFCB Fcb, *Files;
++    ULONG Count = 0, Index, Pass;
++    NTSTATUS Status, Result = STATUS_SUCCESS;
++
++    ASSERT(ExIsResourceAcquiredExclusive(&DeviceExt->DirResource));
++    for (Entry = DeviceExt->FcbListHead.Flink;
++         Entry != &DeviceExt->FcbListHead; Entry = Entry->Flink)
++    {
++        Fcb = CONTAINING_RECORD(Entry, VFATFCB, FcbListEntry);
++        if (!BooleanFlagOn(Fcb->Flags, FCB_IS_FAT | FCB_IS_VOLUME))
++        {
++            if (Count == MAXULONG / sizeof(*Files))
++                return STATUS_INSUFFICIENT_RESOURCES;
++            ++Count;
++        }
++    }
++    if (!Count)
++        return STATUS_SUCCESS;
++    Files = ExAllocatePoolWithTag(NonPagedPool, Count * sizeof(*Files), 'lFfV');
++    if (!Files)
++        return STATUS_INSUFFICIENT_RESOURCES;
++    Index = 0;
++    for (Entry = DeviceExt->FcbListHead.Flink;
++         Entry != &DeviceExt->FcbListHead; Entry = Entry->Flink)
++    {
++        Fcb = CONTAINING_RECORD(Entry, VFATFCB, FcbListEntry);
++        if (!BooleanFlagOn(Fcb->Flags, FCB_IS_FAT | FCB_IS_VOLUME))
++        {
++            vfatGrabFCB(DeviceExt, Fcb);
++            Files[Index++] = Fcb;
++        }
++    }
++    ASSERT(Index == Count);
++    ExReleaseResourceLite(&DeviceExt->DirResource);
++    /* Flush files before directories, as in the serialized volume path. */
++    for (Pass = 0; Pass < 2; ++Pass)
++    {
++        for (Index = 0; Index < Count; ++Index)
++        {
++            Fcb = Files[Index];
++            if (!!vfatFCBIsDirectory(Fcb) != !!Pass)
++                continue;
++            ExAcquireResourceExclusiveLite(&Fcb->MainResource, TRUE);
++            Status = VfatFlushFile(DeviceExt, Fcb);
++            ExReleaseResourceLite(&Fcb->MainResource);
++            if (!NT_SUCCESS(Status))
++                Result = Status;
++        }
++    }
++    ExAcquireResourceExclusiveLite(&DeviceExt->DirResource, TRUE);
++    for (Index = 0; Index < Count; ++Index)
++        vfatReleaseFCB(DeviceExt, Files[Index]);
++    ExFreePoolWithTag(Files, 'lFfV');
++    return Result;
++}
++
+ NTSTATUS
+ VfatFlushVolume(
+     PDEVICE_EXTENSION DeviceExt,
+-    PVFATFCB VolumeFcb)
++    PVFATFCB VolumeFcb,
++    BOOLEAN ConcurrentFiles)
+ {
+     PLIST_ENTRY ListEntry;
+     PVFATFCB Fcb;
+@@ -63,42 +129,51 @@ VfatFlushVolume(
+ 
+     ASSERT(VolumeFcb == DeviceExt->VolumeFcb);
+ 
+-    ListEntry = DeviceExt->FcbListHead.Flink;
+-    while (ListEntry != &DeviceExt->FcbListHead)
++    if (ConcurrentFiles)
+     {
+-        Fcb = CONTAINING_RECORD(ListEntry, VFATFCB, FcbListEntry);
+-        ListEntry = ListEntry->Flink;
+-        if (!vfatFCBIsDirectory(Fcb))
++        ReturnStatus = VfatFlushPinnedFiles(DeviceExt);
++    }
++    else
++    {
++        /* Lock/dismount callers retain their namespace exclusion throughout. */
++        ListEntry = DeviceExt->FcbListHead.Flink;
++        while (ListEntry != &DeviceExt->FcbListHead)
+         {
+-            ExAcquireResourceExclusiveLite(&Fcb->MainResource, TRUE);
+-            Status = VfatFlushFile(DeviceExt, Fcb);
+-            ExReleaseResourceLite (&Fcb->MainResource);
+-            if (!NT_SUCCESS(Status))
++            Fcb = CONTAINING_RECORD(ListEntry, VFATFCB, FcbListEntry);
++            ListEntry = ListEntry->Flink;
++            if (!vfatFCBIsDirectory(Fcb))
+             {
+-                DPRINT1("VfatFlushFile failed, status = %x\n", Status);
+-                ReturnStatus = Status;
++                ExAcquireResourceExclusiveLite(&Fcb->MainResource, TRUE);
++                Status = VfatFlushFile(DeviceExt, Fcb);
++                ExReleaseResourceLite (&Fcb->MainResource);
++                if (!NT_SUCCESS(Status))
++                {
++                    DPRINT1("VfatFlushFile failed, status = %x\n", Status);
++                    ReturnStatus = Status;
++                }
+             }
++            /* FIXME: Stop flushing if this is a removable media and the media was removed */
+         }
+-        /* FIXME: Stop flushing if this is a removable media and the media was removed */
+-    }
+ 
+-    ListEntry = DeviceExt->FcbListHead.Flink;
+-    while (ListEntry != &DeviceExt->FcbListHead)
+-    {
+-        Fcb = CONTAINING_RECORD(ListEntry, VFATFCB, FcbListEntry);
+-        ListEntry = ListEntry->Flink;
+-        if (vfatFCBIsDirectory(Fcb))
++        ListEntry = DeviceExt->FcbListHead.Flink;
++        while (ListEntry != &DeviceExt->FcbListHead)
+         {
+-            ExAcquireResourceExclusiveLite(&Fcb->MainResource, TRUE);
+-            Status = VfatFlushFile(DeviceExt, Fcb);
+-            ExReleaseResourceLite (&Fcb->MainResource);
+-            if (!NT_SUCCESS(Status))
++            Fcb = CONTAINING_RECORD(ListEntry, VFATFCB, FcbListEntry);
++            ListEntry = ListEntry->Flink;
++            if (vfatFCBIsDirectory(Fcb))
+             {
+-                DPRINT1("VfatFlushFile failed, status = %x\n", Status);
+-                ReturnStatus = Status;
++                ExAcquireResourceExclusiveLite(&Fcb->MainResource, TRUE);
++                Status = VfatFlushFile(DeviceExt, Fcb);
++                ExReleaseResourceLite (&Fcb->MainResource);
++                if (!NT_SUCCESS(Status))
++                {
++                    DPRINT1("VfatFlushFile failed, status = %x\n", Status);
++                    ReturnStatus = Status;
++                }
+             }
++            /* FIXME: Stop flushing if this is a removable media and the media was removed */
+         }
+-        /* FIXME: Stop flushing if this is a removable media and the media was removed */
++
+     }
+ 
+     Fcb = (PVFATFCB) DeviceExt->FATFileObject->FsContext;
+@@ -165,7 +240,7 @@ VfatFlush(
+     if (BooleanFlagOn(Fcb->Flags, FCB_IS_VOLUME))
+     {
+         ExAcquireResourceExclusiveLite(&IrpContext->DeviceExt->DirResource, TRUE);
+-        Status = VfatFlushVolume(IrpContext->DeviceExt, Fcb);
++        Status = VfatFlushVolume(IrpContext->DeviceExt, Fcb, TRUE);
+         ExReleaseResourceLite(&IrpContext->DeviceExt->DirResource);
+     }
+     else
+diff --git a/drivers/filesystems/vfatfs/fsctl.c b/drivers/filesystems/vfatfs/fsctl.c
+index 84d9b6ae..f31eacc2 100644
+--- a/drivers/filesystems/vfatfs/fsctl.c
++++ b/drivers/filesystems/vfatfs/fsctl.c
+@@ -1226,7 +1226,7 @@ VfatLockOrUnlockVolume(
+     if (Lock)
+     {
+         /* Flush volume & files */
+-        VfatFlushVolume(DeviceExt, DeviceExt->VolumeFcb);
++        VfatFlushVolume(DeviceExt, DeviceExt->VolumeFcb, FALSE);
+ 
+         /* The volume is now clean */
+         if (BooleanFlagOn(DeviceExt->VolumeFcb->Flags, VCB_CLEAR_DIRTY) &&
+@@ -1292,7 +1292,7 @@ VfatDismountVolume(
+     ExAcquireResourceExclusiveLite(&DeviceExt->FatResource, TRUE);
+ 
+     /* Flush volume & files */
+-    VfatFlushVolume(DeviceExt, (PVFATFCB)FileObject->FsContext);
++    VfatFlushVolume(DeviceExt, (PVFATFCB)FileObject->FsContext, FALSE);
+ 
+     /* The volume is now clean */
+     if (BooleanFlagOn(DeviceExt->VolumeFcb->Flags, VCB_CLEAR_DIRTY) &&
+diff --git a/drivers/filesystems/vfatfs/shutdown.c b/drivers/filesystems/vfatfs/shutdown.c
+index db047b87..8762f042 100644
+--- a/drivers/filesystems/vfatfs/shutdown.c
++++ b/drivers/filesystems/vfatfs/shutdown.c
+@@ -75,7 +75,7 @@ VfatShutdown(
+             ExAcquireResourceExclusiveLite(&DeviceExt->DirResource, TRUE);
+ 
+             /* Flush volume & files */
+-            Status = VfatFlushVolume(DeviceExt, DeviceExt->VolumeFcb);
++            Status = VfatFlushVolume(DeviceExt, DeviceExt->VolumeFcb, TRUE);
+ 
+             /* We're performing a clean shutdown */
+             if (BooleanFlagOn(DeviceExt->VolumeFcb->Flags, VCB_CLEAR_DIRTY) &&
+diff --git a/drivers/filesystems/vfatfs/vfat.h b/drivers/filesystems/vfatfs/vfat.h
+index c7f9e7a3..0bd41554 100644
+--- a/drivers/filesystems/vfatfs/vfat.h
++++ b/drivers/filesystems/vfatfs/vfat.h
+@@ -1129,7 +1129,8 @@ VfatFlush(
+ NTSTATUS
+ VfatFlushVolume(
+     PDEVICE_EXTENSION DeviceExt,
+-    PVFATFCB VolumeFcb);
++    PVFATFCB VolumeFcb,
++    BOOLEAN ConcurrentFiles);
+ 
+ /* fsctl.c */
+ 

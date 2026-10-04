@@ -1,0 +1,941 @@
+{
+  "scope": "Unassisted xemu boot of0054; normal UI shutdown followed by read-only thread capture. Physical Xbox untouched.",
+  "run": "nt5-fatx-boot-flush-001",
+  "fixture": {
+    "scope": "Private emulator full-FATX derivative; replace filesystem driver only. No hardware access.",
+    "source_sha256": "7679ca11d28b3b1e40aa93f3b0609e31a22ce26dde08fc45ff169e33d5a31cfd",
+    "driver_sha256": "d05e359bb3e3203457d8f458804da1a6f301339cda4f4768e01f58bb4f31ac0a",
+    "cold_readback_equal": true,
+    "check": "No errors were found on the image.\n26948/131072 = 20.56% allocated, 0.00% fragmented, 0.00% compressed clusters\nImage end offset: 1766785024\n",
+    "sha256": "0c94140b312f4b74e5e0c2ce3109ac6e8e83520d5a6898ca652945fe160c2a57",
+    "source_preserved": true,
+    "temporary_raw_removed": true
+  },
+  "cold_integrity": {
+    "scope": "Cold read-only emulator disk audit; no physical access",
+    "source_sha256": "abf8b4e08b435a1109093c66be045a38ec42d747dad93b997ecafc72961198be",
+    "directories": 322,
+    "files": 6552,
+    "allocated_clusters": 51700,
+    "immutable_files_checked": 3452,
+    "structural_errors": [],
+    "immutable_mismatches": [],
+    "paging_file": {
+      "bytes": 100663296,
+      "clusters": 6144,
+      "first_cluster": 45551,
+      "physical_runs": 1
+    },
+    "endurance": {
+      "bytes": 1308,
+      "sha256": "2a87e4741cfe97c729a5345b169632ad317e7009b41c00fcd9b72a7a3139d7f8",
+      "passed": true
+    },
+    "source_preserved": true,
+    "passed": true,
+    "temporary_raw_removed": true
+  },
+  "guest_endurance_log": "XWN native Windows endurance probe\nOS major: 5\nOS minor: 0\nOS build: 2195\nPhysical bytes: 62910464\nAvailable bytes before: 3911680\n4 MiB write/flush/reopen/read comparison passed\nDisk test milliseconds: 480\nNotepad input-idle result: 0\nNotepad window: xwn-check.log - Notepad\nGUI response passed\nMemory pass: 1\nUptime milliseconds: 66360\nMemory pass: 2\nUptime milliseconds: 71430\nMemory pass: 3\nUptime milliseconds: 76470\nMemory pass: 4\nUptime milliseconds: 81510\nMemory pass: 5\nUptime milliseconds: 86550\nMemory pass: 6\nUptime milliseconds: 91590\nMemory pass: 7\nUptime milliseconds: 96630\nMemory pass: 8\nUptime milliseconds: 101700\nMemory pass: 9\nUptime milliseconds: 106755\nMemory pass: 10\nUptime milliseconds: 111810\nMemory pass: 11\nUptime milliseconds: 116850\nMemory pass: 12\nUptime milliseconds: 121920\nMemory pass: 13\nUptime milliseconds: 126975\nMemory pass: 14\nUptime milliseconds: 132015\nMemory pass: 15\nUptime milliseconds: 137085\nMemory pass: 16\nUptime milliseconds: 142155\nMemory pass: 17\nUptime milliseconds: 147210\nMemory pass: 18\nUptime milliseconds: 152250\nMemory pass: 19\nUptime milliseconds: 157320\nMemory pass: 20\nUptime milliseconds: 162375\n8 MiB memory retention passed across 20 intervals\nAvailable bytes after: 14106624\nFailures: 0\n",
+  "desktop_storage_memory_passed": true,
+  "keyboard_menu_visually_verified": true,
+  "shutdown_passed": false,
+  "shutdown_observation": "Explorer exits. Previous DirResource/MainResource cycle is absent from captured waits. Winlogon now waits for a paging read while entering device power transitions; other threads also wait on paging reads. This does not establish a power-path root cause.",
+  "stack_capture_caveat": "Scanned code-address candidates, not a validated unwind.",
+  "shutdown_threads": [
+    {
+      "process": "System",
+      "thread": "0xfe66eda0",
+      "tid": 28,
+      "state": 5,
+      "wait_reason": 0,
+      "stack": "0xf902f99c",
+      "initial_stack": "0xf9030000",
+      "stack_code_candidates": [
+        {
+          "stack": "0xf902f9a4",
+          "value": "0x82478e75",
+          "candidate": "@KiSwapThread@0+0xc5"
+        },
+        {
+          "stack": "0xf902f9b8",
+          "value": "0x8243c2bf",
+          "candidate": "_KeWaitForSingleObject@20+0x1a1"
+        },
+        {
+          "stack": "0xf902f9cc",
+          "value": "0x8242ddf1",
+          "candidate": "@IopfCallDriver@8+0x35"
+        },
+        {
+          "stack": "0xf902f9e0",
+          "value": "0xfe43d28d",
+          "candidate": "xwnfatx.sys+0x128d"
+        },
+        {
+          "stack": "0xf902fa20",
+          "value": "0xfe44ca7b",
+          "candidate": "xwnfatx.sys+0x10a7b"
+        },
+        {
+          "stack": "0xf902fa88",
+          "value": "0xfe44dab9",
+          "candidate": "xwnfatx.sys+0x11ab9"
+        },
+        {
+          "stack": "0xf902fa98",
+          "value": "0xfe45eee8",
+          "candidate": "atapi.sys+0x4ee8"
+        },
+        {
+          "stack": "0xf902faa4",
+          "value": "0xfe45ef82",
+          "candidate": "atapi.sys+0x4f82"
+        },
+        {
+          "stack": "0xf902fac0",
+          "value": "0xfe460383",
+          "candidate": "atapi.sys+0x6383"
+        },
+        {
+          "stack": "0xf902fae0",
+          "value": "0xfe44beda",
+          "candidate": "xwnfatx.sys+0xfeda"
+        },
+        {
+          "stack": "0xf902faf0",
+          "value": "0x8242d54c",
+          "candidate": "_IopAllocateIrpPrivate@8+0xa2"
+        },
+        {
+          "stack": "0xf902fb18",
+          "value": "0xfe44c1ba",
+          "candidate": "xwnfatx.sys+0x101ba"
+        },
+        {
+          "stack": "0xf902fb48",
+          "value": "0x8242ddf1",
+          "candidate": "@IopfCallDriver@8+0x35"
+        },
+        {
+          "stack": "0xf902fb5c",
+          "value": "0x8242f129",
+          "candidate": "_IoPageRead@20+0xb1"
+        },
+        {
+          "stack": "0xf902fb68",
+          "value": "0x825b6570",
+          "candidate": "hal.dll+0x9570"
+        },
+        {
+          "stack": "0xf902fb70",
+          "value": "0x82450e47",
+          "candidate": "_MiDispatchFault@24+0x23d"
+        },
+        {
+          "stack": "0xf902fb94",
+          "value": "0x825b6570",
+          "candidate": "hal.dll+0x9570"
+        },
+        {
+          "stack": "0xf902fb98",
+          "value": "0x8242e0a4",
+          "candidate": "@IopfCompleteRequest@8+0x1a6"
+        },
+        {
+          "stack": "0xf902fbb0",
+          "value": "0x82459c60",
+          "candidate": "_MmAccessFault@16+0x682"
+        },
+        {
+          "stack": "0xf902fbe8",
+          "value": "0x8242e6fd",
+          "candidate": "_IopFreeIrp@4+0xc1"
+        },
+        {
+          "stack": "0xf902fbfc",
+          "value": "0x8245306e",
+          "candidate": "@MiMakeSystemAddressValidPfn@4+0x2a"
+        },
+        {
+          "stack": "0xf902fc1c",
+          "value": "0x824564c8",
+          "candidate": "_MmUnmapViewInSystemCache@12+0x21c"
+        },
+        {
+          "stack": "0xf902fc54",
+          "value": "0x82423528",
+          "candidate": "_CcUnmapVacb@12+0x28"
+        },
+        {
+          "stack": "0xf902fc68",
+          "value": "0x82423c6d",
+          "candidate": "@CcUnmapVacbArray@16+0x159"
+        },
+        {
+          "stack": "0xf902fc9c",
+          "value": "0x82420e7a",
+          "candidate": "_CcUnmapAndPurge@4+0x1c"
+        },
+        {
+          "stack": "0xf902fcb4",
+          "value": "0x824207b3",
+          "candidate": "@CcDeleteSharedCacheMap@12+0x12d"
+        },
+        {
+          "stack": "0xf902fcbc",
+          "value": "0x825b6560",
+          "candidate": "hal.dll+0x9560"
+        },
+        {
+          "stack": "0xf902fcc4",
+          "value": "0x825b6570",
+          "candidate": "hal.dll+0x9570"
+        },
+        {
+          "stack": "0xf902fce0",
+          "value": "0x8241e5d5",
+          "candidate": "@CcWriteBehind@8+0x30f"
+        },
+        {
+          "stack": "0xf902fce8",
+          "value": "0x82484300",
+          "candidate": "_CcRegularWorkQueue+0x0"
+        },
+        {
+          "stack": "0xf902fd10",
+          "value": "0x82422b60",
+          "candidate": "_CcWorkerThread@4+0x12c"
+        },
+        {
+          "stack": "0xf902fd18",
+          "value": "0x824847a0",
+          "candidate": "_ExWorkerQueue+0x0"
+        },
+        {
+          "stack": "0xf902fd3c",
+          "value": "0x82478e85",
+          "candidate": "@KiSwapThread@0+0xd5"
+        },
+        {
+          "stack": "0xf902fd4c",
+          "value": "0x82484300",
+          "candidate": "_CcRegularWorkQueue+0x0"
+        },
+        {
+          "stack": "0xf902fd58",
+          "value": "0x82484700",
+          "candidate": "_ExpEnvironmentLock+0x0"
+        },
+        {
+          "stack": "0xf902fd6c",
+          "value": "0x8246fca0",
+          "candidate": "__except_handler3+0x0"
+        },
+        {
+          "stack": "0xf902fd70",
+          "value": "0x82410880",
+          "candidate": "\u007fHAL_NULL_THUNK_DATA+0x230"
+        },
+        {
+          "stack": "0xf902fd7c",
+          "value": "0x82426bfe",
+          "candidate": "_ExpWorkerThread@4+0xae"
+        },
+        {
+          "stack": "0xf902fda0",
+          "value": "0x82422a34",
+          "candidate": "_CcWorkerThread@4+0x0"
+        },
+        {
+          "stack": "0xf902fdac",
+          "value": "0x82464ad2",
+          "candidate": "_PspSystemThreadStartup@8+0x54"
+        },
+        {
+          "stack": "0xf902fdd0",
+          "value": "0x8246fca0",
+          "candidate": "__except_handler3+0x0"
+        },
+        {
+          "stack": "0xf902fdd4",
+          "value": "0x824165a8",
+          "candidate": "_GUID_DEVICE_BATTERY+0x3c8"
+        },
+        {
+          "stack": "0xf902fde0",
+          "value": "0x824792e2",
+          "candidate": "_KiThreadStartup@4+0x16"
+        },
+        {
+          "stack": "0xf902fde4",
+          "value": "0x82426b50",
+          "candidate": "_ExpWorkerThread@4+0x0"
+        }
+      ]
+    },
+    {
+      "process": "System",
+      "thread": "0xfe66bda0",
+      "tid": 64,
+      "state": 5,
+      "wait_reason": 0,
+      "stack": "0xf9053b0c",
+      "initial_stack": "0xf9054000",
+      "stack_code_candidates": [
+        {
+          "stack": "0xf9053b14",
+          "value": "0x82478e75",
+          "candidate": "@KiSwapThread@0+0xc5"
+        },
+        {
+          "stack": "0xf9053b28",
+          "value": "0x8243c2bf",
+          "candidate": "_KeWaitForSingleObject@20+0x1a1"
+        },
+        {
+          "stack": "0xf9053b3c",
+          "value": "0x8242ddf1",
+          "candidate": "@IopfCallDriver@8+0x35"
+        },
+        {
+          "stack": "0xf9053b50",
+          "value": "0xfe43d28d",
+          "candidate": "xwnfatx.sys+0x128d"
+        },
+        {
+          "stack": "0xf9053b7c",
+          "value": "0xf8e80cce",
+          "candidate": "PCIIDEX.SYS+0xcce"
+        },
+        {
+          "stack": "0xf9053b90",
+          "value": "0xfe44ca7b",
+          "candidate": "xwnfatx.sys+0x10a7b"
+        },
+        {
+          "stack": "0xf9053ba8",
+          "value": "0x8243d1bf",
+          "candidate": "_KeInsertQueueDpc@12+0xd9"
+        },
+        {
+          "stack": "0xf9053bf8",
+          "value": "0xfe44dab9",
+          "candidate": "xwnfatx.sys+0x11ab9"
+        },
+        {
+          "stack": "0xf9053bfc",
+          "value": "0x82482768",
+          "candidate": "_MmFreePageListHead+0x0"
+        },
+        {
+          "stack": "0xf9053c08",
+          "value": "0x82457d19",
+          "candidate": "@MiInsertPageInList@8+0x1eb"
+        },
+        {
+          "stack": "0xf9053c0c",
+          "value": "0x82491c20",
+          "candidate": "_MmZeroingPageEvent+0x0"
+        },
+        {
+          "stack": "0xf9053c24",
+          "value": "0x8245c450",
+          "candidate": "@MiDecrementReferenceCount@4+0xb6"
+        },
+        {
+          "stack": "0xf9053c30",
+          "value": "0x8245c394",
+          "candidate": "@MiDecrementShareCount@4+0xc4"
+        },
+        {
+          "stack": "0xf9053c50",
+          "value": "0xfe44beda",
+          "candidate": "xwnfatx.sys+0xfeda"
+        },
+        {
+          "stack": "0xf9053c60",
+          "value": "0x8242d54c",
+          "candidate": "_IopAllocateIrpPrivate@8+0xa2"
+        },
+        {
+          "stack": "0xf9053c88",
+          "value": "0xfe44c1ba",
+          "candidate": "xwnfatx.sys+0x101ba"
+        },
+        {
+          "stack": "0xf9053cb8",
+          "value": "0x8242ddf1",
+          "candidate": "@IopfCallDriver@8+0x35"
+        },
+        {
+          "stack": "0xf9053ccc",
+          "value": "0x8242f129",
+          "candidate": "_IoPageRead@20+0xb1"
+        },
+        {
+          "stack": "0xf9053ce0",
+          "value": "0x82450a54",
+          "candidate": "_MiMakeOutswappedPageResident@16+0x1fe"
+        },
+        {
+          "stack": "0xf9053d24",
+          "value": "0x82473b11",
+          "candidate": "_KiOutSwapKernelStacks@4+0xd9"
+        },
+        {
+          "stack": "0xf9053d54",
+          "value": "0x824501aa",
+          "candidate": "_MmInPageKernelStack@4+0x10e"
+        },
+        {
+          "stack": "0xf9053d70",
+          "value": "0x82490a28",
+          "candidate": "_KiStackInSwapListHead+0x0"
+        },
+        {
+          "stack": "0xf9053d80",
+          "value": "0x824739a1",
+          "candidate": "_KiInSwapKernelStacks@4+0x2f"
+        },
+        {
+          "stack": "0xf9053d94",
+          "value": "0x82473966",
+          "candidate": "_KeSwapProcessOrStack@4+0x80"
+        },
+        {
+          "stack": "0xf9053dac",
+          "value": "0x82464ad2",
+          "candidate": "_PspSystemThreadStartup@8+0x54"
+        },
+        {
+          "stack": "0xf9053dd0",
+          "value": "0x8246fca0",
+          "candidate": "__except_handler3+0x0"
+        },
+        {
+          "stack": "0xf9053dd4",
+          "value": "0x824165a8",
+          "candidate": "_GUID_DEVICE_BATTERY+0x3c8"
+        },
+        {
+          "stack": "0xf9053de0",
+          "value": "0x824792e2",
+          "candidate": "_KiThreadStartup@4+0x16"
+        },
+        {
+          "stack": "0xf9053de4",
+          "value": "0x824738e6",
+          "candidate": "_KeSwapProcessOrStack@4+0x0"
+        }
+      ]
+    },
+    {
+      "process": "winlogon.exe",
+      "thread": "0xfe514aa0",
+      "tid": 156,
+      "state": 5,
+      "wait_reason": 0,
+      "stack": "0xf8d5f6f4",
+      "initial_stack": "0xf8d60000",
+      "stack_code_candidates": [
+        {
+          "stack": "0xf8d5f6fc",
+          "value": "0x82478e75",
+          "candidate": "@KiSwapThread@0+0xc5"
+        },
+        {
+          "stack": "0xf8d5f710",
+          "value": "0x8243c2bf",
+          "candidate": "_KeWaitForSingleObject@20+0x1a1"
+        },
+        {
+          "stack": "0xf8d5f724",
+          "value": "0x8242ddf1",
+          "candidate": "@IopfCallDriver@8+0x35"
+        },
+        {
+          "stack": "0xf8d5f738",
+          "value": "0xfe43d28d",
+          "candidate": "xwnfatx.sys+0x128d"
+        },
+        {
+          "stack": "0xf8d5f760",
+          "value": "0xf8c77000",
+          "candidate": "nvnetnt5.sys+0x7000"
+        },
+        {
+          "stack": "0xf8d5f778",
+          "value": "0xfe44ca7b",
+          "candidate": "xwnfatx.sys+0x10a7b"
+        },
+        {
+          "stack": "0xf8d5f790",
+          "value": "0xf8f791f4",
+          "candidate": "openhci.sys+0x11f4"
+        },
+        {
+          "stack": "0xf8d5f7e0",
+          "value": "0xfe44dab9",
+          "candidate": "xwnfatx.sys+0x11ab9"
+        },
+        {
+          "stack": "0xf8d5f7e8",
+          "value": "0x824614c5",
+          "candidate": "_PoCallDriver@8+0x157"
+        },
+        {
+          "stack": "0xf8d5f80c",
+          "value": "0xf8ca38a1",
+          "candidate": "usbhub.sys+0x38a1"
+        },
+        {
+          "stack": "0xf8d5f818",
+          "value": "0x8242e6fd",
+          "candidate": "_IopFreeIrp@4+0xc1"
+        },
+        {
+          "stack": "0xf8d5f820",
+          "value": "0x82492be8",
+          "candidate": "_PopRequestedIrps+0x0"
+        },
+        {
+          "stack": "0xf8d5f838",
+          "value": "0xfe44beda",
+          "candidate": "xwnfatx.sys+0xfeda"
+        },
+        {
+          "stack": "0xf8d5f848",
+          "value": "0x8242d54c",
+          "candidate": "_IopAllocateIrpPrivate@8+0xa2"
+        },
+        {
+          "stack": "0xf8d5f870",
+          "value": "0xfe44c1ba",
+          "candidate": "xwnfatx.sys+0x101ba"
+        },
+        {
+          "stack": "0xf8d5f8a0",
+          "value": "0x8242ddf1",
+          "candidate": "@IopfCallDriver@8+0x35"
+        },
+        {
+          "stack": "0xf8d5f8b4",
+          "value": "0x8242f129",
+          "candidate": "_IoPageRead@20+0xb1"
+        },
+        {
+          "stack": "0xf8d5f8c0",
+          "value": "0x825b6570",
+          "candidate": "hal.dll+0x9570"
+        },
+        {
+          "stack": "0xf8d5f8c8",
+          "value": "0x82450e47",
+          "candidate": "_MiDispatchFault@24+0x23d"
+        },
+        {
+          "stack": "0xf8d5f8e4",
+          "value": "0xf8c77800",
+          "candidate": "nvnetnt5.sys+0x7800"
+        },
+        {
+          "stack": "0xf8d5f908",
+          "value": "0x82459c60",
+          "candidate": "_MmAccessFault@16+0x682"
+        },
+        {
+          "stack": "0xf8d5f910",
+          "value": "0xf8c77800",
+          "candidate": "nvnetnt5.sys+0x7800"
+        },
+        {
+          "stack": "0xf8d5f924",
+          "value": "0xf8c77800",
+          "candidate": "nvnetnt5.sys+0x7800"
+        },
+        {
+          "stack": "0xf8d5f928",
+          "value": "0x824657d8",
+          "candidate": "_WRITE_REGISTER_ULONG@8+0x0"
+        },
+        {
+          "stack": "0xf8d5f948",
+          "value": "0xf8c10e63",
+          "candidate": "pci.sys+0xe63"
+        },
+        {
+          "stack": "0xf8d5f954",
+          "value": "0x82477ceb",
+          "candidate": "_KiTrap0E+0xc3"
+        },
+        {
+          "stack": "0xf8d5f968",
+          "value": "0x82492a38",
+          "candidate": "_PopIrpSerialLock+0x0"
+        },
+        {
+          "stack": "0xf8d5f970",
+          "value": "0x8246158e",
+          "candidate": "_PopPresentIrp@8+0x62"
+        },
+        {
+          "stack": "0xf8d5f974",
+          "value": "0x82492a38",
+          "candidate": "_PopIrpSerialLock+0x0"
+        },
+        {
+          "stack": "0xf8d5f988",
+          "value": "0x824614c5",
+          "candidate": "_PoCallDriver@8+0x157"
+        },
+        {
+          "stack": "0xf8d5f9c0",
+          "value": "0x824657d8",
+          "candidate": "_WRITE_REGISTER_ULONG@8+0x0"
+        },
+        {
+          "stack": "0xf8d5f9d0",
+          "value": "0xf8c77800",
+          "candidate": "nvnetnt5.sys+0x7800"
+        },
+        {
+          "stack": "0xf8d5f9dc",
+          "value": "0xf8c7225a",
+          "candidate": "nvnetnt5.sys+0x225a"
+        },
+        {
+          "stack": "0xf8d5f9ec",
+          "value": "0xfe401252",
+          "candidate": "NDIS.sys+0x252"
+        },
+        {
+          "stack": "0xf8d5f9fc",
+          "value": "0xfe417d39",
+          "candidate": "NDIS.sys+0x16d39"
+        },
+        {
+          "stack": "0xf8d5fa18",
+          "value": "0xfe40952a",
+          "candidate": "NDIS.sys+0x852a"
+        },
+        {
+          "stack": "0xf8d5fa1c",
+          "value": "0xfe404b60",
+          "candidate": "NDIS.sys+0x3b60"
+        },
+        {
+          "stack": "0xf8d5fa30",
+          "value": "0xfe402873",
+          "candidate": "NDIS.sys+0x1873"
+        },
+        {
+          "stack": "0xf8d5fa38",
+          "value": "0xfe409780",
+          "candidate": "NDIS.sys+0x8780"
+        },
+        {
+          "stack": "0xf8d5fa58",
+          "value": "0x8242ddf1",
+          "candidate": "@IopfCallDriver@8+0x35"
+        },
+        {
+          "stack": "0xf8d5fa64",
+          "value": "0x82492a38",
+          "candidate": "_PopIrpSerialLock+0x0"
+        },
+        {
+          "stack": "0xf8d5fa6c",
+          "value": "0x8246158e",
+          "candidate": "_PopPresentIrp@8+0x62"
+        },
+        {
+          "stack": "0xf8d5fa70",
+          "value": "0x82492a38",
+          "candidate": "_PopIrpSerialLock+0x0"
+        },
+        {
+          "stack": "0xf8d5fa84",
+          "value": "0x824614c5",
+          "candidate": "_PoCallDriver@8+0x157"
+        },
+        {
+          "stack": "0xf8d5faa8",
+          "value": "0x8249c769",
+          "candidate": "_PopNotifyDevice@8+0x183"
+        },
+        {
+          "stack": "0xf8d5fac8",
+          "value": "0x8249c5db",
+          "candidate": "_PopNotifyDeviceList@8+0x2b"
+        },
+        {
+          "stack": "0xf8d5facc",
+          "value": "0x82487780",
+          "candidate": "_IopWarmEjectPdo+0x0"
+        },
+        {
+          "stack": "0xf8d5fae4",
+          "value": "0x8249c006",
+          "candidate": "_PopSetDevicesSystemState@4+0xf8"
+        },
+        {
+          "stack": "0xf8d5fb08",
+          "value": "0x8249bb1f",
+          "candidate": "_NtSetSystemPowerState@12+0x329"
+        },
+        {
+          "stack": "0xf8d5fb18",
+          "value": "0x8249b7f6",
+          "candidate": "_NtSetSystemPowerState@12+0x0"
+        },
+        {
+          "stack": "0xf8d5fb24",
+          "value": "0x824e6d34",
+          "candidate": "_ObpIncrementHandleCount@28+0x3c6"
+        },
+        {
+          "stack": "0xf8d5fb28",
+          "value": "0x824e6d22",
+          "candidate": "_ObpIncrementHandleCount@28+0x3b4"
+        },
+        {
+          "stack": "0xf8d5fb3c",
+          "value": "0x8249f7d4",
+          "candidate": "_ExpAllocateHandleTableEntry@8+0x246"
+        },
+        {
+          "stack": "0xf8d5fb5c",
+          "value": "0x82410288",
+          "candidate": "ntoskrnl.exe+0x288"
+        },
+        {
+          "stack": "0xf8d5fb6c",
+          "value": "0x82492500",
+          "candidate": "_MmSystemCacheWs+0x40"
+        },
+        {
+          "stack": "0xf8d5fb98",
+          "value": "0x8249eaa0",
+          "candidate": "_ExUnlockHandleTableShared@4+0xc"
+        },
+        {
+          "stack": "0xf8d5fb9c",
+          "value": "0x8249f109",
+          "candidate": "_ExCreateHandle@8+0x8f"
+        },
+        {
+          "stack": "0xf8d5fba4",
+          "value": "0x8249f0ed",
+          "candidate": "_ExCreateHandle@8+0x73"
+        },
+        {
+          "stack": "0xf8d5fbd4",
+          "value": "0x8246fca0",
+          "candidate": "__except_handler3+0x0"
+        },
+        {
+          "stack": "0xf8d5fbd8",
+          "value": "0x82416188",
+          "candidate": "??_C@_0BG@KMIE@Locked?5pages?5tracking?$AA@+0x598"
+        },
+        {
+          "stack": "0xf8d5fbe4",
+          "value": "0x82475034",
+          "candidate": "_KiSystemService+0xc4"
+        },
+        {
+          "stack": "0xf8d5fbf8",
+          "value": "0x82493860",
+          "candidate": "_SepTokenLock+0x0"
+        },
+        {
+          "stack": "0xf8d5fc00",
+          "value": "0x82510237",
+          "candidate": "_SepPrivilegeCheck@20+0x95"
+        },
+        {
+          "stack": "0xf8d5fc38",
+          "value": "0x825104dc",
+          "candidate": "_SeSinglePrivilegeCheck@12+0x5c"
+        },
+        {
+          "stack": "0xf8d5fc5c",
+          "value": "0x8244057f",
+          "candidate": "_ZwSetSystemPowerState@12+0xb"
+        },
+        {
+          "stack": "0xf8d5fc68",
+          "value": "0x8249b866",
+          "candidate": "_NtSetSystemPowerState@12+0x70"
+        },
+        {
+          "stack": "0xf8d5fc80",
+          "value": "0x824a04cc",
+          "candidate": "_NtShutdownSystem@4+0x0"
+        },
+        {
+          "stack": "0xf8d5fc90",
+          "value": "0x82451967",
+          "candidate": "_MiResolveProtoPteFault@28+0x157"
+        },
+        {
+          "stack": "0xf8d5fcac",
+          "value": "0x825b6570",
+          "candidate": "hal.dll+0x9570"
+        },
+        {
+          "stack": "0xf8d5fcbc",
+          "value": "0x82450cf9",
+          "candidate": "_MiDispatchFault@24+0xef"
+        },
+        {
+          "stack": "0xf8d5fcf8",
+          "value": "0x82507bfe",
+          "candidate": "_NtOpenProcessToken@12+0x0"
+        },
+        {
+          "stack": "0xf8d5fd04",
+          "value": "0x825b7919",
+          "candidate": "hal.dll+0xa919"
+        },
+        {
+          "stack": "0xf8d5fd1c",
+          "value": "0x8245a2a6",
+          "candidate": "_MmAccessFault@16+0xcc8"
+        },
+        {
+          "stack": "0xf8d5fd3c",
+          "value": "0x8246fca0",
+          "candidate": "__except_handler3+0x0"
+        },
+        {
+          "stack": "0xf8d5fd40",
+          "value": "0x82416188",
+          "candidate": "??_C@_0BG@KMIE@Locked?5pages?5tracking?$AA@+0x598"
+        },
+        {
+          "stack": "0xf8d5fd4c",
+          "value": "0x824a04fa",
+          "candidate": "_NtShutdownSystem@4+0x2e"
+        },
+        {
+          "stack": "0xf8d5fd5c",
+          "value": "0x82475034",
+          "candidate": "_KiSystemService+0xc4"
+        }
+      ]
+    },
+    {
+      "process": "services.exe",
+      "thread": "0xffb2e980",
+      "tid": 684,
+      "state": 5,
+      "wait_reason": 0,
+      "stack": "0xfccdeaf0",
+      "initial_stack": "0xfccdf000",
+      "stack_code_candidates": [
+        {
+          "stack": "0xfccdeaf8",
+          "value": "0x82478e75",
+          "candidate": "@KiSwapThread@0+0xc5"
+        },
+        {
+          "stack": "0xfccdeb0c",
+          "value": "0x8243c2bf",
+          "candidate": "_KeWaitForSingleObject@20+0x1a1"
+        },
+        {
+          "stack": "0xfccdeb20",
+          "value": "0x8242ddf1",
+          "candidate": "@IopfCallDriver@8+0x35"
+        },
+        {
+          "stack": "0xfccdeb34",
+          "value": "0xfe43d28d",
+          "candidate": "xwnfatx.sys+0x128d"
+        },
+        {
+          "stack": "0xfccdeb74",
+          "value": "0xfe44ca7b",
+          "candidate": "xwnfatx.sys+0x10a7b"
+        },
+        {
+          "stack": "0xfccdebdc",
+          "value": "0xfe44dab9",
+          "candidate": "xwnfatx.sys+0x11ab9"
+        },
+        {
+          "stack": "0xfccdebe4",
+          "value": "0xf8cc1e40",
+          "candidate": "Npfs.SYS+0x1e40"
+        },
+        {
+          "stack": "0xfccdebf0",
+          "value": "0x825b7919",
+          "candidate": "hal.dll+0xa919"
+        },
+        {
+          "stack": "0xfccdebf8",
+          "value": "0xf8cc2609",
+          "candidate": "Npfs.SYS+0x2609"
+        },
+        {
+          "stack": "0xfccdec34",
+          "value": "0xfe44beda",
+          "candidate": "xwnfatx.sys+0xfeda"
+        },
+        {
+          "stack": "0xfccdec44",
+          "value": "0x8242d54c",
+          "candidate": "_IopAllocateIrpPrivate@8+0xa2"
+        },
+        {
+          "stack": "0xfccdec6c",
+          "value": "0xfe44c1ba",
+          "candidate": "xwnfatx.sys+0x101ba"
+        },
+        {
+          "stack": "0xfccdec9c",
+          "value": "0x8242ddf1",
+          "candidate": "@IopfCallDriver@8+0x35"
+        },
+        {
+          "stack": "0xfccdecb0",
+          "value": "0x8242f129",
+          "candidate": "_IoPageRead@20+0xb1"
+        },
+        {
+          "stack": "0xfccdecbc",
+          "value": "0x825b6570",
+          "candidate": "hal.dll+0x9570"
+        },
+        {
+          "stack": "0xfccdecc4",
+          "value": "0x82450e47",
+          "candidate": "_MiDispatchFault@24+0x23d"
+        },
+        {
+          "stack": "0xfccdece8",
+          "value": "0x824b6ef2",
+          "candidate": "_NtRemoveIoCompletion@20+0x0"
+        },
+        {
+          "stack": "0xfccded04",
+          "value": "0x8245a219",
+          "candidate": "_MmAccessFault@16+0xc3b"
+        },
+        {
+          "stack": "0xfccded50",
+          "value": "0x82477ceb",
+          "candidate": "_KiTrap0E+0xc3"
+        }
+      ]
+    }
+  ],
+  "cleanup": {
+    "completedUtc": "2026-10-04T11:04:56.2297036Z",
+    "scratchDirectory": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\work\\scratch\\windows-native-5f6b3c5e7e3e447c83af7ff4a3f805f5",
+    "retained": false,
+    "reason": ""
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "scope": "Read-only emulator lock ownership; no live patches",
+  "threads": [
+    {
+      "process": "winlogon.exe",
+      "thread": "0xfe514a80",
+      "directory": {
+        "address": "0xfe6180d0",
+        "active_count": 1,
+        "flags": "0x80",
+        "owners": [
+          {
+            "thread": "0xffad0800",
+            "count": 1
+          },
+          {
+            "thread": "0x0",
+            "count": 0
+          }
+        ],
+        "exclusive_waiters": 2,
+        "raw": "74a068feecd63efe00000000010080002845afffc8a35afe0008adff0100000000000000000000001e020000000002000000000000000000"
+      },
+      "file_main": {
+        "address": "0xfe531d7c",
+        "active_count": 1,
+        "flags": "0x80",
+        "owners": [
+          {
+            "thread": "0xfe514a80",
+            "count": 1
+          },
+          {
+            "thread": "0x0",
+            "count": 0
+          }
+        ],
+        "exclusive_waiters": 1,
+        "raw": "f41a53feb41d53fe00000000010080000000000008e6b7ff804a51fe01000000000000000000000001000000000001000000000000000000"
+      },
+      "fcb": "0xfe531d48"
+    }
+  ],
+  "volume_wait": {
+    "thread": "0xffad0800",
+    "resource": "0xfe531d7c"
+  },
+  "cycle_confirmed": true,
+  "run": "nt5-fatx-boot-paging-flags-001"
+}
