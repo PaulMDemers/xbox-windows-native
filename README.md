@@ -13,7 +13,11 @@ host-side test harness.
   appended setupapi.log data, and STOP 0xA. Its trace miniport remains the
   physical baseline; the normal miniport still fails with B4 on hardware.
   Paint's separate divide-by-zero has an emulator-validated display candidate.
-  See [desktop stability evidence](outputs/native-windows-physical-f/DESKTOP-STABILITY.md).
+  A deferred-write buffer fix improves emulator stress; replaying the physical
+  registry still reproduces a mapped-file flush error. Physical cycle011
+  crashed during boot before its test started; automatic startup is disabled.
+  See [desktop stability evidence](outputs/native-windows-physical-f/DESKTOP-STABILITY.md)
+  and [cache test results](outputs/native-windows-physical-f/CACHE-STABILITY.md).
 - Extended F emulator milestone: desktop on a 250 GB native FATX disk, writes
   beyond LBA28, and normal restart cycles with clean cold audits. These bounded
   tests do not establish general physical storage reliability. See

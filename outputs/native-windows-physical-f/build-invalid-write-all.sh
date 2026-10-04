@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+[[ ${XWN_BUILD_LEASE:-} == held ]] || exit 2
+root=/home/paul/xbox-windows-native
+src="$root/sources/reactos-extended"
+build="$root/build/vfat-nt5-invalid-write-probe"
+kit=/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-windows-physical-f
+git -C "$src" apply --check "$kit/diagnostic-invalid-write-all.patch"
+git -C "$src" apply "$kit/diagnostic-invalid-write-all.patch"
+trap 'git -C "$src" apply --reverse "$kit/diagnostic-invalid-write-all.patch"' EXIT
+printf 'cmake -S %s -B %s -G Ninja -DCMAKE_TOOLCHAIN_FILE=%s/toolchain-gcc.cmake -DARCH=i386 -DSARCH=xbox -DOARCH=pentium -DCMAKE_BUILD_TYPE=Release -DPCH=OFF -DENABLE_CCACHE=OFF -DKDBG=OFF -DCMAKE_C_FLAGS="-D_WIN2K_COMPAT_SLIST_USAGE -DXWN_VFAT_WRITE_DIAGNOSTIC" && cmake --build %s --target vfatfs -- -j4\n' "$src" "$build" "$src" "$build" | "$root/toolchains/RosBE-2.2.1/RosBE.sh" "$src" 0 i386
+cp "$build/drivers/filesystems/vfatfs/vfatfs.sys" /mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-windows-physical-f/artifacts/xwnfatx-invalid-write-all.sys

@@ -1,5 +1,9 @@
 # Physical F deployment and isolated E launcher
 
+Latest: [physical desktop and instability](DESKTOP-STABILITY.md), followed by
+[deferred-write tests and cycle011 boot failure](CACHE-STABILITY.md).
+The historical deployment results below are not evidence of current stability.
+
 This kit stages a native Windows 2000 installation in previously absent F paths,
 and a separate `E:\Applications\XWNFBoot` launcher. It does not format or change
 the partition table. The physical `E:\Applications\XWNLoader` XWN390 baseline

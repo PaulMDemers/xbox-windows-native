@@ -1,0 +1,45 @@
+diff --git a/drivers/filesystems/vfatfs/rw.c b/drivers/filesystems/vfatfs/rw.c
+index 6b62e6ba..349dee53 100644
+--- a/drivers/filesystems/vfatfs/rw.c
++++ b/drivers/filesystems/vfatfs/rw.c
+@@ -1039,6 +1039,24 @@ ByeBye:
+     return Status;
+ }
+ 
++/* Emulator-only failure checkpoint, restricted to the owned regression file. */
++#ifdef XWN_VFAT_WRITE_DIAGNOSTIC
++static VOID
++VfatProbeInvalidWrite(PVFATFCB Fcb, ULONG Reason, LARGE_INTEGER Offset, ULONG Length)
++{
++    static const WCHAR Name[] = L"\\xwn-cache-map.tmp";
++    ULONG i;
++    if (Fcb->PathNameU.Length != sizeof(Name) - sizeof(WCHAR)) return;
++    for (i = 0; i < sizeof(Name) / sizeof(WCHAR) - 1; ++i)
++        if (Fcb->PathNameU.Buffer[i] != Name[i]) return;
++    KeBugCheckEx(0xe058ca01, Reason, Offset.LowPart, Length,
++                 Fcb->RFCB.AllocationSize.LowPart);
++}
++#define VFAT_PROBE_INVALID_WRITE(reason) VfatProbeInvalidWrite(Fcb, reason, ByteOffset, Length)
++#else
++#define VFAT_PROBE_INVALID_WRITE(reason) ((void)0)
++#endif
++
+ NTSTATUS
+ VfatWrite(
+     PVFAT_IRP_CONTEXT *pIrpContext)
+@@ -1124,6 +1142,7 @@ VfatWrite(
+         if (ByteOffset.u.LowPart % BytesPerSector != 0 || Length % BytesPerSector != 0)
+         {
+             // non cached write must be sector aligned
++            VFAT_PROBE_INVALID_WRITE(1);
+             Status = STATUS_INVALID_PARAMETER;
+             goto ByeBye;
+         }
+@@ -1143,6 +1162,7 @@ VfatWrite(
+     {
+         if (ByteOffset.u.LowPart + Length > Fcb->RFCB.AllocationSize.u.LowPart)
+         {
++            VFAT_PROBE_INVALID_WRITE(2);
+             Status = STATUS_INVALID_PARAMETER;
+             goto ByeBye;
+         }

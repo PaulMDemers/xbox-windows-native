@@ -36,9 +36,11 @@ another physical desktop launch. Two source-review leads remain unproven:
   request to a callback that directly dispatches it again. A forced-defer test
   with a different process address space should check this separately.
 
-Neither lead has been tied to the physical crash. No speculative filesystem
-change has been deployed. Preserve raw events, SYSTEM and setupapi.log in the
-ignored artifacts directory before any further experiment.
+The deferred-buffer lead was subsequently demonstrated and fixed in0076.
+Emulator stress improved, but physical cycle011 crashed during boot before
+the helper started. See [cache follow-up](CACHE-STABILITY.md) for the paired
+tests, physical failure and current installed state. Neither lead has been
+tied conclusively to the physical crash. Raw evidence remains preserved.
 
 ## Paint: independent divide-by-zero fixed in candidate
 

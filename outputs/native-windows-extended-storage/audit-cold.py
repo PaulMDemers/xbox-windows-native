@@ -4,7 +4,7 @@ root=pathlib.Path('/home/paul/xbox-windows-native');ws=pathlib.Path('/mnt/c/User
 sys.path[:0]=[str(ws/'outputs/native-windows-fatx-runtime'),'/mnt/c/Users/Paul/Desktop/ogxbox-linux/scripts']
 import fatx_stage_boot as fatx
 from bulk_fatx import Writer
-p=argparse.ArgumentParser();g=p.add_mutually_exclusive_group(required=True);g.add_argument('--run');g.add_argument('--fixture',choices=['windows2000-f-001','windows2000-f-write-001','windows2000-f-reboot-001']);p.add_argument('--probe-version',choices=['1','2'],default='1');p.add_argument('--video-miniport',type=pathlib.Path,help='Explicit replacement miniport whose hash must match the audited fixture');p.add_argument('--video-trace-output',type=pathlib.Path,help='Extract an existing bounded trace to a new local file');a=p.parse_args()
+p=argparse.ArgumentParser();g=p.add_mutually_exclusive_group(required=True);g.add_argument('--run');g.add_argument('--fixture',choices=['windows2000-f-001','windows2000-f-write-001','windows2000-f-reboot-001']);p.add_argument('--probe-version',choices=['1','2','cache'],default='1');p.add_argument('--video-miniport',type=pathlib.Path,help='Explicit replacement miniport whose hash must match the audited fixture');p.add_argument('--video-trace-output',type=pathlib.Path,help='Extract an existing bounded trace to a new local file');p.add_argument('--filesystem-driver',type=pathlib.Path,help='Explicit expected FATX driver replacement');a=p.parse_args()
 if a.run:
  assert a.run.startswith(('nt5-extended-f-','nt5-physical-f-')) and a.run.replace('-','').isalnum()
  run=ws/'work/runs'/a.run;assert (run/'cleanup.json').exists();source=run/'hdd.qcow2'
@@ -14,8 +14,12 @@ manifest=json.loads((k/'fixture-001.json').read_text());expected={v['path'].lowe
 if a.video_miniport:
  assert a.video_miniport.is_file()
  expected['/winnt/system32/drivers/xboxvnt5.sys']=dict(expected['/winnt/system32/drivers/xboxvnt5.sys'],sha256=hashlib.sha256(a.video_miniport.read_bytes()).hexdigest())
+if a.filesystem_driver:
+ assert a.filesystem_driver.is_file()
+ expected['/winnt/system32/drivers/xwnfatx.sys']=dict(expected['/winnt/system32/drivers/xwnfatx.sys'],sha256=hashlib.sha256(a.filesystem_driver.read_bytes()).hexdigest())
 extensions={'.exe','.dll','.sys','.nls','.fon','.ttf','.cpl','.ocx'}
 r={'run':a.run,'scope':'Read-only F: cold audit; no physical access','directories':0,'files':0,'immutable_files_checked':0,'errors':[],'hives':[]}
+if a.filesystem_driver:r['expected_filesystem_driver_sha256']=expected['/winnt/system32/drivers/xwnfatx.sys']['sha256']
 if a.video_miniport:r['expected_video_miniport_sha256']=expected['/winnt/system32/drivers/xboxvnt5.sys']['sha256']
 try:
  subprocess.run(['qemu-img','convert','-O','raw',str(source),str(raw)],check=True)
@@ -44,7 +48,13 @@ try:
    assert 0 < struct.unpack_from('<I',trace,16)[0] <= 254
    with a.video_trace_output.open('xb') as target:target.write(trace)
    r['video_trace_sha256']=hashlib.sha256(trace).hexdigest()
-  if a.run.startswith('nt5-physical-f-'):
+  if a.run.startswith('nt5-physical-f-') and a.probe_version=='cache':
+   log=w.read('/xwn-report-v2.txt');data=w.read('/xwn-cache-pressure.tmp')
+   assert len(log)==4096 and log.startswith(b'XWN-CACHE-START\r\n') and b'XWN-CACHE-PASS\r\n' in log and b'failures=0\r\n' in log
+   block=bytes((i*37+(i>>8)+0x77)&255 for i in range(65536))
+   assert len(data)==32*1024*1024 and all(data[i:i+65536]==block for i in range(0,len(data),65536))
+   r['native_probe']={'log':log.decode('ascii'),'payload_sha256':hashlib.sha256(data).hexdigest(),'payload_bytes':len(data),'passed':True}
+  elif a.run.startswith('nt5-physical-f-'):
    log=w.read('/xwn-report-v2.txt' if a.probe_version=='2' else '/xwn-physical.log');data=w.read('/xwn-create-v2.bin' if a.probe_version=='2' else '/xwn-physical-write.bin')
    assert (b'XWN-V2-PASS\r\n' if a.probe_version=='2' else b'XWN-PHYSICAL-PASS\r\n') in log and b'Failures: 0\r\n' in log
    if a.probe_version=='2':assert len(log)==4096 and log.startswith(b'XWN-V2-STARTED\r\n')

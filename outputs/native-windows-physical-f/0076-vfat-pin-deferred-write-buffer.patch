@@ -1,0 +1,18 @@
+diff --git a/drivers/filesystems/vfatfs/rw.c b/drivers/filesystems/vfatfs/rw.c
+index 8330b7fd..6b62e6ba 100644
+--- a/drivers/filesystems/vfatfs/rw.c
++++ b/drivers/filesystems/vfatfs/rw.c
+@@ -1158,6 +1158,13 @@ VfatWrite(
+     {
+         BOOLEAN Retrying;
+ 
++        /* The cache manager may invoke the callback in a different process.
++         * Pin the caller's pages before leaving its address space; retry will
++         * then obtain a system mapping from the MDL instead of UserBuffer. */
++        Status = VfatLockUserBuffer(IrpContext->Irp, Length, IoReadAccess);
++        if (!NT_SUCCESS(Status))
++            goto ByeBye;
++
+         Retrying = BooleanFlagOn(IrpContext->Flags, IRPCONTEXT_DEFERRED_WRITE);
+         SetFlag(IrpContext->Flags, IRPCONTEXT_DEFERRED_WRITE);
+ 

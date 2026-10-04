@@ -1,0 +1,50 @@
+{
+  "scope": "Resolve the user-transcribed PC using an explicit high-kernel-alias assumption.",
+  "kernel_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+  "pdb_sha256": "29f5de2a8db7959875b8a615945bd6f16e50e5c5a9465dd8f71b37f37d671e9e",
+  "user_pc": "0x823e2d9b",
+  "user_reported_base": "0x023d0000",
+  "assumed_high_alias": "0x823d0000",
+  "rva": "0x12d9b",
+  "symbol": "_CcGetVirtualAddress@20",
+  "symbol_offset": "0xa5",
+  "instructions": [
+    {
+      "rva": "0x12d8e",
+      "mnemonic": "mov",
+      "operands": "edx, dword ptr [esi + 0x14]"
+    },
+    {
+      "rva": "0x12d91",
+      "mnemonic": "mov",
+      "operands": "ecx, dword ptr [esi + 0x10]"
+    },
+    {
+      "rva": "0x12d94",
+      "mnemonic": "lea",
+      "operands": "eax, [esi + 0x10]"
+    },
+    {
+      "rva": "0x12d97",
+      "mnemonic": "cmp",
+      "operands": "dword ptr [ebp - 4], 0"
+    },
+    {
+      "rva": "0x12d9b",
+      "mnemonic": "mov",
+      "operands": "dword ptr [edx], ecx"
+    },
+    {
+      "rva": "0x12d9d",
+      "mnemonic": "mov",
+      "operands": "dword ptr [ecx + 4], edx"
+    },
+    {
+      "rva": "0x12da0",
+      "mnemonic": "mov",
+      "operands": "ecx, dword ptr [0x47438c]"
+    }
+  ],
+  "interpretation": "EDX comes from VACB.LruList.Blink at +0x14. Write-to-zero at this instruction is consistent with a NULL Blink; the corrupting writer and call stack remain unknown.",
+  "limitation": "No physical memory dump; reported low base is interpreted through the 0x80000000 alias, not silently treated as the displayed high base."
+}
