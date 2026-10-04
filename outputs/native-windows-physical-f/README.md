@@ -376,7 +376,9 @@ Ordinary widescreen run nt5-physical-f-video-trace-wide-002 reached the desktop,
 passed the v2 user-mode read/write probe and restarted to UnleashX. Its cold
 audit passed 6,495 files / 3,439 immutable binaries, registry trees and cluster
 ownership. The persisted video trace has 41 records, zero skipped IO attempts,
-AddDevice success and a successful START dispatch return, plus both PCI headers.
+AddDevice success and subsequent PnP query returns, plus both PCI headers.
+Correction: there is no logged START event in this successful trace; its absence
+alone does not establish whether Windows sent START.
 The read-only backing image retained its original hash. There were no debugger
 execution changes. The emulator is closed; its retained overlay requires the
 physical-video-trace-001.qcow2 backing file. Do not retire that backing alone.
@@ -387,3 +389,28 @@ launch request at 20:10:21 UTC. Physical trace results remain pending. After
 reboot, collect-video-trace.py --cycle 8 retrieves and preserves them without
 launching or resetting anything. Existing seed data must not be overwritten
 until the corresponding trace is collected. The startup probe remains pending.
+
+
+## Physical Windows user mode verified — cycle009
+
+The cycle008 trace and registry exposed an additional unassigned 512 KiB GPU
+BAR2 requirement absent in stock xemu. An isolated xemu resource model reproduced
+B4; a larger BAR1-only control passed. Default-OFF patch0074 provides a guarded
+framebuffer-only PCI view that omits BAR2 without writing its hardware register
+or changing the bridge. The same failing emulator then reached the desktop and
+passed the probe and cold audit.
+
+Physical cycle009, launched 21:06:49 UTC, now **passes the real Win32 startup
+probe**. Its saved report has zero failures, correct native FATX F-volume geometry
+(Windows C:), and verified create/write/flush/reopen. The 65,537-byte payload was
+independently read back through dashboard FTP and matched exactly. The trace has
+41 records. FTP was available again at collection. This verifies physical user
+mode and bounded file IO; visual desktop/input confirmation remains separate.
+
+See [the investigation and reproduction](FRAMEBUFFER-PCI-RESULT.md),
+[physical evidence](physical-cycle-009.json), and
+[emulator validation](framebuffer-pci-validation.json).
+The original HAL is backed up as E:/Applications/XWNFBoot/loader/halxboxnt5.xwn-v8.
+The desktop-viewing preparation restores the normal miniport and backs up then
+disables the startup probe's automatic restart. Its launch/result belongs in
+physical-desktop-001.json; never rerun the one-shot launcher blindly.

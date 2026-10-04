@@ -7,6 +7,8 @@ param(
     [Parameter(Mandatory)][string]$Iso,
     [string]$HddSource,
     [string]$EepromSource,
+    [string]$EmulatorPath = 'C:\Users\Paul\Desktop\ogxbox-linux\tools\xemu-nvnet-fresh\xemu.exe',
+    [ValidatePattern('^[a-fA-F0-9]{64}$')][string]$EmulatorSha256 = '392C3FEE86E47A5452A32ED31E280B62D2074C260A2C1195441ED5DDCC0A3D55',
     [ValidateRange(0,65535)][int]$FtpPort = 0,
     [switch]$LaunchXromwell,
     [switch]$UsbMouse,
@@ -45,7 +47,7 @@ $run = Join-Path $workspace "work\runs\$RunId"
 $captureComplete = Join-Path $run 'capture-complete.signal'
 if (Test-Path -LiteralPath $run) { throw 'Choose an unused run id.' }
 $integration = 'C:\Users\Paul\Desktop\ogxbox-linux\scripts'
-$xemu = 'C:\Users\Paul\Desktop\ogxbox-linux\tools\xemu-nvnet-fresh\xemu.exe'
+$xemu = (Resolve-Path -LiteralPath $EmulatorPath).Path
 $mcpx = 'C:\Emulators\xemu\system\mcpx\mcpx_1.0.bin'
 $blank = 'C:\Emulators\xemu\system\xbox_hdd.qcow2'
 if ($HddSource) { $blank = (Resolve-Path -LiteralPath $HddSource).Path }
@@ -53,7 +55,7 @@ $originalEeprom = 'C:\Emulators\xemu\eeprom.bin'
 if ($EepromSource) { $originalEeprom = (Resolve-Path -LiteralPath $EepromSource).Path }
 $biosPath = (Resolve-Path -LiteralPath $Bios).Path
 $isoPath = (Resolve-Path -LiteralPath $Iso).Path
-if ((Get-FileHash $xemu).Hash -ne '392C3FEE86E47A5452A32ED31E280B62D2074C260A2C1195441ED5DDCC0A3D55') { throw 'Unexpected emulator binary.' }
+if ((Get-FileHash $xemu).Hash -ne $EmulatorSha256) { throw 'Unexpected emulator binary.' }
 $probe = [Net.Sockets.TcpListener]::new([Net.IPAddress]::Loopback,$MonitorPort)
 try { $probe.Start() } finally { $probe.Stop() }
 if ($GdbPort -eq $MonitorPort) { throw 'GDB and monitor ports must differ.' }

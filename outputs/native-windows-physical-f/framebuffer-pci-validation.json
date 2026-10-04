@@ -1,0 +1,78 @@
+{
+  "scope": "Paired ordinary emulator resource tests and opt-in framebuffer HAL fix; no physical success claimed",
+  "run": "nt5-physical-f-framebuffer-pci-extra-001",
+  "passed": true,
+  "hal_sha256": "a3a84368d59936dfa6bbcdc6d5839d57b886342211142d305e9dde941e4d1648",
+  "miniport_sha256": "413098acf0066e48fde515b75d825578c23c17c4094ec2341ebdaa314a2d6b13",
+  "emulator_sha256": "969a99a83a308ba547ce3918015d676efee79912d97253d336bf8a35b5bc047d",
+  "source_fixture_sha256": "4c2f9bb7e000732401105f9600f311628e81dc8d5fef088a256c6021f9a248c8",
+  "candidate_fixture_sha256": "02e123d1cbab7b0b9c5207adecd43049aa459b097f29ec2ea15ad7d3424256af",
+  "runs": [
+    {
+      "run": "nt5-physical-f-resource-extra-001",
+      "model": "128-plus-extra",
+      "hal": "baseline",
+      "result": "B4(0,0,0,50000)",
+      "trace_records": 24,
+      "physical_callback_status_sequence_matches": true
+    },
+    {
+      "run": "nt5-physical-f-resource-control-001",
+      "model": "128-only",
+      "hal": "baseline",
+      "result": "desktop and probe PASS; cold audit PASS",
+      "trace_records": 41
+    },
+    {
+      "run": "nt5-physical-f-framebuffer-pci-extra-001",
+      "model": "128-plus-extra",
+      "hal": "framebuffer-only candidate",
+      "result": "desktop observed; persisted probe PASS; cold audit PASS",
+      "trace_records": 41
+    }
+  ],
+  "ordinary_execution": true,
+  "debugger_execution_changes": false,
+  "desktop_observed": true,
+  "cold_audit_passed": true,
+  "files_audited": 6495,
+  "immutable_binaries_audited": 3439,
+  "default_off_regression": {
+    "scope": "Verify opt-in diagnostics leave the normal HAL code/imports intact.",
+    "baseline_sha256": "59c889e177cee82e34c8ded326bffc33a659881031d3e0f7a9616d69c77447eb",
+    "rebuilt_sha256": "fd71edce1450223327da59595966e3891f6b772a33c7faadcc1196b2dd30a8ee",
+    "text_identical_except_debug_source_line_numbers": true,
+    "debug_line_changes": [
+      [
+        24378,
+        685,
+        728
+      ],
+      [
+        24442,
+        696,
+        739
+      ],
+      [
+        24825,
+        778,
+        821
+      ]
+    ],
+    "imports_identical": true
+  },
+  "physical_validation_pending": false,
+  "limitations": [
+    "Resource model does not emulate all physical GPU behavior.",
+    "The opt-in PCI view is for the current BAR0/BAR1 framebuffer miniport, not an accelerated GPU driver.",
+    "Absence of logged START is not conclusive: successful control also lacks that event. Compare full callback sequences and boot results.",
+    "Candidate normal reboot was not captured visually; persisted probe and clean hives were verified after harness cleanup."
+  ],
+  "physical_result": {
+    "cycle": 9,
+    "native_user_mode_probe_passed": true,
+    "payload_bytes_verified_by_ftp": 65537,
+    "dashboard_available_after_run": true,
+    "desktop_visual_confirmation_pending": true
+  }
+}

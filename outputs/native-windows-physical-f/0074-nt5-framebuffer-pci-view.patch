@@ -1,0 +1,77 @@
+diff --git a/hal/halx86/legacy/bus/pcibus.c b/hal/halx86/legacy/bus/pcibus.c
+index 1098eb06..25c2793b 100644
+--- a/hal/halx86/legacy/bus/pcibus.c
++++ b/hal/halx86/legacy/bus/pcibus.c
+@@ -21,6 +21,10 @@ BOOLEAN HalpPCIConfigInitialized;
+ ULONG HalpMinPciBus, HalpMaxPciBus;
+ KSPIN_LOCK HalpPCIConfigLock;
+ PCI_CONFIG_HANDLER PCIConfigHandler;
++#ifdef XBOX_NT5_FRAMEBUFFER_ONLY_PCI
++/* Protected by the existing PCI configuration lock: 0 unknown, 1 mask, 2 pass. */
++static ULONG HalpXboxFramebufferPciState;
++#endif
+ 
+ /* PCI Operation Matrix */
+ UCHAR PCIDeref[4][4] =
+@@ -230,9 +234,48 @@ HalpPCIConfig(IN PBUS_HANDLER BusHandler,
+     /* Synchronize the operation */
+     PCIConfigHandler.Synchronize(BusHandler, Slot, &OldIrql, State);
+ 
++#ifdef XBOX_NT5_FRAMEBUFFER_ONLY_PCI
++    /* This HAL is paired with the BAR0/BAR1-only framebuffer miniport. The
++     * observed NV2A has an unassigned extra prefetch BAR, while its bridge
++     * aperture is entirely occupied by BAR1. NT5 cannot start that resource
++     * set. Omit BAR2 from this software view without changing its hardware
++     * value, sizing it, or copying a different bridge configuration.
++     *
++     * Latch under the configuration lock BEFORE the first sizing/write cycle.
++     * A different device, assigned BAR2 or different boot layout passes through.
++     * An accelerated GPU driver must not use this framebuffer-only option.
++     */
++    if (Length && BusHandler->BusNumber == 1 && Slot.u.AsULONG == 0 &&
++        !HalpXboxFramebufferPciState)
++    {
++        ULONG Id, Header, Bar0, Bar1, Bar2;
++        PCIConfigHandler.ConfigRead[0](BusHandler->BusData, State, (PUCHAR)&Id, 0);
++        PCIConfigHandler.ConfigRead[0](BusHandler->BusData, State, (PUCHAR)&Header, 12);
++        PCIConfigHandler.ConfigRead[0](BusHandler->BusData, State, (PUCHAR)&Bar0, 16);
++        PCIConfigHandler.ConfigRead[0](BusHandler->BusData, State, (PUCHAR)&Bar1, 20);
++        PCIConfigHandler.ConfigRead[0](BusHandler->BusData, State, (PUCHAR)&Bar2, 24);
++        HalpXboxFramebufferPciState =
++            (Id == 0x02a010de && !(Header & 0x00ff0000) &&
++             Bar0 == 0xfd000000 && Bar1 == 0xf0000008 && Bar2 == 8) ? 1 : 2;
++    }
++#endif
++
+     /* Loop every increment */
+     while (Length)
+     {
++#ifdef XBOX_NT5_FRAMEBUFFER_ONLY_PCI
++        if (HalpXboxFramebufferPciState == 1 && BusHandler->BusNumber == 1 &&
++            Slot.u.AsULONG == 0 && Offset >= 24 && Offset < 28)
++        {
++            /* Native access chunks never cross a DWORD boundary. Preserve
++             * surrounding bytes for every partial or bulk header access. */
++            if (ConfigIO == PCIConfigHandler.ConfigRead) *Buffer = 0;
++            ++Offset;
++            ++Buffer;
++            --Length;
++            continue;
++        }
++#endif
+         /* Find out the type of read/write we need to do */
+         i = PCIDeref[Offset % sizeof(ULONG)][Length % sizeof(ULONG)];
+ 
+diff --git a/hal/halx86/xboxnt5/CMakeLists.txt b/hal/halx86/xboxnt5/CMakeLists.txt
+index a307ce6a..8ff30716 100644
+--- a/hal/halx86/xboxnt5/CMakeLists.txt
++++ b/hal/halx86/xboxnt5/CMakeLists.txt
+@@ -220,3 +220,8 @@ endif()
+ if(XBOX_NT5_BOOTVIDEO_PREFLIGHT)
+  target_compile_definitions(halxboxnt5 PRIVATE XBOX_NT5_BOOTVIDEO_PREFLIGHT=1)
+ endif()
++
++option(XBOX_NT5_FRAMEBUFFER_ONLY_PCI "Omit the observed unassigned NV2A BAR2 for the framebuffer-only miniport" OFF)
++if(XBOX_NT5_FRAMEBUFFER_ONLY_PCI)
++    target_compile_definitions(halxboxnt5 PRIVATE XBOX_NT5_FRAMEBUFFER_ONLY_PCI=1)
++endif()

@@ -11,6 +11,9 @@ def get(ftp, name):
     data = io.BytesIO(); ftp.retrbinary('RETR ' + name, data.write); return data.getvalue()
 with ftplib.FTP() as ftp:
     ftp.connect(r['host'], timeout=15); ftp.login('xbox', os.environ['XWN_FTP_PASSWORD'])
+    if 'hal_sha256' in r:
+        ftp.cwd('/E/Applications/XWNFBoot/loader')
+        assert hashlib.sha256(get(ftp, 'halxboxnt5.dll')).hexdigest() == r['hal_sha256']
     ftp.cwd('/F/winnt/system32/drivers')
     digest = hashlib.sha256(get(ftp, 'xboxvnt5.sys')).hexdigest()
     assert digest == r['miniport_sha256'], 'Installed miniport changed; investigate attribution'
