@@ -1,0 +1,20 @@
+FATX32 allocation-entry interoperability candidate, 2026-10-04
+
+0049 branches the shared FAT32 routines on FATX32. FATX reads/writes all32bits,
+allocatesFFFFFFFF end markers and counts only all-zero entries as free.
+Ordinary FAT32 retains its28-bit mask and high-nibble preservation.
+Source tree includes0048 EOF-growth candidate; neither change proves a usable
+Windows system volume. Runtime validation is pending.
+
+Motivation: existing Xbox FATX end markersFFFFFFFF becomeF000xxxx links with
+the unmodified FAT32 writer, breaking strict FATX chain traversal. The original
+code also allocates0FFFFFFF as its end marker. These observations are distinct
+from the independently captured corrupted directory buffers.
+Primary research reference for full-width FATX entries:
+https://aerosoul94.github.io/blog/2020/02/25/fatx-reading-and-recovery.html
+The author's FATX recovery implementation documentsFFFFFFFF end markers and
+raw32-bit chain entries. Private fixture tools use the same representation.
+
+Build has125imports resolved by the tested native NT5 images. The full-boot
+fixture is derived from the pristineFATXfixture; onlyxwnfatx.sys is replaced.
+No hardware deployment, no formatting or repartitioning of physical disks.

@@ -1,0 +1,69 @@
+diff --git a/drivers/filesystems/vfatfs/fat.c b/drivers/filesystems/vfatfs/fat.c
+index 186c5d1c..9f019286 100644
+--- a/drivers/filesystems/vfatfs/fat.c
++++ b/drivers/filesystems/vfatfs/fat.c
+@@ -54,9 +54,19 @@ FAT32GetNextCluster(
+     }
+     _SEH2_END;
+ 
+-    CurrentCluster = (*(PULONG)((char*)BaseAddress + (FATOffset % ChunkSize))) & 0x0fffffff;
+-    if (CurrentCluster >= 0xffffff8 && CurrentCluster <= 0xfffffff)
+-        CurrentCluster = 0xffffffff;
++    CurrentCluster = *(PULONG)((char*)BaseAddress + (FATOffset % ChunkSize));
++    /* FATX32 uses all 32 bits, unlike standard FAT32's reserved high nibble. */
++    if (DeviceExt->FatInfo.FatType == FATX32)
++    {
++        if (CurrentCluster >= 0xfffffff8)
++            CurrentCluster = 0xffffffff;
++    }
++    else
++    {
++        CurrentCluster &= 0x0fffffff;
++        if (CurrentCluster >= 0x0ffffff8)
++            CurrentCluster = 0xffffffff;
++    }
+ 
+     if (CurrentCluster == 0)
+     {
+@@ -349,11 +359,11 @@ FAT32FindAndMarkAvailableCluster(
+             /* Now process the whole block */
+             while (Block < BlockEnd && i < FatLength)
+             {
+-                if ((*Block & 0x0fffffff) == 0)
++                if ((DeviceExt->FatInfo.FatType == FATX32 ? *Block : (*Block & 0x0fffffff)) == 0)
+                 {
+                     DPRINT("Found available cluster 0x%x\n", i);
+                     DeviceExt->LastAvailableCluster = *Cluster = i;
+-                    *Block = 0x0fffffff;
++                    *Block = DeviceExt->FatInfo.FatType == FATX32 ? 0xffffffff : 0x0fffffff;
+                     CcSetDirtyPinnedData(Context, NULL);
+                     CcUnpinData(Context);
+                     if (DeviceExt->AvailableClustersValid)
+@@ -522,7 +532,7 @@ FAT32CountAvailableClusters(
+         /* Now process the whole block */
+         while (Block < BlockEnd && i < FatLength)
+         {
+-            if ((*Block & 0x0fffffff) == 0)
++            if ((DeviceExt->FatInfo.FatType == FATX32 ? *Block : (*Block & 0x0fffffff)) == 0)
+                 ulCount++;
+             Block++;
+             i++;
+@@ -688,8 +698,16 @@ FAT32WriteCluster(
+     DPRINT("Writing 0x%x for offset 0x%x 0x%x\n", NewValue, FATOffset,
+            ClusterToWrite);
+     Cluster = ((PULONG)((char*)BaseAddress + (FATOffset % ChunkSize)));
+-    *OldValue = *Cluster & 0x0fffffff;
+-    *Cluster = (*Cluster & 0xf0000000) | (NewValue & 0x0fffffff);
++    if (DeviceExt->FatInfo.FatType == FATX32)
++    {
++        *OldValue = *Cluster;
++        *Cluster = NewValue;
++    }
++    else
++    {
++        *OldValue = *Cluster & 0x0fffffff;
++        *Cluster = (*Cluster & 0xf0000000) | (NewValue & 0x0fffffff);
++    }
+ 
+     CcSetDirtyPinnedData(Context, NULL);
+     CcUnpinData(Context);

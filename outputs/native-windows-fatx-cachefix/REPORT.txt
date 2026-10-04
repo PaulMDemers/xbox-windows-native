@@ -1,0 +1,22 @@
+Windows 2000 FATX section-growth investigation, 2026-10-04
+
+EMULATOR RESEARCH ONLY. Not a working system-volume driver.
+Original vfatfs passes the 180-file buffered test but CreateFileMappingA on an
+empty file with a32768-byte section fails with1224 (ERROR_USER_MAPPED_FILE).
+0048 restricts the top-level MmCanFileBeTruncated check to an actual EOF shrink.
+The modified driver has125imports, all resolved by the tested native NT5 images.
+
+Validation so far:
+nt5-fatx-runtime-stress-002: initial1MiBroundtrip passed; the180-file sequence
+was incomplete at240seconds. No mapped-section success claimed.
+nt5-fatx-boot-eof-001: full FATX boot failed with D1(18,1f,0,18).
+Read-only stack capture showed cache/directory work; root cause remains unknown.
+nt5-fatx-runtime-stress-003: host memory-dump timeout before Windows launch;
+not a guest regression result. Capture timeout/cleanup handling improved.
+Current helper reduces buffered files to3 and logs file/mapping boundaries.
+It also verifies that truncating a mapped file is rejected without size change.
+The original180-file helper is in ../native-windows-fatx-runtime.
+
+Artifacts are local/ignored. private preparation scripts preserve input hashes,
+refuse existing target images, and cold-read substituted guest files.
+No changes from this kit have been deployed to physical hardware.

@@ -14,7 +14,7 @@ def command(port,text):
         return data.decode('utf-8','replace')
     with socket.create_connection(('127.0.0.1',port),timeout=10) as sock:
         # Full 64 MiB guest dumps can exceed ten seconds under host I/O load.
-        sock.settimeout(30 if text.startswith('pmemsave ') else 10)
+        sock.settimeout(60 if text.startswith('pmemsave ') else 10)
         receive(sock);sock.sendall((text+'\n').encode());return receive(sock)
 
 def acquire_monitor_lock(port):

@@ -80,7 +80,9 @@ try:
 except Exception as e:
  report['status']='runtime_not_decoded';report['error']=repr(e)
 finally:
- raw.unlink(missing_ok=True);report['raw_memory_removed']=not raw.exists()
+ try:raw.unlink(missing_ok=True)
+ except OSError as ex:report['raw_cleanup_error']=repr(ex)
+ report['raw_memory_removed']=not raw.exists()
  a.output.write_text(json.dumps(report,indent=2)+'\n')
  try:
   if was_running:command(a.port,'cont')

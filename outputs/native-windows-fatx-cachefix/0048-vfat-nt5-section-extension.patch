@@ -1,0 +1,17 @@
+diff --git a/drivers/filesystems/vfatfs/finfo.c b/drivers/filesystems/vfatfs/finfo.c
+index 906ca4e3..3f59db3c 100644
+--- a/drivers/filesystems/vfatfs/finfo.c
++++ b/drivers/filesystems/vfatfs/finfo.c
+@@ -1594,7 +1594,11 @@ VfatSetInformation(
+     /* Special: We should call MmCanFileBeTruncated here to determine if changing
+        the file size would be allowed.  If not, we bail with the right error.
+        We must do this before acquiring the lock. */
+-    if (FileInformationClass == FileEndOfFileInformation)
++    /* Section creation can extend EOF while the section is being created.
++     * MmCanFileBeTruncated rejects such a section even for an extension on
++     * NT 5.0. Only a real shrink needs the truncation check. */
++    if (FileInformationClass == FileEndOfFileInformation &&
++        ((PLARGE_INTEGER)SystemBuffer)->QuadPart < FCB->RFCB.FileSize.QuadPart)
+     {
+         DPRINT("Check for the ability to set file size\n");
+         if (!MmCanFileBeTruncated(IrpContext->FileObject->SectionObjectPointer,

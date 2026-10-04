@@ -19,6 +19,7 @@ param(
     [switch]$CaptureAudio,
     [switch]$ManualCapture,
     [switch]$StopOnCaptureComplete,
+    [switch]$StopOnBugcheck,
     [ValidateRange(1024,65535)][int]$MonitorPort = 4574,
     [ValidateRange(1024,65535)][int]$GdbPort = 4575,
     [ValidateRange(30,3600)][int]$Seconds = 120
@@ -120,6 +121,10 @@ enable = false
                     & C:/Python314/python.exe (Join-Path $PSScriptRoot 'exercise-input.py') --port $MonitorPort --run $run
                     if ($LASTEXITCODE -ne 0) { throw 'Input exercise failed.' }
                     $inputSent = $true
+                }
+                if ($StopOnBugcheck -and $state.status -eq 'bugcheck_reported') {
+                    @{reason='guest_bugcheck'; run=$RunId; state=$statePath; bugcheck=$state.bugcheck_data} | ConvertTo-Json | Set-Content (Join-Path $run 'completion.json')
+                    break
                 }
                 if ($state.status -eq 'pre_entry_halt_verified') {
                     $traceOptions = @()
