@@ -1,0 +1,32 @@
+diff --git a/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt b/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt
+index e70c1a2b..fb75e9e7 100644
+--- a/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt
+@@ -22,3 +22,11 @@ if(XBOX_NT5_VIDEO_ENTRY_DIAGNOSTIC)
+     endif()
+     target_compile_definitions(xboxvnt5 PRIVATE XBOX_NT5_VIDEO_ENTRY_DIAGNOSTIC=1)
+ endif()
++
++option(XBOX_NT5_VIDEO_ADAPTER_DIAGNOSTIC "Stop after NT5 video resource discovery" OFF)
++if(XBOX_NT5_VIDEO_ADAPTER_DIAGNOSTIC)
++    if(NOT XBOX_NT5_VIDEO_DIAGNOSTIC OR XBOX_NT5_VIDEO_ENTRY_DIAGNOSTIC)
++        message(FATAL_ERROR "Adapter diagnostic requires failure checks and entry checkpoint OFF")
++    endif()
++    target_compile_definitions(xboxvnt5 PRIVATE XBOX_NT5_VIDEO_ADAPTER_DIAGNOSTIC=1)
++endif()
+diff --git a/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c b/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c
+index f275be2b..c96f396d 100644
+--- a/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c
+@@ -59,6 +59,11 @@ Nt5VideoFindAdapter(PVOID Extension, PVOID Context, PWSTR Arguments,
+     V->ControlPhysical = Ranges[0].RangeStart;
+     V->FramebufferAperture = Ranges[1].RangeStart;
+     V->ApertureLength = Ranges[1].RangeLength;
++#ifdef XBOX_NT5_VIDEO_ADAPTER_DIAGNOSTIC
++    /* Preserve Windows-assigned resources before hardware initialization. */
++    VIDEO_FAIL(8, V->ControlPhysical.LowPart,
++               V->FramebufferAperture.LowPart, V->ApertureLength);
++#endif
+     return NO_ERROR;
+ }
+ 

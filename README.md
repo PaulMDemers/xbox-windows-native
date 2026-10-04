@@ -12,8 +12,9 @@ host-side test harness.
   console. The user observed Windows followed by a reboot to UnleashX, but no
   native probe result was saved. The second physical test reveals STOP B4:
   Windows cannot initialize graphics. The startup report remains untouched.
-  A failure-path video diagnostic also produces B4 on hardware; an
-  emulator-validated driver-entry checkpoint is now running on the console.
+  Driver entry is now physically confirmed. An emulator-validated adapter
+  discovery checkpoint is running on the console; the B4 cause is unresolved.
+  Full 1024x576 emulator desktop, native probe and restart now also pass.
   Physical desktop and the bounded native storage probe have not passed. See the
   [physical F deployment](outputs/native-windows-physical-f/README.md).
 - Extended F emulator milestone: native Windows desktop on a 250 GB FATX disk,

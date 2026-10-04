@@ -238,3 +238,41 @@ The entry fixture changes only the miniport and existing AutoReboot DWORDs;
 the snapshot emulator run's temporary disk is cleaned up by the harness. The
 immutable v2 input remains. The earlier successful 0069 run disk was retired
 by hash for space, while its cold-audit and screenshot evidence remain.
+
+## Physical driver entry confirmed; adapter checkpoint (0071)
+
+Photo 885DAF63 shows E0580001 with stage zero and marker 56454E54. DriverEntry
+is therefore confirmed on the physical console. The post-reboot FTP readback
+matches the entry-test binary exactly. This establishes loading and invocation,
+not successful adapter initialization or a desktop.
+
+Patch0071 adds a default-OFF stop after successful HwFindAdapter resource
+retrieval/validation, before HwInitialize. Expected code E0580001 has stage8,
+then the control-register address, framebuffer aperture address and aperture
+length. The earlier failure guards remain enabled. The options reject combining
+this checkpoint with the earlier entry checkpoint.
+
+Compiled-code tests cover valid discovery and its error return, with all native
+imports resolved. Ordinary widescreen xemu run
+`nt5-physical-f-video-adapter-wide-001` produced
+E0580001(8,FD000000,F0000000,04000000). The retained emulator widescreen EEPROM
+was used and the horizontal-valid-end register read 3FF. No debugger execution
+changes were used. At 19:14:03 UTC, this exact miniport was readback-verified on
+the console and launched once by FTP. The previous entry driver is preserved
+as `xboxvnt5.xwn-v4`; originals remain in the earlier backups. Await the photo
+before deciding whether the real adapter-discovery callback was reached.
+
+A separate full widescreen boot now passes in ordinary xemu run
+`nt5-physical-f-video-wide-001`: a 1024x576 desktop, v2 read/write probe PASS,
+normal restart, and a clean cold audit of 6,494 files/3,439 binaries and registry
+and allocation integrity. No debugger execution changes were used. Previous
+complete desktop tests used 640x480; this closes that coverage gap. The fixture
+uses the same 0069 failure diagnostic as the physical B4 test, with crash
+restart disabled and no intentional entry/adapter halt. Widescreen alone does
+not reproduce physical B4; this does not establish physical desktop support.
+
+`boot.png` captures the actual widescreen desktop. After restart the dashboard
+returns to 640x480 (HVALID_END=27F); an initial capture with stale widescreen
+geometry is unusable, and `dashboard.png` is the correctly captured result.
+The emulator is closed. The full widescreen result disk and immutable v2 input
+are retained; intermediate entry/adapter/wide input copies were retired by hash.
