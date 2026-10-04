@@ -4,8 +4,10 @@ import argparse, hashlib, json, pathlib, re, shutil, struct, subprocess, sys
 p = argparse.ArgumentParser()
 p.add_argument('--run', required=True)
 p.add_argument('--driver-manifest', default='outputs/native-windows-fatx-paging/fatx-full-paging-disk-001.json')
+p.add_argument('--pressure-manifest', help='Require the extra paging probe and all eight retention passes')
+p.add_argument('--filesystem-manifest', help='Require the bounded file API probe and its complete success log')
 a = p.parse_args()
-assert re.fullmatch(r'nt5-fatx-boot-(?:paging|image-read|paging-flags|flush|power|wide|hal-paging|bootvid|bootvid-ram|pressure)-[0-9]+', a.run)
+assert re.fullmatch(r'nt5-fatx-boot-(?:paging|image-read|paging-flags|flush|power|wide|hal-paging|bootvid|bootvid-ram|pressure|metadata)-[0-9]+', a.run)
 ws = pathlib.Path('/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility')
 root = pathlib.Path('/home/paul/xbox-windows-native')
 run = ws / 'work/runs' / a.run
@@ -119,17 +121,60 @@ try:
                     '8 MiB memory retention passed across 20 intervals', 'Failures: 0'])}
         except Exception as ex:
             r['endurance'] = {'passed': False, 'error': repr(ex)}
+        if a.pressure_manifest:
+            try:
+                manifest = json.loads((ws / a.pressure_manifest).read_text())
+                probe = next(f for f in manifest['files'] if f['path'].lower() == '/xwnpaging.exe')
+                probe_hash = hashlib.sha256(w.read('/xwnpaging.exe')).hexdigest()
+                log = w.read('/xwn-paging.log')
+                (logs / 'xwn-paging.log').write_bytes(log)
+                text = log.decode('ascii')
+                passes = re.findall(r'^Pass: ([0-9]+)\r?$', text, re.M)
+                comparisons = text.count('40 MiB comparison passed')
+                failures = re.findall(r'^Failures: ([0-9]+)\r?$', text, re.M)
+                r['paging_pressure'] = {
+                    'scope': 'Retention under working-set trimming; fault counts alone do not prove disk page-ins',
+                    'probe_sha256': probe_hash, 'log_sha256': hashlib.sha256(log).hexdigest(),
+                    'passes': passes, 'comparisons': comparisons, 'failures': failures,
+                    'passed': probe_hash == probe['sha256'] and passes == [str(i) for i in range(1, 9)]
+                              and comparisons == 8 and failures == ['0']}
+            except Exception as ex:
+                r['paging_pressure'] = {'passed': False, 'error': repr(ex)}
         if 'xwn-fragment-guard.bin' in w.directory(1)['entries']:
             guard = json.loads((ws / 'outputs/native-windows-fatx-paging/fatx-fragmented-paging-disk-001.json').read_text())['guard_file']
             actual = hashlib.sha256(w.read(guard['path'])).hexdigest()
             r['fragment_guard'] = {'sha256': actual, 'passed': actual == guard['sha256']}
+        if a.filesystem_manifest:
+            try:
+                manifest = json.loads((ws / a.filesystem_manifest).read_text())
+                probe = next(f for f in manifest['files'] if f['path'].lower() == '/xwnfs.exe')
+                probe_hash = hashlib.sha256(w.read('/xwnfs.exe')).hexdigest()
+                log = w.read('/xwn-fs.log'); text = log.decode('ascii')
+                (logs / 'xwn-fs.log').write_bytes(log)
+                names = ['42-byte ASCII name accepted', '43-byte ASCII name rejected',
+                         'Case-insensitive reopen', 'Reopened full data comparison',
+                         'Shrink at cluster-crossing boundary', 'Shrunk size',
+                         'Regrow with explicit data', 'Rename across directories',
+                         'Renamed regrown data comparison', 'Remove test directory',
+                         '42-byte component limit advertised', 'OEM case-preserved capabilities']
+                checks = {name: 'PASS: ' + name + '\r\n' in text for name in names}
+                directory_removed = 'xwnfstest' not in w.directory(1)['entries']
+                r['filesystem_api'] = {'probe_sha256': probe_hash,
+                    'log_sha256': hashlib.sha256(log).hexdigest(), 'checks': checks,
+                    'test_directory_removed': directory_removed,
+                    'passed': probe_hash == probe['sha256'] and all(checks.values())
+                              and 'FAIL:' not in text and 'Failures: 0\r\n' in text and directory_removed}
+            except Exception as ex:
+                r['filesystem_api'] = {'passed': False, 'error': repr(ex)}
         for path, item in expected.items():
             if pathlib.PurePosixPath(path).suffix in extensions and path not in found:
                 r['immutable_mismatches'].append({'path': path, 'error': 'Missing file'})
     assert sha(source) == r['source_sha256']
     r['source_preserved'] = True
     r['passed'] = (not r['structural_errors'] and not r['immutable_mismatches']
-                   and r['endurance']['passed'] and r.get('fragment_guard', {'passed': True})['passed'])
+                   and r['endurance']['passed'] and r.get('fragment_guard', {'passed': True})['passed']
+                   and r.get('paging_pressure', {'passed': True})['passed'])
+    r['passed'] = r['passed'] and r.get('filesystem_api', {'passed': True})['passed']
 finally:
     assert temp.resolve().parent == (root / 'fixtures').resolve()
     shutil.rmtree(temp)

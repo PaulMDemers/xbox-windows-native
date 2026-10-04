@@ -1,0 +1,29 @@
+Windows 2000 FATX memory pressure, 4 October 2026
+
+Unassisted xemu run nt5-fatx-boot-pressure-001 passes eight complete reverse
+comparisons of a40MiB allocation. Every DWORD has an index/pass-dependent
+pattern, and each pass changes it for the next cycle. The probe trims its
+working set and waits five seconds between cycles. All eight comparisons
+pass, zero failures are reported, and the test takes93225milliseconds.
+The final process page-fault count is92885. These counts include soft faults;
+they alone do not establish how many reads came from the disk pagefile.
+
+The private fixture contains a96MiB pagefile in384 physical runs, interleaved
+with a6MiB guard file. Cold audit preserves the guard hash, checks3452
+immutable Windows binaries and finds no FATX chain/cross-link errors.
+The earlier4MiB disk/GUI check and20 memory intervals also pass. All nine
+registry headers have matching sequences and checksums; full registry-tree
+validation is outside this test.
+
+After the probe exits, a normal UI shutdown displays the genuine Windows
+safe-to-turn-off bitmap and reaches HaliHaltSystem+2 with zero bugcheck data.
+Some optional runtime PnP reads were unavailable during memory pressure;
+the guest continued and its saved log is verified independently after stop.
+
+Build with Build.ps1, prepare the source-hash-pinned derivative using
+prepare-fixture.py under WSL, and launch Run-Pressure.ps1 with a fresh run ID.
+After probe completion and normal shutdown, stop the owned harness and run
+native-windows-fatx-paging/audit-fullboot.py with both --driver-manifest and
+--pressure-manifest pointing to pressure-fixture-001.json. See validation-001.json.
+Windows binaries, fixture disks and local screenshots remain untracked.
+No physical console access or upload occurred.

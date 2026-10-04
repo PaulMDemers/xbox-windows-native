@@ -1,0 +1,187 @@
+{
+  "scope": "Unassisted emulator memory-pressure run and native UI shutdown; no physical testing",
+  "run": "nt5-fatx-boot-pressure-001",
+  "fixture": {
+    "scope": "Offline emulator derivative; no physical access",
+    "source_sha256": "6d2899fa61a1f7e640096f80e8159cf6b32a96c4c4bd7bc5732f04b718803b57",
+    "files": [
+      {
+        "path": "/WINNT/system32/drivers/xwnfatx.sys",
+        "sha256": "d05e359bb3e3203457d8f458804da1a6f301339cda4f4768e01f58bb4f31ac0a",
+        "cold_readback_equal": true
+      },
+      {
+        "path": "/Documents and Settings/All Users/Start Menu/Programs/Startup/xwnsetup.cmd",
+        "sha256": "6b4fb83ab70a39a8270db6033d0b66ef7390f12842e324467cb48c0317b81672",
+        "cold_readback_equal": true
+      },
+      {
+        "path": "/xwnpaging.exe",
+        "bytes": 9789,
+        "sha256": "7f7b70ddd4a27b4e6c9785e735bed61ee24e2d3a6b41655fd9973efa772e8afd",
+        "clusters": 1
+      }
+    ],
+    "driver_sha256": "d05e359bb3e3203457d8f458804da1a6f301339cda4f4768e01f58bb4f31ac0a",
+    "pagefile_physical_runs": 384,
+    "guard_sha256": "2a26a390d7d0c5a53f32d719c27f0f7952c319eb91519b02b0bad7f0564086f0",
+    "sha256": "bf07ce2c56ac8403a15d138a66ab80f7cb66bd1d1a0db8eac2aae3105a8df72a",
+    "check": "No errors were found on the image.\n27430/131072 = 20.93% allocated, 0.00% fragmented, 0.00% compressed clusters\nImage end offset: 1798373376\n",
+    "source_preserved": true,
+    "temporary_raw_removed": true
+  },
+  "iso_sha256": "605dd66eff552538b2940159ddf1e41ec4efce9766739e5bd8ca6a0ac833a8ef",
+  "probe_log": "XWN 40 MiB paging-pressure test\nPage faults: 131\nWorking set bytes: 548864\nCommitted bytes: 139264\nAvailable physical bytes: 12328960\nPass: 1\nPage faults: 10408\nWorking set bytes: 11419648\nCommitted bytes: 42123264\nAvailable physical bytes: 3526656\nAfter trim\nPage faults: 10451\nWorking set bytes: 176128\nCommitted bytes: 42123264\nAvailable physical bytes: 4116480\n40 MiB comparison passed\nPage faults: 20723\nWorking set bytes: 19705856\nCommitted bytes: 42123264\nAvailable physical bytes: 2093056\nPass: 2\nPage faults: 20728\nWorking set bytes: 19726336\nCommitted bytes: 42123264\nAvailable physical bytes: 2084864\nAfter trim\nPage faults: 20765\nWorking set bytes: 188416\nCommitted bytes: 42123264\nAvailable physical bytes: 4145152\n40 MiB comparison passed\nPage faults: 31034\nWorking set bytes: 29900800\nCommitted bytes: 42123264\nAvailable physical bytes: 4157440\nPass: 3\nPage faults: 31039\nWorking set bytes: 29921280\nCommitted bytes: 42123264\nAvailable physical bytes: 4132864\nAfter trim\nPage faults: 31076\nWorking set bytes: 192512\nCommitted bytes: 42123264\nAvailable physical bytes: 4886528\n40 MiB comparison passed\nPage faults: 41344\nWorking set bytes: 33034240\nCommitted bytes: 42123264\nAvailable physical bytes: 2461696\nPass: 4\nPage faults: 41349\nWorking set bytes: 33054720\nCommitted bytes: 42123264\nAvailable physical bytes: 2453504\nAfter trim\nPage faults: 41386\nWorking set bytes: 192512\nCommitted bytes: 42123264\nAvailable physical bytes: 4128768\n40 MiB comparison passed\nPage faults: 51653\nWorking set bytes: 33566720\nCommitted bytes: 42123264\nAvailable physical bytes: 1904640\nPass: 5\nPage faults: 51658\nWorking set bytes: 33587200\nCommitted bytes: 42123264\nAvailable physical bytes: 1896448\nAfter trim\nPage faults: 51694\nWorking set bytes: 192512\nCommitted bytes: 42123264\nAvailable physical bytes: 4161536\n40 MiB comparison passed\nPage faults: 61960\nWorking set bytes: 33267712\nCommitted bytes: 42123264\nAvailable physical bytes: 3915776\nPass: 6\nPage faults: 61965\nWorking set bytes: 33288192\nCommitted bytes: 42123264\nAvailable physical bytes: 3907584\nAfter trim\nPage faults: 62001\nWorking set bytes: 192512\nCommitted bytes: 42123264\nAvailable physical bytes: 4464640\n40 MiB comparison passed\nPage faults: 72268\nWorking set bytes: 32796672\nCommitted bytes: 42123264\nAvailable physical bytes: 3092480\nPass: 7\nPage faults: 72273\nWorking set bytes: 32817152\nCommitted bytes: 42123264\nAvailable physical bytes: 4132864\nAfter trim\nPage faults: 72309\nWorking set bytes: 192512\nCommitted bytes: 42123264\nAvailable physical bytes: 4694016\n40 MiB comparison passed\nPage faults: 82577\nWorking set bytes: 33210368\nCommitted bytes: 42123264\nAvailable physical bytes: 3710976\nPass: 8\nPage faults: 82581\nWorking set bytes: 33226752\nCommitted bytes: 42123264\nAvailable physical bytes: 3702784\nAfter trim\nPage faults: 82618\nWorking set bytes: 192512\nCommitted bytes: 42123264\nAvailable physical bytes: 4452352\n40 MiB comparison passed\nPage faults: 92885\nWorking set bytes: 32575488\nCommitted bytes: 42123264\nAvailable physical bytes: 3948544\nElapsed milliseconds: 93225\nFailures: 0\n",
+  "page_fault_counts": [
+    131,
+    10408,
+    10451,
+    20723,
+    20728,
+    20765,
+    31034,
+    31039,
+    31076,
+    41344,
+    41349,
+    41386,
+    51653,
+    51658,
+    51694,
+    61960,
+    61965,
+    62001,
+    72268,
+    72273,
+    72309,
+    82577,
+    82581,
+    82618,
+    92885
+  ],
+  "elapsed_ms": 93225,
+  "final_shutdown_halt": true,
+  "cold_integrity": {
+    "scope": "Cold read-only emulator disk audit; no physical access",
+    "source_sha256": "d1e4a1446a8ca2ef485d2bff96879af3da79167869b7c21a912e3f3b1a7a4040",
+    "directories": 322,
+    "files": 6555,
+    "allocated_clusters": 52084,
+    "immutable_files_checked": 3452,
+    "structural_errors": [],
+    "immutable_mismatches": [],
+    "registry_headers": [
+      {
+        "path": "/documents and settings/default user/ntuser.dat",
+        "bytes": 122880,
+        "sequence1": 2,
+        "sequence2": 2,
+        "sequences_match": true,
+        "checksum_matches": true
+      },
+      {
+        "path": "/documents and settings/win2k/local settings/application data/microsoft/windows/usrclass.dat",
+        "bytes": 8192,
+        "sequence1": 3,
+        "sequence2": 3,
+        "sequences_match": true,
+        "checksum_matches": true
+      },
+      {
+        "path": "/documents and settings/win2k/ntuser.dat",
+        "bytes": 196608,
+        "sequence1": 130,
+        "sequence2": 130,
+        "sequences_match": true,
+        "checksum_matches": true
+      },
+      {
+        "path": "/winnt/repair/ntuser.dat",
+        "bytes": 122880,
+        "sequence1": 2,
+        "sequence2": 2,
+        "sequences_match": true,
+        "checksum_matches": true
+      },
+      {
+        "path": "/winnt/system32/config/default",
+        "bytes": 126976,
+        "sequence1": 6,
+        "sequence2": 6,
+        "sequences_match": true,
+        "checksum_matches": true
+      },
+      {
+        "path": "/winnt/system32/config/sam",
+        "bytes": 20480,
+        "sequence1": 33,
+        "sequence2": 33,
+        "sequences_match": true,
+        "checksum_matches": true
+      },
+      {
+        "path": "/winnt/system32/config/security",
+        "bytes": 20480,
+        "sequence1": 121,
+        "sequence2": 121,
+        "sequences_match": true,
+        "checksum_matches": true
+      },
+      {
+        "path": "/winnt/system32/config/software",
+        "bytes": 6696960,
+        "sequence1": 54,
+        "sequence2": 54,
+        "sequences_match": true,
+        "checksum_matches": true
+      },
+      {
+        "path": "/winnt/system32/config/system",
+        "bytes": 2158592,
+        "sequence1": 123,
+        "sequence2": 123,
+        "sequences_match": true,
+        "checksum_matches": true
+      }
+    ],
+    "paging_file": {
+      "bytes": 100663296,
+      "clusters": 6144,
+      "first_cluster": 45432,
+      "physical_runs": 384
+    },
+    "endurance": {
+      "bytes": 1307,
+      "sha256": "08dc1b7a419035af4fac0af0453d66e86765548ee6a9a39487fe5b38ee1d6c54",
+      "passed": true
+    },
+    "paging_pressure": {
+      "scope": "Retention under working-set trimming; fault counts alone do not prove disk page-ins",
+      "probe_sha256": "7f7b70ddd4a27b4e6c9785e735bed61ee24e2d3a6b41655fd9973efa772e8afd",
+      "log_sha256": "1b3c7a479f3d0d570698a0d060c7b3c1cc76c9e9e07b102abdc0c96843b0b73c",
+      "passes": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "comparisons": 8,
+      "failures": [
+        "0"
+      ],
+      "passed": true
+    },
+    "fragment_guard": {
+      "sha256": "2a26a390d7d0c5a53f32d719c27f0f7952c319eb91519b02b0bad7f0564086f0",
+      "passed": true
+    },
+    "source_preserved": true,
+    "passed": true,
+    "temporary_raw_removed": true
+  },
+  "observation_limit": "Total page faults include soft faults; this run alone does not measure hard page-ins. Some optional runtime PnP data was not resident during pressure."
+}
