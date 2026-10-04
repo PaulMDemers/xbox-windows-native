@@ -6,6 +6,12 @@ host-side test harness.
 
 ## Current evidence
 
+- The isolated physical F launcher now passes an ordinary emulator desktop,
+  native read/write probe and normal restart, with a clean cold disk audit.
+  All 6,493 installation files are staged and readback-verified on the physical
+  console. The user observed Windows followed by a reboot to UnleashX, but no
+  native probe result was saved. Physical storage success is not yet established. See the
+  [physical F deployment](outputs/native-windows-physical-f/README.md).
 - Extended F emulator milestone: native Windows desktop on a 250 GB FATX disk,
   verified reads/writes beyond LBA28, and two normal restart cycles with clean
   cold allocation, binary and registry audits. The actual console's F geometry
@@ -61,9 +67,9 @@ See the [boot-video candidate](outputs/native-windows-physical-bootvideo/REPORT.
 The user selected **F:** on the upgraded physical drive for Windows. A
 [storage inventory](outputs/native-windows-physical-storage-preflight/REPORT.txt)
 passed physically: 250 GB disk, F: with 94.65 GiB free and 64 KiB clusters.
-The current loader/HAL expose only the five stock partitions; extended F:
-mapping and large-LBA native I/O need validation before installation. No
-Windows installation has been staged and the existing games are preserved.
+The extended loader/HAL now validate the partition table and expose F, with
+large-LBA native I/O tested in xemu. The file-only physical installation is
+staged in new F paths, preserving the existing games and partitions.
 
 The physical-tested **XWNI90** reserves the two BIOS phase-0 pages and
 halts before HAL returns to Windows; see

@@ -1,0 +1,54 @@
+diff --git a/boot/freeldr/freeldr/lib/fs/fs.c b/boot/freeldr/freeldr/lib/fs/fs.c
+index 0f8e227c..59396d21 100644
+--- a/boot/freeldr/freeldr/lib/fs/fs.c
++++ b/boot/freeldr/freeldr/lib/fs/fs.c
+@@ -337,7 +337,19 @@ ARC_STATUS ArcOpen(CHAR* Path, OPENMODE OpenMode, ULONG* FileId)
+         {
+             pDevice->FileFuncTable = FileSystems[fs](DeviceId);
+             if (pDevice->FileFuncTable)
++            {
++#ifdef XBOX_NATIVE_FATX_F_BOOT
++                /* Filesystems keep mounted state indexed by DeviceId, while
++                 * DEVICE caches FileFuncTable across file opens. Keep the
++                 * backing slot alive for that mount's lifetime: reusing it
++                 * for another FATX volume otherwise replaces FatVolumes[id]
++                 * beneath the first device's cached dispatch table.
++                 * There is no filesystem-unmount API during this loader run. */
++                ++pDevice->ReferenceCount;
++                ++FileData[DeviceId].ReferenceCount;
++#endif
+                 break;
++            }
+         }
+     }
+     if (!pDevice->FileFuncTable)
+@@ -564,7 +576,19 @@ FsGetVolumeSize(
+         {
+             pDevice->FileFuncTable = FileSystems[fs](DeviceId);
+             if (pDevice->FileFuncTable)
++            {
++#ifdef XBOX_NATIVE_FATX_F_BOOT
++                /* Filesystems keep mounted state indexed by DeviceId, while
++                 * DEVICE caches FileFuncTable across file opens. Keep the
++                 * backing slot alive for that mount's lifetime: reusing it
++                 * for another FATX volume otherwise replaces FatVolumes[id]
++                 * beneath the first device's cached dispatch table.
++                 * There is no filesystem-unmount API during this loader run. */
++                ++pDevice->ReferenceCount;
++                ++FileData[DeviceId].ReferenceCount;
++#endif
+                 break;
++            }
+         }
+     }
+ #endif
+diff --git a/boot/freeldr/freeldr/pcat.cmake b/boot/freeldr/freeldr/pcat.cmake
+index f0a34728..7d40bd06 100644
+--- a/boot/freeldr/freeldr/pcat.cmake
++++ b/boot/freeldr/freeldr/pcat.cmake
+@@ -456,4 +456,5 @@ if(XBOX_NATIVE_FATX_F_BOOT)
+         message(FATAL_ERROR "FATX F boot requires ordinary Xbox partition-6 native autorun")
+     endif()
+     target_compile_definitions(freeldr_pe PRIVATE XBOX_NATIVE_FATX_F_BOOT=1)
++    target_compile_definitions(freeldr_common PRIVATE XBOX_NATIVE_FATX_F_BOOT=1)
+ endif()

@@ -6,7 +6,7 @@ import fatx_stage_boot as fatx
 from bulk_fatx import Writer
 p=argparse.ArgumentParser();g=p.add_mutually_exclusive_group(required=True);g.add_argument('--run');g.add_argument('--fixture',choices=['windows2000-f-001','windows2000-f-write-001','windows2000-f-reboot-001']);a=p.parse_args()
 if a.run:
- assert a.run.startswith('nt5-extended-f-') and a.run.replace('-','').isalnum()
+ assert a.run.startswith(('nt5-extended-f-','nt5-physical-f-')) and a.run.replace('-','').isalnum()
  run=ws/'work/runs'/a.run;assert (run/'cleanup.json').exists();source=run/'hdd.qcow2'
 else:a.run=a.fixture;source=k/'artifacts'/(a.fixture+'.qcow2')
 raw=root/'fixtures'/('audit-'+a.run+'.raw');assert not raw.exists()
@@ -34,6 +34,11 @@ try:
      assert hashlib.sha256(w.read(full)).hexdigest()==expected[full]['sha256'],('binary mismatch',full)
      r['immutable_files_checked']+=1
   walk(1,'/')
+  if a.run.startswith('nt5-physical-f-'):
+   log=w.read('/xwn-physical.log');data=w.read('/xwn-physical-write.bin')
+   assert b'XWN-PHYSICAL-PASS\r\n' in log and b'Failures: 0\r\n' in log
+   assert data==bytes(((i*37+(i>>8)+0x5a)&255)^0xa5 for i in range(65537))
+   r['native_probe']={'log':log.decode('ascii'),'log_sha256':hashlib.sha256(log).hexdigest(),'payload_sha256':hashlib.sha256(data).hexdigest(),'payload_bytes':len(data),'passed':True}
   r['investigated_cluster_owners']={str(c):owners.get(c) for c in [16569,16571,16575]}
   wanted={path for path in expected if pathlib.PurePosixPath(path).suffix in extensions}
   assert wanted<=found,('missing binaries',sorted(wanted-found))

@@ -1,0 +1,24 @@
+--- a/boot/BootResetAction.c
++++ b/boot/BootResetAction.c
+@@ -218,6 +218,21 @@
+ 	setLED("gggg");
+ 
+ //	printk("i2C=%d SMC=%d, IDE=%d, tick=%d una=%d unb=%d\n", nCountI2cinterrupts, nCountInterruptsSmc, nCountInterruptsIde, BIOS_TICK_COUNT, nCountUnusedInterrupts, nCountUnusedInterruptsPic2);
++#ifdef XWN_PHYSICAL_PREFLIGHT
++    {
++        CONFIGENTRY entry;
++        memset(&entry, 0, sizeof(entry));
++        entry.bootType = BOOT_FATX;
++        entry.bootSystem = SYS_REACTOS;
++        strcpy(entry.title, "XWN loader diagnostic");
++        strcpy(entry.szPath, "/Applications/XWNFBoot/freeldr.sys");
++        printk("XWN: loading isolated E:/Applications/XWNFBoot/freeldr.sys\n");
++        BootFromDevice(&entry);
++        printk("XWN: loader failed. No fallback boot. Reboot to dashboard.\n");
++        __asm__ __volatile__("cli");
++        for (;;) __asm__ __volatile__("hlt");
++    }
++#endif
+ #ifdef XBOX_LINUX_AUTOBOOT_FATX
+ 	{
+ 		CONFIGENTRY *entry;

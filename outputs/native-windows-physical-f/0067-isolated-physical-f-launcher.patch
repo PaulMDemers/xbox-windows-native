@@ -1,0 +1,38 @@
+diff --git a/boot/freeldr/freeldr/freeldr.c b/boot/freeldr/freeldr/freeldr.c
+index 63f7e0e6..f37acde8 100644
+--- a/boot/freeldr/freeldr/freeldr.c
++++ b/boot/freeldr/freeldr/freeldr.c
+@@ -171,7 +171,13 @@ VOID __cdecl BootMain(IN PCCH CmdLine)
+ #endif
+ 
+ #ifdef XBOX_NATIVE_IO_PREFLIGHT
+-#if defined(XBOX_NATIVE_FATX_IO_PREFLIGHT) || defined(XBOX_NATIVE_FATX_NT5_PREFLIGHT)
++#if defined(XBOX_NATIVE_FATX_F_BOOT)
++    /* Separate E launcher; native Windows root remains partition 6. */
++    if (strcmp(FrLdrBootPath, "multi(0)disk(0)rdisk(0)partition(1)") != 0 ||
++        !NT_SUCCESS(RtlStringCbCatA(FrLdrBootPath, sizeof(FrLdrBootPath),
++                                   "\\Applications\\XWNFBoot")))
++        XwnStop("XWNFAIL: unexpected FATX F-boot launcher device");
++#elif defined(XBOX_NATIVE_FATX_IO_PREFLIGHT) || defined(XBOX_NATIVE_FATX_NT5_PREFLIGHT)
+     /* The Xromwell launcher passes the FATX device, not the image directory. */
+     if (strcmp(FrLdrBootPath, "multi(0)disk(0)rdisk(0)partition(1)") != 0 ||
+         !NT_SUCCESS(RtlStringCbCatA(FrLdrBootPath, sizeof(FrLdrBootPath),
+diff --git a/boot/freeldr/freeldr/pcat.cmake b/boot/freeldr/freeldr/pcat.cmake
+index 8182a8a8..f0a34728 100644
+--- a/boot/freeldr/freeldr/pcat.cmake
++++ b/boot/freeldr/freeldr/pcat.cmake
+@@ -446,3 +446,14 @@ option(XBOX_NATIVE_FATX_BOOTVIDEO_PREFLIGHT "Halt after native boot video initia
+ if(XBOX_NATIVE_FATX_BOOTVIDEO_PREFLIGHT AND NOT XBOX_NATIVE_FATX_MMCOMPLETE_PREFLIGHT)
+  message(FATAL_ERROR "BOOTVIDEO probe requires MMCOMPLETE preflight")
+ endif()
++
++option(XBOX_NATIVE_FATX_F_BOOT "Load the isolated E XWNFBoot launcher for native F Windows" OFF)
++if(XBOX_NATIVE_FATX_F_BOOT)
++    if(NOT SARCH STREQUAL "xbox" OR NOT XBOX_NATIVE_IO_PREFLIGHT OR
++       NOT XBOX_NATIVE_EXTENDED_NT5_BOOT OR NOT XBOX_NATIVE_NT5_HANDOFF OR
++       NOT XBOX_NATIVE_NT5_ENTER OR NOT XBOX_NATIVE_NT5_AUTORUN OR
++       XBOX_NATIVE_FATX_IO_PREFLIGHT OR XBOX_NATIVE_FATX_NT5_PREFLIGHT)
++        message(FATAL_ERROR "FATX F boot requires ordinary Xbox partition-6 native autorun")
++    endif()
++    target_compile_definitions(freeldr_pe PRIVATE XBOX_NATIVE_FATX_F_BOOT=1)
++endif()
