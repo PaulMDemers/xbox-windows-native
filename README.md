@@ -8,9 +8,9 @@ host-side test harness.
 
 - Physical console: Windows kernel entry, processor initialization, HAL base
   setup, RTC calibration, clock setup and partition-hook registration and BIOS page allocation passed.
-- Latest physical checkpoint: **XWNE90**. Native PFN backing allocation
-  completed: 90 PFN-database pages and one color-table page cleared.
-  Next candidate PFN is 0x3cf. PFN/color population, storage drivers
+- Latest physical checkpoint: **XWNL90**. Native mapped-page PFN initialization
+  completed: 639 populated records and 64 color-list heads, followed by
+  a successful native TLB flush. Free-page lists, storage drivers
   and desktop remain beyond the physical-tested stop.
 - Private emulator fixtures have reached a Windows 2000 desktop with NTFS,
   USB input, framebuffer, networking and experimental audio. Those results
@@ -65,11 +65,11 @@ Both display modes, allocation tracing and rejection checks pass in xemu;
 the physical checkpoint is photo-confirmed. See the
 [PFN backing report](outputs/native-windows-physical-pfn/REPORT.txt).
 
-The next candidate **XWNL90** initializes mapped-page PFN records and color
+The physical-tested **XWNL90** initializes mapped-page PFN records and color
 heads, then returns from the native TLB flush. It stops before free-page
 list construction. Both display modes, the complete page-record model,
-execution trace and rejection tests pass in xemu; physical testing is
-pending. See the [mapped PFN report](outputs/native-windows-physical-pfnmap/REPORT.txt).
+execution trace and rejection tests pass in xemu; the physical checkpoint is
+photo-confirmed. See the [mapped PFN report](outputs/native-windows-physical-pfnmap/REPORT.txt).
 
 See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
 [latest diagnostic](outputs/native-windows-physical-pfnmap/REPORT.txt), and
