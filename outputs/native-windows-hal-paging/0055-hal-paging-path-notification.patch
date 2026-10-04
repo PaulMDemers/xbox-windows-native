@@ -1,0 +1,75 @@
+diff --git a/hal/halx86/legacy/halpnpdd.c b/hal/halx86/legacy/halpnpdd.c
+index 4810943c..c68db59e 100644
+--- a/hal/halx86/legacy/halpnpdd.c
++++ b/hal/halx86/legacy/halpnpdd.c
+@@ -42,6 +42,9 @@ typedef struct _PDO_EXTENSION
+     PDO_TYPE PdoType;
+     PDESCRIPTION_HEADER WdTable;
+     LONG InterfaceReferenceCount;
++#ifdef XBOX_NT5_HAL
++    LONG PagingPathCount;
++#endif
+ } PDO_EXTENSION, *PPDO_EXTENSION;
+ 
+ /* GLOBALS ********************************************************************/
+@@ -714,6 +717,46 @@ HalpDispatchPnp(IN PDEVICE_OBJECT DeviceObject,
+         Status = STATUS_SUCCESS;
+         switch (Minor)
+         {
++#ifdef XBOX_NT5_HAL
++            case IRP_MN_DEVICE_USAGE_NOTIFICATION:
++            {
++                PPDO_EXTENSION PdoExtension = (PPDO_EXTENSION)FdoExtension;
++
++                /* This fixed root bus and its power dispatch stay resident.
++                 * No storage or power dependency exists above this PDO.
++                 * Accept paging paths so native PCI/IDE can protect their
++                 * own paging code and power order. Dump/hibernate support
++                 * is deliberately not advertised by this implementation. */
++                if (IoStackLocation->Parameters.UsageNotification.Type != DeviceUsageTypePaging)
++                {
++                    Status = STATUS_NOT_SUPPORTED;
++                    break;
++                }
++
++                if (IoStackLocation->Parameters.UsageNotification.InPath)
++                {
++                    InterlockedIncrement(&PdoExtension->PagingPathCount);
++                }
++                else if (InterlockedDecrement(&PdoExtension->PagingPathCount) < 0)
++                {
++                    InterlockedIncrement(&PdoExtension->PagingPathCount);
++                    Status = STATUS_INVALID_PARAMETER;
++                    break;
++                }
++
++                /* The root stays nonpageable even after its last path leaves. */
++                DeviceObject->Flags &= ~DO_POWER_PAGABLE;
++                IoInvalidateDeviceState(DeviceObject);
++                break;
++            }
++
++            case IRP_MN_QUERY_STOP_DEVICE:
++            case IRP_MN_QUERY_REMOVE_DEVICE:
++                if (((PPDO_EXTENSION)FdoExtension)->PagingPathCount != 0)
++                    Status = STATUS_DEVICE_BUSY;
++                break;
++#endif
++
+             case IRP_MN_START_DEVICE:
+ 
+                 /* We only care about a PCI PDO */
+@@ -810,6 +853,13 @@ HalpDispatchPnp(IN PDEVICE_OBJECT DeviceObject,
+                 /* Inherit whatever status we had */
+                 DPRINT("Query device state for the PDO\n");
+                 Status = Irp->IoStatus.Status;
++#ifdef XBOX_NT5_HAL
++                if (((PPDO_EXTENSION)FdoExtension)->PagingPathCount != 0)
++                {
++                    Irp->IoStatus.Information |= PNP_DEVICE_NOT_DISABLEABLE;
++                    Status = STATUS_SUCCESS;
++                }
++#endif
+                 break;
+ 
+             case IRP_MN_QUERY_BUS_INFORMATION:

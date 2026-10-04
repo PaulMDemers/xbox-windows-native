@@ -1,0 +1,47 @@
+Xbox HAL paging-path notifications (0055), 4 October 2026
+
+Emulator development candidate; not uploaded or tested on physical hardware.
+The physical baseline remains XWNW90. All earlier fixtures are preserved.
+
+The native pagefile usage notification reaches the PCI_HAL root PDO through
+Ftdisk, Disk, Diskperf, PartMgr, ATAPI, PCIIDE and PCI. Parent drivers create
+new IRPs along this route. Read-only trace004 in native-windows-power-isolation
+shows the root PDO returning STATUS_NOT_SUPPORTED, propagated to the caller.
+
+0055 handles paging notifications for the fixed Xbox NT5 root PDO, tracks
+active paths, keeps the root power path nonpageable, prevents query-stop or
+query-remove while in use, and reports PNP_DEVICE_NOT_DISABLEABLE. The HAL
+code and data are resident. This adds no hibernation or crash-dump support.
+Other HAL targets retain their previous behavior.
+
+The rebuilt normal HAL passes all83 imported-kernel-symbol checks and rejects
+both diagnostic-arm exports. ISO002 replaces only the HAL relative to the
+0047 FATX boot ISO. ISO001 was an unused packaging trial that also rebuilt
+bootvid; use002 for the isolated experiment.
+
+Unassisted run nt5-fatx-boot-hal-paging-001 reaches Explorer with USB input,
+audio and network drivers loaded. The native whole-disk device clears
+DO_POWER_PAGABLE (flags2050 becomes0050). The20 memory intervals and4MiB disk
+comparison pass. Cold audit checks3452 binaries and FATX chains without
+mismatches; all9 registry headers have matching sequences and checksums.
+
+Shutdown does NOT pass. After the normal UI request, the capture fails and
+the CPU trace enters a D1 bugcheck/debug path. Read-only repeat002 catches the first bugcheck: A(2,FF,0,F8D5FAA3), executing
+on the current stack during the final PopShutdownHandler display path.
+The first fault is0A; the later D1 is secondary error handling. Native kernel
+call-site inspection shows VidResetDisplay takes no arguments in NT5, whereas
+the supplied ReactOS bootvid exports a one-argument stdcall. That mismatched
+stack cleanup is the next isolated correction. Other imported bootvid call
+sites match the supplied argument counts, including VidInitialize(BOOLEAN).
+The harness then fails to read NV2A display registers and cleans up the VM;
+no post-stop live inspection was possible.
+The consistent cold disk is not evidence of a completed shutdown.
+
+Reproduction: apply patch-check-0055.json in order; run Build.ps1 under the
+build lease, then audit-hal.py. Package with the shared make-iso.py --autorun,
+--loader-directory ../native-windows-fatx-boot/artifacts and --hal-directory
+this kit's artifacts. Use a new output ISO and run identifier; verify hashes
+against iso-manifest-002.json and Run-FullBoot.ps1. Local media and binaries
+remain ignored. Source compatibility does not imply physical validation.
+
+Contract reference: https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/irp-mn-device-usage-notification
