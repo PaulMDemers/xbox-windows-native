@@ -332,3 +332,58 @@ report were verified. FTP accepted one launch at 19:49:45 UTC. The physical
 result is pending; command acceptance alone does not establish execution.
 The earlier audited widescreen result disk was retired by hash to make room;
 its screenshots/audit and the immutable v2 source remain.
+
+## Physical PnP-start checkpoint absent; persistent video trace (0073)
+
+Photo FC544F1F confirms cycle007 B4(0,0,0,50000), with the exact PnP diagnostic
+verified by FTP after reboot. The user saw boot graphics, apparent probe/text,
+then BSOD. The user-mode probe's report remains its original pending seed and
+its payload is absent; that visual observation does not establish probe entry.
+The stage9 START_DEVICE checkpoint did not occur.
+
+0073 adds default-OFF XBOX_NT5_VIDEO_TRACE, requiring the PnP diagnostic option.
+Trace mode removes the intentional START halt and forwards the original PnP
+calls, retaining their return values. A pre-created 4096-byte
+WINNT/system32/xwn-video-trace.bin is opened through SystemRoot with FILE_OPEN
+and synchronous write-through access. Exact length, marker and empty seed are
+checked before any write. No file creation, resizing, sector access or PCI
+configuration writes are performed by the diagnostic. A stage13 E0580001
+stop reports a trace setup/write failure, rather than silently losing it.
+
+The bounded log stores up to 254 records: wrapper arming, AddDevice entry and
+return, PnP dispatch entry and return, START resource-list counts, unload and
+read-only 64-byte PCI header snapshots for bridge 00:1e.0 and GPU 01:00.0.
+High-IRQL or concurrent logging attempts skip file IO; the skipped counter is
+saved by the next successful record. Returned STATUS_PENDING is a dispatch
+return, not proof of IRP completion. No completion routine is replaced.
+Unload closes the owned trace handle. Subsequent launches need a freshly
+seeded file; an existing trace must first be collected and preserved.
+
+Build-VideoTrace.ps1, test-video-trace.py and prepare-video-trace.py reproduce
+this candidate. Compiled tests cover malformed/nonempty/missing seeds, write
+failure, preserving optional PnP failures, forwarding START, elevated IRQL
+and unload. Imports were checked against Windows and the actual custom HAL.
+The clean-index patch replay is recorded separately.
+
+The first full-copy emulator attempt lacked host space and did not start a
+guest. The next run uses a QCOW2 overlay whose relative backing path is
+../../../outputs/native-windows-physical-f/artifacts/physical-video-trace-001.qcow2
+from work/runs/<run>/hdd.qcow2. Its backing image must remain in place and
+unchanged; the original immutable v2 input is also preserved. Windows changes
+are retained only in the overlay. Decode extracted traces with decode-video-trace.py.
+
+Ordinary widescreen run nt5-physical-f-video-trace-wide-002 reached the desktop,
+passed the v2 user-mode read/write probe and restarted to UnleashX. Its cold
+audit passed 6,495 files / 3,439 immutable binaries, registry trees and cluster
+ownership. The persisted video trace has 41 records, zero skipped IO attempts,
+AddDevice success and a successful START dispatch return, plus both PCI headers.
+The read-only backing image retained its original hash. There were no debugger
+execution changes. The emulator is closed; its retained overlay requires the
+physical-video-trace-001.qcow2 backing file. Do not retire that backing alone.
+
+Cycle008 installed/readback-verified the exact 413098... trace miniport and its
+seed, preserving the preceding driver as xboxvnt5.xwn-v8. FTP accepted one
+launch request at 20:10:21 UTC. Physical trace results remain pending. After
+reboot, collect-video-trace.py --cycle 8 retrieves and preserves them without
+launching or resetting anything. Existing seed data must not be overwritten
+until the corresponding trace is collected. The startup probe remains pending.

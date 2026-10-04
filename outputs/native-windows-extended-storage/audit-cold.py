@@ -4,7 +4,7 @@ root=pathlib.Path('/home/paul/xbox-windows-native');ws=pathlib.Path('/mnt/c/User
 sys.path[:0]=[str(ws/'outputs/native-windows-fatx-runtime'),'/mnt/c/Users/Paul/Desktop/ogxbox-linux/scripts']
 import fatx_stage_boot as fatx
 from bulk_fatx import Writer
-p=argparse.ArgumentParser();g=p.add_mutually_exclusive_group(required=True);g.add_argument('--run');g.add_argument('--fixture',choices=['windows2000-f-001','windows2000-f-write-001','windows2000-f-reboot-001']);p.add_argument('--probe-version',choices=['1','2'],default='1');p.add_argument('--video-miniport',type=pathlib.Path,help='Explicit replacement miniport whose hash must match the audited fixture');a=p.parse_args()
+p=argparse.ArgumentParser();g=p.add_mutually_exclusive_group(required=True);g.add_argument('--run');g.add_argument('--fixture',choices=['windows2000-f-001','windows2000-f-write-001','windows2000-f-reboot-001']);p.add_argument('--probe-version',choices=['1','2'],default='1');p.add_argument('--video-miniport',type=pathlib.Path,help='Explicit replacement miniport whose hash must match the audited fixture');p.add_argument('--video-trace-output',type=pathlib.Path,help='Extract an existing bounded trace to a new local file');a=p.parse_args()
 if a.run:
  assert a.run.startswith(('nt5-extended-f-','nt5-physical-f-')) and a.run.replace('-','').isalnum()
  run=ws/'work/runs'/a.run;assert (run/'cleanup.json').exists();source=run/'hdd.qcow2'
@@ -38,6 +38,12 @@ try:
      assert hashlib.sha256(w.read(full)).hexdigest()==expected[full]['sha256'],('binary mismatch',full)
      r['immutable_files_checked']+=1
   walk(1,'/')
+  if a.video_trace_output:
+   trace=w.read('/winnt/system32/xwn-video-trace.bin')
+   assert len(trace)==4096 and trace[:16]==b'XWN-VID-TRACE01\n'
+   assert 0 < struct.unpack_from('<I',trace,16)[0] <= 254
+   with a.video_trace_output.open('xb') as target:target.write(trace)
+   r['video_trace_sha256']=hashlib.sha256(trace).hexdigest()
   if a.run.startswith('nt5-physical-f-'):
    log=w.read('/xwn-report-v2.txt' if a.probe_version=='2' else '/xwn-physical.log');data=w.read('/xwn-create-v2.bin' if a.probe_version=='2' else '/xwn-physical-write.bin')
    assert (b'XWN-V2-PASS\r\n' if a.probe_version=='2' else b'XWN-PHYSICAL-PASS\r\n') in log and b'Failures: 0\r\n' in log

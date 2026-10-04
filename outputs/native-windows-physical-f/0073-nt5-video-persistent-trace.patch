@@ -1,0 +1,198 @@
+diff --git a/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt b/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt
+index 4a9c0e57..c2b19779 100644
+--- a/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt
+@@ -39,3 +39,13 @@ if(XBOX_NT5_VIDEO_PNP_DIAGNOSTIC)
+     target_compile_definitions(xboxvnt5 PRIVATE XBOX_NT5_VIDEO_PNP_DIAGNOSTIC=1)
+     target_sources(xboxvnt5 PRIVATE video_pnp.c)
+ endif()
++
++option(XBOX_NT5_VIDEO_TRACE "Trace NT5 video PnP to an existing seeded file" OFF)
++if(XBOX_NT5_VIDEO_TRACE)
++    if(NOT XBOX_NT5_VIDEO_PNP_DIAGNOSTIC)
++        message(FATAL_ERROR "Video trace requires PnP diagnostic wrappers")
++    endif()
++    target_compile_definitions(xboxvnt5 PRIVATE XBOX_NT5_VIDEO_TRACE=1)
++    target_sources(xboxvnt5 PRIVATE video_trace.c)
++    add_importlibs(xboxvnt5 hal)
++endif()
+diff --git a/win32ss/drivers/miniport/xboxvmp/nt5/video_pnp.c b/win32ss/drivers/miniport/xboxvmp/nt5/video_pnp.c
+index b3b5c446..91b5e603 100644
+--- a/win32ss/drivers/miniport/xboxvmp/nt5/video_pnp.c
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/video_pnp.c
+@@ -5,28 +5,55 @@
+ 
+ static PDRIVER_ADD_DEVICE OriginalAddDevice;
+ static PDRIVER_DISPATCH OriginalPnp;
++#ifdef XBOX_NT5_VIDEO_TRACE
++VOID NTAPI XwnVideoTraceInit(VOID);
++VOID NTAPI XwnVideoTrace(ULONG, ULONG, ULONG, ULONG);
++VOID NTAPI XwnVideoTraceClose(VOID);
++VOID NTAPI XwnVideoTracePci(VOID);
++static PDRIVER_UNLOAD OriginalUnload;
++static VOID NTAPI XwnVideoUnload(PDRIVER_OBJECT Driver)
++{
++    XwnVideoTrace(6, 0, 0, 0);
++    XwnVideoTraceClose();
++    if (OriginalUnload) OriginalUnload(Driver);
++}
++#define TRACE(e,a,b,c) XwnVideoTrace(e,(ULONG)(a),(ULONG)(b),(ULONG)(c))
++#else
++#define TRACE(e,a,b,c) ((void)0)
++#endif
+ 
+ static NTSTATUS NTAPI
+ XwnVideoPnp(PDEVICE_OBJECT Device, PIRP Irp)
+ {
+     PIO_STACK_LOCATION Stack = IoGetCurrentIrpStackLocation(Irp);
+     UCHAR Minor = Stack->MinorFunction;
++    NTSTATUS Status;
++    TRACE(4, Minor, Device, 0);
+     if (Minor == IRP_MN_START_DEVICE)
+     {
+         PCM_RESOURCE_LIST Raw = Stack->Parameters.StartDevice.AllocatedResources;
+         PCM_RESOURCE_LIST Translated = Stack->Parameters.StartDevice.AllocatedResourcesTranslated;
++#ifdef XBOX_NT5_VIDEO_TRACE
++        TRACE(7, Raw ? Raw->Count : 0, Translated ? Translated->Count : 0, 0);
++#else
+         KeBugCheckEx(0xE0580001, 9, Raw ? Raw->Count : 0,
+                      Translated ? Translated->Count : 0, 0x53545254);
++#endif
+     }
+     /* Optional PnP queries may legitimately fail. Preserve their responses.
+      * Do not access Irp after the original dispatch may have completed it. */
+-    return OriginalPnp(Device, Irp);
++    Status = OriginalPnp(Device, Irp);
++    TRACE(5, Minor, Status, 0);
++    return Status;
+ }
+ 
+ static NTSTATUS NTAPI
+ XwnVideoAddDevice(PDRIVER_OBJECT Driver, PDEVICE_OBJECT PhysicalDevice)
+ {
+-    NTSTATUS Status = OriginalAddDevice(Driver, PhysicalDevice);
++    NTSTATUS Status;
++    TRACE(2, PhysicalDevice, 0, 0);
++    Status = OriginalAddDevice(Driver, PhysicalDevice);
++    TRACE(3, Status, PhysicalDevice, 0);
+     if (!NT_SUCCESS(Status))
+         KeBugCheckEx(0xE0580001, 10, (ULONG_PTR)Status,
+                      (ULONG_PTR)PhysicalDevice, 0);
+@@ -43,8 +70,17 @@ XwnVideoAddDevice(PDRIVER_OBJECT Driver, PDEVICE_OBJECT PhysicalDevice)
+ 
+ VOID NTAPI XwnVideoArmPnp(PDRIVER_OBJECT Driver)
+ {
++#ifdef XBOX_NT5_VIDEO_TRACE
++    XwnVideoTraceInit();
++    OriginalUnload = Driver->DriverUnload;
++    Driver->DriverUnload = XwnVideoUnload;
++#endif
+     OriginalAddDevice = Driver->DriverExtension ? Driver->DriverExtension->AddDevice : NULL;
+     OriginalPnp = Driver->MajorFunction[IRP_MJ_PNP];
++    TRACE(1, OriginalAddDevice, OriginalPnp, 0);
++#ifdef XBOX_NT5_VIDEO_TRACE
++    XwnVideoTracePci();
++#endif
+     if (!OriginalAddDevice || !OriginalPnp)
+         KeBugCheckEx(0xE0580001, 11, (ULONG_PTR)OriginalAddDevice,
+                      (ULONG_PTR)OriginalPnp, 0);
+diff --git a/win32ss/drivers/miniport/xboxvmp/nt5/video_trace.c b/win32ss/drivers/miniport/xboxvmp/nt5/video_trace.c
+new file mode 100644
+index 00000000..a9fb7bd8
+--- /dev/null
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/video_trace.c
+@@ -0,0 +1,94 @@
++/* GPL-2.0-or-later. Opt-in trace to an existing, explicitly seeded 4096-byte file.
++ * No creation, resizing, path selection, PCI writes, or disk-sector access. */
++#include <ntddk.h>
++
++
++static HANDLE TraceHandle;
++static ULONG TraceData[1024];
++static volatile LONG TraceBusy;
++static const CHAR Magic[16] = "XWN-VID-TRACE01\n";
++
++static VOID TraceFail(ULONG Phase, NTSTATUS Status, ULONG_PTR Bytes)
++{
++    KeBugCheckEx(0xE0580001, 13, Phase, (ULONG_PTR)Status, Bytes);
++}
++
++VOID NTAPI XwnVideoTraceInit(VOID)
++{
++    UNICODE_STRING Name;
++    OBJECT_ATTRIBUTES Attributes;
++    IO_STATUS_BLOCK Io;
++    FILE_STANDARD_INFORMATION Info;
++    LARGE_INTEGER Offset;
++    NTSTATUS Status;
++    ULONG I;
++    if (KeGetCurrentIrql() != PASSIVE_LEVEL)
++        TraceFail(0, STATUS_INVALID_DEVICE_STATE, KeGetCurrentIrql());
++    RtlInitUnicodeString(&Name, L"\\SystemRoot\\System32\\xwn-video-trace.bin");
++    InitializeObjectAttributes(&Attributes, &Name,
++                               OBJ_CASE_INSENSITIVE | OBJ_KERNEL_HANDLE, NULL, NULL);
++    Status = ZwCreateFile(&TraceHandle, FILE_READ_DATA | FILE_WRITE_DATA | SYNCHRONIZE,
++                          &Attributes, &Io, NULL, 0, FILE_SHARE_READ, FILE_OPEN,
++                          FILE_NON_DIRECTORY_FILE | FILE_SYNCHRONOUS_IO_NONALERT |
++                          FILE_WRITE_THROUGH, NULL, 0);
++    if (!NT_SUCCESS(Status)) TraceFail(1, Status, 0);
++    Status = ZwQueryInformationFile(TraceHandle, &Io, &Info, sizeof(Info), FileStandardInformation);
++    if (!NT_SUCCESS(Status) || Info.EndOfFile.QuadPart != sizeof(TraceData))
++        TraceFail(2, Status, NT_SUCCESS(Status) ? Info.EndOfFile.LowPart : 0);
++    Offset.QuadPart = 0;
++    Io.Information = 0;
++    Status = ZwReadFile(TraceHandle, NULL, NULL, NULL, &Io,
++                        TraceData, sizeof(TraceData), &Offset, NULL);
++    if (!NT_SUCCESS(Status) || Io.Information != sizeof(TraceData))
++        TraceFail(3, Status, Io.Information);
++    for (I = 0; I < sizeof(Magic); ++I)
++        if (((PUCHAR)TraceData)[I] != (UCHAR)Magic[I]) TraceFail(4, STATUS_DATA_ERROR, I);
++    for (I = sizeof(Magic); I < sizeof(TraceData); ++I)
++        if (((PUCHAR)TraceData)[I]) TraceFail(4, STATUS_DATA_ERROR, I);
++}
++
++VOID NTAPI XwnVideoTrace(ULONG Event, ULONG A, ULONG B, ULONG C)
++{
++    LARGE_INTEGER Offset;
++    IO_STATUS_BLOCK Io;
++    NTSTATUS Status;
++    ULONG Index;
++    if (!TraceHandle) return;
++    if (KeGetCurrentIrql() != PASSIVE_LEVEL ||
++        InterlockedCompareExchange(&TraceBusy, 1, 0) != 0)
++    {
++        InterlockedIncrement((PLONG)&TraceData[5]);
++        return;
++    }
++    if (TraceData[4] >= 254) { InterlockedExchange(&TraceBusy, 0); return; }
++    Index = 8 + TraceData[4] * 4;
++    TraceData[Index] = Event; TraceData[Index + 1] = A;
++    TraceData[Index + 2] = B; TraceData[Index + 3] = C;
++    ++TraceData[4];
++    Offset.QuadPart = 0;
++    Io.Information = 0;
++    Status = ZwWriteFile(TraceHandle, NULL, NULL, NULL, &Io,
++                         TraceData, sizeof(TraceData), &Offset, NULL);
++    if (!NT_SUCCESS(Status) || Io.Information != sizeof(TraceData))
++        TraceFail(5, Status, Io.Information);
++    InterlockedExchange(&TraceBusy, 0);
++}
++
++VOID NTAPI XwnVideoTraceClose(VOID)
++{
++    if (TraceHandle) { ZwClose(TraceHandle); TraceHandle = NULL; }
++}
++
++
++VOID NTAPI XwnVideoTracePci(VOID)
++{
++    ULONG Bridge[16], Gpu[16], I, BridgeBytes, GpuBytes;
++    RtlFillMemory(Bridge, sizeof(Bridge), 0xff);
++    RtlFillMemory(Gpu, sizeof(Gpu), 0xff);
++    /* Xbox AGP bridge 00:1e.0 and GPU 01:00.0; config reads only. */
++    BridgeBytes = HalGetBusDataByOffset(PCIConfiguration, 0, 30, Bridge, 0, sizeof(Bridge));
++    GpuBytes = HalGetBusDataByOffset(PCIConfiguration, 1, 0, Gpu, 0, sizeof(Gpu));
++    XwnVideoTrace(8, BridgeBytes, GpuBytes, 0);
++    for (I = 0; I < 16; ++I)
++        XwnVideoTrace(9, I * 4, Bridge[I], Gpu[I]);
++}
