@@ -276,3 +276,11 @@ returns to 640x480 (HVALID_END=27F); an initial capture with stale widescreen
 geometry is unusable, and `dashboard.png` is the correctly captured result.
 The emulator is closed. The full widescreen result disk and immutable v2 input
 are retained; intermediate entry/adapter/wide input copies were retired by hash.
+
+At 19:24 UTC the user clarified that the console had recently shown a BSOD
+and was now at the dashboard. Cycle005's STOP code remains unknown. After
+verifying the unchanged installed miniport, launcher, loader, pending report
+and absent probe payload, `relaunch-video-adapter.py` requested exactly one
+fresh launch (cycle006). FTP accepted it at 19:24:47 UTC. No files were uploaded.
+Command acceptance is not proof of reaching a Windows checkpoint; a current
+screen photograph is still required. The helper refuses a second invocation.
