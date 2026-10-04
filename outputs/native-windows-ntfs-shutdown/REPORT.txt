@@ -1,0 +1,29 @@
+NTFS shutdown regression with the updated HAL/boot video, 4 October 2026
+
+Unassisted run nt5-ntfs-shutdown-002 reaches the NTFS Windows 2000 desktop,
+responds to USB input and completes normal UI shutdown. The genuine safe-to-
+turn-off bitmap is visible. The final CPU state is HaliHaltSystem +2 at
+825B39F2, with interrupts disabled, zero bugcheck data and stable tick17623.
+The address differs from FATX runs because this loader places HAL at825AA000.
+Automatic electrical power-off remains unimplemented.
+
+The regression combines the exact loader from the previously validated
+kernel-autorun-006 ISO with the0055 HAL and0057 boot video. An earlier package
+mistakenly used the stale default autorun directory and stopped during hive
+import before kernel entry. It is rejected. package.py now pins the known
+source ISO and extracts its loader explicitly; Run-FullBoot.ps1 pins package002.
+
+Cold read-only audit matches29 selected system/driver binaries to the original
+inventory, traverses all reachable keys/values in seven active registry hives,
+and passes the4MiB disk, GUI and20-interval memory probe. NTFS volume flags
+are0. ntfsfix -n reports successful MFT/MFTMirr and alternate-boot-sector
+checks. This is not a comprehensive NTFS consistency proof. Source disk hashes
+match before/after inspection; temporary raw images are removed.
+
+The first audit incorrectly used mixed-case paths with the case-sensitive
+offline tool and named the OHCI driver usbohci.sys instead of openhci.sys.
+The corrected audit resolves canonical source-inventory paths. The original
+failed report is retained locally rather than treated as a driver failure.
+
+See validation-002.json for exact inputs, guest logs and audit results. This
+test accesses only owned emulator disks. No physical console access occurred.
