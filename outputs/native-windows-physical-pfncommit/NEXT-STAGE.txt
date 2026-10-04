@@ -1,0 +1,13 @@
+After physical XWNJ90, preserve the reconciled extent before allowing the
+native descriptor walk to create free/in-use PFN records. Model all PFN
+and color-list writes and ensure reserved loader images, kernel, HAL, hive,
+stack, drivers, BIOS pages and framebuffer cannot enter a free list.
+The corrected count is specific to the pinned single-candidate path, not a
+general kernel fix. Do not silently expand the guard to other layouts.
+
+Static follow-up audit is in free-list-next-review.json. The native walk
+uses Blink (reverse descriptor order). MiInsertPageInList can signal
+events when availability reaches 2 and 19 and the zeroing threshold;
+those side effects need explicit observation, even with PIC masked.
+The future bounded stop is 159898, immediately after the descriptor walk.
+No physical/emulator pass for that future stop is claimed by this kit.

@@ -1,0 +1,1433 @@
+{
+  "scope": "Static preparation only; these instructions have not executed in this physical test.",
+  "entry_rva": "0x1596f3",
+  "stop_after_descriptor_walk_rva": "0x159898",
+  "descriptor_order": "Reverse via loader list Blink; do not assume ascending order.",
+  "free_types": [
+    2,
+    4,
+    5,
+    8
+  ],
+  "unconditional_bad_page_type": 3,
+  "clip_to_highest_types": [
+    6,
+    22,
+    23
+  ],
+  "free_policy": "Types 2/4/5/8 insert only when PFN ReferenceCount is zero; referenced frames stay in use. Types 6/22/23 are clipped or skipped above HighestPhysicalPage. Other types initialize a nonzero reference only if absent.",
+  "calls_to_audit": [
+    "MiInsertPageInList at 47b2e",
+    "KeSetEvent at 2b6e6 (available count thresholds 2 and 19; later zeroing event threshold)",
+    "alternate modified/transition-page paths must remain excluded"
+  ],
+  "guards_needed": [
+    "Full free/zero/bad list backlink and count consistency",
+    "Per-color heads/tails and links",
+    "Available-page counts and event state",
+    "PFN model in descriptor order including initially mapped frames",
+    "No kernel/HAL/stack/hive/driver/BIOS/framebuffer frame in a free list",
+    "Full descriptor extent conservation including consumed 623 frames"
+  ],
+  "blocks": {
+    "descriptor_walk": [
+      {
+        "rva": "0x1596f3",
+        "op": "mov",
+        "args": "eax, dword ptr [ebp + 8]"
+      },
+      {
+        "rva": "0x1596f6",
+        "op": "mov",
+        "args": "eax, dword ptr [eax + 0xc]"
+      },
+      {
+        "rva": "0x1596f9",
+        "op": "jmp",
+        "args": "0x15988c"
+      },
+      {
+        "rva": "0x1596fe",
+        "op": "mov",
+        "args": "eax, dword ptr [ebp - 0x4c]"
+      },
+      {
+        "rva": "0x159701",
+        "op": "mov",
+        "args": "edi, dword ptr [eax + 0x10]"
+      },
+      {
+        "rva": "0x159704",
+        "op": "mov",
+        "args": "esi, dword ptr [eax + 0xc]"
+      },
+      {
+        "rva": "0x159707",
+        "op": "mov",
+        "args": "eax, dword ptr [eax + 8]"
+      },
+      {
+        "rva": "0x15970a",
+        "op": "cmp",
+        "args": "eax, 0x17"
+      },
+      {
+        "rva": "0x15970d",
+        "op": "jg",
+        "args": "0x159802"
+      },
+      {
+        "rva": "0x159713",
+        "op": "cmp",
+        "args": "eax, 0x16"
+      },
+      {
+        "rva": "0x159716",
+        "op": "jge",
+        "args": "0x1597dc"
+      },
+      {
+        "rva": "0x15971c",
+        "op": "cmp",
+        "args": "eax, 2"
+      },
+      {
+        "rva": "0x15971f",
+        "op": "je",
+        "args": "0x159762"
+      },
+      {
+        "rva": "0x159721",
+        "op": "cmp",
+        "args": "eax, 3"
+      },
+      {
+        "rva": "0x159724",
+        "op": "je",
+        "args": "0x159744"
+      },
+      {
+        "rva": "0x159726",
+        "op": "jle",
+        "args": "0x159802"
+      },
+      {
+        "rva": "0x15972c",
+        "op": "cmp",
+        "args": "eax, 5"
+      },
+      {
+        "rva": "0x15972f",
+        "op": "jle",
+        "args": "0x159762"
+      },
+      {
+        "rva": "0x159731",
+        "op": "cmp",
+        "args": "eax, 6"
+      },
+      {
+        "rva": "0x159734",
+        "op": "je",
+        "args": "0x1597dc"
+      },
+      {
+        "rva": "0x15973a",
+        "op": "cmp",
+        "args": "eax, 8"
+      },
+      {
+        "rva": "0x15973d",
+        "op": "je",
+        "args": "0x159762"
+      },
+      {
+        "rva": "0x15973f",
+        "op": "jmp",
+        "args": "0x159802"
+      },
+      {
+        "rva": "0x159744",
+        "op": "test",
+        "args": "edi, edi"
+      },
+      {
+        "rva": "0x159746",
+        "op": "je",
+        "args": "0x159886"
+      },
+      {
+        "rva": "0x15974c",
+        "op": "mov",
+        "args": "ecx, dword ptr [0x4727cc]"
+      },
+      {
+        "rva": "0x159752",
+        "op": "mov",
+        "args": "edx, esi"
+      },
+      {
+        "rva": "0x159754",
+        "op": "call",
+        "args": "0x47b2e"
+      },
+      {
+        "rva": "0x159759",
+        "op": "inc",
+        "args": "esi"
+      },
+      {
+        "rva": "0x15975a",
+        "op": "dec",
+        "args": "edi"
+      },
+      {
+        "rva": "0x15975b",
+        "op": "jne",
+        "args": "0x15974c"
+      },
+      {
+        "rva": "0x15975d",
+        "op": "jmp",
+        "args": "0x159886"
+      },
+      {
+        "rva": "0x159762",
+        "op": "mov",
+        "args": "edx, dword ptr [0x481ab0]"
+      },
+      {
+        "rva": "0x159768",
+        "op": "lea",
+        "args": "eax, [esi + esi*2]"
+      },
+      {
+        "rva": "0x15976b",
+        "op": "xor",
+        "args": "ecx, ecx"
+      },
+      {
+        "rva": "0x15976d",
+        "op": "test",
+        "args": "edi, edi"
+      },
+      {
+        "rva": "0x15976f",
+        "op": "mov",
+        "args": "dword ptr [ebp + 8], ecx"
+      },
+      {
+        "rva": "0x159772",
+        "op": "lea",
+        "args": "eax, [edx + eax*8]"
+      },
+      {
+        "rva": "0x159775",
+        "op": "je",
+        "args": "0x1597c3"
+      },
+      {
+        "rva": "0x159777",
+        "op": "add",
+        "args": "eax, 4"
+      },
+      {
+        "rva": "0x15977a",
+        "op": "mov",
+        "args": "dword ptr [ebp - 0x38], eax"
+      },
+      {
+        "rva": "0x15977d",
+        "op": "cmp",
+        "args": "word ptr [eax + 0xa], 0"
+      },
+      {
+        "rva": "0x159782",
+        "op": "jne",
+        "args": "0x1597a0"
+      },
+      {
+        "rva": "0x159784",
+        "op": "mov",
+        "args": "ecx, dword ptr [ebp - 0x38]"
+      },
+      {
+        "rva": "0x159787",
+        "op": "mov",
+        "args": "eax, esi"
+      },
+      {
+        "rva": "0x159789",
+        "op": "shl",
+        "args": "eax, 2"
+      },
+      {
+        "rva": "0x15978c",
+        "op": "mov",
+        "args": "dword ptr [ecx], eax"
+      },
+      {
+        "rva": "0x15978e",
+        "op": "mov",
+        "args": "ecx, dword ptr [0x4727bc]"
+      },
+      {
+        "rva": "0x159794",
+        "op": "mov",
+        "args": "edx, esi"
+      },
+      {
+        "rva": "0x159796",
+        "op": "call",
+        "args": "0x47b2e"
+      },
+      {
+        "rva": "0x15979b",
+        "op": "inc",
+        "args": "dword ptr [ebp + 8]"
+      },
+      {
+        "rva": "0x15979e",
+        "op": "jmp",
+        "args": "0x1597b3"
+      },
+      {
+        "rva": "0x1597a0",
+        "op": "cmp",
+        "args": "ecx, dword ptr [ebp - 0x48]"
+      },
+      {
+        "rva": "0x1597a3",
+        "op": "jbe",
+        "args": "0x1597b3"
+      },
+      {
+        "rva": "0x1597a5",
+        "op": "mov",
+        "args": "eax, esi"
+      },
+      {
+        "rva": "0x1597a7",
+        "op": "mov",
+        "args": "dword ptr [ebp - 0x48], ecx"
+      },
+      {
+        "rva": "0x1597aa",
+        "op": "sub",
+        "args": "eax, ecx"
+      },
+      {
+        "rva": "0x1597ac",
+        "op": "and",
+        "args": "dword ptr [ebp + 8], 0"
+      },
+      {
+        "rva": "0x1597b0",
+        "op": "mov",
+        "args": "dword ptr [ebp - 0x30], eax"
+      },
+      {
+        "rva": "0x1597b3",
+        "op": "mov",
+        "args": "eax, dword ptr [ebp - 0x38]"
+      },
+      {
+        "rva": "0x1597b6",
+        "op": "mov",
+        "args": "ecx, dword ptr [ebp + 8]"
+      },
+      {
+        "rva": "0x1597b9",
+        "op": "add",
+        "args": "eax, 0x18"
+      },
+      {
+        "rva": "0x1597bc",
+        "op": "inc",
+        "args": "esi"
+      },
+      {
+        "rva": "0x1597bd",
+        "op": "dec",
+        "args": "edi"
+      },
+      {
+        "rva": "0x1597be",
+        "op": "mov",
+        "args": "dword ptr [ebp - 0x38], eax"
+      },
+      {
+        "rva": "0x1597c1",
+        "op": "jne",
+        "args": "0x15977d"
+      },
+      {
+        "rva": "0x1597c3",
+        "op": "cmp",
+        "args": "ecx, dword ptr [ebp - 0x48]"
+      },
+      {
+        "rva": "0x1597c6",
+        "op": "jbe",
+        "args": "0x159886"
+      },
+      {
+        "rva": "0x1597cc",
+        "op": "mov",
+        "args": "eax, dword ptr [ebp + 8]"
+      },
+      {
+        "rva": "0x1597cf",
+        "op": "sub",
+        "args": "esi, eax"
+      },
+      {
+        "rva": "0x1597d1",
+        "op": "mov",
+        "args": "dword ptr [ebp - 0x48], eax"
+      },
+      {
+        "rva": "0x1597d4",
+        "op": "mov",
+        "args": "dword ptr [ebp - 0x30], esi"
+      },
+      {
+        "rva": "0x1597d7",
+        "op": "jmp",
+        "args": "0x159886"
+      },
+      {
+        "rva": "0x1597dc",
+        "op": "cmp",
+        "args": "esi, dword ptr [0x481bb4]"
+      },
+      {
+        "rva": "0x1597e2",
+        "op": "ja",
+        "args": "0x159886"
+      },
+      {
+        "rva": "0x1597e8",
+        "op": "mov",
+        "args": "eax, dword ptr [0x481bb4]"
+      },
+      {
+        "rva": "0x1597ed",
+        "op": "lea",
+        "args": "ecx, [esi + edi]"
+      },
+      {
+        "rva": "0x1597f0",
+        "op": "lea",
+        "args": "edx, [eax + 1]"
+      },
+      {
+        "rva": "0x1597f3",
+        "op": "cmp",
+        "args": "ecx, edx"
+      },
+      {
+        "rva": "0x1597f5",
+        "op": "jbe",
+        "args": "0x159802"
+      },
+      {
+        "rva": "0x1597f7",
+        "op": "mov",
+        "args": "ecx, dword ptr [ebp - 0x4c]"
+      },
+      {
+        "rva": "0x1597fa",
+        "op": "sub",
+        "args": "eax, esi"
+      },
+      {
+        "rva": "0x1597fc",
+        "op": "inc",
+        "args": "eax"
+      },
+      {
+        "rva": "0x1597fd",
+        "op": "mov",
+        "args": "dword ptr [ecx + 0x10], eax"
+      },
+      {
+        "rva": "0x159800",
+        "op": "mov",
+        "args": "edi, eax"
+      },
+      {
+        "rva": "0x159802",
+        "op": "mov",
+        "args": "eax, dword ptr [0x4823e0]"
+      },
+      {
+        "rva": "0x159807",
+        "op": "lea",
+        "args": "edx, [esi + 0x80000]"
+      },
+      {
+        "rva": "0x15980d",
+        "op": "shl",
+        "args": "edx, 0xc"
+      },
+      {
+        "rva": "0x159810",
+        "op": "lea",
+        "args": "ecx, [eax + edx]"
+      },
+      {
+        "rva": "0x159813",
+        "op": "lea",
+        "args": "eax, [esi + esi*2]"
+      },
+      {
+        "rva": "0x159816",
+        "op": "mov",
+        "args": "esi, dword ptr [0x481ab0]"
+      },
+      {
+        "rva": "0x15981c",
+        "op": "shr",
+        "args": "ecx, 0xa"
+      },
+      {
+        "rva": "0x15981f",
+        "op": "and",
+        "args": "ecx, 0x3ffffc"
+      },
+      {
+        "rva": "0x159825",
+        "op": "lea",
+        "args": "eax, [esi + eax*8]"
+      },
+      {
+        "rva": "0x159828",
+        "op": "sub",
+        "args": "ecx, 0x40000000"
+      },
+      {
+        "rva": "0x15982e",
+        "op": "test",
+        "args": "edi, edi"
+      },
+      {
+        "rva": "0x159830",
+        "op": "je",
+        "args": "0x159886"
+      },
+      {
+        "rva": "0x159832",
+        "op": "add",
+        "args": "eax, 8"
+      },
+      {
+        "rva": "0x159835",
+        "op": "mov",
+        "args": "esi, dword ptr [0x4823e0]"
+      },
+      {
+        "rva": "0x15983b",
+        "op": "add",
+        "args": "esi, edx"
+      },
+      {
+        "rva": "0x15983d",
+        "op": "shr",
+        "args": "esi, 0x14"
+      },
+      {
+        "rva": "0x159840",
+        "op": "and",
+        "args": "esi, 0xffc"
+      },
+      {
+        "rva": "0x159846",
+        "op": "sub",
+        "args": "esi, 0x3fd00000"
+      },
+      {
+        "rva": "0x15984c",
+        "op": "cmp",
+        "args": "word ptr [eax + 6], 0"
+      },
+      {
+        "rva": "0x159851",
+        "op": "jne",
+        "args": "0x159877"
+      },
+      {
+        "rva": "0x159853",
+        "op": "mov",
+        "args": "esi, dword ptr [esi]"
+      },
+      {
+        "rva": "0x159855",
+        "op": "mov",
+        "args": "word ptr [eax + 6], 1"
+      },
+      {
+        "rva": "0x15985b",
+        "op": "shr",
+        "args": "esi, 0xc"
+      },
+      {
+        "rva": "0x15985e",
+        "op": "inc",
+        "args": "dword ptr [eax]"
+      },
+      {
+        "rva": "0x159860",
+        "op": "mov",
+        "args": "dword ptr [eax + 0xc], esi"
+      },
+      {
+        "rva": "0x159863",
+        "op": "mov",
+        "args": "esi, dword ptr [eax + 4]"
+      },
+      {
+        "rva": "0x159866",
+        "op": "mov",
+        "args": "dword ptr [eax - 4], ecx"
+      },
+      {
+        "rva": "0x159869",
+        "op": "and",
+        "args": "si, 0xfe8f"
+      },
+      {
+        "rva": "0x15986e",
+        "op": "or",
+        "args": "esi, 0x600"
+      },
+      {
+        "rva": "0x159874",
+        "op": "mov",
+        "args": "dword ptr [eax + 4], esi"
+      },
+      {
+        "rva": "0x159877",
+        "op": "add",
+        "args": "eax, 0x18"
+      },
+      {
+        "rva": "0x15987a",
+        "op": "add",
+        "args": "edx, 0x1000"
+      },
+      {
+        "rva": "0x159880",
+        "op": "add",
+        "args": "ecx, 4"
+      },
+      {
+        "rva": "0x159883",
+        "op": "dec",
+        "args": "edi"
+      },
+      {
+        "rva": "0x159884",
+        "op": "jne",
+        "args": "0x159835"
+      },
+      {
+        "rva": "0x159886",
+        "op": "mov",
+        "args": "eax, dword ptr [ebp - 0x4c]"
+      },
+      {
+        "rva": "0x159889",
+        "op": "mov",
+        "args": "eax, dword ptr [eax + 4]"
+      },
+      {
+        "rva": "0x15988c",
+        "op": "cmp",
+        "args": "eax, dword ptr [ebp - 0x50]"
+      },
+      {
+        "rva": "0x15988f",
+        "op": "mov",
+        "args": "dword ptr [ebp - 0x4c], eax"
+      },
+      {
+        "rva": "0x159892",
+        "op": "jne",
+        "args": "0x1596fe"
+      }
+    ],
+    "insert_page": [
+      {
+        "rva": "0x47b2e",
+        "op": "push",
+        "args": "ebx"
+      },
+      {
+        "rva": "0x47b2f",
+        "op": "push",
+        "args": "esi"
+      },
+      {
+        "rva": "0x47b30",
+        "op": "mov",
+        "args": "ebx, edx"
+      },
+      {
+        "rva": "0x47b32",
+        "op": "mov",
+        "args": "esi, ecx"
+      },
+      {
+        "rva": "0x47b34",
+        "op": "mov",
+        "args": "ecx, dword ptr [0x481ab0]"
+      },
+      {
+        "rva": "0x47b3a",
+        "op": "push",
+        "args": "edi"
+      },
+      {
+        "rva": "0x47b3b",
+        "op": "inc",
+        "args": "dword ptr [esi]"
+      },
+      {
+        "rva": "0x47b3d",
+        "op": "lea",
+        "args": "eax, [ebx + ebx*2]"
+      },
+      {
+        "rva": "0x47b40",
+        "op": "cmp",
+        "args": "esi, 0x472788"
+      },
+      {
+        "rva": "0x47b46",
+        "op": "lea",
+        "args": "edi, [ecx + eax*8]"
+      },
+      {
+        "rva": "0x47b49",
+        "op": "mov",
+        "args": "eax, dword ptr [esi]"
+      },
+      {
+        "rva": "0x47b4b",
+        "op": "jne",
+        "args": "0x47ba7"
+      },
+      {
+        "rva": "0x47b4d",
+        "op": "test",
+        "args": "byte ptr [edi + 0x11], 4"
+      },
+      {
+        "rva": "0x47b51",
+        "op": "jne",
+        "args": "0x47b6f"
+      },
+      {
+        "rva": "0x47b53",
+        "op": "mov",
+        "args": "esi, dword ptr [edi + 0xc]"
+      },
+      {
+        "rva": "0x47b56",
+        "op": "shr",
+        "args": "esi, 4"
+      },
+      {
+        "rva": "0x47b59",
+        "op": "and",
+        "args": "esi, 7"
+      },
+      {
+        "rva": "0x47b5c",
+        "op": "shl",
+        "args": "esi, 4"
+      },
+      {
+        "rva": "0x47b5f",
+        "op": "add",
+        "args": "esi, 0x472ef0"
+      },
+      {
+        "rva": "0x47b65",
+        "op": "inc",
+        "args": "dword ptr [esi]"
+      },
+      {
+        "rva": "0x47b67",
+        "op": "inc",
+        "args": "dword ptr [0x473df4]"
+      },
+      {
+        "rva": "0x47b6d",
+        "op": "jmp",
+        "args": "0x47bdf"
+      },
+      {
+        "rva": "0x47b6f",
+        "op": "sub",
+        "args": "eax, dword ptr [0x473df4]"
+      },
+      {
+        "rva": "0x47b75",
+        "op": "cmp",
+        "args": "eax, 1"
+      },
+      {
+        "rva": "0x47b78",
+        "op": "jne",
+        "args": "0x47bdf"
+      },
+      {
+        "rva": "0x47b7a",
+        "op": "cmp",
+        "args": "byte ptr [0x473dd0], 0"
+      },
+      {
+        "rva": "0x47b81",
+        "op": "jne",
+        "args": "0x47bdf"
+      },
+      {
+        "rva": "0x47b83",
+        "op": "push",
+        "args": "0x481500"
+      },
+      {
+        "rva": "0x47b88",
+        "op": "push",
+        "args": "0"
+      },
+      {
+        "rva": "0x47b8a",
+        "op": "push",
+        "args": "dword ptr [0x481524]"
+      },
+      {
+        "rva": "0x47b90",
+        "op": "mov",
+        "args": "byte ptr [0x473dd0], al"
+      },
+      {
+        "rva": "0x47b95",
+        "op": "push",
+        "args": "dword ptr [0x481520]"
+      },
+      {
+        "rva": "0x47b9b",
+        "op": "push",
+        "args": "0x4814a0"
+      },
+      {
+        "rva": "0x47ba0",
+        "op": "call",
+        "args": "0x2b492"
+      },
+      {
+        "rva": "0x47ba5",
+        "op": "jmp",
+        "args": "0x47bdf"
+      },
+      {
+        "rva": "0x47ba7",
+        "op": "mov",
+        "args": "edx, dword ptr [edi + 0xc]"
+      },
+      {
+        "rva": "0x47baa",
+        "op": "mov",
+        "args": "ecx, 0x2000"
+      },
+      {
+        "rva": "0x47baf",
+        "op": "and",
+        "args": "edx, ecx"
+      },
+      {
+        "rva": "0x47bb1",
+        "op": "cmp",
+        "args": "edx, ecx"
+      },
+      {
+        "rva": "0x47bb3",
+        "op": "jne",
+        "args": "0x47bdf"
+      },
+      {
+        "rva": "0x47bb5",
+        "op": "mov",
+        "args": "ecx, dword ptr [esi + 4]"
+      },
+      {
+        "rva": "0x47bb8",
+        "op": "cmp",
+        "args": "ecx, 2"
+      },
+      {
+        "rva": "0x47bbb",
+        "op": "jg",
+        "args": "0x47bdf"
+      },
+      {
+        "rva": "0x47bbd",
+        "op": "dec",
+        "args": "eax"
+      },
+      {
+        "rva": "0x47bbe",
+        "op": "cmp",
+        "args": "ecx, 2"
+      },
+      {
+        "rva": "0x47bc1",
+        "op": "mov",
+        "args": "dword ptr [esi], eax"
+      },
+      {
+        "rva": "0x47bc3",
+        "op": "jne",
+        "args": "0x47bd7"
+      },
+      {
+        "rva": "0x47bc5",
+        "op": "mov",
+        "args": "eax, dword ptr [edi + 0xc]"
+      },
+      {
+        "rva": "0x47bc8",
+        "op": "and",
+        "args": "ah, 0xfa"
+      },
+      {
+        "rva": "0x47bcb",
+        "op": "or",
+        "args": "ah, cl"
+      },
+      {
+        "rva": "0x47bcd",
+        "op": "mov",
+        "args": "ecx, ebx"
+      },
+      {
+        "rva": "0x47bcf",
+        "op": "mov",
+        "args": "dword ptr [edi + 0xc], eax"
+      },
+      {
+        "rva": "0x47bd2",
+        "op": "call",
+        "args": "0x431b2"
+      },
+      {
+        "rva": "0x47bd7",
+        "op": "mov",
+        "args": "esi, dword ptr [0x4727cc]"
+      },
+      {
+        "rva": "0x47bdd",
+        "op": "inc",
+        "args": "dword ptr [esi]"
+      },
+      {
+        "rva": "0x47bdf",
+        "op": "mov",
+        "args": "eax, dword ptr [esi + 0xc]"
+      },
+      {
+        "rva": "0x47be2",
+        "op": "cmp",
+        "args": "eax, -1"
+      },
+      {
+        "rva": "0x47be5",
+        "op": "jne",
+        "args": "0x47bec"
+      },
+      {
+        "rva": "0x47be7",
+        "op": "mov",
+        "args": "dword ptr [esi + 8], ebx"
+      },
+      {
+        "rva": "0x47bea",
+        "op": "jmp",
+        "args": "0x47bf8"
+      },
+      {
+        "rva": "0x47bec",
+        "op": "mov",
+        "args": "edx, dword ptr [0x481ab0]"
+      },
+      {
+        "rva": "0x47bf2",
+        "op": "lea",
+        "args": "ecx, [eax + eax*2]"
+      },
+      {
+        "rva": "0x47bf5",
+        "op": "mov",
+        "args": "dword ptr [edx + ecx*8], ebx"
+      },
+      {
+        "rva": "0x47bf8",
+        "op": "mov",
+        "args": "dword ptr [esi + 0xc], ebx"
+      },
+      {
+        "rva": "0x47bfb",
+        "op": "or",
+        "args": "dword ptr [edi], 0xffffffff"
+      },
+      {
+        "rva": "0x47bfe",
+        "op": "mov",
+        "args": "dword ptr [edi + 8], eax"
+      },
+      {
+        "rva": "0x47c01",
+        "op": "mov",
+        "args": "ecx, dword ptr [esi + 4]"
+      },
+      {
+        "rva": "0x47c04",
+        "op": "mov",
+        "args": "eax, dword ptr [edi + 0xc]"
+      },
+      {
+        "rva": "0x47c07",
+        "op": "and",
+        "args": "ecx, 7"
+      },
+      {
+        "rva": "0x47c0a",
+        "op": "and",
+        "args": "ah, 0xf8"
+      },
+      {
+        "rva": "0x47c0d",
+        "op": "shl",
+        "args": "ecx, 8"
+      },
+      {
+        "rva": "0x47c10",
+        "op": "or",
+        "args": "eax, ecx"
+      },
+      {
+        "rva": "0x47c12",
+        "op": "mov",
+        "args": "dword ptr [edi + 0xc], eax"
+      },
+      {
+        "rva": "0x47c15",
+        "op": "cmp",
+        "args": "dword ptr [esi + 4], 2"
+      },
+      {
+        "rva": "0x47c19",
+        "op": "jg",
+        "args": "0x47cd5"
+      },
+      {
+        "rva": "0x47c1f",
+        "op": "inc",
+        "args": "dword ptr [0x481bf8]"
+      },
+      {
+        "rva": "0x47c25",
+        "op": "cmp",
+        "args": "dword ptr [0x481bf8], 2"
+      },
+      {
+        "rva": "0x47c2c",
+        "op": "jne",
+        "args": "0x47c39"
+      },
+      {
+        "rva": "0x47c2e",
+        "op": "push",
+        "args": "0"
+      },
+      {
+        "rva": "0x47c30",
+        "op": "push",
+        "args": "0"
+      },
+      {
+        "rva": "0x47c32",
+        "op": "push",
+        "args": "0x481dc0"
+      },
+      {
+        "rva": "0x47c37",
+        "op": "jmp",
+        "args": "0x47c4b"
+      },
+      {
+        "rva": "0x47c39",
+        "op": "cmp",
+        "args": "dword ptr [0x481bf8], 0x13"
+      },
+      {
+        "rva": "0x47c40",
+        "op": "jne",
+        "args": "0x47c50"
+      },
+      {
+        "rva": "0x47c42",
+        "op": "push",
+        "args": "0"
+      },
+      {
+        "rva": "0x47c44",
+        "op": "push",
+        "args": "0"
+      },
+      {
+        "rva": "0x47c46",
+        "op": "push",
+        "args": "0x4812a0"
+      },
+      {
+        "rva": "0x47c4b",
+        "op": "call",
+        "args": "0x2b6e6"
+      },
+      {
+        "rva": "0x47c50",
+        "op": "mov",
+        "args": "ecx, dword ptr [esi + 4]"
+      },
+      {
+        "rva": "0x47c53",
+        "op": "cmp",
+        "args": "ecx, 1"
+      },
+      {
+        "rva": "0x47c56",
+        "op": "jg",
+        "args": "0x47c8f"
+      },
+      {
+        "rva": "0x47c58",
+        "op": "mov",
+        "args": "ecx, dword ptr [ecx*4 + 0x4811b8]"
+      },
+      {
+        "rva": "0x47c5f",
+        "op": "mov",
+        "args": "eax, ebx"
+      },
+      {
+        "rva": "0x47c61",
+        "op": "and",
+        "args": "eax, dword ptr [0x48119c]"
+      },
+      {
+        "rva": "0x47c67",
+        "op": "shl",
+        "args": "eax, 3"
+      },
+      {
+        "rva": "0x47c6a",
+        "op": "add",
+        "args": "ecx, eax"
+      },
+      {
+        "rva": "0x47c6c",
+        "op": "cmp",
+        "args": "dword ptr [ecx], -1"
+      },
+      {
+        "rva": "0x47c6f",
+        "op": "jne",
+        "args": "0x47c75"
+      },
+      {
+        "rva": "0x47c71",
+        "op": "mov",
+        "args": "dword ptr [ecx], ebx"
+      },
+      {
+        "rva": "0x47c73",
+        "op": "jmp",
+        "args": "0x47c7b"
+      },
+      {
+        "rva": "0x47c75",
+        "op": "mov",
+        "args": "ecx, dword ptr [ecx + 4]"
+      },
+      {
+        "rva": "0x47c78",
+        "op": "mov",
+        "args": "dword ptr [ecx + 0x10], ebx"
+      },
+      {
+        "rva": "0x47c7b",
+        "op": "mov",
+        "args": "ecx, dword ptr [esi + 4]"
+      },
+      {
+        "rva": "0x47c7e",
+        "op": "mov",
+        "args": "ecx, dword ptr [ecx*4 + 0x4811b8]"
+      },
+      {
+        "rva": "0x47c85",
+        "op": "mov",
+        "args": "dword ptr [ecx + eax + 4], edi"
+      },
+      {
+        "rva": "0x47c89",
+        "op": "or",
+        "args": "dword ptr [edi + 0x10], 0xffffffff"
+      },
+      {
+        "rva": "0x47c8d",
+        "op": "jmp",
+        "args": "0x47ca3"
+      },
+      {
+        "rva": "0x47c8f",
+        "op": "test",
+        "args": "byte ptr [edi + 0xc], 8"
+      },
+      {
+        "rva": "0x47c93",
+        "op": "je",
+        "args": "0x47c9d"
+      },
+      {
+        "rva": "0x47c95",
+        "op": "inc",
+        "args": "dword ptr [0x4812b4]"
+      },
+      {
+        "rva": "0x47c9b",
+        "op": "jmp",
+        "args": "0x47ca3"
+      },
+      {
+        "rva": "0x47c9d",
+        "op": "inc",
+        "args": "dword ptr [0x4812b0]"
+      },
+      {
+        "rva": "0x47ca3",
+        "op": "cmp",
+        "args": "dword ptr [esi + 4], 1"
+      },
+      {
+        "rva": "0x47ca7",
+        "op": "jne",
+        "args": "0x47d32"
+      },
+      {
+        "rva": "0x47cad",
+        "op": "mov",
+        "args": "eax, dword ptr [0x472768]"
+      },
+      {
+        "rva": "0x47cb2",
+        "op": "cmp",
+        "args": "eax, dword ptr [0x4727d8]"
+      },
+      {
+        "rva": "0x47cb8",
+        "op": "jb",
+        "args": "0x47d32"
+      },
+      {
+        "rva": "0x47cba",
+        "op": "cmp",
+        "args": "byte ptr [0x481b48], 0"
+      },
+      {
+        "rva": "0x47cc1",
+        "op": "jne",
+        "args": "0x47d32"
+      },
+      {
+        "rva": "0x47cc3",
+        "op": "push",
+        "args": "0"
+      },
+      {
+        "rva": "0x47cc5",
+        "op": "push",
+        "args": "0"
+      },
+      {
+        "rva": "0x47cc7",
+        "op": "mov",
+        "args": "byte ptr [0x481b48], 1"
+      },
+      {
+        "rva": "0x47cce",
+        "op": "push",
+        "args": "0x481c20"
+      },
+      {
+        "rva": "0x47cd3",
+        "op": "jmp",
+        "args": "0x47d14"
+      },
+      {
+        "rva": "0x47cd5",
+        "op": "mov",
+        "args": "esi, dword ptr [esi + 4]"
+      },
+      {
+        "rva": "0x47cd8",
+        "op": "cmp",
+        "args": "esi, 3"
+      },
+      {
+        "rva": "0x47cdb",
+        "op": "jne",
+        "args": "0x47d1b"
+      },
+      {
+        "rva": "0x47cdd",
+        "op": "test",
+        "args": "al, 8"
+      },
+      {
+        "rva": "0x47cdf",
+        "op": "je",
+        "args": "0x47ce9"
+      },
+      {
+        "rva": "0x47ce1",
+        "op": "inc",
+        "args": "dword ptr [0x4812b4]"
+      },
+      {
+        "rva": "0x47ce7",
+        "op": "jmp",
+        "args": "0x47cef"
+      },
+      {
+        "rva": "0x47ce9",
+        "op": "inc",
+        "args": "dword ptr [0x4812b0]"
+      },
+      {
+        "rva": "0x47cef",
+        "op": "mov",
+        "args": "eax, dword ptr fs:[0x124]"
+      },
+      {
+        "rva": "0x47cf5",
+        "op": "mov",
+        "args": "eax, dword ptr [eax + 0x44]"
+      },
+      {
+        "rva": "0x47cf8",
+        "op": "inc",
+        "args": "dword ptr [eax + 0x190]"
+      },
+      {
+        "rva": "0x47cfe",
+        "op": "mov",
+        "args": "eax, dword ptr [0x472788]"
+      },
+      {
+        "rva": "0x47d03",
+        "op": "cmp",
+        "args": "eax, dword ptr [0x481c14]"
+      },
+      {
+        "rva": "0x47d09",
+        "op": "jb",
+        "args": "0x47d32"
+      },
+      {
+        "rva": "0x47d0b",
+        "op": "push",
+        "args": "0"
+      },
+      {
+        "rva": "0x47d0d",
+        "op": "push",
+        "args": "0"
+      },
+      {
+        "rva": "0x47d0f",
+        "op": "push",
+        "args": "0x4822b0"
+      },
+      {
+        "rva": "0x47d14",
+        "op": "call",
+        "args": "0x2b6e6"
+      },
+      {
+        "rva": "0x47d19",
+        "op": "jmp",
+        "args": "0x47d32"
+      },
+      {
+        "rva": "0x47d1b",
+        "op": "cmp",
+        "args": "esi, 4"
+      },
+      {
+        "rva": "0x47d1e",
+        "op": "jne",
+        "args": "0x47d32"
+      },
+      {
+        "rva": "0x47d20",
+        "op": "test",
+        "args": "al, 8"
+      },
+      {
+        "rva": "0x47d22",
+        "op": "je",
+        "args": "0x47d2c"
+      },
+      {
+        "rva": "0x47d24",
+        "op": "inc",
+        "args": "dword ptr [0x4812b4]"
+      },
+      {
+        "rva": "0x47d2a",
+        "op": "jmp",
+        "args": "0x47d32"
+      },
+      {
+        "rva": "0x47d2c",
+        "op": "inc",
+        "args": "dword ptr [0x4812b0]"
+      },
+      {
+        "rva": "0x47d32",
+        "op": "pop",
+        "args": "edi"
+      },
+      {
+        "rva": "0x47d33",
+        "op": "pop",
+        "args": "esi"
+      },
+      {
+        "rva": "0x47d34",
+        "op": "pop",
+        "args": "ebx"
+      },
+      {
+        "rva": "0x47d35",
+        "op": "ret",
+        "args": ""
+      }
+    ]
+  }
+}

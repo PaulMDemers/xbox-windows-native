@@ -71,8 +71,14 @@ list construction. Both display modes, the complete page-record model,
 execution trace and rejection tests pass in xemu; the physical checkpoint is
 photo-confirmed. See the [mapped PFN report](outputs/native-windows-physical-pfnmap/REPORT.txt).
 
+The next candidate **XWNJ90** reconciles the native descriptor update on
+our pinned memory layout, restoring 622 pages omitted by a repeated
+subtraction. It validates mappings, page records and the original extent,
+then halts before free-page lists. Emulator validation passed; physical
+testing is pending. See the [descriptor accounting report](outputs/native-windows-physical-pfncommit/REPORT.txt).
+
 See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
-[latest diagnostic](outputs/native-windows-physical-pfnmap/REPORT.txt), and
+[latest diagnostic](outputs/native-windows-physical-pfncommit/REPORT.txt), and
 [development plan](outputs/native-windows-development-plan.md).
 
 ## Source and reproduction
@@ -80,7 +86,7 @@ See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
 This repository stores our source changes as an ordered patch series against
 ReactOS commit `afc0127e8f937ab68503d715d948844973756aa1`, plus build wrappers,
 validation tools and reports. The full series and resulting source tree are
-in [patch-check-0039.json](outputs/native-windows-physical-pfnmap/patch-check-0039.json).
+in [patch-check-0040.json](outputs/native-windows-physical-pfncommit/patch-check-0040.json).
 Use `python tools/apply-series.py --source PATH --manifest MANIFEST` on a clean
 checkout at that exact upstream commit. The script checks the clean baseline,
 applies the ordered patches and verifies the resulting Git tree.

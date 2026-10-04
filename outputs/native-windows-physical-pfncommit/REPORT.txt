@@ -1,0 +1,38 @@
+XWN descriptor accounting (patch 0040)
+
+Physical XWNL90 confirmed mapped PFN initialization and the native TLB
+flush. An isolated emulator scout found that the native second descriptor
+commit subtracts the first allocation again on our single-candidate path:
+original 160/2000; first commit 3ce/1d92; live counter 3cf/1d91; native
+second descriptor 3cf/1b23. This omits 622 otherwise available pages.
+
+The PFNCOMMIT diagnostic stops at RVA 1596f3. It requires that exact native
+state, the original descriptor hash, all pool/mapping/PFN/color checks and
+masked interrupt state before changing the one PageCount field to 1d91.
+Consumed frames 160..3ce remain excluded. The restored extent ends at the
+original 2160; all other descriptor fields and every other descriptor must
+match. It then halts before the descriptor walk/free-page list construction.
+No storage access or free-page allocation is enabled.
+
+Expected XWNJ90: Descriptor accounting reconciled; lists blocked.
+Candidate first PFN: 000003cf
+Native remaining pages: 00001b23
+Reconciled remaining pages: 00001d91
+Double-counted pages restored: 0000026e
+
+PFNCOMMIT defaults OFF and requires PFNMAP. Distinct arming signatures
+reject the preceding HAL. Both temporary kernel code hooks are restored.
+The kernel file is unchanged; the accounting correction is a guarded
+in-memory loader-descriptor write. Physical XWNJ90 is pending.
+
+Final validation: both display modes, old-HAL and changed-kernel rejection,
+full code/import audits and the 1324-event native trace passed. The final
+descriptor list covers all 64 MiB together with the 623 consumed frames;
+all PFN/color bytes and mappings match the independent model. Occupied
+candidate and incompatible pool-size tests block allocation. Corrupted
+PFN data and an unexpected descriptor count both prevent reconciliation.
+Normal builds, parent option checks and patch series 0040 passed.
+
+Uploaded 2026-10-04T03:52:48.110477+00:00. All 33 files verified by readback.
+Three physical-tested XWNL90 files retained under xwnl90 backup names.
+The console was not remotely launched. Physical XWNJ90 is pending.

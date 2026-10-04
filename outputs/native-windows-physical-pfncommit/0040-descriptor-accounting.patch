@@ -1,0 +1,210 @@
+diff --git a/boot/freeldr/freeldr/ntldr/xwnentryprobe.h b/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
+index 0398597d..9929e038 100644
+--- a/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
++++ b/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
+@@ -1,6 +1,10 @@
+ /* Explicit early-kernel diagnostic. Included only in the opt-in rosload. */
+ #ifdef XBOX_NATIVE_FATX_PHASE0_PREFLIGHT
+-#if defined(XBOX_NATIVE_FATX_PFNMAP_PREFLIGHT)
++#if defined(XBOX_NATIVE_FATX_PFNCOMMIT_PREFLIGHT)
++static volatile ULONG XwnEntryRecord[96] = {0x574e5758, 0x35544e50, 1, 0};
++#define XWN_ARM_SIGNATURE 0x50434e54
++#define XWN_ARM_REPLY 0x50434854
++#elif defined(XBOX_NATIVE_FATX_PFNMAP_PREFLIGHT)
+ static volatile ULONG XwnEntryRecord[96] = {0x594e5758, 0x35544e50, 1, 0};
+ #define XWN_ARM_SIGNATURE 0x50444e54
+ #define XWN_ARM_REPLY 0x50444854
+@@ -360,7 +364,9 @@ static DECLSPEC_NORETURN VOID XwnEnterKernelProbe(PLOADER_PARAMETER_BLOCK Loader
+ #endif
+ #endif
+     XwnPagingClear();
+-#if defined(XBOX_NATIVE_FATX_PFNMAP_PREFLIGHT)
++#if defined(XBOX_NATIVE_FATX_PFNCOMMIT_PREFLIGHT)
++    XwnPagingText(7, "XWNJ30: Entering Windows; descriptor stop armed.", 0xFFFFFF00);
++#elif defined(XBOX_NATIVE_FATX_PFNMAP_PREFLIGHT)
+     XwnPagingText(7, "XWNL30: Entering Windows; mapped-PFN stop armed.", 0xFFFFFF00);
+ #elif defined(XBOX_NATIVE_FATX_PFN_PREFLIGHT)
+     XwnPagingText(7, "XWNE30: Entering Windows; PFN-backing stop armed.", 0xFFFFFF00);
+diff --git a/boot/freeldr/freeldr/pcat.cmake b/boot/freeldr/freeldr/pcat.cmake
+index 111d9045..a6e77149 100644
+--- a/boot/freeldr/freeldr/pcat.cmake
++++ b/boot/freeldr/freeldr/pcat.cmake
+@@ -411,3 +411,8 @@ option(XBOX_NATIVE_FATX_PFNMAP_PREFLIGHT "Halt after mapped PFN initialization"
+ if(XBOX_NATIVE_FATX_PFNMAP_PREFLIGHT AND NOT XBOX_NATIVE_FATX_PFN_PREFLIGHT)
+     message(FATAL_ERROR "PFNMAP probe requires PFN preflight")
+ endif()
++
++option(XBOX_NATIVE_FATX_PFNCOMMIT_PREFLIGHT "Reconcile descriptor accounting then halt before free lists" OFF)
++if(XBOX_NATIVE_FATX_PFNCOMMIT_PREFLIGHT AND NOT XBOX_NATIVE_FATX_PFNMAP_PREFLIGHT)
++    message(FATAL_ERROR "PFNCOMMIT probe requires PFNMAP preflight")
++endif()
+diff --git a/boot/freeldr/freeldr/rosload.cmake b/boot/freeldr/freeldr/rosload.cmake
+index c47027fb..64cc29f4 100644
+--- a/boot/freeldr/freeldr/rosload.cmake
++++ b/boot/freeldr/freeldr/rosload.cmake
+@@ -195,3 +195,7 @@ endif()
+ if(XBOX_NATIVE_FATX_PFNMAP_PREFLIGHT)
+     target_compile_definitions(rosload PRIVATE XBOX_NATIVE_FATX_PFNMAP_PREFLIGHT=1)
+ endif()
++
++if(XBOX_NATIVE_FATX_PFNCOMMIT_PREFLIGHT)
++    target_compile_definitions(rosload PRIVATE XBOX_NATIVE_FATX_PFNCOMMIT_PREFLIGHT=1)
++endif()
+diff --git a/hal/halx86/xboxnt5/CMakeLists.txt b/hal/halx86/xboxnt5/CMakeLists.txt
+index 898a8604..c00f508d 100644
+--- a/hal/halx86/xboxnt5/CMakeLists.txt
++++ b/hal/halx86/xboxnt5/CMakeLists.txt
+@@ -163,3 +163,11 @@ endif()
+ if(XBOX_NT5_PFNMAP_PREFLIGHT)
+     target_compile_definitions(halxboxnt5 PRIVATE XBOX_NT5_PFNMAP_PREFLIGHT=1)
+ endif()
++
++option(XBOX_NT5_PFNCOMMIT_PREFLIGHT "Reconcile descriptor accounting then halt before free lists" OFF)
++if(XBOX_NT5_PFNCOMMIT_PREFLIGHT AND NOT XBOX_NT5_PFNMAP_PREFLIGHT)
++    message(FATAL_ERROR "PFNCOMMIT probe requires PFNMAP preflight")
++endif()
++if(XBOX_NT5_PFNCOMMIT_PREFLIGHT)
++    target_compile_definitions(halxboxnt5 PRIVATE XBOX_NT5_PFNCOMMIT_PREFLIGHT=1)
++endif()
+diff --git a/hal/halx86/xboxnt5/entryprobe.c b/hal/halx86/xboxnt5/entryprobe.c
+index 6155537c..7c63f9f2 100644
+--- a/hal/halx86/xboxnt5/entryprobe.c
++++ b/hal/halx86/xboxnt5/entryprobe.c
+@@ -65,7 +65,11 @@ HalpXwnFirstProcessor(ULONG Processor, PLOADER_PARAMETER_BLOCK LoaderBlock, PVOI
+ 
+ ULONG NTAPI XwnConfigureEntryProbe(PVOID Callback, ULONG Signature)
+ {
+-#if defined(XBOX_NT5_PFNMAP_PREFLIGHT)
++#if defined(XBOX_NT5_PFNCOMMIT_PREFLIGHT)
++    if (Signature != 0x50434e54 || !Callback || XwnPhaseCallback) return 0;
++    XwnPhaseCallback = (XWN_PHASE_CALLBACK)Callback;
++    return 0x50434854;
++#elif defined(XBOX_NT5_PFNMAP_PREFLIGHT)
+     if (Signature != 0x50444e54 || !Callback || XwnPhaseCallback) return 0;
+     XwnPhaseCallback = (XWN_PHASE_CALLBACK)Callback;
+     return 0x50444854;
+diff --git a/hal/halx86/xboxnt5/mapprobe.c b/hal/halx86/xboxnt5/mapprobe.c
+index ce2a7e46..a4449452 100644
+--- a/hal/halx86/xboxnt5/mapprobe.c
++++ b/hal/halx86/xboxnt5/mapprobe.c
+@@ -5,7 +5,13 @@
+ extern const UCHAR XwnMapFont[4096];
+ VOID HalpXwnMapEntry(VOID);
+ #ifdef XBOX_NT5_PT_PREFLIGHT
+-#ifdef XBOX_NT5_PFNMAP_PREFLIGHT
++#ifdef XBOX_NT5_PFNCOMMIT_PREFLIGHT
++#define XWN_MAP_MAGIC 0x4a4e5758
++#define XWN_MAP_SIGNATURE 0x50434e54
++#define XWN_MAP_REPLY 0x50434854
++#define XWN_MAP_TARGET 0x1596f3
++#define XWN_EXPANSION_FREE 5340
++#elif defined(XBOX_NT5_PFNMAP_PREFLIGHT)
+ #define XWN_MAP_MAGIC 0x4c4e5758
+ #define XWN_MAP_SIGNATURE 0x50444e54
+ #define XWN_MAP_REPLY 0x50444854
+@@ -36,7 +42,7 @@ VOID HalpXwnMapEntry(VOID);
+ #ifndef XWN_EXPANSION_FREE
+ #define XWN_EXPANSION_FREE 5432
+ #endif
+-static volatile ULONG XwnMapRecord[192] = {XWN_MAP_MAGIC,0x35544e50,1,0};
++static volatile ULONG XwnMapRecord[208] = {XWN_MAP_MAGIC,0x35544e50,1,0};
+ ULONG XwnPtBeforeTarget;
+ static UCHAR XwnPtBeforeOriginal[5];
+ static ULONG XwnPtDirectory[1024];
+@@ -145,7 +151,12 @@ DECLSPEC_NORETURN VOID NTAPI HalpXwnMapCheckpoint(PULONG Frame)
+     Valid = Valid && XwnMapRecord[167] && XwnMapRecord[168] && XwnMapRecord[175];
+ #ifdef XBOX_NT5_PFNMAP_PREFLIGHT
+     Valid = Valid && XwnMapRecord[178] && XwnMapRecord[187];
++#ifdef XBOX_NT5_PFNCOMMIT_PREFLIGHT
++    Valid = Valid && XwnMapRecord[195];
++    XwnMapRecord[24] = 180;
++#else
+     XwnMapRecord[24] = 170;
++#endif
+ #else
+     XwnMapRecord[24] = 160;
+ #endif
+@@ -172,7 +183,16 @@ DECLSPEC_NORETURN VOID NTAPI HalpXwnMapCheckpoint(PULONG Frame)
+     {
+         volatile ULONG *Pixels = (volatile ULONG *)XwnMapRecord[92];
+         for (I = 0; I < XwnMapRecord[21] / 4; ++I) Pixels[I] = 0xff000000;
+-#ifdef XBOX_NT5_PFNMAP_PREFLIGHT
++#ifdef XBOX_NT5_PFNCOMMIT_PREFLIGHT
++        HalpXwnMapText(4, "XWN Windows 2000 descriptor accounting", 0xffffffff);
++        HalpXwnMapText(7, Valid ? "XWNJ90: Descriptor accounting reconciled; lists blocked."
++                             : "XWNJFAIL: Descriptor accounting guard stopped execution.", Valid ? 0xff00ff00 : 0xffff0000);
++        HalpXwnMapHex(10, "Candidate first PFN: ", XwnMapRecord[188]);
++        HalpXwnMapHex(12, "Native remaining pages: ", XwnMapRecord[189]);
++        HalpXwnMapHex(14, "Reconciled remaining pages: ", XwnMapRecord[194]);
++        HalpXwnMapHex(16, "Double-counted pages restored: ", XwnMapRecord[192]);
++        HalpXwnMapText(19, "Stopped BEFORE free-page lists and storage.", 0xffffffff);
++#elif defined(XBOX_NT5_PFNMAP_PREFLIGHT)
+         HalpXwnMapText(4, "XWN Windows 2000 mapped PFN initialization", 0xffffffff);
+         HalpXwnMapText(7, Valid ? "XWNL90: Mapped PFNs initialized; TLB flushed."
+                              : "XWNLFAIL: Mapped-PFN guard stopped execution.", Valid ? 0xff00ff00 : 0xffff0000);
+@@ -555,7 +575,18 @@ DECLSPEC_NORETURN VOID NTAPI HalpXwnPtAfter(PULONG Frame, ULONG Largest)
+ #ifdef XBOX_NT5_PFN_PREFLIGHT
+     {
+         PULONG D = (PULONG)XwnMapRecord[100];
++#ifdef XBOX_NT5_PFNCOMMIT_PREFLIGHT
++        /* This pinned single-candidate path commits the PFN allocation
++         * twice using the original base. Record the native undercount;
++         * require the full model before reconciling its remaining extent. */
++        XwnMapRecord[188] = D[3]; XwnMapRecord[189] = D[4];
++        XwnMapRecord[190] = XwnMapRecord[120]+XwnMapRecord[121];
++        XwnMapRecord[191] = Frame[-21];
++        XwnMapRecord[175] = D[2] == 5 && D[3] == 0x3cf && D[4] == 0x1b23 &&
++            Frame[-21] == XwnMapRecord[120] && XwnMapRecord[190] == 0x2160 &&
++#else
+         XwnMapRecord[175] = D[3] == 0x3ce && D[4] == 0x1d92 &&
++#endif
+             XwnMapRecord[145] == XwnMapRecord[144];
+         Valid = Valid && XwnMapRecord[147] && XwnMapRecord[148] == 623 &&
+             XwnMapRecord[175] && Frame[-2] == 0x3cf && Frame[-3] == 0x1d91 &&
+@@ -689,6 +720,24 @@ DECLSPEC_NORETURN VOID NTAPI HalpXwnPtAfter(PULONG Frame, ULONG Largest)
+         XwnMapRecord[168] = Valid && XwnMapRecord[170] == 90 && XwnMapRecord[171] == 1;
+ #endif
+     }
++#endif
++#ifdef XBOX_NT5_PFNCOMMIT_PREFLIGHT
++    /* Only a validated snapshot may restore the 622 pages omitted by the
++     * repeated subtraction. Consumed PFNs 160..3ce remain excluded. The
++     * console still halts here; this never creates or allocates a free list. */
++    if (XwnMapRecord[135] && XwnMapRecord[153] && XwnMapRecord[168] &&
++        XwnMapRecord[175] && XwnMapRecord[178] && XwnMapRecord[187] &&
++        Frame[-2] == XwnMapRecord[188] && Frame[-3] == XwnMapRecord[190]-Frame[-2] &&
++        Frame[-3] == XwnMapRecord[189]+622)
++    {
++        PULONG D = (PULONG)XwnMapRecord[100];
++        XwnMapRecord[192] = Frame[-3]-D[4];
++        D[4] = Frame[-3];
++        XwnMapRecord[193] = D[3]; XwnMapRecord[194] = D[4];
++        XwnMapRecord[196] = HalpXwnDescriptorHash();
++        XwnMapRecord[195] = D[3] == 0x3cf && D[4] == 0x1d91 &&
++            D[3]+D[4] == XwnMapRecord[190] && XwnMapRecord[196] == XwnMapRecord[144];
++    }
+ #endif
+     HalpXwnMapCheckpoint(Frame);
+ }
+@@ -697,7 +746,9 @@ DECLSPEC_NORETURN VOID NTAPI HalpXwnPtAfter(PULONG Frame, ULONG Largest)
+ ULONG NTAPI XwnConfigureMapProbe(PULONG Seed, ULONG Signature)
+ {
+ #ifdef XBOX_NT5_PT_PREFLIGHT
+-#ifdef XBOX_NT5_PFNMAP_PREFLIGHT
++#ifdef XBOX_NT5_PFNCOMMIT_PREFLIGHT
++    UCHAR Expected[8] = {0x8b,0x45,0x08,0x8b,0x40,0x0c,0xe9,0x8e};
++#elif defined(XBOX_NT5_PFNMAP_PREFLIGHT)
+     UCHAR Expected[8] = {0xa1,0,0,0,0,0x8b,0x15,0xb0};
+ #elif defined(XBOX_NT5_PFN_PREFLIGHT)
+     UCHAR Expected[8] = {0x33,0xc9,0x39,0x0d,0,0,0,0};
+@@ -724,7 +775,9 @@ ULONG NTAPI XwnConfigureMapProbe(PULONG Seed, ULONG Signature)
+           (Seed[17]==1024 && Seed[18]==576 && Seed[19]==4096)) ||
+         Seed[21] != Seed[18]*Seed[19] || Seed[20] > 0x04000000-Seed[21]) return 0;
+ #ifdef XBOX_NT5_PT_PREFLIGHT
+-#ifdef XBOX_NT5_PFNMAP_PREFLIGHT
++#ifdef XBOX_NT5_PFNCOMMIT_PREFLIGHT
++    /* All eight pinned bytes are position independent. */
++#elif defined(XBOX_NT5_PFNMAP_PREFLIGHT)
+     *(PULONG)(Expected+1) = Seed[6]+0x72734;
+ #elif defined(XBOX_NT5_PFN_PREFLIGHT)
+     *(PULONG)(Expected+4) = Seed[6]+0x81b68;
