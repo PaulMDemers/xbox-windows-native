@@ -8,10 +8,10 @@ host-side test harness.
 
 - Physical console: Windows kernel entry, processor initialization, HAL base
   setup, RTC calibration, clock setup and partition-hook registration and BIOS page allocation passed.
-- Latest physical checkpoint: **XWNZ90**. First process page table and
-  working-set page allocated and zeroed; 256 executive-pool list heads
-  verified. Working-set publication, process initialization, storage
-  drivers and desktop remain beyond the physical-tested stop.
+- Latest physical checkpoint: **XWNW90**. Native process address-space
+  initialization returned success, with four working-set entries and the
+  hash page verified. Further MM initialization, storage drivers and desktop
+  remain beyond the physical-tested stop.
 - Private emulator fixtures have reached a Windows 2000 desktop with NTFS,
   USB input, framebuffer, networking and experimental audio. Those results
   do not establish physical hardware compatibility.
@@ -93,10 +93,10 @@ allocates/zeros the first process page table and working-set page. It stops
 before working-set publication and process initialization. Emulator checks
 passed; the physical checkpoint is photo-confirmed.
 
-The next candidate **XWNW90** lets native process address-space initialization
+The physical-tested **XWNW90** lets native process address-space initialization
 return, then verifies the process/thread state, working-set and hash pages,
 and all PFN records. It stops before further MM initialization and storage.
-Emulator checks passed; it is uploaded for physical testing.
+Emulator checks passed; the physical checkpoint is photo-confirmed.
 
 See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
 [latest diagnostic](outputs/native-windows-physical-processinit/REPORT.txt), and
