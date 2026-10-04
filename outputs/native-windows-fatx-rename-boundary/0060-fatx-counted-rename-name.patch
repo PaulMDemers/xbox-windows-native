@@ -1,0 +1,27 @@
+diff --git a/drivers/filesystems/vfatfs/dirwr.c b/drivers/filesystems/vfatfs/dirwr.c
+index f4400ab7..0058e092 100644
+--- a/drivers/filesystems/vfatfs/dirwr.c
++++ b/drivers/filesystems/vfatfs/dirwr.c
+@@ -201,2 +201,14 @@ vfatRenameEntry(
+         VFAT_DIRENTRY_CONTEXT DirContext;
++        CHAR NameBuffer[43];
++
++        /* Validate the counted FATX name before pinning or changing the entry.
++         * NT5's conversion API requires an extra byte for its terminator. */
++        NameA.Buffer = NameBuffer;
++        NameA.Length = 0;
++        NameA.MaximumLength = sizeof(NameBuffer);
++        Status = RtlUnicodeStringToOemString(&NameA, FileName, FALSE);
++        if (!NT_SUCCESS(Status))
++            return Status;
++        if (NameA.Length == 0 || NameA.Length > 42)
++            return STATUS_NAME_TOO_LONG;
+
+@@ -220,6 +232,3 @@ vfatRenameEntry(
+         /* Set file name */
+-        NameA.Buffer = (PCHAR)pDirEntry->Filename;
+-        NameA.Length = 0;
+-        NameA.MaximumLength = 42;
+-        RtlUnicodeStringToOemString(&NameA, FileName, FALSE);
++        RtlCopyMemory(pDirEntry->Filename, NameA.Buffer, NameA.Length);
+         pDirEntry->FilenameLength = (unsigned char)NameA.Length;

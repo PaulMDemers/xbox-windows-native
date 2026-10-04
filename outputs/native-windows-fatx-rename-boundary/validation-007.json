@@ -1,0 +1,292 @@
+{
+  "scope": "Unassisted emulator run with final rename code; overall FAILED because of visible delayed-write failure",
+  "run": "nt5-fatx-boot-rename-007",
+  "source_tree": "d62c348afee5528ad772d8e291ea18b00bc76325",
+  "fixture": {
+    "scope": "Offline emulator derivative; no physical access",
+    "source_sha256": "6d2899fa61a1f7e640096f80e8159cf6b32a96c4c4bd7bc5732f04b718803b57",
+    "files": [
+      {
+        "path": "/WINNT/system32/drivers/xwnfatx.sys",
+        "sha256": "d3ca1bcd9e20b625f2125ca01e64bdac84c8f1808b00c11b64461fb3aeeb0f94",
+        "cold_readback_equal": true
+      },
+      {
+        "path": "/Documents and Settings/All Users/Start Menu/Programs/Startup/xwnsetup.cmd",
+        "sha256": "5e1b8ee2220d19243a5cb3ec0026cbd3b713ab5569a98c0348416373300bf633",
+        "cold_readback_equal": true
+      },
+      {
+        "path": "/xwnfs.exe",
+        "bytes": 13666,
+        "sha256": "6b379374ec52a8118fb6edbc824d64af2d2ffcc55ee471d8cbf7e4b650482d65",
+        "clusters": 1
+      }
+    ],
+    "required_checks": [
+      "Case-only rename of 42-byte name",
+      "42-byte case change persisted in directory",
+      "Same-directory rename to 42-byte name",
+      "42-byte rename persisted in directory",
+      "Reopen 42-byte renamed file",
+      "42-byte renamed data comparison",
+      "Delete 42-byte renamed file"
+    ],
+    "driver_sha256": "d3ca1bcd9e20b625f2125ca01e64bdac84c8f1808b00c11b64461fb3aeeb0f94",
+    "pagefile_physical_runs": 384,
+    "guard_sha256": "2a26a390d7d0c5a53f32d719c27f0f7952c319eb91519b02b0bad7f0564086f0",
+    "sha256": "cff038f42ef25e36112cace479c9029d2d3fe58264ecc797b16716ad34609860",
+    "check": "No errors were found on the image.\n27430/131072 = 20.93% allocated, 0.00% fragmented, 0.00% compressed clusters\nImage end offset: 1798373376\n",
+    "source_preserved": true,
+    "temporary_raw_removed": true
+  },
+  "kernel_base": "0x82410000",
+  "hal_base": "0x825ad000",
+  "final_halt_eip": "0x825b69f2",
+  "tick_count": 13950,
+  "bugcheck_data": [
+    "0x0",
+    "0x0",
+    "0x0",
+    "0x0",
+    "0x0"
+  ],
+  "final_shutdown_bitmap_visible": true,
+  "electrical_power_off": false,
+  "guest_log": "XWN FATX file API test\nPASS: GetVolumeInformation\nMaximum component: 42\nFlags: 2\nPASS: Filesystem name FATX\nPASS: 42-byte component limit advertised\nPASS: OEM case-preserved capabilities\nPASS: Create test directory\nPASS: Create child directory\nPASS: 42-byte ASCII name accepted\nPASS: 43-byte ASCII name rejected\nPASS: Create mixed-case data file\nPASS: Write 128 KiB plus one byte\nPASS: Flush data\nPASS: Case-insensitive reopen\nPASS: Reopened full data comparison\nPASS: Shrink at cluster-crossing boundary\nPASS: Shrunk size\nPASS: Regrow with explicit data\nPASS: Flush regrown file\nPASS: Rename across directories\nPASS: Open renamed file\nPASS: Renamed regrown data comparison\nPASS: Delete data file\nPASS: Case-only rename of 42-byte name\nPASS: 42-byte case change persisted in directory\nPASS: Delete boundary-length file\nPASS: Create rename source\nPASS: Write rename source\nPASS: Same-directory rename to 42-byte name\nPASS: 42-byte rename persisted in directory\nPASS: Reopen 42-byte renamed file\nPASS: 42-byte renamed data comparison\nPASS: Delete 42-byte renamed file\nPASS: Remove child directory\nPASS: Remove test directory\nFailures: 0\n",
+  "cold_integrity": {
+    "scope": "Cold read-only emulator disk audit; no physical access",
+    "source_sha256": "7e6c4d926b97b3b4be04426eaa69587164fcd86068317f4231066607c07da3cb",
+    "directories": 322,
+    "files": 6555,
+    "allocated_clusters": 52084,
+    "immutable_files_checked": 3452,
+    "structural_errors": [],
+    "immutable_mismatches": [],
+    "registry_headers": [
+      {
+        "path": "/documents and settings/default user/ntuser.dat",
+        "bytes": 122880,
+        "sequence1": 2,
+        "sequence2": 2,
+        "sequences_match": true,
+        "checksum_matches": true,
+        "tree": {
+          "scope": "Read-only reachable key/value traversal; no log replay or semantic validation",
+          "sha256": "411eae3eba07683a09df87b7374c180d47682c03512165b8acd3e159bb3a2e93",
+          "keys": 353,
+          "values": 730,
+          "value_bytes": 44512,
+          "maximum_depth": 8,
+          "source_preserved": true,
+          "passed": true
+        }
+      },
+      {
+        "path": "/documents and settings/win2k/local settings/application data/microsoft/windows/usrclass.dat",
+        "bytes": 8192,
+        "sequence1": 3,
+        "sequence2": 3,
+        "sequences_match": true,
+        "checksum_matches": true,
+        "tree": {
+          "scope": "Read-only reachable key/value traversal; no log replay or semantic validation",
+          "sha256": "f46d82f45b515b1022e0e5b32a871c64361ae2977cd67bdeeb5ed28a677a8512",
+          "keys": 1,
+          "values": 0,
+          "value_bytes": 0,
+          "maximum_depth": 0,
+          "source_preserved": true,
+          "passed": true
+        }
+      },
+      {
+        "path": "/documents and settings/win2k/ntuser.dat",
+        "bytes": 196608,
+        "sequence1": 124,
+        "sequence2": 124,
+        "sequences_match": true,
+        "checksum_matches": true,
+        "tree": {
+          "scope": "Read-only reachable key/value traversal; no log replay or semantic validation",
+          "sha256": "1047318513d2e045e05a09d39ccdae1cb1c7a5d5966e8821b51c9a6f6ba0956b",
+          "keys": 528,
+          "values": 1237,
+          "value_bytes": 66034,
+          "maximum_depth": 10,
+          "source_preserved": true,
+          "passed": true
+        }
+      },
+      {
+        "path": "/winnt/repair/ntuser.dat",
+        "bytes": 122880,
+        "sequence1": 2,
+        "sequence2": 2,
+        "sequences_match": true,
+        "checksum_matches": true,
+        "tree": {
+          "scope": "Read-only reachable key/value traversal; no log replay or semantic validation",
+          "sha256": "411eae3eba07683a09df87b7374c180d47682c03512165b8acd3e159bb3a2e93",
+          "keys": 353,
+          "values": 730,
+          "value_bytes": 44512,
+          "maximum_depth": 8,
+          "source_preserved": true,
+          "passed": true
+        }
+      },
+      {
+        "path": "/winnt/system32/config/default",
+        "bytes": 126976,
+        "sequence1": 6,
+        "sequence2": 6,
+        "sequences_match": true,
+        "checksum_matches": true,
+        "tree": {
+          "scope": "Read-only reachable key/value traversal; no log replay or semantic validation",
+          "sha256": "84e3c808e0efc7560191de49687704d93a67205c009d445cb47b0ac56cfb2208",
+          "keys": 356,
+          "values": 735,
+          "value_bytes": 44552,
+          "maximum_depth": 8,
+          "source_preserved": true,
+          "passed": true
+        }
+      },
+      {
+        "path": "/winnt/system32/config/sam",
+        "bytes": 20480,
+        "sequence1": 33,
+        "sequence2": 33,
+        "sequences_match": true,
+        "checksum_matches": true,
+        "tree": {
+          "scope": "Read-only reachable key/value traversal; no log replay or semantic validation",
+          "sha256": "5ff127be22f7235ccf96ae7cda3e6bfc0d8c080577c60b23aa8458d075d0ba3a",
+          "keys": 47,
+          "values": 51,
+          "value_bytes": 5936,
+          "maximum_depth": 7,
+          "source_preserved": true,
+          "passed": true
+        }
+      },
+      {
+        "path": "/winnt/system32/config/security",
+        "bytes": 20480,
+        "sequence1": 121,
+        "sequence2": 121,
+        "sequences_match": true,
+        "checksum_matches": true,
+        "tree": {
+          "scope": "Read-only reachable key/value traversal; no log replay or semantic validation",
+          "sha256": "194538f3dc347ad5c1b76b29addccbda8213ec1ad64642a0afec82a413f411fe",
+          "keys": 70,
+          "values": 69,
+          "value_bytes": 3237,
+          "maximum_depth": 4,
+          "source_preserved": true,
+          "passed": true
+        }
+      },
+      {
+        "path": "/winnt/system32/config/software",
+        "bytes": 6696960,
+        "sequence1": 54,
+        "sequence2": 54,
+        "sequences_match": true,
+        "checksum_matches": true,
+        "tree": {
+          "scope": "Read-only reachable key/value traversal; no log replay or semantic validation",
+          "sha256": "b49d5ee2c9365b6e3fa89a5f09ff6e59307dcba6a11c778ac2975d082589ebdf",
+          "keys": 26807,
+          "values": 39053,
+          "value_bytes": 1793944,
+          "maximum_depth": 10,
+          "source_preserved": true,
+          "passed": true
+        }
+      },
+      {
+        "path": "/winnt/system32/config/system",
+        "bytes": 2158592,
+        "sequence1": 123,
+        "sequence2": 123,
+        "sequences_match": true,
+        "checksum_matches": true,
+        "tree": {
+          "scope": "Read-only reachable key/value traversal; no log replay or semantic validation",
+          "sha256": "46061afc2259e2cb1d98340bac796797db6e1360ebe500b76600b5ada25e24f6",
+          "keys": 5437,
+          "values": 16471,
+          "value_bytes": 671018,
+          "maximum_depth": 11,
+          "source_preserved": true,
+          "passed": true
+        }
+      }
+    ],
+    "paging_file": {
+      "bytes": 100663296,
+      "clusters": 6144,
+      "first_cluster": 45432,
+      "physical_runs": 384
+    },
+    "endurance": {
+      "bytes": 1307,
+      "sha256": "dd81ab5811fc6caa478b4ca7754625597920080a170f3386d0875a498b45da40",
+      "passed": true
+    },
+    "fragment_guard": {
+      "sha256": "2a26a390d7d0c5a53f32d719c27f0f7952c319eb91519b02b0bad7f0564086f0",
+      "passed": true
+    },
+    "filesystem_api": {
+      "probe_sha256": "6b379374ec52a8118fb6edbc824d64af2d2ffcc55ee471d8cbf7e4b650482d65",
+      "log_sha256": "4a3abec46d300e8229e6c5e30af253a13f3505889a5762bb40e5cbb5f038e4eb",
+      "checks": {
+        "42-byte ASCII name accepted": true,
+        "43-byte ASCII name rejected": true,
+        "Case-insensitive reopen": true,
+        "Reopened full data comparison": true,
+        "Shrink at cluster-crossing boundary": true,
+        "Shrunk size": true,
+        "Regrow with explicit data": true,
+        "Rename across directories": true,
+        "Renamed regrown data comparison": true,
+        "Remove test directory": true,
+        "42-byte component limit advertised": true,
+        "OEM case-preserved capabilities": true,
+        "Case-only rename of 42-byte name": true,
+        "42-byte case change persisted in directory": true,
+        "Same-directory rename to 42-byte name": true,
+        "42-byte rename persisted in directory": true,
+        "Reopen 42-byte renamed file": true,
+        "42-byte renamed data comparison": true,
+        "Delete 42-byte renamed file": true
+      },
+      "test_directory_removed": true,
+      "passed": true
+    },
+    "source_preserved": true,
+    "passed": true,
+    "temporary_raw_removed": true
+  },
+  "delayed_write_failure": {
+    "observed": true,
+    "file": "xwnfstest/42-byte c-name",
+    "frame": "frame-210.png",
+    "frame_sha256": "50a7e10687449857b4550dc8a0e4da98c1e9efd12c944bd8d97a46d9b9b69d86",
+    "cause_not_yet_proven": true
+  },
+  "helper_note": "The late optional thread capture attempted after owned VM cleanup and failed; independent state-270/285 snapshots already verified final HAL halt.",
+  "cleanup": {
+    "completedUtc": "2026-10-04T13:57:07.1838539Z",
+    "scratchDirectory": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\work\\scratch\\windows-native-bcdebb02980e41daa511b3e7baddced6",
+    "retained": false,
+    "reason": ""
+  },
+  "passed": false,
+  "promotion_status": "experimental; preserve 0059 persistence baseline"
+}

@@ -1,0 +1,14 @@
+diff --git a/drivers/filesystems/vfatfs/dirwr.c b/drivers/filesystems/vfatfs/dirwr.c
+index d38a867f..80511f06 100644
+--- a/drivers/filesystems/vfatfs/dirwr.c
++++ b/drivers/filesystems/vfatfs/dirwr.c
+@@ -241,2 +241,9 @@ vfatRenameEntry(
+         DirContext.DirIndex = pFcb->dirIndex;
++        /* Non-root FATX enumeration includes synthetic dot entries. The FCB
++         * stores physical slots; vfatInitFCBFromDirEntry subtracts these two. */
++        if (!vfatFCBIsRoot(pFcb->parentFcb))
++        {
++            DirContext.StartIndex += 2;
++            DirContext.DirIndex += 2;
++        }
+         DirContext.ShortNameU.Length = 0;

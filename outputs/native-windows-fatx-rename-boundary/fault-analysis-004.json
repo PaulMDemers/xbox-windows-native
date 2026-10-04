@@ -1,0 +1,42 @@
+{
+  "scope": "Exploratory read-only first-bugcheck breakpoint; alters timing, no result/data/register changes",
+  "run": "nt5-fatx-boot-rename-004",
+  "arguments": [
+    "0xa",
+    "0x18",
+    "0x2",
+    "0x0",
+    "0x82456167"
+  ],
+  "breakpoint_removed": true,
+  "kernel_base": "0x82410000",
+  "fault_symbol": "MmMapViewInSystemCache + 0xfb",
+  "observed_cache_offset": "0xfffff000",
+  "stack_path": [
+    "FATXDelEntry + 0xac",
+    "CcPinRead",
+    "CcPinFileData",
+    "CcGetVirtualAddress",
+    "CcGetVacbMiss",
+    "MmMapViewInSystemCache",
+    "KiTrap0E",
+    "KeBugCheckEx"
+  ],
+  "source_finding": "vfatRenameEntry passed uninitialized DirContext.StartIndex and DirContext.DirIndex to vfatUpdateFCB; cleanup then used the overwritten FCB startIndex.",
+  "secondary_bugcheck": [
+    "0xd1",
+    "0xf8c77800",
+    "0x1f",
+    "0x0",
+    "0xf8c77800"
+  ],
+  "secondary_fault_symbol": "nvnetnt5 NvNetIdleTransmitter, pageable function called by bugcheck shutdown callback",
+  "secondary_fix_status": "Not changed in this session",
+  "cleanup": {
+    "completedUtc": "2026-10-04T13:38:37.2103698Z",
+    "scratchDirectory": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\work\\scratch\\windows-native-876ab747d9e54867951e7b5c882ca750",
+    "retained": false,
+    "reason": ""
+  },
+  "rename_probe_present_in_runtime_process_list": true
+}

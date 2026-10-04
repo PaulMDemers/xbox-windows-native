@@ -12,7 +12,7 @@ p.add_argument('--expected-count', type=int, help='Expected persistent counter a
 a = p.parse_args()
 assert bool(a.persistence_manifest) == (a.expected_count is not None)
 if a.expected_count is not None: assert 1 <= a.expected_count <= 100
-assert re.fullmatch(r'nt5-fatx-boot-(?:paging|image-read|paging-flags|flush|power|wide|hal-paging|bootvid|bootvid-ram|pressure|metadata|name-boundary|persistence)-[0-9]+', a.run)
+assert re.fullmatch(r'nt5-fatx-boot-(?:paging|image-read|paging-flags|flush|power|wide|hal-paging|bootvid|bootvid-ram|pressure|metadata|name-boundary|persistence|rename)-[0-9]+', a.run)
 ws = pathlib.Path('/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility')
 root = pathlib.Path('/home/paul/xbox-windows-native')
 run = ws / 'work/runs' / a.run
@@ -169,6 +169,7 @@ try:
                          'Regrow with explicit data', 'Rename across directories',
                          'Renamed regrown data comparison', 'Remove test directory',
                          '42-byte component limit advertised', 'OEM case-preserved capabilities']
+                names += manifest.get('required_checks', [])
                 checks = {name: 'PASS: ' + name + '\r\n' in text for name in names}
                 directory_removed = 'xwnfstest' not in w.directory(1)['entries']
                 r['filesystem_api'] = {'probe_sha256': probe_hash,

@@ -1,0 +1,11 @@
+diff --git a/drivers/filesystems/vfatfs/dirwr.c b/drivers/filesystems/vfatfs/dirwr.c
+index 0058e092..d38a867f 100644
+--- a/drivers/filesystems/vfatfs/dirwr.c
++++ b/drivers/filesystems/vfatfs/dirwr.c
+@@ -237,2 +237,6 @@ vfatRenameEntry(
+         DirContext.DeviceExt = DeviceExt;
++        /* In-place rename keeps the original directory slot. vfatUpdateFCB
++         * copies both indices; leaving them uninitialized corrupts cleanup. */
++        DirContext.StartIndex = pFcb->startIndex;
++        DirContext.DirIndex = pFcb->dirIndex;
+         DirContext.ShortNameU.Length = 0;

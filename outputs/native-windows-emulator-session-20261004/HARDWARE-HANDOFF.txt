@@ -1,0 +1,50 @@
+Physical handoff after the emulator-only session, 4 October 2026
+
+The verified physical baseline is XWNW90, patch 0044. Native Windows process
+address-space initialization returned success. The supplied photo is recorded
+in native-windows-physical-processinit/physical-result.json. No physical
+storage driver, mounted Windows system volume or desktop is established by
+that checkpoint. preserved-packages.json verifies the retained local files.
+
+The next prepared hardware test is XWN390, patch 0046, in
+outputs/native-windows-physical-bootvideo/package. It reaches the original
+Windows boot graphic in both emulator display layouts and stops before
+IoInitSystem/storage. It retains the bounded diagnostic's paired HAL/loader
+and bootvid; do not substitute the later full-boot emulator components.
+The package has not been uploaded in this session. Its README and validation
+record identify the expected result; launch remains manual when hardware
+access resumes. Keep the verified XWNW90 package available for comparison.
+
+After that physical checkpoint passes, the next development boundary is
+native storage enumeration and controlled reads on a recoverable test volume.
+The existing hardware inventory does not establish the physical disk's
+capacity, partition allocation/free space or recovery layout. Inspect those
+before preparing a Windows installation on it. Emulator QCOW2 images contain
+fixture-specific dashboard, identity and partition state; they are not images
+to write onto the console drive.
+
+Partition handling has two separate stages. FreeLoader can read the Xbox's
+FATX files to load Windows. Once Windows owns the machine, the HAL's Xbox
+partition mapping and the research FATX filesystem driver provide native
+Windows access to that volume. The full FATX emulator fixture runs Windows
+directly from the Xbox E volume, exposed as C: to Windows. There is no nested
+NTFS image or virtual filesystem in that path. The independent NTFS fixture
+uses a real NTFS partition in its private emulator disk instead.
+
+FATX carries a 42-byte component limit and lacks NTFS features. Eleven source
+paths were omitted from the original FATX staging inventory because they did
+not fit the implemented name rules. A working desktop does not remove those
+application-compatibility constraints. Do not present FATX as an interchangeable
+replacement for NTFS for all Windows software or account/security workflows.
+
+Keep experimental audio disabled on the first physical Windows storage boot.
+The recorded physical AC97 device has I/O BARs and MMIO at fec00000; its
+resource list differs from the tested emulator assumptions. Physical USB,
+Ethernet, audio, gamepad input and long-term filesystem behavior each need
+their own validation. The framebuffer driver has no acceleration or mode
+switching. Emulator safe-to-turn-off output ends at a HAL halt, not electrical
+power-off. Existing Windows 2000 SP4 media suffice for the next stages; changing
+the pinned native kernel would require fresh symbol/ABI checks.
+
+All work in this session used owned xemu fixtures and loopback control ports.
+No physical Xbox FTP connection, upload, launch or test was performed.

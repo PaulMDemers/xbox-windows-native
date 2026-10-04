@@ -1,0 +1,69 @@
+FATX in-place rename repairs (0060 through 0062), 4 October 2026
+
+The expanded, unchanged xwnfs probe tests case-only rename of a 42-byte
+component and same-directory rename from a short name to 42 bytes, directory
+enumeration, full data comparison after reopen, deletion and empty-directory
+removal. It also retains the earlier create, shrink/regrow and cross-directory
+rename tests. This exercises a different driver path from the earlier tests.
+
+Two defects were found. Patch 0060 converts the name into a 43-byte temporary
+OEM buffer and checks status before changing the directory entry, matching
+the native NT5 API's terminator requirement. Patch 0061 preserves the FCB's
+StartIndex and DirIndex in the directory context passed to vfatUpdateFCB.
+An in-place rename does not change either physical slot. Previously these
+fields were uninitialized and the update copied stack values into the FCB.
+Patch 0062 converts the saved physical slots to the directory context's
+logical indices: non-root FATX contexts count two synthetic dot entries,
+which vfatInitFCBFromDirEntry subtracts when rebuilding the FCB. Trial run
+005 with physical indices alone still underflowed during deletion and failed;
+it is retained as an intermediate failure, not a validated repair.
+
+Unassisted run 001 (0059 driver) and 002 (name conversion alone) both crashed.
+The framebuffer showed STOP 0A at MmMapViewInSystemCache+fb; the later native
+bugcheck data showed a secondary D1 in the network shutdown callback. Cold
+audits retained unchanged system files and the pagefile guard, but their
+overall result failed: incomplete endurance output and no committed xwn-fs.log.
+Those logs initially suggested the probe had not started. That inference was
+wrong: incomplete directory/cache metadata after the crash hid its progress.
+The runtime process lists also contain xwnfs.exe in all three crash captures.
+
+Exploratory run 004 caught the FIRST KeBugCheckEx call without modifying guest
+registers or data. Its stack shows FATXDelEntry/VfatCleanup calling CcPinRead
+with offset fffff000, then CcGetVacbMiss and MmMapViewInSystemCache. This matches
+the uninitialized directory-index defect. Run 003 was an unsuccessful host
+trace attempt: holding the monitor lease conflicted with automatic capture.
+It was discarded as diagnostic evidence. Run 004 used ManualCapture instead.
+Execution breakpoints alter timing and are separate from unassisted tests.
+
+The secondary D1 resolves to pageable NvNetIdleTransmitter called at bugcheck
+IRQL by MiniportShutdown. That crash-reporting defect remains a follow-up;
+these filesystem patches do not repair or claim to test it.
+
+Build the ordered patch-check-0062.json series with Build-Driver.ps1 and run
+audit-imports.py. Build-Probe.ps1/audit-probe.py resolve the guest probe's 22
+imports against the exact native DLLs. prepare-before.py uses the preserved
+0059 driver; prepare-after.py uses the saved name-only driver; prepare-final.py
+uses the intermediate physical-index driver; prepare-complete.py includes the
+logical-index correction. They derive separate private fixtures from the same
+source. Run-FullBoot.ps1 -Variant complete selects the completed repair;
+before/after/final retain the historical trials. It verifies the disk hash.
+All Windows/media artifacts remain local and excluded from Git.
+
+For a first-fault trace, start the owned harness with ManualCapture, manually
+launch the fixture through the loopback launcher, create an initial runtime
+snapshot, then run trace-first-bugcheck.py with the run name. Do not run the
+automatic capture loop while that trace holds the monitor lease. Native stack
+bytes stay in the ignored run directory; fault-analysis-004.json summarizes
+the evidence without committing raw memory. No physical Xbox was accessed.
+
+Final unassisted run 007 reaches the desktop and final HAL halt without the
+earlier bugcheck, but shows a Windows delayed-write failure for the renamed
+42-byte file. This makes the candidate FAILED/EXPERIMENTAL regardless of other
+checks. Do not promote it over the earlier bounded desktop/persistence baseline.
+validation-007.json records the cold audit and this visual failure separately.
+The guest's complete API log reports zero failures, and the cold audit passes
+3,452 immutable files, the pagefile guard, all nine hive trees and removal of
+the test directory. Those checks do not negate the delayed-write warning.
+Next investigate cached data/size/section state through in-place rename and
+deletion, then repeat the identical probe. Run 006 failed at the dashboard due
+to a host capture timeout and supplies no Windows-runtime evidence.

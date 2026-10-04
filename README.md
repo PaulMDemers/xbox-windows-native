@@ -43,6 +43,10 @@ boot-video path also pass an independent
 File and registry counters survive a full FATX shutdown and cold restart in
 the 1024x576 layout, with matching offline values and clean integrity checks:
 [persistence evidence](outputs/native-windows-fatx-persistence/REPORT.txt).
+Further same-directory rename tests expose a crash and then a delayed-write
+failure. Patches 0060-0062 are **experimental**, with failed trials preserved;
+they do not replace the verified 0059 persistence baseline. See the
+[rename investigation](outputs/native-windows-fatx-rename-boundary/REPORT.txt).
 
 The next bounded hardware candidate has reached a genuine Windows boot bitmap
 in both tested emulator display layouts, stopping before storage. It has not
@@ -142,6 +146,8 @@ ReactOS commit `afc0127e8f937ab68503d715d948844973756aa1`, plus build wrappers,
 validation tools and reports. The full series and resulting source tree are
 in [patch-check-0059.json](outputs/native-windows-fatx-name-boundary/patch-check-0059.json).
 The bounded physical candidate retains its separate patch-0046 manifest.
+The later experimental rename series is recorded separately in
+[patch-check-0062.json](outputs/native-windows-fatx-rename-boundary/patch-check-0062.json).
 Use `python tools/apply-series.py --source PATH --manifest MANIFEST` on a clean
 checkout at that exact upstream commit. The script checks the clean baseline,
 applies the ordered patches and verifies the resulting Git tree.

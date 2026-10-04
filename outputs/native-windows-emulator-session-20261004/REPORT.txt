@@ -1,0 +1,79 @@
+Native Xbox Windows 2000 emulator session, 4 October 2026
+
+Physical evidence remains XWNW90: process address-space initialization returns
+success. The supplied photo is recorded, and all 33 retained baseline files
+match their recorded hashes. XWN390 is the next bounded hardware candidate:
+the genuine Windows boot graphic, followed by a halt before storage. Both
+emulator display layouts passed its guards. It was not uploaded or physically
+tested. See HARDWARE-HANDOFF.txt and preserved-packages.json.
+
+Completed unassisted emulator results
+
+- Native Windows 2000 desktop from the Xbox FATX E volume, exposed as C:
+  through the custom filesystem driver and HAL partition mapping. This path
+  does not use a nested NTFS image. USB keyboard/mouse and bounded GUI checks
+  work; cold audits verify 3,452 immutable Windows files.
+- Normal UI shutdown reaches Windows' original safe-to-turn-off bitmap and
+  the final HAL halt with no bugcheck. Repairs cover volume-flush locking,
+  HAL paging-path notification, the NT5 boot-video reset ABI and framebuffer
+  access after device power transitions. Electrical power-off is not provided.
+- Independent NTFS desktop/shutdown regression passes with the updated HAL
+  and boot video. Its cold audit checks 29 selected immutable files, seven
+  active registry trees, clean volume flags and read-only NTFS metadata checks.
+- A 40 MiB retention probe completes eight full comparisons with working-set
+  trimming on a pagefile fragmented across 384 disk regions. The interleaved
+  guard remains intact. This test used the earlier 0054 filesystem driver.
+- FATX creation at the 42-byte name boundary, rejection at 43 bytes, case
+  insensitive reopen, shrink/regrow, cross-directory rename and deletion pass
+  after patch 0059. General Unicode/OEM filename compatibility is not proven.
+- Two boots in the 1024x576 layout verify clean-shutdown persistence. The first
+  writes matching file/registry counters of 1; the second reads 1 and writes 2.
+  Cold file and native SOFTWARE-hive inspection confirm both values. Both
+  runs pass their filesystem, endurance, pagefile-guard and registry checks.
+  These persistence runs used patch 0059, not later rename development builds.
+
+Separate debugger evidence
+
+A read-only breakpoint trace observes eight native IoPageRead submissions
+against pagefile.sys during the pressure probe. Those are submissions, not
+a measured completed-read count; generic page-fault totals also include soft
+faults. A separate first-bugcheck trace diagnoses the new same-directory rename
+failure. Breakpoints affect timing. Neither trace is labeled an unassisted
+runtime test, and neither modifies native results or registers to force success.
+
+Follow-up work
+
+The new same-directory/case-only rename tests exposed uninitialized directory
+indices and the two-entry logical/physical index conversion in FATX. Detailed
+failed trials, source repairs and the final test status are retained in
+native-windows-fatx-rename-boundary. During those crashes, the network driver's
+bugcheck shutdown callback called pageable NvNetIdleTransmitter at high IRQL,
+causing a secondary D1. That separate diagnostic-path defect remains unfixed.
+The last rename candidate (0062) avoids the observed crash and reaches the
+final shutdown screen, but Windows reports a delayed-write failure for the
+renamed file. It remains experimental; the successful 0059 persistence baseline
+is preserved. Resolve the cached rename/write path before promoting it.
+
+FATX still has a 42-byte component limit and staged-path omissions. These
+bounded tests do not establish general application compatibility, recovery
+from power loss, or long-term stability. Physical storage, USB, network and
+audio compatibility remain unverified beyond the photographed checkpoint.
+
+Reproduction and retention
+
+Source is an ordered ReactOS patch series plus pinned native binary/import
+checks and local fixtures. Windows, console firmware, dashboard media, photos,
+raw memory and disk images are excluded from the private Git repository.
+Reports distinguish failed trials, source checks, emulator runs and physical
+results. Audited obsolete run disks were removed only after matching their
+recorded hashes; original fixture inputs and reports remain. Selected large
+CPU traces were compressed and verified by hashing the decompressed stream.
+
+No physical Xbox FTP connection, upload, launch or test occurred in this
+session. All emulator control/FTP endpoints were loopback. The continuation
+note records the latest run, artifacts, outstanding work and cleanup status.
+
+Final retained follow-up artifacts: persistence-002 is the verified 0059 cold
+restart disk. Rename-007 is the experimental 0062 disk, with a passing cold
+audit but an overall failed validation because of the delayed-write popup.
+The owned emulator and helper processes are stopped; no test is left running.
