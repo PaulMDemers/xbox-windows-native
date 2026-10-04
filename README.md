@@ -55,8 +55,10 @@ The supplied photo now confirms its native boot graphic and XWN390 halt.
 See the [boot-video candidate](outputs/native-windows-physical-bootvideo/REPORT.txt).
 The user selected **F:** on the upgraded physical drive for Windows. A
 [storage inventory](outputs/native-windows-physical-storage-preflight/REPORT.txt)
-is uploaded there for manual testing; no Windows installation has been staged
-and the existing games are preserved.
+passed physically: 250 GB disk, F: with 94.65 GiB free and 64 KiB clusters.
+The current loader/HAL expose only the five stock partitions; extended F:
+mapping and large-LBA native I/O need validation before installation. No
+Windows installation has been staged and the existing games are preserved.
 
 The physical-tested **XWNI90** reserves the two BIOS phase-0 pages and
 halts before HAL returns to Windows; see

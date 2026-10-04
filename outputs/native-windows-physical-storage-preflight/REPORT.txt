@@ -8,7 +8,8 @@ staged on F: in this step.
 The nxdk inventory is uploaded and readback-verified at
 F:\Applications\XWNStorage\default.xbe. Launch through the dashboard file
 manager; it saves xwn-storage.txt in the same folder and reboots after 15 seconds.
-Physical inventory is pending. XWNLoader and its XWN390 binaries are unchanged.
+Physical inventory passed; the user confirms automatic reboot. XWNLoader
+and its XWN390 binaries are unchanged.
 
 The application requests only drive geometry, partition information and
 filesystem space through read-only Xbox-kernel handles. It does not issue
@@ -23,7 +24,7 @@ partition ranges and filesystem allocation/free counts agree with the private
 8 GiB fixture and have non-overlapping ranges. The completed log was read from
 the stopped private disk. A dashboard screenshot confirms automatic reboot.
 Partition 6 exists in that fixture but has no mounted filesystem; large-drive
-physical F: behavior remains pending. No raw disk contents or identity secrets
+physical F: Windows-driver behavior remains pending. No raw disk contents or identity secrets
 are logged. Source fixture hashes matched before/after staging.
 
 An earlier host attempt, storage-preflight-001, could not upload using passive
@@ -36,3 +37,33 @@ Next: retrieve the physical report, establish F: bounds/free space/cluster
 size, and validate native Windows partition mapping and storage reads for those
 bounds. If addresses require LBA48, verify that entire I/O path before allowing
 Windows writes. Preserve existing games and the verified XWN390 rollback.
+
+Physical result 2026-10-04T15:22:03.767245+00:00
+The complete app-local report was retrieved through FTP after user-confirmed
+reboot. It reports a 250,059,350,016-byte disk (488,397,168 sectors). F is
+partition 6, start LBA 15,633,072, length 472,764,096 sectors, ending exactly
+at the disk boundary. Its clusters are 65,536 bytes and free space is
+101,628,706,816 bytes (94.65 GiB). E reports approximately 3.73 GiB free.
+This broadly agrees with the dashboard figures supplied by the user.
+
+Partition 2 reports start equal to the entire disk size, beyond real media.
+That is consistent with a virtual/shadow C mapping, but this report alone
+does not establish its mechanism. It is explicitly excluded from physical
+layout planning. No C partition changes are proposed. The F extent passes
+sector-alignment, disk-boundary, volume-size and non-overlap checks against
+other in-bounds reported partitions. Twelve malformed variants are rejected.
+These are Xbox-kernel query results, not raw partition-table verification.
+
+Source audit: current FreeLoader disk/part_brfr.c and HAL xbox/part_xbox.c
+contain only five stock entries, E/C/X/Y/Z; neither describes F/G. The loader
+ATA source has LBA48 selection code, but this is not runtime evidence for the
+Windows atapi.sys path on the physical drive. F extends above the LBA28
+boundary, so correct large-LBA operation is required before native writes.
+Do not simply point the current Windows loader at partition 6 or copy the
+8 GiB emulator partition layout onto the physical disk.
+
+Next implementation: support validated extended F extents consistently in
+loader and HAL, reproduce the physical 250 GB/64 KiB-cluster layout in a
+sparse private emulator fixture, and verify reads across the large-LBA
+boundary before enabling any native Windows filesystem writes on F.
+No additional physical test was uploaded or launched in this retrieval step.

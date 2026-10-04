@@ -85,3 +85,9 @@ original boot graphic and halted before native storage initialization. See
 Next: read-only inventory of the current disk layout and available space,
 then bounded native storage enumeration. Do not use emulator disk images
 as physical-drive replacements.
+
+The [physical storage inventory](../native-windows-physical-storage-preflight/physical-layout.json)
+now passes. Use F: per user instruction: partition 6, LBA 15633072 through
+488397167 inclusive, 64 KiB clusters, 94.65 GiB free. C: query offsets appear
+virtualized and must not be interpreted as a raw partition map. Current
+loader/HAL tables omit F:, and native large-LBA I/O is not validated.
