@@ -6,6 +6,11 @@ host-side test harness.
 
 ## Current evidence
 
+- Extended F emulator milestone: native Windows desktop on a 250 GB FATX disk,
+  verified reads/writes beyond LBA28, and two normal restart cycles with clean
+  cold allocation, binary and registry audits. The actual console's F geometry
+  is confirmed by an automated metadata probe; physical Windows storage remains
+  untested. See [extended F results](outputs/native-windows-extended-storage/REPORT.md).
 - Physical console: Windows kernel entry, processor initialization, HAL base
   setup, RTC calibration, clock setup and partition-hook registration and BIOS page allocation passed.
 - Latest physical checkpoint: **XWN390**. Windows 2000 draws its original

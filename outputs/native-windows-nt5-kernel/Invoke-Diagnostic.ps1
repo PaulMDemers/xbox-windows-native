@@ -17,6 +17,7 @@ param(
     [switch]$InstallNetwork,
     [switch]$TraceNetwork,
     [switch]$TracePackets,
+    [switch]$TraceDiskWrites,
     [switch]$CaptureAudio,
     [switch]$ManualCapture,
     [switch]$StopOnCaptureComplete,
@@ -89,6 +90,7 @@ enable = false
         if ($UsbMouse) { $vmArguments += @('-device','usb-mouse') }
         if ($RetainDisk) { $vmArguments = @($vmArguments | Where-Object { $_ -ne '-snapshot' }) }
         if ($AllowGuestReboot) { $vmArguments = @($vmArguments | Where-Object { $_ -ne '-no-reboot' }) }
+        if ($TraceDiskWrites) { $vmArguments += @('-trace','enable=ide_sector_write','-trace','enable=blk_co_pwritev') }
         if ($FtpPort) { $vmArguments += @('-nic',"user,id=xemu-netdev,model=nvnet,restrict=on,hostfwd=tcp:127.0.0.1:${FtpPort}-:21") }
         if ($TracePackets) { $vmArguments += @('-object',"filter-dump,id=xwn-pcap,netdev=xemu-netdev,file=$(Join-Path $run 'nvnet.pcap')") }
         $vm = & (Join-Path $integration 'start_xemu_instance.ps1') -TaskId $InstanceTask -XemuPath $xemu -ConfigPath $config -RunDirectory $run -ScratchRoot (Join-Path $workspace 'work\scratch') -ArgumentList $vmArguments
@@ -148,6 +150,12 @@ enable = false
                     break
                 }
                 if ($LaunchXromwell -and -not $launchSent -and $nextCapture -ge 30) {
+                    if ($TraceDiskWrites) {
+                        @{
+                            recordedUtc = [DateTime]::UtcNow.ToString('o')
+                            traceBytesBeforeLaunch = (Get-Item -LiteralPath (Join-Path $run cpu-trace.log)).Length
+                        } | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $run disk-trace-prelaunch.json)
+                    }
                     & python (Join-Path (Join-Path $PSScriptRoot ../native-windows-prebuild) 'launch_unleashx.py') --port $FtpPort --output (Join-Path $run 'launch-command.json')
                     if ($LASTEXITCODE -ne 0) { throw 'UnleashX launch command failed.' }
                     $launchSent = $true

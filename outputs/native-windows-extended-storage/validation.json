@@ -1,0 +1,69 @@
+{
+  "scope": "Reproducible emulator extended FATX boot; physical Windows storage not tested",
+  "source_tree": "6f2bc6a2868ee0b9b37055d59ef51d03a02b31f9",
+  "runs": {
+    "nt5-extended-f-007": {
+      "result": {
+        "run": "nt5-extended-f-007",
+        "native_windows_read_verified": true,
+        "report_sha256": "7a972cf89ed27b6641b5b45f64d633f5a1a996d84cb77ed8df38a3b9099c1f99",
+        "report": "XWN bounded native Windows high-LBA overwrite and restart test\r\nPrevious generation: 0\r\nWritten generation: 1\r\nFailures: 0\r\nXWN-LARGE-WRITE-PASS: existing high-LBA file overwritten, flushed and reopened\r\nRequesting normal Windows restart\r\n",
+        "sentinel_intact": true,
+        "sentinel_absolute_offset": 145644445696,
+        "sentinel_cluster_tail_zero": true,
+        "native_windows_write_verified": true,
+        "generation": 1
+      },
+      "cold_audit_passed": true,
+      "cleanup": {
+        "completedUtc": "2026-10-04T16:48:06.8355173Z",
+        "scratchDirectory": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\work\\scratch\\windows-native-83409dfa50a148bfbe6940da34d57f05",
+        "retained": false,
+        "reason": ""
+      }
+    },
+    "nt5-extended-f-008": {
+      "result": {
+        "run": "nt5-extended-f-008",
+        "native_windows_read_verified": true,
+        "report_sha256": "ffc513ff8627b57d0e1fe33ef785109d6630e3e815211911e22749efad59419b",
+        "report": "XWN bounded native Windows high-LBA overwrite and restart test\r\nPrevious generation: 1\r\nWritten generation: 2\r\nFailures: 0\r\nXWN-LARGE-WRITE-PASS: existing high-LBA file overwritten, flushed and reopened\r\nRequesting normal Windows restart\r\n",
+        "sentinel_intact": true,
+        "sentinel_absolute_offset": 145644445696,
+        "sentinel_cluster_tail_zero": true,
+        "native_windows_write_verified": true,
+        "generation": 2
+      },
+      "cold_audit_passed": true,
+      "cleanup": {
+        "completedUtc": "2026-10-04T16:51:19.7625727Z",
+        "scratchDirectory": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\work\\scratch\\windows-native-afa9dfc6557443a3bb8c41b4b5f5ff55",
+        "retained": false,
+        "reason": ""
+      }
+    }
+  },
+  "fixture_directory_regression": "PASS: create, extend twice, cold reopen 20 files",
+  "package": {
+    "bytes": 169984,
+    "sha256": "624d8b8fc03520c1343e2e178c725d782f3d5e28d8ce461e0c113a315ca8f1ac",
+    "multiboot_header_offset": 2560,
+    "staging_address": "0x200000",
+    "entry_address": "0x200a20",
+    "relocated_pe_end": "0x3e0e0",
+    "scope": "Packaging constraints only; does not prove runtime memory safety or a working boot.",
+    "files": {
+      "/LOADER/FREELDR.SYS;1": "624d8b8fc03520c1343e2e178c725d782f3d5e28d8ce461e0c113a315ca8f1ac",
+      "/LOADER/ROSLOAD.EXE;1": "5d2975017ac9d4ecf76345a4c6f79d465ccc28677a6945b6158c281e271b9b06",
+      "/LOADER/HALXBOXNT5.DLL;1": "59c889e177cee82e34c8ded326bffc33a659881031d3e0f7a9616d69c77447eb",
+      "/LOADER/XBOXBVID.DLL;1": "2196f646653c4c944d73fee4944ee3d056c82cf01903e4f435e67d63c03ed4b7",
+      "/PROBE.BIN;1": "1027db9f49bac9176229e94c73b3d32b7dd408cb2a25aa54a73f7bb0c5f284b0",
+      "/FREELDR.INI;1": "9190d9e2a7fcdba3a304d5ca7208a311768906560fc8a0f2d323e23272dbc4e0"
+    },
+    "iso_sha256": "276ac77c49e77f9097a920f6896c307f540b12e6bb8def642b66f17247173764",
+    "readback_verified": true,
+    "windows_included": false,
+    "kernel_entry_enabled": true,
+    "requires_debugger_gate": false
+  }
+}

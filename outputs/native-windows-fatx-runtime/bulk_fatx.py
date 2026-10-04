@@ -64,7 +64,7 @@ class Writer:
     def add(self,parent,name,flags,cluster,size):
         d=self.directory(parent);assert name.lower() not in d['entries'],('would overwrite',name)
         if not d['slots']:
-            c=self.allocate(1)[0];self.write_cluster(c,b'');self.fat[d['chain'][-1]]=c;d['chain'].append(c)
+            c=self.allocate(1)[0];self.write_cluster(c,b'\xff'*self.p.cluster_size);self.fat[d['chain'][-1]]=c;d['chain'].append(c)
             d['slots']=[(c,off) for off in range(0,self.p.cluster_size,64)]
         c,off=d['slots'].pop(0);entry=bytearray(64);encoded=name.encode('ascii')
         entry[0]=len(encoded);entry[1]=flags;entry[2:2+len(encoded)]=encoded
@@ -79,7 +79,7 @@ class Writer:
             if e:
                 assert e[2][1]&16;at=struct.unpack_from('<I',e[2],44)[0]
             else:
-                c=self.allocate(1)[0];self.write_cluster(c,b'');self.add(at,name,16,c,0);at=c
+                c=self.allocate(1)[0];self.write_cluster(c,b'\xff'*self.p.cluster_size);self.add(at,name,16,c,0);at=c
         return at
     def read(self,path):
         at=1;parts=self.parts(path)

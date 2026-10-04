@@ -1,0 +1,108 @@
+diff --git a/hal/halx86/xbox/part_xbox.c b/hal/halx86/xbox/part_xbox.c
+index aebd67a7..38520b7e 100644
+--- a/hal/halx86/xbox/part_xbox.c
++++ b/hal/halx86/xbox/part_xbox.c
+@@ -187,6 +187,10 @@ HalpXboxExamineMBR(IN PDEVICE_OBJECT DeviceObject,
+     return;
+ }
+ 
++/* Read-only debugger telemetry: magic, calls, stage, status, table status,
++ * count, device length low/high, returned bytes, sector size, BRFR status. */
++volatile ULONG XwnExtendedPartitionTrace[16] = {0x58575054};
++
+ /* Require an exact device length before trusting extended on-disk extents.
+  * Unsupported length queries fail closed; CHS rounding is not a substitute.
+  */
+@@ -202,15 +206,19 @@ HalpXboxReadExtendedLayout(PDEVICE_OBJECT Device, ULONG SectorSize,
+     KEVENT Event;
+     PIRP Irp;
+     NTSTATUS Status;
++    XwnExtendedPartitionTrace[2] = 30;
+     *TableStatus = XWN_XBOX_TABLE_INVALID;
+     if (SectorSize != 512) return STATUS_NOT_SUPPORTED;
+     Buffer = ExAllocatePoolWithTag(PagedPool, SectorSize, TAG_HAL_XBOX);
+     if (!Buffer) return STATUS_INSUFFICIENT_RESOURCES;
+     Offset.QuadPart = 0;
+     Status = HalpXboxReadSector(Device, SectorSize, &Offset, Buffer);
++    XwnExtendedPartitionTrace[3] = Status;
+     if (!NT_SUCCESS(Status)) goto Done;
++    XwnExtendedPartitionTrace[2] = 35;
+     /* The first parse only detects absence. An unknown capacity cannot validate. */
+     *TableStatus = XwnXboxParsePartitionTable(Buffer, SectorSize, 0, Parts, Count);
++    XwnExtendedPartitionTrace[4] = *TableStatus;
+     if (*TableStatus == XWN_XBOX_TABLE_ABSENT) goto Done;
+     RtlZeroMemory(&Io, sizeof(Io));
+     RtlZeroMemory(&Length, sizeof(Length));
+@@ -224,6 +232,41 @@ HalpXboxReadExtendedLayout(PDEVICE_OBJECT Device, ULONG SectorSize,
+         KeWaitForSingleObject(&Event, Executive, KernelMode, FALSE, NULL);
+         Status = Io.Status;
+     }
++    /* Windows 2000 may return STATUS_NOT_IMPLEMENTED for GET_LENGTH_INFO.
++     * Query Partition0's native length, never a CHS estimate or table end. */
++    if (Status == STATUS_NOT_IMPLEMENTED || Status == STATUS_INVALID_DEVICE_REQUEST ||
++        Status == STATUS_NOT_SUPPORTED)
++    {
++        PARTITION_INFORMATION WholeDisk;
++        XwnExtendedPartitionTrace[11] = 1;
++        RtlZeroMemory(&WholeDisk, sizeof(WholeDisk));
++        RtlZeroMemory(&Io, sizeof(Io));
++        KeInitializeEvent(&Event, NotificationEvent, FALSE);
++        Irp = IoBuildDeviceIoControlRequest(IOCTL_DISK_GET_PARTITION_INFO, Device,
++                NULL, 0, &WholeDisk, sizeof(WholeDisk), FALSE, &Event, &Io);
++        if (!Irp) { Status = STATUS_INSUFFICIENT_RESOURCES; goto Done; }
++        Status = IoCallDriver(Device, Irp);
++        if (Status == STATUS_PENDING)
++        {
++            KeWaitForSingleObject(&Event, Executive, KernelMode, FALSE, NULL);
++            Status = Io.Status;
++        }
++        XwnExtendedPartitionTrace[12] = Status;
++        XwnExtendedPartitionTrace[13] = WholeDisk.StartingOffset.LowPart;
++        XwnExtendedPartitionTrace[14] = WholeDisk.PartitionLength.LowPart;
++        XwnExtendedPartitionTrace[15] = WholeDisk.PartitionLength.HighPart;
++        if (!NT_SUCCESS(Status)) goto Done;
++        if (Io.Information < sizeof(WholeDisk) || WholeDisk.PartitionNumber != 0 ||
++            WholeDisk.StartingOffset.QuadPart != 0)
++        { Status = STATUS_DISK_CORRUPT_ERROR; goto Done; }
++        Length.Length = WholeDisk.PartitionLength;
++        Io.Information = sizeof(Length);
++    }
++    XwnExtendedPartitionTrace[2] = 40;
++    XwnExtendedPartitionTrace[3] = Status;
++    XwnExtendedPartitionTrace[6] = Length.Length.LowPart;
++    XwnExtendedPartitionTrace[7] = Length.Length.HighPart;
++    XwnExtendedPartitionTrace[8] = Io.Information;
+     if (!NT_SUCCESS(Status)) goto Done;
+     if (Io.Information < sizeof(Length) || Length.Length.QuadPart <= 0 ||
+         (Length.Length.QuadPart & 511))
+@@ -232,6 +275,9 @@ HalpXboxReadExtendedLayout(PDEVICE_OBJECT Device, ULONG SectorSize,
+                          (ULONGLONG)Length.Length.QuadPart / 512, Parts, Count);
+     if (*TableStatus != XWN_XBOX_TABLE_VALID) Status = STATUS_DISK_CORRUPT_ERROR;
+ Done:
++    XwnExtendedPartitionTrace[3] = Status;
++    XwnExtendedPartitionTrace[4] = *TableStatus;
++    XwnExtendedPartitionTrace[5] = *Count;
+     ExFreePoolWithTag(Buffer, TAG_HAL_XBOX);
+     return Status;
+ }
+@@ -256,7 +302,12 @@ HalpXboxIoReadPartitionTable(IN PDEVICE_OBJECT DeviceObject,
+            ReturnRecognizedPartitions,
+            PartitionBuffer);
+ 
++    XwnExtendedPartitionTrace[1]++;
++    XwnExtendedPartitionTrace[2] = 10;
++    XwnExtendedPartitionTrace[9] = SectorSize;
+     Status = HalpXboxDeviceHasXboxPartitioning(DeviceObject, SectorSize, &HasXboxPartitioning);
++    XwnExtendedPartitionTrace[3] = Status;
++    XwnExtendedPartitionTrace[10] = NT_SUCCESS(Status) ? HasXboxPartitioning : 0;
+     if (!NT_SUCCESS(Status))
+     {
+         return Status;
+@@ -283,6 +334,7 @@ HalpXboxIoReadPartitionTable(IN PDEVICE_OBJECT DeviceObject,
+     {
+         return STATUS_NO_MEMORY;
+     }
++    XwnExtendedPartitionTrace[2] = 90;
+     (*PartitionBuffer)->PartitionCount = PartCount;
+     (*PartitionBuffer)->Signature = PARTITION_SIGNATURE;
+     for (Part = 0; Part < PartCount; Part++)
