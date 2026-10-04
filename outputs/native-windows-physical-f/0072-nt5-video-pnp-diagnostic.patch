@@ -1,0 +1,99 @@
+diff --git a/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt b/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt
+index fb75e9e7..4a9c0e57 100644
+--- a/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt
+@@ -30,3 +30,12 @@ if(XBOX_NT5_VIDEO_ADAPTER_DIAGNOSTIC)
+     endif()
+     target_compile_definitions(xboxvnt5 PRIVATE XBOX_NT5_VIDEO_ADAPTER_DIAGNOSTIC=1)
+ endif()
++
++option(XBOX_NT5_VIDEO_PNP_DIAGNOSTIC "Stop before NT5 video PnP start" OFF)
++if(XBOX_NT5_VIDEO_PNP_DIAGNOSTIC)
++    if(NOT XBOX_NT5_VIDEO_DIAGNOSTIC OR XBOX_NT5_VIDEO_ENTRY_DIAGNOSTIC OR XBOX_NT5_VIDEO_ADAPTER_DIAGNOSTIC)
++        message(FATAL_ERROR "PnP diagnostic requires failure checks and other checkpoints OFF")
++    endif()
++    target_compile_definitions(xboxvnt5 PRIVATE XBOX_NT5_VIDEO_PNP_DIAGNOSTIC=1)
++    target_sources(xboxvnt5 PRIVATE video_pnp.c)
++endif()
+diff --git a/win32ss/drivers/miniport/xboxvmp/nt5/video_pnp.c b/win32ss/drivers/miniport/xboxvmp/nt5/video_pnp.c
+new file mode 100644
+index 00000000..b3b5c446
+--- /dev/null
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/video_pnp.c
+@@ -0,0 +1,53 @@
++/* Experimental NT5 video PnP checkpoint. GPL-2.0-or-later.
++ * Default-off, RAM-only instrumentation of this driver's own callbacks.
++ * Stops BEFORE forwarding START_DEVICE. Never changes PCI configuration. */
++#include <ntddk.h>
++
++static PDRIVER_ADD_DEVICE OriginalAddDevice;
++static PDRIVER_DISPATCH OriginalPnp;
++
++static NTSTATUS NTAPI
++XwnVideoPnp(PDEVICE_OBJECT Device, PIRP Irp)
++{
++    PIO_STACK_LOCATION Stack = IoGetCurrentIrpStackLocation(Irp);
++    UCHAR Minor = Stack->MinorFunction;
++    if (Minor == IRP_MN_START_DEVICE)
++    {
++        PCM_RESOURCE_LIST Raw = Stack->Parameters.StartDevice.AllocatedResources;
++        PCM_RESOURCE_LIST Translated = Stack->Parameters.StartDevice.AllocatedResourcesTranslated;
++        KeBugCheckEx(0xE0580001, 9, Raw ? Raw->Count : 0,
++                     Translated ? Translated->Count : 0, 0x53545254);
++    }
++    /* Optional PnP queries may legitimately fail. Preserve their responses.
++     * Do not access Irp after the original dispatch may have completed it. */
++    return OriginalPnp(Device, Irp);
++}
++
++static NTSTATUS NTAPI
++XwnVideoAddDevice(PDRIVER_OBJECT Driver, PDEVICE_OBJECT PhysicalDevice)
++{
++    NTSTATUS Status = OriginalAddDevice(Driver, PhysicalDevice);
++    if (!NT_SUCCESS(Status))
++        KeBugCheckEx(0xE0580001, 10, (ULONG_PTR)Status,
++                     (ULONG_PTR)PhysicalDevice, 0);
++    /* VideoPort may install its dispatch while creating the device. */
++    if (Driver->MajorFunction[IRP_MJ_PNP] != XwnVideoPnp)
++    {
++        OriginalPnp = Driver->MajorFunction[IRP_MJ_PNP];
++        if (!OriginalPnp)
++            KeBugCheckEx(0xE0580001, 11, 0, 0, 1);
++        Driver->MajorFunction[IRP_MJ_PNP] = XwnVideoPnp;
++    }
++    return Status;
++}
++
++VOID NTAPI XwnVideoArmPnp(PDRIVER_OBJECT Driver)
++{
++    OriginalAddDevice = Driver->DriverExtension ? Driver->DriverExtension->AddDevice : NULL;
++    OriginalPnp = Driver->MajorFunction[IRP_MJ_PNP];
++    if (!OriginalAddDevice || !OriginalPnp)
++        KeBugCheckEx(0xE0580001, 11, (ULONG_PTR)OriginalAddDevice,
++                     (ULONG_PTR)OriginalPnp, 0);
++    Driver->DriverExtension->AddDevice = XwnVideoAddDevice;
++    Driver->MajorFunction[IRP_MJ_PNP] = XwnVideoPnp;
++}
+diff --git a/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c b/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c
+index c96f396d..7a384f1f 100644
+--- a/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c
+@@ -175,6 +175,9 @@ VP_STATUS NTAPI Nt5VideoChild(PVOID Extension, PVIDEO_CHILD_ENUM_INFO Info,
+                              PVIDEO_CHILD_TYPE Type, PUCHAR Descriptor, PULONG Id, PULONG Unused)
+ { return VIDEO_ENUM_NO_MORE_DEVICES; }
+ 
++#ifdef XBOX_NT5_VIDEO_PNP_DIAGNOSTIC
++VOID NTAPI XwnVideoArmPnp(PVOID Driver);
++#endif
+ ULONG NTAPI DriverEntry(PVOID Context1, PVOID Context2)
+ {
+     VIDEO_HW_INITIALIZATION_DATA Init;
+@@ -193,5 +196,8 @@ ULONG NTAPI DriverEntry(PVOID Context1, PVOID Context2)
+     Init.HwGetVideoChildDescriptor = Nt5VideoChild;
+     Status = VideoPortInitialize(Context1, Context2, &Init, NULL);
+     if (Status != NO_ERROR) VIDEO_FAIL(1, Status, 0, 0);
++#ifdef XBOX_NT5_VIDEO_PNP_DIAGNOSTIC
++    if (Status == NO_ERROR) XwnVideoArmPnp(Context1);
++#endif
+     return Status;
+ }

@@ -1,0 +1,69 @@
+"""Execute the diagnostic miniport with modeled VideoPort and physical geometry."""
+import pathlib,sys,struct,json,hashlib
+k=pathlib.Path(__file__).resolve().parent;old=k.parent/'native-windows-nt5-kernel';root=k.parents[1];sys.path.insert(0,str(root/'work/python-packages'))
+import pefile
+from unicorn import *
+from unicorn.x86_const import *
+ns={};text=(old/'test-boundary.py').read_text();exec(text[text.index('def symbols(p):'):text.index('sym=symbols(h)')],{'struct':struct},ns)
+path=k/'artifacts/xboxvnt5-pnp.sys';pe=pefile.PE(str(path));sym=ns['symbols'](pe);base=pe.OPTIONAL_HEADER.ImageBase
+for lib in pe.DIRECTORY_ENTRY_IMPORT:
+ name=lib.dll.decode();folder=k/'package/F/winnt/system32';folder=folder/'drivers' if name.lower()=='videoprt.sys' else folder
+ dll=pefile.PE(str(folder/name.lower()));exports={s.name for s in dll.DIRECTORY_ENTRY_EXPORT.symbols if s.name}
+ assert all(i.name in exports for i in lib.imports),name
+text=(old/'test-video.py').read_text();exec(text[text.index('STACK='):text.index('m=Machine();')])
+class DiagnosticStop(Exception):pass
+class Diagnostic(Machine):
+ def __init__(self,height=480,range_status=0,initialize_status=0,register_map=True,small_aperture=False,**kw):
+  self.small_aperture=small_aperture;self.range_status=range_status;self.initialize_status=initialize_status;self.register_map=register_map
+  super().__init__(**kw);self.put(MMIO+0x680818,height-1)
+ def KeBugCheckEx(self):
+  self.failure=self.args(5);assert self.failure[0]==0xe0580001;raise DiagnosticStop(self.failure)
+ def VideoPortGetAccessRanges(self):
+  if self.range_status:self.ret(8,self.range_status)
+  else:
+   ptr=self.args(8)[4];super().VideoPortGetAccessRanges()
+   if self.small_aperture:self.put(ptr+16+8,0x100000)
+ def VideoPortGetDeviceBase(self):
+  if self.register_map:super().VideoPortGetDeviceBase()
+  else:self.ret(5,0)
+ def VideoPortInitialize(self):
+  super().VideoPortInitialize();self.u.reg_write(UC_X86_REG_EAX,self.initialize_status)
+DRIVER=STACK+0x4000;DEXT=STACK+0x5000;IRP=STACK+0x6000;IOS=STACK+0x7000;RAW=STACK+0x8000;TRANSLATED=STACK+0x8100
+ADD=STOP+0x800;PNP=STOP+0x820
+class PnpMachine(Diagnostic):
+ def __init__(self,add_status=0,pnp_status=0):
+  super().__init__();self.add_status=add_status;self.pnp_status=pnp_status;self.forwarded=[]
+  self.put(DRIVER+0x18,DEXT);self.put(DEXT+4,ADD);self.put(DRIVER+0xa4,PNP)
+  self.put(IRP+0x60,IOS);self.put(IOS+4,RAW);self.put(IOS+8,TRANSLATED);self.put(RAW,1);self.put(TRANSLATED,1)
+  self.hooks[ADD]=self.original_add;self.hooks[PNP]=self.original_pnp
+ def original_add(self):self.forwarded.append(('add',self.args(2)));self.ret(2,self.add_status)
+ def original_pnp(self):
+  self.forwarded.append(('pnp',self.args(2)));self.u.mem_write(IRP,bytes(0x100));self.ret(2,self.pnp_status)
+ def arm(self):
+  assert self.run('_DriverEntry@8',(DRIVER,0x1234))==0
+  assert self.get(DEXT+4)==sym['_XwnVideoAddDevice@8'] and self.get(DRIVER+0xa4)==sym['_XwnVideoPnp@8']
+results=[]
+m=PnpMachine();m.arm();assert m.run('_XwnVideoAddDevice@8',(DRIVER,0x12345678))==0
+assert m.forwarded==[('add',(DRIVER,0x12345678))]
+try:m.run('_XwnVideoPnp@8',(EXT,IRP));raise AssertionError('Expected START checkpoint')
+except DiagnosticStop:assert m.failure==(0xe0580001,9,1,1,0x53545254)
+assert len(m.forwarded)==1;results.append('START stops before dispatch with raw/translated resource counts')
+for status in [0,0x103,0xc000000e,0xc00000bb]:
+ m=PnpMachine(pnp_status=status);m.arm();m.u.mem_write(IOS+1,b'\x07')
+ actual=m.run('_XwnVideoPnp@8',(EXT,IRP));assert actual==status
+ assert m.forwarded==[('pnp',(EXT,IRP))]
+results.append('Other PnP requests forward once; all statuses preserved without reading completed IRP')
+m=PnpMachine(add_status=0xc000009a);m.arm()
+try:m.run('_XwnVideoAddDevice@8',(DRIVER,0x1234));raise AssertionError('Expected AddDevice failure')
+except DiagnosticStop:assert m.failure==(0xe0580001,10,0xc000009a,0x1234,0)
+results.append('AddDevice failure preserves original status')
+m=PnpMachine();m.put(DEXT+4,0)
+try:m.arm();raise AssertionError('Expected missing callback guard')
+except DiagnosticStop:assert m.failure==(0xe0580001,11,0,PNP,0)
+results.append('Missing original callbacks fail explicitly')
+m=PnpMachine();m.arm();m.put(DRIVER+0xa4,PNP);assert m.run('_XwnVideoAddDevice@8',(DRIVER,EXT))==0;assert m.get(DRIVER+0xa4)==sym['_XwnVideoPnp@8']
+results.append('Dispatch installation during AddDevice is rewrapped')
+r={'scope':'Compiled NT5 own-driver PnP wrappers, modeled callbacks and x86 native structure layout','sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'all_imports_resolve':True,'tests':results,'passed':True}
+(k/'video-pnp-test.json').write_text(json.dumps(r,indent=2)+'\n');print(json.dumps(r,indent=2))
+
+

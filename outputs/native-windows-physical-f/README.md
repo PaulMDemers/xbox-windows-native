@@ -284,3 +284,51 @@ and absent probe payload, `relaunch-video-adapter.py` requested exactly one
 fresh launch (cycle006). FTP accepted it at 19:24:47 UTC. No files were uploaded.
 Command acceptance is not proof of reaching a Windows checkpoint; a current
 screen photograph is still required. The helper refuses a second invocation.
+
+## Physical B4 confirmed; PnP diagnostic (0072)
+
+Photo 4A1B48A2 confirms cycle006 stopped with B4(0,0,0,50000), rather than
+adapter checkpoint stage8. Post-reboot FTP readback confirms the exact
+58e17e... adapter diagnostic was installed. DriverEntry remains physically
+proven by cycle004, but successful adapter discovery is not established.
+The gap is now investigated through VideoPort's own driver callbacks.
+
+0072 adds default-OFF XBOX_NT5_VIDEO_PNP_DIAGNOSTIC. After VideoPortInitialize
+succeeds, it wraps this driver's AddDevice and IRP_MJ_PNP callbacks in RAM.
+Other checkpoint options must be OFF and failure diagnostics ON. AddDevice
+and non-start requests forward to the original exactly once; code never
+reads an IRP after dispatch may have completed it. If AddDevice installs a
+new PnP dispatch, the wrapper captures it. START_DEVICE intentionally stops
+BEFORE forwarding or touching GPU registers. No PCI register writes or disk
+writes are introduced by the instrumentation.
+
+E0580001 stages: 9 = START_DEVICE, raw/translated resource-list counts and
+53545254 marker; 10 = AddDevice failed, status and physical device pointer;
+11 = missing original callbacks. All non-start PnP statuses pass through
+unchanged, including unsupported optional queries. An initial emulator-only
+version stopped on unsupported query 18; this was removed before deployment.
+
+Build-VideoPnp.ps1, test-video-pnp.py and prepare-video-pnp.py reproduce the
+candidate and owned fixture. Compiled-code tests check forwarding, success
+and pending status, failure capture, early START stop and callback replacement.
+All imports resolve against the supplied Windows binaries. check-pnp-series.py
+replays the full patch series into a temporary Git index and verifies its tree.
+All earlier build scripts explicitly disable the new cached CMake option.
+
+Build-VideoNormal.ps1 and check-video-default.py also verify that disabling all
+video diagnostics preserves the original miniport's complete .text section
+and imported symbols. This is code/import equivalence, not an identical full
+PE file hash (build metadata differs).
+
+The revised ordinary widescreen run `nt5-physical-f-video-pnp-wide-002` reached
+E0580001(9,1,1,53545254): START_DEVICE with both resource lists present. No
+debugger execution changes were used. The exploratory earlier stop and its
+binary hash are recorded separately; it was never deployed. Both xemu runs
+are closed and their temporary snapshot disks cleaned up.
+
+Cycle007 uploaded and readback-verified miniport db98c3... and preserved the
+previous adapter test as xboxvnt5.xwn-v6. The launcher/loader and pending v2
+report were verified. FTP accepted one launch at 19:49:45 UTC. The physical
+result is pending; command acceptance alone does not establish execution.
+The earlier audited widescreen result disk was retired by hash to make room;
+its screenshots/audit and the immutable v2 source remain.
