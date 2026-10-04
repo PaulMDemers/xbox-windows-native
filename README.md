@@ -129,6 +129,14 @@ modes. It completes executive phase zero and HAL phase one, then halts before
 storage initialization. The physical result remains XWNW90; this new candidate
 has not been uploaded. See [boot-video report](outputs/native-windows-physical-bootvideo/REPORT.txt).
 
+Native FATX runtime work uses a separate research filesystem driver alongside
+Microsoft's Fastfat. The loader's Xbox ARC identity fix reaches graphical logon
+on a private FATX system volume, but cache/metadata failures still prevent a
+usable desktop on that volume. The original NTFS emulator desktop fixture is
+preserved. The focused mapped-file extension test now passes, including rejection
+of mapped-file truncation. See the [FATX boot report](outputs/native-windows-fatx-boot/REPORT.txt)
+and [section-growth results](outputs/native-windows-fatx-cachefix/REPORT.txt).
+
 ## Repository contents
 
 Windows binaries, ISOs, registry hives, console firmware/EEPROM, dashboard
@@ -140,7 +148,9 @@ environment. Local emulator scripts use the fixture's default credentials.
 Preserve the working softmod and dashboard. Hardware probes are manually
 launched and photographed; current probes do not automatically return to the
 dashboard. Do not write emulator disk images onto the physical Xbox drive.
-No native Windows FATX mount or physical Windows boot volume is proven yet.
+Native Windows FATX mounting and bounded file/mapping tests now work in the
+emulator. Full FATX system-volume boot reaches graphical logon but remains
+unstable; no physical Windows boot volume is proven yet.
 
 Paul restarts to the dashboard after each diagnostic photo. Treat receipt
 of a photo as restart confirmation; only raise dashboard availability if

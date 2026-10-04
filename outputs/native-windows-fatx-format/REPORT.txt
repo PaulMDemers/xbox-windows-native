@@ -4,7 +4,10 @@ FATX32 allocation-entry interoperability candidate, 2026-10-04
 allocatesFFFFFFFF end markers and counts only all-zero entries as free.
 Ordinary FAT32 retains its28-bit mask and high-nibble preservation.
 Source tree includes0048 EOF-growth candidate; neither change proves a usable
-Windows system volume. Runtime validation is pending.
+Windows system volume. Focused runtime validation passed in nt5-fatx-runtime-stress-005.
+Three buffered files and one mapped file passed guest comparison. After VM
+shutdown, all four files passed independent strict FATX chain traversal and
+byte comparison, includingFFFFFFFF end markers. See stress-validation-005.json.
 
 Motivation: existing Xbox FATX end markersFFFFFFFF becomeF000xxxx links with
 the unmodified FAT32 writer, breaking strict FATX chain traversal. The original

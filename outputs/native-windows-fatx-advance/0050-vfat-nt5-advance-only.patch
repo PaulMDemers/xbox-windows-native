@@ -1,0 +1,25 @@
+diff --git a/drivers/filesystems/vfatfs/finfo.c b/drivers/filesystems/vfatfs/finfo.c
+index 3f59db3c..04355b87 100644
+--- a/drivers/filesystems/vfatfs/finfo.c
++++ b/drivers/filesystems/vfatfs/finfo.c
+@@ -1591,6 +1591,20 @@ VfatSetInformation(
+         return STATUS_INVALID_PARAMETER;
+     }
+ 
++    /* NT's cache manager sends AdvanceOnly notifications while it already
++     * owns the file resource. They must not allocate, truncate or reacquire
++     * the volume's directory lock. VFAT keeps the directory-entry size in
++     * step with RFCB.FileSize during its normal write/resize paths and flushes
++     * dirty entries through its existing cleanup/flush handling. In particular,
++     * the FAT and directory stream objects have no regular file EOF to change.
++     */
++    if (FileInformationClass == FileEndOfFileInformation &&
++        IrpContext->Stack->Parameters.SetFile.AdvanceOnly)
++    {
++        IrpContext->Irp->IoStatus.Information = 0;
++        return STATUS_SUCCESS;
++    }
++
+     /* Special: We should call MmCanFileBeTruncated here to determine if changing
+        the file size would be allowed.  If not, we bail with the right error.
+        We must do this before acquiring the lock. */

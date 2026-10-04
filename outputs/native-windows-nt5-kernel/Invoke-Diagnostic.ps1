@@ -28,7 +28,6 @@ $ErrorActionPreference = 'Stop'
 if ($ManualCapture -and ($Autorun -or $LaunchXromwell -or $ExerciseInput -or $InstallNetwork -or $TraceNetwork)) {
     throw 'Manual capture requires explicit external launch/inspection; automatic actions cannot be combined with it.'
 }
-if ($StopOnCaptureComplete -and -not $ManualCapture) { throw 'Capture completion signal requires manual capture.' }
 if ($TracePackets -and -not $FtpPort) { throw 'Packet tracing needs the private network backend.' }
 if ($LaunchXromwell -and -not $FtpPort) { throw 'LaunchXromwell needs the private FTP forward.' }
 $workspace = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)

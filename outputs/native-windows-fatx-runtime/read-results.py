@@ -28,6 +28,23 @@ try:
   else:
    expected=bytes(((i*17+block*29)^0xa5)&255 for block in range(16) for i in range(65536))
    record['fatx_roundtrip']={'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest(),'matches_expected':data==expected}
+ # Independent, strict full-width FATX chain traversal of stress files.
+ sys.path.insert(0,str(ws/'outputs/native-windows-fatx-runtime'))
+ from bulk_fatx import Writer
+ with raw.open('rb') as fp:
+  fs=Writer(fp,fatx.open_partition(fp,raw,'E'))
+  try:
+   entry=fs.directory(1)['entries']['xwnstress'][2];directory=struct.unpack_from('<I',entry,44)[0]
+   files=fs.directory(directory)['entries'];checks=[]
+   for name,(_,_,entry) in sorted(files.items()):
+    row={'name':name};checks.append(row)
+    try:
+     data=fs.read('/XWNStress/'+name);chain=list(fs.chain(struct.unpack_from('<I',entry,44)[0]));pattern=bytes(((i*31)^(i>>8)^0x96)&255 for i in range(32768))
+     expected=pattern*(1 if name=='mapped.dat' else 8)
+     row.update(bytes=len(data),sha256=hashlib.sha256(data).hexdigest(),matches_expected=data==expected,end_marker=hex(fs.fat[chain[-1]]),clusters=len(chain))
+    except Exception as ex:row['error']=repr(ex)
+   record['strict_fatx_stress_files']=checks
+  except Exception as ex:record['strict_fatx_stress_error']=repr(ex)
  assert sha(source)==record['source_sha256'];record['source_preserved']=True
 finally:
  assert temp.resolve().parent==(root/'fixtures').resolve();shutil.rmtree(temp);record['temporary_raws_removed']=True;(out/'extraction.json').write_text(json.dumps(record,indent=2)+'\n')

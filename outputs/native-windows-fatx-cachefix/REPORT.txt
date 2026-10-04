@@ -4,6 +4,8 @@ EMULATOR RESEARCH ONLY. Not a working system-volume driver.
 Original vfatfs passes the 180-file buffered test but CreateFileMappingA on an
 empty file with a32768-byte section fails with1224 (ERROR_USER_MAPPED_FILE).
 0048 restricts the top-level MmCanFileBeTruncated check to an actual EOF shrink.
+Focused test004 confirms the section-growth fix and verifies mapped truncation
+is still rejected without changing the file size. Mapped flush/readback passed.
 The modified driver has125imports, all resolved by the tested native NT5 images.
 
 Validation so far:
@@ -20,3 +22,7 @@ The original180-file helper is in ../native-windows-fatx-runtime.
 Artifacts are local/ignored. private preparation scripts preserve input hashes,
 refuse existing target images, and cold-read substituted guest files.
 No changes from this kit have been deployed to physical hardware.
+
+nt5-fatx-runtime-stress-004: all focused tests passed, Failures:0. Saved log and
+private disk readback are recorded in stress-validation-004.json. Full-system
+FATX stability and the180-file sequence remain unproven with this change.

@@ -1,0 +1,74 @@
+{
+  "scope": "Focused native NT5 FATX mapping and independent cold chain/data audit. Not a full-system boot validation.",
+  "run": "nt5-fatx-runtime-stress-005",
+  "passed": true,
+  "guest_log": "Private emulator FATX runtime test\nStarting filesystem driver\nFilesystem driver loaded\nQuerying private FATX volume\nFilesystem: FATX\nMaximum component length: 255\nEntry: TDATA\nEntry: UDATA\nEntry: CACHE\nEntry: Apps\nOne MiB written and flushed\nOne MiB reopen/read comparison passed\nBuffered file verified: 0\nBuffered file verified: 1\nBuffered file verified: 2\n3 buffered files verified\n3 directory entries verified\nCreating writable mapping\nMapping created\nMapped shrink rejected and size preserved\nMapped file flush and readback verified\nFailures: 0\n",
+  "extraction": {
+    "source_sha256": "d28b955715595b43f735c963b441889589d538eb729dc565bf7cd3962c8d7110",
+    "files": [
+      {
+        "name": "ntfsinfo.txt",
+        "exit_code": 0,
+        "sha256": "d8099fe1b6f58a8df988ce97dc7e7f2b8f99c169fffd9e76efe4ff9e23bf901b"
+      },
+      {
+        "name": "xwn-fatx.log",
+        "exit_code": 0,
+        "sha256": "d7ef25dc0f9e86f33e33044ae61703d3b05929b658ad4de5e7b93417e05810e0"
+      },
+      {
+        "name": "setupapi.log",
+        "exit_code": 0,
+        "sha256": "189a3b035350511e7825365f3e0dab96d3465740f0104773886796feacf2f2fa"
+      }
+    ],
+    "fatx_roundtrip": {
+      "bytes": 1048576,
+      "sha256": "bd656ae3a09d0c3780a758e02d3dabb48e407dfe58a8156afffa083edb98a894",
+      "matches_expected": true
+    },
+    "strict_fatx_stress_files": [
+      {
+        "name": "file000.dat",
+        "bytes": 262144,
+        "sha256": "e0768b7803aead0090d5c31acda4e46f651d32e906c2965bf08b17c9e625b55b",
+        "matches_expected": true,
+        "end_marker": "0xffffffff",
+        "clusters": 16
+      },
+      {
+        "name": "file001.dat",
+        "bytes": 262144,
+        "sha256": "e0768b7803aead0090d5c31acda4e46f651d32e906c2965bf08b17c9e625b55b",
+        "matches_expected": true,
+        "end_marker": "0xffffffff",
+        "clusters": 16
+      },
+      {
+        "name": "file002.dat",
+        "bytes": 262144,
+        "sha256": "e0768b7803aead0090d5c31acda4e46f651d32e906c2965bf08b17c9e625b55b",
+        "matches_expected": true,
+        "end_marker": "0xffffffff",
+        "clusters": 16
+      },
+      {
+        "name": "mapped.dat",
+        "bytes": 32768,
+        "sha256": "6d6abbb1d9c44f928edfd63e5d0a9d57c0ca2c804a391832c34beb6b59e83f7d",
+        "matches_expected": true,
+        "end_marker": "0xffffffff",
+        "clusters": 2
+      }
+    ],
+    "source_preserved": true,
+    "temporary_raws_removed": true
+  },
+  "driver_sha256": "2d8d172bf384bad433a67af5832021ad166694b8885ecae9cdb28249c7379d3a",
+  "cleanup": {
+    "completedUtc": "2026-10-04T09:27:33.2888045Z",
+    "scratchDirectory": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\work\\scratch\\windows-native-3cf18cefd242435bbbd94d94f581482f",
+    "retained": false,
+    "reason": ""
+  }
+}
