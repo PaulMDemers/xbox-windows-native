@@ -8,10 +8,10 @@ host-side test harness.
 
 - Physical console: Windows kernel entry, processor initialization, HAL base
   setup, RTC calibration, clock setup and partition-hook registration and BIOS page allocation passed.
-- Latest physical checkpoint: **XWNA90**. Windows created and cleared the
-  first 28 page tables, using PFNs 0x160 through 0x17b. The next candidate
-  is 0x17c with 8164 pages remaining. Further MM allocation, PFN setup,
-  storage drivers and desktop remain beyond the physical-tested stop.
+- Latest physical checkpoint: **XWNO90**. Windows mapped 504 initial
+  nonpaged-pool pages at 0xfe4af000. Next candidate PFN is 0x374 with
+  7660 pages remaining. Pool initialization, PFN setup, storage drivers
+  and desktop remain beyond the physical-tested stop.
 - Private emulator fixtures have reached a Windows 2000 desktop with NTFS,
   USB input, framebuffer, networking and experimental audio. Those results
   do not establish physical hardware compatibility.
@@ -48,9 +48,9 @@ includes each page write and refusal to use a mapped candidate; the physical
 checkpoint is photo-confirmed. See the [page-table report](outputs/native-windows-physical-pt/REPORT.txt)
 and [boot-screen milestones](outputs/native-windows-physical-pt/BOOT-PROGRESS.txt).
 
-The next candidate **XWNO90** maps 504 initial nonpaged-pool pages, then
+The physical-tested **XWNO90** maps 504 initial nonpaged-pool pages, then
 halts before pool initialization and PFN setup. Both display modes and
-an instruction trace pass in xemu; physical testing is pending. See the
+an instruction trace pass in xemu; the physical checkpoint is photo-confirmed. See the
 [pool mapping report](outputs/native-windows-physical-pool/REPORT.txt).
 
 See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
