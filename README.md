@@ -49,8 +49,9 @@ they do not replace the verified 0059 persistence baseline. See the
 [rename investigation](outputs/native-windows-fatx-rename-boundary/REPORT.txt).
 
 The next bounded hardware candidate has reached a genuine Windows boot bitmap
-in both tested emulator display layouts, stopping before storage. It has not
-been uploaded or run on the physical console during the emulator-only session.
+in both tested emulator display layouts, stopping before storage. After
+hardware access resumed, **XWN390** was uploaded and all 33 files read back.
+It is ready for manual launch; its physical result remains pending.
 See the [boot-video candidate](outputs/native-windows-physical-bootvideo/REPORT.txt).
 
 The physical-tested **XWNI90** reserves the two BIOS phase-0 pages and

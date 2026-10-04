@@ -1,6 +1,7 @@
 XWN390 - native Windows 2000 boot video (patch 0046)
 
-Emulator-only candidate, not uploaded to or tested on the physical Xbox.
+Emulator-verified candidate, now uploaded for manual physical testing.
+Physical XWN390 success has not yet been established.
 The latest physical result remains XWNW90 process address-space initialization.
 
 The native path now returns from MmInitSystem phase zero, completes executive
@@ -35,7 +36,7 @@ the MM completion snapshot and correctly differs from that snapshot's count.
 
 See validation.json for completed negative tests, source tree, artifact hashes
 and owned-VM cleanup. Source/binaries have distinct evidence status; nothing
-here claims physical validation. Hardware remains unavailable in this session.
+here claims physical validation. Hardware was unavailable during emulator validation.
 
 Reproduce with the pinned RosBE build wrappers, preserving package inputs from
 0045; prepare-fixture.py writes only a private emulator derivative. Run
@@ -47,3 +48,12 @@ Exploratory precursor physical-executive-scout-003 bypassed the old phase-zero
 only diagnostic callback with debugger register edits. It reached native
 boot video but failed its optional host screendump collection. That scout is
 not used as the unassisted milestone proof; wide-001 and normal-001 are.
+
+Physical deployment 2026-10-04T14:54:10.499490+00:00
+Hardware access resumed at the user's request. All 33 installed files were
+verified by FTP readback: 30 unchanged, HAL/rosload/README replaced.
+XWNW90 originals remain on-console under xwnw90 backup names, and the local
+verified baseline is unchanged. Loader switched last; no remote launch.
+The inherited package README was corrected from XWN290 to XWN390; tested
+code and configuration are unchanged. Launch XWNLoader manually, photograph
+the original Windows boot graphic and XWN390 status, then reboot.
