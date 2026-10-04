@@ -107,7 +107,7 @@ See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
 This repository stores our source changes as an ordered patch series against
 ReactOS commit `afc0127e8f937ab68503d715d948844973756aa1`, plus build wrappers,
 validation tools and reports. The full series and resulting source tree are
-in [patch-check-0044.json](outputs/native-windows-physical-processinit/patch-check-0044.json).
+in [patch-check-0046.json](outputs/native-windows-physical-bootvideo/patch-check-0046.json).
 Use `python tools/apply-series.py --source PATH --manifest MANIFEST` on a clean
 checkout at that exact upstream commit. The script checks the clean baseline,
 applies the ordered patches and verifies the resulting Git tree.
@@ -122,6 +122,12 @@ debugger assistance. Both display modes, 1388 import bindings, code audits,
 free/color-list checks and five injected errors pass. Physical testing is
 pending; no hardware upload occurred during the emulator-only session. See
 [MM completion report](outputs/native-windows-physical-mmcomplete/REPORT.txt).
+
+The emulator-only **XWN390** reaches Windows' original graphical boot screen
+through the FATX loader path without debugger assistance, in both display
+modes. It completes executive phase zero and HAL phase one, then halts before
+storage initialization. The physical result remains XWNW90; this new candidate
+has not been uploaded. See [boot-video report](outputs/native-windows-physical-bootvideo/REPORT.txt).
 
 ## Repository contents
 

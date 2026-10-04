@@ -1,0 +1,49 @@
+XWN390 - native Windows 2000 boot video (patch 0046)
+
+Emulator-only candidate, not uploaded to or tested on the physical Xbox.
+The latest physical result remains XWNW90 process address-space initialization.
+
+The native path now returns from MmInitSystem phase zero, completes executive
+phase zero, creates the phase-one initialization thread, executes the actual
+HAL phase-one initialization, initializes xboxbvid, and displays the original
+Windows 2000 Professional boot bitmap. It halts at kernel RVA1485a0 before
+later phase-one initialization and IoInitSystem. This is not a desktop or a
+native Windows FATX mount.
+
+The former MM guard returns only after its complete checks pass and its
+five-byte hook is restored. Its assembly wrapper preserves all native general
+registers and flags. A phase-one gate verifies the prior MM result, exact
+kernel caller, loader block, CR3 and passive IRQL before permitting the real
+HAL body. It does not invoke the now-invalid low-address loader callback.
+The final boot-video guard checks installed/enabled graphical boot video,
+loader argument, passive IRQL, interrupt state and retained display mapping.
+It restores the final hook and halts with interrupts disabled. The small
+bottom status line is diagnostic; Windows draws the central boot screen.
+
+BOOTVIDEO is default OFF and requires MMCOMPLETE in both HAL and loader.
+The explicit mode uses /NODEBUG without /SOS so Windows displays its graphic.
+The original Windows kernel, boot drivers, hive and bootvid binary are retained.
+Framebuffer physical base must be 03c00000 so bootvid's reserved four-MiB
+mapping fits inside 64 MiB. This guard is stricter than the earlier text probe.
+
+Both 1024x576 and 640x480 unassisted emulator boots pass. Captured framebuffer
+pixels show the Windows boot screen. Independent host validation verifies all
+1388 import bindings, executable sections of kernel/HAL/bootvid, restored hook
+bytes, native free/color-list membership and loaded-image PFN protection.
+The final free-page count is 12789 in the observed wide run; this is later than
+the MM completion snapshot and correctly differs from that snapshot's count.
+
+See validation.json for completed negative tests, source tree, artifact hashes
+and owned-VM cleanup. Source/binaries have distinct evidence status; nothing
+here claims physical validation. Hardware remains unavailable in this session.
+
+Reproduce with the pinned RosBE build wrappers, preserving package inputs from
+0045; prepare-fixture.py writes only a private emulator derivative. Run
+run-validation.py with a unique physical-bootvideo-* run name. The ordinary
+run does not use the debugger. --corrupt uses the debugger only for explicit
+negative fault injection. All emulator FTP addresses are loopback.
+
+Exploratory precursor physical-executive-scout-003 bypassed the old phase-zero
+only diagnostic callback with debugger register edits. It reached native
+boot video but failed its optional host screendump collection. That scout is
+not used as the unassisted milestone proof; wide-001 and normal-001 are.

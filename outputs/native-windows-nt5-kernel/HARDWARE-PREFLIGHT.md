@@ -74,3 +74,5 @@ The paging-specific memory-map and display changes are not yet incorporated into
 Workflow: Paul restarts after every diagnostic photo; do not request
 repeated restart confirmation. Retry transient FTP failure before reporting
 the dashboard unavailable. Continue to leave physical launch manual.
+
+Emulator-only overnight advancement: patches0045 and0046 complete MM phase zero and reach the original Windows2000 boot screen through the FATX loader path, unaided in both display modes. The final halt remains before storage. Neither candidate has been uploaded; the latest physical checkpoint remains XWNW90. See [boot-video validation](../native-windows-physical-bootvideo/validation.json).

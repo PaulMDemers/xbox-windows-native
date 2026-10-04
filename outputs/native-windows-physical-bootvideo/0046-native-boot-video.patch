@@ -1,0 +1,296 @@
+diff --git a/boot/freeldr/freeldr/bootmgr.c b/boot/freeldr/freeldr/bootmgr.c
+index a4ba6202..7299e8a9 100644
+--- a/boot/freeldr/freeldr/bootmgr.c
++++ b/boot/freeldr/freeldr/bootmgr.c
+@@ -420,7 +420,11 @@ VOID RunLoader(VOID)
+ #else
+                        "SystemPath=\\WINNT",
+ #endif
++#ifdef XBOX_NATIVE_FATX_BOOTVIDEO_PREFLIGHT
++                       "Options=/NODEBUG"};
++#else
+                        "Options=/NODEBUG /SOS"};
++#endif
+         ARC_STATUS Status;
+         LoadSettings(NULL);
+         if (!UiInitialize(TRUE)) XwnStop("XWNHFAIL: UI initialization");
+diff --git a/boot/freeldr/freeldr/ntldr/xwnentryprobe.h b/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
+index e7bb8adf..e28fe1d7 100644
+--- a/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
++++ b/boot/freeldr/freeldr/ntldr/xwnentryprobe.h
+@@ -1,6 +1,10 @@
+ /* Explicit early-kernel diagnostic. Included only in the opt-in rosload. */
+ #ifdef XBOX_NATIVE_FATX_PHASE0_PREFLIGHT
+-#if defined(XBOX_NATIVE_FATX_MMCOMPLETE_PREFLIGHT)
++#if defined(XBOX_NATIVE_FATX_BOOTVIDEO_PREFLIGHT)
++static volatile ULONG XwnEntryRecord[96]={0x664e5758,0x35544e50,1,0};
++#define XWN_ARM_SIGNATURE 0x42564e54
++#define XWN_ARM_REPLY 0x42564854
++#elif defined(XBOX_NATIVE_FATX_MMCOMPLETE_PREFLIGHT)
+ static volatile ULONG XwnEntryRecord[96]={0x654e5758,0x35544e50,1,0};
+ #define XWN_ARM_SIGNATURE 0x4d304e54
+ #define XWN_ARM_REPLY 0x4d304854
+diff --git a/boot/freeldr/freeldr/pcat.cmake b/boot/freeldr/freeldr/pcat.cmake
+index 658a6daa..8182a8a8 100644
+--- a/boot/freeldr/freeldr/pcat.cmake
++++ b/boot/freeldr/freeldr/pcat.cmake
+@@ -441,3 +441,8 @@ option(XBOX_NATIVE_FATX_MMCOMPLETE_PREFLIGHT "Halt after complete MM phase zero"
+ if(XBOX_NATIVE_FATX_MMCOMPLETE_PREFLIGHT AND NOT XBOX_NATIVE_FATX_PROCESSINIT_PREFLIGHT)
+  message(FATAL_ERROR "MMCOMPLETE probe requires PROCESSINIT preflight")
+ endif()
++
++option(XBOX_NATIVE_FATX_BOOTVIDEO_PREFLIGHT "Halt after native boot video initialization" OFF)
++if(XBOX_NATIVE_FATX_BOOTVIDEO_PREFLIGHT AND NOT XBOX_NATIVE_FATX_MMCOMPLETE_PREFLIGHT)
++ message(FATAL_ERROR "BOOTVIDEO probe requires MMCOMPLETE preflight")
++endif()
+diff --git a/boot/freeldr/freeldr/rosload.cmake b/boot/freeldr/freeldr/rosload.cmake
+index b0587ccb..33276231 100644
+--- a/boot/freeldr/freeldr/rosload.cmake
++++ b/boot/freeldr/freeldr/rosload.cmake
+@@ -219,3 +219,7 @@ endif()
+ if(XBOX_NATIVE_FATX_MMCOMPLETE_PREFLIGHT)
+  target_compile_definitions(rosload PRIVATE XBOX_NATIVE_FATX_MMCOMPLETE_PREFLIGHT=1)
+ endif()
++
++if(XBOX_NATIVE_FATX_BOOTVIDEO_PREFLIGHT)
++ target_compile_definitions(rosload PRIVATE XBOX_NATIVE_FATX_BOOTVIDEO_PREFLIGHT=1)
++endif()
+diff --git a/hal/halx86/xboxnt5/CMakeLists.txt b/hal/halx86/xboxnt5/CMakeLists.txt
+index 42662d09..a307ce6a 100644
+--- a/hal/halx86/xboxnt5/CMakeLists.txt
++++ b/hal/halx86/xboxnt5/CMakeLists.txt
+@@ -211,3 +211,12 @@ endif()
+ if(XBOX_NT5_MMCOMPLETE_PREFLIGHT)
+  target_compile_definitions(halxboxnt5 PRIVATE XBOX_NT5_MMCOMPLETE_PREFLIGHT=1)
+ endif()
++
++option(XBOX_NT5_BOOTVIDEO_PREFLIGHT "Halt after native boot video initialization" OFF)
++if(XBOX_NT5_BOOTVIDEO_PREFLIGHT AND NOT XBOX_NT5_MMCOMPLETE_PREFLIGHT)
++ message(FATAL_ERROR "BOOTVIDEO probe requires MMCOMPLETE preflight")
++endif()
++
++if(XBOX_NT5_BOOTVIDEO_PREFLIGHT)
++ target_compile_definitions(halxboxnt5 PRIVATE XBOX_NT5_BOOTVIDEO_PREFLIGHT=1)
++endif()
+diff --git a/hal/halx86/xboxnt5/entryprobe.c b/hal/halx86/xboxnt5/entryprobe.c
+index cd641c79..38ff03d6 100644
+--- a/hal/halx86/xboxnt5/entryprobe.c
++++ b/hal/halx86/xboxnt5/entryprobe.c
+@@ -1,5 +1,8 @@
+ /* SPDX-License-Identifier: GPL-2.0-or-later */
+ #include <hal.h>
++#ifdef XBOX_NT5_BOOTVIDEO_PREFLIGHT
++VOID HalpXwnPhase1(PLOADER_PARAMETER_BLOCK LoaderBlock,PVOID Caller);
++#endif
+ #ifdef XBOX_NT5_MAP_PREFLIGHT
+ VOID HalpXwnMapSnapshot(VOID);
+ #endif
+@@ -32,6 +35,9 @@ DECLSPEC_NORETURN
+ VOID HalpXwnPhase0(ULONG Phase, PLOADER_PARAMETER_BLOCK LoaderBlock, PVOID Caller)
+ {
+     ULONG State[5];
++#ifdef XBOX_NT5_BOOTVIDEO_PREFLIGHT
++    if(Phase==1){HalpXwnPhase1(LoaderBlock,Caller);return;}
++#endif
+     _disable();
+     if (!XwnPhaseCallback || XwnPhaseStep != 2 || Phase != 0) for (;;) __halt();
+     State[0] = Phase;
+@@ -65,7 +71,10 @@ HalpXwnFirstProcessor(ULONG Processor, PLOADER_PARAMETER_BLOCK LoaderBlock, PVOI
+ 
+ ULONG NTAPI XwnConfigureEntryProbe(PVOID Callback, ULONG Signature)
+ {
+-#if defined(XBOX_NT5_MMCOMPLETE_PREFLIGHT)
++#if defined(XBOX_NT5_BOOTVIDEO_PREFLIGHT)
++    if(Signature!=0x42564e54 || !Callback || XwnPhaseCallback)return 0;
++    XwnPhaseCallback=(XWN_PHASE_CALLBACK)Callback;return 0x42564854;
++#elif defined(XBOX_NT5_MMCOMPLETE_PREFLIGHT)
+     if(Signature!=0x4d304e54 || !Callback || XwnPhaseCallback)return 0;
+     XwnPhaseCallback=(XWN_PHASE_CALLBACK)Callback;return 0x4d304854;
+ #elif defined(XBOX_NT5_PROCESSINIT_PREFLIGHT)
+diff --git a/hal/halx86/xboxnt5/mapentry.S b/hal/halx86/xboxnt5/mapentry.S
+index 9a0ab6e9..219e00ce 100644
+--- a/hal/halx86/xboxnt5/mapentry.S
++++ b/hal/halx86/xboxnt5/mapentry.S
+@@ -1,6 +1,10 @@
+ /* SPDX-License-Identifier: GPL-2.0-or-later */
+ #include <asm.inc>
+ .code
++#ifdef XBOX_NT5_BOOTVIDEO_PREFLIGHT
++EXTERN _XwnMapTarget:DWORD
++EXTERN _HalpXwnBootAfter@4:PROC
++#endif
+ #ifdef XBOX_NT5_PT_PREFLIGHT
+ EXTERN _HalpXwnPtAfter@8:PROC
+ #ifdef XBOX_NT5_FREELIST_PREFLIGHT
+@@ -32,6 +36,16 @@ EXTERN _HalpXwnMapCheckpoint@4:PROC
+ #endif
+ PUBLIC _HalpXwnMapEntry
+ .PROC _HalpXwnMapEntry
++#ifdef XBOX_NT5_BOOTVIDEO_PREFLIGHT
++    pushfd
++    pushad
++    push eax
++    push ebp
++    call _HalpXwnMmAfter@8
++    popad
++    popfd
++    jmp dword ptr [_XwnMapTarget]
++#else
+ #ifdef XBOX_NT5_PT_PREFLIGHT
+ #ifdef XBOX_NT5_PROCESSINIT_PREFLIGHT
+     push eax
+@@ -62,6 +76,7 @@ PUBLIC _HalpXwnMapEntry
+     push ebp
+     call _HalpXwnMapCheckpoint@4
+ #endif
++    #endif
+     cli
+ MapHalt:
+     hlt
+@@ -146,4 +161,15 @@ PUBLIC _HalpXwnInitEntry
+     jmp dword ptr [_XwnInitTarget]
+ .ENDP
+ #endif
++#ifdef XBOX_NT5_BOOTVIDEO_PREFLIGHT
++PUBLIC _HalpXwnBootEntry
++.PROC _HalpXwnBootEntry
++    push ebp
++    call _HalpXwnBootAfter@4
++    cli
++BootHalt:
++    hlt
++    jmp BootHalt
++.ENDP
++#endif
+ END
+diff --git a/hal/halx86/xboxnt5/mapprobe.c b/hal/halx86/xboxnt5/mapprobe.c
+index 01d67918..d56edde1 100644
+--- a/hal/halx86/xboxnt5/mapprobe.c
++++ b/hal/halx86/xboxnt5/mapprobe.c
+@@ -6,9 +6,18 @@ extern const UCHAR XwnMapFont[4096];
+ VOID HalpXwnMapEntry(VOID);
+ #ifdef XBOX_NT5_PT_PREFLIGHT
+ #ifdef XBOX_NT5_MMCOMPLETE_PREFLIGHT
++#ifdef XBOX_NT5_BOOTVIDEO_PREFLIGHT
++#define XWN_MAP_MAGIC 0x334e5758
++#define XWN_MAP_SIGNATURE 0x42564e54
++#define XWN_MAP_REPLY 0x42564854
++VOID HalpXwnBootEntry(VOID);
++static PUCHAR XwnBootTarget;
++static UCHAR XwnBootOriginal[5];
++#else
+ #define XWN_MAP_MAGIC 0x324e5758
+ #define XWN_MAP_SIGNATURE 0x4d304e54
+ #define XWN_MAP_REPLY 0x4d304854
++#endif
+ #define XWN_MAP_TARGET 0x1564c3
+ #define XWN_EXPANSION_FREE 5340
+ ULONG XwnCommitTarget,XwnFreeTarget,XwnSysTarget,XwnProcessTarget,XwnInitTarget;
+@@ -97,7 +106,7 @@ VOID HalpXwnCommitEntry(VOID);
+ #ifndef XWN_EXPANSION_FREE
+ #define XWN_EXPANSION_FREE 5432
+ #endif
+-static volatile ULONG XwnMapRecord[352] = {XWN_MAP_MAGIC,0x35544e50,1,0};
++static volatile ULONG XwnMapRecord[384] = {XWN_MAP_MAGIC,0x35544e50,1,0};
+ ULONG XwnPtBeforeTarget;
+ static UCHAR XwnPtBeforeOriginal[5];
+ static ULONG XwnPtDirectory[1024];
+@@ -122,7 +131,7 @@ static volatile ULONG XwnMapRecord[112] = {XWN_MAP_MAGIC,0x35544e50,1,0};
+ static volatile ULONG XwnMapRecord[96] = {XWN_MAP_MAGIC,0x35544e50,1,0};
+ #endif
+ static PULONG XwnMapSeed;
+-static PUCHAR XwnMapTarget;
++PUCHAR XwnMapTarget;
+ static UCHAR XwnMapOriginal[5];
+ static BOOLEAN XwnMapReady;
+ 
+@@ -884,7 +893,10 @@ static BOOLEAN HalpXwnMmLists(VOID)
+     }
+     return TRUE;
+ }
+-DECLSPEC_NORETURN VOID NTAPI HalpXwnMmAfter(PULONG F,ULONG Status)
++#ifndef XBOX_NT5_BOOTVIDEO_PREFLIGHT
++DECLSPEC_NORETURN
++#endif
++VOID NTAPI HalpXwnMmAfter(PULONG F,ULONG Status)
+ {
+     ULONG K=XwnMapRecord[6],Count=0;PLIST_ENTRY Head=(PLIST_ENTRY)XwnMapRecord[4],Link;BOOLEAN Valid;
+     XwnMapRecord[320]=Status;XwnMapRecord[321]=(ULONG_PTR)F;
+@@ -897,8 +909,45 @@ DECLSPEC_NORETURN VOID NTAPI HalpXwnMmAfter(PULONG F,ULONG Status)
+     XwnMapRecord[331]=*(PULONG)(K+0x814c8);XwnMapRecord[332]=*(PULONG)(K+0x81b8c);
+     XwnMapRecord[333]=*(PULONG)(K+0x815c0);XwnMapRecord[334]=HalpXwnDescriptorHash();
+     XwnMapRecord[335]=Valid&&XwnMapRecord[329]==APC_LEVEL&&XwnMapRecord[330]==0xffff&&!KeGetPcr()->IRR&&(__readeflags()&0x200);
++#ifdef XBOX_NT5_BOOTVIDEO_PREFLIGHT
++    if(XwnMapRecord[335]){
++        ULONG Flags=__readeflags(),Cr0=__readcr0();_disable();__writecr0(Cr0&~0x10000);
++        RtlCopyMemory(XwnMapTarget,XwnMapOriginal,5);__writecr0(Cr0);__writeeflags(Flags);
++        XwnMapRecord[87]=memcmp(XwnMapTarget,XwnMapOriginal,5)==0;
++        XwnMapRecord[336]=XwnMapRecord[87];if(XwnMapRecord[336])return;
++    }
++#endif
+     HalpXwnMapCheckpoint(F);
+ }
++#ifdef XBOX_NT5_BOOTVIDEO_PREFLIGHT
++VOID HalpXwnPhase1(PLOADER_PARAMETER_BLOCK LoaderBlock,PVOID Caller)
++{
++    XwnMapRecord[337]=(ULONG_PTR)Caller;XwnMapRecord[338]=(ULONG_PTR)LoaderBlock;
++    XwnMapRecord[339]=KeGetPcr()->Irql;XwnMapRecord[340]=__readcr3();
++    XwnMapRecord[341]=XwnMapRecord[336]&&XwnMapRecord[335]&&
++        (ULONG_PTR)Caller==XwnMapRecord[6]+0x148522&&(ULONG_PTR)LoaderBlock==XwnMapRecord[4]&&
++        !XwnMapRecord[339]&&XwnMapRecord[340]==XwnMapRecord[132];
++    if(!XwnMapRecord[341]){XwnMapRecord[3]=40;_disable();for(;;)__halt();}
++}
++DECLSPEC_NORETURN VOID NTAPI HalpXwnBootAfter(PULONG F)
++{
++    ULONG K=XwnMapRecord[6],Flags=__readeflags(),Cr0=__readcr0();BOOLEAN Valid;
++    XwnMapRecord[342]=(ULONG_PTR)F;XwnMapRecord[343]=F[2];
++    XwnMapRecord[344]=*(PUCHAR)(K+0x739c0);XwnMapRecord[345]=*(PUCHAR)(K+0x739c4);
++    XwnMapRecord[346]=*(PULONG)(K+0x739c8);XwnMapRecord[347]=KeGetPcr()->Irql;
++    XwnMapRecord[348]=__inbyte(0x21)|(__inbyte(0xa1)<<8);XwnMapRecord[349]=Flags;
++    _disable();__writecr0(Cr0&~0x10000);RtlCopyMemory(XwnBootTarget,XwnBootOriginal,5);__writecr0(Cr0);
++    XwnMapRecord[350]=memcmp(XwnBootTarget,XwnBootOriginal,5)==0;
++    Valid=XwnMapRecord[341]&&F[2]==XwnMapRecord[4]&&XwnMapRecord[344]==1&&
++        !XwnMapRecord[345]&&!XwnMapRecord[346]&&!XwnMapRecord[347]&&
++        (Flags&0x200)&&XwnMapRecord[350]&&HalpXwnDisplayMapped();
++    XwnMapRecord[351]=Valid;XwnMapRecord[24]=240;XwnMapRecord[3]=Valid?90:40;
++    XwnMapRecord[95]=(ULONG_PTR)XwnMapRecord;
++    if(HalpXwnDisplayMapped())HalpXwnMapText(XwnMapRecord[18]/16-2,
++        Valid?"XWN390: Native boot video. Storage not started.":"XWN3FAIL: Boot-video guard rejected state.",Valid?0xff00ff00:0xffff3030);
++    for(;;)__halt();
++}
++#endif
+ #endif
+ 
+ #ifdef XBOX_NT5_PROCESSINIT_PREFLIGHT
+@@ -1438,6 +1487,9 @@ ULONG NTAPI XwnConfigureMapProbe(PULONG Seed, ULONG Signature)
+     static const UCHAR Expected[8] = {0x8b,0x4d,0xcc,0x3b,0xcb,0x75,0x02,0x33};
+ #else
+     static const UCHAR Expected[8] = {0x8b,0x45,0x08,0x33,0xdb,0x8d,0x48,0x08};
++#endif
++#ifdef XBOX_NT5_BOOTVIDEO_PREFLIGHT
++    static const UCHAR BootExpected[8]={0x8b,0x45,0x08,0x8d,0x8d,0xc8,0xfd,0xff};
+ #endif
+     PIMAGE_NT_HEADERS Nt;
+     ULONG Cr0;
+@@ -1476,6 +1528,9 @@ ULONG NTAPI XwnConfigureMapProbe(PULONG Seed, ULONG Signature)
+     *(PULONG)(Expected+4) = Seed[6]+0x823e0;
+ #endif
+     if (memcmp((PVOID)(Seed[6]+0x158439), BeforeExpected, sizeof(BeforeExpected))) return 0;
++#endif
++#ifdef XBOX_NT5_BOOTVIDEO_PREFLIGHT
++    if(Seed[20]!=0x03c00000||memcmp((PVOID)(Seed[6]+0x1485a0),BootExpected,8))return 0;
+ #endif
+     Nt = (PIMAGE_NT_HEADERS)(Seed[6] + ((PIMAGE_DOS_HEADER)Seed[6])->e_lfanew);
+     if (Nt->Signature != IMAGE_NT_SIGNATURE || Nt->FileHeader.TimeDateStamp != 1266293717 ||
+@@ -1520,6 +1575,11 @@ ULONG NTAPI XwnConfigureMapProbe(PULONG Seed, ULONG Signature)
+     XwnInitTarget=Seed[6]+0x159cdc;RtlCopyMemory(XwnInitOriginal,(PVOID)XwnInitTarget,5);
+     *(PUCHAR)XwnInitTarget=0xe9;*(PULONG)(XwnInitTarget+1)=(ULONG_PTR)HalpXwnInitEntry-XwnInitTarget-5;
+     XwnMapRecord[307]=XwnInitTarget;XwnMapRecord[312]=(ULONG_PTR)HalpXwnInitEntry;
++#endif
++#ifdef XBOX_NT5_BOOTVIDEO_PREFLIGHT
++    XwnBootTarget=(PUCHAR)(Seed[6]+0x1485a0);RtlCopyMemory(XwnBootOriginal,XwnBootTarget,5);
++    XwnBootTarget[0]=0xe9;*(PULONG)(XwnBootTarget+1)=(ULONG_PTR)HalpXwnBootEntry-(ULONG_PTR)(XwnBootTarget+5);
++    XwnMapRecord[352]=(ULONG_PTR)XwnBootTarget;XwnMapRecord[353]=(ULONG_PTR)HalpXwnBootEntry;
+ #endif
+     XwnMapTarget[0] = 0xe9;
+     *(PULONG)(XwnMapTarget+1) = (ULONG_PTR)HalpXwnMapEntry-(ULONG_PTR)(XwnMapTarget+5);
