@@ -8,10 +8,10 @@ host-side test harness.
 
 - Physical console: Windows kernel entry, processor initialization, HAL base
   setup, RTC calibration, clock setup and partition-hook registration and BIOS page allocation passed.
-- Latest physical checkpoint: **XWNQ90**. Native memory sizing completed:
-  0x1f8000 initial pool bytes, 91 PFN/color pages and 28 page-table pages
-  planned, starting at PFN 0x160. Actual MM allocation, PFN setup, storage
-  drivers and desktop remain beyond the physical-tested stop.
+- Latest physical checkpoint: **XWNA90**. Windows created and cleared the
+  first 28 page tables, using PFNs 0x160 through 0x17b. The next candidate
+  is 0x17c with 8164 pages remaining. Further MM allocation, PFN setup,
+  storage drivers and desktop remain beyond the physical-tested stop.
 - Private emulator fixtures have reached a Windows 2000 desktop with NTFS,
   USB input, framebuffer, networking and experimental audio. Those results
   do not establish physical hardware compatibility.
@@ -42,10 +42,10 @@ and stops before consuming descriptors or allocating page tables. Both
 display modes and a 46-checkpoint trace pass in xemu; the physical checkpoint
 is photo-confirmed. See the [memory sizing report](outputs/native-windows-physical-size/REPORT.txt).
 
-The next candidate **XWNA90** permits the first 28 native page-table
+The physical-tested **XWNA90** permits the first 28 native page-table
 allocations, with checks before and after the loop. Emulator validation
-includes each page write and refusal to use a mapped candidate; physical
-testing is pending. See the [page-table report](outputs/native-windows-physical-pt/REPORT.txt)
+includes each page write and refusal to use a mapped candidate; the physical
+checkpoint is photo-confirmed. See the [page-table report](outputs/native-windows-physical-pt/REPORT.txt)
 and [boot-screen milestones](outputs/native-windows-physical-pt/BOOT-PROGRESS.txt).
 
 See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
@@ -79,3 +79,7 @@ Preserve the working softmod and dashboard. Hardware probes are manually
 launched and photographed; current probes do not automatically return to the
 dashboard. Do not write emulator disk images onto the physical Xbox drive.
 No native Windows FATX mount or physical Windows boot volume is proven yet.
+
+Paul restarts to the dashboard after each diagnostic photo. Treat receipt
+of a photo as restart confirmation; only raise dashboard availability if
+FTP remains unavailable after a retry. Physical launches remain manual.
