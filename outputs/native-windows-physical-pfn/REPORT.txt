@@ -1,0 +1,51 @@
+XWN native PFN backing allocation (patch 0038)
+
+Physical XWNU90 confirmed native nonpaged-pool initialization. This candidate
+continues through two MiReserveSystemPtes calls and the descriptor-driven
+PFN backing allocation, then halts at kernel RVA 159416 before color-list
+population, PFN entries, storage, or boot drivers.
+
+The preallocation guard checks all 623 frames (28 page tables, 504 pool,
+90 PFN database and one color-table frame) against every active mapping,
+directory and page table. It retains the pinned 64 MiB layout checks and
+requires 32 colors, 91 PFN/color pages, IRQL 1, no pending software IRQs,
+IDR fffffffb and PIC ffff. The native reserve helpers temporarily raise
+IRQL to 2 and restore 1; the admitted IRR=0 path does not unmask the PIC.
+
+Windows reserves 91 PTEs for PFN/color backing plus one separate PTE.
+It maps and zeroes 90 pages at ffb85000 and one at ffbdf000, using frames
+374..3ce. All 91 pages, all newly created PTEs, the pool structures,
+unrelated PDEs and accounting globals are validated at the final halt.
+The separate reserved PTE at c03fee10 remains zero/unmapped.
+
+The descriptor commit removes 622 frames (160..3cd), leaving base 3ce,
+count 1d92. The subsequent color-page allocation advances the live locals
+to 3cf / 1d91. Its descriptor update is still pending at this stop. The
+descriptor hash normalizes only those two fields in the known candidate;
+their actual new values are checked separately. No other descriptor field
+may change. This is a native accounting transition, not a disk partition.
+
+Expected XWNE90: PFN backing mapped and cleared.
+PFN database VA ffb85000; PFN pages 0000005a; color pages 00000001;
+next candidate PFN 000003cf. Free expansion PTEs 000014dc.
+
+PFN mode defaults OFF and requires POOLINIT. A distinct arming signature
+rejects the previous HAL. Both temporary kernel hooks are restored before
+the final halt. Windows kernel, bootvid and first-stage files are unchanged.
+Physical XWNE90 is pending. Native storage and desktop remain unproven.
+
+Harness note: normal-001 failed to bind a localhost port before launch.
+The isolated retry normal-002 completed successfully. Trace-002 supersedes
+trace-001 after correcting the forbidden color-write breakpoint to 159427.
+
+Final validation: both display modes, old-HAL and changed-kernel rejection,
+full code/import audits and the 1317-event native trace passed. All 91 new
+backing pages are zero, the exact descriptor transition matches, and both
+IRQL round trips retain PIC ffff. An injected alias to the last color frame
+and an unexpected must-succeed size stop before allocation, preserving all
+623 candidate frames and the original descriptor list. Normal builds,
+the parent-option guard and the source series through patch 0038 passed.
+
+Uploaded 2026-10-04T02:37:29.129431+00:00. All 33 files verified by readback.
+Three physical-tested XWNU90 files retained under xwnu90 backup names.
+The console was not remotely launched. Physical XWNE90 is pending.

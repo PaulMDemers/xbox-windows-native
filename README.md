@@ -59,8 +59,14 @@ Both display modes, the complete pool-write comparison and rejection tests
 pass in xemu; the physical checkpoint is photo-confirmed. See the
 [pool initialization report](outputs/native-windows-physical-poolinit/REPORT.txt).
 
+The next candidate **XWNE90** allocates and clears 90 PFN-database pages
+and one color-table page, then stops before populating those structures.
+Both display modes, allocation tracing and rejection checks pass in xemu;
+physical testing is pending. See the
+[PFN backing report](outputs/native-windows-physical-pfn/REPORT.txt).
+
 See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
-[latest diagnostic](outputs/native-windows-physical-poolinit/REPORT.txt), and
+[latest diagnostic](outputs/native-windows-physical-pfn/REPORT.txt), and
 [development plan](outputs/native-windows-development-plan.md).
 
 ## Source and reproduction
@@ -68,7 +74,7 @@ See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
 This repository stores our source changes as an ordered patch series against
 ReactOS commit `afc0127e8f937ab68503d715d948844973756aa1`, plus build wrappers,
 validation tools and reports. The full series and resulting source tree are
-in [patch-check-0037.json](outputs/native-windows-physical-poolinit/patch-check-0037.json).
+in [patch-check-0038.json](outputs/native-windows-physical-pfn/patch-check-0038.json).
 Use `python tools/apply-series.py --source PATH --manifest MANIFEST` on a clean
 checkout at that exact upstream commit. The script checks the clean baseline,
 applies the ordered patches and verifies the resulting Git tree.

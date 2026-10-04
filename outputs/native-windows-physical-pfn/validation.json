@@ -1,0 +1,117 @@
+{
+  "validated_utc": "2026-10-04T02:36:36.055718+00:00",
+  "ready_for_physical_upload": true,
+  "physical_tested": false,
+  "installed_on_physical_console": true,
+  "source_tree": "d9bc6037486cfd00f988df003c24d65e9d176e00",
+  "scope": "Native PFN backing allocated and zeroed; high HAL stops before PFN/color population.",
+  "normal_loader_build_passed": true,
+  "normal_hal_build_passed": true,
+  "missing_poolinit_parent_rejected": true,
+  "pfn_backing_halt_verified": true,
+  "kernel_file_unchanged": true,
+  "temporary_kernel_patch_restored": true,
+  "unexpected_kernel_rejected": true,
+  "changed_files": [
+    "loader/halxboxnt5.dll",
+    "README.txt",
+    "rosload.exe"
+  ],
+  "package_files_verified": 33,
+  "emulator_tests": [
+    {
+      "run": "physical-pfn-wide-001",
+      "status": "kernel_pfn_backing_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "high_alias_pages_verified": 576,
+        "identity_mapping_present": false,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-pfn-normal-002",
+      "status": "kernel_pfn_backing_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 640,
+        "height": 480,
+        "pitch": 2560,
+        "pa": "0x3c00000",
+        "bytes": 1228800,
+        "high_alias_pages_verified": 300,
+        "identity_mapping_present": false,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-pfn-bad-hal-001",
+      "status": "unarmed_hal_rejected_before_kernel",
+      "kernel_entered": false,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "high_alias_pages_verified": 576,
+        "identity_mapping_present": true,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-pfn-trace-002",
+      "status": "kernel_pfn_backing_verified",
+      "kernel_entered": true,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "high_alias_pages_verified": 576,
+        "identity_mapping_present": false,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    },
+    {
+      "run": "physical-pfn-bad-kernel-001",
+      "status": "kernel_contract_rejected_before_entry",
+      "kernel_entered": false,
+      "framebuffer": {
+        "width": 1024,
+        "height": 576,
+        "pitch": 4096,
+        "pa": "0x3c00000",
+        "bytes": 2359296,
+        "high_alias_pages_verified": 576,
+        "identity_mapping_present": true,
+        "uncached_write_through": true,
+        "firmware_reserved": true
+      },
+      "imports_verified": 1388
+    }
+  ],
+  "native_trace_passed": true,
+  "pfn_backing_zero_verified": true,
+  "reservation_pic_masks_verified": true,
+  "pool_write_delta_verified": true,
+  "unexpected_pool_profile_rejected": true,
+  "mapped_candidate_rejected_before_allocation": true,
+  "expected_physical_success": "XWNE90: PFN backing mapped and cleared.",
+  "fixture_package_includes_final_readme": true,
+  "uploaded_utc": "2026-10-04T02:37:29.129431+00:00"
+}

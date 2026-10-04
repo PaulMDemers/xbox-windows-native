@@ -1,0 +1,29 @@
+After physical XWNE90, review color-list population from 159416 and the
+subsequent PFN initialization walk. Account for the outstanding color page
+before treating the shortened descriptor as free RAM. Keep kernel/HAL,
+boot-driver modules, hive, loader stack, BIOS pages, framebuffer and its
+page tables reserved when free/zero lists are constructed. Preserve the
+physical 1024x576/pitch4096 display and distinguish BIOS type26 from free
+types. Review native branches and external calls before releasing the halt.
+The genuine Windows boot display is still a phase-1 milestone.
+
+Static review after preparing this candidate (not executed by this test):
+- 159416..15943d writes 32 zero-list and 32 free-list color heads (-1).
+- 1594dc..159665 walks all 1024 PDEs and present PTEs, changes permission/
+  global bits via MiDetermineUserGlobalPteMask (4c8e8), and initializes PFN
+  reference/share/parent fields. MmIsAddressValid (42820) checks each PFN
+  structure before writes. The framebuffer PFNs above highest=3bff require
+  separate treatment from the ordinary RAM page database.
+- 15966b..159684 raises IRQL, calls KeFlushCurrentTb (69098, CR3 reload),
+  then lowers IRQL. Review global translations as well as CR3 flushing.
+- 1596c2..1596f3 commits the live descriptor again. The observed original
+  base local remains 160 after the first commit; check the count arithmetic
+  in an emulator scout rather than assuming the final count is 1d91.
+- The following descriptor walk treats types 2/4/5/8 as free candidates,
+  checks existing reference counts, and uses MiInsertPageInList (47b2e).
+  Type26 BIOS pages take the in-use path; framebuffer type6 above highest
+  is skipped. Audit all live loader/HAL/display mappings before releasing it.
+
+A boundary before the free-list descriptor walk can distinguish mapped-PFN
+initialization from releasing candidate RAM. No later-stage execution or
+physical compatibility is claimed by this static review.
