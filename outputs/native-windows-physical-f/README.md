@@ -41,10 +41,18 @@ from Git. This prevents an early crash from disappearing through auto-reboot.
 
 `launch-v2.py` readback-verified the new probe, pre-created report, updated owned
 startup command and changed SYSTEM hive before one accepted launch at
-18:38:46 UTC. FTP had not returned roughly two minutes later. No new native
-result has been retrieved; a console photo is needed to identify whether it
-is a Windows crash, probe failure or another stop. No automatic relaunch is
-pending. `collect-v2.py` can retrieve the report after the user's reboot.
+18:38:46 UTC. The supplied photo confirms STOP 0x000000B4, "The video driver
+failed to initialize", with visible parameters 0, 0, 0, 0x00050000. After the
+user rebooted, the v2 report remained byte-identical to its pending seed: the
+startup probe did not run. The current physical limit is graphics initialization,
+not a demonstrated failure of the startup probe's file operations.
+
+The downloaded SYSTEM hive binds PCI 10de:02a0 to XboxVnt5 but has no saved
+Control\Video subtree. This narrows the investigation but does not prove which
+initialization callback failed. The event log is byte-identical to the original
+package; its older emulator errors are not new physical results. Microsoft’s
+[B4 reference](https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/bug-check-0xb4--video-driver-init-failure)
+identifies graphics initialization failure and documents no parameter meanings.
 
 ## Evidence and limits
 
@@ -155,3 +163,46 @@ data forward, but cannot fix the stock emulator BIOS's F geometry limitation.
 Generated media, installation package, build products and full traces stay
 local. Retired private fixtures are identified by hash in the retirement
 reports; the source fixture, successful run disk and physical baseline remain.
+
+## Physical video failure diagnostic (0069)
+
+An opt-in, default-OFF miniport build stops with `0xE0580001` only when a native
+video initialization operation fails. Parameter 1 identifies the operation:
+
+| Stage | Operation | Remaining parameters |
+|---|---|---|
+| 1 | VideoPortInitialize | Return status, 0, 0 |
+| 2 | VideoPortGetAccessRanges | Status, bus, slot |
+| 3 | Access-range validation | Register bytes, aperture bytes, I/O flags |
+| 4 | Register mapping | Physical address low/high, 0 |
+| 5 | Firmware mode validation | Width, height, (pitch << 8) OR format |
+| 6 | Framebuffer bounds | Offset, aperture bytes, aperture address |
+| 7 | Framebuffer mapping | Status, physical framebuffer, requested bytes |
+
+This adds diagnostic stops, not a display fix. If the original B4 remains, the
+failure lies outside these covered return paths (including possible failure to
+start the miniport at all). Do not interpret it as a successful driver run.
+
+The compiled driver passes modeled 640x480 and physical 1024x576 initialization
+and framebuffer mapping, seven injected failure stages, and native Windows 2000
+import checks. Ordinary xemu run `nt5-physical-f-video-001` reached the graphical
+startup UI, completed the v2 probe and restarted to UnleashX without debugger
+changes. Its cold audit verifies 6,494 files, 3,439 expected Windows binaries
+(with the diagnostic miniport explicitly identified), registry trees and
+allocation ownership. `desktop.png` in this run actually captured the Xbox
+restart animation; it is not a desktop screenshot. The probe PASS is the
+user-mode completion evidence.
+
+At 18:56:33 UTC, `launch-video-diagnostic.py` verified emulator PASS, preserved
+the original physical miniport as `F:\winnt\system32\drivers\xboxvnt5.xwn-v2`,
+readback-verified the diagnostic replacement, and issued one accepted FTP
+launch. The unchanged pending probe report and absent write payload were
+checked first. The original XWN390 launcher is unchanged. Await the physical
+screen/result before drawing conclusions or launching again.
+
+Reproduce with the recorded 0069 series, `Build-VideoDiagnostic.ps1`,
+`test-video-diagnostic.py`, `prepare-video-diagnostic.py`, and the normal
+manual-capture xemu harness. Audit with `--probe-version 2 --video-miniport`
+pointing to the exact compiled diagnostic binary. Older completed run disks
+were retired by hash to make room; the immutable v2 input fixture, normalized F
+source, original E baseline and current successful diagnostic run are retained.

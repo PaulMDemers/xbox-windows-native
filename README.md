@@ -10,9 +10,10 @@ host-side test harness.
   native read/write probe and normal restart, with a clean cold disk audit.
   All 6,493 installation files are staged and readback-verified on the physical
   console. The user observed Windows followed by a reboot to UnleashX, but no
-  native probe result was saved. A second emulator-validated diagnostic is
-  running with crash auto-restart disabled; a console photo is needed.
-  Physical storage success is not yet established. See the
+  native probe result was saved. The second physical test reveals STOP B4:
+  Windows cannot initialize graphics. The startup report remains untouched.
+  An emulator-validated video diagnostic has now been launched on hardware.
+  Physical desktop and the bounded native storage probe have not passed. See the
   [physical F deployment](outputs/native-windows-physical-f/README.md).
 - Extended F emulator milestone: native Windows desktop on a 250 GB FATX disk,
   verified reads/writes beyond LBA28, and two normal restart cycles with clean
@@ -21,10 +22,11 @@ host-side test harness.
   untested. See [extended F results](outputs/native-windows-extended-storage/REPORT.md).
 - Physical console: Windows kernel entry, processor initialization, HAL base
   setup, RTC calibration, clock setup and partition-hook registration and BIOS page allocation passed.
-- Latest physical checkpoint: **XWN390**. Windows 2000 draws its original
+- Preserved physical baseline: **XWN390**. Windows 2000 draws its original
   boot graphic on the console after MM/executive phase zero and HAL phase one.
   The photo confirms the intended stop before native storage initialization.
-  Physical storage drivers and desktop remain untested.
+  The later F installation reaches a graphics-initialization failure; a working
+  physical desktop remains unverified.
 - Private emulator fixtures have reached a Windows 2000 desktop with NTFS,
   USB input, framebuffer, networking and experimental audio. Those results
   do not establish physical hardware compatibility.

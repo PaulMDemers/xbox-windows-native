@@ -1,0 +1,99 @@
+diff --git a/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt b/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt
+index 990d30b1..204b96a9 100644
+--- a/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt
+@@ -8,3 +8,9 @@ if(NOT MSVC)
+     target_link_options(xboxvnt5 PRIVATE -Wl,--subsystem,native:5.0
+         -Wl,--minor-image-version,0 -Wl,--minor-os-version,0)
+ endif()
++
++option(XBOX_NT5_VIDEO_DIAGNOSTIC "Stop at first failing NT5 video initialization stage" OFF)
++if(XBOX_NT5_VIDEO_DIAGNOSTIC)
++    target_compile_definitions(xboxvnt5 PRIVATE XBOX_NT5_VIDEO_DIAGNOSTIC=1)
++    add_importlibs(xboxvnt5 ntoskrnl)
++endif()
+diff --git a/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c b/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c
+index 13a07a17..8619586d 100644
+--- a/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c
+@@ -8,6 +8,17 @@
+ #include "../xboxvmp.h"
+ #include <drivers/xbox/xgpu.h>
+ 
++#ifdef XBOX_NT5_VIDEO_DIAGNOSTIC
++/* Deliberate diagnostic stop: preserve the first failing native video stage.
++ * Stage 1: VideoPortInitialize; 2: PCI ranges; 3: range sizes; 4: register map;
++ * 5: firmware geometry; 6: aperture bounds; 7: framebuffer map.
++ * No GPU mode changes or disk writes are introduced by this diagnostic. */
++NTSYSAPI VOID NTAPI KeBugCheckEx(ULONG, ULONG_PTR, ULONG_PTR, ULONG_PTR, ULONG_PTR);
++#define VIDEO_FAIL(stage, a, b, c) KeBugCheckEx(0xE0580001, stage, a, b, c)
++#else
++#define VIDEO_FAIL(stage, a, b, c) ((void)0)
++#endif
++
+ typedef struct {
+     PVOID Control;
+     PHYSICAL_ADDRESS ControlPhysical, FramebufferAperture, Framebuffer;
+@@ -38,10 +49,13 @@ Nt5VideoFindAdapter(PVOID Extension, PVOID Context, PWSTR Arguments,
+     *Again = FALSE;
+     VideoPortZeroMemory(Ranges, sizeof(Ranges));
+     Status = VideoPortGetAccessRanges(Extension, 0, NULL, 3, Ranges, &Vendor, &Device, &Slot);
+-    if (Status != NO_ERROR) return Status;
++    if (Status != NO_ERROR) { VIDEO_FAIL(2, Status, Config->SystemIoBusNumber, Slot); return Status; }
+     if (Ranges[0].RangeInIoSpace || Ranges[1].RangeInIoSpace ||
+         Ranges[0].RangeLength < NV2A_RAMDAC_FP_HVALID_END + sizeof(ULONG) ||
+-        Ranges[1].RangeLength < NV2A_VIDEO_MEMORY_SIZE) return ERROR_DEV_NOT_EXIST;
++        Ranges[1].RangeLength < NV2A_VIDEO_MEMORY_SIZE)
++    { VIDEO_FAIL(3, Ranges[0].RangeLength, Ranges[1].RangeLength,
++                 Ranges[0].RangeInIoSpace | (Ranges[1].RangeInIoSpace << 8));
++      return ERROR_DEV_NOT_EXIST; }
+     V->ControlPhysical = Ranges[0].RangeStart;
+     V->FramebufferAperture = Ranges[1].RangeStart;
+     V->ApertureLength = Ranges[1].RangeLength;
+@@ -55,7 +69,7 @@ Nt5VideoInitialize(PVOID Extension)
+     ULONG Width, Height, Pitch, Bytes, Format;
+     V->Ready = FALSE;
+     V->Control = VideoPortGetDeviceBase(Extension, V->ControlPhysical, 0x681000, 0);
+-    if (!V->Control) return FALSE;
++    if (!V->Control) { VIDEO_FAIL(4, V->ControlPhysical.LowPart, V->ControlPhysical.HighPart, 0); return FALSE; }
+     Width = READ_REGISTER_ULONG((PULONG)((PUCHAR)V->Control + NV2A_RAMDAC_FP_HVALID_END)) + 1;
+     Height = READ_REGISTER_ULONG((PULONG)((PUCHAR)V->Control + NV2A_RAMDAC_FP_VVALID_END)) + 1;
+     Pitch = 8 * (((Crtc(V, 0x19) & 0xe0) << 3) | Crtc(V, 0x13));
+@@ -69,6 +83,11 @@ Nt5VideoInitialize(PVOID Extension)
+         (V->Offset != 0x03c00000 && V->Offset != 0x07c00000) ||
+         V->Offset > V->ApertureLength - NV2A_VIDEO_MEMORY_SIZE)
+     {
++        if (Width < 320 || Width > 1920 || Height < 200 || Height > 1080 || Bytes != 4 ||
++            Pitch < Width * Bytes || Pitch > 8192 || Height > NV2A_VIDEO_MEMORY_SIZE / Pitch)
++            VIDEO_FAIL(5, Width, Height, (Pitch << 8) | Format);
++        else
++            VIDEO_FAIL(6, V->Offset, V->ApertureLength, V->FramebufferAperture.LowPart);
+         VideoPortFreeDeviceBase(Extension, V->Control);V->Control = NULL;return FALSE;
+     }
+     V->Framebuffer.QuadPart = V->FramebufferAperture.QuadPart + V->Offset;
+@@ -127,7 +146,7 @@ Nt5VideoStartIO(PVOID Extension, PVIDEO_REQUEST_PACKET Request)
+             Result.VideoRamLength = NV2A_VIDEO_MEMORY_SIZE;
+             Status = VideoPortMapMemory(Extension, V->Framebuffer, &Result.VideoRamLength,
+                                         &Space, &Result.VideoRamBase);
+-            if (Status != NO_ERROR) break;
++            if (Status != NO_ERROR) { VIDEO_FAIL(7, Status, V->Framebuffer.LowPart, Result.VideoRamLength); break; }
+             Result.FrameBufferBase = Result.VideoRamBase;
+             Result.FrameBufferLength = V->Mode.ScreenStride * V->Mode.VisScreenHeight;
+             *(PVIDEO_MEMORY_INFORMATION)Request->OutputBuffer = Result;
+@@ -154,6 +173,7 @@ VP_STATUS NTAPI Nt5VideoChild(PVOID Extension, PVIDEO_CHILD_ENUM_INFO Info,
+ ULONG NTAPI DriverEntry(PVOID Context1, PVOID Context2)
+ {
+     VIDEO_HW_INITIALIZATION_DATA Init;
++    ULONG Status;
+     VideoPortZeroMemory(&Init, sizeof(Init));
+     Init.HwInitDataSize = SIZE_OF_W2K_VIDEO_HW_INITIALIZATION_DATA;
+     Init.AdapterInterfaceType = PCIBus;
+@@ -162,5 +182,7 @@ ULONG NTAPI DriverEntry(PVOID Context1, PVOID Context2)
+     Init.HwStartIO = Nt5VideoStartIO; Init.HwResetHw = Nt5VideoReset;
+     Init.HwGetPowerState = Nt5VideoPower; Init.HwSetPowerState = Nt5VideoPower;
+     Init.HwGetVideoChildDescriptor = Nt5VideoChild;
+-    return VideoPortInitialize(Context1, Context2, &Init, NULL);
++    Status = VideoPortInitialize(Context1, Context2, &Init, NULL);
++    if (Status != NO_ERROR) VIDEO_FAIL(1, Status, 0, 0);
++    return Status;
+ }

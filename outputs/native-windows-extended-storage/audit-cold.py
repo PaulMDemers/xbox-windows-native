@@ -4,15 +4,19 @@ root=pathlib.Path('/home/paul/xbox-windows-native');ws=pathlib.Path('/mnt/c/User
 sys.path[:0]=[str(ws/'outputs/native-windows-fatx-runtime'),'/mnt/c/Users/Paul/Desktop/ogxbox-linux/scripts']
 import fatx_stage_boot as fatx
 from bulk_fatx import Writer
-p=argparse.ArgumentParser();g=p.add_mutually_exclusive_group(required=True);g.add_argument('--run');g.add_argument('--fixture',choices=['windows2000-f-001','windows2000-f-write-001','windows2000-f-reboot-001']);p.add_argument('--probe-version',choices=['1','2'],default='1');a=p.parse_args()
+p=argparse.ArgumentParser();g=p.add_mutually_exclusive_group(required=True);g.add_argument('--run');g.add_argument('--fixture',choices=['windows2000-f-001','windows2000-f-write-001','windows2000-f-reboot-001']);p.add_argument('--probe-version',choices=['1','2'],default='1');p.add_argument('--video-miniport',type=pathlib.Path,help='Explicit replacement miniport whose hash must match the audited fixture');a=p.parse_args()
 if a.run:
  assert a.run.startswith(('nt5-extended-f-','nt5-physical-f-')) and a.run.replace('-','').isalnum()
  run=ws/'work/runs'/a.run;assert (run/'cleanup.json').exists();source=run/'hdd.qcow2'
 else:a.run=a.fixture;source=k/'artifacts'/(a.fixture+'.qcow2')
 raw=root/'fixtures'/('audit-'+a.run+'.raw');assert not raw.exists()
 manifest=json.loads((k/'fixture-001.json').read_text());expected={v['path'].lower():v for v in manifest['files']}
+if a.video_miniport:
+ assert a.video_miniport.is_file()
+ expected['/winnt/system32/drivers/xboxvnt5.sys']=dict(expected['/winnt/system32/drivers/xboxvnt5.sys'],sha256=hashlib.sha256(a.video_miniport.read_bytes()).hexdigest())
 extensions={'.exe','.dll','.sys','.nls','.fon','.ttf','.cpl','.ocx'}
 r={'run':a.run,'scope':'Read-only F: cold audit; no physical access','directories':0,'files':0,'immutable_files_checked':0,'errors':[],'hives':[]}
+if a.video_miniport:r['expected_video_miniport_sha256']=expected['/winnt/system32/drivers/xboxvnt5.sys']['sha256']
 try:
  subprocess.run(['qemu-img','convert','-O','raw',str(source),str(raw)],check=True)
  with raw.open('rb') as f:
