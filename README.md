@@ -88,8 +88,13 @@ original descriptor extent and initializes system-PTE caches. It stops
 before executive-pool initialization and process-page allocation. Emulator
 validation passed; the physical checkpoint is photo-confirmed. See the [system-PTE report](outputs/native-windows-physical-sysptes/REPORT.txt).
 
+The next candidate **XWNZ90** initializes executive-pool descriptors and
+allocates/zeros the first process page table and working-set page. It stops
+before working-set publication and process initialization. Emulator checks
+passed; the candidate is uploaded and physical testing is pending.
+
 See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
-[latest diagnostic](outputs/native-windows-physical-sysptes/REPORT.txt), and
+[latest diagnostic](outputs/native-windows-physical-processpages/REPORT.txt), and
 [development plan](outputs/native-windows-development-plan.md).
 
 ## Source and reproduction
@@ -97,7 +102,7 @@ See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
 This repository stores our source changes as an ordered patch series against
 ReactOS commit `afc0127e8f937ab68503d715d948844973756aa1`, plus build wrappers,
 validation tools and reports. The full series and resulting source tree are
-in [patch-check-0042.json](outputs/native-windows-physical-sysptes/patch-check-0042.json).
+in [patch-check-0043.json](outputs/native-windows-physical-processpages/patch-check-0043.json).
 Use `python tools/apply-series.py --source PATH --manifest MANIFEST` on a clean
 checkout at that exact upstream commit. The script checks the clean baseline,
 applies the ordered patches and verifies the resulting Git tree.

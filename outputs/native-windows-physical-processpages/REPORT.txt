@@ -1,0 +1,56 @@
+XWNZ90 - first process pages (patch 0043)
+
+Physical predecessor: XWNY90 system-PTE initialization is photo-confirmed.
+This candidate continues through static executive-pool descriptor setup,
+two native MiRemoveAnyPage calls and zeroing of their page contents.
+It halts at RVA 159ca0, before Windows removes the temporary working-set
+mapping, publishes the page to the process or calls process initialization.
+Storage, boot-driver entry and the Windows desktop remain untested.
+
+A returning guard at 159bd7 preserves native registers, flags and the stack
+frame. It validates pool inputs and models both free-list removals before
+allowing the native code to execute. The final guard verifies every PFN
+and color-list word, pool descriptors, process object, globals, the new
+page-table entry and all 4096 bytes of the still-mapped working-set page.
+Existing mappings are hashed with accessed/dirty bits normalized. Only
+PDE 769 and its recursive alias are excluded from that hash; their exact
+new contents are checked separately. All five temporary hooks are restored.
+The disk kernel is unchanged. PROCESSPAGES defaults off and requires SYSPTES.
+
+Build: Invoke-BuildHal.ps1 then copy artifacts/halxboxnt5.dll into
+package/loader/halxboxnt5.dll; Invoke-Build.ps1 builds the matching loader.
+The tested paging-v3 freeldr.sys is retained. Validation uses owned xemu
+snapshots only. No physical SITE EXEC is issued.
+
+Expected success: XWNZ90: First process pages allocated and zeroed.
+Manual action after upload: Applications > XWN Loader Diagnostic;
+photograph the screen and reboot. Restart is assumed after each photo.
+
+Validation development notes: the first traced run reached the final
+boundary but its reporting script compared a JSON list with a tuple. That
+checker-only error was corrected; trace-002 completed successfully. Earlier
+exploratory scouts used the physical-tested Y90 image; one attempted to read
+a temporary mapping after Windows removed it. The selected 159ca0 boundary
+keeps that mapping live so the final diagnostic can check the page directly.
+
+Reproduce emulator checks after building the matching package:
+- prepare-fixture.py good / bad-hal / bad-kernel (run in WSL).
+- run-validation.py physical-processpages-wide-001
+- run-validation.py physical-processpages-normal-001 --normal
+- run-validation.py physical-processpages-trace-002 --trace
+- run-validation.py physical-processpages-bad-hal-001 --variant bad-hal
+- run-validation.py physical-processpages-bad-kernel-001 --variant bad-kernel
+- run-validation.py physical-processpages-corrupt-working-set-001 --corrupt working-set
+- Use --corrupt pfn / descriptor / free-link / system-pte for prior guards.
+- Use --mapped-candidate or --bad-profile for preallocation rejection.
+Run one VM at a time. Run IDs and fixture destinations must be unused.
+finalize-validation.py requires the test inventory's exact run names.
+
+Final validation: both display modes, 1353-event native trace, code/import
+audits and five corruption tests passed. Mapped-candidate and wrong-profile
+guards reject unsafe inputs. Old HAL and modified kernel are rejected before
+entry. Normal builds, parent-option check and patch series 0043 passed.
+
+Uploaded 2026-10-04T05:55:14.637599+00:00. All 33 package files verified. Three
+prior XWNY90 files retained under xwny90 backup names. No remote launch.
+Physical XWNZ90 test is pending.
