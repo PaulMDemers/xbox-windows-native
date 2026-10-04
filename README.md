@@ -83,8 +83,13 @@ and color-list word, preserves all 20 loaded images and stops before the
 remaining MM initialization. Emulator validation passed; the physical checkpoint
 is photo-confirmed. See the [free-page list report](outputs/native-windows-physical-freelist/REPORT.txt).
 
+The next candidate **XWNY90** finalizes PFN flags, restores the loader's
+original descriptor extent and initializes system-PTE caches. It stops
+before executive-pool initialization and process-page allocation. Emulator
+validation passed; physical testing is pending. See the [system-PTE report](outputs/native-windows-physical-sysptes/REPORT.txt).
+
 See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
-[latest diagnostic](outputs/native-windows-physical-freelist/REPORT.txt), and
+[latest diagnostic](outputs/native-windows-physical-sysptes/REPORT.txt), and
 [development plan](outputs/native-windows-development-plan.md).
 
 ## Source and reproduction
@@ -92,7 +97,7 @@ See [hardware status](outputs/native-windows-nt5-kernel/HARDWARE-PREFLIGHT.md),
 This repository stores our source changes as an ordered patch series against
 ReactOS commit `afc0127e8f937ab68503d715d948844973756aa1`, plus build wrappers,
 validation tools and reports. The full series and resulting source tree are
-in [patch-check-0041.json](outputs/native-windows-physical-freelist/patch-check-0041.json).
+in [patch-check-0042.json](outputs/native-windows-physical-sysptes/patch-check-0042.json).
 Use `python tools/apply-series.py --source PATH --manifest MANIFEST` on a clean
 checkout at that exact upstream commit. The script checks the clean baseline,
 applies the ordered patches and verifies the resulting Git tree.

@@ -18,6 +18,7 @@ param(
     [switch]$TracePackets,
     [switch]$CaptureAudio,
     [switch]$ManualCapture,
+    [switch]$StopOnCaptureComplete,
     [ValidateRange(1024,65535)][int]$MonitorPort = 4574,
     [ValidateRange(1024,65535)][int]$GdbPort = 4575,
     [ValidateRange(30,3600)][int]$Seconds = 120
@@ -26,10 +27,12 @@ $ErrorActionPreference = 'Stop'
 if ($ManualCapture -and ($Autorun -or $LaunchXromwell -or $ExerciseInput -or $InstallNetwork -or $TraceNetwork)) {
     throw 'Manual capture requires explicit external launch/inspection; automatic actions cannot be combined with it.'
 }
+if ($StopOnCaptureComplete -and -not $ManualCapture) { throw 'Capture completion signal requires manual capture.' }
 if ($TracePackets -and -not $FtpPort) { throw 'Packet tracing needs the private network backend.' }
 if ($LaunchXromwell -and -not $FtpPort) { throw 'LaunchXromwell needs the private FTP forward.' }
 $workspace = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 $run = Join-Path $workspace "work\runs\$RunId"
+$captureComplete = Join-Path $run 'capture-complete.signal'
 if (Test-Path -LiteralPath $run) { throw 'Choose an unused run id.' }
 $integration = 'C:\Users\Paul\Desktop\ogxbox-linux\scripts'
 $xemu = 'C:\Users\Paul\Desktop\ogxbox-linux\tools\xemu-nvnet-fresh\xemu.exe'
@@ -136,6 +139,10 @@ enable = false
                     $launchSent = $true
                 }
                 $nextCapture += 15
+            }
+            if ($StopOnCaptureComplete -and (Test-Path -LiteralPath $captureComplete -PathType Leaf)) {
+                @{reason='external_capture_complete'; run=$RunId} | ConvertTo-Json | Set-Content (Join-Path $run 'completion.json')
+                break
             }
             Start-Sleep -Milliseconds 250
         }

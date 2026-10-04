@@ -1,0 +1,13 @@
+After physical XWNY90, trace InitializePool at kernel RVA 144e6c
+(return 159be0), then MiRemoveAnyPage calls 159bfa and 159c7e. Model exact
+free/color-list removal, PFN reference changes, page-table and working-set
+mapping writes and process address-space initialization before allowing
+further progress. Account for later color-head pool allocation and old-page
+reclamation. Storage and boot-driver entry remain outside this checkpoint.
+
+Static review only: InitializePool(0,0) checks the pool-tagging bit in the
+byte at kernel RVA 76069. If clear, it skips the two optional allocation
+branches, initializes spin locks at 7534c and 6ca9c, and calls the descriptor
+initializer at 8e940 twice (returns 144f39 and 144f4e). Pin the tagging flag
+and confirm these writes before continuing. The paged-pool path begins at
+144f53 and is not the path requested by this call.

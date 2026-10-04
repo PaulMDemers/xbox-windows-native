@@ -1,0 +1,46 @@
+XWN system-PTE initialization (patch 0042)
+
+Physical XWNG90 confirmed native free-page list construction. This candidate
+preserves its complete validator as a returning guard, then executes native
+PFN flag updates, loader-descriptor restoration, spin-lock initialization
+and system-PTE initialization. It halts at RVA 159bd7, before InitializePool.
+
+The independent model checks all 22702 system PTEs: 1880 cached entries in
+650 blocks of sizes 1, 2, 4, 8 and 16, plus 20822 remaining entries. Cache
+heads, tails, counts, generation, six PFN flag changes and every PFN/color
+word are checked. All other paging entries retain their prior values apart
+from CPU accessed/dirty bits. No physical page allocation occurs here.
+
+Native code restores the original loader descriptor (160/2000). This is
+intentional: consumed frames are now protected by PFN references. The
+earlier descriptor reconciliation remains necessary before free lists form.
+The model simulates that earlier adjusted extent to reproduce final PFNs.
+
+The source option defaults OFF and requires FREELIST. Four temporary hooks
+are restored. The kernel file is unchanged. The Xbox dashboard is preserved.
+Expected: XWNY90: System PTEs initialized; page allocation blocked.
+Physical XWNY90 is pending.
+
+Scout 001 failed in the capture harness before executing the new section
+(wrong monitor-lock argument count). Corrected scouts 002/003 reached the
+boundary. They resumed saved registers after the actual G90 validator;
+this exploratory debugger path is not the candidate's execution path.
+
+The local emulator harness accepts an optional manual-capture completion
+signal, confined to its fresh run directory. Successful capture can end
+the timer early; cleanup still targets only its owned VM. Automatic mode
+rejects the option before setup. The profile test verified early completion
+and clean transition to the next case. The Xbox launch path is unchanged.
+
+Final validation: both display modes, old-HAL and changed-kernel rejection,
+code/import audits and the 1343-event native trace passed. Both returning
+guards preserve native registers/flags. Every PFN/color word and all 22702
+system PTEs match independent models. Cache heads/tails/counts, original
+loader descriptor restoration and preserved page mappings are verified.
+Mapped-candidate, wrong-profile, corrupt PFN/descriptor/free-link/system-PTE
+tests reject the altered state. Normal builds, parent-option checks and
+patch series 0042 passed.
+
+Uploaded 2026-10-04T05:12:44.961449+00:00. All 33 files verified by readback.
+Three physical-tested XWNG90 files retained under xwng90 backup names.
+The console was not remotely launched. Physical XWNY90 is pending.
