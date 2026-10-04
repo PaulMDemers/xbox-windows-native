@@ -414,3 +414,16 @@ The original HAL is backed up as E:/Applications/XWNFBoot/loader/halxboxnt5.xwn-
 The desktop-viewing preparation restores the normal miniport and backs up then
 disables the startup probe's automatic restart. Its launch/result belongs in
 physical-desktop-001.json; never rerun the one-shot launcher blindly.
+
+
+### Physical normal-driver regression — desktop001
+
+The next physical photo again shows B4. Intended HAL, normal miniport and startup
+hashes were verified afterward; inspected video registry entries match cycle009.
+The proven result is presently **cycle009 with the trace driver**. Physical
+desktop reliability with the normal driver remains unresolved.
+
+Cycle010 restored that exact successful trace driver, kept automatic restart
+disabled, reset the trace only after preserving cycle009, and launched once at
+21:20:47 UTC. Await its photo; after reboot collect its trace before another
+launch. See physical-cycle-010.json. No new user-mode success is claimed yet.

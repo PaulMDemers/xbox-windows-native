@@ -118,3 +118,27 @@ longer requires an empty trace seed.
 An additional small immutable backing image, artifacts/physical-desktop-001.qcow2
 (SHA 3b355cf0cba4aa8794a62e3a707767e44f3989a0ba5b5c383bff2382040ed62c),
 depends on physical-framebuffer-pci-001.qcow2 and supports the desktop run overlay.
+
+
+## Desktop regression and controlled retry
+
+The desktop001 photograph (7E717C50..., SHA256 recorded with the run) shows
+B4(0,0,0,50000) again. Post-photo FTP readback confirms the intended candidate
+HAL, normal miniport and no-op startup command. The inspected video registry
+entries match the successful cycle009 snapshot. Therefore cycle009 remains a
+valid physical user-mode/file-IO success, but the normal-driver combination is
+not yet reliable on hardware. The emulator-only normal-driver result does not
+establish physical desktop success.
+
+Cycle010 restores the exact 413098... trace miniport that passed cycle009,
+keeping the same HAL and the automatic startup probe/restart disabled. The old
+trace was preserved locally before reseeding. The normal driver is retained as
+F:/winnt/system32/drivers/xboxvnt5.xwn-normal10. All changed files were read back;
+one FTP launch was accepted at 21:20:47 UTC. A physical photograph is pending.
+This isolates the driver configuration from the startup command. Timing, callback
+wrapping and other diagnostic side effects have not yet been distinguished.
+
+The trace driver again requires an empty seed for each launch. After the user
+reboots, collect-video-trace.py --cycle 10 preserves its trace. Do not launch a
+second time or overwrite the trace before collecting it. The old cycle009 probe
+report remains preserved and is not evidence of a new cycle010 probe run.
