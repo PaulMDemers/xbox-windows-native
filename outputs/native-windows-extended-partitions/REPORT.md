@@ -56,7 +56,9 @@ installed softmod revision. Pinned primary sources are in `REFERENCES.txt`.
 The separate metadata application has been uploaded to
 `F:\Applications\XWNMetadata\default.xbe`. It reads sector 0, the BRFR marker
 sector, and the F: superblock through read-only handles, writes its own report,
-then reboots. Await its physical report before choosing the F: discovery path.
+then reboots. Its subsequent physical `physical-cycle-001` report accepts the
+six-entry PARTINFO table and confirms the same extents as this emulator fixture.
+Use that validated metadata path for further emulator Windows storage tests.
 Do not interpret shadow C: offsets as raw disk extents, replace partitions,
 format F:, or start Windows writes on this disk at this stage.
 
