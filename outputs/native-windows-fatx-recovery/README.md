@@ -151,9 +151,13 @@ are unchanged. Collection disabled automatic startup before gathering evidence.
 
 System records 74–82 contain normal EventLog start/stop and zero delayed-write
 events. Ftdisk 49 and Srv 2013 warnings for Windows volumes F/G/H remain. No
-application events fall in this run's time window. This does not establish which
-applications the user opened or whether their manual operations succeeded;
-those observations have not yet been supplied.
+application events fall in this run's time window. Separately, the user confirmed
+repeatedly opening and closing Notepad, Calculator, Solitaire and Command Prompt,
+saving a file to the desktop and another to a partition, and observing graceful
+shutdown. The repetition count, filenames and partition were not specified.
+Reopening or verifying those two files after reboot has not been confirmed;
+the automated payload checks do not substitute for that check. See
+`manual-long-observations.json` for the distinct user-reported evidence.
 
 The independent full-F scan passed across 128,120 live entries: 6,054 directories,
 122,067 files and 6,059 directory clusters, with zero errors or orphan clusters.

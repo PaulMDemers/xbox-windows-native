@@ -412,6 +412,8 @@ The subsequent15-minute physical run also qualifies PASS:300 mapped cases,
 archived five-minute payloads. All3439 binaries,nine hives and the fullF allocation
 map pass after reboot. Systemrecords74-82 have no delayed-write events; Ftdisk49
 and Srv2013 space warnings remain. No application events occur in this interval,
-but the user's manual application outcomes have not yet been reported and are
-not inferred from the logs. See `physical-long-qualification.json` in the recovery
+and the user separately confirmed repeated Notepad,Calculator,Solitaire and
+Command Prompt launches/exits, file saves to the desktop and an unspecified
+partition, and graceful shutdown. Those two manual files have not been independently
+verified after reboot. See `physical-long-qualification.json` in the recovery
 kit. Startup is disabled on the dashboard; no further Windows launch occurred.

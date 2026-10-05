@@ -52,6 +52,8 @@ if a.kind=='long':
     r['manual_application_observations']=json.loads(observations.read_text()) if observations.exists() else {'status':'not_yet_reported'}
     r['qualification_scope']='Automated storage workload and integrity checks; manual application results are separate.'
     r['next_test']='Review user application observations, then broader desktop and display-driver tests; long-term storage stability remains unproven.'
+    if observations.exists():
+        r['next_test']='Verify the two manually saved files after another boot, then broader desktop and display-driver tests; long-term storage stability remains unproven.'
 r['passed'] = (trial['passed'] and len(mapped)==(300 if a.kind in ('soak','long') else 30) and normal_restart and not delayed
                and (a.kind=='short' or r['soak_completed'])
                and (a.kind=='short' or r['archived_previous_payloads_verified'])

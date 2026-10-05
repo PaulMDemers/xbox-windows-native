@@ -60,8 +60,10 @@ host-side test harness.
   also passed with normal restart, intact new and archived payloads,3439 binary
   checks,nine registry hives and a clean full allocation map. A later15-minute
   physical run also passed300 cases,prior-file persistence,normal restart and
-  the same full audits with zero new delayed-write events. Manual application
-  observations remain separate from that automated qualification. Ftdisk49 and
+  the same full audits with zero new delayed-write events. The user also confirmed
+  repeated Notepad,Calculator,Solitaire and Command Prompt use, two file saves
+  and graceful shutdown. Those manual files have not been independently read
+  back after reboot. Ftdisk49 and
   volume-space warnings remain. This is bounded evidence, not general stability;
   automatic startup is disabled on the dashboard.
   See the
