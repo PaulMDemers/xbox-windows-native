@@ -391,8 +391,12 @@ observed. All emulator processes are closed. This is repeat-boot persistence
 coverage of the original32 dirty replacements, not32 new replacements.
 
 The [read-only hardware preflight kit](../native-windows-fatx-preflight/README.md)
-is the next test. It collects full F allocation metadata to scope recovery of
-the corrupt physical013 Windows install. No physical upload or repair has been
-performed during this follow-up, and Windows must stay held until recovery.
+subsequently captured the full F allocation map. The scoped physical repair,
+restoration and first0088 short hardware trial now pass; see the
+[recovery evidence](../native-windows-fatx-recovery/README.md). All30 mapped cases,
+32 MiB pressure and normal restart passed, followed by exact payloads,3439
+binaries,nine hives and full allocation checks. No new delayed-write events;
+the baseline Ftdisk49 error remains. Startup is disabled on the dashboard.
+The controlled300-case/five-minute physical soak is the next test.
 The physical STOP0xA remains unproven as the same defect; longer uptime,
 fault-injection and power-loss resilience are outside this bounded qualification.

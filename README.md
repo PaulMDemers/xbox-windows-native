@@ -24,8 +24,8 @@ host-side test harness.
   is resolved. **Cycle013 failed during the longer background soak** with
   STOP 0xA and subsequent on-disk corruption of the filesystem driver and WMI
   repository. A separate read-only Xbox snapshot confirms invalid FAT chains.
-  Windows is not being relaunched on that install; automatic test startup is
-  disabled. The equivalent low-allocation emulator soak passed, with a recorded
+  That damaged install was held with automatic test startup disabled until the
+  scoped recovery described below. The equivalent low-allocation emulator soak passed, with a recorded
   host-space interruption. A new high-allocation emulator run now fails during
   WMI rename; its crash dump is preserved for cache-mapping diagnosis. It has
   not yet been shown to share the physical crash's root cause.
@@ -49,10 +49,19 @@ host-side test harness.
   The read-only full-F hardware capture now completed with automatic dashboard
   return. Its allocation audit isolates six affected Windows/test files and one
   orphan cluster; the full FAT matches the earlier crash snapshot. Scoped
-  metadata repair and Windows restoration must precede another Windows boot.
+  metadata repair and Windows restoration then passed on the physical console.
+  The repair changed five exact directory sectors without changing the FAT or
+  freeing data clusters. Independent full-volume rescans match the rehearsal;
+  the restored install passes 3,439 binary checks and nine registry hive audits.
+  Candidate0088 then passed a short physical cache trial:30 mapped/truncate
+  cases,32 MiB asynchronous pressure,normal restart and exact payload readback.
+  Post-reboot binaries,hives and the full allocation map remain clean, with no
+  new delayed-write events. The existing Ftdisk49 error remains. The longer
+  five-minute hardware soak is still pending; automatic startup is disabled.
   See the
   [hardware preflight kit](outputs/native-windows-fatx-preflight/README.md).
-  These are bounded emulator repairs; the damaged physical install remains held.
+  See the [scoped recovery and hardware trial](outputs/native-windows-fatx-recovery/README.md)
+  for the recovery evidence and latest physical test outcome.
   See [allocation evidence](outputs/native-windows-fatx-forensics/REPORT.md).
   See [desktop stability evidence](outputs/native-windows-physical-f/DESKTOP-STABILITY.md)
   and [cache test results](outputs/native-windows-physical-f/CACHE-STABILITY.md).

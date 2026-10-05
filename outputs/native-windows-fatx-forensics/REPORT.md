@@ -1,5 +1,12 @@
 # Physical cycle013: preserved allocation corruption
 
+Update, 5 October: the later full-volume scan identified all six affected
+Windows/test entries and one orphan. A scoped, emulator-rehearsed physical
+directory repair and four-file restoration now pass full allocation, binary
+and registry audits. Original corruption evidence remains preserved. See the
+[recovery report](../native-windows-fatx-recovery/README.md) for current status;
+the following records the original failure and subsequent diagnosis.
+
 The physical 300-case test finished its mapped/truncate and 32 MiB asynchronous
 write phases, then crashed during its five-minute background pause. The user
 reported `0xA (0x10, 0x2, 0x0, 0x82423167)`. The kernel load base for this boot
