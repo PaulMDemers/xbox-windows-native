@@ -23,11 +23,12 @@ assert sha((research/'artifacts/xwnfatx-retired-write.sys').read_bytes())==q['fi
 assert json.loads((research/'retired-replay.json').read_text())['passed']
 cycle=json.loads((p/'physical-cycle-013.json').read_text());assert not cycle['startup_restart_enabled']
 if a.action=='check':
- r=dict(checked_utc=utc(),next_readonly_hardware_test_ready=True,windows_boot_ready=False,
+ already_launched=record.exists()
+ r=dict(checked_utc=utc(),next_readonly_hardware_test_ready=not already_launched,windows_boot_ready=False,
         candidate_sha256=q['filesystem_sha256'],preflight_xbe_sha256=sha(xbe),
         qualifications=['nt5-physical-f-high-allocation-r14','nt5-physical-f-high-allocation-r15'],
-        hardware_access_performed=False,
-        next_step='Collect full F metadata, assess ownership, then scope Windows-only restoration before boot.')
+        hardware_access_performed=already_launched,
+        next_step=('Inspect the existing capture and rehearse scoped metadata repair before Windows restoration.' if already_launched else 'Collect full F metadata, assess ownership, then scope Windows-only restoration before boot.'))
  (k/'readiness.json').write_text(json.dumps(r,indent=2)+'\n');print(json.dumps(r,indent=2));sys.exit(0)
 with ftplib.FTP() as f:
  f.connect('192.168.50.242',timeout=30);f.login('xbox',os.environ['XWN_FTP_PASSWORD'])

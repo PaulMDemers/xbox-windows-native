@@ -46,8 +46,11 @@ host-side test harness.
   The persisted second boot also passes:66 retained files, another96 rotations,
   300 mapped/truncate cases and a fifteen-minute soak, with clean cold audits
   and zero new delayed-write events. All owned emulator processes are closed.
-  The next hardware test is a guarded, read-only full-F metadata capture before
-  any scoped restoration or Windows boot. See the
+  The read-only full-F hardware capture now completed with automatic dashboard
+  return. Its allocation audit isolates six affected Windows/test files and one
+  orphan cluster; the full FAT matches the earlier crash snapshot. Scoped
+  metadata repair and Windows restoration must precede another Windows boot.
+  See the
   [hardware preflight kit](outputs/native-windows-fatx-preflight/README.md).
   These are bounded emulator repairs; the damaged physical install remains held.
   See [allocation evidence](outputs/native-windows-fatx-forensics/REPORT.md).

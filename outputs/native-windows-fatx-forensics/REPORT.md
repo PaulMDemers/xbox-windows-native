@@ -457,3 +457,29 @@ pass` (add `--reboot` for r15), `Audit-RotateRun.ps1 -RunId RUN -Boots N
 must never override an observed lost-write warning. Preserve failing run reports.
 The qualifier requires the complete cold audit, current-boot event evidence and
 normal EventLog shutdown together with the probe results.
+
+
+## Full-F physical preflight (5 October 2026)
+
+The separately authorized read-only preflight launched through dashboard FTP at
+04:38:11 UTC and returned automatically. Collection completed at04:40:41 UTC.
+No Windows launch or F repair occurred. All output was written beside the new
+preflight app on E:. The capture includes6058 directory clusters and128098 live
+entries, reconstructing6053 directories and122046 files.
+
+The full FAT is byte-identical by SHA-256 to the earlier physical013 capture:
+`c292ba76214ba2cb3a3475741fc6506348cde56fc7ee7f022285188b8a488bc1`.
+There are777 error records across six distinct files:773 crosslink observations
+represent387 unique shared clusters between the prior pressure-test file,
+MMC3.tmp and System Information.lnk. The remaining records concern the known
+filesystem driver and WMI chain damage. One cluster,2156751,is allocated without
+a live owner. No allocation conflicts were found outside Windows/test files;
+this is not a payload-integrity audit of unrelated content.
+
+See `../native-windows-fatx-preflight/recovery-scope.json` for exact entry
+locations, logical sizes, chains and the next repair steps. Ordinary deletion
+is unsafe for the shared chains. Preserve raw affected contents, rehearse
+entry detachment and ownership repair offline, then restore from verified
+Windows sources and repeat full allocation/binary checks before a driver trial.
+The physical install remains held. This result confirms the automated launch,
+read-only capture and dashboard-return loop works for this preflight.

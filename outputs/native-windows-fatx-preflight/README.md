@@ -24,9 +24,26 @@ C:/Python314/python.exe outputs/native-windows-fatx-preflight/physical-preflight
 C:/Python314/python.exe outputs/native-windows-fatx-preflight/analyze.py --capture outputs/native-windows-fatx-preflight/artifacts/physical-001 --output outputs/native-windows-fatx-preflight/physical-allocation.json
 ```
 
-The local readiness check passes after r14/r15 qualification. See `readiness.json`.
-Launch/collection have not been performed on hardware. This is the next hardware
-experiment, not an authorization to boot the known-damaged Windows install.
+The read-only hardware run completed on 5 October 2026. The Xbox accepted FTP
+launch, captured the metadata, and returned to dashboard FTP without manual input.
+The retrieved completion record reports6058 directory clusters and128098 entries.
+The host audit reconstructs6053 directories and122046 files. See
+`physical-preflight.json`, `physical-allocation.json` and `recovery-scope.json`.
+Do not relaunch this one-shot capture or boot the damaged Windows install.
+
+The777 audit records describe six affected Windows/test files, not777 separate
+files. There are387 unique shared clusters between the prior32 MiB test file,
+MMC3.tmp and the System Information shortcut. The driver and two WMI files have
+invalid or undersized chains. One allocated cluster has no live owner. No
+allocation conflicts were found outside the owned Windows/test files; unrelated
+file contents have not been verified. The full FAT SHA-256 exactly matches the
+previous physical013 snapshot, confirming these allocation findings predate
+this read-only scan. No F repair was performed.
+
+The next step is to preserve raw contents for the affected chains and orphan,
+then rehearse a bounded metadata repair offline. Never use ordinary FTP deletion
+on these crosslinked entries: that could free another file's storage. Restore
+Windows files only after disentangling ownership and checking the result.
 
 The result determines the recovery scope. Preserve the existing corrupt driver
 and WMI capture. Check ownership of every affected cluster before freeing or
