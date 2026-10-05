@@ -1,0 +1,179 @@
+{
+  "scope": "Qualify two user-reported Paint saves with independent post-reboot evidence.",
+  "utc": "2026-10-05T19:18:17.214847+00:00",
+  "passed": true,
+  "checks": {
+    "user_reported_two_saves_and_reopens": true,
+    "two_complete_cold_bitmaps": true,
+    "drivers_unchanged": true,
+    "original_partial_preserved": true,
+    "no_new_delayed_write_events": true,
+    "normal_eventlog_stop": true,
+    "allocation": true,
+    "scanner_completed": true,
+    "binaries_and_hives": true,
+    "automatic_startup_disabled": true
+  },
+  "user_observation": "User reports two Paint test files saved to Desktop and reopened without issues; Xbox returned to dashboard.",
+  "files": {
+    "paint-test-1.bmp": {
+      "path": "/F/Documents and Settings/win2k/Desktop/paint-test-1.bmp",
+      "bytes": 1063454,
+      "sha256": "e73f64d61cf18444093fbeafa5390565249cf60928cffed13f376d10266c43f0",
+      "complete_24bit_bmp": true,
+      "declared_bytes": 1063454,
+      "pixel_offset": 54,
+      "width": 866,
+      "height": 409,
+      "bpp": 24,
+      "compression": 0,
+      "independent_decoder_passed": true
+    },
+    "paint-test-2.bmp": {
+      "path": "/F/Documents and Settings/win2k/Desktop/paint-test-2.bmp",
+      "bytes": 1534342,
+      "sha256": "ab7d9170cc6afda3ff57017f1b7d08525775c81b4082cf5945bebcc4c2bd71fe",
+      "complete_24bit_bmp": true,
+      "declared_bytes": 1534342,
+      "pixel_offset": 54,
+      "width": 961,
+      "height": 532,
+      "bpp": 24,
+      "compression": 0,
+      "independent_decoder_passed": true
+    }
+  },
+  "system_records": [
+    {
+      "offset": 18404,
+      "record": 101,
+      "generated_unix": 1791241512,
+      "written_unix": 1791241542,
+      "event_id_hex": "c0040031",
+      "event_id": 49,
+      "type": 1,
+      "source": "Ftdisk",
+      "computer": "XWN-PC",
+      "strings": [
+        "\\Device\\HarddiskVolume6"
+      ],
+      "data_hex": "000000000100560000000000310004c0030000000000000000000000000000000000000000000000"
+    },
+    {
+      "offset": 18596,
+      "record": 102,
+      "generated_unix": 1791241515,
+      "written_unix": 1791241515,
+      "event_id_hex": "80001779",
+      "event_id": 6009,
+      "type": 4,
+      "source": "EventLog",
+      "computer": "XWN-PC",
+      "strings": [
+        "5.0",
+        "2195",
+        "Service Pack 4",
+        "Uniprocessor Free"
+      ],
+      "data_hex": ""
+    },
+    {
+      "offset": 18776,
+      "record": 103,
+      "generated_unix": 1791241515,
+      "written_unix": 1791241515,
+      "event_id_hex": "80001775",
+      "event_id": 6005,
+      "type": 4,
+      "source": "EventLog",
+      "computer": "XWN-PC",
+      "strings": [],
+      "data_hex": ""
+    },
+    {
+      "offset": 18872,
+      "record": 104,
+      "generated_unix": 1791241516,
+      "written_unix": 1791241542,
+      "event_id_hex": "40001069",
+      "event_id": 4201,
+      "type": 4,
+      "source": "Tcpip",
+      "computer": "XWN-PC",
+      "strings": [
+        "",
+        "Xbox nForce Ethernet (experimental NT5)"
+      ],
+      "data_hex": "00000000020050000000000069100040020000000000000000000000000000000000000000000000"
+    },
+    {
+      "offset": 19092,
+      "record": 105,
+      "generated_unix": 1791241817,
+      "written_unix": 1791241817,
+      "event_id_hex": "800007dd",
+      "event_id": 2013,
+      "type": 2,
+      "source": "Srv",
+      "computer": "XWN-PC",
+      "strings": [
+        "\\Device\\LanmanServer",
+        "F:"
+      ],
+      "data_hex": "000000000200480000000000dd070080000000000000000000000000000000000000000000000000"
+    },
+    {
+      "offset": 19280,
+      "record": 106,
+      "generated_unix": 1791241817,
+      "written_unix": 1791241817,
+      "event_id_hex": "800007dd",
+      "event_id": 2013,
+      "type": 2,
+      "source": "Srv",
+      "computer": "XWN-PC",
+      "strings": [
+        "\\Device\\LanmanServer",
+        "G:"
+      ],
+      "data_hex": "000000000200480000000000dd070080000000000000000000000000000000000000000000000000"
+    },
+    {
+      "offset": 19468,
+      "record": 107,
+      "generated_unix": 1791241817,
+      "written_unix": 1791241817,
+      "event_id_hex": "800007dd",
+      "event_id": 2013,
+      "type": 2,
+      "source": "Srv",
+      "computer": "XWN-PC",
+      "strings": [
+        "\\Device\\LanmanServer",
+        "H:"
+      ],
+      "data_hex": "000000000200480000000000dd070080000000000000000000000000000000000000000000000000"
+    },
+    {
+      "offset": 19656,
+      "record": 108,
+      "generated_unix": 1791241873,
+      "written_unix": 1791241873,
+      "event_id_hex": "80001776",
+      "event_id": 6006,
+      "type": 4,
+      "source": "EventLog",
+      "computer": "XWN-PC",
+      "strings": [],
+      "data_hex": "05000000"
+    }
+  ],
+  "application_records": [],
+  "limitations": [
+    "Two manual saves/reopens were reported, not the three initially suggested.",
+    "The file names differ from the suggestions; discovered desktop files were collected separately and both decoded successfully.",
+    "Visual reopening success is user-reported; offline checks validate persisted BMP structure and data availability.",
+    "Ftdisk49 and Srv2013 warnings are present; this is not an error-free-system claim.",
+    "The single earlier Paint freeze was not reproduced; its cause remains unknown."
+  ]
+}

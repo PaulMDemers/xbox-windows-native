@@ -15,16 +15,27 @@ with no-op startup restored after the replay. The next direct repeatability
 check, a manual Paint draw/save/reopen session, has now been launched once by
 `manual-paint.py launch`; see `physical-paint-repeat.json`. Do not relaunch it.
 Drivers and no-op startup remain unchanged; there is no automatic reboot.
-User saves three new 24-bit BMPs to the desktop as `paint-repeat-01.bmp`,
-`paint-repeat-02.bmp`, and `paint-repeat-03.bmp`, closes/reopens them, then
-restarts normally. These paths were confirmed absent before launch.
+The user reports two successful desktop saves and reopens, then dashboard
+return. Actual filenames are `paint-test-1.bmp` and `paint-test-2.bmp`; both
+were collected and decoded successfully as complete 24-bit BMPs. The three
+initially suggested `paint-repeat-*` names were not used. Record two completed
+manual saves, not three, and keep visual reopen success marked as user-reported.
 
 After dashboard return, `manual-paint.py collect` preserves event logs, trace,
 saved BMPs and baseline hashes without remote writes. It checks BMP completeness
 but does not infer successful user interaction from file presence. Record the
-user observations separately. A new read-only allocation scan and binary/hive
-audit phase must be added for this run; do not overwrite or rerun the completed
-`postmatched` evidence. No scheduled monitor or reboot timer is active.
+user observations separately. The independent checks use the new
+`physical-operation.py postpaintrepeat` and `audit-restored.py --phase
+postpaintrepeat` phases; never overwrite the completed `postmatched` evidence.
+Decode EVT files to `paint-repeat-before/after-*`, analyze the scan into
+`physical-paint-repeat-allocation.json`, and run `qualify-manual-paint.py`.
+Do not repeat a completed scan or collection. No scheduled monitor or reboot
+timer is active.
+This manual session is now complete and qualified: both persisted BMPs,
+allocation consistency, all 3,439 binaries and nine registry hives passed,
+with no new delayed-write event. See `physical-paint-repeat-qualification.json`.
+No additional Windows run is staged or launched. The original one reported
+Paint freeze remains unexplained and has not repeated in this manual session.
 
 `physical-matched.py` implements its separate launch/collection record.
 The existing `physical-replay.py` is specific to the completed 64 KiB test and

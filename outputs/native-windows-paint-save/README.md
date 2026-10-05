@@ -223,8 +223,36 @@ startup remains active; the console is on the dashboard.
 
 This successful synthetic workload does not establish repeatability of the
 original physical Paint freeze. There is still only one reported freeze when
-saving from Paint. A repeated manual Paint draw/save/reopen session is the
-next direct check; no speculative driver fix follows from these passes.
+saving from Paint. The separate manual Paint draw/save/reopen session below
+checks application behavior directly; no speculative driver fix follows from
+the synthetic passes.
+
+### Manual Paint repeatability session
+
+The user subsequently completed two actual Paint saves and reopens on hardware
+without issues, then returned the Xbox to the dashboard. This is recorded
+separately from the synthetic replay in `physical-paint-repeat.json`.
+The suggested three `paint-repeat-*` filenames were not used. Read-only desktop
+inspection found `paint-test-1.bmp` (866x409, 1,063,454 bytes) and
+`paint-test-2.bmp` (961x532, 1,534,342 bytes). Both are complete uncompressed
+24-bit BMPs, and both decode successfully with an independent image decoder
+after reboot. Their hashes are recorded; visual reopen success is user-reported.
+Only two manual saves are counted.
+
+The filesystem, video, HAL, launcher, loader, preserved old miniport and
+original partial `untitled.bmp` are unchanged. System records 101-108 contain
+a normal EventLog stop and no delayed-write report. Ftdisk49 and Srv2013
+warnings are present, so this is not an error-free-system claim. The native
+read-only allocation scan passed with 128,171 entries, 6,056 directories,
+122,116 files, 6,061 directory clusters, zero errors and zero orphans.
+All 3,439 binaries and nine registry hives passed the separate read-only audit.
+`postpaintrepeat-audit.json` and `physical-paint-repeat-qualification.json`
+record **PASS for these two manual saves and reopens**, with the user-reported
+reopening result distinguished from offline file checks. The Xbox remains on
+the dashboard, with no automatic startup or test process active.
+The earlier single physical Paint freeze has not been
+reproduced, but its cause is still unknown; no driver change is justified by
+these successful manual saves alone.
 
 ## Reproduction and retained fixtures
 
