@@ -7,12 +7,14 @@ been installed on the physical Xbox. Its 0.1.0 hashes remain the reference.
 Current result: [probe v3](probe-v3/README.md) fixes startup-window occlusion and
 passes all four correctness stages with normal restart and cold log verification.
 The earlier failures below are retained evidence. A separate physical baseline
-trial `physical-gdi-001` did not exercise Windows: the user reported a keyboard
-hang in Xromwell, unplugged it and rebooted. Collection restored startup and
-found unchanged event logs with no probe attempt. The authorized retry lives in
-`physical-gdi-002`; it was accepted but has not returned within the four-minute
-observation. Screen state and collection remain pending. No physical timing or
-new video-driver qualification is claimed.
+trial `physical-gdi-001` did not exercise Windows after a reported keyboard hang
+in Xromwell. Attempt002 hit the known one-shot video trace guard because the new
+harness omitted reseeding. Its photo and collected trace confirm that omission.
+The corrected [physical003](physical-gdi-003/README.md) passes all pixel checks,
+five timing loops, normal restart and post-return log/hash checks. Driver hashes
+remain unchanged. Screen reads/overlapping copies are substantially slower than
+fills/uploads in this one physical sample; see the report for numbers and limits.
+Remove the one-shot diagnostic dependency before unattended manual-menu boots.
 
 `gdi-probe.c` is the first implementation. Build with `Build-Probe.ps1` using
 the existing RosBE cross compiler. It uses only imports found in the captured

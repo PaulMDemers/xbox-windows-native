@@ -7,9 +7,11 @@ logs, no changes to Windows event logs, all baseline hashes intact. The precise
 USB identity and cause of that reported boot hang remain unverified.
 
 This separate attempt was accepted at 2026-10-05 21:17:54 UTC. The four-minute
-observer saw FTP offline but no subsequent dashboard return. Screen state has
-been requested; there is no basis yet to claim a benchmark PASS or a crash.
-No second launch was issued by the observer. Do not relaunch this attempt.
+observer saw FTP offline but no subsequent dashboard return. The user's photo
+subsequently confirmed `E0580001(0D,4,C000003E,10)`. Source review identifies the
+one-shot video logger rejecting nonzero trace content at offset16. The benchmark
+launcher omitted the existing preserve-and-reseed step. This is a harness defect,
+not a passing benchmark or evidence of a GDI rendering defect.
 
 Only the new `/F/xwngdi02` helper directory and temporary startup script were
 written. All six release driver/loader hashes matched before launch. The probe
@@ -19,16 +21,16 @@ The runner differs only in its private working paths and passes the NT5 import
 review. Logs use exclusive creation; it requests a normal restart only after
 successful probe completion. No video mode, cache attribute, or driver changed.
 
-`trial.json` records the actual state. Collection is pending and test startup is
-still installed. Once dashboard FTP is available, invoke `trial.py collect` with
-the existing FTP environment. It verifies and restores the original startup
-first, then preserves results/event logs and verifies baseline/helper hashes.
-Run `qualify.py` afterward. Record any manual reset separately from the runner's
-normal restart evidence. Do not erase logs, reuse this identity, or issue another
-Windows launch to obtain missing results.
+Collection completed at 2026-10-05 21:24:51 UTC after the dashboard returned,
+restoring original startup first. No probe or runner log exists. Before/after
+event logs are byte-identical, and all baseline/helper hashes match. The preserved
+4096-byte trace has the correct marker and41 records; its first nonzero byte
+after the marker is offset16, exactly matching the photo. See
+`photo-diagnosis.json` for the source interpretation and trace hash.
 
-The observation process has exited. No owned emulator/build/observer is left
-running. A screen-state reply is the remaining evidence needed to choose recovery.
-One passing sample would measure only five synchronous 256x128 GDI operations,
-including flush/message/visibility overhead; it would not establish window-drag
-FPS, repeated-run variance, or general storage stability.
+Qualification is false because Windows stopped before the workload. A normal
+benchmark shutdown was not recorded; the return following the photo must not be
+counted as one. This attempt is closed and must not be relaunched or recollected.
+The corrected, separately identified retry is `../physical-gdi-003`. Its launcher
+preserves and verifies the trace before resetting it, checks the exact seed again
+before launch, and refuses unknown trace identity/size or failed readback.

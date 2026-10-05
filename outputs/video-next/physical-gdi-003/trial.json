@@ -1,0 +1,163 @@
+{
+  "scope": "One physical baseline GDI measurement; no driver or display-mode changes.",
+  "started_utc": "2026-10-05T21:25:11.098601+00:00",
+  "launch_attempted": true,
+  "startup_enabled": false,
+  "baseline_checks": {
+    "/F/winnt/system32/drivers/xwnfatx.sys": true,
+    "/F/winnt/system32/drivers/xboxvnt5.sys": true,
+    "/F/winnt/system32/drivers/xboxvnt5.pre-dim": true,
+    "/E/Applications/XWNFBoot/loader/halxboxnt5.dll": true,
+    "/E/Applications/XWNFBoot/default.xbe": true,
+    "/E/Applications/XWNFBoot/freeldr.sys": true
+  },
+  "payloads": [
+    {
+      "name": "runner.exe",
+      "sha256": "33fcd1a6a97dc94c6fb58ac4bfc039619ccce418852285dab94963cb95f5372d",
+      "source_sha256": "a1c85250a8c1fc88a24914e4fc6f857b6b7e3148b65a2ca11e51774557d4fca5",
+      "bytes": 10235,
+      "imports": {
+        "ADVAPI32.dll": [
+          "AdjustTokenPrivileges",
+          "LookupPrivilegeValueA",
+          "OpenProcessToken"
+        ],
+        "KERNEL32.dll": [
+          "CloseHandle",
+          "CreateFileA",
+          "CreateProcessA",
+          "ExitProcess",
+          "FlushFileBuffers",
+          "GetCurrentProcess",
+          "GetExitCodeProcess",
+          "GetLastError",
+          "GetStdHandle",
+          "SetLastError",
+          "WaitForSingleObject",
+          "WriteFile"
+        ],
+        "USER32.dll": [
+          "ExitWindowsEx"
+        ]
+      }
+    },
+    {
+      "name": "replay.exe",
+      "sha256": "7d90f3c0d6f8bb4615792324c749f4f2bfcf8663928d93ac5a3b41f9afec23fb",
+      "source_sha256": "56e31b0eda304c77bb2604dbfe94111b2d93b64a1171c955d37a178d0abdd0c9",
+      "bytes": 20188,
+      "imports": {
+        "GDI32.dll": [
+          "BitBlt",
+          "CreateCompatibleDC",
+          "CreateDIBSection",
+          "DeleteDC",
+          "DeleteObject",
+          "GdiFlush",
+          "GdiSetBatchLimit",
+          "GetClipBox",
+          "GetDeviceCaps",
+          "PatBlt",
+          "SelectObject"
+        ],
+        "KERNEL32.dll": [
+          "CloseHandle",
+          "CreateFileA",
+          "ExitProcess",
+          "FlushFileBuffers",
+          "GetLastError",
+          "GetModuleHandleA",
+          "GetTickCount",
+          "Sleep",
+          "WriteFile"
+        ],
+        "USER32.dll": [
+          "BeginPaint",
+          "CreateWindowExA",
+          "DefWindowProcA",
+          "DestroyWindow",
+          "DispatchMessageA",
+          "EndPaint",
+          "EnumDisplaySettingsA",
+          "GetAsyncKeyState",
+          "GetClientRect",
+          "GetDC",
+          "IsWindow",
+          "PeekMessageA",
+          "PostQuitMessage",
+          "RegisterClassA",
+          "ReleaseDC",
+          "SetForegroundWindow",
+          "SetWindowPos",
+          "TranslateMessage",
+          "UpdateWindow",
+          "wsprintfA"
+        ]
+      }
+    }
+  ],
+  "preserved": {
+    "startup.cmd": {
+      "bytes": 102,
+      "sha256": "257ec9b4c77199f0ac046289912c41acdaba3a30750bf81dfb4c09cbb003af2d"
+    },
+    "system.evt": {
+      "bytes": 65536,
+      "sha256": "6ff17f5b84fe6606664fe4ee05ff70e363e2b071d59a96bb7afa6a8be3594e4c"
+    },
+    "application.evt": {
+      "bytes": 65536,
+      "sha256": "af36c94bb8b4f477b0b2f2cc39d7e2b4a6a587f490032577361f1bf64acee58b"
+    },
+    "video-trace.bin": {
+      "bytes": 4096,
+      "sha256": "bbedb8d5d92ff7712b99a6ef1124647549d61d30a6e0ad8a94b0cb5c1ec12806"
+    }
+  },
+  "physical_result": true,
+  "trace_reseed_requested": true,
+  "trace_seed_sha256": "5806fe7ce339298b5a94a0e0ab1bdfb78922fc449effd5cea2f393f0d33fd00e",
+  "trace_reseed_verified": true,
+  "startup_install_requested": true,
+  "launch_utc": "2026-10-05T21:25:15.319506+00:00",
+  "command": "SITE EXEC E:\\Applications\\XWNFBoot\\default.xbe",
+  "reply": "200 EXEC command succeeded.",
+  "collected": {
+    "gdi-baseline.txt": {
+      "bytes": 824,
+      "sha256": "2c7d80f1e25806d3f1bbab996c7db44f69d23e6d5bd7bc23f5f0f14c068f7b21"
+    },
+    "attempt.log": {
+      "bytes": 56,
+      "sha256": "2745c45686c99af1e511d3627c2f580569196b5bb1392ca6ecb278cb1b53f1ed"
+    },
+    "video-trace.bin": {
+      "bytes": 4096,
+      "sha256": "7ae5fd6e05e06d106818b280bc22108cd915c2aa7841f3cbd92a24dc19561365"
+    },
+    "system.evt": {
+      "bytes": 65536,
+      "sha256": "7513d59d131ac56e9b42b27dba11fcc7de20923e7c0dd5ca20d211b7e4998b22"
+    },
+    "application.evt": {
+      "bytes": 65536,
+      "sha256": "af36c94bb8b4f477b0b2f2cc39d7e2b4a6a587f490032577361f1bf64acee58b"
+    }
+  },
+  "baseline_checks_after": {
+    "/F/winnt/system32/drivers/xwnfatx.sys": true,
+    "/F/winnt/system32/drivers/xboxvnt5.sys": true,
+    "/F/winnt/system32/drivers/xboxvnt5.pre-dim": true,
+    "/E/Applications/XWNFBoot/loader/halxboxnt5.dll": true,
+    "/E/Applications/XWNFBoot/default.xbe": true,
+    "/E/Applications/XWNFBoot/freeldr.sys": true
+  },
+  "payload_checks_after": {
+    "runner.exe": true,
+    "replay.exe": true
+  },
+  "collected_utc": "2026-10-05T21:26:50.631235+00:00",
+  "qualification": "qualification.json",
+  "bounded_gdi_passed": true
+}

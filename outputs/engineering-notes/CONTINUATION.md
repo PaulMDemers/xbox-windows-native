@@ -1,17 +1,22 @@
-# Continuation after physical GDI retry 002
+# Continuation after diagnostic trace correction and GDI retry003
 
-Updated 2026-10-05. Physical driver/loader baseline remains 0.1.0. One physical
-GDI retry was accepted at 21:17:54 UTC and has not returned to dashboard FTP
-within the four-minute observation. A screen-state question is pending; do not
-infer a crash or relaunch. Only new /F/xwngdi02 helpers and test startup changed.
-Collect attempt002 must restore original startup first when dashboard is available.
-Attempt001 was collected at 21:17:26 UTC: original startup restored, no probe or
-runner log, byte-identical before/after Windows event logs, baseline unchanged.
-The user reported Xromwell hanging with their "razor chroma ornata" keyboard
-attached, unplugged it and manually rebooted before requesting this retry.
-That peripheral observation is not a diagnosed USB cause or Windows GDI failure.
-All owned emulator/build/observer processes are closed; no automation is running.
-Private repository visibility and v0.1.0 tag identity remain unchanged.
+Updated 2026-10-05. Physical driver/loader baseline remains 0.1.0.
+Attempt002 is collected: startup restored, no runner/probe logs, event logs
+unchanged, all baseline/helper hashes intact. User photo shows the deliberate
+E0580001(0D,4,C000003E,10) diagnostic trace guard. Preserved trace has41 old
+records and its first nonzero byte after the marker at offset16. The new GDI
+harness omitted the known preserve-and-reseed step; it is now corrected.
+
+Attempt003 accepted at21:25:15 UTC, dashboard return21:26:47 UTC, collected and
+qualified PASS: four pixel checks, five timings, normal runner restart/EVT6006,
+unchanged drivers/helpers and no unexpected new warning/error or popup. Normal
+startup is restored. No observer/emulator/build/automation is running. Private
+repo and v0.1.0 tag unchanged. See physical-gdi-003/next-boot.json for the exact
+one-boot diagnostic-seed readiness state; no extra Windows launch was issued.
+
+Attempt001 was a user-reported Xromwell hang with their "razor chroma ornata"
+keyboard attached; they unplugged it and rebooted. It never exercised the probe.
+This peripheral report is separate from the trace-seed cause of attempt002.
 
 ## Results
 
@@ -61,16 +66,15 @@ Private repository visibility and v0.1.0 tag identity remain unchanged.
 
 ## Next actions
 
-1. Resolve physical-gdi-002 screen state. When dashboard FTP returns, run
-   outputs/video-next/physical-gdi-002/trial.py collect with existing FTP env,
-   then qualify.py. Collection restores startup before reading logs. Do not
-   overwrite trial.json, erase attempt.log or issue a second Windows launch.
-   Preserve failures; request manual reboot only after the screen is understood.
-   Attempt001 is complete and unexercised; do not recollect or reuse its identity.
-2. Use physical timings only if correctness and normal shutdown qualify them.
-   Review framebuffer cache/stride/copy paths before changing acceleration.
-   Extend the reconstructed overlay's storage/network coverage in a new fixture;
-   its current bounded emulator PASS does not establish hardware equivalence.
+1. Remove the one-shot trace dependency before unattended manual-menu boots.
+   Keep required PnP/geometry behavior, isolate logging changes, test at least two
+   ordinary emulator boots without host reseeding, then qualify on hardware.
+   Preserve 0.1.0 rollback; no changed driver is physically deployed yet.
+2. Use physical003 as one bounded baseline: fill/upload2.10/2.36ms, readback50.14ms,
+   overlap56.67/29.71ms for256x128. Investigate cache aliases/stride/copy paths;
+   this does not measure dragging FPS or prove a cache cause. Extend reconstructed
+   overlay storage/network coverage in a new fixture. Its current emulator PASS
+   does not establish hardware equivalence. Never reuse attempts001-003.
 3. Complete local user-media assembly and toolchain environment pinning for a
    fresh reproducible installation; full OS packaging remains open.
 4. Plan 720p then1080i after console revision and cable/HDMI adapter are known.

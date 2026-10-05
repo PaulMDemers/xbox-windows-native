@@ -67,6 +67,17 @@ international filename compatibility and electrical power-off require further
 qualification. Ftdisk49/Srv2013 warnings remain recorded. FATX has a counted
 42-byte component name limit and cannot be advertised as Unicode/NTFS.
 
+Post-tag finding: this diagnostic miniport also requires a fresh one-shot
+`winnt/system32/xwn-video-trace.bin` seed before each boot. A populated trace
+causes the deliberate `E0580001(0D,4,C000003E,10)` stop before the desktop.
+Physical GDI attempt002 exposed an omitted reseed in a new test harness;
+preserved trace bytes confirm that cause. Existing launch harnesses handle this
+by preserving the old4096-byte trace and verifying a clean seed. The manual
+dashboard menu itself does not perform that maintenance. Removing this diagnostic
+dependency is necessary for unattended repeated menu launches; do not treat
+the installed menu entry as a complete repeat-boot solution yet. This note does
+not alter the tagged artifacts or qualify a replacement driver.
+
 UnleashX's root Windows entry points to `E:\Applications\XWNFBoot\default.xbe`.
 It is a manual menu action, not automatic Windows startup. The menu report
 records the exact config path, before/after hashes and recovery copies.

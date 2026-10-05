@@ -1,0 +1,29 @@
+{
+  "evidence": "User-supplied photo 9F8AD2D2-6BCE-437D-9B0A-2624E93A44BA",
+  "photo_sha256": "58363e26d2813165c6c7502d05b48d4c99b883b1862263cbb5bda8992d0d3a00",
+  "stop_code": "0xE0580001",
+  "parameters": [
+    "0x0000000D",
+    "0x00000004",
+    "0xC000003E",
+    "0x00000010"
+  ],
+  "matched_source": "outputs/native-windows-physical-f/video-trace.c: XwnVideoTraceInit / TraceFail",
+  "meaning": "Diagnostic trace initializer found nonzero data at offset 16 after the required marker; stage 13, phase 4, STATUS_DATA_ERROR.",
+  "harness_defect": "GDI launch omitted preservation and reseeding of the one-shot video trace; previous physical harnesses include it.",
+  "physical_trace_readback": {
+    "bytes": 4096,
+    "record_count": 41,
+    "first_nonzero_after_marker": 16,
+    "sha256": "bbedb8d5d92ff7712b99a6ef1124647549d61d30a6e0ad8a94b0cb5c1ec12806",
+    "matches_photo_guard": true
+  },
+  "benchmark_result": "Not qualified; no claim of graphics throughput or filesystem corruption.",
+  "collection_attempt": {
+    "result": "ConnectionRefusedError WinError10061 before FTP login",
+    "startup_restored": false,
+    "additional_launches": 0
+  },
+  "collection_completed_utc": "2026-10-05T21:24:51.704507+00:00",
+  "startup_restored_after_return": true
+}

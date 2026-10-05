@@ -95,6 +95,7 @@ if __name__=='__main__':
             r['startup_enabled']=False;save()
             r['collected']={}
             for name,path in [('gdi-baseline.txt',remote+'/gdi-baseline.txt'),('attempt.log',remote+'/attempt.log'),
+                              ('video-trace.bin','/F/winnt/system32/xwn-video-trace.bin'),
                               ('system.evt','/F/winnt/system32/config/sysevent.evt'),('application.evt','/F/winnt/system32/config/appevent.evt')]:
                 data=get(f,path,optional=name.endswith(('.txt','.log')))
                 r['collected'][name]=preserve('after-'+name,data) if data is not None else None;save()
