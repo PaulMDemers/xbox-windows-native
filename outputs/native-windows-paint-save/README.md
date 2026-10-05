@@ -4,7 +4,8 @@ The physical Paint save hang remains unresolved. The physical desktop BMP was
 48 KiB short after a forced reboot; that persisted length does not identify a
 blocked request. This kit reproduces the image size and exercises saving with
 the same filesystem and dimensions miniport in private emulator overlays.
-No physical Xbox access or driver replacement was performed for these tests.
+The initial tests used only the emulator. The subsequent hardware replay is
+documented separately below; no driver replacement was performed for either.
 
 ## Pinned baseline
 
@@ -78,8 +79,61 @@ application EVT contains only the historical installer record. The emulator
 was closed after dashboard FTP returned, and its disk was retained.
 
 These tests did not reproduce the hardware hang. See `review.json` for the
-bounded verdict and [NEXT-HARDWARE.md](NEXT-HARDWARE.md) for the next diagnostic
-and deployment requirements. No physical test has been staged or launched here.
+bounded verdict and [NEXT-HARDWARE.md](NEXT-HARDWARE.md) for the diagnostic
+and deployment requirements. At that checkpoint no physical test had launched.
+
+## One-shot hardware replay follow-up
+
+The user subsequently requested proceeding with the hardware diagnostic.
+`runner.c` creates a flushed attempt log with CREATE_NEW, waits for the
+unchanged replay executable, and requests a normal restart only after exit
+zero. Failures leave Windows running with diagnostic logs; there is no blind
+timer or forced restart. A persistent attempt log prevents automatic repetition
+on subsequent Windows boots. `physical-replay.py collect` restores the original
+no-op startup before retrieving reports and files.
+
+`nt5-paint-runner-001` validated the exact launcher and writer, without Paint
+or memory pressure. All sixteen files passed cold readback after its automatic
+normal restart. Runner logs and system EventLog 6006 confirm that sequence;
+HID Input Service/Ftdisk errors remain. `runner-emulator-validation.json` pins
+inputs, launcher source/binary, screenshots and cleanup. This is separate from
+the earlier manually restarted pressure run.
+
+`physical-replay.json` records the single physical launch and subsequent state.
+The deployment checks ownership, existing driver/HAL/launcher/loader hashes,
+preserves pre-run logs and the user's partial BMP, and refuses an existing test
+folder or launch record. Only the two helper executables, deterministic input,
+trace seed and startup are written. No driver changes or repairs are included.
+Physical collection, event review, native read-only allocation scan and
+binary/hive audit are required before `qualify-physical.py` can pass.
+
+### Physical result
+
+One launch was accepted at 2026-10-05 16:38:54 UTC. The Xbox returned to the
+dashboard without manual intervention; collection at 16:41:17 UTC restored the
+no-op startup first. All sixteen 442,422-byte BMPs match the deterministic
+source exactly. The writer completed in 27,000 guest milliseconds after its
+startup delay. The attempt log records child exit zero and a normal restart
+request. Filesystem, miniport, preserved old miniport, HAL, launcher, loader and
+helper/input hashes match. The user's partial desktop BMP remains unchanged.
+
+System records 90-95 contain normal EventLog start/stop and no new delayed-write
+report. Ftdisk 49 and a shutdown-time rundll32 initialization popup remain;
+there are no new application-log records. This is not an error-free-system
+claim. The independent native read-only scan passed with 128,144 entries,
+6,055 directories, 122,090 files, 6,060 directory clusters, zero allocation
+errors and zero orphans. All 3,439 immutable binaries and nine registry hives
+passed the separate post-reboot audit. `physical-replay-qualification.json`
+records **PASS for this bounded workload**. The dashboard is running with
+automatic startup disabled; no emulator or background test remains running.
+
+The original physical Paint save hang is still unresolved. The next useful
+experiment is to trace actual Paint write sizes, handles and flush/close
+ordering in a new emulator run, then reproduce that sequence on hardware.
+`paint-write-target.json` identifies a hash-pinned MFC ordinal that calls
+WriteFile and its argument layout. This is a static debugger target, not an
+observed Paint save trace or fault attribution; verify the loaded module base
+and bytes before setting breakpoints. Paint has no direct WriteFile import.
 
 ## Reproduction and retained fixtures
 

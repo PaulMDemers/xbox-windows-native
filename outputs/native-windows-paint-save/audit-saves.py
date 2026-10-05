@@ -2,7 +2,7 @@
 import argparse,hashlib,importlib,json,pathlib,struct
 m=importlib.import_module('prepare-fixture');k=m.k
 p=argparse.ArgumentParser();p.add_argument('--run',required=True);a=p.parse_args()
-assert a.run in ('nt5-paint-save-003','nt5-paint-pressure-001','nt5-paint-replay-001');run=m.ws/'work/runs'/a.run
+assert a.run in ('nt5-paint-save-003','nt5-paint-pressure-001','nt5-paint-replay-001','nt5-paint-runner-001');run=m.ws/'work/runs'/a.run
 assert (run/'cleanup.json').exists()
 disk=run/'hdd.qcow2';f=m.SliceIO(disk);m.fatx.PARTITIONS['F']=(15633072*512,472764096*512)
 w=m.Writer(f,m.fatx.open_partition(f,disk,'F'));folder=k/'artifacts'/a.run;folder.mkdir(exist_ok=True)
@@ -18,7 +18,7 @@ cases=[('xwnpaint/saved-'+name+'.bmp',name+'.bmp') for name in ['blank','coords'
 cases += [('Documents and Settings/win2k/Desktop/'+name+'.bmp',None) for name in ['emu-scribble','fresh-scribble']]
 if a.run=='nt5-paint-pressure-001':
     cases=[('Documents and Settings/win2k/My Documents/untitled.bmp',None),('xwnpaint/slow.bmp',None)]
-if a.run=='nt5-paint-replay-001':
+if a.run in ('nt5-paint-replay-001','nt5-paint-runner-001'):
     cases=[(f'xwnpaint/replay{i:02d}.bmp','scribble.bmp') for i in range(16)]
 for path,reference in cases:
     data=w.read(path);name=path.split('/')[-1];(folder/name).write_bytes(data)
@@ -32,9 +32,13 @@ for name,expected in [('xwnfatx.sys','0ec6b5fdae65a1f85cba8c15021ba8095601d44625
     actual=sha(w.read('winnt/system32/drivers/'+name));r['drivers'].append(dict(name=name,sha256=actual,matches=actual==expected));assert actual==expected
 for name,path in [('system.evt','winnt/system32/config/sysevent.evt'),('application.evt','winnt/system32/config/appevent.evt')]:
     data=w.read(path);(folder/name).write_bytes(data)
-if a.run!='nt5-paint-save-003':
+if a.run in ('nt5-paint-pressure-001','nt5-paint-replay-001'):
     r['pressure_log']=w.read('xwnpaint/pressure.log').decode('ascii');(folder/'pressure.log').write_text(r['pressure_log'])
-if a.run=='nt5-paint-replay-001':
+if a.run in ('nt5-paint-replay-001','nt5-paint-runner-001'):
     r['replay_log']=w.read('xwnpaint/replay.log').decode('ascii');(folder/'replay.log').write_text(r['replay_log']);assert r['replay_log'].count('CASE_PASS ')==16 and '\nPASS 16 ' in r['replay_log'] and 'FAIL_' not in r['replay_log']
+if a.run=='nt5-paint-runner-001':
+    r['runner_log']=w.read('xwnpaint/attempt.log').decode('ascii');assert r['runner_log']=='ATTEMPT_ONCE\r\nREPLAY_EXIT_ZERO\r\nNORMAL_RESTART_REQUEST\r\n'
+    for item in json.loads((k/'runner-fixture.json').read_text())['helpers']:
+        assert sha(w.read(item['path']))==item['sha256']
 r.update(complete=True,passed=True)
 (k/(a.run+'-save-audit.json')).write_text(json.dumps(r,indent=2)+'\n');print(json.dumps(r,indent=2))

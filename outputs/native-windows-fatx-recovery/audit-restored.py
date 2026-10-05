@@ -1,15 +1,15 @@
 """Read-only audit of restored Windows binaries and registry copies; never launches Windows."""
 import argparse,datetime,ftplib,hashlib,io,json,os,pathlib,socket,struct,subprocess
 k=pathlib.Path(__file__).resolve().parent;p=k.parent/'native-windows-physical-f';out=k/'restored-audit.json'
-parser=argparse.ArgumentParser();parser.add_argument('--resume',action='store_true');parser.add_argument('--phase',choices=['restored','posttrial','postsoak','postlong','postpaint'],default='restored');a=parser.parse_args()
+parser=argparse.ArgumentParser();parser.add_argument('--resume',action='store_true');parser.add_argument('--phase',choices=['restored','posttrial','postsoak','postlong','postpaint','postreplay'],default='restored');a=parser.parse_args()
 out=k/(a.phase+'-audit.json')
-if a.phase in ('posttrial','postsoak','postlong','postpaint'):
- trial=json.loads((k/({'posttrial':'physical-trial.json','postsoak':'physical-soak.json','postlong':'physical-long.json','postpaint':'physical-paint.json'}[a.phase])).read_text());assert trial.get('collected_utc') and not trial['startup_restart_enabled']
+if a.phase in ('posttrial','postsoak','postlong','postpaint','postreplay'):
+ trial=json.loads((k/({'posttrial':'physical-trial.json','postsoak':'physical-soak.json','postlong':'physical-long.json','postpaint':'physical-paint.json','postreplay':'../native-windows-paint-save/physical-replay.json'}[a.phase])).read_text());assert trial.get('collected_utc') and not trial['startup_restart_enabled']
 restore=json.loads((k/'restoration.json').read_text());assert restore['complete']
 manifest=json.loads((p/'package-manifest.json').read_text())['files'];ext={'.exe','.dll','.sys','.nls','.fon','.ttf','.cpl','.ocx'}
 items=[v for v in manifest if v['path'].startswith('F/') and pathlib.PurePosixPath(v['path']).suffix.lower() in ext]
 cycle=json.loads((p/'physical-cycle-013.json').read_text());overrides={'f/winnt/system32/drivers/xwnfatx.sys':'0ec6b5fdae65a1f85cba8c15021ba8095601d4462565b331329884526ff81336','f/winnt/system32/drivers/xboxvnt5.sys':cycle['miniport_sha256']}
-if a.phase=='postpaint':
+if a.phase in ('postpaint','postreplay'):
  assert trial['miniport_sha256']=='f8af1d8477d61ad8933962fd6347f43620f5ef1d21efe54110b94fec106986eb'
  assert trial['filesystem_sha256']==overrides['f/winnt/system32/drivers/xwnfatx.sys']
  overrides['f/winnt/system32/drivers/xboxvnt5.sys']=trial['miniport_sha256']

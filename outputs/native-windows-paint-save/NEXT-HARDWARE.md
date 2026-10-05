@@ -1,4 +1,9 @@
-# Next hardware diagnostic
+# Hardware replay procedure
+
+This one-shot hardware run is complete and qualified in
+`physical-replay-qualification.json`. Do not relaunch it. The procedure below
+documents what was performed; trace actual Paint I/O before choosing the next
+hardware workload.
 
 Preserve candidate0088, the dimensions trace miniport and the physical HAL.
 No driver fix follows merely from passing these emulator tests. The physical
@@ -22,9 +27,24 @@ memory-pressure helper or concurrent Paint. Use a one-shot startup wrapper
 with an on-disk attempted marker so a subsequent Windows boot does not
 automatically repeat the workload. Do not add a blind reboot timer. On return
 to dashboard, restore the no-op startup before collecting the replay log,
-sixteen outputs, event logs and current driver hashes. The wrapper and physical
-deployment still need implementation and review; no hardware replay is staged
-or launched by this kit.
+sixteen outputs, event logs and current driver hashes.
+
+`runner.c` now implements that launcher using a flushed CREATE_NEW attempt
+log and a wait for the writer's exit code. It requests a normal, non-forced
+restart only on exit zero; failures leave Windows running and preserve the
+log. It has no background timer. `physical-replay.py launch` requires the
+completed runner emulator cold audit and normal EventLog stop, verifies the
+physical baseline and creates a new test folder. It refuses an existing
+launch record or folder. `physical-replay.py collect` restores the no-op
+startup first, then preserves evidence and verifies all files and hashes.
+
+After collection, use `native-windows-fatx-recovery/physical-operation.py
+postreplay launch` and `postreplay collect` for the existing read-only native
+scanner. Analyze its `artifacts/postreplay` capture into this kit's
+`physical-replay-allocation.json`. Run `audit-restored.py --phase postreplay`
+for the separate binary/hive check. Decode before/after system/application
+EVT files, then run `qualify-physical.py`. All are distinct from the earlier
+physical Paint and soak reports.
 
 A pass requires all sixteen CASE_PASS records and final PASS, complete matching
 BMP bytes after normal shutdown/restart, and post-run allocation/binary/hive
