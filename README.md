@@ -4,7 +4,22 @@ Experimental native Windows 2000 bootloader/HAL and driver development for a
 64 MiB original Xbox. Windows runs directly on the Xbox CPU; xemu is the
 host-side test harness.
 
-## Current evidence
+## Current milestone: 0.1.0
+
+The native physical desktop now passes bounded storage soaks and two actual
+Paint saves/reopens, with independent post-reboot bitmap, allocation, binary
+and registry-hive checks. The user confirms ping works. Window dragging is
+visibly slow; display performance and additional modes are the next priorities.
+One earlier Paint freeze remains unexplained and has not repeated in the later
+manual session. This is an experimental usable milestone, not general stability.
+
+See the [0.1.0 release and recovery bundles](outputs/release-0.1.0/README.md),
+[FATX/platform handoff notes](outputs/engineering-notes/README.md), and
+[video development plan](outputs/video-next/PLAN.md). The exact qualified
+filesystem is candidate0088, with the dimensions/trace miniport and physical HAL.
+The chronology below includes superseded candidates and their failures.
+
+## Development evidence and history
 
 - **Physical Windows 2000 desktop confirmed:** keyboard, mouse, drive browsing,
   Notepad and Calculator work on the Xbox. Cycle009 passed a bounded native
