@@ -193,6 +193,39 @@ stop with no new delayed-write event; HID/Ftdisk errors and two shutdown-time
 rundll32 popups remain. The emulator is closed. This is a qualified emulator
 workload, not a fix for the physical Paint hang.
 
+### Physical replay of the observed sequence
+
+`physical-matched.py` launched one run at 2026-10-05 18:18:44 UTC, using the
+same matched helper and runner validated in the emulator. Before launch it
+verified all 21 files from the earlier physical replay, renamed that directory
+to `F:\xwnpaint64`, and created a clean `F:\xwnpaint` for the new trial. This
+preserved the existing attempt marker, helpers, logs and results without
+deleting or overwriting them. The filesystem, miniport, HAL and loader stayed
+unchanged.
+
+The Xbox returned to dashboard normally. All sixteen 442,422-byte images match
+the source exactly, including eight quiet cases. The logged cases contain the
+observed 14 + 40 + 27*16384 byte sequence. The workload took 16,380 guest
+milliseconds after the startup delay; this is a bounded workload result,
+not a storage benchmark. Collection disabled startup first, archived this run
+as `F:\xwnpaint16`, restored the earlier test directory, and verified all its
+hashes. The user's partial desktop BMP was unchanged.
+
+System records 96-100 show Ftdisk 49, TCP/IP interface-up information and a
+normal EventLog stop. There is no new delayed-write event and the application
+log is unchanged. The independent read-only allocation scan passed with
+128,166 entries, 6,056 directories, 122,111 files, 6,061 directory clusters,
+zero allocation errors and zero orphans. All 3,439 Windows binaries and nine
+registry hives passed the separate read-only audit. `postmatched-audit.json`
+records those checks; `physical-matched-qualification.json` records **PASS for
+this bounded physical workload**. No Windows test, emulator or automatic
+startup remains active; the console is on the dashboard.
+
+This successful synthetic workload does not establish repeatability of the
+original physical Paint freeze. There is still only one reported freeze when
+saving from Paint. A repeated manual Paint draw/save/reopen session is the
+next direct check; no speculative driver fix follows from these passes.
+
 ## Reproduction and retained fixtures
 
 Use the existing RosBE pin through `Build-Pressure.ps1` and `Build-Replay.ps1`.

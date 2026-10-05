@@ -4,20 +4,34 @@ This one-shot hardware run is complete and qualified in
 `physical-replay-qualification.json`. Do not relaunch it. The procedure below
 documents what was performed. Actual Paint I/O is now recorded in
 `paint-sequence-review.json`; `matched-emulator-validation.json` qualifies the
-new emulator replay. The next hardware workload is the new matched writer:
+new emulator replay. A separate hardware trial now uses the matched writer:
 14 + 40 + 27*16384 byte writes, position query, flush, EOF, close; sixteen cases
-alternating detailed logging and quiet target I/O. It is built and tested but
-has **not been deployed to hardware**.
+alternating detailed logging and quiet target I/O. Its single launch and
+collection state are recorded in `physical-matched.json`. Do not relaunch it.
+It is now complete and qualified in `physical-matched-qualification.json`:
+sixteen exact files, normal restart, no new delayed-write event, full allocation
+scan and all 3,439 binaries/nine hives passed. The console is on the dashboard
+with no-op startup restored. The next direct repeatability check is a manual
+Paint draw/save/reopen session; that next Windows session has not been launched.
 
-Before that deployment, prepare a separate one-shot launch/collection record.
+`physical-matched.py` implements its separate launch/collection record.
 The existing `physical-replay.py` is specific to the completed 64 KiB test and
 must not be rerun or pointed at the new binary. The old `/F/xwnpaint` directory,
 attempt/replay logs, outputs, and helper hashes are preserved baseline evidence.
-The existing runner hardcodes `C:\xwnpaint\replay.exe` and `attempt.log`; a new
-deployment must explicitly preserve these before replacing any owned payload
-or resetting its attempt marker. Restore startup first during collection, then
-preserve all new outputs/logs and perform the separate native allocation and
-binary/hive audits. Do not overwrite the user's partial desktop BMP.
+The runner hardcodes `C:\xwnpaint\replay.exe` and `attempt.log`. Deployment
+verifies all 21 old files and renames the directory to `/F/xwnpaint64`, then
+creates a clean `/F/xwnpaint` for the emulator-tested helper and runner.
+Collection restores no-op startup first, preserves reports and outputs,
+archives this run as `/F/xwnpaint16`, and restores the original directory and
+checks all its file hashes. No old logs or user files are deleted. The user's
+partial desktop BMP is retained and hash-checked separately.
+
+After collection, run `physical-operation.py postmatched launch` and `collect`
+for the independent read-only scanner. Analyze `artifacts/postmatched` into
+`physical-matched-allocation.json`; run `audit-restored.py --phase postmatched`.
+Decode the four before/after EVT files into `matched-before/after-*` reports,
+then run `qualify-physical-matched.py`. An emulator pass and a physical pass
+remain distinct, and neither establishes repeated success of actual Paint.
 
 Preserve candidate0088, the dimensions trace miniport and the physical HAL.
 No driver fix follows merely from passing these emulator tests. The physical

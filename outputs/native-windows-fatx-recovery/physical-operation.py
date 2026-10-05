@@ -1,7 +1,7 @@
 """Run only the reviewed repair or its independent read-only rescan on the owned Xbox."""
 import argparse,datetime,ftplib,hashlib,io,json,os,pathlib,socket
 k=pathlib.Path(__file__).resolve().parent;pre=k.parent/'native-windows-fatx-preflight';physical=k.parent/'native-windows-physical-f'
-p=argparse.ArgumentParser();p.add_argument('operation',choices=['repair','postscan','postrestore','posttrial','postsoak','postlong','postpaint','postreplay']);p.add_argument('action',choices=['launch','collect']);p.add_argument('--resume-upload',action='store_true');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('operation',choices=['repair','postscan','postrestore','posttrial','postsoak','postlong','postpaint','postreplay','postmatched']);p.add_argument('action',choices=['launch','collect']);p.add_argument('--resume-upload',action='store_true');a=p.parse_args()
 sha=lambda b:hashlib.sha256(b).hexdigest();utc=lambda:datetime.datetime.now(datetime.timezone.utc).isoformat()
 plan=json.loads((k/'repair-plan.json').read_text());assert plan['rehearsal_allocation_consistent'] and not plan['fat_changed'] and not plan['unrelated_entries_changed']
 assert json.loads((k/'physical-backup.json').read_text())['snapshot_completed']
@@ -17,8 +17,9 @@ else:
  guards={'postscan':('physical-repair.json','completed','XWNFatPost'),'postrestore':('restoration.json','complete','XWNFatFinal'),'posttrial':('physical-trial.json','collected_utc','XWNFatTrial'),'postsoak':('physical-soak.json','collected_utc','XWNFatSoak'),'postlong':('physical-long.json','collected_utc','XWNFatLong')}
  guards['postpaint']=('physical-paint.json','collected_utc','XWNFatPaint')
  guards['postreplay']=('../native-windows-paint-save/physical-replay.json','collected_utc','XWNFatReplay')
+ guards['postmatched']=('../native-windows-paint-save/physical-matched.json','collected_utc','XWNFatMatch')
  priorfile,guard,folder=guards[a.operation];prior=json.loads((k/priorfile).read_text());assert prior.get(guard)
- if a.operation in ('posttrial','postsoak','postlong','postpaint','postreplay'):assert not prior['startup_restart_enabled']
+ if a.operation in ('posttrial','postsoak','postlong','postpaint','postreplay','postmatched'):assert not prior['startup_restart_enabled']
  remote='/E/Applications/'+folder;outputs=['snapshot.txt','fat-metadata.bin','directories.bin'];payloads={'default.xbe':(pre/'artifacts/default.xbe').read_bytes()}
  assert sha(payloads['default.xbe'])==json.loads((pre/'validation.json').read_text())['xbe_sha256']
 record=k/f'physical-{a.operation}.json'
