@@ -18,12 +18,12 @@ sha = lambda data: hashlib.sha256(data).hexdigest()
 utc = lambda: datetime.datetime.now(datetime.timezone.utc).isoformat()
 p = argparse.ArgumentParser()
 p.add_argument('action', choices=['launch', 'collect'])
-p.add_argument('--kind', choices=['short', 'soak'], default='short')
+p.add_argument('--kind', choices=['short', 'soak', 'long'], default='short')
 a = p.parse_args()
-tag = 'soak' if a.kind == 'soak' else 'trial'
+tag = {'short':'trial','soak':'soak','long':'long'}[a.kind]
 record = k / ('physical-' + tag + '.json')
 artifacts = k / 'artifacts' / tag
-archive_suffix = '.s88' if a.kind == 'soak' else '.c13r'
+archive_suffix = {'short':'.c13r','soak':'.s88','long':'.l88'}[a.kind]
 
 class FTP(ftplib.FTP):
     def ntransfercmd(self, *args, **kwargs):
@@ -76,9 +76,10 @@ with FTP() as f:
                               ('physical-restored-allocation.json', 'allocation_consistent')]:
             assert json.loads((k / filename).read_text())[key], filename
         assert json.loads((k / 'preserved-payloads.json').read_text())['passed']
-        if a.kind == 'soak':
-            assert json.loads((k/'physical-trial-qualification.json').read_text())['passed']
-            prior = json.loads((k/'physical-trial.json').read_text())
+        if a.kind in ('soak','long'):
+            prior_tag = 'soak' if a.kind=='long' else 'trial'
+            assert json.loads((k/('physical-'+prior_tag+'-qualification.json')).read_text())['passed']
+            prior = json.loads((k/('physical-'+prior_tag+'.json')).read_text())
             assert not prior['startup_restart_enabled']
             assert sha(get(f, '/F/xwn-report-v2.txt')) == prior['report']['sha256']
             for row in prior['payloads']:
@@ -88,7 +89,13 @@ with FTP() as f:
         initial = json.loads((physical / 'physical-cycle-001.json').read_text())
         for name, key in [('default.xbe', 'launcher_sha256'), ('freeldr.sys', 'loader_sha256')]:
             assert sha(get(f, '/E/Applications/XWNFBoot/' + name)) == initial[key]
-        if a.kind == 'soak':
+        if a.kind == 'long':
+            research=k.parent/'native-windows-fatx-forensics'
+            assert json.loads((research/'nt5-physical-f-high-allocation-r15-qualification.json').read_text())['passed']
+            probe=(research/'artifacts/xwnlongsoak.exe').read_bytes()
+            assert sha(probe)==json.loads((research/'lifetime-long-fixture.json').read_text())['long_soak_sha256']=='89116898ab419d841a7b030aa1af43a12f00841613275583697a7abb21702808'
+            assert get(f,'/F/xwnlong.exe',True) is None
+        elif a.kind == 'soak':
             build = json.loads((physical/'cache-soak-build.json').read_text())
             assert sha((physical/'cache-probe.c').read_bytes()) == build['source_sha256']
             probe = get(f, '/F/xwnsoak.exe')
@@ -100,12 +107,14 @@ with FTP() as f:
         assert sha(previous) == json.loads((physical / 'physical-cycle-013.json').read_text())['current_startup_sha256']
         startup = b'@echo off\r\nC:\\xwncache.exe\r\n'
         if a.kind == 'soak':startup = b'@echo off\r\nC:\\xwnsoak.exe\r\n'
+        if a.kind == 'long':startup = b'@echo off\r\nC:\\xwnlong.exe\r\n'
         r = dict(scope=__doc__, created_utc=utc(), launch_attempted=False,
                  startup_restart_enabled=False, previous_startup_sha256=sha(previous),
                  startup_sha256=sha(startup), probe_sha256=sha(probe),
                  expected_drivers=expected_drivers, archives=[], checks={})
-        r.update(kind=a.kind, mapped_cases_expected=300 if a.kind=='soak' else 30,
-                 idle_ms=300000 if a.kind=='soak' else 15000)
+        r.update(kind=a.kind, mapped_cases_expected=30 if a.kind=='short' else 300,
+                 idle_ms={'short':15000,'soak':300000,'long':900000}[a.kind],
+                 manual_applications_expected=a.kind=='long')
         for name in ['xwn-report-v2.txt', 'xwn-cache-append.tmp', 'xwn-cache-map.tmp', 'xwn-cache-pressure.tmp']:
             assert get(f, '/F/' + name + archive_suffix, True) is None, 'Archive already exists'
         for name, path in [('previous-startup.cmd', startup_path),
@@ -114,6 +123,7 @@ with FTP() as f:
             r['checks'][name] = preserve(name, get(f, path))
         save()
         try:
+            if a.kind=='long':put(f,'/F/xwnlong.exe',probe)
             for name in ['xwn-report-v2.txt', 'xwn-cache-append.tmp', 'xwn-cache-map.tmp', 'xwn-cache-pressure.tmp']:
                 data = get(f, '/F/' + name, True)
                 if data is not None:
@@ -156,9 +166,9 @@ with FTP() as f:
         report = get(f, '/F/xwn-report-v2.txt')
         r['report'] = dict(**preserve('report.txt', report), text=report.rstrip(b' \0').decode('ascii', errors='replace'))
         r['probe_passed'] = report.startswith(b'XWN-CACHE-START') and b'XWN-CACHE-PASS' in report and b'XWN-CACHE-FAIL' not in report
-        if a.kind == 'soak':
+        if a.kind in ('soak','long'):
             r['mapped_cases_recorded'] = sum(line.startswith(b'map=') for line in report.splitlines())
-            r['soak_completed'] = b'five minute background soak completed' in report
+            r['soak_completed'] = (b'fifteen minute background soak completed' if a.kind=='long' else b'five minute background soak completed') in report
             r['probe_passed'] = r['probe_passed'] and r['soak_completed'] and r['mapped_cases_recorded']==300
         r['payloads'] = []
         for name, expected in {

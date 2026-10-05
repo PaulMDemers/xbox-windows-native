@@ -7,8 +7,8 @@ import pathlib
 k = pathlib.Path(__file__).resolve().parent
 read = lambda name: json.loads((k / name).read_text())
 sha = lambda data: hashlib.sha256(data).hexdigest()
-p=argparse.ArgumentParser();p.add_argument('--kind',choices=['short','soak'],default='short');a=p.parse_args()
-tag='soak' if a.kind=='soak' else 'trial'
+p=argparse.ArgumentParser();p.add_argument('--kind',choices=['short','soak','long'],default='short');a=p.parse_args()
+tag={'short':'trial','soak':'soak','long':'long'}[a.kind]
 trial = read('physical-'+tag+'.json')
 before = read('artifacts/'+tag+'/previous-system-events.json')
 after = read(tag+'-system-events.json')
@@ -23,7 +23,7 @@ delayed = [row for row in new if (row['source'] == 'Ftdisk' and row['event_id'] 
            or any('delayed write failed' in s.lower() for s in row['strings'])]
 starts = [row for row in new if row['source'] == 'EventLog' and row['event_id'] == 6005]
 stops = [row for row in new if row['source'] == 'EventLog' and row['event_id'] == 6006]
-mapped = [line for line in trial['report']['text'].splitlines() if line.startswith('map=' if a.kind=='soak' else 'mapped case=')]
+mapped = [line for line in trial['report']['text'].splitlines() if line.startswith('map=' if a.kind in ('soak','long') else 'mapped case=')]
 allocation = read('physical-'+tag+'-allocation.json')
 audit = read('post'+tag+'-audit.json')
 normal_restart = len(starts) == len(stops) == 1 and starts[0]['record'] < stops[0]['record']
@@ -46,15 +46,15 @@ r = dict(scope=__doc__, filesystem_sha256=trial['expected_drivers']['/F/winnt/sy
 r['kind']=a.kind
 r['soak_completed']=trial.get('soak_completed',False)
 r['archived_previous_payloads_verified']=bool(trial.get('archive_checks')) and all(x['passed'] for x in trial.get('archive_checks',[]))
-if a.kind=='soak':r['next_test']='Repeat-boot persistence and broader workload validation; a bounded pass is not general stability.'
-r['passed'] = (trial['passed'] and len(mapped)==(300 if a.kind=='soak' else 30) and normal_restart and not delayed
-               and (a.kind!='soak' or r['soak_completed'])
-               and (a.kind!='soak' or r['archived_previous_payloads_verified'])
+if a.kind in ('soak','long'):r['next_test']='Repeat-boot persistence and broader workload validation; a bounded pass is not general stability.'
+r['passed'] = (trial['passed'] and len(mapped)==(300 if a.kind in ('soak','long') else 30) and normal_restart and not delayed
+               and (a.kind=='short' or r['soak_completed'])
+               and (a.kind=='short' or r['archived_previous_payloads_verified'])
                and r['full_F_allocation_consistent'] and r['binary_and_hive_audit_passed']
                and audit['checked']==audit['expected_count']==3439 and len(audit['hives'])==9
                and all(h['tree']['passed'] and h['matching_sequences'] and h['checksum_valid'] for h in audit['hives'])
                and r['automatic_test_startup_disabled'])
-r['prior_failure_not_reproduced_in_this_soak'] = a.kind=='soak' and r['passed']
+r['prior_failure_not_reproduced_in_this_soak'] = a.kind in ('soak','long') and r['passed']
 (k/('physical-'+tag+'-qualification.json')).write_text(json.dumps(r, indent=2)+'\n')
 print('Bounded physical trial qualification:', r['passed'], '; delayed writes:', len(delayed),
       '; other error events:', len(r['other_error_records']))

@@ -136,3 +136,15 @@ Evidence is split by phase:
 
 Raw clusters, Windows files, firmware, hives and disk images remain ignored local
 artifacts. Only source, hashes, manifests and reports belong in the repository.
+
+## Fifteen-minute trial in progress
+
+The user requested a longer run while trying applications. One launch was
+accepted at 2026-10-05 05:50:53 UTC. `physical-long.json` records the launch;
+no physical completion is claimed yet. The unchanged candidate0088 uses the
+existing r15-qualified fifteen-minute helper (SHA256
+`89116898ab419d841a7b030aa1af43a12f00841613275583697a7abb21702808`).
+Prior five-minute reports and payloads are preserved under `.l88`. Collection
+uses `physical-trial.py collect --kind long` and disables startup first.
+The `postlong` scan/audit and `qualify-trial.py --kind long` produce separate
+results; manual application observations must be recorded separately.
