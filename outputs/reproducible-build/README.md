@@ -138,7 +138,9 @@ package readback. [Package result](pipeline-002-package.json) records SHA-256
 The private archive copy is under
 `E:/Codex-archive/xbox-windows-native/reconstructed-overlay-20261005`.
 This new compilation differs from the earlier package; only repeated packaging
-of identical inputs is byte-identical. No reconstructed package has been booted.
+of identical inputs is byte-identical. The package subsequently passed its
+[first emulator boot and GDI workload](../rebuilt-overlay-validation/README.md);
+physical promotion and broader runtime validation remain open.
 
 Pipeline 001 failed during patch replay when host C: filled. WSL mounted
 read-only and could not save its failure report. Closed owned traces were copied

@@ -1,0 +1,90 @@
+{
+  "scope": "Check the private-path runner and unchanged probe against captured NT5 exports.",
+  "files": [
+    {
+      "name": "runner.exe",
+      "sha256": "753e2490e29f847cc1dcb129bb3f65d2a5db24bb12a0fa3c0771607a80df260c",
+      "source_sha256": "906c124f14c5de5f7206234f5793bd03a96683de77bca9fd668d88e325455067",
+      "bytes": 10235,
+      "imports": {
+        "ADVAPI32.dll": [
+          "AdjustTokenPrivileges",
+          "LookupPrivilegeValueA",
+          "OpenProcessToken"
+        ],
+        "KERNEL32.dll": [
+          "CloseHandle",
+          "CreateFileA",
+          "CreateProcessA",
+          "ExitProcess",
+          "FlushFileBuffers",
+          "GetCurrentProcess",
+          "GetExitCodeProcess",
+          "GetLastError",
+          "GetStdHandle",
+          "SetLastError",
+          "WaitForSingleObject",
+          "WriteFile"
+        ],
+        "USER32.dll": [
+          "ExitWindowsEx"
+        ]
+      }
+    },
+    {
+      "name": "replay.exe",
+      "sha256": "7d90f3c0d6f8bb4615792324c749f4f2bfcf8663928d93ac5a3b41f9afec23fb",
+      "source_sha256": "56e31b0eda304c77bb2604dbfe94111b2d93b64a1171c955d37a178d0abdd0c9",
+      "bytes": 20188,
+      "imports": {
+        "GDI32.dll": [
+          "BitBlt",
+          "CreateCompatibleDC",
+          "CreateDIBSection",
+          "DeleteDC",
+          "DeleteObject",
+          "GdiFlush",
+          "GdiSetBatchLimit",
+          "GetClipBox",
+          "GetDeviceCaps",
+          "PatBlt",
+          "SelectObject"
+        ],
+        "KERNEL32.dll": [
+          "CloseHandle",
+          "CreateFileA",
+          "ExitProcess",
+          "FlushFileBuffers",
+          "GetLastError",
+          "GetModuleHandleA",
+          "GetTickCount",
+          "Sleep",
+          "WriteFile"
+        ],
+        "USER32.dll": [
+          "BeginPaint",
+          "CreateWindowExA",
+          "DefWindowProcA",
+          "DestroyWindow",
+          "DispatchMessageA",
+          "EndPaint",
+          "EnumDisplaySettingsA",
+          "GetAsyncKeyState",
+          "GetClientRect",
+          "GetDC",
+          "IsWindow",
+          "PeekMessageA",
+          "PostQuitMessage",
+          "RegisterClassA",
+          "ReleaseDC",
+          "SetForegroundWindow",
+          "SetWindowPos",
+          "TranslateMessage",
+          "UpdateWindow",
+          "wsprintfA"
+        ]
+      }
+    }
+  ],
+  "passed": true
+}

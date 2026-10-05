@@ -25,8 +25,11 @@ Post-release engineering: [fresh component builds](outputs/reproducible-build/RE
 [reusable Xbox development skill](outputs/developer-skills/README.md).
 The repository remains private. Fresh builds now produce seven native components
 and the Cromwell launcher; their eight-file overlay packages identically on
-repeat assembly. Complete bootable-system creation, runtime qualification of the
-reconstructed package and byte-identical compiler outputs remain open work.
+repeat assembly. Complete bootable-system creation, broad runtime qualification
+and byte-identical compiler outputs remain open work.
+
+The rebuilt overlay has now passed its [first emulator boot and GDI workload](outputs/rebuilt-overlay-validation/README.md).
+Broader runtime and physical qualification remain open.
 
 ## Development evidence and history
 

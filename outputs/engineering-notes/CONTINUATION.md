@@ -1,22 +1,28 @@
-# Continuation after package and GDI probe validation
+# Continuation after rebuilt-overlay boot and physical GDI launch
 
-Updated 2026-10-05. Physical 0.1.0 remains unchanged; no hardware access this
-turn. The private repository and v0.1.0 tag remain unchanged in visibility/tag
-identity. All owned emulator and build processes are closed. No automation is
-running for this work.
+Updated 2026-10-05. Physical driver/loader baseline remains 0.1.0. One physical
+GDI benchmark was accepted at 21:09:38 UTC and has not returned to dashboard FTP
+within the four-minute observation. A screen-state question is pending; do not
+infer a crash or relaunch. Only new /F/xwngdi01 helpers and test startup changed.
+Collect must restore original startup first when the dashboard is available.
+All owned emulator/build/observer processes are closed; no automation is running.
+Private repository visibility and v0.1.0 tag identity remain unchanged.
 
 ## Results
 
 - Added one-command native reconstruction/package tooling. Pipeline002 completed
   fresh source replay, seven native components, Cromwell launcher and verified
-  eight-file overlay. It is not a Windows installer and has no runtime
-  qualification. Reports: outputs/reproducible-build/pipeline-002*.json.
+  eight-file overlay. It is not a Windows installer. The complete overlay now
+  passes one emulator boot/GDI/restart and cold byte/event checks in
+  outputs/rebuilt-overlay-validation. Broader/physical qualification is pending.
 - HAL reconstruction now explicitly enables FRAMEBUFFER_ONLY_PCI as required by
   the qualified physical artifact. The later live CMake cache was misleadingly
   OFF. Builds001-004 remain compilation evidence, not baseline-equivalent.
 - Repeated package assembly from identical inputs is byte-identical. Fresh
   compilation is not yet byte-identical. FATX/video/network/boot-video .text
-  matches captured baseline; HAL/rosload differences still need investigation.
+  matches captured baseline. Exact tested-package comparison attributes all HAL
+  code differences to relocation slots; two rosload non-pointer differences are
+  diagnostic line-number constants. Pointed data is not fully normalized.
 - GDI v2 failed due to startup-dialog occlusion. V3 enforces visibility and
   passes all four copy checks, including both overlap directions. One emulator
   launch, normal runner restart, dashboard return and cold EVT6006 verified.
@@ -50,12 +56,15 @@ running for this work.
 
 ## Next actions
 
-1. Profile physical baseline with the visibility-controlled GDI probe. Keep
-   timing runs free of unrelated host work; record physical results separately.
+1. Resolve physical-gdi-001 screen state. When dashboard FTP returns, run
+   outputs/video-next/physical-gdi-001/trial.py collect with existing FTP env,
+   then qualify.py. Collection restores startup before reading logs. Do not
+   overwrite trial.json, erase attempt.log or issue a second Windows launch.
+   Preserve failures; request manual reboot only after the screen is understood.
+2. Use physical timings only if correctness and normal shutdown qualify them.
    Review framebuffer cache/stride/copy paths before changing acceleration.
-2. Investigate HAL/rosload binary differences, then boot the reconstructed
-   eight-component overlay in a new owned emulator fixture. Compilation alone
-   does not authorize claiming hardware equivalence. Preserve current baseline.
+   Extend the reconstructed overlay's storage/network coverage in a new fixture;
+   its current bounded emulator PASS does not establish hardware equivalence.
 3. Complete local user-media assembly and toolchain environment pinning for a
    fresh reproducible installation; full OS packaging remains open.
 4. Plan 720p then1080i after console revision and cable/HDMI adapter are known.

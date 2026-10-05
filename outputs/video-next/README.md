@@ -4,6 +4,11 @@ The [plan](PLAN.md) separates baseline measurement, mapping/cache review,
 software/GPU drawing paths and video-mode handoff. No new video driver has
 been installed on the physical Xbox. Its 0.1.0 hashes remain the reference.
 
+Current result: [probe v3](probe-v3/README.md) fixes startup-window occlusion and
+passes all four correctness stages with normal restart and cold log verification.
+The earlier failures below are retained evidence. A separate physical baseline
+trial lives in `physical-gdi-001`; its state and logs determine that outcome.
+
 `gdi-probe.c` is the first implementation. Build with `Build-Probe.ps1` using
 the existing RosBE cross compiler. It uses only imports found in the captured
 physical NT5 DLLs; `probe-build-review.json` records the binary/source hashes.
