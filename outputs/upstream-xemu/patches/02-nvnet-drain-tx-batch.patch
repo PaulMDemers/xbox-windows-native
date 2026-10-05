@@ -1,0 +1,17 @@
+diff --git a/hw/xbox/mcpx/nvnet/nvnet.c b/hw/xbox/mcpx/nvnet/nvnet.c
+--- a/hw/xbox/mcpx/nvnet/nvnet.c
++++ b/hw/xbox/mcpx/nvnet/nvnet.c
+@@ -540,10 +540,9 @@ static void dma_packet_from_guest(NvNetState *s)
+ 
+         advance_next_tx_ring_desc_addr(s);
+ 
+-        if (is_last_packet) {
+-            // FIXME
+-            break;
+-        }
++        /* A guest may queue several packets before issuing one TX kick.
++         * Continue to the first invalid descriptor, bounded by the ring size,
++         * so a completed packet cannot strand the remainder of the batch. */
+     }
+ 
+     set_dma_idle(s, true);

@@ -19,6 +19,13 @@ See the [0.1.0 release and recovery bundles](outputs/release-0.1.0/README.md),
 filesystem is candidate0088, with the dimensions/trace miniport and physical HAL.
 The chronology below includes superseded candidates and their failures.
 
+Post-release engineering: [fresh component builds](outputs/reproducible-build/README.md),
+[public repository preparation](outputs/public-release/PLAN.md),
+[xemu upstream inventory](outputs/upstream-xemu/README.md), and
+[reusable Xbox development skill](outputs/developer-skills/README.md).
+The repository remains private. Two clean builds compile five native components;
+complete bootable-system packaging and byte-identical builds remain open work.
+
 ## Development evidence and history
 
 - **Physical Windows 2000 desktop confirmed:** keyboard, mouse, drive browsing,

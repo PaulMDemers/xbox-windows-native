@@ -1,0 +1,100 @@
+{
+  "status": "compiled",
+  "started_utc": "2026-10-05T20:30:40.685107+00:00",
+  "profile": "all",
+  "source_base": "afc0127e8f937ab68503d715d948844973756aa1",
+  "source_tree": "adf9b3d166ef84630a48d7393fcc9fe3ce78f104",
+  "inputs_sha256": "7afc9d5eddc8ce3eef4a2c39d6a0c860897bd8a1484024c3ae6dafe16c24000a",
+  "tool_sha256": {
+    "RosBE.sh": "1d04daf7393952441c62691bb7735042d236b0196778f1632f0a4383476143b7",
+    "bin/cmake": "049737b62e2803fd657041cf65b6bb6de7756db377c92c686c63eec373604e75",
+    "bin/ninja": "371e855768aa214225d4b17f49902cdd2b2daa8764514134524b07282c9e9e07",
+    "i386/bin/i686-w64-mingw32-gcc": "83015512671faaa0dbe6f043a0107f79c049f4268a67e39955388a8d9a0182e5"
+  },
+  "commands": [
+    [
+      "git",
+      "init",
+      "-q",
+      "/home/paul/xbox-windows-native/build/reconstruction-003/source"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/reconstruction-003/source",
+      "fetch",
+      "--depth=1",
+      "/home/paul/xbox-windows-native/sources/reactos",
+      "afc0127e8f937ab68503d715d948844973756aa1"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/reconstruction-003/source",
+      "checkout",
+      "--detach",
+      "FETCH_HEAD"
+    ],
+    [
+      "/usr/bin/python3",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/tools/apply-series.py",
+      "--source",
+      "/home/paul/xbox-windows-native/build/reconstruction-003/source",
+      "--manifest",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-windows-fatx-forensics/patch-check-0088.json"
+    ],
+    [
+      "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/RosBE.sh",
+      "/home/paul/xbox-windows-native/build/reconstruction-003/source",
+      "0",
+      "i386"
+    ],
+    [
+      "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/RosBE.sh",
+      "/home/paul/xbox-windows-native/build/reconstruction-003/source",
+      "0",
+      "i386"
+    ],
+    [
+      "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/RosBE.sh",
+      "/home/paul/xbox-windows-native/build/reconstruction-003/source",
+      "0",
+      "i386"
+    ]
+  ],
+  "artifacts": [
+    {
+      "name": "xwnfatx.sys",
+      "bytes": 167827,
+      "sha256": "800944f7809a2aa40d62fda863bba9365badedda586ad765ed6331feac259ce0",
+      "profile": "fatx"
+    },
+    {
+      "name": "freeldr.sys",
+      "bytes": 169984,
+      "sha256": "aec329fab07eca88a4113749e0a43b865191939fcccf522afaeded70758bd536",
+      "profile": "boot"
+    },
+    {
+      "name": "rosload.exe",
+      "bytes": 263826,
+      "sha256": "81f161885f5ed35065150670b7b1551cf3ccc826a9f0949a4f843d70d4a619e0",
+      "profile": "boot"
+    },
+    {
+      "name": "halxboxnt5.dll",
+      "bytes": 2422698,
+      "sha256": "4cef05ccda5a08f8c9db9da87f3be8efa7e9062d17a42ae7bf9eb8bc7d4d5808",
+      "profile": "boot"
+    },
+    {
+      "name": "xboxvnt5.sys",
+      "bytes": 40882,
+      "sha256": "d0be94289af92f6eafa4c94b79694b3c0d651bd379554c8d566944a7f75969ac",
+      "profile": "video"
+    }
+  ],
+  "scope": "fresh source and compilation only; no runtime qualification",
+  "verified_source_tree": "adf9b3d166ef84630a48d7393fcc9fe3ce78f104",
+  "finished_utc": "2026-10-05T20:31:40.514505+00:00"
+}

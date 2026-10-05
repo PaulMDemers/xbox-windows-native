@@ -1,0 +1,39 @@
+--- a/hw/xbox/nv2a/nv2a.c
++++ b/hw/xbox/nv2a/nv2a.c
+@@ -212,7 +212,7 @@
+ 
+      /* PCI exposed vram */
+     memory_region_init_alias(&d->vram_pci, OBJECT(d), "nv2a-vram-pci", d->vram,
+-                             0, memory_region_size(d->vram));
++                             0, getenv("XWN_NV2A_RESOURCE_MODEL") ? 0x08000000 : memory_region_size(d->vram));
+     pci_register_bar(PCI_DEVICE(d), 1, PCI_BASE_ADDRESS_MEM_PREFETCH, &d->vram_pci);
+ 
+ 
+@@ -223,6 +223,17 @@
+                          0x100000); */
+ 
+     memory_region_add_subregion(&d->mmio, 0x700000, &d->ramin);
++    /* Resource-allocation experiment only, not a complete hardware model.
++     * "128-only" isolates BAR1 size; "128-plus-extra" also exposes the
++     * physical registry's 512 KiB prefetchable BAR2 requirement. */
++    if (getenv("XWN_NV2A_RESOURCE_MODEL") &&
++        !strcmp(getenv("XWN_NV2A_RESOURCE_MODEL"), "128-plus-extra")) {
++        memory_region_init_alias(&d->resource_test_bar2, OBJECT(d),
++                                 "nv2a-resource-test-bar2", &d->ramin, 0, 0x80000);
++        pci_register_bar(PCI_DEVICE(d), 2, PCI_BASE_ADDRESS_MEM_PREFETCH,
++                         &d->resource_test_bar2);
++    }
++
+ 
+ 
+     d->vram_ptr = memory_region_get_ram_ptr(d->vram);
+--- a/hw/xbox/nv2a/nv2a_int.h
++++ b/hw/xbox/nv2a/nv2a_int.h
+@@ -81,6 +81,7 @@
+ 
+     MemoryRegion *vram;
+     MemoryRegion vram_pci;
++    MemoryRegion resource_test_bar2;
+     uint8_t *vram_ptr;
+     MemoryRegion ramin;
+     uint8_t *ramin_ptr;
