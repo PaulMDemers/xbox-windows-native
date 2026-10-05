@@ -1,0 +1,66 @@
+{
+  "status": "compiled",
+  "base_commit": "9fc54d0c7cbed7bc3c70373642d833684853011f",
+  "patch_sha256": {
+    "outputs/native-windows-physical-loader/cromwell-base.patch": "69964e0a5f5557881486b4668ddd2e940ecbf1cc26110e1960366ca7ecf5e12e",
+    "outputs/native-windows-physical-f/cromwell-f-launcher.patch": "1a47d42c371540549a8fb1f4de40404ca8436e4ad35f1e2c8236f82bc367fbb2"
+  },
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "commands": [
+    [
+      "git",
+      "init",
+      "-q",
+      "/home/paul/xbox-windows-native/build/launcher-reconstruction-001/source"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/launcher-reconstruction-001/source",
+      "fetch",
+      "--depth=1",
+      "/home/paul/xbox-windows-native/sources/cromwell",
+      "9fc54d0c7cbed7bc3c70373642d833684853011f"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/launcher-reconstruction-001/source",
+      "checkout",
+      "--detach",
+      "FETCH_HEAD"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/launcher-reconstruction-001/source",
+      "apply",
+      "--index",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-windows-physical-loader/cromwell-base.patch"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/launcher-reconstruction-001/source",
+      "apply",
+      "--index",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-windows-physical-f/cromwell-f-launcher.patch"
+    ],
+    [
+      "make",
+      "all",
+      "CC=/usr/bin/x86_64-linux-gnu-gcc-12",
+      "GITREV=9fc54d0-xwn-fboot",
+      "EXTRA_CROM_CFLAGS=-DXWN_PHYSICAL_PREFLIGHT"
+    ]
+  ],
+  "started_utc": "2026-10-05T20:36:29.595745+00:00",
+  "scope": "Fresh launcher compilation only; no physical or emulator qualification",
+  "patched_tree": "24710a16e07df4c93bbe82d620a0c0a48e3c8097",
+  "artifact": {
+    "name": "default.xbe",
+    "sha256": "37a24490e0efd9766db430342e48898e80951d11b44845bea8de8014a89a5df7",
+    "bytes": 294384
+  },
+  "finished_utc": "2026-10-05T20:36:34.781821+00:00"
+}

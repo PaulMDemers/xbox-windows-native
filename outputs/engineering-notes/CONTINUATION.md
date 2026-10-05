@@ -1,59 +1,69 @@
-# Continuation after release/build preparation
+# Continuation after package and GDI probe validation
 
-Updated 2026-10-05. Physical 0.1.0 baseline remains unchanged and the Xbox was last
-reported on the dashboard. No console test, deployment, reboot or emulator launch
-was performed during this preparation. No automation or build is left running.
+Updated 2026-10-05. Physical 0.1.0 remains unchanged; no hardware access this
+turn. The private repository and v0.1.0 tag remain unchanged in visibility/tag
+identity. All owned emulator and build processes are closed. No automation is
+running for this work.
 
-## Completed
+## Results
 
-- Installed `xbox-native-bringup` in the shared skills directory, validated with
-  skill-creator, and linked it from homebrew-console-dev. Its versioned copy and
-  installation hashes are under `outputs/developer-skills`.
-- Added an xemu patch/evidence inventory in `outputs/upstream-xemu`: Cromwell
-  MMIO alignment and TX batching are candidates; the NV2A resource experiment is
-  diagnostic only. Existing upstream issues 2305/2910 are recorded. No contact
-  or submission made, and no shared Linux project files changed.
-- Added public-release plan and read-only history inventory under
-  `outputs/public-release`. Private repository visibility and v0.1.0 tag unchanged.
-  Public source licensing, personal-data review and sanitized export remain open.
-- Added `tools/rebuild-native.py` with pinned patch inputs, exact source-tree
-  verification, parameterized paths and independent fresh build profiles.
-  Three fresh builds completed filesystem, loader, second-stage loader, HAL and
-  working-configuration video miniport. Two-build comparison finds small binary
-  differences; deterministic binaries and full bootable package creation are
-  not yet established. No reconstructed output has runtime qualification.
+- Added one-command native reconstruction/package tooling. Pipeline002 completed
+  fresh source replay, seven native components, Cromwell launcher and verified
+  eight-file overlay. It is not a Windows installer and has no runtime
+  qualification. Reports: outputs/reproducible-build/pipeline-002*.json.
+- HAL reconstruction now explicitly enables FRAMEBUFFER_ONLY_PCI as required by
+  the qualified physical artifact. The later live CMake cache was misleadingly
+  OFF. Builds001-004 remain compilation evidence, not baseline-equivalent.
+- Repeated package assembly from identical inputs is byte-identical. Fresh
+  compilation is not yet byte-identical. FATX/video/network/boot-video .text
+  matches captured baseline; HAL/rosload differences still need investigation.
+- GDI v2 failed due to startup-dialog occlusion. V3 enforces visibility and
+  passes all four copy checks, including both overlap directions. One emulator
+  launch, normal runner restart, dashboard return and cold EVT6006 verified.
+  Qualified FATX/video hashes unchanged. See outputs/video-next/probe-v3.
+  Timings include host build activity and are not Xbox performance evidence.
+- Shared xbox-native-bringup skill updated and structurally validated. FATX
+  notes, public-release plan, and xemu patch inventory remain available from
+  the root README. No upstream submissions or public visibility change.
 
-## Retained artifacts
+## Host incident and retained artifacts
 
-- Private recovery archives: `E:/Codex-archive/xbox-windows-native/0.1.0`; five
-  verified archives, hashes and recovery instructions under release-0.1.0.
-- Native Linux source/build/log/cache/artifact directories:
-  `/home/paul/xbox-windows-native/build/reconstruction-001`, `-002`, `-003`.
-  Each is an owned independent fetch/build; original live source/build trees
-  were not modified. Compact reports are in reproducible-build. Retain them for
-  binary-difference analysis; no need to archive duplicate full source copies.
-- Video fixture and run `nt5-gdi-baseline-001` remain closed and preserved.
-  Its pixel tests failed; do not reuse its identity or call its timings a valid
-  benchmark. The failure has not established a display-driver regression.
+- Pipeline001 filled C:; WSL fell back to read-only. Archived 46 closed owned
+  CPU logs to E:/Codex-archive/xbox-windows-native/trace-archive-20261005 with
+  SHA256 verification. Original run folders contain cpu-trace.archive.json
+  pointers. No QCOW backing chain was relocated. Ubuntu then mounted writable
+  without filesystem repair or a global reset. C: has about24GiB free after
+  the successful retry. New builds check actual Windows backing-volume space,
+  not only Linux virtual capacity. Keep watching host space before more fixtures.
+- Failed pipeline001 checkout retained at
+  /home/paul/xbox-windows-native/build/package-reconstruction-001.
+- Successful one-command output:
+  /home/paul/xbox-windows-native/build/package-reconstruction-002.
+  Private overlay copy: E:/Codex-archive/xbox-windows-native/reconstructed-overlay-20261005.
+  ZIP SHA256:5ada6fb5887227f4c4b50d2197bb7a498342b4cd2f4eab90d81716990d5d30e3.
+- Earlier reconstruction001-005, launcher-reconstruction-001 and overlay001/002
+  retained under the same native build root. Do not reuse attempt identities.
+- Closed owned GDI runs: nt5-gdi-baseline-001 (old failure), -002 (occluded),
+  -003 (PASS). Fixture parents and children remain at original paths.
+- Verified 0.1.0 recovery bundles remain at
+  E:/Codex-archive/xbox-windows-native/0.1.0; no restore was performed.
 
 ## Next actions
 
-1. Refine the GDI probe: dedicated window, settled desktop, DIB-to-DIB first,
-   upload/readback next, directional overlap last; log first mismatch and RGB.
-   Validate the probe before modifying the video driver. Use a new owned fixture.
-2. Resume framebuffer/cache/stride and software copy profiling, then evaluate
-   accelerated drawing. Cable/HDMI adapter and console revision answer remains
-   pending for mode work. Stage 720p before 1080i; reserve/handoff memory jointly.
-3. Extend the builder to Cromwell, remaining installed custom drivers and config
-   packaging, then user-provided local media assembly. Pin the whole toolchain
-   environment and explain the current small binary differences before stronger
-   reproducibility claims. Keep deployment an explicit separate action.
-4. Prepare a small sanitized public source export with component licensing and
-   focused tests. Do not flip repository visibility or rewrite frozen history.
-5. Prepare current-upstream NVNET regressions and hardware-comparison tests,
-   preserving the shared Linux project's ownership and existing evidence.
-   Review a concrete proposal with the user before actual upstream submission.
+1. Profile physical baseline with the visibility-controlled GDI probe. Keep
+   timing runs free of unrelated host work; record physical results separately.
+   Review framebuffer cache/stride/copy paths before changing acceleration.
+2. Investigate HAL/rosload binary differences, then boot the reconstructed
+   eight-component overlay in a new owned emulator fixture. Compilation alone
+   does not authorize claiming hardware equivalence. Preserve current baseline.
+3. Complete local user-media assembly and toolchain environment pinning for a
+   fresh reproducible installation; full OS packaging remains open.
+4. Plan 720p then1080i after console revision and cable/HDMI adapter are known.
+   Coordinate loader/HAL/framebuffer reservation/miniport. Current HAL BAR2
+   suppression is a compatibility workaround, not an accelerated GPU contract.
+5. Prepare sanitized public export with per-component licensing and private
+   history review. Prepare focused xemu reproductions against current upstream;
+   no submission until the concrete proposal is reviewed with the user.
 
-UnleashX root Windows entry was installed previously with backup and readback;
-visibility after dashboard reload is still not user-confirmed. Do not reinstall
-it or start Windows just to recheck this note.
+UnleashX root Windows entry was installed previously with backup/readback.
+Dashboard visibility is not user-confirmed; do not reinstall it to refresh notes.

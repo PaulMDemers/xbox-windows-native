@@ -23,8 +23,10 @@ Post-release engineering: [fresh component builds](outputs/reproducible-build/RE
 [public repository preparation](outputs/public-release/PLAN.md),
 [xemu upstream inventory](outputs/upstream-xemu/README.md), and
 [reusable Xbox development skill](outputs/developer-skills/README.md).
-The repository remains private. Two clean builds compile five native components;
-complete bootable-system packaging and byte-identical builds remain open work.
+The repository remains private. Fresh builds now produce seven native components
+and the Cromwell launcher; their eight-file overlay packages identically on
+repeat assembly. Complete bootable-system creation, runtime qualification of the
+reconstructed package and byte-identical compiler outputs remain open work.
 
 ## Development evidence and history
 

@@ -1,0 +1,134 @@
+{
+  "status": "compiled",
+  "started_utc": "2026-10-05T20:54:48.816963+00:00",
+  "profile": "all",
+  "space_preflight": {
+    "minimum_free_gib": 20,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/home/paul/xbox-windows-native/build/package-reconstruction-002",
+        "free_bytes": 959015088128
+      },
+      {
+        "free_bytes": 24303050752,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "source_base": "afc0127e8f937ab68503d715d948844973756aa1",
+  "source_tree": "adf9b3d166ef84630a48d7393fcc9fe3ce78f104",
+  "inputs_sha256": "29339cb49d981906e1b1fe1bd114d144c13bc6825913b2b2fdea54061df9e61e",
+  "tool_sha256": {
+    "RosBE.sh": "1d04daf7393952441c62691bb7735042d236b0196778f1632f0a4383476143b7",
+    "bin/cmake": "049737b62e2803fd657041cf65b6bb6de7756db377c92c686c63eec373604e75",
+    "bin/ninja": "371e855768aa214225d4b17f49902cdd2b2daa8764514134524b07282c9e9e07",
+    "i386/bin/i686-w64-mingw32-gcc": "83015512671faaa0dbe6f043a0107f79c049f4268a67e39955388a8d9a0182e5"
+  },
+  "commands": [
+    [
+      "git",
+      "init",
+      "-q",
+      "/home/paul/xbox-windows-native/build/package-reconstruction-002/native/source"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/package-reconstruction-002/native/source",
+      "fetch",
+      "--depth=1",
+      "/home/paul/xbox-windows-native/sources/reactos",
+      "afc0127e8f937ab68503d715d948844973756aa1"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/package-reconstruction-002/native/source",
+      "checkout",
+      "--detach",
+      "FETCH_HEAD"
+    ],
+    [
+      "/usr/bin/python3",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/tools/apply-series.py",
+      "--source",
+      "/home/paul/xbox-windows-native/build/package-reconstruction-002/native/source",
+      "--manifest",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-windows-fatx-forensics/patch-check-0088.json"
+    ],
+    [
+      "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/RosBE.sh",
+      "/home/paul/xbox-windows-native/build/package-reconstruction-002/native/source",
+      "0",
+      "i386"
+    ],
+    [
+      "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/RosBE.sh",
+      "/home/paul/xbox-windows-native/build/package-reconstruction-002/native/source",
+      "0",
+      "i386"
+    ],
+    [
+      "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/RosBE.sh",
+      "/home/paul/xbox-windows-native/build/package-reconstruction-002/native/source",
+      "0",
+      "i386"
+    ],
+    [
+      "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/RosBE.sh",
+      "/home/paul/xbox-windows-native/build/package-reconstruction-002/native/source",
+      "0",
+      "i386"
+    ]
+  ],
+  "artifacts": [
+    {
+      "name": "xwnfatx.sys",
+      "bytes": 167827,
+      "sha256": "dcf4343afc60ffbebf5d97626ea6315cfd1f87785f91f1b7db427b0903070fdf",
+      "profile": "fatx"
+    },
+    {
+      "name": "freeldr.sys",
+      "bytes": 169984,
+      "sha256": "7380054bbcf238ff22da9119ebbbe299ee358fa5990679f44d4455e6d10099d3",
+      "profile": "boot"
+    },
+    {
+      "name": "rosload.exe",
+      "bytes": 263826,
+      "sha256": "b02f2ac1a5d31d75a4ab38471a02964507a339909d6f828e3f934ccfa8809a0a",
+      "profile": "boot"
+    },
+    {
+      "name": "halxboxnt5.dll",
+      "bytes": 2422745,
+      "sha256": "1c6f1b21fe742192606e53268f471d647e798bcf5ac44d2493a8c05595e3286f",
+      "profile": "boot"
+    },
+    {
+      "name": "xboxvnt5.sys",
+      "bytes": 40882,
+      "sha256": "ebe3d9153a3725ba24de236ded068a027472eb02c1df0f3705f065601cf44671",
+      "profile": "video"
+    },
+    {
+      "name": "xboxbvid.dll",
+      "bytes": 43361,
+      "sha256": "b15db15ee0ade33c21197ef45981244459394641a3f1e499d5a1709bf2c4b66a",
+      "profile": "support"
+    },
+    {
+      "name": "nvnetnt5.sys",
+      "bytes": 83248,
+      "sha256": "315399a82d8f98300541bd54f80bf2be1514c3259f15389b52adf11cb57691fa",
+      "profile": "support"
+    }
+  ],
+  "scope": "fresh source and compilation only; no runtime qualification",
+  "verified_source_tree": "adf9b3d166ef84630a48d7393fcc9fe3ce78f104",
+  "finished_utc": "2026-10-05T20:56:07.555347+00:00"
+}

@@ -6,6 +6,9 @@ Resolve the exact base revision and ordered patch manifest. Numeric sorting is
 unsafe when cumulative replacements and rejected experiments coexist. Replay
 into a fresh private checkout, verify the resulting Git tree, and build with
 explicit flags/tool versions. Do not reset the working diagnostic source tree.
+Recover flags from the qualified artifact's build record, not just the current
+CMake cache: later control experiments may have switched a critical opt-in off.
+Compare installed artifacts and reject incomplete profiles before packaging.
 Separate source reproducibility, repeatable build execution, byte-identical
 outputs and hardware qualification; each needs its own evidence.
 
@@ -14,6 +17,11 @@ parameterized. Record real commands and per-target output hashes. Imported
 Windows media, firmware, dashboard binaries and user profiles are local inputs,
 not artifacts to copy into a public source release. Build and package commands
 should not implicitly deploy or launch the console.
+
+Before a fresh WSL build, check the Windows volume holding its VHD as well as
+Linux free space: the virtual disk's apparent capacity can exceed host space.
+Archive closed owned trace logs with hashes before deleting their local copies;
+do not relocate QCOW backing chains as if they were independent files.
 
 NT5 applications must target its available imports and PE subsystem version.
 Check the actual target DLL exports. A modern compiler may introduce runtime

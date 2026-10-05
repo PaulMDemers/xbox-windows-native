@@ -1,0 +1,57 @@
+{
+  "status": "packaged",
+  "space_preflight": {
+    "minimum_free_gib": 20,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/home/paul/xbox-windows-native/build",
+        "free_bytes": 959015096320
+      },
+      {
+        "free_bytes": 23826124800,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "commands": [
+    [
+      "/usr/bin/python3",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/tools/rebuild-native.py",
+      "--source-cache",
+      "/home/paul/xbox-windows-native/sources/reactos",
+      "--rosbe",
+      "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1",
+      "--output",
+      "/home/paul/xbox-windows-native/build/package-reconstruction-002/native",
+      "--jobs",
+      "4"
+    ],
+    [
+      "/usr/bin/python3",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/tools/rebuild-launcher.py",
+      "--source-cache",
+      "/home/paul/xbox-windows-native/sources/cromwell",
+      "--cc",
+      "/usr/bin/gcc-12",
+      "--output",
+      "/home/paul/xbox-windows-native/build/package-reconstruction-002/launcher"
+    ],
+    [
+      "/usr/bin/python3",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/tools/package-native.py",
+      "--native-build",
+      "/home/paul/xbox-windows-native/build/package-reconstruction-002/native",
+      "--launcher-build",
+      "/home/paul/xbox-windows-native/build/package-reconstruction-002/launcher",
+      "--output",
+      "/home/paul/xbox-windows-native/build/package-reconstruction-002/package"
+    ]
+  ],
+  "started_utc": "2026-10-05T20:54:47.670661+00:00",
+  "scope": "Compilation and packaging only; no deployment or runtime qualification",
+  "current_step": "package-native.py",
+  "finished_utc": "2026-10-05T20:56:13.330823+00:00"
+}

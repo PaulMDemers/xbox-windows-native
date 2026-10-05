@@ -13,6 +13,7 @@ import shlex
 import shutil
 import subprocess
 import sys
+from build_space import require_space
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -27,7 +28,7 @@ def main():
     p.add_argument('--source-cache', type=Path, required=True)
     p.add_argument('--rosbe', type=Path, required=True)
     p.add_argument('--output', type=Path, required=True)
-    p.add_argument('--profile', choices=['fatx', 'boot', 'video', 'all'], default='all')
+    p.add_argument('--profile', choices=['fatx', 'boot', 'video', 'support', 'all'], default='all')
     p.add_argument('--jobs', type=int, default=4)
     a = p.parse_args()
     if sys.platform != 'linux' or os.environ.get('XWN_BUILD_LEASE') != 'held':
@@ -55,9 +56,10 @@ def main():
     out = a.output.resolve()
     if out.is_relative_to(cache) or out.is_relative_to(rosbe):
         raise RuntimeError('Output must not be inside a source cache or toolchain')
+    space = require_space(out)
     out.mkdir(parents=True, exist_ok=False)
     report = {'status': 'started', 'started_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
-              'profile': a.profile, 'source_base': lock['base_commit'],
+              'profile': a.profile, 'space_preflight': space, 'source_base': lock['base_commit'],
               'source_tree': lock['result_tree'], 'inputs_sha256': digest(lock_path),
               'tool_sha256': lock['tool_sha256'], 'commands': [], 'artifacts': [],
               'scope': 'fresh source and compilation only; no runtime qualification'}

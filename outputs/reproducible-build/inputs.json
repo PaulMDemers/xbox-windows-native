@@ -133,7 +133,8 @@
         "XBOX_NT5_VIDEO_TRACE": "OFF",
         "XBOX_NT5_VIDEO_PNP_DIAGNOSTIC": "OFF",
         "XBOX_NT5_VIDEO_DIAGNOSTIC": "OFF",
-        "XBOX_NT5_VIDEO_ENTRY_DIAGNOSTIC": "OFF"
+        "XBOX_NT5_VIDEO_ENTRY_DIAGNOSTIC": "OFF",
+        "XBOX_NT5_FRAMEBUFFER_ONLY_PCI": "ON"
       },
       "targets": [
         "freeldr",
@@ -170,13 +171,35 @@
         "XBOX_NT5_VIDEO_TRACE": "ON",
         "XBOX_NT5_VIDEO_PNP_DIAGNOSTIC": "ON",
         "XBOX_NT5_VIDEO_DIAGNOSTIC": "ON",
-        "XBOX_NT5_VIDEO_ENTRY_DIAGNOSTIC": "OFF"
+        "XBOX_NT5_VIDEO_ENTRY_DIAGNOSTIC": "OFF",
+        "XBOX_NT5_FRAMEBUFFER_ONLY_PCI": "ON"
       },
       "targets": [
         "xboxvnt5"
       ],
       "artifacts": {
         "win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.sys": "xboxvnt5.sys"
+      }
+    },
+    "support": {
+      "definitions": {
+        "ARCH": "i386",
+        "SARCH": "xbox",
+        "OARCH": "pentium",
+        "CMAKE_BUILD_TYPE": "Release",
+        "DBG": "OFF",
+        "KDBG": "OFF",
+        "PCH": "OFF",
+        "ENABLE_CCACHE": "OFF",
+        "XBOX_NT5_HAL": "ON"
+      },
+      "targets": [
+        "xboxbvidnt5",
+        "nvnetnt5"
+      ],
+      "artifacts": {
+        "drivers/base/bootvid/xboxbvidnt5.dll": "xboxbvid.dll",
+        "drivers/network/dd/nvnet/nvnetnt5.sys": "nvnetnt5.sys"
       }
     }
   },
