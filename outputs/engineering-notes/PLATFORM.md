@@ -29,8 +29,10 @@ reproducible boot configuration. Preserve ordinary unmodified runs separately.
 
 The current miniport reads inherited geometry from NV2A, accepts one 32-bit
 RGB mode and maps the reserved framebuffer. It does not program encoder timings
-or accelerate drawing. The framebuffer display driver exposes an engine-managed
-bitmap without BitBlt/CopyBits hooks. Slow window dragging is user-observed;
+or accelerate drawing. The installed display component is Microsoft framebuf.dll5.00.2180.1,
+not the ReactOS source file with the same name. Its inspected DDI table has no
+BitBlt/CopyBits callbacks (video-surface-lifecycle/baseline-ddi.json).
+The ReactOS source is an experimental replacement, not baseline source evidence. Slow window dragging is user-observed;
 uncached framebuffer reads/writes and copy volume are investigation targets,
 not yet measured root causes.
 

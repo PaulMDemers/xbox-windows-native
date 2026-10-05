@@ -1,0 +1,37 @@
+{
+  "scope": "Owned PE provenance review, not a claim of installed-driver source equivalence",
+  "files": [
+    {
+      "path": "outputs/native-windows-physical-f/package/F/winnt/system32/framebuf.dll",
+      "sha256": "5da1fe7c3cdaf67a4a487c8872c2034fbc425bfd36d2b7715b2a1c4caa51df86",
+      "bytes": 8752,
+      "version_strings": {
+        "CompanyName": "Microsoft Corporation",
+        "FileDescription": "Framebuffer Display Driver",
+        "FileVersion": "5.00.2180.1",
+        "InternalName": "framebuf.dll",
+        "LegalCopyright": "Copyright (C) Microsoft Corp. 1981-1999",
+        "OriginalFilename": "framebuf.dll",
+        "ProductName": "Microsoft(R) Windows (R) 2000 Operating System",
+        "ProductVersion": "5.00.2180.1"
+      }
+    },
+    {
+      "path": "outputs/video-surface-lifecycle/artifacts/framebuf.dll",
+      "sha256": "3d4c5c2659c06f9ae4c9a735a99ad972d4e773e02a0f1b7d4d8c2d18053e9db7",
+      "bytes": 81387,
+      "version_strings": {
+        "CompanyName": "ReactOS Project",
+        "FileDescription": "Framebuffer Display Driver",
+        "FileVersion": "42.4.17-dev",
+        "InternalName": "framebuf",
+        "LegalCopyright": "(C) 1996-2026 ReactOS Project",
+        "OriginalFilename": "framebuf.dll",
+        "ProductName": "ReactOS Operating System",
+        "ProductVersion": "0.4.17-x86-dev"
+      }
+    }
+  ],
+  "conclusion": "Baseline framebuf.dll is Microsoft 5.00.2180.1. Candidate0097 is a fresh ReactOS replacement with a source-level unwind fix; the defect is not established in the deployed baseline.",
+  "negative_test_limitation": "Attempting the ReactOS PDEV layout against the Microsoft baseline reached EngAllocMem unexpectedly. That model is invalid for the Microsoft private structure; no baseline leak was reproduced."
+}

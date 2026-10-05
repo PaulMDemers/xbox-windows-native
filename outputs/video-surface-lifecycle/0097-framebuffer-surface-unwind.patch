@@ -1,0 +1,142 @@
+--- a/win32ss/drivers/displays/framebuf/framebuf.h
++++ b/win32ss/drivers/displays/framebuf/framebuf.h
+@@ -45,6 +45,7 @@
+    ULONG BlueMask;
+    BYTE PaletteShift;
+    PVOID ScreenPtr;
++   PVOID VideoRamBase; /* Mapping token can differ from the visible framebuffer. */
+    HPALETTE DefaultPalette;
+    PALETTEENTRY *PaletteEntries;
+ 
+--- a/win32ss/drivers/displays/framebuf/surface.c
++++ b/win32ss/drivers/displays/framebuf/surface.c
+@@ -19,6 +19,22 @@
+  */
+ 
+ #include "framebuf.h"
++
++/* Keep the mapping token until the miniport acknowledges release. */
++static VOID
++IntUnmapScreen(PPDEV ppdev)
++{
++   VIDEO_MEMORY Memory;
++   ULONG Returned;
++   if (!ppdev->VideoRamBase) return;
++   Memory.RequestedVirtualAddress = ppdev->VideoRamBase;
++   if (!EngDeviceIoControl(ppdev->hDriver, IOCTL_VIDEO_UNMAP_VIDEO_MEMORY,
++                          &Memory, sizeof(Memory), NULL, 0, &Returned))
++   {
++      ppdev->VideoRamBase = NULL;
++      ppdev->ScreenPtr = NULL;
++   }
++}
+ 
+ /*
+  * DrvEnableSurface
+@@ -42,6 +58,9 @@
+    VIDEO_MEMORY_INFORMATION VideoMemoryInfo;
+    ULONG ulTemp;
+ 
++   /* A failed release must not be hidden by a second mapping. */
++   if (ppdev->hSurfEng || ppdev->VideoRamBase) return NULL;
++
+    /*
+     * Set video mode of our adapter.
+     */
+@@ -66,7 +85,9 @@
+       return NULL;
+    }
+ 
++   ppdev->VideoRamBase = VideoMemoryInfo.VideoRamBase;
+    ppdev->ScreenPtr = VideoMemoryInfo.FrameBufferBase;
++   if (!ppdev->VideoRamBase || !ppdev->ScreenPtr) goto ReleaseMapping;
+ 
+    switch (ppdev->BitsPerPixel)
+    {
+@@ -88,7 +109,7 @@
+          break;
+ 
+       default:
+-         return NULL;
++         goto ReleaseMapping;
+    }
+ 
+    ppdev->iDitherFormat = BitmapType;
+@@ -101,7 +122,7 @@
+                                      ppdev->ScreenPtr);
+    if (hSurface == NULL)
+    {
+-      return NULL;
++      goto ReleaseMapping;
+    }
+ 
+    /*
+@@ -110,13 +131,22 @@
+ 
+    if (!EngAssociateSurface(hSurface, ppdev->hDevEng, 0))
+    {
+-      EngDeleteSurface(hSurface);
+-      return NULL;
++      /* Never unmap storage still owned by an engine surface. */
++      if (!EngDeleteSurface(hSurface))
++      {
++         ppdev->hSurfEng = hSurface;
++         return NULL;
++      }
++      goto ReleaseMapping;
+    }
+ 
+    ppdev->hSurfEng = hSurface;
+ 
+    return hSurface;
++
++ReleaseMapping:
++   IntUnmapScreen(ppdev);
++   return NULL;
+ }
+ 
+ /*
+@@ -133,12 +163,13 @@
+ DrvDisableSurface(
+    IN DHPDEV dhpdev)
+ {
+-   DWORD ulTemp;
+-   VIDEO_MEMORY VideoMemory;
+    PPDEV ppdev = (PPDEV)dhpdev;
+ 
+-   EngDeleteSurface(ppdev->hSurfEng);
+-   ppdev->hSurfEng = NULL;
++   if (ppdev->hSurfEng)
++   {
++      if (!EngDeleteSurface(ppdev->hSurfEng)) return;
++      ppdev->hSurfEng = NULL;
++   }
+ 
+ #ifdef EXPERIMENTAL_MOUSE_CURSOR_SUPPORT
+    /* Clear all mouse pointer surfaces. */
+@@ -149,9 +180,7 @@
+     * Unmap the framebuffer.
+     */
+ 
+-   VideoMemory.RequestedVirtualAddress = ((PPDEV)dhpdev)->ScreenPtr;
+-   EngDeviceIoControl(((PPDEV)dhpdev)->hDriver, IOCTL_VIDEO_UNMAP_VIDEO_MEMORY,
+-                      &VideoMemory, sizeof(VIDEO_MEMORY), NULL, 0, &ulTemp);
++   IntUnmapScreen(ppdev);
+ }
+ 
+ /*
+--- a/win32ss/drivers/displays/framebuf/enable.c
++++ b/win32ss/drivers/displays/framebuf/enable.c
+@@ -186,6 +186,12 @@
+ DrvDisablePDEV(
+    IN DHPDEV dhpdev)
+ {
++   PPDEV ppdev = (PPDEV)dhpdev;
++   /* EnableSurface can fail after mapping but before publishing a surface. */
++   if (ppdev->hSurfEng || ppdev->VideoRamBase) DrvDisableSurface(dhpdev);
++   /* Preserve ownership if an engine/miniport release failed. */
++   if (ppdev->hSurfEng || ppdev->VideoRamBase) return;
++
+    if (((PPDEV)dhpdev)->DefaultPalette)
+    {
+       EngDeletePalette(((PPDEV)dhpdev)->DefaultPalette);

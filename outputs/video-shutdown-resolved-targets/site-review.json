@@ -1,0 +1,11 @@
+{
+  "scope": "Read-only disassembly of owned matching kernel; diagnostic breakpoint specification",
+  "symbol": "_NtTerminateProcess@8",
+  "rva": "0xe330c",
+  "after_successful_ObReferenceObjectByHandle_rva": "0xe335e",
+  "expected_bytes": "817d0c04000140",
+  "instruction": "cmp dword ptr [ebp+0xc], 0x40010004",
+  "target_process_location": "[ebp-8]",
+  "arguments": "[ebp+8] handle, [ebp+12] status",
+  "why_previous_site_was_wrong": "NtTerminateProcess does not call PspTerminateProcess in this kernel; it walks target threads itself. Prior zero hits do not establish absence of termination."
+}

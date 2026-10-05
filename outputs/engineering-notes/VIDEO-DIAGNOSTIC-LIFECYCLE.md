@@ -64,7 +64,7 @@ physical audit still rejects any new popup. The strict emulator audits are not
 rewritten or described as clean. The popup's mechanism remains unresolved.
 
 The later clean-start two-boot series passed the full strict emulator audit with
-no popup. That strict result—not the historical exception assessment—was used
+no popup. That strict resultâ€”not the historical exception assessmentâ€”was used
 for physical promotion. Both physical boots then passed without a trace reset
 between them. See video-trace-reuse-settled/qualification.json; candidate0093 is
 installed with normal startup restored. The existing file remains required.
@@ -85,3 +85,14 @@ normal unmap/unload paths. The separate debugger run is exploratory; see
 ../video-shutdown-probe. Failure to capture a hard-error call does not identify
 or exclude the popup's cause. Do not keep increasing waits or select a clean
 retry as proof that timing fixed this issue.
+
+The detached-startup experiment with unchanged0096 passed one ordinary strict
+audit. A later0097 display-replacement run using that same launcher again had
+two shutdown popups. Detaching the startup command is therefore not a demonstrated
+general fix. Both outcomes remain recorded without a popup waiver.
+
+The retained baseline display is Microsoft5.00.2180.1.0097 is a newly built
+ReactOS replacement whose failure-unwind paths can be reviewed and tested from
+source. Do not attribute its source-level defects or cleanup behavior to the
+installed Microsoft driver. Its compiled cleanup tests passed, but its ordinary
+strict audit failed on the popups; no physical deployment occurred.

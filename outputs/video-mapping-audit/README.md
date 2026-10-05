@@ -19,7 +19,11 @@ Source observations from qualified0093 tree329a29d6:
   because the PCI aperture can disappear before shutdown rendering.
 - Nt5VideoStartIO instead maps FramebufferAperture+Offset through VideoPortMapMemory
   with VIDEO_MEMORY_SPACE_MEMORY. Live page/PAT state must confirm its cache type.
-- framebuf creates a bitmap directly over that mapping with no drawing hooks.
+- The local ReactOS framebuf source creates a bitmap with no drawing hooks.
+  Later provenance review found the installed DLL is Microsoft framebuf5.00.2180.1,
+  so that source is not evidence of its private implementation. Its public DDI
+  table independently has no BitBlt/CopyBits callbacks; see
+  ../video-surface-lifecycle/baseline-ddi.json.
 
 Hypothesis: direct reserved-RAM access may reduce costly screen readback compared
 with the GPU aperture, without changing cache policy. It is not yet implemented

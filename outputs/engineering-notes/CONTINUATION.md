@@ -1,4 +1,47 @@
-# Continuation: framebuffer mapping findings and unqualified prototype
+# Continuation: display replacement and unresolved shutdown popups
+
+Physical0093 remains installed with normal startup. No physical access occurred
+in the work below; the last hardware hash verification is23:07:22UTC Oct5.
+Release0.1.0 and FATX0088 are unchanged. Neither0096 nor0097 is promoted.
+
+New emulator evidence, Oct5:
+- video-startup-detached: unchanged0096,120-second settling, startup CMD exits
+  before shutdown. One ordinary strict audit PASS, with four GDI copy checks,
+  five timing loops, UC RAM mapping, payload hashes and clean normal restart.
+- video-surface-lifecycle: new0097 ReactOS display replacement. Fresh source tree
+  a0a3f8b6bbd9c4fb60042554dd6d24130b0afddf; compiled failure-injection tests PASS.
+  DLL SHA2563d4c5c2659c06f9ae4c9a735a99ad972d4e773e02a0f1b7d4d8c2d18053e9db7.
+  Ordinary GDI/payload/mapping/restart checks passed, but two rundll32 shutdown
+  popups made the strict audit FAIL. Detaching startup is not a general fix.
+  Run nt5-video-surface-lifecycle-001 closed at23:37:47UTC. Its fixture002 and
+  failed unbooted fixture001 remain preserved. The full DLL uses two clusters;
+  a stripped version lost nonpaged section flags and was rejected, never booted.
+- The installed framebuf.dll is Microsoft5.00.2180.1, not the ReactOS source.
+  provenance.json and baseline-ddi.json separate these implementations.0097 fixes
+  source-level failure cleanup, not an established defect in the installed DLL.
+  Its public baseline callback table has no BitBlt/CopyBits rendering callbacks.
+- video-shutdown-exits captured25 NtTerminateProcess calls, but unresolved target
+  handles; video-shutdown-targets watched the wrong PspTerminateProcess site.
+  Both debugger runs had clean cold checks, but are explicitly unqualified for
+  ordinary boot because pauses alter timing. Historical failures remain retained.
+- video-shutdown-resolved-targets resolved a CSRSS termination target as
+  rundll32.exe newdev.dll,DevInstall for PCI10DE:01B0. SetupAPI confirms PID932
+  and driver-selection error0xe0000228; its registry description is Multimedia
+  Audio Controller. This unfinished installer was alive at shutdown. The traced
+  run had no popups and clean cold checks, but ordinary_boot_qualified=false.
+  It does not prove the popup cause. Owned cleanup completed at23:42:59UTC.
+  All owned emulator, supervisor, debugger, audit and build processes are closed.
+
+Immediate next work: inspect the unfinished01B0 install queue and its shutdown
+interaction in an ordinary reproduction before promotion; then
+complete miniport PnP stop/remove/restart ownership and consumer quiescence.
+0097 covers surface failure unwind and normal release, not full PnP lifetime.
+Retain0093 and unchanged cache policy; no measured speedup or HD-mode change.
+Host C: had about20.6GiB free after the build. Twelve closed owned CPU logs were
+losslessly compressed; backing parents/source caches were not removed. Check
+the actual host free space before another fresh20GiB-preflight build.
+
+## Previous mapping investigation
 
 Physical candidate0093 is restored. Final read-only FTP verification at
 2026-10-05 23:07:22 UTC passed for video, FATX0088, HAL, loader, launcher,

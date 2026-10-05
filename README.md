@@ -38,8 +38,16 @@ recovery/tag and qualified FATX remain unchanged; this is not a video speedup.
 
 Post-release video investigation now [records actual uncached framebuffer mappings](outputs/video-mapping-audit/README.md)
 on hardware. An [owned direct-RAM prototype](outputs/video-direct-map/README.md)
-passes emulator pixel/address checks but still fails the strict shutdown-popup
-audit, including a longer-settling run. It has not been deployed to hardware.
+failed the strict shutdown-popup audit in two synchronous-startup runs. A
+[detached startup experiment](outputs/video-startup-detached/README.md) now passes
+one ordinary strict emulator audit with the same driver and no popup waiver.
+This supports a launcher timing hypothesis, not a confirmed root cause. The
+[new display replacement](outputs/video-surface-lifecycle/README.md) separately
+tests surface cleanup in pinned ReactOS source; the installed display DLL is
+Microsoft's implementation. Its graphics checks pass, but the shutdown popups
+recur. A [resolved shutdown trace](outputs/video-shutdown-resolved-targets/README.md)
+identifies an unfinished audio-device installer as a lead to investigate.
+Neither experiment has been deployed to hardware.
 Candidate0093 is restored and hash-verified. No rendering speedup is claimed.
 
 ## Development evidence and history

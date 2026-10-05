@@ -29,7 +29,27 @@ strict audits fail on identical shutdown popups (30/120-second settling).
 Hardware deployment remains gated. Complete stop/removal/restart ownership
 before promoting the mapping helper; current code covers unmap and unload.
 The separate breakpoint run is diagnostic only and captured no hard-error call.
-A current read-only FTP check confirms0093, FATX/HAL/loader and startup restored.
+A read-only FTP check at23:07:22UTC Oct5 confirmed0093, FATX/HAL/loader and startup
+restored. No physical access occurred in the subsequent experiments.
+
+The detached startup protocol now passes one ordinary strict emulator run with
+unchanged0096 and120-second settling. Two later debugger runs also had no popups,
+but are diagnostic only. These results support a launcher timing hypothesis;
+they do not identify the popup cause or erase the synchronous failures.
+See ../video-startup-detached and ../video-shutdown-exits.
+
+0097 is a separate ReactOS display replacement with mapping failure unwind and
+surface-before-mapping release. Its compiled failure-injection tests pass; see
+../video-surface-lifecycle for runtime results and limits. The installed display
+DLL is Microsoft's5.00.2180.1, not the ReactOS source. No source-level leak is
+established in the installed binary. Full miniport PnP lifetime remains open.
+
+The resolved-target debugger identified a live rundll32 newdev installer for
+PCI10DE:01B0 at shutdown. SetupAPI confirms no compatible driver; its registry
+description is Multimedia Audio Controller. That diagnostic run had no popups,
+so this is a specific lead, not a demonstrated popup cause. Investigate the
+pending installation queue before changing more video behavior; retain strict
+ordinary checks. See ../video-shutdown-resolved-targets.
 
 ## First implementation: measure the existing drawing path
 
@@ -46,11 +66,12 @@ not a universal fence for a future asynchronous GPU implementation. Benchmark
 one candidate at a time at identical geometry. Window-drag measurements need
 separate end-to-end testing; a fast BitBlt microbenchmark alone is insufficient.
 
-Current source review: miniport `xboxvmp/nt5/xboxvnt5.c` maps memory with
-VIDEO_MEMORY_SPACE_MEMORY; framebuf/surface.c creates an Eng bitmap and associates
-it with hook flags zero. No accelerated CopyBits/BitBlt implementation is in
-framebuf/enable.c. Establish actual effective cache attributes before attributing
-performance to them. Do not enable write combining on conflicting physical
+Baseline miniport `xboxvmp/nt5/xboxvnt5.c` maps memory with
+VIDEO_MEMORY_SPACE_MEMORY. The experimental ReactOS framebuf/surface.c creates
+an Eng bitmap with hook flags zero; this is not the installed Microsoft DLL's
+source. Executing that binary's public DrvEnableDriver registration shows no
+DrvCopyBits/DrvBitBlt callbacks (../video-surface-lifecycle/baseline-ddi.json).
+Actual desktop mappings were measured UC. Do not enable write combining on conflicting physical
 aliases or assume emulator speed predicts physical memory behavior.
 
 ## Optimization sequence and acceptance gates

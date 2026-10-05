@@ -1,0 +1,14 @@
+{
+  "scope": "Execute rebuilt display callbacks with injected engine/miniport failures.",
+  "sha256": "3d4c5c2659c06f9ae4c9a735a99ad972d4e773e02a0f1b7d4d8c2d18053e9db7",
+  "all_imports_resolve": true,
+  "passed": true,
+  "tests": [
+    "Mode/map failures publish nothing; bitmap/association failures release the acquired mapping before PDEV free",
+    "Unsupported bitmap format unwinds its mapping",
+    "Mapping base distinct from visible base is used for unmap; delete precedes unmap, duplicate enable is rejected and repeated disable is harmless",
+    "Failed unmap retains ownership, blocks remap and retries during PDEV teardown; persistent failure does not free its owner",
+    "Failed engine deletion never unmaps a live surface or frees its owner; successful retry releases in order"
+  ],
+  "limits": "Modeled callbacks with compiled x86 code, not live GDI concurrency or PnP stop/remove qualification. A persistent release error can retain resources until teardown/reboot; no arbitrary forced unmap."
+}
