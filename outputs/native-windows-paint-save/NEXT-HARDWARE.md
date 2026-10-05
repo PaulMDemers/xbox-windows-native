@@ -11,8 +11,20 @@ collection state are recorded in `physical-matched.json`. Do not relaunch it.
 It is now complete and qualified in `physical-matched-qualification.json`:
 sixteen exact files, normal restart, no new delayed-write event, full allocation
 scan and all 3,439 binaries/nine hives passed. The console is on the dashboard
-with no-op startup restored. The next direct repeatability check is a manual
-Paint draw/save/reopen session; that next Windows session has not been launched.
+with no-op startup restored after the replay. The next direct repeatability
+check, a manual Paint draw/save/reopen session, has now been launched once by
+`manual-paint.py launch`; see `physical-paint-repeat.json`. Do not relaunch it.
+Drivers and no-op startup remain unchanged; there is no automatic reboot.
+User saves three new 24-bit BMPs to the desktop as `paint-repeat-01.bmp`,
+`paint-repeat-02.bmp`, and `paint-repeat-03.bmp`, closes/reopens them, then
+restarts normally. These paths were confirmed absent before launch.
+
+After dashboard return, `manual-paint.py collect` preserves event logs, trace,
+saved BMPs and baseline hashes without remote writes. It checks BMP completeness
+but does not infer successful user interaction from file presence. Record the
+user observations separately. A new read-only allocation scan and binary/hive
+audit phase must be added for this run; do not overwrite or rerun the completed
+`postmatched` evidence. No scheduled monitor or reboot timer is active.
 
 `physical-matched.py` implements its separate launch/collection record.
 The existing `physical-replay.py` is specific to the completed 64 KiB test and
