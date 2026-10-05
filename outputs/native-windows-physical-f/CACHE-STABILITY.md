@@ -254,3 +254,26 @@ have matching sequences, valid checksums and readable reachable key/value trees.
 This FTP audit does not inspect physical FAT allocation chains or establish
 registry semantic health. Reports: `physical-012-binary-audit.json` and
 `physical-012-hive-audit.json`. No build, emulator or FTP process remains active.
+
+## Follow-up plan: cycle013 soak, then separate Paint trial
+
+Cycle013 keeps the passing filesystem, HAL and video driver unchanged. Its
+helper runs300 mapped-file cases, the32MiB asynchronous test, then leaves Windows
+services active for five minutes before a normal restart. Previous cycle012
+payloads and report are retained separately. `cache-soak-build.json` pins the
+helper and source; the collector requires all300 records, completed soak and
+freshPASS before accepting the result.
+
+Cycle014 is prepared as a separate physical video-dimensions trial, gated on
+cycle013 passing. It uses the already emulator-validated miniportf8af..., backs
+up physical miniport413, retains the passing filesystem/HAL, and opens Paint.
+It does not automatically restart; a manual draw/save/reopen checks more than
+Paint startup. Its collector preserves the optional `C:\xwn-paint-test.bmp`,
+logs and trace after reboot, then disables the Paint startup command.
+
+WMI source resolution used the collectedSYSTEM hive and the matching owned
+`WinMgmtR.dll` message table. Event27 describes repository-open failure; event60
+says ADAP could not process performance libraries. These messages do not identify
+the underlying cause. `collect-wmi-physical.py` preserves bounded logs and
+repository files without modifying the repository. The messages alone do not justify a WMI reset; no reset is performed as part
+of the storage/graphics trials.

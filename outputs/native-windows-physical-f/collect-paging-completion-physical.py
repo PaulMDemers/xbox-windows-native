@@ -1,8 +1,13 @@
 """Collect cycle012 once the dashboard returns; never launch the console."""
-import datetime, ftplib, hashlib, io, json, os, pathlib
+import argparse, datetime, ftplib, hashlib, io, json, os, pathlib
+
+p = argparse.ArgumentParser()
+p.add_argument('--cycle', type=int, choices=[12, 13], default=12)
+a = p.parse_args()
+tag = f'{a.cycle:03d}'
 
 k = pathlib.Path(__file__).resolve().parent
-record = k / 'physical-cycle-012.json'
+record = k / f'physical-cycle-{tag}.json'
 r = json.loads(record.read_text())
 sha = lambda b: hashlib.sha256(b).hexdigest()
 
@@ -17,7 +22,7 @@ def get(f, name, optional=False):
     return b.getvalue()
 
 def preserve(name, data):
-    p = k / 'artifacts' / ('physical-012-' + name)
+    p = k / 'artifacts' / ('physical-' + tag + '-' + name)
     if p.exists():
         assert p.read_bytes() == data, 'Evidence changed: ' + name
     else:
@@ -33,9 +38,10 @@ with ftplib.FTP() as f:
     f.login('xbox', os.environ['XWN_FTP_PASSWORD'])
     f.cwd('/F')
     assert json.loads(get(f, 'xwn-deploy-v1.json')) == json.loads((k / 'physical-cache-preflight.json').read_text())['ownership_marker']
-    prior = get(f, 'xwn-report-v2.pass009')
-    assert sha(prior) == json.loads((k / 'physical-cycle-009.json').read_text())['report_sha256']
-    old_startup = get(f, 'xwn-startup-c11.bak')
+    prior = get(f, r['prior_report_backup'])
+    previous = json.loads((k / f"physical-cycle-{r.get('prior_cycle', 9):03d}.json").read_text())
+    assert sha(prior) == (previous['cache_report']['sha256'] if 'cache_report' in previous else previous['report_sha256'])
+    old_startup = get(f, r.get('startup_backup', '/F/xwn-startup-c11.bak'))
     assert sha(old_startup) == json.loads((k / 'physical-cycle-010.json').read_text())['startup_sha256']
     f.cwd('/F/documents and settings/all users/start menu/programs/startup')
     current = get(f, 'xwnsetup.cmd')
@@ -51,6 +57,10 @@ with ftplib.FTP() as f:
     r['cache_report']['text'] = report.rstrip(b' \0').decode('ascii', errors='replace')
     r['cache_probe_started'] = report.startswith(b'XWN-CACHE-START')
     r['cache_probe_passed'] = r['cache_probe_started'] and b'XWN-CACHE-PASS' in report and b'XWN-CACHE-FAIL' not in report
+    if a.cycle == 13:
+        r['soak_completed'] = b'five minute background soak completed' in report
+        r['mapped_cases_recorded'] = sum(line.startswith(b'map=') for line in report.splitlines())
+        r['cache_probe_passed'] = r['cache_probe_passed'] and r['soak_completed'] and r['mapped_cases_recorded'] == 300
     r['test_files'] = {}
     expected = {
         'xwn-cache-append.tmp': bytes((i*37+(i>>8)+0x65)&255 for i in range(131073)),

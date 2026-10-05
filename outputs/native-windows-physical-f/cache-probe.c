@@ -128,7 +128,13 @@ void WINAPI mainCRTStartup(void) {
     if(!pressure())goto finish;
     line("async pressure passed\r\n");
 #endif
+#ifdef XWN_CACHE_SOAK
+    line("five minute background soak started\r\n");
+    Sleep(300000);
+    line("five minute background soak completed\r\n");
+#else
     Sleep(15000);
+#endif
 finish:
     value("failures=",Failures);line(Failures?"XWN-CACHE-FAIL\r\n":"XWN-CACHE-PASS\r\n");CloseHandle(Log);
     if(!OpenProcessToken(GetCurrentProcess(),TOKEN_ADJUST_PRIVILEGES|TOKEN_QUERY,&t)||!LookupPrivilegeValueA(NULL,SE_SHUTDOWN_NAME,&tp.Privileges[0].Luid))ExitProcess(92);
