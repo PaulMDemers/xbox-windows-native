@@ -1,0 +1,35 @@
+diff --git a/drivers/filesystems/vfatfs/finfo.c b/drivers/filesystems/vfatfs/finfo.c
+index 2e26c572..019f642b 100644
+--- a/drivers/filesystems/vfatfs/finfo.c
++++ b/drivers/filesystems/vfatfs/finfo.c
+@@ -411,7 +411,7 @@ struct {
+     CHAR Signature[16];
+     volatile LONG Count;
+     struct { ULONG Words[8]; WCHAR Requested[128]; WCHAR Target[128]; } Entries[16];
+-} XwnRenameTrace = { "XWN-RENAME-0084", 0 };
++} XwnRenameTrace = { "XWN-RENAME-0085", 0 };
+ 
+ static NTSTATUS
+ vfatPrepareTargetForRename(
+@@ -431,6 +431,12 @@ vfatPrepareTargetForRename(
+     /* Try to open target */
+     Status = vfatGetFCBForFile(DeviceExt, ParentFCB, &TargetFcb, NewName);
+     {
++        UNICODE_STRING Prefix = RTL_CONSTANT_STRING(L"\\xwnrotate");
++        UNICODE_STRING Parent = { 0 };
++        if (*ParentFCB) Parent = (*ParentFCB)->PathNameU;
++        if (Parent.Length >= Prefix.Length) Parent.Length = Prefix.Length;
++        if (RtlEqualUnicodeString(&Prefix, &Parent, TRUE))
++        {
+         ULONG Index = ((ULONG)InterlockedIncrement(&XwnRenameTrace.Count) - 1) % 16;
+         RtlZeroMemory(&XwnRenameTrace.Entries[Index], sizeof(XwnRenameTrace.Entries[Index]));
+         XwnRenameTrace.Entries[Index].Words[0] = Status;
+@@ -450,6 +456,8 @@ vfatPrepareTargetForRename(
+         }
+     }
+ 
++    }
++
+     /* If it exists */
+     if (NT_SUCCESS(Status))
+     {

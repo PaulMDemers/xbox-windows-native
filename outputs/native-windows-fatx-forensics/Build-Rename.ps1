@@ -1,5 +1,5 @@
 #requires -Version 7.4
-param([ValidateSet('rename','cleanup','trace','deleted-write')][string]$Variant='rename')
+param([ValidateSet('rename','cleanup','trace','deleted-write','rename-trace','rename-filter','unlinked')][string]$Variant='rename')
 $ErrorActionPreference='Stop'
 New-Item -ItemType Directory -Force (Join-Path $PSScriptRoot build-logs) | Out-Null
 & C:/Users/Paul/Desktop/ogxbox-linux/scripts/with_xbox_resource.ps1 -Resource build -Action {

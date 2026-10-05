@@ -1,0 +1,72 @@
+diff --git a/drivers/filesystems/vfatfs/dirwr.c b/drivers/filesystems/vfatfs/dirwr.c
+index 80511f06..fbbca093 100644
+--- a/drivers/filesystems/vfatfs/dirwr.c
++++ b/drivers/filesystems/vfatfs/dirwr.c
+@@ -125,6 +125,13 @@ VfatUpdateEntry(
+ 
+     ASSERT(pFcb);
+ 
++    if (BooleanFlagOn(pFcb->Flags, FCB_NAMESPACE_UNLINKED))
++    {
++        ClearFlag(pFcb->Flags, FCB_IS_DIRTY);
++        return STATUS_SUCCESS;
++    }
++
++
+     if (vfatVolumeIsFatX(DeviceExt))
+     {
+         SizeDirEntry = sizeof(FATX_DIR_ENTRY);
+@@ -1092,6 +1099,10 @@ FATXDelEntry(
+     ASSERT(pFcb->parentFcb);
+     ASSERT(vfatVolumeIsFatX(DeviceExt));
+ 
++    /* A second delete must not free storage already reused by another file. */
++    if (BooleanFlagOn(pFcb->Flags, FCB_NAMESPACE_UNLINKED))
++        return MoveContext == NULL ? STATUS_SUCCESS : STATUS_FILE_DELETED;
++
+     StartIndex = pFcb->startIndex;
+ 
+     Status = vfatFCBInitializeCacheFromVolume(DeviceExt, pFcb->parentFcb);
+@@ -1134,6 +1145,10 @@ FATXDelEntry(
+     /* In case of moving, don't delete data */
+     if (MoveContext == NULL)
+     {
++        /* Only a true unlink retires this name; a move retains the live FCB. */
++        SetFlag(pFcb->Flags, FCB_NAMESPACE_UNLINKED);
++        ClearFlag(pFcb->Flags, FCB_IS_DIRTY);
++
+         while (CurrentCluster && CurrentCluster != 0xffffffff)
+         {
+             GetNextCluster(DeviceExt, CurrentCluster, &NextCluster);
+diff --git a/drivers/filesystems/vfatfs/fcb.c b/drivers/filesystems/vfatfs/fcb.c
+index 2cd79bc8..a5f52bb9 100644
+--- a/drivers/filesystems/vfatfs/fcb.c
++++ b/drivers/filesystems/vfatfs/fcb.c
+@@ -627,6 +627,14 @@ vfatGrabFCBFromTable(
+         if (entry->Hash == Hash)
+         {
+             rcFCB = entry->self;
++            /* A delayed cache close must not make a deleted name exist again.
++             * Keep the FCB hashed until its final release, but skip name lookup. */
++            if (BooleanFlagOn(rcFCB->Flags, FCB_NAMESPACE_UNLINKED))
++            {
++                entry = entry->next;
++                continue;
++            }
++
+             DPRINT("'%wZ' '%wZ'\n", &DirNameU, &rcFCB->DirNameU);
+             if (RtlEqualUnicodeString(&DirNameU, &rcFCB->DirNameU, TRUE))
+             {
+diff --git a/drivers/filesystems/vfatfs/vfat.h b/drivers/filesystems/vfatfs/vfat.h
+index 27b6ddfb..fc48dc76 100644
+--- a/drivers/filesystems/vfatfs/vfat.h
++++ b/drivers/filesystems/vfatfs/vfat.h
+@@ -437,6 +437,8 @@ extern PVFAT_GLOBAL_DATA VfatGlobalData;
+ #define FCB_IS_VOLUME           0x0010
+ #define FCB_IS_DIRTY            0x0020
+ #define FCB_DELAYED_CLOSE       0x0040
++/* The FATX directory entry is gone; references may still await cache close. */
++#define FCB_NAMESPACE_UNLINKED  0x0200
+ #ifdef KDBG
+ #define FCB_CLEANED_UP          0x0080
+ #define FCB_CLOSED              0x0100

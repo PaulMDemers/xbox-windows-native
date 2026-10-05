@@ -1,0 +1,86 @@
+{
+  "scope": "Combine API, cold-disk, current-boot event and explicit visual evidence without hiding warnings.",
+  "run": "nt5-physical-f-high-allocation-r9",
+  "filesystem_sha256": "f74b55b7f81c7ee4a983d91022c9132c22c683538fb996e5c21f8c7a290734bd",
+  "api_regression_passed": true,
+  "test_directory_removed": true,
+  "cache_soak_passed": true,
+  "payloads_match": true,
+  "cold_audit_passed": true,
+  "immutable_files_checked": 3439,
+  "hives_checked": 9,
+  "event_start_record": 38,
+  "current_boot_events": [
+    {
+      "offset": 7200,
+      "record": 38,
+      "generated_unix": 1791183160,
+      "written_unix": 1791183160,
+      "event_id_hex": "80001775",
+      "event_id": 6005,
+      "type": 4,
+      "source": "EventLog",
+      "computer": "XWN-PC",
+      "strings": [],
+      "data_hex": ""
+    },
+    {
+      "offset": 7296,
+      "record": 39,
+      "generated_unix": 1791183161,
+      "written_unix": 1791183161,
+      "event_id_hex": "c0001b58",
+      "event_id": 7000,
+      "type": 1,
+      "source": "Service Control Manager",
+      "computer": "XWN-PC",
+      "strings": [
+        "HID Input Service",
+        "%%2"
+      ],
+      "data_hex": ""
+    },
+    {
+      "offset": 7464,
+      "record": 40,
+      "generated_unix": 1791183156,
+      "written_unix": 1791183186,
+      "event_id_hex": "c0040031",
+      "event_id": 49,
+      "type": 1,
+      "source": "Ftdisk",
+      "computer": "XWN-PC",
+      "strings": [
+        "\\Device\\HarddiskVolume6"
+      ],
+      "data_hex": "000000000100560000000000310004c0030000000000000000000000000000000000000000000000"
+    },
+    {
+      "offset": 7656,
+      "record": 41,
+      "generated_unix": 1791183523,
+      "written_unix": 1791183523,
+      "event_id_hex": "80001776",
+      "event_id": 6006,
+      "type": 4,
+      "source": "EventLog",
+      "computer": "XWN-PC",
+      "strings": [],
+      "data_hex": "ff000000"
+    }
+  ],
+  "delayed_write_records": [],
+  "normal_eventlog_shutdown": true,
+  "visual_observation": "no-warning-observed",
+  "passed": true,
+  "caveat": "Bounded emulator evidence; does not establish the cause of physical013 corruption or long-term hardware stability.",
+  "rotation": {
+    "passed": true,
+    "state": 1,
+    "reuse_counts": [
+      95
+    ],
+    "no_temporary_files": true,
+    "probe_sha256": "cf2d8e7e15c269827d730ea940e12d79169da0d89e84a7cb9746c969c7c4f404"
+  }
+}

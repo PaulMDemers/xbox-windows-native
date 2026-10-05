@@ -331,7 +331,33 @@ requires all these checks together and correctly rejects the earlier two runs.
 This fixes a reproduced emulator regression; it does not establish the cause
 of physical013's invalid chains or qualify the damaged physical installation.
 No physical uploads, repairs or launches occurred during this investigation.
-Next: exercise repeated WMI-style replacement/rename and cluster reuse, retain
-the failing physical evidence, then plan restoration against verified contents.
+The subsequent repeated rotation test and its remaining limits are below.
 See [forensic report](../native-windows-fatx-forensics/REPORT.md) for source trees,
 failed experiments, diagnostic records and reproducible fixture construction.
+
+## Retired file records and repeated-boot validation
+
+The unchanged0083 driver fails the second synthetic CIM rename with error183.
+A filtered RAM trace shows lookup returning the previously deleted target's
+cached file record. Patch0086 marks a completed FATX unlink explicitly, skips
+that retired record during name lookup, and blocks stale directory-entry
+updates and repeated chain deletion. It preserves the record until remaining
+cache references release it. The candidate excludes the diagnostic patches.
+
+Driver SHA-256:
+`f74b55b7f81c7ee4a983d91022c9132c22c683538fb996e5c21f8c7a290734bd`.
+Runs r9 and r11 both qualify PASS:192 combined rotation cycles,191 observed
+freed-cluster reuse cases,130 persistent guard files checked across boots,
+600 mapped/truncate cases,64 MiB asynchronous pressure and two five-minute
+idle soaks. Both restart normally and pass cold allocation,3439-binary and
+nine-hive checks. Neither has a new delayed-write event or an observed popup.
+
+The intervening r10 stop was the one-shot video diagnostic rejecting its
+already populated trace file. Its crash evidence is retained. Boot r11 changes
+only that4096-byte diagnostic seed in an overlay of the r9 checkpoint;
+Windows, WMI, guard files, registry and driver retain first-boot state.
+
+This does not yet cover replacing an existing dirty cached destination,
+open-handle/mapping lifetime, or prove the physical013 root cause. Those
+tests and longer persistence checks precede physical restoration and testing.
+The damaged physical install remains held; no physical changes occurred.

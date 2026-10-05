@@ -1,0 +1,20 @@
+{
+  "run": "nt5-physical-f-high-allocation-r10",
+  "passed": false,
+  "outcome": "blocked by one-shot video trace validation before rotation tests",
+  "stop": "0xE0580001",
+  "parameters": [
+    "0x0000000D",
+    "0x00000004",
+    "0xC000003E",
+    "0x00000010"
+  ],
+  "source": "outputs/native-windows-physical-f/video-trace.c:XwnVideoTraceInit",
+  "explanation": "Phase4 requires every byte after the 16-byte header to be zero; byte16 contains the previous boot record count.",
+  "byte16": 41,
+  "trace_preserved": "outputs/native-windows-fatx-forensics/artifacts/r9-video-trace.bin",
+  "crash_preserved": "work/runs/nt5-physical-f-high-allocation-r10/crash-memory.ram",
+  "clean_normal_shutdown": false,
+  "emulator_closed": true,
+  "filesystem_regression_established": false
+}

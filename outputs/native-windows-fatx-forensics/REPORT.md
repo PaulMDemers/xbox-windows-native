@@ -241,3 +241,96 @@ was performed during these emulator experiments. The original physical013
 corruption and intermittent WMI rename crash remain separate unresolved results.
 Next validate repeated WMI-style replacement/rename and cluster reuse before
 restoring the owned Windows installation and scheduling a new physical trial.
+
+## Repeated rotation exposes a stale deleted-name lookup
+
+The new emulator-only `rotate-probe.c` creates 130 persistent 65,537-byte guard
+files, then performs 96 synthetic CFG backup/publish and cross-directory CIM
+move/delete cycles. It checks file contents after each transition and uses
+`FSCTL_GET_RETRIEVAL_POINTERS` to count cases where a newly allocated file starts
+on the last cluster of a file just deleted. It never modifies the real WMI
+repository. On subsequent boots it verifies the existing guards before doing
+more work. The startup script stops on any failure, before the cache soak.
+
+Run `nt5-physical-f-high-allocation-r6` with the unchanged0083 driver fails with
+Win32 error183 on the second CIM move. The destination lists no files. The first
+move and delete had succeeded; the test had not yet reached its16-cycle progress
+marker. All130 guard files still match after normal UI-initiated restart, but
+the rotation/soak qualification is FAIL. Diagnostic runs r7 and r8 reproduce it.
+
+The0084 RAM ring was overwritten by unrelated background WMI renames. The0085
+filter retains only lookups beneath `\xwnrotate`. Its five captured records show
+the first destination absent, then the next lookup returning the previous FCB
+with `FCB_DELETE_PENDING` set and the old first cluster2144474. The directory
+entry has been removed, but its cached FCB is still discoverable by name. See
+`stale-deleted-target-trace.json`. The diagnostic code changes no return status
+and writes no trace data to the guest disk. Both diagnostic runs were closed
+after normal UI restarts; neither is a passing soak test.
+
+Patch0086 branches directly from0083, excluding0084 and0085. A true FATX unlink
+marks the FCB `FCB_NAMESPACE_UNLINKED`; moves retain their live FCB. Name lookup
+skips retired records while final reference release still removes and frees
+them normally. Later metadata updates cannot overwrite the retired directory
+slot, and a repeated delete cannot free its old cluster chain again. This is
+distinct from delete-pending handles whose directory entry still exists.
+
+Candidate source tree: `88a43630e6e20dba004a5f722819a3c071ac62ec`.
+Driver: `artifacts/xwnfatx-unlinked.sys`, SHA-256
+`f74b55b7f81c7ee4a983d91022c9132c22c683538fb996e5c21f8c7a290734bd`.
+All77 ordered patches replay to that tree; the driver builds and resolves127
+imports against the owned NT5 binaries. The unchanged rotation probe resolves15
+imports. Run r9 passes all96 cycles,95 observed freed-cluster reuse cases,
+130 guard comparisons,300 mapped/truncate cases,32 MiB asynchronous pressure,
+the five-minute idle soak and normal automatic restart. Cold allocation checks,
+3439 immutable binaries and nine hives pass. No delayed-write popup was observed
+and no new delayed-write event was recorded. Its combined qualifier is PASS.
+
+The first second-boot attempt, r10, deliberately halts in the existing one-shot
+video logger: `E0580001(0D,4,C000003E,10)`. `XwnVideoTraceInit` requires all bytes
+after the16-byte marker to be zero. Offset16 instead contains41, the previous
+boot's record count. This is an omitted diagnostic reseed, not evidence of
+another filesystem corruption. The screenshot, registers,60 MiB crash snapshot
+and stopped disk are preserved; the stalled emulator was closed. That run is
+not a passing repeat-boot test.
+
+`prepare-rotate-reseed.py` preserves the original4096-byte trace, then creates a
+new overlay changing exactly those4096 bytes back to the known seed. It verifies
+readback and that the first-boot checkpoint is unchanged. It does not reinstall
+Windows, reset WMI or alter the guard files, rotation state, driver or registry.
+Run r11 uses this corrected second-boot fixture; its result is recorded below.
+
+Run r11 is now closed and independently qualified PASS. Its unchanged probe
+verifies the130 guards saved by r9, completes another96 rotations with96
+observed freed-cluster reuse cases, then passes300 mapped/truncate cases,
+32 MiB asynchronous pressure and the five-minute idle soak. Windows restarts
+normally to the dashboard. Cold checks verify all130 guards, allocation
+ownership,3439 immutable binaries and nine hives; no new delayed-write event
+is present and no delayed-write warning was observed in the captures.
+See `nt5-physical-f-high-allocation-r11-qualification.json` and its linked
+rotation, payload, event and cold-audit reports. Together r9/r11 supply192
+rotations,191 observed reuse cases and600 mapped cases across two boots.
+The intervening diagnostic-seed stop r10 is excluded from passing results.
+No debugger execution patches were used; framebuffer captures briefly pause
+and resume the emulator. All emulator and audit processes are closed.
+
+This supplies a concrete rename/deletion defect and a possible path to repeated
+deletion of reused storage. It does **not** prove that the physical013 corruption
+or earlier WMI cache-pin crash has this cause. No physical console access,
+uploads, restoration or Windows launches were performed during this work.
+
+### Remaining stabilization gates
+
+- Exercise `MoveFileEx(..., MOVEFILE_REPLACE_EXISTING)` with a dirty cached
+  destination, immediately reuse its released clusters for different contents,
+  then apply memory pressure and idle before checking both files. The current
+  rotation probe uses backup/rename/delete and does not cover this overwrite case.
+- Verify that live open handles retain their sharing/delete-pending semantics;
+  only fully unlinked records may disappear from name lookup. Include open
+  mappings, close ordering, and propagation of real I/O failures.
+- Repeat cold boots and longer persistence checks with the diagnostic seed
+  lifecycle handled explicitly. Distinguish crash captures, diagnostic-only
+  runs, reproducible candidates and physical tests in every result.
+- Before physical restoration, retain the corrupt Windows/WMI evidence and
+  audit the owned installation against verified source files. Restore only
+  Windows-owned files, then qualify short writes, reuse and longer idle tests
+  on hardware while preserving the dashboard, softmod and other partitions.

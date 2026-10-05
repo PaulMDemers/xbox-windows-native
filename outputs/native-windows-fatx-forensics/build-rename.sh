@@ -10,6 +10,9 @@ case ${1:-rename} in
   cleanup) manifest=0081; artifact=xwnfatx-delete-cache.sys ;;
   trace) manifest=0082; artifact=xwnfatx-write-trace.sys ;;
   deleted-write) manifest=0083; artifact=xwnfatx-deleted-write.sys ;;
+  rename-trace) manifest=0084; artifact=xwnfatx-rename-trace.sys ;;
+  rename-filter) manifest=0085; artifact=xwnfatx-rename-filter.sys ;;
+  unlinked) manifest=0086; artifact=xwnfatx-unlinked.sys ;;
   *) exit 2 ;;
 esac
 tree=$(python3 -c 'import json,sys;print(json.load(open(sys.argv[1]))["result_tree"])' "$kit/patch-check-$manifest.json")

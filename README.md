@@ -33,7 +33,14 @@ host-side test harness.
   to deleted directories. The new0083 candidate passes that previously failing
   emulator regression, the300-case storage soak, normal restart,3439 immutable
   binary checks and nine registry hives, with no new delayed-write events.
-  This is a bounded emulator repair; the damaged physical install remains held.
+  A subsequent rotation test exposed a deleted file still discoverable through
+  its cached file record. Candidate0086 now excludes fully unlinked records
+  from lookup and prevents stale metadata updates or repeated chain deletion.
+  Two qualified emulator boots pass192 rotation cycles,191 observed cluster
+  reuse cases, persistent130-file guards,600 mapped/truncate cases and two
+  five-minute soaks, with clean cold audits and no new delayed-write events.
+  Dirty cached replacement and open-handle lifetime remain unqualified.
+  These are bounded emulator repairs; the damaged physical install remains held.
   See [allocation evidence](outputs/native-windows-fatx-forensics/REPORT.md).
   See [desktop stability evidence](outputs/native-windows-physical-f/DESKTOP-STABILITY.md)
   and [cache test results](outputs/native-windows-physical-f/CACHE-STABILITY.md).
