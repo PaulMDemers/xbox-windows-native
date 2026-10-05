@@ -1,0 +1,66 @@
+diff --git a/drivers/filesystems/vfatfs/rw.c b/drivers/filesystems/vfatfs/rw.c
+index 5156d8a3..e8391d5c 100644
+--- a/drivers/filesystems/vfatfs/rw.c
++++ b/drivers/filesystems/vfatfs/rw.c
+@@ -1097,12 +1097,52 @@ ByeBye:
+     return Status;
+ }
+ 
++/* Bounded emulator diagnostic, read from RAM after the regression. */
++typedef struct _XWN_WRITE_FAILURE {
++    ULONG Words[16];
++    WCHAR Name[64];
++} XWN_WRITE_FAILURE;
++struct {
++    CHAR Signature[16];
++    volatile LONG Count;
++    XWN_WRITE_FAILURE Entries[16];
++} XwnWriteFailureTrace = { "XWN-WRFAIL-0082", 0 };
++
++static VOID XwnRecordWriteFailure(PVFAT_IRP_CONTEXT IrpContext, PVFATFCB Fcb, NTSTATUS Status)
++{
++    ULONG Index, Bytes;
++    XWN_WRITE_FAILURE *Entry;
++    if (NT_SUCCESS(Status) || !Fcb || !IrpContext->FileObject)
++        return;
++    Index = (ULONG)InterlockedIncrement(&XwnWriteFailureTrace.Count) - 1;
++    Entry = &XwnWriteFailureTrace.Entries[Index % 16];
++    RtlZeroMemory(Entry, sizeof(*Entry));
++    Entry->Words[0] = Status;
++    Entry->Words[1] = KeGetCurrentIrql();
++    Entry->Words[2] = IrpContext->Irp->Flags;
++    Entry->Words[3] = Fcb->Flags;
++    Entry->Words[4] = IrpContext->Stack->Parameters.Write.ByteOffset.LowPart;
++    Entry->Words[5] = IrpContext->Stack->Parameters.Write.ByteOffset.HighPart;
++    Entry->Words[6] = IrpContext->Stack->Parameters.Write.Length;
++    Entry->Words[7] = Fcb->RFCB.FileSize.LowPart;
++    Entry->Words[8] = Fcb->RFCB.AllocationSize.LowPart;
++    Entry->Words[9] = vfatDirEntryGetFirstCluster(IrpContext->DeviceExt, &Fcb->entry);
++    Entry->Words[10] = (ULONG)IrpContext->FileObject;
++    Entry->Words[11] = Fcb->OpenHandleCount;
++    Entry->Words[12] = Fcb->dirIndex;
++    Entry->Words[13] = Fcb->startIndex;
++    Entry->Words[14] = vfatFCBIsDirectory(Fcb);
++    Entry->Words[15] = Fcb->RFCB.ValidDataLength.LowPart;
++    Bytes = min(Fcb->PathNameU.Length, sizeof(Entry->Name) - sizeof(WCHAR));
++    RtlCopyMemory(Entry->Name, Fcb->PathNameU.Buffer, Bytes);
++}
++
+ NTSTATUS
+ VfatWrite(
+     PVFAT_IRP_CONTEXT *pIrpContext)
+ {
+     PVFAT_IRP_CONTEXT IrpContext = *pIrpContext;
+-    PVFATFCB Fcb;
++    PVFATFCB Fcb = NULL;
+     PERESOURCE Resource = NULL;
+     LARGE_INTEGER ByteOffset;
+     LARGE_INTEGER OldFileSize;
+@@ -1452,6 +1492,7 @@ Metadata:
+     }
+ 
+ ByeBye:
++    XwnRecordWriteFailure(IrpContext, Fcb, Status);
+     if (Resource)
+     {
+         ExReleaseResourceLite(Resource);

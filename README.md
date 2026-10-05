@@ -29,6 +29,11 @@ host-side test harness.
   host-space interruption. A new high-allocation emulator run now fails during
   WMI rename; its crash dump is preserved for cache-mapping diagnosis. It has
   not yet been shown to share the physical crash's root cause.
+  An isolated rename/deletion regression now identifies obsolete cached writes
+  to deleted directories. The new0083 candidate passes that previously failing
+  emulator regression, the300-case storage soak, normal restart,3439 immutable
+  binary checks and nine registry hives, with no new delayed-write events.
+  This is a bounded emulator repair; the damaged physical install remains held.
   See [allocation evidence](outputs/native-windows-fatx-forensics/REPORT.md).
   See [desktop stability evidence](outputs/native-windows-physical-f/DESKTOP-STABILITY.md)
   and [cache test results](outputs/native-windows-physical-f/CACHE-STABILITY.md).

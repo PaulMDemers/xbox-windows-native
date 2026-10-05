@@ -303,3 +303,35 @@ the pause. Its original fault is a write through an invalid cached-directory
 buffer in RtlUnicodeToOemN, called by vfatRenameEntry; the CcPinRead result is not
 captured, so the initiating failure remains unresolved. The physical and emulator
 stop codes differ. The prepared Paint trial refuses to run because cycle013 failed.
+
+## Deleted-directory paging regression repaired in the emulator
+
+The forensic rename integration candidate4112 passed the long cache soak, but
+an explicit rename/delete probe exposed delayed-write popups for deleted test
+directories. A zero-truncate cache-uninitialization experiment00c3 did not fix
+them. Both runs had zero API errors and clean cold files, but are overall FAIL
+because their screenshots and current-boot event records establish lost writes.
+
+An in-memory diagnostic captured4096-byte paging writes at offset0 for directory
+FCBs marked delete-pending, with no open handles and zero file/allocation size.
+The old range guard returned C000000D. Patch0083, based on the rename integration
+and excluding both failed cleanup and diagnostic code, discards only these
+obsolete directory pages under the paging resource. Live-directory, volume/FAT
+and ordinary file checks remain in place.
+
+Run `nt5-physical-f-high-allocation-r5` with driver
+`4aa035e6faa6b23ab7bfe78c6da10875eb8d789854c593983e0275c9141e2396`
+passes the unchanged rename probe,300 mapped/truncate cases,32 MiB writes,
+five-minute idle soak and normal restart. No delayed-write popup was observed;
+current-boot events contain no Application Popup delayed-write or Ftdisk50.
+Cold checks pass all3439 immutable binaries, nine hives, test payloads and
+allocation ownership, including unchanged synthetic reservations. The qualifier
+requires all these checks together and correctly rejects the earlier two runs.
+
+This fixes a reproduced emulator regression; it does not establish the cause
+of physical013's invalid chains or qualify the damaged physical installation.
+No physical uploads, repairs or launches occurred during this investigation.
+Next: exercise repeated WMI-style replacement/rename and cluster reuse, retain
+the failing physical evidence, then plan restoration against verified contents.
+See [forensic report](../native-windows-fatx-forensics/REPORT.md) for source trees,
+failed experiments, diagnostic records and reproducible fixture construction.

@@ -1,10 +1,10 @@
 """Read-only allocation, immutable binary and registry audit of the F: fixture."""
-import argparse,pathlib,sys,subprocess,struct,json,hashlib,os
+import argparse,pathlib,sys,subprocess,struct,json,hashlib,os,array
 root=pathlib.Path('/home/paul/xbox-windows-native');ws=pathlib.Path('/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility');k=ws/'outputs/native-windows-extended-storage'
 sys.path[:0]=[str(ws/'outputs/native-windows-fatx-runtime'),'/mnt/c/Users/Paul/Desktop/ogxbox-linux/scripts']
 import fatx_stage_boot as fatx
 from bulk_fatx import Writer
-p=argparse.ArgumentParser();g=p.add_mutually_exclusive_group(required=True);g.add_argument('--run');g.add_argument('--fixture',choices=['windows2000-f-001','windows2000-f-write-001','windows2000-f-reboot-001']);p.add_argument('--probe-version',choices=['1','2','cache'],default='1');p.add_argument('--video-miniport',type=pathlib.Path,help='Explicit replacement miniport whose hash must match the audited fixture');p.add_argument('--video-trace-output',type=pathlib.Path,help='Extract an existing bounded trace to a new local file');p.add_argument('--filesystem-driver',type=pathlib.Path,help='Explicit expected FATX driver replacement');a=p.parse_args()
+p=argparse.ArgumentParser();g=p.add_mutually_exclusive_group(required=True);g.add_argument('--run');g.add_argument('--fixture',choices=['windows2000-f-001','windows2000-f-write-001','windows2000-f-reboot-001']);p.add_argument('--probe-version',choices=['1','2','cache'],default='1');p.add_argument('--video-miniport',type=pathlib.Path,help='Explicit replacement miniport whose hash must match the audited fixture');p.add_argument('--video-trace-output',type=pathlib.Path,help='Extract an existing bounded trace to a new local file');p.add_argument('--filesystem-driver',type=pathlib.Path,help='Explicit expected FATX driver replacement');p.add_argument('--high-allocation-baseline',action='store_true',help='Verify and exclude only unchanged synthetic bad-cluster reservations from the pinned high-allocation fixture');a=p.parse_args()
 if a.run:
  assert a.run.startswith(('nt5-extended-f-','nt5-physical-f-')) and a.run.replace('-','').isalnum()
  run=ws/'work/runs'/a.run;assert (run/'cleanup.json').exists();source=run/'hdd.qcow2'
@@ -63,7 +63,25 @@ try:
   r['investigated_cluster_owners']={str(c):owners.get(c) for c in [16569,16571,16575]}
   wanted={path for path in expected if pathlib.PurePosixPath(path).suffix in extensions}
   assert wanted<=found,('missing binaries',sorted(wanted-found))
-  orphans=[c for c in range(1,w.limit) if w.fat[c] and c not in owners]
+  reserved=set()
+  if a.high_allocation_baseline:
+   assert a.run.startswith('nt5-physical-f-high-allocation-') and w.p.entry_size==4
+   baseline=ws/'outputs/native-windows-fatx-forensics/artifacts/high-allocation-001.qcow2'
+   with baseline.open('rb') as b:baseline_sha=hashlib.file_digest(b,'sha256').hexdigest()
+   assert baseline_sha=='18a72152df86ef61608836698758b0153ac365729518a89ed39ae93863d7d95c'
+   fatfile=raw.with_suffix('.baseline-fat');assert not fatfile.exists()
+   try:
+    assert w.p.fat_offset%512==0 and w.p.fat_size%512==0
+    view=f'driver=raw,offset={w.p.fat_offset},size={w.p.fat_size},file.driver=qcow2,file.file.filename={baseline}'
+    subprocess.run(['qemu-img','convert','--image-opts','-O','raw',view,str(fatfile)],check=True,stdout=subprocess.DEVNULL)
+    before=array.array('I');before.frombytes(fatfile.read_bytes())
+    if sys.byteorder!='little':before.byteswap()
+    assert len(before)==len(w.fat)
+    reserved={c for c in range(1,w.limit) if before[c]==0xfffffff7}
+    assert reserved and all(w.fat[c]==before[c] and c not in owners for c in reserved),'Synthetic reservations changed or claimed'
+    r['synthetic_reservations']={'baseline_sha256':baseline_sha,'unchanged_unclaimed_clusters':len(reserved)}
+   finally:fatfile.unlink(missing_ok=True)
+  orphans=[c for c in range(1,w.limit) if w.fat[c] and c not in owners and c not in reserved]
   if orphans:r['errors'].append('Unclaimed allocations: '+str(orphans[:20]))
   r['unclaimed_details']=[{'cluster':c,'fat_value':hex(w.fat[c]),'first_four_bytes':w.read_cluster(c)[:4].hex()} for c in orphans[:20]]
   r['orphan_directory_records']=[]

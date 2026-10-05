@@ -14,6 +14,20 @@ try:
     with raw.open('rb') as f:
         fatx.PARTITIONS['F']=(15633072*512,472764096*512);w=Writer(f,fatx.open_partition(f,raw,'F'))
         report=w.read('xwn-report-v2.txt');r['report']=report.decode('ascii').rstrip();r['probe_passed']='XWN-CACHE-PASS' in r['report']
+        # Optional unchanged regression staged only into the explicit rename fixtures.
+        if 'xwnrename.exe' in w.directory(1)['entries']:
+            assert hashlib.sha256(w.read('xwnrename.exe')).hexdigest()=='6b379374ec52a8118fb6edbc824d64af2d2ffcc55ee471d8cbf7e4b650482d65'
+            try:
+                log=w.read('xwn-fs.log').decode('ascii')
+                required=['Case-only rename of 42-byte name','42-byte case change persisted in directory',
+                          'Same-directory rename to 42-byte name','42-byte rename persisted in directory',
+                          'Reopen 42-byte renamed file','42-byte renamed data comparison',
+                          'Delete 42-byte renamed file','Remove child directory','Remove test directory']
+                r['rename_regression']={'log':log,'required_checks':required,
+                    'passed':'Failures: 0\r\n' in log and 'FAIL:' not in log and all('PASS: '+s+'\r\n' in log for s in required),
+                    'test_directory_removed':'xwnfstest' not in w.directory(1)['entries'],
+                    'caveat':'API and cold checks do not negate delayed-write popups; inspect the screen and event log separately.'}
+            except (KeyError,AssertionError) as e:r['rename_regression']={'passed':False,'error':repr(e)}
         for name in ['xwn-report-v2.txt','winnt/system32/config/sysevent.evt','xwn-cache-append.tmp','xwn-cache-map.tmp','xwn-cache-pressure.tmp']:
             try:data=w.read(name)
             except (KeyError,FileNotFoundError):r['files'].append({'path':name,'present':False});continue

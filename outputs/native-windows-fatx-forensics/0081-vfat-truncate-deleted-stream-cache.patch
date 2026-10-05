@@ -1,0 +1,32 @@
+diff --git a/drivers/filesystems/vfatfs/cleanup.c b/drivers/filesystems/vfatfs/cleanup.c
+index 3844c6f5..dbbdf9ea 100644
+--- a/drivers/filesystems/vfatfs/cleanup.c
++++ b/drivers/filesystems/vfatfs/cleanup.c
+@@ -95,18 +95,23 @@ VfatCleanupFile(
+             else
+             {
+                 PFILE_OBJECT tmpFileObject;
++
++                /* Deletion invalidates the stream, including an internal
++                 * directory cache map. Tell NT's cache manager to purge it
++                 * before releasing its backing clusters. A NULL truncate
++                 * size can leave dirty directory pages pending for writeback. */
++                pFcb->RFCB.ValidDataLength.QuadPart = 0;
++                pFcb->RFCB.FileSize.QuadPart = 0;
++                pFcb->RFCB.AllocationSize.QuadPart = 0;
+                 tmpFileObject = pFcb->FileObject;
+                 if (tmpFileObject != NULL)
+                 {
+                     pFcb->FileObject = NULL;
+-                    CcUninitializeCacheMap(tmpFileObject, NULL, NULL);
++                    CcUninitializeCacheMap(tmpFileObject, &pFcb->RFCB.FileSize, NULL);
+                     ClearFlag(pFcb->Flags, FCB_CACHE_INITIALIZED);
+                     ObDereferenceObject(tmpFileObject);
+                 }
+ 
+-                pFcb->RFCB.ValidDataLength.QuadPart = 0;
+-                pFcb->RFCB.FileSize.QuadPart = 0;
+-                pFcb->RFCB.AllocationSize.QuadPart = 0;
+             }
+         }
+ 

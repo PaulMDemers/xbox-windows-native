@@ -1,0 +1,27 @@
+diff --git a/drivers/filesystems/vfatfs/rw.c b/drivers/filesystems/vfatfs/rw.c
+index 5156d8a3..52e63e08 100644
+--- a/drivers/filesystems/vfatfs/rw.c
++++ b/drivers/filesystems/vfatfs/rw.c
+@@ -1257,6 +1257,22 @@ VfatWrite(
+         }
+     }
+ 
++    /* NT can submit dirty directory pages after the final delete cleanup.
++     * No data remains to persist once this stream has no handles or backing
++     * allocation. Discard those obsolete pages under PagingIoResource; never
++     * follow the stale first-cluster field into possibly reused storage.
++     * Keep normal range errors for live directories and volume/FAT streams. */
++    if (PagingIo && !IsVolume && !IsFAT && vfatFCBIsDirectory(Fcb) &&
++        BooleanFlagOn(Fcb->Flags, FCB_DELETE_PENDING) &&
++        Fcb->OpenHandleCount == 0 &&
++        Fcb->RFCB.FileSize.QuadPart == 0 &&
++        Fcb->RFCB.AllocationSize.QuadPart == 0)
++    {
++        IrpContext->Irp->IoStatus.Information = 0;
++        Status = STATUS_SUCCESS;
++        goto ByeBye;
++    }
++
+     /* A cached page can outlive a truncate. Paging writes never extend EOF:
+      * discard an obsolete range and clip a crossing write while the paging
+      * resource keeps both EOF and the cluster chain stable. */

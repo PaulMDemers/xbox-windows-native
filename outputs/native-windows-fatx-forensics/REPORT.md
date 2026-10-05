@@ -116,3 +116,128 @@ one temporary raw conversion at a time.
 Keep the physical install unlaunched until the corrupting operation is understood
 and restoration can be verified. Cycle014 Paint testing remains gated off.
 Do not overwrite the damaged driver or reset WMI merely to obtain another boot.
+
+## Rename integration and deleted-directory regression, October 5
+
+High-allocation run002 with the original `f686...` driver completed the 300-case,
+32 MiB and five-minute soak and restarted normally. Cold payload checks and the
+bounded driver/WMI chains pass; no whole-volume audit is claimed for that run.
+The exploratory rename-pin trace recorded no hits. Its cleanup encountered an
+asynchronous GDB stop packet where it expected an acknowledgement; the owned VM
+was subsequently terminated by the harness. This was a host trace failure, not
+an observed cache-pin result. The cleanup code now accepts the pending stop
+packet and records cleanup failures. That trace cleanup change has not yet been
+exercised against a new debugger session. The intermittent failure remains open.
+
+Source history inspection confirmed that experimental rename patches0060-0062
+were excluded from the production0079 chain after their earlier delayed-write
+failure. `patch-check-0080.json` integrates them after0079, producing tree
+`423635deed2cbad9e2f88a642ab1849fccac6c08` and driver
+`4112cc4c15bf3aaa97bd5450c8cdfde3bba01a412e8ec2b53c529be7d25abe6c`.
+All127 native imports resolve. This preserves the original rename name/index
+repairs while adding the intervening paging fixes; it is not a new claim that
+the original physical corruption is explained.
+
+Run `nt5-physical-f-high-allocation-rename-001` completed the same cache soak and
+normal restart. All3439 immutable binaries, allocation ownership, test payloads
+and registry checks pass after shutdown. One brief RAM snapshot and framebuffer
+captures paused/resumed the guest; there were no execution breakpoints or guest
+data patches. The cold auditor now explicitly verifies the pinned fixture's
+synthetic bad-cluster reservations remain unchanged and unclaimed, rather than
+treating them as orphaned allocations. Other unclaimed allocations still fail.
+Its first attempt used an unsuitable qemu-img dd range; that host failure is
+preserved in the run directory. The corrected bounded raw view passes.
+
+The unchanged13666-byte rename probe was then staged before the soak. It tests
+case-only42-byte rename, same-directory rename to42 bytes, cross-directory move,
+reopen/data comparison and deletion. Run `nt5-physical-f-high-allocation-r2`
+reports zero API failures and passes the cache soak and full cold audit, BUT
+visibly reports delayed writes for `xwnfstest\sub`. Current-boot event records40
+and44 confirm warnings for both deleted test directories; records42/43 are
+Ftdisk50. Consequently this candidate FAILS the regression despite its cold
+checks. Screenshots, stopped disk and complete event logs are retained locally.
+The preceding longer run name failed before boot because Windows could not open
+the deep backing path; it supplies no runtime evidence. Short run IDs avoid it.
+
+The cleanup code uninitializes an internal directory stream with a NULL truncate
+size, then zeroes the FCB sizes and frees the allocation. Patch0081 moves those
+size changes before uninitialization and supplies the zero truncate size to the
+internal stream too. This requests cache invalidation before its backing clusters
+are released; it does not turn failed writes into success. The API contract is
+documented by [Microsoft](https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/ntifs/nf-ntifs-ccuninitializecachemap).
+The new tree is `3c98ddea1f3bfa3d1bfccce9e24644724d7bf2bc`; the separately saved
+driver is `00c3330225ff48843e9626c1c51228f5d06d587aa78d7535033c2c45dafec98c`.
+Build and all127 import checks pass. Runtime qualification is recorded below
+after the identical rename-plus-soak experiment completes.
+
+Run `nt5-physical-f-high-allocation-r3` with0081 also FAILS: the same deleted
+directory popup is visible. The complete rename API log,300-case soak, restart,
+3439 binaries, allocation and registry audit still pass. Therefore the zero
+truncate change is insufficient and is not promoted. Its separate image remains
+available for comparison; the verified physical artifacts have not changed.
+
+Patch0082 adds a bounded in-memory failure ring to the failed0081 driver. It
+records status, IRQL, IRP/FCB flags, write range, file/allocation sizes, cluster,
+directory indices and path when VfatWrite returns failure. It leaves the original
+status intact and does no disk logging. This is a diagnostic build, not a fix.
+`read-write-trace.py` reads the ring from an owned emulator RAM snapshot and
+resumes the guest, deleting the temporary raw dump after saving decoded records.
+The source tree is`b28c040505d60a19debd1700dc2e34a598623110`; the driver hash is
+`91860fede1e2432a7d84e4fb34196d2c0a02b821341a5729318fab2c396c9fcd`.
+
+### Captured failure and narrow candidate0083
+
+Exploratory runr4 records four failed writes, two each for`\xwnfstest\sub` and
+`\xwnfstest`. Every record has status`C000000D` (invalid parameter), IRQL0,
+IRP flags`43`, FCB flags`2` (delete pending), zero open handles, zero file size,
+zero valid-data length and zero allocation size. The writes are4096 bytes at
+offset0, while the stale first-cluster fields remain2144206 and2144202. Thus
+the write path is rejecting obsolete cached pages for deleted directory streams.
+`deleted-directory-write-trace.json` preserves the decoded evidence. The VM was
+closed intentionally after capturing the trace; this diagnostic run is not a
+completed soak or a cold-consistency qualification.
+
+Patch0083 branches from0080, excluding both the unsuccessful0081 cleanup change
+and0082 instrumentation. Under the paging resource, it discards paging writes
+only for a directory that is delete-pending, has zero open handles, and has zero
+file size and allocation. Volume/FAT streams and live-directory writes retain
+their original checks. This avoids attempting I/O through the obsolete cluster
+field; it does not mask errors on live data. The source tree is
+`f0faab3070de3d8980bc7cf04f6407f9d1978fe1`, with driver
+`4aa035e6faa6b23ab7bfe78c6da10875eb8d789854c593983e0275c9141e2396`.
+All127 native imports resolve. Runr5 uses the same rename probe and long soak.
+
+Host space was recovered by losslessly compressing one closed790467338-byte
+CPU trace to26753011 bytes. The uncompressed SHA256 was checked before and after
+compression before removing the original; the compressed evidence remains in
+its original run directory. See`retained-trace-compression.json`. No disk images,
+physical snapshots or source artifacts were deleted.
+
+### Candidate0083 validation result
+
+Run `nt5-physical-f-high-allocation-r5` launched at02:16:32 UTC and returned
+normally to the dashboard. It passes every required42-byte rename, case change,
+cross-directory move, reopen/data comparison and deletion check. The300 mapped
+cases,32 MiB asynchronous pressure and five-minute idle period also complete.
+There are no observed delayed-write popups and no delayed-write/Ftdisk50 records
+in the current boot; the event log records normal shutdown. Historic warnings
+remain in the log and are not confused with this boot.
+
+The stopped disk passes allocation/cross-link checks,3439 immutable binaries,
+nine hive checks and exact test payloads. Synthetic reservations match the
+original pinned high-allocation fixture and remain unclaimed. The qualifier in
+`nt5-physical-f-high-allocation-r5-qualification.json` is PASS; the same tool
+marks r2 and r3 FAIL despite their API/cold successes. No execution breakpoints
+or guest data patches were used for r5; ordinary framebuffer captures briefly
+pause/resume the emulator. Full ordered source replay, build,127 imports and
+host script syntax checks pass. Whitespace checks cover host sources and applied
+C source; literal patch context lines are not treated as source whitespace.
+
+All owned guests are closed. Current WSL source is0083; the0080,0081,0082 driver
+artifacts and all comparison fixtures are preserved. The original f686 physical
+candidate is also preserved separately, while the actual physical driver remains
+damaged. No hardware access, upload, restoration, WMI reset or Windows launch
+was performed during these emulator experiments. The original physical013
+corruption and intermittent WMI rename crash remain separate unresolved results.
+Next validate repeated WMI-style replacement/rename and cluster reuse before
+restoring the owned Windows installation and scheduling a new physical trial.
