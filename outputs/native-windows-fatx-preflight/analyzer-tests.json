@@ -1,0 +1,69 @@
+{
+  "scope": "Challenge the read-only analyzer with known allocation damage and incomplete captures.",
+  "source_preserved": true,
+  "source_hashes": {
+    "fat-metadata.bin": "a27bbdc60ecb425444dfeaf5708537f8dbb113de2e4a52fd9237a75ea56f4a1a",
+    "directories.bin": "915c18b06bbe4840bec9825e34dbb20c66ac7c6fc3d439bf93ba05e0d4466fbf",
+    "snapshot.txt": "8ec7d13c2b36a8e54adfd09b517d11c8b9d605a6fc2f88a85e0d3b5f25c87f86"
+  },
+  "cases": [
+    {
+      "case": "clean",
+      "detected_as_expected": true,
+      "errors": []
+    },
+    {
+      "case": "free-driver-chain",
+      "detected_as_expected": true,
+      "errors": [
+        {
+          "path": "/winnt/system32/drivers/xwnfatx.sys",
+          "kind": "invalid-chain-terminal",
+          "cluster": 1639,
+          "next": "00000000"
+        },
+        {
+          "path": "/winnt/system32/drivers/xwnfatx.sys",
+          "kind": "short-chain",
+          "size": 167789,
+          "capacity": 65536
+        }
+      ]
+    },
+    {
+      "case": "crosslink",
+      "detected_as_expected": true,
+      "errors": [
+        {
+          "path": "/winnt/system32/drivers/xwnfatx.sys",
+          "kind": "crosslink",
+          "cluster": 1639,
+          "other": "/xwn-high.bin"
+        },
+        {
+          "path": "/winnt/system32/drivers/xwnfatx.sys",
+          "kind": "crosslink",
+          "cluster": 1640,
+          "other": "/xwn-high.bin"
+        },
+        {
+          "path": "/winnt/system32/drivers/xwnfatx.sys",
+          "kind": "crosslink",
+          "cluster": 1641,
+          "other": "/xwn-high.bin"
+        }
+      ]
+    },
+    {
+      "case": "missing-summary",
+      "detected_as_expected": true,
+      "errors": "Capture rejected"
+    },
+    {
+      "case": "incomplete-log",
+      "detected_as_expected": true,
+      "errors": "Capture rejected"
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,61 @@
+diff --git a/drivers/filesystems/vfatfs/dirwr.c b/drivers/filesystems/vfatfs/dirwr.c
+index fbbca093..3905e608 100644
+--- a/drivers/filesystems/vfatfs/dirwr.c
++++ b/drivers/filesystems/vfatfs/dirwr.c
+@@ -1083,7 +1083,7 @@ FATDelEntry(
+  * deleting an existing FAT entry
+  */
+ static NTSTATUS
+-FATXDelEntry(
++FATXDelEntryLocked(
+     IN PDEVICE_EXTENSION DeviceExt,
+     IN PVFATFCB pFcb,
+     OUT PVFAT_MOVE_CONTEXT MoveContext)
+@@ -1161,6 +1161,23 @@ FATXDelEntry(
+     return STATUS_SUCCESS;
+ }
+ 
++/* Pair chain retirement with VfatWrite's shared paging acquisition. */
++static NTSTATUS
++FATXDelEntry(
++    IN PDEVICE_EXTENSION DeviceExt,
++    IN PVFATFCB pFcb,
++    OUT PVFAT_MOVE_CONTEXT MoveContext)
++{
++    NTSTATUS Status;
++    if (MoveContext != NULL)
++        return FATXDelEntryLocked(DeviceExt, pFcb, MoveContext);
++
++    ExAcquireResourceExclusiveLite(&pFcb->PagingIoResource, TRUE);
++    Status = FATXDelEntryLocked(DeviceExt, pFcb, NULL);
++    ExReleaseResourceLite(&pFcb->PagingIoResource);
++    return Status;
++}
++
+ /*
+  * move an existing FAT entry
+  */
+diff --git a/drivers/filesystems/vfatfs/rw.c b/drivers/filesystems/vfatfs/rw.c
+index 52e63e08..b7329f32 100644
+--- a/drivers/filesystems/vfatfs/rw.c
++++ b/drivers/filesystems/vfatfs/rw.c
+@@ -1257,6 +1257,19 @@ VfatWrite(
+         }
+     }
+ 
++    /* Replacement can retire a file while its cache still holds dirty pages.
++     * FATXDelEntry takes this resource exclusively before unlink/free; once
++     * retired, no paging write may follow its former chain into reused data.
++     * Live files (including merely delete-pending open files) keep normal I/O. */
++    if (PagingIo && !IsVolume && !IsFAT &&
++        BooleanFlagOn(Fcb->Flags, FCB_NAMESPACE_UNLINKED) &&
++        Fcb->OpenHandleCount == 0)
++    {
++        IrpContext->Irp->IoStatus.Information = Length;
++        Status = STATUS_SUCCESS;
++        goto ByeBye;
++    }
++
+     /* NT can submit dirty directory pages after the final delete cleanup.
+      * No data remains to persist once this stream has no handles or backing
+      * allocation. Discard those obsolete pages under PagingIoResource; never

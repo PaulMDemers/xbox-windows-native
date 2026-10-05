@@ -13,6 +13,8 @@ case ${1:-rename} in
   rename-trace) manifest=0084; artifact=xwnfatx-rename-trace.sys ;;
   rename-filter) manifest=0085; artifact=xwnfatx-rename-filter.sys ;;
   unlinked) manifest=0086; artifact=xwnfatx-unlinked.sys ;;
+  lifetime-trace) manifest=0087; artifact=xwnfatx-lifetime-trace.sys ;;
+  retired-write) manifest=0088; artifact=xwnfatx-retired-write.sys ;;
   *) exit 2 ;;
 esac
 tree=$(python3 -c 'import json,sys;print(json.load(open(sys.argv[1]))["result_tree"])' "$kit/patch-check-$manifest.json")

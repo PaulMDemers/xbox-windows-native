@@ -39,7 +39,16 @@ host-side test harness.
   Two qualified emulator boots pass192 rotation cycles,191 observed cluster
   reuse cases, persistent130-file guards,600 mapped/truncate cases and two
   five-minute soaks, with clean cold audits and no new delayed-write events.
-  Dirty cached replacement and open-handle lifetime remain unqualified.
+  A stronger dirty-replacement test then reproduced corruption of reused storage.
+  Candidate0088 serializes chain retirement with paging I/O and prevents late
+  cached writes from following freed chains. Its unchanged regression passes
+  32 dirty replacements, handle/mapping lifetime and 66 cold-verified files.
+  The persisted second boot also passes:66 retained files, another96 rotations,
+  300 mapped/truncate cases and a fifteen-minute soak, with clean cold audits
+  and zero new delayed-write events. All owned emulator processes are closed.
+  The next hardware test is a guarded, read-only full-F metadata capture before
+  any scoped restoration or Windows boot. See the
+  [hardware preflight kit](outputs/native-windows-fatx-preflight/README.md).
   These are bounded emulator repairs; the damaged physical install remains held.
   See [allocation evidence](outputs/native-windows-fatx-forensics/REPORT.md).
   See [desktop stability evidence](outputs/native-windows-physical-f/DESKTOP-STABILITY.md)
@@ -243,16 +252,17 @@ excluded. Photos and detailed run dumps remain local; summarized validation
 records are tracked. Physical FTP passwords are supplied through the process
 environment. Local emulator scripts use the fixture's default credentials.
 
-Preserve the working softmod and dashboard. Hardware probes are manually
-launched and photographed; current probes do not automatically return to the
-dashboard. Do not write emulator disk images onto the physical Xbox drive.
+Preserve the working softmod and dashboard. Early hardware probes required
+manual launch and photographs; later bounded tests support authorized FTP launch
+and automatic dashboard return. Do not write emulator disk images onto the physical Xbox drive.
 Native Windows FATX mounting and bounded file/mapping tests now work in the
 emulator. Full FATX system-volume boot now passes a bounded desktop/endurance test;
-long-term stability and a physical Windows boot volume remain unproven.
+long-term stability remains unproven. Physical F desktop boot is confirmed above.
 
 Paul restarts to the dashboard after each diagnostic photo. Treat receipt
 of a photo as restart confirmation; only raise dashboard availability if
-FTP remains unavailable after a retry. Physical launches remain manual.
+FTP remains unavailable after a retry. Later FTP launches are explicitly authorized;
+never launch the currently damaged Windows installation before recovery.
 
 The full FATX desktop also passes in the firmware 1024x576 display layout,
 including USB input and cold binary checks: [wide-mode evidence](outputs/native-windows-fatx-wide/REPORT.txt).

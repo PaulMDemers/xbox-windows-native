@@ -1,0 +1,87 @@
+{
+  "scope": "Read-only cold verification of an owned, stopped cache-regression overlay.",
+  "run": "nt5-physical-f-high-allocation-r12",
+  "files": [
+    {
+      "path": "xwn-report-v2.txt",
+      "present": true,
+      "bytes": 4096,
+      "sha256": "f0f1218461548e46bf8ce42455fbc8976b36669296d9aa3dfd21a0a49c3d329d"
+    },
+    {
+      "path": "winnt/system32/config/sysevent.evt",
+      "present": true,
+      "bytes": 65536,
+      "sha256": "21e75f09ade7ecf1ab4ffe5a80eb8658f1c06687f29ae5a40dad6145a5826c66"
+    },
+    {
+      "path": "xwn-cache-append.tmp",
+      "present": false
+    },
+    {
+      "path": "xwn-cache-map.tmp",
+      "present": false
+    },
+    {
+      "path": "xwn-cache-pressure.tmp",
+      "present": false
+    }
+  ],
+  "whole_filesystem_audit": false,
+  "report": "XWN-V2-PENDING-20261004",
+  "probe_passed": false,
+  "rename_regression": {
+    "log": "XWN FATX file API test\r\nPASS: GetVolumeInformation\r\nMaximum component: 42\r\nFlags: 2\r\nPASS: Filesystem name FATX\r\nPASS: 42-byte component limit advertised\r\nPASS: OEM case-preserved capabilities\r\nPASS: Create test directory\r\nPASS: Create child directory\r\nPASS: 42-byte ASCII name accepted\r\nPASS: 43-byte ASCII name rejected\r\nPASS: Create mixed-case data file\r\nPASS: Write 128 KiB plus one byte\r\nPASS: Flush data\r\nPASS: Case-insensitive reopen\r\nPASS: Reopened full data comparison\r\nPASS: Shrink at cluster-crossing boundary\r\nPASS: Shrunk size\r\nPASS: Regrow with explicit data\r\nPASS: Flush regrown file\r\nPASS: Rename across directories\r\nPASS: Open renamed file\r\nPASS: Renamed regrown data comparison\r\nPASS: Delete data file\r\nPASS: Case-only rename of 42-byte name\r\nPASS: 42-byte case change persisted in directory\r\nPASS: Delete boundary-length file\r\nPASS: Create rename source\r\nPASS: Write rename source\r\nPASS: Same-directory rename to 42-byte name\r\nPASS: 42-byte rename persisted in directory\r\nPASS: Reopen 42-byte renamed file\r\nPASS: 42-byte renamed data comparison\r\nPASS: Delete 42-byte renamed file\r\nPASS: Remove child directory\r\nPASS: Remove test directory\r\nFailures: 0\r\n",
+    "required_checks": [
+      "Case-only rename of 42-byte name",
+      "42-byte case change persisted in directory",
+      "Same-directory rename to 42-byte name",
+      "42-byte rename persisted in directory",
+      "Reopen 42-byte renamed file",
+      "42-byte renamed data comparison",
+      "Delete 42-byte renamed file",
+      "Remove child directory",
+      "Remove test directory"
+    ],
+    "passed": true,
+    "test_directory_removed": true,
+    "caveat": "API and cold checks do not negate delayed-write popups; inspect the screen and event log separately."
+  },
+  "high_allocation_files": [
+    {
+      "path": "winnt/system32/drivers/xwnfatx.sys",
+      "size": 167789,
+      "clusters": 3,
+      "first_cluster": 2142521,
+      "last_cluster": 2142527,
+      "chain_capacity_sufficient": true,
+      "chain_error": null
+    },
+    {
+      "path": "winnt/system32/wbem/repository/cim.rep",
+      "size": 3014656,
+      "clusters": 46,
+      "first_cluster": 2142530,
+      "last_cluster": 2145538,
+      "chain_capacity_sufficient": true,
+      "chain_error": null
+    },
+    {
+      "path": "winnt/system32/wbem/repository/$winmgmt.cfg",
+      "size": 12,
+      "clusters": 1,
+      "first_cluster": 2145539,
+      "last_cluster": 2145539,
+      "chain_capacity_sufficient": true,
+      "chain_error": null
+    },
+    {
+      "path": "xwn-cache-append.tmp",
+      "present": false
+    },
+    {
+      "path": "xwn-cache-pressure.tmp",
+      "present": false
+    }
+  ]
+}

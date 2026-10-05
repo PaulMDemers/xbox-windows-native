@@ -227,7 +227,7 @@ backed up as `F:/winnt/system32/drivers/xwnfatx.xwn-c11`. The prior cycle009
 report remains separately named `xwn-report-v2.pass009`.
 
 The new report starts `XWN-CACHE-START`, completes all30 mapped/truncate cases,
-131073-byte cached append and32MiB asynchronous pressure, reports zero failures,
+131073-byte cached append and 32MiB asynchronous pressure, reports zero failures,
 and ends `XWN-CACHE-PASS`. The user observed Windows shutting down and rebooting.
 Dashboard FTP then returned; independent reads of all three test payloads match
 exact expected data, including the mapped file truncated to zero. Collection
@@ -361,3 +361,38 @@ This does not yet cover replacing an existing dirty cached destination,
 open-handle/mapping lifetime, or prove the physical013 root cause. Those
 tests and longer persistence checks precede physical restoration and testing.
 The damaged physical install remains held; no physical changes occurred.
+
+
+## Dirty replacement follow-up: candidate 0088
+
+The previously missing lifetime test reproduces corruption under 0086: r12
+leaves two newly allocated reuse files damaged after replacing dirty cached
+files. Diagnostic 0087 records late paging writes following fully unlinked file
+records with no handles, failing C0000102. Its passing payload checks do not
+negate the visible warning and 36 lost-write events; r13 is also overall FAIL.
+
+Candidate0088 holds the paging resource across true unlink/free and excludes
+late paging writes from retired chains. Live and delete-pending handles retain
+normal writes. Its source tree is adf9b3d166ef84630a48d7393fcc9fe3ce78f104 and
+driver SHA is 0ec6b5fdae65a1f85cba8c15021ba8095601d4462565b331329884526ff81336.
+The complete 78-patch replay and 127-import audit pass; no diagnostic execution
+patches are needed.
+
+r14 passes the unchanged lifetime test (32 dirty replacements/32 storage reuse,
+66 retained files), handle/mapping semantics, 96 rotation cycles, 130 guards,
+300 mapped/truncate cases,32 MiB async pressure and five-minute idle. Normal
+restart,3439 immutable binaries, nine hives, allocation and current-boot event
+checks pass with no observed delayed-write warning. A second boot retains these
+files and adds a fifteen-minute soak: r15 now qualifies PASS, including all66
+previous files,96 additional rotation cycles/96 reuse observations,130 guards,
+300 mapped cases,32 MiB async pressure,normal restart,cold allocation,3439
+binaries and nine hives. Zero current-boot delayed-write events; no warning
+observed. All emulator processes are closed. This is repeat-boot persistence
+coverage of the original32 dirty replacements, not32 new replacements.
+
+The [read-only hardware preflight kit](../native-windows-fatx-preflight/README.md)
+is the next test. It collects full F allocation metadata to scope recovery of
+the corrupt physical013 Windows install. No physical upload or repair has been
+performed during this follow-up, and Windows must stay held until recovery.
+The physical STOP0xA remains unproven as the same defect; longer uptime,
+fault-injection and power-loss resilience are outside this bounded qualification.

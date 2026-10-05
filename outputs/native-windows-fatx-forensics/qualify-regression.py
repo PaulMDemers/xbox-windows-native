@@ -3,7 +3,7 @@ import argparse,json,pathlib
 ws=pathlib.Path(__file__).resolve().parents[2];k=pathlib.Path(__file__).resolve().parent
 p=argparse.ArgumentParser();p.add_argument('--run',required=True);p.add_argument('--events',type=pathlib.Path,required=True)
 p.add_argument('--visual',choices=['delayed-write','no-warning-observed'],required=True)
-p.add_argument('--expected',choices=['pass','fail'],required=True);p.add_argument('--rotation-boots',type=int);a=p.parse_args()
+p.add_argument('--expected',choices=['pass','fail'],required=True);p.add_argument('--rotation-boots',type=int);p.add_argument('--lifetime',action='store_true');a=p.parse_args()
 assert a.run.startswith('nt5-physical-f-high-allocation-') and a.run.replace('-','').isalnum()
 assert (ws/'work/runs'/a.run/'cleanup.json').exists()
 probe=json.loads((ws/'outputs/native-windows-physical-f'/(a.run+'-audit.json')).read_text())
@@ -28,6 +28,12 @@ r=dict(scope=__doc__,run=a.run,filesystem_sha256=cold['expected_filesystem_drive
        normal_eventlog_shutdown=shutdown,visual_observation=a.visual,passed=passed,
        caveat='Bounded emulator evidence; does not establish the cause of physical013 corruption or long-term hardware stability.')
 if rotation:r['rotation']={key:rotation[key] for key in ['passed','state','reuse_counts','no_temporary_files','probe_sha256']}
+if a.lifetime:
+    life=json.loads((k/(a.run+'-lifetime-audit.json')).read_text())
+    r['lifetime']={key:life[key] for key in ['probe_passed','reuse_counts','passed','probe_sha256']}
+    if 'reboot_verified' in life:r['lifetime'].update(reboot_verified=life['reboot_verified'],long_soak_completed=life['long_soak_completed'])
+    passed=passed and life['passed']
+    r['passed']=passed
 (k/(a.run+'-qualification.json')).write_text(json.dumps(r,indent=2)+'\n')
 print(a.run,'PASS' if passed else 'FAIL','delayed-write records:',len(warnings))
 assert passed==(a.expected=='pass')

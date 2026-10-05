@@ -318,7 +318,7 @@ deletion of reused storage. It does **not** prove that the physical013 corruptio
 or earlier WMI cache-pin crash has this cause. No physical console access,
 uploads, restoration or Windows launches were performed during this work.
 
-### Remaining stabilization gates
+### Gates recorded before the lifetime follow-up
 
 - Exercise `MoveFileEx(..., MOVEFILE_REPLACE_EXISTING)` with a dirty cached
   destination, immediately reuse its released clusters for different contents,
@@ -334,3 +334,126 @@ uploads, restoration or Windows launches were performed during this work.
   audit the owned installation against verified source files. Restore only
   Windows-owned files, then qualify short writes, reuse and longer idle tests
   on hardware while preserving the dashboard, softmod and other partitions.
+
+
+## Dirty replacement and paging lifetime (5 October 2026)
+
+The new unchanged `lifetime-probe.c` closes the previously missing coverage:
+replacement while a target has a non-sharing handle, delete-pending access
+through surviving handles, mapping/file/view close ordering, and 32 replacements
+of dirty cached destinations. Half also dirty a mapped view. Each replacement
+immediately allocates different contents into released storage, with retrieval
+pointers demonstrating reuse. Sixty-six deterministic files remain for pressure,
+idle, cold-disk and subsequent-boot verification.
+
+The earlier 0086 candidate fails this stronger test in r12. All handle tests and
+32 reuse observations complete, but final verification fails; the stopped disk
+confirms corruption of `reuse07.bin` and `reuse21.bin`. A delayed-write popup
+names `target00.bin`, and 39 current-boot lost-write events are retained.
+
+Diagnostic 0087 in r13 records 515 failing paging writes. The final 16 retained
+records target `target26.bin`, with STATUS_C0000102, zero open handles and the
+fully-unlinked FCB flag 0200. These writes still followed the retired first
+cluster. r13 happens to pass its API and retained-file checks, but has a visible
+warning and 36 current-boot lost-write events: **overall FAIL**. Both controls
+were stopped through normal UI shutdown to the safe-to-power-off screen and
+closed. Neither is a successful automatic-restart soak. See
+`lifetime-failed-controls.json` and `lifetime-write-trace.json`.
+
+Production candidate 0088 branches directly from 0086 and excludes 0087's trace.
+True FATX unlink now holds the paging resource exclusively through chain
+retirement. This waits for writes already holding that resource. Later paging
+writes to fully unlinked ordinary files with no open handles complete without
+following the obsolete chain. Merely delete-pending files with surviving
+handles retain normal I/O; live file, volume and FAT checks remain in place.
+The resource releases on the normal completion path. This is a targeted repair
+for a reproduced storage-corruption mechanism, not general error suppression.
+
+- Source tree: `adf9b3d166ef84630a48d7393fcc9fe3ce78f104`.
+- Driver: `artifacts/xwnfatx-retired-write.sys`.
+- SHA-256: `0ec6b5fdae65a1f85cba8c15021ba8095601d4462565b331329884526ff81336`.
+- All 78 patches replay to that tree; build and 127 NT5 imports pass.
+- Unchanged lifetime executable: `37b4f041bdb4e6f0090757fdb52bf28f1f3ddf1c9077e6d740fb9eeb0036af33`.
+
+Run r14 qualifies PASS with 0088:32 dirty replacements and 32 observed reuse
+cases; all handle/mapping checks; 66 retained files verified cold; 96 rotation
+cycles with 95 reuse cases and 130 guards; 300 mapped/truncate cases; 32 MiB async
+pressure; five-minute idle; normal automatic dashboard restart. Cold allocation,
+3439 immutable binaries and nine hives pass. No delayed-write warning was
+observed and no current-boot delayed-write event exists.
+
+The r15 fixture retains r14's Windows/WMI/registry, driver, rotation state and
+all persistent test files. It changes the test helpers/startup and resets only
+the 4096-byte one-shot video trace, preserving the original trace separately.
+Its new verifier checks the 66 previous files before the unchanged cache workload
+and a fifteen-minute idle. r15 is now closed and qualifies PASS. The prior66
+files match both during the second boot and in the final cold audit. Rotation
+state2 contains96 additional cycles and96 reuse observations, with all130 guard
+files intact. The second300-case mapped/truncate workload,32 MiB async pressure,
+fifteen-minute idle and automatic dashboard restart complete. Allocation,3439
+immutable binaries and nine hives pass; zero new delayed-write events and no
+warning observed. No debugger execution patch was applied.
+
+Together r14/r15 supply32 dirty replacements with32 reuse observations whose
+results persist across reboot;192 rotation cycles with191 reuse observations;
+600 mapped/truncate cases;64 MiB async writes; five- and fifteen-minute soaks.
+The lifetime replacement loop ran once in r14; r15 verifies its persistent
+results rather than counting them as32 additional replacements. Both complete
+normal restart and cold audit. See the two `*-qualification.json` records.
+The emulator and all owned build/audit processes have been closed.
+
+### Hardware preparation and remaining limits
+
+The next hardware experiment is the [read-only full-F metadata preflight](../native-windows-fatx-preflight/README.md).
+It captures the whole FAT and live directory records through a read-only
+Partition6 handle, with outputs on E beside its XBE. Emulator validation compares
+6797 entries and 309 directory clusters against the stopped disk, independently
+checks coverage, and confirms no F write extents. Analyzer tests detect a free
+file chain, a crosslink and incomplete evidence. A complete capture alone does
+not mean a healthy filesystem.
+
+The launcher pins the qualified binaries, requires the ownership marker and
+unchanged disabled Windows startup, and refuses blind relaunch. No hardware
+access, upload, restoration or Windows launch occurred during this work.
+Physical013's corrupt driver/WMI evidence remains preserved. Its original
+STOP0xA and earlier cache-pin crash are not conclusively attributed to this bug.
+The synthetic emulator disk is not a clone of the console's actual filesystem.
+
+Before Windows boots again, use the new metadata evidence to identify all
+allocation conflicts, review recovery scope and restore only Windows-owned
+content from verified sources. Preserve unrelated files, partitions, dashboard
+and softmod. Then test short writes first with the established physical HAL and
+trace miniport, followed by replacement/reuse and longer idle tests. Hardware
+I/O error propagation, power-loss recovery and extended uptime remain unqualified;
+this work does not establish production filesystem reliability.
+
+The lifetime probes use the documented file deletion and replacement contracts:
+[DeleteFile](https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-deletefile)
+and [moving/replacing files](https://learn.microsoft.com/en-us/windows/win32/fileio/moving-and-replacing-files).
+The actual qualification evidence is from the owned NT5 emulator runs above.
+
+
+### Reproduction and evidence boundaries
+
+Use `patch-check-0088.json` with `tools/apply-series.py` on the pinned upstream
+checkout. `Build-Rename.ps1 -Variant retired-write` builds the production
+candidate. `Build-Lifetime.ps1`, `Build-LifetimeReboot.ps1` and `Build-LongSoak.ps1`
+build the guest probes; the three import-audit reports pin their NT5 ABI checks.
+The original0086 and diagnostic0087 drivers remain separate retained artifacts.
+
+`prepare-lifetime.py --retired` constructs the first candidate fixture from the
+owned high-allocation baseline. `prepare-lifetime-long.py` creates the subsequent
+boot from the closed r14 disk, preserving all persistent state except the
+explicit diagnostic reseed and updated test helpers. Each refuses to overwrite
+existing fixture targets. The fixture manifests record source and result hashes.
+These scripts require the locally owned media, toolchains and earlier fixtures;
+the source repository intentionally does not distribute those binary payloads.
+
+After the emulator closes normally, run `audit-lifetime.py --run RUN --expected
+pass` (add `--reboot` for r15), `Audit-RotateRun.ps1 -RunId RUN -Boots N
+-FilesystemDriver xwnfatx-retired-write.sys`, and `qualify-regression.py --run RUN
+--events EVENTS --visual no-warning-observed --expected pass --rotation-boots N
+--lifetime`. Supply the visual outcome from actual captures. A data-only pass
+must never override an observed lost-write warning. Preserve failing run reports.
+The qualifier requires the complete cold audit, current-boot event evidence and
+normal EventLog shutdown together with the probe results.
