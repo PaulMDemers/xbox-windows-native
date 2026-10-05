@@ -1,8 +1,18 @@
 # Physical GDI baseline attempt 001
 
 The Xbox accepted one launch at 2026-10-05 21:09:38 UTC. The four-minute observer
-did not establish a dashboard return. A screen-state question is pending; this
-is not a crash diagnosis or a successful benchmark. Do not relaunch the trial.
+did not establish a dashboard return. The user subsequently reported that the
+attached "razor chroma ornata" keyboard causes Xromwell to hang, unplugged it,
+and rebooted to the dashboard. The exact USB identity and root cause have not
+been independently verified. This is a reported pre-Windows boot interruption,
+not evidence of a Windows video-driver failure.
+
+Collection completed at 21:17:26 UTC and restored the original startup script
+with readback verification. Neither the probe log nor runner attempt log existed.
+Both event logs were byte-identical to their prelaunch captures. All baseline
+driver/loader and helper hashes matched. Qualification is false because the
+workload was not exercised; there are no valid physical timings from this run.
+The user-authorized retry is a separate attempt, `../physical-gdi-002`.
 
 All release driver/loader hashes and the original startup hash matched before
 launch. Only the new `/F/xwngdi01` helper directory and the one-shot startup
@@ -11,13 +21,11 @@ emulator probe. The runner differs from the earlier Paint runner only in its
 private working paths. Both use NT5-compatible imports and CREATE_NEW logs.
 The runner requests a normal restart only if the probe exits successfully.
 
-`trial.json` is the authoritative launch/collection state. Until collection
-restores startup, `startup_enabled` remains true. Collection first checks and
-restores the preserved original startup, then saves logs and verifies unchanged
-drivers. `observe.py` never launches Windows; its timeout makes no crash claim.
-After dashboard returns, run `trial.py collect` with the already configured
-XWN_FTP_HOST/USER/PASSWORD environment, then `qualify.py`. Do not publish local
-raw logs, Windows files or credentials.
+`trial.json` is the authoritative completed collection state: `startup_enabled`
+is false. Do not relaunch or recollect this attempt. `observe.py` never launches
+Windows; its timeout makes no crash claim. The earlier collection timeout remains
+preserved in `collection-attempt.json`. Do not publish local raw logs, Windows
+files or credentials.
 
 The initial read-only preflight stopped on UnleashX's explicit 553
 Directory-not-found response for the new directory. No writes or Windows launch

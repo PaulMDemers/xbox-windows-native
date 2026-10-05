@@ -1,10 +1,15 @@
-# Continuation after rebuilt-overlay boot and physical GDI launch
+# Continuation after physical GDI retry 002
 
 Updated 2026-10-05. Physical driver/loader baseline remains 0.1.0. One physical
-GDI benchmark was accepted at 21:09:38 UTC and has not returned to dashboard FTP
+GDI retry was accepted at 21:17:54 UTC and has not returned to dashboard FTP
 within the four-minute observation. A screen-state question is pending; do not
-infer a crash or relaunch. Only new /F/xwngdi01 helpers and test startup changed.
-Collect must restore original startup first when the dashboard is available.
+infer a crash or relaunch. Only new /F/xwngdi02 helpers and test startup changed.
+Collect attempt002 must restore original startup first when dashboard is available.
+Attempt001 was collected at 21:17:26 UTC: original startup restored, no probe or
+runner log, byte-identical before/after Windows event logs, baseline unchanged.
+The user reported Xromwell hanging with their "razor chroma ornata" keyboard
+attached, unplugged it and manually rebooted before requesting this retry.
+That peripheral observation is not a diagnosed USB cause or Windows GDI failure.
 All owned emulator/build/observer processes are closed; no automation is running.
 Private repository visibility and v0.1.0 tag identity remain unchanged.
 
@@ -56,11 +61,12 @@ Private repository visibility and v0.1.0 tag identity remain unchanged.
 
 ## Next actions
 
-1. Resolve physical-gdi-001 screen state. When dashboard FTP returns, run
-   outputs/video-next/physical-gdi-001/trial.py collect with existing FTP env,
+1. Resolve physical-gdi-002 screen state. When dashboard FTP returns, run
+   outputs/video-next/physical-gdi-002/trial.py collect with existing FTP env,
    then qualify.py. Collection restores startup before reading logs. Do not
    overwrite trial.json, erase attempt.log or issue a second Windows launch.
    Preserve failures; request manual reboot only after the screen is understood.
+   Attempt001 is complete and unexercised; do not recollect or reuse its identity.
 2. Use physical timings only if correctness and normal shutdown qualify them.
    Review framebuffer cache/stride/copy paths before changing acceleration.
    Extend the reconstructed overlay's storage/network coverage in a new fixture;
