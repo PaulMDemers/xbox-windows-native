@@ -1,0 +1,25 @@
+{
+  "scope": "Compiled x86 miniport callbacks with modeled NT5 imports; not a guest boot",
+  "sha256": "0f05fabc1a576c747516728f2b89252847feca0a319042ab2a8f2ee1f09e99a4",
+  "passed": true,
+  "imports": {
+    "ntoskrnl.exe": [
+      "KeBugCheckEx"
+    ],
+    "videoprt.sys": [
+      "VideoPortFreeDeviceBase",
+      "VideoPortGetAccessRanges",
+      "VideoPortGetDeviceBase",
+      "VideoPortInitialize",
+      "VideoPortMapMemory",
+      "VideoPortUnmapMemory",
+      "VideoPortZeroMemory"
+    ]
+  },
+  "tests": [
+    "START forwards once and preserves success/pending/failure status without reading completed IRP",
+    "AddDevice rewraps a VideoPort-installed dispatch",
+    "Existing failure diagnostics preserved",
+    "No Zw file I/O imports, trace-file marker, or diagnostic PCI-read import"
+  ]
+}

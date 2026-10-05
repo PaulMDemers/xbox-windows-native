@@ -81,3 +81,10 @@ not alter the tagged artifacts or qualify a replacement driver.
 UnleashX's root Windows entry points to `E:\Applications\XWNFBoot\default.xbe`.
 It is a manual menu action, not automatic Windows startup. The menu report
 records the exact config path, before/after hashes and recovery copies.
+
+Post-release update: [candidate0093](../video-trace-reuse-settled/README.md) now
+passes two physical boots without a trace reset between boots and is installed
+on the console. It reuses a valid existing trace file; it does not eliminate file
+I/O or missing-file guards. The preceding one-shot limitation still describes
+the immutable tagged driver/archive. The new overlay and rollback are preserved
+separately; no change to0.1.0 artifacts or tag was made.

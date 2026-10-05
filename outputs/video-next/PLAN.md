@@ -4,6 +4,16 @@ User priorities: faster window dragging, additional Xbox modes including 1080i,
 documented FATX/platform findings, and convenient root-menu Windows launch.
 User also confirms working ping. Preserve the release before driver changes.
 
+## Current evidence
+
+Physical GDI003 and both candidate0093 repeat-boot runs pass the four pixel
+checks and five bounded timing loops. Their256x128 samples show much slower
+framebuffer readback/overlap copies than fills/uploads, but do not measure window
+dragging FPS or prove a cache cause. Candidate0093 resolves repeated-boot trace
+contents maintenance and remains installed; it adds no rendering optimization.
+Next audit effective cache attributes and aliases before choosing that change.
+See ../video-trace-reuse-settled and physical-gdi-003 for actual reports.
+
 ## First implementation: measure the existing drawing path
 
 Build a bounded Windows 2000 GDI probe that records device caps/mode enumeration,

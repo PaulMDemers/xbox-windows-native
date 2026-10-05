@@ -1,0 +1,317 @@
+{
+  "scope": "Cold evidence for two emulator boots reusing a populated video trace without host reseeding.",
+  "physical_access": false,
+  "cycles": [
+    {
+      "index": 1,
+      "logs": {
+        "attempt.log": "ATTEMPT_ONCE\r\nREPLAY_EXIT_ZERO\r\nNORMAL_RESTART_REQUEST\r\n",
+        "gdi-baseline.txt": "XWN_GDI_PROBE_VERSION 3 256 128\r\nCAP_index_value 8 1024 0\r\nCAP_index_value 10 576 0\r\nCAP_index_value 12 32 0\r\nCAP_index_value 14 1 0\r\nCAP_index_value 116 60 0\r\nCAP_index_value 4 271 0\r\nCAP_index_value 6 152 0\r\nCAP_index_value 38 32409 0\r\nCAP_index_value 88 96 0\r\nCAP_index_value 90 96 0\r\nMODE_index_width_height 0 1024 576\r\nMODE_bpp_hz_flags 32 60 0\r\nCLIP_type_width_height 3 314 199\r\nCOPY_stage_pass 0 1 0\r\nVISIBLE_stage 1 1 0\r\nCOPY_stage_pass 1 1 0\r\nVISIBLE_stage 2 1 0\r\nCOPY_stage_pass 2 1 0\r\nVISIBLE_stage 3 1 0\r\nCOPY_stage_pass 3 1 0\r\nVISIBLE_stage 10 1 0\r\nTIMING_kind_count_ms 0 406 1500\r\nVISIBLE_stage 11 1 0\r\nTIMING_kind_count_ms 1 518 1500\r\nVISIBLE_stage 12 1 0\r\nTIMING_kind_count_ms 2 1940 1575\r\nVISIBLE_stage 13 1 0\r\nTIMING_kind_count_ms 3 246 1500\r\nVISIBLE_stage 14 1 0\r\nTIMING_kind_count_ms 4 311 1500\r\nPASS 0 0 0\r\n"
+      },
+      "pixel_and_timing_workload_passed": true,
+      "normal_restart_requested": true
+    },
+    {
+      "index": 2,
+      "logs": {
+        "attempt.log": "ATTEMPT_ONCE\r\nREPLAY_EXIT_ZERO\r\nNORMAL_RESTART_REQUEST\r\n",
+        "gdi-baseline.txt": "XWN_GDI_PROBE_VERSION 3 256 128\r\nCAP_index_value 8 1024 0\r\nCAP_index_value 10 576 0\r\nCAP_index_value 12 32 0\r\nCAP_index_value 14 1 0\r\nCAP_index_value 116 60 0\r\nCAP_index_value 4 271 0\r\nCAP_index_value 6 152 0\r\nCAP_index_value 38 32409 0\r\nCAP_index_value 88 96 0\r\nCAP_index_value 90 96 0\r\nMODE_index_width_height 0 1024 576\r\nMODE_bpp_hz_flags 32 60 0\r\nCLIP_type_width_height 2 314 199\r\nCOPY_stage_pass 0 1 0\r\nVISIBLE_stage 1 1 0\r\nCOPY_stage_pass 1 1 0\r\nVISIBLE_stage 2 1 0\r\nCOPY_stage_pass 2 1 0\r\nVISIBLE_stage 3 1 0\r\nCOPY_stage_pass 3 1 0\r\nVISIBLE_stage 10 1 0\r\nTIMING_kind_count_ms 0 395 1500\r\nVISIBLE_stage 11 1 0\r\nTIMING_kind_count_ms 1 396 1500\r\nVISIBLE_stage 12 1 0\r\nTIMING_kind_count_ms 2 2000 1215\r\nVISIBLE_stage 13 1 0\r\nTIMING_kind_count_ms 3 248 1500\r\nVISIBLE_stage 14 1 0\r\nTIMING_kind_count_ms 4 322 1500\r\nPASS 0 0 0\r\n"
+      },
+      "pixel_and_timing_workload_passed": true,
+      "normal_restart_requested": true
+    }
+  ],
+  "payloads": [
+    {
+      "path": "winnt/system32/drivers/xboxvnt5.sys",
+      "sha256": "3e74a5c35b68d7fa0e047b4ba9cec25e7ec0ea5a94e796fc07508f667fcc85cf",
+      "matched": true
+    },
+    {
+      "path": "Documents and Settings/All Users/Start Menu/Programs/Startup/xwnsetup.cmd",
+      "sha256": "ac96328df5a8c815a010040bb5f906e3d3c82153592e956861f08f3061ac4ad5",
+      "matched": true
+    },
+    {
+      "path": "xwnrps01/runner.exe",
+      "sha256": "de8f3d3752185752e4ea8e064960b312e31528714dc5af840f1e0911d8dbe732",
+      "matched": true
+    },
+    {
+      "path": "xwnrps01/replay.exe",
+      "sha256": "7d90f3c0d6f8bb4615792324c749f4f2bfcf8663928d93ac5a3b41f9afec23fb",
+      "matched": true
+    },
+    {
+      "path": "xwnrps02/replay.exe",
+      "sha256": "7d90f3c0d6f8bb4615792324c749f4f2bfcf8663928d93ac5a3b41f9afec23fb",
+      "matched": true
+    }
+  ],
+  "baseline_checks": {
+    "F/winnt/system32/drivers/xwnfatx.sys": true,
+    "E/Applications/XWNFBoot/loader/halxboxnt5.dll": true,
+    "E/Applications/XWNFBoot/default.xbe": true,
+    "E/Applications/XWNFBoot/freeldr.sys": true
+  },
+  "new_events": {
+    "system": [
+      {
+        "offset": 8492,
+        "record": 47,
+        "generated_unix": 1791251157,
+        "written_unix": 1791251157,
+        "event_id_hex": "c0001b58",
+        "event_id": 7000,
+        "type": 1,
+        "source": "Service Control Manager",
+        "computer": "XWN-PC",
+        "strings": [
+          "HID Input Service",
+          "%%2"
+        ],
+        "data_hex": ""
+      },
+      {
+        "offset": 8660,
+        "record": 48,
+        "generated_unix": 1791251156,
+        "written_unix": 1791251156,
+        "event_id_hex": "80001779",
+        "event_id": 6009,
+        "type": 4,
+        "source": "EventLog",
+        "computer": "XWN-PC",
+        "strings": [
+          "5.0",
+          "2195",
+          "Service Pack 4",
+          "Uniprocessor Free"
+        ],
+        "data_hex": ""
+      },
+      {
+        "offset": 8840,
+        "record": 49,
+        "generated_unix": 1791251156,
+        "written_unix": 1791251156,
+        "event_id_hex": "80001775",
+        "event_id": 6005,
+        "type": 4,
+        "source": "EventLog",
+        "computer": "XWN-PC",
+        "strings": [],
+        "data_hex": ""
+      },
+      {
+        "offset": 8936,
+        "record": 50,
+        "generated_unix": 1791251152,
+        "written_unix": 1791251182,
+        "event_id_hex": "c0040031",
+        "event_id": 49,
+        "type": 1,
+        "source": "Ftdisk",
+        "computer": "XWN-PC",
+        "strings": [
+          "\\Device\\HarddiskVolume6"
+        ],
+        "data_hex": "000000000100560000000000310004c0030000000000000000000000000000000000000000000000"
+      },
+      {
+        "offset": 9128,
+        "record": 51,
+        "generated_unix": 1791251187,
+        "written_unix": 1791251187,
+        "event_id_hex": "4000001a",
+        "event_id": 26,
+        "type": 4,
+        "source": "Application Popup",
+        "computer": "XWN-PC",
+        "strings": [
+          "rundll32.exe - DLL Initialization Failed",
+          "The application failed to initialize because the window station is shutting down. "
+        ],
+        "data_hex": ""
+      },
+      {
+        "offset": 9488,
+        "record": 52,
+        "generated_unix": 1791251189,
+        "written_unix": 1791251189,
+        "event_id_hex": "80001776",
+        "event_id": 6006,
+        "type": 4,
+        "source": "EventLog",
+        "computer": "XWN-PC",
+        "strings": [],
+        "data_hex": "ff000000"
+      },
+      {
+        "offset": 9588,
+        "record": 53,
+        "generated_unix": 1791251241,
+        "written_unix": 1791251241,
+        "event_id_hex": "c0001b58",
+        "event_id": 7000,
+        "type": 1,
+        "source": "Service Control Manager",
+        "computer": "XWN-PC",
+        "strings": [
+          "HID Input Service",
+          "%%2"
+        ],
+        "data_hex": ""
+      },
+      {
+        "offset": 9756,
+        "record": 54,
+        "generated_unix": 1791251239,
+        "written_unix": 1791251239,
+        "event_id_hex": "80001779",
+        "event_id": 6009,
+        "type": 4,
+        "source": "EventLog",
+        "computer": "XWN-PC",
+        "strings": [
+          "5.0",
+          "2195",
+          "Service Pack 4",
+          "Uniprocessor Free"
+        ],
+        "data_hex": ""
+      },
+      {
+        "offset": 9936,
+        "record": 55,
+        "generated_unix": 1791251239,
+        "written_unix": 1791251239,
+        "event_id_hex": "80001775",
+        "event_id": 6005,
+        "type": 4,
+        "source": "EventLog",
+        "computer": "XWN-PC",
+        "strings": [],
+        "data_hex": ""
+      },
+      {
+        "offset": 10032,
+        "record": 56,
+        "generated_unix": 1791251236,
+        "written_unix": 1791251266,
+        "event_id_hex": "c0040031",
+        "event_id": 49,
+        "type": 1,
+        "source": "Ftdisk",
+        "computer": "XWN-PC",
+        "strings": [
+          "\\Device\\HarddiskVolume6"
+        ],
+        "data_hex": "000000000100560000000000310004c0030000000000000000000000000000000000000000000000"
+      },
+      {
+        "offset": 10224,
+        "record": 57,
+        "generated_unix": 1791251271,
+        "written_unix": 1791251271,
+        "event_id_hex": "4000001a",
+        "event_id": 26,
+        "type": 4,
+        "source": "Application Popup",
+        "computer": "XWN-PC",
+        "strings": [
+          "rundll32.exe - DLL Initialization Failed",
+          "The application failed to initialize because the window station is shutting down. "
+        ],
+        "data_hex": ""
+      },
+      {
+        "offset": 10584,
+        "record": 58,
+        "generated_unix": 1791251271,
+        "written_unix": 1791251271,
+        "event_id_hex": "4000001a",
+        "event_id": 26,
+        "type": 4,
+        "source": "Application Popup",
+        "computer": "XWN-PC",
+        "strings": [
+          "rundll32.exe - DLL Initialization Failed",
+          "The application failed to initialize because the window station is shutting down. "
+        ],
+        "data_hex": ""
+      },
+      {
+        "offset": 10944,
+        "record": 59,
+        "generated_unix": 1791251274,
+        "written_unix": 1791251274,
+        "event_id_hex": "80001776",
+        "event_id": 6006,
+        "type": 4,
+        "source": "EventLog",
+        "computer": "XWN-PC",
+        "strings": [],
+        "data_hex": "ff000000"
+      }
+    ],
+    "application": []
+  },
+  "unexpected_errors": [],
+  "new_popup_records": [
+    {
+      "offset": 9128,
+      "record": 51,
+      "generated_unix": 1791251187,
+      "written_unix": 1791251187,
+      "event_id_hex": "4000001a",
+      "event_id": 26,
+      "type": 4,
+      "source": "Application Popup",
+      "computer": "XWN-PC",
+      "strings": [
+        "rundll32.exe - DLL Initialization Failed",
+        "The application failed to initialize because the window station is shutting down. "
+      ],
+      "data_hex": ""
+    },
+    {
+      "offset": 10224,
+      "record": 57,
+      "generated_unix": 1791251271,
+      "written_unix": 1791251271,
+      "event_id_hex": "4000001a",
+      "event_id": 26,
+      "type": 4,
+      "source": "Application Popup",
+      "computer": "XWN-PC",
+      "strings": [
+        "rundll32.exe - DLL Initialization Failed",
+        "The application failed to initialize because the window station is shutting down. "
+      ],
+      "data_hex": ""
+    },
+    {
+      "offset": 10584,
+      "record": 58,
+      "generated_unix": 1791251271,
+      "written_unix": 1791251271,
+      "event_id_hex": "4000001a",
+      "event_id": 26,
+      "type": 4,
+      "source": "Application Popup",
+      "computer": "XWN-PC",
+      "strings": [
+        "rundll32.exe - DLL Initialization Failed",
+        "The application failed to initialize because the window station is shutting down. "
+      ],
+      "data_hex": ""
+    }
+  ],
+  "normal_shutdown_count": 2,
+  "trace_valid": true,
+  "trace_sha256": "f80c9636df32232449d372b4767d7c7d28abdb3b431e7e546e8f912c2bbaba2f",
+  "two_dashboard_returns": true,
+  "passed": false,
+  "limits": "Two ordinary boots in owned synthetic-resource xemu; not hardware qualification, performance evidence, or a full allocation audit."
+}

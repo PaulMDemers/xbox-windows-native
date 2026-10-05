@@ -1,22 +1,34 @@
-# Continuation after diagnostic trace correction and GDI retry003
+# Continuation: repeat-boot miniport qualified on hardware
 
-Updated 2026-10-05. Physical driver/loader baseline remains 0.1.0.
-Attempt002 is collected: startup restored, no runner/probe logs, event logs
-unchanged, all baseline/helper hashes intact. User photo shows the deliberate
-E0580001(0D,4,C000003E,10) diagnostic trace guard. Preserved trace has41 old
-records and its first nonzero byte after the marker at offset16. The new GDI
-harness omitted the known preserve-and-reseed step; it is now corrected.
+Updated2026-10-05 after two normal physical restarts. Candidate0093 remains
+installed; normal startup is restored and the Xbox is at UnleashX. No emulator,
+observer, build, automation or queued Windows test remains running.
 
-Attempt003 accepted at21:25:15 UTC, dashboard return21:26:47 UTC, collected and
-qualified PASS: four pixel checks, five timings, normal runner restart/EVT6006,
-unchanged drivers/helpers and no unexpected new warning/error or popup. Normal
-startup is restored. No observer/emulator/build/automation is running. Private
-repo and v0.1.0 tag unchanged. See physical-gdi-003/next-boot.json for the exact
-one-boot diagnostic-seed readiness state; no extra Windows launch was issued.
+Evidence: outputs/video-trace-reuse-settled/qualification.json and physical.json.
+Both hardware cycles passed graphics checks, normal shutdown, expected payloads,
+valid trace, no new popup/unexpected error. Launches were22:15:47.892872Z and
+22:18:01.946565Z. Cycle2 used cycle1's exact trace with no host reset. FATX/HAL/
+loader and1024x576x32 geometry unchanged. No third launch. Existing trace file
+is still required; this change removes the one-shot contents restriction only.
 
-Attempt001 was a user-reported Xromwell hang with their "razor chroma ornata"
-keyboard attached; they unplugged it and rebooted. It never exercised the probe.
-This peripheral report is separate from the trace-seed cause of attempt002.
+Candidate SHA256:3e74a5c35b68d7fa0e047b4ba9cec25e7ec0ea5a94e796fc07508f667fcc85cf.
+Source tree329a29d61af1620a9fc005b0d8fcfb9e1a937d20; patch/input/build/compiled-test
+reports live in outputs/video-trace-reuse. Hardware rollback copy:
+/F/winnt/system32/drivers/xboxvnt5.trace011. Private verified driver/rollback ZIP:
+E:/Codex-archive/xbox-windows-native/postrelease-video-reuse-20261005.
+SHA256:44c613e74b8a82e1494cc60140e3ceee27d53df4762e1ede97e22800242857e5.
+No archive restore test claimed; v0.1.0 tag and full recovery bundles unchanged.
+
+Retain rejected0092: xemu passed but hardware STOP0xB4, then verified rollback.
+Retain the two0093 strict emulator popup failures. Captured and rebuilt controls
+passed; older qualified Paint logs also contain that exact intermittent shutdown
+popup. The later clean-start two-boot candidate run passed the FULL strict audit,
+and that result was the hardware gate. No popup waiver was used. Starting clean
+then reusing its own output does not establish a cause for the earlier popup.
+
+Next work is video performance: audit actual framebuffer cache attributes and
+aliases, then implement/test one isolated change against bounded physical GDI
+baselines. No rendering speedup or HD mode is part of0093. Keep storage0088.
 
 ## Results
 
@@ -66,10 +78,9 @@ This peripheral report is separate from the trace-seed cause of attempt002.
 
 ## Next actions
 
-1. Remove the one-shot trace dependency before unattended manual-menu boots.
-   Keep required PnP/geometry behavior, isolate logging changes, test at least two
-   ordinary emulator boots without host reseeding, then qualify on hardware.
-   Preserve 0.1.0 rollback; no changed driver is physically deployed yet.
+1. Repeat-boot maintenance is complete for two bounded physical boots. Keep0093
+   installed and preserve the trace file. Do not deploy0092 or disable the broad
+   trace/PnP flags. Further removal of file I/O is a separate unqualified change.
 2. Use physical003 as one bounded baseline: fill/upload2.10/2.36ms, readback50.14ms,
    overlap56.67/29.71ms for256x128. Investigate cache aliases/stride/copy paths;
    this does not measure dragging FPS or prove a cache cause. Extend reconstructed

@@ -1,0 +1,39 @@
+{
+  "scope": "Compare shutdown-only emulator popups with an unchanged-driver control.\nPreserves the strict failed audits. Eligibility here is only for one bounded\nphysical trial, not a clean-event qualification or a production release.\n",
+  "checks": {
+    "control_original_miniport": true,
+    "identical_runner_and_probe": true,
+    "same_base_fixture": true,
+    "control_other_checks": true,
+    "candidate_other_checks": true,
+    "control_shutdown_popup_reproduced": false,
+    "candidate_popups_match_bounded_control": true
+  },
+  "eligible_for_bounded_physical_trial": false,
+  "strict_audits_passed": {
+    "candidate": false,
+    "control": true
+  },
+  "inputs": {
+    "candidate": {
+      "path": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\outputs\\video-trace-reuse-settled\\audit.json",
+      "sha256": "79417192cb2b27bb1bcd1c786463e53ae7fe298f587d85bd12e137f599b13c1a"
+    },
+    "control": {
+      "path": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\outputs\\video-trace-reuse-control\\audit.json",
+      "sha256": "b4075a6db6505e653164c36abab78872f5a881ee78e3efe96ab5c2489dc9a663"
+    }
+  },
+  "matched_popup_signature": {
+    "source": "Application Popup",
+    "event_id": 26,
+    "event_id_hex": "4000001a",
+    "type": 4,
+    "strings": [
+      "rundll32.exe - DLL Initialization Failed",
+      "The application failed to initialize because the window station is shutting down. "
+    ],
+    "data_hex": ""
+  },
+  "limits": "Control did not establish matching baseline behavior; hardware remains blocked. Strict audits remain unchanged; this assessment does not identify a root cause."
+}

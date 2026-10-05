@@ -1,0 +1,35 @@
+{
+  "scope": "Evaluate bounded hardware-test eligibility using preserved baseline history.\nThis does not turn a strict no-popup audit into PASS or fix the popup's cause.\n",
+  "eligible_for_bounded_physical_trial": true,
+  "checks": {
+    "historical_test_passed": true,
+    "historical_miniport_matches_captured_baseline": true,
+    "identical_historical_popup": true,
+    "historical_popups_within_five_seconds_before_shutdown": true,
+    "history_predates_candidate_test": true,
+    "candidate_other_checks": true,
+    "candidate_only_exact_shutdown_popup": true,
+    "compiled_driver_tests_passed": true
+  },
+  "strict_candidate_audit_passed": false,
+  "inputs": [
+    {
+      "path": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\outputs\\native-windows-paint-save\\matched-emulator-validation.json",
+      "sha256": "273cfc40d17277ff44b39821848a1bd062d22aa73d6aefb5c9c1885ff5086052"
+    },
+    {
+      "path": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\outputs\\native-windows-paint-save\\nt5-paint-matched-001-save-audit.json",
+      "sha256": "802a19a6f7e41027f7757187aa5e66a4c4c3f8b7a3996256a033403f56f8c081"
+    },
+    {
+      "path": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\outputs\\video-trace-reuse-settled\\audit.json",
+      "sha256": "79417192cb2b27bb1bcd1c786463e53ae7fe298f587d85bd12e137f599b13c1a"
+    },
+    {
+      "path": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\outputs\\video-trace-reuse-settled\\compiled-tests.json",
+      "sha256": "43e35f6acac26eae919701dffd026bde26d78399c09ba42f3a164bdd3093dee9"
+    }
+  ],
+  "decision": "Retain the exact shutdown popup as an unresolved baseline limitation. Proceed only with a bounded reversible hardware trial; its per-cycle no-new-popup gate remains strict.",
+  "limits": "Two fresh controls did not reproduce the popup. Earlier exact-baseline evidence did; this supports an intermittent pre-existing issue but does not establish its mechanism. No delayed-write, unexpected error, unknown popup, failed workload or missing shutdown is exempted."
+}

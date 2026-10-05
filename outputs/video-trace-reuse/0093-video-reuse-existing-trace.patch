@@ -1,0 +1,31 @@
+--- a/win32ss/drivers/miniport/xboxvmp/nt5/video_trace.c
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/video_trace.c
+@@ -43,8 +43,15 @@
+         TraceFail(3, Status, Io.Information);
+     for (I = 0; I < sizeof(Magic); ++I)
+         if (((PUCHAR)TraceData)[I] != (UCHAR)Magic[I]) TraceFail(4, STATUS_DATA_ERROR, I);
++#ifdef XBOX_NT5_VIDEO_TRACE_REUSE
++    /* A previous boot's records are expected. Retain marker/length checks and
++     * all file/PCI behavior, then start this boot's in-memory trace empty. */
++    for (I = sizeof(Magic); I < sizeof(TraceData); ++I)
++        ((PUCHAR)TraceData)[I] = 0;
++#else
+     for (I = sizeof(Magic); I < sizeof(TraceData); ++I)
+         if (((PUCHAR)TraceData)[I]) TraceFail(4, STATUS_DATA_ERROR, I);
++#endif
+ }
+ 
+ VOID NTAPI XwnVideoTrace(ULONG Event, ULONG A, ULONG B, ULONG C)
+--- a/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt
+@@ -46,6 +46,10 @@
+         message(FATAL_ERROR "Video trace requires PnP diagnostic wrappers")
+     endif()
+     target_compile_definitions(xboxvnt5 PRIVATE XBOX_NT5_VIDEO_TRACE=1)
++    option(XBOX_NT5_VIDEO_TRACE_REUSE "Reuse a valid trace file across NT5 boots" OFF)
++    if(XBOX_NT5_VIDEO_TRACE_REUSE)
++        target_compile_definitions(xboxvnt5 PRIVATE XBOX_NT5_VIDEO_TRACE_REUSE=1)
++    endif()
+     target_sources(xboxvnt5 PRIVATE video_trace.c)
+     add_importlibs(xboxvnt5 hal)
+ endif()

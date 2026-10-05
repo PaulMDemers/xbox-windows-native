@@ -31,6 +31,11 @@ and byte-identical compiler outputs remain open work.
 The rebuilt overlay has now passed its [first emulator boot and GDI workload](outputs/rebuilt-overlay-validation/README.md).
 Broader runtime and physical qualification remain open.
 
+Post-release repeat-boot maintenance now passes [two physical boots](outputs/video-trace-reuse-settled/README.md)
+without resetting the diagnostic trace between them. Candidate0093 is installed;
+the trace file remains required. Normal startup is restored. The original0.1.0
+recovery/tag and qualified FATX remain unchanged; this is not a video speedup.
+
 ## Development evidence and history
 
 - **Physical Windows 2000 desktop confirmed:** keyboard, mouse, drive browsing,

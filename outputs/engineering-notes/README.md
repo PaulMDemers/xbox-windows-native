@@ -8,6 +8,7 @@ in any Linux FATX implementation. No external project has been contacted.
 - [FATX findings and Linux-oriented review checklist](FATX.md)
 - [Boot, memory, display, network and validation notes](PLATFORM.md)
 - [Video performance and modes plan](../video-next/PLAN.md)
+- [Video diagnostic lifecycle and emulator/hardware divergence](VIDEO-DIAGNOSTIC-LIFECYCLE.md)
 - [Preserved baseline and recovery](../release-0.1.0/README.md)
 
 Evidence vocabulary: **physical** means this console; **user-observed** means

@@ -1,0 +1,80 @@
+{
+  "status": "compiled",
+  "started_utc": "2026-10-05T21:30:56.653953+00:00",
+  "profile": "video",
+  "space_preflight": {
+    "minimum_free_gib": 20,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/home/paul/xbox-windows-native/build",
+        "free_bytes": 957843410944
+      },
+      {
+        "free_bytes": 25983930368,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "source_base": "afc0127e8f937ab68503d715d948844973756aa1",
+  "source_tree": "1c64c0146c91a7bcc7575687a56606dee48b8f58",
+  "inputs_sha256": "1c7738cd32669ca95beb5e251a788e815c606df88dfd3cc8204f9f1fdb29728f",
+  "tool_sha256": {
+    "RosBE.sh": "1d04daf7393952441c62691bb7735042d236b0196778f1632f0a4383476143b7",
+    "bin/cmake": "049737b62e2803fd657041cf65b6bb6de7756db377c92c686c63eec373604e75",
+    "bin/ninja": "371e855768aa214225d4b17f49902cdd2b2daa8764514134524b07282c9e9e07",
+    "i386/bin/i686-w64-mingw32-gcc": "83015512671faaa0dbe6f043a0107f79c049f4268a67e39955388a8d9a0182e5"
+  },
+  "commands": [
+    [
+      "git",
+      "init",
+      "-q",
+      "/home/paul/xbox-windows-native/build/video-repeat-001/source"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/video-repeat-001/source",
+      "fetch",
+      "--depth=1",
+      "/home/paul/xbox-windows-native/build/package-reconstruction-002/native/source",
+      "afc0127e8f937ab68503d715d948844973756aa1"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/video-repeat-001/source",
+      "checkout",
+      "--detach",
+      "FETCH_HEAD"
+    ],
+    [
+      "/usr/bin/python3",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/tools/apply-series.py",
+      "--source",
+      "/home/paul/xbox-windows-native/build/video-repeat-001/source",
+      "--manifest",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-repeat-boot/manifest.json"
+    ],
+    [
+      "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/RosBE.sh",
+      "/home/paul/xbox-windows-native/build/video-repeat-001/source",
+      "0",
+      "i386"
+    ]
+  ],
+  "artifacts": [
+    {
+      "name": "xboxvnt5.sys",
+      "bytes": 34457,
+      "sha256": "0f05fabc1a576c747516728f2b89252847feca0a319042ab2a8f2ee1f09e99a4",
+      "profile": "video"
+    }
+  ],
+  "scope": "fresh source and compilation only; no runtime qualification",
+  "verified_source_tree": "1c64c0146c91a7bcc7575687a56606dee48b8f58",
+  "finished_utc": "2026-10-05T21:31:20.240465+00:00"
+}

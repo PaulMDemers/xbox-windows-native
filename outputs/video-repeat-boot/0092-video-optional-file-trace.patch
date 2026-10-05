@@ -1,0 +1,34 @@
+--- a/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt
+@@ -46,6 +46,11 @@
+         message(FATAL_ERROR "Video trace requires PnP diagnostic wrappers")
+     endif()
+     target_compile_definitions(xboxvnt5 PRIVATE XBOX_NT5_VIDEO_TRACE=1)
+-    target_sources(xboxvnt5 PRIVATE video_trace.c)
+-    add_importlibs(xboxvnt5 hal)
++    option(XBOX_NT5_VIDEO_TRACE_FILE "Write NT5 video diagnostics to a seeded file" ON)
++    if(XBOX_NT5_VIDEO_TRACE_FILE)
++        target_sources(xboxvnt5 PRIVATE video_trace.c)
++        add_importlibs(xboxvnt5 hal)
++    else()
++        target_sources(xboxvnt5 PRIVATE video_trace_none.c)
++    endif()
+ endif()
+--- /dev/null
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/video_trace_none.c
+@@ -0,0 +1,15 @@
++/* GPL-2.0-or-later. Keep the qualified PnP forwarding path without file I/O.
++ * XBOX_NT5_VIDEO_TRACE still selects START forwarding and unload wrapping.
++ * These hooks intentionally do not require or modify any diagnostic file. */
++#include <ntddk.h>
++
++VOID NTAPI XwnVideoTraceInit(VOID) {}
++VOID NTAPI XwnVideoTrace(ULONG Event, ULONG A, ULONG B, ULONG C)
++{
++    UNREFERENCED_PARAMETER(Event);
++    UNREFERENCED_PARAMETER(A);
++    UNREFERENCED_PARAMETER(B);
++    UNREFERENCED_PARAMETER(C);
++}
++VOID NTAPI XwnVideoTraceClose(VOID) {}
++VOID NTAPI XwnVideoTracePci(VOID) {}

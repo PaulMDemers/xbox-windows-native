@@ -1,0 +1,224 @@
+{
+  "scope": "Cold evidence for two emulator boots without reseeding the populated video trace.",
+  "physical_access": false,
+  "cycles": [
+    {
+      "index": 1,
+      "logs": {
+        "attempt.log": "ATTEMPT_ONCE\r\nREPLAY_EXIT_ZERO\r\nNORMAL_RESTART_REQUEST\r\n",
+        "gdi-baseline.txt": "XWN_GDI_PROBE_VERSION 3 256 128\r\nCAP_index_value 8 1024 0\r\nCAP_index_value 10 576 0\r\nCAP_index_value 12 32 0\r\nCAP_index_value 14 1 0\r\nCAP_index_value 116 60 0\r\nCAP_index_value 4 271 0\r\nCAP_index_value 6 152 0\r\nCAP_index_value 38 32409 0\r\nCAP_index_value 88 96 0\r\nCAP_index_value 90 96 0\r\nMODE_index_width_height 0 1024 576\r\nMODE_bpp_hz_flags 32 60 0\r\nCLIP_type_width_height 3 314 199\r\nCOPY_stage_pass 0 1 0\r\nVISIBLE_stage 1 1 0\r\nCOPY_stage_pass 1 1 0\r\nVISIBLE_stage 2 1 0\r\nCOPY_stage_pass 2 1 0\r\nVISIBLE_stage 3 1 0\r\nCOPY_stage_pass 3 1 0\r\nVISIBLE_stage 10 1 0\r\nTIMING_kind_count_ms 0 412 1500\r\nVISIBLE_stage 11 1 0\r\nTIMING_kind_count_ms 1 371 1500\r\nVISIBLE_stage 12 1 0\r\nTIMING_kind_count_ms 2 2000 1440\r\nVISIBLE_stage 13 1 0\r\nTIMING_kind_count_ms 3 194 1500\r\nVISIBLE_stage 14 1 0\r\nTIMING_kind_count_ms 4 225 1500\r\nPASS 0 0 0\r\n"
+      },
+      "pixel_and_timing_workload_passed": true,
+      "normal_restart_requested": true
+    },
+    {
+      "index": 2,
+      "logs": {
+        "attempt.log": "ATTEMPT_ONCE\r\nREPLAY_EXIT_ZERO\r\nNORMAL_RESTART_REQUEST\r\n",
+        "gdi-baseline.txt": "XWN_GDI_PROBE_VERSION 3 256 128\r\nCAP_index_value 8 1024 0\r\nCAP_index_value 10 576 0\r\nCAP_index_value 12 32 0\r\nCAP_index_value 14 1 0\r\nCAP_index_value 116 60 0\r\nCAP_index_value 4 271 0\r\nCAP_index_value 6 152 0\r\nCAP_index_value 38 32409 0\r\nCAP_index_value 88 96 0\r\nCAP_index_value 90 96 0\r\nMODE_index_width_height 0 1024 576\r\nMODE_bpp_hz_flags 32 60 0\r\nCLIP_type_width_height 3 314 199\r\nCOPY_stage_pass 0 1 0\r\nVISIBLE_stage 1 1 0\r\nCOPY_stage_pass 1 1 0\r\nVISIBLE_stage 2 1 0\r\nCOPY_stage_pass 2 1 0\r\nVISIBLE_stage 3 1 0\r\nCOPY_stage_pass 3 1 0\r\nVISIBLE_stage 10 1 0\r\nTIMING_kind_count_ms 0 392 1500\r\nVISIBLE_stage 11 1 0\r\nTIMING_kind_count_ms 1 381 1500\r\nVISIBLE_stage 12 1 0\r\nTIMING_kind_count_ms 2 2000 1290\r\nVISIBLE_stage 13 1 0\r\nTIMING_kind_count_ms 3 174 1500\r\nVISIBLE_stage 14 1 0\r\nTIMING_kind_count_ms 4 388 1500\r\nPASS 0 0 0\r\n"
+      },
+      "pixel_and_timing_workload_passed": true,
+      "normal_restart_requested": true
+    }
+  ],
+  "payloads": [
+    {
+      "path": "winnt/system32/drivers/xboxvnt5.sys",
+      "sha256": "0f05fabc1a576c747516728f2b89252847feca0a319042ab2a8f2ee1f09e99a4",
+      "matched": true
+    },
+    {
+      "path": "winnt/system32/xwn-video-trace.bin",
+      "sha256": "bbedb8d5d92ff7712b99a6ef1124647549d61d30a6e0ad8a94b0cb5c1ec12806",
+      "matched": true
+    },
+    {
+      "path": "Documents and Settings/All Users/Start Menu/Programs/Startup/xwnsetup.cmd",
+      "sha256": "03a1c0e0b572751b4c013cbfb788172e0bf2584946be7ca2b9942b23121e16e3",
+      "matched": true
+    },
+    {
+      "path": "xwnrpt01/runner.exe",
+      "sha256": "66d684c855740481620f5a5b6b2ddd00e5dc4bb4fee9bb2c10009e2e8f2e0ec8",
+      "matched": true
+    },
+    {
+      "path": "xwnrpt01/replay.exe",
+      "sha256": "7d90f3c0d6f8bb4615792324c749f4f2bfcf8663928d93ac5a3b41f9afec23fb",
+      "matched": true
+    },
+    {
+      "path": "xwnrpt02/replay.exe",
+      "sha256": "7d90f3c0d6f8bb4615792324c749f4f2bfcf8663928d93ac5a3b41f9afec23fb",
+      "matched": true
+    }
+  ],
+  "baseline_checks": {
+    "F/winnt/system32/drivers/xwnfatx.sys": true,
+    "E/Applications/XWNFBoot/loader/halxboxnt5.dll": true,
+    "E/Applications/XWNFBoot/default.xbe": true,
+    "E/Applications/XWNFBoot/freeldr.sys": true
+  },
+  "new_events": {
+    "system": [
+      {
+        "offset": 8492,
+        "record": 47,
+        "generated_unix": 1791250440,
+        "written_unix": 1791250440,
+        "event_id_hex": "c0001b58",
+        "event_id": 7000,
+        "type": 1,
+        "source": "Service Control Manager",
+        "computer": "XWN-PC",
+        "strings": [
+          "HID Input Service",
+          "%%2"
+        ],
+        "data_hex": ""
+      },
+      {
+        "offset": 8660,
+        "record": 48,
+        "generated_unix": 1791250439,
+        "written_unix": 1791250439,
+        "event_id_hex": "80001779",
+        "event_id": 6009,
+        "type": 4,
+        "source": "EventLog",
+        "computer": "XWN-PC",
+        "strings": [
+          "5.0",
+          "2195",
+          "Service Pack 4",
+          "Uniprocessor Free"
+        ],
+        "data_hex": ""
+      },
+      {
+        "offset": 8840,
+        "record": 49,
+        "generated_unix": 1791250439,
+        "written_unix": 1791250439,
+        "event_id_hex": "80001775",
+        "event_id": 6005,
+        "type": 4,
+        "source": "EventLog",
+        "computer": "XWN-PC",
+        "strings": [],
+        "data_hex": ""
+      },
+      {
+        "offset": 8936,
+        "record": 50,
+        "generated_unix": 1791250436,
+        "written_unix": 1791250466,
+        "event_id_hex": "c0040031",
+        "event_id": 49,
+        "type": 1,
+        "source": "Ftdisk",
+        "computer": "XWN-PC",
+        "strings": [
+          "\\Device\\HarddiskVolume6"
+        ],
+        "data_hex": "000000000100560000000000310004c0030000000000000000000000000000000000000000000000"
+      },
+      {
+        "offset": 9128,
+        "record": 51,
+        "generated_unix": 1791250468,
+        "written_unix": 1791250468,
+        "event_id_hex": "80001776",
+        "event_id": 6006,
+        "type": 4,
+        "source": "EventLog",
+        "computer": "XWN-PC",
+        "strings": [],
+        "data_hex": "ff000000"
+      },
+      {
+        "offset": 9228,
+        "record": 52,
+        "generated_unix": 1791250538,
+        "written_unix": 1791250538,
+        "event_id_hex": "c0001b58",
+        "event_id": 7000,
+        "type": 1,
+        "source": "Service Control Manager",
+        "computer": "XWN-PC",
+        "strings": [
+          "HID Input Service",
+          "%%2"
+        ],
+        "data_hex": ""
+      },
+      {
+        "offset": 9396,
+        "record": 53,
+        "generated_unix": 1791250537,
+        "written_unix": 1791250537,
+        "event_id_hex": "80001779",
+        "event_id": 6009,
+        "type": 4,
+        "source": "EventLog",
+        "computer": "XWN-PC",
+        "strings": [
+          "5.0",
+          "2195",
+          "Service Pack 4",
+          "Uniprocessor Free"
+        ],
+        "data_hex": ""
+      },
+      {
+        "offset": 9576,
+        "record": 54,
+        "generated_unix": 1791250537,
+        "written_unix": 1791250537,
+        "event_id_hex": "80001775",
+        "event_id": 6005,
+        "type": 4,
+        "source": "EventLog",
+        "computer": "XWN-PC",
+        "strings": [],
+        "data_hex": ""
+      },
+      {
+        "offset": 9672,
+        "record": 55,
+        "generated_unix": 1791250534,
+        "written_unix": 1791250564,
+        "event_id_hex": "c0040031",
+        "event_id": 49,
+        "type": 1,
+        "source": "Ftdisk",
+        "computer": "XWN-PC",
+        "strings": [
+          "\\Device\\HarddiskVolume6"
+        ],
+        "data_hex": "000000000100560000000000310004c0030000000000000000000000000000000000000000000000"
+      },
+      {
+        "offset": 9864,
+        "record": 56,
+        "generated_unix": 1791250566,
+        "written_unix": 1791250566,
+        "event_id_hex": "80001776",
+        "event_id": 6006,
+        "type": 4,
+        "source": "EventLog",
+        "computer": "XWN-PC",
+        "strings": [],
+        "data_hex": "ff000000"
+      }
+    ],
+    "application": []
+  },
+  "unexpected_errors": [],
+  "new_popup_records": [],
+  "normal_shutdown_count": 2,
+  "trace_unchanged": true,
+  "two_dashboard_returns": true,
+  "passed": true,
+  "limits": "Two ordinary boots in owned synthetic-resource xemu; not hardware qualification, performance evidence, or a full allocation audit."
+}

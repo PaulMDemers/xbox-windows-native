@@ -40,6 +40,14 @@ directory, verify PWD, then LIST. Do not rely on displayed timestamps for freshn
 Capture exact replies and content hashes. Keep credentials in local config or
 environment, not reusable skills or reports.
 
+Include diagnostic-file lifecycle in boot preflight. Some bringup loggers accept
+only a fresh seed and deliberately stop on records from a previous boot. Preserve
+the old trace before reseeding; a used-file guard is not itself storage corruption.
+For a repeat-boot fix, exercise consecutive boots without host resets of that file.
+Inspect conditional compilation before disabling diagnostics: a trace flag may
+also select functional PnP forwarding, PCI reads or callback wrappers. Remove
+those effects separately; an emulator PASS cannot settle hardware-only dependencies.
+
 ## Persistence gates
 
 Require workload completion, normal shutdown evidence and independent cold
