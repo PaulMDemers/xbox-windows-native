@@ -1,0 +1,142 @@
+{
+  "scope": "Review the completed emulator replay; never starts or contacts a console.",
+  "reviewed_utc": "2026-10-05T17:05:09.512061+00:00",
+  "run": "nt5-paint-matched-001",
+  "passed": true,
+  "files": 16,
+  "verbose_cases": 8,
+  "quiet_cases": 8,
+  "writes_per_file": 29,
+  "bytes_per_file": 442422,
+  "helper_sha256": "20edf553dc4e93c7c4587378f2f5fe50a85c62fb98de79918a1a26c70f44e50d",
+  "source_sha256": "fce4ea8d7c2f5bd769998ce35448fac214e514314c61887439705fcb8266e57c",
+  "normal_restart": true,
+  "new_system_records": [
+    {
+      "offset": 8492,
+      "record": 47,
+      "generated_unix": 1791234094,
+      "written_unix": 1791234094,
+      "event_id_hex": "c0001b58",
+      "event_id": 7000,
+      "type": 1,
+      "source": "Service Control Manager",
+      "computer": "XWN-PC",
+      "strings": [
+        "HID Input Service",
+        "%%2"
+      ],
+      "data_hex": ""
+    },
+    {
+      "offset": 8660,
+      "record": 48,
+      "generated_unix": 1791234093,
+      "written_unix": 1791234093,
+      "event_id_hex": "80001779",
+      "event_id": 6009,
+      "type": 4,
+      "source": "EventLog",
+      "computer": "XWN-PC",
+      "strings": [
+        "5.0",
+        "2195",
+        "Service Pack 4",
+        "Uniprocessor Free"
+      ],
+      "data_hex": ""
+    },
+    {
+      "offset": 8840,
+      "record": 49,
+      "generated_unix": 1791234093,
+      "written_unix": 1791234093,
+      "event_id_hex": "80001775",
+      "event_id": 6005,
+      "type": 4,
+      "source": "EventLog",
+      "computer": "XWN-PC",
+      "strings": [],
+      "data_hex": ""
+    },
+    {
+      "offset": 8936,
+      "record": 50,
+      "generated_unix": 1791234089,
+      "written_unix": 1791234119,
+      "event_id_hex": "c0040031",
+      "event_id": 49,
+      "type": 1,
+      "source": "Ftdisk",
+      "computer": "XWN-PC",
+      "strings": [
+        "\\Device\\HarddiskVolume6"
+      ],
+      "data_hex": "000000000100560000000000310004c0030000000000000000000000000000000000000000000000"
+    },
+    {
+      "offset": 9128,
+      "record": 51,
+      "generated_unix": 1791234139,
+      "written_unix": 1791234139,
+      "event_id_hex": "4000001a",
+      "event_id": 26,
+      "type": 4,
+      "source": "Application Popup",
+      "computer": "XWN-PC",
+      "strings": [
+        "rundll32.exe - DLL Initialization Failed",
+        "The application failed to initialize because the window station is shutting down. "
+      ],
+      "data_hex": ""
+    },
+    {
+      "offset": 9488,
+      "record": 52,
+      "generated_unix": 1791234139,
+      "written_unix": 1791234139,
+      "event_id_hex": "4000001a",
+      "event_id": 26,
+      "type": 4,
+      "source": "Application Popup",
+      "computer": "XWN-PC",
+      "strings": [
+        "rundll32.exe - DLL Initialization Failed",
+        "The application failed to initialize because the window station is shutting down. "
+      ],
+      "data_hex": ""
+    },
+    {
+      "offset": 9848,
+      "record": 53,
+      "generated_unix": 1791234141,
+      "written_unix": 1791234141,
+      "event_id_hex": "80001776",
+      "event_id": 6006,
+      "type": 4,
+      "source": "EventLog",
+      "computer": "XWN-PC",
+      "strings": [],
+      "data_hex": "ff000000"
+    }
+  ],
+  "application_unchanged": true,
+  "emulator_closed": true,
+  "driver_changes": false,
+  "physical_access": false,
+  "artifacts": {
+    "work/runs/nt5-paint-matched-001/progress.png": "c91c5b2b2723df72acf696d9e17439cb02638b6e2ea3c34ebe72e3706f45d408",
+    "work/runs/nt5-paint-matched-001/progress2.png": "6b17a38c146bb8f3812e04ea61f18d84b87efa871a0c4656d74c72fdc52e6478",
+    "work/runs/nt5-paint-matched-001/progress3.png": "86d5b87faea15d1d321bed9f1303941d3bb1ed74783512cf95d1352efec5c3de",
+    "work/runs/nt5-paint-matched-001/launch-command.json": "7fecb21221a27e51335668ea62c2d645ecee59c49145fc6b1a8890d5c215edb7",
+    "work/runs/nt5-paint-matched-001/dashboard-return.json": "d1fa3fa3f46c6a2c749abe18c1cc79abfa85f3c621763f79d71f74009b7e628f",
+    "work/runs/nt5-paint-matched-001/cleanup.json": "168e5ef6332a315effb42187092f5147a285c7f323b019ebba253a1a56c1a4d6"
+  },
+  "limitations": [
+    "Physical Paint Save freeze remains unresolved.",
+    "No debugger, added pressure, or I/O throttle in this matched replay.",
+    "Cold saved-file and driver checks, not a full volume allocation or hive audit.",
+    "HID7000/Ftdisk49 and two shutdown rundll32 popups remain.",
+    "Replays observed file API sequence, not Paint heap layout or concurrent GUI behavior."
+  ]
+}

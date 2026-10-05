@@ -127,13 +127,71 @@ passed the separate post-reboot audit. `physical-replay-qualification.json`
 records **PASS for this bounded workload**. The dashboard is running with
 automatic startup disabled; no emulator or background test remains running.
 
-The original physical Paint save hang is still unresolved. The next useful
-experiment is to trace actual Paint write sizes, handles and flush/close
-ordering in a new emulator run, then reproduce that sequence on hardware.
+The original physical Paint save hang is still unresolved. Actual Paint I/O
+has now been traced in the emulator, as described below. The next physical
+workload should use that observed sequence rather than the earlier 64 KiB replay.
 `paint-write-target.json` identifies a hash-pinned MFC ordinal that calls
 WriteFile and its argument layout. This is a static debugger target, not an
 observed Paint save trace or fault attribution; verify the loaded module base
 and bytes before setting breakpoints. Paint has no direct WriteFile import.
+
+### Actual Paint file sequence
+
+`nt5-paint-trace-001` saved the deterministic scribble using Paint's Save As
+dialog. `trace-paint.py` observed Win32 entry/return pairs and MFC writes using
+emulator breakpoints. It checked Paint PE header identity and executing DLL
+bytes against the local references. This does not constitute a full live
+module hash; breakpoints also perturb scheduling. No register changes or
+forced API results were used.
+
+The main CreateFileW call requests read/write access, share zero, OPEN_ALWAYS,
+and FILE_ATTRIBUTE_NORMAL. Its security-attributes pointer is nonnull; the
+pointee was not captured. Paint writes 14 bytes, then 40 bytes, queries its
+current position (54), and writes twenty-seven 16,384-byte blocks. Every
+WriteFile returned success with the full requested count. FlushFileBuffers,
+SetEndOfFile and CloseHandle then returned success, in that order. The total
+is 442,422 bytes. See `paint-sequence-review.json` and the full retained trace.
+
+Two early tracer attempts failed on unavailable virtual memory (a DLL header,
+then an instruction page before demand paging). Both removed their breakpoints
+and resumed the guest. Their partial reports are retained separately; neither
+is a guest crash. The final trace completed with no pending calls. The helper
+now permits an unreadable header when executing bytes match, and steps past
+an unmapped instruction stop so Windows can service its own page fault.
+
+Paint returned from both saves. After a normal Windows restart, both BMPs
+matched the input exactly and the filesystem/miniport hashes were unchanged.
+System records 47-52 contain the existing HID/Ftdisk errors, a shutdown-time
+rundll32 popup, and normal EventLog stop 6006; no new delayed-write report.
+Application records remained unchanged. These are saved-file checks, not a
+full emulator volume/hive audit. This Save As used a loaded deterministic image,
+not the user's original fresh drawing.
+
+### Replay of the observed sequence
+
+`matched.c` preserves the earlier replay and instead uses 14 + 40 + 27*16384
+byte writes, Paint's observed main open flags, a position query, flush, EOF,
+and close. Files must first be CREATE_NEW-owned; it will not reopen an old
+result. Sixteen cases alternate detailed logging with quiet target sequences.
+Quiet cases issue no log/console I/O between target open and close. This still
+does not reproduce Paint's heap layout, MFC exception paths, or GUI activity.
+
+`Build-Matched.ps1` uses the pinned RosBE compiler with warnings as errors.
+`matched-build-review.json` verifies imports against the pinned kernel32.
+`prepare-matched.py` creates a new emulator child fixture and runs the tested
+one-shot launcher with the new writer installed as its child `replay.exe`.
+The existing physical helper, drivers and startup are untouched. Do not use
+the old physical launch script to deploy this new workload; its completed
+launch record and preserved outputs must remain intact.
+
+`nt5-paint-matched-001` passed all sixteen cases without a debugger, additional
+memory pressure, or an I/O throttle. All sixteen BMPs match the input exactly
+after the launcher's normal restart. `qualify-matched.py` checks the cold audit,
+29-write sequences in verbose cases, eight quiet cases, helper/source hashes,
+driver hashes, event records, and cleanup. Records 47-53 show normal EventLog
+stop with no new delayed-write event; HID/Ftdisk errors and two shutdown-time
+rundll32 popups remain. The emulator is closed. This is a qualified emulator
+workload, not a fix for the physical Paint hang.
 
 ## Reproduction and retained fixtures
 

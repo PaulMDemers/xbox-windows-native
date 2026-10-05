@@ -2,8 +2,22 @@
 
 This one-shot hardware run is complete and qualified in
 `physical-replay-qualification.json`. Do not relaunch it. The procedure below
-documents what was performed; trace actual Paint I/O before choosing the next
-hardware workload.
+documents what was performed. Actual Paint I/O is now recorded in
+`paint-sequence-review.json`; `matched-emulator-validation.json` qualifies the
+new emulator replay. The next hardware workload is the new matched writer:
+14 + 40 + 27*16384 byte writes, position query, flush, EOF, close; sixteen cases
+alternating detailed logging and quiet target I/O. It is built and tested but
+has **not been deployed to hardware**.
+
+Before that deployment, prepare a separate one-shot launch/collection record.
+The existing `physical-replay.py` is specific to the completed 64 KiB test and
+must not be rerun or pointed at the new binary. The old `/F/xwnpaint` directory,
+attempt/replay logs, outputs, and helper hashes are preserved baseline evidence.
+The existing runner hardcodes `C:\xwnpaint\replay.exe` and `attempt.log`; a new
+deployment must explicitly preserve these before replacing any owned payload
+or resetting its attempt marker. Restore startup first during collection, then
+preserve all new outputs/logs and perform the separate native allocation and
+binary/hive audits. Do not overwrite the user's partial desktop BMP.
 
 Preserve candidate0088, the dimensions trace miniport and the physical HAL.
 No driver fix follows merely from passing these emulator tests. The physical

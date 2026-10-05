@@ -1,0 +1,223 @@
+{
+  "scope": "Debugger-observed Paint Save As on emulator; physical Paint freeze remains unresolved.",
+  "run": "nt5-paint-trace-001",
+  "open": {
+    "desired_access": "0xc0000000",
+    "share": 0,
+    "disposition": 4,
+    "flags": "0x80",
+    "security_attributes_pointer_nonnull": true,
+    "security_attributes_contents": "not captured"
+  },
+  "sequence": [
+    {
+      "api": "WriteFile",
+      "eax": 1,
+      "requested": 14,
+      "written": 14
+    },
+    {
+      "api": "WriteFile",
+      "eax": 1,
+      "requested": 40,
+      "written": 40
+    },
+    {
+      "api": "SetFilePointer",
+      "eax": 54,
+      "arguments": [
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "api": "WriteFile",
+      "eax": 1,
+      "requested": 16384,
+      "written": 16384
+    },
+    {
+      "api": "WriteFile",
+      "eax": 1,
+      "requested": 16384,
+      "written": 16384
+    },
+    {
+      "api": "WriteFile",
+      "eax": 1,
+      "requested": 16384,
+      "written": 16384
+    },
+    {
+      "api": "WriteFile",
+      "eax": 1,
+      "requested": 16384,
+      "written": 16384
+    },
+    {
+      "api": "WriteFile",
+      "eax": 1,
+      "requested": 16384,
+      "written": 16384
+    },
+    {
+      "api": "WriteFile",
+      "eax": 1,
+      "requested": 16384,
+      "written": 16384
+    },
+    {
+      "api": "WriteFile",
+      "eax": 1,
+      "requested": 16384,
+      "written": 16384
+    },
+    {
+      "api": "WriteFile",
+      "eax": 1,
+      "requested": 16384,
+      "written": 16384
+    },
+    {
+      "api": "WriteFile",
+      "eax": 1,
+      "requested": 16384,
+      "written": 16384
+    },
+    {
+      "api": "WriteFile",
+      "eax": 1,
+      "requested": 16384,
+      "written": 16384
+    },
+    {
+      "api": "WriteFile",
+      "eax": 1,
+      "requested": 16384,
+      "written": 16384
+    },
+    {
+      "api": "WriteFile",
+      "eax": 1,
+      "requested": 16384,
+      "written": 16384
+    },
+    {
+      "api": "WriteFile",
+      "eax": 1,
+      "requested": 16384,
+      "written": 16384
+    },
+    {
+      "api": "WriteFile",
+      "eax": 1,
+      "requested": 16384,
+      "written": 16384
+    },
+    {
+      "api": "WriteFile",
+      "eax": 1,
+      "requested": 16384,
+      "written": 16384
+    },
+    {
+      "api": "WriteFile",
+      "eax": 1,
+      "requested": 16384,
+      "written": 16384
+    },
+    {
+      "api": "WriteFile",
+      "eax": 1,
+      "requested": 16384,
+      "written": 16384
+    },
+    {
+      "api": "WriteFile",
+      "eax": 1,
+      "requested": 16384,
+      "written": 16384
+    },
+    {
+      "api": "WriteFile",
+      "eax": 1,
+      "requested": 16384,
+      "written": 16384
+    },
+    {
+      "api": "WriteFile",
+      "eax": 1,
+      "requested": 16384,
+      "written": 16384
+    },
+    {
+      "api": "WriteFile",
+      "eax": 1,
+      "requested": 16384,
+      "written": 16384
+    },
+    {
+      "api": "WriteFile",
+      "eax": 1,
+      "requested": 16384,
+      "written": 16384
+    },
+    {
+      "api": "WriteFile",
+      "eax": 1,
+      "requested": 16384,
+      "written": 16384
+    },
+    {
+      "api": "WriteFile",
+      "eax": 1,
+      "requested": 16384,
+      "written": 16384
+    },
+    {
+      "api": "WriteFile",
+      "eax": 1,
+      "requested": 16384,
+      "written": 16384
+    },
+    {
+      "api": "WriteFile",
+      "eax": 1,
+      "requested": 16384,
+      "written": 16384
+    },
+    {
+      "api": "WriteFile",
+      "eax": 1,
+      "requested": 16384,
+      "written": 16384
+    },
+    {
+      "api": "FlushFileBuffers",
+      "eax": 1
+    },
+    {
+      "api": "SetEndOfFile",
+      "eax": 1
+    },
+    {
+      "api": "CloseHandle",
+      "eax": 1
+    }
+  ],
+  "total_write_bytes": 442422,
+  "mfc_write_entries": 29,
+  "normal_restart": true,
+  "cold_bmp_verified": true,
+  "driver_changes": false,
+  "physical_access": false,
+  "trace_sha256": "339cbfac69d367dff2933839d66d65d65e6a5f1e19fd26bcb032e647231da8a9",
+  "limitations": [
+    "Breakpoint timing perturbation; no claim unassisted timing reproduction.",
+    "PE header identity and executing bytes checked, not a full live module hash.",
+    "Paint Save As used the deterministic image; this is not the failed physical fresh-drawing run.",
+    "Two earlier tracer attempts aborted on unavailable virtual memory, cleaned breakpoints and resumed guest; both preserved separately.",
+    "Cold saved-file and driver checks are not a full emulator allocation or hive audit."
+  ]
+}

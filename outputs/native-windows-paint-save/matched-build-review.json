@@ -1,0 +1,72 @@
+{
+  "scope": "Static PE/import review; emulator runtime qualification separate.",
+  "name": "matched",
+  "sha256": "20edf553dc4e93c7c4587378f2f5fe50a85c62fb98de79918a1a26c70f44e50d",
+  "source_sha256": "fce4ea8d7c2f5bd769998ce35448fac214e514314c61887439705fcb8266e57c",
+  "machine": "0x14c",
+  "subsystem": 3,
+  "subsystem_version": [
+    5,
+    0
+  ],
+  "imports": {
+    "KERNEL32.dll": [
+      "CloseHandle",
+      "CreateFileA",
+      "CreateFileW",
+      "ExitProcess",
+      "FlushFileBuffers",
+      "GetFileSize",
+      "GetLastError",
+      "GetStdHandle",
+      "GetTickCount",
+      "GlobalMemoryStatus",
+      "ReadFile",
+      "SetEndOfFile",
+      "SetFilePointer",
+      "SetLastError",
+      "Sleep",
+      "WriteFile"
+    ]
+  },
+  "imports_available_in_pinned_kernel32": true,
+  "cases": 16,
+  "verbose_cases": 8,
+  "quiet_cases": 8,
+  "requested_write_lengths": [
+    14,
+    40,
+    16384,
+    16384,
+    16384,
+    16384,
+    16384,
+    16384,
+    16384,
+    16384,
+    16384,
+    16384,
+    16384,
+    16384,
+    16384,
+    16384,
+    16384,
+    16384,
+    16384,
+    16384,
+    16384,
+    16384,
+    16384,
+    16384,
+    16384,
+    16384,
+    16384,
+    16384,
+    16384
+  ],
+  "limitations": [
+    "Matches observed file API ordering and flags; not Paint heap layout, MFC exception paths, GUI activity, or physical timing.",
+    "SECURITY_ATTRIBUTES pointee was not traced; replay supplies a standard non-inheritable default descriptor.",
+    "Quiet cases omit log/console I/O between target open and close; other Windows I/O can still occur."
+  ]
+}
