@@ -17,7 +17,11 @@ host-side test harness.
   registry exposed short paging writes and writes after truncation. A new
   filesystem candidate now passes mapped/async stress, restart and cold audits
   without new delayed-write events in that emulator run. Physical cycle011
-  crashed during boot before its test started; automatic startup is disabled.
+  crashed during boot before its test started. **Cycle012 now passes on hardware:**
+  cached append, 30 mapped/truncate cases and 32 MiB asynchronous writes, with
+  exact payload readback after normal restart and no new delayed-write events.
+  This is one bounded passing run, not proof that the earlier cache-list crash
+  is resolved. Automatic test startup is disabled again.
   See [desktop stability evidence](outputs/native-windows-physical-f/DESKTOP-STABILITY.md)
   and [cache test results](outputs/native-windows-physical-f/CACHE-STABILITY.md).
 - Extended F emulator milestone: desktop on a 250 GB native FATX disk, writes

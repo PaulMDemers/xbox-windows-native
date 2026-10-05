@@ -1,0 +1,96 @@
+{
+  "scope": "One-shot cycle012 test of emulator-validated paging-write fixes; preserve prior reports and driver.",
+  "host": "192.168.50.242",
+  "launch_attempted": true,
+  "filesystem_sha256": "f686b0a11395510176a60a23b90415f79c20e5a26dd4217130f27f32915b1884",
+  "previous_filesystem_sha256": "f8c1f66a4460034d6c78cdd186ac2c3471383362aaa2b69d2865ba803d1d7154",
+  "probe_sha256": "833a5756b19db7771b9d96a3e3534781bc848bc440546e8e1acf0197be2a46e3",
+  "miniport_sha256": "413098acf0066e48fde515b75d825578c23c17c4094ec2341ebdaa314a2d6b13",
+  "hal_sha256": "a3a84368d59936dfa6bbcdc6d5839d57b886342211142d305e9dde941e4d1648",
+  "trace_seed_sha256": "5806fe7ce339298b5a94a0e0ab1bdfb78922fc449effd5cea2f393f0d33fd00e",
+  "startup_sha256": "02966dbe41e7217aad229f406d39f2e769659b4df2c2909f77405865b0c2a176",
+  "startup_restart_enabled": false,
+  "prior_report_backup": "/F/xwn-report-v2.pass009",
+  "driver_backup": "/F/winnt/system32/drivers/xwnfatx.xwn-c11",
+  "status": "physical_cache_trial_passed",
+  "started_utc": "2026-10-04T23:51:16.606799+00:00",
+  "launch_utc": "2026-10-04T23:51:34.795504+00:00",
+  "command": "SITE EXEC E:\\Applications\\XWNFBoot\\default.xbe",
+  "reply": "200 EXEC command succeeded.",
+  "current_startup_sha256": "257ec9b4c77199f0ac046289912c41acdaba3a30750bf81dfb4c09cbb003af2d",
+  "cache_report": {
+    "bytes": 4096,
+    "sha256": "7b6fd9862a5e0a87e85ccdc63e6566d1ad72937902584a86894efe53a05cbec4",
+    "text": "XWN-CACHE-START\r\ncached append passed\r\nmapped case=0\r\nmapped case=1\r\nmapped case=2\r\nmapped case=3\r\nmapped case=4\r\nmapped case=5\r\nmapped case=6\r\nmapped case=7\r\nmapped case=8\r\nmapped case=9\r\nmapped case=10\r\nmapped case=11\r\nmapped case=12\r\nmapped case=13\r\nmapped case=14\r\nmapped case=15\r\nmapped case=16\r\nmapped case=17\r\nmapped case=18\r\nmapped case=19\r\nmapped case=20\r\nmapped case=21\r\nmapped case=22\r\nmapped case=23\r\nmapped case=24\r\nmapped case=25\r\nmapped case=26\r\nmapped case=27\r\nmapped case=28\r\nmapped case=29\r\nmapped truncate passed\r\npressure batch=0\r\npressure batch=8\r\npressure batch=16\r\npressure batch=24\r\nasync pressure passed\r\nfailures=0\r\nXWN-CACHE-PASS\r\n"
+  },
+  "cache_probe_started": true,
+  "cache_probe_passed": true,
+  "test_files": {
+    "xwn-cache-append.tmp": {
+      "bytes": 131073,
+      "sha256": "07b52aecb65f631d4484c11d82a4fa04493acf817f144352c55c8376e5fbd2a0",
+      "pattern_match": true
+    },
+    "xwn-cache-map.tmp": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pattern_match": true
+    },
+    "xwn-cache-pressure.tmp": {
+      "bytes": 33554432,
+      "sha256": "3955a4afd023ec9fd7462c7e29db23c18f5a55aef399eadaf045f61a47ede16a",
+      "pattern_match": true
+    }
+  },
+  "payload_readback_passed": true,
+  "collected": {
+    "xwn-video-trace.bin": {
+      "bytes": 4096,
+      "sha256": "7ae5fd6e05e06d106818b280bc22108cd915c2aa7841f3cbd92a24dc19561365"
+    },
+    "sysevent.evt": {
+      "bytes": 65536,
+      "sha256": "bdb3a9b1a266a6c62ab48d12a6655d6ec53580cfddcbe40a11642de216ef7662"
+    },
+    "appevent.evt": {
+      "bytes": 65536,
+      "sha256": "af36c94bb8b4f477b0b2f2cc39d7e2b4a6a587f490032577361f1bf64acee58b"
+    },
+    "setupapi.log": {
+      "bytes": 184046,
+      "sha256": "a83147f37b06b281dd07e52c70cf0af9885f8937cc8fe084c9d60300c93ffff1"
+    }
+  },
+  "physical_cache_trial_passed": true,
+  "evidence_collected_utc": "2026-10-04T23:53:49.728449+00:00",
+  "current_boot_system_records": [
+    51,
+    52,
+    53,
+    54,
+    55
+  ],
+  "current_boot_delayed_write_events": [],
+  "event_log_stop_recorded": true,
+  "remaining_application_events": [
+    {
+      "record": 4,
+      "source": "WinMgmt",
+      "event_id": 27,
+      "strings": []
+    },
+    {
+      "record": 5,
+      "source": "WinMgmt",
+      "event_id": 60,
+      "strings": [
+        "0x80041001"
+      ]
+    }
+  ],
+  "limitations": [
+    "One bounded physical stress and normal restart cycle, not a sustained stability result.",
+    "Earlier STOP0A cache-list corruption not conclusively explained.",
+    "New WinMgmt27/60 events remain; Paint dimensions fix remains emulator-only."
+  ]
+}

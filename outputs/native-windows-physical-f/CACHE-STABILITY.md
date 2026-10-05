@@ -217,3 +217,40 @@ older baseline records remain. EventLog6006 records shutdown. DHCP, HID service,
 Ftdisk49 and shutdown rundll32 events remain and are not described as fixed.
 `paging-completion-validation.json` qualifies driver f686b0a1 for one controlled
 physical trial; it does not resolve the separate physical cache-list STOP0A.
+
+## Physical cycle012: paging fixes pass the bounded hardware trial
+
+At 2026-10-04 23:51:34 UTC the dashboard accepted one FTP launch with filesystem
+`f686b0a11395510176a60a23b90415f79c20e5a26dd4217130f27f32915b1884`.
+HAL a3 and trace miniport413 were unchanged; the previous0076 driver remains
+backed up as `F:/winnt/system32/drivers/xwnfatx.xwn-c11`. The prior cycle009
+report remains separately named `xwn-report-v2.pass009`.
+
+The new report starts `XWN-CACHE-START`, completes all30 mapped/truncate cases,
+131073-byte cached append and32MiB asynchronous pressure, reports zero failures,
+and ends `XWN-CACHE-PASS`. The user observed Windows shutting down and rebooting.
+Dashboard FTP then returned; independent reads of all three test payloads match
+exact expected data, including the mapped file truncated to zero. Collection
+restored the startup command to its prior no-op and verified driver/HAL hashes.
+See `physical-cycle-012.json` and `collect-paging-completion-physical.py`.
+
+System event records51-55 belong to this boot: EventLog start/stop, Ftdisk49 and
+network link. No new Ftdisk50 or delayed-write popup is recorded. Old failure
+records49-50 remain as historical evidence. Application events4-5 contain new
+WinMgmt27/60 (0x80041001); WMI health remains unresolved. Historical Paint
+crashes remain records2-3; its display-dimensions fix was not installed here.
+
+This establishes one passing physical stress/restart/readback cycle. It does
+not identify the corrupting writer behind cycle011's null VACB list link or
+prove sustained stability. Preserve this candidate and evidence before longer
+soak testing or a separate Paint/display change. Do not rerun the one-shot
+launcher: its cycle record prevents duplicate launch.
+
+Post-cycle012 read-only audit: all3439 expected Windows binaries (465493310bytes)
+match the package plus explicit driver overrides. An initial dashboard PASV502
+interrupted the scan at1384 files; the original partial record is retained and
+`--resume` finished with shorter FTP sessions. Five collected registry hives
+have matching sequences, valid checksums and readable reachable key/value trees.
+This FTP audit does not inspect physical FAT allocation chains or establish
+registry semantic health. Reports: `physical-012-binary-audit.json` and
+`physical-012-hive-audit.json`. No build, emulator or FTP process remains active.
