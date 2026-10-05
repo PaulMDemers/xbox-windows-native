@@ -11,7 +11,7 @@
   "startup_paint_enabled": false,
   "startup_sha256": "257ec9b4c77199f0ac046289912c41acdaba3a30750bf81dfb4c09cbb003af2d",
   "manual_saved_files_result": "user_confirmed_present_after_reboot",
-  "physical_paint_result": "user_confirmed_startup_no_issues",
+  "physical_paint_result": "startup_passed_save_attempt_hung_application_then_system",
   "preserved": {
     "previous-video.sys": {
       "bytes": 40882,
@@ -41,8 +41,19 @@
   "manual_observation_utc": "2026-10-05T14:54:33.222925+00:00",
   "manual_observation": "User reports Windows booted, saved files are present, and Paint opened without issues. Windows remains running for idle observation; user will reboot manually.",
   "pending": [
-    "Paint drawing/save/reopen not yet confirmed",
-    "Saved-file contents and exact paths not verified",
-    "Post-run events and allocation/binary/hive audits await manual reboot"
-  ]
+    "Reproduce Paint saving 512x288 24-bit BMP under emulator debugging",
+    "Determine hang cause; partial persistence is not proof of failing request offset"
+  ],
+  "collected_utc": "2026-10-05T15:06:25.154238+00:00",
+  "collection_report": "paint-collection.json",
+  "manual_failure_utc": "2026-10-05T15:07:16.720990+00:00",
+  "manual_failure": "User reports Paint froze after clicking Save in the file dialog, followed by system freeze and manual reboot. Destination and image format unspecified.",
+  "post_run_integrity": {
+    "binary_and_hive_report": "postpaint-audit.json",
+    "allocation_report": "physical-paint-allocation.json",
+    "binaries": 3439,
+    "hives": 9,
+    "allocation_consistent": true
+  },
+  "saved_bitmap_report": "paint-saved-bitmap.json"
 }

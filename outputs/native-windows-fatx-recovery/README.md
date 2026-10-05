@@ -179,8 +179,8 @@ and locally. `physical-paint.json` records the exact hashes and launch.
 
 The user confirms this physical boot succeeded, the saved files are present, and
 Paint opened without issues. This confirms Paint startup only: drawing, saving,
-reopening and saved-file contents have not yet been verified. Windows remains
-running for user-directed idle observation. Startup is a no-op without a timer.
+reopening and saved-file contents have not yet been verified. The subsequent save attempt froze Paint and then the system; the user manually
+rebooted. This session failed. Startup remains a no-op without a timer.
 
 After the user manually reboots to the dashboard, run `collect-paint.py` once
 to preserve post-run logs and hash-check both video versions, filesystem, HAL
@@ -190,5 +190,29 @@ historical records separate. Then run `physical-operation.py postpaint launch`
 and, after the read-only scanner returns, `physical-operation.py postpaint collect`.
 Analyze `artifacts/postpaint` with the preflight `analyze.py`, and run
 `audit-restored.py --phase postpaint`. That phase explicitly expects the new
-Paint miniport while retaining candidate0088 storage. These checks are prepared,
-not executed; post-run integrity and shutdown status remain unverified.
+Paint miniport while retaining candidate0088 storage. Collection has now completed after the reported hang. Driver/HAL/startup hashes
+match, application EVT is unchanged, and system records 83–89 contain no new
+delayed-write event or clean EventLog stop. The trace file is still the empty
+seed. None of these supplies a hang-time stack or excludes unflushed errors.
+See `paint-event-review.json`; all 3,439 binaries and nine hives passed, and the complete allocation scan found
+zero errors or orphan clusters across 128,122 entries. This does not validate
+newly created user-file contents.
+
+The user clarified that the freeze started after clicking Save in the file
+dialog. Opening the dialog succeeded; destination and format are unspecified.
+The next reproduction should exercise Paint encoding and actual file writes. Preserve the current qualified
+filesystem and dimensions miniport while investigating; no new Windows launch
+or speculative driver change is justified by the trigger alone. An emulator
+reproduction must combine candidate0088 storage with the dimensions miniport,
+then capture blocked threads/locks and I/O state during the hang. The older
+Paint-startup-only fixture does not establish that combined workload.
+
+The new desktop `untitled.bmp` is truncated: its 512x288, 24-bit BMP header
+requires 442,422 bytes, but only 393,270 bytes persisted (48 KiB missing).
+It contains the 54-byte header plus 384 KiB of pixel data. Its chain is valid
+for its stored length; allocation consistency is not file-content completeness.
+The file is preserved locally, with hash/header evidence in `paint-saved-bitmap.json`.
+The persisted length does not identify the blocked request: data could remain
+cached when the machine froze. `physical-paint-review.json` records FAIL_SAVE_HANG.
+No Windows relaunch or driver replacement followed; the scanner returned to
+the dashboard and automatic startup remains disabled.

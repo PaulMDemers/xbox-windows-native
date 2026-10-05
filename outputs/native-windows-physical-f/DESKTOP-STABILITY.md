@@ -4,7 +4,8 @@ Current follow-up, 5 October: candidate0088 storage has passed short, five-minut
 and fifteen-minute physical tests with independent integrity audits. The first
 physical Paint-dimensions trial reached the desktop; the user confirms Paint
 opened without issues and the saved files are present. Drawing/save/reopen and
-post-run integrity remain unverified. Windows is still running. See `../native-windows-fatx-recovery/physical-paint.json`.
+post-run integrity remain unverified. A later Save attempt froze Paint and then
+the system; the user manually rebooted. This session is a failure. See `../native-windows-fatx-recovery/physical-paint.json`.
 The following documents the earlier failure and emulator diagnosis.
 
 Physical cycle010 reached the Windows 2000 desktop. Paul confirmed keyboard,
@@ -99,3 +100,17 @@ startup, drawing, saving and reopening. The user now confirms physical Paint
 startup without issues and saved-file presence. This is not yet a drawing/save/
 reopen test or a post-run integrity result. See the recovery README for the
 prepared postpaint collection and audit sequence.
+
+### Paint save failure after successful physical startup
+
+The user reports attempting to save froze Paint and then the system, followed
+by manual reboot. Collection preserved unchanged driver/HAL hashes and no
+new persisted delayed-write event. There is no clean EventLog stop, application
+EVT is unchanged, and the video trace still contains only its reset seed.
+The fault has not been localized to filesystem, display, or Save-dialog shell
+processing. See the recovery `paint-event-review.json` and postpaint audits.
+
+Post-run audit: 3,439 binaries, nine hives and full allocation scan passed.
+The new desktop untitled.bmp is truncated by 48 KiB (393,270/442,422 bytes).
+This establishes incomplete persistence during the failed save session, not
+a failing I/O offset or a proven deadlock cause. Drivers were left unchanged.

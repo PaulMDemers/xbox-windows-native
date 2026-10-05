@@ -13,7 +13,8 @@ host-side test harness.
   appended setupapi.log data, and STOP 0xA. Its trace miniport remains the
   physical baseline; the normal miniport still fails with B4 on hardware.
   Paint's separate divide-by-zero display fix now also passes user-observed
-  physical startup; drawing/save/reopen and its post-run audits remain pending.
+  physical startup, but a subsequent Save attempt froze Paint and the system.
+  The save hang is under investigation; startup success is not application stability.
   A deferred-write buffer fix improves emulator stress; replaying the physical
   registry exposed short paging writes and writes after truncation. A new
   filesystem candidate now passes mapped/async stress, restart and cold audits
