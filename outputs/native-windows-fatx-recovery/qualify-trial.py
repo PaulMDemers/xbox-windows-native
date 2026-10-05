@@ -1,4 +1,5 @@
-"""Combine independent physical short-trial evidence without claiming long-soak stability."""
+"""Combine independent physical trial evidence without claiming general stability."""
+import argparse
 import hashlib
 import json
 import pathlib
@@ -6,23 +7,25 @@ import pathlib
 k = pathlib.Path(__file__).resolve().parent
 read = lambda name: json.loads((k / name).read_text())
 sha = lambda data: hashlib.sha256(data).hexdigest()
-trial = read('physical-trial.json')
-before = read('artifacts/trial/previous-system-events.json')
-after = read('trial-system-events.json')
-application = read('trial-application-events.json')
+p=argparse.ArgumentParser();p.add_argument('--kind',choices=['short','soak'],default='short');a=p.parse_args()
+tag='soak' if a.kind=='soak' else 'trial'
+trial = read('physical-'+tag+'.json')
+before = read('artifacts/'+tag+'/previous-system-events.json')
+after = read(tag+'-system-events.json')
+application = read(tag+'-application-events.json')
 assert before['sha256'] == trial['checks']['previous-system.evt']['sha256']
 assert after['sha256'] == trial['collected']['system.evt']['sha256']
 assert application['sha256'] == trial['collected']['application.evt']['sha256']
-assert sha((k/'artifacts/trial/report.txt').read_bytes()) == trial['report']['sha256']
+assert sha((k/'artifacts'/tag/'report.txt').read_bytes()) == trial['report']['sha256']
 maximum = max(row['record'] for row in before['records'])
 new = [row for row in after['records'] if row['record'] > maximum]
 delayed = [row for row in new if (row['source'] == 'Ftdisk' and row['event_id'] == 50)
            or any('delayed write failed' in s.lower() for s in row['strings'])]
 starts = [row for row in new if row['source'] == 'EventLog' and row['event_id'] == 6005]
 stops = [row for row in new if row['source'] == 'EventLog' and row['event_id'] == 6006]
-mapped = [line for line in trial['report']['text'].splitlines() if line.startswith('mapped case=')]
-allocation = read('physical-trial-allocation.json')
-audit = read('posttrial-audit.json')
+mapped = [line for line in trial['report']['text'].splitlines() if line.startswith('map=' if a.kind=='soak' else 'mapped case=')]
+allocation = read('physical-'+tag+'-allocation.json')
+audit = read('post'+tag+'-audit.json')
 normal_restart = len(starts) == len(stops) == 1 and starts[0]['record'] < stops[0]['record']
 current_application = [row for row in application['records']
                        if new and row['generated_unix'] >= min(e['generated_unix'] for e in new)]
@@ -33,17 +36,25 @@ r = dict(scope=__doc__, filesystem_sha256=trial['expected_drivers']['/F/winnt/sy
          normal_restart_observed=normal_restart, new_system_records=new,
          application_records_in_trial_time_window=current_application,
          delayed_write_events=len(delayed), other_error_records=[row for row in new if row['type']==1],
+         other_warning_records=[row for row in new if row['type']==2 and row not in delayed],
          full_F_allocation_consistent=allocation['allocation_consistent'],
          immutable_binaries_checked=audit['checked'], registry_hives_checked=len(audit['hives']),
          binary_and_hive_audit_passed=audit['complete'] and audit['passed'],
          automatic_test_startup_disabled=not trial['startup_restart_enabled'],
          prior_five_minute_physical_failure_resolved=False,
          next_test='Separate controlled 300-case/five-minute hardware soak; do not claim it has passed.')
-r['passed'] = (trial['passed'] and len(mapped)==30 and normal_restart and not delayed
+r['kind']=a.kind
+r['soak_completed']=trial.get('soak_completed',False)
+r['archived_previous_payloads_verified']=bool(trial.get('archive_checks')) and all(x['passed'] for x in trial.get('archive_checks',[]))
+if a.kind=='soak':r['next_test']='Repeat-boot persistence and broader workload validation; a bounded pass is not general stability.'
+r['passed'] = (trial['passed'] and len(mapped)==(300 if a.kind=='soak' else 30) and normal_restart and not delayed
+               and (a.kind!='soak' or r['soak_completed'])
+               and (a.kind!='soak' or r['archived_previous_payloads_verified'])
                and r['full_F_allocation_consistent'] and r['binary_and_hive_audit_passed']
                and audit['checked']==audit['expected_count']==3439 and len(audit['hives'])==9
                and all(h['tree']['passed'] and h['matching_sequences'] and h['checksum_valid'] for h in audit['hives'])
                and r['automatic_test_startup_disabled'])
-(k/'physical-trial-qualification.json').write_text(json.dumps(r, indent=2)+'\n')
+r['prior_failure_not_reproduced_in_this_soak'] = a.kind=='soak' and r['passed']
+(k/('physical-'+tag+'-qualification.json')).write_text(json.dumps(r, indent=2)+'\n')
 print('Bounded physical trial qualification:', r['passed'], '; delayed writes:', len(delayed),
       '; other error events:', len(r['other_error_records']))

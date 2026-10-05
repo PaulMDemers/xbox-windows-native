@@ -397,6 +397,12 @@ restoration and first0088 short hardware trial now pass; see the
 32 MiB pressure and normal restart passed, followed by exact payloads,3439
 binaries,nine hives and full allocation checks. No new delayed-write events;
 the baseline Ftdisk49 error remains. Startup is disabled on the dashboard.
-The controlled300-case/five-minute physical soak is the next test.
+The controlled300-case/five-minute physical soak subsequently passed as well:
+normal automatic restart, exact new and archived payloads, unchanged drivers,
+3439 immutable binaries,nine hives and full allocation checks. No new delayed
+writes or application events were found. Ftdisk49 and Srv2013 volume-space
+warnings remain. See `physical-soak-qualification.json` in the recovery kit.
+The earlier failure did not recur in this one bounded soak; repeated boots and
+broader workloads remain next.
 The physical STOP0xA remains unproven as the same defect; longer uptime,
 fault-injection and power-loss resilience are outside this bounded qualification.

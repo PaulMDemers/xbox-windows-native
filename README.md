@@ -56,8 +56,11 @@ host-side test harness.
   Candidate0088 then passed a short physical cache trial:30 mapped/truncate
   cases,32 MiB asynchronous pressure,normal restart and exact payload readback.
   Post-reboot binaries,hives and the full allocation map remain clean, with no
-  new delayed-write events. The existing Ftdisk49 error remains. The longer
-  five-minute hardware soak is still pending; automatic startup is disabled.
+  new delayed-write events. The subsequent300-case/five-minute hardware soak
+  also passed with normal restart, intact new and archived payloads,3439 binary
+  checks,nine registry hives and a clean full allocation map. Ftdisk49 and
+  volume-space warnings remain. This is bounded evidence, not general stability;
+  automatic startup is disabled on the dashboard.
   See the
   [hardware preflight kit](outputs/native-windows-fatx-preflight/README.md).
   See the [scoped recovery and hardware trial](outputs/native-windows-fatx-recovery/README.md)

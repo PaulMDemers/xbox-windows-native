@@ -17,8 +17,31 @@ System event records 60–64 are new relative to the prelaunch capture. They con
 normal EventLog start/stop and no delayed-write events. The existing Ftdisk 49
 error remains; there are no application records in this trial's time window.
 Automatic startup is disabled, the console is on the dashboard, and all owned
-emulator processes are closed. The next test is a separate controlled 300-case,
-five-minute hardware soak. The earlier physical STOP 0xA is not yet proven fixed.
+emulator processes are closed. This short run was followed by the longer test
+below. The earlier physical STOP 0xA is not conclusively attributed or proven fixed.
+
+### Five-minute hardware soak
+
+The unchanged candidate 0088 passed the subsequent physical soak, launched at
+05:31:16 UTC and collected after automatic dashboard return at 05:38:23 UTC.
+The existing, hash-pinned helper completed all 300 mapped/truncate cases,
+32 MiB asynchronous writes and its full five-minute idle interval. New payloads
+and four archived short-test files retain their expected bytes. Filesystem,
+trace-miniport and HAL hashes are unchanged.
+
+System records 65–73 show normal start/stop and zero delayed-write events.
+Ftdisk 49 remains, alongside Srv 2013 space warnings for Windows volumes F/G/H;
+those letters must not be confused with dashboard drive letters. No application
+events fall in this run's time window. These remaining events are included in
+the report and are not described as fixed.
+
+The independent post-soak scan covers 128,109 live entries: 6,053 directories,
+122,057 files and 6,058 directory clusters, with zero allocation errors or orphan
+clusters. All 3,439 immutable binaries and nine registry hives pass after reboot.
+`physical-soak-qualification.json` therefore records a bounded **PASS**. The
+earlier failure did not recur in this workload; repeat-boot persistence, longer
+uptime and broader application workloads remain to be tested. Automatic startup
+is disabled, the Xbox is on the dashboard, and no owned emulator is running.
 
 ## Recovery method
 
@@ -86,6 +109,16 @@ and disables automatic startup before collecting the result. It never retries
 a launch based solely on an uncertain FTP reply. A clean short result does not
 establish that the earlier five-minute hardware crash is fixed.
 
+The `--kind soak` variant requires that short qualification to have passed. It
+pins the existing 300-case/five-minute helper and its source hash, preserves the
+short test files under `.s88`, and records a separate `physical-soak.json` launch.
+Collection disables startup first and verifies both the new data and archived
+short-test data. Post-soak metadata collection uses the new E application folder
+`XWNFatSoak`; `audit-restored.py --phase postsoak` saves separate binary/hive
+evidence. `qualify-trial.py --kind soak` requires all 300 cases, the completed
+five-minute marker, normal shutdown, zero new delayed writes and all integrity
+checks. It records other event errors rather than describing them as fixed.
+
 Evidence is split by phase:
 
 - `physical-backup.json`, `backup-request.json`: preserved raw cluster scope.
@@ -98,6 +131,8 @@ Evidence is split by phase:
 - `physical-trial-allocation.json`: independent full allocation audit afterward.
 - `posttrial-audit.json`, `physical-trial-qualification.json`: final post-reboot
   binary/hive audit and combined bounded-test verdict.
+- `physical-soak.json`, `physical-soak-allocation.json`, `postsoak-audit.json`,
+  `physical-soak-qualification.json`: separate five-minute hardware evidence.
 
 Raw clusters, Windows files, firmware, hives and disk images remain ignored local
 artifacts. Only source, hashes, manifests and reports belong in the repository.

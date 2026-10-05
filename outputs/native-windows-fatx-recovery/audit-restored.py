@@ -1,10 +1,10 @@
 """Read-only audit of restored Windows binaries and registry copies; never launches Windows."""
 import argparse,datetime,ftplib,hashlib,io,json,os,pathlib,socket,struct,subprocess
 k=pathlib.Path(__file__).resolve().parent;p=k.parent/'native-windows-physical-f';out=k/'restored-audit.json'
-parser=argparse.ArgumentParser();parser.add_argument('--resume',action='store_true');parser.add_argument('--phase',choices=['restored','posttrial'],default='restored');a=parser.parse_args()
+parser=argparse.ArgumentParser();parser.add_argument('--resume',action='store_true');parser.add_argument('--phase',choices=['restored','posttrial','postsoak'],default='restored');a=parser.parse_args()
 out=k/(a.phase+'-audit.json')
-if a.phase=='posttrial':
- trial=json.loads((k/'physical-trial.json').read_text());assert trial.get('collected_utc') and not trial['startup_restart_enabled']
+if a.phase in ('posttrial','postsoak'):
+ trial=json.loads((k/('physical-soak.json' if a.phase=='postsoak' else 'physical-trial.json')).read_text());assert trial.get('collected_utc') and not trial['startup_restart_enabled']
 restore=json.loads((k/'restoration.json').read_text());assert restore['complete']
 manifest=json.loads((p/'package-manifest.json').read_text())['files'];ext={'.exe','.dll','.sys','.nls','.fon','.ttf','.cpl','.ocx'}
 items=[v for v in manifest if v['path'].startswith('F/') and pathlib.PurePosixPath(v['path']).suffix.lower() in ext]
