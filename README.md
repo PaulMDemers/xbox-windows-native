@@ -36,6 +36,12 @@ without resetting the diagnostic trace between them. Candidate0093 is installed;
 the trace file remains required. Normal startup is restored. The original0.1.0
 recovery/tag and qualified FATX remain unchanged; this is not a video speedup.
 
+Post-release video investigation now [records actual uncached framebuffer mappings](outputs/video-mapping-audit/README.md)
+on hardware. An [owned direct-RAM prototype](outputs/video-direct-map/README.md)
+passes emulator pixel/address checks but still fails the strict shutdown-popup
+audit, including a longer-settling run. It has not been deployed to hardware.
+Candidate0093 is restored and hash-verified. No rendering speedup is claimed.
+
 ## Development evidence and history
 
 - **Physical Windows 2000 desktop confirmed:** keyboard, mouse, drive browsing,

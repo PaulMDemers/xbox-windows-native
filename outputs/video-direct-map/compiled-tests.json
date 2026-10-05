@@ -1,0 +1,17 @@
+{
+  "scope": "Compiled direct mapping lifecycle and observer with modeled NT file IO, page tables, CPUID, MSRs and PnP callbacks",
+  "sha256": "e8021879bd606eb9cfc6927fbf50565c41781779af86e56f4678fa890b6eb6ec",
+  "all_imports_resolve": true,
+  "passed": true,
+  "tests": [
+    "Seeded bounded write-through trace captures AddDevice and optional PnP status without altering it",
+    "Trace mode forwards START after recording resource-list counts",
+    "Wrong marker, wrong size, missing file and write failures stop explicitly; no successful writes",
+    "Elevated IRQL skips file IO; unload records and closes owned handle",
+    "Used trace accepted; record count restarts for this boot and stale tail is cleared",
+    "Mapping observer reads present/nonpresent PTEs, skips PAE, gates/bounds MSRs, and never changes cache registers/page tables",
+    "Successful mapping uses reserved RAM with original flags/ABI and appends observation records",
+    "Both reserved RAM bases, unchanged mode and mapping/unmapping ABI, bad geometry/buffers and mapping failure publication checks pass",
+    "Owned mapping references, wrong owner/pointer/base/request/IRQL rejection, double-unmap rejection and unload cleanup pass under modeled mutexes"
+  ]
+}

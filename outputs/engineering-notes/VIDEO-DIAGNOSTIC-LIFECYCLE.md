@@ -68,3 +68,20 @@ no popup. That strict result—not the historical exception assessment—was used
 for physical promotion. Both physical boots then passed without a trace reset
 between them. See video-trace-reuse-settled/qualification.json; candidate0093 is
 installed with normal startup restored. The existing file remains required.
+
+## Later mapping investigation
+
+0094 recorded the physical desktop aperture's first/last PTEs and CPU PAT/MTRRs:
+UC mapping, with the known loader alias endpoints absent. Its GDI and normal
+shutdown checks passed, but two identical rundll32 shutdown popups made its
+strict physical audit false.0093 was restored and independently hash-verified.
+
+0095's RAM address was rejected by VideoPortMapMemory in xemu (stage7/error87).
+0096 owns an MmNonCached RAM mapping instead and passes compiled lifetime tests
+and ordinary emulator pixel/actual-PTE checks. Both30-second and120-second
+settling runs still failed the strict popup gate. None was promoted or deployed.
+Stop/removal/restart ownership remains implementation work beyond the helper's
+normal unmap/unload paths. The separate debugger run is exploratory; see
+../video-shutdown-probe. Failure to capture a hard-error call does not identify
+or exclude the popup's cause. Do not keep increasing waits or select a clean
+retry as proof that timing fixed this issue.

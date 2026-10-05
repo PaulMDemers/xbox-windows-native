@@ -1,0 +1,29 @@
+--- a/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c
+@@ -98,7 +98,15 @@
+             VIDEO_FAIL(6, V->Offset, V->ApertureLength, V->FramebufferAperture.LowPart);
+         VideoPortFreeDeviceBase(Extension, V->Control);V->Control = NULL;return FALSE;
+     }
++#ifdef XBOX_NT5_VIDEO_DIRECT_RAM
++    /* The loader reserves this top-four-MiB RAM window for the framebuffer.
++     * Keep VideoPort's existing noncached mapping policy and lifecycle, but
++     * avoid the PCI aperture alias. Bootvid already uses this physical RAM.
++     * Do not silently fall back: a mapping failure must remain observable. */
++    V->Framebuffer.QuadPart = V->Offset;
++#else
+     V->Framebuffer.QuadPart = V->FramebufferAperture.QuadPart + V->Offset;
++#endif
+     VideoPortZeroMemory(&V->Mode, sizeof(V->Mode));
+     V->Mode.Length = sizeof(V->Mode);
+     V->Mode.VisScreenWidth = Width; V->Mode.VisScreenHeight = Height;
+--- a/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt
+@@ -62,3 +62,8 @@
+     target_compile_definitions(xboxvnt5 PRIVATE XBOX_NT5_VIDEO_MAPPING_AUDIT=1)
+     target_sources(xboxvnt5 PRIVATE video_mapping_audit.c)
+ endif()
++
++option(XBOX_NT5_VIDEO_DIRECT_RAM "Map the reserved framebuffer RAM directly without changing cache flags" OFF)
++if(XBOX_NT5_VIDEO_DIRECT_RAM)
++    target_compile_definitions(xboxvnt5 PRIVATE XBOX_NT5_VIDEO_DIRECT_RAM=1)
++endif()

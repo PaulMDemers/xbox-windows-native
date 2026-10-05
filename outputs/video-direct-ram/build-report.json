@@ -1,0 +1,80 @@
+{
+  "status": "compiled",
+  "started_utc": "2026-10-05T22:40:32.311933+00:00",
+  "profile": "video",
+  "space_preflight": {
+    "minimum_free_gib": 20,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/home/paul/xbox-windows-native/build",
+        "free_bytes": 955570774016
+      },
+      {
+        "free_bytes": 22927958016,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "source_base": "afc0127e8f937ab68503d715d948844973756aa1",
+  "source_tree": "7cd24db714d1f4fa0d44dda543e36aaed9ff58b6",
+  "inputs_sha256": "8156cb74e2efe66618eb5fadf1ba01e12edc34ab76a0ad5a6560087def9bdfbf",
+  "tool_sha256": {
+    "RosBE.sh": "1d04daf7393952441c62691bb7735042d236b0196778f1632f0a4383476143b7",
+    "bin/cmake": "049737b62e2803fd657041cf65b6bb6de7756db377c92c686c63eec373604e75",
+    "bin/ninja": "371e855768aa214225d4b17f49902cdd2b2daa8764514134524b07282c9e9e07",
+    "i386/bin/i686-w64-mingw32-gcc": "83015512671faaa0dbe6f043a0107f79c049f4268a67e39955388a8d9a0182e5"
+  },
+  "commands": [
+    [
+      "git",
+      "init",
+      "-q",
+      "/home/paul/xbox-windows-native/build/video-direct-ram-001/source"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/video-direct-ram-001/source",
+      "fetch",
+      "--depth=1",
+      "/home/paul/xbox-windows-native/build/video-mapping-audit-001/source",
+      "afc0127e8f937ab68503d715d948844973756aa1"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/video-direct-ram-001/source",
+      "checkout",
+      "--detach",
+      "FETCH_HEAD"
+    ],
+    [
+      "/usr/bin/python3",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/tools/apply-series.py",
+      "--source",
+      "/home/paul/xbox-windows-native/build/video-direct-ram-001/source",
+      "--manifest",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-direct-ram/manifest.json"
+    ],
+    [
+      "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/RosBE.sh",
+      "/home/paul/xbox-windows-native/build/video-direct-ram-001/source",
+      "0",
+      "i386"
+    ]
+  ],
+  "artifacts": [
+    {
+      "name": "xboxvnt5.sys",
+      "bytes": 41138,
+      "sha256": "75ba90a6a3a77d29afd630acaca19b63f83d60801c490d78304815217ffc244c",
+      "profile": "video"
+    }
+  ],
+  "scope": "fresh source and compilation only; no runtime qualification",
+  "verified_source_tree": "7cd24db714d1f4fa0d44dda543e36aaed9ff58b6",
+  "finished_utc": "2026-10-05T22:40:56.582759+00:00"
+}

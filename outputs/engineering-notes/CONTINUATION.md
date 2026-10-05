@@ -1,34 +1,57 @@
-# Continuation: repeat-boot miniport qualified on hardware
+# Continuation: framebuffer mapping findings and unqualified prototype
 
-Updated2026-10-05 after two normal physical restarts. Candidate0093 remains
-installed; normal startup is restored and the Xbox is at UnleashX. No emulator,
-observer, build, automation or queued Windows test remains running.
+Physical candidate0093 is restored. Final read-only FTP verification at
+2026-10-05 23:07:22 UTC passed for video, FATX0088, HAL, loader, launcher,
+pre-dim backup and normal startup. Evidence: outputs/video-mapping-audit/final-baseline.json.
+No emulator, observer, debugger, build or automation remains running from this work.
+All owned sessions have closed; backing chains and source caches remain in place.
 
-Evidence: outputs/video-trace-reuse-settled/qualification.json and physical.json.
-Both hardware cycles passed graphics checks, normal shutdown, expected payloads,
-valid trace, no new popup/unexpected error. Launches were22:15:47.892872Z and
-22:18:01.946565Z. Cycle2 used cycle1's exact trace with no host reset. FATX/HAL/
-loader and1024x576x32 geometry unchanged. No third launch. Existing trace file
-is still required; this change removes the one-shot contents restriction only.
+0094 observed UC GPU-aperture mappings on both emulator and Xbox; known loader
+alias endpoints were absent. Emulator strict audit passed. Physical graphics,
+payload and normal restart checks passed, but strict qualification failed on two
+rundll32 shutdown popups. Logs retained and0093 restored; no performance claim.
 
-Candidate SHA256:3e74a5c35b68d7fa0e047b4ba9cec25e7ec0ea5a94e796fc07508f667fcc85cf.
-Source tree329a29d61af1620a9fc005b0d8fcfb9e1a937d20; patch/input/build/compiled-test
-reports live in outputs/video-trace-reuse. Hardware rollback copy:
-/F/winnt/system32/drivers/xboxvnt5.trace011. Private verified driver/rollback ZIP:
-E:/Codex-archive/xbox-windows-native/postrelease-video-reuse-20261005.
-SHA256:44c613e74b8a82e1494cc60140e3ceee27d53df4762e1ede97e22800242857e5.
-No archive restore test claimed; v0.1.0 tag and full recovery bundles unchanged.
+0095 direct RAM through VideoPortMapMemory failed before desktop in xemu:
+STOP E0580001 (7,57,03c00000,00400000), ERROR_INVALID_PARAMETER.
+This failure is preserved;0095 was never deployed to hardware.
 
-Retain rejected0092: xemu passed but hardware STOP0xB4, then verified rollback.
-Retain the two0093 strict emulator popup failures. Captured and rebuilt controls
-passed; older qualified Paint logs also contain that exact intermittent shutdown
-popup. The later clean-start two-boot candidate run passed the FULL strict audit,
-and that result was the hardware gate. No popup waiver was used. Starting clean
-then reusing its own output does not establish a cause for the earlier popup.
+0096 uses owned MmMapIoSpace(MmNonCached) with reference/unmap/unload cleanup.
+Fresh reconstruction and compiled execution checks passed. Source tree:
+eded91e06d6cac60a1cf66bc8a05117ebfa6a71a; miniport SHA256:
+e8021879bd606eb9cfc6927fbf50565c41781779af86e56f4678fa890b6eb6ec.
+Both ordinary emulator runs passed pixel, direct-RAM UC, payload and normal
+restart checks, but strict audits failed on two rundll32 shutdown popups.
+Changing settling from30 to120seconds did not eliminate the failure.
+See outputs/video-direct-map and outputs/video-direct-map-settled.
+No0096 hardware deployment or measured hardware speedup occurred.
 
-Next work is video performance: audit actual framebuffer cache attributes and
-aliases, then implement/test one isolated change against bounded physical GDI
-baselines. No rendering speedup or HD mode is part of0093. Keep storage0088.
+Exploratory nt5-video-shutdown-probe-001 used the same binary and120-second
+protocol. Initial debugger handshake timed out and paused the guest; the corrected
+handshake resumed that same guest. No NtRaiseHardError event was captured before
+the supervisor closed the returned emulator. Cold logs show the same two popups.
+Debugger timing interference disqualifies this run as ordinary validation;
+outputs/video-shutdown-probe preserves both attach failure and final observations.
+Cleanup completed at23:05:47 UTC; no popup root cause has been established.
+
+Immediate next work:
+1. Trace the shutdown popup creation path; the NtRaiseHardError breakpoint did
+   not capture it. Do not select a clean timing retry as proof of a fix.
+2. Complete PnP stop/remove/restart mapping lifetime, including consumer quiescence
+   and asynchronous completion. Normal unmap/unload alone is not a general driver.
+3. Re-run strict ordinary emulator checks, then one bounded physical timing trial
+   with rollback. Keep0093 and release0.1.0 intact. No HD-mode change yet.
+4. C: last measured about19.7GiB free. Fresh source builds require20GiB preflight;
+   review safe archival of closed artifacts before another build. Never remove
+   QCOW backing parents or unreviewed source caches to make room.
+
+0093 physical qualification: outputs/video-trace-reuse-settled/qualification.json
+and physical.json, two clean cycles at22:15:47.892872Z and22:18:01.946565Z Oct5.
+SHA256 3e74a5c35b68d7fa0e047b4ba9cec25e7ec0ea5a94e796fc07508f667fcc85cf;
+source tree329a29d61af1620a9fc005b0d8fcfb9e1a937d20. Normal startup restored.
+Private verified overlay: E:/Codex-archive/xbox-windows-native/postrelease-video-reuse-20261005,
+ZIP SHA256 44c613e74b8a82e1494cc60140e3ceee27d53df4762e1ede97e22800242857e5.
+No archive restore test claimed. Retain0092 physicalSTOP0xB4 and prior0093
+strict popup failures; later clean-start/reuse0093 passed without any waiver.
 
 ## Results
 
@@ -60,8 +83,8 @@ baselines. No rendering speedup or HD mode is part of0093. Keep storage0088.
   CPU logs to E:/Codex-archive/xbox-windows-native/trace-archive-20261005 with
   SHA256 verification. Original run folders contain cpu-trace.archive.json
   pointers. No QCOW backing chain was relocated. Ubuntu then mounted writable
-  without filesystem repair or a global reset. C: has about24GiB free after
-  the successful retry. New builds check actual Windows backing-volume space,
+  without filesystem repair or a global reset. C: had about24GiB free after
+  that retry; the latest reading is about19.7GiB (see above). New builds check actual Windows backing-volume space,
   not only Linux virtual capacity. Keep watching host space before more fixtures.
 - Failed pipeline001 checkout retained at
   /home/paul/xbox-windows-native/build/package-reconstruction-001.
@@ -97,3 +120,7 @@ baselines. No rendering speedup or HD mode is part of0093. Keep storage0088.
 
 UnleashX root Windows entry was installed previously with backup/readback.
 Dashboard visibility is not user-confirmed; do not reinstall it to refresh notes.
+
+Host C: free space is about19.7GiB after these builds. The20GiB fresh-build
+preflight should block additional source builds until reviewed artifacts can be
+archived safely; no backing chains or source caches were removed.

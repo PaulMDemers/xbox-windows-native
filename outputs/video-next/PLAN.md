@@ -11,8 +11,25 @@ checks and five bounded timing loops. Their256x128 samples show much slower
 framebuffer readback/overlap copies than fills/uploads, but do not measure window
 dragging FPS or prove a cache cause. Candidate0093 resolves repeated-boot trace
 contents maintenance and remains installed; it adds no rendering optimization.
-Next audit effective cache attributes and aliases before choosing that change.
-See ../video-trace-reuse-settled and physical-gdi-003 for actual reports.
+0094 now records physical first/last desktop PTEs and PAT: GPU aperture
+0xF3C00000..0xF3FFFFFF is UC. Known loader alias endpoints are absent; this is
+not an exhaustive alias inventory. Its pixel/hash/shutdown checks passed, but
+strict physical audit failed on two rundown-time rundll32 popups, and0093 was
+restored. See ../video-mapping-audit and ../video-trace-reuse-settled.
+
+0095's direct RAM address was rejected by VideoPortMapMemory in xemu (error87),
+so it was never deployed.0096 owns an MmNonCached mapping with explicit reference
+and unload cleanup. See ../video-direct-map for actual validation status. The
+first question is whether the GPU aperture, rather than direct reserved RAM,
+adds meaningful read latency while cache policy remains unchanged. Do not claim
+a speedup before physical measurement or promote on a visible desktop alone.
+
+0096 passes pixel/address/UC checks in two ordinary emulator boots, but both
+strict audits fail on identical shutdown popups (30/120-second settling).
+Hardware deployment remains gated. Complete stop/removal/restart ownership
+before promoting the mapping helper; current code covers unmap and unload.
+The separate breakpoint run is diagnostic only and captured no hard-error call.
+A current read-only FTP check confirms0093, FATX/HAL/loader and startup restored.
 
 ## First implementation: measure the existing drawing path
 

@@ -1,0 +1,80 @@
+{
+  "status": "compiled",
+  "started_utc": "2026-10-05T22:31:48.651463+00:00",
+  "profile": "video",
+  "space_preflight": {
+    "minimum_free_gib": 20,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/home/paul/xbox-windows-native/build",
+        "free_bytes": 956334485504
+      },
+      {
+        "free_bytes": 23788027904,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "source_base": "afc0127e8f937ab68503d715d948844973756aa1",
+  "source_tree": "df828b3942de0d03e2cc3647f414e3bee4c359c2",
+  "inputs_sha256": "5d374c4ae47f4c5c9a70339a257ae2a41c7a96b9fd783fb014bd86eee0c8e344",
+  "tool_sha256": {
+    "RosBE.sh": "1d04daf7393952441c62691bb7735042d236b0196778f1632f0a4383476143b7",
+    "bin/cmake": "049737b62e2803fd657041cf65b6bb6de7756db377c92c686c63eec373604e75",
+    "bin/ninja": "371e855768aa214225d4b17f49902cdd2b2daa8764514134524b07282c9e9e07",
+    "i386/bin/i686-w64-mingw32-gcc": "83015512671faaa0dbe6f043a0107f79c049f4268a67e39955388a8d9a0182e5"
+  },
+  "commands": [
+    [
+      "git",
+      "init",
+      "-q",
+      "/home/paul/xbox-windows-native/build/video-mapping-audit-001/source"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/video-mapping-audit-001/source",
+      "fetch",
+      "--depth=1",
+      "/home/paul/xbox-windows-native/build/video-reuse-001/source",
+      "afc0127e8f937ab68503d715d948844973756aa1"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/video-mapping-audit-001/source",
+      "checkout",
+      "--detach",
+      "FETCH_HEAD"
+    ],
+    [
+      "/usr/bin/python3",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/tools/apply-series.py",
+      "--source",
+      "/home/paul/xbox-windows-native/build/video-mapping-audit-001/source",
+      "--manifest",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-mapping-audit/manifest.json"
+    ],
+    [
+      "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/RosBE.sh",
+      "/home/paul/xbox-windows-native/build/video-mapping-audit-001/source",
+      "0",
+      "i386"
+    ]
+  ],
+  "artifacts": [
+    {
+      "name": "xboxvnt5.sys",
+      "bytes": 41138,
+      "sha256": "ea18fa6c831b4cd9478cd85c65d2670b5ef0cb7892f804e9a1ed8572fc6a98ce",
+      "profile": "video"
+    }
+  ],
+  "scope": "fresh source and compilation only; no runtime qualification",
+  "verified_source_tree": "df828b3942de0d03e2cc3647f414e3bee4c359c2",
+  "finished_utc": "2026-10-05T22:32:12.604822+00:00"
+}

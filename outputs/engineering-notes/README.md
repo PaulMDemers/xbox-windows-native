@@ -9,6 +9,8 @@ in any Linux FATX implementation. No external project has been contacted.
 - [Boot, memory, display, network and validation notes](PLATFORM.md)
 - [Video performance and modes plan](../video-next/PLAN.md)
 - [Video diagnostic lifecycle and emulator/hardware divergence](VIDEO-DIAGNOSTIC-LIFECYCLE.md)
+- [Live framebuffer mapping audit](../video-mapping-audit/README.md)
+- [Direct-RAM video prototype and remaining lifecycle work](../video-direct-map/README.md)
 - [Preserved baseline and recovery](../release-0.1.0/README.md)
 
 Evidence vocabulary: **physical** means this console; **user-observed** means

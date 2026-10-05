@@ -1,0 +1,180 @@
+--- a/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c
+@@ -7,6 +7,10 @@
+  */
+ #include "../xboxvmp.h"
+ #include <drivers/xbox/xgpu.h>
++#ifdef XBOX_NT5_VIDEO_DIRECT_MAP
++ULONG NTAPI XwnDirectMap(PVOID, ULONG, PVOID *);
++ULONG NTAPI XwnDirectUnmap(PVOID, PVOID);
++#endif
+ #ifdef XBOX_NT5_VIDEO_MAPPING_AUDIT
+ VOID NTAPI XwnVideoTraceMapping(PVOID, ULONG, ULONG, ULONG);
+ #endif
+@@ -162,12 +166,18 @@
+             { Status = ERROR_INSUFFICIENT_BUFFER; break; }
+         {
+             VIDEO_MEMORY_INFORMATION Result;
++#ifndef XBOX_NT5_VIDEO_DIRECT_MAP
+             ULONG Space = VIDEO_MEMORY_SPACE_MEMORY;
++#endif
+             VideoPortZeroMemory(&Result, sizeof(Result));
+             Result.VideoRamBase = ((PVIDEO_MEMORY)Request->InputBuffer)->RequestedVirtualAddress;
+             Result.VideoRamLength = NV2A_VIDEO_MEMORY_SIZE;
++#ifdef XBOX_NT5_VIDEO_DIRECT_MAP
++            Status = XwnDirectMap(Extension, V->Offset, &Result.VideoRamBase);
++#else
+             Status = VideoPortMapMemory(Extension, V->Framebuffer, &Result.VideoRamLength,
+                                         &Space, &Result.VideoRamBase);
++#endif
+             if (Status != NO_ERROR) { VIDEO_FAIL(7, Status, V->Framebuffer.LowPart, Result.VideoRamLength); break; }
+ #ifdef XBOX_NT5_VIDEO_MAPPING_AUDIT
+             XwnVideoTraceMapping(Result.VideoRamBase, V->Framebuffer.LowPart,
+@@ -182,7 +192,11 @@
+     case IOCTL_VIDEO_UNMAP_VIDEO_MEMORY:
+         if (!Request->InputBuffer || Request->InputBufferLength < sizeof(VIDEO_MEMORY))
+             { Status = ERROR_INSUFFICIENT_BUFFER; break; }
++#ifdef XBOX_NT5_VIDEO_DIRECT_MAP
++        Status = XwnDirectUnmap(Extension, ((PVIDEO_MEMORY)Request->InputBuffer)->RequestedVirtualAddress);
++#else
+         Status = VideoPortUnmapMemory(Extension, ((PVIDEO_MEMORY)Request->InputBuffer)->RequestedVirtualAddress, NULL);
++#endif
+         break;
+     }
+     Request->StatusBlock->Status = Status;
+--- a/win32ss/drivers/miniport/xboxvmp/nt5/video_pnp.c
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/video_pnp.c
+@@ -2,6 +2,10 @@
+  * Default-off, RAM-only instrumentation of this driver's own callbacks.
+  * Stops BEFORE forwarding START_DEVICE. Never changes PCI configuration. */
+ #include <ntddk.h>
++#ifdef XBOX_NT5_VIDEO_DIRECT_MAP
++VOID NTAPI XwnDirectInitialize(VOID);
++VOID NTAPI XwnDirectClose(VOID);
++#endif
+ 
+ static PDRIVER_ADD_DEVICE OriginalAddDevice;
+ static PDRIVER_DISPATCH OriginalPnp;
+@@ -16,6 +20,9 @@
+     XwnVideoTrace(6, 0, 0, 0);
+     XwnVideoTraceClose();
+     if (OriginalUnload) OriginalUnload(Driver);
++#ifdef XBOX_NT5_VIDEO_DIRECT_MAP
++    XwnDirectClose();
++#endif
+ }
+ #define TRACE(e,a,b,c) XwnVideoTrace(e,(ULONG)(a),(ULONG)(b),(ULONG)(c))
+ #else
+@@ -71,6 +78,9 @@
+ VOID NTAPI XwnVideoArmPnp(PDRIVER_OBJECT Driver)
+ {
+ #ifdef XBOX_NT5_VIDEO_TRACE
++#ifdef XBOX_NT5_VIDEO_DIRECT_MAP
++    XwnDirectInitialize();
++#endif
+     XwnVideoTraceInit();
+     OriginalUnload = Driver->DriverUnload;
+     Driver->DriverUnload = XwnVideoUnload;
+--- a/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt
+@@ -67,3 +67,13 @@
+ if(XBOX_NT5_VIDEO_DIRECT_RAM)
+     target_compile_definitions(xboxvnt5 PRIVATE XBOX_NT5_VIDEO_DIRECT_RAM=1)
+ endif()
++
++option(XBOX_NT5_VIDEO_DIRECT_MAP "Own a noncached reserved-RAM mapping outside PCI translation" OFF)
++if(XBOX_NT5_VIDEO_DIRECT_MAP)
++    if(NOT XBOX_NT5_VIDEO_DIRECT_RAM OR NOT XBOX_NT5_VIDEO_TRACE)
++        message(FATAL_ERROR "Direct mapping requires direct-RAM geometry and the unload wrapper")
++    endif()
++    target_compile_definitions(xboxvnt5 PRIVATE XBOX_NT5_VIDEO_DIRECT_MAP=1)
++    target_sources(xboxvnt5 PRIVATE video_direct_map.c)
++    add_importlibs(xboxvnt5 ntoskrnl hal)
++endif()
+--- /dev/null
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/video_direct_map.c
+@@ -0,0 +1,84 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later
++ * Single Xbox framebuffer mapping, owned by this miniport. Reserved RAM is not
++ * a PCI bus address. Keep it noncached like the loader and native boot display.
++ */
++#include <ntddk.h>
++#include <winerror.h>
++
++#define FRAMEBUFFER_BYTES 0x00400000
++static FAST_MUTEX MappingLock;
++static BOOLEAN Initialized;
++static PVOID Owner, Mapping;
++static ULONG RamOffset, References;
++
++VOID NTAPI XwnDirectInitialize(VOID)
++{
++    ExInitializeFastMutex(&MappingLock);
++    Initialized = TRUE;
++}
++
++ULONG NTAPI XwnDirectMap(PVOID Device, ULONG Ram, PVOID *Address)
++{
++    PHYSICAL_ADDRESS Physical;
++    ULONG Status = ERROR_INVALID_PARAMETER;
++    if (!Initialized || KeGetCurrentIrql() != PASSIVE_LEVEL || !Device ||
++        !Address || *Address || (Ram != 0x03C00000 && Ram != 0x07C00000))
++        return Status;
++    ExAcquireFastMutex(&MappingLock);
++    if (Mapping)
++    {
++        if (Owner == Device && RamOffset == Ram && References != MAXULONG)
++        {
++            ++References;
++            *Address = Mapping;
++            Status = ERROR_SUCCESS;
++        }
++    }
++    else
++    {
++        Physical.QuadPart = Ram;
++        Mapping = MmMapIoSpace(Physical, FRAMEBUFFER_BYTES, MmNonCached);
++        if (Mapping)
++        {
++            Owner = Device;
++            RamOffset = Ram;
++            References = 1;
++            *Address = Mapping;
++            Status = ERROR_SUCCESS;
++        }
++        else Status = ERROR_NOT_ENOUGH_MEMORY;
++    }
++    ExReleaseFastMutex(&MappingLock);
++    return Status;
++}
++
++ULONG NTAPI XwnDirectUnmap(PVOID Device, PVOID Address)
++{
++    ULONG Status = ERROR_INVALID_PARAMETER;
++    if (!Initialized || KeGetCurrentIrql() != PASSIVE_LEVEL) return Status;
++    ExAcquireFastMutex(&MappingLock);
++    if (Mapping && Owner == Device && Mapping == Address && References)
++    {
++        if (!--References)
++        {
++            MmUnmapIoSpace(Mapping, FRAMEBUFFER_BYTES);
++            Mapping = Owner = NULL;
++            RamOffset = 0;
++        }
++        Status = ERROR_SUCCESS;
++    }
++    ExReleaseFastMutex(&MappingLock);
++    return Status;
++}
++
++/* Called after VideoPort's unload routine, when no surface can still use it. */
++VOID NTAPI XwnDirectClose(VOID)
++{
++    if (!Initialized) return;
++    ExAcquireFastMutex(&MappingLock);
++    if (Mapping) MmUnmapIoSpace(Mapping, FRAMEBUFFER_BYTES);
++    Mapping = Owner = NULL;
++    RamOffset = References = 0;
++    Initialized = FALSE;
++    ExReleaseFastMutex(&MappingLock);
++}

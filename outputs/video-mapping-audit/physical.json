@@ -1,0 +1,100 @@
+{
+  "scope": "Physical read-only mapping observer; one bounded GDI boot, then restore qualified0093.",
+  "physical_result": true,
+  "candidate_sha256": "ea18fa6c831b4cd9478cd85c65d2670b5ef0cb7892f804e9a1ed8572fc6a98ce",
+  "cycles": [
+    {
+      "cycle": 1,
+      "launch_utc": "2026-10-05T22:39:56.484984+00:00",
+      "command": "SITE EXEC E:\\Applications\\XWNFBoot\\default.xbe",
+      "reply": "200 EXEC command succeeded.",
+      "collected": {
+        "attempt.log": {
+          "bytes": 56,
+          "sha256": "2745c45686c99af1e511d3627c2f580569196b5bb1392ca6ecb278cb1b53f1ed"
+        },
+        "gdi-baseline.txt": {
+          "bytes": 824,
+          "sha256": "b8b880005d03b71ac7e5990d6be412a1acac1ef8f0a7ef2abd28370e14a20285"
+        },
+        "system.evt": {
+          "bytes": 65536,
+          "sha256": "c7a8f16662dc2a553a654d243900c5e79411825a69a9312f261deed46db40957"
+        },
+        "application.evt": {
+          "bytes": 65536,
+          "sha256": "af36c94bb8b4f477b0b2f2cc39d7e2b4a6a587f490032577361f1bf64acee58b"
+        },
+        "trace.bin": {
+          "bytes": 4096,
+          "sha256": "406487eefbd36103d0a331c89909d871ad2c8d9146533dd69cede2d25689e26a"
+        }
+      },
+      "candidate_checks": {
+        "/F/winnt/system32/drivers/xwnfatx.sys": true,
+        "/F/winnt/system32/drivers/xboxvnt5.sys": true,
+        "/F/winnt/system32/drivers/xboxvnt5.pre-dim": true,
+        "/E/Applications/XWNFBoot/loader/halxboxnt5.dll": true,
+        "/E/Applications/XWNFBoot/default.xbe": true,
+        "/E/Applications/XWNFBoot/freeldr.sys": true,
+        "/F/winnt/system32/drivers/xboxvnt5.trace012": true
+      },
+      "payload_checks": {
+        "/F/xwnmap01/runner.exe": true,
+        "/F/xwnmap01/replay.exe": true,
+        "/F/xwnmap02/replay.exe": true
+      },
+      "trace_valid": true,
+      "collected_utc": "2026-10-05T22:42:03.063504+00:00",
+      "qualification": "physical-cycle1-qualification.json",
+      "passed": false
+    }
+  ],
+  "startup_enabled": false,
+  "preserved": {
+    "startup.cmd": {
+      "bytes": 102,
+      "sha256": "257ec9b4c77199f0ac046289912c41acdaba3a30750bf81dfb4c09cbb003af2d"
+    },
+    "miniport.sys": {
+      "bytes": 40882,
+      "sha256": "3e74a5c35b68d7fa0e047b4ba9cec25e7ec0ea5a94e796fc07508f667fcc85cf"
+    },
+    "trace.bin": {
+      "bytes": 4096,
+      "sha256": "7ae5fd6e05e06d106818b280bc22108cd915c2aa7841f3cbd92a24dc19561365"
+    },
+    "system.evt": {
+      "bytes": 65536,
+      "sha256": "5d9c3a751c905a356f3a5b625bcaa7ad2071ce820bfd37b976b8a21a11c3a810"
+    },
+    "application.evt": {
+      "bytes": 65536,
+      "sha256": "af36c94bb8b4f477b0b2f2cc39d7e2b4a6a587f490032577361f1bf64acee58b"
+    }
+  },
+  "payloads": [
+    {
+      "path": "/F/xwnmap01/runner.exe",
+      "sha256": "9aef6fc29c06782f17510a92f313b9a8c9003f2acad921b7bb51ce4ffce74ccc"
+    },
+    {
+      "path": "/F/xwnmap01/replay.exe",
+      "sha256": "7d90f3c0d6f8bb4615792324c749f4f2bfcf8663928d93ac5a3b41f9afec23fb"
+    },
+    {
+      "path": "/F/xwnmap02/replay.exe",
+      "sha256": "7d90f3c0d6f8bb4615792324c749f4f2bfcf8663928d93ac5a3b41f9afec23fb"
+    }
+  ],
+  "eligibility": {
+    "kind": "strict mapping-observer audit",
+    "audit": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\outputs\\video-mapping-audit\\audit.json",
+    "audit_sha256": "8d148a3c734af414bcc9c3b66443fd644610fe7454407b456de79806ba449ad0",
+    "fixture_sha256": "9e46595f7080be1bf6001e385496c1b7caa9cff657491107aa41e70b66ae682f",
+    "initial_trace_clean": true,
+    "host_reseed_between_boots": false
+  },
+  "trace_sha256": "5806fe7ce339298b5a94a0e0ab1bdfb78922fc449effd5cea2f393f0d33fd00e",
+  "rolled_back_utc": "2026-10-05T22:42:40.618250+00:00"
+}
