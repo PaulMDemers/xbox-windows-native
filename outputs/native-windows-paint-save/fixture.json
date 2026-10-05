@@ -1,0 +1,42 @@
+{
+  "scope": "Create a small emulator-only child of qualified r15, without a full raw disk copy.",
+  "source_run": "nt5-physical-f-high-allocation-r15",
+  "source_sha256": "5298201608355fb4daec293cbf121993c4ff0b3896afd2b842b6508851a099cf",
+  "fixture_sha256": "f55ecc8c51e22f524ad03f032a1b6fb4ea163b183f69eff40e1242d55959bcbe",
+  "filesystem_sha256": "0ec6b5fdae65a1f85cba8c15021ba8095601d4462565b331329884526ff81336",
+  "miniport_sha256": "f8af1d8477d61ad8933962fd6347f43620f5ef1d21efe54110b94fec106986eb",
+  "startup_sha256": "3a5da56ba7c3fda0e666e55ea5f42fd1f74488f99ccf56423bf6e27444159d44",
+  "images": [
+    {
+      "path": "xwnpaint/scribble.bmp",
+      "bytes": 442422,
+      "sha256": "ad7bfd3fa51af5ae5a666f13888b755bf0cd17a4bbe4c1dbb4e81742d2b148d8",
+      "clusters": 7
+    },
+    {
+      "path": "xwnpaint/blank.bmp",
+      "bytes": 442422,
+      "sha256": "a4bc5ec9d9853b5503f007cc50a23f0cb6a4597fc498e3348ae87f9c87fac51a",
+      "clusters": 7
+    },
+    {
+      "path": "xwnpaint/coords.bmp",
+      "bytes": 442422,
+      "sha256": "6d66debfbd6b2e926b4d458524d68c07560d7dc193e77b7446f3dc55b12b80fb",
+      "clusters": 7
+    },
+    {
+      "path": "xwnpaint/oddwidth.bmp",
+      "bytes": 443574,
+      "sha256": "ee9e082f403e458f5102186add47cd23a557c8cfe21a569b39917296e85ac88d",
+      "clusters": 7
+    }
+  ],
+  "readback_verified": true,
+  "physical_access": false,
+  "checkpoint_sha256": "59970351b5993ed975297a33b0f8e83b1742760bd2d1ef8725e9087b0bd9bfec",
+  "backing_path_adjustment": "Copied qualified disk checkpoint next to its parent to avoid Windows unnormalized backing-chain path length failure; run001 failed before guest boot.",
+  "fixture_name": "paint-save-002.qcow2",
+  "trace_reset": true,
+  "previous_run": "nt5-paint-save-002 stopped by expected trace-reuse guard before Paint"
+}

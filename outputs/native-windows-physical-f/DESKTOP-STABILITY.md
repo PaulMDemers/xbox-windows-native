@@ -114,3 +114,9 @@ Post-run audit: 3,439 binaries, nine hives and full allocation scan passed.
 The new desktop untitled.bmp is truncated by 48 KiB (393,270/442,422 bytes).
 This establishes incomplete persistence during the failed save session, not
 a failing I/O offset or a proven deadlock cause. Drivers were left unchanged.
+
+See [Paint save reproduction](../native-windows-paint-save/README.md) for the
+subsequent emulator tests with the exact combined storage/video candidates.
+Saving and persistence are now tested separately from the earlier startup-only
+check. The hardware hang remains an open issue; no speculative driver change
+has been promoted from the emulator's bounded successes.

@@ -216,3 +216,9 @@ The persisted length does not identify the blocked request: data could remain
 cached when the machine froze. `physical-paint-review.json` records FAIL_SAVE_HANG.
 No Windows relaunch or driver replacement followed; the scanner returned to
 the dashboard and automatic startup remains disabled.
+
+Subsequent emulator-only save investigation is recorded in
+[`native-windows-paint-save`](../native-windows-paint-save/README.md). It retains
+candidate0088 plus the dimensions miniport and uses deterministic BMP inputs,
+actual Paint saves, cold file readback and a separately logged Win32 write
+replay. Its bounded results do not supersede the physical FAIL_SAVE_HANG.
