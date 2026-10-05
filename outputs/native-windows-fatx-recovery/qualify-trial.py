@@ -47,6 +47,11 @@ r['kind']=a.kind
 r['soak_completed']=trial.get('soak_completed',False)
 r['archived_previous_payloads_verified']=bool(trial.get('archive_checks')) and all(x['passed'] for x in trial.get('archive_checks',[]))
 if a.kind in ('soak','long'):r['next_test']='Repeat-boot persistence and broader workload validation; a bounded pass is not general stability.'
+if a.kind=='long':
+    observations=k/'manual-long-observations.json'
+    r['manual_application_observations']=json.loads(observations.read_text()) if observations.exists() else {'status':'not_yet_reported'}
+    r['qualification_scope']='Automated storage workload and integrity checks; manual application results are separate.'
+    r['next_test']='Review user application observations, then broader desktop and display-driver tests; long-term storage stability remains unproven.'
 r['passed'] = (trial['passed'] and len(mapped)==(300 if a.kind in ('soak','long') else 30) and normal_restart and not delayed
                and (a.kind=='short' or r['soak_completed'])
                and (a.kind=='short' or r['archived_previous_payloads_verified'])

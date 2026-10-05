@@ -137,14 +137,30 @@ Evidence is split by phase:
 Raw clusters, Windows files, firmware, hives and disk images remain ignored local
 artifacts. Only source, hashes, manifests and reports belong in the repository.
 
-## Fifteen-minute trial in progress
+## Fifteen-minute physical result — 5 October 2026
 
 The user requested a longer run while trying applications. One launch was
-accepted at 2026-10-05 05:50:53 UTC. `physical-long.json` records the launch;
-no physical completion is claimed yet. The unchanged candidate0088 uses the
+accepted at 2026-10-05 05:50:53 UTC. `physical-long.json` records the launch and
+collection at 06:12:26 UTC after normal automatic restart. The unchanged candidate0088 used the
 existing r15-qualified fifteen-minute helper (SHA256
 `89116898ab419d841a7b030aa1af43a12f00841613275583697a7abb21702808`).
-Prior five-minute reports and payloads are preserved under `.l88`. Collection
-uses `physical-trial.py collect --kind long` and disables startup first.
-The `postlong` scan/audit and `qualify-trial.py --kind long` produce separate
-results; manual application observations must be recorded separately.
+All 300 mapped/truncate cases, 32 MiB asynchronous pressure and the complete
+fifteen-minute pause passed. New payloads and four archived five-minute files
+under `.l88` match their expected bytes; filesystem, trace-miniport and HAL hashes
+are unchanged. Collection disabled automatic startup before gathering evidence.
+
+System records 74–82 contain normal EventLog start/stop and zero delayed-write
+events. Ftdisk 49 and Srv 2013 warnings for Windows volumes F/G/H remain. No
+application events fall in this run's time window. This does not establish which
+applications the user opened or whether their manual operations succeeded;
+those observations have not yet been supplied.
+
+The independent full-F scan passed across 128,120 live entries: 6,054 directories,
+122,067 files and 6,059 directory clusters, with zero errors or orphan clusters.
+All 3,439 immutable binaries and nine registry hives passed after reboot.
+`physical-long-qualification.json` records an automated-workload **PASS**.
+This is a second extended hardware boot with prior-file persistence, not proof
+of general stability or a definitive attribution of the earlier STOP 0xA.
+The Xbox is on the dashboard with automatic startup disabled. No emulator is
+running. Further desktop/display testing should use the retained physical
+baseline and preserve the separate manual application results.

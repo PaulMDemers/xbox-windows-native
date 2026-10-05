@@ -58,7 +58,10 @@ host-side test harness.
   Post-reboot binaries,hives and the full allocation map remain clean, with no
   new delayed-write events. The subsequent300-case/five-minute hardware soak
   also passed with normal restart, intact new and archived payloads,3439 binary
-  checks,nine registry hives and a clean full allocation map. Ftdisk49 and
+  checks,nine registry hives and a clean full allocation map. A later15-minute
+  physical run also passed300 cases,prior-file persistence,normal restart and
+  the same full audits with zero new delayed-write events. Manual application
+  observations remain separate from that automated qualification. Ftdisk49 and
   volume-space warnings remain. This is bounded evidence, not general stability;
   automatic startup is disabled on the dashboard.
   See the

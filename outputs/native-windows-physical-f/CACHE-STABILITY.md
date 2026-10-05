@@ -406,3 +406,12 @@ The earlier failure did not recur in this one bounded soak; repeated boots and
 broader workloads remain next.
 The physical STOP0xA remains unproven as the same defect; longer uptime,
 fault-injection and power-loss resilience are outside this bounded qualification.
+
+The subsequent15-minute physical run also qualifies PASS:300 mapped cases,
+32 MiB pressure,the completed900-second pause,normal restart,and exact new plus
+archived five-minute payloads. All3439 binaries,nine hives and the fullF allocation
+map pass after reboot. Systemrecords74-82 have no delayed-write events; Ftdisk49
+and Srv2013 space warnings remain. No application events occur in this interval,
+but the user's manual application outcomes have not yet been reported and are
+not inferred from the logs. See `physical-long-qualification.json` in the recovery
+kit. Startup is disabled on the dashboard; no further Windows launch occurred.
