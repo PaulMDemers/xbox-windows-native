@@ -21,7 +21,15 @@ host-side test harness.
   cached append, 30 mapped/truncate cases and 32 MiB asynchronous writes, with
   exact payload readback after normal restart and no new delayed-write events.
   This is one bounded passing run, not proof that the earlier cache-list crash
-  is resolved. Automatic test startup is disabled again.
+  is resolved. **Cycle013 failed during the longer background soak** with
+  STOP 0xA and subsequent on-disk corruption of the filesystem driver and WMI
+  repository. A separate read-only Xbox snapshot confirms invalid FAT chains.
+  Windows is not being relaunched on that install; automatic test startup is
+  disabled. The equivalent low-allocation emulator soak passed, with a recorded
+  host-space interruption. A new high-allocation emulator run now fails during
+  WMI rename; its crash dump is preserved for cache-mapping diagnosis. It has
+  not yet been shown to share the physical crash's root cause.
+  See [allocation evidence](outputs/native-windows-fatx-forensics/REPORT.md).
   See [desktop stability evidence](outputs/native-windows-physical-f/DESKTOP-STABILITY.md)
   and [cache test results](outputs/native-windows-physical-f/CACHE-STABILITY.md).
 - Extended F emulator milestone: desktop on a 250 GB native FATX disk, writes

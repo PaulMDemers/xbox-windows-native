@@ -1,8 +1,8 @@
 """Read-only cold verification of an owned, stopped cache-regression overlay."""
-import argparse,pathlib,sys,subprocess,json,hashlib,importlib.util
+import argparse,pathlib,sys,subprocess,json,hashlib,importlib.util,struct
 ws=pathlib.Path('/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility');k=ws/'outputs/native-windows-physical-f'
 p=argparse.ArgumentParser();p.add_argument('--run',required=True);a=p.parse_args()
-assert a.run.startswith(('nt5-physical-f-cache-','nt5-physical-f-hives-')) and a.run.replace('-','').isalnum()
+assert a.run.startswith(('nt5-physical-f-cache-','nt5-physical-f-hives-','nt5-physical-f-high-allocation-')) and a.run.replace('-','').isalnum()
 run=ws/'work/runs'/a.run;assert (run/'cleanup.json').exists()
 raw=pathlib.Path('/home/paul/xbox-windows-native/fixtures')/(a.run+'-audit.raw');assert not raw.exists()
 sys.path[:0]=[str(ws/'outputs/native-windows-fatx-runtime'),'/mnt/c/Users/Paul/Desktop/ogxbox-linux/scripts']
@@ -29,5 +29,31 @@ try:
                 if target.exists():assert target.read_bytes()==data
                 else:target.write_bytes(data)
             r['files'].append(row)
+        if a.run.startswith('nt5-physical-f-high-allocation-'):
+            r['high_allocation_files']=[]
+            for name in ['winnt/system32/drivers/xwnfatx.sys','winnt/system32/wbem/repository/cim.rep',
+                         'winnt/system32/wbem/repository/$winmgmt.cfg','xwn-cache-append.tmp','xwn-cache-pressure.tmp']:
+                parent=1;parts=w.parts(name)
+                for part in parts[:-1]:parent=struct.unpack_from('<I',w.directory(parent)['entries'][part][2],44)[0]
+                if parts[-1] not in w.directory(parent)['entries']:
+                    r['high_allocation_files'].append({'path':name,'present':False});continue
+                _,_,entry=w.directory(parent)['entries'][parts[-1]]
+                start,size=struct.unpack_from('<II',entry,44)
+                chain=[];error=None
+                try:
+                    if start:
+                        for cluster in w.chain(start):chain.append(cluster)
+                except AssertionError as e:error=repr(e)
+                r['high_allocation_files'].append({'path':name,'size':size,'clusters':len(chain),
+                    'first_cluster':start,'last_cluster':chain[-1] if chain else None,
+                    'chain_capacity_sufficient':len(chain)*w.p.cluster_size>=size,'chain_error':error})
+            for name in ['wbemcore.log','mofcomp.log','winmgmt.log']:
+                try:data=w.read('winnt/system32/wbem/logs/'+name)
+                except (KeyError,AssertionError) as e:
+                    r.setdefault('wmi_log_errors',[]).append({'path':name,'error':repr(e)});continue
+                assert len(data)<=1024*1024
+                target=k/'artifacts'/(a.run+'-'+name)
+                if target.exists():assert target.read_bytes()==data
+                else:target.write_bytes(data)
 finally:raw.unlink(missing_ok=True)
 (k/(a.run+'-audit.json')).write_text(json.dumps(r,indent=2)+'\n');print(json.dumps(r,indent=2))

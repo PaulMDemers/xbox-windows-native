@@ -1,0 +1,646 @@
+{
+  "scope": "Read-only NT5 symbol and page-table analysis of the captured high-allocation crash.",
+  "kernel_base": "0x823dd000",
+  "kernel_size": "0x19d000",
+  "fault_pc": "0x824c7a22",
+  "fault_symbol": {
+    "name": "_RtlUnicodeToOemN@20",
+    "offset": 90,
+    "start": "0x824c79c8"
+  },
+  "driver_image_candidates": [
+    {
+      "base": "0xfe43b000",
+      "size": "0x1f000",
+      "caller_rva": "0x7cd6"
+    }
+  ],
+  "fault_is_instruction_boundary": true,
+  "instructions": [
+    {
+      "address": "0x824c79c8",
+      "instruction": "push ebp"
+    },
+    {
+      "address": "0x824c79c9",
+      "instruction": "mov ebp, esp"
+    },
+    {
+      "address": "0x824c79cb",
+      "instruction": "push ecx"
+    },
+    {
+      "address": "0x824c79cc",
+      "instruction": "cmp byte ptr [0x82451130], 0"
+    },
+    {
+      "address": "0x824c79d3",
+      "instruction": "push ebx"
+    },
+    {
+      "address": "0x824c79d4",
+      "instruction": "push esi"
+    },
+    {
+      "address": "0x824c79d5",
+      "instruction": "push edi"
+    },
+    {
+      "address": "0x824c79d6",
+      "instruction": "jne 0x824c7ac9"
+    },
+    {
+      "address": "0x824c79dc",
+      "instruction": "mov ebx, dword ptr [ebp + 0x18]"
+    },
+    {
+      "address": "0x824c79df",
+      "instruction": "mov edi, dword ptr [ebp + 0xc]"
+    },
+    {
+      "address": "0x824c79e2",
+      "instruction": "shr ebx, 1"
+    },
+    {
+      "address": "0x824c79e4",
+      "instruction": "cmp ebx, edi"
+    },
+    {
+      "address": "0x824c79e6",
+      "instruction": "jae 0x824c79ea"
+    },
+    {
+      "address": "0x824c79e8",
+      "instruction": "mov edi, ebx"
+    },
+    {
+      "address": "0x824c79ea",
+      "instruction": "mov eax, dword ptr [ebp + 0x10]"
+    },
+    {
+      "address": "0x824c79ed",
+      "instruction": "mov dword ptr [ebp + 0x18], edi"
+    },
+    {
+      "address": "0x824c79f0",
+      "instruction": "test eax, eax"
+    },
+    {
+      "address": "0x824c79f2",
+      "instruction": "je 0x824c79f6"
+    },
+    {
+      "address": "0x824c79f4",
+      "instruction": "mov dword ptr [eax], edi"
+    },
+    {
+      "address": "0x824c79f6",
+      "instruction": "mov eax, dword ptr [ebp + 0x14]"
+    },
+    {
+      "address": "0x824c79f9",
+      "instruction": "mov esi, dword ptr [ebp + 8]"
+    },
+    {
+      "address": "0x824c79fc",
+      "instruction": "mov ecx, dword ptr [0x82460330]"
+    },
+    {
+      "address": "0x824c7a02",
+      "instruction": "and edi, 0xf"
+    },
+    {
+      "address": "0x824c7a05",
+      "instruction": "add esi, edi"
+    },
+    {
+      "address": "0x824c7a07",
+      "instruction": "lea eax, [eax + edi*2]"
+    },
+    {
+      "address": "0x824c7a0a",
+      "instruction": "cmp edi, 0xf"
+    },
+    {
+      "address": "0x824c7a0d",
+      "instruction": "ja 0x824c7a16"
+    },
+    {
+      "address": "0x824c7a0f",
+      "instruction": "jmp dword ptr [edi*4 - 0x7db384c5]"
+    },
+    {
+      "address": "0x824c7a16",
+      "instruction": "movzx edx, word ptr [eax]"
+    },
+    {
+      "address": "0x824c7a19",
+      "instruction": "add eax, 0x20"
+    },
+    {
+      "address": "0x824c7a1c",
+      "instruction": "add esi, 0x10"
+    },
+    {
+      "address": "0x824c7a1f",
+      "instruction": "mov dl, byte ptr [edx + ecx]"
+    },
+    {
+      "address": "0x824c7a22",
+      "instruction": "mov byte ptr [esi - 0x10], dl"
+    },
+    {
+      "address": "0x824c7a25",
+      "instruction": "movzx edx, word ptr [eax - 0x1e]"
+    },
+    {
+      "address": "0x824c7a29",
+      "instruction": "mov dl, byte ptr [edx + ecx]"
+    },
+    {
+      "address": "0x824c7a2c",
+      "instruction": "mov byte ptr [esi - 0xf], dl"
+    },
+    {
+      "address": "0x824c7a2f",
+      "instruction": "movzx edx, word ptr [eax - 0x1c]"
+    },
+    {
+      "address": "0x824c7a33",
+      "instruction": "mov dl, byte ptr [edx + ecx]"
+    },
+    {
+      "address": "0x824c7a36",
+      "instruction": "mov byte ptr [esi - 0xe], dl"
+    },
+    {
+      "address": "0x824c7a39",
+      "instruction": "movzx edx, word ptr [eax - 0x1a]"
+    },
+    {
+      "address": "0x824c7a3d",
+      "instruction": "mov dl, byte ptr [edx + ecx]"
+    }
+  ],
+  "frames": [
+    {
+      "frame": "0xfc095d18",
+      "words": [
+        "0xfc0960a4",
+        "0x82408225",
+        "0x4",
+        "0xf8d17800",
+        "0xf8d17800",
+        "0xfc096198",
+        "0x0",
+        "0x0"
+      ],
+      "return_symbol": {
+        "name": "_KeBugCheckEx@20",
+        "offset": 1495,
+        "start": "0x82407c4e"
+      }
+    },
+    {
+      "frame": "0xfc0960a4",
+      "words": [
+        "0xfc0960c0",
+        "0x82444e33",
+        "0x0",
+        "0xf8d17800",
+        "0x1f",
+        "0x0",
+        "0xf8d17800",
+        "0xffb6fe68"
+      ],
+      "return_symbol": {
+        "name": "_KiTrap0E",
+        "offset": 523,
+        "start": "0x82444c28"
+      }
+    },
+    {
+      "frame": "0xfc0960c0",
+      "words": [
+        "0xffb6fe68",
+        "0xfe65ded8",
+        "0xfe65e030",
+        "0xf000",
+        "0xfc096128",
+        "0x823fadf1",
+        "0xfe65d030",
+        "0x20000"
+      ],
+      "return_symbol": null
+    }
+  ],
+  "matching_fault_context_candidates": [
+    {
+      "kind": "context",
+      "physical_record": "0x18c6568",
+      "registers": {
+        "eax": "0xffa2a968",
+        "ebp": "0xfc0969e8",
+        "esi": "0x6fffd8",
+        "ecx": "0xc1051422",
+        "edx": "0x24",
+        "ebx": "0x10",
+        "edi": "0x10"
+      },
+      "words_after_pc": [
+        "0x824c7a22",
+        "0x8",
+        "0x10206",
+        "0xfc0969d8",
+        "0x10",
+        "0x208000e",
+        "0xfc096648",
+        "0x208000e"
+      ],
+      "frame_words": [
+        "0xfc096a10",
+        "0x824cd9cb",
+        "0x6fffc8",
+        "0x10",
+        "0xfc096a1c",
+        "0xffa2a948",
+        "0x10",
+        "0xfe4da268",
+        "0xfe6180d0",
+        "0xffa11208",
+        "0xfc096ae8",
+        "0xfe442cd6"
+      ],
+      "caller_frames": [
+        {
+          "frame": "0xfc0969e8",
+          "words": [
+            "0xfc096a10",
+            "0x824cd9cb",
+            "0x6fffc8",
+            "0x10",
+            "0xfc096a1c",
+            "0xffa2a948",
+            "0x10",
+            "0xfe4da268",
+            "0xfe6180d0",
+            "0xffa11208",
+            "0xfc096ae8",
+            "0xfe442cd6"
+          ],
+          "symbol": {
+            "name": "_RtlUnicodeStringToOemString@12",
+            "offset": 123,
+            "start": "0x824cd950"
+          }
+        },
+        {
+          "frame": "0xfc096a10",
+          "words": [
+            "0xfc096ae8",
+            "0xfe442cd6",
+            "0xfc096a48",
+            "0x10",
+            "0x0",
+            "0x1",
+            "0xfc096a38",
+            "0xfc096a3c",
+            "0xffa11208",
+            "0xffffffff",
+            "0xfe66ae08",
+            "0x6fffc6"
+          ],
+          "symbol": null
+        },
+        {
+          "frame": "0xfc096ae8",
+          "words": [
+            "0xfc096bc0",
+            "0xfe4488fb",
+            "0xfe6180d0",
+            "0xfe4da268",
+            "0xfc096b80",
+            "0x0",
+            "0x0",
+            "0x0",
+            "0x1",
+            "0x4",
+            "0x0",
+            "0x0"
+          ],
+          "symbol": null
+        },
+        {
+          "frame": "0xfc096bc0",
+          "words": [
+            "0xfc096bf8",
+            "0xfe44b06a",
+            "0xffa11208",
+            "0x1dd5485",
+            "0x335b7c00",
+            "0x1dd5485",
+            "0x335b7c00",
+            "0x1dd5485",
+            "0x335b7c00",
+            "0xffa11208",
+            "0x20",
+            "0xffa11208"
+          ],
+          "symbol": null
+        },
+        {
+          "frame": "0xfc096bf8",
+          "words": [
+            "0xfc096c28",
+            "0xfe44b30a",
+            "0xffa11238",
+            "0x0",
+            "0x0",
+            "0x100002",
+            "0x0",
+            "0x6000005",
+            "0x6c006c",
+            "0xff99ce68",
+            "0xff99ce68",
+            "0xfe618018"
+          ],
+          "symbol": null
+        },
+        {
+          "frame": "0xfc096c28",
+          "words": [
+            "0xfc096d48",
+            "0x823fadf1",
+            "0xfe618018",
+            "0xff99ce68",
+            "0x0",
+            "0xff99ce78",
+            "0x824869ad",
+            "0xfc096d64",
+            "0x96fd1c",
+            "0x824863fa",
+            "0x96f97c",
+            "0x824843f2"
+          ],
+          "symbol": {
+            "name": "@IopfCallDriver@8",
+            "offset": 53,
+            "start": "0x823fadbc"
+          }
+        },
+        {
+          "frame": "0xfc096d48",
+          "words": [
+            "0xfc096d64",
+            "0x82442034",
+            "0x338",
+            "0x96fd50",
+            "0x14bd20",
+            "0x7c",
+            "0xa",
+            "0xfffffff7",
+            "0xfffffff7",
+            "0xfffffff7",
+            "0xfffffff7",
+            "0xfffffff7"
+          ],
+          "symbol": {
+            "name": "_KiSystemService",
+            "offset": 196,
+            "start": "0x82441f70"
+          }
+        },
+        {
+          "frame": "0xfc096d64",
+          "words": [
+            "0xfffffff7",
+            "0xfffffff7",
+            "0xfffffff7",
+            "0xfffffff7",
+            "0xfffffff7",
+            "0xfffffff7",
+            "0x0",
+            "0x0",
+            "0x0",
+            "0x0",
+            "0x0",
+            "0x0"
+          ],
+          "symbol": null
+        }
+      ]
+    },
+    {
+      "kind": "trap",
+      "physical_record": "0x18c6964",
+      "registers": {
+        "eax": "0xffa2a968",
+        "ebp": "0xfc0969e8",
+        "esi": "0x6fffd8",
+        "ecx": "0xc1051422",
+        "edx": "0x24",
+        "ebx": "0x10",
+        "edi": "0x10"
+      },
+      "words_after_pc": [
+        "0x824c7a22",
+        "0x8",
+        "0x10206",
+        "0xfc096b80",
+        "0xfc096a48",
+        "0x0",
+        "0x10",
+        "0xfc096a10"
+      ],
+      "frame_words": [
+        "0xfc096a10",
+        "0x824cd9cb",
+        "0x6fffc8",
+        "0x10",
+        "0xfc096a1c",
+        "0xffa2a948",
+        "0x10",
+        "0xfe4da268",
+        "0xfe6180d0",
+        "0xffa11208",
+        "0xfc096ae8",
+        "0xfe442cd6"
+      ],
+      "caller_frames": [
+        {
+          "frame": "0xfc0969e8",
+          "words": [
+            "0xfc096a10",
+            "0x824cd9cb",
+            "0x6fffc8",
+            "0x10",
+            "0xfc096a1c",
+            "0xffa2a948",
+            "0x10",
+            "0xfe4da268",
+            "0xfe6180d0",
+            "0xffa11208",
+            "0xfc096ae8",
+            "0xfe442cd6"
+          ],
+          "symbol": {
+            "name": "_RtlUnicodeStringToOemString@12",
+            "offset": 123,
+            "start": "0x824cd950"
+          }
+        },
+        {
+          "frame": "0xfc096a10",
+          "words": [
+            "0xfc096ae8",
+            "0xfe442cd6",
+            "0xfc096a48",
+            "0x10",
+            "0x0",
+            "0x1",
+            "0xfc096a38",
+            "0xfc096a3c",
+            "0xffa11208",
+            "0xffffffff",
+            "0xfe66ae08",
+            "0x6fffc6"
+          ],
+          "symbol": null
+        },
+        {
+          "frame": "0xfc096ae8",
+          "words": [
+            "0xfc096bc0",
+            "0xfe4488fb",
+            "0xfe6180d0",
+            "0xfe4da268",
+            "0xfc096b80",
+            "0x0",
+            "0x0",
+            "0x0",
+            "0x1",
+            "0x4",
+            "0x0",
+            "0x0"
+          ],
+          "symbol": null
+        },
+        {
+          "frame": "0xfc096bc0",
+          "words": [
+            "0xfc096bf8",
+            "0xfe44b06a",
+            "0xffa11208",
+            "0x1dd5485",
+            "0x335b7c00",
+            "0x1dd5485",
+            "0x335b7c00",
+            "0x1dd5485",
+            "0x335b7c00",
+            "0xffa11208",
+            "0x20",
+            "0xffa11208"
+          ],
+          "symbol": null
+        },
+        {
+          "frame": "0xfc096bf8",
+          "words": [
+            "0xfc096c28",
+            "0xfe44b30a",
+            "0xffa11238",
+            "0x0",
+            "0x0",
+            "0x100002",
+            "0x0",
+            "0x6000005",
+            "0x6c006c",
+            "0xff99ce68",
+            "0xff99ce68",
+            "0xfe618018"
+          ],
+          "symbol": null
+        },
+        {
+          "frame": "0xfc096c28",
+          "words": [
+            "0xfc096d48",
+            "0x823fadf1",
+            "0xfe618018",
+            "0xff99ce68",
+            "0x0",
+            "0xff99ce78",
+            "0x824869ad",
+            "0xfc096d64",
+            "0x96fd1c",
+            "0x824863fa",
+            "0x96f97c",
+            "0x824843f2"
+          ],
+          "symbol": {
+            "name": "@IopfCallDriver@8",
+            "offset": 53,
+            "start": "0x823fadbc"
+          }
+        },
+        {
+          "frame": "0xfc096d48",
+          "words": [
+            "0xfc096d64",
+            "0x82442034",
+            "0x338",
+            "0x96fd50",
+            "0x14bd20",
+            "0x7c",
+            "0xa",
+            "0xfffffff7",
+            "0xfffffff7",
+            "0xfffffff7",
+            "0xfffffff7",
+            "0xfffffff7"
+          ],
+          "symbol": {
+            "name": "_KiSystemService",
+            "offset": 196,
+            "start": "0x82441f70"
+          }
+        },
+        {
+          "frame": "0xfc096d64",
+          "words": [
+            "0xfffffff7",
+            "0xfffffff7",
+            "0xfffffff7",
+            "0xfffffff7",
+            "0xfffffff7",
+            "0xfffffff7",
+            "0x0",
+            "0x0",
+            "0x0",
+            "0x0",
+            "0x0",
+            "0x0"
+          ],
+          "symbol": null
+        }
+      ]
+    }
+  ],
+  "rename_input": {
+    "length": 32,
+    "maximum_length": 32,
+    "buffer": "0xffa2a948",
+    "text": "$WinMgmt.CFG.BAK"
+  },
+  "rename_locals": {
+    "caller_rva": "0x7cd6",
+    "function_from_matching_coff_symbols": "vfatRenameEntry",
+    "cache_context": "0xfe66ae08",
+    "directory_entry_pointer": "0x6fffc6",
+    "oem_string_words": [
+      "0x2a0010",
+      "0x6fffc8"
+    ],
+    "caveat": "Post-fault locals, not a record of the CcPinRead return value."
+  }
+}

@@ -277,3 +277,29 @@ says ADAP could not process performance libraries. These messages do not identif
 the underlying cause. `collect-wmi-physical.py` preserves bounded logs and
 repository files without modifying the repository. The messages alone do not justify a WMI reset; no reset is performed as part
 of the storage/graphics trials.
+
+## Physical cycle013 failed: allocation corruption preserved
+
+The helper completed300 mapped cases and asynchronous pressure but did not finish
+its five-minute background soak. The user reported STOP0xA with parameters
+`0x10, 0x2, 0x0, 0x82423167`. No load base is established for this boot. The
+collector disabled automatic startup, preserved partial results and logs, and
+verified all three test payloads. The filesystem driver itself no longer reads
+completely; its first64KiB contains WMI text. Its previous backup, HAL and video
+miniport remain intact. No new delayed-write event appears in the saved system
+log; that does not negate the crash and corruption.
+
+A separately emulator-validated nxdk read-only snapshot confirms the driver's
+first FAT entry is free, CIM.REP's chain is four clusters short, and
+$WinMgmt.CFG also references a free cluster. Raw evidence is preserved on E:
+and locally. No repair, WMI reset or further Windows boot has been attempted.
+See [forensic report](../native-windows-fatx-forensics/REPORT.md). Physical012 is
+still a valid bounded pass; it does not qualify this candidate as stable.
+
+The same long soak passes in the low-allocation emulator with exact payload and
+3439-binary cold checks, subject to the recorded host-space interruption. A
+separate high-allocation emulator experiment now crashes in WMI rename during
+the pause. Its original fault is a write through an invalid cached-directory
+buffer in RtlUnicodeToOemN, called by vfatRenameEntry; the CcPinRead result is not
+captured, so the initiating failure remains unresolved. The physical and emulator
+stop codes differ. The prepared Paint trial refuses to run because cycle013 failed.

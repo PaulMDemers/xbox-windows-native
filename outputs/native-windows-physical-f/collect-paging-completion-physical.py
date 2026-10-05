@@ -80,12 +80,21 @@ with ftplib.FTP() as f:
         for name in names:
             r.setdefault('collected', {})[name] = preserve(name, get(f, name))
     f.cwd('/F/winnt/system32/drivers')
-    assert sha(get(f, 'xwnfatx.sys')) == r['filesystem_sha256']
-    assert sha(get(f, 'xwnfatx.xwn-c11')) == r['previous_filesystem_sha256']
-    assert sha(get(f, 'xboxvnt5.sys')) == r['miniport_sha256']
+    r['driver_checks'] = []
+    def check(name, expected):
+        row = {'path': name, 'expected_sha256': expected, 'passed': False}
+        try:
+            data = get(f, name)
+            row.update(bytes=len(data), sha256=sha(data), passed=sha(data)==expected)
+        except ftplib.all_errors as e:
+            row['error'] = repr(e)
+        r['driver_checks'].append(row)
+    check('xwnfatx.sys', r['filesystem_sha256'])
+    check('xwnfatx.xwn-c11', r['previous_filesystem_sha256'])
+    check('xboxvnt5.sys', r['miniport_sha256'])
     f.cwd('/E/Applications/XWNFBoot/loader')
-    assert sha(get(f, 'halxboxnt5.dll')) == r['hal_sha256']
-    r['physical_cache_trial_passed'] = r['cache_probe_passed'] and r['payload_readback_passed']
+    check('halxboxnt5.dll', r['hal_sha256'])
+    r['physical_cache_trial_passed'] = r['cache_probe_passed'] and r['payload_readback_passed'] and all(row['passed'] for row in r['driver_checks'])
     r['status'] = 'physical_cache_trial_passed' if r['physical_cache_trial_passed'] else 'physical_cache_trial_incomplete_or_failed'
     r['evidence_collected_utc'] = datetime.datetime.now(datetime.timezone.utc).isoformat()
     save()

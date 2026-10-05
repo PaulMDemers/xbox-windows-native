@@ -4,7 +4,7 @@ k=pathlib.Path(__file__).resolve().parent
 sys.path.insert(0,str(k.parent/'native-windows-prebuild'))
 from monitor_capture import command,acquire_monitor_lock
 p=argparse.ArgumentParser();p.add_argument('--run',required=True);p.add_argument('--port',type=int,default=4594);a=p.parse_args()
-assert a.run.startswith(('nt5-physical-f-cache-','nt5-physical-f-hives-')) and a.run.replace('-','').isalnum()
+assert a.run.startswith(('nt5-physical-f-cache-','nt5-physical-f-hives-','nt5-physical-f-high-allocation-')) and a.run.replace('-','').isalnum()
 run=k.parents[1]/'work/runs'/a.run;raw=run/'probe-report.ram';assert run.is_dir() and not raw.exists()
 with acquire_monitor_lock(a.port):
     running='VM status: running' in command(a.port,'info status');command(a.port,'stop')
