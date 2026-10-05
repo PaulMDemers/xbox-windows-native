@@ -1,5 +1,11 @@
 # Physical desktop milestone and remaining instability
 
+Current follow-up, 5 October: candidate0088 storage has passed short, five-minute
+and fifteen-minute physical tests with independent integrity audits. The first
+physical Paint-dimensions trial has now been launched; its outcome is awaiting
+user observation. See `../native-windows-fatx-recovery/physical-paint.json`.
+The following documents the earlier failure and emulator diagnosis.
+
 Physical cycle010 reached the Windows 2000 desktop. Paul confirmed keyboard,
 mouse, drive browsing, Notepad and Calculator. The startup probe/restart was
 disabled. The passing file IO report belongs to cycle009, not this boot.
@@ -67,8 +73,8 @@ Validation:
   Paint remained visible in two captures. No debugger execution edits were used.
 
 This validates Paint startup in the emulator, not saving images, general file
-IO, hardware stability, or the normal miniport. No new physical upload/launch
-was made. The emulator was stopped through the diagnostic harness and its
+IO, hardware stability, or the normal miniport. No physical upload/launch
+was made during that emulator validation. The emulator was stopped through the diagnostic harness and its
 overlay retained; this was not a normal Windows shutdown or cold filesystem
 integrity test.
 
@@ -78,3 +84,14 @@ separate --output. prepare-dimensions-fixture.py constructs the small owned
 delta; preserve its physical-framebuffer-pci-001.qcow2 and
 physical-video-trace-001.qcow2 backing chain. Source, build, test and fixture
 manifests are versioned; binaries and screenshots remain local.
+
+## Physical manual trial after storage qualification
+
+`native-windows-fatx-recovery/launch-paint.py` verifies the completed long-soak
+qualification and current filesystem/HAL/video/launcher hashes before changing
+only the trace video driver to the hash-pinned dimensions candidate. It retains
+the prior video driver at `F:/winnt/system32/drivers/xboxvnt5.pre-dim` and preserves
+local prelaunch logs. Trace storage is reset to its known seed, and the existing
+no-op startup remains unchanged: no automatic Paint launch or timed restart.
+The user can reopen the two previously saved files, then manually test Paint
+startup, drawing, saving and reopening. Physical success is not yet claimed.

@@ -168,3 +168,16 @@ of general stability or a definitive attribution of the earlier STOP 0xA.
 The Xbox is on the dashboard with automatic startup disabled. No emulator is
 running. Further desktop/display testing should use the retained physical
 baseline and preserve the separate manual application results.
+
+## Manual saved-file and Paint trial
+
+`launch-paint.py` has launched one manual desktop session after the completed
+0088 storage qualification. The filesystem and HAL remain unchanged. Only the
+trace miniport changes from `413098ac...` to the previously emulator-qualified
+dimensions candidate `f8af1d84...`; the old binary is preserved on the console
+and locally. `physical-paint.json` records the exact hashes and launch.
+
+Startup remains a no-op with no timed restart. Reopening the user's desktop and
+partition files, and Paint drawing/save/reopen behavior, await user observation.
+Later integrity audits must explicitly account for this new expected miniport
+hash rather than reusing the old storage-soak baseline blindly.
