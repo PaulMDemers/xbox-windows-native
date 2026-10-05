@@ -2,8 +2,9 @@
 
 Current follow-up, 5 October: candidate0088 storage has passed short, five-minute
 and fifteen-minute physical tests with independent integrity audits. The first
-physical Paint-dimensions trial has now been launched; its outcome is awaiting
-user observation. See `../native-windows-fatx-recovery/physical-paint.json`.
+physical Paint-dimensions trial reached the desktop; the user confirms Paint
+opened without issues and the saved files are present. Drawing/save/reopen and
+post-run integrity remain unverified. Windows is still running. See `../native-windows-fatx-recovery/physical-paint.json`.
 The following documents the earlier failure and emulator diagnosis.
 
 Physical cycle010 reached the Windows 2000 desktop. Paul confirmed keyboard,
@@ -94,4 +95,7 @@ the prior video driver at `F:/winnt/system32/drivers/xboxvnt5.pre-dim` and prese
 local prelaunch logs. Trace storage is reset to its known seed, and the existing
 no-op startup remains unchanged: no automatic Paint launch or timed restart.
 The user can reopen the two previously saved files, then manually test Paint
-startup, drawing, saving and reopening. Physical success is not yet claimed.
+startup, drawing, saving and reopening. The user now confirms physical Paint
+startup without issues and saved-file presence. This is not yet a drawing/save/
+reopen test or a post-run integrity result. See the recovery README for the
+prepared postpaint collection and audit sequence.

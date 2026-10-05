@@ -12,7 +12,8 @@ host-side test harness.
 - **Not stable yet:** cycle010 produced repeated delayed writes, corrupted
   appended setupapi.log data, and STOP 0xA. Its trace miniport remains the
   physical baseline; the normal miniport still fails with B4 on hardware.
-  Paint's separate divide-by-zero has an emulator-validated display candidate.
+  Paint's separate divide-by-zero display fix now also passes user-observed
+  physical startup; drawing/save/reopen and its post-run audits remain pending.
   A deferred-write buffer fix improves emulator stress; replaying the physical
   registry exposed short paging writes and writes after truncation. A new
   filesystem candidate now passes mapped/async stress, restart and cold audits

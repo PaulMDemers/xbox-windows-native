@@ -177,7 +177,18 @@ trace miniport changes from `413098ac...` to the previously emulator-qualified
 dimensions candidate `f8af1d84...`; the old binary is preserved on the console
 and locally. `physical-paint.json` records the exact hashes and launch.
 
-Startup remains a no-op with no timed restart. Reopening the user's desktop and
-partition files, and Paint drawing/save/reopen behavior, await user observation.
-Later integrity audits must explicitly account for this new expected miniport
-hash rather than reusing the old storage-soak baseline blindly.
+The user confirms this physical boot succeeded, the saved files are present, and
+Paint opened without issues. This confirms Paint startup only: drawing, saving,
+reopening and saved-file contents have not yet been verified. Windows remains
+running for user-directed idle observation. Startup is a no-op without a timer.
+
+After the user manually reboots to the dashboard, run `collect-paint.py` once
+to preserve post-run logs and hash-check both video versions, filesystem, HAL
+and startup. It makes no remote writes or launches. Decode prelaunch and
+post-run system/application EVT files with `decode-legacy-events.py`, keeping
+historical records separate. Then run `physical-operation.py postpaint launch`
+and, after the read-only scanner returns, `physical-operation.py postpaint collect`.
+Analyze `artifacts/postpaint` with the preflight `analyze.py`, and run
+`audit-restored.py --phase postpaint`. That phase explicitly expects the new
+Paint miniport while retaining candidate0088 storage. These checks are prepared,
+not executed; post-run integrity and shutdown status remain unverified.
