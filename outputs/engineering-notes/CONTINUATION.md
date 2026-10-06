@@ -1,4 +1,22 @@
-# Continuation: FATX0098 third launch attempt running
+# Continuation: third FATX0098 attempt awaiting screen report
+
+2026-10-06 15:03 UTC: observer session84500 is no longer known to the tool and
+no matching Python process is running. windows-return.json has only the initial
+offline observation; no return or timeout marker. Observer termination reason
+is unknown. One fresh FTP check at15:03:16UTC timed out. Screen state UNKNOWN.
+Asked user ONCE what is displayed and to leave it as-is. No crash, successful
+Windows boot, completed soak or automatic restart can be inferred from this.
+
+Automation paused pending user input. No Windows relaunch, scan or recovery
+capture occurred. Startup is still recorded ENABLED; it cannot be restored
+without dashboard FTP. On return run physical.py collect FIRST to restore normal
+startup and preserve results. Then follow the audits below without repeating
+recorded stages. No independent console audit can proceed while unreachable.
+observer-followup.json records the actual read-only check.
+
+## Launch state (historical)
+
+# FATX0098 third launch attempt running
 
 2026-10-06 14:35:18UTC: new user-authorized retry launched once; FTP accepted.
 Current kit outputs/fatx0098-soak3. Exact rehearsed helpers, unchanged drivers,
