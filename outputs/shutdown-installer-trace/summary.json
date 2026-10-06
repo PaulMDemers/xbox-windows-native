@@ -1,0 +1,104 @@
+{
+  "scope": "Three owned debugger observations; no physical access, deployment or popup fix.",
+  "runs": [
+    {
+      "case": "001",
+      "run": "nt5-shutdown-installer-trace-001",
+      "launch": {
+        "cycle": 1,
+        "status": "accepted",
+        "launch_requested_utc": "2026-10-06T15:52:51.983731+00:00",
+        "command": "SITE EXEC E:\\Applications\\XWNFBoot\\default.xbe",
+        "reply": "200 EXEC command succeeded.",
+        "dashboard_return_utc": "2026-10-06T15:55:57.401013+00:00",
+        "offline_observed": true,
+        "dashboard_return": true
+      },
+      "trace_events": 394,
+      "trace_status": "reached_kernel_shutdown",
+      "guest_resumed": true,
+      "trace_source_sha256": "c62b49f6ea6ac9a7cd78a16f8411b03d06d044cc8dcc64302c60d78531d530ca",
+      "recorded_trace_source_hash_matches": true,
+      "diagnostic_checks_passed": true,
+      "ordinary_boot_qualified": false,
+      "normal_shutdown_count": 1,
+      "new_popup_count": 0,
+      "payload_checks": 5,
+      "structural_hives": 5,
+      "cleanup": {
+        "completedUtc": "2026-10-06T15:55:57.6875852Z",
+        "scratchDirectory": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\work\\scratch\\windows-native-64247a1a879f431c9974716f80c0cc36",
+        "retained": false,
+        "reason": ""
+      }
+    },
+    {
+      "case": "002",
+      "run": "nt5-shutdown-installer-trace-002",
+      "launch": {
+        "cycle": 1,
+        "status": "accepted",
+        "launch_requested_utc": "2026-10-06T15:58:01.681138+00:00",
+        "command": "SITE EXEC E:\\Applications\\XWNFBoot\\default.xbe",
+        "reply": "200 EXEC command succeeded.",
+        "dashboard_return_utc": "2026-10-06T16:01:09.347955+00:00",
+        "offline_observed": true,
+        "dashboard_return": true
+      },
+      "trace_events": 433,
+      "trace_status": "reached_kernel_shutdown",
+      "guest_resumed": true,
+      "trace_source_sha256": "fcf6410219dd4d4a7bd255ca6b3e4d87d65d984de7a1c675749c30e0ee6db7ae",
+      "recorded_trace_source_hash_matches": true,
+      "diagnostic_checks_passed": true,
+      "ordinary_boot_qualified": false,
+      "normal_shutdown_count": 1,
+      "new_popup_count": 0,
+      "payload_checks": 5,
+      "structural_hives": 5,
+      "cleanup": {
+        "completedUtc": "2026-10-06T16:01:09.7980529Z",
+        "scratchDirectory": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\work\\scratch\\windows-native-eb98955433964ae6910a88002683f1dc",
+        "retained": false,
+        "reason": ""
+      }
+    },
+    {
+      "case": "003",
+      "run": "nt5-shutdown-installer-trace-003",
+      "launch": {
+        "cycle": 1,
+        "status": "accepted",
+        "launch_requested_utc": "2026-10-06T16:02:37.850851+00:00",
+        "command": "SITE EXEC E:\\Applications\\XWNFBoot\\default.xbe",
+        "reply": "200 EXEC command succeeded.",
+        "dashboard_return_utc": "2026-10-06T16:05:36.060504+00:00",
+        "offline_observed": true,
+        "dashboard_return": true
+      },
+      "trace_events": 1,
+      "trace_status": "reached_kernel_shutdown",
+      "guest_resumed": true,
+      "trace_source_sha256": "535c41cf5b6ec16de36613c8faf1615b3713cfffa67b62c29955be026e3ae733",
+      "recorded_trace_source_hash_matches": true,
+      "diagnostic_checks_passed": true,
+      "ordinary_boot_qualified": false,
+      "normal_shutdown_count": 1,
+      "new_popup_count": 0,
+      "payload_checks": 5,
+      "structural_hives": 5,
+      "cleanup": {
+        "completedUtc": "2026-10-06T16:05:36.4390328Z",
+        "scratchDirectory": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\work\\scratch\\windows-native-db094f83586843ab83b7567d8b2ae892",
+        "retained": false,
+        "reason": ""
+      }
+    }
+  ],
+  "all_owned_runs_closed": true,
+  "physical_baseline_changed": false,
+  "automation": "remains paused",
+  "finding": "Run002 directly captures services.exe attempting PCI10DE:01B4 installation after CSRSS terminates its01B0 installer during shutdown. The late process is terminated with status5; no popup reproduced.",
+  "unresolved": "Specific caller and code path that emits the intermittent0xc000026b message; late queue advancement alone does not prove popup causality.",
+  "next": "Inspect the late CreateProcess failure/unwind and window-station shutdown path using matched owned user-mode binaries. Capture a failing attempt with precise status/caller; retain controls and avoid changing device acknowledgment flags or suppressing the popup."
+}

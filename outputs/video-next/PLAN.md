@@ -53,6 +53,15 @@ After the soak and fresh recovery capture:
 The following evidence is historical; its then-current FATX0088 references do
 not describe today's installed filesystem. Failed runs remain failures.
 
+## Installer ordering evidence (2026-10-06 UTC)
+
+[Three owned traces](../shutdown-installer-trace/README.md) all shut down cleanly;
+they do not qualify a fix. The second directly captures services.exe attempting
+the01B4 installer after CSRSS terminates the01B0 installer during shutdown.
+Relative process parameters had obscured the next command; the host decoder now
+handles them with matched-binary proof. Inspect the late CreateProcess failure
+and window-station path next. No new physical deployment or registry policy edit.
+
 ## Current evidence
 
 Physical GDI003 and both candidate0093 repeat-boot runs pass the four pixel

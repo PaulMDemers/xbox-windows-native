@@ -1,3 +1,42 @@
+# Installer queue transition captured; popup still unresolved
+
+2026-10-06 UTC, outputs/shutdown-installer-trace. Three owned debugger runs
+completed with normal shutdown, dashboard return, exact payloads and five
+structurally traversable system hives each. No popup reproduced. These are
+observations, not ordinary/physical qualifications or a fix. Source/reports
+reviewed with recorded ordering and binary-identity checks; no physical access, deployment or recovery
+capture this turn. Physical FATX0098/video0093/normal startup unchanged;
+soak3 strict FAIL and immutable0.1.0 preserved. Automation remains PAUSED.
+
+Run002 provides direct ordering evidence: CSRSS terminates PID916's newdev
+installer for PCI10DE:01B0, then services.exe creates another rundll32 for
+PCI10DE:01B4 and terminates it with status5 while shutdown is in progress.
+Its parameters remain unnormalized and no initial resume was captured. This
+establishes the late queue attempt, not successful installation or popup cause.
+Run001 showed the same pattern but the next command was unknown. Do not import
+002's command into001. PID reuse occurred; use EPROCESS plus PID identities.
+
+New host decoder supports relative process-parameter pointers, verified against
+the exact owned ntdll RtlNormalizeProcessParams code and actual002 observations.
+It writes no guest memory. Kernel/PDB sites, trace source snapshots, source hashes,
+logs and cold audits retained.001/002 captured394/433 events;003 only hard-error
+entries plus NtShutdownSystem captured one shutdown event and no hard error.
+The exact prior popup message is ntdll resource0xc000026b. Its runtime caller
+remains unknown.003 verifies guest kernel/ntdll hashes against the reviewed
+binaries; all three use one immutable input fixture with video0096, FATX0098
+and the reviewed120-second helper. Preparation does not edit registry hives.
+
+All three owned runners, supervisors and tracers finished; cleanup records are
+in summary.json. No running processes or automatic follow-up remain.
+Next: inspect the late CreateProcess failure/unwind and window-station shutdown
+path in matched owned user-mode binaries, then capture caller/status on a failing
+attempt with minimal observer effects. The observed clean branch terminates
+with status5 before a captured resume. Avoid more identical hardware soaks,
+silent FAILEDINSTALL changes, popup suppression or declaring causality from
+clean traces. Video performance/modes remain a separate gated workstream.
+
+## Prior continuation (historical)
+
 # Continuation: shutdown/capacity diagnostics completed; baseline unchanged
 
 2026-10-06, outputs/shutdown-diagnostics. One ordinary owned emulator001 and one

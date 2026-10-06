@@ -1,0 +1,144 @@
+{
+  "scope": "Pin native observation sites to the owned matching NT5 kernel and PDB layouts.",
+  "kernel_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+  "pdb_sha256": "29f5de2a8db7959875b8a615945bd6f16e50e5c5a9465dd8f71b37f37d671e9e",
+  "sites": [
+    {
+      "name": "_NtRaiseHardError@24",
+      "rva": 608302,
+      "bytes": "558bec",
+      "argc": 6,
+      "frame": "esp"
+    },
+    {
+      "name": "_ExRaiseHardError@24",
+      "rva": 608900,
+      "bytes": "558bec",
+      "argc": 6,
+      "frame": "esp"
+    },
+    {
+      "name": "_ExpRaiseHardError@24",
+      "rva": 607510,
+      "bytes": "558bec",
+      "argc": 6,
+      "frame": "esp"
+    },
+    {
+      "name": "_NtCreateProcess@32",
+      "rva": 926372,
+      "bytes": "558bec",
+      "argc": 8,
+      "frame": "esp"
+    },
+    {
+      "name": "_PspExitProcess@8",
+      "rva": 932980,
+      "bytes": "535556",
+      "argc": 2,
+      "frame": "esp"
+    },
+    {
+      "name": "_NtShutdownSystem@4",
+      "rva": 591052,
+      "bytes": "8b4424",
+      "argc": 1,
+      "frame": "esp"
+    },
+    {
+      "name": "NtTerminateProcess_AfterReference",
+      "rva": 930654,
+      "bytes": "817d0c04000140",
+      "argc": 2,
+      "frame": "ebp",
+      "target": "[ebp-8] EPROCESS"
+    },
+    {
+      "name": "NtResumeThread_BeforeResume",
+      "rva": 939453,
+      "bytes": "ff75dc",
+      "argc": 2,
+      "frame": "ebp",
+      "target": "[ebp-0x24] ETHREAD"
+    }
+  ],
+  "resume_reference_disassembly": [
+    {
+      "rva": "0xe55a0",
+      "bytes": "6a00",
+      "instruction": "push 0"
+    },
+    {
+      "rva": "0xe55a2",
+      "bytes": "8d45dc",
+      "instruction": "lea eax, [ebp - 0x24]"
+    },
+    {
+      "rva": "0xe55a5",
+      "bytes": "50",
+      "instruction": "push eax"
+    },
+    {
+      "rva": "0xe55a6",
+      "bytes": "ff75d8",
+      "instruction": "push dword ptr [ebp - 0x28]"
+    },
+    {
+      "rva": "0xe55a9",
+      "bytes": "ff3508304800",
+      "instruction": "push dword ptr [0x483008]"
+    },
+    {
+      "rva": "0xe55af",
+      "bytes": "6a02",
+      "instruction": "push 2"
+    },
+    {
+      "rva": "0xe55b1",
+      "bytes": "ff7508",
+      "instruction": "push dword ptr [ebp + 8]"
+    },
+    {
+      "rva": "0xe55b4",
+      "bytes": "e8f78ff6ff",
+      "instruction": "call 0x4e5b0"
+    },
+    {
+      "rva": "0xe55b9",
+      "bytes": "85c0",
+      "instruction": "test eax, eax"
+    },
+    {
+      "rva": "0xe55bb",
+      "bytes": "7c48",
+      "instruction": "jl 0xe5605"
+    },
+    {
+      "rva": "0xe55bd",
+      "bytes": "ff75dc",
+      "instruction": "push dword ptr [ebp - 0x24]"
+    },
+    {
+      "rva": "0xe55c0",
+      "bytes": "e8f186f4ff",
+      "instruction": "call 0x2dcb6"
+    },
+    {
+      "rva": "0xe55c5",
+      "bytes": "8bf8",
+      "instruction": "mov edi, eax"
+    },
+    {
+      "rva": "0xe55c7",
+      "bytes": "8b4ddc",
+      "instruction": "mov ecx, dword ptr [ebp - 0x24]"
+    },
+    {
+      "rva": "0xe55ca",
+      "bytes": "e8b192f6ff",
+      "instruction": "call 0x4e880"
+    }
+  ],
+  "thread_owner_offset": 556,
+  "limits": "Resume observations precede KeResumeThread and do not prove the thread subsequently ran. Creation calls may fail. Target command lines can be nonresident."
+}
