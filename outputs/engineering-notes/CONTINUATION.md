@@ -1,4 +1,40 @@
-# Continuation: display replacement and unresolved shutdown popups
+# Continuation: ordinary installer-isolation experiments
+
+Latest work is outputs/video-installer-isolation. No physical access or deployment;
+candidate0093 and normal startup remain the last hash-verified hardware baseline.
+All three owned emulator runs completed normal restarts and are closed. Their
+cold audits and comparison are complete; no owned test process remains running.
+
+- audio003 changed only ConfigFlags for the observed01B0 failed installation.
+  All5722 hive keys and17533 values were compared, allowing exactly one value
+  addition. Graphics, hashes, UC mapping and restart passed; strict audit failed
+  with one popup. SetupAPI advanced from01B0 to01B4.
+- control003 used the identical immutable0096/0097 fixture and unchanged SYSTEM.
+  It passed the strict ordinary audit with no popups, while01B0 installation was
+  still pending. This confirms intermittency; it prevents calling the flag a fix.
+- pair004 changes only01B0 and01B4 failed-install flags. It passed the strict
+  audit with no popups and returned at2026-10-06T00:01:51UTC. Its next installer
+  target was02A0, the GPU itself. SetupAPI reports no compatible driver, while
+  baseline enum metadata has Service XboxVnt5 but no Driver value (flags0x400).
+  Boot-time binding is working; complete PnP driver installation is missing.
+- Prepare001/002 did not boot. Absent-value lookup and the shared output-path
+  guard rejected those attempts before guest hive writes. Artifacts retained.
+
+The registry flags are diagnostic interventions, not audio support, a driver
+correction or a deployment recipe. Do not promote them based on a clean boot.
+No cache/mode/storage changes. Free host C: space was20.28GiB after these runs.
+Keep all QCOW backing parents. Full miniport PnP stop/remove/restart ownership
+and consumer quiescence remain separate requirements before promotion.
+
+Next concrete task: inspect/package a proper NT5 display INF for02A0, matching
+the installed service/display binary contract, then test real installation in a
+new owned fixture. Do not suppress installation of the GPU with FAILEDINSTALL.
+Retain original boot bindings and rollback; installation may invoke the still
+unqualified PnP stop/start paths. A clean control is not a reason to waive popup
+checks. The shared skill now records this setup-vs-boot distinction and the
+need for target-process address-space reads; structural validation passed.
+
+## Previous display and shutdown work
 
 Physical0093 remains installed with normal startup. No physical access occurred
 in the work below; the last hardware hash verification is23:07:22UTC Oct5.

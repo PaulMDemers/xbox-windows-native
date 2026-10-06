@@ -42,3 +42,9 @@ station was shutting down. Therefore audit.json passed=false. It is not promoted
 or ready for hardware. The detached launcher did not prevent the popups in this
 configuration. No display-specific cause is established by this single run.
 Owned emulator cleanup completed at2026-10-05T23:37:47UTC.
+
+A later unchanged control from this same immutable fixture passed the strict
+ordinary audit with no popups: ../video-installer-isolation/control003/audit.json.
+That does not erase the first failure or establish a correction. It confirms
+intermittency while qualifying that one bounded emulator run. No hardware
+promotion or general PnP lifecycle claim follows from it.

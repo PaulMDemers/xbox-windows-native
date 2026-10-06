@@ -59,3 +59,20 @@ Compare event logs against the pre-run record boundary so historical delayed
 writes are not attributed to a new run. Preserve event IDs, sequence/time and
 decode limitations. If FTP remains offline, report the observable state rather
 than infer a crash; ask once for the screen when that is the remaining evidence.
+
+## Shutdown and incomplete device setup
+
+A working boot service does not prove that its device has a complete PnP driver
+installation. For shutdown-time rundll32 failures, correlate command lines,
+SetupAPI logs and device-instance service/driver metadata before blaming the
+recent kernel change. A pending installer can advance to another device when
+one failed installation is acknowledged. An unchanged control may still pass
+when the failure is intermittent; retain it rather than selecting only failures.
+Configuration changes in disposable fixtures are diagnostic interventions,
+not driver fixes or evidence that an unsupported device works.
+
+When resolving a terminated process from another process's context, read its
+user parameters through its own address space. Nonresident parameters remain
+unknown. Breakpoint pauses alter shutdown timing and cannot qualify an ordinary
+boot. Also verify the installed binary's provenance before applying findings
+from a same-named open-source implementation to its private behavior.

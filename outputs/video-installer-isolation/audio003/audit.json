@@ -1,0 +1,203 @@
+{
+  "scope": "Cold strict audit for a one-device installer configuration experiment; no debugger or hardware access.",
+  "physical_access": false,
+  "cycles": [
+    {
+      "index": 1,
+      "logs": {
+        "attempt.log": "ATTEMPT_ONCE\r\nREPLAY_EXIT_ZERO\r\nNORMAL_RESTART_REQUEST\r\n",
+        "gdi-baseline.txt": "XWN_GDI_PROBE_VERSION 3 256 128\r\nCAP_index_value 8 1024 0\r\nCAP_index_value 10 576 0\r\nCAP_index_value 12 32 0\r\nCAP_index_value 14 1 0\r\nCAP_index_value 116 60 0\r\nCAP_index_value 4 271 0\r\nCAP_index_value 6 152 0\r\nCAP_index_value 38 32409 0\r\nCAP_index_value 88 96 0\r\nCAP_index_value 90 96 0\r\nMODE_index_width_height 0 1024 576\r\nMODE_bpp_hz_flags 32 60 0\r\nCLIP_type_width_height 3 314 199\r\nCOPY_stage_pass 0 1 0\r\nVISIBLE_stage 1 1 0\r\nCOPY_stage_pass 1 1 0\r\nVISIBLE_stage 2 1 0\r\nCOPY_stage_pass 2 1 0\r\nVISIBLE_stage 3 1 0\r\nCOPY_stage_pass 3 1 0\r\nVISIBLE_stage 10 1 0\r\nTIMING_kind_count_ms 0 418 1500\r\nVISIBLE_stage 11 1 0\r\nTIMING_kind_count_ms 1 305 1500\r\nVISIBLE_stage 12 1 0\r\nTIMING_kind_count_ms 2 2000 1365\r\nVISIBLE_stage 13 1 0\r\nTIMING_kind_count_ms 3 347 1500\r\nVISIBLE_stage 14 1 0\r\nTIMING_kind_count_ms 4 315 1500\r\nPASS 0 0 0\r\n"
+      },
+      "pixel_and_timing_workload_passed": true,
+      "normal_restart_requested": true
+    }
+  ],
+  "payloads": [
+    {
+      "path": "winnt/system32/drivers/xboxvnt5.sys",
+      "sha256": "e8021879bd606eb9cfc6927fbf50565c41781779af86e56f4678fa890b6eb6ec",
+      "matched": true
+    },
+    {
+      "path": "Documents and Settings/All Users/Start Menu/Programs/Startup/xwnsetup.cmd",
+      "sha256": "698f7967d871de74b0d10d08dfd115b5f1176a9fe82e25c1311c34203dc4591b",
+      "matched": true
+    },
+    {
+      "path": "xwnlag01/runner.exe",
+      "sha256": "a0fdd981d058a0ae7c3f9361e5e44898ef9b3aac030139fdd508ae0aba22db23",
+      "matched": true
+    },
+    {
+      "path": "xwnlag01/replay.exe",
+      "sha256": "7d90f3c0d6f8bb4615792324c749f4f2bfcf8663928d93ac5a3b41f9afec23fb",
+      "matched": true
+    },
+    {
+      "path": "xwnlag02/replay.exe",
+      "sha256": "7d90f3c0d6f8bb4615792324c749f4f2bfcf8663928d93ac5a3b41f9afec23fb",
+      "matched": true
+    },
+    {
+      "path": "winnt/system32/framebuf.dll",
+      "sha256": "3d4c5c2659c06f9ae4c9a735a99ad972d4e773e02a0f1b7d4d8c2d18053e9db7",
+      "matched": true
+    }
+  ],
+  "baseline_checks": {
+    "F/winnt/system32/drivers/xwnfatx.sys": true,
+    "E/Applications/XWNFBoot/loader/halxboxnt5.dll": true,
+    "E/Applications/XWNFBoot/default.xbe": true,
+    "E/Applications/XWNFBoot/freeldr.sys": true
+  },
+  "new_events": {
+    "system": [
+      {
+        "offset": 8492,
+        "record": 47,
+        "generated_unix": 1791258658,
+        "written_unix": 1791258658,
+        "event_id_hex": "c0001b58",
+        "event_id": 7000,
+        "type": 1,
+        "source": "Service Control Manager",
+        "computer": "XWN-PC",
+        "strings": [
+          "HID Input Service",
+          "%%2"
+        ],
+        "data_hex": ""
+      },
+      {
+        "offset": 8660,
+        "record": 48,
+        "generated_unix": 1791258656,
+        "written_unix": 1791258656,
+        "event_id_hex": "80001779",
+        "event_id": 6009,
+        "type": 4,
+        "source": "EventLog",
+        "computer": "XWN-PC",
+        "strings": [
+          "5.0",
+          "2195",
+          "Service Pack 4",
+          "Uniprocessor Free"
+        ],
+        "data_hex": ""
+      },
+      {
+        "offset": 8840,
+        "record": 49,
+        "generated_unix": 1791258656,
+        "written_unix": 1791258656,
+        "event_id_hex": "80001775",
+        "event_id": 6005,
+        "type": 4,
+        "source": "EventLog",
+        "computer": "XWN-PC",
+        "strings": [],
+        "data_hex": ""
+      },
+      {
+        "offset": 8936,
+        "record": 50,
+        "generated_unix": 1791258652,
+        "written_unix": 1791258682,
+        "event_id_hex": "c0040031",
+        "event_id": 49,
+        "type": 1,
+        "source": "Ftdisk",
+        "computer": "XWN-PC",
+        "strings": [
+          "\\Device\\HarddiskVolume6"
+        ],
+        "data_hex": "000000000100560000000000310004c0030000000000000000000000000000000000000000000000"
+      },
+      {
+        "offset": 9128,
+        "record": 51,
+        "generated_unix": 1791258809,
+        "written_unix": 1791258809,
+        "event_id_hex": "4000001a",
+        "event_id": 26,
+        "type": 4,
+        "source": "Application Popup",
+        "computer": "XWN-PC",
+        "strings": [
+          "rundll32.exe - DLL Initialization Failed",
+          "The application failed to initialize because the window station is shutting down. "
+        ],
+        "data_hex": ""
+      },
+      {
+        "offset": 9488,
+        "record": 52,
+        "generated_unix": 1791258813,
+        "written_unix": 1791258813,
+        "event_id_hex": "80001776",
+        "event_id": 6006,
+        "type": 4,
+        "source": "EventLog",
+        "computer": "XWN-PC",
+        "strings": [],
+        "data_hex": "ff000000"
+      }
+    ],
+    "application": []
+  },
+  "unexpected_errors": [],
+  "new_popup_records": [
+    {
+      "offset": 9128,
+      "record": 51,
+      "generated_unix": 1791258809,
+      "written_unix": 1791258809,
+      "event_id_hex": "4000001a",
+      "event_id": 26,
+      "type": 4,
+      "source": "Application Popup",
+      "computer": "XWN-PC",
+      "strings": [
+        "rundll32.exe - DLL Initialization Failed",
+        "The application failed to initialize because the window station is shutting down. "
+      ],
+      "data_hex": ""
+    }
+  ],
+  "normal_shutdown_count": 1,
+  "trace_valid": true,
+  "trace_sha256": "c4e7e7a49839b4c898d9411953dfafd9920ad1f9031cd13ac309e138191df1c8",
+  "one_dashboard_return": true,
+  "direct_ram_uc_verified": true,
+  "passed": false,
+  "limits": "Ordinary instrumented GDI boot in owned synthetic-resource xemu with a controlled device-install configuration; not a driver fix, hardware qualification, performance measurement, or full allocation/PnP audit.",
+  "device_config_flags_after": 64,
+  "expected_device_state_retained": true,
+  "new_setupapi_lines": [
+    "[2026/10/05 23:50:57 208.3 Driver Install]",
+    "Munged cmdline: C:\\WINNT\\system32\\services.exe",
+    "EXE name: C:\\WINNT\\system32\\services.exe",
+    "Device install function: DIF_SELECTBESTCOMPATDRV.",
+    "Selecting best compatible driver caused error: Error 0xe0000228: There are no compatible drivers for this device.",
+    "Completed default installer, error: Error 0xe0000228: There are no compatible drivers for this device.",
+    "[2026/10/05 23:51:01 208.6 Driver Install]",
+    "Device install function: DIF_SELECTBESTCOMPATDRV.",
+    "Selecting best compatible driver caused error: Error 0xe0000228: There are no compatible drivers for this device.",
+    "Completed default installer, error: Error 0xe0000228: There are no compatible drivers for this device.",
+    "[2026/10/05 23:51:05 208.12 Driver Install]",
+    "Device install function: DIF_SELECTBESTCOMPATDRV.",
+    "Selecting best compatible driver caused error: Error 0xe0000228: There are no compatible drivers for this device.",
+    "Completed default installer, error: Error 0xe0000228: There are no compatible drivers for this device.",
+    "[2026/10/05 23:51:13 832.2]",
+    "Munged cmdline: rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B4&SUBSYS_00000000&REV_B1\\2&ebb567f&0&09",
+    "EXE name: C:\\WINNT\\system32\\rundll32.exe",
+    "Set selected driver.",
+    "Device install function: DIF_SELECTBESTCOMPATDRV.",
+    "Selecting best compatible driver caused error: Error 0xe0000228: There are no compatible drivers for this device.",
+    "Completed default installer, error: Error 0xe0000228: There are no compatible drivers for this device."
+  ],
+  "new_interactive_install_commands": [
+    "Munged cmdline: rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B4&SUBSYS_00000000&REV_B1\\2&ebb567f&0&09"
+  ]
+}

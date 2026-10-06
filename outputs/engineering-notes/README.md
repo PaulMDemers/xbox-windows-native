@@ -13,6 +13,7 @@ in any Linux FATX implementation. No external project has been contacted.
 - [Direct-RAM video prototype and remaining lifecycle work](../video-direct-map/README.md)
 - [Detached startup and strict shutdown audit](../video-startup-detached/README.md)
 - [Experimental display replacement and failure cleanup](../video-surface-lifecycle/README.md)
+- [Ordinary device-installer isolation experiments](../video-installer-isolation/README.md)
 - [Preserved baseline and recovery](../release-0.1.0/README.md)
 
 Evidence vocabulary: **physical** means this console; **user-observed** means

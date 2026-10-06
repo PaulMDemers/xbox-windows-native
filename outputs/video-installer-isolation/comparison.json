@@ -1,0 +1,54 @@
+{
+  "scope": "Compare the named ordinary intervention/control runs without promoting a driver.",
+  "physical_access": false,
+  "identical_driver_and_workload_payloads": true,
+  "results": {
+    "audio003": {
+      "strict_passed": false,
+      "popup_count": 1,
+      "install_commands": [
+        "Munged cmdline: rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B4&SUBSYS_00000000&REV_B1\\2&ebb567f&0&09"
+      ],
+      "config_flags_after": 64,
+      "graphics_passed": true,
+      "direct_ram_uc_verified": true,
+      "payloads_match": true,
+      "other_checks_passed": true,
+      "normal_shutdowns": 1,
+      "dashboard_return": true,
+      "launched_utc": "2026-10-05T23:50:37.442226+00:00"
+    },
+    "control003": {
+      "strict_passed": true,
+      "popup_count": 0,
+      "install_commands": [
+        "Munged cmdline: rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28"
+      ],
+      "config_flags_after": null,
+      "graphics_passed": true,
+      "direct_ram_uc_verified": true,
+      "payloads_match": true,
+      "other_checks_passed": true,
+      "normal_shutdowns": 1,
+      "dashboard_return": true,
+      "launched_utc": "2026-10-05T23:54:42.350958+00:00"
+    },
+    "pair004": {
+      "strict_passed": true,
+      "popup_count": 0,
+      "install_commands": [
+        "Munged cmdline: rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_02A0&SUBSYS_00000000&REV_A1\\3&477a1ca&0&00F0"
+      ],
+      "config_flags_after": 64,
+      "graphics_passed": true,
+      "direct_ram_uc_verified": true,
+      "payloads_match": true,
+      "other_checks_passed": true,
+      "normal_shutdowns": 1,
+      "dashboard_return": true,
+      "launched_utc": "2026-10-05T23:58:40.210546+00:00"
+    }
+  },
+  "limits": "One single-device intervention, one fresh control, and one two-device follow-up after an earlier failed control. Timing is not deterministic; no statistics, ordinary baseline driver fix, audio support, physical qualification or performance improvement established.",
+  "interpretation": "The unchanged control was clean, confirming intermittency. The intervention changed which installer ran, but these runs do not establish a popup fix or prove the pending queue caused every failure."
+}

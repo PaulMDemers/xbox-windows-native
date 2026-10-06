@@ -47,6 +47,9 @@ tests surface cleanup in pinned ReactOS source; the installed display DLL is
 Microsoft's implementation. Its graphics checks pass, but the shutdown popups
 recur. A [resolved shutdown trace](outputs/video-shutdown-resolved-targets/README.md)
 identifies an unfinished audio-device installer as a lead to investigate.
+Further [ordinary isolation tests](outputs/video-installer-isolation/README.md)
+advance that queue to the GPU, whose boot service works but whose matching PnP
+installation is incomplete. Popup behavior remains intermittent.
 Neither experiment has been deployed to hardware.
 Candidate0093 is restored and hash-verified. No rendering speedup is claimed.
 

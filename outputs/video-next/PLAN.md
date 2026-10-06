@@ -51,6 +51,15 @@ so this is a specific lead, not a demonstrated popup cause. Investigate the
 pending installation queue before changing more video behavior; retain strict
 ordinary checks. See ../video-shutdown-resolved-targets.
 
+Ordinary isolation now advances the installer from01B0 to01B4, then to02A0
+(the GPU), when only the selected failed-install flags are acknowledged. The
+audio-only case had one popup; the unchanged control and two-device case were
+clean. This remains intermittent. The GPU has a working boot service binding
+but no Driver value, and SetupAPI cannot find a compatible package. The next
+implementation is a matching NT5 display INF and real installation in an owned
+fixture, with existing binaries preserved. Do not hide this by marking the GPU
+failed-install. See ../video-installer-isolation for the exact comparison.
+
 ## First implementation: measure the existing drawing path
 
 Build a bounded Windows 2000 GDI probe that records device caps/mode enumeration,
