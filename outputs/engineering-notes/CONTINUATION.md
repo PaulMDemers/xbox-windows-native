@@ -1,3 +1,38 @@
+# ACTIVE: one FATX0098 fifteen-minute soak on the physical Xbox
+
+Launched 2026-10-06 02:06:48 UTC; FTP accepted. NEVER relaunch this attempt.
+No driver changes: FATX0098/video0093/Microsoft framebuf/HAL/loader retained.
+New owned test path C:\xwns98 (dashboard F:). Exact source, helpers, fixtures,
+launch and eligibility records: outputs/fatx0098-soak. Emulator closed normally.
+
+Owned observer watch.py windows is running. Expect normal return around
+02:24 UTC, allowing boot plus BMP replay, at least 15 minutes of timed rounds,
+and shutdown. Do not infer a crash from offline FTP. If still offline well after
+02:30 UTC, ask once for the screen; never repeat the launch.
+
+Next on dashboard return: physical.py collect (restores startup FIRST), qualify.py
+for provisional workload/event result, then scan.py launch ONCE, watch.py scan,
+scan.py collect, audit-binaries.py, qualify.py again, final-state.py.
+Run audit-manual.py after collection, keeping user observations separate. After
+PASS, capture-recovery.py creates a new private file-level system/boot snapshot;
+then commit/push reports and pause the soak follow-up automation. Scripts use
+XWN_FTP_HOST/USER/PASSWORD from this session. Existing0088 rollback remains at
+/F/xwneof98/rollback.sys. This attempt also preserves its starting0098 copy.
+There is no trace reseeding. Never alter the 0.1.0 tag/bundles.
+
+Expected: 527 mappings, 16 synthetic Paint BMP saves, 50 exact final data files,
+34 absent intermediates, 15 timed rounds (at least900000ms), normal shutdown,
+clean new events, complete allocation, 3439 binary hashes, nine structural hives.
+Manual Paint/Notepad was offered to user; no new user observation received yet.
+Suggested owned filenames manual-paint.bmp, manual-paint2.bmp, manual-note.txt.
+No actual application UI pass may be inferred from synthetic API replay.
+
+Rehearsal: same helper binary, explicit rehearsal argument, four-second rounds;
+527 mappings/data/deletions and16 BMP replays pass, full allocation clean. Normal
+restart and payload/hive checks pass, but known old-control rundll32 shutdown
+popup means strict emulator FAIL. eligibility.json records why this unchanged-
+driver physical soak proceeds independently; no physical popup is waived.
+
 # Continuation: FATX0098 passes the bounded physical trial
 
 Completed 2026-10-06 01:57 UTC. The Xbox is back at UnleashX; normal startup is

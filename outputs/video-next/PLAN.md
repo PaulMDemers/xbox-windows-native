@@ -4,6 +4,41 @@ User priorities: faster window dragging, additional Xbox modes including 1080i,
 documented FATX/platform findings, and convenient root-menu Windows launch.
 User also confirms working ping. Preserve the release before driver changes.
 
+## Next gate after FATX0098 qualification (2026-10-06 UTC)
+
+The focused [physical0098 trial](../fatx0098-physical-trial/README.md) passed.
+The separate [timed mixed-file soak](../fatx0098-soak/README.md) is now running;
+its result and actual application observations must be collected before further
+hardware changes. FATX0098/video0093 is the current physical combination.
+The installed-package emulator boots in [fatx-paging-eof](../fatx-paging-eof/README.md)
+pass with0098 for both the actual Start=3 state and the diagnostic Start=1 state.
+This resolves the demonstrated EOF/checksum loading failure; it does not qualify
+video performance, mode changes or generic stop/remove/restart ownership.
+
+After the soak and fresh recovery capture:
+
+1. Re-run a matched graphics baseline using the existing pixel-checked probe on
+   the current physical0093 mapping and fixed mode. Keep actual window-drag
+   observations separate from the five microbenchmark operations.
+2. Rehearse a single mapping change with0098 in a fresh owned fixture. Keep the
+   Microsoft display DLL for the mapping comparison if that combination passes;
+   do not substitute the0097 DLL and attribute the whole change to mapping alone.
+   Compare actual first/last PTE addresses and cache policy, four pixel stages,
+   unchanged payloads, normal restart and event deltas. Preserve any popup failure.
+3. Before generic use of the owned mapping, settle consumer teardown and pending
+   PnP IRP completion. The0096 helper covers map/unmap/unload; its unload comment
+   is not independent evidence that every drawing consumer is quiescent. Never
+   free a live mapping merely because STOP/REMOVE was requested.
+4. Use a separately identified bounded physical timing trial only for an eligible
+   candidate, restore0093 afterward, and compare like-for-like geometry. A gain
+   must coexist with correct overlapping copies and clean persistence/events.
+5. Pursue cache/shadow-surface or GPU-copy work according to the measured result.
+   Higher modes remain a separate boot-handoff project: first480p/720p, then1080i,
+   with explicit encoder/cable/reservation checks and a working recovery mode.
+
+The following evidence is historical; its then-current FATX0088 references do
+not describe today's installed filesystem. Failed runs remain failures.
+
 ## Current evidence
 
 Physical GDI003 and both candidate0093 repeat-boot runs pass the four pixel
