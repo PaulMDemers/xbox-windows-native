@@ -1,3 +1,51 @@
+# GPU package installed; first boot FAIL, second bounded boot PASS
+
+2026-10-06 UTC, outputs/shutdown-device-install. Physical Xbox untouched:
+FATX0098/video0093/normal startup, original0088 rollback and immutable0.1.0 remain.
+Physical soak3 strict FAIL remains; no new recovery snapshot or hardware candidate.
+Automations remain paused. Both owned emulator runners/supervisors and cold disk
+readers finished; no running processes from this experiment remain.
+
+001 launched once at17:47:08 UTC on the exact previously failing rehearsal.
+Authored INF copies only unchanged video0093; existing framebuf.dll referenced.
+Only DevicePath is appended offline; no signing-policy or FAILEDINSTALL edits.
+Full GPU installation succeeds, ConfigFlags=0, class0001, oem2.inf exact,
+XboxVnt5 Start=3 as set by Windows. Query-remove veto6/code23 requires reboot;
+no live stop/remove success claimed. Binary identities remain exact.
+
+001 completes527 mappings,16 BMP API cases,50 exact files,34 absent intermediates,
+15 rounds>=60000ms and logs one normal EventLog shutdown. It still records the
+rundll32 window-station-shutdown popup and misses420-second dashboard deadline.
+Read-only unpaused framebuffer capture also timed out; no image or crash claim.
+Its effect on the stall is unknown. Owned host cleanup at17:54:21 is explicit;
+normal EventLog shutdown was discovered later by cold audit. First run stays FAIL.
+
+002 launched once at17:58:10 and dashboard returned18:00:36. It preserves installed
+hives, video trace and first workload, changing only startup/new xwns99 folder.
+The helper sources only replace xwns98 with xwns99 after newline decoding.
+No GDB/capture intervention. Same bounded workload and first-run preservation,
+exact payload/runtime hashes, five hives, normal EventLog shutdown and no popup
+or unexpected errors all pass. Package metadata remains intact. SetupAPI now
+shows the emulator PCI1B36:0005 installer without a compatible driver; no new
+GPU installation. Do not infer a specific token race or physical device from it.
+
+Read outputs/shutdown-device-install/README.md, evidence-review.json and per-case
+launch/audit/package-audit/runtime-state JSON. Exact authored INF/compiler inputs
+are pinned; fixture manifests distinguish inherited first-stage metadata.
+No full allocation audit; recurring baseline SCM7000/Ftdisk49 diagnostic signatures
+remain recorded. This cannot waive physical Srv2013 warnings or first-run failure.
+
+Next: repeated bounded boots from independent clones of the retained installed
+state; compare installer ordering/timing with unchanged failing baseline. Treat
+emulator-only device support separately. Do not promote the INF after one clean
+boot or suppress an installer to manufacture PASS. Finish repeated shutdown and
+display lifetime qualification before hardware/performance changes.
+
+Current broad project status and remaining release/graphics/network work:
+outputs/engineering-notes/STATUS.md. Source/reports to private main only.
+
+## Prior continuation (historical)
+
 # Sparse shutdown traces confirm failed late creation; no popup fix yet
 
 2026-10-06 UTC, outputs/shutdown-popup-workload/003 and004. Physical Xbox untouched;

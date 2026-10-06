@@ -1,0 +1,55 @@
+; Original experimental Windows 2000 x86 package. Not hardware-qualified.
+; Package the exact reviewed miniport and display DLL beside this file.
+; Reuse installed Microsoft framebuf.dll; never copy or replace that protected file.
+[Version]
+Signature="$Windows NT$"
+Class=Display
+ClassGUID={4D36E968-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+DriverVer=10/05/2026,0.1.0.99
+
+[Manufacturer]
+%Provider%=Xbox.Models
+
+[Xbox.Models]
+%Device%=Xbox.Install,PCI\VEN_10DE&DEV_02A0
+
+[DestinationDirs]
+Xbox.Miniport=12
+
+[SourceDisksNames]
+1=%Media%,,,
+
+[SourceDisksFiles]
+xboxvnt5.sys=1
+
+[Xbox.Install]
+CopyFiles=Xbox.Miniport
+
+[Xbox.Install.Services]
+AddService=XboxVnt5,0x00000002,Xbox.Service
+
+[Xbox.Service]
+DisplayName=%Device%
+ServiceType=1
+StartType=1
+ErrorControl=1
+LoadOrderGroup=Video
+ServiceBinary=%12%\xboxvnt5.sys
+
+[Xbox.Install.SoftwareSettings]
+AddReg=Xbox.Software
+
+[Xbox.Software]
+HKR,,InstalledDisplayDrivers,0x00010000,framebuf
+HKR,,VgaCompatible,0x00010001,0
+; Firmware determines dimensions; do not install hard-coded mode defaults.
+
+[Xbox.Miniport]
+xboxvnt5.sys
+
+
+[Strings]
+Provider="Xbox Windows Native Project"
+Device="Xbox NV2A firmware framebuffer (experimental)"
+Media="Xbox NT5 display package"

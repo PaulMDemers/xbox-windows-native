@@ -6,6 +6,13 @@ host-side test harness.
 
 ## Current milestone: 0.1.0
 
+For post-release installed state and remaining work, see the
+[current overall status](outputs/engineering-notes/STATUS.md) and
+[continuation note](outputs/engineering-notes/CONTINUATION.md). FATX0098/video0093
+is now installed; the immutable0.1.0 artifacts below retain0088. The latest0098
+physical soak passed its workload/integrity checks but failed its strict event
+gate, so it is not a newly qualified release.
+
 The native physical desktop now passes bounded storage soaks and two actual
 Paint saves/reopens, with independent post-reboot bitmap, allocation, binary
 and registry-hive checks. The user confirms ping works. Window dragging is
