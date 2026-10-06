@@ -1,8 +1,13 @@
 # Experimental Windows 2000 display installation package
 
-Status: full installation succeeds with the project-owned DLL name, but the next
+Historical status of the attempts in this directory: full installation succeeds with the project-owned DLL name, but the next
 boot fails with0xB4. Restoring the service start type alone does not fix it.
 This package is not qualified for deployment. The physical0093 baseline is untouched.
+
+Later investigation identified the boot failure as FATX paging beyond EOF.
+The correction and successful ordinary boots of the installed state are in
+[fatx-paging-eof](../fatx-paging-eof/README.md). Those results preserve the failed
+attempts below and do not establish physical qualification or a shutdown-popup fix.
 
 The current original xwnvideo.inf targets PCI10DE:02A0 and associates the existing XboxVnt5
 system-start service with the display device. It uses the NT5 display-class

@@ -1,7 +1,7 @@
 """Minimal hard-error capture on the previously failing workload; not boot qualification."""
 import datetime,json,re,socket,struct,sys,time
 from pathlib import Path
-k=Path(__file__).resolve().parent;ws=k.parents[1];case=sys.argv[1];assert case in ['001','002'];out=k/case
+k=Path(__file__).resolve().parent;ws=k.parents[1];case=sys.argv[1];assert case in ['001','002','003','004'];out=k/case
 src=ws/'outputs/native-windows-nt5-kernel'
 sys.path.insert(0,str(ws/'outputs/native-windows-prebuild'))
 from monitor_capture import command,acquire_monitor_lock
@@ -14,7 +14,10 @@ assert (run/'instance.json').exists() and not (run/'cleanup.json').exists()
 assert not (out/'trace.json').exists()
 layout=json.loads((src/'process-layouts.json').read_text());fields=layout['_EPROCESS']['fields']
 pubs=json.loads((src/'kernel-publics.json').read_text())['symbols']
-review=json.loads((k/('site-review-lifecycle.json' if case=='002' else 'site-review.json')).read_text());base=int(state['kernel_base'],16)
+review=json.loads((k/('site-review-sparse.json' if case=='003' else ('site-review-lifecycle.json' if case=='002' else 'site-review.json'))).read_text());base=int(state['kernel_base'],16)
+if case=='004':
+    review=json.loads((k/'site-review-sparse.json').read_text())
+    review['sites']=[s for s in review['sites'] if s['name'] in ['PnP_Create_return','_ExRaiseHardError@24','_ExpRaiseHardError@24','_NtShutdownSystem@4']]
 targets={(base+s['rva'] if s['module']=='ntoskrnl.exe' else s['address']):s for s in review['sites']}
 report=dict(scope=__doc__,physical_access=False,ordinary_boot_qualified=False,events=[],sites=review,started_utc=datetime.datetime.now(datetime.timezone.utc).isoformat())
 report['active_sites']={hex(a):s['name'] for a,s in targets.items()}
@@ -58,6 +61,17 @@ def describe(process):
         row.update(target_command(process))
     except Exception as exc:row['decode_error']=repr(exc)
     return row
+
+def wide(p):
+    assert 0x10000<=p<0x80000000
+    raw=bytearray()
+    for n in range(2048):
+        part=g.read(p+2*n,2)
+        if part==b'\0\0':return raw.decode('utf-16le')
+        raw.extend(part)
+    raise ValueError('Unterminated command')
+
+pending_creation={}
 try:
     command(4594,'stop');stopped=True
     g=Remote(4595);report['gdb_features']=g.ask('qSupported');report['initial_stop']=g.ask('?')
@@ -91,6 +105,26 @@ try:
                 t=u32(regs['EBP']-0x24);event['target_thread']=hex(t);event['target']=describe(u32(t+review['thread_owner_offset']))
             elif site['name']=='_PspExitProcess@8':event['target']=describe(args[2])
         except Exception as exc:event['decode_error']=repr(exc)
+        if site.get('kind')=='pnp':
+            event.pop('caller');event.pop('arguments')
+            event['registers']={n:hex(v) for n,v in regs.items()}
+            try:
+                event['raw_stack_words']=[hex(v) for v in struct.unpack('<12I',g.read(regs['ESP'],48))]
+                event['saved_token']=hex(u32(review['token_global']))
+                if site['name']=='PnP_Control_entry':event['control']=u32(regs['ESP']+4)
+                else:
+                    event['command_line']=wide(regs['EBP']-0x268)
+                    if site['name']=='PnP_Create_call':
+                        event['call_arguments']=[hex(v) for v in struct.unpack('<11I',g.read(regs['ESP'],44))]
+                        pending_creation[thread]=len(report['events'])
+                    elif site['name']=='PnP_Create_return':
+                        event['entry_index']=pending_creation.pop(thread,None)
+                        event['return_eax']=hex(regs['EAX'])
+                        event['last_error']=u32(u32(thread+review['teb_offset'])+0x34)
+                    else:event['wait_result']=hex(regs['EAX'])
+                    if site['name']!='PnP_Create_call':
+                        event['process_information']=[hex(v) for v in struct.unpack('<4I',g.read(regs['EBP']-0x278,16))]
+            except Exception as exc:event['pnp_decode_error']=repr(exc)
         if 'HardError' in site['name']:
             try:
                 event['parameter_values']=[hex(v) for v in struct.unpack('<'+str(args[2])+'I',g.read(args[4],4*args[2]))] if args[2] and args[2]<=16 else []

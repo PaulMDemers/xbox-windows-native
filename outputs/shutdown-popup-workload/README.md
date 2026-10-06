@@ -94,3 +94,43 @@ deploy a patch or repeat a hardware soak on the strength of this clean control.
 
 Both owned runners, supervisors and tracers finished. Source/caller review,
 cold audits and cleanup are summarized by review-evidence.py and summary.json.
+
+## Sparse follow-ups
+
+Run003 uses seven sites: the three kernel hard-error/shutdown sites and four
+umpnpmgr boundaries (create call, create return, process wait return, control
+entry). review-sparse-sites.py checks those boundaries, imports and local-variable
+offsets against the owned binary and existing disassembly. No generic process
+creation/resume/termination sites are armed. It captures nine events:
+
+- Events0–1: creation of PCI10DE:02A0 installer succeeds, returned PID0x340.
+- Event2: its process wait completes with0 at tick7925.
+- Event3: next creation targets PCI1B36:0005 with token0x8ac at tick7926.
+- Event4: another services thread enters PnP control5 at tick7930.
+- Event5: creation returns false/error6 at tick7931; saved token is now0 and
+  PROCESS_INFORMATION is zero. Close/query internals were not traced here.
+- Later control entries and kernel shutdown follow; no hard error or popup.
+
+Run004 removes the call, wait and control observations. Only create returns and
+the three kernel sites remain armed. It captures three events: successful GPU
+installer creation, failed PCI1B36:0005 creation with error6/saved token0, and
+kernel shutdown. Call entry and token-close timing are unknown in this run.
+Even this return-only control does not reproduce run001's hard error. Do not
+attribute the different outcome solely to breakpoint count or claim repeatability
+of the popup from these controls.
+
+Both complete the unchanged workload and pass cold diagnostic checks:527 mappings,
+16 BMP API cases,50 exact final files,34 absent intermediates,15 rounds>=60000ms,
+one normal shutdown, matching payloads/system binaries and five traversable hives.
+Neither is an ordinary-run pass, a full allocation scan, a15-minute soak, or a
+physical result. Their source snapshots, launch/cleanup records and separate
+sparse-summary.json reports are under003/004. All owned sessions have finished.
+
+The failed hard-error run remains authoritative evidence. There is no new driver
+fix and no hardware deployment. Further similar clean traces have diminishing
+value: next address the incomplete device installation through the real installer
+in a disposable fixture, then retest the original workload and consecutive boots.
+Use the FATX0098 correction already validated in fatx-paging-eof; the old package
+checksum failure was resolved there. This is a new intervention requiring its own
+control, not retroactive qualification of an existing package. Emulator-specific
+devices and the earlier diagnostic audio flags remain explicit limitations.

@@ -7,7 +7,7 @@ k=Path(__file__).resolve().parent;ws=k.parents[1]
 sys.path.insert(0,str(ws/'outputs/native-windows-paint-save'));m=importlib.import_module('prepare-fixture')
 sys.path.insert(0,'/home/paul/xbox-windows-native/toolchains/offline-disk/root/usr/lib/python3/dist-packages')
 import hivex
-case=sys.argv[1];assert case in ['001','002']
+case=sys.argv[1];assert case in ['001','002','003','004']
 out=k/case;art=out/'artifacts';art.mkdir(parents=True,exist_ok=True)
 fixture=json.loads((k/'fixture-001.json').read_text())
 base=ws/'outputs/native-windows-fatx-forensics/artifacts'/fixture.get('fixture_name','fatx0098-soak-'+case+'.qcow2')

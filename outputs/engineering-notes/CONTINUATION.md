@@ -1,3 +1,46 @@
+# Sparse shutdown traces confirm failed late creation; no popup fix yet
+
+2026-10-06 UTC, outputs/shutdown-popup-workload/003 and004. Physical Xbox untouched;
+FATX0098/video0093/normal startup, original0088 rollback and immutable0.1.0 remain.
+No new driver, registry change, physical launch or recovery capture. Automation
+stays PAUSED and physical soak3 strict FAIL remains. All owned processes finished.
+
+003 reduces observation to seven sites/nine events. Existing GPU installer
+creation succeeds (events0–1). Its wait returns0 at event2/tick7925. Services
+calls CreateProcessAsUserW for PCI1B36:0005 at3/tick7926 with token0x8ac. Another
+services thread enters PnP control5 at4/tick7930; the creation returns false with
+error6 at5/tick7931, saved token0 and zero PROCESS_INFORMATION. No hard error.
+This captures the shutdown/creation overlap on the exact failing workload, but
+not the internal close/query operations. Do not infer those from this trace alone.
+
+004 observes only create returns and kernel hard-error/shutdown sites: three
+events. GPU creation succeeds, late PCI1B36:0005 creation fails with error6 and
+saved token0, then kernel shutdown. No popup. Entry/token-close timing unknown.
+Neither control supplies the lifecycle of001's actual failing installer. Do not
+infer breakpoint count caused the difference or claim the popup is fixed.
+
+Both cold audits pass527 mappings,16 BMP API cases,50 exact final files,
+34 absent intermediates,15 timed rounds>=60000ms, matching payloads and system
+binaries, five traversable hives and one normal shutdown/dashboard return.
+ordinary_run_valid=false for both debugger runs; no full allocation audit.
+Source snapshots and separate sparse-summary.json files are preserved per run.
+review-sparse-sites.py verifies umpnpmgr imports/offsets against the owned DLL;
+review-sparse-evidence.py accepts003/004 and asserts workload and capture evidence.
+
+Next change direction from similar clean traces to a real device-installation
+intervention in an owned fixture. Preserve001 (actual win32k popup) and all controls.
+The earlier display package boot checksum failure was fixed by FATX0098 in
+fatx-paging-eof; its ordinary001/002 runs booted the installed package. Start from
+the exact failing rehearsal state, retain the same workload, and isolate package
+installation/binding from driver rendering changes. Verify normal installation,
+registry binding, exact binaries, first/second boot and cold events before any
+hardware proposal. Do not copy protected framebuf.dll, suppress an installer or
+set FAILEDINSTALL to force a pass. Treat any emulator-only system-device package
+separately from physical support. Existing package0096/0097 and diagnostic audio
+flags are not automatically approved for physical promotion by these findings.
+
+## Prior continuation (historical)
+
 # Actual shutdown popup reproduced and traced to win32k; separate control clean
 
 2026-10-06 UTC, outputs/shutdown-popup-workload. Two owned emulator launches
