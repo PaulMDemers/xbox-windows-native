@@ -1,0 +1,146 @@
+{
+  "scope": "Use a project-owned display DLL filename, without changing the binary or signing policy.",
+  "source_sha256": "0291ca49a6f59cd32a3bc2ab535fc556367a5afc313bd2c9838c5686211d49c4",
+  "fixture_sha256": "890f7369b2a39e1d59d816bf3222bdd0c9cae164a62f96a19bc00e25c880c711",
+  "seed_sha256": "bf66866ea18f817ea2b5626ceb299983410a27f0c10aa10761c43d63988b6e39",
+  "payloads": [
+    {
+      "path": "winnt/system32/drivers/xboxvnt5.sys",
+      "sha256": "e8021879bd606eb9cfc6927fbf50565c41781779af86e56f4678fa890b6eb6ec",
+      "bytes": 42215
+    },
+    {
+      "path": "winnt/system32/xwn-video-trace.bin",
+      "sha256": "5806fe7ce339298b5a94a0e0ab1bdfb78922fc449effd5cea2f393f0d33fd00e",
+      "bytes": 4096
+    },
+    {
+      "path": "Documents and Settings/All Users/Start Menu/Programs/Startup/xwnsetup.cmd",
+      "sha256": "698f7967d871de74b0d10d08dfd115b5f1176a9fe82e25c1311c34203dc4591b",
+      "bytes": 50
+    },
+    {
+      "path": "xwnlag01/runner.exe",
+      "bytes": 10924,
+      "sha256": "a0fdd981d058a0ae7c3f9361e5e44898ef9b3aac030139fdd508ae0aba22db23",
+      "clusters": 1
+    },
+    {
+      "path": "xwnlag01/replay.exe",
+      "bytes": 20188,
+      "sha256": "7d90f3c0d6f8bb4615792324c749f4f2bfcf8663928d93ac5a3b41f9afec23fb",
+      "clusters": 1
+    },
+    {
+      "path": "xwnlag02/replay.exe",
+      "bytes": 20188,
+      "sha256": "7d90f3c0d6f8bb4615792324c749f4f2bfcf8663928d93ac5a3b41f9afec23fb",
+      "clusters": 1
+    },
+    {
+      "path": "winnt/system32/framebuf.dll",
+      "sha256": "3d4c5c2659c06f9ae4c9a735a99ad972d4e773e02a0f1b7d4d8c2d18053e9db7",
+      "bytes": 81387
+    },
+    {
+      "path": "xwninf01/install.exe",
+      "bytes": 10200,
+      "sha256": "7aa01342d74123f53fdc126445deddab9616b9ca35d9141394915daeeb964ffa",
+      "clusters": 1
+    },
+    {
+      "path": "xwninf01/xboxvnt5.inf",
+      "bytes": 1334,
+      "sha256": "0281108bc68a51f34ba2cc49755776d43145fcddd3cc457f582c3a2a3bf96b5d",
+      "clusters": 1
+    },
+    {
+      "path": "xwninf01/xboxvnt5.sys",
+      "bytes": 42215,
+      "sha256": "e8021879bd606eb9cfc6927fbf50565c41781779af86e56f4678fa890b6eb6ec",
+      "clusters": 1
+    },
+    {
+      "path": "xwninf01/framebuf.dll",
+      "bytes": 81387,
+      "sha256": "3d4c5c2659c06f9ae4c9a735a99ad972d4e773e02a0f1b7d4d8c2d18053e9db7",
+      "clusters": 2
+    },
+    {
+      "path": "xwninf01/xwnfb.dll",
+      "bytes": 81387,
+      "sha256": "3d4c5c2659c06f9ae4c9a735a99ad972d4e773e02a0f1b7d4d8c2d18053e9db7",
+      "clusters": 2
+    }
+  ],
+  "fatx_sha256": "0ec6b5fdae65a1f85cba8c15021ba8095601d4462565b331329884526ff81336",
+  "trace_sha256": "5806fe7ce339298b5a94a0e0ab1bdfb78922fc449effd5cea2f393f0d33fd00e",
+  "initial_trace_clean": true,
+  "host_reset_between_boots": false,
+  "physical_access": false,
+  "display_allocation_growth": {
+    "path": "winnt/system32/framebuf.dll",
+    "old_chain": [
+      11314
+    ],
+    "new_chain": [
+      11314,
+      2144498
+    ],
+    "changed_fat_entries": [
+      11314,
+      2144498
+    ],
+    "cluster_size": 65536,
+    "cold_readback_passed": true
+  },
+  "parent_fixture_sha256": "7f9c8269752e48e3da4bc2218a2cdf7134881b2d3a2ecb8ac41b37f53eb8133c",
+  "baseline_display_sha256": "5da1fe7c3cdaf67a4a487c8872c2034fbc425bfd36d2b7715b2a1c4caa51df86",
+  "system_before_sha256": "5cf993bd0b1edb32fac345698f336a3b02f5f41627f04102794f6c331c016189",
+  "system_after_sha256": "bd4185ed16280aeac790116fc18fb49b1e2e70e300ad629d19351a920133c469",
+  "registry_edit": {
+    "scope": "Two specifically observed failed-install devices only; no service disable or driver installation",
+    "device": "PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+    "path": "ControlSet001\\Enum\\PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+    "before": null,
+    "after": 64,
+    "changed": true,
+    "additional_changes": [
+      {
+        "path": "ControlSet001\\Enum\\PCI\\VEN_10DE&DEV_01B4&SUBSYS_00000000&REV_B1\\2&ebb567f&0&09",
+        "before": null,
+        "after": 64
+      }
+    ],
+    "all_keys_checked": 5722,
+    "all_values_checked": 17533,
+    "only_expected_values_changed": true,
+    "index_normalization": {
+      "keys_checked": 5722,
+      "indexes_checked": 1863,
+      "converted": []
+    }
+  },
+  "system_unchanged_during_staging": true,
+  "limits": "Inherits diagnostic FAILEDINSTALL flags for unsupported01B0/01B4 only. GPU not suppressed. Same0096/0097 binaries; no hardware access.",
+  "software_edit": {
+    "path": "Microsoft\\Windows\\CurrentVersion",
+    "value": "DevicePath",
+    "before": "%SystemRoot%\\inf",
+    "after": "%SystemRoot%\\inf;C:\\xwninf01",
+    "all_keys_checked": 26907,
+    "all_values_checked": 39233,
+    "only_expected_value_changed": true,
+    "index_normalization": {
+      "keys_checked": 26907,
+      "indexes_checked": 8584,
+      "converted": []
+    }
+  },
+  "software_before_sha256": "b3073ef4454570d0b2b954f1f6333fbf0ec883a3a9cc639dc0a327c762f8f819",
+  "software_after_sha256": "9704ce8523c6fc02ba13762e68ed41da86d7f561524cfc52528573fa7d6ad10c",
+  "installation_method": "Preloaded DevicePath, project-owned display filename; original signing policy unchanged",
+  "display_package_name": "xwnfb.dll",
+  "display_binary_unchanged": true,
+  "registry_hives_unchanged_during_staging": true
+}

@@ -1,3 +1,51 @@
+# Continuation: display INF installs, subsequent boot fails0xB4
+
+Latest work: outputs/video-nt5-display-package. Five emulator attempts are closed;
+all cold audits are complete. No owned test process remains running. No physical
+access or deployment occurred; candidate0093, FATX0088 and release0.1.0 remain
+unchanged by this work. Neither0096 nor0097 nor the new package is promoted.
+
+The authored INF targets PCI10DE:02A0. Existing0096 miniport and0097 display bytes
+are unchanged. It uses the NT5 SoftwareSettings contract and a project-owned
+xwnfb.dll filename. Original xboxvnt5.inf is retained for failed-attempt replay;
+xwnvideo.inf is the current experimental source. Both are original text; owned
+Windows media/binaries, fixture disks and crash RAM remain ignored/private.
+
+-001: updater startup reached a desktop with overlapping wizard/welcome/console.
+ No installer log persisted. Guest input attempts had no visible effect; stopped
+ for inspection, not normal shutdown. No installation success inferred.
+-002: preloaded DevicePath selects the INF, but replacing protected framebuf.dll
+ elevated signing policy to Warn. Graphics and normal restart passed, no popup;
+ registration incomplete, strict FAIL.
+-003: changed only package DLL name/token to xwnfb. SetupAPI completes full install,
+ query-removal veto requires reboot, ConfigFlags=0, Driver points to display0001,
+ oem2.inf matches staged bytes, Device0 selects xwnfb. Graphics/payload/restart
+ checks pass, one shutdown popup makes strict FAIL. Service Start changed1->3.
+-004: boot from003's installed state, no guest edits. STOP0xB4(0,0,0,0x50000).
+ Kernel RAM decode has VIDEOPRT but no Xbox miniport/display in loaded modules.
+ PnP service binding exists with problem0; this does not establish driver startup.
+-005: isolated child restores only active-control-set XboxVnt5 Start3->1;
+ all5725 keys/17547 values compared. Start1 persisted, but same0xB4 and missing
+ loaded miniport. Reject the simple start-type remedy. No normal shutdown in004/005.
+
+Next: trace the actual image-load/device-add path in a fresh owned diagnostic run.
+next-probe-plan.json pins matching NT5 kernel hash, public RVAs and entry bytes for
+IopLoadDriver, MmLoadSystemImage, IopInitializeSystemDrivers and IopCallDriverAddDevice.
+Resolve the actual next-run kernel base; do not reuse prior absolute addresses.
+Determine whether service/image loading is skipped, fails, or unloads before GDI.
+Keep debugger evidence separate from ordinary validation. Do not deploy an INF
+workaround or treat ConfigFlags/Driver presence as functional PnP qualification.
+Generic stop/remove/restart ownership and consumer quiescence remain outstanding.
+
+Artifacts: immutable fixtures/seed hashes in fixture-001..005.json; current
+reproducible installed-state parent is video-nt5-display-package-004.qcow2;
+005 changes one start value. Keep all QCOW parents. Failed boot RAM captures are
+artifacts/reboot-crash.ram and artifacts/starttype-crash.ram. Offline decoded
+kernel/module/PnP reports are004/crash.json and005/crash.json. Page directories
+were recovered from self-references, not captured CPU CR3; shared kernel data only.
+Latest owned cleanup:2026-10-06T00:40:11.9405634Z. Shared skill installation and
+source/report checks passed; commits include the installation/protection lessons.
+
 # Continuation: ordinary installer-isolation experiments
 
 Latest work is outputs/video-installer-isolation. No physical access or deployment;

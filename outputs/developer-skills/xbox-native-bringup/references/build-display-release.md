@@ -27,6 +27,19 @@ NT5 applications must target its available imports and PE subsystem version.
 Check the actual target DLL exports. A modern compiler may introduce runtime
 helpers even when source uses no CRT; inspect the linked binary.
 
+For NT5 display packages, distinguish INF discovery/selection, file copying,
+device registration and activation after reboot. A matching INF and a working
+boot service do not prove completed installation. Check SetupAPI logs and the
+device's Driver/Service links. Replacing a protected Windows display DLL can
+elevate an otherwise permissive unsigned-driver policy to a warning. Prefer a
+project-owned DLL filename and matching InstalledDisplayDrivers token when
+packaging an independent replacement; preserve signing/protection settings.
+Validate another boot because the installation boot can still use the previously
+loaded DLL. Keep owned Microsoft media out of the authored source package.
+Compare the actual post-install service start type with the INF and baseline;
+installation can change it. If restoring that value alone still fails, do not
+label start type the root cause: trace image loading and device addition.
+
 ## Display contracts
 
 The loader, HAL, memory manager, boot-video and miniport must agree on framebuffer

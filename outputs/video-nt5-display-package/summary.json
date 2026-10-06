@@ -1,0 +1,95 @@
+{
+  "scope": "Installation experiments, not a qualified driver release",
+  "physical_access": false,
+  "package_qualified": false,
+  "cases": [
+    {
+      "case": "001",
+      "strict_passed": false,
+      "pnp_binding_present": false,
+      "installed_inf_exact": false,
+      "graphics_passed": null,
+      "normal_shutdown_count": 0,
+      "new_popup_count": 0,
+      "service_start": 1,
+      "all_payloads_match": true,
+      "bugcheck": null,
+      "cleanup_utc": "2026-10-06T00:15:04.1414010Z"
+    },
+    {
+      "case": "002",
+      "strict_passed": false,
+      "pnp_binding_present": false,
+      "installed_inf_exact": false,
+      "graphics_passed": true,
+      "normal_shutdown_count": 1,
+      "new_popup_count": 0,
+      "service_start": 1,
+      "all_payloads_match": true,
+      "bugcheck": null,
+      "cleanup_utc": "2026-10-06T00:21:43.7842933Z"
+    },
+    {
+      "case": "003",
+      "strict_passed": false,
+      "pnp_binding_present": true,
+      "installed_inf_exact": true,
+      "graphics_passed": true,
+      "normal_shutdown_count": 1,
+      "new_popup_count": 1,
+      "service_start": 3,
+      "all_payloads_match": true,
+      "bugcheck": null,
+      "cleanup_utc": "2026-10-06T00:29:02.5971864Z"
+    },
+    {
+      "case": "004",
+      "strict_passed": false,
+      "pnp_binding_present": true,
+      "installed_inf_exact": true,
+      "graphics_passed": false,
+      "normal_shutdown_count": 0,
+      "new_popup_count": 0,
+      "service_start": 3,
+      "all_payloads_match": true,
+      "bugcheck": {
+        "code": "0x000000b4",
+        "parameters": [
+          "0x00000000",
+          "0x00000000",
+          "0x00000000",
+          "0x00050000"
+        ],
+        "text": "The video driver failed to initialize"
+      },
+      "cleanup_utc": "2026-10-06T00:33:30.2530254Z"
+    },
+    {
+      "case": "005",
+      "strict_passed": false,
+      "pnp_binding_present": true,
+      "installed_inf_exact": true,
+      "graphics_passed": false,
+      "normal_shutdown_count": 0,
+      "new_popup_count": 0,
+      "service_start": 1,
+      "all_payloads_match": true,
+      "bugcheck": [
+        "0xb4",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x50000"
+      ],
+      "cleanup_utc": "2026-10-06T00:40:11.9405634Z"
+    }
+  ],
+  "conclusions": [
+    "INF discovery and complete driver registration are now reproducible in the owned fixture.",
+    "A project-owned xwnfb.dll name avoids the observed protected-framebuf copy warning.",
+    "Installation run003 still failed strict shutdown checks with one popup.",
+    "Subsequent boot004 fails0xB4; restoring only Start=1 in005 also fails0xB4.",
+    "Trace actual image loading and device addition next; no hardware promotion."
+  ],
+  "running_processes": []
+}

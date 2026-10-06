@@ -1,0 +1,295 @@
+{
+  "scope": "Cold audit of actual NT5 display installation or subsequent ordinary graphics boot.",
+  "case": "003",
+  "physical_access": false,
+  "payloads": [
+    {
+      "path": "winnt/system32/drivers/xboxvnt5.sys",
+      "sha256": "e8021879bd606eb9cfc6927fbf50565c41781779af86e56f4678fa890b6eb6ec",
+      "matched": true
+    },
+    {
+      "path": "Documents and Settings/All Users/Start Menu/Programs/Startup/xwnsetup.cmd",
+      "sha256": "698f7967d871de74b0d10d08dfd115b5f1176a9fe82e25c1311c34203dc4591b",
+      "matched": true
+    },
+    {
+      "path": "xwnlag01/runner.exe",
+      "sha256": "a0fdd981d058a0ae7c3f9361e5e44898ef9b3aac030139fdd508ae0aba22db23",
+      "matched": true
+    },
+    {
+      "path": "xwnlag01/replay.exe",
+      "sha256": "7d90f3c0d6f8bb4615792324c749f4f2bfcf8663928d93ac5a3b41f9afec23fb",
+      "matched": true
+    },
+    {
+      "path": "xwnlag02/replay.exe",
+      "sha256": "7d90f3c0d6f8bb4615792324c749f4f2bfcf8663928d93ac5a3b41f9afec23fb",
+      "matched": true
+    },
+    {
+      "path": "winnt/system32/framebuf.dll",
+      "sha256": "3d4c5c2659c06f9ae4c9a735a99ad972d4e773e02a0f1b7d4d8c2d18053e9db7",
+      "matched": true
+    },
+    {
+      "path": "xwninf01/install.exe",
+      "sha256": "7aa01342d74123f53fdc126445deddab9616b9ca35d9141394915daeeb964ffa",
+      "matched": true
+    },
+    {
+      "path": "xwninf01/xboxvnt5.inf",
+      "sha256": "0281108bc68a51f34ba2cc49755776d43145fcddd3cc457f582c3a2a3bf96b5d",
+      "matched": true
+    },
+    {
+      "path": "xwninf01/xboxvnt5.sys",
+      "sha256": "e8021879bd606eb9cfc6927fbf50565c41781779af86e56f4678fa890b6eb6ec",
+      "matched": true
+    },
+    {
+      "path": "xwninf01/framebuf.dll",
+      "sha256": "3d4c5c2659c06f9ae4c9a735a99ad972d4e773e02a0f1b7d4d8c2d18053e9db7",
+      "matched": true
+    },
+    {
+      "path": "xwninf01/xwnfb.dll",
+      "sha256": "3d4c5c2659c06f9ae4c9a735a99ad972d4e773e02a0f1b7d4d8c2d18053e9db7",
+      "matched": true
+    }
+  ],
+  "baseline_checks": {
+    "F/winnt/system32/drivers/xwnfatx.sys": true,
+    "E/Applications/XWNFBoot/loader/halxboxnt5.dll": true,
+    "E/Applications/XWNFBoot/default.xbe": true,
+    "E/Applications/XWNFBoot/freeldr.sys": true
+  },
+  "installation_api_succeeded": null,
+  "new_events": {
+    "system": [
+      {
+        "offset": 8492,
+        "record": 47,
+        "generated_unix": 1791260767,
+        "written_unix": 1791260767,
+        "event_id_hex": "c0001b58",
+        "event_id": 7000,
+        "type": 1,
+        "source": "Service Control Manager",
+        "computer": "XWN-PC",
+        "strings": [
+          "HID Input Service",
+          "%%2"
+        ],
+        "data_hex": ""
+      },
+      {
+        "offset": 8660,
+        "record": 48,
+        "generated_unix": 1791260765,
+        "written_unix": 1791260765,
+        "event_id_hex": "80001779",
+        "event_id": 6009,
+        "type": 4,
+        "source": "EventLog",
+        "computer": "XWN-PC",
+        "strings": [
+          "5.0",
+          "2195",
+          "Service Pack 4",
+          "Uniprocessor Free"
+        ],
+        "data_hex": ""
+      },
+      {
+        "offset": 8840,
+        "record": 49,
+        "generated_unix": 1791260765,
+        "written_unix": 1791260765,
+        "event_id_hex": "80001775",
+        "event_id": 6005,
+        "type": 4,
+        "source": "EventLog",
+        "computer": "XWN-PC",
+        "strings": [],
+        "data_hex": ""
+      },
+      {
+        "offset": 8936,
+        "record": 50,
+        "generated_unix": 1791260762,
+        "written_unix": 1791260792,
+        "event_id_hex": "c0040031",
+        "event_id": 49,
+        "type": 1,
+        "source": "Ftdisk",
+        "computer": "XWN-PC",
+        "strings": [
+          "\\Device\\HarddiskVolume6"
+        ],
+        "data_hex": "000000000100560000000000310004c0030000000000000000000000000000000000000000000000"
+      },
+      {
+        "offset": 9128,
+        "record": 51,
+        "generated_unix": 1791260914,
+        "written_unix": 1791260914,
+        "event_id_hex": "4000001a",
+        "event_id": 26,
+        "type": 4,
+        "source": "Application Popup",
+        "computer": "XWN-PC",
+        "strings": [
+          "rundll32.exe - DLL Initialization Failed",
+          "The application failed to initialize because the window station is shutting down. "
+        ],
+        "data_hex": ""
+      },
+      {
+        "offset": 9488,
+        "record": 52,
+        "generated_unix": 1791260916,
+        "written_unix": 1791260916,
+        "event_id_hex": "80001776",
+        "event_id": 6006,
+        "type": 4,
+        "source": "EventLog",
+        "computer": "XWN-PC",
+        "strings": [],
+        "data_hex": "ff000000"
+      }
+    ],
+    "application": []
+  },
+  "unexpected_errors": [],
+  "new_popup_records": [
+    {
+      "offset": 9128,
+      "record": 51,
+      "generated_unix": 1791260914,
+      "written_unix": 1791260914,
+      "event_id_hex": "4000001a",
+      "event_id": 26,
+      "type": 4,
+      "source": "Application Popup",
+      "computer": "XWN-PC",
+      "strings": [
+        "rundll32.exe - DLL Initialization Failed",
+        "The application failed to initialize because the window station is shutting down. "
+      ],
+      "data_hex": ""
+    }
+  ],
+  "normal_shutdown_count": 1,
+  "one_dashboard_return": true,
+  "device": {
+    "DeviceDesc": "Xbox NV2A firmware framebuffer (experimental)",
+    "LocationInformation": "PCI bus 1, device 0, function 0",
+    "Capabilities": 0,
+    "HardwareID": "PCI\\VEN_10DE&DEV_02A0&SUBSYS_00000000&REV_A1\u0000PCI\\VEN_10DE&DEV_02A0&SUBSYS_00000000\u0000PCI\\VEN_10DE&DEV_02A0&REV_A1\u0000PCI\\VEN_10DE&DEV_02A0\u0000PCI\\VEN_10DE&DEV_02A0&CC_030000\u0000PCI\\VEN_10DE&DEV_02A0&CC_0300",
+    "CompatibleIDs": "PCI\\VEN_10DE&CC_030000\u0000PCI\\VEN_10DE&CC_0300\u0000PCI\\VEN_10DE\u0000PCI\\CC_030000\u0000PCI\\CC_0300",
+    "ClassGUID": "{4D36E968-E325-11CE-BFC1-08002BE10318}",
+    "Service": "XboxVnt5",
+    "ConfigFlags": 0,
+    "Driver": "{4D36E968-E325-11CE-BFC1-08002BE10318}\\0001",
+    "Mfg": "Xbox Windows Native Project"
+  },
+  "driver_key": {
+    "InfPath": "oem2.inf",
+    "InfSection": "Xbox.Install",
+    "ProviderName": "Xbox Windows Native Project",
+    "DriverVersion": "0.1.0.97",
+    "MatchingDeviceId": "pci\\ven_10de&dev_02a0",
+    "DriverDesc": "Xbox NV2A firmware framebuffer (experimental)"
+  },
+  "service": {
+    "Type": 1,
+    "Start": 3,
+    "ErrorControl": 1,
+    "Group": "Video",
+    "ImagePath": "system32\\drivers\\xboxvnt5.sys",
+    "DisplayName": "Xbox NV2A firmware framebuffer (experimental)",
+    "Tag": 2
+  },
+  "device0": {
+    "InstalledDisplayDrivers": "xwnfb",
+    "VgaCompatible": 0,
+    "Device Description": "Xbox NV2A firmware framebuffer (experimental)",
+    "DefaultSettings.XResolution": 640,
+    "DefaultSettings.YResolution": 480,
+    "DefaultSettings.BitsPerPel": 32,
+    "DefaultSettings.VRefresh": 60
+  },
+  "installed_owned_display_sha256": "3d4c5c2659c06f9ae4c9a735a99ad972d4e773e02a0f1b7d4d8c2d18053e9db7",
+  "installed_owned_display_exact": true,
+  "owned_display_registered": true,
+  "pnp_binding_present": true,
+  "installed_inf_exact": true,
+  "new_setupapi_lines": [
+    "[2026/10/06 00:26:06 208.3 Driver Install]",
+    "Munged cmdline: C:\\WINNT\\system32\\services.exe",
+    "EXE name: C:\\WINNT\\system32\\services.exe",
+    "Searching for hardware ID(s): pci\\ven_10de&dev_02a0&subsys_00000000&rev_a1,pci\\ven_10de&dev_02a0&subsys_00000000,pci\\ven_10de&dev_02a0&rev_a1,pci\\ven_10de&dev_02a0,pci\\ven_10de&dev_02a0&cc_030000,pci\\ven_10de&dev_02a0&cc_0300",
+    "Searching for compatible ID(s): pci\\ven_10de&cc_030000,pci\\ven_10de&cc_0300,pci\\ven_10de,pci\\cc_030000,pci\\cc_0300",
+    "Enumerating files C:\\xwninf01\\*.inf",
+    "The file (C:\\xwninf01\\xboxvnt5.inf) is not digitally signed, ignoring driver date.",
+    "Found PCI\\VEN_10DE&DEV_02A0 in C:\\xwninf01\\xboxvnt5.inf; Device: Xbox NV2A firmware framebuffer (experimental); Driver: Xbox NV2A firmware framebuffer (experimental); Provider: Xbox Windows Native Project; Mfg: Xbox Windows Native Project; Section: Xbox.Install",
+    "Decorated section name: Xbox.Install",
+    "Device install function: DIF_SELECTBESTCOMPATDRV.",
+    "Selected driver installs from section Xbox.Install in c:\\xwninf01\\xboxvnt5.inf.",
+    "Changed class GUID of device to {4D36E968-E325-11CE-BFC1-08002BE10318}.",
+    "Set selected driver.",
+    "Selected best compatible driver.",
+    "Device install function: DIF_INSTALLDEVICEFILES.",
+    "Doing copy-only install of PCI\\VEN_10DE&DEV_02A0&SUBSYS_00000000&REV_A1\\3&477A1CA&0&00F0.",
+    "Installing section Xbox.Install from c:\\xwninf01\\xboxvnt5.inf.",
+    "Device install finished with error Error 0xe000022f: The third-party INF does not contain digital signature information.",
+    "Completed default installer, error: Error 0xe000022f: The third-party INF does not contain digital signature information.",
+    "[2026/10/06 00:26:11 208.18 Driver Install]",
+    "Device install function: DIF_SELECTBESTCOMPATDRV.",
+    "Selecting best compatible driver caused error: Error 0xe0000228: There are no compatible drivers for this device.",
+    "Completed default installer, error: Error 0xe0000228: There are no compatible drivers for this device.",
+    "[2026/10/06 00:26:22 876.2]",
+    "Munged cmdline: rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_02A0&SUBSYS_00000000&REV_A1\\3&477a1ca&0&00F0",
+    "EXE name: C:\\WINNT\\system32\\rundll32.exe",
+    "Set selected driver.",
+    "Searching for hardware ID(s): pci\\ven_10de&dev_02a0&subsys_00000000&rev_a1,pci\\ven_10de&dev_02a0&subsys_00000000,pci\\ven_10de&dev_02a0&rev_a1,pci\\ven_10de&dev_02a0,pci\\ven_10de&dev_02a0&cc_030000,pci\\ven_10de&dev_02a0&cc_0300",
+    "Searching for compatible ID(s): pci\\ven_10de&cc_030000,pci\\ven_10de&cc_0300,pci\\ven_10de,pci\\cc_030000,pci\\cc_0300",
+    "Enumerating files C:\\xwninf01\\*.inf",
+    "The file (C:\\xwninf01\\xboxvnt5.inf) is not digitally signed, ignoring driver date.",
+    "Found PCI\\VEN_10DE&DEV_02A0 in C:\\xwninf01\\xboxvnt5.inf; Device: Xbox NV2A firmware framebuffer (experimental); Driver: Xbox NV2A firmware framebuffer (experimental); Provider: Xbox Windows Native Project; Mfg: Xbox Windows Native Project; Section: Xbox.Install",
+    "Decorated section name: Xbox.Install",
+    "Device install function: DIF_SELECTBESTCOMPATDRV.",
+    "Selected driver installs from section Xbox.Install in c:\\xwninf01\\xboxvnt5.inf.",
+    "Changed class GUID of device to {4D36E968-E325-11CE-BFC1-08002BE10318}.",
+    "Set selected driver.",
+    "Selected best compatible driver.",
+    "Device install function: DIF_INSTALLDEVICEFILES.",
+    "Doing copy-only install of PCI\\VEN_10DE&DEV_02A0&SUBSYS_00000000&REV_A1\\3&477A1CA&0&00F0.",
+    "Installing section Xbox.Install from c:\\xwninf01\\xboxvnt5.inf.",
+    "An unsigned or incorrectly signed driver (c:\\xwninf01\\xboxvnt5.inf) was installed for Xbox NV2A firmware framebuffer (experimental). Error 0xe000022f: The third-party INF does not contain digital signature information.",
+    "Copying file c:\\xwninf01\\xboxvnt5.sys to C:\\WINNT\\system32\\DRIVERS\\xboxvnt5.sys.",
+    "An unsigned or incorrectly signed driver (c:\\xwninf01\\xboxvnt5.inf) was installed for Xbox NV2A firmware framebuffer (experimental). Error 0xe000022f: The third-party INF does not contain digital signature information.",
+    "Copying file c:\\xwninf01\\xwnfb.dll to C:\\WINNT\\system32\\xwnfb.dll.",
+    "An unsigned or incorrectly signed driver (c:\\xwninf01\\xboxvnt5.inf) was installed for Xbox NV2A firmware framebuffer (experimental). Error 0xe000022f: The third-party INF does not contain digital signature information.",
+    "Device install function: DIF_REGISTER_COINSTALLERS.",
+    "Co-Installers Registered.",
+    "Device install function: DIF_INSTALLINTERFACES.",
+    "Installing section Xbox.Install.Interfaces from c:\\xwninf01\\xboxvnt5.inf.",
+    "Interfaces installed.",
+    "Device install function: DIF_INSTALLDEVICE.",
+    "Doing full install of PCI\\VEN_10DE&DEV_02A0&SUBSYS_00000000&REV_A1\\3&477A1CA&0&00F0.",
+    "An unsigned or incorrectly signed driver (c:\\xwninf01\\xboxvnt5.inf) was installed for Xbox NV2A firmware framebuffer (experimental). Error 0xe000022f: The third-party INF does not contain digital signature information.",
+    "Query-removal during install of PCI\\VEN_10DE&DEV_02A0&SUBSYS_00000000&REV_A1\\3&477A1CA&0&00F0 was vetoed by PCI\\VEN_10DE&DEV_02A0&SUBSYS_00000000&REV_A1\\3&477a1ca&0&00F0 (veto type 6)",
+    "Device required reboot: Query remove failed (install) CfgMgr32 code: 23.",
+    "Device install finished successfully (PCI\\VEN_10DE&DEV_02A0&SUBSYS_00000000&REV_A1\\3&477A1CA&0&00F0)."
+  ],
+  "graphics_check_required": true,
+  "graphics_log": "XWN_GDI_PROBE_VERSION 3 256 128\r\nCAP_index_value 8 1024 0\r\nCAP_index_value 10 576 0\r\nCAP_index_value 12 32 0\r\nCAP_index_value 14 1 0\r\nCAP_index_value 116 60 0\r\nCAP_index_value 4 271 0\r\nCAP_index_value 6 152 0\r\nCAP_index_value 38 32409 0\r\nCAP_index_value 88 96 0\r\nCAP_index_value 90 96 0\r\nMODE_index_width_height 0 1024 576\r\nMODE_bpp_hz_flags 32 60 0\r\nCLIP_type_width_height 3 314 199\r\nCOPY_stage_pass 0 1 0\r\nVISIBLE_stage 1 1 0\r\nCOPY_stage_pass 1 1 0\r\nVISIBLE_stage 2 1 0\r\nCOPY_stage_pass 2 1 0\r\nVISIBLE_stage 3 1 0\r\nCOPY_stage_pass 3 1 0\r\nVISIBLE_stage 10 1 0\r\nTIMING_kind_count_ms 0 212 1500\r\nVISIBLE_stage 11 1 0\r\nTIMING_kind_count_ms 1 376 1500\r\nVISIBLE_stage 12 1 0\r\nTIMING_kind_count_ms 2 1670 1500\r\nVISIBLE_stage 13 1 0\r\nTIMING_kind_count_ms 3 177 1500\r\nVISIBLE_stage 14 1 0\r\nTIMING_kind_count_ms 4 353 1500\r\nPASS 0 0 0\r\n",
+  "graphics_attempt": "ATTEMPT_ONCE\r\nREPLAY_EXIT_ZERO\r\nNORMAL_RESTART_REQUEST\r\n",
+  "graphics_passed": true,
+  "passed": false,
+  "limits": "Ordinary owned synthetic-resource xemu only, diagnostic audio flags inherited. Not hardware, full allocation, performance, or arbitrary PnP lifetime qualification.",
+  "install_flags_cleared": true
+}

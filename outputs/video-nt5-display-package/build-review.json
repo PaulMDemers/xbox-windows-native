@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "installer_sha256": "7aa01342d74123f53fdc126445deddab9616b9ca35d9141394915daeeb964ffa",
+  "source_sha256": "e3ce6ccce4294a47969314b301a09b42ef0a7b863fa89911a848c207302c46cc",
+  "inf_sha256": "e5bb8800f7ac0f1cf424d0885449cc03750ce898ef9ea9e0c87c112f0ba1c31e",
+  "imports": {
+    "ADVAPI32.dll": [
+      "AdjustTokenPrivileges",
+      "LookupPrivilegeValueA",
+      "OpenProcessToken"
+    ],
+    "KERNEL32.dll": [
+      "CloseHandle",
+      "CreateFileA",
+      "ExitProcess",
+      "FlushFileBuffers",
+      "FreeLibrary",
+      "GetCurrentProcess",
+      "GetLastError",
+      "GetProcAddress",
+      "LoadLibraryA",
+      "SetLastError",
+      "Sleep",
+      "WriteFile"
+    ],
+    "USER32.dll": [
+      "ExitWindowsEx"
+    ]
+  },
+  "dynamic_exports": {
+    "newdev.dll": [
+      "UpdateDriverForPlugAndPlayDevicesA"
+    ]
+  },
+  "owned_export_targets": {
+    "advapi32.dll": "d24493dbb2b1818f9cd605acd3b2008d63354c0975e9a090ccdd04bcc339cc59",
+    "kernel32.dll": "6b05b0749b5dd86da94cc4acd062ca05472509f70216b56cd4a5b9809c602e73",
+    "user32.dll": "291210cf381dc269f8847a86e59a7cf775e5dd4086f94ff1266714f34ff55063",
+    "newdev.dll": "02a7467e08ba9ec1d9f519969f0b6a2c1c014400be5e81e1558a808a01afb5c0"
+  },
+  "note": "Static imports and dynamic entry point exist in the owned Windows 2000 binaries; runtime still unqualified."
+}
