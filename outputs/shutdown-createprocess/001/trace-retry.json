@@ -1,0 +1,252 @@
+{
+  "scope": "Observe NT5 installer creation returns and unwind; debugger evidence only.",
+  "physical_access": false,
+  "ordinary_boot_qualified": false,
+  "events": [],
+  "sites": {
+    "scope": "Pin user-mode creation/unwind sites from matching owned NT5 binaries.",
+    "binaries": {
+      "kernel32.dll": {
+        "sha256": "6b05b0749b5dd86da94cc4acd062ca05472509f70216b56cd4a5b9809c602e73",
+        "preferred_base": "0x7c570000"
+      },
+      "advapi32.dll": {
+        "sha256": "d24493dbb2b1818f9cd605acd3b2008d63354c0975e9a090ccdd04bcc339cc59",
+        "preferred_base": "0x7c2d0000"
+      },
+      "ntdll.dll": {
+        "sha256": "ed276d6a3ae93c71a6cef73672b82e3808211da1c63bf7d3e23d93294e54813a",
+        "preferred_base": "0x77f80000"
+      }
+    },
+    "kernel_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+    "sites": [
+      {
+        "name": "CreateProcessInternalW",
+        "module": "kernel32.dll",
+        "rva": 151731,
+        "address": 2086228147,
+        "bytes": "558bec",
+        "argc": 11,
+        "kind": "create"
+      },
+      {
+        "name": "CreateProcess_CsrReply",
+        "module": "kernel32.dll",
+        "rva": 157244,
+        "address": 2086233660,
+        "bytes": "399d50",
+        "argc": 0,
+        "kind": "csr"
+      },
+      {
+        "name": "CreateProcessAsUserW",
+        "module": "advapi32.dll",
+        "rva": 74795,
+        "address": 2083398699,
+        "bytes": "8bc055",
+        "argc": 11,
+        "kind": "create"
+      },
+      {
+        "name": "NtTerminateProcess",
+        "module": "ntdll.dll",
+        "rva": 36460,
+        "address": 2012778092,
+        "bytes": "b8e000",
+        "argc": 2,
+        "kind": "terminate"
+      },
+      {
+        "name": "NtSetInformationProcess_return",
+        "module": "ntdll.dll",
+        "rva": 36055,
+        "address": 2012777687,
+        "bytes": "c21000",
+        "argc": 4,
+        "kind": "setinfo_return"
+      },
+      {
+        "name": "NtRaiseHardError",
+        "module": "ntdll.dll",
+        "rva": 35436,
+        "address": 2012777068,
+        "bytes": "b8a000",
+        "argc": 6,
+        "kind": "harderror"
+      },
+      {
+        "name": "_NtRaiseHardError@24",
+        "rva": 608302,
+        "bytes": "558bec",
+        "argc": 6,
+        "frame": "esp",
+        "module": "ntoskrnl.exe",
+        "kind": "harderror"
+      },
+      {
+        "name": "_ExRaiseHardError@24",
+        "rva": 608900,
+        "bytes": "558bec",
+        "argc": 6,
+        "frame": "esp",
+        "module": "ntoskrnl.exe",
+        "kind": "harderror"
+      },
+      {
+        "name": "_ExpRaiseHardError@24",
+        "rva": 607510,
+        "bytes": "558bec",
+        "argc": 6,
+        "frame": "esp",
+        "module": "ntoskrnl.exe",
+        "kind": "harderror"
+      },
+      {
+        "name": "_NtShutdownSystem@4",
+        "rva": 591052,
+        "bytes": "8b4424",
+        "argc": 1,
+        "frame": "esp",
+        "module": "ntoskrnl.exe",
+        "kind": "shutdown"
+      }
+    ],
+    "disassembly": {
+      "kernel32.dll": [
+        {
+          "rva": "0x26627",
+          "bytes": "6a28",
+          "instruction": "push 0x28"
+        },
+        {
+          "rva": "0x26629",
+          "bytes": "6800000100",
+          "instruction": "push 0x10000"
+        },
+        {
+          "rva": "0x2662e",
+          "bytes": "53",
+          "instruction": "push ebx"
+        },
+        {
+          "rva": "0x2662f",
+          "bytes": "8d8530fdffff",
+          "instruction": "lea eax, [ebp - 0x2d0]"
+        },
+        {
+          "rva": "0x26635",
+          "bytes": "50",
+          "instruction": "push eax"
+        },
+        {
+          "rva": "0x26636",
+          "bytes": "ff154010577c",
+          "instruction": "call dword ptr [0x7c571040]"
+        },
+        {
+          "rva": "0x2663c",
+          "bytes": "399d50fdffff",
+          "instruction": "cmp dword ptr [ebp - 0x2b0], ebx"
+        },
+        {
+          "rva": "0x26642",
+          "bytes": "7d22",
+          "instruction": "jge 0x7c596666"
+        },
+        {
+          "rva": "0x26644",
+          "bytes": "ffb550fdffff",
+          "instruction": "push dword ptr [ebp - 0x2b0]"
+        },
+        {
+          "rva": "0x2664a",
+          "bytes": "e81e1cfeff",
+          "instruction": "call 0x7c57826d"
+        },
+        {
+          "rva": "0x2664f",
+          "bytes": "ffb550fdffff",
+          "instruction": "push dword ptr [ebp - 0x2b0]"
+        },
+        {
+          "rva": "0x26655",
+          "bytes": "ffb588feffff",
+          "instruction": "push dword ptr [ebp - 0x178]"
+        },
+        {
+          "rva": "0x2665b",
+          "bytes": "ff159c13577c",
+          "instruction": "call dword ptr [0x7c57139c]"
+        },
+        {
+          "rva": "0x26661",
+          "bytes": "e9b4010000",
+          "instruction": "jmp 0x7c59681a"
+        },
+        {
+          "rva": "0x26666",
+          "bytes": "f6452004",
+          "instruction": "test byte ptr [ebp + 0x20], 4"
+        },
+        {
+          "rva": "0x2666a",
+          "bytes": "7513",
+          "instruction": "jne 0x7c59667f"
+        },
+        {
+          "rva": "0x2666c",
+          "bytes": "8d859cfeffff",
+          "instruction": "lea eax, [ebp - 0x164]"
+        },
+        {
+          "rva": "0x26672",
+          "bytes": "50",
+          "instruction": "push eax"
+        },
+        {
+          "rva": "0x26673",
+          "bytes": "ffb5d0feffff",
+          "instruction": "push dword ptr [ebp - 0x130]"
+        },
+        {
+          "rva": "0x26679",
+          "bytes": "ff159813577c",
+          "instruction": "call dword ptr [0x7c571398]"
+        }
+      ]
+    },
+    "thread_owner_offset": 556,
+    "teb_offset": 32,
+    "limits": "User-mode sites use preferred image bases and verify bytes when hit. Dynamic return sites are tied to the originating ETHREAD and exact saved return address. No changed return values or guest data."
+  },
+  "started_utc": "2026-10-06T16:16:56.124410+00:00",
+  "active_sites": {
+    "0x7c5950b3": "CreateProcessInternalW",
+    "0x7c59663c": "CreateProcess_CsrReply",
+    "0x7c2e242b": "CreateProcessAsUserW",
+    "0x77f88e6c": "NtTerminateProcess",
+    "0x77f88cd7": "NtSetInformationProcess_return",
+    "0x77f88a6c": "NtRaiseHardError",
+    "0x8247282e": "_NtRaiseHardError@24",
+    "0x82472a84": "_ExRaiseHardError@24",
+    "0x82472516": "_ExpRaiseHardError@24",
+    "0x8246e4cc": "_NtShutdownSystem@4"
+  },
+  "trace_source_sha256": "a638f0c7bc1c7461db34d4da3aab831679f41657d3c4b2065b7376bfd7ac9b85",
+  "ignored_hits": 45,
+  "gdb_features": "PacketSize=20020;qXfer:features:read+;vContSupported+;multiprocess+",
+  "initial_stop": "T05thread:01;",
+  "status": "capture_incomplete",
+  "error": "AssertionError('E14')",
+  "host_traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\outputs\\shutdown-createprocess\\trace.py\", line 95, in <module>\n    assert g.read(address,len(bytes.fromhex(site['bytes']))).hex()==site['bytes'],site\n           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<string>\", line 24, in read\nAssertionError: E14\n",
+  "verified_live_sites": [
+    {
+      "address": "0x77f88cd7",
+      "name": "NtSetInformationProcess_return"
+    }
+  ],
+  "pending_returns": [],
+  "guest_resumed": true,
+  "ended_utc": "2026-10-06T16:17:06.456777+00:00"
+}

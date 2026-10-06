@@ -1,0 +1,160 @@
+{
+  "scope": "Review saved diagnostic evidence only; never launch a guest or contact hardware.",
+  "physical_access": false,
+  "ordinary_boot_qualified": false,
+  "popup_reproduced": false,
+  "runs": [
+    {
+      "case": "001",
+      "launch": {
+        "cycle": 1,
+        "status": "accepted",
+        "launch_requested_utc": "2026-10-06T16:15:47.276490+00:00",
+        "command": "SITE EXEC E:\\Applications\\XWNFBoot\\default.xbe",
+        "reply": "200 EXEC command succeeded.",
+        "dashboard_return_utc": "2026-10-06T16:18:45.187959+00:00",
+        "offline_observed": true,
+        "dashboard_return": true
+      },
+      "attachments": [
+        {
+          "report": "trace.json",
+          "source": "trace-initial-source.py",
+          "sha256": "3cd6c60bda9c34447ebb29d1b8497e4af94f33999957fc915dc9e6aceac641ac",
+          "source_hash_matches": true,
+          "status": "capture_incomplete",
+          "error": "AssertionError('E14')",
+          "events": 59,
+          "guest_resumed": true,
+          "unreadable_site_hits": [],
+          "pending_return_count": 0
+        },
+        {
+          "report": "trace-retry.json",
+          "source": "trace-retry-source.py",
+          "sha256": "a638f0c7bc1c7461db34d4da3aab831679f41657d3c4b2065b7376bfd7ac9b85",
+          "source_hash_matches": true,
+          "status": "capture_incomplete",
+          "error": "AssertionError('E14')",
+          "events": 0,
+          "guest_resumed": true,
+          "unreadable_site_hits": [],
+          "pending_return_count": 0
+        },
+        {
+          "report": "trace-paging.json",
+          "source": "trace-paging-source.py",
+          "sha256": "7ecaa224fbf5704439e5f877902cc28fe6ff7322ebb51882e3001ba6ee4e422e",
+          "source_hash_matches": true,
+          "status": "reached_kernel_shutdown",
+          "error": null,
+          "events": 8,
+          "guest_resumed": true,
+          "unreadable_site_hits": [
+            {
+              "address": "0x77f88cd7",
+              "utc": "2026-10-06T16:18:12.660389+00:00"
+            }
+          ],
+          "pending_return_count": 0
+        }
+      ],
+      "diagnostic_checks_passed": true,
+      "normal_shutdown_count": 1,
+      "new_popup_count": 0,
+      "structural_hives": 5,
+      "cleanup": {
+        "completedUtc": "2026-10-06T16:18:45.5476785Z",
+        "scratchDirectory": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\work\\scratch\\windows-native-76962c2f7979477bb6b011c914a03811",
+        "retained": false,
+        "reason": ""
+      }
+    },
+    {
+      "case": "002",
+      "launch": {
+        "cycle": 1,
+        "status": "accepted",
+        "launch_requested_utc": "2026-10-06T16:20:06.605446+00:00",
+        "command": "SITE EXEC E:\\Applications\\XWNFBoot\\default.xbe",
+        "reply": "200 EXEC command succeeded.",
+        "dashboard_return_utc": "2026-10-06T16:23:10.772148+00:00",
+        "offline_observed": true,
+        "dashboard_return": true
+      },
+      "attachments": [
+        {
+          "report": "trace.json",
+          "source": "trace-initial-source.py",
+          "sha256": "82804f671283dabee3ac7adddf44655b8b7e8623a1211e82e346842cb8e120bc",
+          "source_hash_matches": true,
+          "status": "bounded_capture_limit",
+          "error": null,
+          "events": 512,
+          "guest_resumed": true,
+          "unreadable_site_hits": [],
+          "pending_return_count": 0
+        },
+        {
+          "report": "trace-retry.json",
+          "source": "trace-retry-source.py",
+          "sha256": "9e79d7ef0fec5b6a7631f4d7d76b68b8f46bfd73a7414062e96ea8198d45c136",
+          "source_hash_matches": true,
+          "status": "reached_kernel_shutdown",
+          "error": null,
+          "events": 1,
+          "guest_resumed": true,
+          "unreadable_site_hits": [],
+          "pending_return_count": 0
+        }
+      ],
+      "diagnostic_checks_passed": true,
+      "normal_shutdown_count": 1,
+      "new_popup_count": 0,
+      "structural_hives": 5,
+      "cleanup": {
+        "completedUtc": "2026-10-06T16:23:11.1138626Z",
+        "scratchDirectory": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\work\\scratch\\windows-native-939c77b73954475bb938cf2c43ccfb29",
+        "retained": false,
+        "reason": ""
+      }
+    }
+  ],
+  "late_attempt": {
+    "report": "001/trace-paging.json",
+    "event_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "command": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B4&SUBSYS_00000000&REV_B1\\2&ebb567f&0&09",
+    "caller": "0x767a66de",
+    "input_token": "0x8f4",
+    "created_process_information": [
+      "0x904",
+      "0x8f4",
+      "0x2e0",
+      "0x384"
+    ],
+    "inner_success": true,
+    "outer_success": false,
+    "last_error": 6,
+    "cleanup_status": 5,
+    "cleanup_status_is_original_error": false,
+    "token_numeric_value_equals_new_thread_handle": true
+  },
+  "limits": [
+    "Two diagnostic boots and five attachments, not five Windows launches.",
+    "All partial traces and the 512-event bound remain recorded; gaps are not reconstructed.",
+    "Debugger pauses alter scheduling; clean controls do not qualify normal boots.",
+    "Run002 retry captured only kernel shutdown, so native token-query evidence remains incomplete.",
+    "Run001 CSR caller field is an interior stack value, not a return address; attribution uses API entries.",
+    "Static saved-token close/clear order and handle-value reuse do not prove a race or the responsible close.",
+    "No intermittent popup reproduced; physical soak3 strict failure and all event gates remain unchanged."
+  ]
+}

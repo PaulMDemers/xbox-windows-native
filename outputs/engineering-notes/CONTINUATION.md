@@ -1,3 +1,47 @@
+# Late installer fails with invalid handle; popup still unresolved
+
+2026-10-06 UTC, outputs/shutdown-createprocess. Two owned emulator boots and
+five separately preserved debugger attachments completed. No physical access,
+deployment, registry changes or popup suppression. Physical FATX0098/video0093,
+normal startup, original0088 rollback and immutable0.1.0 remain unchanged.
+Soak3 strict FAIL remains authoritative; no PASS-gated recovery capture.
+Automation remains PAUSED. All owned processes finished; cleanup records and
+source-hash checks are in shutdown-createprocess/summary.json.
+
+Run001 final trace captures services.exe calling CreateProcessAsUserW for
+PCI10DE:01B4 from umpnpmgr at0x767a66de. CreateProcessInternalW succeeds,
+returning hProcess0x904/hThread0x8f4, PID736/TID900. The outer call then fails
+with last-error6 (invalid handle), after terminating its child. Its input token
+was also0x8f4. Matching advapi32 code proves termination argument5 is a fixed
+cleanup constant, not the original error or proof of access denial. Matching
+umpnpmgr code supplies a saved token at RVA15b64. Handle-value reuse and a
+separate close-then-clear block are leads; they do not establish the responsible
+close, synchronization failure or popup cause.
+
+Run001 attachments:59 events then instruction-read E14;0 events then localized
+E14;8 events through kernel shutdown after unreadable-site handling. Run002:
+512-event bound with broad native token tracing; narrowed attachment captured
+only kernel shutdown. No missing interval or token-query outcome is inferred.
+All five source snapshots match their trace hashes and all resumed the guest.
+The original001 CSR interior site's caller field is the stack top, not a return
+address; use API-entry callers. Latest tracer fixes that reporting field.
+
+Both cold audits show normal shutdown/dashboard return, completed five-sample
+helper, exact payloads and matched kernel32/advapi32/ntdll/umpnpmgr/kernel binaries,
+plus five structurally traversable hives. No new popup. Diagnostic checks retain
+known recurring baseline SCM7000/Ftdisk49 signatures; these are not strict soak
+qualification, full allocation audits or ordinary boots. Debugger effects and
+the emulator's older queue/video0096 fixture remain explicit limits.
+
+Next: observe umpnpmgr saved-token lifetime and native token-query/duplication
+results around a failing late creation, including synchronization with logoff.
+Inspect matched module code before adding narrowly scoped observation sites.
+Capture the actual intermittent hard-error caller before claiming causality.
+Do not repeat identical hardware soaks, change FAILEDINSTALL policy, suppress
+the popup or deploy a driver based on this clean-branch observation.
+
+## Prior continuation (historical)
+
 # Installer queue transition captured; popup still unresolved
 
 2026-10-06 UTC, outputs/shutdown-installer-trace. Three owned debugger runs

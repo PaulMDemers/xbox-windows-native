@@ -16,6 +16,11 @@ is restored; no recovery capture or further video change followed. Investigate
 the installer/shutdown path and warning sources before another strict test.
 Actual user application observations remain from earlier runs and are separate.
 FATX0098/video0093 is the current physical combination.
+The [late creation trace](../shutdown-createprocess/README.md) isolates an
+invalid-handle return from CreateProcessAsUserW after its inner creation succeeds.
+The cleanup status5 is a fixed constant, not the original failure. PnP saved-token
+lifetime is the next investigation target; no popup reproduced in these debugger
+controls, so this is neither a fix nor authorization to waive the soak failure.
 The follow-up [shutdown diagnostic](../shutdown-diagnostics/README.md) confirms
 Windows F:/G:/H: map to dashboard C:/X:/Y: and report0.56%,2.89%,6.18% free;
 the large boot/data partition is not the warned volume. A clean two-minute
