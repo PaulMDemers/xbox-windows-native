@@ -1,3 +1,31 @@
+# Continuation: FATX0098 second timed soak launched once
+
+New human authorization: Proceed with a fresh attempt after the interrupted run.
+outputs/fatx0098-soak2/physical.json records accepted launch at
+2026-10-06 02:43:17.685748 UTC. No driver, video, HAL, loader or trace reseeding.
+All baseline hashes match. Exact previously rehearsed probe/matched binaries are
+reused; no new emulator run. Prior strict emulator popup failure stays recorded.
+
+All 59 prior test-folder files were captured locally and readback verified before
+and after renaming /F/xwns98 to /F/xwns98-first. Both user-saved files are included.
+New /F/xwns98 is this attempt's exclusive workspace; no old results were reused.
+Original attempt reports remain untouched. Six verifier rejection checks pass.
+
+Running: watch.py windows, exec session64538, started02:43:21UTC; offline observed.
+Do not launch Windows again. Let its fifteen-minute workload request its own
+normal restart. Follow-up automation xbox-15-minute-soak-validation is ACTIVE,
+every five minutes; remain quiet before03:01UTC unless user reports trouble.
+At return collect once (normal startup restored FIRST), qualify provisionally,
+launch the new readonly scan once at /E/Applications/XWNSoak98b, observe/collect,
+audit binaries/hives, qualify and final-state if PASS, else verify-installed.
+If still offline after03:07UTC ask once for the screen, never infer a crash.
+
+Do not waive recurring Srv warnings; strict gates unchanged. Capture-recovery.py
+requires full qualification and final-state PASS, and includes both test folders.
+Preserve0.1.0. Commit follow-up results and pause automation at completion/block.
+
+## Previous attempt (retained)
+
 # Continuation: FATX0098 interrupted soak audited; console on dashboard
 
 Latest: outputs/fatx0098-soak. The user restarted during the final timed wait.
