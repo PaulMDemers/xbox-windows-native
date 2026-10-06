@@ -1,3 +1,45 @@
+# Installed GPU state: three clean independent emulator replays
+
+2026-10-06 UTC. Added shutdown-device-install003/004; physical Xbox untouched.
+FATX0098/video0093/normal startup, original0088 rollback, immutable0.1.0 remain.
+First-install001 FAIL and physical soak3 strict FAIL remain. No hardware launch,
+driver rebuild, registry change, recovery capture or automation in this turn.
+All owned emulator runners/supervisors and read-only NBD audit processes finished.
+
+003 launched once18:28:11, returned18:30:37 UTC.004 launched once18:31:34,
+returned18:34:00. Both use byte-identical seed copies backed by the immutable
+pre-run002 fixture, separate writable runtime disks, and verified absent result
+logs. They are independent second-boot replays, not consecutive reboot cycles.
+No GDB attachment or framebuffer-capture intervention.
+
+Both pass527 checks,16 synthetic BMP API cases,50 exact files,34 absent
+intermediates,15 timed rounds>=60000ms, first-workload preservation, all checked
+runtime/payload identities, five traversable hives, one EventLog normal shutdown,
+no new popup and no unexpected event errors. GPU binding/INF/Start=3 remain.
+Combined with002: three clean replays. Each new SetupAPI delta contains only
+the emulator PCI1B36:0005 client installer (no compatible driver), no GPU
+reinstallation. SetupAPI headings are not process lifetime traces; do not assign
+popup ownership or the earlier token race to these runs.
+
+Read-only full F: allocation audits: starting fixture6,795 files; each repeat
+6,847 (50 payloads+two logs);322 directories/323 directory clusters, zero orphans
+or errors.2,127,616 reserved marks retain identical positions. These are retained
+emulator reservations, not physical bad sectors. Other partitions and the full
+binary archive are outside this added scan. Previous001/002 scopes stay intact.
+
+Evidence: outputs/shutdown-device-install/{003,004,before}, evidence-review.json,
+installer-event-comparison.json and README.md. Preparation/run/audit tools refuse
+reusing recorded launches/scan outputs. Raw disks/hives/metadata stay private.
+
+Next is NEXT.md: isolate first-time GPU installation from the mapping workload
+in a fresh owned fixture, with a matched unchanged/timing control. Let normal
+installation complete and request shutdown; inspect events/SetupAPI/binaries.
+No FAILEDINSTALL edits or installer suppression. Resolve first-install failure
+and display lifetime qualification before proposing a hardware package. Clean
+replays do not waive physical Srv2013 warnings or qualify accelerated graphics.
+
+## Prior continuation (historical)
+
 # GPU package installed; first boot FAIL, second bounded boot PASS
 
 2026-10-06 UTC, outputs/shutdown-device-install. Physical Xbox untouched:

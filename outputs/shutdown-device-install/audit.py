@@ -7,7 +7,7 @@ k=Path(__file__).resolve().parent;ws=k.parents[1]
 sys.path.insert(0,str(ws/'outputs/native-windows-paint-save'));m=importlib.import_module('prepare-fixture')
 sys.path.insert(0,'/home/paul/xbox-windows-native/toolchains/offline-disk/root/usr/lib/python3/dist-packages')
 import hivex
-case=sys.argv[1];assert case in ['001','002']
+case=sys.argv[1];assert case in ['001','002','003','004']
 out=k/case;art=out/'artifacts';art.mkdir(parents=True,exist_ok=True)
 fixture=json.loads((k/('fixture-'+case+'.json')).read_text())
 base=ws/'outputs/native-windows-fatx-forensics/artifacts'/fixture.get('fixture_name','fatx0098-soak-'+case+'.qcow2')
@@ -37,7 +37,7 @@ with contextlib.ExitStack() as stack:
     for letter,path in [('F','winnt/system32/drivers/xwnfatx.sys'),('E','Applications/XWNFBoot/loader/halxboxnt5.dll'),('E','Applications/XWNFBoot/default.xbe'),('E','Applications/XWNFBoot/freeldr.sys')]:
         r['baseline_checks'][letter+'/'+path]=before[letter].read(path)==after[letter].read(path)
     r['fatx_exact']=m.sha(after['F'].read('winnt/system32/drivers/xwnfatx.sys'))==fixture['fatx_sha256']
-    workload_directory='xwns99' if case=='002' else 'xwns98'
+    workload_directory='xwns99' if case!='001' else 'xwns98'
     def read(name):
         try:return after['F'].read(workload_directory+'/'+name)
         except KeyError:return None
@@ -68,7 +68,7 @@ with contextlib.ExitStack() as stack:
         a,b=decoded;by={v['record']:v for v in b};assert all(by.get(v['record'])==v for v in a)
         known.extend(a);boundary=max((v['record'] for v in a),default=0)
         r['new_events'][label]=[v for v in b if v['record']>boundary]
-    if case=='002':
+    if case!='001':
         def read_first(name):
             try:return after['F'].read('xwns98/'+name)
             except KeyError:return None

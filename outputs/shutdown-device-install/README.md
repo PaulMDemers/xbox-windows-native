@@ -67,13 +67,48 @@ state, compare installer/event timing against the unchanged failing baseline,
 and handle emulator-only device support separately. Any proposed hardware
 package must first pass repeated boot/shutdown and display lifetime checks.
 
+## Independent installed-state repetitions
+
+Cases003/004 replay the exact immutable pre-run002 fixture in separate writable
+disks. They are independent repetitions of the second-boot scenario, not a chain
+of consecutive reboots. Preparation verifies hashes, unchanged retained hives/
+trace/first workload, exact helpers and absent xwns99 result/matched logs.
+No debugger, screen capture, registry edit or driver rebuild is used.
+
+Both repeats passed. Run003 launched at18:28:11 UTC and returned18:30:37;
+run004 launched18:31:34 and returned18:34:00. Each passes527 mapping checks,
+16 BMP API cases,50 exact files,34 absent intermediates,15 rounds>=60,000ms,
+one normal EventLog shutdown, no new popup and no unexpected event errors.
+Each preserves the first workload and exact checked binaries, parses five hives,
+and retains the expected GPU registration/INF with service Start=3.
+
+The immutable starting F: allocation and both final F: allocations are consistent:
+zero orphan clusters/errors,322 directories,323 directory clusters. Files rise
+from6,795 to6,847 as expected from50 payload files plus two logs. All2,127,616
+preexisting reserved FAT marks retain identical positions. These deliberately
+reserved emulator marks are not a report of physical bad sectors. The full scans
+cover F: only. No other physical partitions or full binary archive are requalified.
+
+Together002-004 are three clean independent replays. Each new SetupAPI delta
+contains PCI1B36:0005 installation with no compatible driver and no GPU reinstall.
+No new hard-error owner tracing was performed. First-install001 remains FAIL,
+and no hardware candidate is promoted. All owned test/audit processes finished.
+
+`prepare-repeats.py` creates unique seeds and refuses existing outputs.
+`compare-installer-events.py` retains newdev commands and SetupAPI headings
+beside event results; headings are not process creation/exit timestamps.
+`audit-allocation.py` uses the established read-only NBD/range-reader crosscheck
+and full F: allocation analyzer on the immutable input and completed repeats.
+The allocation evidence extends003/004; it does not rewrite earlier audit scope.
+See [NEXT.md](NEXT.md) for the outstanding first-install hardware gate.
+
 ## Reproduction and evidence
 
 - `prepare.py`: create first owned fixture, refusing existing targets.
 - `Build.ps1` / `review.py`: build and inspect the second-folder helpers.
 - `prepare-second.py`: retain installation state and stage a fresh workload.
-- `Run.ps1 -Case 001|002`: owned emulator with independent disk and leases.
-- `supervise.py 001|002`: launch once through localhost4596 and observe return.
+- `Run.ps1 -Case 001|002|003|004`: owned emulator with independent disk and leases.
+- `supervise.py 001|002|003|004`: launch once through localhost4596 and observe return.
 - `audit.py` / `audit-package.py`: cold read-only workload, event, hive and package
   checks after owned cleanup. The second audit also rechecks first-run files.
 
@@ -83,6 +118,7 @@ The supervisor uses XWN_EMULATOR_FTP_USER/PASSWORD and only127.0.0.1.
 Do not replay a recorded launch or mutate an existing fixture to obtain PASS.
 
 These diagnostic event checks retain previously identical SCM7000/Ftdisk49
-signatures, and do not waive physical Srv2013 warnings. No full allocation audit
-or physical qualification is supplied by this kit. Actual Paint UI behavior is
-separate from synthetic BMP replay. No new recovery snapshot is eligible.
+signatures, and do not waive physical Srv2013 warnings. Original001/002 audits
+have no full allocation scan; added scans cover the repeat input and003/004.
+No physical qualification is supplied. Actual Paint UI behavior is separate
+from synthetic BMP replay. No new recovery snapshot is eligible.

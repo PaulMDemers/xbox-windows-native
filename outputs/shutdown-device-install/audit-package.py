@@ -2,7 +2,7 @@
 import contextlib,importlib,json,sys
 from pathlib import Path
 root=Path(__file__).resolve().parent;ws=root.parents[1]
-case=sys.argv[1];assert case in ['001','002'];k=root/case
+case=sys.argv[1];assert case in ['001','002','003','004'];k=root/case
 sys.path.insert(0,str(ws/'outputs/native-windows-paint-save'));m=importlib.import_module('prepare-fixture')
 sys.path.insert(0,str(ws/'outputs/fatx-mapped-eof'));from coldio import ColdIO
 sys.path.insert(0,'/home/paul/xbox-windows-native/toolchains/offline-disk/root/usr/lib/python3/dist-packages')

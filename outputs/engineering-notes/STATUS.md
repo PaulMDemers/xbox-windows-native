@@ -41,10 +41,12 @@ be assigned to the physical console without physical evidence.
 
 The latest [GPU package experiment](../shutdown-device-install/README.md)
 completed a normal installation using unchanged physical-baseline binaries.
-Its first run still recorded the popup and missed dashboard return. A second
-boot retained the registration and passed the bounded workload/shutdown checks
-without a popup. This is one clean installed-state boot, not a fix or a new
-hardware-qualified package.
+Its first run still recorded the popup and missed dashboard return. Three independent
+replays of the installed state retained registration and
+passed bounded workload/shutdown checks without a popup. Full F: allocation
+checks on the input and two latest replays were clean, with reserved marks
+unchanged. These are independent replays, not consecutive reboots or proof of a
+fix. The first-install failure still prevents promoting a hardware package.
 
 ## Graphics and device support
 

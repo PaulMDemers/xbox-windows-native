@@ -1,0 +1,100 @@
+{
+  "scope": "Summarize SetupAPI attempts and cold event results; no inferred process lifetimes.",
+  "physical_access": false,
+  "cases": [
+    {
+      "case": "001",
+      "installer_attempts": [
+        {
+          "setupapi_heading": "[2026/10/06 17:47:44 820.2]",
+          "command": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_02A0&SUBSYS_00000000&REV_A1\\3&477a1ca&0&00F0"
+        }
+      ],
+      "popup_records": [
+        {
+          "offset": 9128,
+          "record": 51,
+          "generated_unix": 1791323368,
+          "written_unix": 1791323368,
+          "event_id_hex": "4000001a",
+          "event_id": 26,
+          "type": 4,
+          "source": "Application Popup",
+          "computer": "XWN-PC",
+          "strings": [
+            "rundll32.exe - DLL Initialization Failed",
+            "The application failed to initialize because the window station is shutting down. "
+          ],
+          "data_hex": ""
+        }
+      ],
+      "shutdowns": [
+        {
+          "record": 52,
+          "generated_unix": 1791323372
+        }
+      ],
+      "dashboard_return": false,
+      "workload_passed": true,
+      "package_and_workload_passed": false
+    },
+    {
+      "case": "002",
+      "installer_attempts": [
+        {
+          "setupapi_heading": "[2026/10/06 17:58:46 924.2]",
+          "command": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_1B36&DEV_0005&SUBSYS_00000000&REV_00\\2&ebb567f&0&03"
+        }
+      ],
+      "popup_records": [],
+      "shutdowns": [
+        {
+          "record": 57,
+          "generated_unix": 1791324014
+        }
+      ],
+      "dashboard_return": true,
+      "workload_passed": true,
+      "package_and_workload_passed": true
+    },
+    {
+      "case": "003",
+      "installer_attempts": [
+        {
+          "setupapi_heading": "[2026/10/06 18:28:49 904.2]",
+          "command": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_1B36&DEV_0005&SUBSYS_00000000&REV_00\\2&ebb567f&0&03"
+        }
+      ],
+      "popup_records": [],
+      "shutdowns": [
+        {
+          "record": 57,
+          "generated_unix": 1791325819
+        }
+      ],
+      "dashboard_return": true,
+      "workload_passed": true,
+      "package_and_workload_passed": true
+    },
+    {
+      "case": "004",
+      "installer_attempts": [
+        {
+          "setupapi_heading": "[2026/10/06 18:32:10 844.2]",
+          "command": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_1B36&DEV_0005&SUBSYS_00000000&REV_00\\2&ebb567f&0&03"
+        }
+      ],
+      "popup_records": [],
+      "shutdowns": [
+        {
+          "record": 57,
+          "generated_unix": 1791326022
+        }
+      ],
+      "dashboard_return": true,
+      "workload_passed": true,
+      "package_and_workload_passed": true
+    }
+  ],
+  "limits": "SetupAPI headings document log entries, not process creation/exit times. No root cause, popup owner or physical-device assignment is inferred. Cases002-004 are independent replays of one installed state, not three consecutive reboots."
+}
