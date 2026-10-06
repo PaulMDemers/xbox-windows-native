@@ -1,37 +1,35 @@
-# ACTIVE: one FATX0098 fifteen-minute soak on the physical Xbox
+# Continuation: FATX0098 interrupted soak audited; console on dashboard
 
-Launched 2026-10-06 02:06:48 UTC; FTP accepted. NEVER relaunch this attempt.
-No driver changes: FATX0098/video0093/Microsoft framebuf/HAL/loader retained.
-New owned test path C:\xwns98 (dashboard F:). Exact source, helpers, fixtures,
-launch and eligibility records: outputs/fatx0098-soak. Emulator closed normally.
+Latest: outputs/fatx0098-soak. The user restarted during the final timed wait.
+Normal EventLog shutdown is recorded. All527 mapping checks,16 synthetic BMP
+save replays,50 exact automated files and34 deleted intermediates passed, but
+only14 timed markers (840000ms) and no COMPLETE/automatic restart marker exist.
+The full15-minute soak remains INCOMPLETE, not a driver failure or full PASS.
+No Windows relaunch was made. Do not reuse these trial/scan IDs.
 
-Owned observer watch.py windows is running. Expect normal return around
-02:24 UTC, allowing boot plus BMP replay, at least 15 minutes of timed rounds,
-and shutdown. Do not infer a crash from offline FTP. If still offline well after
-02:30 UTC, ask once for the screen; never repeat the launch.
+Post-return allocation audit:122248 files,6069 directories,zero errors/orphans.
+All3439 manifest binaries match; nine hives pass header and key/value traversal.
+No new application events/popups. Three Srv2013 warnings exactly match previous
+records; strict qualification preserves them. No gate was weakened to claim PASS.
 
-Next on dashboard return: physical.py collect (restores startup FIRST), qualify.py
-for provisional workload/event result, then scan.py launch ONCE, watch.py scan,
-scan.py collect, audit-binaries.py, qualify.py again, final-state.py.
-Run audit-manual.py after collection, keeping user observations separate. After
-PASS, capture-recovery.py creates a new private file-level system/boot snapshot;
-then commit/push reports and pause the soak follow-up automation. Scripts use
-XWN_FTP_HOST/USER/PASSWORD from this session. Existing0088 rollback remains at
-/F/xwneof98/rollback.sys. This attempt also preserves its starting0098 copy.
-There is no trace reseeding. Never alter the 0.1.0 tag/bundles.
+User-saved C:\xwns98\manual-apint.bmp (961x532 RGB,1534342 bytes) decodes fully;
+C:\xwns98\manuel-note.txt (27 ASCII bytes) was read back after reboot. Exact
+hashes and user observations are separate reports. User reports apps opened/
+closed, saves, Pinball and an OpenGL application running, with apparently faster
+window redraw still visibly filling top-to-bottom. Actual UI reopen success,
+measured speedup and hardware OpenGL acceleration are not established.
 
-Expected: 527 mappings, 16 synthetic Paint BMP saves, 50 exact final data files,
-34 absent intermediates, 15 timed rounds (at least900000ms), normal shutdown,
-clean new events, complete allocation, 3439 binary hashes, nine structural hives.
-Manual Paint/Notepad was offered to user; no new user observation received yet.
-Suggested owned filenames manual-paint.bmp, manual-paint2.bmp, manual-note.txt.
-No actual application UI pass may be inferred from synthetic API replay.
+Normal startup restored. FATX0098/video0093/framebuf/HAL/loader are unchanged;
+original0088 rollback remains at/F/xwneof98/rollback.sys. installed-state.json
+verifies these independently of the failed timed gate. All owned emulators,
+observers, scan and audit processes are closed. New recovery capture was not run
+because its full-soak PASS prerequisite was not met;0.1.0 bundles/tag intact.
 
-Rehearsal: same helper binary, explicit rehearsal argument, four-second rounds;
-527 mappings/data/deletions and16 BMP replays pass, full allocation clean. Normal
-restart and payload/hive checks pass, but known old-control rundll32 shutdown
-popup means strict emulator FAIL. eligibility.json records why this unchanged-
-driver physical soak proceeds independently; no physical popup is waived.
+Next: a fresh timed soak with its own completion and automatic restart evidence,
+then updated recovery capture and the separate video plan. No additional Windows
+run belongs to this attempt. Pause the follow-up automation after committing.
+
+## Historical continuation
 
 # Continuation: FATX0098 passes the bounded physical trial
 

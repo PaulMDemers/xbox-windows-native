@@ -32,7 +32,7 @@ binaries and nine registry hives, then qualify.py and final-state.py. A PASS log
 or dashboard return alone is insufficient. Never relaunch this test after a
 launch timeout. Keep manual application results separate from automated checks.
 
-Status: physical launch accepted at 2026-10-06 02:06:48 UTC; result pending.
+Status: physical run returned after user restart; timed soak incomplete. See summary.json and the result below.
 Emulator storage/allocation checks pass, but the known shutdown popup remains
 a strict emulator failure; eligibility.json preserves the bounded decision. Release0.1.0 is
 unchanged. No video performance, HD modes or general concurrency claims follow.
@@ -55,3 +55,29 @@ applications, pagefile and firmware. Every ZIP file entry is read back and hashe
 A resumed capture requires the startup/SYSTEM/SOFTWARE/event-log fingerprint to
 remain unchanged. This is a file-level snapshot; a full restore is not tested.
 The original version0.1.0 archives and tag are not modified.
+
+## Collected result: interrupted timer, clean observed storage and integrity
+
+The user reported restarting; dashboard return was observed at02:23:36UTC.
+All527 mapping checks completed with zero content/tail failures,16 synthetic BMP
+save sequences passed, all50 final automated files match, and all34 intermediate
+paths are absent. Only14 timed completion markers were written; the last reports
+840000ms. The final900000ms marker, COMPLETE and automatic restart request are
+absent. This is not a full fifteen-minute pass, and it is not a demonstrated
+driver failure. The strict qualification remains false.
+
+Normal event-log shutdown is present; no application events or popups were added.
+Three Srv2013 warnings exactly match earlier records (warning-comparison.json),
+and remain in the strict result. Post-return allocation is consistent across
+122248 files/6069 directories with zero orphans/errors. All3439 binaries and nine
+structural hive audits pass. installed-state.json confirms normal startup,0098/
+0093 baseline hashes and the original0088 rollback. No further Windows run or
+PASS-gated recovery capture occurred. The original0.1.0 archives remain intact.
+
+The user's files used different names: manual-apint.bmp and manuel-note.txt in
+C:\xwns98. Both were collected; the961x532 RGB bitmap decodes fully and the text
+contains27 ASCII bytes. Their hashes are in manual-discovered-audit.json.
+This preserves the original suggested-name audit, which correctly found those
+suggested names absent. Application/UI observations remain user-reported;
+synthetic save replay and cold file checks do not prove hardware acceleration
+or a measured window-drag speedup.
