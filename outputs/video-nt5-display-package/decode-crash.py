@@ -2,9 +2,9 @@
 import argparse,hashlib,json,struct
 from pathlib import Path
 k=Path(__file__).resolve().parent;nt=k.parent/'native-windows-nt5-kernel'
-p=argparse.ArgumentParser();p.add_argument('--case',choices=['004','005'],default='004');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--case',choices=['004','005'],default='004');p.add_argument('--ram',type=Path,help='Explicit retained or archived RAM file');a=p.parse_args()
 ram='reboot-crash.ram' if a.case=='004' else 'starttype-crash.ram'
-data=(k/'artifacts'/ram).read_bytes();assert len(data)==64*1024**2
+data=(a.ram or k/'artifacts'/ram).read_bytes();assert len(data)==64*1024**2
 def phys32(a):return struct.unpack_from('<I',data,a)[0]
 pubs=json.loads((nt/'kernel-publics.json').read_text())['symbols']
 kernels=[]

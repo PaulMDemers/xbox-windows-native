@@ -140,3 +140,30 @@ repair touched identified owned metadata after analysis; it was not a general
 fsck algorithm. Never repair unknown users' disks by copying our literal bytes.
 The [recovery kit](../native-windows-fatx-recovery/README.md) and
 [Paint evidence](../native-windows-paint-save/README.md) retain the chronology.
+
+## Paging views and sector slack beyond EOF
+
+A later emulator display-package installation exposed a separate read defect in
+candidate0088. Windows requested the correctly installed miniport, but rejected
+its image before DriverEntry with checksum mismatch. The 42,215 bytes within EOF
+matched the driver exactly. Its mapped byte at EOF was 0x97 from sector slack.
+The owned NT5 checksum routine includes that byte when the file length is odd.
+An isolated replay failed with 0x97 and passed with only that byte changed to zero;
+the executable's checksum field itself was already correct.
+
+Candidate0098 zeroes completed paging-read bytes beyond regular-file EOF, while
+holding the existing paging resource. It preserves the transfer count and keeps
+zeroing within returned bytes; the memory manager handles the remainder of a
+short page read. Directory, FAT and raw-volume streams are excluded. It does not
+rewrite sector slack on disk or alter ordinary noncached reads. The physical
+baseline remains0088 pending broader validation and a separate hardware trial.
+
+The transferable regression is an odd-length regular file with deliberately
+nonzero allocation slack: verify both file content and the mapped final-page
+tail. Also cover sector/page boundaries, short completions, failed reads and
+metadata/raw-volume exclusions. Exact readback alone cannot catch this defect.
+Do not transfer NT-specific checksum or MDL rules verbatim into Linux code.
+
+[Debugger evidence](../video-nt5-load-trace/README.md) and
+[candidate build/tests](../fatx-paging-eof/README.md) retain the boundaries between
+physical results, host tests, debugger runs and ordinary emulator validation.

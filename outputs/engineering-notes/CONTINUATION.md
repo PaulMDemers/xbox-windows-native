@@ -1,3 +1,55 @@
+# Continuation: candidate0098 fixes post-install image checksum failure in xemu
+
+Latest work: outputs/video-nt5-load-trace and outputs/fatx-paging-eof.
+All three debugger attempts and both ordinary emulator runs are closed. No owned
+emulator/helper is running. No physical access or deployment occurred. Hardware
+remains video0093/FATX0088; release0.1.0 is unchanged.
+
+Evidence chain: GPU service was requested, but MmLoadSystemImage rejected
+xboxvnt5.sys before DriverEntry. Verified NT5 kernel tracing exposed underlying
+STATUS_IMAGE_CHECKSUM_MISMATCH (0xc0000221), converted to 0xc000026c. Both captured
+42,215-byte miniport mappings match the exact file hash within EOF; their byte at
+EOF is 0x97 from sector slack. NT5 sums a rounded-up word count. Isolated replay of
+its checksum instructions returns false with that byte and true when only it is
+zeroed. The image's stored checksum is already correct; do not patch/bypass it.
+The tracer's last-image hint is not thread-aware; mapped-482.bin is another image.
+
+0098-vfat-paging-eof-zero.patch zeroes only returned regular-file paging bytes
+past logical EOF, within the caller's mapped buffer and under existing paging
+resource protection. Directory/FAT/raw-volume streams and nonpaging reads are
+unchanged. Completion length is retained. No disk-slack rewrite is introduced.
+Fresh pinned RosBE build, FATX profile with _WIN2K_COMPAT_SLIST_USAGE:
+source tree 873d6b4ff9505e71da119abd99aba301013e1749
+xwnfatx.sys SHA256 beeaf329f0446d3bdd2ed490fa8143888253115c0ff6c1662b67b82e6619eedd.
+Paired host compilation of the actual common-read functions: old fails 10/63,
+fixed passes 63/63 with buffer guards, short/failure and metadata exclusions.
+Host tests do not establish NT ABI/cache/concurrency behavior.
+
+Ordinary runs (only FATX payload changed; miniport0096/display0097/INF retained):
+- fatx-paging-eof001: Start=1 diagnostic parent; strict cold audit PASS.
+- fatx-paging-eof002: actual installed Start=3 parent; strict cold audit PASS.
+Both complete four graphics correctness stages and five timing loops, normal
+restart, matching payloads, no new popup or unexpected event error. Binding/INF/
+owned display file are intact. Start=3 works with the EOF fix. These fixtures
+retain earlier audio failed-install flags and the synthetic xemu PCI model.
+No full allocation audit or broad hardware/persistence qualification in this turn.
+
+Next: poisoned-tail real mapped-file tests across sector/page/cluster boundaries,
+then broader persistence stress and a controlled hardware trial. Do not deploy
+0098 automatically from two short emulator passes. Continue display PnP stop/
+remove/restart ownership and consumer quiescence separately; higher video modes
+and physical performance remain later gates. Preserve the existing physical and
+release recovery bundles.
+
+Exact fixture/build/audit hashes and cleanup in fatx-paging-eof/summary.json,
+fixture-001/002.json, inputs.json and build-report.json. Guest disks/backing chains
+remain local and unmoved. Closed trace RAM and older CPU logs are hash-verified
+under E:/Codex-archive/xbox-windows-native/closed-load-evidence-20261006; original
+and archived paths are in video-nt5-load-trace/evidence-archive.json. The former
+video-nt5-display-package crash decoder now supports --ram for archived captures.
+Shared FATX engineering/skill notes contain the EOF/slack lesson; installed skill
+matches the versioned source. Latest owned cleanup: 2026-10-06T01:05:25.4311025Z.
+
 # Continuation: display INF installs, subsequent boot fails0xB4
 
 Latest work: outputs/video-nt5-display-package. Five emulator attempts are closed;

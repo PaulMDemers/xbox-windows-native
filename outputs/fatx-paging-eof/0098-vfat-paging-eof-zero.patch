@@ -1,0 +1,31 @@
+--- a/drivers/filesystems/vfatfs/rw.c
++++ b/drivers/filesystems/vfatfs/rw.c
+@@ -883,6 +883,28 @@
+             Status = VfatReadFileData(IrpContext, Length, ByteOffset, &ReturnedLength);
+         if (NT_SUCCESS(Status))
+         {
++            /* Disk transfers may include the last sector's allocation slack.
++             * Never expose that slack through an ordinary file's paging view.
++             * Native NT checksums odd-sized images using the zero byte at EOF.
++             * Keep the zeroing inside the bytes returned into the caller's MDL;
++             * the memory manager handles the remainder of a short page read.
++             * Directory, FAT and raw-volume streams retain their on-disk bytes.
++             * PagingIoResource is held by VfatRead (or its overflow worker). */
++            if (PagingIo && !IsVolume && !vfatFCBIsDirectory(Fcb) &&
++                !BooleanFlagOn(Fcb->Flags, FCB_IS_FAT) &&
++                ByteOffset.QuadPart + ReturnedLength > Fcb->RFCB.FileSize.QuadPart)
++            {
++                ULONG ValidLength = 0;
++                if (ByteOffset.QuadPart < Fcb->RFCB.FileSize.QuadPart)
++                    ValidLength = (ULONG)(Fcb->RFCB.FileSize.QuadPart - ByteOffset.QuadPart);
++                Buffer = VfatGetUserBuffer(IrpContext->Irp, TRUE);
++                if (!Buffer)
++                {
++                    Status = STATUS_INSUFFICIENT_RESOURCES;
++                    goto ByeBye;
++                }
++                RtlZeroMemory((PUCHAR)Buffer + ValidLength, ReturnedLength - ValidLength);
++            }
+             IrpContext->Irp->IoStatus.Information = ReturnedLength;
+         }
+     }

@@ -41,6 +41,15 @@ completion length. Use private sector buffers for tails when the caller's
 mapping does not cover a complete sector; never overrun an MDL or silently
 extend a short write into neighboring data.
 
+Regular-file paging views must zero the returned sector slack beyond logical EOF.
+A byte-for-byte file hash can pass while its mapped tail is wrong. One NT5 driver
+load rejected an odd-length, valid-checksum image because its checksum routine
+included a nonzero byte just beyond EOF. Compare mapped bytes and the EOF tail
+before changing PE checksums or bypassing image verification. Bound zeroing by
+the actual completed buffer, preserve directory/FAT/raw-volume streams, and test
+short reads and failure paths. This invariant transfers to Linux; the NT checksum
+routine, MDLs and completion rules do not define Linux's implementation.
+
 ## Useful regressions
 
 Exercise 41/42/43-byte names, nested/root rename and replace, allocation boundary
