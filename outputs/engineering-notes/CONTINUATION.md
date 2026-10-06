@@ -1,3 +1,172 @@
+# Full emulator soak running; focused concurrency test preparing
+
+2026-10-06 23:15UTC. Null-placeholder003 passed its short workload and all cold
+checks; qualification.json records the bounded emulator configuration result.
+The inherited01B0/01B4 FAILEDINSTALL flags are now explicitly inventoried; this
+is not a full clean device installation or a hardware-qualified package.
+
+Null-placeholder004 launched ONCE at23:09:46UTC, runner79130/supervisor59746.
+Original full15-minute workload, no recorder/debugger/UI helper. Expect return
+around23:26UTC; deadline around23:31UTC. Do not relaunch. After cleanup collect004,
+run inventory.py004 in WSL and qualify.py004. On recorded timeout use retained
+post-deadline capture/decode before owned cleanup. No physical launch.
+
+New outputs/fatx-shutdown-concurrency helper is built/import-reviewed. Preparation
+session93899 completed; fixture-001.json is ready. NOT LAUNCHED.
+It tests500 rounds each in two file write/flush/close workers and a volume-flush
+worker. No raw-volume I/O, lock/dismount or driver changes. Use only after004
+cleans up and reviewed fixture is ready. Run.ps1 Case001 then supervise.py001,
+same exclusive monitor4594/FTP4596. Timeout600s, runner900s; capture-timeout.py
+then decode-timeout.py retains RAM for lock-owner diagnosis. Read its README.
+
+Static source review found conflicting Main/Dir lock order in several paths,
+but the older stalled snapshot establishes only DirResource wait candidates,
+not owners/cycles. Do not patch cleanup alone or claim a root cause yet.
+Physical read-only snapshot is complete. Keyboard-ready question remains pending;
+no console writes, new Windows boot or automation changes. Update this note as
+processes finish. Preserve all physical baselines and release0.1.0.
+
+## Prior continuation (historical)
+
+# Settled emulator workload running; physical snapshot read-only
+
+2026-10-06 23:05 UTC. Null-placeholder001 setup and002 ordinary subsequent boot
+are collected, cleaned, and pass their bounded checks. Exact emulator-only null
+INF persists with no function service;002 has no new SetupAPI activity. No
+driver binaries changed. This is supported configuration for an unused synthetic
+device, not a patch for the Windows shutdown race or the earlier FATX flush stall.
+
+Null-placeholder003 launched ONCE at23:03:35UTC, runner33241 and supervisor86518.
+Monitor4594/FTP4596. Original527-mapping/16-BMP short workload,15 rounds>=60s,
+no UI helper, recorder or debugger. Inspect003/launch.json; never relaunch.
+On return/owned cleanup run trial.py collect003 once. On recorded return timeout,
+capture-timeout.py003 then decode-timeout.py003, retain raw snapshot privately,
+signal owned cleanup and collect. Require workload, events, hashes, hives and
+full F allocation; a normal subsequent boot alone is insufficient.
+
+Physical console is reachable at dashboard. Read-only baseline preflight and
+SYSTEM/SOFTWARE/SetupAPI/event capture are under outputs/physical-pnp-followup.
+No remote writes or Windows launch. GPU PnP registration is still incomplete;
+latest physical SetupAPI opens01B0 with no compatible driver. Registry contains
+historical PC/emulator entries too; presence in the hive does not prove current
+hardware presence. Awaiting user's keyboard-unplugged readiness answer before
+any hardware boot; independent emulator analysis continues. FATX0098/video0093,
+normal startup, original0088 rollback and immutable0.1.0 remain unchanged.
+
+## Prior continuation (historical)
+
+# Cancel is temporary; explicit null-package test preparing
+
+2026-10-06T22:47:26.118245+00:00. Physical baseline untouched.
+Completion006 is collected and cleaned up. Without UI actions, it again opened
+the exact1B36:0005 installer; repeat.log blocked restart with258. Snapshot after
+return deadline: shell running, no bugcheck, no exclusive resource-wait cycle
+observed. No normal shutdown. Thus004's Cancel is not a durable setup solution.
+Do not run the mapping/BMP workload on that unsettled state or claim it fixed.
+
+New outputs/shutdown-null-placeholder/001 preparation completed. Runner97817 and supervisor28726 are active;
+check001/launch.json for accepted time. Monitor4594/localFTP4596. Never relaunch. Adds an explicitly emulator-only null INF (specific1B36:0005/subsystem/rev),
+no function service/binary and no device removal/ID change. Starts from clean
+completed004 state, keeps physical and driver binaries unchanged. Read README.
+The guest helper observes windows/pending status but takes no UI action and holds
+restart while pending. After prep launch once, collect/check actual null binding,
+logs, hashes/hives/allocation. Only after success proceed to ordinary subsequent
+boot and original workload. All historical controls/held/host-failed cases remain.
+
+## Prior continuation (historical)
+
+# Targeted setup passes; subsequent boot preparation
+
+2026-10-06 22:35UTC. No physical access or driver changes. Completion004 completed
+GPU Finish/No and exact-command placeholder Cancel, pending API0 by120s, normal
+restart/dashboard return, no popup/new unexpected events. Selected payloads,
+runtime hashes, five structural hives and full F allocation pass. Placeholder
+still enumerated without a function driver; not new supported hardware.
+
+Subsequent case005 failed before monitor/Windows launch because xemu could not
+open nested backing paths. Preserved host-launch-failure.json and cleanup; do not
+retry005. Case006 preparation completed; copied only completed004 delta into the
+artifact directory, verifies virtual-disk equality and unchanged original, then
+stages a minimal repeat.log helper with no UI inspection/actions. Keeps installed
+hives and video trace. 006 launch accepted22:36:59UTC; runner9976, supervisor35953, monitor4594,
+localFTP4596. Do not relaunch. Deadline22:44UTC. Collect once after owned cleanup.
+If ordinary subsequent boot passes, rerun the unchanged original527-mapping/
+16-BMP/15-round short rehearsal workload from completed setup state; distinguish
+that60-second workload from the physical15-minute soak. If pending gate holds,
+retain actual UI/process evidence and investigate without forcing restart.
+
+## Prior continuation (historical)
+
+# Pending queue identified; guarded setup diagnostic continues
+
+2026-10-06 22:26UTC. Completion003 collected, not relaunched. GPU Finish and No
+succeeded; new installer is the exact emulator1B36:0005 placeholder. Guard logged
+RESTART_BLOCKED_PENDING_INSTALL258 and left the shell running. At return timeout,
+one paused read-only64MiB snapshot was retained privately, decoded offline,
+and the owned runner cleaned up. No bugcheck, no exclusive-resource wait cycle
+observed, no normal restart. Full F allocation/selected payload/hive checks pass,
+but this held run is not a normal-shutdown qualification.
+
+Completion004 launch accepted22:27:11UTC. Runner55120, supervisor60487;
+monitor4594/localFTP4596. Do not relaunch. Return deadline22:34:12UTC. It adds Cancel only for exact process
+command/device ID and observed welcome-page controls. Test device remains present
+and unsupported. No null INF, ID change, driver update or physical access.
+Inspect records before collection. Expected queue idle after explicit acknowledgement;
+never claim a clean result proves functionality for an unsupported device.
+Physical FATX0098/video0093/normal startup and original0088/v0.1.0 unchanged.
+
+## Prior continuation (historical)
+
+# GPU completion advances to normal reboot prompt
+
+2026-10-06 22:14 UTC. Physical baseline unchanged; no hardware access this turn.
+Read prior sections for preserved failed observer and001 text-matcher miss.
+Completion002 launched22:09:18, returned22:12UTC, collected once, all owned
+processes finished. One GPU Finish action succeeds; subsequent same-process
+System Settings Change asks restart-now and keeps pending API at102 through120s.
+No popup, normal shutdown/return, selected payload/runtime/hives and full F
+allocation pass. Intended complete-queue gate FAILS: do not call this solved.
+
+Completion003 launch accepted22:15:42UTC. Runner8242, supervisor46642;
+owned monitor4594, localFTP4596. Do not relaunch. Return deadline22:22:43UTC. It adds one
+No action for that exact same-process GPU reboot prompt and withholds final
+restart if pending installations remain. Unknown dialogs receive no action.
+Observe/cold-collect003; check stage JSON first.
+If timeout, preserve memory with capture-timeout.py003 before owned cleanup.
+Driver files and parent staged hives remain unchanged. No ordinary storage/GDI
+qualification or physical deployment from these UI diagnostics.
+
+## Prior continuation (historical)
+
+# GPU wizard completion investigation in progress
+
+2026-10-06 22:10 UTC. Physical Xbox untouched; FATX0098/video0093 and normal
+startup remain installed. Original0088 rollback and immutable0.1.0 preserved.
+No automation or hardware launch. Current work is recorder-disabled emulator
+setup/shutdown diagnosis, not a qualified new driver candidate.
+
+outputs/shutdown-installer-windows/001 proves the completed GPU installation
+waits on its final Finish page through120secs. A popup occurred and the machine
+failed to return within420secs. EventLog shutdown alone was insufficient. After
+timeout a paused snapshot found no bugcheck and FATX resource-wait candidates
+with winlogon in PopFlushVolumes; resource ownership/cycle is not yet proved.
+Owned emulator cleaned up; cold payloads/hives/full F allocation checks pass.
+
+outputs/shutdown-installer-completion/001 returned cleanly, but no completion
+action occurred: the exact text matcher expected CRLF, actual control uses LF.
+Preserve this non-intervention outcome. Pending102 persisted. Source and build
+pins are saved under001. Corrected case002 is being staged independently; only
+CRLF/LF normalization changed, all other strict successful GPU page checks stay.
+No unknown dialog action. Same120sec restart diagnostic, not a production guard.
+Run/launch/collection JSON records must be checked before any action; never
+repeat an accepted launch. Case002 launch accepted22:09:18 UTC. Runner session50250, supervisor32049;
+owned monitor4594, localFTP4596. Do not relaunch. Timeout is about22:16:19UTC.
+Next: finish preparation, launch002 once, collect and inspect GPU_FINISH_ONCE,
+subsequent UI/queue state, popup/event deltas and cold integrity. If timeout,
+retain raw with capture-timeout.py002 before cleanup to investigate FATX locks.
+
+## Prior continuation (historical)
+
 # Fixed recorder batch complete: failing lifecycle captured
 
 2026-10-06 20:28 UTC. outputs/native-event-recorder. Exactly three new independent

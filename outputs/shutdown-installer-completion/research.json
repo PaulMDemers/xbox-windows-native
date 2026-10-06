@@ -1,0 +1,18 @@
+{
+  "scope": "Research only; no null INF or device policy deployed",
+  "references": [
+    "https://learn.microsoft.com/en-us/windows-hardware/drivers/install/installing-a-null-driver",
+    "https://learn.microsoft.com/en-us/windows-hardware/drivers/install/checking-for-in-progress-installations"
+  ],
+  "observations": [
+    "Microsoft documents a null INF for unused devices without a function driver. It leaves the devnode enumerated and may reserve boot resources. This does not implement the device.",
+    "Owned Windows 2000 display.inf, usb.inf, netirsir.inf and ntprint.inf contain null AddService forms. Thus this syntax exists in the owned OS, not just modern documentation.",
+    "No such package is used in cases001-003; the emulator device and unsupported-driver condition remain intact. Avoid using a policy change as evidence that the original shutdown race is fixed."
+  ],
+  "owned_inf_hashes": {
+    "display.inf": "6cbaeee0c81aa85b06f7c202568b060a98a04451da101227db5d9721143846b8",
+    "usb.inf": "ed96ed1ced9d40d61f3096763a65589388a2d67cc527d0349b1ec267861c2aae",
+    "netirsir.inf": "117143f01038e0f161934b401cdae19d5b73fd6b379269bb5a15d7727b26f705",
+    "ntprint.inf": "ec77f12eea144a4314846702205d0b652ec53378871ac50a34ab363f1e52fd9e"
+  }
+}

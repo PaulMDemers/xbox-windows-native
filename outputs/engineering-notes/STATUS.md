@@ -75,9 +75,34 @@ creation succeeds, the placeholder installer executes and raises the GUI
 shutdown error, then terminates with0xc0000142 before PnP receives shutdown
 control5. A separate unchanged run follows the clean invalid-handle path.
 See [the captured sequence](../native-event-recorder/FAILING-LIFECYCLE.md).
-The next question is why the first GPU installer remains outstanding until
-shutdown despite successful installation records. The recorder still has no
-demonstrated zero-overhead guarantee, and no synchronization fix is qualified.
+The recorder still has no demonstrated zero-overhead guarantee, and no
+synchronization fix is qualified.
+
+The [window observer](../shutdown-installer-windows/README.md) answered the next
+question: the GPU wizard waited at its successful Finish page. Completing it
+exposes a restart question, then the next unsupported device. The
+[completion experiments](../shutdown-installer-completion/README.md) confirm
+that cancelling the next wizard only clears that boot; it returns on a later
+boot. A pending-install guard correctly withholds restart in that state.
+One earlier observer run also stalled during kernel volume flush; it remains
+unresolved and is not explained away by the installer findings.
+
+An [explicit emulator-only null package](../shutdown-null-placeholder/README.md)
+now configures the unused QEMU test function without a function driver or
+changed hardware identity. Normal setup and an ordinary subsequent boot pass:
+the queue becomes idle, no installer recurs on the subsequent boot, normal
+shutdown returns to dashboard, and cold event/hash/hive/allocation checks pass.
+The original short storage workload also passed527 checks and cold audits. The
+emulator parent still contains the earlier01B0/01B4 FAILEDINSTALL flags; those
+are absent on hardware. This configuration avoids outstanding setup; it does not repair the original Windows
+shutdown synchronization race or establish physical device support.
+
+A fresh [read-only physical snapshot](../physical-pnp-followup/README.md) verifies
+the installed baseline is unchanged. Its latest SetupAPI records still name
+the unsupported Xbox01B0 audio function, and GPU PnP registration is incomplete.
+Historical emulator/PC entries also remain in the hive; registry presence alone
+does not mean those devices are present on the console. No hardware package has
+been deployed from these emulator experiments.
 
 ## Graphics and device support
 

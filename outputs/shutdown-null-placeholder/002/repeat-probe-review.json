@@ -1,0 +1,51 @@
+{
+  "passed": true,
+  "probe_sha256": "90b5130a692ef559a0219155561e58c34b1739fb23418abd64b194f64198349d",
+  "source_sha256": "abf8d41ff43e920684330004fe957f097dbf4ccb267f4f65dd36eaa2b000f079",
+  "imports": {
+    "ADVAPI32.dll": [
+      "AdjustTokenPrivileges",
+      "LookupPrivilegeValueA",
+      "OpenProcessToken"
+    ],
+    "KERNEL32.dll": [
+      "CloseHandle",
+      "CreateFileA",
+      "ExitProcess",
+      "FlushFileBuffers",
+      "GetCurrentProcess",
+      "GetLastError",
+      "GetProcAddress",
+      "GetTickCount",
+      "LoadLibraryA",
+      "SetLastError",
+      "Sleep",
+      "WriteFile"
+    ],
+    "USER32.dll": [
+      "ExitWindowsEx",
+      "wsprintfA"
+    ]
+  },
+  "dynamic_exports": {
+    "setupapi.dll": [
+      "CMP_WaitNoPendingInstallEvents"
+    ]
+  },
+  "owned_export_targets": {
+    "advapi32.dll": "d24493dbb2b1818f9cd605acd3b2008d63354c0975e9a090ccdd04bcc339cc59",
+    "kernel32.dll": "6b05b0749b5dd86da94cc4acd062ca05472509f70216b56cd4a5b9809c602e73",
+    "user32.dll": "291210cf381dc269f8847a86e59a7cf775e5dd4086f94ff1266714f34ff55063",
+    "setupapi.dll": "1d0a6e9d062a51e71eaae93d776746823834f5c518096d340f2b332fc059a23d"
+  },
+  "note": "All static imports exist in owned Windows 2000 DLLs; runtime qualification is separate.",
+  "compiler": "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc",
+  "build_script_sha256": "fd68b75fdaa626072b1300f8026418bb1c84131e1df940369cb3d80b49ce6478",
+  "subsystem": [
+    5,
+    0
+  ],
+  "checksum_valid": true,
+  "compiler_sha256": "83015512671faaa0dbe6f043a0107f79c049f4268a67e39955388a8d9a0182e5",
+  "compiler_version": "i686-w64-mingw32-gcc (RosBE-Unix) 8.4.0"
+}

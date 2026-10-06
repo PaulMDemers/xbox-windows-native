@@ -1,0 +1,75 @@
+{
+  "scope": "Inspect GPU registration and SetupAPI evidence after targeted wizard completion.",
+  "physical_access": false,
+  "case": "006",
+  "unsupported_emulator_placeholder": {
+    "DeviceDesc": "PCI Device",
+    "LocationInformation": "PCI bus 0, device 0, function 3",
+    "Capabilities": 0,
+    "HardwareID": "PCI\\VEN_1B36&DEV_0005&SUBSYS_00000000&REV_00\u0000PCI\\VEN_1B36&DEV_0005&SUBSYS_00000000\u0000PCI\\VEN_1B36&DEV_0005&REV_00\u0000PCI\\VEN_1B36&DEV_0005\u0000PCI\\VEN_1B36&DEV_0005&CC_00FF00\u0000PCI\\VEN_1B36&DEV_0005&CC_00FF",
+    "CompatibleIDs": "PCI\\VEN_1B36&CC_00FF00\u0000PCI\\VEN_1B36&CC_00FF\u0000PCI\\VEN_1B36\u0000PCI\\CC_00FF00\u0000PCI\\CC_00FF"
+  },
+  "device": {
+    "DeviceDesc": "Xbox NV2A firmware framebuffer (experimental)",
+    "LocationInformation": "PCI bus 1, device 0, function 0",
+    "Capabilities": 0,
+    "HardwareID": "PCI\\VEN_10DE&DEV_02A0&SUBSYS_00000000&REV_A1\u0000PCI\\VEN_10DE&DEV_02A0&SUBSYS_00000000\u0000PCI\\VEN_10DE&DEV_02A0&REV_A1\u0000PCI\\VEN_10DE&DEV_02A0\u0000PCI\\VEN_10DE&DEV_02A0&CC_030000\u0000PCI\\VEN_10DE&DEV_02A0&CC_0300",
+    "CompatibleIDs": "PCI\\VEN_10DE&CC_030000\u0000PCI\\VEN_10DE&CC_0300\u0000PCI\\VEN_10DE\u0000PCI\\CC_030000\u0000PCI\\CC_0300",
+    "ClassGUID": "{4D36E968-E325-11CE-BFC1-08002BE10318}",
+    "Service": "XboxVnt5",
+    "ConfigFlags": 0,
+    "Driver": "{4D36E968-E325-11CE-BFC1-08002BE10318}\\0001",
+    "Mfg": "Xbox Windows Native Project"
+  },
+  "install_flags_cleared": true,
+  "driver_key": {
+    "InfPath": "oem2.inf",
+    "InfSection": "Xbox.Install",
+    "ProviderName": "Xbox Windows Native Project",
+    "DriverVersion": "0.1.0.99",
+    "MatchingDeviceId": "pci\\ven_10de&dev_02a0",
+    "DriverDesc": "Xbox NV2A firmware framebuffer (experimental)"
+  },
+  "service": {
+    "Type": 1,
+    "Start": 3,
+    "ErrorControl": 1,
+    "Group": "Video",
+    "ImagePath": "system32\\drivers\\xboxvnt5.sys",
+    "DisplayName": "Xbox NV2A firmware framebuffer (experimental)",
+    "Tag": 2
+  },
+  "device0": {
+    "InstalledDisplayDrivers": "framebuf",
+    "VgaCompatible": 0,
+    "Device Description": "Xbox NV2A firmware framebuffer (experimental)",
+    "DefaultSettings.XResolution": 640,
+    "DefaultSettings.YResolution": 480,
+    "DefaultSettings.BitsPerPel": 32,
+    "DefaultSettings.VRefresh": 60
+  },
+  "pnp_binding_present": true,
+  "installed_inf_exact": true,
+  "new_setupapi_lines": [
+    "[2026/10/06 22:37:19 208.3 Driver Install]",
+    "Munged cmdline: C:\\WINNT\\system32\\services.exe",
+    "EXE name: C:\\WINNT\\system32\\services.exe",
+    "Device install function: DIF_SELECTBESTCOMPATDRV.",
+    "Selecting best compatible driver caused error: Error 0xe0000228: There are no compatible drivers for this device.",
+    "Completed default installer, error: Error 0xe0000228: There are no compatible drivers for this device.",
+    "[2026/10/06 22:37:38 740.2]",
+    "Munged cmdline: rundll32.exe newdev.dll,DevInstall PCI\\VEN_1B36&DEV_0005&SUBSYS_00000000&REV_00\\2&ebb567f&0&03",
+    "EXE name: C:\\WINNT\\system32\\rundll32.exe",
+    "Set selected driver.",
+    "Device install function: DIF_SELECTBESTCOMPATDRV.",
+    "Selecting best compatible driver caused error: Error 0xe0000228: There are no compatible drivers for this device.",
+    "Completed default installer, error: Error 0xe0000228: There are no compatible drivers for this device."
+  ],
+  "existing_display_registered": true,
+  "display_binary_unchanged": true,
+  "miniport_unchanged": true,
+  "installation_checks_passed": true,
+  "combined_checks_passed": false,
+  "hardware_qualified": false,
+  "limits": "Cold installation evidence from a targeted GPU wizard-completion diagnostic only; no host recorder. This does not qualify an ordinary boot, fix the shutdown popup or qualify physical deployment."
+}

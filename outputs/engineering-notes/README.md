@@ -19,6 +19,11 @@ in any Linux FATX implementation. No external project has been contacted.
 - [Paired first-install idle/shutdown test](../shutdown-install-idle/README.md)
 - [Observed popup owner in the idle installation test](../shutdown-idle-trace/README.md)
 - [Emulator device research and non-stopping lifecycle recorder](../native-event-recorder/README.md)
+- [Installer window observations](../shutdown-installer-windows/README.md)
+- [Completion, restart questions and pending-install guard](../shutdown-installer-completion/README.md)
+- [Explicit configuration of xemu's unused test function](../shutdown-null-placeholder/README.md)
+- [Concurrent file/volume-flush investigation](../fatx-shutdown-concurrency/README.md)
+- [Current physical PnP snapshot, read-only](../physical-pnp-followup/README.md)
 - [Preserved baseline and recovery](../release-0.1.0/README.md)
 
 Evidence vocabulary: **physical** means this console; **user-observed** means

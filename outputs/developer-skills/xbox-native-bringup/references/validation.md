@@ -76,3 +76,27 @@ user parameters through its own address space. Nonresident parameters remain
 unknown. Breakpoint pauses alter shutdown timing and cannot qualify an ordinary
 boot. Also verify the installed binary's provenance before applying findings
 from a same-named open-source implementation to its private behavior.
+
+A successful SetupAPI log can coexist with a completed wizard waiting for Finish
+or a restart question. Inspect the owning process and visible control state.
+When using CMP_WaitNoPendingInstallEvents on owned NT5 builds, verify the export
+and check again near restart: an early idle result can precede later queued
+installation. A guard that refuses restart is a held test, not a completed soak.
+Complete supported setup first; distinguish an explicitly acknowledged unsupported
+device from an installed driver. Do not silently dismiss unidentified dialogs.
+
+For narrow diagnostic UI actions, verify the device/process identity, complete
+page text, parent/control IDs and enabled state. Text line endings may differ;
+normalize only the demonstrated formatting difference. Preserve a no-action
+matcher miss rather than attributing a coincident clean run to the intended fix.
+Follow setup with a subsequent boot without automatic dialog actions.
+
+If shutdown stalls, preserve a post-deadline memory snapshot privately when lock
+ownership is needed. Stack code candidates alone do not establish a lock cycle.
+Correlate wait-block objects with resource owners; mark nonresident data and
+undecoded ownership unknown. A logged EventLog shutdown is not dashboard return.
+
+Deep relative qcow2 chains can work in Linux tools yet fail to open in Windows
+xemu. Preserve the failed host attempt separately from guest boots. If shortening
+a chain by copying a delta and rebasing only its backing path, verify virtual-disk
+equality and unchanged originals before using a fresh attempt ID.

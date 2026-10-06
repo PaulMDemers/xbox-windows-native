@@ -1,0 +1,23 @@
+; Emulator-only Windows 2000 package for the unused QEMU PCI test function.
+; This is a null driver: no function driver, no binary, no memory-controller model.
+[Version]
+Signature="$Windows NT$"
+Class=System
+ClassGUID={4D36E97D-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+DriverVer=10/06/2026,0.1.0.1
+
+[Manufacturer]
+%Provider%=Xemu.Models
+
+[Xemu.Models]
+%Device%=Xemu.Null,PCI\VEN_1B36&DEV_0005&SUBSYS_00000000&REV_00
+
+[Xemu.Null]
+
+[Xemu.Null.Services]
+AddService=,2
+
+[Strings]
+Provider="Xbox Windows Native Project"
+Device="QEMU PCI test function (unused; no function driver)"
