@@ -2,9 +2,13 @@
 import hashlib,json,pathlib,re,struct,sys
 k=pathlib.Path(__file__).resolve().parent;case=sys.argv[1];assert case in ['001']
 caseout=k/case;out=k.parent/'native-windows-nt5-kernel'
-meta=json.loads((caseout/'timeout-memory.json').read_text());raw=caseout/'artifacts/timeout.ram'
+snapshot=caseout/'timeout-memory.json'
+if len(sys.argv)>2:
+ assert len(sys.argv)==5 and sys.argv[2]=='--snapshot' and sys.argv[4]=='--replay-only'
+ snapshot=pathlib.Path(sys.argv[3]).resolve();assert snapshot.name=='timeout-memory.json'
+meta=json.loads(snapshot.read_text());raw=snapshot.parent/'artifacts/timeout.ram'
 data=raw.read_bytes();assert len(data)==67108864 and hashlib.sha256(data).hexdigest()==meta['raw_sha256']
-regs=meta['registers'];report={'scope':__doc__,'physical_access':False,'raw_sha256':meta['raw_sha256']}
+regs=meta['registers'];report={'scope':__doc__,'physical_access':False,'raw_sha256':meta['raw_sha256'],'snapshot_metadata':str(snapshot),'decoder_replay_only':len(sys.argv)>2}
 # Process/module decoding derived from capture-threads.py SHA256 b11ca4dc119a1698c406f380d6800121c61b4f1d95e4597ecb2dd7434cde1aed
 cr3=int(re.search(r'CR3=([0-9a-fA-F]+)',regs)[1],16)
 def phys32(a):return struct.unpack_from('<I',data,a)[0]
@@ -103,6 +107,16 @@ for process in processes:
   if not flags&1 and buffer:buffer+=params
   assert not length or 0x10000<=buffer<0x80000000-length
   process['command_line']=read(buffer,length).decode('utf-16le') if length else ''
+  if 'xwnidle' in process['command_line'].lower() and process['image'].lower()=='concurrent.exe':
+   # Never interpret another helper's globals at these addresses.
+   symbols=json.loads((k/'probe-symbols.json').read_text())
+   binary=(k/'artifacts/probe.exe').read_bytes()
+   assert hashlib.sha256(binary).hexdigest()==symbols['probe_sha256']
+   image_base=u32(peb+8);assert image_base==symbols['preferred_base']
+   section=symbols['text']
+   assert hashlib.sha256(read(image_base+section['rva'],section['raw_size'])).hexdigest()==section['sha256']
+   process['diagnostic_counters']={name:list(struct.unpack('<3I',read(image_base+symbols['symbols'][name],12))) for name in ['_Completed','_Errors']}
+   process['diagnostic_binary_sha256']=symbols['probe_sha256']
  except (AssertionError,struct.error,UnicodeError) as error:process['command_unknown']=type(error).__name__
  finally:cr3=saved_cr3
 # Resolve wait-block object pointers against the kernel's registered ERESOURCE list.
@@ -110,6 +124,11 @@ for process in processes:
 layouts=json.loads((out/'thread-layouts.json').read_text())
 waitoff=layouts['_KTHREAD']['fields']['WaitBlockList']['offset']
 bf=layouts['_KWAIT_BLOCK']['fields'];resources=[]
+resource_layout=json.loads((k/'kernel-resource-layouts.json').read_text())
+assert resource_layout['pdb_sha256']==json.loads((out/'kernel-publics.json').read_text())['pdb_sha256']
+rf=resource_layout['_ERESOURCE']['fields']
+assert resource_layout['_ERESOURCE']['size']==56
+assert all(rf[n]['offset']==v for n,v in {'OwnerTable':8,'ActiveCount':12,'Flag':14,'SharedWaiters':16,'ExclusiveWaiters':20,'OwnerThreads':24,'NumberOfSharedWaiters':44,'NumberOfExclusiveWaiters':46}.items())
 head=base+pubs['_ExpSystemResourcesList']['rva'];link=u32(head);seen=set()
 while link!=head and link not in seen and len(seen)<16384:
  seen.add(link);active,flags=struct.unpack('<hH',read(link+12,4));owners=[]
@@ -136,6 +155,38 @@ for process in processes:
     wb=u32(wb+bf['NextWaitBlock']['offset'])
    except (AssertionError,struct.error):break
 report['resource_waits']=waits
+# Label filesystem resources using offsets compiled from the exact0098 source/flags.
+layout=json.loads((k/'fatx-layouts.json').read_text());offset=layout['offsets']
+fixture=json.loads((k/('fixture-'+case+'.json')).read_text())
+assert fixture['fatx_sha256']==layout['driver_sha256']
+fatx=next(m for m in modules if m['name'].lower()=='xwnfatx.sys')
+global_data=u32(int(fatx['base'],16)+layout['global_pointer_rva'])
+volume_head=global_data+offset['global_volume_list'];vl=u32(volume_head);volumes=set();labels={}
+while vl!=volume_head and vl not in volumes and len(volumes)<64:
+ volumes.add(vl);vcb=vl-offset['vcb_volume_link']
+ for name in ['dir','fat']:labels[hex(vcb+offset['vcb_'+name+'_resource'])]=dict(kind=name,vcb=hex(vcb))
+ fh=vcb+offset['vcb_fcb_list'];fl=u32(fh);fcbs=set()
+ while fl!=fh and fl not in fcbs and len(fcbs)<65536:
+  fcbs.add(fl);fcb=fl-offset['fcb_link']
+  details=dict(vcb=hex(vcb),fcb=hex(fcb),flags=hex(u32(fcb+offset['fcb_flags'])),refcount=u32(fcb+offset['fcb_refcount']))
+  try:
+   length,maximum,buffer=struct.unpack('<HHI',read(fcb+offset['fcb_path'],8));assert length<=maximum and length<=2048 and length%2==0
+   details['path']=read(buffer,length).decode('utf-16le') if length else ''
+  except (AssertionError,struct.error,UnicodeError):details['path_unknown']=True
+  for name in ['main','paging']:labels[hex(fcb+offset['fcb_'+name+'_resource'])]=dict(details,kind=name)
+  fl=u32(fl)
+ assert fl==fh,'FCB list incomplete'
+ vl=u32(vl)
+assert vl==volume_head,'Volume list incomplete'
+thread_index={t['thread']:dict(process=p['image'],pid=p['pid'],tid=t['tid'],state=t['state'],wait_reason=t['wait_reason']) for p in processes for t in p['threads']}
+for resource in resources:
+ if resource['address'] in labels:resource['fatx']=labels[resource['address']]
+ for owner in resource['owners']:
+  if owner['count']>0:owner['active_thread']=thread_index.get(owner['thread'],'not_in_active_thread_list')
+report['fatx_volume_count']=len(volumes)
+report['fatx_resource_labels']=len(labels)
+report['fatx_contended_resources']=[r for r in resources if 'fatx' in r and (r['shared_waiters'] or r['exclusive_waiters'])]
+
 edges=[]
 for wait in waits:
  r=wait['resource']
@@ -152,5 +203,5 @@ def visit(origin,current,path):
 for edge in edges:visit(edge['waiter'],edge['waiter'],[])
 report['exclusive_cycles']=cycles
 report['limits']='Stack entries are code candidates, not an unwind. Shared-owner tables and other synchronization types are not decoded. Empty exclusive_cycles does not exclude a deadlock.'
-target=caseout/'timeout-analysis.json';assert not target.exists();target.write_text(json.dumps(report,indent=2)+'\n')
+target=(k/'decoder-replay.json') if len(sys.argv)>2 else caseout/'timeout-analysis.json';assert not target.exists();target.write_text(json.dumps(report,indent=2)+'\n')
 print(json.dumps({n:report[n] for n in ['status','resource_count','exclusive_wait_edges','exclusive_cycles']},indent=2))

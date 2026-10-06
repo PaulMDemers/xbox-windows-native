@@ -1,0 +1,91 @@
+{
+  "scope": "Extract the observed two-thread FATX lock cycle without claiming old failures proven.",
+  "snapshot_report_sha256": "fa49a791a8699cfbc26f9024171b10e5dab17af77fa583d3dc7bea9ca143ad81",
+  "observed_exclusive_cycle": true,
+  "cycle": [
+    {
+      "thread": "0xff9d6020",
+      "tid": 876,
+      "waiting_for": "0xffb7403c",
+      "resource": {
+        "vcb": "0xfe6180d0",
+        "fcb": "0xffb74008",
+        "flags": "0x0",
+        "refcount": 2,
+        "path": "\\xwncc01\\worker0.bin",
+        "kind": "main"
+      },
+      "owner": "0xff9d69e0",
+      "fatx_code_candidates": [
+        {
+          "stack": "0xfbe79b74",
+          "value": "0xfe43c9c9",
+          "candidate": "xwnfatx.sys+0x19c9"
+        },
+        {
+          "stack": "0xfbe79bcc",
+          "value": "0xfe44b138",
+          "candidate": "xwnfatx.sys+0x10138"
+        },
+        {
+          "stack": "0xfbe79c04",
+          "value": "0xfe44b42a",
+          "candidate": "xwnfatx.sys+0x1042a"
+        }
+      ]
+    },
+    {
+      "thread": "0xff9d69e0",
+      "tid": 884,
+      "waiting_for": "0xfe6180d0",
+      "resource": {
+        "kind": "dir",
+        "vcb": "0xfe6180d0"
+      },
+      "owner": "0xff9d6020",
+      "fatx_code_candidates": [
+        {
+          "stack": "0xfbda9b64",
+          "value": "0xfe448b63",
+          "candidate": "xwnfatx.sys+0xdb63"
+        },
+        {
+          "stack": "0xfbda9b8c",
+          "value": "0xfe448ed5",
+          "candidate": "xwnfatx.sys+0xded5"
+        },
+        {
+          "stack": "0xfbda9c04",
+          "value": "0xfe44901e",
+          "candidate": "xwnfatx.sys+0xe01e"
+        },
+        {
+          "stack": "0xfbda9c2c",
+          "value": "0xfe44b03c",
+          "candidate": "xwnfatx.sys+0x1003c"
+        },
+        {
+          "stack": "0xfbda9c64",
+          "value": "0xfe44b42a",
+          "candidate": "xwnfatx.sys+0x1042a"
+        }
+      ]
+    }
+  ],
+  "counters": {
+    "_Completed": [
+      1,
+      1,
+      1
+    ],
+    "_Errors": [
+      0,
+      0,
+      0
+    ]
+  },
+  "helper_sha256": "caf612173b86ce9c1057a1a376747c690774106c185a3056889d58d576b7cd2b",
+  "normal_shutdown": false,
+  "interpretation": "Cleanup owns DirResource and waits for worker0.bin MainResource; volume flush owns that same MainResource and waits for DirResource. This snapshot proves the cycle in concurrency001.",
+  "limits": "Does not retrospectively prove the lost-snapshot shutdown stall or all physical freezes had this cause. Driver fix and regression qualification remain pending."
+}

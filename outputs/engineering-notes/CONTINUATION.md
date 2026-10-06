@@ -1,3 +1,63 @@
+# FATX deadlock reproduced; cleanup candidate built, fixture preparing
+
+2026-10-06 23:45UTC. Concurrency001 timed out and its retained64MiB snapshot
+proves cleanup/volume-flush exclusive lock cycle on worker0.bin. The three
+helper counters are1/1/1, errors0/0/0. Completed runner87577/supervisor58512,
+cold collection and qualification: FAIL; hives/allocation intact, no normal
+shutdown, new Messenger7022. See deadlock-summary.json. Do not relaunch.
+
+Candidate0099 in outputs/fatx-cleanup-order changes cleanup to Main-before-Dir;
+other reverse-order callers remain, so it is a causal candidate only. Fresh
+build68811 completed, source tree1c92d31299f370bbbca346be54c3a8d23012296f;
+driver c7e029096a70e36a300a2439dfdb0216d070710700ac89e282d0b59a03542e79.
+PE checksum/import review passed. Fixture preparation43857 completed. Candidate
+001 launched once at23:45:27UTC, runner40906/supervisor2013 now active. One earlier
+premature launcher invocation stopped at missing manifest, no VM/run directory
+created. Do not relaunch this accepted attempt.
+Same600s deadline/900s runner, unchanged helper; retain/decode timeout before
+signal and cleanup, then cold collection and qualification once.
+
+Build preflight required more C: space. Four closed standalone runs051-054
+were copied/hash-verified to E:/Codex-private-artifacts/xbox-windows-feasibility/runs,
+old paths preserved by junctions, verified from Windows and WSL; originals
+removed only after readback verification. Manifest in outputs/task-storage-offload.
+Offload35602 completed; C: now about24GiB free. No baseline files discarded.
+
+Hardware keyboard readiness question still pending. No physical writes/launch.
+Full emulator null-placeholder004 passed all bounded15-minute gates; old physical
+strict failures unchanged. Commit224848c precedes these newer reports and new
+candidate work; review/check/commit/push still needed. No automation/subagent.
+
+## Prior continuation (historical)
+
+# Full emulator soak passed; concurrency diagnostic launched
+
+2026-10-06 23:27UTC. Null-placeholder004 completed and all runner/supervisor
+processes closed. Cold collection, inventory and qualification completed once.
+PASS:527 mappings,16 BMP API cases,50 exact files,34 absent intermediates,
+900000ms, normal shutdown/return, events, selected binaries,5hives/full F
+allocation. Inherited01B0/01B4 flags remain; not a physical qualification.
+
+Focused FATX concurrency001 runner87577 and supervisor58512 are active; launch
+was accepted at23:27:30.866UTC. Inspect outputs/fatx-shutdown-concurrency/001/launch.json
+for the accepted launch. Never relaunch. Three threads,500 iterations each,
+ordinary file writes/flush/close plus volume flush, no raw-volume writes or
+changed drivers. Monitor4594/FTP4596. Supervisor waits600s; runner900s. If it
+returns, await owned cleanup then trial.py collect001. If timeout is recorded,
+run capture-timeout.py001 and decode-timeout.py001 before capture-complete.signal,
+then await owned cleanup and collect. Preserve raw64MiB snapshot privately.
+The extended decoder was replay-validated against completion006's retained
+snapshot, labels6volumes/732resources, and uses exact source/compiler offsets
+plus matched kernel PDB layouts. Shared owners/other lock types remain unknown.
+
+Hardware-ready keyboard question still pending. Physical read-only baseline and
+PnP snapshot completed; no remote writes or new hardware boot. Commit224848c
+was pushed before the long result; newer reports/decoder/FATX notes need final
+review/check/commit/push. Physical FATX0098/video0093, original0088 and immutable
+0.1.0 remain unchanged. No automation or subagent running.
+
+## Prior continuation (historical)
+
 # Full emulator soak running; focused concurrency test preparing
 
 2026-10-06 23:15UTC. Null-placeholder003 passed its short workload and all cold

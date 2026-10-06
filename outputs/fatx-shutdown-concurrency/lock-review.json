@@ -1,0 +1,335 @@
+{
+  "scope": "Pin source/disassembly context for the older stall; do not infer a runtime lock owner.",
+  "driver_sha256": "beeaf329f0446d3bdd2ed490fa8143888253115c0ff6c1662b67b82e6619eedd",
+  "source_tree": "873d6b4ff9505e71da119abd99aba301013e1749",
+  "snapshot_sha256": "75930ba644b2597261a7b1450b4d1d67c31baead954882b020240c1cd465aec2",
+  "source_files": {
+    "flush.c": {
+      "sha256": "135288fadeac9bdf07fd40d345f91de7182c76e3653ff6f8b89582cd0c50f91b",
+      "lock_lines": [
+        {
+          "line": 36,
+          "text": "ExAcquireResourceExclusiveLite(&DeviceExt->DirResource, TRUE);"
+        },
+        {
+          "line": 45,
+          "text": "ExReleaseResourceLite(&DeviceExt->DirResource);"
+        },
+        {
+          "line": 92,
+          "text": "ExReleaseResourceLite(&DeviceExt->DirResource);"
+        },
+        {
+          "line": 101,
+          "text": "ExAcquireResourceExclusiveLite(&Fcb->MainResource, TRUE);"
+        },
+        {
+          "line": 103,
+          "text": "ExReleaseResourceLite(&Fcb->MainResource);"
+        },
+        {
+          "line": 108,
+          "text": "ExAcquireResourceExclusiveLite(&DeviceExt->DirResource, TRUE);"
+        },
+        {
+          "line": 146,
+          "text": "ExAcquireResourceExclusiveLite(&Fcb->MainResource, TRUE);"
+        },
+        {
+          "line": 148,
+          "text": "ExReleaseResourceLite (&Fcb->MainResource);"
+        },
+        {
+          "line": 165,
+          "text": "ExAcquireResourceExclusiveLite(&Fcb->MainResource, TRUE);"
+        },
+        {
+          "line": 167,
+          "text": "ExReleaseResourceLite (&Fcb->MainResource);"
+        },
+        {
+          "line": 181,
+          "text": "ExAcquireResourceExclusiveLite(&DeviceExt->FatResource, TRUE);"
+        },
+        {
+          "line": 183,
+          "text": "ExReleaseResourceLite(&DeviceExt->FatResource);"
+        },
+        {
+          "line": 242,
+          "text": "ExAcquireResourceExclusiveLite(&IrpContext->DeviceExt->DirResource, TRUE);"
+        },
+        {
+          "line": 244,
+          "text": "ExReleaseResourceLite(&IrpContext->DeviceExt->DirResource);"
+        },
+        {
+          "line": 248,
+          "text": "ExAcquireResourceExclusiveLite(&Fcb->MainResource, TRUE);"
+        },
+        {
+          "line": 250,
+          "text": "ExReleaseResourceLite (&Fcb->MainResource);"
+        }
+      ]
+    },
+    "cleanup.c": {
+      "sha256": "b8531d16959d139bf4ca5f80634d3e09277312ddf71945e27a5bddf573d72bd1",
+      "lock_lines": [
+        {
+          "line": 55,
+          "text": "ExAcquireResourceExclusiveLite(&pFcb->MainResource, TRUE);"
+        },
+        {
+          "line": 56,
+          "text": "ExAcquireResourceExclusiveLite(&pFcb->PagingIoResource, TRUE);"
+        },
+        {
+          "line": 158,
+          "text": "ExReleaseResourceLite(&pFcb->PagingIoResource);"
+        },
+        {
+          "line": 159,
+          "text": "ExReleaseResourceLite(&pFcb->MainResource);"
+        },
+        {
+          "line": 189,
+          "text": "ExAcquireResourceExclusiveLite(&IrpContext->DeviceExt->DirResource, TRUE);"
+        },
+        {
+          "line": 191,
+          "text": "if (!Deleted) ExReleaseResourceLite(&IrpContext->DeviceExt->DirResource);"
+        }
+      ]
+    },
+    "create.c": {
+      "sha256": "7e9b13150066c24275de771282b2df6794241110362db25abe5c0046dd202403",
+      "lock_lines": [
+        {
+          "line": 982,
+          "text": "ExAcquireResourceExclusiveLite(&(pFcb->MainResource), TRUE);"
+        },
+        {
+          "line": 987,
+          "text": "ExReleaseResourceLite(&(pFcb->MainResource));"
+        },
+        {
+          "line": 1098,
+          "text": "ExAcquireResourceExclusiveLite(&IrpContext->DeviceExt->DirResource, TRUE);"
+        },
+        {
+          "line": 1100,
+          "text": "ExReleaseResourceLite(&IrpContext->DeviceExt->DirResource);"
+        }
+      ]
+    },
+    "dir.c": {
+      "sha256": "4a5a06e98f801bfab89301c3086bdb2e6bce0b7d6d822a83da2f9667840dce6e",
+      "lock_lines": [
+        {
+          "line": 510,
+          "text": "if (!ExAcquireResourceExclusiveLite(&IrpContext->DeviceExt->DirResource,"
+        },
+        {
+          "line": 520,
+          "text": "if (!ExAcquireResourceSharedLite(&pFcb->MainResource,"
+        },
+        {
+          "line": 523,
+          "text": "ExReleaseResourceLite(&IrpContext->DeviceExt->DirResource);"
+        },
+        {
+          "line": 554,
+          "text": "ExReleaseResourceLite(&pFcb->MainResource);"
+        },
+        {
+          "line": 555,
+          "text": "ExReleaseResourceLite(&IrpContext->DeviceExt->DirResource);"
+        },
+        {
+          "line": 571,
+          "text": "ExReleaseResourceLite(&pFcb->MainResource);"
+        },
+        {
+          "line": 572,
+          "text": "ExReleaseResourceLite(&IrpContext->DeviceExt->DirResource);"
+        },
+        {
+          "line": 691,
+          "text": "ExReleaseResourceLite(&pFcb->MainResource);"
+        },
+        {
+          "line": 692,
+          "text": "ExReleaseResourceLite(&IrpContext->DeviceExt->DirResource);"
+        }
+      ]
+    },
+    "finfo.c": {
+      "sha256": "73630a9b280f54092e67b32129accca5bed6e6e464099826cd32de954fb19a4a",
+      "lock_lines": [
+        {
+          "line": 1445,
+          "text": "ExAcquireResourceExclusiveLite(&Fcb->PagingIoResource, TRUE);"
+        },
+        {
+          "line": 1453,
+          "text": "ExReleaseResourceLite(&Fcb->PagingIoResource);"
+        },
+        {
+          "line": 1495,
+          "text": "if (!ExAcquireResourceSharedLite(&FCB->MainResource,"
+        },
+        {
+          "line": 1574,
+          "text": "ExReleaseResourceLite(&FCB->MainResource);"
+        },
+        {
+          "line": 1666,
+          "text": "if (!ExAcquireResourceExclusiveLite(&((PDEVICE_EXTENSION)IrpContext->DeviceObject->DeviceExtension)->DirResource,"
+        },
+        {
+          "line": 1675,
+          "text": "if (!ExAcquireResourceExclusiveLite(&FCB->MainResource,"
+        },
+        {
+          "line": 1680,
+          "text": "ExReleaseResourceLite(&((PDEVICE_EXTENSION)IrpContext->DeviceObject->DeviceExtension)->DirResource);"
+        },
+        {
+          "line": 1730,
+          "text": "ExReleaseResourceLite(&FCB->MainResource);"
+        },
+        {
+          "line": 1735,
+          "text": "ExReleaseResourceLite(&((PDEVICE_EXTENSION)IrpContext->DeviceObject->DeviceExtension)->DirResource);"
+        }
+      ]
+    },
+    "rw.c": {
+      "sha256": "a1296989ab3ae6e82f27a9a4a254423372de04c8ae220665f18f64e02d9d2e5f",
+      "lock_lines": [
+        {
+          "line": 945,
+          "text": "ExAcquireResourceSharedLite(Lock, TRUE);"
+        },
+        {
+          "line": 968,
+          "text": "PERESOURCE Resource = NULL;"
+        },
+        {
+          "line": 1053,
+          "text": "Resource = &IrpContext->DeviceExt->DirResource;"
+        },
+        {
+          "line": 1057,
+          "text": "Resource = &Fcb->PagingIoResource;"
+        },
+        {
+          "line": 1061,
+          "text": "Resource = &Fcb->MainResource;"
+        },
+        {
+          "line": 1081,
+          "text": "if (!ExAcquireResourceSharedLite(Resource, CanWait))"
+        },
+        {
+          "line": 1083,
+          "text": "Resource = NULL;"
+        },
+        {
+          "line": 1093,
+          "text": "ExReleaseResourceLite(Resource);"
+        },
+        {
+          "line": 1128,
+          "text": "PERESOURCE Resource = NULL;"
+        },
+        {
+          "line": 1252,
+          "text": "Resource = &IrpContext->DeviceExt->DirResource;"
+        },
+        {
+          "line": 1256,
+          "text": "Resource = &Fcb->PagingIoResource;"
+        },
+        {
+          "line": 1260,
+          "text": "Resource = &Fcb->MainResource;"
+        },
+        {
+          "line": 1265,
+          "text": "if (!ExAcquireResourceSharedLite(Resource, CanWait))"
+        },
+        {
+          "line": 1267,
+          "text": "Resource = NULL;"
+        },
+        {
+          "line": 1274,
+          "text": "if (!ExAcquireResourceExclusiveLite(Resource, CanWait))"
+        },
+        {
+          "line": 1276,
+          "text": "Resource = NULL;"
+        },
+        {
+          "line": 1361,
+          "text": "if (!ExAcquireResourceExclusiveLite(&IrpContext->DeviceExt->DirResource, CanWait))"
+        },
+        {
+          "line": 1371,
+          "text": "ExReleaseResourceLite(&IrpContext->DeviceExt->DirResource);"
+        },
+        {
+          "line": 1508,
+          "text": "ExReleaseResourceLite(Resource);"
+        }
+      ]
+    }
+  },
+  "stack_candidates": [
+    {
+      "process": "System",
+      "thread": "0xfe66e020",
+      "state": 5,
+      "stack_candidate": {
+        "stack": "0xf902bbac",
+        "value": "0xfe43d0ae",
+        "candidate": "xwnfatx.sys+0x20ae"
+      },
+      "function": "_VfatClose",
+      "function_offset": 46,
+      "interpretation": "Candidate immediately after DirResource acquisition; no unwind or resource-address/owner proof."
+    },
+    {
+      "process": "System",
+      "thread": "0xff9a7020",
+      "state": 5,
+      "stack_candidate": {
+        "stack": "0xfbd998f4",
+        "value": "0xfe448b63",
+        "candidate": "xwnfatx.sys+0xdb63"
+      },
+      "function": "_VfatFlushFile",
+      "function_offset": 83,
+      "interpretation": "Candidate immediately after DirResource acquisition; no unwind or resource-address/owner proof."
+    },
+    {
+      "process": "svchost.exe",
+      "thread": "0xffb2b520",
+      "state": 5,
+      "stack_candidate": {
+        "stack": "0xf8c4fb74",
+        "value": "0xfe43c942",
+        "candidate": "xwnfatx.sys+0x1942"
+      },
+      "function": "_VfatCleanup",
+      "function_offset": 50,
+      "interpretation": "Candidate immediately after DirResource acquisition; no unwind or resource-address/owner proof."
+    }
+  ],
+  "hypothesis": "Conflicting Main/Dir lock acquisition orders warrant a controlled concurrent cleanup/flush test.",
+  "established_runtime_cycle": false,
+  "driver_changed": false,
+  "limits": "Same-resource identity, ownership and liveness were not preserved in the older capture. Exception leaks, cache-manager synchronization and other causes are not excluded. Source observations alone do not justify a narrow cleanup-only fix."
+}

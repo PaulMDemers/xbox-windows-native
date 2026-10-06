@@ -225,3 +225,35 @@ not established merely by these native partition offsets.
 The bounded diagnostic reboot was clean despite an active audio-device wizard.
 That supports treating installer shutdown behavior as a separate investigation;
 it does not demonstrate a fix or prove every earlier popup unrelated to storage.
+
+## Open concurrency investigation: cleanup versus volume flush
+
+A later emulator setup/shutdown control stalled after EventLog shutdown. Its
+retained stack candidates place a cache worker, volume flush worker and svchost
+at DirResource acquisition sites in the exact0098 driver; winlogon waits in
+PopFlushVolumes. That capture did not preserve raw memory or resource owners,
+so it cannot establish a deadlock cycle or distinguish a leaked resource from
+an owner waiting elsewhere.
+
+The matching source contains MainResource->DirResource and the reverse order
+in different paths. The earlier pinned-volume-flush change alone does not make
+all cleanup, overwrite-create, enumeration and metadata operations follow one
+order. [The focused concurrency kit](../fatx-shutdown-concurrency/README.md)
+records source identities and prepares concurrent regular-file/volume flushing
+with post-timeout resource-owner capture. No speculative driver change has been
+deployed from this finding. Ordinary serial workload passes do not close it.
+
+The subsequent focused concurrency001 now proves that specific inversion at
+runtime. Cleanup thread876 owns DirResource0xfe6180d0 and waits on worker0.bin
+MainResource0xffb7403c, owned by volume-flush thread884;884 waits back on that
+same DirResource. Both owners and wait blocks were read using the matching
+kernel layout. Counters stopped at1/1/1. The retained snapshot, helper code-byte
+verification and [cycle report](../fatx-shutdown-concurrency/001/deadlock-summary.json)
+support this finding; they do not retrospectively prove every old freeze.
+Candidate0099 reorders cleanup only and remains under emulator investigation.
+
+For Linux projects, this is a review question about their own namespace,
+per-inode, writeback and eviction lock ordering, not evidence of a Linux FATX
+bug. NT ERESOURCE/cache-manager layouts and the observed Windows stack do not
+describe Linux synchronization. Preserve ownership and lifetime evidence before
+translating a proposed fix between implementations.

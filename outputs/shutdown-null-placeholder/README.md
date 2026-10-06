@@ -76,3 +76,16 @@ helper, recorder or debugger. Launch and cold audit records determine its result
 event delta, unchanged selected binaries, five structural hives and full F
 allocation with no orphan clusters or errors. No new SetupAPI activity occurred.
 The original shutdown failure remains preserved; no claim of a kernel fix.
+
+## Full fifteen-minute workload004
+
+004 is a sibling of003 from the same normally shut down001 state. It uses the
+original probe without the rehearsal argument and leaves binaries unchanged.
+It returned at23:26UTC. Qualification passes527 mappings,16 BMP API cases,
+50 exact files,34 absent intermediates and15 rounds totaling900000ms, normal
+shutdown and dashboard return, no new popup/unexpected event, unchanged selected
+binaries, five structural hives and a consistent full F allocation scan. It
+contains no new SetupAPI activity. This is a bounded emulator configuration
+pass, still carrying the inherited unsupported-device flags documented above.
+It neither overrides the failed physical soak nor proves the earlier shutdown
+stall cannot recur under concurrency.

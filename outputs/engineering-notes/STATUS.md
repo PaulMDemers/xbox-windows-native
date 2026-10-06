@@ -92,7 +92,8 @@ now configures the unused QEMU test function without a function driver or
 changed hardware identity. Normal setup and an ordinary subsequent boot pass:
 the queue becomes idle, no installer recurs on the subsequent boot, normal
 shutdown returns to dashboard, and cold event/hash/hive/allocation checks pass.
-The original short storage workload also passed527 checks and cold audits. The
+Both the original short workload and a full fifteen-minute workload passed527
+checks and cold audits, including normal shutdown and dashboard return. The
 emulator parent still contains the earlier01B0/01B4 FAILEDINSTALL flags; those
 are absent on hardware. This configuration avoids outstanding setup; it does not repair the original Windows
 shutdown synchronization race or establish physical device support.

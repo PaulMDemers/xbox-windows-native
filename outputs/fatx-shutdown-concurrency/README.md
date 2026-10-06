@@ -1,5 +1,15 @@
 # Concurrent file cleanup and volume flush investigation
 
+Attempt001 is completed and FAIL. Its post-deadline snapshot proves a two-thread
+exclusive cycle on the same volume and worker0.bin: cleanup holds DirResource
+waiting for MainResource; volume flush holds MainResource waiting for DirResource.
+All three worker counters are1, with zero reported API errors. The helper log
+contains only its initial line because the timeout reporter also blocks on I/O.
+No normal shutdown occurred. Five hives and the full allocation audit remain
+consistent, which does not turn the failed run into a pass. The new Messenger7022
+event is retained. [Evidence](001/deadlock-summary.json),
+[qualification](001/qualification.json). Raw memory remains private.
+
 The earlier shutdown-installer-windows001 run did not return to dashboard. Its
 post-deadline stack scan contained a cache worker at FATX Close+0x2e, a volume
 flush worker inside VfatFlushFile+0x53, and svchost at Cleanup+0x32. Matching
@@ -39,3 +49,23 @@ before any binary ran. Cold collection requires owned runner cleanup, exact
 last-round worker file bytes, log completion, unchanged selected binaries,
 five structural hives, event deltas and full F allocation. No hardware result
 or fix for the earlier stall can be inferred from compilation or one clean run.
+
+`compile-layouts.py` compiles structure offsets with the original0098 compiler
+command, writing only a private diagnostic object. It does not rebuild the
+driver. `read-resource-layouts.py` checks the matching owned kernel PDB hash.
+The extended timeout decoder labels volume/file/paging resources and active
+owner threads. `decoder-replay.json` is an offline validation against the older
+completion006 held-shell snapshot: six volumes and their resources can be
+traversed, with no exclusive wait cycle observed there. It is not a new run or
+evidence against the earlier lost-snapshot shutdown stall. Shared ownership
+tables and non-resource synchronization still remain outside this decoder.
+
+`read-probe-symbols.py` pins the executed helper's counter RVAs. If its user
+pages are resident in a timeout snapshot, the decoder first verifies its loaded
+code section against the reviewed binary, then reads progress/error counters.
+Unknown or nonresident user memory is not interpreted as zero progress.
+
+Additional disassembly review places the older volume worker's caller candidate
+at driver RVA0xded5: immediately after VfatFlushFile inside the pinned-file loop,
+with MainResource held. This is more specific than a generic volume flush wait,
+but it still lacks the old resource address and owner needed to prove a cycle.

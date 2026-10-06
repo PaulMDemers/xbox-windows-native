@@ -80,7 +80,9 @@ r['normal_shutdown_count']=sum(v['source']=='EventLog' and v['event_id']==6006 f
 launch=json.loads((out/'launch.json').read_text());r['dashboard_return']=len(launch['cycles'])==1 and launch['cycles'][0].get('dashboard_return') is True
 r['diagnostic_checks_passed']=all([r['workload_completed'] and all(v['exact'] for v in r['worker_files']),r['storage_workload_not_run'],r['dashboard_return'],r['normal_shutdown_count']==1,not r['unexpected_errors'],not r['popup_records'],not r['new_events']['application'],all(v['matched'] for v in r['payloads']),all(r['baseline_checks'].values()),r['fatx_exact'],all(v['matched'] for v in r['runtime_binary_checks'])])
 r['ordinary_run_valid']=True
-r['debugger_observation']=False
+r['debugger_observation_before_deadline']=False
+r['post_deadline_snapshot']=(out/'timeout-memory.json').exists()
+r['debugger_observation']=r['post_deadline_snapshot']
 r['host_recorder_enabled']=False
 r['limits']='Owned concurrent file and volume flush diagnostic with unchanged FATX0098/video0093. No debugger/recorder before deadline, no raw disk writes, no physical qualification; cold checks do not alone prove lock correctness.'
 (out/'audit.json').write_text(json.dumps(r,indent=2)+'\n')

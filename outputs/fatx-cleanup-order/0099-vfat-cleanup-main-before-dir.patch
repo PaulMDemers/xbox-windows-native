@@ -1,0 +1,50 @@
+--- a/drivers/filesystems/vfatfs/cleanup.c
++++ b/drivers/filesystems/vfatfs/cleanup.c
+@@ -52,7 +52,7 @@
+     }
+     else
+     {
+-        ExAcquireResourceExclusiveLite(&pFcb->MainResource, TRUE);
++        ASSERT(ExIsResourceAcquiredExclusive(&pFcb->MainResource));
+         ExAcquireResourceExclusiveLite(&pFcb->PagingIoResource, TRUE);
+ 
+         pCcb = FileObject->FsContext2;
+@@ -156,7 +156,6 @@
+ #endif
+ 
+         ExReleaseResourceLite(&pFcb->PagingIoResource);
+-        ExReleaseResourceLite(&pFcb->MainResource);
+     }
+ 
+ #ifdef ENABLE_SWAPOUT
+@@ -177,6 +176,8 @@
+     PVFAT_IRP_CONTEXT IrpContext)
+ {
+     BOOLEAN Deleted;
++    PVFATFCB Fcb;
++    PERESOURCE MainResource = NULL;
+ 
+     DPRINT("VfatCleanup(DeviceObject %p, Irp %p)\n", IrpContext->DeviceObject, IrpContext->Irp);
+ 
+@@ -186,9 +187,21 @@
+         return STATUS_SUCCESS;
+     }
+ 
++    /* The open FILE_OBJECT retains this FCB through cleanup. Take its
++     * MainResource before the namespace lock, just as file/volume flush does.
++     * Waiting for MainResource while holding DirResource deadlocks a flush
++     * that owns MainResource and is publishing the file's directory entry.
++     * Volume cleanup does not take a per-file lock and may delete its VCB. */
++    Fcb = IrpContext->FileObject->FsContext;
++    if (Fcb && !BooleanFlagOn(Fcb->Flags, FCB_IS_VOLUME))
++    {
++        MainResource = &Fcb->MainResource;
++        ExAcquireResourceExclusiveLite(MainResource, TRUE);
++    }
+     ExAcquireResourceExclusiveLite(&IrpContext->DeviceExt->DirResource, TRUE);
+     Deleted = VfatCleanupFile(IrpContext);
+     if (!Deleted) ExReleaseResourceLite(&IrpContext->DeviceExt->DirResource);
++    if (MainResource) ExReleaseResourceLite(MainResource);
+ 
+     IrpContext->Irp->IoStatus.Information = 0;
+     return STATUS_SUCCESS;
