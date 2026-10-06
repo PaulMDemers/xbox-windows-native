@@ -1,3 +1,44 @@
+# Continuation: FATX0098 passes the bounded physical trial
+
+Completed 2026-10-06 01:57 UTC. The Xbox is back at UnleashX; normal startup is
+restored and no owned emulator, supervisor, scan or audit process remains running.
+Latest evidence: outputs/fatx0098-physical-trial. Do not relaunch its used trial IDs.
+
+The single physical Windows run launched at 01:46:56 UTC and returned normally
+at 01:50:47 UTC. All 153 mapping checks and 136 output write/flush/reopen cycles
+passed across 17 boundary sizes. All 34 final files match their expected bytes.
+There are no new application events, popups or unexpected warning/error events.
+Normal shutdown is independently recorded in the system event log.
+
+The subsequent read-only F: allocation scan passed: 122,181 files, 6,066
+directories, zero orphan clusters, no crosslinks or capture/chain errors.
+All 3,439 manifest binaries match; nine registry hives pass header checks and
+read-only reachable key/value traversal. These are structural checks, not a
+claim about every registry setting's semantics. qualification.json and
+final-state.json both pass.
+
+Installed FATX0098 SHA256:
+beeaf329f0446d3bdd2ed490fa8143888253115c0ff6c1662b67b82e6619eedd
+Video0093, Microsoft framebuf.dll, HAL, loader and mode remain unchanged.
+Exact payload hashes are in final-state.json. FATX0088 and original startup
+remain preserved locally under artifacts/physical and on the console at
+/F/xwneof98/rollback.sys and /F/xwneof98/startup.cmd. No trace reseeding occurred.
+
+Keep emulator findings separate: rehearsal1 passed its probe and cold data but
+required forced cleanup after host framebuffer inspection timed out. Rehearsal2
+returned normally with correct storage but logged the old-control rundll32
+shutdown popup. Its strict emulator gate remains FAIL. eligibility.json records
+the bounded decision to proceed based on the prior clean paired0098 regression
+and successful API/storage checks; physical qualification waived no popup.
+
+Next: desktop application save/reopen coverage and a longer physical soak with
+0098 and the established video unchanged. Use fresh trial IDs and independent
+collection/audits; the current run was bounded and serial. Concurrent mapped
+truncation/writes, display PnP, faster window movement and higher video modes
+remain separate work. Release0.1.0, its tag and recovery bundles are unchanged.
+
+## Historical continuation entries (installed states below are historical)
+
 # Continuation: candidate0098 passes real mapped EOF and cold persistence regression
 
 Latest: outputs/fatx-mapped-eof. Both ordinary owned emulator attempts, their

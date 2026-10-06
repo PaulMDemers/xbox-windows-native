@@ -183,3 +183,23 @@ It is serial, synthetic-resource emulator evidence, not a physical result or a
 test of concurrent mapped truncation/mapped writes. The lesson for other FATX
 implementations is to test the mapped final-page tail independently of logical
 file contents and allocation correctness, with nonzero backing slack.
+
+## FATX0098: bounded physical mapped-EOF validation, 2026-10-06 UTC
+
+The [isolated hardware trial](../fatx0098-physical-trial/README.md) changed only
+FATX0088 to FATX0098 while retaining the working video0093 baseline. Ordinary
+Win32 APIs created 17 input sizes around sector, page and 64 KiB cluster
+boundaries. Input mapping plus eight output replacement rounds passed 153/153
+checks, with 136 write/flush/close/reopen cycles and exact cold readback of all
+34 final files. Normal shutdown was recorded; no new popups or unexpected
+warning/error events appeared.
+
+Independent post-run checks found consistent allocation across 122,181 files
+and 6,066 directories, all 3,439 expected executable/font payload hashes intact,
+and nine structurally readable registry hives. Normal startup and rollback0088
+were verified after collection. Hardware backing slack was not deliberately
+poisoned: the paired emulator regression remains the direct negative-control
+evidence for stale EOF-tail exposure. The hardware result supports this bounded
+serial workload; it does not qualify concurrent mapped truncation, long soaks,
+display acceleration or generic PnP behavior. Both failed emulator rehearsals
+remain recorded separately from the successful physical result.

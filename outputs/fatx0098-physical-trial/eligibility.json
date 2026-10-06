@@ -1,0 +1,40 @@
+{
+  "scope": "Narrow eligibility for a controlled hardware trial, not a clean emulator-boot claim.",
+  "checks": {
+    "prior_paired_fix_strict_passed": true,
+    "api_probe_completed": true,
+    "persistence_passed": true,
+    "normal_shutdown": true,
+    "dashboard_return": true,
+    "payloads_exact": true,
+    "baseline_exact": true,
+    "hives_readable": true,
+    "no_unexpected_errors": true,
+    "no_application_events": true,
+    "popup_matches_old_control": true
+  },
+  "eligible_for_controlled_trial": true,
+  "strict_emulator_run_passed": false,
+  "unresolved_emulator_popups": [
+    {
+      "offset": 9128,
+      "record": 51,
+      "generated_unix": 1791265535,
+      "written_unix": 1791265535,
+      "event_id_hex": "4000001a",
+      "event_id": 26,
+      "type": 4,
+      "source": "Application Popup",
+      "computer": "XWN-PC",
+      "strings": [
+        "rundll32.exe - DLL Initialization Failed",
+        "The application failed to initialize because the window station is shutting down. "
+      ],
+      "data_hex": ""
+    }
+  ],
+  "audit_sha256": "47545d69eb4da87db1106c81409c474280fd7d9657d1e2af14435baa29eeefd0",
+  "control_audit_sha256": "dabda35ebce0442507930ee7a8daaf33cae69f3e8127272f10d87f3e46f7601a",
+  "decision": "Storage/API checks and normal restart pass. Preserve the known shutdown installer popup as a failed strict emulator gate; do not infer its cause or waive a physical popup. The already-authorized isolated hardware trial changes only FATX and requires independent strict physical audits.",
+  "hardware_qualified": false
+}

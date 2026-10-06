@@ -1,0 +1,279 @@
+{
+  "scope": "One isolated FATX0098 physical trial; baseline0093 video is never changed.",
+  "created_utc": "2026-10-06T01:46:54.284421+00:00",
+  "launch_attempted": true,
+  "startup_enabled": false,
+  "candidate_sha256": "beeaf329f0446d3bdd2ed490fa8143888253115c0ff6c1662b67b82e6619eedd",
+  "probe_sha256": "8cc79bcacafc8536bf89e905b4f5a261df89d6538c0db89b6bb9c42a1417ac70",
+  "preserved": {
+    "before-startup.cmd": {
+      "bytes": 102,
+      "sha256": "257ec9b4c77199f0ac046289912c41acdaba3a30750bf81dfb4c09cbb003af2d"
+    },
+    "before-xwnfatx.sys": {
+      "bytes": 167827,
+      "sha256": "0ec6b5fdae65a1f85cba8c15021ba8095601d4462565b331329884526ff81336"
+    },
+    "before-trace.bin": {
+      "bytes": 4096,
+      "sha256": "5806fe7ce339298b5a94a0e0ab1bdfb78922fc449effd5cea2f393f0d33fd00e"
+    },
+    "before-system.evt": {
+      "bytes": 65536,
+      "sha256": "c7a8f16662dc2a553a654d243900c5e79411825a69a9312f261deed46db40957"
+    },
+    "before-application.evt": {
+      "bytes": 65536,
+      "sha256": "af36c94bb8b4f477b0b2f2cc39d7e2b4a6a587f490032577361f1bf64acee58b"
+    }
+  },
+  "payloads": [
+    {
+      "path": "/F/xwneof98/rollback.sys",
+      "bytes": 167827,
+      "sha256": "0ec6b5fdae65a1f85cba8c15021ba8095601d4462565b331329884526ff81336"
+    },
+    {
+      "path": "/F/xwneof98/startup.cmd",
+      "bytes": 102,
+      "sha256": "257ec9b4c77199f0ac046289912c41acdaba3a30750bf81dfb4c09cbb003af2d"
+    },
+    {
+      "path": "/F/xwneof98/probe.exe",
+      "bytes": 12139,
+      "sha256": "8cc79bcacafc8536bf89e905b4f5a261df89d6538c0db89b6bb9c42a1417ac70"
+    }
+  ],
+  "video_unchanged_sha256": "3e74a5c35b68d7fa0e047b4ba9cec25e7ec0ea5a94e796fc07508f667fcc85cf",
+  "eligibility": {
+    "scope": "Narrow eligibility for a controlled hardware trial, not a clean emulator-boot claim.",
+    "checks": {
+      "prior_paired_fix_strict_passed": true,
+      "api_probe_completed": true,
+      "persistence_passed": true,
+      "normal_shutdown": true,
+      "dashboard_return": true,
+      "payloads_exact": true,
+      "baseline_exact": true,
+      "hives_readable": true,
+      "no_unexpected_errors": true,
+      "no_application_events": true,
+      "popup_matches_old_control": true
+    },
+    "eligible_for_controlled_trial": true,
+    "strict_emulator_run_passed": false,
+    "unresolved_emulator_popups": [
+      {
+        "offset": 9128,
+        "record": 51,
+        "generated_unix": 1791265535,
+        "written_unix": 1791265535,
+        "event_id_hex": "4000001a",
+        "event_id": 26,
+        "type": 4,
+        "source": "Application Popup",
+        "computer": "XWN-PC",
+        "strings": [
+          "rundll32.exe - DLL Initialization Failed",
+          "The application failed to initialize because the window station is shutting down. "
+        ],
+        "data_hex": ""
+      }
+    ],
+    "audit_sha256": "47545d69eb4da87db1106c81409c474280fd7d9657d1e2af14435baa29eeefd0",
+    "control_audit_sha256": "dabda35ebce0442507930ee7a8daaf33cae69f3e8127272f10d87f3e46f7601a",
+    "decision": "Storage/API checks and normal restart pass. Preserve the known shutdown installer popup as a failed strict emulator gate; do not infer its cause or waive a physical popup. The already-authorized isolated hardware trial changes only FATX and requires independent strict physical audits.",
+    "hardware_qualified": false
+  },
+  "candidate_deployed_utc": "2026-10-06T01:46:55.426506+00:00",
+  "launch_utc": "2026-10-06T01:46:56.366901+00:00",
+  "command": "SITE EXEC E:\\Applications\\XWNFBoot\\default.xbe",
+  "reply": "200 EXEC command succeeded.",
+  "collected": {
+    "result.log": {
+      "bytes": 5638,
+      "sha256": "c96d2b18bf62bec605d5f9a3dfc00a3c9ca6f53db89af5d90208068f75761640"
+    },
+    "system.evt": {
+      "bytes": 65536,
+      "sha256": "260982d986d75dce4d9b27535f7f1dddd7880f1aa2416b72842ae407673b0b45"
+    },
+    "application.evt": {
+      "bytes": 65536,
+      "sha256": "af36c94bb8b4f477b0b2f2cc39d7e2b4a6a587f490032577361f1bf64acee58b"
+    },
+    "trace.bin": {
+      "bytes": 4096,
+      "sha256": "740cabcfe5fdcb0a78848946e6abb3ea4611abf56837778ff5d7c6a49dfdd887"
+    },
+    "input00.bin": {
+      "bytes": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    "input01.bin": {
+      "bytes": 2,
+      "sha256": "843c31b0edd6b40adaecd13c9911778eaa931f68c5d9307630d036892b9429f5"
+    },
+    "input02.bin": {
+      "bytes": 511,
+      "sha256": "e85bada25bbcfb1bbbeb91bbac37925ca08854940fb376323a51b91967cc97a3"
+    },
+    "input03.bin": {
+      "bytes": 512,
+      "sha256": "a3becfe88caf20d0fe3319f5238677ea9ac46e861fff0e49da07df1ee9c92139"
+    },
+    "input04.bin": {
+      "bytes": 513,
+      "sha256": "7c8d67368aba09c0d20ce32c640c64c9b92645ceebe842ab58744da44ee41b95"
+    },
+    "input05.bin": {
+      "bytes": 4095,
+      "sha256": "7a00fa7d9fde6d58b9aaf85da37b4b5455ccf86165d42de23f55e2f8b709384b"
+    },
+    "input06.bin": {
+      "bytes": 4096,
+      "sha256": "578d539320bbcb7e819bf8d0db381fdd8ea269c8d13e2e4f4334653b43db4946"
+    },
+    "input07.bin": {
+      "bytes": 4097,
+      "sha256": "568589c6df1247e6a07688dbbfce12b159290c1a11a07da37770cfc934ac103b"
+    },
+    "input08.bin": {
+      "bytes": 8191,
+      "sha256": "dc39a40e34b8c35803c27d9868cb565b944589a252cc229d2763543684e5848b"
+    },
+    "input09.bin": {
+      "bytes": 8192,
+      "sha256": "f88b8a9003571a411780ca5c7efa12b0081ed0f1ffc0c331c75a7a5eecef05e9"
+    },
+    "input10.bin": {
+      "bytes": 8193,
+      "sha256": "00fddc64eccc0344dcccd0b2bffb19438cc0d367d296e2530d597c22cdab8472"
+    },
+    "input11.bin": {
+      "bytes": 65535,
+      "sha256": "ad8eec5ddf4584102766fa57e17dfafe1d91a8c9822ec7d4c709d053bd637496"
+    },
+    "input12.bin": {
+      "bytes": 65536,
+      "sha256": "910ac3e0efbdc84c10bff0bc63336b6d565e476111c368fd3b144691bf5560d7"
+    },
+    "input13.bin": {
+      "bytes": 65537,
+      "sha256": "9a46024782e9c1db312d8f30bdbc029f3196208ecf109283eeff4b2aac64ec1d"
+    },
+    "input14.bin": {
+      "bytes": 131071,
+      "sha256": "d6febc8e153b0e89d5299e2b12f53990a71dd3f5e4b83e06567bdc2db3f9432e"
+    },
+    "input15.bin": {
+      "bytes": 131072,
+      "sha256": "ea651d37beaf363aeb054ddd91bc7e50f7798c4de846d6030917d36bf304745e"
+    },
+    "input16.bin": {
+      "bytes": 131073,
+      "sha256": "c365ee7694fd3f1662c9b7e7fad7c69a8a22388b5d7b61fc0cd96858768c99b3"
+    },
+    "output00.bin": {
+      "bytes": 1,
+      "sha256": "e6f207509afa3908da116ce61a7576954248d9fe64a3c652b493cca57ce36e2e"
+    },
+    "output01.bin": {
+      "bytes": 2,
+      "sha256": "e293034308c814293017f0c20c808f15993fe0b82914c241bad911d6335329bd"
+    },
+    "output02.bin": {
+      "bytes": 511,
+      "sha256": "e870e4b94b9434d45d105743c0b59e200a9582568f217f6a4e30e18e86c0208c"
+    },
+    "output03.bin": {
+      "bytes": 512,
+      "sha256": "b4ad76f31c566a9a1a524e249a3eec1c8b57d5e799d5b2602ae288d19c3e04e2"
+    },
+    "output04.bin": {
+      "bytes": 513,
+      "sha256": "94e96ba0521a65363d2db54fdceb170bf12c210a9401fe36fbc0c649e691d51d"
+    },
+    "output05.bin": {
+      "bytes": 4095,
+      "sha256": "a1bebfefba28a7db532313d46f2ee3c9b8944c6bef18da6fabbbe2db313b5b97"
+    },
+    "output06.bin": {
+      "bytes": 4096,
+      "sha256": "6476e5e637d4f60b9bd350e0ce06757af05f72208a0c6f334a743ea297b67412"
+    },
+    "output07.bin": {
+      "bytes": 4097,
+      "sha256": "3e883c9d509bbffe075c9e95a51dc11d1e45a08166f97f5b1a36cadfdf65d37e"
+    },
+    "output08.bin": {
+      "bytes": 8191,
+      "sha256": "64ad8609319d4c4fd4a831cf5fe5df8ab4c8bf92afe033234c71e0d8156ef934"
+    },
+    "output09.bin": {
+      "bytes": 8192,
+      "sha256": "afe88d0af91e088a5299b3d2137bd3bc9ca3ce1f256ddcc0f606e8d33aea50e7"
+    },
+    "output10.bin": {
+      "bytes": 8193,
+      "sha256": "41b4c9dde0ca112bdd9d6bc7bd1375736e62aaa7029ee3222438184edea62d2e"
+    },
+    "output11.bin": {
+      "bytes": 65535,
+      "sha256": "bbda57b25b7b8fa911ef154a7e6c74c4f8724671c85627a5ff0dddc6881887e4"
+    },
+    "output12.bin": {
+      "bytes": 65536,
+      "sha256": "98b2db57e62eff9a7e77683843199ad47e83cf7666356fbfee5cc51fb9712fa5"
+    },
+    "output13.bin": {
+      "bytes": 65537,
+      "sha256": "a9e748ae55f783ad31f398091e00d08bb04a9e2b6c69e82317ba536605c88e14"
+    },
+    "output14.bin": {
+      "bytes": 131071,
+      "sha256": "b5eda4921188aebdf73f760ce5dfe362f06677de9199d8e4b3e80376d83337bf"
+    },
+    "output15.bin": {
+      "bytes": 131072,
+      "sha256": "b980758a1527b7562ce49f5d8fa9f42cc1e510c3e413a459600883b9128b56ea"
+    },
+    "output16.bin": {
+      "bytes": 131073,
+      "sha256": "e6a3aad3fe81078c5061c6d462668cea736c7a752516964b7b10cff20fbc4c48"
+    }
+  },
+  "candidate_checks": {
+    "/F/winnt/system32/drivers/xwnfatx.sys": {
+      "sha256": "beeaf329f0446d3bdd2ed490fa8143888253115c0ff6c1662b67b82e6619eedd",
+      "expected": "beeaf329f0446d3bdd2ed490fa8143888253115c0ff6c1662b67b82e6619eedd"
+    },
+    "/F/winnt/system32/drivers/xboxvnt5.sys": {
+      "sha256": "3e74a5c35b68d7fa0e047b4ba9cec25e7ec0ea5a94e796fc07508f667fcc85cf",
+      "expected": "3e74a5c35b68d7fa0e047b4ba9cec25e7ec0ea5a94e796fc07508f667fcc85cf"
+    },
+    "/F/winnt/system32/drivers/xboxvnt5.pre-dim": {
+      "sha256": "413098acf0066e48fde515b75d825578c23c17c4094ec2341ebdaa314a2d6b13",
+      "expected": "413098acf0066e48fde515b75d825578c23c17c4094ec2341ebdaa314a2d6b13"
+    },
+    "/E/Applications/XWNFBoot/loader/halxboxnt5.dll": {
+      "sha256": "a3a84368d59936dfa6bbcdc6d5839d57b886342211142d305e9dde941e4d1648",
+      "expected": "a3a84368d59936dfa6bbcdc6d5839d57b886342211142d305e9dde941e4d1648"
+    },
+    "/E/Applications/XWNFBoot/default.xbe": {
+      "sha256": "c7a2b9c863377bd9755a78df57d2f53fcce8c288d058e0492468b8732f4363e0",
+      "expected": "c7a2b9c863377bd9755a78df57d2f53fcce8c288d058e0492468b8732f4363e0"
+    },
+    "/E/Applications/XWNFBoot/freeldr.sys": {
+      "sha256": "c936b06e1f26d54436c170ddd056275335008cace3c522ff29a5d8361d10e6a1",
+      "expected": "c936b06e1f26d54436c170ddd056275335008cace3c522ff29a5d8361d10e6a1"
+    },
+    "/F/winnt/system32/framebuf.dll": {
+      "sha256": "5da1fe7c3cdaf67a4a487c8872c2034fbc425bfd36d2b7715b2a1c4caa51df86",
+      "expected": "5da1fe7c3cdaf67a4a487c8872c2034fbc425bfd36d2b7715b2a1c4caa51df86"
+    }
+  },
+  "probe_unchanged": true,
+  "rollback_exact": true,
+  "collected_utc": "2026-10-06T01:51:08.545912+00:00"
+}
