@@ -53,8 +53,16 @@ explicit mapping/BMP workload. Both runs waited two minutes and restarted
 normally. The unchanged control had no popup; the package installed correctly
 but still emitted the shutdown popup. Both allocation audits were clean. This
 narrows the reproduction to a first-install/shutdown scenario without requiring
-the explicit storage workload; it does not identify the failing process or
-establish a universal cause.
+the explicit storage workload; the ordinary pair alone does not identify the
+failing process or establish a universal cause.
+
+A subsequent [minimal trace](../shutdown-idle-trace/README.md) of the exact
+package seed reproduced the same popup. Its owner is rundll32 running newdev
+for emulator PCI1B36:0005. Matched win32k raises the hard error before winlogon
+enters kernel shutdown. Cold installation, selected binary/hive checks and
+full F: allocation pass, but the popup remains a strict failure. Creation,
+resume and termination ordering were not captured; debugger timing and this
+emulator device identity cannot be generalized to the physical console.
 
 ## Graphics and device support
 

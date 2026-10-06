@@ -1,0 +1,87 @@
+{
+  "scope": "Cross-check the preserved minimal trace against independent cold evidence.",
+  "evidence_consistent": true,
+  "physical_access": false,
+  "ordinary_run_valid": false,
+  "popup_fixed": false,
+  "strict_result": "FAIL: shutdown popup",
+  "source_hashes": {
+    "trace-source.py": "87e6d1e65f2ff0c375b25b4fbf5b8d7647cbd453ab6e1aa7bd11c9aac491fc77",
+    "trace-early-source.py": "6a3d5926082f595f41a6ca60fab92b447ab3a312300d128bca609a09c7b8946d"
+  },
+  "fixture_sha256": "9f51f2a37988712e328b43f18f3335e2917ee042bca7cf8425c5464f6d6f9d28",
+  "seed_sha256": "4c4b81556089c76efae8988d1ef8b853441e92ecd6e9ceb9d682cc15323253a9",
+  "runtime_kernel_base": "0x823df000",
+  "runtime_win32k": {
+    "name": "win32k.sys",
+    "base": "0xa0000000",
+    "entry": "0xa0180856",
+    "size": 1650688
+  },
+  "first_attachment": {
+    "status": "capture_incomplete",
+    "error": "AssertionError('E14')",
+    "events": 0,
+    "guest_resumed": true,
+    "limit": "Failed during pre-arm reading; unreadable site was not recorded."
+  },
+  "second_attachment": {
+    "status": "reached_kernel_shutdown",
+    "events": 3,
+    "all_kernel_sites_readable_initially": true,
+    "guest_resumed": true
+  },
+  "error_owner": {
+    "eprocess": "0xff9a0540",
+    "image": "rundll32.exe",
+    "pid": 1004,
+    "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_1B36&DEV_0005&SUBSYS_00000000&REV_00\\2&ebb567f&0&03",
+    "parameters_flags": "0x1",
+    "parameters": "0x20000",
+    "raw_command_buffer": "0x205bc",
+    "resolved_command_buffer": "0x205bc"
+  },
+  "error_thread": "0xff9dd020",
+  "status": "0xc000026b",
+  "caller": "0xa007e406",
+  "error_tick": 9991,
+  "kernel_shutdown_tick": 10249,
+  "popup_matches_ordinary_idle_failure": true,
+  "idle_ms": 120000,
+  "installation_checks_passed": true,
+  "checked_payloads": 9,
+  "checked_runtime_binaries": 6,
+  "structural_hives": 5,
+  "allocation": {
+    "directories": 322,
+    "files": 6742,
+    "directory_clusters": 323,
+    "orphan_cluster_count": 0,
+    "allocation_consistent": true
+  },
+  "launch": {
+    "cycle": 1,
+    "status": "accepted",
+    "launch_requested_utc": "2026-10-06T19:14:17.443444+00:00",
+    "command": "SITE EXEC E:\\Applications\\XWNFBoot\\default.xbe",
+    "reply": "200 EXEC command succeeded.",
+    "dashboard_return_utc": "2026-10-06T19:17:23.538887+00:00",
+    "offline_observed": true,
+    "dashboard_return": true
+  },
+  "cleanup": {
+    "completedUtc": "2026-10-06T19:17:23.8855982Z",
+    "scratchDirectory": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\work\\scratch\\windows-native-82bbddf831374db58775b8be6e99752e",
+    "retained": false,
+    "reason": ""
+  },
+  "limits": [
+    "Two hard-error entries observe one error, not two popups.",
+    "No creation, resume, token closure or termination boundary was traced.",
+    "The following win32k termination request is matched static evidence only.",
+    "Paused runtime capture and breakpoint stops may alter scheduling.",
+    "No explicit mapping/BMP workload; ordinary Windows background I/O remains.",
+    "Full F: allocation scan and selected binary hashes, not all partitions or a full archive audit.",
+    "Do not assign this emulator device to the physical console popup."
+  ]
+}

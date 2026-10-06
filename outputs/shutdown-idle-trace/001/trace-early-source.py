@@ -1,0 +1,173 @@
+"""Minimal hard-error capture on the installation-only idle failure; not boot qualification."""
+import datetime,json,re,socket,struct,sys,time
+from pathlib import Path
+k=Path(__file__).resolve().parent;ws=k.parents[1];case=sys.argv[1];assert case in ['001'];out=k/case
+src=ws/'outputs/native-windows-nt5-kernel'
+sys.path.insert(0,str(ws/'outputs/native-windows-prebuild'))
+from monitor_capture import command,acquire_monitor_lock
+namespace={};code=(src/'trace-entry.py').read_text()
+exec(code[code.index('class Remote:'):code.index('p=argparse.ArgumentParser()')],dict(socket=socket),namespace)
+Remote=namespace['Remote'];state=json.loads((out/'runtime.json').read_text())
+assert state['status'] in ['shell_running','kernel_running']
+run=ws/('work/runs/nt5-shutdown-idle-trace-'+case)
+assert (run/'instance.json').exists() and not (run/'cleanup.json').exists()
+assert not (out/'trace.json').exists()
+layout=json.loads((src/'process-layouts.json').read_text());fields=layout['_EPROCESS']['fields']
+pubs=json.loads((src/'kernel-publics.json').read_text())['symbols']
+review=json.loads((k/('site-review-sparse.json' if case=='003' else ('site-review-lifecycle.json' if case=='002' else 'site-review.json'))).read_text());base=int(state['kernel_base'],16)
+if case=='004':
+    review=json.loads((k/'site-review-sparse.json').read_text())
+    review['sites']=[s for s in review['sites'] if s['name'] in ['PnP_Create_return','_ExRaiseHardError@24','_ExpRaiseHardError@24','_NtShutdownSystem@4']]
+targets={(base+s['rva'] if s['module']=='ntoskrnl.exe' else s['address']):s for s in review['sites']}
+report=dict(scope=__doc__,physical_access=False,ordinary_boot_qualified=False,events=[],sites=review,started_utc=datetime.datetime.now(datetime.timezone.utc).isoformat())
+report['active_sites']={hex(a):s['name'] for a,s in targets.items()}
+report['trace_source_sha256']=__import__('hashlib').sha256(Path(__file__).read_bytes()).hexdigest()
+g=None;armed=set();lock=acquire_monitor_lock(4594);stopped=False
+def save(): (out/'trace.json').write_text(json.dumps(report,indent=2)+'\n')
+def u32(p):return struct.unpack('<I',g.read(p,4))[0]
+def target_command(process):
+    peb=u32(process+fields['Peb']['offset'])
+    cr3=u32(process+fields['Pcb']['offset']+layout['_KPROCESS']['fields']['DirectoryTableBase']['offset'])
+    assert peb>=0x10000 and peb<0x80000000,'No user PEB'
+    assert g.ask('Qqemu.PhyMemMode:1')=='OK'
+    try:
+        def physical32(p):
+            assert 0<=p<0x4000000-3
+            return u32(p)
+        def read(va,size):
+            assert 0<=size<=4096 and 0x10000<=va and va+size<=0x80000000
+            result=b''
+            while size:
+                pde=physical32((cr3&0xfffff000)+4*(va>>22));assert pde&1,'Nonresident target PDE'
+                if pde&128:pa=(pde&0xffc00000)+(va&0x3fffff)
+                else:
+                    pte=physical32((pde&0xfffff000)+4*((va>>12)&1023));assert pte&1,'Nonresident target PTE'
+                    pa=(pte&0xfffff000)+(va&4095)
+                n=min(size,4096-(va&4095));assert pa+n<=0x4000000
+                result+=g.read(pa,n);va+=n;size-=n
+            return result
+        params=struct.unpack('<I',read(peb+0x10,4))[0]
+        flags=struct.unpack('<I',read(params+8,4))[0]
+        length,maximum,buffer=struct.unpack('<HHI',read(params+0x40,8))
+        assert length<=maximum and length<=4096 and length%2==0
+        raw_buffer=buffer
+        if not flags&1 and buffer:buffer+=params
+        return dict(command_line=read(buffer,length).decode('utf-16le') if length else '',parameters_flags=hex(flags),parameters=hex(params),raw_command_buffer=hex(raw_buffer),resolved_command_buffer=hex(buffer))
+    finally:assert g.ask('Qqemu.PhyMemMode:0')=='OK'
+def describe(process):
+    row=dict(eprocess=hex(process))
+    try:
+        row.update(image=g.read(process+fields['ImageFileName']['offset'],16).split(b'\0')[0].decode('ascii',errors='replace'),pid=u32(process+fields['UniqueProcessId']['offset']))
+        row.update(target_command(process))
+    except Exception as exc:row['decode_error']=repr(exc)
+    return row
+
+def wide(p):
+    assert 0x10000<=p<0x80000000
+    raw=bytearray()
+    for n in range(2048):
+        part=g.read(p+2*n,2)
+        if part==b'\0\0':return raw.decode('utf-16le')
+        raw.extend(part)
+    raise ValueError('Unterminated command')
+
+pending_creation={}
+try:
+    command(4594,'stop');stopped=True
+    g=Remote(4595);report['gdb_features']=g.ask('qSupported');report['initial_stop']=g.ask('?')
+    # Verify code before arming. No guest registers, arguments or data are changed.
+    for address,site in targets.items():
+        if site['module']=='ntoskrnl.exe':
+            actual=g.read(address,len(bytes.fromhex(site['bytes']))).hex();assert actual==site['bytes'],(site,actual)
+    report['kernel_site_bytes_verified']=True
+    for address in targets:g.bp(address);armed.add(address)
+    save();deadline=time.monotonic()+360
+    while len(report['events'])<1024 and time.monotonic()<deadline:
+        g.send('c');stopped=False;g.s.settimeout(max(1,deadline-time.monotonic()));response=g.recv();stopped=True;g.s.settimeout(5)
+        # i386 GDB register packet order: EAX ECX EDX EBX ESP EBP ESI EDI EIP.
+        packet=bytes.fromhex(g.ask('g'));values=struct.unpack('<9I',packet[:36]);regs=dict(zip(['EAX','ECX','EDX','EBX','ESP','EBP','ESI','EDI','EIP'],values))
+        address=regs['EIP'];assert address in targets,(response,regs)
+        try:g.read(address,3)
+        except AssertionError as exc:
+            if str(exc)!='E14':raise
+            report.setdefault('unreadable_site_hits',[]).append(dict(address=hex(address),utc=datetime.datetime.now(datetime.timezone.utc).isoformat()))
+            save();g.bp(address,False);armed.remove(address);assert g.ask('s').startswith(('T','S'))
+            g.bp(address);armed.add(address);continue
+        site=targets[address];argc=site['argc'];at=regs['EBP']+4 if site.get('frame')=='ebp' else regs['ESP']
+        assert g.read(address,len(bytes.fromhex(site['bytes']))).hex()==site['bytes']
+        args=struct.unpack('<'+str(argc+1)+'I',g.read(at,4*(argc+1)))
+        event=dict(index=len(report['events']),function=site['name'],utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),caller=hex(args[0]),arguments=[hex(v) for v in args[1:]])
+        try:
+            thread=u32(0xffdff124);event['owner']=describe(u32(thread+review['thread_owner_offset']))
+            event['thread']=hex(thread);event['tick_count']=u32(base+pubs['_KeTickCount']['rva'])
+            if site['name']=='NtTerminateProcess_AfterReference':event['target']=describe(u32(regs['EBP']-8))
+            elif site['name']=='NtResumeThread_BeforeResume':
+                t=u32(regs['EBP']-0x24);event['target_thread']=hex(t);event['target']=describe(u32(t+review['thread_owner_offset']))
+            elif site['name']=='_PspExitProcess@8':event['target']=describe(args[2])
+        except Exception as exc:event['decode_error']=repr(exc)
+        if site.get('kind')=='pnp':
+            event.pop('caller');event.pop('arguments')
+            event['registers']={n:hex(v) for n,v in regs.items()}
+            try:
+                event['raw_stack_words']=[hex(v) for v in struct.unpack('<12I',g.read(regs['ESP'],48))]
+                event['saved_token']=hex(u32(review['token_global']))
+                if site['name']=='PnP_Control_entry':event['control']=u32(regs['ESP']+4)
+                else:
+                    event['command_line']=wide(regs['EBP']-0x268)
+                    if site['name']=='PnP_Create_call':
+                        event['call_arguments']=[hex(v) for v in struct.unpack('<11I',g.read(regs['ESP'],44))]
+                        pending_creation[thread]=len(report['events'])
+                    elif site['name']=='PnP_Create_return':
+                        event['entry_index']=pending_creation.pop(thread,None)
+                        event['return_eax']=hex(regs['EAX'])
+                        event['last_error']=u32(u32(thread+review['teb_offset'])+0x34)
+                    else:event['wait_result']=hex(regs['EAX'])
+                    if site['name']!='PnP_Create_call':
+                        event['process_information']=[hex(v) for v in struct.unpack('<4I',g.read(regs['EBP']-0x278,16))]
+            except Exception as exc:event['pnp_decode_error']=repr(exc)
+        if 'HardError' in site['name']:
+            try:
+                event['parameter_values']=[hex(v) for v in struct.unpack('<'+str(args[2])+'I',g.read(args[4],4*args[2]))] if args[2] and args[2]<=16 else []
+                event['raw_stack_words']=[hex(v) for v in struct.unpack('<16I',g.read(regs['ESP'],64))]
+                event['registers']={n:hex(v) for n,v in regs.items()}
+                event['unicode_parameters']=[]
+                for index,value in enumerate(event['parameter_values']):
+                    if not args[3]&(1<<index):continue
+                    row=dict(index=index,pointer=value)
+                    try:
+                        length,maximum,buffer=struct.unpack('<HHI',g.read(int(value,16),8))
+                        assert length<=maximum and length<=4096 and length%2==0
+                        row['text']=g.read(buffer,length).decode('utf-16le') if length else ''
+                    except Exception as exc:row['decode_error']=repr(exc)
+                    event['unicode_parameters'].append(row)
+                if site['module']=='ntdll.dll':
+                    frame=regs['EBP'];event['user_frame_chain']=[]
+                    for _ in range(8):
+                        if not 0x10000<=frame<0x80000000:break
+                        try:next_frame,ret=struct.unpack('<II',g.read(frame,8))
+                        except Exception as exc:event['frame_read_error']=repr(exc);break
+                        event['user_frame_chain'].append(dict(frame=hex(frame),return_address=hex(ret)))
+                        if not frame<next_frame<=frame+0x100000:break
+                        frame=next_frame
+            except Exception as exc:event['parameter_decode_error']=repr(exc)
+        report['events'].append(event);save()
+        if site['name']=='_NtShutdownSystem@4':
+            report['status']='reached_kernel_shutdown';break
+        g.bp(address,False);armed.remove(address);assert g.ask('s').startswith(('T','S'))
+        g.bp(address);armed.add(address)
+    else:report['status']='bounded_capture_limit'
+except Exception as exc:report.update(status='capture_incomplete',error=repr(exc))
+finally:
+    if g:
+        try:
+            if not stopped:g.s.settimeout(5);g.interrupt();stopped=True
+            for address in list(armed):g.bp(address,False);armed.remove(address)
+            g.send('c');report['guest_resumed']=True
+        except Exception as exc:
+            report['resume_error']=repr(exc)
+            try:command(4594,'cont');report['monitor_resumed']=True
+            except Exception as fallback:report['monitor_resume_error']=repr(fallback)
+        g.s.close()
+    elif stopped:command(4594,'cont')
+    report['ended_utc']=datetime.datetime.now(datetime.timezone.utc).isoformat();save();lock.close()
+print(json.dumps({n:report[n] for n in ['status','error','guest_resumed'] if n in report}));print('events',len(report['events']))

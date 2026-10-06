@@ -1,3 +1,53 @@
+# Idle first-install failure: hard-error owner captured
+
+2026-10-06 UTC, outputs/shutdown-idle-trace. Physical Xbox untouched;
+FATX0098/video0093/normal startup, original0088 rollback and immutable 0.1.0
+preserved. No physical launch, driver rebuild, guest data/register patch,
+error suppression, recovery capture or automation. All owned runner,
+supervisor, tracer and cold-reader processes finished; no live test remains.
+
+One launch, nt5-shutdown-idle-trace-001, at 19:14:17 UTC; dashboard return
+19:17:23. Exact shutdown-install-idle002 seed and base, no guest-content edit.
+Read-only paused capture found kernel base 0x823df000. Initial tracer attachment
+failed pre-arm reading with E14, zero events, guest resumed; exact source and
+failed report retained as trace-early-source.py/trace-early.json. Its unreadable
+address was not recorded. Second attachment to the SAME launch records an
+unreadable initial site if present, but all kernel sites were actually readable
+and verified. No unreadable hit or decoding error. Source snapshots match the
+hashes in their corresponding trace reports.
+
+Three retained events: ExRaiseHardError, ExpRaiseHardError, NtShutdownSystem.
+First two observe ONE error 0xc000026b from rundll32.exe newdev.dll,DevInstall
+for PCI1B36:0005, PID1004/EPROCESS0xff9a0540/thread0xff9dd020, tick9991.
+Caller0xa007e406 matches captured win32k and its cold hash. At tick10249,
+winlogon PID156 enters kernel shutdown action1. No creation/resume/token-close/
+termination boundary was traced. Following win32k termination with0xc0000142
+remains matched static evidence, not an observed termination in this run.
+
+Cold event log independently reproduces the ordinary idle002 single rundll32
+window-station-shutdown popup. Strict result remains FAIL; ordinary_run_valid
+is false. Helper completed120000ms, no explicit mapping/BMP workload, one normal
+EventLog shutdown, no other unexpected errors. Normal background I/O remains.
+GPU installation succeeded with unchanged binaries and required-reboot veto.
+Checked payloads/runtime binaries match; five hives traversable. Full F:
+allocation:322 directories/6742 files, zero orphans/errors. Not a full archive
+or other-partition audit. No hardware candidate promotion.
+
+Evidence: README.md, review-evidence.py/evidence-review.json, fixture-001.json,
+001/{runtime,trace,trace-early,audit,package-audit,allocation,launch}.json.
+Exact executed tracer sources preserved; raw disks/hives/media remain private.
+prepare.py was written after equivalent inline preparation; it is the reusable
+recipe, not a claim of the literal preparation command originally executed.
+
+Next: capture the identified installer's start/resume relative to GUI shutdown
+in this smaller fixture with limited observation. Earlier broad/sparse traces
+often altered the outcome; do not treat a clean trace as a fix or transfer its
+lifecycle to this failed run. Review a proper device package or synchronization
+change only with evidence; no device removal, FAILEDINSTALL edits or popup
+suppression to manufacture PASS. Physical popup ownership remains unknown.
+
+## Prior continuation (historical)
+
 # Paired idle test reproduces first-install popup without mapping workload
 
 2026-10-06 UTC, outputs/shutdown-install-idle. Physical Xbox untouched;
