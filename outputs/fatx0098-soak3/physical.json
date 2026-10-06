@@ -1,0 +1,103 @@
+{
+  "scope": "One timed FATX0098 storage soak; no driver, video or trace reseeding.",
+  "created_utc": "2026-10-06T14:35:14.399350+00:00",
+  "launch_attempted": true,
+  "startup_enabled": true,
+  "candidate_sha256": "beeaf329f0446d3bdd2ed490fa8143888253115c0ff6c1662b67b82e6619eedd",
+  "probe_sha256": "a54363683ef566ac39403749703a8ceef45bd7e113470b9c669a19294a677f29",
+  "preserved": {
+    "before-startup.cmd": {
+      "bytes": 102,
+      "sha256": "257ec9b4c77199f0ac046289912c41acdaba3a30750bf81dfb4c09cbb003af2d"
+    },
+    "before-xwnfatx.sys": {
+      "bytes": 167827,
+      "sha256": "beeaf329f0446d3bdd2ed490fa8143888253115c0ff6c1662b67b82e6619eedd"
+    },
+    "before-trace.bin": {
+      "bytes": 4096,
+      "sha256": "5359689b48f7aa08a1224628949422bd179ce8b954ebc1d5576a1a30b1c92aac"
+    },
+    "before-system.evt": {
+      "bytes": 65536,
+      "sha256": "ae7e6b5e4da2c12a5e552f295ce67233d364f0e7e0704af0080f16267ee7ccdf"
+    },
+    "before-application.evt": {
+      "bytes": 65536,
+      "sha256": "af36c94bb8b4f477b0b2f2cc39d7e2b4a6a587f490032577361f1bf64acee58b"
+    }
+  },
+  "payloads": [
+    {
+      "path": "/F/xwns98/rollback.sys",
+      "bytes": 167827,
+      "sha256": "beeaf329f0446d3bdd2ed490fa8143888253115c0ff6c1662b67b82e6619eedd"
+    },
+    {
+      "path": "/F/xwns98/startup.cmd",
+      "bytes": 102,
+      "sha256": "257ec9b4c77199f0ac046289912c41acdaba3a30750bf81dfb4c09cbb003af2d"
+    },
+    {
+      "path": "/F/xwns98/probe.exe",
+      "bytes": 15705,
+      "sha256": "a54363683ef566ac39403749703a8ceef45bd7e113470b9c669a19294a677f29"
+    },
+    {
+      "path": "/F/xwns98/matched.exe",
+      "bytes": 11017,
+      "sha256": "62e8690ae188fe72beb4017d4752fdac931f06c35879ecccd456394a848932a8"
+    },
+    {
+      "path": "/F/xwns98/scribble.bmp",
+      "bytes": 442422,
+      "sha256": "ad7bfd3fa51af5ae5a666f13888b755bf0cd17a4bbe4c1dbb4e81742d2b148d8"
+    }
+  ],
+  "video_unchanged_sha256": "3e74a5c35b68d7fa0e047b4ba9cec25e7ec0ea5a94e796fc07508f667fcc85cf",
+  "eligibility": {
+    "scope": "Narrow eligibility for a controlled hardware trial, not a clean emulator-boot claim.",
+    "checks": {
+      "prior_physical_trial_passed": true,
+      "allocation_consistent": true,
+      "api_probe_completed": true,
+      "persistence_passed": true,
+      "normal_shutdown": true,
+      "dashboard_return": true,
+      "payloads_exact": true,
+      "baseline_exact": true,
+      "hives_readable": true,
+      "no_unexpected_errors": true,
+      "no_application_events": true,
+      "popup_matches_old_control": true
+    },
+    "eligible_for_controlled_trial": true,
+    "strict_emulator_run_passed": false,
+    "unresolved_emulator_popups": [
+      {
+        "offset": 9128,
+        "record": 51,
+        "generated_unix": 1791266731,
+        "written_unix": 1791266731,
+        "event_id_hex": "4000001a",
+        "event_id": 26,
+        "type": 4,
+        "source": "Application Popup",
+        "computer": "XWN-PC",
+        "strings": [
+          "rundll32.exe - DLL Initialization Failed",
+          "The application failed to initialize because the window station is shutting down. "
+        ],
+        "data_hex": ""
+      }
+    ],
+    "audit_sha256": "2344cd057284d3f3a9534786aa11537777774d991d791a7d55e480b3f3bacb3c",
+    "control_audit_sha256": "dabda35ebce0442507930ee7a8daaf33cae69f3e8127272f10d87f3e46f7601a",
+    "decision": "Storage/API checks and normal restart pass. Preserve the known shutdown installer popup as a failed strict emulator gate; do not infer its cause or waive a physical popup. The already-authorized isolated hardware trial changes no driver and requires independent strict physical audits.",
+    "hardware_qualified": false
+  },
+  "driver_unchanged_utc": "2026-10-06T14:35:17.745153+00:00",
+  "launch_utc": "2026-10-06T14:35:18.500324+00:00",
+  "command": "SITE EXEC E:\\Applications\\XWNFBoot\\default.xbe",
+  "reply": "200 EXEC command succeeded."
+}

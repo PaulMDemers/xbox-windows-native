@@ -1,4 +1,30 @@
-# Continuation: FATX0098 second soak awaiting console screen report
+# Continuation: FATX0098 third launch attempt running
+
+2026-10-06 14:35:18UTC: new user-authorized retry launched once; FTP accepted.
+Current kit outputs/fatx0098-soak3. Exact rehearsed helpers, unchanged drivers,
+video0093, HAL and loader. Observer watch.py windows runs in exec session84500;
+offline observed14:35:25UTC. No new emulator run or trace reseeding.
+
+User reported Xromwell had hung on the keyboard again. Second attempt collected:
+normal startup restored FIRST, all workload files absent, both event logs and
+trace byte-identical to before launch. bootloader-outcome.json distinguishes
+user report from collected evidence; no Windows workload execution observed.
+All five staged files archived/readback-verified under /F/xwns98-second. First
+attempt and actual user files remain untouched at /F/xwns98-first.
+
+Current test startup enabled. Automation xbox-15-minute-soak-validation ACTIVE;
+quiet until14:53UTC, then inspect sole observer; do not duplicate/relaunch.
+On dashboard return physical.py collect FIRST, qualify provisionally, audit
+manual files, launch unique /E/Applications/XWNSoak98c readonly scan ONCE,
+observe/collect, audit binaries/hives, qualify and final-state if PASS, otherwise
+verify-installed. No scan or recovery capture launched yet for this attempt.
+If still offline after14:59UTC ask once for screen, do not infer a crash.
+Recovery capture only on full PASS; strict warning gates unchanged. Preserve0.1.0.
+Pause automation at completion or when blocked solely on manual screen report.
+
+## Previous attempt (historical state below)
+
+# FATX0098 second soak awaiting console screen report
 
 2026-10-06 03:09 UTC: the sole windows observer (session64538) exited normally
 after its25-minute timeout at03:08:27UTC without observing dashboard return.
