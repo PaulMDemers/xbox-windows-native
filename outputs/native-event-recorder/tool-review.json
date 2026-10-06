@@ -1,0 +1,40 @@
+{
+  "scope": "Host instrumentation source review; runtime evidence separate",
+  "checks": {
+    "single_cpu_non_pae_64MiB_fixture": true,
+    "physical_reads_bounded_to_ram": true,
+    "no_guest_write_apis": true,
+    "exclusive_host_output": true,
+    "bounded_4096_records": true,
+    "per_site_byte_validation": true,
+    "owning_process_page_tables": true,
+    "decoder_rejects_partial_and_unverified": true
+  },
+  "build_attempts": [
+    {
+      "attempt": 1,
+      "result": "git ownership check failed before source mutation; no executable produced"
+    },
+    {
+      "attempt": 2,
+      "result": "compiled and linked; per-command safe.directory for the owned source only; borrowed files restored"
+    }
+  ],
+  "warnings": [
+    "Unused static xwn_site_for_pc in the helper translation unit because the generated header is shared; it is used by translate.c.",
+    "Existing NV2A shadow-variable warnings."
+  ],
+  "limitations": [
+    "No claim that logging has zero timing effect.",
+    "Only the pinned single-CPU, 32-bit non-PAE fixture is supported.",
+    "A kernel-shutdown record establishes coverage through that boundary; host teardown can omit later buffered events.",
+    "Capacity exhaustion is rejected, not treated as complete."
+  ],
+  "reviewed_source_hashes": {
+    "recorder.c.inc": "34cd31d3b2f3f7bd26375030bf4cd89ded3738c9718181d05e60dfc8ab5d41fa",
+    "xwn-sites.h": "ce421425f384d2d9972bd232239c5ad28269436bf314ed524d9125633db28d6f",
+    "recorder.patch": "397abcae869c7385bf49365f70f5b8c38be392355d8110932698d062a0cfd3f3",
+    "decode.py": "e8785dc47505304b5d839f5ffe272b13e9160fb0ead02e0cdec5bd3cf1ca9107",
+    "test-decode.py": "98142c106d06fd8e057455bc976d80c3e2cf60398b715f8a7344af69f05f24e9"
+  }
+}

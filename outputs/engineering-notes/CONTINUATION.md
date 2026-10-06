@@ -1,3 +1,66 @@
+# Device identified; non-stopping host recorder validated
+
+2026-10-06 UTC, outputs/native-event-recorder. User approved source research,
+less-disruptive tracing and a reusable comparison workflow. Physical Xbox
+untouched; FATX0098/video0093/normal startup, original0088 rollback, immutable
+0.1.0 and previous strict failures remain. No new hardware candidate or recovery
+bundle. All owned build, runner, supervisor and cold-reader processes finished.
+
+Source finding: xemu e72e76bd unconditionally creates QEMU pci-testdev at00:00.3
+under a memory-controller FIXME. PCI1B36:0005 is that placeholder. Local relevant
+sources match the pinned upstream revision; old executable hash matches its
+recorded build. This is not a device added by our launcher. Read RESEARCH.md and
+device-research.json. Do not assign that identity to the physical console popup,
+remove the device to manufacture PASS, or pretend assigning NVIDIA IDs models
+the real controller. No device/model/guest-content change in this experiment.
+
+New isolated executable SHA256
+0ae9b99a526257a7734c1d5e1742c4eb4b24dc9320d99ee5b150eca5ac197a42.
+Opt-in TCG helper records at11 reviewed addresses, no GDB stop/paused capture or
+guest write. Low64MiB RAM-only page walks; owner commands use owner's CR3;
+unreadable fields remain unknown. Fixed addresses/pinned non-PAE single-CPU
+fixture only. Bounded4096 records, buffered exclusive host file. Compiler/source
+pins and patch in build.json; borrowed sources restored, original nvnet edits
+preserved. First build attempt failed pre-mutation ownership check; next used
+per-command safe.directory only. Existing/unused-function warnings documented.
+
+Identical first-install idle002 seeds used in both cases with same new binary.
+001 recorder disabled: launch19:32:08, return19:35:07 UTC.
+002 recorder enabled: launch19:35:58, return19:38:55 UTC.
+Both finish120000ms idle, GPU installation, one normal shutdown, dashboard return,
+no popup/new unexpected error, nine payload hashes, six runtime hashes and five
+hives pass. Full F: allocation each322 directories/6742 files, zero orphans/errors.
+No explicit mapping/BMP workload or other-partition/full archive audit. Case001
+ordinary_run_valid=true, case002=false because instrumentation remains explicit.
+The clean pair does not fix or waive previous failures and cannot measure zero
+observer overhead. This is a new emulator build, not the old binary replay.
+
+002 records423 events, zero invalid-site records, kernel-shutdown boundary seen.
+48 owner command lines unknown. CSRSS requests GPU installer termination at326,
+exit-handling entry328, wait return330. Placeholder Create call331/tick9696;
+PnP control5 on another services thread333; termination request337 for
+EPROCESS0xff9a49a0/PID740; Create return338 false/error6 and token0 (entry0x8dc);
+matching-process exit handling339. No resume-site hit for that EPROCESS, no
+harderror/popup. Termination request precedes return; exit entry follows return.
+An earlier event334 reuses PID740 with DIFFERENT EPROCESS0xff9ca020; never merge
+by PID alone. CloseHandle and exact GUI-shutdown state boundary are not observed.
+This is a clean comparison lifecycle, NOT the earlier failed hard-error path.
+
+Reusable collector: trial.py collect CASE adopts completed reports without
+repeating scans; trial.py compare emits paired summary. Run.ps1 guards prior
+attempts, supervise.py launches once. Prior-attempt preflight was added between
+the two cases; actual emulator arguments/guest seeds were unchanged. Source and
+decoder review, negative decoder tests, cold reports and evidence-review.json
+are in the kit. Raw host event file/disks/hives stay local and private.
+
+Next: use recorder for a small predetermined unchanged reproduction batch to
+capture the actual failing lifecycle. Do not repeat unbounded clean traces or
+infer a fix from them. Scope a faithful controller model separately from hardware
+evidence. Graphics work can proceed independently where its own gates permit;
+physical popup ownership and Srv2013 failures remain unresolved.
+
+## Prior continuation (historical)
+
 # Idle first-install failure: hard-error owner captured
 
 2026-10-06 UTC, outputs/shutdown-idle-trace. Physical Xbox untouched;

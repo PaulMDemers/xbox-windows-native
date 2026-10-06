@@ -18,6 +18,7 @@ in any Linux FATX implementation. No external project has been contacted.
 - [GPU installation and second-boot evidence](../shutdown-device-install/README.md)
 - [Paired first-install idle/shutdown test](../shutdown-install-idle/README.md)
 - [Observed popup owner in the idle installation test](../shutdown-idle-trace/README.md)
+- [Emulator device research and non-stopping lifecycle recorder](../native-event-recorder/README.md)
 - [Preserved baseline and recovery](../release-0.1.0/README.md)
 
 Evidence vocabulary: **physical** means this console; **user-observed** means

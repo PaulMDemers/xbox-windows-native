@@ -1,0 +1,30 @@
+/* Generated from reviewed owned-binary sites; see sites.json. */
+typedef struct XwnSite { uint32_t pc; uint8_t size, kind, bytes[8]; } XwnSite;
+static const XwnSite xwn_sites[] = {
+    {0x82473a84, 3, 5, {0x55,0x8b,0xec}},
+    {0x82473516, 3, 5, {0x55,0x8b,0xec}},
+    {0x8246f4cc, 3, 6, {0x8b,0x44,0x24}},
+    {0x767a5959, 3, 0, {0x83,0x7c,0x24}},
+    {0x767a66d8, 6, 1, {0xff,0x15,0x4c,0x10,0x7a,0x76}},
+    {0x767a66de, 2, 1, {0x85,0xc0}},
+    {0x767a66f0, 6, 1, {0xff,0xb5,0x88,0xfd,0xff,0xff}},
+    {0x824c2c74, 3, 4, {0x53,0x55,0x56}},
+    {0x824c235e, 7, 2, {0x81,0x7d,0xc,0x4,0x0,0x1,0x40}},
+    {0x824c45bd, 3, 3, {0xff,0x75,0xdc}},
+    {0xa007e409, 6, 0, {0xff,0x15,0x8,0x49,0x16,0xa0}},
+};
+static int xwn_site_for_pc(uint64_t pc)
+{
+    static int enabled = -1;
+    if (enabled < 0) { const char *p = getenv("XWN_NATIVE_EVENT_LOG"); enabled = p && *p; }
+    if (!enabled) { return -1; }
+    for (unsigned i = 0; i < ARRAY_SIZE(xwn_sites); ++i) { if (pc == xwn_sites[i].pc) { return i; } }
+    return -1;
+}
+#define XWN_PROCESS_CR3 0x18
+#define XWN_PROCESS_PEB 0x1b0
+#define XWN_PROCESS_PID 0x9c
+#define XWN_PROCESS_IMAGE 0x1fc
+#define XWN_THREAD_OWNER 0x22c
+#define XWN_TICK 0x8244bb84
+#define XWN_TOKEN 0x767b5b64

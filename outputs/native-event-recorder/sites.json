@@ -1,0 +1,168 @@
+{
+  "kernel_base": "0x823df000",
+  "sites": [
+    {
+      "name": "_ExRaiseHardError@24",
+      "rva": 608900,
+      "bytes": "558bec",
+      "argc": 6,
+      "frame": "esp",
+      "module": "ntoskrnl.exe",
+      "kind": "harderror",
+      "index": 0,
+      "pc": 2185706116,
+      "capture_kind": 5
+    },
+    {
+      "name": "_ExpRaiseHardError@24",
+      "rva": 607510,
+      "bytes": "558bec",
+      "argc": 6,
+      "frame": "esp",
+      "module": "ntoskrnl.exe",
+      "kind": "harderror",
+      "index": 1,
+      "pc": 2185704726,
+      "capture_kind": 5
+    },
+    {
+      "name": "_NtShutdownSystem@4",
+      "rva": 591052,
+      "bytes": "8b4424",
+      "argc": 1,
+      "frame": "esp",
+      "module": "ntoskrnl.exe",
+      "kind": "shutdown",
+      "index": 2,
+      "pc": 2185688268,
+      "capture_kind": 6
+    },
+    {
+      "name": "PnP_Control_entry",
+      "module": "umpnpmgr.dll",
+      "rva": 22873,
+      "address": 1987729753,
+      "bytes": "837c24",
+      "argc": 0,
+      "kind": "pnp",
+      "index": 3,
+      "pc": 1987729753,
+      "capture_kind": 0
+    },
+    {
+      "name": "PnP_Create_call",
+      "module": "umpnpmgr.dll",
+      "rva": 26328,
+      "address": 1987733208,
+      "bytes": "ff154c107a76",
+      "argc": 0,
+      "kind": "pnp",
+      "index": 4,
+      "pc": 1987733208,
+      "capture_kind": 1
+    },
+    {
+      "name": "PnP_Create_return",
+      "module": "umpnpmgr.dll",
+      "rva": 26334,
+      "address": 1987733214,
+      "bytes": "85c0",
+      "argc": 0,
+      "kind": "pnp",
+      "index": 5,
+      "pc": 1987733214,
+      "capture_kind": 1
+    },
+    {
+      "name": "PnP_Wait_return",
+      "module": "umpnpmgr.dll",
+      "rva": 26352,
+      "address": 1987733232,
+      "bytes": "ffb588fdffff",
+      "argc": 0,
+      "kind": "pnp",
+      "index": 6,
+      "pc": 1987733232,
+      "capture_kind": 1
+    },
+    {
+      "name": "_PspExitProcess@8",
+      "rva": 932980,
+      "bytes": "535556",
+      "argc": 2,
+      "frame": "esp",
+      "module": "ntoskrnl.exe",
+      "index": 7,
+      "pc": 2186030196,
+      "capture_kind": 4
+    },
+    {
+      "name": "NtTerminateProcess_AfterReference",
+      "rva": 930654,
+      "bytes": "817d0c04000140",
+      "argc": 2,
+      "frame": "ebp",
+      "target": "[ebp-8] EPROCESS",
+      "module": "ntoskrnl.exe",
+      "index": 8,
+      "pc": 2186027870,
+      "capture_kind": 2
+    },
+    {
+      "name": "NtResumeThread_BeforeResume",
+      "rva": 939453,
+      "bytes": "ff75dc",
+      "argc": 2,
+      "frame": "ebp",
+      "target": "[ebp-0x24] ETHREAD",
+      "module": "ntoskrnl.exe",
+      "index": 9,
+      "pc": 2186036669,
+      "capture_kind": 3
+    },
+    {
+      "name": "Win32k_Terminate_call",
+      "module": "win32k.sys",
+      "address": 2684871689,
+      "bytes": "ff15084916a0",
+      "argc": 2,
+      "kind": "terminate_call",
+      "index": 10,
+      "pc": 2684871689,
+      "capture_kind": 0
+    }
+  ],
+  "constants": {
+    "PROCESS_CR3": 24,
+    "PROCESS_PEB": 432,
+    "PROCESS_PID": 156,
+    "PROCESS_IMAGE": 508,
+    "THREAD_OWNER": 556,
+    "TICK": 2185542532,
+    "TOKEN": 1987795812
+  },
+  "binaries": {
+    "kernel32.dll": {
+      "sha256": "6b05b0749b5dd86da94cc4acd062ca05472509f70216b56cd4a5b9809c602e73",
+      "preferred_base": "0x7c570000"
+    },
+    "advapi32.dll": {
+      "sha256": "d24493dbb2b1818f9cd605acd3b2008d63354c0975e9a090ccdd04bcc339cc59",
+      "preferred_base": "0x7c2d0000"
+    },
+    "ntdll.dll": {
+      "sha256": "ed276d6a3ae93c71a6cef73672b82e3808211da1c63bf7d3e23d93294e54813a",
+      "preferred_base": "0x77f80000"
+    },
+    "umpnpmgr.dll": {
+      "sha256": "02fd896d3f2318a3bd624dd1357ec1f66ea67553ef96c602bede7c4ec5bef685",
+      "preferred_base": "0x767a0000"
+    },
+    "win32k.sys": {
+      "sha256": "414cc2568ba7f11fa58490060c947477f44d6218e6c52e01deea1bbe8a364a92",
+      "preferred_base": "0xa0000000"
+    }
+  },
+  "kernel_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+  "limits": "Fixed addresses for the pinned fixture; exact bytes checked per hit. Nonresident reads explicitly invalid. No guest writes."
+}

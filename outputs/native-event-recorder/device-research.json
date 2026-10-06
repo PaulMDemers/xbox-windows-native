@@ -1,0 +1,92 @@
+{
+  "scope": "Identify the exact emulator device from pinned local source and build records.",
+  "source_revision": "e72e76bd1f12ce45c6c63b4196c6918ea2cc705d",
+  "files": [
+    {
+      "path": "hw/xbox/xbox.c",
+      "sha256": "9d2204ec863eb45a5da6bc869b7348bae1faf508b21f84e0cbf559cc001cad3b",
+      "matches_git_revision": true,
+      "evidence": [
+        {
+          "line": 339,
+          "text": "/* FIXME: Stub the memory controller */"
+        },
+        {
+          "line": 340,
+          "text": "pci_create_simple(pci_bus, PCI_DEVFN(0, 3), \"pci-testdev\");"
+        }
+      ]
+    },
+    {
+      "path": "include/hw/pci/pci.h",
+      "sha256": "694b84c874bb3369c3be994ea2d317ef7434edec92f7f09c461fac102745af1b",
+      "matches_git_revision": true,
+      "evidence": [
+        {
+          "line": 103,
+          "text": "#define PCI_VENDOR_ID_REDHAT             0x1b36"
+        },
+        {
+          "line": 108,
+          "text": "#define PCI_DEVICE_ID_REDHAT_TEST        0x0005"
+        }
+      ]
+    },
+    {
+      "path": "hw/misc/pci-testdev.c",
+      "sha256": "7513bc6f20c57147c0fd8bbba2cf7c66a9310da5e591aacc8945085c1fec1d6a",
+      "matches_git_revision": true,
+      "evidence": [
+        {
+          "line": 341,
+          "text": "k->vendor_id = PCI_VENDOR_ID_REDHAT;"
+        },
+        {
+          "line": 342,
+          "text": "k->device_id = PCI_DEVICE_ID_REDHAT_TEST;"
+        },
+        {
+          "line": 344,
+          "text": "k->class_id = PCI_CLASS_OTHERS;"
+        },
+        {
+          "line": 258,
+          "text": "pci_register_bar(pci_dev, 0, PCI_BASE_ADDRESS_SPACE_MEMORY, &d->mmio);"
+        },
+        {
+          "line": 259,
+          "text": "pci_register_bar(pci_dev, 1, PCI_BASE_ADDRESS_SPACE_IO, &d->portio);"
+        }
+      ]
+    }
+  ],
+  "recorded_failing_emulator_sha256": "969a99a83a308ba547ce3918015d676efee79912d97253d336bf8a35b5bc047d",
+  "identity": {
+    "vendor": "1b36",
+    "device": "0005",
+    "model": "pci-testdev",
+    "bdf": "00:00.3",
+    "role": "Placeholder created by xbox_init_common under a memory-controller FIXME",
+    "class_name": "PCI_CLASS_OTHERS",
+    "interrupt_pin": 0,
+    "default_bars": [
+      "BAR0: 4096-byte test MMIO region",
+      "BAR1: 256-byte test I/O region"
+    ],
+    "optional_bar2": "Only registered when the membar property is nonzero; default zero"
+  },
+  "primary_sources": [
+    "https://github.com/xemu-project/xemu/blob/e72e76bd1f12ce45c6c63b4196c6918ea2cc705d/hw/xbox/xbox.c",
+    "https://github.com/xemu-project/xemu/blob/e72e76bd1f12ce45c6c63b4196c6918ea2cc705d/hw/misc/pci-testdev.c",
+    "https://www.qemu.org/docs/master/specs/pci-ids.html",
+    "https://www.qemu.org/docs/master/specs/pci-testdev.html"
+  ],
+  "conclusions": [
+    "This device is unconditionally created by the pinned Xbox machine source, not added by this project Run.ps1.",
+    "It is a generic test-device placeholder, not evidence of a physical Red Hat/QEMU device on the Xbox.",
+    "The source-backed memory-controller placeholder explains the emulator-only device identity.",
+    "Renaming its PCI IDs or removing it would be a separate model intervention, not a proven shutdown fix.",
+    "No compatible Windows driver was found in the recorded fixture installation; QEMU test-device documentation does not supply one."
+  ],
+  "limits": "Local source plus recorded build provenance, not a new live PCI configuration capture. Physical popup owner remains unknown."
+}

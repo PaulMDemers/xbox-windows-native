@@ -64,6 +64,15 @@ full F: allocation pass, but the popup remains a strict failure. Creation,
 resume and termination ordering were not captured; debugger timing and this
 emulator device identity cannot be generalized to the physical console.
 
+[Source research and a host event recorder](../native-event-recorder/README.md)
+now identify that emulator device as the QEMU PCI test device used by xemu as a
+memory-controller placeholder. The new recorder captures selected lifecycle
+events without debugger stops. One disabled/enabled pair passed bounded cold
+checks, and the enabled run captured 423 verified records. It observed a failed
+late installer creation and termination during shutdown, without the popup.
+This supplies a clean comparison path; the actual failing lifecycle is still
+needed, and the tool has no demonstrated zero-overhead guarantee.
+
 ## Graphics and device support
 
 The current physical display path retains the inherited framebuffer mode.
