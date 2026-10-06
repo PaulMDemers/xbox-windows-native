@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "probe_sha256": "d8d9c2c1e8b2f557c5cc9ebf712a872d8b984bf22514f01252316e599fc72e5c",
+  "source_sha256": "9c41a0ac52db757f7a7dc50b260cb911defcf9b40f3861f81e1ff3c84d6688ef",
+  "imports": {
+    "ADVAPI32.dll": [
+      "AdjustTokenPrivileges",
+      "LookupPrivilegeValueA",
+      "OpenProcessToken"
+    ],
+    "KERNEL32.dll": [
+      "CloseHandle",
+      "CreateFileA",
+      "CreateFileMappingA",
+      "ExitProcess",
+      "FlushFileBuffers",
+      "GetCurrentProcess",
+      "GetFileSize",
+      "GetLastError",
+      "GetStdHandle",
+      "MapViewOfFile",
+      "ReadFile",
+      "SetLastError",
+      "Sleep",
+      "UnmapViewOfFile",
+      "WriteFile"
+    ],
+    "USER32.dll": [
+      "ExitWindowsEx",
+      "wsprintfA"
+    ]
+  },
+  "owned_export_targets": {
+    "advapi32.dll": "d24493dbb2b1818f9cd605acd3b2008d63354c0975e9a090ccdd04bcc339cc59",
+    "kernel32.dll": "6b05b0749b5dd86da94cc4acd062ca05472509f70216b56cd4a5b9809c602e73",
+    "user32.dll": "291210cf381dc269f8847a86e59a7cf775e5dd4086f94ff1266714f34ff55063"
+  },
+  "note": "All static imports exist in owned Windows 2000 DLLs; runtime qualification is separate.",
+  "compiler": "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc",
+  "build_script_sha256": "dadd4d4a067417b4839698bb3ed781a8b1100ce5ee9866557409dd9242f67d9f",
+  "subsystem": [
+    5,
+    0
+  ],
+  "checksum_valid": true,
+  "compiler_sha256": "83015512671faaa0dbe6f043a0107f79c049f4268a67e39955388a8d9a0182e5",
+  "compiler_version": "i686-w64-mingw32-gcc (RosBE-Unix) 8.4.0"
+}

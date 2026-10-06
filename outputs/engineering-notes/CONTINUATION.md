@@ -1,3 +1,44 @@
+# Continuation: candidate0098 passes real mapped EOF and cold persistence regression
+
+Latest: outputs/fatx-mapped-eof. Both ordinary owned emulator attempts, their
+supervisors and read-only NBD exports are closed. Last emulator cleanup:
+2026-10-06T01:30:24.2282173Z. No physical access or deployment. Hardware remains
+video0093/FATX0088; release0.1.0 and recovery bundles are unchanged.
+
+Same 0098 driver binary/source as the prior entry below; no new driver patch.
+Paired children share a pre-INF fixture, avoiding 0088's registered-display boot
+failure so both can run the same real user-mode mapping probe. Inputs cover 17
+sizes around sector/page/64 KiB cluster boundaries with deliberately 0xD7 backing
+slack. Eight rounds replace/reopen 17 output files with 997-byte WriteFile chunks.
+
+- Old 0088: 153 mappings, 74 nonzero EOF-tail failures (12 input/62 output), zero
+  in-file mismatches. Normal shutdown, exact persisted contents, clean allocation.
+  One new shutdown rundll32 DLL-initialization popup means strict run gate FAIL;
+  keep it separate from the expected mapping failures, do not waive it.
+- Fixed 0098: 153 mappings, zero failures; 136 create/replace/flush/reopen cycles.
+  Normal shutdown, 34 exact cold files, five traversable hives, unchanged boot/
+  display payloads and original input disk slack. No new popup, application event
+  or unexpected warning/error. Strict gate PASS.
+- Full F: allocation scans before/after both runs: no crosslink/short chain/orphan
+  or capture errors; 318 directories/6749 files after. All 2,127,616 inherited
+  synthetic bad-cluster reservations retain exact positions. Read-only NBD
+  transport cross-checked against existing qemu range reader; no host device.
+
+Manifests pin probe/source/imports, fixtures, payloads and launch/cleanup times.
+summary.json separates the negative control, mapping result and strict gate.
+README.md and HARDWARE-NEXT.md describe scope, reproduction and next trial.
+Source files, raw disk chains and private artifacts retained; do not relaunch
+these used IDs or move QCOW parents. No debugger was attached to these runs.
+
+Next: a controlled 0098 hardware storage trial with the established 0093 video
+unchanged. Read actual baseline/rollback bytes again; adapt probe input creation
+through normal APIs in a unique physical test directory (dirty raw allocation
+slack is emulator-only); launch once, collect after normal shutdown, disable
+one-shot startup, audit events/content/allocation/hives, then desktop/long soak.
+No hardware deployment script or physical result was produced this turn.
+Concurrent mapped truncation/writes and generic display PnP quiescence remain
+separate gates. Higher modes and physical video performance remain later work.
+
 # Continuation: candidate0098 fixes post-install image checksum failure in xemu
 
 Latest work: outputs/video-nt5-load-trace and outputs/fatx-paging-eof.

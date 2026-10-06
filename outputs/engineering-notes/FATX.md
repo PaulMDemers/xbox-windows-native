@@ -167,3 +167,19 @@ Do not transfer NT-specific checksum or MDL rules verbatim into Linux code.
 [Debugger evidence](../video-nt5-load-trace/README.md) and
 [candidate build/tests](../fatx-paging-eof/README.md) retain the boundaries between
 physical results, host tests, debugger runs and ordinary emulator validation.
+
+A paired real NT5 mapping regression now extends that evidence: 17 file sizes
+around sector/page/64 KiB cluster boundaries, deliberately 0xD7 allocation slack,
+then 136 create/replace/flush/reopen cycles with 997-byte writes. FATX0088 exposed
+nonzero mapped EOF tails in 74/153 checks while every in-file byte remained right;
+0098 passed 153/153. Ordinary ReadFile and cold hashes alone would miss this bug.
+Both retained exact input/output contents, allocation ownership and the original
+dirty input slack on disk. The 0088 control also logged a shutdown rundll32 popup;
+the 0098 run had none. Keep that separate from the paging comparison.
+
+The [mapped-file regression](../fatx-mapped-eof/README.md) records complete cold
+allocation scans, five parsed hives, event boundaries and exact fixture hashes.
+It is serial, synthetic-resource emulator evidence, not a physical result or a
+test of concurrent mapped truncation/mapped writes. The lesson for other FATX
+implementations is to test the mapped final-page tail independently of logical
+file contents and allocation correctness, with nonzero backing slack.
