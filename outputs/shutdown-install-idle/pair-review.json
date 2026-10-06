@@ -1,0 +1,52 @@
+{
+  "scope": "Verify paired experiment evidence; preserve either run's failures.",
+  "evidence_consistent": true,
+  "physical_access": false,
+  "hardware_qualified": false,
+  "cases": [
+    {
+      "case": "001",
+      "role": "control",
+      "idle_completed": true,
+      "idle_elapsed_ms": 120000,
+      "storage_workload_not_run": true,
+      "normal_shutdowns": 1,
+      "popups": [],
+      "dashboard_return": true,
+      "ordinary_run_valid": true,
+      "installation_checks_passed": false,
+      "allocation_consistent": true
+    },
+    {
+      "case": "002",
+      "role": "package",
+      "idle_completed": true,
+      "idle_elapsed_ms": 120000,
+      "storage_workload_not_run": true,
+      "normal_shutdowns": 1,
+      "popups": [
+        {
+          "offset": 9128,
+          "record": 51,
+          "generated_unix": 1791327306,
+          "written_unix": 1791327306,
+          "event_id_hex": "4000001a",
+          "event_id": 26,
+          "type": 4,
+          "source": "Application Popup",
+          "computer": "XWN-PC",
+          "strings": [
+            "rundll32.exe - DLL Initialization Failed",
+            "The application failed to initialize because the window station is shutting down. "
+          ],
+          "data_hex": ""
+        }
+      ],
+      "dashboard_return": true,
+      "ordinary_run_valid": false,
+      "installation_checks_passed": true,
+      "allocation_consistent": true
+    }
+  ],
+  "limits": "Two bounded idle tests, not proof of installer process exit or popup causality. Earlier failed experiments and physical strict failures remain."
+}

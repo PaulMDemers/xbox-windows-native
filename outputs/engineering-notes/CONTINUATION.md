@@ -1,3 +1,49 @@
+# Paired idle test reproduces first-install popup without mapping workload
+
+2026-10-06 UTC, outputs/shutdown-install-idle. Physical Xbox untouched;
+FATX0098/video0093/normal startup, original0088 rollback and immutable0.1.0 remain.
+No hardware launch, driver rebuild, signing-policy change, FAILEDINSTALL edit,
+error suppression, recovery capture or automation. All owned emulator runners,
+supervisors and read-only NBD readers finished; no running processes remain.
+
+001: original uninstalled rehearsal with common helper/startup only.
+002: prior verified INF+unchanged miniport+DevicePath staging, same helper/startup.
+Both helpers sleep120000ms then enable shutdown privilege and request restart;
+no mapping/BMP workload. Normal Windows background I/O remains. SYSTEM/video trace
+preserved during staging; shared payload hashes equal, SOFTWARE differences are
+exactly inherited verified DevicePath edit. Parent/seed identities recorded.
+
+001 launched once18:48:34 UTC, returned18:51:30. Cold idle log120000ms, one normal
+EventLog shutdown, no popup, no unexpected errors: bounded control PASS. GPU
+remains uninstalled (ConfigFlags1024/no driver key/Start1); installation-specific
+checks correctly false.002 launched once18:52:28, returned18:55:27. Cold idle
+log120000ms, one normal shutdown, but one same rundll32 window-station-shutdown
+popup: strict FAIL. Successful full package install, exact oem2.inf, ConfigFlags0,
+class0001, framebuf registration, Windows-set Start3, query-remove veto6/code23
+requiring reboot. No claim of live stop/remove success.
+
+Both preserve checked payload/runtime hashes, five traversable hives, and no
+old mapping/BMP workload logs. F: allocation clean (zero orphans/errors):
+control321 directories/6737 files; package322/6742. No other partition or full
+archive audit. Both normal guest returns; no forced reset, debugger, capture or
+manual dialog dismissal. Earlier first-install001 missed return; this run does
+not establish why that prior return failed.
+
+Interpretation: explicit storage workload is not needed to reproduce the popup;
+120-second idle does not avoid it. One matched pair does not prove package
+causality across all boots, and normal background I/O remains. No hard-error
+process identity was traced in these runs; do not assign the owner from SetupAPI
+or earlier PCI1B36:0005 traces. Existing three clean installed-state replays
+remain distinct from first-install failure. No hardware candidate promoted.
+
+Next: trace hard-error identity and installer completion/shutdown ordering on
+this smaller package fixture (002), preserving ordinary vs debugger evidence.
+Do not just lengthen waits or suppress installer/errors. Fresh unique attempts
+only. See README.md, pair-review.json, per-case audit/package-audit/allocation/
+runtime-state reports. Source/import/compiler pins are probe-review.json.
+
+## Prior continuation (historical)
+
 # Installed GPU state: three clean independent emulator replays
 
 2026-10-06 UTC. Added shutdown-device-install003/004; physical Xbox untouched.

@@ -1,0 +1,96 @@
+{
+  "scope": "Paired idle/restart fixtures: unchanged control001 and GPU package002.",
+  "physical_access": false,
+  "fixture_sha256": "9f51f2a37988712e328b43f18f3335e2917ee042bca7cf8425c5464f6d6f9d28",
+  "seed_sha256": "4c4b81556089c76efae8988d1ef8b853441e92ecd6e9ceb9d682cc15323253a9",
+  "parent_sha256": "a924541cabaa56e2da7359db6d1ba99f7efdfd51c4cf86fd52977001f5fe5976",
+  "payloads": [
+    {
+      "path": "winnt/system32/drivers/xboxvnt5.sys",
+      "bytes": 40882,
+      "sha256": "3e74a5c35b68d7fa0e047b4ba9cec25e7ec0ea5a94e796fc07508f667fcc85cf"
+    },
+    {
+      "path": "winnt/system32/framebuf.dll",
+      "bytes": 8752,
+      "sha256": "5da1fe7c3cdaf67a4a487c8872c2034fbc425bfd36d2b7715b2a1c4caa51df86"
+    },
+    {
+      "path": "Documents and Settings/All Users/Start Menu/Programs/Startup/xwnsetup.cmd",
+      "bytes": 39,
+      "sha256": "1cfba6975b27fce397a0335f54096f8d1b902936386c5c1f2fadfa53d00701c2"
+    },
+    {
+      "path": "xwns98/probe.exe",
+      "bytes": 15705,
+      "sha256": "a54363683ef566ac39403749703a8ceef45bd7e113470b9c669a19294a677f29",
+      "clusters": 1
+    },
+    {
+      "path": "xwns98/matched.exe",
+      "bytes": 11017,
+      "sha256": "62e8690ae188fe72beb4017d4752fdac931f06c35879ecccd456394a848932a8",
+      "clusters": 1
+    },
+    {
+      "path": "xwns98/scribble.bmp",
+      "bytes": 442422,
+      "sha256": "ad7bfd3fa51af5ae5a666f13888b755bf0cd17a4bbe4c1dbb4e81742d2b148d8",
+      "clusters": 7
+    },
+    {
+      "path": "xwninf99/xwnvideo.inf",
+      "bytes": 1272,
+      "sha256": "78be6e5e46a1d5019a53648c9197cbba87f7278413bf5187ac27c5cbf59e38ac",
+      "clusters": 1
+    },
+    {
+      "path": "xwninf99/xboxvnt5.sys",
+      "bytes": 40882,
+      "sha256": "3e74a5c35b68d7fa0e047b4ba9cec25e7ec0ea5a94e796fc07508f667fcc85cf",
+      "clusters": 1
+    },
+    {
+      "path": "xwnidle/probe.exe",
+      "bytes": 9988,
+      "sha256": "601cc262b0d493925a4f11eced1488f82f72cbefd01566fb681f930d8fccbe28",
+      "clusters": 1
+    }
+  ],
+  "preserved_payloads": [],
+  "input_tails": [],
+  "fatx_sha256": "beeaf329f0446d3bdd2ed490fa8143888253115c0ff6c1662b67b82e6619eedd",
+  "fixture_name": "shutdown-install-idle-002.qcow2",
+  "parent_fixture_sha256": "70b9944c433ce72fcb5bd3110cfc35170e77ed3b3c8434a6d03fd3202b4e0c69",
+  "system_unchanged_during_staging": true,
+  "startup_unchanged": false,
+  "case": "002",
+  "source_manifest": "shutdown-device-install/fixture-001.json",
+  "preserved_during_idle_staging": {
+    "winnt/system32/config/system": "bd4185ed16280aeac790116fc18fb49b1e2e70e300ad629d19351a920133c469",
+    "winnt/system32/config/software": "4c5c76855b64d72d1259f66f69fd861b6d4a5428c47dd65a58ea585150fa9580",
+    "winnt/system32/xwn-video-trace.bin": "5806fe7ce339298b5a94a0e0ab1bdfb78922fc449effd5cea2f393f0d33fd00e"
+  },
+  "idle_ms": 120000,
+  "storage_workload": false,
+  "intervention": "prior verified INF/miniport staging and DevicePath append; common idle helper/startup",
+  "inherited_software_edit": {
+    "path": "Microsoft\\Windows\\CurrentVersion",
+    "value": "DevicePath",
+    "before": "%SystemRoot%\\inf",
+    "after": "%SystemRoot%\\inf;C:\\xwninf99",
+    "all_keys_checked": 26907,
+    "all_values_checked": 39233,
+    "only_expected_value_changed": true,
+    "index_normalization": {
+      "keys_checked": 26907,
+      "indexes_checked": 8584,
+      "converted": []
+    }
+  },
+  "inherited_software_before_sha256": "b3073ef4454570d0b2b954f1f6333fbf0ec883a3a9cc639dc0a327c762f8f819",
+  "inherited_software_after_sha256": "4c5c76855b64d72d1259f66f69fd861b6d4a5428c47dd65a58ea585150fa9580",
+  "inherited_installation_method": "Normal PnP discovery via DevicePath; existing framebuf DLL referenced but not copied.",
+  "inherited_limits": "Owned emulator only. Same exact rehearsal workload and baseline binaries. No signing-policy change, forced installation or new FAILEDINSTALL flags. Inherited fixture limitations remain.",
+  "limits": "Paired 120-second idle/restart experiment; prior parent metadata is inherited. No storage workload or physical qualification."
+}

@@ -48,6 +48,14 @@ checks on the input and two latest replays were clean, with reserved marks
 unchanged. These are independent replays, not consecutive reboots or proof of a
 fix. The first-install failure still prevents promoting a hardware package.
 
+A subsequent [paired idle test](../shutdown-install-idle/README.md) removed the
+explicit mapping/BMP workload. Both runs waited two minutes and restarted
+normally. The unchanged control had no popup; the package installed correctly
+but still emitted the shutdown popup. Both allocation audits were clean. This
+narrows the reproduction to a first-install/shutdown scenario without requiring
+the explicit storage workload; it does not identify the failing process or
+establish a universal cause.
+
 ## Graphics and device support
 
 The current physical display path retains the inherited framebuffer mode.
