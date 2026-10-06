@@ -203,3 +203,25 @@ evidence for stale EOF-tail exposure. The hardware result supports this bounded
 serial workload; it does not qualify concurrent mapped truncation, long soaks,
 display acceleration or generic PnP behavior. Both failed emulator rehearsals
 remain recorded separately from the successful physical result.
+
+## Capacity warnings and drive identity (2026-10-06)
+
+The completed15-minute0098 physical soak passed527 mappings,16 BMP API replays,
+50 exact final files,34 absent intermediates,full allocation,3439 binary hashes
+and nine structural hive checks. It remains strict FAIL on one shutdown popup
+and three Srv2013 events. Do not erase these failures when reclassifying causes.
+
+Captured MountedDevices plus the pinned HAL partition table distinguish Windows
+C: (dashboard F:, extended partition) from Windows F: (dashboard C:, system).
+Windows G:/H: are dashboard X:/Y: cache partitions. The owned NT5 event resource
+decodes Srv2013 as a disk-capacity warning. A separate two-minute physical probe
+reported0.559%,2.892%,6.176% free on those three small volumes, with both Win32
+space APIs agreeing; the large Windows C: still reported41.440% free. Two APIs
+through one driver are not an independent FAT scan. No capacity/threshold or
+partition contents were changed. See ../shutdown-diagnostics for exact hashes,
+offsets, source provenance and observations. Softmod shadow-C relationships are
+not established merely by these native partition offsets.
+
+The bounded diagnostic reboot was clean despite an active audio-device wizard.
+That supports treating installer shutdown behavior as a separate investigation;
+it does not demonstrate a fix or prove every earlier popup unrelated to storage.

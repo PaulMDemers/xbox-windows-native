@@ -16,6 +16,14 @@ is restored; no recovery capture or further video change followed. Investigate
 the installer/shutdown path and warning sources before another strict test.
 Actual user application observations remain from earlier runs and are separate.
 FATX0098/video0093 is the current physical combination.
+The follow-up [shutdown diagnostic](../shutdown-diagnostics/README.md) confirms
+Windows F:/G:/H: map to dashboard C:/X:/Y: and report0.56%,2.89%,6.18% free;
+the large boot/data partition is not the warned volume. A clean two-minute
+physical diagnostic still had the unsupported01B0 installer wizard open, while
+the clean emulator observation still had the GPU wizard open. Pending installer
+presence alone therefore does not explain the intermittent popup. Trace creation/
+exit ordering across shutdown before changing device policy. These observations
+do not waive the original full-soak event failures or qualify a new video mapping.
 The installed-package emulator boots in [fatx-paging-eof](../fatx-paging-eof/README.md)
 pass with0098 for both the actual Start=3 state and the diagnostic Start=1 state.
 This resolves the demonstrated EOF/checksum loading failure; it does not qualify

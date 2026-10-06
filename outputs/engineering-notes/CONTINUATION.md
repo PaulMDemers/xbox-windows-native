@@ -1,4 +1,45 @@
-# Continuation: FATX0098 timed workload and integrity pass; event gate fails
+# Continuation: shutdown/capacity diagnostics completed; baseline unchanged
+
+2026-10-06, outputs/shutdown-diagnostics. One ordinary owned emulator001 and one
+explicitly scoped physical diagnostic completed with normal restart and strict
+bounded diagnostic PASS. No driver/device-state/registry-policy edits, no cache
+cleanup, no alert suppression. Exact helper17341bytes SHA256
+431b6b862aab6f8eb72aef9a342f3e8fd79515b104055c28d64c12483320aefb.
+RosBE build/import/hash review and runtime evidence retained; all owned emulator,
+supervisor and physical observer processes finished. Automation stays PAUSED.
+
+Physical launch15:35:02UTC, dashboard15:38:03UTC; normal startup restored FIRST.
+All5 samples completed,last120345ms,normal EventLog shutdown,no new popup/error,
+baseline/helper exact. No fresh full allocation/hive scan was done for this short
+observation: do not label it a15-minute storage qualification or replace soak3.
+
+Warnings: owned netevent.dll maps Srv2013 to disk capacity. Captured physical
+MountedDevices + pinned HAL map Windows F:/G:/H: to dashboard C:/X:/Y:. Both
+Win32 free-space APIs report2.8MiB/21.7MiB/46.3MiB free (0.56%/2.89%/6.18%).
+Windows C: (dashboard F:) reports100302127104 free bytes (41.44%). This explains
+the reported capacity condition, not an independent raw FAT proof. No deletion
+or threshold change. Short run without warnings does not resolve periodic alerts.
+Shadow-C mapping beyond these native partition identities remains unverified.
+
+Physical pending installer: PID724,rundll32 newdev.dll,DevInstall PCI10DE:01B0,
+Multimedia Audio Controller with no Driver/Service; window is Found New Hardware
+Wizard. Still active at last sample but shutdown clean. Emulator pending GPU
+02A0 installer likewise remained present through clean restart. Open wizard by
+itself is insufficient to predict popup; its specific cause remains unresolved.
+Pre/post physical SetupAPI capture preserved, exact append verified. No silent
+FAILEDINSTALL acknowledgments or disabled hardware used for a passing result.
+
+Next: trace installer process creation/exit and the specific hard-error process
+across a failing shutdown; test queue advancement after shutdown begins. Use
+existing resolved-target debugger tooling in owned fixtures, keep debugger runs
+diagnostic and retain clean controls. Do not launch another identical physical
+soak as a purported fix. Prior soak3 strict FAIL and0.1.0 archives/tag unchanged;
+no new PASS-gated recovery snapshot. New helper remains/F/xwnsd01; prior test
+folders and manual saves preserved. Xbox at dashboard with baseline0098/0093.
+
+## Previous completed soak (historical)
+
+# FATX0098 timed workload and integrity pass; event gate fails
 
 Completed follow-up2026-10-06 15:14UTC, outputs/fatx0098-soak3. User confirmed
 dashboard return. Collected once, restoring normal startup FIRST. No Windows
