@@ -1,4 +1,23 @@
-# Continuation: FATX0098 second timed soak launched once
+# Continuation: FATX0098 second soak awaiting console screen report
+
+2026-10-06 03:09 UTC: the sole windows observer (session64538) exited normally
+after its25-minute timeout at03:08:27UTC without observing dashboard return.
+One additional FTP check at03:09:22UTC timed out. Screen state is UNKNOWN;
+do not infer a crash, failed workload, or successful automatic restart.
+Asked the user ONCE what is displayed and to leave the console as-is for now.
+No independent collection/audit work remains possible until dashboard return.
+Follow-up automation paused; no observer process remains running.
+
+IMPORTANT: physical.json still records startup_enabled=true. Normal startup
+has NOT yet been restored because FTP is unavailable. On eventual dashboard
+return run physical.py collect FIRST to restore startup and preserve evidence.
+Never relaunch Windows for this attempt. No scan or recovery capture launched.
+No qualification result exists for this attempt. Preserve all previous files.
+The stage instructions below remain the resumption plan, not completed work.
+
+## Launch record (historical)
+
+# FATX0098 second timed soak launched once
 
 New human authorization: Proceed with a fresh attempt after the interrupted run.
 outputs/fatx0098-soak2/physical.json records accepted launch at
