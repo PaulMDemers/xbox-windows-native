@@ -7,9 +7,15 @@ User also confirms working ping. Preserve the release before driver changes.
 ## Next gate after FATX0098 qualification (2026-10-06 UTC)
 
 The focused [physical0098 trial](../fatx0098-physical-trial/README.md) passed.
-The separate [timed mixed-file soak](../fatx0098-soak/README.md) is now running;
-its result and actual application observations must be collected before further
-hardware changes. FATX0098/video0093 is the current physical combination.
+The completed [third timed soak](../fatx0098-soak3/README.md) passes its full
+900000ms workload,527 mappings,16 BMP API replays and cold integrity checks:
+50 exact files,34 absent intermediates,consistent full allocation,3439 binary
+hashes and nine structural hives. Strict qualification remains FAIL because of
+one recurrent rundll32 shutdown popup and three Srv2013 warnings. Normal startup
+is restored; no recovery capture or further video change followed. Investigate
+the installer/shutdown path and warning sources before another strict test.
+Actual user application observations remain from earlier runs and are separate.
+FATX0098/video0093 is the current physical combination.
 The installed-package emulator boots in [fatx-paging-eof](../fatx-paging-eof/README.md)
 pass with0098 for both the actual Start=3 state and the diagnostic Start=1 state.
 This resolves the demonstrated EOF/checksum loading failure; it does not qualify

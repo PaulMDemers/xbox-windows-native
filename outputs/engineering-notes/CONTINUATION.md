@@ -1,4 +1,41 @@
-# Continuation: third FATX0098 attempt awaiting screen report
+# Continuation: FATX0098 timed workload and integrity pass; event gate fails
+
+Completed follow-up2026-10-06 15:14UTC, outputs/fatx0098-soak3. User confirmed
+dashboard return. Collected once, restoring normal startup FIRST. No Windows
+relaunch. Probe has all15 timed markers ending900000ms, COMPLETE and normal
+restart request;527 mappings,16 BMP API cases,50 exact final files,34 absent
+intermediates pass. EventLog records one normal startup/shutdown pair.
+
+Strict qualification FAIL: one rundll32 DLL-initialization popup at shutdown,
+plus three Srv2013 warnings for guest F:/G:/H:. Exact signatures match prior
+physical events; popup also matches prior emulator evidence. No new application
+events. Recurrence does not prove cause or harmlessness. Event gates unchanged.
+No recovery capture: its full PASS prerequisite is unmet;0.1.0 remains intact.
+
+One readonly allocation scan at /E/Applications/XWNSoak98c launched15:08:16UTC,
+returned15:10:07UTC and was collected once:122310 files,6071 directories,zero
+errors/orphans. All3439 binary hashes match; nine hives pass header/checksum and
+key/value traversal. Installed-state check passes: FATX0098/video0093/Microsoft
+framebuf/HAL/loader unchanged, normal startup restored,0088 rollback preserved.
+No new manual Paint/Notepad observations belong to this attempt. Prior user
+files remain preserved in /F/xwns98-first; second bootloader attempt at
+/F/xwns98-second. All current automated output remains /F/xwns98.
+
+Post-run SetupAPI log preserved in artifacts/diagnostics/setupapi.log (capture
+metadata setupapi-capture.json); no before-SetupAPI log exists for this attempt.
+Investigate installer queue/shutdown sequencing and Srv warning sources next,
+before another strict qualification or video change. Historical debugger device
+installer findings are leads only. Don't suppress popups/clear failure flags to
+manufacture PASS. See event-comparison.json and outputs/video-next/PLAN.md.
+
+All owned observer/scan/audit processes completed; automation remains PAUSED.
+Original windows observer ended without return/timeout record; exact dashboard
+return time and its termination cause remain unknown. Do not overwrite that
+observation with the later scan return. Results summarized in summary.json.
+
+## Earlier state (historical)
+
+# Third FATX0098 attempt awaiting screen report
 
 2026-10-06 15:03 UTC: observer session84500 is no longer known to the tool and
 no matching Python process is running. windows-return.json has only the initial
