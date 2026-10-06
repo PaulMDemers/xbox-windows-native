@@ -1,3 +1,53 @@
+# Actual shutdown popup reproduced and traced to win32k; separate control clean
+
+2026-10-06 UTC, outputs/shutdown-popup-workload. Two owned emulator launches
+finished on the exact previously popup-failing FATX0098 soak rehearsal input
+(video0093, unchanged 60-second minimum helper). Physical Xbox untouched:
+FATX0098/video0093/normal startup, original0088 rollback and immutable0.1.0 remain.
+No patch, registry/device-policy change, hardware launch or recovery capture.
+Physical soak3 strict FAIL remains authoritative; automation remains PAUSED.
+
+Run001 reproduced the original EventLog popup exactly. Three captured events:
+ExRaiseHardError, ExpRaiseHardError and kernel shutdown. Both hard-error entries
+have0xc000026b, rundll32 PID1008/EPROCESS0xff9b4020/thread0xff9dd580. Its command is
+newdev installation of PCI1B36:0005. Caller0xa007e406 is verified against matching
+win32k.sys code/imports and cold before/after hashes. This is the actual GUI
+window-station-shutdown hard error, not a guessed user-mode loader failure.
+The following static code requests process termination with0xc0000142; that
+following request was not separately traced. One popup, two hard-error entries.
+This emulator device identity is not proven to be the physical popup's device.
+
+Run002 added process creation/resume/termination/exit observation:312 events,
+no hard error and no popup. Event66 is the PCI10DE:02A0 installer resume path,
+PID828/EPROCESS0xff9df020. CSRSS requests its termination at217; exit handling
+is observed at218. Services enters native creation at223, then requests
+termination of PCI1B36:0005 installer PID884/EPROCESS0xffb3f020 at227, argument5;
+exit follows at228. No resume-site hit for that late identity was captured.
+Do not claim it executed user code, infer its original creation error from5,
+or assign the earlier saved-token race to this run. This clean path does not
+supply run001's missing lifecycle. Debugger scheduling remains a limitation.
+
+Both runs:527 mappings,16 synthetic BMP API cases,50 exact final files,
+34 absent intermediates,15 timed rounds totaling>=60000ms, matching payloads
+and reviewed system binaries, five structurally traversable hives, one normal
+shutdown and dashboard return. Run001 diagnostic FAIL; run002 diagnostic PASS;
+both ordinary_run_valid=false. No full allocation audit or fifteen-minute soak.
+Actual user application testing remains separate. Summaries/assertions in
+review-evidence.py and summary.json; exact executed source snapshots under001/002.
+All owned runner/supervisor/tracer sessions completed; no experiment running.
+
+Next: narrow lifecycle observation around the identified win32k hard-error and
+late installer on this exact workload, avoiding hundreds of unrelated resume
+breaks. We now know the actual failing caller/process but have not captured its
+creation/resume ordering during a failing run. Preserve this reproduced case;
+do not repeat broad clean controls or change drivers to force a passing log.
+Any shutdown integration must stop new installation and protect token lifetime
+for its entire use. A device package needs explicit behavior/provenance and
+separate validation. Do not suppress events or mark devices installed as a fix.
+Graphics performance/modes remain separate; no new hardware test is ready.
+
+## Prior continuation (historical)
+
 # PnP token close/use interleaving captured twice; popup still unresolved
 
 2026-10-06 UTC, outputs/shutdown-token-lifetime. Two owned emulator launches

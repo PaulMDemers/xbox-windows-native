@@ -1,0 +1,538 @@
+{
+  "scope": "Review the reproduced popup against its trace, event delta and cold artifacts.",
+  "physical_access": false,
+  "popup_reproduced": true,
+  "diagnostic_checks_passed": false,
+  "ordinary_boot_qualified": false,
+  "fixture": {
+    "scope": "Exact existing failing rehearsal fixture reused, without guest input changes.",
+    "physical_access": false,
+    "fixture_sha256": "a6cb5b52925f73be12f5b5f00fc3d6ced6cbcf5af62409fd04c5e0f7a0805213",
+    "seed_sha256": "7b9674b15a34256f0dfc2a212a7ea23f14290a190597f30f4877a497b7924198",
+    "parent_sha256": "a924541cabaa56e2da7359db6d1ba99f7efdfd51c4cf86fd52977001f5fe5976",
+    "payloads": [
+      {
+        "path": "winnt/system32/drivers/xboxvnt5.sys",
+        "bytes": 40882,
+        "sha256": "3e74a5c35b68d7fa0e047b4ba9cec25e7ec0ea5a94e796fc07508f667fcc85cf"
+      },
+      {
+        "path": "winnt/system32/framebuf.dll",
+        "bytes": 8752,
+        "sha256": "5da1fe7c3cdaf67a4a487c8872c2034fbc425bfd36d2b7715b2a1c4caa51df86"
+      },
+      {
+        "path": "Documents and Settings/All Users/Start Menu/Programs/Startup/xwnsetup.cmd",
+        "bytes": 48,
+        "sha256": "0336b2d82047000656f22fb3231fae6763e3432534fbf71855d6239faa22783a"
+      },
+      {
+        "path": "xwns98/probe.exe",
+        "bytes": 15705,
+        "sha256": "a54363683ef566ac39403749703a8ceef45bd7e113470b9c669a19294a677f29",
+        "clusters": 1
+      },
+      {
+        "path": "xwns98/matched.exe",
+        "bytes": 11017,
+        "sha256": "62e8690ae188fe72beb4017d4752fdac931f06c35879ecccd456394a848932a8",
+        "clusters": 1
+      },
+      {
+        "path": "xwns98/scribble.bmp",
+        "bytes": 442422,
+        "sha256": "ad7bfd3fa51af5ae5a666f13888b755bf0cd17a4bbe4c1dbb4e81742d2b148d8",
+        "clusters": 7
+      }
+    ],
+    "preserved_payloads": [],
+    "input_tails": [],
+    "fatx_sha256": "beeaf329f0446d3bdd2ed490fa8143888253115c0ff6c1662b67b82e6619eedd",
+    "fixture_name": "fatx0098-soak-rehearsal.qcow2"
+  },
+  "launch": {
+    "cycle": 1,
+    "status": "accepted",
+    "launch_requested_utc": "2026-10-06T17:15:52.539046+00:00",
+    "command": "SITE EXEC E:\\Applications\\XWNFBoot\\default.xbe",
+    "reply": "200 EXEC command succeeded.",
+    "dashboard_return_utc": "2026-10-06T17:18:26.971754+00:00",
+    "offline_observed": true,
+    "dashboard_return": true
+  },
+  "trace_source_sha256": "2701624156c29c4894ce274946e1122aef8f2fd433f3bbaf228433ee0a693302",
+  "source_hash_matches": true,
+  "trace_events": 3,
+  "trace_status": "reached_kernel_shutdown",
+  "guest_resumed": true,
+  "originating_process": {
+    "eprocess": "0xff9b4020",
+    "image": "rundll32.exe",
+    "pid": 1008,
+    "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_1B36&DEV_0005&SUBSYS_00000000&REV_00\\2&ebb567f&0&03",
+    "parameters_flags": "0x1",
+    "parameters": "0x20000",
+    "raw_command_buffer": "0x205bc",
+    "resolved_command_buffer": "0x205bc"
+  },
+  "originating_thread": "0xff9dd580",
+  "hard_error_status": "0xc000026b",
+  "caller": "0xa007e406",
+  "caller_module": "win32k.sys",
+  "caller_review": "caller-review.json",
+  "popup_record": {
+    "offset": 9128,
+    "record": 51,
+    "generated_unix": 1791321479,
+    "written_unix": 1791321479,
+    "event_id_hex": "4000001a",
+    "event_id": 26,
+    "type": 4,
+    "source": "Application Popup",
+    "computer": "XWN-PC",
+    "strings": [
+      "rundll32.exe - DLL Initialization Failed",
+      "The application failed to initialize because the window station is shutting down. "
+    ],
+    "data_hex": ""
+  },
+  "popup_matches_original": true,
+  "pending_device": [
+    {
+      "InstancePath": "PCI\\VEN_1B36&DEV_0005&SUBSYS_00000000&REV_00\\2&ebb567f&0&03",
+      "ServiceName": "",
+      "Problem": 1,
+      "FailureStatus": "0x0"
+    }
+  ],
+  "workload": {
+    "mappings": 527,
+    "exact_final_files": 50,
+    "absent_intermediates": 34,
+    "bmp_api_cases": 16,
+    "timed_rounds": 15,
+    "required_duration_ms": 60000,
+    "last_round": [
+      15,
+      60000,
+      0
+    ]
+  },
+  "normal_shutdown_count": 1,
+  "structurally_parsed_hives": 5,
+  "runtime_binary_checks": [
+    {
+      "path": "winnt/system32/kernel32.dll",
+      "before_sha256": "6b05b0749b5dd86da94cc4acd062ca05472509f70216b56cd4a5b9809c602e73",
+      "after_sha256": "6b05b0749b5dd86da94cc4acd062ca05472509f70216b56cd4a5b9809c602e73",
+      "matched": true
+    },
+    {
+      "path": "winnt/system32/advapi32.dll",
+      "before_sha256": "d24493dbb2b1818f9cd605acd3b2008d63354c0975e9a090ccdd04bcc339cc59",
+      "after_sha256": "d24493dbb2b1818f9cd605acd3b2008d63354c0975e9a090ccdd04bcc339cc59",
+      "matched": true
+    },
+    {
+      "path": "winnt/system32/ntdll.dll",
+      "before_sha256": "ed276d6a3ae93c71a6cef73672b82e3808211da1c63bf7d3e23d93294e54813a",
+      "after_sha256": "ed276d6a3ae93c71a6cef73672b82e3808211da1c63bf7d3e23d93294e54813a",
+      "matched": true
+    },
+    {
+      "path": "winnt/system32/umpnpmgr.dll",
+      "before_sha256": "02fd896d3f2318a3bd624dd1357ec1f66ea67553ef96c602bede7c4ec5bef685",
+      "after_sha256": "02fd896d3f2318a3bd624dd1357ec1f66ea67553ef96c602bede7c4ec5bef685",
+      "matched": true
+    },
+    {
+      "path": "winnt/system32/win32k.sys",
+      "before_sha256": "414cc2568ba7f11fa58490060c947477f44d6218e6c52e01deea1bbe8a364a92",
+      "after_sha256": "414cc2568ba7f11fa58490060c947477f44d6218e6c52e01deea1bbe8a364a92",
+      "matched": true
+    },
+    {
+      "path": "winnt/system32/ntoskrnl.exe",
+      "before_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+      "after_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+      "matched": true
+    }
+  ],
+  "cleanup": {
+    "completedUtc": "2026-10-06T17:18:27.1678400Z",
+    "scratchDirectory": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\work\\scratch\\windows-native-22c681c297384a88950f6a06a0d5530e",
+    "retained": false,
+    "reason": ""
+  },
+  "limits": [
+    "Two hard-error entry observations belong to one process/thread and one logged popup.",
+    "The exact failing installer is identified for this emulator run only; physical installer identity is unproven.",
+    "No creation/resume timing or token-lifetime observation belongs to this minimal trace; do not import the01B4 control ordering.",
+    "Matched win32k static code describes a following termination request; that request was not separately traced.",
+    "Debugger pauses remain a timing influence; this is not ordinary boot qualification.",
+    "Rehearsal is a60-second minimum workload, not a15-minute soak or full allocation audit.",
+    "No driver, registry/device policy or installed physical baseline changed; strict failure remains."
+  ],
+  "lifecycle_control": {
+    "case": "002",
+    "trace_source_sha256": "73853f148188a5f2ab610fb9e4f7b197a4645898a87cb175cafbc430e3b81596",
+    "source_hash_matches": true,
+    "trace_events": 312,
+    "trace_status": "reached_kernel_shutdown",
+    "guest_resumed": true,
+    "popup_reproduced": false,
+    "diagnostic_checks_passed": true,
+    "ordinary_boot_qualified": false,
+    "initial_installer": {
+      "eprocess": "0xff9df020",
+      "image": "rundll32.exe",
+      "pid": 828,
+      "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_02A0&SUBSYS_00000000&REV_A1\\3&477a1ca&0&00F0",
+      "parameters_flags": "0x0",
+      "parameters": "0x20000",
+      "raw_command_buffer": "0x5bc",
+      "resolved_command_buffer": "0x205bc"
+    },
+    "late_installer": {
+      "eprocess": "0xffb3f020",
+      "image": "rundll32.exe",
+      "pid": 884,
+      "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_1B36&DEV_0005&SUBSYS_00000000&REV_00\\2&ebb567f&0&03",
+      "parameters_flags": "0x0",
+      "parameters": "0x20000",
+      "raw_command_buffer": "0x5bc",
+      "resolved_command_buffer": "0x205bc"
+    },
+    "selected_events": [
+      {
+        "index": 66,
+        "function": "NtResumeThread_BeforeResume",
+        "utc": "2026-10-06T17:23:38.351108+00:00",
+        "caller": "0x82444034",
+        "arguments": [
+          "0x8a8",
+          "0xf5fbd4"
+        ],
+        "owner": {
+          "eprocess": "0xfe4c9d20",
+          "image": "services.exe",
+          "pid": 208,
+          "command_line": "C:\\WINNT\\system32\\services.exe",
+          "parameters_flags": "0x1",
+          "parameters": "0x20000",
+          "raw_command_buffer": "0x205bc",
+          "resolved_command_buffer": "0x205bc"
+        },
+        "thread": "0xffb70b20",
+        "tick_count": 1825,
+        "target_thread": "0xff9dd020",
+        "target": {
+          "eprocess": "0xff9df020",
+          "image": "rundll32.exe",
+          "pid": 828,
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_02A0&SUBSYS_00000000&REV_A1\\3&477a1ca&0&00F0",
+          "parameters_flags": "0x0",
+          "parameters": "0x20000",
+          "raw_command_buffer": "0x5bc",
+          "resolved_command_buffer": "0x205bc"
+        }
+      },
+      {
+        "index": 217,
+        "function": "NtTerminateProcess_AfterReference",
+        "utc": "2026-10-06T17:25:10.811809+00:00",
+        "caller": "0x82444034",
+        "arguments": [
+          "0x358",
+          "0x40010004"
+        ],
+        "owner": {
+          "eprocess": "0xfe4dc020",
+          "image": "csrss.exe",
+          "pid": 160,
+          "command_line": "C:\\WINNT\\system32\\csrss.exe ObjectDirectory=\\Windows SharedSection=1024,3072,512,512 Windows=On SubSystemType=Windows ServerDll=basesrv,1 ServerDll=winsrv:UserServerDllInitialization,3 ServerDll=winsrv:ConServerDllInitialization,2 ProfileControl=Off MaxRequestThreads=16",
+          "parameters_flags": "0x21",
+          "parameters": "0x110000",
+          "raw_command_buffer": "0x110564",
+          "resolved_command_buffer": "0x110564"
+        },
+        "thread": "0xfe4d1340",
+        "tick_count": 7853,
+        "target": {
+          "eprocess": "0xff9df020",
+          "image": "rundll32.exe",
+          "pid": 828,
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_02A0&SUBSYS_00000000&REV_A1\\3&477a1ca&0&00F0",
+          "parameters_flags": "0x1",
+          "parameters": "0x20000",
+          "raw_command_buffer": "0x205bc",
+          "resolved_command_buffer": "0x205bc"
+        }
+      },
+      {
+        "index": 218,
+        "function": "_PspExitProcess@8",
+        "utc": "2026-10-06T17:25:10.968756+00:00",
+        "caller": "0x824c2b6a",
+        "arguments": [
+          "0x1",
+          "0xff9df020"
+        ],
+        "owner": {
+          "eprocess": "0xff9df020",
+          "image": "rundll32.exe",
+          "pid": 828,
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_02A0&SUBSYS_00000000&REV_A1\\3&477a1ca&0&00F0",
+          "parameters_flags": "0x1",
+          "parameters": "0x20000",
+          "raw_command_buffer": "0x205bc",
+          "resolved_command_buffer": "0x205bc"
+        },
+        "thread": "0xff99a640",
+        "tick_count": 7863,
+        "target": {
+          "eprocess": "0xff9df020",
+          "image": "rundll32.exe",
+          "pid": 828,
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_02A0&SUBSYS_00000000&REV_A1\\3&477a1ca&0&00F0",
+          "parameters_flags": "0x1",
+          "parameters": "0x20000",
+          "raw_command_buffer": "0x205bc",
+          "resolved_command_buffer": "0x205bc"
+        }
+      },
+      {
+        "index": 220,
+        "function": "_PspExitProcess@8",
+        "utc": "2026-10-06T17:25:11.004568+00:00",
+        "caller": "0x824c2f38",
+        "arguments": [
+          "0x0",
+          "0xff9df020"
+        ],
+        "owner": {
+          "eprocess": "0xfe4c9d20",
+          "image": "services.exe",
+          "pid": 208,
+          "command_line": "C:\\WINNT\\system32\\services.exe",
+          "parameters_flags": "0x1",
+          "parameters": "0x20000",
+          "raw_command_buffer": "0x205bc",
+          "resolved_command_buffer": "0x205bc"
+        },
+        "thread": "0xffb70b20",
+        "tick_count": 7863,
+        "target": {
+          "eprocess": "0xff9df020",
+          "image": "rundll32.exe",
+          "pid": 828,
+          "decode_error": "AssertionError('Nonresident target PDE')"
+        }
+      },
+      {
+        "index": 223,
+        "function": "_NtCreateProcess@32",
+        "utc": "2026-10-06T17:25:11.059837+00:00",
+        "caller": "0x82444034",
+        "arguments": [
+          "0xf5fab8",
+          "0x1f0fff",
+          "0x0",
+          "0xffffffff",
+          "0x0",
+          "0x8ac",
+          "0x0",
+          "0x0"
+        ],
+        "owner": {
+          "eprocess": "0xfe4c9d20",
+          "image": "services.exe",
+          "pid": 208,
+          "command_line": "C:\\WINNT\\system32\\services.exe",
+          "parameters_flags": "0x1",
+          "parameters": "0x20000",
+          "raw_command_buffer": "0x205bc",
+          "resolved_command_buffer": "0x205bc"
+        },
+        "thread": "0xffb70b20",
+        "tick_count": 7865
+      },
+      {
+        "index": 227,
+        "function": "NtTerminateProcess_AfterReference",
+        "utc": "2026-10-06T17:25:11.313775+00:00",
+        "caller": "0x82444034",
+        "arguments": [
+          "0x844",
+          "0x5"
+        ],
+        "owner": {
+          "eprocess": "0xfe4c9d20",
+          "image": "services.exe",
+          "pid": 208,
+          "command_line": "C:\\WINNT\\system32\\services.exe",
+          "parameters_flags": "0x1",
+          "parameters": "0x20000",
+          "raw_command_buffer": "0x205bc",
+          "resolved_command_buffer": "0x205bc"
+        },
+        "thread": "0xffb70b20",
+        "tick_count": 7878,
+        "target": {
+          "eprocess": "0xffb3f020",
+          "image": "rundll32.exe",
+          "pid": 884,
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_1B36&DEV_0005&SUBSYS_00000000&REV_00\\2&ebb567f&0&03",
+          "parameters_flags": "0x0",
+          "parameters": "0x20000",
+          "raw_command_buffer": "0x5bc",
+          "resolved_command_buffer": "0x205bc"
+        }
+      },
+      {
+        "index": 228,
+        "function": "_PspExitProcess@8",
+        "utc": "2026-10-06T17:25:11.330906+00:00",
+        "caller": "0x824c2b6a",
+        "arguments": [
+          "0x1",
+          "0xffb3f020"
+        ],
+        "owner": {
+          "eprocess": "0xffb3f020",
+          "image": "rundll32.exe",
+          "pid": 884,
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_1B36&DEV_0005&SUBSYS_00000000&REV_00\\2&ebb567f&0&03",
+          "parameters_flags": "0x0",
+          "parameters": "0x20000",
+          "raw_command_buffer": "0x5bc",
+          "resolved_command_buffer": "0x205bc"
+        },
+        "thread": "0xff9dd020",
+        "tick_count": 7879,
+        "target": {
+          "eprocess": "0xffb3f020",
+          "image": "rundll32.exe",
+          "pid": 884,
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_1B36&DEV_0005&SUBSYS_00000000&REV_00\\2&ebb567f&0&03",
+          "parameters_flags": "0x0",
+          "parameters": "0x20000",
+          "raw_command_buffer": "0x5bc",
+          "resolved_command_buffer": "0x205bc"
+        }
+      },
+      {
+        "index": 229,
+        "function": "_PspExitProcess@8",
+        "utc": "2026-10-06T17:25:11.347088+00:00",
+        "caller": "0x824c2f38",
+        "arguments": [
+          "0x0",
+          "0xffb3f020"
+        ],
+        "owner": {
+          "eprocess": "0xfe680020",
+          "image": "System",
+          "pid": 8,
+          "decode_error": "AssertionError('No user PEB')"
+        },
+        "thread": "0xfe66e3a0",
+        "tick_count": 7879,
+        "target": {
+          "eprocess": "0xffb3f020",
+          "image": "rundll32.exe",
+          "pid": 884,
+          "decode_error": "AssertionError('Nonresident target PDE')"
+        }
+      },
+      {
+        "index": 311,
+        "function": "_NtShutdownSystem@4",
+        "utc": "2026-10-06T17:25:16.639923+00:00",
+        "caller": "0x82444034",
+        "arguments": [
+          "0x1"
+        ],
+        "owner": {
+          "eprocess": "0xfe4d5640",
+          "image": "winlogon.exe",
+          "pid": 156,
+          "command_line": "winlogon.exe",
+          "parameters_flags": "0x1",
+          "parameters": "0x20000",
+          "raw_command_buffer": "0x2056c",
+          "resolved_command_buffer": "0x2056c"
+        },
+        "thread": "0xfe4d53c0",
+        "tick_count": 8156
+      }
+    ],
+    "workload": {
+      "mappings": 527,
+      "exact_final_files": 50,
+      "absent_intermediates": 34,
+      "bmp_api_cases": 16,
+      "timed_rounds": 15,
+      "required_duration_ms": 60000,
+      "last_round": [
+        15,
+        60000,
+        0
+      ]
+    },
+    "runtime_binary_checks": [
+      {
+        "path": "winnt/system32/kernel32.dll",
+        "before_sha256": "6b05b0749b5dd86da94cc4acd062ca05472509f70216b56cd4a5b9809c602e73",
+        "after_sha256": "6b05b0749b5dd86da94cc4acd062ca05472509f70216b56cd4a5b9809c602e73",
+        "matched": true
+      },
+      {
+        "path": "winnt/system32/advapi32.dll",
+        "before_sha256": "d24493dbb2b1818f9cd605acd3b2008d63354c0975e9a090ccdd04bcc339cc59",
+        "after_sha256": "d24493dbb2b1818f9cd605acd3b2008d63354c0975e9a090ccdd04bcc339cc59",
+        "matched": true
+      },
+      {
+        "path": "winnt/system32/ntdll.dll",
+        "before_sha256": "ed276d6a3ae93c71a6cef73672b82e3808211da1c63bf7d3e23d93294e54813a",
+        "after_sha256": "ed276d6a3ae93c71a6cef73672b82e3808211da1c63bf7d3e23d93294e54813a",
+        "matched": true
+      },
+      {
+        "path": "winnt/system32/umpnpmgr.dll",
+        "before_sha256": "02fd896d3f2318a3bd624dd1357ec1f66ea67553ef96c602bede7c4ec5bef685",
+        "after_sha256": "02fd896d3f2318a3bd624dd1357ec1f66ea67553ef96c602bede7c4ec5bef685",
+        "matched": true
+      },
+      {
+        "path": "winnt/system32/win32k.sys",
+        "before_sha256": "414cc2568ba7f11fa58490060c947477f44d6218e6c52e01deea1bbe8a364a92",
+        "after_sha256": "414cc2568ba7f11fa58490060c947477f44d6218e6c52e01deea1bbe8a364a92",
+        "matched": true
+      },
+      {
+        "path": "winnt/system32/ntoskrnl.exe",
+        "before_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+        "after_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+        "matched": true
+      }
+    ],
+    "structurally_parsed_hives": 5,
+    "normal_shutdown_count": 1,
+    "cleanup": {
+      "completedUtc": "2026-10-06T17:25:32.3358161Z",
+      "scratchDirectory": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\work\\scratch\\windows-native-8f0fb958046e4e368cd2f4ce2d17ee26",
+      "retained": false,
+      "reason": ""
+    },
+    "limits": [
+      "No hard error occurred in this trace; its clean path does not describe the preceding failing run.",
+      "No resume-site hit for the late PID/EPROCESS was observed; this is not proof about every possible thread execution path.",
+      "NtCreateProcess entry does not independently identify a resulting child; the subsequent termination target supplies the late installer identity.",
+      "Termination argument5 is retained as an argument, not inferred to be the original creation error.",
+      "No token-lifetime sites were armed here; do not infer the earlier token race occurred in this run.",
+      "A changed debugger schedule is an influence, not a demonstrated explanation for the different outcome."
+    ]
+  }
+}

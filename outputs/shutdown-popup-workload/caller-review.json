@@ -1,0 +1,247 @@
+{
+  "scope": "Match the captured hard-error caller to the owned win32k image and imports.",
+  "binaries": {
+    "win32k.sys": {
+      "sha256": "414cc2568ba7f11fa58490060c947477f44d6218e6c52e01deea1bbe8a364a92",
+      "preferred_base": "0xa0000000"
+    }
+  },
+  "runtime_module": {
+    "name": "win32k.sys",
+    "base": "0xa0000000",
+    "entry": "0xa0180856",
+    "size": 1650688
+  },
+  "pe_size_of_image": 1650176,
+  "module_size_matches_page_rounded_image": true,
+  "trace_event": 0,
+  "caller": "0xa007e406",
+  "import_targets": {
+    "0xa0164908": "ZwTerminateProcess",
+    "0xa016490c": "ExRaiseHardError"
+  },
+  "instructions": [
+    {
+      "address": "0xa007e386",
+      "bytes": "f646400c",
+      "instruction": "test byte ptr [esi + 0x40], 0xc"
+    },
+    {
+      "address": "0xa007e38a",
+      "bytes": "0f852e010000",
+      "instruction": "jne 0xa007e4be"
+    },
+    {
+      "address": "0xa007e390",
+      "bytes": "33db",
+      "instruction": "xor ebx, ebx"
+    },
+    {
+      "address": "0xa007e392",
+      "bytes": "391d1cce17a0",
+      "instruction": "cmp dword ptr [0xa017ce1c], ebx"
+    },
+    {
+      "address": "0xa007e398",
+      "bytes": "0f8420010000",
+      "instruction": "je 0xa007e4be"
+    },
+    {
+      "address": "0xa007e39e",
+      "bytes": "8d45f0",
+      "instruction": "lea eax, [ebp - 0x10]"
+    },
+    {
+      "address": "0xa007e3a1",
+      "bytes": "895df0",
+      "instruction": "mov dword ptr [ebp - 0x10], ebx"
+    },
+    {
+      "address": "0xa007e3a4",
+      "bytes": "50",
+      "instruction": "push eax"
+    },
+    {
+      "address": "0xa007e3a5",
+      "bytes": "8b45f8",
+      "instruction": "mov eax, dword ptr [ebp - 8]"
+    },
+    {
+      "address": "0xa007e3a8",
+      "bytes": "8b4868",
+      "instruction": "mov ecx, dword ptr [eax + 0x68]"
+    },
+    {
+      "address": "0xa007e3ab",
+      "bytes": "83c078",
+      "instruction": "add eax, 0x78"
+    },
+    {
+      "address": "0xa007e3ae",
+      "bytes": "81e100000040",
+      "instruction": "and ecx, 0x40000000"
+    },
+    {
+      "address": "0xa007e3b4",
+      "bytes": "51",
+      "instruction": "push ecx"
+    },
+    {
+      "address": "0xa007e3b5",
+      "bytes": "8d4dfc",
+      "instruction": "lea ecx, [ebp - 4]"
+    },
+    {
+      "address": "0xa007e3b8",
+      "bytes": "51",
+      "instruction": "push ecx"
+    },
+    {
+      "address": "0xa007e3b9",
+      "bytes": "50",
+      "instruction": "push eax"
+    },
+    {
+      "address": "0xa007e3ba",
+      "bytes": "6aff",
+      "instruction": "push -1"
+    },
+    {
+      "address": "0xa007e3bc",
+      "bytes": "e89496fbff",
+      "instruction": "call 0xa0037a55"
+    },
+    {
+      "address": "0xa007e3c1",
+      "bytes": "3bc3",
+      "instruction": "cmp eax, ebx"
+    },
+    {
+      "address": "0xa007e3c3",
+      "bytes": "8945e8",
+      "instruction": "mov dword ptr [ebp - 0x18], eax"
+    },
+    {
+      "address": "0xa007e3c6",
+      "bytes": "7551",
+      "instruction": "jne 0xa007e419"
+    },
+    {
+      "address": "0xa007e3c8",
+      "bytes": "395df0",
+      "instruction": "cmp dword ptr [ebp - 0x10], ebx"
+    },
+    {
+      "address": "0xa007e3cb",
+      "bytes": "be420100c0",
+      "instruction": "mov esi, 0xc0000142"
+    },
+    {
+      "address": "0xa007e3d0",
+      "bytes": "0f8440feffff",
+      "instruction": "je 0xa007e216"
+    },
+    {
+      "address": "0xa007e3d6",
+      "bytes": "895dc0",
+      "instruction": "mov dword ptr [ebp - 0x40], ebx"
+    },
+    {
+      "address": "0xa007e3d9",
+      "bytes": "895dc4",
+      "instruction": "mov dword ptr [ebp - 0x3c], ebx"
+    },
+    {
+      "address": "0xa007e3dc",
+      "bytes": "895dc8",
+      "instruction": "mov dword ptr [ebp - 0x38], ebx"
+    },
+    {
+      "address": "0xa007e3df",
+      "bytes": "895dcc",
+      "instruction": "mov dword ptr [ebp - 0x34], ebx"
+    },
+    {
+      "address": "0xa007e3e2",
+      "bytes": "c745d000000200",
+      "instruction": "mov dword ptr [ebp - 0x30], 0x20000"
+    },
+    {
+      "address": "0xa007e3e9",
+      "bytes": "e86a28f8ff",
+      "instruction": "call 0xa0000c58"
+    },
+    {
+      "address": "0xa007e3ee",
+      "bytes": "8d450c",
+      "instruction": "lea eax, [ebp + 0xc]"
+    },
+    {
+      "address": "0xa007e3f1",
+      "bytes": "50",
+      "instruction": "push eax"
+    },
+    {
+      "address": "0xa007e3f2",
+      "bytes": "8d45c0",
+      "instruction": "lea eax, [ebp - 0x40]"
+    },
+    {
+      "address": "0xa007e3f5",
+      "bytes": "6a07",
+      "instruction": "push 7"
+    },
+    {
+      "address": "0xa007e3f7",
+      "bytes": "50",
+      "instruction": "push eax"
+    },
+    {
+      "address": "0xa007e3f8",
+      "bytes": "53",
+      "instruction": "push ebx"
+    },
+    {
+      "address": "0xa007e3f9",
+      "bytes": "6a05",
+      "instruction": "push 5"
+    },
+    {
+      "address": "0xa007e3fb",
+      "bytes": "686b0200c0",
+      "instruction": "push 0xc000026b"
+    },
+    {
+      "address": "0xa007e400",
+      "bytes": "ff150c4916a0",
+      "instruction": "call dword ptr [0xa016490c]"
+    },
+    {
+      "address": "0xa007e406",
+      "bytes": "56",
+      "instruction": "push esi"
+    },
+    {
+      "address": "0xa007e407",
+      "bytes": "6aff",
+      "instruction": "push -1"
+    },
+    {
+      "address": "0xa007e409",
+      "bytes": "ff15084916a0",
+      "instruction": "call dword ptr [0xa0164908]"
+    },
+    {
+      "address": "0xa007e40f",
+      "bytes": "e87d28f8ff",
+      "instruction": "call 0xa0000c91"
+    },
+    {
+      "address": "0xa007e414",
+      "bytes": "e9fdfdffff",
+      "instruction": "jmp 0xa007e216"
+    }
+  ],
+  "conclusion": "Captured return address follows the matched win32k call to ExRaiseHardError with constant0xc000026b. The following code requests termination of the current process using0xc0000142.",
+  "limits": "The subsequent termination is static control-flow evidence, not a separately captured call. No private function name or physical device identity is inferred; cold binary matching is required separately."
+}

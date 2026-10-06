@@ -1,0 +1,347 @@
+{
+  "scope": "Minimal hard-error capture on the previously failing workload; not boot qualification.",
+  "physical_access": false,
+  "ordinary_boot_qualified": false,
+  "events": [
+    {
+      "index": 0,
+      "function": "_ExRaiseHardError@24",
+      "utc": "2026-10-06T17:18:00.178245+00:00",
+      "caller": "0xa007e406",
+      "arguments": [
+        "0xc000026b",
+        "0x5",
+        "0x0",
+        "0xfbbe1cc0",
+        "0x7",
+        "0xfbbe1d0c"
+      ],
+      "owner": {
+        "eprocess": "0xff9b4020",
+        "image": "rundll32.exe",
+        "pid": 1008,
+        "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_1B36&DEV_0005&SUBSYS_00000000&REV_00\\2&ebb567f&0&03",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "thread": "0xff9dd580",
+      "tick_count": 7921,
+      "parameter_values": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x20000"
+      ],
+      "raw_stack_words": [
+        "0xa007e406",
+        "0xc000026b",
+        "0x5",
+        "0x0",
+        "0xfbbe1cc0",
+        "0x7",
+        "0xfbbe1d0c",
+        "0x0",
+        "0xff9dd580",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x20000",
+        "0x823df8b0"
+      ],
+      "registers": {
+        "EAX": "0xfbbe1cc0",
+        "ECX": "0xff9dd5b4",
+        "EDX": "0x0",
+        "EBX": "0x0",
+        "ESP": "0xfbbe1c98",
+        "EBP": "0xfbbe1d00",
+        "ESI": "0xc0000142",
+        "EDI": "0xe1ad82a8",
+        "EIP": "0x82473a84"
+      },
+      "unicode_parameters": []
+    },
+    {
+      "index": 1,
+      "function": "_ExpRaiseHardError@24",
+      "utc": "2026-10-06T17:18:00.189414+00:00",
+      "caller": "0x82473bd1",
+      "arguments": [
+        "0xc000026b",
+        "0x5",
+        "0x0",
+        "0xfbbe1cc0",
+        "0x7",
+        "0xfbbe1c78"
+      ],
+      "owner": {
+        "eprocess": "0xff9b4020",
+        "image": "rundll32.exe",
+        "pid": 1008,
+        "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_1B36&DEV_0005&SUBSYS_00000000&REV_00\\2&ebb567f&0&03",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "thread": "0xff9dd580",
+      "tick_count": 7921,
+      "parameter_values": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x20000"
+      ],
+      "raw_stack_words": [
+        "0x82473bd1",
+        "0xc000026b",
+        "0x5",
+        "0x0",
+        "0xfbbe1cc0",
+        "0x7",
+        "0xfbbe1c78",
+        "0xe1ad82a8",
+        "0xc0000142",
+        "0x0",
+        "0xfbbe1d64",
+        "0xfbbe1d64",
+        "0xfbbe1c84",
+        "0x10101",
+        "0x10101",
+        "0xffffffff"
+      ],
+      "registers": {
+        "EAX": "0xfbbe1c78",
+        "ECX": "0xff9dd5b4",
+        "EDX": "0x0",
+        "EBX": "0x0",
+        "ESP": "0xfbbe1c28",
+        "EBP": "0xfbbe1c94",
+        "ESI": "0xc0000142",
+        "EDI": "0xfbbe1cc0",
+        "EIP": "0x82473516"
+      },
+      "unicode_parameters": []
+    },
+    {
+      "index": 2,
+      "function": "_NtShutdownSystem@4",
+      "utc": "2026-10-06T17:18:03.132879+00:00",
+      "caller": "0x82444034",
+      "arguments": [
+        "0x1"
+      ],
+      "owner": {
+        "eprocess": "0xfe4d56e0",
+        "image": "winlogon.exe",
+        "pid": 156,
+        "command_line": "winlogon.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x2056c",
+        "resolved_command_buffer": "0x2056c"
+      },
+      "thread": "0xfe4d5460",
+      "tick_count": 8117
+    }
+  ],
+  "sites": {
+    "scope": "Minimal native/kernel hard-error and shutdown sites; no installer lifecycle breakpoints.",
+    "binaries": {
+      "kernel32.dll": {
+        "sha256": "6b05b0749b5dd86da94cc4acd062ca05472509f70216b56cd4a5b9809c602e73",
+        "preferred_base": "0x7c570000"
+      },
+      "advapi32.dll": {
+        "sha256": "d24493dbb2b1818f9cd605acd3b2008d63354c0975e9a090ccdd04bcc339cc59",
+        "preferred_base": "0x7c2d0000"
+      },
+      "ntdll.dll": {
+        "sha256": "ed276d6a3ae93c71a6cef73672b82e3808211da1c63bf7d3e23d93294e54813a",
+        "preferred_base": "0x77f80000"
+      },
+      "umpnpmgr.dll": {
+        "sha256": "02fd896d3f2318a3bd624dd1357ec1f66ea67553ef96c602bede7c4ec5bef685",
+        "preferred_base": "0x767a0000"
+      }
+    },
+    "kernel_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+    "sites": [
+      {
+        "name": "NtRaiseHardError",
+        "module": "ntdll.dll",
+        "rva": 35436,
+        "address": 2012777068,
+        "bytes": "b8a000",
+        "argc": 6,
+        "kind": "harderror"
+      },
+      {
+        "name": "_NtRaiseHardError@24",
+        "rva": 608302,
+        "bytes": "558bec",
+        "argc": 6,
+        "frame": "esp",
+        "module": "ntoskrnl.exe",
+        "kind": "harderror"
+      },
+      {
+        "name": "_ExRaiseHardError@24",
+        "rva": 608900,
+        "bytes": "558bec",
+        "argc": 6,
+        "frame": "esp",
+        "module": "ntoskrnl.exe",
+        "kind": "harderror"
+      },
+      {
+        "name": "_ExpRaiseHardError@24",
+        "rva": 607510,
+        "bytes": "558bec",
+        "argc": 6,
+        "frame": "esp",
+        "module": "ntoskrnl.exe",
+        "kind": "harderror"
+      },
+      {
+        "name": "_NtShutdownSystem@4",
+        "rva": 591052,
+        "bytes": "8b4424",
+        "argc": 1,
+        "frame": "esp",
+        "module": "ntoskrnl.exe",
+        "kind": "shutdown"
+      }
+    ],
+    "disassembly": {
+      "kernel32.dll": [
+        {
+          "rva": "0x26627",
+          "bytes": "6a28",
+          "instruction": "push 0x28"
+        },
+        {
+          "rva": "0x26629",
+          "bytes": "6800000100",
+          "instruction": "push 0x10000"
+        },
+        {
+          "rva": "0x2662e",
+          "bytes": "53",
+          "instruction": "push ebx"
+        },
+        {
+          "rva": "0x2662f",
+          "bytes": "8d8530fdffff",
+          "instruction": "lea eax, [ebp - 0x2d0]"
+        },
+        {
+          "rva": "0x26635",
+          "bytes": "50",
+          "instruction": "push eax"
+        },
+        {
+          "rva": "0x26636",
+          "bytes": "ff154010577c",
+          "instruction": "call dword ptr [0x7c571040]"
+        },
+        {
+          "rva": "0x2663c",
+          "bytes": "399d50fdffff",
+          "instruction": "cmp dword ptr [ebp - 0x2b0], ebx"
+        },
+        {
+          "rva": "0x26642",
+          "bytes": "7d22",
+          "instruction": "jge 0x7c596666"
+        },
+        {
+          "rva": "0x26644",
+          "bytes": "ffb550fdffff",
+          "instruction": "push dword ptr [ebp - 0x2b0]"
+        },
+        {
+          "rva": "0x2664a",
+          "bytes": "e81e1cfeff",
+          "instruction": "call 0x7c57826d"
+        },
+        {
+          "rva": "0x2664f",
+          "bytes": "ffb550fdffff",
+          "instruction": "push dword ptr [ebp - 0x2b0]"
+        },
+        {
+          "rva": "0x26655",
+          "bytes": "ffb588feffff",
+          "instruction": "push dword ptr [ebp - 0x178]"
+        },
+        {
+          "rva": "0x2665b",
+          "bytes": "ff159c13577c",
+          "instruction": "call dword ptr [0x7c57139c]"
+        },
+        {
+          "rva": "0x26661",
+          "bytes": "e9b4010000",
+          "instruction": "jmp 0x7c59681a"
+        },
+        {
+          "rva": "0x26666",
+          "bytes": "f6452004",
+          "instruction": "test byte ptr [ebp + 0x20], 4"
+        },
+        {
+          "rva": "0x2666a",
+          "bytes": "7513",
+          "instruction": "jne 0x7c59667f"
+        },
+        {
+          "rva": "0x2666c",
+          "bytes": "8d859cfeffff",
+          "instruction": "lea eax, [ebp - 0x164]"
+        },
+        {
+          "rva": "0x26672",
+          "bytes": "50",
+          "instruction": "push eax"
+        },
+        {
+          "rva": "0x26673",
+          "bytes": "ffb5d0feffff",
+          "instruction": "push dword ptr [ebp - 0x130]"
+        },
+        {
+          "rva": "0x26679",
+          "bytes": "ff159813577c",
+          "instruction": "call dword ptr [0x7c571398]"
+        }
+      ]
+    },
+    "thread_owner_offset": 556,
+    "teb_offset": 32,
+    "limits": "User-mode sites use preferred image bases and verify bytes when hit. Dynamic return sites are tied to the originating ETHREAD and exact saved return address. No changed return values or guest data. PnP interior sites record raw registers/global values, not fabricated call arguments. CloseHandle is retained only when services.exe closes the current saved token.",
+    "token_global": 1987795812,
+    "mutex_global": 1987795956
+  },
+  "started_utc": "2026-10-06T17:16:19.979263+00:00",
+  "active_sites": {
+    "0x77f88a6c": "NtRaiseHardError",
+    "0x8247382e": "_NtRaiseHardError@24",
+    "0x82473a84": "_ExRaiseHardError@24",
+    "0x82473516": "_ExpRaiseHardError@24",
+    "0x8246f4cc": "_NtShutdownSystem@4"
+  },
+  "trace_source_sha256": "2701624156c29c4894ce274946e1122aef8f2fd433f3bbaf228433ee0a693302",
+  "gdb_features": "PacketSize=20020;qXfer:features:read+;vContSupported+;multiprocess+",
+  "initial_stop": "T05thread:01;",
+  "kernel_site_bytes_verified": true,
+  "status": "reached_kernel_shutdown",
+  "guest_resumed": true,
+  "ended_utc": "2026-10-06T17:18:03.136024+00:00"
+}
