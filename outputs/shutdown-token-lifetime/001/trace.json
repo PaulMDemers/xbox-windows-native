@@ -1,0 +1,4610 @@
+{
+  "scope": "Observe saved PnP token lifetime and native query returns; debugger evidence only.",
+  "physical_access": false,
+  "ordinary_boot_qualified": false,
+  "events": [
+    {
+      "function": "PnP_Logon_token_return",
+      "eax": "0x1",
+      "registers": {
+        "EAX": "0x1",
+        "ECX": "0x1000101",
+        "EDX": "0xffffffff",
+        "EBX": "0x51fa00",
+        "ESP": "0x51fa88",
+        "EBP": "0x51fac0",
+        "ESI": "0x0",
+        "EDI": "0x51fac4",
+        "EIP": "0x767a5d82"
+      },
+      "stack_words": [
+        "0x51fac4",
+        "0x51faf0",
+        "0x51fa00",
+        "0x1",
+        "0x51fac4",
+        "0x767ac4ea"
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 0,
+      "utc": "2026-10-06T17:00:38.304494+00:00",
+      "thread": "0xfe4b4020",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 2407,
+      "last_error": 0
+    },
+    {
+      "function": "PnP_Install_token_check",
+      "eax": "0xf8ffa4",
+      "registers": {
+        "EAX": "0xf8ffa4",
+        "ECX": "0x400",
+        "EDX": "0xffffffff",
+        "EBX": "0x0",
+        "ESP": "0xf8fcb4",
+        "EBP": "0xf8ff38",
+        "ESI": "0x0",
+        "EDI": "0x43d9a0",
+        "EIP": "0x767a665b"
+      },
+      "stack_words": [
+        "0x43d9a0",
+        "0x43d998",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 1,
+      "utc": "2026-10-06T17:01:16.831751+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3321,
+      "last_error": 0
+    },
+    {
+      "function": "PnP_Install_token_push",
+      "eax": "0xf8fcd0",
+      "registers": {
+        "EAX": "0xf8fcd0",
+        "ECX": "0x0",
+        "EDX": "0x0",
+        "EBX": "0x0",
+        "ESP": "0xf8fc8c",
+        "EBP": "0xf8ff38",
+        "ESI": "0x0",
+        "EDI": "0xf8ff20",
+        "EIP": "0x767a66d2"
+      },
+      "stack_words": [
+        "0x0",
+        "0xf8fcd0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x8"
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 2,
+      "utc": "2026-10-06T17:01:16.842145+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3321,
+      "last_error": 0
+    },
+    {
+      "function": "CreateProcessAsUserW",
+      "caller": "0x767a66de",
+      "arguments": [
+        "0x770",
+        "0x0",
+        "0xf8fcd0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x8",
+        "0x0",
+        "0x0",
+        "0xf8fedc",
+        "0xf8fcc0"
+      ],
+      "eax": "0xf8fcd0",
+      "creation_flags": "0x8",
+      "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+      "application": "",
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 3,
+      "utc": "2026-10-06T17:01:16.858597+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3321,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x7c2edac8",
+      "arguments": [
+        "0x770",
+        "0xc",
+        "0xf8fc78",
+        "0x4",
+        "0xf8fc74"
+      ],
+      "eax": "0x0",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 4,
+      "utc": "2026-10-06T17:01:16.867601+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3321,
+      "last_error": 0
+    },
+    {
+      "function": "CreateProcessInternalW",
+      "caller": "0x7c2e24fd",
+      "arguments": [
+        "0x770",
+        "0x0",
+        "0xf8fcd0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0xc",
+        "0x0",
+        "0x0",
+        "0xf8fedc",
+        "0xf8fcc0"
+      ],
+      "eax": "0x7c5950b3",
+      "creation_flags": "0xc",
+      "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+      "application": "",
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 5,
+      "utc": "2026-10-06T17:01:16.883709+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3321,
+      "last_error": 0
+    },
+    {
+      "function": "NtSetInformationProcess_return",
+      "caller": "0x7c5960af",
+      "arguments": [
+        "0x78c",
+        "0x5",
+        "0xf8f60c",
+        "0x4"
+      ],
+      "eax": "0x0",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        },
+        {
+          "function": "CreateProcessInternalW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 5,
+          "process_info": 16317632,
+          "return_bytes": "85c00f"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 6,
+      "utc": "2026-10-06T17:01:16.895961+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3321,
+      "last_error": 0
+    },
+    {
+      "function": "CreateProcess_CsrReply",
+      "arguments": [],
+      "eax": "0x0",
+      "stack_top_at_interior_site": "0xc",
+      "caller": "0x7c2e24fd",
+      "csr_message_status": "0x0",
+      "new_process_handle": "0x78c",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        },
+        {
+          "function": "CreateProcessInternalW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 5,
+          "process_info": 16317632,
+          "return_bytes": "85c00f"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 7,
+      "utc": "2026-10-06T17:01:16.935310+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3322,
+      "last_error": 0
+    },
+    {
+      "function": "CreateProcessInternalW_return",
+      "entry_index": 5,
+      "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+      "return_eax": "0x1",
+      "saved_return": "0x7c2e24fd",
+      "process_information": [
+        "0x78c",
+        "0x680",
+        "0x3ac",
+        "0x3a8"
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 8,
+      "utc": "2026-10-06T17:01:16.944193+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3323,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x7c2e261a",
+      "arguments": [
+        "0x770",
+        "0x8",
+        "0xf8fc20",
+        "0x4",
+        "0xf8fc1c"
+      ],
+      "eax": "0x0",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 9,
+      "utc": "2026-10-06T17:01:16.952145+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3323,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9aa94",
+      "arguments": [
+        "0x770",
+        "0xa",
+        "0xf8fa9c",
+        "0x38",
+        "0xf8fb04"
+      ],
+      "eax": "0x0",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 10,
+      "utc": "2026-10-06T17:01:16.959792+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3323,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9a7b4",
+      "arguments": [
+        "0x770",
+        "0x4",
+        "0x0",
+        "0x0",
+        "0xf8fa60"
+      ],
+      "eax": "0xc0000023",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 11,
+      "utc": "2026-10-06T17:01:16.967427+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3323,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9a7f3",
+      "arguments": [
+        "0x770",
+        "0x4",
+        "0xccef8",
+        "0x14",
+        "0xf8fa60"
+      ],
+      "eax": "0x0",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 12,
+      "utc": "2026-10-06T17:01:16.977146+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3323,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9a811",
+      "arguments": [
+        "0x770",
+        "0x5",
+        "0x0",
+        "0x0",
+        "0xf8fa5c"
+      ],
+      "eax": "0xc0000023",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 13,
+      "utc": "2026-10-06T17:01:16.985615+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3323,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9a850",
+      "arguments": [
+        "0x770",
+        "0x5",
+        "0x103af8",
+        "0x20",
+        "0xf8fa5c"
+      ],
+      "eax": "0x0",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 14,
+      "utc": "2026-10-06T17:01:16.995081+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3323,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9a86e",
+      "arguments": [
+        "0x770",
+        "0x6",
+        "0x0",
+        "0x0",
+        "0xf8fa58"
+      ],
+      "eax": "0xc0000023",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 15,
+      "utc": "2026-10-06T17:01:17.002943+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3323,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9a8a9",
+      "arguments": [
+        "0x770",
+        "0x6",
+        "0x21914f8",
+        "0x38",
+        "0xf8fa58"
+      ],
+      "eax": "0x0",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 16,
+      "utc": "2026-10-06T17:01:17.011592+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3323,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9a8e2",
+      "arguments": [
+        "0x748",
+        "0x4",
+        "0x0",
+        "0x0",
+        "0xf8fa54"
+      ],
+      "eax": "0xc0000023",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 17,
+      "utc": "2026-10-06T17:01:17.019282+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3323,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9a924",
+      "arguments": [
+        "0x748",
+        "0x4",
+        "0x21a06c8",
+        "0x14",
+        "0xf8fa54"
+      ],
+      "eax": "0x0",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 18,
+      "utc": "2026-10-06T17:01:17.028111+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3323,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9a93e",
+      "arguments": [
+        "0x748",
+        "0x5",
+        "0x0",
+        "0x0",
+        "0xf8fa50"
+      ],
+      "eax": "0xc0000023",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 19,
+      "utc": "2026-10-06T17:01:17.035950+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3324,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9a975",
+      "arguments": [
+        "0x748",
+        "0x5",
+        "0x21b2820",
+        "0x10",
+        "0xf8fa50"
+      ],
+      "eax": "0x0",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 20,
+      "utc": "2026-10-06T17:01:17.044043+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3324,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9aa94",
+      "arguments": [
+        "0x770",
+        "0xa",
+        "0xf8fa9c",
+        "0x38",
+        "0xf8fb04"
+      ],
+      "eax": "0x0",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 21,
+      "utc": "2026-10-06T17:01:17.052628+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3324,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9a7b4",
+      "arguments": [
+        "0x770",
+        "0x4",
+        "0x0",
+        "0x0",
+        "0xf8fa60"
+      ],
+      "eax": "0xc0000023",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 22,
+      "utc": "2026-10-06T17:01:17.060708+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3324,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9a7f3",
+      "arguments": [
+        "0x770",
+        "0x4",
+        "0x21a06c8",
+        "0x14",
+        "0xf8fa60"
+      ],
+      "eax": "0x0",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 23,
+      "utc": "2026-10-06T17:01:17.069210+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3324,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9a811",
+      "arguments": [
+        "0x770",
+        "0x5",
+        "0x0",
+        "0x0",
+        "0xf8fa5c"
+      ],
+      "eax": "0xc0000023",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 24,
+      "utc": "2026-10-06T17:01:17.077264+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3324,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9a850",
+      "arguments": [
+        "0x770",
+        "0x5",
+        "0x103af8",
+        "0x20",
+        "0xf8fa5c"
+      ],
+      "eax": "0x0",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 25,
+      "utc": "2026-10-06T17:01:17.086537+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3324,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9a86e",
+      "arguments": [
+        "0x770",
+        "0x6",
+        "0x0",
+        "0x0",
+        "0xf8fa58"
+      ],
+      "eax": "0xc0000023",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 26,
+      "utc": "2026-10-06T17:01:17.095586+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3324,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9a8a9",
+      "arguments": [
+        "0x770",
+        "0x6",
+        "0x21914f8",
+        "0x38",
+        "0xf8fa58"
+      ],
+      "eax": "0x0",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 27,
+      "utc": "2026-10-06T17:01:17.103294+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3324,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9a8e2",
+      "arguments": [
+        "0x748",
+        "0x4",
+        "0x0",
+        "0x0",
+        "0xf8fa54"
+      ],
+      "eax": "0xc0000023",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 28,
+      "utc": "2026-10-06T17:01:17.111244+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3324,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9a924",
+      "arguments": [
+        "0x748",
+        "0x4",
+        "0xccef8",
+        "0x14",
+        "0xf8fa54"
+      ],
+      "eax": "0x0",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 29,
+      "utc": "2026-10-06T17:01:17.118818+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3324,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9a93e",
+      "arguments": [
+        "0x748",
+        "0x5",
+        "0x0",
+        "0x0",
+        "0xf8fa50"
+      ],
+      "eax": "0xc0000023",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 30,
+      "utc": "2026-10-06T17:01:17.126820+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3325,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9a975",
+      "arguments": [
+        "0x748",
+        "0x5",
+        "0x21b2820",
+        "0x10",
+        "0xf8fa50"
+      ],
+      "eax": "0x0",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 31,
+      "utc": "2026-10-06T17:01:17.135496+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3325,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9aa94",
+      "arguments": [
+        "0x770",
+        "0xa",
+        "0xf8fa9c",
+        "0x38",
+        "0xf8fb04"
+      ],
+      "eax": "0x0",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 32,
+      "utc": "2026-10-06T17:01:17.148343+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3325,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9a7b4",
+      "arguments": [
+        "0x770",
+        "0x4",
+        "0x0",
+        "0x0",
+        "0xf8fa60"
+      ],
+      "eax": "0xc0000023",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 33,
+      "utc": "2026-10-06T17:01:17.156254+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3325,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9a7f3",
+      "arguments": [
+        "0x770",
+        "0x4",
+        "0xccef8",
+        "0x14",
+        "0xf8fa60"
+      ],
+      "eax": "0x0",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 34,
+      "utc": "2026-10-06T17:01:17.165757+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3325,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9a811",
+      "arguments": [
+        "0x770",
+        "0x5",
+        "0x0",
+        "0x0",
+        "0xf8fa5c"
+      ],
+      "eax": "0xc0000023",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 35,
+      "utc": "2026-10-06T17:01:17.173348+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3325,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9a850",
+      "arguments": [
+        "0x770",
+        "0x5",
+        "0x103af8",
+        "0x20",
+        "0xf8fa5c"
+      ],
+      "eax": "0x0",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 36,
+      "utc": "2026-10-06T17:01:17.182994+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3325,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9a86e",
+      "arguments": [
+        "0x770",
+        "0x6",
+        "0x0",
+        "0x0",
+        "0xf8fa58"
+      ],
+      "eax": "0xc0000023",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 37,
+      "utc": "2026-10-06T17:01:17.191767+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3325,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9a8a9",
+      "arguments": [
+        "0x770",
+        "0x6",
+        "0x21914f8",
+        "0x38",
+        "0xf8fa58"
+      ],
+      "eax": "0x0",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 38,
+      "utc": "2026-10-06T17:01:17.199992+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3325,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9a8e2",
+      "arguments": [
+        "0x748",
+        "0x4",
+        "0x0",
+        "0x0",
+        "0xf8fa54"
+      ],
+      "eax": "0xc0000023",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 39,
+      "utc": "2026-10-06T17:01:17.208942+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3325,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9a924",
+      "arguments": [
+        "0x748",
+        "0x4",
+        "0x21a06c8",
+        "0x14",
+        "0xf8fa54"
+      ],
+      "eax": "0x0",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 40,
+      "utc": "2026-10-06T17:01:17.220406+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3325,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9a93e",
+      "arguments": [
+        "0x748",
+        "0x5",
+        "0x0",
+        "0x0",
+        "0xf8fa50"
+      ],
+      "eax": "0xc0000023",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 41,
+      "utc": "2026-10-06T17:01:17.229671+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3325,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x77f9a975",
+      "arguments": [
+        "0x748",
+        "0x5",
+        "0x21b2820",
+        "0x10",
+        "0xf8fa50"
+      ],
+      "eax": "0x0",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 42,
+      "utc": "2026-10-06T17:01:17.237805+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3325,
+      "last_error": 0
+    },
+    {
+      "function": "NtDuplicateToken_return",
+      "caller": "0x7c2e6927",
+      "arguments": [
+        "0x770",
+        "0xc",
+        "0xf8fb94",
+        "0x0",
+        "0x2",
+        "0xf8fc30"
+      ],
+      "eax": "0x0",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 43,
+      "utc": "2026-10-06T17:01:17.248205+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3326,
+      "last_error": 0
+    },
+    {
+      "function": "NtDuplicateToken_return",
+      "caller": "0x7c2e2416",
+      "arguments": [
+        "0x770",
+        "0x0",
+        "0xf8fbac",
+        "0x0",
+        "0x1",
+        "0xf8fc34"
+      ],
+      "eax": "0x0",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 44,
+      "utc": "2026-10-06T17:01:17.258414+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3326,
+      "last_error": 0
+    },
+    {
+      "function": "NtDuplicateToken_return",
+      "caller": "0x77f98535",
+      "arguments": [
+        "0x450",
+        "0x4",
+        "0xf8fb70",
+        "0x0",
+        "0x2",
+        "0xf8fba0"
+      ],
+      "eax": "0x0",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 45,
+      "utc": "2026-10-06T17:01:17.267059+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3326,
+      "last_error": 0
+    },
+    {
+      "function": "NtSetInformationProcess_return",
+      "caller": "0x7c2e2379",
+      "arguments": [
+        "0x78c",
+        "0x9",
+        "0xf8fbb0",
+        "0x8"
+      ],
+      "eax": "0x0",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 46,
+      "utc": "2026-10-06T17:01:17.276884+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3326,
+      "last_error": 0
+    },
+    {
+      "function": "NtDuplicateToken_return",
+      "caller": "0x77f98535",
+      "arguments": [
+        "0x450",
+        "0x4",
+        "0xf8fb60",
+        "0x0",
+        "0x2",
+        "0xf8fb90"
+      ],
+      "eax": "0x0",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+          "entry_index": 3,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 47,
+      "utc": "2026-10-06T17:01:17.286341+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3326,
+      "last_error": 0
+    },
+    {
+      "function": "CreateProcessAsUserW_return",
+      "entry_index": 3,
+      "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B0&SUBSYS_00000000&REV_B1\\2&ebb567f&0&28",
+      "return_eax": "0x1",
+      "saved_return": "0x767a66de",
+      "process_information": [
+        "0x78c",
+        "0x680",
+        "0x3ac",
+        "0x3a8"
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 48,
+      "utc": "2026-10-06T17:01:17.295031+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 3326,
+      "last_error": 0
+    },
+    {
+      "function": "PnP_Install_token_check",
+      "eax": "0xf8ffa4",
+      "registers": {
+        "EAX": "0xf8ffa4",
+        "ECX": "0x400",
+        "EDX": "0xffffffff",
+        "EBX": "0x0",
+        "ESP": "0xf8fcb4",
+        "EBP": "0xf8ff38",
+        "ESI": "0x0",
+        "EDI": "0x43ebd8",
+        "EIP": "0x767a665b"
+      },
+      "stack_words": [
+        "0x43ebd8",
+        "0x43ebd0",
+        "0x0",
+        "0x78c",
+        "0x680",
+        "0x3ac"
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 49,
+      "utc": "2026-10-06T17:03:28.742497+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 10148,
+      "last_error": 0
+    },
+    {
+      "function": "PnP_Control_entry",
+      "eax": "0x3",
+      "registers": {
+        "EAX": "0x3",
+        "ECX": "0x89380",
+        "EDX": "0x7c5ccb20",
+        "EBX": "0x80000000",
+        "ESP": "0x264ff1c",
+        "EBP": "0x264ffb4",
+        "ESI": "0x2",
+        "EDI": "0x5",
+        "EIP": "0x767a5959"
+      },
+      "stack_words": [
+        "0x7c5adfd7",
+        "0x5",
+        "0x0",
+        "0x0",
+        "0x80000005",
+        "0xfe4c9ce0"
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 50,
+      "utc": "2026-10-06T17:03:28.766347+00:00",
+      "thread": "0xff9a6580",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 10149,
+      "last_error": 0
+    },
+    {
+      "function": "PnP_Control_wait_return",
+      "eax": "0x1",
+      "registers": {
+        "EAX": "0x1",
+        "ECX": "0x101",
+        "EDX": "0xffffffff",
+        "EBX": "0x80000000",
+        "ESP": "0x264ff18",
+        "EBP": "0x264ffb4",
+        "ESI": "0x2",
+        "EDI": "0x5",
+        "EIP": "0x767a5979"
+      },
+      "stack_words": [
+        "0x2",
+        "0x7c5adfd7",
+        "0x5",
+        "0x0",
+        "0x0",
+        "0x80000005"
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 51,
+      "utc": "2026-10-06T17:03:28.776370+00:00",
+      "thread": "0xff9a6580",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 10149,
+      "last_error": 0
+    },
+    {
+      "function": "PnP_Token_close_call",
+      "eax": "0x770",
+      "registers": {
+        "EAX": "0x770",
+        "ECX": "0x101",
+        "EDX": "0xffffffff",
+        "EBX": "0x80000000",
+        "ESP": "0x264ff14",
+        "EBP": "0x264ffb4",
+        "ESI": "0x7c577ea1",
+        "EDI": "0x5",
+        "EIP": "0x767a5999"
+      },
+      "stack_words": [
+        "0x770",
+        "0x2",
+        "0x7c5adfd7",
+        "0x5",
+        "0x0",
+        "0x0"
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 52,
+      "utc": "2026-10-06T17:03:28.787056+00:00",
+      "thread": "0xff9a6580",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 10149,
+      "last_error": 0
+    },
+    {
+      "function": "CloseHandle_saved_token",
+      "caller": "0x767a599b",
+      "arguments": [
+        "0x770"
+      ],
+      "eax": "0x770",
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 53,
+      "utc": "2026-10-06T17:03:28.795307+00:00",
+      "thread": "0xff9a6580",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 10149,
+      "last_error": 0
+    },
+    {
+      "function": "CloseHandle_saved_token_return",
+      "entry_index": 53,
+      "command_line": "",
+      "return_eax": "0x1",
+      "saved_return": "0x767a599b",
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 54,
+      "utc": "2026-10-06T17:03:28.804975+00:00",
+      "thread": "0xff9a6580",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 10149,
+      "last_error": 0
+    },
+    {
+      "function": "PnP_Token_clear_before",
+      "eax": "0x1",
+      "registers": {
+        "EAX": "0x1",
+        "ECX": "0x101",
+        "EDX": "0xffffffff",
+        "EBX": "0x80000000",
+        "ESP": "0x264ff14",
+        "EBP": "0x264ffb4",
+        "ESI": "0x7c577ea1",
+        "EDI": "0x5",
+        "EIP": "0x767a59ad"
+      },
+      "stack_words": [
+        "0x150",
+        "0x2",
+        "0x7c5adfd7",
+        "0x5",
+        "0x0",
+        "0x0"
+      ],
+      "saved_token": "0x770",
+      "saved_mutex": "0x150",
+      "index": 55,
+      "utc": "2026-10-06T17:03:28.818763+00:00",
+      "thread": "0xff9a6580",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 10150,
+      "last_error": 0
+    },
+    {
+      "function": "PnP_Token_clear_after",
+      "eax": "0x1",
+      "registers": {
+        "EAX": "0x1",
+        "ECX": "0x101",
+        "EDX": "0xffffffff",
+        "EBX": "0x80000000",
+        "ESP": "0x264ff14",
+        "EBP": "0x264ffb4",
+        "ESI": "0x7c577ea1",
+        "EDI": "0x5",
+        "EIP": "0x767a59b4"
+      },
+      "stack_words": [
+        "0x150",
+        "0x2",
+        "0x7c5adfd7",
+        "0x5",
+        "0x0",
+        "0x0"
+      ],
+      "saved_token": "0x0",
+      "saved_mutex": "0x150",
+      "index": 56,
+      "utc": "2026-10-06T17:03:28.827806+00:00",
+      "thread": "0xff9a6580",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 10150,
+      "last_error": 0
+    },
+    {
+      "function": "PnP_Install_token_push",
+      "eax": "0xf8fcd0",
+      "registers": {
+        "EAX": "0xf8fcd0",
+        "ECX": "0x0",
+        "EDX": "0x0",
+        "EBX": "0x0",
+        "ESP": "0xf8fc8c",
+        "EBP": "0xf8ff38",
+        "ESI": "0x0",
+        "EDI": "0xf8ff20",
+        "EIP": "0x767a66d2"
+      },
+      "stack_words": [
+        "0x0",
+        "0xf8fcd0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x8"
+      ],
+      "saved_token": "0x0",
+      "saved_mutex": "0x150",
+      "index": 57,
+      "utc": "2026-10-06T17:03:28.839298+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 10150,
+      "last_error": 0
+    },
+    {
+      "function": "CreateProcessAsUserW",
+      "caller": "0x767a66de",
+      "arguments": [
+        "0x0",
+        "0x0",
+        "0xf8fcd0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x8",
+        "0x0",
+        "0x0",
+        "0xf8fedc",
+        "0xf8fcc0"
+      ],
+      "eax": "0xf8fcd0",
+      "creation_flags": "0x8",
+      "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B4&SUBSYS_00000000&REV_B1\\2&ebb567f&0&09",
+      "application": "",
+      "saved_token": "0x0",
+      "saved_mutex": "0x150",
+      "index": 58,
+      "utc": "2026-10-06T17:03:28.873494+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 10150,
+      "last_error": 0
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x7c2edac8",
+      "arguments": [
+        "0x0",
+        "0xc",
+        "0xf8fc78",
+        "0x4",
+        "0xf8fc74"
+      ],
+      "eax": "0xc0000008",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B4&SUBSYS_00000000&REV_B1\\2&ebb567f&0&09",
+          "entry_index": 58,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x0",
+      "saved_mutex": "0x150",
+      "index": 59,
+      "utc": "2026-10-06T17:03:28.885749+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 10150,
+      "last_error": 0
+    },
+    {
+      "function": "CreateProcessInternalW",
+      "caller": "0x7c2e24fd",
+      "arguments": [
+        "0x0",
+        "0x0",
+        "0xf8fcd0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0xc",
+        "0x0",
+        "0x0",
+        "0xf8fedc",
+        "0xf8fcc0"
+      ],
+      "eax": "0x7c5950b3",
+      "creation_flags": "0xc",
+      "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B4&SUBSYS_00000000&REV_B1\\2&ebb567f&0&09",
+      "application": "",
+      "saved_token": "0x0",
+      "saved_mutex": "0x150",
+      "index": 60,
+      "utc": "2026-10-06T17:03:28.905059+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 10150,
+      "last_error": 6
+    },
+    {
+      "function": "NtSetInformationProcess_return",
+      "caller": "0x7c5960af",
+      "arguments": [
+        "0x76c",
+        "0x5",
+        "0xf8f60c",
+        "0x4"
+      ],
+      "eax": "0x0",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B4&SUBSYS_00000000&REV_B1\\2&ebb567f&0&09",
+          "entry_index": 58,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        },
+        {
+          "function": "CreateProcessInternalW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B4&SUBSYS_00000000&REV_B1\\2&ebb567f&0&09",
+          "entry_index": 60,
+          "process_info": 16317632,
+          "return_bytes": "85c00f"
+        }
+      ],
+      "saved_token": "0x0",
+      "saved_mutex": "0x150",
+      "index": 61,
+      "utc": "2026-10-06T17:03:28.924547+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 10151,
+      "last_error": 6
+    },
+    {
+      "function": "CreateProcess_CsrReply",
+      "arguments": [],
+      "eax": "0x0",
+      "stack_top_at_interior_site": "0xc",
+      "caller": "0x7c2e24fd",
+      "csr_message_status": "0x0",
+      "new_process_handle": "0x76c",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B4&SUBSYS_00000000&REV_B1\\2&ebb567f&0&09",
+          "entry_index": 58,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        },
+        {
+          "function": "CreateProcessInternalW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B4&SUBSYS_00000000&REV_B1\\2&ebb567f&0&09",
+          "entry_index": 60,
+          "process_info": 16317632,
+          "return_bytes": "85c00f"
+        }
+      ],
+      "saved_token": "0x0",
+      "saved_mutex": "0x150",
+      "index": 62,
+      "utc": "2026-10-06T17:03:29.095341+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 10161,
+      "last_error": 6
+    },
+    {
+      "function": "CreateProcessInternalW_return",
+      "entry_index": 60,
+      "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B4&SUBSYS_00000000&REV_B1\\2&ebb567f&0&09",
+      "return_eax": "0x1",
+      "saved_return": "0x7c2e24fd",
+      "process_information": [
+        "0x76c",
+        "0x770",
+        "0x2d0",
+        "0x17c"
+      ],
+      "saved_token": "0x0",
+      "saved_mutex": "0x150",
+      "index": 63,
+      "utc": "2026-10-06T17:03:29.106381+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 10161,
+      "last_error": 6
+    },
+    {
+      "function": "NtQueryInformationToken_return",
+      "caller": "0x7c2e261a",
+      "arguments": [
+        "0x0",
+        "0x8",
+        "0xf8fc20",
+        "0x4",
+        "0xf8fc1c"
+      ],
+      "eax": "0xc0000008",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B4&SUBSYS_00000000&REV_B1\\2&ebb567f&0&09",
+          "entry_index": 58,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x0",
+      "saved_mutex": "0x150",
+      "index": 64,
+      "utc": "2026-10-06T17:03:29.115964+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 10161,
+      "last_error": 6
+    },
+    {
+      "function": "NtTerminateProcess",
+      "caller": "0x7c2f7027",
+      "arguments": [
+        "0x76c",
+        "0x5"
+      ],
+      "eax": "0x76c",
+      "active_creations": [
+        {
+          "function": "CreateProcessAsUserW",
+          "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B4&SUBSYS_00000000&REV_B1\\2&ebb567f&0&09",
+          "entry_index": 58,
+          "process_info": 16317632,
+          "return_bytes": "85c074"
+        }
+      ],
+      "saved_token": "0x0",
+      "saved_mutex": "0x150",
+      "index": 65,
+      "utc": "2026-10-06T17:03:29.126328+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 10161,
+      "last_error": 6
+    },
+    {
+      "function": "CreateProcessAsUserW_return",
+      "entry_index": 58,
+      "command_line": "rundll32.exe newdev.dll,DevInstall PCI\\VEN_10DE&DEV_01B4&SUBSYS_00000000&REV_B1\\2&ebb567f&0&09",
+      "return_eax": "0x0",
+      "saved_return": "0x767a66de",
+      "saved_token": "0x0",
+      "saved_mutex": "0x150",
+      "index": 66,
+      "utc": "2026-10-06T17:03:29.136613+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 10161,
+      "last_error": 6
+    },
+    {
+      "function": "PnP_Install_token_check",
+      "eax": "0xf8ffa4",
+      "registers": {
+        "EAX": "0xf8ffa4",
+        "ECX": "0x0",
+        "EDX": "0xffffffff",
+        "EBX": "0x0",
+        "ESP": "0xf8fcb4",
+        "EBP": "0xf8ff38",
+        "ESI": "0x0",
+        "EDI": "0x43ef38",
+        "EIP": "0x767a665b"
+      },
+      "stack_words": [
+        "0x43ef38",
+        "0x43ef30",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "saved_token": "0x0",
+      "saved_mutex": "0x150",
+      "index": 67,
+      "utc": "2026-10-06T17:03:29.145541+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 10161,
+      "last_error": 6
+    },
+    {
+      "function": "PnP_Install_token_check",
+      "eax": "0xf8ffa4",
+      "registers": {
+        "EAX": "0xf8ffa4",
+        "ECX": "0x400",
+        "EDX": "0xffffffff",
+        "EBX": "0x0",
+        "ESP": "0xf8fcb4",
+        "EBP": "0xf8ff38",
+        "ESI": "0x0",
+        "EDI": "0x43f4d0",
+        "EIP": "0x767a665b"
+      },
+      "stack_words": [
+        "0x43f4d0",
+        "0x43f4c8",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+      ],
+      "saved_token": "0x0",
+      "saved_mutex": "0x150",
+      "index": 68,
+      "utc": "2026-10-06T17:03:29.156812+00:00",
+      "thread": "0xffb70da0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 10161,
+      "last_error": 6
+    },
+    {
+      "function": "PnP_Control_entry",
+      "eax": "0x3",
+      "registers": {
+        "EAX": "0x3",
+        "ECX": "0x89380",
+        "EDX": "0x7c5ccb20",
+        "EBX": "0x80000000",
+        "ESP": "0x264ff1c",
+        "EBP": "0x264ffb4",
+        "ESI": "0x2",
+        "EDI": "0x5",
+        "EIP": "0x767a5959"
+      },
+      "stack_words": [
+        "0x7c5adfd7",
+        "0x5",
+        "0x0",
+        "0x0",
+        "0x80000005",
+        "0xfe4c9ce0"
+      ],
+      "saved_token": "0x0",
+      "saved_mutex": "0x150",
+      "index": 69,
+      "utc": "2026-10-06T17:03:32.619438+00:00",
+      "thread": "0xff9e88e0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 10290,
+      "last_error": 0
+    },
+    {
+      "function": "PnP_Control_wait_return",
+      "eax": "0x1",
+      "registers": {
+        "EAX": "0x1",
+        "ECX": "0x101",
+        "EDX": "0xffffffff",
+        "EBX": "0x80000000",
+        "ESP": "0x264ff18",
+        "EBP": "0x264ffb4",
+        "ESI": "0x2",
+        "EDI": "0x5",
+        "EIP": "0x767a5979"
+      },
+      "stack_words": [
+        "0x2",
+        "0x7c5adfd7",
+        "0x5",
+        "0x0",
+        "0x0",
+        "0x80000005"
+      ],
+      "saved_token": "0x0",
+      "saved_mutex": "0x150",
+      "index": 70,
+      "utc": "2026-10-06T17:03:32.628294+00:00",
+      "thread": "0xff9e88e0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 10290,
+      "last_error": 0
+    },
+    {
+      "function": "PnP_Token_close_return",
+      "eax": "0x0",
+      "registers": {
+        "EAX": "0x0",
+        "ECX": "0x101",
+        "EDX": "0xffffffff",
+        "EBX": "0x80000000",
+        "ESP": "0x264ff18",
+        "EBP": "0x264ffb4",
+        "ESI": "0x7c577ea1",
+        "EDI": "0x5",
+        "EIP": "0x767a599b"
+      },
+      "stack_words": [
+        "0x2",
+        "0x7c5adfd7",
+        "0x5",
+        "0x0",
+        "0x0",
+        "0x80000005"
+      ],
+      "saved_token": "0x0",
+      "saved_mutex": "0x150",
+      "index": 71,
+      "utc": "2026-10-06T17:03:32.637236+00:00",
+      "thread": "0xff9e88e0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 10290,
+      "last_error": 0
+    },
+    {
+      "function": "PnP_Token_clear_before",
+      "eax": "0x0",
+      "registers": {
+        "EAX": "0x0",
+        "ECX": "0x101",
+        "EDX": "0xffffffff",
+        "EBX": "0x80000000",
+        "ESP": "0x264ff14",
+        "EBP": "0x264ffb4",
+        "ESI": "0x7c577ea1",
+        "EDI": "0x5",
+        "EIP": "0x767a59ad"
+      },
+      "stack_words": [
+        "0x150",
+        "0x2",
+        "0x7c5adfd7",
+        "0x5",
+        "0x0",
+        "0x0"
+      ],
+      "saved_token": "0x0",
+      "saved_mutex": "0x150",
+      "index": 72,
+      "utc": "2026-10-06T17:03:32.645799+00:00",
+      "thread": "0xff9e88e0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 10290,
+      "last_error": 0
+    },
+    {
+      "function": "PnP_Token_clear_after",
+      "eax": "0x0",
+      "registers": {
+        "EAX": "0x0",
+        "ECX": "0x101",
+        "EDX": "0xffffffff",
+        "EBX": "0x80000000",
+        "ESP": "0x264ff14",
+        "EBP": "0x264ffb4",
+        "ESI": "0x7c577ea1",
+        "EDI": "0x5",
+        "EIP": "0x767a59b4"
+      },
+      "stack_words": [
+        "0x150",
+        "0x2",
+        "0x7c5adfd7",
+        "0x5",
+        "0x0",
+        "0x0"
+      ],
+      "saved_token": "0x0",
+      "saved_mutex": "0x150",
+      "index": 73,
+      "utc": "2026-10-06T17:03:32.655278+00:00",
+      "thread": "0xff9e88e0",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 10290,
+      "last_error": 0
+    },
+    {
+      "function": "PnP_Control_entry",
+      "eax": "0x3",
+      "registers": {
+        "EAX": "0x3",
+        "ECX": "0x89380",
+        "EDX": "0x7c5ccb20",
+        "EBX": "0x80000000",
+        "ESP": "0x264ff1c",
+        "EBP": "0x264ffb4",
+        "ESI": "0x2",
+        "EDI": "0x6",
+        "EIP": "0x767a5959"
+      },
+      "stack_words": [
+        "0x7c5adfd7",
+        "0x6",
+        "0x0",
+        "0x0",
+        "0x80000006",
+        "0xfe4c9ce0"
+      ],
+      "saved_token": "0x0",
+      "saved_mutex": "0x150",
+      "index": 74,
+      "utc": "2026-10-06T17:03:33.281413+00:00",
+      "thread": "0xff9fe300",
+      "owner": {
+        "eprocess": "0xfe4c9ce0",
+        "image": "services.exe",
+        "pid": 208,
+        "command_line": "C:\\WINNT\\system32\\services.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x205bc",
+        "resolved_command_buffer": "0x205bc"
+      },
+      "tick_count": 10321,
+      "last_error": 0
+    },
+    {
+      "function": "_NtShutdownSystem@4",
+      "caller": "0x82443034",
+      "arguments": [
+        "0x1"
+      ],
+      "eax": "0xd9",
+      "index": 75,
+      "utc": "2026-10-06T17:03:35.290420+00:00",
+      "thread": "0xfe4d5380",
+      "owner": {
+        "eprocess": "0xfe4d5600",
+        "image": "winlogon.exe",
+        "pid": 156,
+        "command_line": "winlogon.exe",
+        "parameters_flags": "0x1",
+        "parameters": "0x20000",
+        "raw_command_buffer": "0x2056c",
+        "resolved_command_buffer": "0x2056c"
+      },
+      "tick_count": 10392,
+      "last_error": 0
+    }
+  ],
+  "sites": {
+    "scope": "Pin saved PnP token observations to the matching owned NT5 module.",
+    "binaries": {
+      "kernel32.dll": {
+        "sha256": "6b05b0749b5dd86da94cc4acd062ca05472509f70216b56cd4a5b9809c602e73",
+        "preferred_base": "0x7c570000"
+      },
+      "advapi32.dll": {
+        "sha256": "d24493dbb2b1818f9cd605acd3b2008d63354c0975e9a090ccdd04bcc339cc59",
+        "preferred_base": "0x7c2d0000"
+      },
+      "ntdll.dll": {
+        "sha256": "ed276d6a3ae93c71a6cef73672b82e3808211da1c63bf7d3e23d93294e54813a",
+        "preferred_base": "0x77f80000"
+      },
+      "umpnpmgr.dll": {
+        "sha256": "02fd896d3f2318a3bd624dd1357ec1f66ea67553ef96c602bede7c4ec5bef685",
+        "preferred_base": "0x767a0000"
+      }
+    },
+    "kernel_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+    "sites": [
+      {
+        "name": "CreateProcessInternalW",
+        "module": "kernel32.dll",
+        "rva": 151731,
+        "address": 2086228147,
+        "bytes": "558bec",
+        "argc": 11,
+        "kind": "create"
+      },
+      {
+        "name": "CreateProcess_CsrReply",
+        "module": "kernel32.dll",
+        "rva": 157244,
+        "address": 2086233660,
+        "bytes": "399d50",
+        "argc": 0,
+        "kind": "csr"
+      },
+      {
+        "name": "CreateProcessAsUserW",
+        "module": "advapi32.dll",
+        "rva": 74795,
+        "address": 2083398699,
+        "bytes": "8bc055",
+        "argc": 11,
+        "kind": "create"
+      },
+      {
+        "name": "NtTerminateProcess",
+        "module": "ntdll.dll",
+        "rva": 36460,
+        "address": 2012778092,
+        "bytes": "b8e000",
+        "argc": 2,
+        "kind": "terminate"
+      },
+      {
+        "name": "NtSetInformationProcess_return",
+        "module": "ntdll.dll",
+        "rva": 36055,
+        "address": 2012777687,
+        "bytes": "c21000",
+        "argc": 4,
+        "kind": "setinfo_return"
+      },
+      {
+        "name": "NtRaiseHardError",
+        "module": "ntdll.dll",
+        "rva": 35436,
+        "address": 2012777068,
+        "bytes": "b8a000",
+        "argc": 6,
+        "kind": "harderror"
+      },
+      {
+        "name": "NtQueryInformationToken_return",
+        "module": "ntdll.dll",
+        "rva": 35063,
+        "address": 2012776695,
+        "bytes": "c21400",
+        "argc": 5,
+        "kind": "token_return"
+      },
+      {
+        "name": "NtDuplicateToken_return",
+        "module": "ntdll.dll",
+        "rva": 33843,
+        "address": 2012775475,
+        "bytes": "c21800",
+        "argc": 6,
+        "kind": "duplicate_return"
+      },
+      {
+        "name": "_NtRaiseHardError@24",
+        "rva": 608302,
+        "bytes": "558bec",
+        "argc": 6,
+        "frame": "esp",
+        "module": "ntoskrnl.exe",
+        "kind": "harderror"
+      },
+      {
+        "name": "_ExRaiseHardError@24",
+        "rva": 608900,
+        "bytes": "558bec",
+        "argc": 6,
+        "frame": "esp",
+        "module": "ntoskrnl.exe",
+        "kind": "harderror"
+      },
+      {
+        "name": "_ExpRaiseHardError@24",
+        "rva": 607510,
+        "bytes": "558bec",
+        "argc": 6,
+        "frame": "esp",
+        "module": "ntoskrnl.exe",
+        "kind": "harderror"
+      },
+      {
+        "name": "_NtShutdownSystem@4",
+        "rva": 591052,
+        "bytes": "8b4424",
+        "argc": 1,
+        "frame": "esp",
+        "module": "ntoskrnl.exe",
+        "kind": "shutdown"
+      },
+      {
+        "name": "PnP_Control_entry",
+        "module": "umpnpmgr.dll",
+        "rva": 22873,
+        "address": 1987729753,
+        "bytes": "837c24",
+        "argc": 0,
+        "kind": "pnp"
+      },
+      {
+        "name": "PnP_Control_wait_return",
+        "module": "umpnpmgr.dll",
+        "rva": 22905,
+        "address": 1987729785,
+        "bytes": "a1905b",
+        "argc": 0,
+        "kind": "pnp"
+      },
+      {
+        "name": "PnP_Token_close_call",
+        "module": "umpnpmgr.dll",
+        "rva": 22937,
+        "address": 1987729817,
+        "bytes": "ffd6a1",
+        "argc": 0,
+        "kind": "pnp"
+      },
+      {
+        "name": "PnP_Token_close_return",
+        "module": "umpnpmgr.dll",
+        "rva": 22939,
+        "address": 1987729819,
+        "bytes": "a1685b",
+        "argc": 0,
+        "kind": "pnp"
+      },
+      {
+        "name": "PnP_Token_clear_before",
+        "module": "umpnpmgr.dll",
+        "rva": 22957,
+        "address": 1987729837,
+        "bytes": "832564",
+        "argc": 0,
+        "kind": "pnp"
+      },
+      {
+        "name": "PnP_Token_clear_after",
+        "module": "umpnpmgr.dll",
+        "rva": 22964,
+        "address": 1987729844,
+        "bytes": "832568",
+        "argc": 0,
+        "kind": "pnp"
+      },
+      {
+        "name": "PnP_Logon_token_return",
+        "module": "umpnpmgr.dll",
+        "rva": 23938,
+        "address": 1987730818,
+        "bytes": "eb066a",
+        "argc": 0,
+        "kind": "pnp"
+      },
+      {
+        "name": "PnP_Install_token_check",
+        "module": "umpnpmgr.dll",
+        "rva": 26203,
+        "address": 1987733083,
+        "bytes": "393564",
+        "argc": 0,
+        "kind": "pnp"
+      },
+      {
+        "name": "PnP_Install_token_push",
+        "module": "umpnpmgr.dll",
+        "rva": 26322,
+        "address": 1987733202,
+        "bytes": "ff3564",
+        "argc": 0,
+        "kind": "pnp"
+      },
+      {
+        "name": "CloseHandle_saved_token",
+        "module": "kernel32.dll",
+        "rva": 32417,
+        "address": 2086108833,
+        "bytes": "558bec",
+        "argc": 1,
+        "kind": "close"
+      }
+    ],
+    "disassembly": {
+      "kernel32.dll": [
+        {
+          "rva": "0x26627",
+          "bytes": "6a28",
+          "instruction": "push 0x28"
+        },
+        {
+          "rva": "0x26629",
+          "bytes": "6800000100",
+          "instruction": "push 0x10000"
+        },
+        {
+          "rva": "0x2662e",
+          "bytes": "53",
+          "instruction": "push ebx"
+        },
+        {
+          "rva": "0x2662f",
+          "bytes": "8d8530fdffff",
+          "instruction": "lea eax, [ebp - 0x2d0]"
+        },
+        {
+          "rva": "0x26635",
+          "bytes": "50",
+          "instruction": "push eax"
+        },
+        {
+          "rva": "0x26636",
+          "bytes": "ff154010577c",
+          "instruction": "call dword ptr [0x7c571040]"
+        },
+        {
+          "rva": "0x2663c",
+          "bytes": "399d50fdffff",
+          "instruction": "cmp dword ptr [ebp - 0x2b0], ebx"
+        },
+        {
+          "rva": "0x26642",
+          "bytes": "7d22",
+          "instruction": "jge 0x7c596666"
+        },
+        {
+          "rva": "0x26644",
+          "bytes": "ffb550fdffff",
+          "instruction": "push dword ptr [ebp - 0x2b0]"
+        },
+        {
+          "rva": "0x2664a",
+          "bytes": "e81e1cfeff",
+          "instruction": "call 0x7c57826d"
+        },
+        {
+          "rva": "0x2664f",
+          "bytes": "ffb550fdffff",
+          "instruction": "push dword ptr [ebp - 0x2b0]"
+        },
+        {
+          "rva": "0x26655",
+          "bytes": "ffb588feffff",
+          "instruction": "push dword ptr [ebp - 0x178]"
+        },
+        {
+          "rva": "0x2665b",
+          "bytes": "ff159c13577c",
+          "instruction": "call dword ptr [0x7c57139c]"
+        },
+        {
+          "rva": "0x26661",
+          "bytes": "e9b4010000",
+          "instruction": "jmp 0x7c59681a"
+        },
+        {
+          "rva": "0x26666",
+          "bytes": "f6452004",
+          "instruction": "test byte ptr [ebp + 0x20], 4"
+        },
+        {
+          "rva": "0x2666a",
+          "bytes": "7513",
+          "instruction": "jne 0x7c59667f"
+        },
+        {
+          "rva": "0x2666c",
+          "bytes": "8d859cfeffff",
+          "instruction": "lea eax, [ebp - 0x164]"
+        },
+        {
+          "rva": "0x26672",
+          "bytes": "50",
+          "instruction": "push eax"
+        },
+        {
+          "rva": "0x26673",
+          "bytes": "ffb5d0feffff",
+          "instruction": "push dword ptr [ebp - 0x130]"
+        },
+        {
+          "rva": "0x26679",
+          "bytes": "ff159813577c",
+          "instruction": "call dword ptr [0x7c571398]"
+        }
+      ]
+    },
+    "thread_owner_offset": 556,
+    "teb_offset": 32,
+    "limits": "User-mode sites use preferred image bases and verify bytes when hit. Dynamic return sites are tied to the originating ETHREAD and exact saved return address. No changed return values or guest data. PnP interior sites record raw registers/global values, not fabricated call arguments. CloseHandle is retained only when services.exe closes the current saved token.",
+    "token_global": 1987795812,
+    "mutex_global": 1987795956,
+    "pnp_sites": [
+      {
+        "name": "PnP_Control_entry",
+        "module": "umpnpmgr.dll",
+        "rva": 22873,
+        "address": 1987729753,
+        "bytes": "837c24",
+        "argc": 0,
+        "kind": "pnp"
+      },
+      {
+        "name": "PnP_Control_wait_return",
+        "module": "umpnpmgr.dll",
+        "rva": 22905,
+        "address": 1987729785,
+        "bytes": "a1905b",
+        "argc": 0,
+        "kind": "pnp"
+      },
+      {
+        "name": "PnP_Token_close_call",
+        "module": "umpnpmgr.dll",
+        "rva": 22937,
+        "address": 1987729817,
+        "bytes": "ffd6a1",
+        "argc": 0,
+        "kind": "pnp"
+      },
+      {
+        "name": "PnP_Token_close_return",
+        "module": "umpnpmgr.dll",
+        "rva": 22939,
+        "address": 1987729819,
+        "bytes": "a1685b",
+        "argc": 0,
+        "kind": "pnp"
+      },
+      {
+        "name": "PnP_Token_clear_before",
+        "module": "umpnpmgr.dll",
+        "rva": 22957,
+        "address": 1987729837,
+        "bytes": "832564",
+        "argc": 0,
+        "kind": "pnp"
+      },
+      {
+        "name": "PnP_Token_clear_after",
+        "module": "umpnpmgr.dll",
+        "rva": 22964,
+        "address": 1987729844,
+        "bytes": "832568",
+        "argc": 0,
+        "kind": "pnp"
+      },
+      {
+        "name": "PnP_Logon_token_return",
+        "module": "umpnpmgr.dll",
+        "rva": 23938,
+        "address": 1987730818,
+        "bytes": "eb066a",
+        "argc": 0,
+        "kind": "pnp"
+      },
+      {
+        "name": "PnP_Install_token_check",
+        "module": "umpnpmgr.dll",
+        "rva": 26203,
+        "address": 1987733083,
+        "bytes": "393564",
+        "argc": 0,
+        "kind": "pnp"
+      },
+      {
+        "name": "PnP_Install_token_push",
+        "module": "umpnpmgr.dll",
+        "rva": 26322,
+        "address": 1987733202,
+        "bytes": "ff3564",
+        "argc": 0,
+        "kind": "pnp"
+      }
+    ],
+    "pnp_disassembly": [
+      {
+        "first_rva": "0x5959",
+        "end_rva": "0x59c7",
+        "instructions": [
+          {
+            "address": "0x767a5959",
+            "bytes": "837c240405",
+            "instruction": "cmp dword ptr [esp + 4], 5"
+          },
+          {
+            "address": "0x767a595e",
+            "bytes": "7562",
+            "instruction": "jne 0x767a59c2"
+          },
+          {
+            "address": "0x767a5960",
+            "bytes": "b8f05b7b76",
+            "instruction": "mov eax, 0x767b5bf0"
+          },
+          {
+            "address": "0x767a5965",
+            "bytes": "56",
+            "instruction": "push esi"
+          },
+          {
+            "address": "0x767a5966",
+            "bytes": "8bc8",
+            "instruction": "mov ecx, eax"
+          },
+          {
+            "address": "0x767a5968",
+            "bytes": "85c9",
+            "instruction": "test ecx, ecx"
+          },
+          {
+            "address": "0x767a596a",
+            "bytes": "740d",
+            "instruction": "je 0x767a5979"
+          },
+          {
+            "address": "0x767a596c",
+            "bytes": "6aff",
+            "instruction": "push -1"
+          },
+          {
+            "address": "0x767a596e",
+            "bytes": "6a00",
+            "instruction": "push 0"
+          },
+          {
+            "address": "0x767a5970",
+            "bytes": "50",
+            "instruction": "push eax"
+          },
+          {
+            "address": "0x767a5971",
+            "bytes": "6a02",
+            "instruction": "push 2"
+          },
+          {
+            "address": "0x767a5973",
+            "bytes": "ff15f4107a76",
+            "instruction": "call dword ptr [0x767a10f4]"
+          },
+          {
+            "address": "0x767a5979",
+            "bytes": "a1905b7b76",
+            "instruction": "mov eax, dword ptr [0x767b5b90]"
+          },
+          {
+            "address": "0x767a597e",
+            "bytes": "85c0",
+            "instruction": "test eax, eax"
+          },
+          {
+            "address": "0x767a5980",
+            "bytes": "7407",
+            "instruction": "je 0x767a5989"
+          },
+          {
+            "address": "0x767a5982",
+            "bytes": "50",
+            "instruction": "push eax"
+          },
+          {
+            "address": "0x767a5983",
+            "bytes": "ff15f0107a76",
+            "instruction": "call dword ptr [0x767a10f0]"
+          },
+          {
+            "address": "0x767a5989",
+            "bytes": "a1645b7b76",
+            "instruction": "mov eax, dword ptr [0x767b5b64]"
+          },
+          {
+            "address": "0x767a598e",
+            "bytes": "8b35ec107a76",
+            "instruction": "mov esi, dword ptr [0x767a10ec]"
+          },
+          {
+            "address": "0x767a5994",
+            "bytes": "85c0",
+            "instruction": "test eax, eax"
+          },
+          {
+            "address": "0x767a5996",
+            "bytes": "7403",
+            "instruction": "je 0x767a599b"
+          },
+          {
+            "address": "0x767a5998",
+            "bytes": "50",
+            "instruction": "push eax"
+          },
+          {
+            "address": "0x767a5999",
+            "bytes": "ffd6",
+            "instruction": "call esi"
+          },
+          {
+            "address": "0x767a599b",
+            "bytes": "a1685b7b76",
+            "instruction": "mov eax, dword ptr [0x767b5b68]"
+          },
+          {
+            "address": "0x767a59a0",
+            "bytes": "85c0",
+            "instruction": "test eax, eax"
+          },
+          {
+            "address": "0x767a59a2",
+            "bytes": "7403",
+            "instruction": "je 0x767a59a7"
+          },
+          {
+            "address": "0x767a59a4",
+            "bytes": "50",
+            "instruction": "push eax"
+          },
+          {
+            "address": "0x767a59a5",
+            "bytes": "ffd6",
+            "instruction": "call esi"
+          },
+          {
+            "address": "0x767a59a7",
+            "bytes": "ff35f45b7b76",
+            "instruction": "push dword ptr [0x767b5bf4]"
+          },
+          {
+            "address": "0x767a59ad",
+            "bytes": "8325645b7b7600",
+            "instruction": "and dword ptr [0x767b5b64], 0"
+          },
+          {
+            "address": "0x767a59b4",
+            "bytes": "8325685b7b7600",
+            "instruction": "and dword ptr [0x767b5b68], 0"
+          },
+          {
+            "address": "0x767a59bb",
+            "bytes": "ff15e8107a76",
+            "instruction": "call dword ptr [0x767a10e8]"
+          },
+          {
+            "address": "0x767a59c1",
+            "bytes": "5e",
+            "instruction": "pop esi"
+          },
+          {
+            "address": "0x767a59c2",
+            "bytes": "33c0",
+            "instruction": "xor eax, eax"
+          },
+          {
+            "address": "0x767a59c4",
+            "bytes": "c20400",
+            "instruction": "ret 4"
+          }
+        ]
+      },
+      {
+        "first_rva": "0x5caf",
+        "end_rva": "0x5de3",
+        "instructions": [
+          {
+            "address": "0x767a5caf",
+            "bytes": "55",
+            "instruction": "push ebp"
+          },
+          {
+            "address": "0x767a5cb0",
+            "bytes": "8bec",
+            "instruction": "mov ebp, esp"
+          },
+          {
+            "address": "0x767a5cb2",
+            "bytes": "6aff",
+            "instruction": "push -1"
+          },
+          {
+            "address": "0x767a5cb4",
+            "bytes": "6880287a76",
+            "instruction": "push 0x767a2880"
+          },
+          {
+            "address": "0x767a5cb9",
+            "bytes": "6820397b76",
+            "instruction": "push 0x767b3920"
+          },
+          {
+            "address": "0x767a5cbe",
+            "bytes": "64a100000000",
+            "instruction": "mov eax, dword ptr fs:[0]"
+          },
+          {
+            "address": "0x767a5cc4",
+            "bytes": "50",
+            "instruction": "push eax"
+          },
+          {
+            "address": "0x767a5cc5",
+            "bytes": "64892500000000",
+            "instruction": "mov dword ptr fs:[0], esp"
+          },
+          {
+            "address": "0x767a5ccc",
+            "bytes": "51",
+            "instruction": "push ecx"
+          },
+          {
+            "address": "0x767a5ccd",
+            "bytes": "51",
+            "instruction": "push ecx"
+          },
+          {
+            "address": "0x767a5cce",
+            "bytes": "83ec14",
+            "instruction": "sub esp, 0x14"
+          },
+          {
+            "address": "0x767a5cd1",
+            "bytes": "53",
+            "instruction": "push ebx"
+          },
+          {
+            "address": "0x767a5cd2",
+            "bytes": "56",
+            "instruction": "push esi"
+          },
+          {
+            "address": "0x767a5cd3",
+            "bytes": "57",
+            "instruction": "push edi"
+          },
+          {
+            "address": "0x767a5cd4",
+            "bytes": "8965e8",
+            "instruction": "mov dword ptr [ebp - 0x18], esp"
+          },
+          {
+            "address": "0x767a5cd7",
+            "bytes": "33f6",
+            "instruction": "xor esi, esi"
+          },
+          {
+            "address": "0x767a5cd9",
+            "bytes": "ff7508",
+            "instruction": "push dword ptr [ebp + 8]"
+          },
+          {
+            "address": "0x767a5cdc",
+            "bytes": "e8d3c90000",
+            "instruction": "call 0x767b26b4"
+          },
+          {
+            "address": "0x767a5ce1",
+            "bytes": "83f801",
+            "instruction": "cmp eax, 1"
+          },
+          {
+            "address": "0x767a5ce4",
+            "bytes": "7504",
+            "instruction": "jne 0x767a5cea"
+          },
+          {
+            "address": "0x767a5ce6",
+            "bytes": "6a33",
+            "instruction": "push 0x33"
+          },
+          {
+            "address": "0x767a5ce8",
+            "bytes": "eb1b",
+            "instruction": "jmp 0x767a5d05"
+          },
+          {
+            "address": "0x767a5cea",
+            "bytes": "a1605b7b76",
+            "instruction": "mov eax, dword ptr [0x767b5b60]"
+          },
+          {
+            "address": "0x767a5cef",
+            "bytes": "85c0",
+            "instruction": "test eax, eax"
+          },
+          {
+            "address": "0x767a5cf1",
+            "bytes": "7418",
+            "instruction": "je 0x767a5d0b"
+          },
+          {
+            "address": "0x767a5cf3",
+            "bytes": "6820bf0200",
+            "instruction": "push 0x2bf20"
+          },
+          {
+            "address": "0x767a5cf8",
+            "bytes": "50",
+            "instruction": "push eax"
+          },
+          {
+            "address": "0x767a5cf9",
+            "bytes": "ff1514117a76",
+            "instruction": "call dword ptr [0x767a1114]"
+          },
+          {
+            "address": "0x767a5cff",
+            "bytes": "85c0",
+            "instruction": "test eax, eax"
+          },
+          {
+            "address": "0x767a5d01",
+            "bytes": "7408",
+            "instruction": "je 0x767a5d0b"
+          },
+          {
+            "address": "0x767a5d03",
+            "bytes": "6a13",
+            "instruction": "push 0x13"
+          },
+          {
+            "address": "0x767a5d05",
+            "bytes": "58",
+            "instruction": "pop eax"
+          },
+          {
+            "address": "0x767a5d06",
+            "bytes": "e9c7000000",
+            "instruction": "jmp 0x767a5dd2"
+          },
+          {
+            "address": "0x767a5d0b",
+            "bytes": "ff7508",
+            "instruction": "push dword ptr [ebp + 8]"
+          },
+          {
+            "address": "0x767a5d0e",
+            "bytes": "e81fca0000",
+            "instruction": "call 0x767b2732"
+          },
+          {
+            "address": "0x767a5d13",
+            "bytes": "85c0",
+            "instruction": "test eax, eax"
+          },
+          {
+            "address": "0x767a5d15",
+            "bytes": "7508",
+            "instruction": "jne 0x767a5d1f"
+          },
+          {
+            "address": "0x767a5d17",
+            "bytes": "6a13",
+            "instruction": "push 0x13"
+          },
+          {
+            "address": "0x767a5d19",
+            "bytes": "5e",
+            "instruction": "pop esi"
+          },
+          {
+            "address": "0x767a5d1a",
+            "bytes": "e9a1000000",
+            "instruction": "jmp 0x767a5dc0"
+          },
+          {
+            "address": "0x767a5d1f",
+            "bytes": "8365fc00",
+            "instruction": "and dword ptr [ebp - 4], 0"
+          },
+          {
+            "address": "0x767a5d23",
+            "bytes": "6aff",
+            "instruction": "push -1"
+          },
+          {
+            "address": "0x767a5d25",
+            "bytes": "6a00",
+            "instruction": "push 0"
+          },
+          {
+            "address": "0x767a5d27",
+            "bytes": "68f05b7b76",
+            "instruction": "push 0x767b5bf0"
+          },
+          {
+            "address": "0x767a5d2c",
+            "bytes": "6a02",
+            "instruction": "push 2"
+          },
+          {
+            "address": "0x767a5d2e",
+            "bytes": "ff15f4107a76",
+            "instruction": "call dword ptr [0x767a10f4]"
+          },
+          {
+            "address": "0x767a5d34",
+            "bytes": "8945d4",
+            "instruction": "mov dword ptr [ebp - 0x2c], eax"
+          },
+          {
+            "address": "0x767a5d37",
+            "bytes": "6a00",
+            "instruction": "push 0"
+          },
+          {
+            "address": "0x767a5d39",
+            "bytes": "ff157c117a76",
+            "instruction": "call dword ptr [0x767a117c]"
+          },
+          {
+            "address": "0x767a5d3f",
+            "bytes": "8945e0",
+            "instruction": "mov dword ptr [ebp - 0x20], eax"
+          },
+          {
+            "address": "0x767a5d42",
+            "bytes": "85c0",
+            "instruction": "test eax, eax"
+          },
+          {
+            "address": "0x767a5d44",
+            "bytes": "753e",
+            "instruction": "jne 0x767a5d84"
+          },
+          {
+            "address": "0x767a5d46",
+            "bytes": "a1685b7b76",
+            "instruction": "mov eax, dword ptr [0x767b5b68]"
+          },
+          {
+            "address": "0x767a5d4b",
+            "bytes": "85c0",
+            "instruction": "test eax, eax"
+          },
+          {
+            "address": "0x767a5d4d",
+            "bytes": "7519",
+            "instruction": "jne 0x767a5d68"
+          },
+          {
+            "address": "0x767a5d4f",
+            "bytes": "ff7510",
+            "instruction": "push dword ptr [ebp + 0x10]"
+          },
+          {
+            "address": "0x767a5d52",
+            "bytes": "6a01",
+            "instruction": "push 1"
+          },
+          {
+            "address": "0x767a5d54",
+            "bytes": "68ff0f1f00",
+            "instruction": "push 0x1f0fff"
+          },
+          {
+            "address": "0x767a5d59",
+            "bytes": "ff1510117a76",
+            "instruction": "call dword ptr [0x767a1110]"
+          },
+          {
+            "address": "0x767a5d5f",
+            "bytes": "a3685b7b76",
+            "instruction": "mov dword ptr [0x767b5b68], eax"
+          },
+          {
+            "address": "0x767a5d64",
+            "bytes": "85c0",
+            "instruction": "test eax, eax"
+          },
+          {
+            "address": "0x767a5d66",
+            "bytes": "7422",
+            "instruction": "je 0x767a5d8a"
+          },
+          {
+            "address": "0x767a5d68",
+            "bytes": "833d645b7b7600",
+            "instruction": "cmp dword ptr [0x767b5b64], 0"
+          },
+          {
+            "address": "0x767a5d6f",
+            "bytes": "7519",
+            "instruction": "jne 0x767a5d8a"
+          },
+          {
+            "address": "0x767a5d71",
+            "bytes": "68645b7b76",
+            "instruction": "push 0x767b5b64"
+          },
+          {
+            "address": "0x767a5d76",
+            "bytes": "68ff010f00",
+            "instruction": "push 0xf01ff"
+          },
+          {
+            "address": "0x767a5d7b",
+            "bytes": "50",
+            "instruction": "push eax"
+          },
+          {
+            "address": "0x767a5d7c",
+            "bytes": "ff1548107a76",
+            "instruction": "call dword ptr [0x767a1048]"
+          },
+          {
+            "address": "0x767a5d82",
+            "bytes": "eb06",
+            "instruction": "jmp 0x767a5d8a"
+          },
+          {
+            "address": "0x767a5d84",
+            "bytes": "6a13",
+            "instruction": "push 0x13"
+          },
+          {
+            "address": "0x767a5d86",
+            "bytes": "5e",
+            "instruction": "pop esi"
+          },
+          {
+            "address": "0x767a5d87",
+            "bytes": "8975dc",
+            "instruction": "mov dword ptr [ebp - 0x24], esi"
+          },
+          {
+            "address": "0x767a5d8a",
+            "bytes": "ff1580117a76",
+            "instruction": "call dword ptr [0x767a1180]"
+          },
+          {
+            "address": "0x767a5d90",
+            "bytes": "85f6",
+            "instruction": "test esi, esi"
+          },
+          {
+            "address": "0x767a5d92",
+            "bytes": "7510",
+            "instruction": "jne 0x767a5da4"
+          },
+          {
+            "address": "0x767a5d94",
+            "bytes": "a1905b7b76",
+            "instruction": "mov eax, dword ptr [0x767b5b90]"
+          },
+          {
+            "address": "0x767a5d99",
+            "bytes": "85c0",
+            "instruction": "test eax, eax"
+          },
+          {
+            "address": "0x767a5d9b",
+            "bytes": "7407",
+            "instruction": "je 0x767a5da4"
+          },
+          {
+            "address": "0x767a5d9d",
+            "bytes": "50",
+            "instruction": "push eax"
+          },
+          {
+            "address": "0x767a5d9e",
+            "bytes": "ff150c117a76",
+            "instruction": "call dword ptr [0x767a110c]"
+          },
+          {
+            "address": "0x767a5da4",
+            "bytes": "ff35f45b7b76",
+            "instruction": "push dword ptr [0x767b5bf4]"
+          },
+          {
+            "address": "0x767a5daa",
+            "bytes": "ff15e8107a76",
+            "instruction": "call dword ptr [0x767a10e8]"
+          },
+          {
+            "address": "0x767a5db0",
+            "bytes": "eb0a",
+            "instruction": "jmp 0x767a5dbc"
+          },
+          {
+            "address": "0x767a5db2",
+            "bytes": "6a01",
+            "instruction": "push 1"
+          },
+          {
+            "address": "0x767a5db4",
+            "bytes": "58",
+            "instruction": "pop eax"
+          },
+          {
+            "address": "0x767a5db5",
+            "bytes": "c3",
+            "instruction": "ret "
+          },
+          {
+            "address": "0x767a5db6",
+            "bytes": "8b65e8",
+            "instruction": "mov esp, dword ptr [ebp - 0x18]"
+          },
+          {
+            "address": "0x767a5db9",
+            "bytes": "6a13",
+            "instruction": "push 0x13"
+          },
+          {
+            "address": "0x767a5dbb",
+            "bytes": "5e",
+            "instruction": "pop esi"
+          },
+          {
+            "address": "0x767a5dbc",
+            "bytes": "834dfcff",
+            "instruction": "or dword ptr [ebp - 4], 0xffffffff"
+          },
+          {
+            "address": "0x767a5dc0",
+            "bytes": "a1605b7b76",
+            "instruction": "mov eax, dword ptr [0x767b5b60]"
+          },
+          {
+            "address": "0x767a5dc5",
+            "bytes": "85c0",
+            "instruction": "test eax, eax"
+          },
+          {
+            "address": "0x767a5dc7",
+            "bytes": "7407",
+            "instruction": "je 0x767a5dd0"
+          },
+          {
+            "address": "0x767a5dc9",
+            "bytes": "50",
+            "instruction": "push eax"
+          },
+          {
+            "address": "0x767a5dca",
+            "bytes": "ff15e8107a76",
+            "instruction": "call dword ptr [0x767a10e8]"
+          },
+          {
+            "address": "0x767a5dd0",
+            "bytes": "8bc6",
+            "instruction": "mov eax, esi"
+          },
+          {
+            "address": "0x767a5dd2",
+            "bytes": "8b4df0",
+            "instruction": "mov ecx, dword ptr [ebp - 0x10]"
+          },
+          {
+            "address": "0x767a5dd5",
+            "bytes": "64890d00000000",
+            "instruction": "mov dword ptr fs:[0], ecx"
+          },
+          {
+            "address": "0x767a5ddc",
+            "bytes": "5f",
+            "instruction": "pop edi"
+          },
+          {
+            "address": "0x767a5ddd",
+            "bytes": "5e",
+            "instruction": "pop esi"
+          },
+          {
+            "address": "0x767a5dde",
+            "bytes": "5b",
+            "instruction": "pop ebx"
+          },
+          {
+            "address": "0x767a5ddf",
+            "bytes": "c9",
+            "instruction": "leave "
+          },
+          {
+            "address": "0x767a5de0",
+            "bytes": "c20c00",
+            "instruction": "ret 0xc"
+          }
+        ]
+      },
+      {
+        "first_rva": "0x662b",
+        "end_rva": "0x672e",
+        "instructions": [
+          {
+            "address": "0x767a662b",
+            "bytes": "55",
+            "instruction": "push ebp"
+          },
+          {
+            "address": "0x767a662c",
+            "bytes": "8bec",
+            "instruction": "mov ebp, esp"
+          },
+          {
+            "address": "0x767a662e",
+            "bytes": "6aff",
+            "instruction": "push -1"
+          },
+          {
+            "address": "0x767a6630",
+            "bytes": "68e0297a76",
+            "instruction": "push 0x767a29e0"
+          },
+          {
+            "address": "0x767a6635",
+            "bytes": "6820397b76",
+            "instruction": "push 0x767b3920"
+          },
+          {
+            "address": "0x767a663a",
+            "bytes": "64a100000000",
+            "instruction": "mov eax, dword ptr fs:[0]"
+          },
+          {
+            "address": "0x767a6640",
+            "bytes": "50",
+            "instruction": "push eax"
+          },
+          {
+            "address": "0x767a6641",
+            "bytes": "64892500000000",
+            "instruction": "mov dword ptr fs:[0], esp"
+          },
+          {
+            "address": "0x767a6648",
+            "bytes": "51",
+            "instruction": "push ecx"
+          },
+          {
+            "address": "0x767a6649",
+            "bytes": "51",
+            "instruction": "push ecx"
+          },
+          {
+            "address": "0x767a664a",
+            "bytes": "81ec60020000",
+            "instruction": "sub esp, 0x260"
+          },
+          {
+            "address": "0x767a6650",
+            "bytes": "53",
+            "instruction": "push ebx"
+          },
+          {
+            "address": "0x767a6651",
+            "bytes": "56",
+            "instruction": "push esi"
+          },
+          {
+            "address": "0x767a6652",
+            "bytes": "57",
+            "instruction": "push edi"
+          },
+          {
+            "address": "0x767a6653",
+            "bytes": "8965e8",
+            "instruction": "mov dword ptr [ebp - 0x18], esp"
+          },
+          {
+            "address": "0x767a6656",
+            "bytes": "33f6",
+            "instruction": "xor esi, esi"
+          },
+          {
+            "address": "0x767a6658",
+            "bytes": "8975fc",
+            "instruction": "mov dword ptr [ebp - 4], esi"
+          },
+          {
+            "address": "0x767a665b",
+            "bytes": "3935645b7b76",
+            "instruction": "cmp dword ptr [0x767b5b64], esi"
+          },
+          {
+            "address": "0x767a6661",
+            "bytes": "0f84b0000000",
+            "instruction": "je 0x767a6717"
+          },
+          {
+            "address": "0x767a6667",
+            "bytes": "3935705b7b76",
+            "instruction": "cmp dword ptr [0x767b5b70], esi"
+          },
+          {
+            "address": "0x767a666d",
+            "bytes": "ff7508",
+            "instruction": "push dword ptr [ebp + 8]"
+          },
+          {
+            "address": "0x767a6670",
+            "bytes": "7407",
+            "instruction": "je 0x767a6679"
+          },
+          {
+            "address": "0x767a6672",
+            "bytes": "6884297a76",
+            "instruction": "push 0x767a2984"
+          },
+          {
+            "address": "0x767a6677",
+            "bytes": "eb05",
+            "instruction": "jmp 0x767a667e"
+          },
+          {
+            "address": "0x767a6679",
+            "bytes": "6838297a76",
+            "instruction": "push 0x767a2938"
+          },
+          {
+            "address": "0x767a667e",
+            "bytes": "8d8598fdffff",
+            "instruction": "lea eax, [ebp - 0x268]"
+          },
+          {
+            "address": "0x767a6684",
+            "bytes": "50",
+            "instruction": "push eax"
+          },
+          {
+            "address": "0x767a6685",
+            "bytes": "ff1598117a76",
+            "instruction": "call dword ptr [0x767a1198]"
+          },
+          {
+            "address": "0x767a668b",
+            "bytes": "83c40c",
+            "instruction": "add esp, 0xc"
+          },
+          {
+            "address": "0x767a668e",
+            "bytes": "33c0",
+            "instruction": "xor eax, eax"
+          },
+          {
+            "address": "0x767a6690",
+            "bytes": "8dbd88fdffff",
+            "instruction": "lea edi, [ebp - 0x278]"
+          },
+          {
+            "address": "0x767a6696",
+            "bytes": "ab",
+            "instruction": "stosd dword ptr es:[edi], eax"
+          },
+          {
+            "address": "0x767a6697",
+            "bytes": "ab",
+            "instruction": "stosd dword ptr es:[edi], eax"
+          },
+          {
+            "address": "0x767a6698",
+            "bytes": "ab",
+            "instruction": "stosd dword ptr es:[edi], eax"
+          },
+          {
+            "address": "0x767a6699",
+            "bytes": "ab",
+            "instruction": "stosd dword ptr es:[edi], eax"
+          },
+          {
+            "address": "0x767a669a",
+            "bytes": "6a11",
+            "instruction": "push 0x11"
+          },
+          {
+            "address": "0x767a669c",
+            "bytes": "59",
+            "instruction": "pop ecx"
+          },
+          {
+            "address": "0x767a669d",
+            "bytes": "33c0",
+            "instruction": "xor eax, eax"
+          },
+          {
+            "address": "0x767a669f",
+            "bytes": "8d7da4",
+            "instruction": "lea edi, [ebp - 0x5c]"
+          },
+          {
+            "address": "0x767a66a2",
+            "bytes": "f3ab",
+            "instruction": "rep stosd dword ptr es:[edi], eax"
+          },
+          {
+            "address": "0x767a66a4",
+            "bytes": "c745a444000000",
+            "instruction": "mov dword ptr [ebp - 0x5c], 0x44"
+          },
+          {
+            "address": "0x767a66ab",
+            "bytes": "66c745d40500",
+            "instruction": "mov word ptr [ebp - 0x2c], 5"
+          },
+          {
+            "address": "0x767a66b1",
+            "bytes": "c745ac18297a76",
+            "instruction": "mov dword ptr [ebp - 0x54], 0x767a2918"
+          },
+          {
+            "address": "0x767a66b8",
+            "bytes": "8d8588fdffff",
+            "instruction": "lea eax, [ebp - 0x278]"
+          },
+          {
+            "address": "0x767a66be",
+            "bytes": "50",
+            "instruction": "push eax"
+          },
+          {
+            "address": "0x767a66bf",
+            "bytes": "8d45a4",
+            "instruction": "lea eax, [ebp - 0x5c]"
+          },
+          {
+            "address": "0x767a66c2",
+            "bytes": "50",
+            "instruction": "push eax"
+          },
+          {
+            "address": "0x767a66c3",
+            "bytes": "56",
+            "instruction": "push esi"
+          },
+          {
+            "address": "0x767a66c4",
+            "bytes": "56",
+            "instruction": "push esi"
+          },
+          {
+            "address": "0x767a66c5",
+            "bytes": "6a08",
+            "instruction": "push 8"
+          },
+          {
+            "address": "0x767a66c7",
+            "bytes": "56",
+            "instruction": "push esi"
+          },
+          {
+            "address": "0x767a66c8",
+            "bytes": "56",
+            "instruction": "push esi"
+          },
+          {
+            "address": "0x767a66c9",
+            "bytes": "56",
+            "instruction": "push esi"
+          },
+          {
+            "address": "0x767a66ca",
+            "bytes": "8d8598fdffff",
+            "instruction": "lea eax, [ebp - 0x268]"
+          },
+          {
+            "address": "0x767a66d0",
+            "bytes": "50",
+            "instruction": "push eax"
+          },
+          {
+            "address": "0x767a66d1",
+            "bytes": "56",
+            "instruction": "push esi"
+          },
+          {
+            "address": "0x767a66d2",
+            "bytes": "ff35645b7b76",
+            "instruction": "push dword ptr [0x767b5b64]"
+          },
+          {
+            "address": "0x767a66d8",
+            "bytes": "ff154c107a76",
+            "instruction": "call dword ptr [0x767a104c]"
+          },
+          {
+            "address": "0x767a66de",
+            "bytes": "85c0",
+            "instruction": "test eax, eax"
+          },
+          {
+            "address": "0x767a66e0",
+            "bytes": "7435",
+            "instruction": "je 0x767a6717"
+          },
+          {
+            "address": "0x767a66e2",
+            "bytes": "6aff",
+            "instruction": "push -1"
+          },
+          {
+            "address": "0x767a66e4",
+            "bytes": "ffb588fdffff",
+            "instruction": "push dword ptr [ebp - 0x278]"
+          },
+          {
+            "address": "0x767a66ea",
+            "bytes": "ff1514117a76",
+            "instruction": "call dword ptr [0x767a1114]"
+          },
+          {
+            "address": "0x767a66f0",
+            "bytes": "ffb588fdffff",
+            "instruction": "push dword ptr [ebp - 0x278]"
+          },
+          {
+            "address": "0x767a66f6",
+            "bytes": "8b35ec107a76",
+            "instruction": "mov esi, dword ptr [0x767a10ec]"
+          },
+          {
+            "address": "0x767a66fc",
+            "bytes": "ffd6",
+            "instruction": "call esi"
+          },
+          {
+            "address": "0x767a66fe",
+            "bytes": "ffb58cfdffff",
+            "instruction": "push dword ptr [ebp - 0x274]"
+          },
+          {
+            "address": "0x767a6704",
+            "bytes": "ffd6",
+            "instruction": "call esi"
+          },
+          {
+            "address": "0x767a6706",
+            "bytes": "6a01",
+            "instruction": "push 1"
+          },
+          {
+            "address": "0x767a6708",
+            "bytes": "5e",
+            "instruction": "pop esi"
+          },
+          {
+            "address": "0x767a6709",
+            "bytes": "8975a0",
+            "instruction": "mov dword ptr [ebp - 0x60], esi"
+          },
+          {
+            "address": "0x767a670c",
+            "bytes": "eb09",
+            "instruction": "jmp 0x767a6717"
+          },
+          {
+            "address": "0x767a670e",
+            "bytes": "6a01",
+            "instruction": "push 1"
+          },
+          {
+            "address": "0x767a6710",
+            "bytes": "58",
+            "instruction": "pop eax"
+          },
+          {
+            "address": "0x767a6711",
+            "bytes": "c3",
+            "instruction": "ret "
+          },
+          {
+            "address": "0x767a6712",
+            "bytes": "8b65e8",
+            "instruction": "mov esp, dword ptr [ebp - 0x18]"
+          },
+          {
+            "address": "0x767a6715",
+            "bytes": "33f6",
+            "instruction": "xor esi, esi"
+          },
+          {
+            "address": "0x767a6717",
+            "bytes": "834dfcff",
+            "instruction": "or dword ptr [ebp - 4], 0xffffffff"
+          },
+          {
+            "address": "0x767a671b",
+            "bytes": "8bc6",
+            "instruction": "mov eax, esi"
+          },
+          {
+            "address": "0x767a671d",
+            "bytes": "8b4df0",
+            "instruction": "mov ecx, dword ptr [ebp - 0x10]"
+          },
+          {
+            "address": "0x767a6720",
+            "bytes": "64890d00000000",
+            "instruction": "mov dword ptr fs:[0], ecx"
+          },
+          {
+            "address": "0x767a6727",
+            "bytes": "5f",
+            "instruction": "pop edi"
+          },
+          {
+            "address": "0x767a6728",
+            "bytes": "5e",
+            "instruction": "pop esi"
+          },
+          {
+            "address": "0x767a6729",
+            "bytes": "5b",
+            "instruction": "pop ebx"
+          },
+          {
+            "address": "0x767a672a",
+            "bytes": "c9",
+            "instruction": "leave "
+          },
+          {
+            "address": "0x767a672b",
+            "bytes": "c20400",
+            "instruction": "ret 4"
+          }
+        ]
+      }
+    ]
+  },
+  "started_utc": "2026-10-06T16:59:48.539519+00:00",
+  "active_sites": {
+    "0x7c5950b3": "CreateProcessInternalW",
+    "0x7c59663c": "CreateProcess_CsrReply",
+    "0x7c2e242b": "CreateProcessAsUserW",
+    "0x77f88e6c": "NtTerminateProcess",
+    "0x77f88cd7": "NtSetInformationProcess_return",
+    "0x77f88a6c": "NtRaiseHardError",
+    "0x77f888f7": "NtQueryInformationToken_return",
+    "0x77f88433": "NtDuplicateToken_return",
+    "0x8247282e": "_NtRaiseHardError@24",
+    "0x82472a84": "_ExRaiseHardError@24",
+    "0x82472516": "_ExpRaiseHardError@24",
+    "0x8246e4cc": "_NtShutdownSystem@4",
+    "0x767a5959": "PnP_Control_entry",
+    "0x767a5979": "PnP_Control_wait_return",
+    "0x767a5999": "PnP_Token_close_call",
+    "0x767a599b": "PnP_Token_close_return",
+    "0x767a59ad": "PnP_Token_clear_before",
+    "0x767a59b4": "PnP_Token_clear_after",
+    "0x767a5d82": "PnP_Logon_token_return",
+    "0x767a665b": "PnP_Install_token_check",
+    "0x767a66d2": "PnP_Install_token_push",
+    "0x7c577ea1": "CloseHandle_saved_token"
+  },
+  "trace_source_sha256": "1bf1f0901fbf308e036223200c96b73685dd1b54da389a65ef8a8e9034c55c47",
+  "ignored_hits": 25113,
+  "gdb_features": "PacketSize=20020;qXfer:features:read+;vContSupported+;multiprocess+",
+  "initial_stop": "T05thread:01;",
+  "unreadable_site_hits": [
+    {
+      "address": "0x7c577ea1",
+      "utc": "2026-10-06T16:59:55.977745+00:00"
+    },
+    {
+      "address": "0x7c577ea1",
+      "utc": "2026-10-06T17:00:24.186836+00:00"
+    },
+    {
+      "address": "0x7c577ea1",
+      "utc": "2026-10-06T17:00:25.636435+00:00"
+    },
+    {
+      "address": "0x7c5950b3",
+      "utc": "2026-10-06T17:00:25.662843+00:00"
+    },
+    {
+      "address": "0x7c577ea1",
+      "utc": "2026-10-06T17:00:25.700924+00:00"
+    },
+    {
+      "address": "0x7c5950b3",
+      "utc": "2026-10-06T17:00:25.732612+00:00"
+    },
+    {
+      "address": "0x7c577ea1",
+      "utc": "2026-10-06T17:00:37.605211+00:00"
+    },
+    {
+      "address": "0x7c577ea1",
+      "utc": "2026-10-06T17:00:37.630039+00:00"
+    },
+    {
+      "address": "0x7c577ea1",
+      "utc": "2026-10-06T17:00:53.865204+00:00"
+    },
+    {
+      "address": "0x7c5950b3",
+      "utc": "2026-10-06T17:01:00.871573+00:00"
+    },
+    {
+      "address": "0x7c577ea1",
+      "utc": "2026-10-06T17:01:19.489252+00:00"
+    },
+    {
+      "address": "0x7c577ea1",
+      "utc": "2026-10-06T17:01:41.571837+00:00"
+    },
+    {
+      "address": "0x7c577ea1",
+      "utc": "2026-10-06T17:02:06.349490+00:00"
+    },
+    {
+      "address": "0x7c577ea1",
+      "utc": "2026-10-06T17:02:12.067425+00:00"
+    },
+    {
+      "address": "0x7c577ea1",
+      "utc": "2026-10-06T17:02:16.435248+00:00"
+    },
+    {
+      "address": "0x7c577ea1",
+      "utc": "2026-10-06T17:02:16.534018+00:00"
+    },
+    {
+      "address": "0x7c577ea1",
+      "utc": "2026-10-06T17:02:33.465375+00:00"
+    },
+    {
+      "address": "0x7c577ea1",
+      "utc": "2026-10-06T17:02:36.875084+00:00"
+    },
+    {
+      "address": "0x7c577ea1",
+      "utc": "2026-10-06T17:03:12.950632+00:00"
+    }
+  ],
+  "status": "reached_kernel_shutdown",
+  "verified_live_sites": [
+    {
+      "address": "0x767a5959",
+      "name": "PnP_Control_entry"
+    },
+    {
+      "address": "0x767a5979",
+      "name": "PnP_Control_wait_return"
+    },
+    {
+      "address": "0x767a5999",
+      "name": "PnP_Token_close_call"
+    },
+    {
+      "address": "0x767a599b",
+      "name": "PnP_Token_close_return"
+    },
+    {
+      "address": "0x767a59ad",
+      "name": "PnP_Token_clear_before"
+    },
+    {
+      "address": "0x767a59b4",
+      "name": "PnP_Token_clear_after"
+    },
+    {
+      "address": "0x767a5d82",
+      "name": "PnP_Logon_token_return"
+    },
+    {
+      "address": "0x767a665b",
+      "name": "PnP_Install_token_check"
+    },
+    {
+      "address": "0x767a66d2",
+      "name": "PnP_Install_token_push"
+    },
+    {
+      "address": "0x77f88433",
+      "name": "NtDuplicateToken_return"
+    },
+    {
+      "address": "0x77f888f7",
+      "name": "NtQueryInformationToken_return"
+    },
+    {
+      "address": "0x77f88cd7",
+      "name": "NtSetInformationProcess_return"
+    },
+    {
+      "address": "0x77f88e6c",
+      "name": "NtTerminateProcess"
+    },
+    {
+      "address": "0x7c2e242b",
+      "name": "CreateProcessAsUserW"
+    },
+    {
+      "address": "0x7c577ea1",
+      "name": "CloseHandle_saved_token"
+    },
+    {
+      "address": "0x7c5950b3",
+      "name": "CreateProcessInternalW"
+    },
+    {
+      "address": "0x7c59663c",
+      "name": "CreateProcess_CsrReply"
+    },
+    {
+      "address": "0x8246e4cc",
+      "name": "_NtShutdownSystem@4"
+    }
+  ],
+  "pending_returns": [],
+  "guest_resumed": true,
+  "ended_utc": "2026-10-06T17:03:35.296787+00:00"
+}

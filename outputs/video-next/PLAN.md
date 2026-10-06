@@ -21,6 +21,12 @@ invalid-handle return from CreateProcessAsUserW after its inner creation succeed
 The cleanup status5 is a fixed constant, not the original failure. PnP saved-token
 lifetime is the next investigation target; no popup reproduced in these debugger
 controls, so this is neither a fix nor authorization to waive the soak failure.
+Two [token-lifetime traces](../shutdown-token-lifetime/README.md) now locate
+umpnpmgr's close of the saved token while the installer thread is still using it.
+One passes zero after the clear; the reduced-observer run initially validates the
+token, then sees it invalidated during creation. Both cleanly shut down without
+the popup, so the remaining gate is correlation with the actual hard error in the
+previously failing workload, not another graphics deployment or identical soak.
 The follow-up [shutdown diagnostic](../shutdown-diagnostics/README.md) confirms
 Windows F:/G:/H: map to dashboard C:/X:/Y: and report0.56%,2.89%,6.18% free;
 the large boot/data partition is not the warned volume. A clean two-minute

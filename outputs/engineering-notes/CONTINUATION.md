@@ -1,3 +1,47 @@
+# PnP token close/use interleaving captured twice; popup still unresolved
+
+2026-10-06 UTC, outputs/shutdown-token-lifetime. Two owned emulator launches
+completed, with76/75 events and matched source snapshots. Physical Xbox untouched:
+FATX0098/video0093/normal startup, original0088 rollback and immutable0.1.0 unchanged.
+No driver/system-binary patch, device-policy change, error suppression or recovery
+capture. Soak3 strict FAIL remains authoritative; automation stays PAUSED.
+
+Run001: first01B0 installer creation succeeds using saved token0x770. Later,
+installer thread0xffb70da0 checks a nonzero saved token. A separate services.exe
+thread0xff9a6580 enters umpnpmgr control5, successfully closes0x770 and clears
+the saved global. The installer then loads/passes zero to CreateProcessAsUserW.
+Native token queries return0xc0000008; inner creation succeeds but outer setup
+fails with last-error6 and removes the child. Events49–66 prove this ordering
+within the debugger run. Prior numeric-handle reuse is no longer the sole clue.
+
+Run002 removes generic CloseHandle observation, reducing ignored hits25113→51.
+The first01B0 launch again succeeds. The later01B4 call begins with token0x908
+and its initial native query succeeds. While inner creation is active, another
+thread closes0x908 and clears the global. After inner creation succeeds, a query
+of the original handle returns0xc0000008 and outer creation fails with error6.
+Events49–65 capture the second interleaving. Do not retroactively assign either
+ordering to shutdown-createprocess/001's earlier nonzero reused-handle trace.
+
+Both helpers completed normal restart, dashboard return and cold diagnostic
+checks: exact payloads and reviewed kernel/user modules, five traversable hives,
+no new popup or unexpected diagnostic event. Baseline SCM7000/Ftdisk49 signatures
+are retained explicitly. No full allocation audit or ordinary boot qualification.
+Both runners/supervisors/tracers finished; cleanup/source hashes are in summary.json.
+An early001 runtime capture predates identifiable NT mapping and is preserved.
+
+The lifetime failure is repeatable under two debugger configurations, at different
+points. Breakpoint pauses still affect timing; neither reproduced the actual
+DLL-initialization popup. No new hardware test or popup-fix claim is warranted.
+Next: correlate the exact hard error and process identity using the previously
+failing fatx0098-soak/rehearsal workload, rather than another identical two-minute
+clean control. Preserve input hashes and one-launch ownership. Any proposed
+shutdown integration must stop new installer work and keep its token valid for
+the entire use; another nonzero check alone cannot close the demonstrated window.
+Do not silently mark devices installed, suppress events, or patch Microsoft
+binaries merely to remove a symptom. Graphics performance/modes remain separate.
+
+## Prior continuation (historical)
+
 # Late installer fails with invalid handle; popup still unresolved
 
 2026-10-06 UTC, outputs/shutdown-createprocess. Two owned emulator boots and
