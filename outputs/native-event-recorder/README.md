@@ -90,3 +90,39 @@ model from real hardware evidence; removing or renaming the placeholder is not
 a demonstrated shutdown fix. Graphics performance work need not wait on an
 unbounded emulator-only popup investigation, but physical stability failures
 remain explicit.
+
+## Fixed reproduction batch: failing lifecycle captured
+
+The predeclared three-run batch is complete. All cases used byte-identical
+independent seeds and the unchanged recorder executable, with no debugger,
+paused capture, guest patch or physical access. All owned processes finished.
+
+| Case | Launch / return UTC | Verified records | Outcome |
+| --- | --- | --- | --- |
+| 003 | 20:16:32 / 20:19:32 | 425 | One shutdown popup; installer creation succeeded |
+| 004 | 20:20:21 / 20:23:16 | 424 | No popup; creation failed with invalid handle6 |
+| 005 | 20:24:04 / 20:27:02 | 419 | No popup; no placeholder creation observed |
+
+Every trace reaches kernel shutdown with zero invalid sites. Unknown owner
+commands remain unknown (48/50/47 respectively). Each helper completes120000ms,
+with one normal EventLog shutdown and dashboard return. Each cold audit confirms
+the GPU installation, nine payload hashes, six runtime binary hashes and five
+structural hives; full F: allocation has322 directories/6742 files, zero errors
+and zero orphan clusters. There is no explicit mapping/BMP workload, full binary
+archive verification or other-partition audit. All three remain instrumented
+observations, not ordinary-run or hardware qualification. Case003 is strictFAIL.
+
+The captured failure is a successful late installer creation followed by
+win32k's GUI-shutdown rejection, before PnP receives control5. The token is
+unchanged at the sampled creation boundaries. That differs from the clean
+invalid-handle path and means the latter is not a substitute for tracing the
+failure. See [FAILING-LIFECYCLE.md](FAILING-LIFECYCLE.md) for exact boundaries,
+limitations and the next bounded investigation. No fix or hardware candidate
+is claimed; prior physical popup/Srv failures remain open.
+
+`batch-plan.json` fixes scope before launch. `prepare-batch.py` refuses reuse;
+`summarize-batch.py` retains every outcome; `review-batch.py` cross-checks the
+failing process, status and termination chain against the cold event log.
+The initial reviewer's overstrict assumption that every run creates the
+placeholder installer failed on005. Its exact source/failure are preserved;
+the revised review records absence explicitly. No run or cold scan was repeated.

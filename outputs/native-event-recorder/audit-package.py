@@ -2,7 +2,7 @@
 import contextlib,importlib,json,sys
 from pathlib import Path
 root=Path(__file__).resolve().parent;ws=root.parents[1]
-case=sys.argv[1];assert case in ['001','002'];k=root/case
+case=sys.argv[1];assert case in ['001','002','003','004','005'];k=root/case
 sys.path.insert(0,str(ws/'outputs/native-windows-paint-save'));m=importlib.import_module('prepare-fixture')
 sys.path.insert(0,str(ws/'outputs/fatx-mapped-eof'));from coldio import ColdIO
 sys.path.insert(0,'/home/paul/xbox-windows-native/toolchains/offline-disk/root/usr/lib/python3/dist-packages')
@@ -60,6 +60,6 @@ workload=json.loads((k/'audit.json').read_text())
 r['installation_checks_passed']=all([r['pnp_binding_present'],r['installed_inf_exact'],r['existing_display_registered'],r['display_binary_unchanged'],r['miniport_unchanged']])
 r['combined_checks_passed']=r['installation_checks_passed'] and workload['diagnostic_checks_passed'] and workload['ordinary_run_valid']
 r['hardware_qualified']=False
-r['limits']='Cold installation evidence from a host-recorder experiment only; recording is enabled only in case002. This does not qualify an ordinary boot, fix the shutdown popup or qualify physical deployment.'
+r['limits']='Cold installation evidence from a host-recorder experiment only; recording is enabled in cases002-005. This does not qualify an ordinary boot, fix the shutdown popup or qualify physical deployment.'
 (k/'package-audit.json').write_text(json.dumps(r,indent=2)+'\n')
 print(json.dumps({n:r[n] for n in ['installation_checks_passed','combined_checks_passed','device','service','driver_key']},indent=2))

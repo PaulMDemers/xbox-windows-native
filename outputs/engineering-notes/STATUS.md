@@ -70,8 +70,14 @@ memory-controller placeholder. The new recorder captures selected lifecycle
 events without debugger stops. One disabled/enabled pair passed bounded cold
 checks, and the enabled run captured 423 verified records. It observed a failed
 late installer creation and termination during shutdown, without the popup.
-This supplies a clean comparison path; the actual failing lifecycle is still
-needed, and the tool has no demonstrated zero-overhead guarantee.
+The subsequent fixed reproduction batch captured the failing lifecycle too:
+creation succeeds, the placeholder installer executes and raises the GUI
+shutdown error, then terminates with0xc0000142 before PnP receives shutdown
+control5. A separate unchanged run follows the clean invalid-handle path.
+See [the captured sequence](../native-event-recorder/FAILING-LIFECYCLE.md).
+The next question is why the first GPU installer remains outstanding until
+shutdown despite successful installation records. The recorder still has no
+demonstrated zero-overhead guarantee, and no synchronization fix is qualified.
 
 ## Graphics and device support
 

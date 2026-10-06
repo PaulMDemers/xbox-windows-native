@@ -1,3 +1,52 @@
+# Fixed recorder batch complete: failing lifecycle captured
+
+2026-10-06 20:28 UTC. outputs/native-event-recorder. Exactly three new independent
+runs003-005 completed; no relaunch, hardware access, debugger, paused capture or
+guest change. All owned runner/supervisor/audit processes finished. Physical
+FATX0098/video0093/normal startup, original0088 rollback and immutable0.1.0 remain.
+No new driver candidate, recovery capture or automation. Do not repeat this batch.
+
+Same seed4c4b8155, immutable base9f51f2a3, recorder executable0ae9b99a in all cases.
+003 launch20:16:32/return20:19:32:425 verified records, one popup (strictFAIL).
+004 launch20:20:21/return20:23:16:424 verified records, no popup, creation error6.
+005 launch20:24:04/return20:27:02:419 verified records, no placeholder create seen.
+Every trace reaches kernel shutdown; zero invalid sites;48/50/47 owner commands
+remain unknown. Each completes120000ms idle and one normal EventLog shutdown.
+GPU installation, nine payload hashes, six runtime hashes, five structural hives
+pass. Full F: allocation322 dirs/6742 files, zero orphans/errors. No explicit
+mapping/BMP workload or other-partition/full archive audit. These are instrumented
+observations; no hardware qualification and no claim of zero recording overhead.
+
+Read FAILING-LIFECYCLE.md, batch-summary.json and batch-review.json. In003:
+GPU termination324 -> wait327 -> placeholder creation329 -> resume boundary331
+-> successful creation332 -> CSRSS resume boundary334 -> harderror336/337
+(c000026b, ONE popup) -> win32k termination338 -> matching termination339
+(c0000142) -> exit340 -> wait341 -> first PnP control5 at344 -> kernel shutdown424.
+Placeholder ownerff9f9020/PID996, error threadff9a51e0. Token8ac at both creation
+samples. Exact GUI shutdown transition and CloseHandle are not captured.
+Resume boundaries are pre-call, not proof of successful returns. Installer's
+later execution establishes it ran. Control5 arrives AFTER the hard error.
+
+004 samples token8e0 at call329, PnP control331, false create/error6 at335 with
+zero token.005 observes GPU wait333 followed by control5 at334 in the same tick;
+no placeholder call/harderror. Do not describe005 as an invalid-handle attempt.
+Original reviewer assumed one placeholder call per run and failed on005;
+review-batch-initial.py and batch-review-initial-failure.json preserve it. Updated
+review represents zero attempts explicitly; no launch or cold audit was repeated.
+No extra batch launch followed that analysis failure; all three were complete.
+
+Next: inspect why the first GPU installer remains outstanding until shutdown
+despite successful SetupAPI installation and reboot-required/remove-veto records.
+Use a bounded read-only wait/dialog inspection in a fresh owned fixture, then
+choose a supported installation-completion flow before requesting restart. Do
+not just extend sleeps, dismiss unknown dialogs, remove the emulator placeholder,
+or suppress the hard error. A shutdown-control-only guard is too late for003.
+Keep token lifetime separate from the successful-creation failure path. Any fix
+needs ordinary recorder-disabled first-install and subsequent-boot checks.
+Physical popup owner and Srv2013 remain unresolved; graphics work has own gates.
+
+## Prior continuation (historical)
+
 # Device identified; non-stopping host recorder validated
 
 2026-10-06 UTC, outputs/native-event-recorder. User approved source research,
@@ -255,7 +304,7 @@ No new driver, registry change, physical launch or recovery capture. Automation
 stays PAUSED and physical soak3 strict FAIL remains. All owned processes finished.
 
 003 reduces observation to seven sites/nine events. Existing GPU installer
-creation succeeds (events0–1). Its wait returns0 at event2/tick7925. Services
+creation succeeds (events0â€“1). Its wait returns0 at event2/tick7925. Services
 calls CreateProcessAsUserW for PCI1B36:0005 at3/tick7926 with token0x8ac. Another
 services thread enters PnP control5 at4/tick7930; the creation returns false with
 error6 at5/tick7931, saved token0 and zero PROCESS_INFORMATION. No hard error.
@@ -353,15 +402,15 @@ installer thread0xffb70da0 checks a nonzero saved token. A separate services.exe
 thread0xff9a6580 enters umpnpmgr control5, successfully closes0x770 and clears
 the saved global. The installer then loads/passes zero to CreateProcessAsUserW.
 Native token queries return0xc0000008; inner creation succeeds but outer setup
-fails with last-error6 and removes the child. Events49–66 prove this ordering
+fails with last-error6 and removes the child. Events49â€“66 prove this ordering
 within the debugger run. Prior numeric-handle reuse is no longer the sole clue.
 
-Run002 removes generic CloseHandle observation, reducing ignored hits25113→51.
+Run002 removes generic CloseHandle observation, reducing ignored hits25113â†’51.
 The first01B0 launch again succeeds. The later01B4 call begins with token0x908
 and its initial native query succeeds. While inner creation is active, another
 thread closes0x908 and clears the global. After inner creation succeeds, a query
 of the original handle returns0xc0000008 and outer creation fails with error6.
-Events49–65 capture the second interleaving. Do not retroactively assign either
+Events49â€“65 capture the second interleaving. Do not retroactively assign either
 ordering to shutdown-createprocess/001's earlier nonzero reused-handle trace.
 
 Both helpers completed normal restart, dashboard return and cold diagnostic

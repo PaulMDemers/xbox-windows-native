@@ -3,7 +3,7 @@ import hashlib,json,sys
 from pathlib import Path
 k=Path(__file__).resolve().parent;ws=k.parents[1]
 sys.path.insert(0,str(k.parent/'fatx-mapped-eof'));from allocation import scan
-case=sys.argv[1];assert case in ['001','002']
+case=sys.argv[1];assert case in ['001','002','003','004','005']
 f=json.loads((k/('fixture-'+case+'.json')).read_text())
 base=ws/'outputs/native-windows-fatx-forensics/artifacts'/f['fixture_name']
 with base.open('rb') as stream:

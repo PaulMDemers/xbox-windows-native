@@ -7,7 +7,7 @@ k=Path(__file__).resolve().parent;ws=k.parents[1]
 sys.path.insert(0,str(ws/'outputs/native-windows-paint-save'));m=importlib.import_module('prepare-fixture')
 sys.path.insert(0,'/home/paul/xbox-windows-native/toolchains/offline-disk/root/usr/lib/python3/dist-packages')
 import hivex
-case=sys.argv[1];assert case in ['001','002']
+case=sys.argv[1];assert case in ['001','002','003','004','005']
 out=k/case;art=out/'artifacts';art.mkdir(parents=True,exist_ok=True)
 fixture=json.loads((k/('fixture-'+case+'.json')).read_text())
 base=ws/'outputs/native-windows-fatx-forensics/artifacts'/fixture.get('fixture_name','fatx0098-soak-'+case+'.qcow2')
@@ -76,7 +76,7 @@ launch=json.loads((out/'launch.json').read_text());r['dashboard_return']=len(lau
 r['diagnostic_checks_passed']=all([r['idle_completed'],r['storage_workload_not_run'],r['dashboard_return'],r['normal_shutdown_count']==1,not r['unexpected_errors'],not r['popup_records'],not r['new_events']['application'],all(v['matched'] for v in r['payloads']),all(r['baseline_checks'].values()),r['fatx_exact'],all(v['matched'] for v in r['runtime_binary_checks'])])
 r['ordinary_run_valid']=case=='001'
 r['debugger_observation']=False
-r['host_recorder_enabled']=case=='002'
-r['limits']='Paired 120-second idle/restart test. Case001 recorder disabled; case002 host event recorder enabled without debugger stops. No explicit mapping/BMP workload or physical qualification. Owner identity is separate trace evidence, not inferred by this cold audit. Normal background I/O and baseline identical SCM7000/Ftdisk49 signatures remain explicit.'
+r['host_recorder_enabled']=case!='001'
+r['limits']='Paired 120-second idle/restart test. Case001 recorder disabled; cases002-005 host event recorder enabled without debugger stops. No explicit mapping/BMP workload or physical qualification. Owner identity is separate trace evidence, not inferred by this cold audit. Normal background I/O and baseline identical SCM7000/Ftdisk49 signatures remain explicit.'
 (out/'audit.json').write_text(json.dumps(r,indent=2)+'\n')
 print(json.dumps({n:r[n] for n in ['diagnostic_checks_passed','idle_completed','idle_elapsed_ms','storage_workload_not_run','normal_shutdown_count','dashboard_return','unexpected_errors','popup_records']},indent=2))

@@ -31,7 +31,7 @@ def collect(case):
             r['stages'][name]=dict(output=output,completed=True)
         r['stages'][name]['sha256']=hashlib.sha256(target.read_bytes()).hexdigest()
         manifest.write_text(json.dumps(r,indent=2)+'\n')
-    if case=='002':
+    if case!='001':
         subprocess.run([sys.executable,str(k/'decode.py'),str(out/'events.bin'),str(out/'events.json')],check=True)
     print('Cold collection complete for '+case)
 
@@ -62,7 +62,7 @@ def compare():
     print(json.dumps(r,indent=2))
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('action',choices=['collect','compare']);p.add_argument('case',nargs='?',choices=['001','002'])
+    p=argparse.ArgumentParser();p.add_argument('action',choices=['collect','compare']);p.add_argument('case',nargs='?',choices=['001','002','003','004','005'])
     a=p.parse_args()
     if a.action=='collect':
         assert a.case;collect(a.case)
