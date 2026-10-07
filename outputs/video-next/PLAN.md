@@ -32,8 +32,11 @@ before any timing. The failure and manual shutdown remain unqualified. A fresh
 ../video-cursor-client pair compares positions within the same client and logs
 exact cursor-state failures. Both revised ordinary cases are now strict PASS.
 Large overlap was72ms at both positions and upload66ms at both: no convincing
-pointer-placement benefit. Next separate operation/flush/check costs with
-calibrated QPC brackets or capture the actual row-copy branch. No renderer patch yet. Retain generic
+pointer-placement benefit. The new ../video-qpc-settled matched pair is strict
+PASS and places>99.88percent of large upload/overlap time inside BitBlt. Flush
+is about11us versus66-72ms drawing calls. Small timings are more variable; this
+is emulator elapsed time, not physical bandwidth. Next capture the actual
+row-copy branch/access path. No renderer patch yet. Retain generic
 PnP lifecycle, complete alias/cache inventory and independent scanout gates.
 The existing0096 remains a bounded prototype;1080i is a separate handoff project.
 See ../video-map-profile/NEXT.md and ../video-copy-profile-visible/SHADOW-DESIGN.md.

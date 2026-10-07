@@ -1,3 +1,107 @@
+# QPC decomposition complete; all owned sessions CLOSED
+
+2026-10-07T17:34:25.103113+00:00. Read outputs/video-qpc-settled/REPORT.md,NEXT.md,pair-review.json.
+Fresh control001/instrumented001 each strictPASS54cases/162fullRGBstages, exact
+timed/post cursor checks, normal automatic restart/dashboard, full clean
+allocation324dirs6755files325dirclusters,5hives/protected/config/pagefile, empty
+warning/error/application deltas. Same probe111 SHAcd970f315ea4194ca0a8ce40108f335248b19fc428ca25e916bbef8828e03544,
+same drivers/settings/policy, only detailed-QPC mode differs. No debugger/UI on
+these revised runs. Preparation24198/68040, control44802/7027/18620 and detailed
+37593/1113/14025 all CLOSED. No owned emulator remains. Never relaunch/recollect.
+
+Large768x384 upload: control total65.345ms, detailed total66.215ms, operation
+66.148ms, flush0.01156ms, checks0.04587ms. Overlap: control73.497ms, detailed
+72.359ms, operation72.298ms, flush0.01102ms, checks0.04338ms. Operation accounts
+for>99.88percent in every large upload/overlap sample. Functional emulator elapsed
+time only, not physical bandwidth or isolated CPU time. Small cases vary more;
+all18 ratio medians0.874-1.242, large fill+10.37percent. No blanket claim of zero
+instrumentation effect. Independent component medians do not necessarily sum.
+
+QPC1125000Hz stable/monotonic,64-bit checked sums,128adjacent-pair calibrations
+before/after eachcase, coarse disagreement max14.16/14.64ms within fixed gate.
+Both original real logs accepted;20 corrupt protocols rejected by host checks.
+Control initial exact cursor readiness took10attempts3840ms; detailed allcases
+oneattempt(max480ms). Readiness10s bound, two exactchecks50msapart; timed checks
+unchanged. No cursor/event/pixel gate waived. No exact cursor handoff cause claim.
+
+Old video-qpc-profile control001 strictPASS; instrumented001 CLOSED failure
+before timing: visible820,460,actualhandle65575 vs65553. Responsive desktop,
+post-exit manual Notepad/paused captures/restart. Cold integrity/events clean
+does not qualify missing workload. intervention-review.json records actual
+actions; never pair this with revised data or rerun its protocol checker. All
+old sessions50520/36077/34309/52193/17701/17617 CLOSED.
+
+Next specific discriminator: bounded actual row-copy branch/descriptor/first
+row-callee trace from win32kRVA117125, paired by thread/frame and resident pins;
+avoid per-row breakpoint hit-limit. See NEXT.md. Do not remove flush/checks for
+a cosmetic gain or patch cache/renderer speculatively. Preserve physical0101/
+video0093,0088rollback,immutable0.1.0,128GiB emulator closure and all failures.
+Original111nonASCII physical damage/restart remains unresolved. No physical
+FTP/deploy/test; old automation PAUSED. C:23,197,810,688free(~21.60GiB),20GiB
+buildguard intact; no storage relocation this turn. Review/payload checks and
+commit/push final source/reports next; no running processes to resume.
+
+# Revised QPC control strictPASS; detailed mode active
+
+2026-10-07T17:30:15.846401+00:00. video-qpc-settled control001 CLOSED strictPASS54/162 and
+full cold/config/pagefile/event/counter gates. Initial cursor readiness10attempts
+3840ms, later exact timed/post cursor checks pass. No gate waiver. Runner44802/
+observer7027/audit18620 CLOSED. Instrumented001 accepted17:29:51UTC; runner37593,
+supervisor1113 ACTIVE. No debugger/UI or physical access. Never duplicate launch
+or collection. After return audit/config/map/closure once, summarize pair and
+check-protocol real-log mutations. Keep old pre-timing failure distinct. Finish
+reports/notes/review/repo checks/commit/push.
+
+# Revised QPC control running
+
+2026-10-07T17:26:59.492420+00:00. video-qpc-settled both fixtures PREPARED, source/binary
+reviewed, expected before config/map/allocation. Probe111 SHAcd970f315ea4194ca0a8ce40108f335248b19fc428ca25e916bbef8828e03544.
+Preparation24198/68040 CLOSED. Control runner44802/supervisor7027 ACTIVE.
+Instrumented NEVER launched. Inspect actual launch records, do not duplicate.
+After control return perform audit/config/map/closure once, then detailed run.
+All old QPC-profile cases CLOSED including failed pre-timing cursor mismatch.
+No debugger/UI during new pair, no physical access or driver changes.
+
+# Initial QPC pair closed; bounded-readiness pair preparing
+
+2026-10-07T17:25:23.420195+00:00. video-qpc-profile control001 strictPASS; instrumented001
+CLOSED failed before any timing, cursor visible820,460 but handle65575 vs65553.
+Responsive desktop, post-exit manual inspection/restart; cold integrity/events
+clean. intervention-review.json records paused captures. Never relaunch/recollect
+or generate a pair review for that incomplete pair. All old sessions CLOSED.
+
+New video-qpc-settled same tests, bounded10s readiness for two exact cursor
+checks50ms apart, logged attempts/time; timed gates unchanged. New output111,
+same binary in both modes, no driver/settings/device-policy/physical changes.
+Control prepare24198 CLOSED; instrumented prepare68040 ACTIVE. No new launch
+yet. Finish both before-config/map checks then control single launch/audit,
+instrumented single launch/audit, pair-review/protocol tests and commit/push.
+No duplicate stages, preserve all prior failures.
+
+# QPC control strictPASS; instrumented run active
+
+2026-10-07T17:14:55.192074+00:00. video-qpc-profile control001 CLOSED strictPASS54/162,
+QPC frequency1125000, monotonic/stable/coarse agreement, clean cold/allocation/
+hives/protected/config/pagefile/events and normal restart. Runner50520,observer
+36077,audit34309 CLOSED. Instrumented001 runner52193/supervisor17701 ACTIVE.
+Read actual launch record; never duplicate. Same binary/drivers, mode1 detailed
+intervals only. After return audit/config/map/closure ONCE, summarize and real-log
+protocol mutation checks; report/review/check/commit/push. No physical access.
+
+# QPC decomposition control active
+
+2026-10-07T17:11:50.539175+00:00. outputs/video-qpc-profile fresh control001/instrumented001
+PREPARED, same probe110 SHA0690024609aff633e7c73c02157a75971bc7685a42e7839cb1496376f1663cfc.
+Same drivers/settings/policy and visible arrow820,460. Mode0 whole-loop QPC,
+mode1 adds operation/flush/check brackets.64-bit ticks, monotonicity/frequency,
+128-pair pre/post calibration, coarse-clock agreement and all old strict gates.
+Prep15890/92501 CLOSED. Control runner50520/supervisor36077 ACTIVE; inspect actual
+launch.json, no duplicate launch/collection. Instrumented NEVER launched.
+After control closure audit/config/map/record once, then instrumented single
+launch and same checks, summarize. No host input/debugger or heavy build/audit
+during timing. No physical access; preserve all old closed cases and baselines.
+Current work UNCOMMITTED. Need final reports/checks/review/commit/push.
+
 # Latest handoff: evidence committed and pushed
 
 2026-10-07 17:08 UTC. Evidence/source commit9aa9363a6d1347495a2040603975d876a3f5a30a
