@@ -1,3 +1,44 @@
+# Late cache review complete; keep the permanent UC mapping
+
+Read outputs/video-late-cache-review/REPORT.md, DESIGN.md, SHADOW-PLAN.md,
+NEXT.md, inventory.json, replay.json and shadow-contract.json. No driver build,
+guest launch or physical access in this step. All owned sessions remain CLOSED.
+Previous shared-trace/crash records and disks remain unchanged; never reuse them.
+
+Pinned actual NT5 code:18 function windows,17 resident reads;16 relocated PE
+matches plus explicit active CR4.PGE KeFlushCurrentTb variant. Nonexported
+MmSetPageProtection is discardable INIT, inspected only on disk.
+MmProtectMdlSystemAddress absent. Actual reserved-map code rejects live PTEs.
+Fifteen isolated instruction cases PASS as analysis:7 IoSpace/allocation cases,
+8 reserved-map cases covering1/14/15/1024pages and UC/WC. Every live replacement
+hits DA/107; every unmap/remap has nonpresent PTEs before restoration. Helpers
+modeled, no real cache transition. Reject the proposed fixed-physical lateWC
+handoff because crash renderer loses its valid mapping; no speculative PTE or
+PAT/global-flag patch and no mixed UC/WC aliases. This does not rule out every
+possible alternate framebuffer architecture.
+
+Corrected historical replay helper labels: RVA69098=KeFlushCurrentTb(), then
+RVA63D14=KeInvalidateAllCaches(1). Previous names were reversed; historical
+bytes/addresses/PTE outputs unchanged and old source/JSON preserved. Initial
+inspection assertion on the runtime CR4 helper variant retained with source;
+Python inspect.py naming collision fixed by renaming inventory.py before replay.
+Neither host issue involved a guest.
+
+Next NEW display prototype kit: first qualify a renamed direct-framebuffer DDI
+from the pinned ReactOS source lead against existing Microsoft framebuf, with
+explicit NT5 import/caps/cleanup/pointer review. Only then add a RAM bitmap with
+opaque primary surface and complete synchronous upload coverage.32 needed Eng
+exports exist in owned win32k; source10files pinned, no replacement DLL built or
+qualified. Existing emulator copy profile is not convincing speed evidence.
+Require independent scanout checks in addition to GDI self-readback, extra DDI
+coverage, unchanged strict cold/event gates and later sacrificial crash check.
+
+Preserve sharedUC0106 emulator baseline, physical0101/video0093,0088rollback,
+immutable0.1.0,completed128GiB recovery and all failures. Original111nonASCII
+physical damage/restart remains unresolved. Emulator ONLY; no physicalFTP,
+deployment or testing. Old automationPAUSED. Cfree22625693696 measured during
+this review; recheck before build, unchanged20GiB guard. Prior push a6546c1.
+
 # Shared UC alias and controlled crash checks CLOSED and PASS
 
 Read outputs/video-shared-trace2/REPORT.md,verification.json and

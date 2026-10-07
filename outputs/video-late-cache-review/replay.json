@@ -1,0 +1,394 @@
+{
+  "passed": true,
+  "scope": "Actual NT5 instruction replay with modeled helpers, not a guest cache transition.",
+  "physical_access": false,
+  "guest_launched": false,
+  "ordinary_qualified": false,
+  "kernel_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+  "inventory_sha256": "893114f64858fd3ede905fb9a4d6133d43b4b95d8e1df0d8a1a5fc992a108436",
+  "source_sha256": "118a239df74cda59fc7f9aa2824ace9e020a73252f196c90f92d3954b8cdddf6",
+  "io_cases": [
+    {
+      "wc_ready": 0,
+      "cache": 0,
+      "reserve_failure": false,
+      "returned": 4160749568,
+      "first_pte": 62914939,
+      "last_pte": 67105147,
+      "modeled_helpers": [
+        {
+          "name": "MiReserveSystemPtes",
+          "rva": 442816,
+          "arguments": [
+            1024,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modeled": true
+        }
+      ]
+    },
+    {
+      "wc_ready": 0,
+      "cache": 2,
+      "reserve_failure": false,
+      "returned": 0,
+      "first_pte": 0,
+      "last_pte": 0,
+      "modeled_helpers": [
+        {
+          "name": "MiReserveSystemPtes",
+          "rva": 442816,
+          "arguments": [
+            1024,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modeled": true
+        },
+        {
+          "name": "MiReleaseSystemPtes",
+          "rva": 444080,
+          "arguments": [
+            3225288704,
+            1024,
+            0
+          ],
+          "modeled": true
+        }
+      ]
+    },
+    {
+      "wc_ready": 1,
+      "cache": 0,
+      "reserve_failure": false,
+      "returned": 4160749568,
+      "first_pte": 62914939,
+      "last_pte": 67105147,
+      "modeled_helpers": [
+        {
+          "name": "MiReserveSystemPtes",
+          "rva": 442816,
+          "arguments": [
+            1024,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modeled": true
+        }
+      ]
+    },
+    {
+      "wc_ready": 1,
+      "cache": 2,
+      "reserve_failure": false,
+      "returned": 4160749568,
+      "first_pte": 62914923,
+      "last_pte": 67105131,
+      "modeled_helpers": [
+        {
+          "name": "MiReserveSystemPtes",
+          "rva": 442816,
+          "arguments": [
+            1024,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modeled": true
+        },
+        {
+          "name": "KeFlushCurrentTb",
+          "rva": 430232,
+          "arguments": [],
+          "modeled": true
+        },
+        {
+          "name": "KeInvalidateAllCaches",
+          "rva": 408852,
+          "arguments": [
+            1
+          ],
+          "modeled": true
+        }
+      ]
+    },
+    {
+      "wc_ready": 0,
+      "cache": 0,
+      "reserve_failure": true,
+      "returned": 0,
+      "first_pte": 0,
+      "last_pte": 0,
+      "modeled_helpers": [
+        {
+          "name": "MiReserveSystemPtes",
+          "rva": 442816,
+          "arguments": [
+            1024,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modeled": true
+        }
+      ]
+    },
+    {
+      "wc_ready": 1,
+      "cache": 0,
+      "reserve_failure": true,
+      "returned": 0,
+      "first_pte": 0,
+      "last_pte": 0,
+      "modeled_helpers": [
+        {
+          "name": "MiReserveSystemPtes",
+          "rva": 442816,
+          "arguments": [
+            1024,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modeled": true
+        }
+      ]
+    },
+    {
+      "wc_ready": 1,
+      "cache": 2,
+      "reserve_failure": true,
+      "returned": 0,
+      "first_pte": 0,
+      "last_pte": 0,
+      "modeled_helpers": [
+        {
+          "name": "MiReserveSystemPtes",
+          "rva": 442816,
+          "arguments": [
+            1024,
+            0,
+            0,
+            0,
+            0
+          ],
+          "modeled": true
+        }
+      ]
+    }
+  ],
+  "reserved_cases": [
+    {
+      "pages": 1,
+      "initial_cache": 0,
+      "returned": 4160749568,
+      "in_place_bugcheck": [
+        218,
+        263,
+        4160749568,
+        3225288704,
+        3225288708
+      ],
+      "unchanged_on_rejection": true,
+      "nonpresent_ptes_during_gap": 1,
+      "remap_same_address": true,
+      "restored_initial_ptes": true,
+      "guards_intact": true,
+      "modeled_helpers": []
+    },
+    {
+      "pages": 1,
+      "initial_cache": 2,
+      "returned": 4160749568,
+      "in_place_bugcheck": [
+        218,
+        263,
+        4160749568,
+        3225288704,
+        3225288708
+      ],
+      "unchanged_on_rejection": true,
+      "nonpresent_ptes_during_gap": 1,
+      "remap_same_address": true,
+      "restored_initial_ptes": true,
+      "guards_intact": true,
+      "modeled_helpers": []
+    },
+    {
+      "pages": 14,
+      "initial_cache": 0,
+      "returned": 4160749568,
+      "in_place_bugcheck": [
+        218,
+        263,
+        4160749568,
+        3225288704,
+        3225288760
+      ],
+      "unchanged_on_rejection": true,
+      "nonpresent_ptes_during_gap": 14,
+      "remap_same_address": true,
+      "restored_initial_ptes": true,
+      "guards_intact": true,
+      "modeled_helpers": []
+    },
+    {
+      "pages": 14,
+      "initial_cache": 2,
+      "returned": 4160749568,
+      "in_place_bugcheck": [
+        218,
+        263,
+        4160749568,
+        3225288704,
+        3225288760
+      ],
+      "unchanged_on_rejection": true,
+      "nonpresent_ptes_during_gap": 14,
+      "remap_same_address": true,
+      "restored_initial_ptes": true,
+      "guards_intact": true,
+      "modeled_helpers": []
+    },
+    {
+      "pages": 15,
+      "initial_cache": 0,
+      "returned": 4160749568,
+      "in_place_bugcheck": [
+        218,
+        263,
+        4160749568,
+        3225288704,
+        3225288764
+      ],
+      "unchanged_on_rejection": true,
+      "nonpresent_ptes_during_gap": 15,
+      "remap_same_address": true,
+      "restored_initial_ptes": true,
+      "guards_intact": true,
+      "modeled_helpers": [
+        {
+          "name": "KeFlushCurrentTb",
+          "rva": 430232,
+          "arguments": [],
+          "modeled": true
+        },
+        {
+          "name": "KeFlushCurrentTb",
+          "rva": 430232,
+          "arguments": [],
+          "modeled": true
+        }
+      ]
+    },
+    {
+      "pages": 15,
+      "initial_cache": 2,
+      "returned": 4160749568,
+      "in_place_bugcheck": [
+        218,
+        263,
+        4160749568,
+        3225288704,
+        3225288764
+      ],
+      "unchanged_on_rejection": true,
+      "nonpresent_ptes_during_gap": 15,
+      "remap_same_address": true,
+      "restored_initial_ptes": true,
+      "guards_intact": true,
+      "modeled_helpers": [
+        {
+          "name": "KeFlushCurrentTb",
+          "rva": 430232,
+          "arguments": [],
+          "modeled": true
+        },
+        {
+          "name": "KeFlushCurrentTb",
+          "rva": 430232,
+          "arguments": [],
+          "modeled": true
+        }
+      ]
+    },
+    {
+      "pages": 1024,
+      "initial_cache": 0,
+      "returned": 4160749568,
+      "in_place_bugcheck": [
+        218,
+        263,
+        4160749568,
+        3225288704,
+        3225292800
+      ],
+      "unchanged_on_rejection": true,
+      "nonpresent_ptes_during_gap": 1024,
+      "remap_same_address": true,
+      "restored_initial_ptes": true,
+      "guards_intact": true,
+      "modeled_helpers": [
+        {
+          "name": "KeFlushCurrentTb",
+          "rva": 430232,
+          "arguments": [],
+          "modeled": true
+        },
+        {
+          "name": "KeFlushCurrentTb",
+          "rva": 430232,
+          "arguments": [],
+          "modeled": true
+        }
+      ]
+    },
+    {
+      "pages": 1024,
+      "initial_cache": 2,
+      "returned": 4160749568,
+      "in_place_bugcheck": [
+        218,
+        263,
+        4160749568,
+        3225288704,
+        3225292800
+      ],
+      "unchanged_on_rejection": true,
+      "nonpresent_ptes_during_gap": 1024,
+      "remap_same_address": true,
+      "restored_initial_ptes": true,
+      "guards_intact": true,
+      "modeled_helpers": [
+        {
+          "name": "KeFlushCurrentTb",
+          "rva": 430232,
+          "arguments": [],
+          "modeled": true
+        },
+        {
+          "name": "KeFlushCurrentTb",
+          "rva": 430232,
+          "arguments": [],
+          "modeled": true
+        }
+      ]
+    }
+  ],
+  "previous_replay_correction": {
+    "source": "outputs/video-cache-handoff/map-replay.json",
+    "sha256": "1ceff25a54f373d02a2018b85fd6f7d0b42e86bf0917c7fcf1b1961b174478e2",
+    "reason": "Historical labels for helper RVAs 0x69098 and 0x63d14 were reversed. Actual order is KeFlushCurrentTb then KeInvalidateAllCaches(1). Historical bytes, addresses and PTE results remain unchanged."
+  },
+  "limits": "Allocation/cache/TLB helper side effects are modeled, not executed on hardware. Actual reserved-map/unmap instructions execute against synthetic MDLs/PTEs. A nonpresent PTE interval is demonstrated; no crash is injected in a running Windows guest. This does not prove all possible WC architectures impossible."
+}
