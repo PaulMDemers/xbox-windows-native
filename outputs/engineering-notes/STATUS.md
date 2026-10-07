@@ -5,8 +5,9 @@ verified private backup. A read-only raw-C scan found the508.6MB shadowc.img and
 exactly matched Windows'2,932,736-byte free-space reading; no corruption/orphans
 or C deletions. The supported GPU INF and a single DevicePath change are staged,
 with SOFTWARE rollback preserved. After confirmed keyboard readiness, the single
-controlled setup boot was accepted at01:52:08UTC. Desktop/setup observations and
-post-restart collection remain pending; no new event qualification yet.
+controlled setup boot was accepted at01:52:08UTC. First collection confirms GPU registration and unchanged binaries, with a new
+malformed SetupAPI span still unresolved. User-authorized second boot was accepted
+at02:09:25UTC; no new event or unattended qualification yet.
 
 Early7October emulator follow-up: the ordinary fifteen-minute0098 workload
 passed after supported GPU setup and an emulator-only null-device INF. New

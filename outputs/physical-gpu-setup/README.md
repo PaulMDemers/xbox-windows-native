@@ -44,3 +44,21 @@ state and requested one boot at2026-10-07 01:52:08UTC. UnleashX accepted EXEC.
 The console is intended to remain at Windows desktop with normal idle startup.
 Actual device setup and subsequent normal-restart collection are pending;
 launch acceptance does not establish that Windows or GPU installation succeeded.
+
+## First collection and authorized second launch
+
+User rebooted after difficulty selecting the driver and explicitly requested
+relaunch. Collection shows successful GPU installation, reboot required by
+query-removal veto, ConfigFlags0/class0001/XboxVnt5/oem2.inf and Start3. The
+installed OEM INF exactly matches the staged file; driver hashes are unchanged.
+Both SYSTEM and SOFTWARE traverse structurally. Reboot method remains unknown.
+
+A new SetupAPI span contains92 non-ASCII bytes. Repeated readbacks match and the
+old log is an exact prefix. Preserve this anomaly as unresolved; it is not a
+clean setup qualification. The generic prompts were01B4 followed by01C1; logs
+then advance to USBffff:ffff after GPU completion.
+
+second-boot.py requested one separately recorded boot at02:09:25UTC on7October,
+after verifying collected state and rollback. UnleashX accepted it. No file
+changes or automatic restart were made. Collect with second-boot.py collect once
+after user restart; do not repeat either launch or infer desktop success.

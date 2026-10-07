@@ -1,3 +1,37 @@
+# Second GPU setup boot accepted; GPU registration confirmed, log anomaly unresolved
+
+2026-10-07 02:09 UTC. User rebooted after difficulty clicking the GPU driver and
+explicitly requested relaunch. First run collected ONCE, preserving logs and
+SYSTEM/SOFTWARE. SetupAPI identifies audio01B0, then generic PCI01B4 and01C1, then
+GPU02A0, then USBffff:ffff. GPU installation actually finished successfully and
+requested reboot after query-removal veto. SYSTEM confirms ConfigFlags0, class
+0001, XboxVnt5, oem2.inf/Xbox.Install; service Start3. OEM INF is exact staged
+package. Driver/baseline hashes unchanged. SYSTEM6001keys/18608values and
+SOFTWARE26914keys/39260values traverse successfully.
+
+CAUTION:92 non-ASCII bytes in a new SetupAPI span (delta offsets6046..6156),
+preceded by intact original log prefix. Exact repeated FTP readbacks agree.
+Cause unresolved; first boot is NOT clean qualification. Preserve raw bytes,
+review-first.py and first-setup-review.json. First reboot method not independently
+established; no normal-shutdown claim yet. Event decoding/full cold audits pending.
+
+Second boot explicitly authorized and accepted02:09:25.348123UTC. Record:
+outputs/physical-gpu-setup/002/physical.json; second-boot.py launch must NEVER be
+repeated. No new physical file writes; all captured state and installed OEM INF
+were rechecked before launch. Keyboard reminder delivered; prior readiness
+confirmation retained, not falsely recorded as a fresh unplugged observation.
+Normal idle startup, no timed workload/automatic restart; no background observer
+or automation. User should reconnect keyboard at desktop and report remaining
+prompts. GPU selection should no longer be needed, but actual boot unobserved.
+After a normal user restart, second-boot.py collect ONCE, then review events,
+SetupAPI changes/log anomaly, persistent GPU binding and storage integrity.
+
+Cache cleanup/raw C findings preserved. No C files deleted; shadowc.img explains
+legitimate nearly-full raw system partition.0101/video0093 unchanged,0098 rollback
+and original0088/v0.1.0 intact. Latest prior ed5472d; current evidence being pushed.
+
+## Earlier continuation (historical)
+
 # GPU setup boot launched once; waiting for user desktop/prompt observations
 
 2026-10-07 01:52 UTC. User confirmed Razer keyboard unplugged and authorized

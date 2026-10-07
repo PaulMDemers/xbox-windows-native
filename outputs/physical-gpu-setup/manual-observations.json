@@ -1,0 +1,32 @@
+{
+  "scope": "User observations during the single GPU setup boot; separate from collected machine evidence",
+  "observations": [
+    {
+      "utc": "2026-10-07T02:03:00.709747+00:00",
+      "user_report": "First is multimedia audio controller",
+      "interpretation": "Matches pre-boot captured unsupported PCI10DE:01B0 DeviceDesc. Current live hardware ID not directly observed.",
+      "instruction": "Cancel this audio wizard only; report next device prompt. Do not apply GPU INF to audio.",
+      "action_confirmed": false
+    },
+    {
+      "utc": "2026-10-07T02:03:55.523500+00:00",
+      "user_report": "Next is PCI Device",
+      "interpretation": "Generic label is ambiguous: pre-boot capture has 10DE:01B4 and 10DE:01C1 plus historical emulator1B36:0005. No live ID inferred.",
+      "instruction": "Cancel this wizard temporarily to advance GPU-only setup; leave device unconfigured. Determine actual instance from subsequent SetupAPI capture. No disable or null driver requested.",
+      "action_confirmed": false
+    },
+    {
+      "utc": "2026-10-07T02:05:33.534686+00:00",
+      "user_report": "Another PCI device, followed by Video Controller (VGA Compliant)",
+      "interpretation": "User reports video controller wizard after two generic PCI prompts; installation not yet confirmed.",
+      "instruction": "Search suitable driver in C:\\xwninf102; expect Xbox NV2A firmware framebuffer (experimental). Accept unsigned warning only for that package, Finish, defer restart until remaining prompts reviewed.",
+      "action_confirmed": false
+    },
+    {
+      "utc": "2026-10-07T02:09:52.149648+00:00",
+      "user_report": "Rebooted because could not click driver in step3; explicitly asked relaunch",
+      "interpretation": "Reboot method not independently established. First collected SetupAPI and SYSTEM show successful GPU binding despite user UI difficulty.",
+      "action": "Collected first run once and verified repeated readbacks, then requested separately recorded second launch; dashboard accepted."
+    }
+  ]
+}
