@@ -362,3 +362,12 @@ the original failure and separate file-byte correctness, allocation consistency,
 caller-buffer identity, shutdown behavior and first-install concurrency. A
 negative bounded test should guide the next reproduction rather than justify an
 unrelated filesystem patch or waiver of a physical qualification failure.
+
+The follow-up repeated-append tests passed16,384 appends with per-append versus
+end-only explicit flush and retained versus reopened handles. Cold outputs were
+identical across policies for each seed offset. A separate actual first-install
+fixture upgraded to0101 produced5300 clean ASCII SetupAPI bytes and a normal
+restart under the narrowly targeted existing UI helper. Installer warning writes
+landed at different offsets from the physical failure. These results strengthen
+the bounded evidence but do not identify its cause; see the first-install report
+and the planned alignment variant before proposing a filesystem change.

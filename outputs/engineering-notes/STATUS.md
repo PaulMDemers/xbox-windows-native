@@ -1,5 +1,13 @@
 # Native Xbox Windows 2000 status — 6 October 2026
 
+7 October 03:23 UTC: two repeated-append runs passed 16,384 appends and 32 exact
+cold files. A separate UI-assisted first GPU installation on0101 also passed its
+cold checks, adding5300 ASCII-only SetupAPI bytes and restarting normally. No
+corruption reproduced; actual installer log offsets differ from the physical
+anomaly. Physical state is unchanged and that anomaly remains unresolved. See
+[sequence report](../fatx-append-sequence/REPORT.md) and
+[first-install report](../fatx-first-install-0101/REPORT.md).
+
 7October02:53UTC: two fresh emulator append-boundary runs passed96 cases each,
 including the exact physical log offset. All192 files matched cold expected
 bytes; normal restart, hive parsing and allocation passed. No new unexpected

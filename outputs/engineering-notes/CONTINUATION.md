@@ -1,3 +1,34 @@
+# Sequence and first-install emulator tests complete; physical anomaly unresolved
+
+2026-10-07 03:23UTC. fatx-append-sequence001/002 both PASS:16,384 appends total,
+32 exact cold files, normal restarts, no unexpected events, five parsed hives/run,
+complete consistent F allocation. SetupAPI unchanged in these settled boots.
+All runner/observer sessions closed; do not repeat completed launches or audits.
+
+fatx-first-install-0101/001 launched03:19:25 and returned03:22:29. Targeted prior004
+helper completed exact GPU Finish/No and identified emulator placeholder Cancel;
+queue idle at120s, normal6006, no new unexpected errors/popups/application records.
+Cold GPU class0001/XboxVnt5/oem2.inf/ConfigFlags0, Start3; binaries unchanged,
+5 parsed hives, full F allocation322dirs/6743files/323dirclusters,0orphans/errors.
+SetupAPI adds5300 ASCII bytes and preserves135501-byte prefix. No malformed span.
+Diagnostic qualification PASS only; ordinary/physical qualification both false.
+Runner86332, supervisor78400 and cold readers closed. No process remains active.
+
+Actual unsigned-driver lines begin at138864/139166/139744 (sector offsets112/414/
+480), unlike physical270225/401. Next controlled variant in first-install kit's
+NEXT.md: recorded log-prefix alignment in a fresh pre-install child, verify actual
+resulting positions. Original physical first-reset method still unknown. No cause
+inferred and no driver source fix fabricated from negative reproduction tests.
+
+Physical Xbox was not contacted or changed this turn.0101/video0093, normal
+startup, GPU registration, prompts, raw-C warning, original0088 and immutable0.1.0
+remain as recorded. No release/recovery snapshot or automation change. All three
+new attempts and old failures retained. New source/reports reviewed and checks/
+commit/push completing; prior daddee5. Kits include byte-preserving Git attributes
+and staged evidence hash verifiers. No more manual action required for this turn.
+
+## Earlier continuation (historical)
+
 # Two append-boundary emulator passes; physical anomaly still unresolved
 
 2026-10-07 02:53 UTC. outputs/fatx-append-boundary cases001 and002 both finished,
