@@ -7,7 +7,10 @@ or C deletions. The supported GPU INF and a single DevicePath change are staged,
 with SOFTWARE rollback preserved. After confirmed keyboard readiness, the single
 controlled setup boot was accepted at01:52:08UTC. First collection confirms GPU registration and unchanged binaries, with a new
 malformed SetupAPI span still unresolved. User-authorized second boot was accepted
-at02:09:25UTC; no new event or unattended qualification yet.
+at02:09:25UTC and has now been collected after normal shutdown. GPU registration
+persisted; all3439 binary hashes, nine hives and full F allocation pass. No new
+log anomaly or popup; one raw-C Srv warning and other device prompts remain.
+User-assisted configuration is verified; strict/unattended qualification is not.
 
 Early7October emulator follow-up: the ordinary fifteen-minute0098 workload
 passed after supported GPU setup and an emulator-only null-device INF. New

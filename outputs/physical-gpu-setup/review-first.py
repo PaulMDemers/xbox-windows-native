@@ -2,7 +2,8 @@
 import hashlib,json,sys
 from pathlib import Path
 k=Path(__file__).resolve().parent;sys.path.insert(0,'/home/paul/xbox-windows-native/toolchains/offline-disk/root/usr/lib/python3/dist-packages');import hivex
-art=k/'artifacts';result={'scope':__doc__,'hives':{}}
+case=sys.argv[1] if len(sys.argv)>1 else '001';assert case in ['001','002']
+target=k if case=='001' else k/'002';art=target/'artifacts';result={'scope':__doc__,'case':case,'hives':{}}
 def vals(h,n):
  out={}
  for v in h.node_values(n):
@@ -27,8 +28,8 @@ for name in ['system','software']:
     v=vals(h,inst);driver=v.get('Driver');devices.append(dict(path=base+'\\'+h.node_name(dev)+'\\'+h.node_name(inst),values=v,driver_key=vals(h,node(h,cs+'\\Control\\Class\\'+driver)) if driver else {}))
   result['gpu']=devices;result['service']=vals(h,node(h,cs+r'\Services\XboxVnt5'))
  else:result['device_path']=vals(h,node(h,r'Microsoft\Windows\CurrentVersion'))['DevicePath']
-before=(art/'before-setupapi.log').read_bytes();after=(art/'after-setupapi.log').read_bytes();result['setupapi_prior_exact_prefix']=after.startswith(before);new=after[len(before):] if after.startswith(before) else after
+before=((k/'artifacts/before-setupapi.log') if case=='001' else (k/'artifacts/after-setupapi.log')).read_bytes();after=(art/'after-setupapi.log').read_bytes();result['setupapi_prior_exact_prefix']=after.startswith(before);new=after[len(before):] if after.startswith(before) else after
 bad=[i for i,b in enumerate(new) if b not in (9,10,13) and not 32<=b<127];result['new_log_non_ascii_count']=len(bad);result['new_log_non_ascii_range']=[min(bad),max(bad)] if bad else None
 result['setupapi_success_record']=b'Device install finished successfully (PCI\\VEN_10DE&DEV_02A0' in new
 result['qualification']='Incomplete setup experiment; malformed SetupAPI bytes preserved and unresolved, not a clean PASS'
-(k/'first-setup-review.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result,indent=2))
+(target/('first-setup-review.json' if case=='001' else 'setup-state-review.json')).write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result,indent=2))

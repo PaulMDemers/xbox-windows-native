@@ -1,3 +1,63 @@
+# GPU registration verified after normal restart; all postboot audits complete
+
+2026-10-07. User All set confirmed return after requested normal Windows Restart.
+Second GPU boot collected ONCE. SYSTEM retains exactGPU class0001/XboxVnt5/oem2.inf,
+ConfigFlags0,Start3. SetupAPI adds3224 ASCII-only bytes, no GPU installer; first
+log remains exact prefix. EventLog one6005/6006 pair, no new popup/application
+records. Only unexpected warningSrv2013 WindowsF(raw Xbox C/shadow image); old
+G/H cache warnings absent. Remaining01B0/01B4/01C1/USBffff:ffff prompts persist.
+
+Read-only postboot F scan at/E/Applications/XWNGpu102b launched/returned/collected
+ONCE:6075dirs/122327files/6080dirclusters,0orphans/errors. Observer44062 closed.
+audit-second.py session48938 finished3439 binary hashes exact and nine hives
+structural/sequence/checksum PASS. finish-second.py completed final dashboard
+hashes:0101/video0093, normal startup, exact OEM INF and SOFTWARE backup; collected
+SYSTEM/SOFTWARE/SetupAPI unchanged. All stage JSONs complete; do not repeat them.
+No owned background process, emulator or automation. Dashboard available last check.
+
+outputs/physical-gpu-setup/002/qualification.json: configuration_verified=true,
+strict_qualification_passed=false. This is user-assisted setup, not unattended
+validation, accelerated graphics, full audio or a release/recovery qualification.
+No new Windows run or recovery snapshot. All original rollback/v0.1.0 preserved.
+
+Unresolved first-boot log anomaly:111-byte prefix at270225..270335,92 non-ASCII
+bytes, ending exactly at512-byte boundary. Matching remainder of earlier intact
+unsigned-driver line is evidence for a damaged prefix, not cause. First boot
+has no6006. Optional user question PENDING: Windows Restart versus console power/
+reset for that first reboot? No answer inferred. Second boot has no new malformed
+bytes. Preserve raw logs; do not silently repair or blame filesystem/power/video.
+
+Next steps in physical-gpu-setup/NEXT.md: explicit actual-device support/policy;
+legitimate raw-C capacity integration without deleting softmod/silencing events;
+bounded emulator reproduction of append offset401 versus first GPU setup, with
+source-buffer/completion/flush/cold-readback evidence. Only then unattended soak.
+Current source/reports being committed/pushed; prior6f5d6b5. No manual action needed
+for this completed collection. Do not launch another physical test implicitly.
+
+## Earlier continuation (historical)
+
+# Second GPU boot collected; read-only postboot scan running
+
+2026-10-07 02:29 UTC. User confirmed normal restart complete. second-boot.py
+collect ran ONCE. Registry retains GPU class0001/XboxVnt5/oem2.inf/ConfigFlags0,
+serviceStart3. New SetupAPI delta3224bytes is ASCII-only, original first log is
+exact prefix, no new GPU installer. Same01B0/01B4/01C1/USBffff prompts remain.
+Events: second boot has one6005/6006 pair, no popup/application event. Only new
+unexpected warning isSrv2013 WindowsF(raw Xbox C shadow image); G/H warnings no
+longer occur after X/Y cleanup. First boot lacks6006 and retains92 anomalous
+non-ASCII bytes at offsets270225..270335, ending on512-byte boundary. Cause unknown;
+no strict PASS or softmod deletion/event waiver.
+
+Unique read-only F scan launched ONCE02:28:03UTC at/E/Applications/XWNGpu102b,
+returned02:29:48, collected once:6075 directories/122327 files,0orphans/errors.
+Observer44062 closed. audit-second.py session48938 is running,2800binaries checked
+without mismatch so far;3439/nine-hive completion still required. Inspect JSON,
+resume only an incomplete audit, then finish-second.py once. No repeated scan. No further Windows launch. All previous trials and
+scans remain preserved. Full cold checks are outstanding. Current changes uncommitted,
+prior6f5d6b5. No automation modified; no emulator running.
+
+## Earlier continuation (historical)
+
 # Second GPU boot reached UI without VGA wizard; remaining prompts persist
 
 User reports second boot no longer asks for VGA installation; the other prompts

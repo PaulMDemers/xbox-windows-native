@@ -330,3 +330,19 @@ fonts, preferences and all other root entries were preserved. No new Windows
 event result yet demonstrates whether the corresponding G/H warnings disappear.
 The legitimate raw-C occupancy remains an integration/policy issue; no strict
 gate was waived and no low-space event was suppressed.
+
+## Post-GPU setup cold audit
+
+Both post-cleanup setup boots stopped emitting the former WindowsG/H cache-space
+warnings; WindowsF/raw Xbox C remains nearly full from the required shadow image.
+Second boot records normal6006 shutdown, no new popup/application events, intact
+3439 binary hashes and nine hives, and consistent full F allocation. This does
+not waive the raw-C warning or prove unattended setup.
+
+First GPU setup log has a111-byte malformed prefix at offset270225, ending at
+270336 (512-byte boundary), with92 non-ASCII bytes. The108-byte remainder exactly
+matches an earlier intact unsigned-driver line. First boot lacks6006; reboot
+method remains unknown pending optional user clarification. Second boot preserves
+that file prefix and appends3224 valid ASCII bytes. This clue warrants separate
+caller-buffer/append/flush/first-install reproduction; do not declare a FATX,
+video or power-loss cause from it. Raw logs remain untouched and private.

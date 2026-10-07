@@ -62,3 +62,27 @@ second-boot.py requested one separately recorded boot at02:09:25UTC on7October,
 after verifying collected state and rollback. UnleashX accepted it. No file
 changes or automatic restart were made. Collect with second-boot.py collect once
 after user restart; do not repeat either launch or infer desktop success.
+
+## Second boot collected and cold-audited
+
+The user reported no repeated VGA wizard and later completed the requested
+normal Windows restart. EventLog confirms one6005/6006 pair. SetupAPI has no
+GPU reinstall, preserves the entire first log, and appends3224 ASCII-only bytes;
+SYSTEM retains exact GPU class0001/XboxVnt5/oem2.inf/ConfigFlags0 and Start3.
+There are no new Application Popup or application-log events. Srv2013 now appears
+only for WindowsF (raw Xbox C containing the softmod shadow image); the previous
+G/H cache warnings are absent. Strict event qualification still fails.
+
+The unique read-only postboot scan returned and was collected once:6075
+directories,122327 files,6080 directory clusters, no orphans or allocation errors.
+All3439 manifest binary hashes match and all nine registry hives pass structural,
+sequence and checksum validation. Final dashboard reads reconfirm installed
+baseline, normal startup, exact GPU OEM INF, preserved SOFTWARE backup and
+unchanged collected SYSTEM/SOFTWARE/SetupAPI. All owned processes are closed.
+
+GPU configuration is verified for this user-assisted boot. Overall strict
+qualification is false: remaining device prompts, legitimate raw-C capacity
+warning and the first boot's malformed log span remain unresolved. First boot
+has no6006 record; the optional question about its reboot method is pending.
+No release/recovery capture or further Windows launch was performed. See002/
+qualification.json, final-state.json and NEXT.md.
