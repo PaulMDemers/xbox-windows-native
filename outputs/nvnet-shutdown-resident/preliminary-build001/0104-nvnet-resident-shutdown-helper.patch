@@ -1,0 +1,20 @@
+--- a/drivers/network/dd/nvnet/nic.c
++++ b/drivers/network/dd/nvnet/nic.c
+@@ -206,15 +206,14 @@
+     }
+ }
+ 
+-CODE_SEG("PAGE")
++/* MiniportShutdown reaches this helper during a bugcheck at HIGH_LEVEL.
++ * Keep it resident; the existing bounded MMIO polling requires no paging. */
+ VOID
+ NvNetIdleTransmitter(
+     _In_ PNVNET_ADAPTER Adapter,
+     _In_ BOOLEAN ClearPhyControl)
+ {
+     ULONG i;
+-
+-    PAGED_CODE();
+ 
+     if (ClearPhyControl)
+     {

@@ -1,3 +1,43 @@
+# NVNet0104 ordinary comparison passed; new crash003 preparing
+
+2026-10-07 12:10UTC. Read outputs/nvnet-shutdown-network/REPORT.md,pair-review.json
+and outputs/nvnet-shutdown-resident/helper-equivalence.json. Both ordinary cases
+CLOSED and strictTRUE:792appends32shrinks132reopens11exactcoldfiles; two real TCP
+exchanges each32x4096bytes each direction; normalshutdown/dashboard; allocation
+323dirs6765files324clusters0errors/orphans;5hives/protectedhashes;zero newwarning/
+error/applicationevents. Same0103FATX/0102HAL/video0093/HidServ/settings/policy;
+onlyNVNetdiffers. Corrected0104 candidateaee9c501...,tree4ab4b8ab...; allshutdown
+helpersnonpaged, entire176byteidlehelper identical after importedaddressresolution.
+Rejected firstbuild and outboundTCP harness failure preserved. Old resident-kit
+candidate001 PREPARED NEVER LAUNCHED. Restrict=on retained withloopbackforward.
+New nvnet-controlled-dump/crash003 preparation46222 ACTIVE; notlaunched yet.
+All normal runners/supervisors/networkresponders/audits/builds CLOSED. Inspect
+actualrecords,neverduplicate. NextnewcrashpinsNVNetshutdownentry/idle/pairedreturn,
+callbackscanreturn,dumpentry/return/highLBAcoldheader. Onlythen recoverychild.
+No physicalFTP/deploy/test; preservephysical0101/video0093,0088rollback,0.1.0.
+Original111nonASCIIphysicaldamage/restart unresolved. Cutoff13UTC,no newexperiment
+then; preservecleanup/report/pause. C:~28GB,20GiBbuildguard unchanged.
+# NVNet0104 compiled; fresh normal comparison in preparation
+
+2026-10-07 11:55 UTC. Pushed edf81dd closes controlled-dump-observe/crash002;
+never relaunch/recollect. Actual nested D1 at IRQL31 proved NVNet shutdown calls
+absent PAGE NvNetIdleTransmitter before dump writing. New uncommitted
+outputs/nvnet-shutdown-resident contains0104 removing PAGE on both definition
+and declaration, unchanged MMIO sequence. Preliminary build001 rejected by
+residency gate because header annotation remained; preserved preliminary-build001
+and private binary. Corrected build002 source4ab4b8ab56ee8373d60b3fade3ea192c041266c9
+and matched control001 compile/import/residency reviewed. Candidate aee9c501...
+control3ac30498... All shutdown helpers now nonpaged candidate. No runtime result
+yet. Normal kit adds two bounded TCP exchanges, each32x4096 bytes each direction,
+local host4597, before/after792append32shrink132reopen workload. Same FATX0103/
+HAL0102/video0093/HidServ and emulator-only device policy; strict events retained.
+Preparation control001 session77650 ACTIVE; builds17429/15911/93127 CLOSED.
+Inspect actual fixture/preflight/launch/cleanup records, never duplicate.
+Next normal matched controls/candidate full cold audits, then a NEW controlled
+crash with actual NVNet callback return/dump high-LBA evidence; recovery only
+after valid dump evidence. C:~28.5GB,20GiB guard unchanged. No physical access.
+Original111nonASCIIphysicaldamage/restart unresolved; preserve all baselines.
+
 # Dump blocker localized to pageable NVNet shutdown helper; all sessions closed
 
 2026-10-07 11:29UTC. Read outputs/controlled-dump-observe/REPORT.md,NEXT.md,

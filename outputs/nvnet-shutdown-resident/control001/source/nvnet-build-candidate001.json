@@ -1,0 +1,80 @@
+{
+  "status": "compiled",
+  "started_utc": "2026-10-07T11:40:36.459556+00:00",
+  "profile": "support",
+  "space_preflight": {
+    "minimum_free_gib": 20,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/home/paul/xbox-windows-native/build",
+        "free_bytes": 945552732160
+      },
+      {
+        "free_bytes": 29339152384,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "source_base": "afc0127e8f937ab68503d715d948844973756aa1",
+  "source_tree": "4ab4b8ab56ee8373d60b3fade3ea192c041266c9",
+  "inputs_sha256": "9865b936bbdb83a087661ed38970a14ebb642456e981b09bbf6793cfefa7282a",
+  "tool_sha256": {
+    "RosBE.sh": "1d04daf7393952441c62691bb7735042d236b0196778f1632f0a4383476143b7",
+    "bin/cmake": "049737b62e2803fd657041cf65b6bb6de7756db377c92c686c63eec373604e75",
+    "bin/ninja": "371e855768aa214225d4b17f49902cdd2b2daa8764514134524b07282c9e9e07",
+    "i386/bin/i686-w64-mingw32-gcc": "83015512671faaa0dbe6f043a0107f79c049f4268a67e39955388a8d9a0182e5"
+  },
+  "commands": [
+    [
+      "git",
+      "init",
+      "-q",
+      "/home/paul/xbox-windows-native/build/nvnet-shutdown-resident-002/source"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/nvnet-shutdown-resident-002/source",
+      "fetch",
+      "--depth=1",
+      "/home/paul/xbox-windows-native/sources/reactos",
+      "afc0127e8f937ab68503d715d948844973756aa1"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/nvnet-shutdown-resident-002/source",
+      "checkout",
+      "--detach",
+      "FETCH_HEAD"
+    ],
+    [
+      "/usr/bin/python3",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/tools/apply-series.py",
+      "--source",
+      "/home/paul/xbox-windows-native/build/nvnet-shutdown-resident-002/source",
+      "--manifest",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/nvnet-shutdown-resident/manifest.json"
+    ],
+    [
+      "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/RosBE.sh",
+      "/home/paul/xbox-windows-native/build/nvnet-shutdown-resident-002/source",
+      "0",
+      "i386"
+    ]
+  ],
+  "artifacts": [
+    {
+      "name": "nvnetnt5.sys",
+      "bytes": 83248,
+      "sha256": "aee9c501c5ec2e5f8c874ee23926cdeab4d10afec63f3735b8024a84bbc32fe8",
+      "profile": "support"
+    }
+  ],
+  "scope": "fresh source and compilation only; no runtime qualification",
+  "verified_source_tree": "4ab4b8ab56ee8373d60b3fade3ea192c041266c9",
+  "finished_utc": "2026-10-07T11:40:58.391209+00:00"
+}

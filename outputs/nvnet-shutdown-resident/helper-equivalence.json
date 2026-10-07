@@ -1,0 +1,63 @@
+{
+  "passed": true,
+  "scope": "Prove both compiled idle helpers differ only in identical imported addresses.",
+  "rows": [
+    {
+      "case": "control001",
+      "bytes": 176,
+      "relocations": [
+        {
+          "offset": 22,
+          "target": [
+            "ntoskrnl.exe",
+            "WRITE_REGISTER_ULONG"
+          ]
+        },
+        {
+          "offset": 86,
+          "target": [
+            "hal.dll",
+            "KeStallExecutionProcessor"
+          ]
+        },
+        {
+          "offset": 143,
+          "target": [
+            "ntoskrnl.exe",
+            "WRITE_REGISTER_ULONG"
+          ]
+        }
+      ],
+      "normalized_sha256": "746a5de617944567dc7d88a61222662cd6a69c691b850b3e2d93a7fd78e1bc18"
+    },
+    {
+      "case": "candidate001",
+      "bytes": 176,
+      "relocations": [
+        {
+          "offset": 22,
+          "target": [
+            "ntoskrnl.exe",
+            "WRITE_REGISTER_ULONG"
+          ]
+        },
+        {
+          "offset": 86,
+          "target": [
+            "hal.dll",
+            "KeStallExecutionProcessor"
+          ]
+        },
+        {
+          "offset": 143,
+          "target": [
+            "ntoskrnl.exe",
+            "WRITE_REGISTER_ULONG"
+          ]
+        }
+      ],
+      "normalized_sha256": "746a5de617944567dc7d88a61222662cd6a69c691b850b3e2d93a7fd78e1bc18"
+    }
+  ],
+  "limits": "Checks the entire176-byte compiled helper. Entry placement changes; no instruction change beyond identical import-address relocations. Runtime callback completion is separate."
+}
