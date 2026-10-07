@@ -1,3 +1,22 @@
+# FATX dump mapping request localized; diagnostic closed
+
+2026-10-07 10:08UTC. ALL owned sessions CLOSED. New outputs/dump-fsctl-trace
+REPORT.md,NEXT.md,trace-verification.json,contract-review.json and trace001 records.
+Never relaunch/recollect trace001. Candidate0102 HAL usage succeeds; actual
+FSCTL_QUERY_RETRIEVAL_POINTERS0x9003b KernelMode input8/output4,map65536 reaches
+FATX0101. Matched FATX dispatch and kernel caller both return C0000010. Output
+and caller IOSB unchanged (IOSB retains previous successful24-byte query).
+19events/23residentpins, paired returns, full breakpoint teardown. Workload
+792appends/32shrinks/132reopens/11exactcoldfiles, normal shutdown/dashboard,
+full allocation323dirs6765files324clusters0errors/orphans,5hives/protected hashes.
+StrictFALSE Ftdisk44(error4)+49(error3); no gate waiver. Debugger evidence only.
+Next bounded implementation plan: actual kernel paging-file QUERY contract,
+nonpaged byte-length/volume-offset extents, bounded chain/error cleanup and
+independent cold map oracle; new matched ordinary builds and successful runtime
+mapping capture. No real dump written or recovered. Physical111nonASCII damage
+and first restart remain unresolved. Emulator-only until13:00UTC; physical
+0101/video0093,0088rollback,immutable0.1.0 untouched. Closed sessions2265,51274,
+4549,43643,32021,39295,95772. No owned xemu/build/observer remains.
 # Matched HAL root dump-path comparison closed; later dump failure remains
 
 2026-10-07 09:47UTC. ALL owned sessions CLOSED. Read outputs/hal-dump-path/REPORT.md,
