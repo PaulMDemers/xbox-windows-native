@@ -12,7 +12,9 @@ hardware trial, not physically or release qualified. One controlled physical0101
 on7October, with0098 rollback and startup preserved. Its13-minute observer expired without dashboard return. User photos then showed
 the desktop and all five500-round workers complete in62.205seconds with zero
 API errors; restart was deliberately held for pending device installation. Cold
-file/shutdown audits are pending. No owned host process remains active. See
+checks now confirm exact test files, normal user-assisted shutdown, full allocation,
+3439 binaries and nine structural hives. Strict qualification still fails on the
+held automatic protocol and threeSrv warnings. No owned process remains active. See
 [continuation](CONTINUATION.md) for evidence and the hardware handoff.
 
 The project has reached a usable native desktop milestone. It is still an
@@ -30,9 +32,9 @@ ordinary files on FATX; xemu is the separate development/test environment.
   bulk-network qualification or evidence of hardware-accelerated OpenGL.
 - A root-level Windows entry in UnleashX. Video0093 subsequently passed two
   physical boots without resetting its diagnostic trace between them.
-- Current controlled trial: FATX0101/video0093, one-shot concurrency startup.
-  Original0098 driver/startup saved locally and in /F/xwn101a; collection restores
-  normal startup first. Hardware qualification is pending.
+- Current installed state: FATX0101/video0093 with normal startup restored.
+  Original0098 driver/startup saved locally and in /F/xwn101a. The bounded physical
+  workload and cold integrity checks completed; strict qualification remains FAIL.
   Original0088 rollback and the immutable v0.1.0 release remain preserved.
 
 ## Storage and stability

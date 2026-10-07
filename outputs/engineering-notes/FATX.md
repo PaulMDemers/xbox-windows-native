@@ -298,3 +298,16 @@ mapping/BMP soak also passed their complete gates, with normal restart and cold
 readback. This closes the planned emulator regression for the two observed lock
 cycles and makes0101 eligible for a controlled hardware trial. It does not close
 the earlier physical popup/capacity failures or qualify hardware0101.
+
+
+## Candidate0101 physical concurrency evidence (7 October)
+
+One five-worker physical run completed500 rounds each in62205ms with zero API
+errors. Test files matched exact final patterns after reboot; no intermediate
+remained. Full allocation scan,3439 binary hashes and nine structural hives passed.
+The helper intentionally held on pending installation258; the user acknowledged
+hardware prompts and requested normal restart. Event logs confirm orderly shutdown
+without a new popup, but threeSrv2013 warnings remain. This is bounded concurrency
+and cold-integrity evidence, not an unattended protocol PASS or proof of every
+possible lock ordering. See ../fatx0101-physical; retain original observer timeout
+and strict FAIL. Normal startup restored;0101 remains provisional with0098 rollback.

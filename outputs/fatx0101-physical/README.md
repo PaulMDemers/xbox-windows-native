@@ -75,3 +75,32 @@ reported guard reason; exact files and cold checks are still pending. The host
 qualifier now describes worker completion separately from the strict restart
 protocol gate; no gate was relaxed. Requested current hardware wizard device
 identity before changing installation choices. No scan or new launch occurred.
+
+## Completed cold result
+
+Collected once after user-reported clean normal restart; normal startup restored
+first. Exact log corroborates62205ms and all five500-round counters/errors.
+Three final files match every byte; meta.tmp absent. One normal EventLog shutdown,
+no new popup/application event. ThreeSrv2013 warnings for WindowsF/G/H recur.
+Automatic-restart protocol and original observer gate remain FAIL; user-assisted
+return is explicitly separate. Overall strict qualification remains FAIL.
+
+The unique read-only scan returned and was collected once:6074 directories,
+122320 files,6079 directory clusters, allocation consistent,0 orphan clusters,
+0 errors. All3439 manifest binaries match and nine registry hives pass structural
+checks. Final read-only console verification confirms0101/video0093, normal
+startup and preserved0098 rollback. No new Windows run or recovery capture.
+All owned observer/audit processes are closed.
+
+SetupAPI is an exact extension of the prior saved log. It records the installer
+queue for10DE:01B0,01B4,01C1,02A0 and USBffff:ffff without compatible drivers,
+followed by successful Razer1532:021E and mouse/HID installations. The current
+keyboard instance persists withkbdhid,keyboard.inf andConfigFlags0. PCI registry
+state is unchanged from the earlier snapshot: GPU hasXboxVnt5 service, flags0x400
+and no completed Driver binding. Other historical entries are not a live bus
+inventory. This manual setup cycle does not prove an unattended popup fix.
+
+Next: complete supported GPU PnP registration with the preserved driver package;
+handle unsupported devices explicitly; independently investigate the small-volume
+capacity warnings. Preserve this failing protocol record and use a new attempt
+for any later unattended test. Ensure keyboard is unplugged before Xromwell.

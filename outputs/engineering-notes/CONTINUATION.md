@@ -1,3 +1,39 @@
+# Physical0101 collected and audited; all owned processes closed
+
+2026-10-07 01:21UTC. Single candidate0101 trial completed500 rounds on each of
+five workers in62205ms, zero API errors. Helper held for pending install258;
+automatic observer expired. User closed multiple hardware prompts for keyboard
+registration and later requested a clean normal restart. Both are preserved as
+manual intervention, not an automatic PASS. Collection restored normal startup
+FIRST; raw log confirms photograph, three exact final files, meta.tmp absent.
+
+Cold results: one orderly EventLog shutdown; no new popup/application events;
+threeSrv2013 warnings on WindowsF/G/H. Unique read-only scan returned, collected
+once: allocation consistent,0orphans/errors. All3439 binaries match; nine hives
+structurally valid. Final read-only installed-state.json verifies0101/video0093,
+normal startup and0098 rollback. Overall strict FAIL (installer-held protocol,
+automatic return deadline, warnings). No PASS-gated recovery capture or new boot.
+
+SetupAPI exact prior prefix; current log identifies unsupported/no-compatible
+10DE01B0,01B4,01C1,02A0 andUSBffff:ffff prompts, then successful Razer1532:021E
+keyboard/HID and mouse installs. Current keyboard binding persists (kbdhid,
+keyboard.inf,flags0). PCI state unchanged; GPU serviceXboxVnt5/flags0x400 still
+lacks completed Driver binding. Registry entries include history; do not infer
+live bus population. No unsupported-device policy was transplanted from xemu.
+
+Sessions48504(scan observer),9944(binary/hive audit) completed. Earlier83795
+Windows observer closed. No owned background process. Never relaunch this trial
+or scan; all stage JSONs complete. Candidate0101 remains provisional,0098 local
+and remote rollback plus0088/v0.1.0 preserved. User screen/log questions resolved.
+
+Next: supported GPU PnP registration, explicit unsupported-device handling, and
+independent small-partition capacity investigation before a NEW unattended trial.
+Do not waiveSrv warnings, silence unknown devices, or delete cache/system files
+blindly. Keyboard must be unplugged for any later Xromwell launch. Current source/
+reports reviewed and being pushed; prior9dc8c29. No automation modified.
+
+## Earlier continuation (historical)
+
 # Physical0101 awaiting user normal restart after installer hold
 
 2026-10-07 01:11UTC. User reports multiple Found New Hardware prompts had to be
