@@ -1,3 +1,35 @@
+# Paired paced append/GDI diagnostic complete; no corruption reproduced
+
+2026-10-07 04:08 UTC. outputs/fatx-draw-append001(control)/002(drawing) both PASS,
+collected once after owned cleanup. Same immutable fatx-directory-order001
+pre-run parent; same helper e0f8c13e48a99c0ca7731b7f486950ba94bca8c27ea9ce26b5a54139e2948fc8,
+0101/video0093, startup and preserved hives. Only staged payload difference is
+xwnidle/drawmode.txt0 versus1. No physical access or driver source change.
+
+Each8192 appends/16 exact cold files; total16384/32 files/15977216 bytes. Drawing
+1644 completed cycles,1583 overlapping append epochs; all16 cases positive.
+Control0 cycles. Normal restarts, no unexpected events/popups/application records,
+five parsed hives, unchanged SetupAPI, full F323dirs6769files324dirclusters,
+zeroorphans/errors. Workload29400/51975ms are not video-performance comparisons.
+
+001 launch04:00:22 return04:02:15;002 launch04:04:36 return04:06:47 UTC.
+Runners86601/92151 and supervisors92800/25855 closed. Preparations6821/29407
+and all cold readers closed. No owned process remains. Do not repeat completed
+launches/collections. comparison.json and each qualification.json pin evidence.
+
+NEXT.md: coordinated bounded drawing worker alongside the actual aligned
+first-install helper. Keep exact GPU/placeholder handling, queue-idle gates,
+log offset and cold evidence; stop/join worker before restart. This pair is
+known-source I/O load, not actual installer source-buffer reproduction, pixel
+correctness, GPU acceleration or hardware qualification. Physical111-byte log
+anomaly and first-reset method remain unresolved. Actual-device and reserved
+raw-C capacity policy work remains required for unattended hardware qualification.
+Physical0101/video0093/normal startup/GPU registration, rollback0088 and immutable
+0.1.0 unchanged; no automation or recovery change. Source/report checks and
+private commit/push completing; prior a96e927. No user action required.
+
+## Prior completed state
+
 # Both aligned installer emulator runs passed; physical anomaly unresolved
 
 2026-10-07 03:54 UTC. outputs/fatx-install-alignment001/002 completed, cold-collected

@@ -1,5 +1,11 @@
 # Native Xbox Windows 2000 status — 6 October 2026
 
+2026-10-07 04:08 UTC: paired paced append control and GDI-load emulator runs passed:
+16,384 total appends,32 exact cold files, normal shutdowns, event/hive/allocation
+checks. Drawing completed1,644 cycles and overlapped every append case. No
+corruption reproduced or physical change; no video-speed claim. See
+[drawing/write report](../fatx-draw-append/REPORT.md).
+
 2026-10-07 03:54 UTC: two fresh aligned first-install diagnostics passed. The actual
 post-copy warning landed at the physical log offset270225 in both, including
 sector offset401, and all220 bytes survived cold readback. Normal restarts,

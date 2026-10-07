@@ -392,3 +392,20 @@ not settle concurrency or interruption behavior. See
 [aligned installer report](../fatx-install-alignment/REPORT.md) and its layout
 comparison records. The original111-byte span has91 high-bit bytes and one DEL;
 old92-non-ASCII wording included that control byte.
+
+## Paired drawing and append load
+
+A matched control/GDI pair on0101/video0093 passed16,384 appends and32 cold files.
+Only one mode byte differed; both had the same writer, pacing, private window and
+GDI resources. The load issued FillRect/BitBlt/GdiFlush on an owned512x320 bitmap
+and window, with1,583 completed operations overlapping append epochs and positive
+overlap in all16 cases. All byte oracles, normal-shutdown/event/hive/allocation
+checks passed. No physical corruption reproduced; this does not validate actual
+SetupAPI caller buffers or qualify hardware. Elapsed workload time is not a
+rendering benchmark. See [paired report](../fatx-draw-append/REPORT.md).
+
+For reusable FATX investigations, verify that the intended concurrent work really
+ran: separate atomic activity epochs prevent counting work across inactive gaps,
+and explicit overlap gates prevent a missing background worker from yielding a
+false pass. Keep deterministic payload/readback evidence independent of activity
+counters. Driver changes and instrumentation should be separate experiments.
