@@ -1,3 +1,112 @@
+# Active handoff: paging002 continues through normal shutdown
+
+2026-10-07 06:00UTC. User authorized emulator-only work through09:00EDT (13:00UTC).
+Heartbeat xbox-emulator-development-until-10am remainsACTIVE every10min. Physical
+0101/video0093/0088rollback/immutable0.1.0 untouched; no physical FTP/deploy/test.
+At13:00UTC stop new experiments, clean owned processes, finalreport, pauseheartbeat.
+
+fatx-paging-buffer002 is STILL ACTIVE: runner23088,tracer22159,supervisor50522.
+Launch05:54:30UTC. Do not relaunch or duplicate observer. Trace pins roottrace.py;
+001 original source preserved. Every trace snapshot is atomic. At05:59 it had
+21062 write entries,58 mapped log buffers, no first111 coverage yet. Bound100000
+hits/10min from prelaunch tracer start; test may take longer under debugger.
+Traces of unrelated disk writes slow guest time. Supervisor waits for ended_utc
+before signaling runner cleanup. Inspect actual sessions/trace/launch/cleanup.
+Then collect002 ONCE via trial.py, analyze.py002 and audit-before-target.py002
+underWSL. Do not read active disk. Preserve failures/coverage gaps, no driverpatch.
+
+All earlier attempts CLOSED; don't repeat collection. Paging001 verifies52
+buffers exact vs cold,109-byte suffix captured,111-byte prefix NOT captured;
+complete cold warning intact. audit-before-target.py001 confirms eventual220-byte
+physical range was allZERO in immutable input, every byte differs afterward.
+Thus correct cold bytes are not a prefilled-slack false positive. Still no cause
+for missing prefix observation; later writeback hypothesis remains unproven.
+
+Completed cache/paging001 evidence and prepared002 source/manifest being reviewed
+and committed. Active002 trace/launch not staged until closed. Prior pushed86a0880.
+Run multi-case fatx-target-buffer/verify-evidence.py after staging finished kits.
+Keep exact source/site/buffer/cold hashes and source coverage separate from normal
+qualification. No other active emulator or required user action.
+
+If002 still misses prefix, consider broader file-name/offset capture or lower
+VfatWriteDiskPartial observation at the independently confirmed target LBA,
+not another blind identical repeat. Existing filters only retain paths ending
+\setupapi.log; partial capture cannot exclude other paths or unobserved writes.
+Candidate SetupAPI mapped-append lifecycle addresses are in prior note; not yet
+runtime-proven. Normal writable-map/extend/unmap/truncate regression may improve
+coverage beyond earlier WriteFile append tests. Continue evidence-driven work.
+
+## Prior recorded state
+
+# Overnight investigation: full-run paging capture active
+
+Authorized until09:00EDT7October2026 (13:00UTC), emulator-only. ACTIVE heartbeat
+xbox-emulator-development-until-10am every10min. No physical FTP/deploy/testing.
+At cutoff cleanup/report/pause. Preserve0101/video0093/0088rollback/immutable0.1.0.
+
+2026-10-07 05:55UTC. Prior global/setup/cache traces and paging001 all CLOSED and
+collected/analyzed once. Cold checks clean. Paging001 captured52 mapped buffers,
+all exact versus cold file. Twelve target-overlapping writes verify109-byte
+suffix at270336; the111-byte prefix at270225 is NOT captured. Last earlier-page
+write ended at270225. Complete cold warning intact. Full coverage remainsfalse.
+Later full-page writeback outside trace is a HYPOTHESIS, not established cause.
+
+NEW fatx-paging-buffer002 ACTIVE: launch05:54:30UTC, runner23088,tracer22159,
+supervisor50522. Do not relaunch. Same immutable draw001 input, no guest changes.
+Removes cache_call/cache_return traps and raises bound100000hits/10min to observe
+through dashboard. Uses actual VfatGetUserBuffer return buffers and effective
+length/offset. Preserve001/trace-source.py; roottrace.py now002 source. Atomic
+trace snapshots; supervisor waits for tracer cleanup. No cold reads whileactive.
+
+After all owned sessions close: trial.py collect002 ONCE, analyze.py002 underWSL.
+Require explicit evidence for first111 and next109; preserve any coverage gap.
+Finish cache/paging reports, stage, run fatx-target-buffer/verify-evidence.py
+fatx-cache-buffer fatx-paging-buffer and repo checks; commit/push private main.
+Last pushed86a0880 includes completed earlier misses. Both FATX trace kits and
+multi-case verifier changes uncommitted. No other emulator remains running.
+
+Static next lead (not runtime-proven): owned setupapi.dll routine77893f87 calls
+mapping helper77893da6, copies ANSI strings into a writable mapped view, seeks
+actual length, cleanup77893cb5 unmaps/closes mapping, SetEndOfFile, closesfile.
+Imports/call sites reviewed interactively; no saved lifecycle review yet.
+If full-run source coverage closes, consider focused user API lifecycle trace
+and a matched normal writable-map/extend/unmap/truncate regression. Prior
+fatx-mapped-eof tests mostly read mappings and WriteFile output, so do not assume
+identical mapped-append coverage. No speculative driverpatch.
+
+## Prior recorded state
+
+# Overnight investigation: actual mapped paging buffers captured
+
+Authorized until09:00EDT7October2026 (13:00UTC), emulator-only. Heartbeat
+xbox-emulator-development-until-10am ACTIVE every10min. No physical FTP/deploy/test.
+Preserve physical0101/video0093,0088rollback,immutable0.1.0. At cutoff cleanup,
+record final report,pause automation.
+
+2026-10-07 05:49UTC. install-buffer001/002/003,setup-buffer001,target-buffer001
+CLOSED/collected/analyzed/reviewed, committed+pushed86a0880. Trace misses retained.
+cache-buffer001 also CLOSED, collected/analyzed once; cold checks clean. It saw52
+setupapi.log paging writes (flags0x43), all returned success. No CcCopyWrite for
+that file; entryMDLs flags2 unmapped, zero buffers. This is path evidence only.
+
+NEW outputs/fatx-paging-buffer001 ACTIVE, accepted05:47:55UTC. Runner43634,
+tracer6024,supervisor7122; do not relaunch. Same immutable draw001 input, no guest
+changes. Actual VfatGetUserBuffer return12d43 now captures buffers plus clipped
+Length EBP-124 and resolvedOffset EBP-96; context EBP-100. At05:48:42 already46
+buffers captured, including270336 onward. Driver and relocated instruction bytes
+verified live. Await debugger/helper/supervisor/runner cleanup; then trial.py
+collect001 ONCE, analyze.py underWSL, exact source-vs-cold range/111+109 checks.
+Do not read active disk. Tracer bounded20000hits/10min; no guest registers/data
+modified. It removes breakpoints and resumes; supervisor then permits teardown.
+
+cache/paging kits uncommitted. Complete reports/source review, use
+fatx-target-buffer/verify-evidence.py fatx-cache-buffer fatx-paging-buffer after
+staging, repo checks, commit/push. Next evidence-driven work should follow actual
+paging/mapped append behavior, not assume earlier WriteFile probes matched it.
+No user action needed. Continue autonomously before13:00UTC.
+
+## Prior recorded state
+
 # Overnight investigation: FATX paging path identified; debugger active
 
 Authorized until09:00EDT7October2026 (13:00UTC), emulator-only. Active heartbeat
