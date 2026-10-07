@@ -36,3 +36,11 @@ shadowc.img. X/Y game-cache cleanup has completed, but no new Windows capacity
 sample/events exist yet. The C low-space gate is unresolved: deleting the
 softmod image or waiving/silencing the warning is not part of this setup step.
 The original0.1.0 archives and all rollback baselines remain preserved.
+
+## Single physical launch
+
+After explicit keyboard-unplugged confirmation, trial.py rechecked the staged
+state and requested one boot at2026-10-07 01:52:08UTC. UnleashX accepted EXEC.
+The console is intended to remain at Windows desktop with normal idle startup.
+Actual device setup and subsequent normal-restart collection are pending;
+launch acceptance does not establish that Windows or GPU installation succeeded.

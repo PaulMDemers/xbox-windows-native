@@ -1,3 +1,30 @@
+# GPU setup boot launched once; waiting for user desktop/prompt observations
+
+2026-10-07 01:52 UTC. User confirmed Razer keyboard unplugged and authorized
+launch. trial.py rechecked installed0101/video0093 baseline, normal idle startup,
+SOFTWARE rollback, INF and staged SOFTWARE hash before requesting SITE EXEC
+E:\Applications\XWNFBoot\default.xbe ONCE at01:52:08.908647 UTC.
+Dashboard replied200 EXEC command succeeded. This proves launch acceptance only;
+no desktop, GPU binding or shutdown result is claimed yet. No repeat launch.
+
+User should reconnect keyboard only after Windows reaches desktop, leave Windows
+running and report exact hardware/device prompts before dismissing them. This
+setup boot uses normal idle startup, no automatic workload or restart. No active
+observer, emulator or automation. When supported setup is complete, request a
+normal user restart; then trial.py collect ONCE and review SetupAPI, GPU class/
+service/INF binding, unchanged video/FATX binaries and event deltas. Do not infer
+success from FTP return. First-install shutdown failure remains historical;
+this configuration experiment is not an unattended soak or release PASS.
+
+All cache cleanup/raw C evidence and GPU staging were committed/pushed f508c38.
+The six X/Y cache files remain privately backed up;1.39GiB reclaimed. Raw C is
+legitimately occupied by508.6MB softmod shadowc.img, intact. No warning gate was
+waived. /F/xwninf102/software.bak preserves pre-setup SOFTWARE; FATX0101/video0093,
+0098 rollback and original0088/v0.1.0 remain unchanged. Current launch record and
+notes being committed/pushed. No further hardware action until actual observation.
+
+## Earlier continuation (historical)
+
 # Cache cleanup complete; raw C explained; GPU setup staged, awaiting keyboard readiness
 
 2026-10-07 01:46 UTC. User authorized cleanup and continuation. Six exact X/Y
