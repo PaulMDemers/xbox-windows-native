@@ -464,3 +464,30 @@ observed API lifecycle with independent cold byte oracles. Its inherited emulato
 device configuration must remain explicit. A pending-install timeout before the
 first operation is a held test, not a filesystem failure or a completed workload;
 historically recurring event errors must not silently become strict passes.
+
+## Allocation shrink and measurable concurrent flushing
+
+The [cluster-boundary regression](../fatx-map-truncate/REPORT.md) deliberately
+grows a writable mapping35 bytes beyond finalEOF, then unmaps and truncates
+across65536/131072 allocation boundaries. Its serial control passed32 queried
+AllocationSize decreases and132 reopens. Query results are not raw intermediate
+FAT-chain evidence; the independent full cold scan establishes final ownership.
+
+Its first concurrent attempt failed coverage: one file-round had no complete
+volume flush inside its short append epochs. The helper exited; desktop remained
+running, and cold allocation was clean. A host timeout alone would have been
+misleading evidence of deadlock. Preserve the failed gate and inspect its log.
+
+The [bounded rendezvous pair](../fatx-map-rendezvous/REPORT.md) instead requires
+a complete volume-flush API call while the first dirty mapping stays open for
+every file-round, with a10-second bound; remaining appends race freely. Both
+modes passed792 cycles,32 allocation decreases,132 reopens and11 exact cold
+files. Concurrent mode observed331 complete flushes in dirty epochs across all
+44file-rounds, with successful worker join and normal shutdown. This establishes
+actual temporal coverage, not a particular kernel interleaving or power-loss
+guarantee. Serial100ms dwell and concurrent rendezvous are different schedules.
+
+Both still fail strict qualification on inheritedSCM7000/Ftdisk49 events; neither
+is promoted as a physical fix. All failure paths should signal stop and bounded
+join, and reports must distinguish join bounds from potentially blocking I/O.
+A synthetic failed-log validator is not execution of the helper's failure path.

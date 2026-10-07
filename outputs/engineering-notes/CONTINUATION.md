@@ -1,3 +1,62 @@
+# Bounded mapped-shrink/volume-flush pair complete
+
+2026-10-07 08:02UTC. ALL owned sessions CLOSED. No guest/tracer/observer active.
+Emulator-only until13:00UTC; check time before new work; at cutoff cleanup/report/
+pause automation. No physical FTP/deploy/test or driver/hive/release change.
+Read outputs/fatx-map-rendezvous/REPORT.md,comparison.json,NEXT.md. Serial and
+concurrent each pass792 appends,32 queried allocation-size decreases,132 exact
+reopens,11 final cold files, normal shutdown/dashboard. Full allocation323dirs/
+6764files/324dirclusters/zeroerrors/orphans,5structural hives/protected hashespass.
+Concurrent810 successful flushes,347 inside append epochs,331 in dirty mapped
+epochs,44 bounded rendezvous, positive coverage every file-round, successfuljoin.
+Strict qualifications remainFALSE exactlySCM7000 HID Input Service/Ftdisk49.
+Neither original physical corruption nor a driver fix is established.
+
+serial launch07:52:45 return07:55:02; flush launch07:56:39 return07:58:57UTC.
+Closed serial72749/18673/27289; flush4280/39796/34783; comparison79466. All
+source/fixture/parent/disk/rawcold pins verified. Never relaunch/recollect.
+Previous truncateflush001 overlap failure and post-timeout snapshot remain
+separate; closed/pushed32d92a8 with prefix-forensics. New rendezvouskit and notes
+currently awaiting finalcheck/commit/push; no recovery snapshot/promotion.
+
+NEXT identifies the exact recurring event sources from owned message resources
+and cold hive/file state (shutdown-diagnostics/event-message.py). No event
+suppression, service-disable workaround, policy change or speculative patch.
+Only concrete evidence may justify a NEW isolated fixture. Original physical
+nonASCII bytes/firstrestart unknown; normal/intentionalinterruption distinct.
+Preserve physical0101/video0093,0088rollback,immutable0.1.0 and allfailures.
+
+# Concurrent rendezvous run active; revised serial control closed
+
+2026-10-07 07:57UTC. outputs/fatx-map-rendezvous/serial001 completed and cold
+audited:792 appends,32 queried shrinks,132 reopens,11 exact files, normal shutdown
+count1, allocation323dirs/6764files/324dirclusters/zeroerrors/orphans,5hives and
+protected hashes pass. StrictFALSE exactSCM7000/Ftdisk49. Closed72749/18673/27289.
+flush001 launched07:56:39.893962UTC ONCE, runner4280/supervisor39796 active.
+Deadline about08:11:40UTC; runner20min cleanup~08:16UTC. Inspect actual launch.json.
+If timeout, use kit capture-timeout.py/decode-timeout.py and framebuffer tool
+BEFORE auto-cleanup; do not infer crash. After cleanup audit/configafter/closure/
+verify/compare ONCE. No source edits to pinned payload. Source frozen per case.
+Prepared fixture83299 closed, before configTRUE. No physical access. Until13:00UTC.
+Prior changes pushed32d92a8; newkit/notes uncommitted. Automation updated with
+owned sessions, must update again after result. Normal and failure join waits
+are each bounded60seconds; a failed normal join can enter abort's second wait.
+
+# Bounded rendezvous pair in progress
+
+2026-10-07 07:54UTC. Prior kit/reports committed and PUSHED32d92a8. New UNCOMMITTED
+outputs/fatx-map-rendezvous built/reviewed,11 oracle negatives pass. Fresh
+serial001 launched07:52:45UTC, runner72749/supervisor18673 active; do not duplicate.
+Run work/runs/nt5-fatx-map-rendezvous-serial001, localhost4594/4595/4596.
+flush001 PREPARED but NEVER LAUNCHED; preparation83299 closed, before configuration
+passes. Wait serial return/cleanup, cold audit/config-after/closure/verify before
+launching partner. First dirty append per44 cases requires10sec bounded overlap
+rendezvous in concurrent mode; serial100ms dwell, remaining17 appends2ms. Every
+failure signalsstop/boundedjoins; no drivers/hives changed. Read newREADME.
+No physical access. Until13:00UTC; strict errors remainFALSE. Preserve oldfailed
+flush coverage, all rollback/release artifacts. Update heartbeat and notes after
+pair; review/check/commit/push. No new recovery snapshot/physical promotion.
+
 # Serial allocation shrink complete; concurrent overlap gate preserved as failure
 
 2026-10-07 07:49UTC. ALL owned sessions CLOSED. Emulator-only until13:00UTC;
