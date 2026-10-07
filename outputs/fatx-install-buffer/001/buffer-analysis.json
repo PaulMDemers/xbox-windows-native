@@ -1,0 +1,40 @@
+{
+  "scope": "Compare immutable source snapshots, syscall returns and cold warning bytes.",
+  "case": "001",
+  "debugger_observation": true,
+  "physical_qualified": false,
+  "ordinary_qualified": false,
+  "trace_status": "hit_limit",
+  "ntdll_checks": [
+    {
+      "disk": "fatx-install-draw-001.qcow2",
+      "sha256": "ed276d6a3ae93c71a6cef73672b82e3808211da1c63bf7d3e23d93294e54813a",
+      "matched": true
+    },
+    {
+      "disk": "hdd.qcow2",
+      "sha256": "ed276d6a3ae93c71a6cef73672b82e3808211da1c63bf7d3e23d93294e54813a",
+      "matched": true
+    }
+  ],
+  "captured_buffers_verified": 1027,
+  "buffer_read_errors": [],
+  "warning_requests": [],
+  "target_coverage": false,
+  "all_warning_requests_full_success": false,
+  "cold_target_intact": true,
+  "actual_target_offset": [
+    270225
+  ],
+  "cold_checks_passed": true,
+  "trace_sha256": "e038ca8edb5b5758a2cf72b929eb4c406e793424fb2c2b5c5c231dd21682a4d8",
+  "evidence_sha256": {
+    "audit.json": "8d4da0b237f7d998c4dccf3f1ee9e0de70ed44a8f6f8b959d1f688277e08a182",
+    "allocation.json": "a804692e0acc2ef3a2ed78faacb850e2939f5c47748d91eea052de87eba81c9c",
+    "package-audit.json": "c154aaa5993d51df61b16b469f4527f2635fe345e5e357cd4deca913b782b5a1",
+    "alignment.json": "048616d306ca18c259d41acef6b8ea918e1fbd2cc70fc0b8e72aa028fcd6497d",
+    "collection.json": "ef02545ac5035af117a026fd81e1259554bceae5f825c98e0b9c7a5fb34544fb",
+    "launch.json": "430ab348d59cdce0433b8ccb7be82bba99f7639f548007286799191728fd2e0b"
+  },
+  "limits": "Debugger perturbs timing. Readable request bytes and synchronous success do not identify cache or DMA contents. Null or negative offset is not an explicit file position. Identical warning text occurs several times; do not assign a request to a specific cold occurrence without independent offset evidence. Flush/close events are entry observations, not success results."
+}

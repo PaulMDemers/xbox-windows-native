@@ -1,3 +1,98 @@
+# Overnight investigation: FATX paging path identified; debugger active
+
+Authorized until09:00EDT7October2026 (13:00UTC), emulator-only. Active heartbeat
+xbox-emulator-development-until-10am every10min. Preserve physical0101/video0093,
+0088rollback, immutable0.1.0; no physical FTP/deploy/testing. Cutoff: cleanup,
+concise report, pause automation.
+
+2026-10-07 05:44UTC: install-buffer001/002/003, setup-buffer001, target-buffer001
+all CLOSED, collected once and analyzed. Cold checks clean, no target source
+capture. Target001 saw27104 NtWriteFile entries/99 unreadable buffers (20examples),
+clean breakpoint removal/resume. Coverage limited to full marker/8192bytes.
+
+New fatx-cache-buffer001 ACTIVE: accepted05:42:13UTC, runner11260/tracer8184/
+supervisor21524. Do not relaunch. Actual log path reaches FATX as paging writes;
+no observed CcCopyWrite call for setupapi.log. Entry MDLs mostly flags2 (locked,
+not mapped), so their source buffers remain unobserved. Same unchanged draw001
+input, no driver change. Trace reports must be read with retry until finished
+(non-atomic original save); later paging tracer uses atomic snapshots.
+
+Next fatx-paging-buffer001 PREPARED ONLY, allocation preflight passed, not launched.
+Post-VfatGetUserBuffer site12d43 captures EAX, clipped Length EBP-124, resolved
+Offset EBP-96, context EBP-100. Reviewed pinned0101 instructions/imports; no guest
+mapping invoked by debugger. Launch only AFTER cache001 fully closes/collects.
+Collect each kit once via trial.py collect001, then analyze.py underWSL.
+Keep actual payload/offset evidence distinct from unobserved caller or DMA data.
+
+Completed kits reviewed/evidence checked and staged, but NOT yet committed;
+last pushedc26fa97. Finish reports/source review/staged byte checks/repo checks,
+commit/push private main. No user action required.
+
+## Prior recorded state
+
+# Overnight investigation: selective syscall capture active
+
+Authorized through09:00EDT7October2026 (13:00UTC). Emulator-only. Active heartbeat
+xbox-emulator-development-until-10am every10min. No physical FTP/deployment/test.
+Preserve0101/video0093, original0088 rollback and immutable0.1.0.
+
+2026-10-07 05:36UTC: install-buffer001/002/003 and setup-buffer001 CLOSED, collected
+once and analyzed. All cold checks clean; ALL target trace coverage false.
+Setup trace had zero hits and disconnected during runner cleanup, retaining
+breakpoint cleanup errors. No active processes from those four attempts.
+Reports preserve misses; no driver cause/fix inferred. New evidence uncommitted.
+
+New outputs/fatx-target-buffer001 accepted05:35:21UTC. Runner6319, tracer36308,
+supervisor59631 ACTIVE. Do not relaunch. Same immutable draw001 control input,
+no guest changes. NtWriteFile bounded250000 hits/12min; only matching warning
+buffers retained, unrelated writes/error counts recorded. Stops after three
+warning occurrences return, or dashboard/deadline. Supervisor waits for tracer
+cleanup before closing runner. Source and stub bytes pinned. Debugger-only.
+
+When all owned processes close, trial.py collect001 ONCE, then analyze-buffers.py
+underWSL; improve coverage analysis without changing raw trace. Null offsets do
+not identify exact log occurrence. Complete evidence checks/review/repo checks,
+commit/push private main. At13:00UTC no new experiments; clean up, report, pause.
+
+## Prior recorded state (superseded by current header)
+
+# Overnight investigation: focused SetupAPI trace active
+
+Authorized through09:00 America/New_York7October2026 (13:00UTC). Emulator-only.
+Automation xbox-emulator-development-until-10am ACTIVE every10min, name Xbox
+emulator investigation until9am. At cutoff start no experiments, clean owned
+processes/preserve evidence, concise final report, pause automation. No physical
+FTP/deployment/testing; preserve0101/video0093/0088 rollback/immutable0.1.0.
+
+2026-10-07 05:28UTC: outputs/fatx-install-buffer001/002/003 all CLOSED and collected
+once, buffer-analysis.json completed. All cold checks clean, all target capture
+coverage false.001:1027 captured writes, hit limit.002:495 captured buffers then
+unpaired unrelated-return guard.003:16000 write entries,15841 complete captures,
+read errors retained; no target warnings before hit limit. No corruption inferred.
+Three normal shutdowns, exact warning offset270225/220 bytes persisted. Original
+trace sources001/002 preserved; currenttrace corresponds003. No processes remain
+from these cases. write-layouts.json compiler-derived offsets verified against
+0101 source/binary; FILE_OBJECT128 is header size, not verified native NT5 tail.
+
+New outputs/fatx-setup-buffer001 single launch accepted05:27:42UTC. Runner99325,
+tracer77823, supervisor12708 ACTIVE. Do not relaunch. Same immutable draw001 quiet
+input, no guest changes; preflight clean. Exact owned SetupAPI routine at778cc5a8
+seeks EOF, converts ANSI, WriteFile+flush. Five reviewed instruction sites capture
+seek return, write call/return and flush call/return. Stop after three matching
+warning occurrences reach flush return or10min/2000hits. Breakpoint timing is
+exploratory, never ordinary qualification. No kernel/guest-argument edits.
+
+After tracer and owned dashboard/runner cleanup: trial.py collect001 ONCE in
+fatx-setup-buffer, add/run focused cold source/offset/WriteFile/Flush correlation
+analysis. Require exact file offsets and source/cold bytes; do not treat global
+trace failures as storage failures. Never read active disk. Then complete both
+kits' reports, source reviews, staged byte/evidence checks and repository checks,
+commit/push private repository (last pushedc26fa97). Both new kits uncommitted.
+Maintain exact active state for later heartbeat, continue evidence-driven work
+before13:00UTC. No user action currently required.
+
+## Prior completed state
+
 # Coordinated aligned installation/GDI pair complete
 
 2026-10-07 04:37 UTC. outputs/fatx-install-draw001(control)/002(drawing)

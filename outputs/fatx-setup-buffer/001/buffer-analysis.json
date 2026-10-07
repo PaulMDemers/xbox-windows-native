@@ -1,0 +1,39 @@
+{
+  "scope": "Correlate SetupAPI append requests and reported write/flush results with cold bytes.",
+  "case": "001",
+  "debugger_observation": true,
+  "physical_qualified": false,
+  "ordinary_qualified": false,
+  "trace_status": "capture_incomplete",
+  "breakpoints_removed_before_disconnect": false,
+  "guest_resumed_by_tracer": false,
+  "owned_runner_cleanup_present": true,
+  "setupapi_checks": [
+    {
+      "disk": "fatx-install-draw-001.qcow2",
+      "sha256": "1d0a6e9d062a51e71eaae93d776746823834f5c518096d340f2b332fc059a23d",
+      "matched": true
+    },
+    {
+      "disk": "hdd.qcow2",
+      "sha256": "1d0a6e9d062a51e71eaae93d776746823834f5c518096d340f2b332fc059a23d",
+      "matched": true
+    }
+  ],
+  "captured_requests_verified": 0,
+  "requests": [],
+  "warning_requests": [],
+  "target_request": [],
+  "target_source_and_cold_coverage": false,
+  "cold_checks_passed": true,
+  "trace_sha256": "825cf6b8d547ea22fe7eae54a38e22fe6b6b735a7ee997d20f040f6ab5e19b14",
+  "evidence_sha256": {
+    "audit.json": "aa89ac6b13112413f6794188cb75b7507a9de03d13714150a528ca8ee2fe6495",
+    "allocation.json": "117dfa16b3b8d694230c94594021a1e936e55b6d1d8bd8e81d661758ae5973ba",
+    "package-audit.json": "47dc3f95cb4586c3b670cc086ea42dac84397e1cdf3b0b19f54836181c8d5d6c",
+    "alignment.json": "d3f973214b3b00b2c003b6a7c62a4618e57c18208f93226509ce24681ba1733a",
+    "collection.json": "7e063c0c08d4d20b7c907b66100d0457303b5d64b656e506c861dda0a033089b",
+    "launch.json": "56123236d6ab6de2e78ea5abe9e1bce07e119e6b62d808f5634c8bcb0f97f2dc"
+  },
+  "limits": "Debugger timing differs. File end is observed SetFilePointer(FILE_END) return, not yet independently read from a filesystem IRP. Reported WriteFile/Flush success plus exact cold bytes verifies this diagnostic request only; it does not observe cache/DMA buffers or explain the physical111-byte anomaly."
+}

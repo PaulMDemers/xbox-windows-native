@@ -1,0 +1,103 @@
+{
+  "scope": "Pin owned NT5 syscall stubs and breakpoint instruction boundaries.",
+  "ntdll_sha256": "ed276d6a3ae93c71a6cef73672b82e3808211da1c63bf7d3e23d93294e54813a",
+  "preferred_base": 2012741632,
+  "sites": [
+    {
+      "name": "NtWriteFile",
+      "address": 2012778296,
+      "rva": 36664,
+      "argc": 9,
+      "bytes": "b8ed0000008d542404cd2ec22400",
+      "instructions": [
+        {
+          "address": 2012778296,
+          "bytes": "b8ed000000",
+          "instruction": "mov eax, 0xed"
+        },
+        {
+          "address": 2012778301,
+          "bytes": "8d542404",
+          "instruction": "lea edx, [esp + 4]"
+        },
+        {
+          "address": 2012778305,
+          "bytes": "cd2e",
+          "instruction": "int 0x2e"
+        },
+        {
+          "address": 2012778307,
+          "bytes": "c22400",
+          "instruction": "ret 0x24"
+        }
+      ]
+    },
+    {
+      "name": "NtWriteFile_return",
+      "address": 2012778307,
+      "rva": 36675,
+      "argc": 0,
+      "bytes": "c22400"
+    },
+    {
+      "name": "NtFlushBuffersFile",
+      "address": 2012775560,
+      "rva": 33928,
+      "argc": 2,
+      "bytes": "b8410000008d542404cd2ec20800",
+      "instructions": [
+        {
+          "address": 2012775560,
+          "bytes": "b841000000",
+          "instruction": "mov eax, 0x41"
+        },
+        {
+          "address": 2012775565,
+          "bytes": "8d542404",
+          "instruction": "lea edx, [esp + 4]"
+        },
+        {
+          "address": 2012775569,
+          "bytes": "cd2e",
+          "instruction": "int 0x2e"
+        },
+        {
+          "address": 2012775571,
+          "bytes": "c20800",
+          "instruction": "ret 8"
+        }
+      ]
+    },
+    {
+      "name": "NtClose",
+      "address": 2012774904,
+      "rva": 33272,
+      "argc": 1,
+      "bytes": "b8180000008d542404cd2ec20400",
+      "instructions": [
+        {
+          "address": 2012774904,
+          "bytes": "b818000000",
+          "instruction": "mov eax, 0x18"
+        },
+        {
+          "address": 2012774909,
+          "bytes": "8d542404",
+          "instruction": "lea edx, [esp + 4]"
+        },
+        {
+          "address": 2012774913,
+          "bytes": "cd2e",
+          "instruction": "int 0x2e"
+        },
+        {
+          "address": 2012774915,
+          "bytes": "c20400",
+          "instruction": "ret 4"
+        }
+      ]
+    }
+  ],
+  "physical_access": false,
+  "limits": "Preferred addresses are verified against live instruction bytes on each hit. Breakpoint pauses alter timing. Return stub is before RET after INT2E; status pending is not completion."
+}
