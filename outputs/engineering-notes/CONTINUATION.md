@@ -1,3 +1,96 @@
+# RAM0109 ownership and independent scanout PASS; ALL sessions CLOSED
+
+Read outputs/video-ram-ownership/REPORT.md, DESIGN.md, NEXT.md, pair-review.json,
+evidence-verification.json; outputs/video-ownership-scanout/verification.json and
+REPORT.md. Three new guests are CLOSED; never relaunch/recollect ownership
+control001/candidate001 or ownership-scanout candidate001. Older ACTIVE headings
+below are superseded. No xemu process remains.
+
+Explicit32-slot membership now matches our primary/PDEV/HDEV without reading
+foreign private data. Required unknown device operands and mixed owned PDEVs
+fail before Eng; bitmap handle collision cannot cause shadow substitution.
+Registration exhaustion cleanly unwinds; unregister precedes surface deletion.
+Eng semaphore protects membership only, never held across rendering callbacks.
+GDI surface/PDEV lifetime remains required; no multi-device support claim.
+Source tree1f5aa1cee2bf9b4ca03e5581a8536db9c11db3d2;91335byte xwnown.dll SHA256
+ed901376d61e70a125fce834e20b366e49a1d632879debbcfedd621c18b6a440.
+
+Host46cases/65536ROP tables plus7additional full-table-unwind/foreign/mixed/bitmap
+cases and80000concurrent membership cycles across8threads PASS ASan/UBSan/leaks.
+Full compiled source and actual NT5 imports checked. Generator draft assertion
+27vs25 failure preserved uncompiled. GDI/engine shims are not NT5 lifetime proof.
+
+Fresh ordinary matched0108/0109 each54cases162GDIpixelstages54driver selfchecks,
+normalshutdown1/dashboard,clean325dirs6759files326dirclusters0errors/orphans,
+5hives/protected/payload hashes,zero warning/error/application events. Same96MiB/
+1536cluster pagefile and sharedUCFCED6000→03C00000,44trace records0drops. Both
+observe7of14callbacks. Candidate29783uploads807095708bytes. No speed claim.
+
+Separate ownership-scanout diagnostic PASS12raw physicalframes1794048RGBpixels,
+zero mismatches,261pins including all11668relocated display.text bytes. Display
+headerE14 recorded unavailable, exact resident text/loader/cold PE identity required.
+Full teardown/resume and same strict54/162/selfcheck/cold/event gates PASS.
+ordinary_qualifiedFALSE/physical_qualifiedFALSE. Returned22:45:45UTC. All frozen
+source snapshots, closed private disks, immutable fixtures/backing chains verified.
+
+Final owned runner69766/tracer40729/supervisor8599/audit21813 CLOSED; so are build
+26442,preparations89623/4772/11906,control40152/82649/21364 and candidate66371/
+75090/29536. Last Cfree25614262272;20GiB guard unchanged. No physicalFTP/deploy/
+test. Preserve physical0101/video0093,0088rollback,immutable0.1.0,qualified128GiB
+recovery and all failures. Original111nonASCIIphysicalcorruption/restart unresolved.
+
+Next NEW kit: real GDI vector/text/mask/complex clip/noncopyROP/mirrored stretch/
+alpha cases against independent DIB reference AND raw framebuffer; observe real
+hook routing without calling hooks directly. Seven currently unobserved hooks,
+cursor exclusion/restore, actual NT5 mode/disable/bootvid lifecycle and new
+sacrificial crash-render/dump remain. Only then optimize uploads/physical timing.
+Do not deploy RAM0109 yet. No required user action; automation remains PAUSED.
+
+# Ownership0109 scanout ACTIVE (22:43:43 UTC)
+
+video-ownership-scanout/candidate001 accepted22:43:43UTC. Owned runner69766,
+tracer40729,supervisor8599 ACTIVE; preparation11906 CLOSED. Observer armed before
+launch;600second capture bound with full breakpoint teardown. No other owned
+guest is running. On close audit once, after-configuration/cold-map, closure,
+verify.py then parent ownership verify-evidence.py/write-report.py. Review/check/
+commit/push final source/reports; no physical access or new driver build.
+
+# RAM0109 ordinary pair CLOSED PASS; scanout preparation ACTIVE (22:42 UTC)
+
+Both outputs/video-ram-ownership control001/candidate001 are CLOSED strictPASS:
+54cases162GDIpixelstages54coherencechecks each, normalshutdown1/dashboard,
+clean325dirs6759files326dirclusters0errors/orphans,5hives/protected/payloads,
+zero warning/error/application events, unchanged pagefile/sharedUC/configuration.
+Both still observe7of14hooks. Do not relaunch/recollect either. Build/source/
+host evidence described below unchanged. All their listed owned sessions CLOSED.
+
+NEW outputs/video-ownership-scanout/candidate001 is being prepared, not launched.
+Same compiled0109 driver; new117probe parkscursor and exports12snapshotmarkers.
+Trace adapted from successful scanout3, including live IDT kernel discovery and
+full relocated display.text matching. Runtime is a diagnostic, not ordinary.
+Inspect actual preparation/session records before continuing. No physical access.
+
+# RAM0109 ownership validation ACTIVE (2026-10-07 22:36 UTC)
+
+New outputs/video-ram-ownership; original0108 and all old guests remain closed.
+0109 matches explicit32-entry primary/PDEV/HDEV registry before using private
+data, rejects unsupported foreign or mixed-PDEV operands, fixes bitmap-handle
+substitution and escape ownership. Eng semaphore membership-only, no lock
+across engine/render/resource callbacks. GDI call lifetime remains required.
+Tree1f5aa1cee2bf9b4ca03e5581a8536db9c11db3d2 xwnown.dll91335bytes SHA256
+ed901376d61e70a125fce834e20b366e49a1d632879debbcfedd621c18b6a440.
+Build26442 CLOSED; source/import review PASS. Host46cases/65536ROP tables,
+7additional lifecycle cases including full-table unwind,80000concurrent
+membership cycles/8threads ASan/UBSan/leak checks PASS. Draft expected lookup
+count27 vs actual25 generator failure preserved, never compiled.
+
+Owned control001 runner40152/supervisor82649 ACTIVE; preparation89623 CLOSED.
+Candidate preparation4772 ACTIVE, no candidate guest launch yet. Read actual
+JSON records and resume owned sessions; never duplicate launches/collection.
+Next: close/audit ordinary matched0108/0109 pair then independent scanout child.
+No physicalFTP/deploy/test; physical0101/video0093,0088rollback,0.1.0 unchanged.
+Broader realGDI/cursor/mode/crash gates remain. No driver performance claim.
+
 # RAM-primary0108 copy-path qualification PASS; ALL sessions CLOSED
 
 Read outputs/video-ram-primary/REPORT.md, NEXT.md, pair-review.json and

@@ -1,0 +1,14 @@
+ assert(XwnBitBlt(&Primary,&Primary,NULL,0,0,&Full,0,0,0,0,0xcccc)); assert(p.ShadowCalls[0]==1); assert(Pixels[0]==0x345678); Cases++;
+ assert(XwnCopyBits(&Primary,&Primary,0,0,&Full,0)); assert(p.ShadowCalls[1]==1); assert(Pixels[0]==0x345678); Cases++;
+ assert(XwnTextOut(&Primary,0,0,0,0,0,0,0,0,0)); assert(p.ShadowCalls[2]==1); assert(Pixels[0]==0x345678); Cases++;
+ assert(XwnStrokePath(&Primary,0,0,0,0,0,0,0)); assert(p.ShadowCalls[3]==1); assert(Pixels[0]==0x345678); Cases++;
+ assert(XwnFillPath(&Primary,0,0,0,0,0,0)); assert(p.ShadowCalls[4]==1); assert(Pixels[0]==0x345678); Cases++;
+ assert(XwnStrokeAndFillPath(&Primary,0,0,0,0,0,0,0,0,0)); assert(p.ShadowCalls[5]==1); assert(Pixels[0]==0x345678); Cases++;
+ assert(XwnLineTo(&Primary,0,0,0,0,0,0,0,0)); assert(p.ShadowCalls[6]==1); assert(Pixels[0]==0x345678); Cases++;
+ assert(XwnPaint(&Primary,0,0,0,0)); assert(p.ShadowCalls[7]==1); assert(Pixels[0]==0x345678); Cases++;
+ assert(XwnStretchBlt(&Primary,&Primary,&Primary,0,0,0,0,&Full,0,0,0)); assert(p.ShadowCalls[8]==1); assert(Pixels[0]==0x345678); Cases++;
+ assert(XwnStretchBltROP(&Primary,&Primary,NULL,0,0,0,0,&Full,0,0,0,0,0xcccc)); assert(p.ShadowCalls[9]==1); assert(Pixels[0]==0x345678); Cases++;
+ assert(XwnPlgBlt(&Primary,&Primary,&Primary,0,0,0,0,0,0,0,0)); assert(p.ShadowCalls[10]==1); assert(Pixels[0]==0x345678); Cases++;
+ assert(XwnAlphaBlend(&Primary,&Primary,0,0,&Full,0,0)); assert(p.ShadowCalls[11]==1); assert(Pixels[0]==0x345678); Cases++;
+ assert(XwnGradientFill(&Primary,0,0,0,0,0,0,0,0,0)); assert(p.ShadowCalls[12]==1); assert(Pixels[0]==0x345678); Cases++;
+ assert(XwnTransparentBlt(&Primary,&Primary,0,0,&Full,0,0,0)); assert(p.ShadowCalls[13]==1); assert(Pixels[0]==0x345678); Cases++;
