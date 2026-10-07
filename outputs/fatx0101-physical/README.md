@@ -62,3 +62,9 @@ outcome remain unknown; this is neither a pass nor an established deadlock.
 One screen question is pending. Normal startup is still pending restoration
 because FTP is offline. No collection, allocation scan, binary audit or recovery
 capture has run. The host observer exited; no background process remains.
+
+At01:05UTC the user supplied a photo of the Windows desktop with an open hardware
+wizard, Getting Started and cmd. Device name is obscured. FTP refused connection.
+The workload outcome is still unknown. Requested final probe.log lines; no wizard
+was dismissed or test relaunched. The pending-install guard holds indefinitely,
+so dismissing a wizard would not automatically resume this helper's restart.

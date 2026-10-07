@@ -1,3 +1,24 @@
+# Physical0101 desktop photo received; test log needed
+
+2026-10-07 01:05UTC. User photo confirms Windows desktop, an open Found New
+Hardware Wizard welcome page (device name obscured), Getting Started and a cmd
+window. This rules out Xromwell being the pictured state. It does NOT establish
+responsiveness, workload completion or that the restart guard fired.
+
+Read-only FTP check refused connection. No new launch or remote write. Original
+screen question answered; now asked user to open notepad C:\xwncc01\probe.log
+and report final lines, leaving wizard open. If already rebooted, do not relaunch;
+collect on dashboard return FIRST restoring normal startup. The helper sleeps
+indefinitely after a pending-install result; closing the wizard alone does not
+resume its restart path. Preserve outcome as held if that is what the log says.
+
+Single0101 launch and rollback details below remain authoritative. Observer83795
+closed; no owned process running. No scan launched. Startup remains last verified
+as one-shot enabled until dashboard access returns. Source/notes pushed e37821f;
+photo observation and updated state being committed now. No hardware PASS claimed.
+
+## Earlier continuation (historical)
+
 # Physical0101 awaiting screen evidence; host observer closed
 
 2026-10-07 01:03:35UTC. Single launch at00:50:29UTC accepted, FTP went offline,
