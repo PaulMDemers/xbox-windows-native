@@ -40,9 +40,16 @@ diagnostic passed with 24 first-row calls all selecting kernel memmove and scree
 destinations mapping through the framebuffer aperture. Raw PCD/PWT bits were
 captured; effective PAT/MTRR policy is not established by that run. The subsequent
 ../video-memmove-loop-trace diagnostic passed:23 forward REP MOVSD rows and one
-seven-DWORD scalar row, with exact entry/count/direction/return evidence. Next
-inventory framebuffer aliases, reservations and lifetime, reusing prior0094/0096
-MSR evidence before a new read-only observation or justified speed experiment.
+seven-DWORD scalar row, with exact entry/count/direction/return evidence. The
+../video-alias-inventory diagnostic has completed the present alias walk:
+20 active roots each contain the full4MiB desktop aperture and bootvid direct-RAM
+views, both PCD/PWT set and PAT clear. Pinned loaded bootvid code/globals prove
+the second owner. Old loader aliases are absent from these roots at this point;
+current MSRs, TLBs and future lifetimes are outside snapshot coverage. Normal
+restart and all drawing/cold/event checks passed. Next design one coordinated
+cache/mapping policy covering both owners, reservation and late shutdown; verify
+actual NT5 API behavior and current MSRs where the design depends on them.
+See ../video-alias-inventory/REPORT.md and NEXT.md. No desktop-only WC flag edit.
 No renderer patch yet. Retain generic
 PnP lifecycle, complete alias/cache inventory and independent scanout gates.
 The existing0096 remains a bounded prototype;1080i is a separate handoff project.

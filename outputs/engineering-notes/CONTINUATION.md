@@ -1,3 +1,32 @@
+# Framebuffer alias inventory CLOSED and diagnostic PASS
+
+Read outputs/video-alias-inventory/REPORT.md, NEXT.md, verification.json,
+alias-summary.json and source-inventory.json. trace001 accepted19:10:27UTC,
+closed19:12:29UTC on2026-10-07. Preparation51121/runner40136/tracer84676/
+supervisor96339/audit46373 all CLOSED. Never relaunch/recollect completed stages.
+One coherent private64MiB snapshot;20 active roots,20480PDEs/3948544PTEs,
+40960matchingentries. Each root has two4MiB mappings: FC23E000->F3C00000
+desktop aperture and FCED6000->03C00000 bootvid RAM. All PCD/PWT1,PAT0,
+supervisor. No additional present target mappings/old loader aliases in scope.
+Actual loaded bootvid override E/Applications/XWNFBoot/loader/xboxbvid.dll
+SHA2196f646... verified via all4440relocatedtextbytes and framebuffer/backbuffer
+globals. Retained direct-RAM owner survives desktop use. Reconstruction source
+contracts separately pinned; not a new byte-identical rebuild claim.
+54cases162RGBstages, normalrestart/dashboard, clean324dirs6755files325clusters,
+5hives/protected/config/pagefile/actualbootvid, empty event error/warning deltas.
+Debugger ordinary_qualifiedFALSE; no timing/scanout/physical qualification.
+Full17MB alias-scan.json and RAM stay private, tracked summary pins hashes.
+Next coordinated bootvid/desktop cache/reservation/lifetime design; establish
+actual NT5 API behavior/currentMSRs where required. No one-sided WC flag edit,
+live PTE/MSR mutation or speculative driver patch. Historical0094 failure kept.
+Same drivers/settings/emulator policy. No owned xemu/qemu remains. C:free
+22534287360bytes;20GiB build guard unchanged. Old automation remains PAUSED.
+Preserve physical0101/video0093,0088rollback,immutable0.1.0,128GiB recovery and
+all failures. Original physical111nonASCII anomaly remains unresolved.
+Python/PowerShell parse, staged frozen-byte pins and repository payload/credential
+checks passed. This note accompanies the source/evidence commit; preceding
+pushed681f7af.
+
 # Kernel memmove loop trace CLOSED and diagnostic PASS
 
 Read outputs/video-memmove-loop-trace/REPORT.md,NEXT.md,trace-verification.json.
