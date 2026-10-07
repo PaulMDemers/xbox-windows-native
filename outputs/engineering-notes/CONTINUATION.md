@@ -1,3 +1,37 @@
+# Full-run paging observation complete; next controlled interruption
+
+2026-10-07 06:02UTC. All emulator/tracer/supervisor/cold-reader sessions CLOSED.
+User authorizes emulator-only work until09:00EDT7October (13:00UTC). Heartbeat
+xbox-emulator-development-until-10am ACTIVE every10min. Before new work checktime;
+at cutoff cleanup/report/pause. No physical FTP/deploy/test; preserve physical
+0101/video0093,0088rollback,immutable0.1.0.
+
+fatx-paging-buffer002 CLOSED and collected/analyzed ONCE.59 actual mapped buffers,
+all exact vs cold. FULL220-byte target source coverage:109-byte suffix observed
+05:55:17.716165UTC inrundll32;111-byte prefix in4096-byte page at266240 observed
+06:00:12.247911 inwinlogon near normalshutdown.294.531746hostseconds includes
+pauses, NOT ordinary latency. All target returns complete; cold audits clean.
+Both001/002 before-target audits show eventual220-byte disk region allZERO before
+run, so matching slack is excluded.001 partial109-only result remains preserved.
+
+Reports/ordering/NEXT in outputs/fatx-paging-buffer. Last pushed e849dac contains
+reviewed source and001;002 completion being committed/pushed now. No driverfix or
+physical cause established; firsthardware rebootmethod remainsunknown.
+
+NEXT authorized independent work: follow fatx-paging-buffer/NEXT.md to build a
+NEW single owned intentional guest-stop experiment after suffixwrite completes
+but before prefixwrite, preserving normal002 control. Observe cold prefix/suffix
+without a Windows orderlyshutdown. Label interrupted-state evidence, never
+ordinaryqualification. No physical access. Do not relaunch completed attempts.
+This tests a mechanism; it cannot establish how userrebooted originalhardware.
+Afterward consider actual mappedappend lifecycle trace/normal regression.
+
+002 runner23088/tracer22159/supervisor50522/coldreader77857 all CLOSED. Earlier
+001 runner43634/tracer6024/supervisor7122 alsoCLOSED. Otherpriorattempts allclosed.
+No user action required. Continue autonomously until13:00UTC via heartbeat.
+
+## Prior recorded state
+
 # Active handoff: paging002 continues through normal shutdown
 
 2026-10-07 06:00UTC. User authorized emulator-only work through09:00EDT (13:00UTC).

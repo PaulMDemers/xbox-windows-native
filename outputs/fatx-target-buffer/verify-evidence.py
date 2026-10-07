@@ -23,9 +23,20 @@ for kit in sys.argv[1:]:
    data=(out/'artifacts'/e['buffer_file']).read_bytes();assert sha(data)==e['buffer_sha256'] and len(data)==e['length'];count+=1
   assert count==a['captured_buffers_verified'];total_buffers+=count
   assert (ws/('work/runs/nt5-'+kit+'-'+case+'/cleanup.json')).exists()
+  if (out/'before-target.json').exists():
+   b=read(out/'before-target.json');raw=(out/'artifacts/before-target-raw.bin').read_bytes()
+   assert sha(raw)==b['before_sha256'] and sha(raw[:111])==b['before_first111_sha256']
+   cold=(out/'artifacts/after-setupapi.log').read_bytes();target=cold[270225:270445]
+   assert sha(target)==b['after_sha256'] and sha(target[:111])==b['after_first111_sha256']
+   assert b['first111_already_match']==(raw[:111]==target[:111])
+   assert b['differing_byte_count']==sum(x!=y for x,y in zip(raw,target))
   if kit!='fatx-target-buffer':
    sites=read(root/'sites.json');assert sha((root/'review-sites.py').read_bytes())==sites['source_sha256']
    assert sha((ws/'outputs/fatx-install-buffer/write-layouts.json').read_bytes())==sites['layouts_sha256']
+ if (root/'ordering.json').exists():
+  order=read(root/'ordering.json')
+  for name,key in [('trace.json','trace_sha256'),('buffer-analysis.json','analysis_sha256'),('before-target.json','before_target_sha256')]:assert sha((root/'002'/name).read_bytes())==order[key]
+  assert not order['physical_root_cause_established']
  checked=[]
  for rel in subprocess.check_output(['git','ls-files','--',root.relative_to(ws).as_posix()],cwd=ws,text=True).splitlines():
   assert subprocess.check_output(['git','show',':'+rel],cwd=ws)==(ws/rel).read_bytes(),rel;checked.append(rel)
