@@ -1,3 +1,62 @@
+# Controlled interruption reproduces a file-visible page-boundary split
+
+2026-10-07 06:28 UTC. All owned emulator, tracer, supervisor and cold-reader
+sessions CLOSED. Continue authorized emulator-only work until 09:00 EDT today
+(13:00 UTC). Check time before new experiments; at cutoff cleanup/report/pause
+xbox-emulator-development-until-10am. Keep ACTIVE every10min meanwhile. No
+physical FTP, deploy or testing. Preserve physical FATX0101/video0093, original
+0088 rollback, immutable0.1.0 and all failed evidence. No driver patch made.
+
+NEW completed kit outputs/fatx-interrupted-append; REPORT.md and NEXT.md.
+001: stop after successful109-byte suffix. Raw first111 zeros +109 correct,
+but cold file EOF269718 doesn't expose target270225. Allocation fails with one
+WMI backup invalid-chain terminal and one orphan. Not file-visible reproduction.
+002: host atomic trace replacement PermissionError; cleanup removed BPs and
+resumed guest. Final trace.tmp recovered verbatim after preserving last JSON.
+Owned observer closed this failed attempt. Cold full warning intact, normal
+shutdown event1, allocation clean. Never classify as checkpoint success.
+003: new fresh run, tested bounded atomic writer. Stop after successful1524-byte
+write at270336 including exact109 suffix, before any observed prefix write.
+Cold file EOF271385 exposes first111 ZERO bytes and109 correct bytes at270225.
+Full allocation consistent,0 errors/orphans; five hives parse; selected payloads
+unchanged. No Windows normal shutdown (intentional). This is a mechanism and
+boundary reproduction ONLY: physical damaged111 bytes were non-ASCII, not zero,
+and original physical reboot method/raw first-write topology remain UNKNOWN.
+Normal control fatx-paging-buffer002 retains all220 bytes correctly after normal
+shutdown, with prefix page written much later near that shutdown.
+
+003 launched06:22:09, checkpoint06:25:25.380, cleanup06:25:25.773 UTC. HMP quit
+while paused/debug with GDB attached; no resume/step/detach after checkpoint.
+All BPs removed and pending log writes0. Emulator exit0; generic runner exit1
+because it reports Task emulator exited:0. Explicit socket disconnect recorded.
+Closed sessions003 runner30331/tracer13547/supervisor88280;00241734/98777/61504;
+00159633/65175/78447. All cold audits collected ONCE. Do not rerun these attempts.
+
+Host recorder atomic_json.py now retries transient PermissionError for3seconds,
+keeping old JSON and complete tmp if exhausted. Real Windows sharing-handle
+test verified both transient recovery and permanent-block preservation. Exact
+001/002 tracer source snapshots retained. Evidence verifier passes all3 cases,
+151 source buffers total,67 kit files staged; repository check5140 files clean.
+Source/reports being committed/pushed after prior HEAD78164bf; inspect currentGit.
+
+NEXT: actual application mapped-append lifecycle, not another identical boot.
+Use fatx-interrupted-append/NEXT.md with static candidate addresses and limits.
+Owned setupapi.dll hash1d0a6e9d062a51e71eaae93d776746823834f5c518096d340f2b332fc059a23d.
+Candidate outer77893f87/helper77893da6/cleanup77893cb5 statically maps/grows,
+copies strings, seeks, unmaps, closes mapping, SetEndOfFile, closes file. Actual
+use for SetupAPI.log is NOT yet runtime verified. A prior unrelated logger site
+778cc5a8 had zero hits. Capture filename/strings/mapped bytes and API results,
+pair by process/thread/frame, retain zero-hit/read failures without guessing.
+Then consider focused writable-map append/truncate normal-shutdown regression.
+Do not infer missing required flush or patch Cc behavior from static calls.
+
+Private disks/buffers/hives stay outside Git. Existing owned ports4594HMP,
+4595GDB,4596FTP (localhost only), pinned emulator and draw001 immutable input.
+Use leases and fresh run IDs. HMP quit causes reader disconnect; record exact
+owned exit. Preserve ordinary/physical qualification gates separately.
+
+## Prior recorded state
+
 # Full-run paging observation complete; next controlled interruption
 
 2026-10-07 06:02UTC. All emulator/tracer/supervisor/cold-reader sessions CLOSED.

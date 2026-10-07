@@ -1,0 +1,182 @@
+{
+  "scope": "Make an untouched fresh run seed from the completed control's immutable input.",
+  "physical_access": false,
+  "fixture_sha256": "f300ac77ad19b97446ea1a576cf96b08d79057188cc5e298b65a3a422e7ce482",
+  "seed_sha256": "e525df3f5bd799136eb140d4cbad88b52341aafc81d1ed000c9ca74b5182821c",
+  "parent_sha256": "a924541cabaa56e2da7359db6d1ba99f7efdfd51c4cf86fd52977001f5fe5976",
+  "payloads": [
+    {
+      "path": "winnt/system32/drivers/xboxvnt5.sys",
+      "bytes": 40882,
+      "sha256": "3e74a5c35b68d7fa0e047b4ba9cec25e7ec0ea5a94e796fc07508f667fcc85cf"
+    },
+    {
+      "path": "winnt/system32/framebuf.dll",
+      "bytes": 8752,
+      "sha256": "5da1fe7c3cdaf67a4a487c8872c2034fbc425bfd36d2b7715b2a1c4caa51df86"
+    },
+    {
+      "path": "Documents and Settings/All Users/Start Menu/Programs/Startup/xwnsetup.cmd",
+      "bytes": 39,
+      "sha256": "1cfba6975b27fce397a0335f54096f8d1b902936386c5c1f2fadfa53d00701c2"
+    },
+    {
+      "path": "xwns98/probe.exe",
+      "bytes": 15705,
+      "sha256": "a54363683ef566ac39403749703a8ceef45bd7e113470b9c669a19294a677f29",
+      "clusters": 1
+    },
+    {
+      "path": "xwns98/matched.exe",
+      "bytes": 11017,
+      "sha256": "62e8690ae188fe72beb4017d4752fdac931f06c35879ecccd456394a848932a8",
+      "clusters": 1
+    },
+    {
+      "path": "xwns98/scribble.bmp",
+      "bytes": 442422,
+      "sha256": "ad7bfd3fa51af5ae5a666f13888b755bf0cd17a4bbe4c1dbb4e81742d2b148d8",
+      "clusters": 7
+    },
+    {
+      "path": "xwninf99/xwnvideo.inf",
+      "bytes": 1272,
+      "sha256": "78be6e5e46a1d5019a53648c9197cbba87f7278413bf5187ac27c5cbf59e38ac",
+      "clusters": 1
+    },
+    {
+      "path": "xwninf99/xboxvnt5.sys",
+      "bytes": 40882,
+      "sha256": "3e74a5c35b68d7fa0e047b4ba9cec25e7ec0ea5a94e796fc07508f667fcc85cf",
+      "clusters": 1
+    },
+    {
+      "path": "xwnidle/probe.exe",
+      "bytes": 33265,
+      "sha256": "0ee803b0cd20c214caf4b532f53c26a493cb421159904212c40d2440ee588668",
+      "clusters": 1
+    },
+    {
+      "path": "xwnidle/drawmode.txt",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+      "clusters": 1
+    }
+  ],
+  "preserved_payloads": [],
+  "input_tails": [],
+  "fatx_sha256": "ba62acbb7dedf30154baba8d4cc2cf457f1a3e499bf7800e31011fba0e96d6a9",
+  "fixture_name": "fatx-install-draw-001.qcow2",
+  "parent_fixture_sha256": "b36f05b1ac88e9b06e2d8332c512cf6ee8466ff6f3d13733d3a1096dd1dc4d35",
+  "system_unchanged_during_staging": true,
+  "startup_unchanged": false,
+  "case": "002",
+  "source_manifest": "fatx-install-draw/fixture-001.json",
+  "preserved_during_idle_staging": {
+    "winnt/system32/config/system": "bd4185ed16280aeac790116fc18fb49b1e2e70e300ad629d19351a920133c469",
+    "winnt/system32/config/software": "4c5c76855b64d72d1259f66f69fd861b6d4a5428c47dd65a58ea585150fa9580",
+    "winnt/system32/xwn-video-trace.bin": "5806fe7ce339298b5a94a0e0ab1bdfb78922fc449effd5cea2f393f0d33fd00e"
+  },
+  "idle_ms": 120000,
+  "storage_workload": false,
+  "intervention": "Same reviewed helper in both cases, unchanged exact UI matcher/action functions. Add mode file0/1, private GDI worker, sampled log size and bounded stop/join before restart. Hives/startup/padded SetupAPI and drivers preserved.",
+  "inherited_software_edit": {
+    "path": "Microsoft\\Windows\\CurrentVersion",
+    "value": "DevicePath",
+    "before": "%SystemRoot%\\inf",
+    "after": "%SystemRoot%\\inf;C:\\xwninf99",
+    "all_keys_checked": 26907,
+    "all_values_checked": 39233,
+    "only_expected_value_changed": true,
+    "index_normalization": {
+      "keys_checked": 26907,
+      "indexes_checked": 8584,
+      "converted": []
+    }
+  },
+  "inherited_software_before_sha256": "b3073ef4454570d0b2b954f1f6333fbf0ec883a3a9cc639dc0a327c762f8f819",
+  "inherited_software_after_sha256": "4c5c76855b64d72d1259f66f69fd861b6d4a5428c47dd65a58ea585150fa9580",
+  "inherited_installation_method": "Normal PnP discovery via DevicePath; existing framebuf DLL referenced but not copied.",
+  "inherited_limits": "Owned emulator only. Same exact rehearsal workload and baseline binaries. No signing-policy change, forced installation or new FAILEDINSTALL flags. Inherited fixture limitations remain.",
+  "limits": "UI-assisted emulator diagnostic; first drawing may miss actual warning. Runtime coverage, actual offset and cold bytes must be verified; no physical qualification.",
+  "prior_fatx_sha256": "beeaf329f0446d3bdd2ed490fa8143888253115c0ff6c1662b67b82e6619eedd",
+  "preserved_during_observer_staging": {
+    "winnt/system32/config/system": "bd4185ed16280aeac790116fc18fb49b1e2e70e300ad629d19351a920133c469",
+    "winnt/system32/config/software": "4c5c76855b64d72d1259f66f69fd861b6d4a5428c47dd65a58ea585150fa9580",
+    "winnt/system32/xwn-video-trace.bin": "5806fe7ce339298b5a94a0e0ab1bdfb78922fc449effd5cea2f393f0d33fd00e"
+  },
+  "probe_review_manifest": "fatx-install-draw/probe-review.json",
+  "probe_source_manifest": "fatx-install-draw/probe.c",
+  "preserved_during_alignment_staging": {
+    "winnt/system32/drivers/xboxvnt5.sys": "3e74a5c35b68d7fa0e047b4ba9cec25e7ec0ea5a94e796fc07508f667fcc85cf",
+    "winnt/system32/framebuf.dll": "5da1fe7c3cdaf67a4a487c8872c2034fbc425bfd36d2b7715b2a1c4caa51df86",
+    "Documents and Settings/All Users/Start Menu/Programs/Startup/xwnsetup.cmd": "1cfba6975b27fce397a0335f54096f8d1b902936386c5c1f2fadfa53d00701c2",
+    "xwns98/probe.exe": "a54363683ef566ac39403749703a8ceef45bd7e113470b9c669a19294a677f29",
+    "xwns98/matched.exe": "62e8690ae188fe72beb4017d4752fdac931f06c35879ecccd456394a848932a8",
+    "xwns98/scribble.bmp": "ad7bfd3fa51af5ae5a666f13888b755bf0cd17a4bbe4c1dbb4e81742d2b148d8",
+    "xwninf99/xwnvideo.inf": "78be6e5e46a1d5019a53648c9197cbba87f7278413bf5187ac27c5cbf59e38ac",
+    "xwninf99/xboxvnt5.sys": "3e74a5c35b68d7fa0e047b4ba9cec25e7ec0ea5a94e796fc07508f667fcc85cf",
+    "xwnidle/probe.exe": "8d288e465566ccc0326bb0be0b92939c86348321aaa6960244f952c618d1dd75",
+    "winnt/system32/drivers/xwnfatx.sys": "ba62acbb7dedf30154baba8d4cc2cf457f1a3e499bf7800e31011fba0e96d6a9",
+    "winnt/system32/config/system": "bd4185ed16280aeac790116fc18fb49b1e2e70e300ad629d19351a920133c469",
+    "winnt/system32/config/software": "4c5c76855b64d72d1259f66f69fd861b6d4a5428c47dd65a58ea585150fa9580",
+    "winnt/system32/config/default": "57c23de36c2b6efce75c57b3af6369a62c6a7c10bbdddaae9909b1aceabfca2e",
+    "winnt/system32/config/sam": "cdb292451851d16bed130e791ab5a607cb992e02968cb79ee1c2a4d9eeb32d12",
+    "winnt/system32/config/security": "d97f50561f1a422f9e6b7f2df5926a3a3240e7d1e32c099bb2bbd85ef36b58de",
+    "winnt/system32/xwn-video-trace.bin": "5806fe7ce339298b5a94a0e0ab1bdfb78922fc449effd5cea2f393f0d33fd00e"
+  },
+  "alignment": {
+    "control_sha256": "cd921b2c369d0978e3d56a6f75c7626b660e514b51c01cb80edb6674d274a4ef",
+    "control_warning_offset": 139166,
+    "target_offset": 270225,
+    "warning_index": 1,
+    "padding_bytes": 131059,
+    "padding_sha256": "de8efbc185d7bbc2b357fb71c454898a95ac189496915a41f19cc756bc09ef94",
+    "original_bytes": 135501,
+    "original_sha256": "3e075f6caa6be8376d7d37a6109385df609329c2f5d7f25d2a9e4bd4b55969f6",
+    "before_bytes": 266560,
+    "before_sha256": "77c16ad4d31291eead01f13ecfb15de9ad1523426b55b8f94daf87c7119aa780",
+    "old_chain": [
+      13963,
+      13964,
+      13965
+    ],
+    "added_clusters": [
+      2144540,
+      2144541
+    ],
+    "new_chain": [
+      13963,
+      13964,
+      13965,
+      2144540,
+      2144541
+    ],
+    "cluster_size": 65536,
+    "directory_cluster": 2,
+    "directory_offset": 3136,
+    "original_entry_hex": "0c2073657475706170692e6c6f670000000000000000000000000000000000000000000000000000000000008b3600004d110200000021280000212800002128",
+    "staged_entry_hex": "0c2073657475706170692e6c6f670000000000000000000000000000000000000000000000000000000000008b36000040110400000021280000212800002128"
+  },
+  "preserved_during_drawing_staging": {
+    "winnt/system32/drivers/xboxvnt5.sys": "3e74a5c35b68d7fa0e047b4ba9cec25e7ec0ea5a94e796fc07508f667fcc85cf",
+    "winnt/system32/framebuf.dll": "5da1fe7c3cdaf67a4a487c8872c2034fbc425bfd36d2b7715b2a1c4caa51df86",
+    "Documents and Settings/All Users/Start Menu/Programs/Startup/xwnsetup.cmd": "1cfba6975b27fce397a0335f54096f8d1b902936386c5c1f2fadfa53d00701c2",
+    "xwns98/probe.exe": "a54363683ef566ac39403749703a8ceef45bd7e113470b9c669a19294a677f29",
+    "xwns98/matched.exe": "62e8690ae188fe72beb4017d4752fdac931f06c35879ecccd456394a848932a8",
+    "xwns98/scribble.bmp": "ad7bfd3fa51af5ae5a666f13888b755bf0cd17a4bbe4c1dbb4e81742d2b148d8",
+    "xwninf99/xwnvideo.inf": "78be6e5e46a1d5019a53648c9197cbba87f7278413bf5187ac27c5cbf59e38ac",
+    "xwninf99/xboxvnt5.sys": "3e74a5c35b68d7fa0e047b4ba9cec25e7ec0ea5a94e796fc07508f667fcc85cf",
+    "winnt/system32/drivers/xwnfatx.sys": "ba62acbb7dedf30154baba8d4cc2cf457f1a3e499bf7800e31011fba0e96d6a9",
+    "winnt/system32/config/system": "bd4185ed16280aeac790116fc18fb49b1e2e70e300ad629d19351a920133c469",
+    "winnt/system32/config/software": "4c5c76855b64d72d1259f66f69fd861b6d4a5428c47dd65a58ea585150fa9580",
+    "winnt/system32/config/default": "57c23de36c2b6efce75c57b3af6369a62c6a7c10bbdddaae9909b1aceabfca2e",
+    "winnt/system32/config/sam": "cdb292451851d16bed130e791ab5a607cb992e02968cb79ee1c2a4d9eeb32d12",
+    "winnt/system32/config/security": "d97f50561f1a422f9e6b7f2df5926a3a3240e7d1e32c099bb2bbd85ef36b58de",
+    "winnt/system32/xwn-video-trace.bin": "5806fe7ce339298b5a94a0e0ab1bdfb78922fc449effd5cea2f393f0d33fd00e",
+    "winnt/setupapi.log": "77c16ad4d31291eead01f13ecfb15de9ad1523426b55b8f94daf87c7119aa780"
+  },
+  "drawing_enabled": false,
+  "debugger_observation": true,
+  "physical_qualified": false
+}

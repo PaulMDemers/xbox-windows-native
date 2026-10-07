@@ -1,0 +1,201 @@
+{
+  "scope": "Review pinned candidate0101 write entry and cache-call boundaries, no guest edit.",
+  "source_sha256": "0749cf232a8be39dcf235dd99083e5dc7c2168dc237943a1cb51133aad787233",
+  "driver_sha256": "ba62acbb7dedf30154baba8d4cc2cf457f1a3e499bf7800e31011fba0e96d6a9",
+  "preferred_base": 65536,
+  "ntdll_sha256": "ed276d6a3ae93c71a6cef73672b82e3808211da1c63bf7d3e23d93294e54813a",
+  "ntwrite_gate": {
+    "name": "NtWriteFile",
+    "address": 2012778296,
+    "rva": 36664,
+    "argc": 9,
+    "bytes": "b8ed0000008d542404cd2ec22400",
+    "instructions": [
+      {
+        "address": 2012778296,
+        "bytes": "b8ed000000",
+        "instruction": "mov eax, 0xed"
+      },
+      {
+        "address": 2012778301,
+        "bytes": "8d542404",
+        "instruction": "lea edx, [esp + 4]"
+      },
+      {
+        "address": 2012778305,
+        "bytes": "cd2e",
+        "instruction": "int 0x2e"
+      },
+      {
+        "address": 2012778307,
+        "bytes": "c22400",
+        "instruction": "ret 0x24"
+      }
+    ]
+  },
+  "kernel_base_expected": 2185097216,
+  "kernel_timestamp": 1266293717,
+  "sites": [
+    {
+      "name": "write_entry",
+      "rva": 76080,
+      "bytes": "5589e557568d45085381ecbc0000"
+    },
+    {
+      "name": "cache_call",
+      "rva": 77386,
+      "bytes": "ff1560a20200",
+      "relocation_offset": 2,
+      "iat_rva": 107104
+    },
+    {
+      "name": "cache_return",
+      "rva": 77392,
+      "bytes": "83ec14"
+    },
+    {
+      "name": "buffer_ready",
+      "rva": 77123,
+      "bytes": "898578ffffff"
+    }
+  ],
+  "cache_setup_instructions": [
+    {
+      "rva": 77102,
+      "bytes": "0fb64583",
+      "instruction": "movzx eax, byte ptr [ebp - 0x7d]"
+    },
+    {
+      "rva": 77106,
+      "bytes": "89442404",
+      "instruction": "mov dword ptr [esp + 4], eax"
+    },
+    {
+      "rva": 77110,
+      "bytes": "8b459c",
+      "instruction": "mov eax, dword ptr [ebp - 0x64]"
+    },
+    {
+      "rva": 77113,
+      "bytes": "8b00",
+      "instruction": "mov eax, dword ptr [eax]"
+    },
+    {
+      "rva": 77115,
+      "bytes": "890424",
+      "instruction": "mov dword ptr [esp], eax"
+    },
+    {
+      "rva": 77118,
+      "bytes": "e8addcffff",
+      "instruction": "call 0x109f0"
+    },
+    {
+      "rva": 77123,
+      "bytes": "898578ffffff",
+      "instruction": "mov dword ptr [ebp - 0x88], eax"
+    },
+    {
+      "rva": 77129,
+      "bytes": "8b8568ffffff",
+      "instruction": "mov eax, dword ptr [ebp - 0x98]"
+    },
+    {
+      "rva": 77346,
+      "bytes": "8b9d78ffffff",
+      "instruction": "mov ebx, dword ptr [ebp - 0x88]"
+    },
+    {
+      "rva": 77352,
+      "bytes": "c744240c01000000",
+      "instruction": "mov dword ptr [esp + 0xc], 1"
+    },
+    {
+      "rva": 77360,
+      "bytes": "895c2410",
+      "instruction": "mov dword ptr [esp + 0x10], ebx"
+    },
+    {
+      "rva": 77364,
+      "bytes": "8b5d84",
+      "instruction": "mov ebx, dword ptr [ebp - 0x7c]"
+    },
+    {
+      "rva": 77367,
+      "bytes": "890424",
+      "instruction": "mov dword ptr [esp], eax"
+    },
+    {
+      "rva": 77370,
+      "bytes": "895c2408",
+      "instruction": "mov dword ptr [esp + 8], ebx"
+    },
+    {
+      "rva": 77374,
+      "bytes": "8d5da0",
+      "instruction": "lea ebx, [ebp - 0x60]"
+    },
+    {
+      "rva": 77377,
+      "bytes": "895c2404",
+      "instruction": "mov dword ptr [esp + 4], ebx"
+    },
+    {
+      "rva": 77381,
+      "bytes": "bb010000c0",
+      "instruction": "mov ebx, 0xc0000001"
+    },
+    {
+      "rva": 77386,
+      "bytes": "ff1560a20200",
+      "instruction": "call dword ptr [0x2a260]"
+    },
+    {
+      "rva": 77392,
+      "bytes": "83ec14",
+      "instruction": "sub esp, 0x14"
+    },
+    {
+      "rva": 77395,
+      "bytes": "84c0",
+      "instruction": "test al, al"
+    },
+    {
+      "rva": 77397,
+      "bytes": "740d",
+      "instruction": "je 0x12e64"
+    },
+    {
+      "rva": 77399,
+      "bytes": "8b459c",
+      "instruction": "mov eax, dword ptr [ebp - 0x64]"
+    },
+    {
+      "rva": 77402,
+      "bytes": "8b5d84",
+      "instruction": "mov ebx, dword ptr [ebp - 0x7c]"
+    },
+    {
+      "rva": 77405,
+      "bytes": "8b00",
+      "instruction": "mov eax, dword ptr [eax]"
+    },
+    {
+      "rva": 77407,
+      "bytes": "89581c",
+      "instruction": "mov dword ptr [eax + 0x1c], ebx"
+    },
+    {
+      "rva": 77410,
+      "bytes": "31db",
+      "instruction": "xor ebx, ebx"
+    },
+    {
+      "rva": 77412,
+      "bytes": "8b45c4",
+      "instruction": "mov eax, dword ptr [ebp - 0x3c]"
+    }
+  ],
+  "layouts_sha256": "8a144f0db66ea6134fcb59f8aee2ca3f67d1ff6b4876029dc5070d606334363f",
+  "limits": "VfatWrite takes a pointer to context pointer. CcCopyWrite arguments at ESP are FileObject,Offset pointer,Length,Wait,Buffer. AL is Boolean on return. Entry MDL reads use an existing mapped address only, without mapping guest pages. Entry file EOF is a snapshot, not a locked final append offset. buffer_ready captures EAX after VfatGetUserBuffer, context EBP-100, clipped Length EBP-124, resolved offset EBP-96, before the pointer is stored at EBP-136."
+}
