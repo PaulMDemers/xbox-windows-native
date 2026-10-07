@@ -4,6 +4,28 @@ User priorities: faster window dragging, additional Xbox modes including 1080i,
 documented FATX/platform findings, and convenient root-menu Windows launch.
 User also confirms working ping. Preserve the release before driver changes.
 
+## Current emulator evidence (2026-10-07 UTC)
+
+The128GiB dump path is now closed in the emulator with correct high-LBA writes
+and a separately recovered minidump; see ../atapi-dump-lba48/REPORT.md. Physical
+FATX0101/video0093 remains unchanged. The dated sections below are historical
+and do not supersede this current baseline or erase their failed trials.
+
+The new ../video-copy-profile-visible baseline passed54 timing cases and162 RGB
+stages without debugger/UI intervention, with normal restart and clean cold/
+event checks. RAM overlap plus upload retained most of the screen-copy cost.
+The matched ../video-map-profile0093/0096 pair then passed the same strict checks
+with identical Microsoft framebuf/probe/storage/policy and verified candidate
+UC reserved-RAM PTEs. Large overlap medians were75/72ms; there is no convincing
+emulator speed benefit from direct mapping. These are shared-slot functional
+timings, not physical performance or scanout qualification. No hardware change.
+
+Next identify the actual installed desktop transfer/flush path with bounded
+resident-pinned observation before implementing another renderer. Retain generic
+PnP lifecycle, complete alias/cache inventory and independent scanout gates.
+The existing0096 remains a bounded prototype;1080i is a separate handoff project.
+See ../video-map-profile/NEXT.md and ../video-copy-profile-visible/SHADOW-DESIGN.md.
+
 ## Next gate after FATX0098 qualification (2026-10-06 UTC)
 
 The focused [physical0098 trial](../fatx0098-physical-trial/README.md) passed.

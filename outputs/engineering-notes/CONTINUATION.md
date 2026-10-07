@@ -1,3 +1,146 @@
+# Video comparison complete; all owned sessions CLOSED
+
+2026-10-07T16:18:09.572862+00:00. All video-copy-profile, video-copy-profile-visible and video-map-profile
+attempts CLOSED. Never relaunch/recollect. Original initialization/visibility
+failure and corrected-kit host-path failure preserved. Corrected fixed0093
+baseline002 strictPASS54cases162pixelstages. Matched video-map-profile control001
+and candidate001 each strictPASS54cases162pixelstages, normalshutdown/dashboard,
+324dirs6755files325clusters0errors/orphans,5hives/protected, zero warning/error/
+application events, unchanged pagefile and device configuration. Candidate trace
+73records confirms UC reservedRAM03C00000..03FFFFFF; no exhaustive alias claim.
+
+Pair large overlap medians75ms0093 vs72ms0096, upload69/66ms, RAM-only0.574/0.549ms.
+No convincing emulator speedup. Shared functional slot, control overlapped host
+preparation; not hardware performance. Only miniport bytes differ, same Microsoft
+framebuf/probe/storage/trace seed/hives. Existing0096 prototype; no new driver build
+or physical deployment. See video-map-profile/REPORT.md,NEXT.md,pair-review.json.
+Next actual desktop transfer/flush discriminator before speculative shadow/WC work.
+PnP lifecycle and independent scanout remain gates. Higher modes remain separate.
+
+All sessions closed: controlprep4102,candidateprep45378; controlrunner37952,
+supervisor15403,audit51717; candidaterunner18875,supervisor50215,audit94211;
+config32257/map29939 closed.128GiB closure ac8f06f remains intact, physical
+0101/video0093,0088rollback,immutable0.1.0 untouched. Original111nonASCIIphysical
+SetupAPI damage unresolved. Old automation PAUSED. Final evidence review passed52 frozen-source pins and89 Python parses;
+repository check passed7468 tracked files, staged whitespace check clean. This
+commit records the closed comparison and next discriminator. C:~20.8GiB free;
+20GiB buildguard unchanged.
+
+# Mapping candidate active; matched control strictPASS
+
+2026-10-07T16:14:51.636354+00:00. video-map-profile/control001 CLOSED strictPASS:54cases162pixelstages,
+normal shutdown/dashboard,324dirs6755files325clusters0errors/orphans,5hives/
+protected hashes, zero warning/error/application deltas, config/pagefile unchanged.
+Control runner37952/supervisor15403/prep4102/audit51717 all CLOSED.
+Candidate prep45378 and config32257/map29939 CLOSED. Candidate001 accepted
+16:14:26UTC; runner18875/supervisor50215 ACTIVE. Do not relaunch or duplicate.
+After return: audit once, config/map after, closure, decode actual mapping trace,
+summarize-pair; report limits and commit reviewed source/evidence. No physical
+access. Existing0096 generic PnP stop/remove lifecycle remains unqualified;
+ordinary GDI readback does not independently prove scanout. Fixed0093 hardware
+and128GiB ac8f06f preserved. No driver code compiled/changed this comparison.
+
+# Matched video mapping control active, candidate preparation
+
+2026-10-07T16:12:28.535134+00:00. outputs/video-map-profile/control001 launch accepted16:11:34UTC.
+Runner37952 and supervisor15403 ACTIVE; control preparation4102 CLOSED.
+Candidate001 preparation45378 ACTIVE, never launched. Before-control config/map
+passed. Do not duplicate launches/collections. Unchanged corrected probe,
+0093 control versus existing0096 candidate, emulator ONLY. Same fresh trace seeds.
+After each return: audit once, after configuration/map, closure; decode candidate
+trace; summarize-pair after both close. No debugger/UI input during timings.
+No physical deployment or generic PnP-lifecycle qualification. Prior attempts
+remain closed;128GiB fix ac8f06f preserved, automation PAUSED.
+
+# Matched video mapping pair preparing; emulator only
+
+2026-10-07T16:10:36.606020+00:00. video-copy-profile-visible/baseline002 CLOSED strictPASS:
+54 timing cases,162 pixel stages, normal shutdown/dashboard, full allocation
+324dirs6755files325clusters0errors/orphans,5hives/protected, unchanged pagefile
+and configuration, zero warning/error/application events. Summary complete.
+No convincing RAM-copy-plus-upload advantage in xemu; physical timings differ.
+Original initialization failure and corrected-kit host-path failure CLOSED.
+Never relaunch/recollect. See new REPORT.md and summary.json.
+
+NEW outputs/video-map-profile/control001 preparing session4102 ACTIVE;
+no other owned session active. Matched0093/control vs existing bounded0096
+candidate; same corrected probe, Microsoft framebuf, fresh trace seeds,
+FATX0103/HAL0102/NVNet0104/ATAPI0105, settled device policy. No physical access.
+After prep: before config/map, unique Run/supervise, closed audit/config/map/
+closure; candidate actual mapping decode; paired analysis. Generic0096 PnP
+lifecycle/scanout/hardware limitations explicit, no promotion from GDI readback.
+128GiB closure ac8f06f pushed, old automation remains PAUSED. Keep20GiB guard.
+
+# Active fixed-video profile, corrected visibility and short run path
+
+2026-10-07T16:03:58.553357+00:00. New video-copy-profile-visible/
+baseline002 runner66277 and supervisor90605 ACTIVE. Preparation22360 and before
+config25737/map37729 CLOSED. Inspect launch/cleanup records before any action;
+never duplicate launch. Exact probe12f0682664e1f3ae959862d859046638159577e590dc12789d222466c8e02e21.
+No debugger/UI actions on this attempt. Uses nt5-vcopy106-baseline002 short run
+path; no driver/mode/cache/policy change. Pending full workload and cold audit.
+Original profile001 failed before timings; corrected-kit001 failed host backing
+path before guest boot. Both CLOSED, immutable and separate from this attempt.
+No hardware access;128GiB closure remainsac8f06f. Old automation PAUSED.
+After dashboard return: audit once, after config/map, record-closure, summarize.
+Require all54 timings162pixelstages, normal shutdown and full strict checks.
+
+# Corrected video profile baseline002 preparing
+
+2026-10-07T16:02:38.444091+00:00. Original profile/baseline001
+fully closed and audited strictFALSE/no timings; integrity/events clean after
+manual normal restart. The visibility/initialization failure is a harness lead,
+not an identified driver fault. See REPORT and retained manual screenshots/log.
+Corrected profile-visible/baseline001 CLOSED HOST failure before guest boot,
+unchanged run/seed bytes, backing path too long for Windows xemu to open.
+No Windows launch requested. No old case is relaunched or recollected.
+Fresh profile-visible/baseline002 preparing session22360 ACTIVE; use short
+nt5-vcopy106-baseline002 run ID at same depth, original parents unchanged.
+No other owned process active. New build has bounded own-window visibility wait.
+Next before config/map, unique Run/supervise, closed audit/config/map/closure/
+summarize; require all54cases162pixelstages and unchanged strict gates.
+No physical access; storage128GiB closure ac8f06f remains preserved.
+
+# Failed probe preserved; corrected visibility kit preparing
+
+2026-10-07T16:00:26.130756+00:00. Original video-copy-profile/
+baseline001 CLOSED; runner89765/supervisor85073 ended after visually confirmed
+manual normal restart. Probe logged FAIL_INITIALIZE0/0/0 before any timings.
+Read-only running frame showed welcome topmost; Notepad confirmed failed log.
+Post-failure pause/captures/UI are explicit in manual-log-actions.json. No driver
+failure or performance conclusion. Cold audit-failed.py session54205 ACTIVE.
+New outputs/video-copy-profile-visible baseline001 preparation21459 ACTIVE,
+not launched. Own window raised/waits for full clip outside each timing; no
+welcome dismissal or configuration change. New build/import review passed.
+Inspect/resume all sessions, do not duplicate. Original source/hash/results kept.
+No hardware access. Old automation PAUSED;128GiB closure remainsac8f06f.
+
+# Active video baseline001; no duplicate launch
+
+2026-10-07T15:55:46.191282+00:00. Prep73526 CLOSED.
+Runner89765 and supervisor85073 ACTIVE, launch accepted15:53:17UTC. Fixed
+video0093, new copy-profile helper; no physical access. Inspect actual launch/
+cleanup records and resume sessions. No debugger. A host HMP screendump request
+was unsupported and produced no image; VM was not explicitly paused/modified.
+Do not use the existing stop/pmemsave capture during timed workload.
+After dashboard return/capture signal, audit once; config/map after, closure,
+verify frozen inputs and actual results. Keep all gates. No relaunch on timeout.
+
+# Video copy profile preparation; emulator only
+
+2026-10-07T15:52:36.622788+00:00. User authorized next work.
+outputs/video-copy-profile baseline001 preparation session73526 ACTIVE; no guest
+launch yet. Probe0772b70715023b5785ea2488408a7406e57db468b2e96a8defc6640ae991e7c0,
+RosBE build/import review passed. Initial compiler indentation warning preserved;
+no binary/guest existed for failed compile. No driver/mode/cache/policy changes.
+Discriminator:54 timings/162 required pixel stages across fill/upload/readback,
+screen overlap, system-memory overlap+upload, memory overlap; three geometries.
+Uses exact ordinary0105 fixture; video0093/Microsoft framebuf preserved.
+After prepare: before configuration/map, unique Run.ps1 and supervise.py once,
+then closed cold audit/map/config/closure. Never duplicate or reuse results.
+No physical access. Keep20GiB space guard;~21.4GiB available before prep.
+128GiB closure ac8f06f pushed; all its attempts remain closed and immutable.
+
 #128GiB emulator closure complete; all owned processes closed
 
 2026-10-07T15:46:45.436289+00:00. Renewed user request was to wrap up128GiB, then other issues.

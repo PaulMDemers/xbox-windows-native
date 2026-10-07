@@ -1,0 +1,187 @@
+{
+  "passed": true,
+  "postprocessor_sha256": "36be4eff8a64496378d23f26698049132c1eab230efe424ec09ab26364cef63d",
+  "host_workload_caveat": "Candidate preparation/cold reads overlapped part of control runtime. Both are functional shared-slot measurements, not isolated benchmarks.",
+  "physical_access": false,
+  "debugger": false,
+  "cases": [
+    "control001",
+    "candidate001"
+  ],
+  "strict_results": [
+    true,
+    true
+  ],
+  "changed_protected_files": [
+    "winnt/system32/drivers/xboxvnt5.sys"
+  ],
+  "matched_probe_sha256": "12f0682664e1f3ae959862d859046638159577e590dc12789d222466c8e02e21",
+  "timings": [
+    {
+      "width": 64,
+      "height": 64,
+      "path": "fill",
+      "control_ms": 0.06591796875,
+      "candidate_ms": 0.069580078125,
+      "control_over_candidate": 0.9473684210526315
+    },
+    {
+      "width": 64,
+      "height": 64,
+      "path": "upload",
+      "control_ms": 0.08578781812982557,
+      "candidate_ms": 0.08223684210526316,
+      "control_over_candidate": 1.0431798684586788
+    },
+    {
+      "width": 64,
+      "height": 64,
+      "path": "readback",
+      "control_ms": 0.040283203125,
+      "candidate_ms": 0.0439453125,
+      "control_over_candidate": 0.9166666666666666
+    },
+    {
+      "width": 64,
+      "height": 64,
+      "path": "screen_overlap",
+      "control_ms": 0.20899303356554783,
+      "candidate_ms": 0.2284843869002285,
+      "control_over_candidate": 0.914692843571881
+    },
+    {
+      "width": 64,
+      "height": 64,
+      "path": "memory_overlap_upload",
+      "control_ms": 0.25295109612141653,
+      "candidate_ms": 0.1837109614206981,
+      "control_over_candidate": 1.3768971332209108
+    },
+    {
+      "width": 64,
+      "height": 64,
+      "path": "memory_overlap",
+      "control_ms": 0.02197265625,
+      "candidate_ms": 0.02197265625,
+      "control_over_candidate": 1.0
+    },
+    {
+      "width": 256,
+      "height": 128,
+      "path": "fill",
+      "control_ms": 3.0,
+      "candidate_ms": 3.0303030303030303,
+      "control_over_candidate": 0.99
+    },
+    {
+      "width": 256,
+      "height": 128,
+      "path": "upload",
+      "control_ms": 2.6785714285714284,
+      "candidate_ms": 4.225352112676056,
+      "control_over_candidate": 0.6339285714285714
+    },
+    {
+      "width": 256,
+      "height": 128,
+      "path": "readback",
+      "control_ms": 0.9771986970684039,
+      "candidate_ms": 0.6423982869379015,
+      "control_over_candidate": 1.521172638436482
+    },
+    {
+      "width": 256,
+      "height": 128,
+      "path": "screen_overlap",
+      "control_ms": 5.2631578947368425,
+      "candidate_ms": 4.838709677419355,
+      "control_over_candidate": 1.087719298245614
+    },
+    {
+      "width": 256,
+      "height": 128,
+      "path": "memory_overlap_upload",
+      "control_ms": 4.477611940298507,
+      "candidate_ms": 3.4482758620689653,
+      "control_over_candidate": 1.2985074626865671
+    },
+    {
+      "width": 256,
+      "height": 128,
+      "path": "memory_overlap",
+      "control_ms": 0.08638065073423554,
+      "candidate_ms": 0.08873239436619719,
+      "control_over_candidate": 0.9734962225604321
+    },
+    {
+      "width": 768,
+      "height": 384,
+      "path": "fill",
+      "control_ms": 69.0,
+      "candidate_ms": 66.0,
+      "control_over_candidate": 1.0454545454545454
+    },
+    {
+      "width": 768,
+      "height": 384,
+      "path": "upload",
+      "control_ms": 69.0,
+      "candidate_ms": 66.0,
+      "control_over_candidate": 1.0454545454545454
+    },
+    {
+      "width": 768,
+      "height": 384,
+      "path": "readback",
+      "control_ms": 7.894736842105263,
+      "candidate_ms": 7.142857142857143,
+      "control_over_candidate": 1.1052631578947367
+    },
+    {
+      "width": 768,
+      "height": 384,
+      "path": "screen_overlap",
+      "control_ms": 75.0,
+      "candidate_ms": 72.0,
+      "control_over_candidate": 1.0416666666666667
+    },
+    {
+      "width": 768,
+      "height": 384,
+      "path": "memory_overlap_upload",
+      "control_ms": 72.0,
+      "candidate_ms": 69.0,
+      "control_over_candidate": 1.0434782608695652
+    },
+    {
+      "width": 768,
+      "height": 384,
+      "path": "memory_overlap",
+      "control_ms": 0.5736137667304015,
+      "candidate_ms": 0.5494505494505495,
+      "control_over_candidate": 1.0439770554493306
+    }
+  ],
+  "mapping_sha256": "861872978ac105b00da2ad40d50f70eced8619383afc9167e13d70ab31243870",
+  "evidence": {
+    "control001": {
+      "audit.json": "bc22ff8c48cdf37e5d7f6db1c4cfd04a0bac05738b569b80115370af98002732",
+      "closure.json": "01946624c66adea7824c11d40b6c01258e7f1f53221dc5f6764d118cc0b61598",
+      "preflight.json": "4239cd66c716ad293057bd076e50bfad589559071e541ca84ea2b19554aa4ab7",
+      "before-configuration.json": "e107d0d153608c67bd7ce856683e6b819aa89e58e8ff34c2b7ffff84b3aa1761",
+      "after-configuration.json": "9a7c971eb8f5a59d84ef8a297ef64a4ca5dbe0a0570b6951f5fcd5324a6af99f",
+      "before-pagefile-map.json": "547859a52310dc7f4ba0841e9e92461de5c465d9a70b2701cfe257a9952884d9",
+      "after-pagefile-map.json": "f237217b90738a2967750f2ca4621ffe15f2def74bc3edda70cde81dc6d4f1c9"
+    },
+    "candidate001": {
+      "audit.json": "d88c99a0c07fa9ed640f974005442d3b329ae664aa6d4e4655a85c3f04c1b8b6",
+      "closure.json": "b30345f87b675298b7433d28dfcc623303e08d7f80eed985a2a4976160796d11",
+      "preflight.json": "e0ccc6fa9214b01e29219afaf9d90d2542f0a12537285b9287d49e678bf348e6",
+      "before-configuration.json": "fd1593b877c48ceedc6f130d7b31ee54b504286e434c29b4b059a2e98ab1c530",
+      "after-configuration.json": "9e4e1119d0ae91b5e733ccd5ab0a1aaa1b1bc7b60c7a46f65800e85c4285ff10",
+      "before-pagefile-map.json": "5f0d73e8029d447940bab8ee3b03abc348844808c066ab1a80d5952ea9dcfafd",
+      "after-pagefile-map.json": "de3362ba020d3c71e8e1f20849ff5163295fb85746b91918a21b34c4fec3c80d"
+    }
+  },
+  "limitations": "Emulator API timings, not hardware speed or drag FPS. One run per binary, three rotated rounds, shared functional slot.0096 also adds mapping/lifetime instrumentation relative to0093; not a single-instruction comparison. Exact GDI self-readback is not independent scanout. Generic PnP stop/remove/restart and physical direct mapping remain unqualified."
+}
