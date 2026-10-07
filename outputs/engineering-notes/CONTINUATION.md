@@ -1,3 +1,21 @@
+# Controlled crash001 closed: incomplete observer, no dump qualification
+
+2026-10-07 11:08UTC. Read outputs/controlled-dump/REPORT.md,DESIGN.md,
+verification.json and actualcrash001 records. Unique intended E058D103 confirmed
+at11:02:22 after11:01:08launch; all4cookie parameters, kernel/trigger2pins.
+Observer failedE14 trying to pin discarded driverentrypoint. Allbreakpoints
+removed/resumed;30secwait/screenshot/ownedcleanup complete. Never relaunch/recollect.
+ColdPAGEPAGE header, no qualifieddump; highLBAbootpaging writes do NOT prove dump
+writes. Aliasunchanged/noaliaswrites; exactintent; clean324dirs6756files325clusters,
+5hives/protectedhashes. No warnings/errors flushed;normalshutdown0 deliberatecrash.
+All owned sessions CLOSED:build75741,prepare29872,runner23986,tracer72209,
+supervisor17241,audit24085. Dump-map-trace priorPASS pushedaeadc6c. NextNEW
+observer should pin resident dispatch/callbacks (not discarded entrypoints),
+capture dumpcontext and actualIoWriteCrashDump entry/return or kernel skip reason.
+No recoveryboot yet; no speculativepatch/suppression. C:~21.4GB slightlybelow
+20GiBbuildguard, so no newbuild without capacityrecovery; currenthelper already
+built. EmulatorONLY until13UTC,no physicalFTP/deploy/test. Preserveallbaselines.
+
 # Successful runtime dump mapping verified; diagnostic closed
 
 2026-10-07 10:50UTC. Read outputs/dump-map-trace/REPORT.md,DESIGN.md,NEXT.md

@@ -1,0 +1,462 @@
+{
+  "scope": "Observe one intentional guest crash and dump return; never inject execution.",
+  "physical_access": false,
+  "intentional_crash": true,
+  "ordinary_qualified": false,
+  "started_utc": "2026-10-07T11:00:44.947196+00:00",
+  "source_sha256": "decdf0b7096e3bc7fa0bef6fde4b64a1f201dd5b5fd1db364c5b47c9bff991f8",
+  "events": [
+    {
+      "index": 0,
+      "utc": "2026-10-07T11:02:22.355145+00:00",
+      "registers": {
+        "EAX": "0xffa08b08",
+        "ECX": "0xff9e7b08",
+        "EDX": "0xff9e7b0e",
+        "EBX": "0xc000000d",
+        "ESP": "0xfbd92bd4",
+        "EBP": "0xfbd92c00",
+        "ESI": "0xff9e7b08",
+        "EDI": "0xffa2b360",
+        "EIP": "0x82409c4e"
+      },
+      "resident_pin": 0,
+      "thread": "0xff9cfda0",
+      "process": "0xff9d0780",
+      "pid": 884,
+      "image": "probe.exe",
+      "kind": "bugcheck_entry",
+      "arguments": [
+        "0xe058d103",
+        "0x44554d50",
+        "0x103",
+        "0x10000",
+        "0x1"
+      ],
+      "caller": "0xf8fe90bf",
+      "caller_pin": 1
+    }
+  ],
+  "runtime_pins": [
+    {
+      "address": "0x82409c4e",
+      "base": "0x823df000",
+      "rva": "0x2ac4e",
+      "module": "ntoskrnl.exe",
+      "source_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+      "raw": "558bec81ec74030000538b5d085681fb",
+      "resident": "558bec81ec74030000538b5d085681fb",
+      "relocations": []
+    },
+    {
+      "address": "0xf8fe90bf",
+      "base": "0xf8fe8000",
+      "rva": "0x10bf",
+      "module": "trigger.sys",
+      "source_sha256": "385e167306237abe6c94d9f5437e62de04b933c3f0ba22bcdeb2d798159d096f",
+      "raw": "31db89591831d2c7411c00000000ff15",
+      "resident": "31db89591831d2c7411c00000000ff15",
+      "relocations": []
+    }
+  ],
+  "module_list": [
+    {
+      "base": 2185097216,
+      "size": 1691648,
+      "name": "ntoskrnl.exe"
+    },
+    {
+      "base": 2186788864,
+      "size": 2166784,
+      "name": "hal.dll"
+    },
+    {
+      "base": 4173332480,
+      "size": 40960,
+      "name": "bootvid.dll"
+    },
+    {
+      "base": 4173398016,
+      "size": 61440,
+      "name": "pci.sys"
+    },
+    {
+      "base": 4175953920,
+      "size": 24576,
+      "name": "PCIIDEX.SYS"
+    },
+    {
+      "base": 4173463552,
+      "size": 49152,
+      "name": "isapnp.sys"
+    },
+    {
+      "base": 4179394560,
+      "size": 4096,
+      "name": "pciide.sys"
+    },
+    {
+      "base": 4178575360,
+      "size": 8192,
+      "name": "intelide.sys"
+    },
+    {
+      "base": 4175986688,
+      "size": 32768,
+      "name": "MountMgr.sys"
+    },
+    {
+      "base": 4179398656,
+      "size": 4096,
+      "name": "WMILIB.SYS"
+    },
+    {
+      "base": 4266205184,
+      "size": 118784,
+      "name": "ftdisk.sys"
+    },
+    {
+      "base": 4178583552,
+      "size": 8192,
+      "name": "Diskperf.sys"
+    },
+    {
+      "base": 4178591744,
+      "size": 8192,
+      "name": "dmload.sys"
+    },
+    {
+      "base": 4266065920,
+      "size": 139264,
+      "name": "dmio.sys"
+    },
+    {
+      "base": 4177592320,
+      "size": 12288,
+      "name": "PartMgr.sys"
+    },
+    {
+      "base": 4173529088,
+      "size": 36864,
+      "name": "CLASSPNP.SYS"
+    },
+    {
+      "base": 4265975808,
+      "size": 90112,
+      "name": "atapi.sys"
+    },
+    {
+      "base": 4176019456,
+      "size": 32768,
+      "name": "disk.sys"
+    },
+    {
+      "base": 4265844736,
+      "size": 131072,
+      "name": "xwnfatx.sys"
+    },
+    {
+      "base": 4265771008,
+      "size": 73728,
+      "name": "KSecDD.sys"
+    },
+    {
+      "base": 4265603072,
+      "size": 167936,
+      "name": "NDIS.sys"
+    },
+    {
+      "base": 4265508864,
+      "size": 94208,
+      "name": "Mup.sys"
+    },
+    {
+      "base": 4180123648,
+      "size": 4096,
+      "name": "audstub.sys"
+    },
+    {
+      "base": 4174249984,
+      "size": 53248,
+      "name": "rasl2tp.sys"
+    },
+    {
+      "base": 4178018304,
+      "size": 12288,
+      "name": "ndistapi.sys"
+    },
+    {
+      "base": 4243320832,
+      "size": 94208,
+      "name": "ndiswan.sys"
+    },
+    {
+      "base": 4178083840,
+      "size": 16384,
+      "name": "TDI.SYS"
+    },
+    {
+      "base": 4174315520,
+      "size": 49152,
+      "name": "raspptp.sys"
+    },
+    {
+      "base": 4176773120,
+      "size": 20480,
+      "name": "ptilink.sys"
+    },
+    {
+      "base": 4176838656,
+      "size": 20480,
+      "name": "raspti.sys"
+    },
+    {
+      "base": 4174381056,
+      "size": 61440,
+      "name": "parallel.sys"
+    },
+    {
+      "base": 4177068032,
+      "size": 20480,
+      "name": "USBD.SYS"
+    },
+    {
+      "base": 4176969728,
+      "size": 24576,
+      "name": "openhci.sys"
+    },
+    {
+      "base": 4174446592,
+      "size": 65536,
+      "name": "nvnetnt5.sys"
+    },
+    {
+      "base": 4242972672,
+      "size": 114688,
+      "name": "ks.sys"
+    },
+    {
+      "base": 4243087360,
+      "size": 147456,
+      "name": "portcls.sys"
+    },
+    {
+      "base": 4243234816,
+      "size": 86016,
+      "name": "ac97xnt5.sys"
+    },
+    {
+      "base": 4176150528,
+      "size": 28672,
+      "name": "cdrom.sys"
+    },
+    {
+      "base": 4174577664,
+      "size": 53248,
+      "name": "videoprt.sys"
+    },
+    {
+      "base": 4174512128,
+      "size": 40960,
+      "name": "xboxvnt5.sys"
+    },
+    {
+      "base": 4180512768,
+      "size": 4096,
+      "name": "swenum.sys"
+    },
+    {
+      "base": 4242796544,
+      "size": 176128,
+      "name": "update.sys"
+    },
+    {
+      "base": 4174643200,
+      "size": 40960,
+      "name": "NDProxy.SYS"
+    },
+    {
+      "base": 4174708736,
+      "size": 40960,
+      "name": "usbhub.sys"
+    },
+    {
+      "base": 4176642048,
+      "size": 24576,
+      "name": "HIDPARSE.SYS"
+    },
+    {
+      "base": 4176543744,
+      "size": 24576,
+      "name": "HIDCLASS.SYS"
+    },
+    {
+      "base": 4178280448,
+      "size": 16384,
+      "name": "hidusb.sys"
+    },
+    {
+      "base": 4178313216,
+      "size": 16384,
+      "name": "kbdhid.sys"
+    },
+    {
+      "base": 4176707584,
+      "size": 24576,
+      "name": "kbdclass.sys"
+    },
+    {
+      "base": 4178345984,
+      "size": 12288,
+      "name": "mouhid.sys"
+    },
+    {
+      "base": 4176805888,
+      "size": 24576,
+      "name": "mouclass.sys"
+    },
+    {
+      "base": 4178649088,
+      "size": 8192,
+      "name": "Fs_Rec.SYS"
+    },
+    {
+      "base": 4180746240,
+      "size": 4096,
+      "name": "Null.SYS"
+    },
+    {
+      "base": 4180762624,
+      "size": 4096,
+      "name": "Beep.SYS"
+    },
+    {
+      "base": 4180783104,
+      "size": 4096,
+      "name": "mnmdd.SYS"
+    },
+    {
+      "base": 4177035264,
+      "size": 24576,
+      "name": "Msfs.SYS"
+    },
+    {
+      "base": 4174839808,
+      "size": 40960,
+      "name": "Npfs.SYS"
+    },
+    {
+      "base": 4178681856,
+      "size": 8192,
+      "name": "rasacd.sys"
+    },
+    {
+      "base": 4242309120,
+      "size": 323584,
+      "name": "tcpip.sys"
+    },
+    {
+      "base": 4174905344,
+      "size": 36864,
+      "name": "msgpc.sys"
+    },
+    {
+      "base": 4242141184,
+      "size": 167936,
+      "name": "netbt.sys"
+    },
+    {
+      "base": 4174970880,
+      "size": 36864,
+      "name": "netbios.sys"
+    },
+    {
+      "base": 4241969152,
+      "size": 172032,
+      "name": "rdbss.sys"
+    },
+    {
+      "base": 4241477632,
+      "size": 417792,
+      "name": "mrxsmb.sys"
+    },
+    {
+      "base": 4177297408,
+      "size": 32768,
+      "name": "wanarp.sys"
+    },
+    {
+      "base": 4179787776,
+      "size": 4096,
+      "name": "dump_WMILIB.SYS"
+    },
+    {
+      "base": 4241223680,
+      "size": 90112,
+      "name": "dump_atapi.sys"
+    },
+    {
+      "base": 2684354560,
+      "size": 1650688,
+      "name": "win32k.sys"
+    },
+    {
+      "base": 4178051072,
+      "size": 12288,
+      "name": "framebuf.dll"
+    },
+    {
+      "base": 4228775936,
+      "size": 122880,
+      "name": "afd.sys"
+    },
+    {
+      "base": 4175233024,
+      "size": 36864,
+      "name": "Fips.SYS"
+    },
+    {
+      "base": 4227375104,
+      "size": 253952,
+      "name": "srv.sys"
+    },
+    {
+      "base": 4175822848,
+      "size": 65536,
+      "name": "Cdfs.SYS"
+    },
+    {
+      "base": 4226482176,
+      "size": 73728,
+      "name": "wdmaud.sys"
+    },
+    {
+      "base": 4228317184,
+      "size": 49152,
+      "name": "sysaudio.sys"
+    },
+    {
+      "base": 4222480384,
+      "size": 81920,
+      "name": "ipsec.sys"
+    },
+    {
+      "base": 4177428480,
+      "size": 28672,
+      "name": "trigger.sys"
+    }
+  ],
+  "dependencies": {
+    "outputs\\dump-map-trace\\sites.json": "dc7a334a73901f900cd08fc52595873d11a8aeaa6f1f05ab9c06809933097306",
+    "outputs\\native-windows-nt5-kernel\\trace-entry.py": "5aadab63c678a7991fafb2cb3152e3d5743a3d515e89b52d3497d85bd5c9a282",
+    "outputs\\native-windows-prebuild\\monitor_capture.py": "51266cb64c3557c401b84d8a5a31ee8c4799f3f2c8f1bfa59ac0addc08866451",
+    "outputs\\shutdown-popup-workload\\site-review.json": "b0f106d8691774244a5f7e022d99f6db9492924e8b1ac2e205da5a032f9c3105"
+  },
+  "features": "PacketSize=20020;qXfer:features:read+;vContSupported+;multiprocess+",
+  "initial_stop": "T05thread:01;",
+  "status": "capture_incomplete",
+  "error": "AssertionError('E14')",
+  "guest_resumed": true,
+  "armed_breakpoints_remaining": [],
+  "ended_utc": "2026-10-07T11:02:22.364032+00:00"
+}
