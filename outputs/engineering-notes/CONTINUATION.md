@@ -1,3 +1,30 @@
+# Serial allocation shrink complete; concurrent overlap gate preserved as failure
+
+2026-10-07 07:49UTC. ALL owned sessions CLOSED. Emulator-only until13:00UTC;
+no physical FTP/deploy/test. No driver/release change. Read outputs/fatx-map-truncate/
+REPORT.md, NEXT.md and comparison.json. serial001 completed792 appends,32 queried
+allocation shrinks,132 reopens,11 cold files, normal shutdown, clean full
+allocation/five hives/protected hashes. StrictFALSE historicalSCM7000/Ftdisk49.
+flush001 exited after two file-rounds: overlap12 then0 ->FAIL_NO_OVERLAP.
+Timeout then post-timeout RAM/register/framebuffer capture showed desktop and
+no workload process or contended FATX resources. Host closed; no normal shutdown.
+Cold allocation/hives/protected files intact; both completed round0 files exact.
+Full four-round workload/strict resultFALSE; no waiver or deadlock inference.
+Sources frozen per case before collector classification amendment. Closed
+runner4186/supervisor21706/audit82702/comparison83995. Never rerun these cases.
+
+New host-only outputs/fatx-prefix-forensics/REPORT.md: physical111-byte span
+has strong3-byte periodicity, NOT proof of pixels/video cause. No exact111 or
+three24-byte fragments in6618 saved files; none among13159 decoded image frames
+including12887 PE resources.109 decode gaps preserved. All searches CLOSED
+(session99447 complete). Original physical restart method/source remain unknown.
+
+Next NEW kit: bounded dirty-map overlap rendezvous plus freely racing shrink
+appends, paired serial control, guaranteed stop/bounded join on every failure.
+Keep actual overlap gate; no speculative FATX edit. Preserve0101/video0093,
+0088rollback/0.1.0 and every failed case. Review/check/commit/push current new
+reports first; update heartbeat from old5721ffe state. No current guest/tracer.
+
 # Ordinary mapped-append pair complete; strict service errors retained
 
 2026-10-07 07:13 UTC. ALL owned sessions CLOSED, no guest/tracer/observer active.
