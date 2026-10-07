@@ -1,0 +1,137 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "source_tree": "0cb24809fa673421024b4a409d7a9fc08d40d8d0",
+  "build_sha256": "b72f33795349b6e0cfde73df514c756a551c970e900393f9b43ba6fb661f8add",
+  "display_sha256": "51d98cf9ee2d2f42c360d96152877491b32773471ef8a0680d40264b49f6efc5",
+  "probe_sha256": "ce30e3ec1731e4e6db7ca43fa109f280a170c285b0d6c5c16c35bfa97bfc6c31",
+  "probe_source_sha256": "a59efe7e4b8155323db9eea90748ef1806599bf9036d3873a7a40ff969a784ec",
+  "host_tests_sha256": "b165268095cdf6bad5b9cf7be2be19c559aaab5d91adc3f41d05d3cf443b4ae5",
+  "files": [
+    {
+      "name": "xwnram.dll",
+      "sha256": "51d98cf9ee2d2f42c360d96152877491b32773471ef8a0680d40264b49f6efc5",
+      "bytes": 89683,
+      "subsystem": 1,
+      "subsystem_version": [
+        5,
+        1
+      ],
+      "entrypoint": 5248,
+      "imports": {
+        "win32k.sys": [
+          "EngAllocMem",
+          "EngAlphaBlend",
+          "EngAssociateSurface",
+          "EngBitBlt",
+          "EngCopyBits",
+          "EngCreateBitmap",
+          "EngCreateDeviceSurface",
+          "EngCreatePalette",
+          "EngDeletePalette",
+          "EngDeleteSurface",
+          "EngDeviceIoControl",
+          "EngFillPath",
+          "EngFreeMem",
+          "EngGradientFill",
+          "EngLineTo",
+          "EngLockSurface",
+          "EngMovePointer",
+          "EngPaint",
+          "EngPlgBlt",
+          "EngSetPointerShape",
+          "EngStretchBlt",
+          "EngStretchBltROP",
+          "EngStrokeAndFillPath",
+          "EngStrokePath",
+          "EngTextOut",
+          "EngTransparentBlt",
+          "EngUnlockSurface",
+          "PALOBJ_cGetColors"
+        ]
+      },
+      "targets": {
+        "win32k.sys": "414cc2568ba7f11fa58490060c947477f44d6218e6c52e01deea1bbe8a364a92"
+      }
+    },
+    {
+      "name": "probe.exe",
+      "sha256": "ce30e3ec1731e4e6db7ca43fa109f280a170c285b0d6c5c16c35bfa97bfc6c31",
+      "bytes": 26449,
+      "subsystem": 3,
+      "subsystem_version": [
+        5,
+        0
+      ],
+      "entrypoint": 6472,
+      "imports": {
+        "advapi32.dll": [
+          "AdjustTokenPrivileges",
+          "LookupPrivilegeValueA",
+          "OpenProcessToken"
+        ],
+        "gdi32.dll": [
+          "BitBlt",
+          "CreateCompatibleDC",
+          "CreateDIBSection",
+          "DeleteDC",
+          "DeleteObject",
+          "ExtEscape",
+          "GdiFlush",
+          "GdiSetBatchLimit",
+          "GetClipBox",
+          "GetDeviceCaps",
+          "PatBlt",
+          "SelectObject"
+        ],
+        "kernel32.dll": [
+          "CloseHandle",
+          "CreateFileA",
+          "ExitProcess",
+          "FlushFileBuffers",
+          "GetCurrentProcess",
+          "GetLastError",
+          "GetModuleHandleA",
+          "GetProcAddress",
+          "GetTickCount",
+          "LoadLibraryA",
+          "ReadFile",
+          "SetLastError",
+          "Sleep",
+          "WriteFile"
+        ],
+        "user32.dll": [
+          "BeginPaint",
+          "ClientToScreen",
+          "CreateWindowExA",
+          "DefWindowProcA",
+          "DestroyWindow",
+          "DispatchMessageA",
+          "EndPaint",
+          "ExitWindowsEx",
+          "GetAsyncKeyState",
+          "GetClientRect",
+          "GetDC",
+          "IsWindow",
+          "PeekMessageA",
+          "PostQuitMessage",
+          "RegisterClassA",
+          "ReleaseDC",
+          "SetCursorPos",
+          "SetForegroundWindow",
+          "SetWindowPos",
+          "TranslateMessage",
+          "UpdateWindow",
+          "wsprintfA"
+        ]
+      },
+      "targets": {
+        "advapi32.dll": "d24493dbb2b1818f9cd605acd3b2008d63354c0975e9a090ccdd04bcc339cc59",
+        "gdi32.dll": "4525e25c187364c82be9f1885b1edc9c6f0465fe326e5087b167257f9e75b46f",
+        "kernel32.dll": "6b05b0749b5dd86da94cc4acd062ca05472509f70216b56cd4a5b9809c602e73",
+        "user32.dll": "291210cf381dc269f8847a86e59a7cf775e5dd4086f94ff1266714f34ff55063"
+      }
+    }
+  ],
+  "limits": "Import/export and exact source fault tests only. RAM-primary identity/coherence and functional compatibility still require guest evidence; host engine is a shim."
+}

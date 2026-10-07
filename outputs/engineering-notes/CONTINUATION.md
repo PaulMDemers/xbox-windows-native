@@ -1,3 +1,121 @@
+# RAM-primary0108 copy-path qualification PASS; ALL sessions CLOSED
+
+Read outputs/video-ram-primary/REPORT.md, NEXT.md, pair-review.json and
+evidence-verification.json; outputs/video-ram-scanout3/REPORT.md, DESIGN.md and
+verification.json. All five new guest cases are CLOSED and audited. Never
+relaunch/recollect primary control001/candidate001 or scanout/scanout2/scanout3
+candidate001. Historical ACTIVE headings below are superseded by this closure.
+
+Ordinary matched direct0107/RAM0108 each54cases162pixel stages, normalshutdown1/
+dashboard, clean325dirs6759files326dirclusters0errors/orphans,5hives/protected/
+payloads, zero warning/error/application delta, same96MiB1536cluster pagefile.
+RAM passed54selfchecks;7of14callbacks observed,30983uploads769149104bytes. Same
+permanentUC0106 acquisitionFCED6000→03C00000,44records0drops. No speed claim.
+Tree0cb24809fa673421024b4a409d7a9fc08d40d8d0; xwnram.dllSHA256
+51d98cf9ee2d2f42c360d96152877491b32773471ef8a0680d40264b49f6efc5.46actual-source
+host cases plus65536ROP truth tables pass ASan/UBSan/leak detection; source/import
+pins verified. Draft SAL and host shim failure evidence retained.
+
+Independent scanout3 diagnostic PASS12physicalframes1794048pixels,267pins including
+all11940bytes display.text, complete breakpoint teardown/resume, same strict
+workload/cold/event gates. Live two-IDT-gate kernel discovery823e0000. Display PE
+header unreadableE14 explicitly retained; loader metadata plus full relocated
+resident text establish identity. Probe/kernel headers remain verified. Not an
+ordinary run or full DDI/cursor/crash/hardware qualification. Original scanout
+failed stale823df000 assumption; scanout2 failed unreadable-header check. Both
+remain failed despite clean54/162/cold/event outcomes. No driver changes between
+these diagnostics; source snapshots/private disks/backing chains verified.
+
+Owned final runner99809/tracer92804/supervisor37662/audit65355 CLOSED, as are all
+earlier sessions listed below. No xemu process remains. Last Cfree26861182976,
+20GiB guard unchanged. No physicalFTP/deploy/test. Preserve physical0101/video0093,
+0088rollback, immutable0.1.0, qualified128GiB recovery and all failed evidence.
+Original111nonASCIIphysicalcorruption/restart remains unresolved. Old automation
+PAUSED; this work followed direct user Proceed authorization.
+
+Next NEW bounded kit: ownership review before broader render tests (foreign
+SURFOBJ/PDEV safety), seven uncovered callbacks and proper pixel oracles for all
+fourteen, complex clipping/masks/ROP/stretch/paths/text/alpha, cursor exclusion,
+NT5 mode/disable/bootvid lifecycle, then new sacrificial crash-render check.
+Only after those gates consider dirty-region optimization and physical timing.
+RAM0108 is an emulator prototype; do not deploy it yet. No required user action.
+
+# Exact resident-code scanout3 ACTIVE (22:23 UTC)
+
+Scanout2 is CLOSED failed observer: live IDT discovery823e0000 and xwnram module
+record succeeded, PE-header read E14, zero frames/pins; full teardown/resume.
+Its workload54/162/54selfchecks and strict cold/events passed. See scanout2REPORT;
+never relaunch/recollect. Sessions91832/47717/57942/88838 CLOSED.
+
+NEW video-ram-scanout3/candidate001 accepted22:22:50UTC, same binaries. Observer
+retains unavailable-header evidence but requires complete relocated resident
+display .text plus loader metadata and prior code pins. Kernel/probe headers
+remain mandatory. Runner99809/tracer92804/supervisor37662 ACTIVE; prepare80445
+CLOSED. Inspect/resume; after close audit/config/cold-map/closure once then verify.
+All source/reports UNCOMMITTED. Ordinary matched pair remains strictPASS;
+physical/release/high-LBA recovery unchanged. NEXT in video-ram-primary also flags
+foreign-device ownership and cursor/wider DDI/lifecycle/crash gates before hardware.
+
+# Live-address scanout2 ACTIVE (22:19 UTC)
+
+video-ram-scanout/candidate001 CLOSED failed diagnostic: module walker assumed
+historical823df000 and stopped before any pixels/pins; complete breakpoint teardown
+and resume. Guest54/162/54selfchecks plus strict cold/events PASS does not waive
+observer failure. All its sessions20581/17287/41025/97068 CLOSED; never repeat it.
+NEW video-ram-scanout2/candidate001 accepted22:19:05UTC, identical driver/probe,
+fresh child; live IDT0/2e agree-on-base discovery and PE identity added. Replay on
+older closed snapshot agrees with independent page-table discovery823e0000; do
+not call that new live evidence. Runner91832/tracer47717/supervisor57942 ACTIVE;
+prepare73558 CLOSED. Inspect/resume owned sessions, no duplicate launch/capture.
+After closure audit/config/cold-map/record-closure once then verify.py. Existing
+ordinary matched pair remains strictPASS. All source/reports still UNCOMMITTED.
+
+# RAM-primary ordinary PASS; independent scanout ACTIVE (22:15 UTC)
+
+Ordinary video-ram-primary/control001 and candidate001 CLOSED strictPASS54cases/
+162pixels stages,54candidate selfchecks, normalshutdown/dashboard, clean325dirs/
+6759files326dirclusters0errors/orphans,5hives/protected/payloads, zero warning/error/
+application deltas. Same96MiB1536cluster pagefile.7of14callbacks observed, not full
+DDI coverage. See REPORT.md/pair-review.json; never relaunch/recollect either case.
+All ordinary/preparation/audit sessions below CLOSED. No physical access/change.
+
+NEW video-ram-scanout/candidate001 accepted22:14:44UTC. Same compiled0108DLL;
+probe parks cursor outside window and exports twelve host-observed boundaries.
+Owned runner20581/tracer17287/supervisor41025 ACTIVE; prepare31276/build96719 CLOSED.
+Observer600sec bound, resident module/code pins, physical03c00000 snapshots,
+independent host pixel pattern, full breakpoint teardown. Inspect records and
+resume owned sessions, never duplicate. After close run audit/configuration/
+cold-map/record-closure once, then verify.py. This is diagnostic, not ordinary.
+Initial probe Werror indentation failure preserved; metadata debugger label was
+corrected before preflight with original preparation-record.json retained.
+Current source/reports UNCOMMITTED; review/check/commit/push after closure.
+Physical0101/video0093,0088rollback,immutable0.1.0 and128GiB recovery unchanged.
+
+# RAM-primary0108 prototype ordinary pair ACTIVE (2026-10-07 22:06 UTC)
+
+Read outputs/video-ram-primary/DESIGN.md and actual case records. New uncommitted
+source builds tree0cb24809fa673421024b4a409d7a9fc08d40d8d0; xwnram.dll SHA
+51d98cf9ee2d2f42c360d96152877491b32773471ef8a0680d40264b49f6efc5. Exact source/import
+review passes. Actual surface/shadow source host tests46cases/65536ROP tables,
+14 callback substitution checks pass ASan/UBSan/leak detection; real Eng/cursor
+semantics are not established by this shim. Draft001 and host001 failures retained.
+
+Fresh control001/candidate001 prepared with325dirs6758files326dirclusters0errors/
+orphans, two exact display-selector changes each, identical protected binaries/
+payloads except expected-driver marker. Both before configuration/pagefile pass.
+Control runner98944 (PID87200), supervisor39399 ACTIVE, accepted22:04:47UTC.
+Candidate NEVER LAUNCHED. Build8149/preps84413,27271/config44470 CLOSED. Inspect
+actual records/sessions before any launch or collection; never duplicate attempts.
+Same emulator-only stack/UC mapping/device policy; physical0101/video0093 untouched.
+Old automation remains paused; continued work is direct user authorization.
+
+Next: finish bounded ordinary control, full cold audit/config/pagefile/closure;
+then launch fresh candidate once. Require54cases162pixel stages, candidate54
+driver self-coherence checks, actual callback counts, unchanged strict event/cold
+gates. Run verify-pair.py after both close. Self-check is NOT independent scanout
+proof. Separate external framebuffer/cursor/wider DDI/mode/crash tests remain
+before hardware or speed claims. All old cases below remain CLOSED, never reuse.
+
 # Direct0107 display compatibility PASS; all sessions CLOSED
 
 Read outputs/video-direct-ddi-selection/REPORT.md, NEXT.md, pair-review.json and

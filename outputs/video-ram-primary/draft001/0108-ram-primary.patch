@@ -1,0 +1,422 @@
+--- a/win32ss/drivers/displays/framebuf/CMakeLists.txt
++++ b/win32ss/drivers/displays/framebuf/CMakeLists.txt
+@@ -5,15 +5,16 @@
+     pointer.c
+     screen.c
+     surface.c
++    shadow.c
+     framebuf.h)
+ 
+-add_library(xwndir MODULE
++add_library(xwnram MODULE
+     ${SOURCE}
+     framebuf.rc)
+ 
+-set_module_type(xwndir kerneldll ENTRYPOINT DrvEnableDriver 12)
+-add_pch(xwndir framebuf.h SOURCE)
+-target_link_libraries(xwndir libcntpr)
+-add_importlibs(xwndir win32k)
+-add_dependencies(xwndir psdk)
+-add_cd_file(TARGET xwndir DESTINATION reactos/system32 FOR all)
++set_module_type(xwnram kerneldll ENTRYPOINT DrvEnableDriver 12)
++add_pch(xwnram framebuf.h SOURCE)
++target_link_libraries(xwnram libcntpr)
++add_importlibs(xwnram win32k)
++add_dependencies(xwnram psdk)
++add_cd_file(TARGET xwnram DESTINATION reactos/system32 FOR all)
+--- a/win32ss/drivers/displays/framebuf/enable.c
++++ b/win32ss/drivers/displays/framebuf/enable.c
+@@ -26,22 +26,42 @@
+                 ULONG OutBytes, PVOID Out)
+ {
+    PPDEV p;
+-   ULONG Data[8];
+-   if (Escape != 0x58574431 || InBytes || In || !Surface || !Out ||
+-       OutBytes != sizeof(Data) || !Surface->dhpdev) return 0;
++   ULONG Data[32]; ULONG i;
++   if (InBytes || In || !Surface || !Out || !Surface->dhpdev) return 0;
+    p = (PPDEV)Surface->dhpdev;
+-   if (!p->ScreenPtr || !p->hSurfEng) return 0;
+-   Data[0] = 0x44525758; Data[1] = 107;
+-   Data[2] = p->ScreenWidth; Data[3] = p->ScreenHeight;
+-   Data[4] = p->ScreenDelta; Data[5] = p->BitsPerPixel;
+-   Data[6] = p->ScreenDelta * p->ScreenHeight; Data[7] = 0;
+-   memcpy(Out, Data, sizeof(Data));
+-   return 1;
++   if (!p->ScreenPtr || !p->hSurfEng || !p->ShadowObject || !p->ShadowActive) return 0;
++   if (Escape == 0x58574431 && OutBytes == 32)
++   {
++      Data[0]=0x44525758;Data[1]=108;Data[2]=p->ScreenWidth;Data[3]=p->ScreenHeight;
++      Data[4]=p->ScreenDelta;Data[5]=p->BitsPerPixel;Data[6]=p->ScreenDelta*p->ScreenHeight;Data[7]=1;
++      memcpy(Out,Data,32);return 1;
++   }
++   if (Escape != 0x58574432 || OutBytes != sizeof(Data)) return 0;
++   RtlZeroMemory(Data,sizeof(Data));Data[0]=0x53525758;Data[1]=108;
++   for(i=0;i<14;i++) Data[2+i]=p->ShadowCalls[i];
++   Data[16]=p->ShadowUploads;Data[17]=(ULONG)p->ShadowBytes;Data[18]=(ULONG)(p->ShadowBytes>>32);
++   Data[19]=XwnCheckScanout(p);Data[20]=p->ShadowActive;
++   memcpy(Out,Data,sizeof(Data));return 1;
+ }
+ 
+ static DRVFN DrvFunctionTable[] =
+ {
+    {INDEX_DrvEscape, (PFN)XwnDirectEscape},
++   {INDEX_DrvBitBlt, (PFN)XwnBitBlt},
++   {INDEX_DrvCopyBits, (PFN)XwnCopyBits},
++   {INDEX_DrvTextOut, (PFN)XwnTextOut},
++   {INDEX_DrvStrokePath, (PFN)XwnStrokePath},
++   {INDEX_DrvFillPath, (PFN)XwnFillPath},
++   {INDEX_DrvStrokeAndFillPath, (PFN)XwnStrokeAndFillPath},
++   {INDEX_DrvLineTo, (PFN)XwnLineTo},
++   {INDEX_DrvPaint, (PFN)XwnPaint},
++   {INDEX_DrvStretchBlt, (PFN)XwnStretchBlt},
++   {INDEX_DrvStretchBltROP, (PFN)XwnStretchBltROP},
++   {INDEX_DrvPlgBlt, (PFN)XwnPlgBlt},
++   {INDEX_DrvAlphaBlend, (PFN)XwnAlphaBlend},
++   {INDEX_DrvGradientFill, (PFN)XwnGradientFill},
++   {INDEX_DrvTransparentBlt, (PFN)XwnTransparentBlt},
++
+    {INDEX_DrvEnablePDEV, (PFN)DrvEnablePDEV},
+    {INDEX_DrvCompletePDEV, (PFN)DrvCompletePDEV},
+    {INDEX_DrvDisablePDEV, (PFN)DrvDisablePDEV},
+@@ -76,9 +96,8 @@
+     pSurfaceCallbacks->dwSize = sizeof(*pSurfaceCallbacks);
+     pPaletteCallbacks->dwSize = sizeof(*pPaletteCallbacks);
+ 
+-    /* We don't support any optional callback */
+-
+-    return TRUE;
++    /* No direct access may bypass the private RAM primary. */
++    return FALSE;
+ }
+ 
+ /*
+--- a/win32ss/drivers/displays/framebuf/framebuf.h
++++ b/win32ss/drivers/displays/framebuf/framebuf.h
+@@ -35,6 +35,13 @@
+    HANDLE hDriver;
+    HDEV hDevEng;
+    HSURF hSurfEng;
++   HSURF ShadowSurface;
++   SURFOBJ *ShadowObject;
++   PVOID ShadowBits;
++   BOOL ShadowActive;
++   ULONG ShadowCalls[14];
++   ULONG ShadowUploads;
++   ULONGLONG ShadowBytes;
+    ULONG ModeIndex;
+    ULONG ScreenWidth;
+    ULONG ScreenHeight;
+@@ -67,7 +74,7 @@
+    DDPIXELFORMAT ddpfDisplay;
+ } PDEV, *PPDEV;
+ 
+-#define DEVICE_NAME	L"xwndir"
++#define DEVICE_NAME	L"xwnram"
+ #define ALLOC_TAG	'FUBF'
+ 
+ 
+@@ -172,3 +179,20 @@
+    IN ULONG cColors);
+ 
+ #endif /* _FRAMEBUF_PCH_ */
++
++VOID XwnUpload(PPDEV p, const RECTL *rect, const CLIPOBJ *clip);
++ULONG XwnCheckScanout(PPDEV p);
++BOOL APIENTRY XwnBitBlt(SURFOBJ *psoTrg, opt_ SURFOBJ *psoSrc, opt_ SURFOBJ *psoMask, CLIPOBJ *pco, opt_ XLATEOBJ *pxlo, RECTL *prclTrg, opt_ POINTL *pptlSrc, opt_ POINTL *pptlMask, opt_ BRUSHOBJ *pbo, opt_ POINTL *pptlBrush, ROP4 rop4);
++BOOL APIENTRY XwnCopyBits(SURFOBJ *psoDest, SURFOBJ *psoSrc, CLIPOBJ *pco, opt_ XLATEOBJ *pxlo, RECTL *prclDest, POINTL *pptlSrc);
++BOOL APIENTRY XwnTextOut(SURFOBJ *pso, STROBJ *pstro, FONTOBJ *pfo, CLIPOBJ *pco, RECTL *prclExtra, opt_ RECTL *prclOpaque, BRUSHOBJ *pboFore, BRUSHOBJ *pboOpaque, POINTL *pptlOrg, MIX mix);
++BOOL APIENTRY XwnStrokePath(SURFOBJ *pso, PATHOBJ *ppo, CLIPOBJ *pco, opt_ XFORMOBJ *pxo, BRUSHOBJ *pbo, POINTL *pptlBrushOrg, LINEATTRS *plineattrs, MIX mix);
++BOOL APIENTRY XwnFillPath(SURFOBJ *pso, PATHOBJ *ppo, CLIPOBJ *pco, BRUSHOBJ *pbo, POINTL *pptlBrushOrg, MIX mix, FLONG flOptions);
++BOOL APIENTRY XwnStrokeAndFillPath(SURFOBJ *pso, PATHOBJ *ppo, CLIPOBJ *pco, opt_ XFORMOBJ *pxo, BRUSHOBJ *pboStroke, LINEATTRS *plineattrs, BRUSHOBJ *pboFill, POINTL *pptlBrushOrg, MIX mixFill, FLONG flOptions);
++BOOL APIENTRY XwnLineTo(SURFOBJ *pso, CLIPOBJ *pco, BRUSHOBJ *pbo, LONG x1, LONG y1, LONG x2, LONG y2, opt_ RECTL *prclBounds, MIX mix);
++BOOL APIENTRY XwnPaint(SURFOBJ *pso, CLIPOBJ *pco, BRUSHOBJ *pbo, POINTL *pptlBrushOrg, MIX mix);
++BOOL APIENTRY XwnStretchBlt(SURFOBJ *psoDest, SURFOBJ *psoSrc, opt_ SURFOBJ *psoMask, CLIPOBJ *pco, opt_ XLATEOBJ *pxlo, opt_ COLORADJUSTMENT *pca, POINTL *pptlHTOrg, RECTL *prclDest, RECTL *prclSrc, POINTL *pptlMask, ULONG iMode);
++BOOL APIENTRY XwnStretchBltROP(SURFOBJ *psoDest, SURFOBJ *psoSrc, opt_ SURFOBJ *psoMask, CLIPOBJ *pco, opt_ XLATEOBJ *pxlo, opt_ COLORADJUSTMENT *pca, POINTL *pptlHTOrg, RECTL *prclDest, RECTL *prclSrc, POINTL *pptlMask, ULONG iMode, BRUSHOBJ *pbo, DWORD rop4);
++BOOL APIENTRY XwnPlgBlt(SURFOBJ *psoTrg, SURFOBJ *psoSrc, opt_ SURFOBJ *psoMsk, CLIPOBJ *pco, opt_ XLATEOBJ *pxlo, opt_ COLORADJUSTMENT *pca, opt_ POINTL *pptlBrushOrg, POINTFIX *pptfx, RECTL *prcl, opt_ POINTL *pptl, ULONG iMode);
++BOOL APIENTRY XwnAlphaBlend(SURFOBJ *psoDest, SURFOBJ *psoSrc, CLIPOBJ *pco, opt_ XLATEOBJ *pxlo, RECTL *prclDest, RECTL *prclSrc, BLENDOBJ *pBlendObj);
++BOOL APIENTRY XwnGradientFill(SURFOBJ *psoDest, CLIPOBJ *pco, opt_ XLATEOBJ *pxlo, TRIVERTEX *pVertex, ULONG nVertex, PVOID pMesh, ULONG nMesh, RECTL *prclExtents, POINTL *pptlDitherOrg, ULONG ulMode);
++BOOL APIENTRY XwnTransparentBlt(SURFOBJ *psoDst, SURFOBJ *psoSrc, CLIPOBJ *pco, opt_ XLATEOBJ *pxlo, RECTL *prclDst, RECTL *prclSrc, ULONG iTransColor, ULONG ulReserved);
+--- /dev/null
++++ b/win32ss/drivers/displays/framebuf/shadow.c
+@@ -0,0 +1,197 @@
++/* RAM-primary prototype. GPL-2.0-or-later, as the containing framebuf driver. */
++#include "framebuf.h"
++static PPDEV XwnOwner(SURFOBJ *s)
++{
++ PPDEV p;
++ if (!s || s->iType != STYPE_DEVICE || !s->dhpdev || s->dhsurf != (DHSURF)s->dhpdev) return NULL;
++ p=(PPDEV)s->dhpdev;
++ return p->hSurfEng==s->hsurf && p->ShadowObject ? p : NULL;
++}
++static SURFOBJ *XwnSub(PPDEV p, SURFOBJ *s)
++{
++ return s && s->hsurf==p->hSurfEng ? p->ShadowObject : s;
++}
++VOID XwnUpload(PPDEV p, const RECTL *rect, const CLIPOBJ *clip)
++{
++ RECTL r; LONG y; ULONG bytes;
++ if (!p->ShadowActive || !p->ScreenPtr || !p->ShadowBits) return;
++ r.left=0;r.top=0;r.right=p->ScreenWidth;r.bottom=p->ScreenHeight;
++ if(rect) {r.left=max(r.left,rect->left);r.top=max(r.top,rect->top);r.right=min(r.right,rect->right);r.bottom=min(r.bottom,rect->bottom);}
++ if(clip) {r.left=max(r.left,clip->rclBounds.left);r.top=max(r.top,clip->rclBounds.top);r.right=min(r.right,clip->rclBounds.right);r.bottom=min(r.bottom,clip->rclBounds.bottom);}
++ if(r.left>=r.right || r.top>=r.bottom) return;
++ bytes=(r.right-r.left)*4;
++ for(y=r.top;y<r.bottom;y++) memcpy((BYTE*)p->ScreenPtr+y*p->ScreenDelta+r.left*4,(BYTE*)p->ShadowBits+y*p->ScreenDelta+r.left*4,bytes);
++ if(p->ShadowUploads!=0xffffffff) ++p->ShadowUploads;
++ p->ShadowBytes+=(ULONGLONG)bytes*(r.bottom-r.top);
++}
++ULONG XwnCheckScanout(PPDEV p)
++{
++ ULONG i,n=p->ScreenDelta*p->ScreenHeight/4,bad=0;
++ volatile ULONG *screen=(volatile ULONG*)p->ScreenPtr; ULONG *ram=(ULONG*)p->ShadowBits;
++ for(i=0;i<n;i++) if ((screen[i]&0xffffff)!=(ram[i]&0xffffff)) ++bad;
++ return bad;
++}
++BOOL APIENTRY XwnBitBlt(SURFOBJ *psoTrg, opt_ SURFOBJ *psoSrc, opt_ SURFOBJ *psoMask, CLIPOBJ *pco, opt_ XLATEOBJ *pxlo, RECTL *prclTrg, opt_ POINTL *pptlSrc, opt_ POINTL *pptlMask, opt_ BRUSHOBJ *pbo, opt_ POINTL *pptlBrush, ROP4 rop4)
++{
++ PPDEV p=NULL; BOOL ok;
++ if (!p) p=XwnOwner(psoTrg);
++ if (!p) p=XwnOwner(psoSrc);
++ if (!p) p=XwnOwner(psoMask);
++ if (!p || !p->ShadowActive) return FALSE;
++ if (p->ShadowCalls[0] != 0xffffffff) ++p->ShadowCalls[0];
++ ok=EngBitBlt(XwnSub(p, psoTrg), XwnSub(p, psoSrc), XwnSub(p, psoMask), pco, pxlo, prclTrg, pptlSrc, pptlMask, pbo, pptlBrush, rop4);
++ if (XwnOwner(psoTrg)) XwnUpload(p, prclTrg, pco);
++ return ok;
++}
++
++BOOL APIENTRY XwnCopyBits(SURFOBJ *psoDest, SURFOBJ *psoSrc, CLIPOBJ *pco, opt_ XLATEOBJ *pxlo, RECTL *prclDest, POINTL *pptlSrc)
++{
++ PPDEV p=NULL; BOOL ok;
++ if (!p) p=XwnOwner(psoDest);
++ if (!p) p=XwnOwner(psoSrc);
++ if (!p || !p->ShadowActive) return FALSE;
++ if (p->ShadowCalls[1] != 0xffffffff) ++p->ShadowCalls[1];
++ ok=EngCopyBits(XwnSub(p, psoDest), XwnSub(p, psoSrc), pco, pxlo, prclDest, pptlSrc);
++ if (XwnOwner(psoDest)) XwnUpload(p, prclDest, pco);
++ return ok;
++}
++
++BOOL APIENTRY XwnTextOut(SURFOBJ *pso, STROBJ *pstro, FONTOBJ *pfo, CLIPOBJ *pco, RECTL *prclExtra, opt_ RECTL *prclOpaque, BRUSHOBJ *pboFore, BRUSHOBJ *pboOpaque, POINTL *pptlOrg, MIX mix)
++{
++ PPDEV p=NULL; BOOL ok;
++ if (!p) p=XwnOwner(pso);
++ if (!p || !p->ShadowActive) return FALSE;
++ if (p->ShadowCalls[2] != 0xffffffff) ++p->ShadowCalls[2];
++ ok=EngTextOut(XwnSub(p, pso), pstro, pfo, pco, prclExtra, prclOpaque, pboFore, pboOpaque, pptlOrg, mix);
++ if (XwnOwner(pso)) XwnUpload(p, NULL, pco);
++ return ok;
++}
++
++BOOL APIENTRY XwnStrokePath(SURFOBJ *pso, PATHOBJ *ppo, CLIPOBJ *pco, opt_ XFORMOBJ *pxo, BRUSHOBJ *pbo, POINTL *pptlBrushOrg, LINEATTRS *plineattrs, MIX mix)
++{
++ PPDEV p=NULL; BOOL ok;
++ if (!p) p=XwnOwner(pso);
++ if (!p || !p->ShadowActive) return FALSE;
++ if (p->ShadowCalls[3] != 0xffffffff) ++p->ShadowCalls[3];
++ ok=EngStrokePath(XwnSub(p, pso), ppo, pco, pxo, pbo, pptlBrushOrg, plineattrs, mix);
++ if (XwnOwner(pso)) XwnUpload(p, NULL, pco);
++ return ok;
++}
++
++BOOL APIENTRY XwnFillPath(SURFOBJ *pso, PATHOBJ *ppo, CLIPOBJ *pco, BRUSHOBJ *pbo, POINTL *pptlBrushOrg, MIX mix, FLONG flOptions)
++{
++ PPDEV p=NULL; BOOL ok;
++ if (!p) p=XwnOwner(pso);
++ if (!p || !p->ShadowActive) return FALSE;
++ if (p->ShadowCalls[4] != 0xffffffff) ++p->ShadowCalls[4];
++ ok=EngFillPath(XwnSub(p, pso), ppo, pco, pbo, pptlBrushOrg, mix, flOptions);
++ if (XwnOwner(pso)) XwnUpload(p, NULL, pco);
++ return ok;
++}
++
++BOOL APIENTRY XwnStrokeAndFillPath(SURFOBJ *pso, PATHOBJ *ppo, CLIPOBJ *pco, opt_ XFORMOBJ *pxo, BRUSHOBJ *pboStroke, LINEATTRS *plineattrs, BRUSHOBJ *pboFill, POINTL *pptlBrushOrg, MIX mixFill, FLONG flOptions)
++{
++ PPDEV p=NULL; BOOL ok;
++ if (!p) p=XwnOwner(pso);
++ if (!p || !p->ShadowActive) return FALSE;
++ if (p->ShadowCalls[5] != 0xffffffff) ++p->ShadowCalls[5];
++ ok=EngStrokeAndFillPath(XwnSub(p, pso), ppo, pco, pxo, pboStroke, plineattrs, pboFill, pptlBrushOrg, mixFill, flOptions);
++ if (XwnOwner(pso)) XwnUpload(p, NULL, pco);
++ return ok;
++}
++
++BOOL APIENTRY XwnLineTo(SURFOBJ *pso, CLIPOBJ *pco, BRUSHOBJ *pbo, LONG x1, LONG y1, LONG x2, LONG y2, opt_ RECTL *prclBounds, MIX mix)
++{
++ PPDEV p=NULL; BOOL ok;
++ if (!p) p=XwnOwner(pso);
++ if (!p || !p->ShadowActive) return FALSE;
++ if (p->ShadowCalls[6] != 0xffffffff) ++p->ShadowCalls[6];
++ ok=EngLineTo(XwnSub(p, pso), pco, pbo, x1, y1, x2, y2, prclBounds, mix);
++ if (XwnOwner(pso)) XwnUpload(p, NULL, pco);
++ return ok;
++}
++
++BOOL APIENTRY XwnPaint(SURFOBJ *pso, CLIPOBJ *pco, BRUSHOBJ *pbo, POINTL *pptlBrushOrg, MIX mix)
++{
++ PPDEV p=NULL; BOOL ok;
++ if (!p) p=XwnOwner(pso);
++ if (!p || !p->ShadowActive) return FALSE;
++ if (p->ShadowCalls[7] != 0xffffffff) ++p->ShadowCalls[7];
++ ok=EngPaint(XwnSub(p, pso), pco, pbo, pptlBrushOrg, mix);
++ if (XwnOwner(pso)) XwnUpload(p, NULL, pco);
++ return ok;
++}
++
++BOOL APIENTRY XwnStretchBlt(SURFOBJ *psoDest, SURFOBJ *psoSrc, opt_ SURFOBJ *psoMask, CLIPOBJ *pco, opt_ XLATEOBJ *pxlo, opt_ COLORADJUSTMENT *pca, POINTL *pptlHTOrg, RECTL *prclDest, RECTL *prclSrc, POINTL *pptlMask, ULONG iMode)
++{
++ PPDEV p=NULL; BOOL ok;
++ if (!p) p=XwnOwner(psoDest);
++ if (!p) p=XwnOwner(psoSrc);
++ if (!p) p=XwnOwner(psoMask);
++ if (!p || !p->ShadowActive) return FALSE;
++ if (p->ShadowCalls[8] != 0xffffffff) ++p->ShadowCalls[8];
++ ok=EngStretchBlt(XwnSub(p, psoDest), XwnSub(p, psoSrc), XwnSub(p, psoMask), pco, pxlo, pca, pptlHTOrg, prclDest, prclSrc, pptlMask, iMode);
++ if (XwnOwner(psoDest)) XwnUpload(p, NULL, pco);
++ return ok;
++}
++
++BOOL APIENTRY XwnStretchBltROP(SURFOBJ *psoDest, SURFOBJ *psoSrc, opt_ SURFOBJ *psoMask, CLIPOBJ *pco, opt_ XLATEOBJ *pxlo, opt_ COLORADJUSTMENT *pca, POINTL *pptlHTOrg, RECTL *prclDest, RECTL *prclSrc, POINTL *pptlMask, ULONG iMode, BRUSHOBJ *pbo, DWORD rop4)
++{
++ PPDEV p=NULL; BOOL ok;
++ if (!p) p=XwnOwner(psoDest);
++ if (!p) p=XwnOwner(psoSrc);
++ if (!p) p=XwnOwner(psoMask);
++ if (!p || !p->ShadowActive) return FALSE;
++ if (p->ShadowCalls[9] != 0xffffffff) ++p->ShadowCalls[9];
++ ok=EngStretchBltROP(XwnSub(p, psoDest), XwnSub(p, psoSrc), XwnSub(p, psoMask), pco, pxlo, pca, pptlHTOrg, prclDest, prclSrc, pptlMask, iMode, pbo, rop4);
++ if (XwnOwner(psoDest)) XwnUpload(p, NULL, pco);
++ return ok;
++}
++
++BOOL APIENTRY XwnPlgBlt(SURFOBJ *psoTrg, SURFOBJ *psoSrc, opt_ SURFOBJ *psoMsk, CLIPOBJ *pco, opt_ XLATEOBJ *pxlo, opt_ COLORADJUSTMENT *pca, opt_ POINTL *pptlBrushOrg, POINTFIX *pptfx, RECTL *prcl, opt_ POINTL *pptl, ULONG iMode)
++{
++ PPDEV p=NULL; BOOL ok;
++ if (!p) p=XwnOwner(psoTrg);
++ if (!p) p=XwnOwner(psoSrc);
++ if (!p) p=XwnOwner(psoMsk);
++ if (!p || !p->ShadowActive) return FALSE;
++ if (p->ShadowCalls[10] != 0xffffffff) ++p->ShadowCalls[10];
++ ok=EngPlgBlt(XwnSub(p, psoTrg), XwnSub(p, psoSrc), XwnSub(p, psoMsk), pco, pxlo, pca, pptlBrushOrg, pptfx, prcl, pptl, iMode);
++ if (XwnOwner(psoTrg)) XwnUpload(p, NULL, pco);
++ return ok;
++}
++
++BOOL APIENTRY XwnAlphaBlend(SURFOBJ *psoDest, SURFOBJ *psoSrc, CLIPOBJ *pco, opt_ XLATEOBJ *pxlo, RECTL *prclDest, RECTL *prclSrc, BLENDOBJ *pBlendObj)
++{
++ PPDEV p=NULL; BOOL ok;
++ if (!p) p=XwnOwner(psoDest);
++ if (!p) p=XwnOwner(psoSrc);
++ if (!p || !p->ShadowActive) return FALSE;
++ if (p->ShadowCalls[11] != 0xffffffff) ++p->ShadowCalls[11];
++ ok=EngAlphaBlend(XwnSub(p, psoDest), XwnSub(p, psoSrc), pco, pxlo, prclDest, prclSrc, pBlendObj);
++ if (XwnOwner(psoDest)) XwnUpload(p, prclDest, pco);
++ return ok;
++}
++
++BOOL APIENTRY XwnGradientFill(SURFOBJ *psoDest, CLIPOBJ *pco, opt_ XLATEOBJ *pxlo, TRIVERTEX *pVertex, ULONG nVertex, PVOID pMesh, ULONG nMesh, RECTL *prclExtents, POINTL *pptlDitherOrg, ULONG ulMode)
++{
++ PPDEV p=NULL; BOOL ok;
++ if (!p) p=XwnOwner(psoDest);
++ if (!p || !p->ShadowActive) return FALSE;
++ if (p->ShadowCalls[12] != 0xffffffff) ++p->ShadowCalls[12];
++ ok=EngGradientFill(XwnSub(p, psoDest), pco, pxlo, pVertex, nVertex, pMesh, nMesh, prclExtents, pptlDitherOrg, ulMode);
++ if (XwnOwner(psoDest)) XwnUpload(p, NULL, pco);
++ return ok;
++}
++
++BOOL APIENTRY XwnTransparentBlt(SURFOBJ *psoDst, SURFOBJ *psoSrc, CLIPOBJ *pco, opt_ XLATEOBJ *pxlo, RECTL *prclDst, RECTL *prclSrc, ULONG iTransColor, ULONG ulReserved)
++{
++ PPDEV p=NULL; BOOL ok;
++ if (!p) p=XwnOwner(psoDst);
++ if (!p) p=XwnOwner(psoSrc);
++ if (!p || !p->ShadowActive) return FALSE;
++ if (p->ShadowCalls[13] != 0xffffffff) ++p->ShadowCalls[13];
++ ok=EngTransparentBlt(XwnSub(p, psoDst), XwnSub(p, psoSrc), pco, pxlo, prclDst, prclSrc, iTransColor, ulReserved);
++ if (XwnOwner(psoDst)) XwnUpload(p, prclDst, pco);
++ return ok;
++}
+--- a/win32ss/drivers/displays/framebuf/surface.c
++++ b/win32ss/drivers/displays/framebuf/surface.c
+@@ -108,9 +108,14 @@
+    ScreenSize.cx = ppdev->ScreenWidth;
+    ScreenSize.cy = ppdev->ScreenHeight;
+ 
+-   hSurface = (HSURF)EngCreateBitmap(ScreenSize, ppdev->ScreenDelta, BitmapType,
+-                                     (ppdev->ScreenDelta > 0) ? BMF_TOPDOWN : 0,
+-                                     ppdev->ScreenPtr);
++   ppdev->ShadowBits=EngAllocMem(FL_ZERO_MEMORY, ppdev->ScreenDelta*ppdev->ScreenHeight, ALLOC_TAG);
++   if(!ppdev->ShadowBits) goto FailMapping;
++   ppdev->ShadowSurface=(HSURF)EngCreateBitmap(ScreenSize, ppdev->ScreenDelta, BitmapType, BMF_TOPDOWN, ppdev->ShadowBits);
++   if(!ppdev->ShadowSurface) goto FailMapping;
++   if(!EngAssociateSurface(ppdev->ShadowSurface, ppdev->hDevEng, 0)) goto FailMapping;
++   ppdev->ShadowObject=EngLockSurface(ppdev->ShadowSurface);
++   if(!ppdev->ShadowObject) goto FailMapping;
++   hSurface=EngCreateDeviceSurface((DHSURF)ppdev, ScreenSize, BitmapType);
+    if (hSurface == NULL)
+    {
+       goto FailMapping;
+@@ -120,17 +125,26 @@
+     * Associate the surface with our device.
+     */
+ 
+-   if (!EngAssociateSurface(hSurface, ppdev->hDevEng, 0))
++   if (!EngAssociateSurface(hSurface, ppdev->hDevEng, HOOK_BITBLT | HOOK_COPYBITS | HOOK_TEXTOUT | HOOK_STROKEPATH | HOOK_FILLPATH | HOOK_STROKEANDFILLPATH | HOOK_LINETO | HOOK_PAINT | HOOK_STRETCHBLT | HOOK_STRETCHBLTROP | HOOK_PLGBLT | HOOK_ALPHABLEND | HOOK_GRADIENTFILL | HOOK_TRANSPARENTBLT))
+    {
+       EngDeleteSurface(hSurface);
+       goto FailMapping;
+    }
+ 
+    ppdev->hSurfEng = hSurface;
++   ppdev->ShadowActive=TRUE;
++   XwnUpload(ppdev,NULL,NULL);
+ 
+    return hSurface;
+ 
+ FailMapping:
++   ppdev->ShadowActive=FALSE;
++   if(ppdev->ShadowObject) EngUnlockSurface(ppdev->ShadowObject);
++   ppdev->ShadowObject=NULL;
++   if(ppdev->ShadowSurface) EngDeleteSurface(ppdev->ShadowSurface);
++   ppdev->ShadowSurface=NULL;
++   if(ppdev->ShadowBits) EngFreeMem(ppdev->ShadowBits);
++   ppdev->ShadowBits=NULL;
+    if (ppdev->ScreenPtr)
+    {
+       VideoMemory.RequestedVirtualAddress = ppdev->ScreenPtr;
+@@ -159,8 +173,17 @@
+    VIDEO_MEMORY VideoMemory;
+    PPDEV ppdev = (PPDEV)dhpdev;
+ 
++   ppdev->ShadowActive=FALSE;
+    if (ppdev->hSurfEng) EngDeleteSurface(ppdev->hSurfEng);
+    ppdev->hSurfEng = NULL;
++   ppdev->ShadowActive=FALSE;
++   if(ppdev->ShadowObject) EngUnlockSurface(ppdev->ShadowObject);
++   ppdev->ShadowObject=NULL;
++   if(ppdev->ShadowSurface) EngDeleteSurface(ppdev->ShadowSurface);
++   ppdev->ShadowSurface=NULL;
++   if(ppdev->ShadowBits) EngFreeMem(ppdev->ShadowBits);
++   ppdev->ShadowBits=NULL;
++
+ 
+ #ifdef EXPERIMENTAL_MOUSE_CURSOR_SUPPORT
+    /* Clear all mouse pointer surfaces. */
+@@ -213,6 +236,8 @@
+ 	     IntSetPalette(dhpdev, ppdev->PaletteEntries, 0, 256);
+       }
+ 
++      ppdev->ShadowActive=TRUE;
++      XwnUpload(ppdev,NULL,NULL);
+       return TRUE;
+    }
+    else
+@@ -220,6 +245,7 @@
+       /*
+        * Call the miniport driver to reset the device to a known state.
+        */
++      ppdev->ShadowActive=FALSE;
+       return !EngDeviceIoControl(ppdev->hDriver, IOCTL_VIDEO_RESET_DEVICE,
+                                  NULL, 0, NULL, 0, &ulTemp);
+    }
