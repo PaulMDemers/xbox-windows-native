@@ -1,0 +1,179 @@
+{
+  "passed": true,
+  "build_sha256": "e5ee590046b16e35d61fca851795af4980a114988a9dc925447c0c2ec059fd3f",
+  "host_tests": {
+    "passed": true,
+    "checks": 80,
+    "concurrent_attempts": 400000,
+    "acquired_and_released": 124579,
+    "joined": 8
+  },
+  "host_pins": {
+    "tests/provider.c": "acc0223813300fd6743c6826503de7e0b91b93e5c98bb3b4bae07ef69ebeaba9",
+    "tests/ntddk.h": "edbd5106bc26cf306418bb0d4ff001d386daeab0fe82c961ff0beb494cc3f3ae",
+    "xwn_fb.c": "31921665536ce9954018be4cd7c629895c48f4753d0aef42e64265e21ae065e6",
+    "xwn_fb.h": "c550a6053dc16451574ebfe4f56e7904d56ff6f89b935a1ae4b51bc849fab637",
+    "artifacts/provider-test": "7fd014b635e6b22f55834df2dc1d5dffd97b510c73c49802843baeb949e73461",
+    "host-tests.json": "d86cc766afb1a568a9de46181de452e4ec67c679f2959557d90dc5f6d2c16456"
+  },
+  "cases": [
+    {
+      "case": "control001",
+      "exports": {
+        "VidBitBlt": 1,
+        "VidBufferToScreenBlt": 2,
+        "VidCleanUp": 3,
+        "VidDisplayString": 4,
+        "VidDisplayStringXY": 5,
+        "VidInitialize": 6,
+        "VidResetDisplay": 7,
+        "VidScreenToBufferBlt": 8,
+        "VidSetScrollRegion": 9,
+        "VidSetTextColor": 10,
+        "VidSolidColorFill": 11
+      },
+      "imports": {
+        "xboxvnt5.sys": {
+          "hal.dll": [
+            "HalGetBusDataByOffset",
+            "KeGetCurrentIrql"
+          ],
+          "ntoskrnl.exe": [
+            "KeBugCheckEx",
+            "RtlInitUnicodeString",
+            "ZwClose",
+            "ZwCreateFile",
+            "ZwQueryInformationFile",
+            "ZwReadFile",
+            "ZwWriteFile"
+          ],
+          "videoprt.sys": [
+            "VideoPortFreeDeviceBase",
+            "VideoPortGetAccessRanges",
+            "VideoPortGetDeviceBase",
+            "VideoPortInitialize",
+            "VideoPortMapMemory",
+            "VideoPortUnmapMemory",
+            "VideoPortZeroMemory"
+          ]
+        },
+        "xboxbvid.dll": {
+          "ntoskrnl.exe": [
+            "DbgPrint",
+            "HalPrivateDispatchTable",
+            "MmMapIoSpace",
+            "MmUnmapIoSpace",
+            "READ_REGISTER_UCHAR",
+            "READ_REGISTER_ULONG",
+            "WRITE_REGISTER_UCHAR",
+            "memmove",
+            "memset"
+          ]
+        }
+      },
+      "targets": {
+        "hal.dll": "f46175c62987b045fb795520adb16bc9b11127f4d5a9c2c35fb168ff1a0127f0",
+        "ntoskrnl.exe": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+        "videoprt.sys": "40cd79d6c94bdffdcc6e384255b2eb4e7d3860a5dea95ca2368fd4e41db1fa5b"
+      },
+      "files": [
+        {
+          "name": "xboxvnt5.sys",
+          "sha256": "a00a7bc904f9acbe089a7ee440815845cbddcd0d4fbc1969ddc9053304390f7e",
+          "bytes": 40882
+        },
+        {
+          "name": "xboxbvid.dll",
+          "sha256": "39eff9c3d803e49753a312995476aaa5c2917a5067cf742caa687dd0ed039ac4",
+          "bytes": 43361
+        }
+      ]
+    },
+    {
+      "case": "candidate001",
+      "exports": {
+        "VidBitBlt": 1,
+        "VidBufferToScreenBlt": 2,
+        "VidCleanUp": 3,
+        "VidDisplayString": 4,
+        "VidDisplayStringXY": 5,
+        "VidInitialize": 6,
+        "VidResetDisplay": 7,
+        "VidScreenToBufferBlt": 8,
+        "VidSetScrollRegion": 9,
+        "VidSetTextColor": 10,
+        "VidSolidColorFill": 11,
+        "XwnFbAcquire": 12,
+        "XwnFbRelease": 13,
+        "XwnFbReleaseOwner": 14
+      },
+      "imports": {
+        "xboxvnt5.sys": {
+          "bootvid.dll": [
+            "XwnFbAcquire",
+            "XwnFbRelease",
+            "XwnFbReleaseOwner"
+          ],
+          "hal.dll": [
+            "HalGetBusDataByOffset",
+            "KeGetCurrentIrql"
+          ],
+          "ntoskrnl.exe": [
+            "KeBugCheckEx",
+            "RtlInitUnicodeString",
+            "ZwClose",
+            "ZwCreateFile",
+            "ZwQueryInformationFile",
+            "ZwReadFile",
+            "ZwWriteFile"
+          ],
+          "videoprt.sys": [
+            "VideoPortFreeDeviceBase",
+            "VideoPortGetAccessRanges",
+            "VideoPortGetDeviceBase",
+            "VideoPortInitialize",
+            "VideoPortZeroMemory"
+          ]
+        },
+        "xboxbvid.dll": {
+          "hal.dll": [
+            "KeGetCurrentIrql",
+            "KfAcquireSpinLock",
+            "KfReleaseSpinLock"
+          ],
+          "ntoskrnl.exe": [
+            "DbgPrint",
+            "HalPrivateDispatchTable",
+            "InbvCheckDisplayOwnership",
+            "MmMapIoSpace",
+            "MmUnmapIoSpace",
+            "READ_REGISTER_UCHAR",
+            "READ_REGISTER_ULONG",
+            "WRITE_REGISTER_UCHAR",
+            "memmove",
+            "memset"
+          ]
+        }
+      },
+      "targets": {
+        "bootvid.dll": "99c6f5bf499b57d3ea30c410487c60f327302e8aa6497333464d3840e7490c3e",
+        "hal.dll": "f46175c62987b045fb795520adb16bc9b11127f4d5a9c2c35fb168ff1a0127f0",
+        "ntoskrnl.exe": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+        "videoprt.sys": "40cd79d6c94bdffdcc6e384255b2eb4e7d3860a5dea95ca2368fd4e41db1fa5b"
+      },
+      "files": [
+        {
+          "name": "xboxvnt5.sys",
+          "sha256": "c4ac1bfc38d29397c953f4cbef6c150dccdbdc82f702ace2aa4d79d2b9cf75db",
+          "bytes": 41881
+        },
+        {
+          "name": "xboxbvid.dll",
+          "sha256": "99c6f5bf499b57d3ea30c410487c60f327302e8aa6497333464d3840e7490c3e",
+          "bytes": 45240
+        }
+      ]
+    }
+  ],
+  "limitations": "PE exports/imports and host exclusion model only; actual NT5 loader/IRQL/ownership order requires guest evidence. No concurrent publication contract: one boot initializer publishes before consumers."
+}

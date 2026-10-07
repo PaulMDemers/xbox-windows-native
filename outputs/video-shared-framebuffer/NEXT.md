@@ -1,3 +1,7 @@
+The planned alias and controlled crash diagnostics are now complete. Read
+../video-shared-trace2/REPORT.md and ../video-shared-crash/REPORT.md,NEXT.md.
+The following original gates remain as historical design context.
+
 # Gates after the shared UC prototype
 
 Control001/candidate001 are CLOSED ordinary PASS, with full cold gates and

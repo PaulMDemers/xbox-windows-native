@@ -1,0 +1,323 @@
+--- a/drivers/base/bootvid/i386/xbox/bootvid.c
++++ b/drivers/base/bootvid/i386/xbox/bootvid.c
+@@ -9,6 +9,9 @@
+ 
+ #include "precomp.h"
+ #include <drivers/xbox/xgpu.h>
++#ifdef XBOX_NT5_SHARED_FRAMEBUFFER
++#include "xwn_fb.h"
++#endif
+ 
+ #define NDEBUG
+ #include <debug.h>
+@@ -117,6 +120,9 @@
+     _In_ BOOLEAN SetMode)
+ {
+     BOOLEAN Result = FALSE;
++#ifdef XBOX_NT5_SHARED_FRAMEBUFFER
++    if (FrameBufferStart) { if (SetMode) VidResetDisplay(TRUE); return TRUE; }
++#endif
+ 
+     /* FIXME: Add platform check */
+     /* 1. Access PCI device 1:0:0 */
+@@ -209,6 +215,21 @@
+ 
+     /* Place backbuffer in the hidden part of framebuffer */
+     BackBuffer = (PUCHAR)(FrameBufferStart + NV2A_VIDEO_MEMORY_SIZE - BackBufferSize);
++
++#ifdef XBOX_NT5_SHARED_FRAMEBUFFER
++    {
++        XWN_FB_VIEW View = {sizeof(View), XWN_FB_VERSION, FrameBufferStart,
++            FrameBuffer, NV2A_VIDEO_MEMORY_SIZE, FrameBufferSize,
++            FrameBufferWidth, FrameBufferHeight, FrameBufferWidth * BytesPerPixel,
++            NV2A_VIDEO_MEMORY_SIZE - BackBufferSize, MmNonCached};
++        if (!XwnFbPublish(&View))
++        {
++            MmUnmapIoSpace((PVOID)FrameBufferStart, NV2A_VIDEO_MEMORY_SIZE);
++            FrameBufferStart = 0; BackBuffer = NULL; Result = FALSE;
++            goto cleanup;
++        }
++    }
++#endif
+ 
+     /* Check whether we have to set the video mode */
+     if (SetMode)
+--- a/drivers/base/bootvid/CMakeLists.txt
++++ b/drivers/base/bootvid/CMakeLists.txt
+@@ -66,8 +66,19 @@
+     add_bootvid(pc98bvid i386/pc98/pc98bvid.cmake NAME_ON_CD ${PC98BVID_NAME_ON_CD})
+     add_bootvid(xboxbvid i386/xbox/xboxbvid.cmake NAME_ON_CD ${XBOXBVID_NAME_ON_CD})
+     if(SARCH STREQUAL "xbox" AND XBOX_NT5_HAL)
++        option(XBOX_NT5_SHARED_FRAMEBUFFER "Share permanent UC bootvid mapping" OFF)
++        set(XWN_BOOTVID_SPEC bootvidnt5.spec)
++        if(XBOX_NT5_SHARED_FRAMEBUFFER)
++            set(XWN_BOOTVID_SPEC bootvidshared.spec)
++        endif()
+         add_bootvid(xboxbvidnt5 i386/xbox/xboxbvid.cmake
+-                    SPEC_FILE bootvidnt5.spec SOURCES nt5.c)
++                    SPEC_FILE ${XWN_BOOTVID_SPEC} SOURCES nt5.c)
++        if(XBOX_NT5_SHARED_FRAMEBUFFER)
++            target_sources(xboxbvidnt5 PRIVATE xwn_fb.c)
++            target_compile_definitions(xboxbvidnt5 PRIVATE XBOX_NT5_SHARED_FRAMEBUFFER=1)
++            target_include_directories(xboxbvidnt5 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
++            generate_import_lib(libxwnfbprovider bootvid.dll bootvidshared.spec "--version=${DLL_EXPORT_VERSION}" "")
++        endif()
+         target_compile_definitions(xboxbvidnt5 PRIVATE XBOX_NT5_BOOTVID)
+     endif()
+ endif()
+--- /dev/null
++++ b/drivers/base/bootvid/bootvidshared.spec
+@@ -0,0 +1,14 @@
++@ stdcall VidBitBlt(ptr long long)
++@ stdcall VidBufferToScreenBlt(ptr long long long long long)
++@ stdcall VidCleanUp()
++@ stdcall VidDisplayString(str)
++@ stdcall VidDisplayStringXY(str long long long)
++@ stdcall VidInitialize(long) XwnNt5VidInitialize
++@ stdcall VidResetDisplay() XwnNt5VidResetDisplay
++@ stdcall VidScreenToBufferBlt(ptr long long long long long)
++@ stdcall VidSetScrollRegion(long long long long)
++@ stdcall VidSetTextColor(long)
++@ stdcall VidSolidColorFill(long long long long long)
++@ stdcall XwnFbAcquire(ptr ptr)
++@ stdcall XwnFbRelease(ptr ptr)
++@ stdcall XwnFbReleaseOwner(ptr)
+--- /dev/null
++++ b/drivers/base/bootvid/xwn_fb.h
+@@ -0,0 +1,14 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++#pragma once
++#define XWN_FB_VERSION 1
++#define XWN_FB_BYTES 0x00400000
++#define XWN_FB_MAX_REFS 0x7fffffff
++typedef struct _XWN_FB_VIEW {
++    ULONG Size, Version, Address, Physical, ReservedBytes, VisibleBytes;
++    ULONG Width, Height, Stride, HiddenOffset, CacheType;
++} XWN_FB_VIEW, *PXWN_FB_VIEW;
++C_ASSERT(sizeof(XWN_FB_VIEW) == 44);
++BOOLEAN NTAPI XwnFbPublish(const XWN_FB_VIEW *View);
++NTSTATUS NTAPI XwnFbAcquire(PVOID Owner, PXWN_FB_VIEW View);
++NTSTATUS NTAPI XwnFbRelease(PVOID Owner, PVOID Address);
++NTSTATUS NTAPI XwnFbReleaseOwner(PVOID Owner);
+--- /dev/null
++++ b/drivers/base/bootvid/xwn_fb.c
+@@ -0,0 +1,91 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later
++ * Permanent UC boot-video mapping, borrowed by one desktop adapter.
++ * No map/unmap/cache transition or allocation occurs in these APIs. The boot
++ * owner retains the mapping even at zero desktop references, including crash
++ * and final shutdown. This is NOT an exclusive drawing or WC transition lock.
++ */
++#include <ntddk.h>
++#include "xwn_fb.h"
++NTSYSAPI BOOLEAN NTAPI InbvCheckDisplayOwnership(VOID);
++static XWN_FB_VIEW Published;
++static KSPIN_LOCK Lock;
++static volatile LONG Ready;
++static PVOID Owner;
++static ULONG References;
++
++BOOLEAN NTAPI XwnFbPublish(const XWN_FB_VIEW *View)
++{
++    /* Single boot initializer; publication precedes any desktop acquisition.
++     * Reinitialization must not replace a pointer already lent to a consumer. */
++    if (!View || Ready || View->Size != sizeof(*View) || View->Version != XWN_FB_VERSION ||
++        !View->Address || (View->Address & 4095) || View->Address > MAXULONG - XWN_FB_BYTES ||
++        (View->Physical != 0x03c00000 && View->Physical != 0x07c00000) ||
++        View->ReservedBytes != XWN_FB_BYTES || View->CacheType != MmNonCached ||
++        View->Width < 640 || View->Width > 1920 || View->Height < 480 || View->Height > 1080 ||
++        View->Stride != View->Width * 4 || View->Height > XWN_FB_BYTES / View->Stride ||
++        View->VisibleBytes != View->Height * View->Stride ||
++        View->HiddenOffset < View->VisibleBytes || View->HiddenOffset >= XWN_FB_BYTES)
++        return FALSE;
++    if (InterlockedCompareExchange(&Ready, -1, 0) != 0) return FALSE;
++    KeInitializeSpinLock(&Lock);
++    Published = *View;
++    InterlockedExchange(&Ready, 1);
++    return TRUE;
++}
++
++NTSTATUS NTAPI XwnFbAcquire(PVOID Device, PXWN_FB_VIEW View)
++{
++    KIRQL Irql;
++    NTSTATUS Status = STATUS_INVALID_PARAMETER;
++    if (KeGetCurrentIrql() != PASSIVE_LEVEL || !Device || !View ||
++        View->Size != sizeof(*View) || View->Version != XWN_FB_VERSION)
++        return Status;
++    if (InterlockedCompareExchange(&Ready, 1, 1) != 1) return STATUS_DEVICE_NOT_READY;
++    /* A precondition, not proof of quiescence: no pointer is replaced/freed. */
++    if (InbvCheckDisplayOwnership()) return STATUS_DEVICE_BUSY;
++    KeAcquireSpinLock(&Lock, &Irql);
++    if (View->Physical == Published.Physical && View->Width == Published.Width &&
++        View->Height == Published.Height && View->Stride == Published.Stride &&
++        !View->Address && (!References || Owner == Device) && References < XWN_FB_MAX_REFS)
++    {
++        Owner = Device;
++        ++References;
++        *View = Published;
++        Status = STATUS_SUCCESS;
++    }
++    KeReleaseSpinLock(&Lock, Irql);
++    return Status;
++}
++
++NTSTATUS NTAPI XwnFbRelease(PVOID Device, PVOID Address)
++{
++    KIRQL Irql;
++    NTSTATUS Status = STATUS_INVALID_PARAMETER;
++    if (KeGetCurrentIrql() != PASSIVE_LEVEL || !Device || !Address ||
++        InterlockedCompareExchange(&Ready, 1, 1) != 1) return Status;
++    KeAcquireSpinLock(&Lock, &Irql);
++    if (References && Owner == Device && (ULONG_PTR)Address == Published.Address)
++    {
++        if (!--References) Owner = NULL;
++        Status = STATUS_SUCCESS;
++    }
++    KeReleaseSpinLock(&Lock, Irql);
++    return Status;
++}
++
++NTSTATUS NTAPI XwnFbReleaseOwner(PVOID Device)
++{
++    KIRQL Irql;
++    NTSTATUS Status = STATUS_INVALID_PARAMETER;
++    if (KeGetCurrentIrql() != PASSIVE_LEVEL || !Device ||
++        InterlockedCompareExchange(&Ready, 1, 1) != 1) return Status;
++    KeAcquireSpinLock(&Lock, &Irql);
++    if (!References || Owner == Device)
++    {
++        Owner = NULL;
++        References = 0;
++        Status = STATUS_SUCCESS;
++    }
++    KeReleaseSpinLock(&Lock, Irql);
++    return Status;
++}
+--- /dev/null
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/xwn_fb.h
+@@ -0,0 +1,14 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++#pragma once
++#define XWN_FB_VERSION 1
++#define XWN_FB_BYTES 0x00400000
++#define XWN_FB_MAX_REFS 0x7fffffff
++typedef struct _XWN_FB_VIEW {
++    ULONG Size, Version, Address, Physical, ReservedBytes, VisibleBytes;
++    ULONG Width, Height, Stride, HiddenOffset, CacheType;
++} XWN_FB_VIEW, *PXWN_FB_VIEW;
++C_ASSERT(sizeof(XWN_FB_VIEW) == 44);
++BOOLEAN NTAPI XwnFbPublish(const XWN_FB_VIEW *View);
++NTSTATUS NTAPI XwnFbAcquire(PVOID Owner, PXWN_FB_VIEW View);
++NTSTATUS NTAPI XwnFbRelease(PVOID Owner, PVOID Address);
++NTSTATUS NTAPI XwnFbReleaseOwner(PVOID Owner);
+--- /dev/null
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/video_shared.c
+@@ -0,0 +1,36 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++#include <ntddk.h>
++#include <winerror.h>
++#include "xwn_fb.h"
++VOID NTAPI XwnVideoTrace(ULONG, ULONG, ULONG, ULONG);
++static PVOID SharedOwner;
++ULONG NTAPI XwnSharedMap(PVOID Device, ULONG Ram, ULONG Width, ULONG Height,
++                         ULONG Stride, PVOID *Address)
++{
++    XWN_FB_VIEW View = {0};
++    NTSTATUS Status;
++    if (!Address || *Address) return ERROR_INVALID_PARAMETER;
++    View.Size = sizeof(View); View.Version = XWN_FB_VERSION;
++    View.Physical = Ram; View.Width = Width; View.Height = Height; View.Stride = Stride;
++    Status = XwnFbAcquire(Device, &View);
++    XwnVideoTrace(0x30, Status, View.Address, View.Physical);
++    if (!NT_SUCCESS(Status)) return ERROR_INVALID_PARAMETER;
++    SharedOwner = Device;
++    *Address = (PVOID)(ULONG_PTR)View.Address;
++    return ERROR_SUCCESS;
++}
++ULONG NTAPI XwnSharedUnmap(PVOID Device, PVOID Address)
++{
++    NTSTATUS Status = XwnFbRelease(Device, Address);
++    XwnVideoTrace(0x31, Status, (ULONG_PTR)Address, (ULONG_PTR)Device);
++    return NT_SUCCESS(Status) ? ERROR_SUCCESS : ERROR_INVALID_PARAMETER;
++}
++VOID NTAPI XwnSharedClose(VOID)
++{
++    if (SharedOwner)
++    {
++        NTSTATUS Status = XwnFbReleaseOwner(SharedOwner);
++        XwnVideoTrace(0x32, Status, (ULONG_PTR)SharedOwner, 0);
++        SharedOwner = NULL;
++    }
++}
+--- a/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c
+@@ -7,6 +7,10 @@
+  */
+ #include "../xboxvmp.h"
+ #include <drivers/xbox/xgpu.h>
++#ifdef XBOX_NT5_SHARED_FRAMEBUFFER
++ULONG NTAPI XwnSharedMap(PVOID, ULONG, ULONG, ULONG, ULONG, PVOID *);
++ULONG NTAPI XwnSharedUnmap(PVOID, PVOID);
++#endif
+ 
+ #ifdef XBOX_NT5_VIDEO_DIAGNOSTIC
+ /* Deliberate diagnostic stop: preserve the first failing native video stage.
+@@ -151,12 +155,19 @@
+             { Status = ERROR_INSUFFICIENT_BUFFER; break; }
+         {
+             VIDEO_MEMORY_INFORMATION Result;
++#ifndef XBOX_NT5_SHARED_FRAMEBUFFER
+             ULONG Space = VIDEO_MEMORY_SPACE_MEMORY;
++#endif
+             VideoPortZeroMemory(&Result, sizeof(Result));
+             Result.VideoRamBase = ((PVIDEO_MEMORY)Request->InputBuffer)->RequestedVirtualAddress;
+             Result.VideoRamLength = NV2A_VIDEO_MEMORY_SIZE;
++#ifdef XBOX_NT5_SHARED_FRAMEBUFFER
++            Status = XwnSharedMap(Extension, V->Offset, V->Mode.VisScreenWidth,
++                                  V->Mode.VisScreenHeight, V->Mode.ScreenStride, &Result.VideoRamBase);
++#else
+             Status = VideoPortMapMemory(Extension, V->Framebuffer, &Result.VideoRamLength,
+                                         &Space, &Result.VideoRamBase);
++#endif
+             if (Status != NO_ERROR) { VIDEO_FAIL(7, Status, V->Framebuffer.LowPart, Result.VideoRamLength); break; }
+             Result.FrameBufferBase = Result.VideoRamBase;
+             Result.FrameBufferLength = V->Mode.ScreenStride * V->Mode.VisScreenHeight;
+@@ -167,7 +178,11 @@
+     case IOCTL_VIDEO_UNMAP_VIDEO_MEMORY:
+         if (!Request->InputBuffer || Request->InputBufferLength < sizeof(VIDEO_MEMORY))
+             { Status = ERROR_INSUFFICIENT_BUFFER; break; }
++#ifdef XBOX_NT5_SHARED_FRAMEBUFFER
++        Status = XwnSharedUnmap(Extension, ((PVIDEO_MEMORY)Request->InputBuffer)->RequestedVirtualAddress);
++#else
+         Status = VideoPortUnmapMemory(Extension, ((PVIDEO_MEMORY)Request->InputBuffer)->RequestedVirtualAddress, NULL);
++#endif
+         break;
+     }
+     Request->StatusBlock->Status = Status;
+--- a/win32ss/drivers/miniport/xboxvmp/nt5/video_pnp.c
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/video_pnp.c
+@@ -16,6 +16,9 @@
+     XwnVideoTrace(6, 0, 0, 0);
+     XwnVideoTraceClose();
+     if (OriginalUnload) OriginalUnload(Driver);
++#ifdef XBOX_NT5_SHARED_FRAMEBUFFER
++    { VOID NTAPI XwnSharedClose(VOID); XwnSharedClose(); }
++#endif
+ }
+ #define TRACE(e,a,b,c) XwnVideoTrace(e,(ULONG)(a),(ULONG)(b),(ULONG)(c))
+ #else
+--- a/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt
+@@ -53,3 +53,12 @@
+     target_sources(xboxvnt5 PRIVATE video_trace.c)
+     add_importlibs(xboxvnt5 hal)
+ endif()
++
++if(XBOX_NT5_SHARED_FRAMEBUFFER)
++    if(NOT XBOX_NT5_VIDEO_TRACE OR NOT XBOX_NT5_VIDEO_PNP_DIAGNOSTIC)
++        message(FATAL_ERROR "Shared mapping requires owned unload wrapper")
++    endif()
++    target_compile_definitions(xboxvnt5 PRIVATE XBOX_NT5_SHARED_FRAMEBUFFER=1)
++    target_sources(xboxvnt5 PRIVATE video_shared.c)
++    add_importlibs(xboxvnt5 xwnfbprovider)
++endif()

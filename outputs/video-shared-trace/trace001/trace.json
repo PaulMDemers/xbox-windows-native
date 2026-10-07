@@ -1,0 +1,205 @@
+{
+  "scope": "Bounded read-only framebuffer mapping call/return and alias observation; no timing qualification.",
+  "physical_access": false,
+  "ordinary_qualified": false,
+  "started_utc": "2026-10-07T20:48:26.773938+00:00",
+  "source_sha256": "93625030bfbd3138c79644aeed12a0e6acb04aafdb7b0ca64cda3683328fcc4b",
+  "sites_sha256": "54dfe181f154fe22ddf998f36f3e7b020d00c30145f58929f75dc843f69c7668",
+  "events": [],
+  "runtime_pins": [
+    {
+      "address": 2185325944,
+      "base": 2185097216,
+      "rva": 228728,
+      "module": "ntoskrnl.exe",
+      "source_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+      "header_identity_base": 2185097216,
+      "raw": "558bec83ec34816514ff00000053837d",
+      "resident": "558bec83ec34816514ff00000053837d",
+      "relocations": []
+    },
+    {
+      "address": 4173341232,
+      "base": 4173332480,
+      "rva": 8752,
+      "module": "bootvid.dll",
+      "source_sha256": "99c6f5bf499b57d3ea30c410487c60f327302e8aa6497333464d3840e7490c3e",
+      "header_identity_base": 4173332480,
+      "raw": "5756538b74241085f6740ea1a8500100",
+      "resident": "5756538b74241085f6740ea1a850c0f8",
+      "relocations": [
+        12
+      ]
+    },
+    {
+      "address": 2185215780,
+      "base": 2185097216,
+      "rva": 118564,
+      "module": "ntoskrnl.exe",
+      "source_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+      "header_identity_base": 2185097216,
+      "raw": "33c0833dc8394700020f95c0c3ccff74",
+      "resident": "33c0833dc8294582020f95c0c3ccff74",
+      "relocations": [
+        4
+      ]
+    },
+    {
+      "address": 2185215780,
+      "base": 2185097216,
+      "rva": 118564,
+      "module": "ntoskrnl.exe",
+      "source_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+      "header_identity_base": 2185097216,
+      "raw": "33c0833dc8394700020f95c0c3ccff74",
+      "resident": "33c0833dc8294582020f95c0c3ccff74",
+      "relocations": [
+        4
+      ]
+    }
+  ],
+  "calls": [
+    {
+      "id": 0,
+      "name": "MmMapIoSpace",
+      "eip": 2185325944,
+      "esp": 4177623468,
+      "thread": 4268232096,
+      "owner": {
+        "thread": 4268232096,
+        "process": 4268228640,
+        "pid": 8,
+        "image": "System"
+      },
+      "return_address": 4173337484,
+      "argc": 4,
+      "args": [
+        62914560,
+        0,
+        4194304,
+        0
+      ],
+      "entry_pin": 0,
+      "caller": "83ec10a37450c0f885c00f84a0feffff"
+    },
+    {
+      "id": 1,
+      "name": "XwnFbPublish",
+      "eip": 4173341232,
+      "esp": 4177623468,
+      "thread": 4268232096,
+      "owner": {
+        "thread": 4268232096,
+        "process": 4268228640,
+        "pid": 8,
+        "image": "System"
+      },
+      "return_address": 4173337603,
+      "argc": 1,
+      "args": [
+        4177623524
+      ],
+      "entry_pin": 1,
+      "caller": "83ec0484c0743489f2b8010000008b3d",
+      "view": [
+        44,
+        1,
+        4243415040,
+        62914560,
+        4194304,
+        2359296,
+        1024,
+        576,
+        4096,
+        3878144,
+        0
+      ]
+    },
+    {
+      "id": 2,
+      "name": "InbvCheckDisplayOwnership",
+      "eip": 2185215780,
+      "esp": 4177641432,
+      "thread": 4268232096,
+      "owner": {
+        "thread": 4268232096,
+        "process": 4268228640,
+        "pid": 8,
+        "image": "System"
+      },
+      "return_address": 2185215825,
+      "argc": 0,
+      "args": [],
+      "entry_pin": 2,
+      "caller": "84c00f848e000000e88afcffff84c00f"
+    },
+    {
+      "id": 3,
+      "name": "InbvCheckDisplayOwnership",
+      "eip": 2185215780,
+      "esp": 4177641432,
+      "thread": 4268232096,
+      "owner": {
+        "thread": 4268232096,
+        "process": 4268228640,
+        "pid": 8,
+        "image": "System"
+      },
+      "return_address": 2185215825,
+      "argc": 0,
+      "args": [],
+      "entry_pin": 3,
+      "caller": "84c00f848e000000e88afcffff84c00f"
+    }
+  ],
+  "samples": [],
+  "ignored_stops": 0,
+  "features": "PacketSize=20020;qXfer:features:read+;vContSupported+;multiprocess+",
+  "initial_stop": "T05thread:01;",
+  "status": "capture_incomplete",
+  "returns": [
+    {
+      "call_id": 0,
+      "thread": 4268232096,
+      "esp": 4177623488,
+      "eip": 4173337484,
+      "value": 4243415040,
+      "caller": "83ec10a37450c0f885c00f84a0feffff"
+    },
+    {
+      "call_id": 1,
+      "thread": 4268232096,
+      "esp": 4177623476,
+      "eip": 4173337603,
+      "value": 1,
+      "caller": "83ec0484c0743489f2b8010000008b3d"
+    }
+  ],
+  "stops": 9,
+  "early_bootvid_module": {
+    "base": 4173332480,
+    "size": 40960,
+    "name": "bootvid.dll"
+  },
+  "module_header_identities": [
+    {
+      "base": 2185097216,
+      "module": "ntoskrnl.exe",
+      "mz": "4d5a",
+      "nt_offset": 200,
+      "timestamp": 1266293717
+    },
+    {
+      "base": 4173332480,
+      "module": "bootvid.dll",
+      "mz": "4d5a",
+      "nt_offset": 128,
+      "timestamp": 1791404919
+    }
+  ],
+  "error": "AssertionError()",
+  "exception_traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\outputs\\video-shared-trace\\trace.py\", line 113, in <module>\n    assert len(matches)<=1\n           ^^^^^^^^^^^^^^^\nAssertionError\n",
+  "guest_resumed": true,
+  "ended_utc": "2026-10-07T20:48:57.526512+00:00",
+  "armed_breakpoints_remaining": []
+}

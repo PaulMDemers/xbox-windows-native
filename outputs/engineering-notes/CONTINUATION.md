@@ -1,3 +1,40 @@
+# Shared UC alias and controlled crash checks CLOSED and PASS
+
+Read outputs/video-shared-trace2/REPORT.md,verification.json and
+outputs/video-shared-crash/REPORT.md,NEXT.md,render-verification.json,
+payload-verification.json,verification.json and actual closure records.
+No new driver build: exact0106 sharedUC binaries. trace002 captured6pairedcalls,
+24stops219residentpins including fullbootvid/miniporttext; publication precedes
+two ownership-loss notifications then AcquireSUCCESS and CheckOwnershipFALSE.
+FCED6000 matchesallviews/globals.20active roots eachone4MiB1024PTE direct03C00000
+mapping,PCD/PWT1PAT0; oldaperturealias absent. No TLB/MSR/inactive/future-rootproof.
+54cases162pixelstages,normalrestart/dashboard,fullcold/config/pagefile/eventPASS.
+Prep15410,runner64258,tracer67262,super12320,audit44905 CLOSED. Prior trace001
+ambiguous return pairing is preserved diagnosticFAIL with fullteardown and
+resumed54case/coldPASS; prep64009/runner22944/tracer56144/super68874/audit99431
+CLOSED. Never relaunch/recollect either.
+
+video-shared-crash/crash001 CLOSED: launch20:57:04UTC,34events56pins,actual
+VidResetDisplay/SolidColorFill/DisplayString atIRQL31,unchangedpointer/descriptor/
+Ready1/References1/ownerbefore-after.5672residentbootvidtextbytesmatch. Visible
+screen correct intendedE058D103/cookie anddumpcomplete. All65536capturedpayload
+bytes exactlymatchcoldhighLBA148440145920;command39threewrites/nineblockscontained;
+oldalias11001192448 unchanged/no writes. Genuine dumpreturnSUCCESS andNVNet
+shutdownreturn.325dirs6757files326dirclusters0errors/orphans,5hives/protected/
+configuration/96MiBpagefilePASS,no warnings. Normalshutdown0intentionalcrash.
+Crashdisk9f725a94949350264c854fcb24ff104f7373c6cc144c14fcd8e0e19f5313391c preserved:
+NEVERboot/relaunch; newcrashrecovery NOTclaimed. Prep46173,runner11007,tracer87163,
+super30505,audit23213 all CLOSED. Noownedemulator remains.
+
+Next lateWCtransition design againstactualownedNT5primitives, especially crash/
+allocationfailure while retiringUC andpublishingWC. Keep validrendereraddress,
+no mixedcachealiases, properquiescence/cache/TLBhandling andboundedrollback.
+Do not mutate privatekernelWCflag/PTEs blindly. GenericPnP/arbitrarycrashtiming
+unqualified. Shadow-surface alternative if supportedprimitives insufficient.
+EmulatorONLY; physical0101/video0093,0088rollback,immutable0.1.0,allfailures and
+completed128GiB recovery preserved. Original111nonASCIIphysicalanomaly unresolved.
+Cfree22832881664,20GiBbuildguard unchanged. OldautomationPAUSED. Priorpush32a896c.
+
 # Shared UC framebuffer0106 ordinary pair CLOSED and PASS
 
 Read outputs/video-shared-framebuffer/REPORT.md,NEXT.md,pair-review.json and

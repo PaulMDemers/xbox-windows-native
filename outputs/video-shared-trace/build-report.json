@@ -1,0 +1,175 @@
+{
+  "status": "compiled",
+  "space": {
+    "minimum_free_gib": 20,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/home/paul/xbox-windows-native/build",
+        "free_bytes": 944747032576
+      },
+      {
+        "free_bytes": 25915781120,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "started_utc": "2026-10-07T20:28:03.368690+00:00",
+  "parent_tree": "329a29d61af1620a9fc005b0d8fcfb9e1a937d20",
+  "patch_sha256": "18083346906c3c46886fb262e8d17c252c49e715fd1b6a342568593f9d99d9af",
+  "tool_sha256": {
+    "RosBE.sh": "1d04daf7393952441c62691bb7735042d236b0196778f1632f0a4383476143b7",
+    "bin/cmake": "049737b62e2803fd657041cf65b6bb6de7756db377c92c686c63eec373604e75",
+    "bin/ninja": "371e855768aa214225d4b17f49902cdd2b2daa8764514134524b07282c9e9e07",
+    "i386/bin/i686-w64-mingw32-gcc": "83015512671faaa0dbe6f043a0107f79c049f4268a67e39955388a8d9a0182e5"
+  },
+  "commands": [
+    [
+      "git",
+      "init",
+      "-q",
+      "/home/paul/xbox-windows-native/build/video-shared-framebuffer-001/source"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/video-shared-framebuffer-001/source",
+      "fetch",
+      "--depth=1",
+      "/home/paul/xbox-windows-native/build/video-reuse-001/source",
+      "afc0127e8f937ab68503d715d948844973756aa1"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/video-shared-framebuffer-001/source",
+      "checkout",
+      "--detach",
+      "FETCH_HEAD"
+    ],
+    [
+      "/usr/bin/python3",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/tools/apply-series.py",
+      "--source",
+      "/home/paul/xbox-windows-native/build/video-shared-framebuffer-001/source",
+      "--manifest",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-trace-reuse/manifest.json"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/video-shared-framebuffer-001/source",
+      "apply",
+      "--index",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-shared-framebuffer/0106-shared-uc-framebuffer.patch"
+    ],
+    [
+      "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/RosBE.sh",
+      "/home/paul/xbox-windows-native/build/video-shared-framebuffer-001/source",
+      "0",
+      "i386"
+    ],
+    [
+      "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/RosBE.sh",
+      "/home/paul/xbox-windows-native/build/video-shared-framebuffer-001/source",
+      "0",
+      "i386"
+    ]
+  ],
+  "builds": [
+    {
+      "case": "control001",
+      "definitions": {
+        "ARCH": "i386",
+        "SARCH": "xbox",
+        "OARCH": "pentium",
+        "CMAKE_BUILD_TYPE": "Release",
+        "DBG": "OFF",
+        "KDBG": "OFF",
+        "PCH": "OFF",
+        "ENABLE_CCACHE": "OFF",
+        "XBOX_NT5_HAL": "ON",
+        "XBOX_NATIVE_PREFLIGHT": "OFF",
+        "XBOX_NATIVE_IO_PREFLIGHT": "ON",
+        "XBOX_NATIVE_EXTENDED_READ_PREFLIGHT": "OFF",
+        "XBOX_NATIVE_EXTENDED_NT5_BOOT": "ON",
+        "XBOX_NATIVE_FATX_F_BOOT": "ON",
+        "XBOX_NATIVE_VOLUME_PREFLIGHT": "OFF",
+        "XBOX_NATIVE_NT5_HANDOFF": "ON",
+        "XBOX_NATIVE_NT5_ENTER": "ON",
+        "XBOX_NATIVE_NT5_AUTORUN": "ON",
+        "XBOX_NT5_VIDEO_ADAPTER_DIAGNOSTIC": "OFF",
+        "XBOX_NT5_VIDEO_TRACE": "ON",
+        "XBOX_NT5_VIDEO_PNP_DIAGNOSTIC": "ON",
+        "XBOX_NT5_VIDEO_DIAGNOSTIC": "ON",
+        "XBOX_NT5_VIDEO_ENTRY_DIAGNOSTIC": "OFF",
+        "XBOX_NT5_FRAMEBUFFER_ONLY_PCI": "ON",
+        "XBOX_NT5_VIDEO_TRACE_REUSE": "ON",
+        "XBOX_NT5_SHARED_FRAMEBUFFER": "OFF"
+      },
+      "source_tree": "53e9aedc58152d03116c00579185000483379837",
+      "files": [
+        {
+          "name": "xboxvnt5.sys",
+          "sha256": "a00a7bc904f9acbe089a7ee440815845cbddcd0d4fbc1969ddc9053304390f7e",
+          "bytes": 40882
+        },
+        {
+          "name": "xboxbvid.dll",
+          "sha256": "39eff9c3d803e49753a312995476aaa5c2917a5067cf742caa687dd0ed039ac4",
+          "bytes": 43361
+        }
+      ],
+      "patch_sha256": "18083346906c3c46886fb262e8d17c252c49e715fd1b6a342568593f9d99d9af"
+    },
+    {
+      "case": "candidate001",
+      "definitions": {
+        "ARCH": "i386",
+        "SARCH": "xbox",
+        "OARCH": "pentium",
+        "CMAKE_BUILD_TYPE": "Release",
+        "DBG": "OFF",
+        "KDBG": "OFF",
+        "PCH": "OFF",
+        "ENABLE_CCACHE": "OFF",
+        "XBOX_NT5_HAL": "ON",
+        "XBOX_NATIVE_PREFLIGHT": "OFF",
+        "XBOX_NATIVE_IO_PREFLIGHT": "ON",
+        "XBOX_NATIVE_EXTENDED_READ_PREFLIGHT": "OFF",
+        "XBOX_NATIVE_EXTENDED_NT5_BOOT": "ON",
+        "XBOX_NATIVE_FATX_F_BOOT": "ON",
+        "XBOX_NATIVE_VOLUME_PREFLIGHT": "OFF",
+        "XBOX_NATIVE_NT5_HANDOFF": "ON",
+        "XBOX_NATIVE_NT5_ENTER": "ON",
+        "XBOX_NATIVE_NT5_AUTORUN": "ON",
+        "XBOX_NT5_VIDEO_ADAPTER_DIAGNOSTIC": "OFF",
+        "XBOX_NT5_VIDEO_TRACE": "ON",
+        "XBOX_NT5_VIDEO_PNP_DIAGNOSTIC": "ON",
+        "XBOX_NT5_VIDEO_DIAGNOSTIC": "ON",
+        "XBOX_NT5_VIDEO_ENTRY_DIAGNOSTIC": "OFF",
+        "XBOX_NT5_FRAMEBUFFER_ONLY_PCI": "ON",
+        "XBOX_NT5_VIDEO_TRACE_REUSE": "ON",
+        "XBOX_NT5_SHARED_FRAMEBUFFER": "ON"
+      },
+      "source_tree": "53e9aedc58152d03116c00579185000483379837",
+      "files": [
+        {
+          "name": "xboxvnt5.sys",
+          "sha256": "c4ac1bfc38d29397c953f4cbef6c150dccdbdc82f702ace2aa4d79d2b9cf75db",
+          "bytes": 41881
+        },
+        {
+          "name": "xboxbvid.dll",
+          "sha256": "99c6f5bf499b57d3ea30c410487c60f327302e8aa6497333464d3840e7490c3e",
+          "bytes": 45240
+        }
+      ],
+      "patch_sha256": "18083346906c3c46886fb262e8d17c252c49e715fd1b6a342568593f9d99d9af"
+    }
+  ],
+  "source_tree": "53e9aedc58152d03116c00579185000483379837",
+  "finished_utc": "2026-10-07T20:28:42.404304+00:00"
+}
