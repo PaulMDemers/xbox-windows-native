@@ -1,0 +1,118 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "source_tree": "3c664be8842518eac9dd18d92f6a3e2f78d36f73",
+  "build_sha256": "af1431c136480099030e1155e94111027a7f16c8958a64dec0750f76349e61af",
+  "display_sha256": "019f5267a66cf0a018731d1a3db9f9c8ef737da5a7fbeb6965c1aa96948d0d68",
+  "probe_sha256": "aa53e97483638c7496f3e71e22b769be223a88283efda778719ddc1099e1036b",
+  "probe_source_sha256": "057316646cb24b5eb1e9e3b07d8762f21ca202b46be377dce923c6b4b9fb3c3e",
+  "host_tests_sha256": "594b78a613bea7aaa2327d1fab5030adfa1f3c991cbc9b370355b474eb4420e9",
+  "files": [
+    {
+      "name": "xwndir.dll",
+      "sha256": "019f5267a66cf0a018731d1a3db9f9c8ef737da5a7fbeb6965c1aa96948d0d68",
+      "bytes": 81391,
+      "subsystem": 1,
+      "subsystem_version": [
+        5,
+        1
+      ],
+      "entrypoint": 4976,
+      "imports": {
+        "win32k.sys": [
+          "EngAllocMem",
+          "EngAssociateSurface",
+          "EngCreateBitmap",
+          "EngCreatePalette",
+          "EngDeletePalette",
+          "EngDeleteSurface",
+          "EngDeviceIoControl",
+          "EngFreeMem",
+          "EngMovePointer",
+          "EngSetPointerShape",
+          "PALOBJ_cGetColors"
+        ]
+      },
+      "targets": {
+        "win32k.sys": "414cc2568ba7f11fa58490060c947477f44d6218e6c52e01deea1bbe8a364a92"
+      }
+    },
+    {
+      "name": "probe.exe",
+      "sha256": "aa53e97483638c7496f3e71e22b769be223a88283efda778719ddc1099e1036b",
+      "bytes": 24921,
+      "subsystem": 3,
+      "subsystem_version": [
+        5,
+        0
+      ],
+      "entrypoint": 6037,
+      "imports": {
+        "advapi32.dll": [
+          "AdjustTokenPrivileges",
+          "LookupPrivilegeValueA",
+          "OpenProcessToken"
+        ],
+        "gdi32.dll": [
+          "BitBlt",
+          "CreateCompatibleDC",
+          "CreateDIBSection",
+          "DeleteDC",
+          "DeleteObject",
+          "ExtEscape",
+          "GdiFlush",
+          "GdiSetBatchLimit",
+          "GetClipBox",
+          "GetDeviceCaps",
+          "PatBlt",
+          "SelectObject"
+        ],
+        "kernel32.dll": [
+          "CloseHandle",
+          "CreateFileA",
+          "ExitProcess",
+          "FlushFileBuffers",
+          "GetCurrentProcess",
+          "GetLastError",
+          "GetModuleHandleA",
+          "GetProcAddress",
+          "GetTickCount",
+          "LoadLibraryA",
+          "ReadFile",
+          "SetLastError",
+          "Sleep",
+          "WriteFile"
+        ],
+        "user32.dll": [
+          "BeginPaint",
+          "CreateWindowExA",
+          "DefWindowProcA",
+          "DestroyWindow",
+          "DispatchMessageA",
+          "EndPaint",
+          "ExitWindowsEx",
+          "GetAsyncKeyState",
+          "GetClientRect",
+          "GetDC",
+          "IsWindow",
+          "PeekMessageA",
+          "PostQuitMessage",
+          "RegisterClassA",
+          "ReleaseDC",
+          "SetForegroundWindow",
+          "SetWindowPos",
+          "TranslateMessage",
+          "UpdateWindow",
+          "wsprintfA"
+        ]
+      },
+      "targets": {
+        "advapi32.dll": "d24493dbb2b1818f9cd605acd3b2008d63354c0975e9a090ccdd04bcc339cc59",
+        "gdi32.dll": "4525e25c187364c82be9f1885b1edc9c6f0465fe326e5087b167257f9e75b46f",
+        "kernel32.dll": "6b05b0749b5dd86da94cc4acd062ca05472509f70216b56cd4a5b9809c602e73",
+        "user32.dll": "291210cf381dc269f8847a86e59a7cf775e5dd4086f94ff1266714f34ff55063"
+      }
+    }
+  ],
+  "limits": "Import/export and exact source fault tests only. Direct DDI identity and functional compatibility still require ordinary guest evidence."
+}

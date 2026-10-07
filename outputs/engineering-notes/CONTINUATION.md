@@ -1,3 +1,94 @@
+# Direct0107 display compatibility PASS; all sessions CLOSED
+
+Read outputs/video-direct-ddi-selection/REPORT.md, NEXT.md, pair-review.json and
+ evidence-verification.json, plus video-direct-ddi/REPORT.md/pair-addendum.json.
+Qualified ordinary pair: original video-direct-ddi/control001 and corrected
+video-direct-ddi-selection/candidate001 each54cases162pixelstages, normalshutdown1/
+dashboard, full allocation325dirs6758files326dirclusters0errors/orphans,5hives/
+protected/payload hashes unchanged, no warning/error/application delta. Same
+96MiB1536cluster pagefile. Candidate identity107/1024x576x32/stride4096 confirmed.
+SharedUC0106 acquireSUCCESS FCED6000/03C00000,44records0drops in each. No debugger
+or UI intervention in these passing runs. No shadow/WC/newmode/performance claim.
+
+DLL019f5267a66cf0a018731d1a3db9f9c8ef737da5a7fbeb6965c1aa96948d0d68,
+tree3c664be8842518eac9dd18d92f6a3e2f78d36f73.17actualsurface.c host fault/geometry
+cases ASan/UBSan PASS; all NT5 imports/ten source files pinned. Same DLL throughout.
+Initial candidate preserved strictFAIL: identity0/no workload/no shutdown; narrow
+Device0 selector change missed bound class0001\Settings. Post-timeout diagnostic
+showed original framebuf resident/Explorer/no probe/zero bugcheck. New fixture
+changed exactly both selectors with full logical hive comparison; no sourcefix,
+policy change or gate waiver. Never relaunch/recollect any of these closed cases.
+
+All owned runner/supervisor/audit/prep sessions CLOSED, including75164/19716/
+99016/45127 and prior65876/25455/96686. Private failed/success disks retained;
+source snapshots and closure/disk hashes verified. Initial CRLF build, host API/
+path/compiler and two preparation failures preserved. Decoder nonresident-string
+failure retained, corrected offline decoder labels unknown rather than inventing.
+Verified offload manifest20261007e preserves closed standalone006stress/002boot-
+persistence via E: junctions. Last Cfree27331915776;20GiB guard unchanged.
+
+Next NEW kit: RAM-primary prototype per video-late-cache-review/SHADOW-PLAN.md and
+selection/NEXT.md. Require complete hooks/coherence, independent scanout oracle,
+cursor/mode lifecycle, strict cold/events and new crash rendering before hardware.
+Preserve physical0101/video0093,0088rollback,immutable0.1.0,128GiB recovery and all
+failures. Original111nonASCIIphysicalcorruption/restart remains unresolved.
+EmulatorONLY no physicalFTP/deploy/test. Old automationPAUSED. Final source/report
+review/check/commit/push follows; prior pushed d2dc85e.
+
+# Corrected display selection trial ACTIVE (2026-10-07 21:46 UTC)
+
+Read outputs/video-direct-ddi/REPORT.md, pair-addendum.json and selection-inventory.
+Old control001 CLOSED strictPASS54/162; old candidate001 CLOSED strictFAIL identity0,
+no drawing/restart, post-timeout Explorer/no probe/no bugcheck. Original framebuf.dll
+was resident; class Settings selector was missed. Cold integrity/events PASS does
+not override failed workload. Never relaunch/recollect either old attempt.
+
+NEW outputs/video-direct-ddi-selection/candidate001 accepted21:45:57UTC.
+Runner75164 and supervisor19716 ACTIVE. Preparation16697 CLOSED. Inspect/resume,
+never duplicate launches. Same0107DLL/probe/sharedUC0106/provider/other drivers;
+only fixture correction: class0001 Settings plus Device0 both name xwndir in
+Current ControlSet001. Logical hive compare exactly2values. Same parent, no
+policy/hardware changes. Compare against already closed originalcontrol001.
+After dashboard closure: audit.py candidate001 once, configuration.py/cold-map.py
+after, record-closure.py, verify-pair.py. Identity must prove actual authoredDDI.
+If no return in900s, capture-timeout once, cleanup and preserve failure. No silent
+retries, speculative source patch or RAMshadow work before direct compatibility.
+
+All this turn UNCOMMITTED; final reports/review/check/commit/push pending. Physical
+0101/video0093 untouched, preserve0088/0.1.0/128GiB recovery. Old automationpaused.
+
+# Direct display DDI trial in progress (2026-10-07 21:32 UTC)
+
+Current new kit outputs/video-direct-ddi. UNCOMMITTED. Control001 CLOSED strict
+PASS54cases162pixelstages, normal shutdown/dashboard, clean allocation/hives/
+protected files and no warning/error/application delta. Never relaunch/recollect.
+Candidate001 accepted21:27:15UTC; runner65876 and supervisor25455 ACTIVE.
+Inspect actual launch/cleanup records; never duplicate. Bounded supervisor900s,
+runner1200s. Unpaused HMP framebuffer observation shows a rendered desktop with
+Getting Started, no probe/BSOD visible; no dashboard return yet. No stop/input/
+breakpoints. Preserve observation.json/raw/png; unsupported screendump recorded.
+Do not infer cause until cold result log. At timeout capture/cleanup the owned
+run, then audit.py candidate001 ONCE, configuration.py candidate001 after,
+cold-map.py candidate001 after, record-closure.py, verify-pair.py.
+
+0107 direct-only xwndir.dll SHA019f5267a66cf0a018731d1a3db9f9c8ef737da5a7fbeb6965c1aa96948d0d68,
+source tree3c664be8842518eac9dd18d92f6a3e2f78d36f73. Host17surface fault/geometry/
+lifecycle cases ASan/UBSan PASS; actual NT5 imports and ten source files pinned.
+Same payloads/parent; candidate changes one InstalledDisplayDrivers value to
+xwndir and one expected marker. SharedUC0106 provider/storage/network fixed.
+No shadow, WC, GPU acceleration, new modes or performance qualification.
+Build001 CRLF failure and two pre-disk registry preparation failures preserved.
+Private prepared-system failure blobs ignored; never commit them. Source frozen
+per case. Never mutate old candidate inputs to fix a failure.
+
+Verified closed standalone006stress/002bootpersistence offloaded to E: with
+original path junctions; task-storage-offload manifest20261007e pins all files.
+Cfree27630493696, unchanged20GiB build guard. Repository check passed preliminarily;
+final report/review/check/commit/push pending after closure.
+Physical untouched:0101/video0093; preserve0088, immutable0.1.0,128GiB recovery and
+all failure evidence. Original111nonASCII physical corruption remains unresolved.
+Emulator ONLY. Old automationPAUSED. Previous pushed d2dc85e.
+
 # Late cache review complete; keep the permanent UC mapping
 
 Read outputs/video-late-cache-review/REPORT.md, DESIGN.md, SHADOW-PLAN.md,
