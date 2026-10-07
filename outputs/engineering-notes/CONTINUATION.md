@@ -1,3 +1,18 @@
+# Latest handoff: evidence committed and pushed
+
+2026-10-07 17:08 UTC. Evidence/source commit9aa9363a6d1347495a2040603975d876a3f5a30a
+pushed to existing private origin/main. All owned sessions CLOSED, no emulator
+process remains; no physical access.112 Python files parse, PowerShell parses,
+all frozen source/closure/pair checks and repository payload/credential checks
+pass. Git clean after evidence push; this final handoff note is the only follow-up.
+
+Read video-cursor-client/REPORT.md and NEXT.md. Both revised pointer placements
+strictPASS, no convincing speed effect (large overlap72/72ms, upload66/66ms).
+Next discriminate operation vs flush vs loop overhead with calibrated QPC, or
+trace actual private row-copy branch. No driver change/physical speed claim.
+All previous failures and interventions remain separately recorded below.
+128GiB emulator write/recovery closure preserved; hardware qualification pending.
+
 # Video transfer and cursor comparison complete; all owned sessions CLOSED
 
 2026-10-07T17:05:56.768924+00:00. Ready for review/commit/push. New source/report kits:
