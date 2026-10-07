@@ -1,0 +1,255 @@
+/* Diagnostic: finish only the exactly identified successful GPU wizard once. */
+#define WIN32_LEAN_AND_MEAN
+#define _WIN32_WINNT 0x0500
+#include <windows.h>
+#include <tlhelp32.h>
+static HANDLE Log,Windows;
+static DWORD SampleStart,Count;
+static DWORD Installers[32],InstallerCount;
+static BOOL Placeholder[32],PlaceholderCancelled;
+static HWND CancelDialog,CancelButton,ThisCancel;
+static DWORD CancelMatches,WelcomeFlags;
+static BOOL ThisNext;
+typedef LONG (WINAPI *QUERY_PROCESS)(HANDLE,ULONG,PVOID,ULONG,PULONG);
+static QUERY_PROCESS QueryProcess;
+static void write(HANDLE h,const char *s);
+static BOOL placeholderProcess(DWORD pid){
+ HANDLE process;DWORD pbi[6],returned=0,params=0,flags=0;SIZE_T got;BOOL valid=FALSE;LONG status;
+ struct {USHORT length,maximum;DWORD buffer;} command;
+ static WCHAR text[512];static char ascii[1024],line[1150];
+ text[0]=0;ascii[0]=0;
+ process=OpenProcess(PROCESS_QUERY_INFORMATION|PROCESS_VM_READ,FALSE,pid);
+ if(!process)return FALSE;
+ status=QueryProcess(process,0,pbi,sizeof(pbi),&returned);
+ if(status<0 || returned!=sizeof(pbi) || pbi[4]!=pid)goto done;
+ if(!ReadProcessMemory(process,(void*)(pbi[1]+0x10),&params,4,&got)||got!=4||!params)goto done;
+ if(!ReadProcessMemory(process,(void*)(params+8),&flags,4,&got)||got!=4)goto done;
+ if(!ReadProcessMemory(process,(void*)(params+0x40),&command,8,&got)||got!=8)goto done;
+ if(command.length>command.maximum||command.length>1022||command.length%2)goto done;
+ if(!(flags&1)&&command.buffer)command.buffer+=params;
+ if(command.length && (!ReadProcessMemory(process,(void*)command.buffer,text,command.length,&got)||got!=command.length))goto done;
+ text[command.length/2]=0;
+ if(!WideCharToMultiByte(CP_ACP,0,text,-1,ascii,sizeof(ascii),NULL,NULL))goto done;
+ valid=!lstrcmpiA(ascii,"rundll32.exe newdev.dll,DevInstall PCI\\VEN_1B36&DEV_0005&SUBSYS_00000000&REV_00\\2&ebb567f&0&03");
+done:
+ CloseHandle(process);
+ wsprintfA(line,"COMMAND pid=%lu exact_placeholder=%u text=[%s]\r\n",pid,valid,ascii);
+ write(Windows,line);
+ return valid;
+}
+typedef DWORD (WINAPI *WAIT_INSTALL)(DWORD);
+static WAIT_INSTALL WaitInstall;
+static HWND Candidate,FinishButton,ThisTop,ThisButton;
+static DWORD Matches,ThisFlags;
+static BOOL FinishAttempted,RestartDeferred;
+static DWORD GpuPid,RestartMatches;
+static HWND RestartDialog,NoButton,ThisNo;
+static BOOL ThisQuestion,ThisYes;
+static void write(HANDLE h,const char *s) {
+ DWORD n=(DWORD)lstrlenA(s),w;
+ if(!WriteFile(h,s,n,&w,NULL)||w!=n)ExitProcess(91);
+}
+static void record(const char *s,DWORD value) {
+ char line[160];wsprintfA(line,"%s %lu\r\n",s,value);write(Log,line);
+ if(!FlushFileBuffers(Log))ExitProcess(91);
+}
+static void fatal(const char *s){record(s,GetLastError());ExitProcess(92);}
+/* Controls on this NT5 dialog return LF, while other versions use CRLF.
+   Normalize only CR preceding LF; every other byte remains exact. */
+static BOOL sameText(const char *a,const char *b){
+ while(*a || *b){if(*a=='\r' && a[1]=='\n')a++;if(*b=='\r' && b[1]=='\n')b++;if(*a!=*b)return FALSE;if(!*a)break;a++;b++;}return TRUE;
+}
+static BOOL budget(void){return Count<256 && GetTickCount()-SampleStart<10000;}
+static void describe(HWND h,const char *kind) {
+ char text[512],cls[80],line[800];DWORD pid=0,error;DWORD_PTR result=0;LRESULT ok;
+ text[0]=cls[0]=0;GetWindowThreadProcessId(h,&pid);GetClassNameA(h,cls,sizeof(cls));
+ SetLastError(0);
+ ok=SendMessageTimeoutA(h,WM_GETTEXT,sizeof(text),(LPARAM)text,SMTO_ABORTIFHUNG|SMTO_BLOCK,100,&result);
+ error=GetLastError();
+ text[511]=0;cls[79]=0;
+ if(ok && IsWindowVisible(h) && IsWindowEnabled(h)){
+  if(!lstrcmpA(text,"Welcome to the Found New Hardware Wizard"))WelcomeFlags|=1;
+  if(!lstrcmpA(text,"This wizard helps you install a device driver for a hardware device."))WelcomeFlags|=2;
+  if(!lstrcmpA(text,"To continue, click Next."))WelcomeFlags|=4;
+  if(!lstrcmpA(cls,"Button") && !lstrcmpA(text,"Cancel") && GetDlgCtrlID(h)==2 && GetParent(h)==ThisTop)ThisCancel=h;
+  if(!lstrcmpA(cls,"Button") && !lstrcmpA(text,"&Next >") && GetDlgCtrlID(h)==12324 && GetParent(h)==ThisTop)ThisNext=TRUE;
+  if(sameText(text,"You must restart your computer before the new settings will take effect.\r\n\r\nDo you want to restart your computer now?"))ThisQuestion=TRUE;
+  if(!lstrcmpA(cls,"Button") && !lstrcmpA(text,"&No") && GetDlgCtrlID(h)==7 && GetParent(h)==ThisTop)ThisNo=h;
+  if(!lstrcmpA(cls,"Button") && !lstrcmpA(text,"&Yes") && GetDlgCtrlID(h)==6 && GetParent(h)==ThisTop)ThisYes=TRUE;
+  if(!lstrcmpA(text,"Completing the Found New Hardware Wizard"))ThisFlags|=1;
+  if(!lstrcmpA(text,"Xbox NV2A firmware framebuffer (experimental)"))ThisFlags|=2;
+  if(sameText(text,"Windows has finished installing the software for this device.\r\n\r\nThe hardware you installed will not work until you restart your computer."))ThisFlags|=4;
+  if(!lstrcmpA(text,"To close this wizard, click Finish."))ThisFlags|=8;
+  if(!lstrcmpA(cls,"Button") && !lstrcmpA(text,"Finish") && GetDlgCtrlID(h)==12325 && GetParent(h)==ThisTop)ThisButton=h;
+ }
+ wsprintfA(line,"%s pid=%lu hwnd=%08lx parent=%08lx id=%ld visible=%u enabled=%u ok=%u err=%lu class=%s text=[%s]\r\n",
+ kind,pid,(DWORD)h,(DWORD)GetParent(h),(LONG)GetDlgCtrlID(h),IsWindowVisible(h),IsWindowEnabled(h),ok!=0,error,cls,text);
+ write(Windows,line);Count++;
+}
+static BOOL CALLBACK child(HWND h,LPARAM unused) {
+ (void)unused;if(!budget())return FALSE;describe(h,"CHILD");return TRUE;
+}
+static BOOL CALLBACK top(HWND h,LPARAM unused) {
+ DWORD pid=0,i;char title[128],cls[80];(void)unused;if(!budget())return FALSE;
+ GetWindowThreadProcessId(h,&pid);
+ for(i=0;i<InstallerCount;i++)if(pid==Installers[i]){
+  ThisTop=h;ThisButton=ThisNo=NULL;ThisFlags=0;ThisQuestion=ThisYes=ThisNext=FALSE;ThisCancel=NULL;WelcomeFlags=0;
+  describe(h,"TOP");EnumChildWindows(h,child,0);
+  GetWindowTextA(h,title,sizeof(title));GetClassNameA(h,cls,sizeof(cls));
+  if(ThisFlags==15 && ThisButton && IsWindowVisible(h) && IsWindowEnabled(h) &&
+     !lstrcmpA(cls,"#32770") && !lstrcmpA(title,"Found New Hardware Wizard")){
+   Candidate=h;FinishButton=ThisButton;Matches++;
+  }
+  if(FinishAttempted && pid==GpuPid && ThisQuestion && ThisYes && ThisNo && IsWindowVisible(h) && IsWindowEnabled(h) &&
+     !lstrcmpA(cls,"#32770") && !lstrcmpA(title,"System Settings Change")){
+   RestartDialog=h;NoButton=ThisNo;RestartMatches++;
+  }
+  if(Placeholder[i] && WelcomeFlags==7 && ThisNext && ThisCancel && IsWindowVisible(h) && IsWindowEnabled(h) &&
+     !lstrcmpA(cls,"#32770") && !lstrcmpA(title,"Found New Hardware Wizard")){
+   CancelDialog=h;CancelButton=ThisCancel;CancelMatches++;
+  }
+  break;
+ }
+ return TRUE;
+}
+static void sample(DWORD index,DWORD elapsed) {
+ HANDLE snap;PROCESSENTRY32 e;char line[400];
+ SampleStart=GetTickCount();Count=InstallerCount=Matches=RestartMatches=CancelMatches=0;Candidate=FinishButton=RestartDialog=NoButton=CancelDialog=CancelButton=NULL;
+ wsprintfA(line,"SAMPLE %lu elapsed=%lu\r\n",index,elapsed);write(Windows,line);
+ snap=CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS,0);
+ if(snap==INVALID_HANDLE_VALUE)fatal("FAIL_SNAPSHOT");
+ e.dwSize=sizeof(e);
+ if(Process32First(snap,&e))do {
+  if(!lstrcmpiA(e.szExeFile,"rundll32.exe")){
+   wsprintfA(line,"INSTALLER pid=%lu parent=%lu image=%s\r\n",e.th32ProcessID,e.th32ParentProcessID,e.szExeFile);write(Windows,line);
+   if(InstallerCount<32){Placeholder[InstallerCount]=placeholderProcess(e.th32ProcessID);Installers[InstallerCount++]=e.th32ProcessID;}
+  }
+ }while(Process32Next(snap,&e));
+ CloseHandle(snap);EnumWindows(top,0);
+ wsprintfA(line,"PENDING_INSTALL status=%08lx matches=%lu flags=%lu\r\n",WaitInstall(0),Matches,ThisFlags);write(Windows,line);
+ if(index>=1 && !FinishAttempted && Matches==1){
+  BOOL posted;FinishAttempted=TRUE;GetWindowThreadProcessId(Candidate,&GpuPid);
+  /* Normal button notification to the observed parent and control. No error dialog dismissal. */
+  posted=PostMessageA(Candidate,WM_COMMAND,MAKEWPARAM(12325,BN_CLICKED),(LPARAM)FinishButton);
+  wsprintfA(line,"GPU_FINISH_ONCE dialog=%08lx button=%08lx posted=%u\r\n",(DWORD)Candidate,(DWORD)FinishButton,posted);write(Windows,line);
+ }
+ if(!RestartDeferred && RestartMatches==1){
+  BOOL posted;RestartDeferred=TRUE;
+  posted=PostMessageA(RestartDialog,WM_COMMAND,MAKEWPARAM(7,BN_CLICKED),(LPARAM)NoButton);
+  wsprintfA(line,"GPU_RESTART_DEFER_ONCE pid=%lu dialog=%08lx button=%08lx posted=%u\r\n",GpuPid,(DWORD)RestartDialog,(DWORD)NoButton,posted);write(Windows,line);
+ }
+ if(RestartDeferred && !PlaceholderCancelled && CancelMatches==1){
+  BOOL posted;PlaceholderCancelled=TRUE;
+  posted=PostMessageA(CancelDialog,WM_COMMAND,MAKEWPARAM(2,BN_CLICKED),(LPARAM)CancelButton);
+  wsprintfA(line,"PLACEHOLDER_CANCEL_ONCE dialog=%08lx button=%08lx posted=%u\r\n",(DWORD)CancelDialog,(DWORD)CancelButton,posted);write(Windows,line);
+ }
+ wsprintfA(line,"SAMPLE_END count=%lu elapsed=%lu budget_exhausted=%u\r\n",Count,GetTickCount()-SampleStart,!budget());write(Windows,line);
+ if(!FlushFileBuffers(Windows))fatal("FAIL_FLUSH_WINDOWS");
+}
+static HANDLE Ready,Stop,DrawLog;
+static DWORD FirstSize=0xffffffffu,FirstTick;
+static volatile LONG FirstFrames;
+static DWORD Mode;
+static volatile LONG Frames,During,Active,DrawError;
+static LONG counter(volatile LONG *p){return InterlockedCompareExchange(p,0,0);}
+static LRESULT CALLBACK proc(HWND w,UINT msg,WPARAM a,LPARAM b){
+ if(msg==WM_CLOSE){InterlockedExchange(&DrawError,1);DestroyWindow(w);return 0;}
+ if(msg==WM_DESTROY){PostQuitMessage(0);return 0;}
+ return DefWindowProcA(w,msg,a,b);
+}
+static DWORD logSize(void){
+ HANDLE h;DWORD size;
+ h=CreateFileA("C:\\WINNT\\setupapi.log",GENERIC_READ,FILE_SHARE_READ|FILE_SHARE_WRITE|FILE_SHARE_DELETE,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
+ if(h==INVALID_HANDLE_VALUE)return 0xffffffffu;
+ size=GetFileSize(h,NULL);CloseHandle(h);return size;
+}
+static DWORD WINAPI drawing(LPVOID unused){
+ WNDCLASSA wc={0};HWND win=NULL;HDC screen=NULL,mem=NULL;HBITMAP bitmap=NULL;HGDIOBJ oldBitmap=NULL;
+ HBRUSH brushes[8]={0};MSG msg;DWORD i,frame=0;RECT r;int good=1;
+ (void)unused;wc.lpfnWndProc=proc;wc.hInstance=GetModuleHandleA(NULL);wc.lpszClassName="XwnDrawAppend";
+ if(!RegisterClassA(&wc))good=0;
+ if(good)win=CreateWindowExA(0,wc.lpszClassName,"Owned GDI / FATX diagnostic",WS_OVERLAPPEDWINDOW|WS_VISIBLE,30,30,560,390,NULL,NULL,wc.hInstance,NULL);
+ if(!win)good=0;
+ if(good){screen=GetDC(win);if(!screen)good=0;}
+ if(good){mem=CreateCompatibleDC(screen);bitmap=CreateCompatibleBitmap(screen,512,320);if(!mem||!bitmap)good=0;}
+ if(good){oldBitmap=SelectObject(mem,bitmap);if(!oldBitmap||oldBitmap==HGDI_ERROR)good=0;}
+ for(i=0;i<8&&good;i++){brushes[i]=CreateSolidBrush(RGB(i*31,255-i*29,i*17));if(!brushes[i])good=0;}
+ if(!good)InterlockedExchange(&DrawError,2);
+ if(!good||!Mode){FirstSize=logSize();FirstTick=GetTickCount();SetEvent(Ready);}
+ while(good&&WaitForSingleObject(Stop,0)==WAIT_TIMEOUT){
+  while(PeekMessageA(&msg,NULL,0,0,PM_REMOVE)){
+   if(msg.message==WM_QUIT){good=0;break;}
+   TranslateMessage(&msg);DispatchMessageA(&msg);
+  }
+  if(Mode&&good){
+   LONG wasActive=counter(&Active);
+   for(i=0;i<8;i++){r.left=0;r.right=512;r.top=i*40;r.bottom=r.top+40;if(!FillRect(mem,&r,brushes[(i+frame)%8]))good=0;}
+   if(!BitBlt(screen,0,0,512,320,mem,0,0,SRCCOPY)||!GdiFlush())good=0;
+   if(good){InterlockedIncrement(&Frames);if(wasActive&&counter(&Active)==wasActive)InterlockedIncrement(&During);frame++;}
+   else InterlockedExchange(&DrawError,3);
+   if(FirstSize==0xffffffffu){FirstSize=logSize();FirstTick=GetTickCount();FirstFrames=counter(&Frames);if(FirstSize==0xffffffffu)InterlockedExchange(&DrawError,11);SetEvent(Ready);}
+  }
+  Sleep(10);
+ }
+ if(oldBitmap&&oldBitmap!=HGDI_ERROR&&!SelectObject(mem,oldBitmap))InterlockedExchange(&DrawError,4);
+ if(bitmap&&!DeleteObject(bitmap))InterlockedExchange(&DrawError,5);
+ if(mem&&!DeleteDC(mem))InterlockedExchange(&DrawError,6);
+ for(i=0;i<8;i++)if(brushes[i]&&!DeleteObject(brushes[i]))InterlockedExchange(&DrawError,7);
+ if(screen&&ReleaseDC(win,screen)!=1)InterlockedExchange(&DrawError,8);
+ if(win&&IsWindow(win)&&!DestroyWindow(win))InterlockedExchange(&DrawError,9);
+ if(!UnregisterClassA(wc.lpszClassName,wc.hInstance))InterlockedExchange(&DrawError,10);
+ return counter(&DrawError)?1:0;
+}
+static void drawSample(DWORD index,DWORD elapsed){
+ char line[220];DWORD size=logSize();
+ wsprintfA(line,"DRAW_SAMPLE %lu %lu %lu %lu %lu\r\n",index,elapsed,(DWORD)counter(&Frames),size,(DWORD)counter(&DrawError));
+ write(DrawLog,line);if(!FlushFileBuffers(DrawLog))fatal("FAIL_DRAW_LOG");
+}
+void WINAPI mainCRTStartup(void) {
+ DWORD start,i,elapsed,pending,n,exitCode;HANDLE token,config,thread;BYTE modeByte;char drawLine[220];TOKEN_PRIVILEGES tp;HMODULE setup;
+ Log=CreateFileA("C:\\xwnidle\\result.log",GENERIC_WRITE,FILE_SHARE_READ,NULL,CREATE_NEW,FILE_FLAG_WRITE_THROUGH,NULL);
+ if(Log==INVALID_HANDLE_VALUE)ExitProcess(90);
+ Windows=CreateFileA("C:\\xwnidle\\windows.log",GENERIC_WRITE,FILE_SHARE_READ,NULL,CREATE_NEW,FILE_FLAG_WRITE_THROUGH,NULL);
+ if(Windows==INVALID_HANDLE_VALUE)fatal("FAIL_WINDOWS_LOG");
+ setup=LoadLibraryA("setupapi.dll");
+ WaitInstall=setup?(WAIT_INSTALL)GetProcAddress(setup,"CMP_WaitNoPendingInstallEvents"):NULL;
+ if(!WaitInstall)fatal("FAIL_PENDING_API");
+ QueryProcess=(QUERY_PROCESS)GetProcAddress(GetModuleHandleA("ntdll.dll"),"NtQueryInformationProcess");
+ if(!QueryProcess)fatal("FAIL_PROCESS_API");
+ DrawLog=CreateFileA("C:\\xwnidle\\drawing.log",GENERIC_WRITE,FILE_SHARE_READ,NULL,CREATE_NEW,FILE_FLAG_WRITE_THROUGH,NULL);
+ if(DrawLog==INVALID_HANDLE_VALUE)fatal("FAIL_DRAW_LOG");
+ config=CreateFileA("C:\\xwnidle\\drawmode.txt",GENERIC_READ,FILE_SHARE_READ,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
+ if(config==INVALID_HANDLE_VALUE||GetFileSize(config,NULL)!=1||!ReadFile(config,&modeByte,1,&n,NULL)||n!=1||(modeByte!='0'&&modeByte!='1'))fatal("FAIL_DRAW_CONFIG");
+ CloseHandle(config);Mode=modeByte-'0';Ready=CreateEventA(NULL,TRUE,FALSE,NULL);Stop=CreateEventA(NULL,TRUE,FALSE,NULL);
+ if(!Ready||!Stop)fatal("FAIL_DRAW_EVENTS");
+ InterlockedExchange(&Active,1);thread=CreateThread(NULL,0,drawing,NULL,0,NULL);
+ if(!thread||WaitForSingleObject(Ready,10000)!=WAIT_OBJECT_0||counter(&DrawError)||FirstSize==0xffffffffu)fatal("FAIL_DRAW_START");
+ wsprintfA(drawLine,"DRAW_START %lu %lu %lu %lu %lu\r\n",Mode,FirstTick,FirstSize,(DWORD)FirstFrames,(DWORD)counter(&DrawError));write(DrawLog,drawLine);
+ record("ATTEMPT_ONCE",120000);start=GetTickCount();
+ for(i=0;i<5;i++){
+  elapsed=GetTickCount()-start;if(elapsed<i*30000)Sleep(i*30000-elapsed);
+  drawSample(i,GetTickCount()-start);
+  sample(i,GetTickCount()-start);
+ }
+ InterlockedExchange(&Active,0);if(!SetEvent(Stop))fatal("FAIL_DRAW_STOP");
+ if(WaitForSingleObject(thread,10000)!=WAIT_OBJECT_0||!GetExitCodeThread(thread,&exitCode))fatal("FAIL_DRAW_JOIN");
+ wsprintfA(drawLine,"DRAW_END %lu %lu %lu %lu %lu %lu\r\n",Mode,(DWORD)counter(&Frames),FirstSize,logSize(),(DWORD)counter(&DrawError),exitCode);write(DrawLog,drawLine);
+ if(!FlushFileBuffers(DrawLog))fatal("FAIL_DRAW_LOG");
+ CloseHandle(DrawLog);
+ CloseHandle(thread);CloseHandle(Ready);CloseHandle(Stop);
+ if(counter(&DrawError)||exitCode)fatal("FAIL_DRAW_WORKER");
+ CloseHandle(Windows);record("IDLE_COMPLETE_MS",GetTickCount()-start);
+ pending=WaitInstall(0);
+ if(pending!=WAIT_OBJECT_0 || !FinishAttempted || !RestartDeferred || !PlaceholderCancelled){
+  record("RESTART_BLOCKED_PENDING_INSTALL",pending);CloseHandle(Log);ExitProcess(93);
+ }
+ record("INSTALL_QUEUE_IDLE_BEFORE_RESTART",pending);
+ if(!OpenProcessToken(GetCurrentProcess(),TOKEN_ADJUST_PRIVILEGES|TOKEN_QUERY,&token))fatal("FAIL_TOKEN");
+ tp.PrivilegeCount=1;tp.Privileges[0].Attributes=SE_PRIVILEGE_ENABLED;
+ if(!LookupPrivilegeValueA(NULL,SE_SHUTDOWN_NAME,&tp.Privileges[0].Luid))fatal("FAIL_LOOKUP");
+ SetLastError(ERROR_SUCCESS);
+ if(!AdjustTokenPrivileges(token,FALSE,&tp,0,NULL,NULL)||GetLastError()!=ERROR_SUCCESS)fatal("FAIL_PRIVILEGE");
+ CloseHandle(token);record("NORMAL_RESTART_REQUEST",0);
+ if(!ExitWindowsEx(EWX_REBOOT,0))fatal("FAIL_RESTART");
+ CloseHandle(Log);ExitProcess(0);
+}

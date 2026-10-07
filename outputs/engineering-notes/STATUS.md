@@ -1,5 +1,11 @@
 # Native Xbox Windows 2000 status — 6 October 2026
 
+2026-10-07 04:37 UTC: matched aligned first-install control/GDI diagnostics both
+passed. Drawing began before the target log entry and completed4688 cycles;
+all220 target bytes at270225 survived cold readback. Normal shutdown, events,
+five hives and allocation passed. Hardware anomaly remains unresolved; no driver
+or physical change. See [installer/drawing report](../fatx-install-draw/REPORT.md).
+
 2026-10-07 04:08 UTC: paired paced append control and GDI-load emulator runs passed:
 16,384 total appends,32 exact cold files, normal shutdowns, event/hive/allocation
 checks. Drawing completed1,644 cycles and overlapped every append case. No

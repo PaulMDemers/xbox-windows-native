@@ -409,3 +409,21 @@ ran: separate atomic activity epochs prevent counting work across inactive gaps,
 and explicit overlap gates prevent a missing background worker from yielding a
 false pass. Keep deterministic payload/readback evidence independent of activity
 counters. Driver changes and instrumentation should be separate experiments.
+
+
+## Installer log alignment under coordinated drawing
+
+The matched [installer/drawing pair](../fatx-install-draw/REPORT.md) completed
+actual GPU setup at logical warning offset270225 with0101/video0093. The drawing
+worker began at observed EOF268485, completed4688 API cycles, and stopped/joined
+before normal restart; the control had zero cycles. Both cold logs retained all
+220 warning bytes, including the111-byte prefix damaged in the physical report.
+Events, five hives and complete allocation also passed. No corruption reproduced.
+
+For Linux investigations, distinguish a known-source writer, an actual application
+write and a live source-buffer observation. Aligned intact cold bytes under load
+are useful negative reproduction evidence, not proof that the physical input,
+cache, DMA or reset path is correct. File size/frame samples bracket a worker's
+lifetime but cannot identify the precise write syscall or its overlap with a blit.
+The next discriminator is a bounded observation of the actual request and buffer
+at successive layers, with debugger timing kept separate from ordinary validation.

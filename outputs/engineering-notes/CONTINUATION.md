@@ -1,3 +1,36 @@
+# Coordinated aligned installation/GDI pair complete
+
+2026-10-07 04:37 UTC. outputs/fatx-install-draw001(control)/002(drawing)
+both PASS and collected once after owned cleanup. The target post-copy warning
+remains at270225; all220 bytes/first111 exact,5300 new ASCII bytes in each case.
+Drawing began at observed EOF268485, before the target;4688 completed cycles,
+activity in each30s interval, stopped/joined before restart. Control0 cycles.
+Both normal shutdowns, idle install queues, three exact once-only UI actions,
+GPU binding, selected binaries, five hives and full allocation passed. Before:
+322dirs6739files323dirclusters; after322dirs6745files323dirclusters; zero errors/
+orphans. No unexpected event deltas/popups/application records.
+
+Same immutable aligned001 pre-install parent, helper
+0ee803b0cd20c214caf4b532f53c26a493cb421159904212c40d2440ee588668,
+0101/video0093/hives/startup/INF/padding. Only staged payload difference mode0/1.
+Original8985-byte UI matcher/action prefix preserved after CRLF normalization.
+001 launch04:28:02 return04:31:08;002 launch04:33:32 return04:36:31 UTC.
+Runners32050/78729 and supervisors82068/36401 closed; preparations67937/97565,
+build2725 and cold readers closed. Do not repeat recorded launches/collections.
+comparison.json pins qualifications; REPORT.md and NEXT.md record actual limits.
+
+No corruption reproduced. Coverage brackets log growth during drawing worker
+lifetime, not exact syscall overlap, source-buffer correctness or pixels. Next:
+identify the actual aligned installer write request/buffer in an owned debugger
+diagnostic before designing bounded tracing. Do not infer a fix or power loss;
+physical111-byte anomaly/first reboot method remain unresolved. No physical
+access, driver edits, new recovery, tag or automation change. Physical0101/
+video0093/normal startup/GPU registration, remaining devices/raw-C warning,
+original0088 and immutable0.1.0 preserved. Private review/checks/commit/push
+completing from f73d534. No user action required and no test remains running.
+
+## Prior completed state
+
 # Paired paced append/GDI diagnostic complete; no corruption reproduced
 
 2026-10-07 04:08 UTC. outputs/fatx-draw-append001(control)/002(drawing) both PASS,
