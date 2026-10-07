@@ -1,3 +1,36 @@
+# Restored missing emulator HID service; remaining event narrowed to dump init
+
+2026-10-07 08:20UTC. ALL owned guests/supervisors/audits CLOSED. Pair comparison
+86428 completed and pins passed; no owned process remains active. Emulator-only until
+13:00UTC, check time; at cutoff cleanup/report/pause automation. No physical
+FTP/deploy/test or driver/hive/device-policy change. Read baseline-hid-restore/
+REPORT.md,NEXT.md and baseline-event-forensics/REPORT.md (under outputs).
+
+Read-only exactcold registry/message analysis: automaticHidServ points to missing
+hidserv.exe, SCM7000 %%2=file-not-found. Preserved0.1.0 system32/dllcache copies
+identical19728bytes SHA031a1fb5ca4194284d6ecfbfe8afe63589700c1376873267f131ead06946dc6a.
+New isolated baseline-hid-restore restores only this service executable plus
+unique workload/status-query payloads. No settings/service-disable workaround.
+Both serial001/flush001 now reportHIDSERV_START/END4,0,0 and noSCM7000. Both
+pass792cycles/32shrinks/132reopens/11coldfiles, normalshutdown/dashboard,5hives,
+protected/importedDLLhashes, fullallocation323dirs6765files324dirclusters0errors/
+orphans. Concurrent799flushes,353append-overlaps,305dirty-overlaps,44rendezvous.
+StrictFALSE soleFtdisk49 remains. All cases collectedONCE, never relaunch.
+serial08:10:32->08:12:55UTC; flush08:15:35->08:17:58. Closedprep32329/32845;
+serialrunner49325/supervisor47255/audit68697/config56932; flush4633/38870/99598.
+
+Ftdisk49 exactmessage=pagefile crash-dump configuration failure, not delayedwrite.
+C:\pagefile.sys96MiB exists, configured96/192; CrashDumpEnabled3. Presence/size
+does not prove active paging/dump readiness. Pinned kernelstaticcandidate
+IopConfigureCrashDump logs49(uniqueerror3) after IopCompleteDumpInitialization
+negative return. Candidatefunction has handle reference/query/FSCTL0x9003b.
+VFATsource lacksQUERY_RETRIEVAL dispatch but this branch would additionally log
+44, absent in observed delta. Need actual runtimebranch/NTSTATUS beforepatching.
+NEXT givesRVAs, thread/frame/pin/gap constraints for NEW diagnostic child; no
+speculativeFSCTLhandler or CrashDumpEnabled suppression. Physical111nonASCII
+corruption/firstrestart stillunresolved. Prior4be74ab pushed; currentkits/notes
+await finalcheck/commit/push. Preservephysical0101/video0093,0088rollback/0.1.0.
+
 # Bounded mapped-shrink/volume-flush pair complete
 
 2026-10-07 08:02UTC. ALL owned sessions CLOSED. No guest/tracer/observer active.
