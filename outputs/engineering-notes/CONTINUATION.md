@@ -1,3 +1,60 @@
+# Candidate0101 qualified for controlled hardware trial; no owned run active
+
+2026-10-07 00:45UTC. All planned0101 emulator gates PASS:
+- directory-order001: five500-round workers,19260ms, normal return00:20:02UTC.
+- full persistence soak004:527 mappings,16BMP API cases,50 exact files,34 absent
+  intermediates,15 rounds900000ms, normal return00:41:06UTC.
+- independent directory-order002: same five500-round workers,18060ms, normal
+  return00:44:42UTC.
+All three closed, collected and qualified ONCE. Strict event deltas, exact bytes,
+selected payload/runtime hashes, five structural hives and full allocation passed.
+No timeout snapshots/debugger/UI manipulation in these successful runs. Actual
+Paint UI and physical hardware remain separate. candidate-eligibility.json PASS
+pins tree8e12297ca0ed53383fe9aaebef152c26aee5a43b and driver
+ba62acbb7dedf30154baba8d4cc2cf457f1a3e499bf7800e31011fba0e96d6a9.
+
+Runner/supervisor sessions74791/64781,33070/47155,94813/53785 all completed.
+Preparation9774,53669,41353 completed. No run/observer/build remains active.
+Never relaunch or overwrite these records. Earlier0098 and0099 lock-cycle
+failures and the separate first0099 wait-all helper hold remain preserved.
+0100 prepared fixtures were NEVER launched and remain held.
+
+Next: physical verification, with exact rollback/startup preservation and new
+unique trial IDs. Keyboard-readiness question asked earlier remains unanswered;
+Xromwell hangs with the Razer attached, so do not launch hardware until clarified.
+Physical0098/video0093, original0088 and immutable0.1.0 have not changed. The
+physical PnP popup and three Srv2013 warnings remain strict failures; emulator
+PASS does not waive them or allow a new PASS-gated recovery capture. See
+fatx-directory-order/NEXT.md and physical-pnp-followup/README.md.
+
+Source/docs prior checkpoints aff0475 and5f10349 pushed. Final PASS reports,
+continuation and final-state checks are being reviewed/committed/pushed now.
+No automation was created/resumed/modified in this turn.
+
+## Earlier continuation (historical)
+
+# Candidate0101 full soak PASS; independent concurrency replay active
+
+2026-10-07 00:43UTC. Full-soak004 returned00:41:06.722UTC, runner33070 and
+supervisor47155 closed. Collected once and qualified PASS:527 mappings,16BMP
+replays,50 exact files,34 absent intermediates,15 rounds900000ms, normalshutdown,
+strict event deltas, package state, five structural hives and full allocation.
+No timeout snapshot/debugger. Stress001 was already PASS (five500-round workers).
+
+Fresh directory-order002 preparation41353 completed; now one launch in progress:
+runner94813, supervisor53785. Inspect002/launch.json for acceptance/time. Never
+relaunch. Same corrected helper, exact0101 binary and original settled parent.
+On normal return wait cleanup, trial.py collect002, qualify.py002. If deadline
+misses preserve/decode memory before signal/cleanup; then collect once. Same
+900s supervisor/1200s runner. Eligibility requires001,002 and fullsoak004 PASS.
+
+After replay: update reports/notes, repo checks, commit/push. Last push5f10349.
+Physical0098/video0093 untouched; original0088/0.1.0 retained. Keyboard-readiness
+question still pending, so no physical launch. Physical PnP popup/Srv2013 still
+strict failures. See directory-order/NEXT.md for the separate hardware handoff.
+
+## Earlier continuation (historical)
+
 # Candidate0101 concurrency PASS; full persistence staging
 
 2026-10-07 00:22UTC. Directory-order001 returned normally00:20:02UTC, runner74791

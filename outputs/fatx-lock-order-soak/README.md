@@ -20,3 +20,17 @@ before continuing interrupted work. Do not overwrite completed reports.
 
 The inherited emulator-only device configuration, old physical strict failures,
 video0093, original0088 rollback and immutable0.1.0 remain distinct and unchanged.
+
+## Result004: PASS in the owned emulator
+
+Candidate0101 launched once at00:24:41UTC and returned normally at00:41:06UTC
+on7October2026. Cold qualification passed527 mappings,16 BMP API replay cases,
+50 exact final files,34 absent intermediates, fifteen rounds totaling900000ms,
+one normal shutdown, no popup or new disallowed event, five structural registry
+hives, unchanged selected payload/runtime hashes and complete allocation audit.
+Supported GPU and emulator-only null-device package state remained valid.
+
+The runner and supervisor closed; collection and qualification ran once.
+`004/qualification.json` records the evidence hashes. No timeout snapshot,
+debugger, UI action or physical deployment occurred. Actual Paint UI and physical
+stability are separate questions; earlier physical strict failures remain.

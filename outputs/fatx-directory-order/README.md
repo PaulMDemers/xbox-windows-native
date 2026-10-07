@@ -33,3 +33,31 @@ This is an emulator candidate, not a physical deployment or qualification.
 Volume lock/dismount, arbitrary concurrent mapped truncation and all possible
 resource interactions are not proven by this bounded workload. Physical0098,
 video0093, original0088 and immutable0.1.0 remain untouched.
+
+## First ordinary result and remaining gates
+
+Case001 returned normally at2026-10-07T00:20:02UTC. All five workers completed
+500 rounds in19260ms with zero API errors. Exact three4097-byte files, absent
+meta.tmp, normal shutdown, event deltas, five structural hives and full allocation
+passed. See001/qualification.json. No timeout snapshot or debugger was used.
+
+The original fifteen-minute mapping/BMP soak runs in../fatx-lock-order-soak/004.
+A fresh sibling002 reuses the exact helper, driver and settled parent after001
+PASS; enable-repeat.py records that expansion without overwriting case001.
+qualify-candidate.py requires both stress replays and the full soak to pass before
+marking the binary eligible for a controlled hardware trial. It never marks a
+physical or release qualification, and does not waive earlier physical events.
+
+## Final emulator result
+
+All three gates passed. Independent002 completed the same five500-round workers
+in18060ms and returned normally at00:44:42UTC on7October2026. The original full
+fifteen-minute soak passed527 mappings,16BMP API cases,50 exact final files,
+34 absent intermediates, all timed rounds, normal shutdown and the existing
+cold/event/package gates. Each stress run also passed its exact files, five
+structural hives and full allocation audit. No snapshots or debugger actions
+were needed in these successful runs.
+
+`candidate-eligibility.json` pins the qualified emulator evidence and exact0101
+binary. All owned runs are closed; do not relaunch them. See [NEXT.md](NEXT.md)
+for the separate hardware step and unresolved physical event gates.

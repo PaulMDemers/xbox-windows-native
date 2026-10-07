@@ -292,3 +292,9 @@ parent-directory operations in the lock graph. A regular-file ordering cannot
 be blindly applied to metadata streams. Linux implementations need to establish
 their own inode/directory/writeback contract; these NT callback names are not
 prescriptive Linux locking rules.
+
+The subsequent independent0101 stress replay and original fifteen-minute
+mapping/BMP soak also passed their complete gates, with normal restart and cold
+readback. This closes the planned emulator regression for the two observed lock
+cycles and makes0101 eligible for a controlled hardware trial. It does not close
+the earlier physical popup/capacity failures or qualify hardware0101.

@@ -5,10 +5,12 @@ passed after supported GPU setup and an emulator-only null-device INF. New
 concurrency tests then proved two separate FATX deadlocks: regular-file cleanup
 versus volume flush, and rename's parent-directory cache flush versus volume
 flush. Candidate0101 separates ordinary-file and directory-stream lock ordering.
-Its first five-worker500-round test passed all workload, normal-restart, event,
-exact-file, five-hive and full-allocation gates. The full persistence soak is
-running and an independent concurrency repeat is being prepared. The physical
-console still runs0098/video0093. See [continuation](CONTINUATION.md) for live state.
+Two independent five-worker500-round runs and the full fifteen-minute mapping/
+BMP persistence soak passed all workload, normal-restart, event, exact-file,
+five-hive and allocation gates. Candidate0101 is eligible for a controlled
+hardware trial, not physically or release qualified. The physical console still
+runs0098/video0093; keyboard readiness remains pending. See
+[continuation](CONTINUATION.md) for evidence and the hardware handoff.
 
 The project has reached a usable native desktop milestone. It is still an
 experimental system with incomplete device setup and bounded, rather than
