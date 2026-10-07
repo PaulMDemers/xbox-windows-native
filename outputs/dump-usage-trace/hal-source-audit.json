@@ -1,0 +1,80 @@
+{
+  "scope": "Pin the owned HAL's usage selector, completion call and source-level policy.",
+  "hal_sha256": "a3a84368d59936dfa6bbcdc6d5839d57b886342211142d305e9dde941e4d1648",
+  "source_path": "/home/paul/xbox-windows-native/build/fatx-directory-order-001/source/hal/halx86/legacy/halpnpdd.c",
+  "source_sha256": "bf9c66a313a7c372c81fbe923d2681cf6487b14907154dd92b92eb8d8d24bbe0",
+  "patch": "outputs/native-windows-hal-paging/0055-hal-paging-path-notification.patch",
+  "patch_sha256": "7291764abcc2fd46aa660a3f02add1e8d0e347ceb993c08aba8dd94dac9628f8",
+  "usage_selector_rva": "0x8493",
+  "checks": [
+    {
+      "rva": "0x8493",
+      "bytes": "837a0801",
+      "instructions": [
+        {
+          "rva": "0x8493",
+          "mnemonic": "cmp",
+          "operands": "dword ptr [edx + 8], 1"
+        }
+      ]
+    },
+    {
+      "rva": "0x8497",
+      "bytes": "0f8563ffffff",
+      "instructions": [
+        {
+          "rva": "0x8497",
+          "mnemonic": "jne",
+          "operands": "0x8400"
+        }
+      ]
+    },
+    {
+      "rva": "0x8400",
+      "bytes": "8b7318ebc6",
+      "instructions": [
+        {
+          "rva": "0x8400",
+          "mnemonic": "mov",
+          "operands": "esi, dword ptr [ebx + 0x18]"
+        },
+        {
+          "rva": "0x8403",
+          "mnemonic": "jmp",
+          "operands": "0x83cb"
+        }
+      ]
+    },
+    {
+      "rva": "0x83cb",
+      "bytes": "89731889d931d2ff15f8812100",
+      "instructions": [
+        {
+          "rva": "0x83cb",
+          "mnemonic": "mov",
+          "operands": "dword ptr [ebx + 0x18], esi"
+        },
+        {
+          "rva": "0x83ce",
+          "mnemonic": "mov",
+          "operands": "ecx, ebx"
+        },
+        {
+          "rva": "0x83d0",
+          "mnemonic": "xor",
+          "operands": "edx, edx"
+        },
+        {
+          "rva": "0x83d2",
+          "mnemonic": "call",
+          "operands": "dword ptr [0x2181f8]"
+        }
+      ]
+    }
+  ],
+  "dispatch_section": ".text",
+  "dispatch_section_discardable": false,
+  "imports_idle_registration": false,
+  "conclusion": "Paging type 1 takes the count path; dump type 3 takes the inherited-status path. For the observed IRP the inherited status is STATUS_NOT_SUPPORTED, and HAL completes it. Source and binary policy agree; this is not a full source-to-binary rebuild attestation.",
+  "limits": "Only entry/completion resident windows were traced. Selector branch is static exact-binary evidence, not an additional runtime breakpoint. No code or configuration changed."
+}

@@ -1,0 +1,776 @@
+{
+  "scope": "Read-only bounded tracing of dump-usage IRP dispatch, returns and completion.",
+  "physical_access": false,
+  "ordinary_qualified": false,
+  "started_utc": "2026-10-07T09:11:07.142571+00:00",
+  "source_sha256": "4068c436b8c2701aba4bcddec8657d0bd15b5f8666d452bdcc42912f3a041525",
+  "input_sha256": {
+    "sites.json": "fbcb6d1a6677720525566f377cfb1b02a7ac65698b3943702f43458e54e3313c",
+    "layouts.json": "5e4c932fe320734d7495a42f7a138d1ca3f49d7cdd766b875b550e6336c8e236",
+    "modules.json": "788c9ee4755596d89be0192f550f3e227707dcb99778b936b017d771bbb73361"
+  },
+  "events": [
+    {
+      "index": 0,
+      "kind": "usage_call",
+      "utc": "2026-10-07T09:11:41.622719+00:00",
+      "registers": {
+        "EAX": "0xf90f7b68",
+        "ECX": "0x0",
+        "EDX": "0xfe618018",
+        "EBX": "0x0",
+        "ESP": "0xf90f7b30",
+        "EBP": "0xf90f7bfc",
+        "ESI": "0xfe4f71c8",
+        "EDI": "0x3",
+        "EIP": "0x82400c2f"
+      },
+      "thread": "0xfe5913e0",
+      "process": "0xfe591660",
+      "pid": 136,
+      "image": "smss.exe",
+      "arguments": [
+        "0xfe618018",
+        "0xf90f7b68",
+        "0xf90f7b8c"
+      ],
+      "stack_location": "1b160000010000000300000000000000000000000000000048714ffe0000000000000000",
+      "device": {
+        "device": "0xfe618018",
+        "driver": "0xfe65a030",
+        "name": "\\FileSystem\\XwnFatx",
+        "base": "0xfe43b000",
+        "size": 126976,
+        "dispatch_address": "0xfe44b850",
+        "dispatch_pin": 0
+      },
+      "call_pin": 1
+    },
+    {
+      "index": 1,
+      "kind": "dispatch",
+      "utc": "2026-10-07T09:11:41.724231+00:00",
+      "registers": {
+        "EAX": "0x0",
+        "ECX": "0xfe618018",
+        "EDX": "0xfe5ebb48",
+        "EBX": "0xfe5ebb48",
+        "ESP": "0xf90f7b00",
+        "EBP": "0xf90f7b28",
+        "ESI": "0xf90f7b8c",
+        "EDI": "0xfe618018",
+        "EIP": "0x823fcdbc"
+      },
+      "thread": "0xfe5913e0",
+      "process": "0xfe591660",
+      "pid": 136,
+      "image": "smss.exe",
+      "call_index": 0,
+      "request": {
+        "irp": "0xfe5ebb48",
+        "io_status": "0xc00000bb",
+        "information": "0x0",
+        "current_location": 8,
+        "stack_count": 7,
+        "current_stack": "0xfe5ebcb4"
+      },
+      "stack_location": "1b160000010000000300000000000000000000000000000048714ffe0000000000000000",
+      "device": {
+        "device": "0xfe618018",
+        "driver": "0xfe65a030",
+        "name": "\\FileSystem\\XwnFatx",
+        "base": "0xfe43b000",
+        "size": 126976,
+        "dispatch_address": "0xfe44b850",
+        "dispatch_pin": 6
+      },
+      "relation": "original_file_object_match"
+    },
+    {
+      "index": 2,
+      "kind": "dispatch",
+      "utc": "2026-10-07T09:11:41.737046+00:00",
+      "registers": {
+        "EAX": "0xfe689568",
+        "ECX": "0xfe65b470",
+        "EDX": "0xfe5ebb48",
+        "EBX": "0xfe689568",
+        "ESP": "0xf90f7a7c",
+        "EBP": "0xf90f7a80",
+        "ESI": "0xfe618018",
+        "EDI": "0xfe6895ac",
+        "EIP": "0x823fcdbc"
+      },
+      "thread": "0xfe5913e0",
+      "process": "0xfe591660",
+      "pid": 136,
+      "image": "smss.exe",
+      "call_index": 1,
+      "request": {
+        "irp": "0xfe5ebb48",
+        "io_status": "0xc00000bb",
+        "information": "0x0",
+        "current_location": 8,
+        "stack_count": 7,
+        "current_stack": "0xfe5ebcb4"
+      },
+      "stack_location": "1b16000001000000030000000000000000000000188061fe48714ffe0000000000000000",
+      "device": {
+        "device": "0xfe65b470",
+        "driver": "0xfe692570",
+        "name": "\\Driver\\Ftdisk",
+        "base": "0xfe492000",
+        "size": 116128,
+        "dispatch_address": "0xfe49d8d2",
+        "dispatch_pin": 8
+      },
+      "relation": "original_file_object_match"
+    },
+    {
+      "index": 3,
+      "kind": "dispatch",
+      "utc": "2026-10-07T09:11:41.749979+00:00",
+      "registers": {
+        "EAX": "0xfe5ebc90",
+        "ECX": "0xfe65cd90",
+        "EDX": "0xfe5ebb48",
+        "EBX": "0xfe5ebb48",
+        "ESP": "0xf90f7a18",
+        "EBP": "0xf90f7a30",
+        "ESI": "0xfe5ebcac",
+        "EDI": "0xfe5ebc88",
+        "EIP": "0x823fcdbc"
+      },
+      "thread": "0xfe5913e0",
+      "process": "0xfe591660",
+      "pid": 136,
+      "image": "smss.exe",
+      "call_index": 2,
+      "request": {
+        "irp": "0xfe5ebb48",
+        "io_status": "0xc00000bb",
+        "information": "0x0",
+        "current_location": 7,
+        "stack_count": 7,
+        "current_stack": "0xfe5ebc90"
+      },
+      "stack_location": "1b1600e00100000003000000000000000000000070b465fe48714ffe202a49fe28b565fe",
+      "device": {
+        "device": "0xfe65cd90",
+        "driver": "0xfe68fa10",
+        "name": "\\Driver\\Disk",
+        "base": "0xf8e90000",
+        "size": 30592,
+        "dispatch_address": "0xf8c34da3",
+        "dispatch_pin": 10
+      },
+      "relation": "original_file_object_match"
+    }
+  ],
+  "module_list": [
+    {
+      "base": 2185097216,
+      "size": 1691648,
+      "name": "ntoskrnl.exe",
+      "path": "multi(0)disk(0)rdisk(0)partition(6)\\WINNT\\system32\\ntoskrnl.exe"
+    },
+    {
+      "base": 2186788864,
+      "size": 2166784,
+      "name": "hal.dll",
+      "path": "multi(0)disk(0)rdisk(0)partition(1)\\Applications\\XWNFBoot\\loader\\halxboxnt5.dll"
+    },
+    {
+      "base": 4173332480,
+      "size": 40960,
+      "name": "bootvid.dll",
+      "path": "multi(0)disk(0)rdisk(0)partition(1)\\Applications\\XWNFBoot\\loader\\xboxbvid.dll"
+    },
+    {
+      "base": 4173398016,
+      "size": 61440,
+      "name": "pci.sys",
+      "path": "pci.sys"
+    },
+    {
+      "base": 4175953920,
+      "size": 24576,
+      "name": "PCIIDEX.SYS",
+      "path": "multi(0)disk(0)rdisk(0)partition(6)\\WINNT\\system32\\DRIVERS\\PCIIDEX.SYS"
+    },
+    {
+      "base": 4173463552,
+      "size": 49152,
+      "name": "isapnp.sys",
+      "path": "isapnp.sys"
+    },
+    {
+      "base": 4179394560,
+      "size": 4096,
+      "name": "pciide.sys",
+      "path": "pciide.sys"
+    },
+    {
+      "base": 4178575360,
+      "size": 8192,
+      "name": "intelide.sys",
+      "path": "intelide.sys"
+    },
+    {
+      "base": 4175986688,
+      "size": 32768,
+      "name": "MountMgr.sys",
+      "path": "MountMgr.sys"
+    },
+    {
+      "base": 4179398656,
+      "size": 4096,
+      "name": "WMILIB.SYS",
+      "path": "multi(0)disk(0)rdisk(0)partition(6)\\WINNT\\System32\\Drivers\\WMILIB.SYS"
+    },
+    {
+      "base": 4266205184,
+      "size": 118784,
+      "name": "ftdisk.sys",
+      "path": "ftdisk.sys"
+    },
+    {
+      "base": 4178583552,
+      "size": 8192,
+      "name": "Diskperf.sys",
+      "path": "Diskperf.sys"
+    },
+    {
+      "base": 4178591744,
+      "size": 8192,
+      "name": "dmload.sys",
+      "path": "dmload.sys"
+    },
+    {
+      "base": 4266065920,
+      "size": 139264,
+      "name": "dmio.sys",
+      "path": "dmio.sys"
+    },
+    {
+      "base": 4177592320,
+      "size": 12288,
+      "name": "PartMgr.sys",
+      "path": "PartMgr.sys"
+    },
+    {
+      "base": 4173529088,
+      "size": 36864,
+      "name": "CLASSPNP.SYS",
+      "path": "multi(0)disk(0)rdisk(0)partition(6)\\WINNT\\system32\\DRIVERS\\CLASSPNP.SYS"
+    },
+    {
+      "base": 4265975808,
+      "size": 90112,
+      "name": "atapi.sys",
+      "path": "atapi.sys"
+    },
+    {
+      "base": 4176019456,
+      "size": 32768,
+      "name": "disk.sys",
+      "path": "disk.sys"
+    },
+    {
+      "base": 4265848832,
+      "size": 126976,
+      "name": "xwnfatx.sys",
+      "path": "xwnfatx.sys"
+    },
+    {
+      "base": 4265775104,
+      "size": 73728,
+      "name": "KSecDD.sys",
+      "path": "KSecDD.sys"
+    },
+    {
+      "base": 4265607168,
+      "size": 167936,
+      "name": "NDIS.sys",
+      "path": "NDIS.sys"
+    },
+    {
+      "base": 4265512960,
+      "size": 94208,
+      "name": "Mup.sys",
+      "path": "Mup.sys"
+    },
+    {
+      "base": 4180123648,
+      "size": 4096,
+      "name": "audstub.sys",
+      "path": "\\SystemRoot\\system32\\DRIVERS\\audstub.sys"
+    },
+    {
+      "base": 4174249984,
+      "size": 53248,
+      "name": "rasl2tp.sys",
+      "path": "\\SystemRoot\\system32\\DRIVERS\\rasl2tp.sys"
+    },
+    {
+      "base": 4178018304,
+      "size": 12288,
+      "name": "ndistapi.sys",
+      "path": "\\SystemRoot\\system32\\DRIVERS\\ndistapi.sys"
+    },
+    {
+      "base": 4243324928,
+      "size": 94208,
+      "name": "ndiswan.sys",
+      "path": "\\SystemRoot\\system32\\DRIVERS\\ndiswan.sys"
+    },
+    {
+      "base": 4178083840,
+      "size": 16384,
+      "name": "TDI.SYS",
+      "path": "\\SystemRoot\\system32\\DRIVERS\\TDI.SYS"
+    },
+    {
+      "base": 4174315520,
+      "size": 49152,
+      "name": "raspptp.sys",
+      "path": "\\SystemRoot\\system32\\DRIVERS\\raspptp.sys"
+    },
+    {
+      "base": 4176773120,
+      "size": 20480,
+      "name": "ptilink.sys",
+      "path": "\\SystemRoot\\system32\\DRIVERS\\ptilink.sys"
+    },
+    {
+      "base": 4176838656,
+      "size": 20480,
+      "name": "raspti.sys",
+      "path": "\\SystemRoot\\system32\\DRIVERS\\raspti.sys"
+    },
+    {
+      "base": 4174381056,
+      "size": 61440,
+      "name": "parallel.sys",
+      "path": "\\SystemRoot\\system32\\DRIVERS\\parallel.sys"
+    },
+    {
+      "base": 4177068032,
+      "size": 20480,
+      "name": "USBD.SYS",
+      "path": "\\SystemRoot\\system32\\drivers\\USBD.SYS"
+    },
+    {
+      "base": 4176969728,
+      "size": 24576,
+      "name": "openhci.sys",
+      "path": "\\SystemRoot\\system32\\drivers\\openhci.sys"
+    },
+    {
+      "base": 4174446592,
+      "size": 65536,
+      "name": "nvnetnt5.sys",
+      "path": "\\SystemRoot\\system32\\DRIVERS\\nvnetnt5.sys"
+    },
+    {
+      "base": 4242976768,
+      "size": 114688,
+      "name": "ks.sys",
+      "path": "\\SystemRoot\\system32\\DRIVERS\\ks.sys"
+    },
+    {
+      "base": 4243091456,
+      "size": 147456,
+      "name": "portcls.sys",
+      "path": "\\SystemRoot\\system32\\DRIVERS\\portcls.sys"
+    },
+    {
+      "base": 4243238912,
+      "size": 86016,
+      "name": "ac97xnt5.sys",
+      "path": "\\SystemRoot\\system32\\DRIVERS\\ac97xnt5.sys"
+    },
+    {
+      "base": 4176150528,
+      "size": 28672,
+      "name": "cdrom.sys",
+      "path": "\\SystemRoot\\system32\\DRIVERS\\cdrom.sys"
+    },
+    {
+      "base": 4174577664,
+      "size": 53248,
+      "name": "videoprt.sys",
+      "path": "\\SystemRoot\\system32\\drivers\\videoprt.sys"
+    },
+    {
+      "base": 4174512128,
+      "size": 40960,
+      "name": "xboxvnt5.sys",
+      "path": "\\SystemRoot\\system32\\drivers\\xboxvnt5.sys"
+    },
+    {
+      "base": 4180512768,
+      "size": 4096,
+      "name": "swenum.sys",
+      "path": "\\SystemRoot\\system32\\DRIVERS\\swenum.sys"
+    },
+    {
+      "base": 4242800640,
+      "size": 176128,
+      "name": "update.sys",
+      "path": "\\SystemRoot\\system32\\DRIVERS\\update.sys"
+    },
+    {
+      "base": 4174643200,
+      "size": 40960,
+      "name": "NDProxy.SYS",
+      "path": "\\SystemRoot\\System32\\Drivers\\NDProxy.SYS"
+    },
+    {
+      "base": 4174708736,
+      "size": 40960,
+      "name": "usbhub.sys",
+      "path": "\\SystemRoot\\system32\\drivers\\usbhub.sys"
+    },
+    {
+      "base": 4176642048,
+      "size": 24576,
+      "name": "HIDPARSE.SYS",
+      "path": "\\SystemRoot\\system32\\drivers\\HIDPARSE.SYS"
+    },
+    {
+      "base": 4176543744,
+      "size": 24576,
+      "name": "HIDCLASS.SYS",
+      "path": "\\SystemRoot\\system32\\drivers\\HIDCLASS.SYS"
+    },
+    {
+      "base": 4178280448,
+      "size": 16384,
+      "name": "hidusb.sys",
+      "path": "\\SystemRoot\\system32\\drivers\\hidusb.sys"
+    },
+    {
+      "base": 4178313216,
+      "size": 16384,
+      "name": "kbdhid.sys",
+      "path": "\\SystemRoot\\system32\\drivers\\kbdhid.sys"
+    },
+    {
+      "base": 4176707584,
+      "size": 24576,
+      "name": "kbdclass.sys",
+      "path": "\\SystemRoot\\system32\\DRIVERS\\kbdclass.sys"
+    },
+    {
+      "base": 4178345984,
+      "size": 12288,
+      "name": "mouhid.sys",
+      "path": "\\SystemRoot\\system32\\drivers\\mouhid.sys"
+    },
+    {
+      "base": 4176805888,
+      "size": 24576,
+      "name": "mouclass.sys",
+      "path": "\\SystemRoot\\system32\\DRIVERS\\mouclass.sys"
+    },
+    {
+      "base": 4178649088,
+      "size": 8192,
+      "name": "Fs_Rec.SYS",
+      "path": "\\SystemRoot\\System32\\Drivers\\Fs_Rec.SYS"
+    },
+    {
+      "base": 4180746240,
+      "size": 4096,
+      "name": "Null.SYS",
+      "path": "\\SystemRoot\\System32\\Drivers\\Null.SYS"
+    },
+    {
+      "base": 4180762624,
+      "size": 4096,
+      "name": "Beep.SYS",
+      "path": "\\SystemRoot\\System32\\Drivers\\Beep.SYS"
+    },
+    {
+      "base": 4180783104,
+      "size": 4096,
+      "name": "mnmdd.SYS",
+      "path": "\\SystemRoot\\System32\\Drivers\\mnmdd.SYS"
+    },
+    {
+      "base": 4177035264,
+      "size": 24576,
+      "name": "Msfs.SYS",
+      "path": "\\SystemRoot\\System32\\Drivers\\Msfs.SYS"
+    },
+    {
+      "base": 4174839808,
+      "size": 40960,
+      "name": "Npfs.SYS",
+      "path": "\\SystemRoot\\System32\\Drivers\\Npfs.SYS"
+    },
+    {
+      "base": 4178681856,
+      "size": 8192,
+      "name": "rasacd.sys",
+      "path": "\\SystemRoot\\system32\\DRIVERS\\rasacd.sys"
+    },
+    {
+      "base": 4242313216,
+      "size": 323584,
+      "name": "tcpip.sys",
+      "path": "\\SystemRoot\\system32\\DRIVERS\\tcpip.sys"
+    },
+    {
+      "base": 4174905344,
+      "size": 36864,
+      "name": "msgpc.sys",
+      "path": "\\SystemRoot\\system32\\DRIVERS\\msgpc.sys"
+    },
+    {
+      "base": 4242145280,
+      "size": 167936,
+      "name": "netbt.sys",
+      "path": "\\SystemRoot\\system32\\DRIVERS\\netbt.sys"
+    },
+    {
+      "base": 4174970880,
+      "size": 36864,
+      "name": "netbios.sys",
+      "path": "\\SystemRoot\\system32\\DRIVERS\\netbios.sys"
+    },
+    {
+      "base": 4241973248,
+      "size": 172032,
+      "name": "rdbss.sys",
+      "path": "\\SystemRoot\\system32\\DRIVERS\\rdbss.sys"
+    },
+    {
+      "base": 4241481728,
+      "size": 417792,
+      "name": "mrxsmb.sys",
+      "path": "\\SystemRoot\\system32\\DRIVERS\\mrxsmb.sys"
+    },
+    {
+      "base": 4177264640,
+      "size": 32768,
+      "name": "wanarp.sys",
+      "path": "\\SystemRoot\\system32\\DRIVERS\\wanarp.sys"
+    },
+    {
+      "base": 4179787776,
+      "size": 4096,
+      "name": "dump_WMILIB.SYS",
+      "path": "\\SystemRoot\\System32\\Drivers\\dump_WMILIB.SYS"
+    },
+    {
+      "base": 4241227776,
+      "size": 90112,
+      "name": "dump_atapi.sys",
+      "path": "\\SystemRoot\\System32\\Drivers\\dump_atapi.sys"
+    }
+  ],
+  "runtime_pins": [
+    {
+      "address": "0xfe44b850",
+      "module": "xwnfatx.sys",
+      "base": "0xfe43b000",
+      "rva": "0x10850",
+      "source_sha256": "ba62acbb7dedf30154baba8d4cc2cf457f1a3e499bf7800e31011fba0e96d6a9",
+      "raw": "5589e557565383ec1c8b3d008002008b",
+      "resident": "5589e557565383ec1c8b3d003045fe8b",
+      "relocations": [
+        11
+      ]
+    },
+    {
+      "address": "0x82400c2f",
+      "module": "ntoskrnl.exe",
+      "base": "0x823df000",
+      "rva": "0x21c2f",
+      "source_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+      "raw": "e83db409003bc38945fc7d08395d1c74",
+      "resident": "e83db409003bc38945fc7d08395d1c74",
+      "relocations": []
+    },
+    {
+      "address": "0x823fcdbc",
+      "module": "ntoskrnl.exe",
+      "base": "0x823df000",
+      "rva": "0x1ddbc",
+      "source_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+      "raw": "568bf2578bf9fe4e238a462333c93ac1",
+      "resident": "568bf2578bf9fe4e238a462333c93ac1",
+      "relocations": []
+    },
+    {
+      "address": "0x823fcefe",
+      "module": "ntoskrnl.exe",
+      "base": "0x823df000",
+      "rva": "0x1defe",
+      "source_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+      "raw": "558bec83ec0c53568bf133db578855ff",
+      "resident": "558bec83ec0c53568bf133db578855ff",
+      "relocations": []
+    },
+    {
+      "address": "0x823fd63c",
+      "module": "ntoskrnl.exe",
+      "base": "0x823df000",
+      "rva": "0x1e63c",
+      "source_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+      "raw": "558bec53568b75085733ff66833e0674",
+      "resident": "558bec53568b75085733ff66833e0674",
+      "relocations": []
+    },
+    {
+      "address": "0x8249c13b",
+      "module": "ntoskrnl.exe",
+      "base": "0x823df000",
+      "rva": "0xbd13b",
+      "source_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+      "raw": "8bf08b450c6a01bb030100000fb64801",
+      "resident": "8bf08b450c6a01bb030100000fb64801",
+      "relocations": []
+    },
+    {
+      "address": "0xfe44b850",
+      "module": "xwnfatx.sys",
+      "base": "0xfe43b000",
+      "rva": "0x10850",
+      "source_sha256": "ba62acbb7dedf30154baba8d4cc2cf457f1a3e499bf7800e31011fba0e96d6a9",
+      "raw": "5589e557565383ec1c8b3d008002008b",
+      "resident": "5589e557565383ec1c8b3d003045fe8b",
+      "relocations": [
+        11
+      ]
+    },
+    {
+      "address": "0xfe44bfc6",
+      "module": "xwnfatx.sys",
+      "base": "0xfe43b000",
+      "rva": "0x10fc6",
+      "source_sha256": "ba62acbb7dedf30154baba8d4cc2cf457f1a3e499bf7800e31011fba0e96d6a9",
+      "raw": "5dc38db4260000000090b8020000c05d",
+      "resident": "5dc38db4260000000090b8020000c05d",
+      "relocations": []
+    },
+    {
+      "address": "0xfe49d8d2",
+      "module": "ftdisk.sys",
+      "base": "0xfe492000",
+      "rva": "0xb8d2",
+      "source_sha256": "e361ea8e3a75237ef0bebc4a39b13aa4dc2fab6de15f1a3dc156c3d8fd2dd2c1",
+      "raw": "558bec83ec188b4508538b5d0c568b70",
+      "resident": "558bec83ec188b4508538b5d0c568b70",
+      "relocations": []
+    },
+    {
+      "address": "0xfe49b927",
+      "module": "ftdisk.sys",
+      "base": "0xfe492000",
+      "rva": "0x9927",
+      "source_sha256": "e361ea8e3a75237ef0bebc4a39b13aa4dc2fab6de15f1a3dc156c3d8fd2dd2c1",
+      "raw": "b803010000eb1e8b43608b4e1453683e0d0100",
+      "resident": "b803010000eb1e8b43608b4e1453683e2d49fe",
+      "relocations": [
+        15
+      ]
+    },
+    {
+      "address": "0xf8c34da3",
+      "module": "classpnp.sys",
+      "base": "0xf8c30000",
+      "rva": "0x4da3",
+      "source_sha256": "82f4f038eddd0178d5a8ca251d634bfddddc3abc8055a024346baa15f4e10b78",
+      "raw": "558bec83ec108b4d08538065fd00568b",
+      "resident": "558bec83ec108b4d08538065fd00568b",
+      "relocations": []
+    },
+    {
+      "address": "0xf8c32cb6",
+      "module": "classpnp.sys",
+      "base": "0xf8c30000",
+      "rva": "0x2cb6",
+      "source_sha256": "82f4f038eddd0178d5a8ca251d634bfddddc3abc8055a024346baa15f4e10b78",
+      "raw": "3d0301000075115757578d45f05750ff",
+      "resident": "3d0301000075115757578d45f05750ff",
+      "relocations": []
+    }
+  ],
+  "ignored_hits": {},
+  "tracked_irps": [
+    {
+      "irp": "0xfe5ebb48",
+      "relation": "original_file_object_match",
+      "freed": false
+    }
+  ],
+  "calls": [
+    {
+      "index": 0,
+      "irp": "0xfe5ebb48",
+      "thread": "0xfe5913e0",
+      "entry_stack": "0xf90f7b00",
+      "return_address": "0x8249c13b",
+      "return_pin": 5,
+      "returned": false
+    },
+    {
+      "index": 1,
+      "irp": "0xfe5ebb48",
+      "thread": "0xfe5913e0",
+      "entry_stack": "0xf90f7a7c",
+      "return_address": "0xfe44bfc6",
+      "return_pin": 7,
+      "returned": false
+    },
+    {
+      "index": 2,
+      "irp": "0xfe5ebb48",
+      "thread": "0xfe5913e0",
+      "entry_stack": "0xf90f7a18",
+      "return_address": "0xfe49b927",
+      "return_pin": 9,
+      "returned": false
+    },
+    {
+      "index": 3,
+      "irp": "0xfe5ebb48",
+      "thread": "0xfe5913e0",
+      "entry_stack": "0xf90f79a4",
+      "return_address": "0xf8c32cb6",
+      "return_pin": 11,
+      "returned": false
+    }
+  ],
+  "features": "PacketSize=20020;qXfer:features:read+;vContSupported+;multiprocess+",
+  "initial_stop": "T05thread:01;",
+  "status": "capture_incomplete",
+  "last_stop": {
+    "index": 4,
+    "kind": "dispatch",
+    "utc": "2026-10-07T09:11:41.762028+00:00",
+    "registers": {
+      "EAX": "0xfe5ebc48",
+      "ECX": "0xfe65de20",
+      "EDX": "0xfe5ebb48",
+      "EBX": "0xfe65ce48",
+      "ESP": "0xf90f79a4",
+      "EBP": "0xf90f79c0",
+      "ESI": "0xfe5ebb48",
+      "EDI": "0x0",
+      "EIP": "0x823fcdbc"
+    },
+    "thread": "0xfe5913e0",
+    "process": "0xfe591660",
+    "pid": 136,
+    "image": "smss.exe"
+  },
+  "error": "AssertionError(('Unpinned module', 'diskperf.sys', '0xf9102d06'))",
+  "guest_resumed": true,
+  "ended_utc": "2026-10-07T09:11:41.765400+00:00",
+  "armed_breakpoints_remaining": [],
+  "unreturned_dispatches": 4
+}

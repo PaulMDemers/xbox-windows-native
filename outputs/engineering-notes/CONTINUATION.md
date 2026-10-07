@@ -1,3 +1,40 @@
+# Crash-dump rejection localized to the fixed-root HAL
+
+2026-10-07 09:32UTC. ALL owned sessions CLOSED. Read dump-usage-trace/REPORT.md,
+NEXT.md, trace-verification.json and hal-source-audit.json under outputs. Both
+dispatch001/002 are closed and cold-audited; NEVER relaunch or recollect them.
+Emulator-only authorization continues until13:00UTC. No physical FTP/deploy/test.
+
+dispatch002 captured39events/13dispatchpairs/4IRPs/43residentpins. InitialIRP
+goes FATX->Ftdisk->Disk->Diskperf->PartMgr->Disk->atapi; nested matching usage
+IRPs go atapi->PCIIde->PCI->PCI_HAL. Firstcompletion is HAL+83d8 with inherited
+STATUS_NOT_SUPPORTED. Exactbinary paging-only selector and0055source agree:
+dump/hibernate were deliberately not implemented. Failure propagates to final
+IopSynchronousCall. Ftdisk/FATX returnPENDING, not the origin of rejection.
+No retrieval-pointer FSCTL reached. No asynchronous thread transition occurred
+in this capture; four matching nested requests are not allocation-parent proof.
+dispatch001 unpinnedDiskperf capture failure preserved, safely resumed.
+
+Bothworkloads792appends/32shrinks/132reopens/11exactcoldfiles, normalshutdown/
+dashboard,323dirs6765files324directoryclusters,0errors/orphans,5hives/protected
+hashes. HidServ4/0/0; strictFALSEsoleFtdisk49. No driver/settings/policychanges.
+All residentpins/frozeninputs/closeddisks replaychecked;5875repositoryfiles pass
+payload/credentialchecks and102newkit stagedfiles preserveexactworkingbytes.
+
+Next: review actual root HAL dump contract and reproducible build provenance;
+NEW isolated genuine dump-path accounting/residency/PnP/power implementation
+only if contract is satisfied. Do not just forceSUCCESS or suppressdumps/events.
+Real dump-write/recovery validation required beforeclaimingcapability. Physical
+0101/video0093,0088rollback,immutable0.1.0 unchanged. Original111nonASCIIphysical
+corruption/restart remains unresolved and separate frominterruptionexperiment.
+Inherited emulator syntheticnull/unsupporteddevicepolicy unchanged.
+
+Closedrun sessions001 prep88284 runner71711 tracer6916 supervisor42911 audit54330;
+002 prep49055 runner33212 tracer83531 supervisor29166 audit61427; evidence23117.
+No runningguest/observer/build. Current findings readyfor privatecommit/push.
+
+---
+
 # Crash-dump usage request traced through FATX to Ftdisk
 
 2026-10-07 08:58UTC. ALL owned sessions CLOSED, including evidence verification
