@@ -1,3 +1,15 @@
+# Latest handoff: QPC evidence pushed; all sessions closed
+
+2026-10-07T17:34:58.235479+00:00. Source/evidence commit20b3217fa3f60ff37766d54982366509013c19f4
+pushed to private origin/main. All owned emulator/observer/audit sessions CLOSED.
+No physical access or driver changes. Both revised QPC modes strictPASS;
+>99.88percent of large upload/overlap total inside BitBlt, flush about11us.
+20 damaged timing protocols rejected; source/closure pins, Python/PowerShell
+parse and repository payload/credential checks pass. Earlier cursor-readiness
+failure preserved and unqualified. Read video-qpc-settled/REPORT.md and NEXT.md.
+Next actual copy branch/framebuffer-access trace; never rerun closed attempts.
+Git was clean after evidence push; this handoff note records completion.
+
 # QPC decomposition complete; all owned sessions CLOSED
 
 2026-10-07T17:34:25.103113+00:00. Read outputs/video-qpc-settled/REPORT.md,NEXT.md,pair-review.json.
