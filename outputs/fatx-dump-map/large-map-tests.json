@@ -1,0 +1,27 @@
+{
+  "scope": "Test the actual constructor's 64-bit offsets and signed-overflow rejection.",
+  "source_sha256": {
+    "test-large-map.c": "ec8f6a67693e0eca69f3c066b46184b6b2e86fb996f997d87417c42051ac41e4",
+    "test-map.c": "0a2db8452b17e9a0c1679e12bd340b1b6cb923591efbf7816220070aa639fe9f",
+    "dump-map.inc": "e762b50c41069940083f5859a1a7ea3c5c8975296fdce2df06285b7d06b6e487",
+    "artifacts/paging-builder.inc": "f059ef776b4b63c247cfbfb13a4258cd6a7ff66703882e62e6d5b9b2f9a4325c"
+  },
+  "command": [
+    "/usr/bin/gcc",
+    "-std=gnu11",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-Wno-multichar",
+    "-fsanitize=address,undefined",
+    "-fno-omit-frame-pointer",
+    "-g",
+    "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/fatx-dump-map/test-large-map.c",
+    "-o",
+    "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/fatx-dump-map/artifacts/test-large-map"
+  ],
+  "output": "large_offset_checks=5 leaks=0\n",
+  "passed": true,
+  "physical_access": false,
+  "limits": "Additional host test, not NT ABI or disk/controller dump-write coverage."
+}

@@ -1,0 +1,28 @@
+{
+  "scope": "Compile actual mapping functions with host mocks and ASan/UBSan.",
+  "compiler": "/usr/bin/gcc",
+  "compiler_version": "gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+  "command": [
+    "/usr/bin/gcc",
+    "-std=gnu11",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-Wno-multichar",
+    "-fsanitize=address,undefined",
+    "-fno-omit-frame-pointer",
+    "-g",
+    "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/fatx-dump-map/test-map.c",
+    "-o",
+    "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/fatx-dump-map/artifacts/test-map"
+  ],
+  "source_sha256": {
+    "test-map.c": "0a2db8452b17e9a0c1679e12bd340b1b6cb923591efbf7816220070aa639fe9f",
+    "dump-map.inc": "e762b50c41069940083f5859a1a7ea3c5c8975296fdce2df06285b7d06b6e487",
+    "artifacts/paging-builder.inc": "f059ef776b4b63c247cfbfb13a4258cd6a7ff66703882e62e6d5b9b2f9a4325c"
+  },
+  "builder_source_sha256": "a1296989ab3ae6e82f27a9a4a254423372de04c8ae220665f18f64e02d9d2e5f",
+  "output": "checks=4032 allocations=8011 leaks=0 random_cases=4000\n",
+  "passed": true,
+  "limits": "Host layout/mocks, not NT ABI, actual SEH exceptions, guest lifecycle or dump-write qualification."
+}

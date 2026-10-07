@@ -1,3 +1,47 @@
+# FATX0103 strict ordinary emulator PASS; both comparison runs closed
+
+2026-10-07 10:32UTC. ALL owned sessions CLOSED. Read outputs/fatx-dump-map
+REPORT.md,DESIGN.md,NEXT.md,pair-review.json and actualrecords. Never relaunch or
+recollect control001/candidate001. Prior diagnostic df24162 proves actual
+KernelMode0x9003b/C0000010 rejection;0103 now implements real paging-file mapping
+from the existing immutable resident map, with bounded nonpaged allocation,
+byte lengths/volume offsets and explicit caller ownership. No event/settings
+suppression.4032 primary host ASan/UBSan checks plus5 large-offset checks pass.
+Fresh matched FATX control a35d963cf4683833e107f28880a48144616355668940635d2f7eb85fa5c2927d;
+candidate247246b61f6b2f6bee25423860b8b3800290e84e405186efa69785b1609213b3.
+Source tree3f7316b6079e28eab45c07d8abdf720b118aa90f. Both use same0102HAL7c6a3bfb...,
+video0093,HidServ and inherited emulator-only synthetic null/unsupported policy.
+Both792appends/32shrinks/132reopens/11exactcoldfiles,normalshutdown/dashboard,
+clean323dirs6765files324clusters allocation,5hives/protectedhashes,HidServ4/0/0.
+ControlstrictFALSE44+49; candidate strictTRUE,0warning/error or application events.
+All before/after dump settings unchanged (enabled3) and96MiB/1536cluster pagefile
+maps identical. Cold first64KiB extent is volume-byte offset140436013056 (>128GiB).
+Next NEW bounded debugger child: successful output pointer/extent capture,
+actual retained kernel mapping/caller success, independent cold extent match,
+then controlled sacrificial dump-write/recovery planning. No real dump written
+or recovered yet; no physical qualification. Original111nonASCIIdamage/restart
+remains unresolved. Preserve physical0101/video0093,0088rollback,immutable0.1.0.
+Closed session list inNEXT. No ownedguest/build/observer. C:about21.8GB free;
+20GiBbuildguard unchanged. Emulator ONLY until13:00UTC; no physicalFTP/deploy/test.
+# FATX0103 matched comparison in progress — inspect before acting
+
+2026-10-07 10:22UTC. Pushed df24162 closes dump-fsctl-trace/trace001:
+actual0x9003b/C0000010 proven,19events/23pins, full cold audit strictFALSE44+49.
+New UNCOMMITTED kit outputs/fatx-dump-map, read DESIGN.md and actualrecords.
+0103 implements kernel paging-file query from existing immutable resident map;
+4032 ASan/UBSan host checks pass,4000 prefix cases,0leaks. Fresh matched FATX
+builds completed: controla35d963cf4683833e107f28880a48144616355668940635d2f7eb85fa5c2927d,
+candidate247246b61f6b2f6bee25423860b8b3800290e84e405186efa69785b1609213b3.
+Both use SAME candidate0102 HAL7c6a3bfb... and unchanged video0093/HidServ/policy.
+Do NOT relaunch control001: accepted10:21:22UTC, runner8185 and supervisor36300
+ACTIVE. Candidate preparation91309 ACTIVE, never launched. Controlprep75665,
+hosttest21351,build59319/control64382 completed. Inspect launch/cleanup records,
+resume sessions; collect each once. After normalreturn/coldaudit/configuration/
+closure/evidence, candidatepreflight permits its unique launch. Then compare
+strict event gates, exact files/allocation/hives/protectedhashes, commit/push.
+No driver deployed physically. No dump written/recovered; eventfree setup still
+requires separate runtime extent capture/cold mapping oracle and real dump test.
+Cutoff13:00UTC. Preserve physical0101/video0093,0088rollback,immutable0.1.0.
 # FATX dump mapping request localized; diagnostic closed
 
 2026-10-07 10:08UTC. ALL owned sessions CLOSED. New outputs/dump-fsctl-trace

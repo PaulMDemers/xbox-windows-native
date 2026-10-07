@@ -1,0 +1,123 @@
+/* FSCTL_QUERY_RETRIEVAL_POINTERS returns an owned nonpaged array of byte
+ * [length, volume offset] pairs, terminated by a zero length. It is not the
+ * public GET_RETRIEVAL_POINTERS cluster/VCN buffer. */
+static NTSTATUS
+VfatMakeDumpMapping(PVFAT_PAGING_MAP Map, PFATINFO Info,
+                    LARGE_INTEGER Requested, PLARGE_INTEGER *Result)
+{
+    ULONG Count, Index, Cluster, Last = 0, Runs = 0, Slot = 0;
+    ULONG Remaining, Length, ClusterSize = Info->BytesPerCluster;
+    ULONGLONG Sector, Offset;
+    PLARGE_INTEGER Pairs;
+
+    if (!Map || Requested.QuadPart <= 0 || Requested.HighPart ||
+        Requested.LowPart > Map->FileSize || !ClusterSize ||
+        !Info->BytesPerSector || !Info->SectorsPerCluster ||
+        (ULONGLONG)Info->BytesPerSector * Info->SectorsPerCluster != ClusterSize ||
+        (ULONGLONG)Info->Sectors * Info->BytesPerSector > MAXLONGLONG ||
+        Requested.LowPart % Info->BytesPerSector)
+        return STATUS_INVALID_PARAMETER;
+
+    Count = (Requested.LowPart - 1) / ClusterSize + 1;
+    if (!Map->FileSize ||
+        Map->ClusterCount != (Map->FileSize - 1) / ClusterSize + 1 ||
+        Map->ClusterCount > Info->NumberOfClusters || Count > Map->ClusterCount)
+        return STATUS_FILE_CORRUPT_ERROR;
+
+    /* PagingMap is immutable and retained until the referenced FCB dies.
+     * Its builder already checked the complete chain and terminal EOC before
+     * publication. No FAT-cache I/O or resource acquisition is needed here.
+     * Revalidate range/geometry and count runs before allocating exact space. */
+    for (Index = 0; Index < Count; ++Index)
+    {
+        Cluster = Map->Clusters[Index];
+        if (Cluster < 2 || Cluster - 2 >= Info->NumberOfClusters)
+            return STATUS_FILE_CORRUPT_ERROR;
+        Sector = (ULONGLONG)Info->dataStart +
+                 (ULONGLONG)(Cluster - 2) * Info->SectorsPerCluster;
+        if (Sector + Info->SectorsPerCluster > Info->Sectors)
+            return STATUS_FILE_CORRUPT_ERROR;
+        if (!Index || Cluster != Last + 1)
+            ++Runs;
+        Last = Cluster;
+    }
+    if (Runs >= MAXULONG / (2 * sizeof(LARGE_INTEGER)))
+        return STATUS_INTEGER_OVERFLOW;
+    Pairs = ExAllocatePoolWithTag(NonPagedPool,
+                                 (Runs + 1) * 2 * sizeof(LARGE_INTEGER), 'dMfV');
+    if (!Pairs)
+        return STATUS_INSUFFICIENT_RESOURCES;
+
+    Remaining = Requested.LowPart;
+    Last = 0;
+    for (Index = 0; Index < Count; ++Index)
+    {
+        Cluster = Map->Clusters[Index];
+        Length = min(Remaining, ClusterSize);
+        if (!Index || Cluster != Last + 1)
+        {
+            if (Index)
+                ++Slot;
+            Sector = (ULONGLONG)Info->dataStart +
+                     (ULONGLONG)(Cluster - 2) * Info->SectorsPerCluster;
+            Offset = Sector * Info->BytesPerSector;
+            Pairs[Slot * 2].QuadPart = 0;
+            Pairs[Slot * 2 + 1].QuadPart = Offset;
+        }
+        Pairs[Slot * 2].QuadPart += Length;
+        Remaining -= Length;
+        Last = Cluster;
+    }
+    Pairs[(Slot + 1) * 2].QuadPart = 0;
+    Pairs[(Slot + 1) * 2 + 1].QuadPart = 0;
+    *Result = Pairs;
+    return STATUS_SUCCESS;
+}
+
+static NTSTATUS
+VfatQueryRetrievalPointers(PVFAT_IRP_CONTEXT IrpContext)
+{
+    PIO_STACK_LOCATION Stack = IrpContext->Stack;
+    PIRP Irp = IrpContext->Irp;
+    PVFATFCB Fcb;
+    PVFAT_PAGING_MAP Map;
+    LARGE_INTEGER Requested;
+    PLARGE_INTEGER Pairs = NULL;
+    NTSTATUS Status;
+
+    if (Irp->RequestorMode != KernelMode || !IrpContext->FileObject ||
+        !IrpContext->FileObject->FsContext ||
+        !vfatVolumeIsFatX(IrpContext->DeviceExt))
+        return STATUS_INVALID_PARAMETER;
+    Fcb = IrpContext->FileObject->FsContext;
+    if (!BooleanFlagOn(Fcb->Flags, FCB_IS_PAGE_FILE) ||
+        BooleanFlagOn(Fcb->Flags, FCB_IS_VOLUME | FCB_IS_FAT | FCB_DELETE_PENDING) ||
+        vfatFCBIsDirectory(Fcb) ||
+        Stack->Parameters.FileSystemControl.InputBufferLength != sizeof(LARGE_INTEGER) ||
+        Stack->Parameters.FileSystemControl.OutputBufferLength != sizeof(PVOID) ||
+        !Stack->Parameters.FileSystemControl.Type3InputBuffer || !Irp->UserBuffer)
+        return STATUS_INVALID_PARAMETER;
+
+    Map = InterlockedCompareExchangePointer((PVOID volatile *)&Fcb->PagingMap, NULL, NULL);
+    _SEH2_TRY
+    {
+        Requested = *(PLARGE_INTEGER)Stack->Parameters.FileSystemControl.Type3InputBuffer;
+        Status = VfatMakeDumpMapping(Map, &IrpContext->DeviceExt->FatInfo,
+                                     Requested, &Pairs);
+        if (NT_SUCCESS(Status))
+        {
+            *(PLARGE_INTEGER *)Irp->UserBuffer = Pairs;
+            Pairs = NULL; /* Ownership transferred to the kernel dump context. */
+            Irp->IoStatus.Information = sizeof(PVOID);
+        }
+    }
+    _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+    {
+        Status = _SEH2_GetExceptionCode();
+    }
+    _SEH2_END;
+    if (Pairs)
+        ExFreePool(Pairs);
+    return Status;
+}
+
