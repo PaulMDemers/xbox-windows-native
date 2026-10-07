@@ -311,3 +311,22 @@ without a new popup, but threeSrv2013 warnings remain. This is bounded concurren
 and cold-integrity evidence, not an unattended protocol PASS or proof of every
 possible lock ordering. See ../fatx0101-physical; retain original observer timeout
 and strict FAIL. Normal startup restored;0101 remains provisional with0098 rollback.
+
+## Physical shadow-C identity and cache cleanup,7 October2026
+
+The raw-C probe bypassed the softmod's partition-path view by opening Partition0
+read-only at absolute offset2,359,820,288 for524,288,000 bytes. Header geometry
+was FATX16 with16KiB clusters. Its complete directory/FAT capture found33
+directories,83 files, no orphan clusters or allocation errors, and179 free
+clusters (2,932,736 bytes), matching the prior Windows API sample exactly.
+/nkpatcher/shadowc/shadowc.img accounts for508,559,360 bytes. Dashboard C's exposed
+11 files total only3,259,668 bytes; deleting that dashboard view would not solve
+the raw partition's intended occupancy and could break the softmod. Preserve it.
+See ../raw-c-inventory/physical-allocation.json and README.md.
+
+The authorized cleanup independently archived/readback-verified and deleted six
+exact game-cache maps from dashboard X/Y, totaling1,488,977,920 bytes. Savegames,
+fonts, preferences and all other root entries were preserved. No new Windows
+event result yet demonstrates whether the corresponding G/H warnings disappear.
+The legitimate raw-C occupancy remains an integration/policy issue; no strict
+gate was waived and no low-space event was suppressed.

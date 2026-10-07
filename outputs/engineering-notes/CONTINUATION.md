@@ -1,3 +1,64 @@
+# Cache cleanup complete; raw C explained; GPU setup staged, awaiting keyboard readiness
+
+2026-10-07 01:46 UTC. User authorized cleanup and continuation. Six exact X/Y
+cache maps archived, locally reread/hash verified, remotely rehashed then deleted.
+1,488,977,920 bytes reclaimed; all other root entries preserved. Session82145
+completed. Private backups E:/Codex-private-artifacts/xbox-windows-feasibility/
+cache-cleanup-20261007; manifests in outputs/physical-space-cleanup.
+
+Read-only raw C probe passed emulator002 exact metadata/directory comparison and
+no-C-write audit, then physical launch/return/collection ONCE at XWNRawC001.
+33 directories,83 files, no orphan/error,179 free16KiB clusters=2,932,736 bytes,
+matching Windows. /nkpatcher/shadowc/shadowc.img is508,559,360 bytes. Preserve it;
+no C deletion or softmod modification. The legitimate nearly-full system volume
+needs deliberate Windows integration. Do not waive/silence the strict Srv gate.
+Host emulator001 failed before boot on backing path length; retained separately.
+Owned002 and all backup/validation/observer processes are now closed.
+
+GPU setup at outputs/physical-gpu-setup is staged/readback verified, NOT launched.
+Exact existing video0093 binary and tested INF in /F/xwninf102. Current SOFTWARE
+backup local artifacts/before-software and remote /F/xwninf102/software.bak.
+Only DevicePath appends C:\xwninf102; all26914 keys/39260 values checked.
+Staged SOFTWARE hash4b6e54f8aa7d6d0161917869236da41db61f767521dfd5ac7c425e415db62f9f.
+FATX0101, installed video0093, SYSTEM and normal idle startup unchanged. No null
+INF, failed-install flag or signing-policy change. First emulator setup shutdown
+failed historically; subsequent installed boots passed, so this remains a
+controlled configuration experiment, NOT an unattended/release qualification.
+
+PENDING USER QUESTION: is Razer keyboard unplugged? Do not launch Windows until
+actual confirmation. Once confirmed, trial.py launch --keyboard-unplugged ONCE
+with supplied FTP environment; leave Windows desktop for GPU setup. Reconnect
+keyboard only after Xromwell/at desktop. Identify actual wizard device before
+any instructions, preserve user observations, use normal user restart. Then
+trial.py collect once, inspect SetupAPI/GPU service/class/INF and event deltas;
+full cold audits and a later unattended soak remain outstanding. Do not repeat
+physical0101's completed trial/scan. v0.1.0/0088/0098 rollback untouched.
+No automation modified; no owned process remains active. Current reports/source
+are being reviewed and pushed, prior e6ee894.
+
+## Earlier continuation (historical)
+
+# Cache cleanup and raw C inventory in progress
+
+2026-10-07 01:40 UTC. User authorized safe space cleanup and continuing device
+setup. Six exact X/Y cache maps archived and locally SHA256 readback verified at
+E:/Codex-private-artifacts/xbox-windows-feasibility/cache-cleanup-20261007.
+cache.py remove session82145 is running, rehashing each remote file before its
+single deletion; inspect cache-removal.json before any action. Preserve all other
+entries, savegames, preferences, fonts and all C/dashboard/softmod files.
+Dashboard C exposes only3.26MB, unlike raw C's nearly-full Windows reading.
+
+New read-only Partition0 C metadata probe built under outputs/raw-c-inventory.
+No physical launch yet. Emulator host attempt raw-c-inventory-001 failed to open
+a deep backing chain before guest boot; closed cleanup recorded. Flattening a
+NEW equivalent fixture (session74403), originals unchanged, for new attempt002.
+Do not relaunch earlier physical0101 trial or scan. Normal startup and0101/video0093
+remain installed. Next: finish cache removal, emulator validate raw C probe,
+launch it once directly via nxdk/FTP, collect raw metadata, then GPU PnP work.
+No new Windows launch; future Xromwell requires keyboard unplugged.
+
+## Earlier continuation (historical)
+
 # Physical0101 collected and audited; all owned processes closed
 
 2026-10-07 01:21UTC. Single candidate0101 trial completed500 rounds on each of
