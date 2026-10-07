@@ -1,3 +1,21 @@
+# Second GPU boot reached UI without VGA wizard; remaining prompts persist
+
+User reports second boot no longer asks for VGA installation; the other prompts
+remain. This is user evidence consistent with first-run persisted GPU registration,
+not collected second-run binding/idle-queue evidence. No need to install GPU again.
+No further launch authorized or requested. No running observer/automation.
+
+Next: user may cancel the same audio/generic PCI prompts previously identified;
+inspect any unfamiliar prompt separately. Verify desktop and keyboard/mouse, then
+use normal Windows Start > Shut Down > Restart to return to UnleashX. Only after
+return run outputs/physical-gpu-setup/second-boot.py collect ONCE. Decode new events,
+compare SetupAPI prefix and malformed span, inspect persistent GPU binding and
+perform relevant cold integrity checks. Prior92 non-ASCII SetupAPI bytes and
+raw-C Srv capacity issue remain unresolved; do not call this a strict PASS.
+All installed driver/rollback/cache-cleanup details below remain applicable.
+
+## Earlier continuation (historical)
+
 # Second GPU setup boot accepted; GPU registration confirmed, log anomaly unresolved
 
 2026-10-07 02:09 UTC. User rebooted after difficulty clicking the GPU driver and
