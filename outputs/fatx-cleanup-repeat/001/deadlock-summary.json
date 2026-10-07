@@ -1,0 +1,119 @@
+{
+  "scope": "Second confirmed exclusive FATX cycle in cleanup0099; separate from first0099 helper hold",
+  "physical_access": false,
+  "analysis_sha256": "ca016c2b2204eecfabad9ab0f236fa5bc66a5eeb471d27f75655586ce70e579d",
+  "cycles": [
+    [
+      {
+        "waiter": "0xff9ed020",
+        "owner": "0xff9d9020",
+        "resource": "0xfe59703c"
+      },
+      {
+        "waiter": "0xff9d9020",
+        "owner": "0xff9ed020",
+        "resource": "0xfe6180d0"
+      }
+    ],
+    [
+      {
+        "waiter": "0xff9d9020",
+        "owner": "0xff9ed020",
+        "resource": "0xfe6180d0"
+      },
+      {
+        "waiter": "0xff9ed020",
+        "owner": "0xff9d9020",
+        "resource": "0xfe59703c"
+      }
+    ]
+  ],
+  "resources": [
+    {
+      "address": "0xfe6180d0",
+      "active_count": 1,
+      "flags": "0x80",
+      "owner_table": "0x0",
+      "owners": [
+        {
+          "thread": "0xff9ed020",
+          "count": 1,
+          "active_thread": {
+            "process": "WinMgmt.exe",
+            "pid": 560,
+            "tid": 792,
+            "state": 5,
+            "wait_reason": 0
+          }
+        },
+        {
+          "thread": "0x0",
+          "count": 0
+        }
+      ],
+      "shared_object": "0x0",
+      "exclusive_object": "0xfe592308",
+      "shared_waiters": 0,
+      "exclusive_waiters": 13,
+      "fatx": {
+        "kind": "dir",
+        "vcb": "0xfe6180d0"
+      }
+    },
+    {
+      "address": "0xfe59703c",
+      "active_count": 1,
+      "flags": "0x80",
+      "owner_table": "0x0",
+      "owners": [
+        {
+          "thread": "0xff9d9020",
+          "count": 1,
+          "active_thread": {
+            "process": "concurrent.exe",
+            "pid": 880,
+            "tid": 892,
+            "state": 5,
+            "wait_reason": 0
+          }
+        },
+        {
+          "thread": "0x0",
+          "count": 0
+        }
+      ],
+      "shared_object": "0x0",
+      "exclusive_object": "0xff9d6cc8",
+      "shared_waiters": 0,
+      "exclusive_waiters": 1,
+      "fatx": {
+        "vcb": "0xfe6180d0",
+        "fcb": "0xfe597008",
+        "flags": "0x1",
+        "refcount": 7,
+        "path": "\\winnt\\system32\\wbem\\repository",
+        "kind": "main"
+      }
+    }
+  ],
+  "helper": [
+    {
+      "process": "concurrent.exe",
+      "counters": {
+        "_Completed": [
+          17,
+          18,
+          10
+        ],
+        "_Errors": [
+          0,
+          0,
+          0
+        ]
+      }
+    }
+  ],
+  "interpretation": "WinMgmt rename holds volume DirResource and waits in VfatAcquireForCcFlush for parent directory MainResource. Concurrent volume flush owns that MainResource and waits back on DirResource. VfatRenameEntry has a parent-directory CcFlushCache call at return RVA0x7f60; callback MainResource acquisition returns at RVA0x9ab0. These are matched0099 COFF disassembly locations, not an unwound stack.",
+  "next": "Candidate0101 keeps Dir-before-Main for directory streams and Main-before-Dir for regular files. Candidate0100 remains unlaunched.",
+  "qualification": "FAIL; full timeout analysis and cold reports preserved"
+}

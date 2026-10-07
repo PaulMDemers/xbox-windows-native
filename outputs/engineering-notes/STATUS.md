@@ -1,5 +1,14 @@
 # Native Xbox Windows 2000 status — 6 October 2026
 
+Late6October/early7October emulator follow-up: an ordinary fifteen-minute0098
+workload passed after supported GPU setup and an emulator-only null-device INF.
+A new concurrency control nevertheless proved a cleanup/volume-flush deadlock.
+Cleanup-only0099 completed all1500 operations, but its helper held on a valid
+wait-all result; that attempt remains a failed shutdown qualification. A corrected
+repeat is running. Candidate0100 also addresses known namespace/file lock-order
+paths and awaits expanded stress/full-soak qualification. None is deployed to
+the physical console. See [continuation](CONTINUATION.md) for current runs.
+
 The project has reached a usable native desktop milestone. It is still an
 experimental system with incomplete device setup and bounded, rather than
 general, stability qualification. Windows runs on the Xbox CPU and stores its

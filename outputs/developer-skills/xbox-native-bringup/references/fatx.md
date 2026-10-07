@@ -36,6 +36,24 @@ stable referenced objects and consistent lock order; do not take per-file locks
 under an inverted global/directory lock. Reused completion events must be reset
 before issuing a new request.
 
+A confirmed NT5 cycle paired cleanup holding the volume DirResource while
+waiting for a file MainResource with volume flush holding that same MainResource
+while waiting for DirResource. Releasing the namespace lock only in volume flush
+did not fix reverse-order callers. Existing file objects can retain an FCB while
+acquiring MainResource first; create-by-name needs a safe retry with fresh lookup
+and sharing checks after dropping the namespace lock. Pinning lifetime alone does
+not preserve pathname identity. Audit enumeration and metadata paths as well.
+
+Do not extrapolate ordinary-file ordering to directory metadata streams. A
+second retained NT5 cycle had rename holding DirResource while CcFlushCache on
+the parent directory acquired that directory's MainResource; volume flush owned
+the same MainResource and waited for DirResource. Include indirect cache-manager
+callbacks in the lock graph. Directory streams may need namespace-before-stream
+ordering even when ordinary files require the reverse. Keep every directory
+operation needing both locks consistent; do not skip cache flushes or discard
+their failures to make a hang disappear. A source fix still needs runtime and
+cold persistence qualification.
+
 Distinguish logical EOF, allocation size, page/sector alignment and actual
 completion length. Use private sector buffers for tails when the caller's
 mapping does not cover a complete sector; never overrun an MDL or silently

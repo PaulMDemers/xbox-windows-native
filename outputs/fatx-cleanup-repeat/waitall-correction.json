@@ -1,0 +1,10 @@
+{
+  "scope": "Repeat0099 with the documented wait-all success range; retain the prior held run.",
+  "previous_probe_sha256": "caf612173b86ce9c1057a1a376747c690774106c185a3056889d58d576b7cd2b",
+  "previous_run": "fatx-cleanup-order001",
+  "actual_wait_all_result": 2,
+  "api_source": "https://learn.microsoft.com/en-us/windows/desktop/api/synchapi/nf-synchapi-waitformultipleobjects",
+  "contract": "For bWaitAll TRUE, any result from WAIT_OBJECT_0 through WAIT_OBJECT_0+nCount-1 means all objects signaled.",
+  "correction": "Accept 0,1,2 for three thread handles; still reject timeout, abandonment and failure. Require exact500/500/500 counters and zero errors in cold qualification.",
+  "historical_result": "All1500 operations completed in16620ms, exact files, no contended FATX resources; helper intentionally held on valid result2. No normal shutdown; historical qualification remains FAIL."
+}

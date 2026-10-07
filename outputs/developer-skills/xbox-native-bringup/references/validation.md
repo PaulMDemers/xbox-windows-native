@@ -100,3 +100,10 @@ Deep relative qcow2 chains can work in Linux tools yet fail to open in Windows
 xemu. Preserve the failed host attempt separately from guest boots. If shortening
 a chain by copying a delta and rebasing only its backing path, verify virtual-disk
 equality and unchanged originals before using a fresh attempt ID.
+
+Validate the harness's API contracts too. With WaitForMultipleObjects and
+bWaitAll=TRUE, success spans WAIT_OBJECT_0 through WAIT_OBJECT_0+nCount-1;
+requiring exactly zero can hold a successful NT5 run for diagnosis. Keep the
+raw status, counters and thread evidence. Correct the helper in a new attempt,
+preserve the held run, and still require normal shutdown and cold verification.
+Do not broaden a different API's success predicate by analogy.

@@ -1,0 +1,240 @@
+--- a/drivers/filesystems/vfatfs/create.c
++++ b/drivers/filesystems/vfatfs/create.c
+@@ -403,7 +403,8 @@
+ static NTSTATUS
+ VfatCreateFile(
+     PDEVICE_OBJECT DeviceObject,
+-    PIRP Irp)
++    PIRP Irp,
++    PVFATFCB *WaitFcb)
+ {
+     PIO_STACK_LOCATION Stack;
+     PFILE_OBJECT FileObject;
+@@ -415,6 +416,7 @@
+     PVFATCCB pCcb = NULL;
+     PWCHAR c, last;
+     BOOLEAN PagingFileCreate;
++    BOOLEAN OverwriteLocked = FALSE;
+     BOOLEAN Dots;
+     BOOLEAN OpenTargetDir;
+     BOOLEAN TrailingBackslash;
+@@ -901,6 +903,24 @@
+             }
+         }
+ #endif
++        /* Never wait for a file lock while holding the namespace lock.
++         * On contention, retain the FCB only for a wait outside DirResource,
++         * undo this incomplete open, and let the caller restart name/share
++         * validation. No attributes, size or paging-file flags changed yet. */
++        if (RequestedDisposition == FILE_OVERWRITE ||
++            RequestedDisposition == FILE_OVERWRITE_IF ||
++            RequestedDisposition == FILE_SUPERSEDE)
++        {
++            if (!ExAcquireResourceExclusiveLite(&pFcb->MainResource, FALSE))
++            {
++                vfatGrabFCB(DeviceExt, pFcb);
++                *WaitFcb = pFcb;
++                VfatCloseFile(DeviceExt, FileObject);
++                return STATUS_PENDING;
++            }
++            OverwriteLocked = TRUE;
++        }
++
+         if (PagingFileCreate)
+         {
+             /* FIXME:
+@@ -915,6 +935,7 @@
+             {
+                 if(!BooleanFlagOn(pFcb->Flags, FCB_IS_PAGE_FILE))
+                 {
++                    if (OverwriteLocked) ExReleaseResourceLite(&pFcb->MainResource);
+                     VfatCloseFile(DeviceExt, FileObject);
+                     vfatAddToStat(DeviceExt, Fat.FailedCreates, 1);
+                     return STATUS_INVALID_PARAMETER;
+@@ -930,6 +951,7 @@
+         {
+             if (BooleanFlagOn(pFcb->Flags, FCB_IS_PAGE_FILE))
+             {
++                if (OverwriteLocked) ExReleaseResourceLite(&pFcb->MainResource);
+                 VfatCloseFile(DeviceExt, FileObject);
+                 vfatAddToStat(DeviceExt, Fat.FailedCreates, 1);
+                 return STATUS_INVALID_PARAMETER;
+@@ -943,6 +965,7 @@
+             if ((BooleanFlagOn(*pFcb->Attributes, FILE_ATTRIBUTE_HIDDEN) && !BooleanFlagOn(Attributes, FILE_ATTRIBUTE_HIDDEN)) ||
+                 (BooleanFlagOn(*pFcb->Attributes, FILE_ATTRIBUTE_SYSTEM) && !BooleanFlagOn(Attributes, FILE_ATTRIBUTE_SYSTEM)))
+             {
++                if (OverwriteLocked) ExReleaseResourceLite(&pFcb->MainResource);
+                 VfatCloseFile(DeviceExt, FileObject);
+                 vfatAddToStat(DeviceExt, Fat.FailedCreates, 1);
+                 return STATUS_ACCESS_DENIED;
+@@ -979,12 +1002,13 @@
+                 VfatUpdateEntry(DeviceExt, pFcb);
+             }
+ 
+-            ExAcquireResourceExclusiveLite(&(pFcb->MainResource), TRUE);
++            ASSERT(OverwriteLocked);
+             Status = VfatSetAllocationSizeInformation(FileObject,
+                                                       pFcb,
+                                                       DeviceExt,
+                                                       &Irp->Overlay.AllocationSize);
+             ExReleaseResourceLite(&(pFcb->MainResource));
++            OverwriteLocked = FALSE;
+             if (!NT_SUCCESS (Status))
+             {
+                 VfatCloseFile(DeviceExt, FileObject);
+@@ -1081,6 +1105,7 @@
+     PVFAT_IRP_CONTEXT IrpContext)
+ {
+     NTSTATUS Status;
++    PVFATFCB WaitFcb;
+ 
+     ASSERT(IrpContext);
+ 
+@@ -1095,9 +1120,25 @@
+     }
+ 
+     IrpContext->Irp->IoStatus.Information = 0;
+-    ExAcquireResourceExclusiveLite(&IrpContext->DeviceExt->DirResource, TRUE);
+-    Status = VfatCreateFile(IrpContext->DeviceObject, IrpContext->Irp);
+-    ExReleaseResourceLite(&IrpContext->DeviceExt->DirResource);
++    for (;;)
++    {
++        WaitFcb = NULL;
++        ExAcquireResourceExclusiveLite(&IrpContext->DeviceExt->DirResource, TRUE);
++        Status = VfatCreateFile(IrpContext->DeviceObject, IrpContext->Irp, &WaitFcb);
++        ExReleaseResourceLite(&IrpContext->DeviceExt->DirResource);
++        if (!WaitFcb)
++            break;
++
++        ASSERT(Status == STATUS_PENDING);
++        ExAcquireResourceExclusiveLite(&WaitFcb->MainResource, TRUE);
++        ExReleaseResourceLite(&WaitFcb->MainResource);
++        ExAcquireResourceExclusiveLite(&IrpContext->DeviceExt->DirResource, TRUE);
++        vfatReleaseFCB(IrpContext->DeviceExt, WaitFcb);
++        ExReleaseResourceLite(&IrpContext->DeviceExt->DirResource);
++        /* The old pathname may have been renamed/deleted while unlocked.
++         * Retry the full lookup and checks, never mutate the pinned old FCB. */
++        IrpContext->Irp->IoStatus.Information = 0;
++    }
+ 
+     if (NT_SUCCESS(Status))
+         IrpContext->PriorityBoost = IO_DISK_INCREMENT;
+--- a/drivers/filesystems/vfatfs/dir.c
++++ b/drivers/filesystems/vfatfs/dir.c
+@@ -507,8 +507,9 @@
+ #endif
+     Buffer = VfatGetUserBuffer(IrpContext->Irp, FALSE);
+ 
+-    if (!ExAcquireResourceExclusiveLite(&IrpContext->DeviceExt->DirResource,
+-                                        BooleanFlagOn(IrpContext->Flags, IRPCONTEXT_CANWAIT)))
++    /* The open FILE_OBJECT pins pFcb; take its file lock before DirResource. */
++    if (!ExAcquireResourceSharedLite(&pFcb->MainResource,
++                                     BooleanFlagOn(IrpContext->Flags, IRPCONTEXT_CANWAIT)))
+     {
+         Status = VfatLockUserBuffer(IrpContext->Irp, BufferLength, IoWriteAccess);
+         if (NT_SUCCESS(Status))
+@@ -517,10 +518,10 @@
+         return Status;
+     }
+ 
+-    if (!ExAcquireResourceSharedLite(&pFcb->MainResource,
+-                                     BooleanFlagOn(IrpContext->Flags, IRPCONTEXT_CANWAIT)))
+-    {
+-        ExReleaseResourceLite(&IrpContext->DeviceExt->DirResource);
++    if (!ExAcquireResourceExclusiveLite(&IrpContext->DeviceExt->DirResource,
++                                        BooleanFlagOn(IrpContext->Flags, IRPCONTEXT_CANWAIT)))
++    {
++        ExReleaseResourceLite(&pFcb->MainResource);
+         Status = VfatLockUserBuffer(IrpContext->Irp, BufferLength, IoWriteAccess);
+         if (NT_SUCCESS(Status))
+             Status = STATUS_PENDING;
+@@ -551,8 +552,8 @@
+                                                                TAG_SEARCH);
+             if (!pCcb->SearchPattern.Buffer)
+             {
++                ExReleaseResourceLite(&IrpContext->DeviceExt->DirResource);
+                 ExReleaseResourceLite(&pFcb->MainResource);
+-                ExReleaseResourceLite(&IrpContext->DeviceExt->DirResource);
+                 return STATUS_INSUFFICIENT_RESOURCES;
+             }
+             RtlCopyUnicodeString(&pCcb->SearchPattern, pSearchPattern);
+@@ -568,8 +569,8 @@
+                                                            TAG_SEARCH);
+         if (!pCcb->SearchPattern.Buffer)
+         {
++            ExReleaseResourceLite(&IrpContext->DeviceExt->DirResource);
+             ExReleaseResourceLite(&pFcb->MainResource);
+-            ExReleaseResourceLite(&IrpContext->DeviceExt->DirResource);
+             return STATUS_INSUFFICIENT_RESOURCES;
+         }
+         pCcb->SearchPattern.Buffer[0] = L'*';
+@@ -688,8 +689,8 @@
+         IrpContext->Irp->IoStatus.Information = Written;
+     }
+ 
++    ExReleaseResourceLite(&IrpContext->DeviceExt->DirResource);
+     ExReleaseResourceLite(&pFcb->MainResource);
+-    ExReleaseResourceLite(&IrpContext->DeviceExt->DirResource);
+ 
+     return Status;
+ }
+--- a/drivers/filesystems/vfatfs/finfo.c
++++ b/drivers/filesystems/vfatfs/finfo.c
+@@ -1661,25 +1661,23 @@
+         LockDir = TRUE;
+     }
+ 
+-    if (LockDir)
+-    {
+-        if (!ExAcquireResourceExclusiveLite(&((PDEVICE_EXTENSION)IrpContext->DeviceObject->DeviceExtension)->DirResource,
+-                                            BooleanFlagOn(IrpContext->Flags, IRPCONTEXT_CANWAIT)))
+-        {
+-            return VfatMarkIrpContextForQueue(IrpContext);
+-        }
+-    }
+-
++    /* Existing FILE_OBJECT ownership keeps FCB alive during both waits. */
+     if (!BooleanFlagOn(FCB->Flags, FCB_IS_PAGE_FILE))
+     {
+         if (!ExAcquireResourceExclusiveLite(&FCB->MainResource,
+                                             BooleanFlagOn(IrpContext->Flags, IRPCONTEXT_CANWAIT)))
+         {
+-            if (LockDir)
+-            {
+-                ExReleaseResourceLite(&((PDEVICE_EXTENSION)IrpContext->DeviceObject->DeviceExtension)->DirResource);
+-            }
+-
++            return VfatMarkIrpContextForQueue(IrpContext);
++        }
++    }
++
++    if (LockDir)
++    {
++        if (!ExAcquireResourceExclusiveLite(&IrpContext->DeviceExt->DirResource,
++                                            BooleanFlagOn(IrpContext->Flags, IRPCONTEXT_CANWAIT)))
++        {
++            if (!BooleanFlagOn(FCB->Flags, FCB_IS_PAGE_FILE))
++                ExReleaseResourceLite(&FCB->MainResource);
+             return VfatMarkIrpContextForQueue(IrpContext);
+         }
+     }
+@@ -1725,14 +1723,14 @@
+             Status = STATUS_NOT_SUPPORTED;
+     }
+ 
++    if (LockDir)
++    {
++        ExReleaseResourceLite(&IrpContext->DeviceExt->DirResource);
++    }
++
+     if (!BooleanFlagOn(FCB->Flags, FCB_IS_PAGE_FILE))
+     {
+         ExReleaseResourceLite(&FCB->MainResource);
+-    }
+-
+-    if (LockDir)
+-    {
+-        ExReleaseResourceLite(&((PDEVICE_EXTENSION)IrpContext->DeviceObject->DeviceExtension)->DirResource);
+     }
+ 
+     IrpContext->Irp->IoStatus.Information = 0;

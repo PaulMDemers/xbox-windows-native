@@ -1,3 +1,68 @@
+# Directory-stream candidate0101 preparing after second confirmed cycle
+
+2026-10-07 00:18UTC. Cleanup-repeat001 captured/decoded/closed/collected/qualified
+once, strictFAIL. Counters17/18/10, errors0/0/0. New exclusive cycle: WinMgmt rename
+holdsDir and waits via CcFlushCache for parent repository directory Main; volume
+flush owns that Main and waitsDir. See retained timeout analysis/deadlock summary.
+First0099 run was instead the documented helper hold after all500 operations.
+
+0100 namespace stress001 was prepared but NEVER LAUNCHED; launcher now held.
+0101 corrects directory streams to Dir-before-Main while ordinary files retain
+Main-before-Dir. Includes cleanup, enumeration, metadata and both flush paths.
+Built in fresh fatx-directory-order-001; tree8e12297ca0ed53383fe9aaebef152c26aee5a43b,
+driverba62acbb7dedf30154baba8d4cc2cf457f1a3e499bf7800e31011fba0e96d6a9.
+Format/checksum/import checks and exact structure-offset compilation passed.
+Fixture preparation9774 completed. Single0101 launch accepted00:18:32.952UTC;
+runner74791 and supervisor64781 active. Host deadline about00:33:33UTC, runner
+limit00:38UTC. Do not relaunch. On recorded timeout preserve/decode snapshot
+before signal/cleanup; on normal return await cleanup, collect and qualify once.
+No physical access this turn.
+
+Full persistence soak tools now target0101 (retarget.json), unlaunched and gated
+on stress001 PASS. Hardware keyboard readiness question remains pending. Preserve
+physical0098/video0093, original0088 and immutable0.1.0. Last pushf41d261; newer
+source/reports/notes/skill references need final review/check/commit/push.
+
+## Earlier continuation (historical)
+
+# Cleanup removes observed cycle; corrected repeat active, broader stress prepared
+
+2026-10-07 00:02UTC. Cleanup-order001 completed all500/500/500 operations in
+16620ms, exact final files, errors0/0/0, no contended FATX resources or cycle.
+Its helper erroneously held on legal WaitForMultipleObjects(wait-all) result2.
+Captured/decoded/cleaned/collected/qualified once: historical strict FAIL (no
+normal shutdown). This is a harness bug, not a second observed driver deadlock.
+
+New fatx-cleanup-repeat001 corrects ONLY that helper predicate to accept0..2,
+keeps the pending-install guard exactly0, and uses the same0099 driver. Accepted
+23:59:58.688UTC; runner37537/supervisor79909 active. Deadline about00:10UTC;
+do not relaunch. Normal return -> await cleanup, trial.py collect001, qualify.py001.
+Timeout -> capture-timeout/decode, then signal, await cleanup and collect once.
+
+Candidate0100 source tree1d90707d7be4393dd899df6e52f13919d1828bf8, driver
+4b11ff313ff4b0abfe34f50e4ffe7c19d8fac1f17833245824b062e061bfd9ff built/reviewed.
+It fixes enumeration/metadata order and retry-safe overwrite acquisition. Its
+fatx-namespace-order001 fixture is prepared but NEVER LAUNCHED and explicitly
+held for the old wait-all helper bug. Do not launch it. Instead use the new
+fatx-namespace-stress001 fixture: corrected5-worker helper, driver0100,500 rounds
+each including metadata/rename/enumeration. Preparation46548 COMPLETED. Run its
+Run.ps1 Case001 then supervise after the active repeat cleans up.900s deadline,
+1200s runner,600s helper; same retained-snapshot/cold-audit workflow. No run yet.
+
+fatx-lock-order-soak tools are prepared, NOT staged or launched. Staging004 is
+gated on namespace-stress001 qualification PASS. It runs the original full15min
+mapping/BMP workload with0100 and the established event/binary/hive/allocation
+gates. Qualify.py added. Inspect generated scripts before use. Its timeout
+decoder uses0100 offsets; no physical qualification follows from emulator PASS.
+
+Skills FATX/validation references updated locally and in tracked copy (wait-all
+contract, observed lock-cycle and create retry lifetime/identity distinction).
+Latest push f41d261 contains the original deadlock and first0099 build/launch;
+newer results,0100, repeat/stress/soak tools and skills need review/check/commit.
+Hardware keyboard question remains pending. Physical baselines untouched.
+
+## Prior continuation (historical)
+
 # FATX deadlock reproduced; cleanup candidate built, fixture preparing
 
 2026-10-06 23:45UTC. Concurrency001 timed out and its retained64MiB snapshot
