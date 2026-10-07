@@ -1,0 +1,76 @@
+{
+  "scope": "Pin candidate0101 PnP forwarding instructions and its source; no rebuild.",
+  "driver_sha256": "ba62acbb7dedf30154baba8d4cc2cf457f1a3e499bf7800e31011fba0e96d6a9",
+  "preferred_base": 65536,
+  "timestamp": 1791332162,
+  "sites": [
+    {
+      "name": "fatx_pnp_entry",
+      "rva": 69504,
+      "raw": "5589e58b45088b50200fb64a01",
+      "relocations": [],
+      "instructions": [
+        {
+          "address": "0x10f80",
+          "bytes": "55",
+          "instruction": "push ebp"
+        },
+        {
+          "address": "0x10f81",
+          "bytes": "89e5",
+          "instruction": "mov ebp, esp"
+        },
+        {
+          "address": "0x10f83",
+          "bytes": "8b4508",
+          "instruction": "mov eax, dword ptr [ebp + 8]"
+        },
+        {
+          "address": "0x10f86",
+          "bytes": "8b5020",
+          "instruction": "mov edx, dword ptr [eax + 0x20]"
+        },
+        {
+          "address": "0x10f89",
+          "bytes": "0fb64a01",
+          "instruction": "movzx ecx, byte ptr [edx + 1]"
+        }
+      ]
+    },
+    {
+      "name": "fatx_pnp_forward",
+      "rva": 69568,
+      "raw": "ff1590a30200",
+      "relocations": [
+        2
+      ],
+      "instructions": [
+        {
+          "address": "0x10fc0",
+          "bytes": "ff1590a30200",
+          "instruction": "call dword ptr [0x2a390]"
+        }
+      ]
+    },
+    {
+      "name": "fatx_pnp_return",
+      "rva": 69574,
+      "raw": "5dc3",
+      "relocations": [],
+      "instructions": [
+        {
+          "address": "0x10fc6",
+          "bytes": "5d",
+          "instruction": "pop ebp"
+        },
+        {
+          "address": "0x10fc7",
+          "bytes": "c3",
+          "instruction": "ret "
+        }
+      ]
+    }
+  ],
+  "source_path": "\\\\wsl.localhost\\Ubuntu\\home\\paul\\xbox-windows-native\\build\\fatx-directory-order-001\\source\\drivers\\filesystems\\vfatfs\\pnp.c",
+  "source_sha256": "7b903206424c041a6b18b646c7ff92a196b1c7108d949fc9b972e9d9009e15d7"
+}

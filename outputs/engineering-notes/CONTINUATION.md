@@ -1,3 +1,47 @@
+# Crash-dump usage request traced through FATX to Ftdisk
+
+2026-10-07 08:58UTC. ALL owned sessions CLOSED, including evidence verification
+43144. All five frozen-source/private-disk/raw-byte audits passed replay checks.
+Read outputs/dump-config-trace/REPORT.md,NEXT.md and actual records. Emulator-only
+until13:00UTC; check time before experiments; at cutoff cleanup/report/pause.
+No physical FTP/deploy/test. Current work is not a new driver candidate.
+
+New dump-config-trace serial002/003/004/005 captured4/20/23/26 resident-pinned
+sites. Initial handle succeeds, disk queries and40-byte dump-pointer request
+succeed, miniport dump driver loads. IopSynchronousCall's crash-dump usage
+notification (major1b/minor16,InPath1,type3) returnsSTATUS_NOT_SUPPORTED. In005,
+VfatPnp forwards the same request to Ftdisk and getsSTATUS_PENDING; ultimate
+lower-driver status producer is unresolved. IopCompleteDumpInitialization and
+its retrieval-pointer FSCTL are never reached. Do not patch that FSCTL or fake
+usage success. The earlier static error-block assumption missed other incoming
+branches. serial001 trace failed pairing and is retained; cleanup/resume passed.
+
+All five diagnostic workloads completed792appends/32shrinks/132reopens/11exact
+coldfiles, normalshutdown/dashboard, full allocation323dirs6765files324clusters,
+0errors/orphans,5hives/protected hashes. Six storage binaries unchanged. Strict
+FALSE soleFtdisk49 remains. HidServrunning4/0/0 and noSCM7000. No service/registry/
+dump policy/driver changes. Debugger timing is not ordinary qualification.
+Frozenpercase source/preflight, closure and private disk hashes retained.
+Do not relaunch/recollect ANY completed case. Current kit launch IDs occupied.
+
+Next: NEW bounded diagnostic observing this same IRP through Ftdisk/lower disk/
+port dispatch and final completion before freeing, retaining pending/asynchronous
+thread transitions, resident-code/binary/module identity and full teardown/cold
+audit. Read NEXT.md before preparing. No speculative patches or silent event
+gate waiver. Existing restored-HidServ ordinary pair is separate and also
+strictFALSE49. Inherited emulator-only synthetic null-device/unsupported-device
+policy preserved. Physical0101/video0093,0088rollback,immutable0.1.0 unchanged.
+Original111nonASCII physical SetupAPI damage/firstrestart unresolved; intentional
+111zero/109correct interruption mechanism and negative source search remain
+separate. Priorpusheda49109f; this kit awaits reviewedcheck/commit/push.
+
+Closed sessions: preparation58755/49232/70520/23805/97292; runners82475/49561/
+97183/91135/76923; tracers31191/66641/50414/92354/91958; supervisors84231/31368/
+62691/72576/28600; audits22760/11873/81865/93428/60615. serial003 premature audit
+was blocked by cleanup guard before guestdisk access; completed once after exit.
+
+---
+
 # Restored missing emulator HID service; remaining event narrowed to dump init
 
 2026-10-07 08:20UTC. ALL owned guests/supervisors/audits CLOSED. Pair comparison
@@ -1711,7 +1755,7 @@ No new driver, registry change, physical launch or recovery capture. Automation
 stays PAUSED and physical soak3 strict FAIL remains. All owned processes finished.
 
 003 reduces observation to seven sites/nine events. Existing GPU installer
-creation succeeds (events0â€“1). Its wait returns0 at event2/tick7925. Services
+creation succeeds (events0–1). Its wait returns0 at event2/tick7925. Services
 calls CreateProcessAsUserW for PCI1B36:0005 at3/tick7926 with token0x8ac. Another
 services thread enters PnP control5 at4/tick7930; the creation returns false with
 error6 at5/tick7931, saved token0 and zero PROCESS_INFORMATION. No hard error.
@@ -1809,15 +1853,15 @@ installer thread0xffb70da0 checks a nonzero saved token. A separate services.exe
 thread0xff9a6580 enters umpnpmgr control5, successfully closes0x770 and clears
 the saved global. The installer then loads/passes zero to CreateProcessAsUserW.
 Native token queries return0xc0000008; inner creation succeeds but outer setup
-fails with last-error6 and removes the child. Events49â€“66 prove this ordering
+fails with last-error6 and removes the child. Events49–66 prove this ordering
 within the debugger run. Prior numeric-handle reuse is no longer the sole clue.
 
-Run002 removes generic CloseHandle observation, reducing ignored hits25113â†’51.
+Run002 removes generic CloseHandle observation, reducing ignored hits25113→51.
 The first01B0 launch again succeeds. The later01B4 call begins with token0x908
 and its initial native query succeeds. While inner creation is active, another
 thread closes0x908 and clears the global. After inner creation succeeds, a query
 of the original handle returns0xc0000008 and outer creation fails with error6.
-Events49â€“65 capture the second interleaving. Do not retroactively assign either
+Events49–65 capture the second interleaving. Do not retroactively assign either
 ordering to shutdown-createprocess/001's earlier nonzero reused-handle trace.
 
 Both helpers completed normal restart, dashboard return and cold diagnostic
