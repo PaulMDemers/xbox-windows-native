@@ -35,8 +35,11 @@ Large overlap was72ms at both positions and upload66ms at both: no convincing
 pointer-placement benefit. The new ../video-qpc-settled matched pair is strict
 PASS and places>99.88percent of large upload/overlap time inside BitBlt. Flush
 is about11us versus66-72ms drawing calls. Small timings are more variable; this
-is emulator elapsed time, not physical bandwidth. Next capture the actual
-row-copy branch/access path. No renderer patch yet. Retain generic
+is emulator elapsed time, not physical bandwidth. The new ../video-row-copy-trace
+diagnostic passed with 24 first-row calls all selecting kernel memmove and screen
+destinations mapping through the framebuffer aperture. Raw PCD/PWT bits were
+captured; effective PAT/MTRR policy is not established. Next observe the actual
+kernel copy loop once per first row. No renderer patch yet. Retain generic
 PnP lifecycle, complete alias/cache inventory and independent scanout gates.
 The existing0096 remains a bounded prototype;1080i is a separate handoff project.
 See ../video-map-profile/NEXT.md and ../video-copy-profile-visible/SHADOW-DESIGN.md.

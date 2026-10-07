@@ -1,3 +1,38 @@
+# First-row branch trace CLOSED and verified
+
+Read outputs/video-row-copy-trace/REPORT.md, NEXT.md and trace-verification.json.
+trace001 diagnosticPASS186events87pairedcalls392pins24firstrows, all direct
+kernel memmove through win32k117179/c4fa to kernel608f0. Screen destinations
+resolve to F3C/F3D aperture with raw PCD/PWT set; no full PAT/MTRR claim. Actual
+kernel loop not observed yet.54cases162RGBstages, normal restart/dashboard,
+clean324dirs6755files325clusters allocation,5hives/protected/config/pagefile,
+empty warning/error/application deltas. ordinary_qualifiedFALSE (debugger).
+Preparation41444/runner69252/tracer59174/supervisor40359/audit82892 all CLOSED.
+No owned guest remains; never relaunch/recollect. No driver or physical change.
+Next new bounded first-row kernel memmove branch trace; static leads in NEXT.
+Preserve physical0101/video0093,0088rollback,0.1.0 and128GiB completed evidence.
+Old automation remains PAUSED. Source/report review, Python/PowerShell parse,
+staged frozen-byte pins and repository payload/credential checks passed.
+C: free23019995136bytes;20GiB fresh-build guard remains unchanged. No xemu/qemu
+process is running. This note accompanies the source/evidence commit.
+
+# Historical first-row launch record (now closed)
+
+2026-10-07T18:22:49.815207+00:00. New outputs/video-row-copy-trace/trace001 accepted18:22:05UTC,
+runner69252/tracer59174/supervisor40359 ACTIVE. Preparation41444 CLOSED. Same
+compiled probe107 and fixed drivers/settings as old transfer trace, fresh owned
+fixture, no physical access. First-row callsites sampled once per outer target
+RVA117125; actual descriptor/src/dst/length, selected helper/algorithm, raw page
+flags and CR3-recursive identity.512stops600sec bound/full teardown. MMX global
+read only after an executed path that reads it, not on unrelated paths.
+
+Inspect current trace/launch records and resume owned sessions, no duplicate
+launch or collection. After tracer closes and dashboard return: audit once,
+after config/map, closure, verify-trace.py, report and review/commit/push. No
+ordinary timing qualification for debugger run. All QPC and old transfer cases
+remain CLOSED; preserve physical0101/video0093,0088rollback,0.1.0,128GiB closure.
+Old automation PAUSED. Current kit UNCOMMITTED.
+
 # Latest handoff: QPC evidence pushed; all sessions closed
 
 2026-10-07T17:34:58.235479+00:00. Source/evidence commit20b3217fa3f60ff37766d54982366509013c19f4
