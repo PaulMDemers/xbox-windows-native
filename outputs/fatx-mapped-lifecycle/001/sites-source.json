@@ -1,0 +1,135 @@
+{
+  "scope": "Static candidate mapped-append lifecycle; runtime use remains unproven",
+  "source_sha256": "106e39c9491ec2c53e4451aef4f976771454af886de7a1c5e0e42faabcb2ac8a",
+  "setupapi_sha256": "1d0a6e9d062a51e71eaae93d776746823834f5c518096d340f2b332fc059a23d",
+  "base": 2005401600,
+  "timestamp": 1056077021,
+  "sites": [
+    {
+      "name": "outer_entry",
+      "address": 2005483399,
+      "bytes": "55",
+      "instruction": "push ebp",
+      "api": null
+    },
+    {
+      "name": "mapping_call",
+      "address": 2005483113,
+      "bytes": "ff1540128877",
+      "instruction": "call dword ptr [0x77881240]",
+      "api": "CreateFileMappingW"
+    },
+    {
+      "name": "mapping_return",
+      "address": 2005483119,
+      "bytes": "8945e0",
+      "instruction": "mov dword ptr [ebp - 0x20], eax",
+      "api": null
+    },
+    {
+      "name": "view_call",
+      "address": 2005483135,
+      "bytes": "ff153c128877",
+      "instruction": "call dword ptr [0x7788123c]",
+      "api": "MapViewOfFile"
+    },
+    {
+      "name": "view_return",
+      "address": 2005483141,
+      "bytes": "8945dc",
+      "instruction": "mov dword ptr [ebp - 0x24], eax",
+      "api": null
+    },
+    {
+      "name": "helper_return",
+      "address": 2005483552,
+      "bytes": "8945b4",
+      "instruction": "mov dword ptr [ebp - 0x4c], eax",
+      "api": null
+    },
+    {
+      "name": "seek_call",
+      "address": 2005483746,
+      "bytes": "ff154c128877",
+      "instruction": "call dword ptr [0x7788124c]",
+      "api": "SetFilePointer"
+    },
+    {
+      "name": "seek_return",
+      "address": 2005483752,
+      "bytes": "8945b0",
+      "instruction": "mov dword ptr [ebp - 0x50], eax",
+      "api": null
+    },
+    {
+      "name": "cleanup_call",
+      "address": 2005483809,
+      "bytes": "e88ffbffff",
+      "instruction": "call 0x77893cb5",
+      "api": null
+    },
+    {
+      "name": "unmap_call",
+      "address": 2005482728,
+      "bytes": "ff1538128877",
+      "instruction": "call dword ptr [0x77881238]",
+      "api": "UnmapViewOfFile"
+    },
+    {
+      "name": "unmap_return",
+      "address": 2005482734,
+      "bytes": "8945e4",
+      "instruction": "mov dword ptr [ebp - 0x1c], eax",
+      "api": null
+    },
+    {
+      "name": "close_mapping_call",
+      "address": 2005482757,
+      "bytes": "ff1534128877",
+      "instruction": "call dword ptr [0x77881234]",
+      "api": "CloseHandle"
+    },
+    {
+      "name": "close_mapping_return",
+      "address": 2005482763,
+      "bytes": "8945e4",
+      "instruction": "mov dword ptr [ebp - 0x1c], eax",
+      "api": null
+    },
+    {
+      "name": "eof_call",
+      "address": 2005482792,
+      "bytes": "ff1530128877",
+      "instruction": "call dword ptr [0x77881230]",
+      "api": "SetEndOfFile"
+    },
+    {
+      "name": "eof_return",
+      "address": 2005482798,
+      "bytes": "8945e4",
+      "instruction": "mov dword ptr [ebp - 0x1c], eax",
+      "api": null
+    },
+    {
+      "name": "close_file_call",
+      "address": 2005482832,
+      "bytes": "ff1534128877",
+      "instruction": "call dword ptr [0x77881234]",
+      "api": "CloseHandle"
+    },
+    {
+      "name": "close_file_return",
+      "address": 2005482838,
+      "bytes": "8945e4",
+      "instruction": "mov dword ptr [ebp - 0x1c], eax",
+      "api": null
+    },
+    {
+      "name": "outer_return",
+      "address": 2005483817,
+      "bytes": "8b4df0",
+      "instruction": "mov ecx, dword ptr [ebp - 0x10]",
+      "api": null
+    }
+  ]
+}

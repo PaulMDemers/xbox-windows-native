@@ -1,3 +1,54 @@
+# Actual mapped-append lifecycle verified; paired regression helper prepared
+
+2026-10-07 06:44 UTC. ALL owned sessions CLOSED, no active guest. Authorized
+emulator-only work continues until09:00EDT (13:00UTC). Check time before more
+work; at cutoff stop new experiments, cleanup/report/pause existing heartbeat.
+Automation xbox-emulator-development-until-10am staysACTIVE every10min until
+then. No physical FTP/deploy/test. Preserve physical0101/video0093,0088rollback,
+immutable0.1.0, every failed attempt. No filesystem driver change made.
+
+Completed outputs/fatx-mapped-lifecycle001/002, collected ONCE.001 initial trace
+failed GDB E14 before first verified hit; exact read location wasn't recorded.
+Removed all BPs/resumed; normal cold run clean. Sources/sites/review preserved
+inside001.002 fresh overlay uses32-byte resident-code validation, explicit
+unreadable-hit gaps and independent complete DLL hash checks (before/after).
+Four unreadable outer-entry hits retained;58 COMPLETE matched call lifecycles,
+175 buffer references verified. All58 captured mapped appends equal cold bytes.
+Target record40 confirms actual C:\WINNT\setupapi.log inrundll32: old270225,
+mapping maximum270480, correct220-byte mapped source, seek270445, unmap,
+mappingclose, SetEndOfFile, fileclose allsuccess; outerresult0. No driver/data
+mutation. No explicit flush in examined cleanup, NOT a system-wide flush census
+or proof of bug. Runtime path now established, unlike earlier unused loggerlead.
+
+002 launch06:36:34UTC, dashboard06:39:40, traceended06:39:41. Allcold gatespass:
+full220 warning/prefix,5300ASCII appended, normalshutdown1, events/installation,
+selectedprotectedbinarychecks, exactsetupapi, fullallocation0errors/orphans,
+fivehives. This is debuggerdiagnostic, notphysical/ordinaryqualification.
+Closed002runner90665/tracer71201/supervisor87016/collector67074. Closed001runner
+17488/tracer67471/supervisor22391. Do not relaunch/recollect completed attempts.
+Prior interrupted-append001/002/003 allclosed;003 file-visible111zero/109correct
+under intentionalstop remainsmechanism-only, originalphysicalbadbytes/reboot
+methodunknown. Seepriornote andperkitreports; neverreinterpretthat asnormalPASS.
+
+NEXT mainwork: outputs/fatx-map-append-regression/NEXT.md. Helperprobe.c BUILT,
+Build.ps1 pinnedcompiler/import/PE reviewPASSED inbuild-review.json. NOT staged
+into anyguest; NO fixture/run exists.13boundaryprefixes incl270225,4rounds,
+18 observed append chunklengths=936map/seek/unmap/truncate/close cycles,52reopen
+checks,13finalfiles. Mode0 actual observedlifecycle;mode1 explicit view/file
+flushes. Firstpayloadactual220warning,rest deterministic. Waitsinstallqueueidle,
+normalshutdownafter60s;holds/fails ifqueuebusy. NoautoUIactions ordebuggerneeded.
+Constructpaired reproduciblechildfixtures fromclosedauditedmapped-lifecycle002
+postinstalloutput, pinparenthash,stageonlyhelper/mode/startup withreadback, preserve
+hives/boot/0101/video0093. Implementindependentcold936/52/13 exact-byte/event/
+allocation/hive/binarygates BEFORE launching. SeeNEXT forprecisedirections.
+
+Currentchanges beingcommitted/pushed afterfa2cada. Evidenceverifierspassboth
+lifecyclecases;175buffers, repository5209filesclean. Allprivaterawfiles/disks
+remainignored. InspectcurrentGitHEAD ratherthanolderheartbeatcommit hints.
+No user action required; continueautonomouslyviaexistingheartbeat untilcutoff.
+
+## Prior recorded state
+
 # Controlled interruption reproduces a file-visible page-boundary split
 
 2026-10-07 06:28 UTC. All owned emulator, tracer, supervisor and cold-reader

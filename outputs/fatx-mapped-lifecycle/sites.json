@@ -1,0 +1,153 @@
+{
+  "scope": "Static candidate mapped-append lifecycle; runtime use remains unproven",
+  "source_sha256": "19db7d7959078df4b0d5d983e3a9ec105c901c08ff5a8145e8701cfe286e4a3a",
+  "setupapi_sha256": "1d0a6e9d062a51e71eaae93d776746823834f5c518096d340f2b332fc059a23d",
+  "base": 2005401600,
+  "timestamp": 1056077021,
+  "sites": [
+    {
+      "name": "outer_entry",
+      "address": 2005483399,
+      "bytes": "55",
+      "instruction": "push ebp",
+      "api": null,
+      "validation_bytes": "558bec6aff6840df887768fc6a887764a1000000005064892500000000515183"
+    },
+    {
+      "name": "mapping_call",
+      "address": 2005483113,
+      "bytes": "ff1540128877",
+      "instruction": "call dword ptr [0x77881240]",
+      "api": "CreateFileMappingW",
+      "validation_bytes": "ff15401288778945e03bc67465565656681f000f0050ff153c1288778945dc3b"
+    },
+    {
+      "name": "mapping_return",
+      "address": 2005483119,
+      "bytes": "8945e0",
+      "instruction": "mov dword ptr [ebp - 0x20], eax",
+      "api": null,
+      "validation_bytes": "8945e03bc67465565656681f000f0050ff153c1288778945dc3bc6744f8b4d0c"
+    },
+    {
+      "name": "view_call",
+      "address": 2005483135,
+      "bytes": "ff153c128877",
+      "instruction": "call dword ptr [0x7788123c]",
+      "api": "MapViewOfFile",
+      "validation_bytes": "ff153c1288778945dc3bc6744f8b4d0c89198b4de08b5510890a8b4de48b5514"
+    },
+    {
+      "name": "view_return",
+      "address": 2005483141,
+      "bytes": "8945dc",
+      "instruction": "mov dword ptr [ebp - 0x24], eax",
+      "api": null,
+      "validation_bytes": "8945dc3bc6744f8b4d0c89198b4de08b5510890a8b4de48b5514890a8b4d1889"
+    },
+    {
+      "name": "helper_return",
+      "address": 2005483552,
+      "bytes": "8945b4",
+      "instruction": "mov dword ptr [ebp - 0x4c], eax",
+      "api": null,
+      "validation_bytes": "8945b43bc30f85da000000c745b8010000008b55c48b45ac8d1c02895dd4895d"
+    },
+    {
+      "name": "seek_call",
+      "address": 2005483746,
+      "bytes": "ff154c128877",
+      "instruction": "call dword ptr [0x7788124c]",
+      "api": "SetFilePointer",
+      "validation_bytes": "ff154c1288778945b083f8ff0f85ee000000ff15fc1188778945b43bc60f84dd"
+    },
+    {
+      "name": "seek_return",
+      "address": 2005483752,
+      "bytes": "8945b0",
+      "instruction": "mov dword ptr [ebp - 0x50], eax",
+      "api": null,
+      "validation_bytes": "8945b083f8ff0f85ee000000ff15fc1188778945b43bc60f84dd0000008945c0"
+    },
+    {
+      "name": "cleanup_call",
+      "address": 2005483809,
+      "bytes": "e88ffbffff",
+      "instruction": "call 0x77893cb5",
+      "api": null,
+      "validation_bytes": "e88ffbffff8b45c08b4df064890d000000005f5e5bc9c210003b5dc474738d7b"
+    },
+    {
+      "name": "unmap_call",
+      "address": 2005482728,
+      "bytes": "ff1538128877",
+      "instruction": "call dword ptr [0x77881238]",
+      "api": "UnmapViewOfFile",
+      "validation_bytes": "ff15381288778945e4834dfcffc745fc01000000837d1000740cff7510ff1534"
+    },
+    {
+      "name": "unmap_return",
+      "address": 2005482734,
+      "bytes": "8945e4",
+      "instruction": "mov dword ptr [ebp - 0x1c], eax",
+      "api": null,
+      "validation_bytes": "8945e4834dfcffc745fc01000000837d1000740cff7510ff15341288778945e4"
+    },
+    {
+      "name": "close_mapping_call",
+      "address": 2005482757,
+      "bytes": "ff1534128877",
+      "instruction": "call dword ptr [0x77881234]",
+      "api": "CloseHandle",
+      "validation_bytes": "ff15341288778945e4834dfcffc745fc02000000837d0cff7412837d1800740c"
+    },
+    {
+      "name": "close_mapping_return",
+      "address": 2005482763,
+      "bytes": "8945e4",
+      "instruction": "mov dword ptr [ebp - 0x1c], eax",
+      "api": null,
+      "validation_bytes": "8945e4834dfcffc745fc02000000837d0cff7412837d1800740cff750cff1530"
+    },
+    {
+      "name": "eof_call",
+      "address": 2005482792,
+      "bytes": "ff1530128877",
+      "instruction": "call dword ptr [0x77881230]",
+      "api": "SetEndOfFile",
+      "validation_bytes": "ff15301288778945e4834dfcffc745fc03000000834dfcffc745fc0400000083"
+    },
+    {
+      "name": "eof_return",
+      "address": 2005482798,
+      "bytes": "8945e4",
+      "instruction": "mov dword ptr [ebp - 0x1c], eax",
+      "api": null,
+      "validation_bytes": "8945e4834dfcffc745fc03000000834dfcffc745fc04000000837d0cff740cff"
+    },
+    {
+      "name": "close_file_call",
+      "address": 2005482832,
+      "bytes": "ff1534128877",
+      "instruction": "call dword ptr [0x77881234]",
+      "api": "CloseHandle",
+      "validation_bytes": "ff15341288778945e4834dfcff6a00ff152c1288778b4df064890d000000005f"
+    },
+    {
+      "name": "close_file_return",
+      "address": 2005482838,
+      "bytes": "8945e4",
+      "instruction": "mov dword ptr [ebp - 0x1c], eax",
+      "api": null,
+      "validation_bytes": "8945e4834dfcff6a00ff152c1288778b4df064890d000000005f5e5bc9c21400"
+    },
+    {
+      "name": "outer_return",
+      "address": 2005483817,
+      "bytes": "8b4df0",
+      "instruction": "mov ecx, dword ptr [ebp - 0x10]",
+      "api": null,
+      "validation_bytes": "8b4df064890d000000005f5e5bc9c210003b5dc474738d7bff897ddc3b7dc476"
+    }
+  ]
+}
