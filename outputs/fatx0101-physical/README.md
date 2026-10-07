@@ -68,3 +68,10 @@ wizard, Getting Started and cmd. Device name is obscured. FTP refused connection
 The workload outcome is still unknown. Requested final probe.log lines; no wizard
 was dismissed or test relaunched. The pending-install guard holds indefinitely,
 so dismissing a wizard would not automatically resume this helper's restart.
+
+At01:10UTC a second photo shows all five500-round workers completed in62205ms,
+zero API errors, and RESTART_BLOCKED_PENDING_INSTALL258. This establishes the
+reported guard reason; exact files and cold checks are still pending. The host
+qualifier now describes worker completion separately from the strict restart
+protocol gate; no gate was relaxed. Requested current hardware wizard device
+identity before changing installation choices. No scan or new launch occurred.

@@ -1,7 +1,7 @@
 """Host-only gate checks using retained emulator logs plus deliberate corruptions."""
 import json
 from pathlib import Path
-from workload import verify_log
+from workload import verify_log,describe_log
 k=Path(__file__).resolve().parent
 reports=[json.loads((k.parent/'fatx-directory-order'/case/'audit.json').read_text()) for case in ['001','002']]
 checks={}
@@ -19,6 +19,10 @@ bad={
     'malformed':log+'COUNTS not integers\n',
     'empty':''}
 checks.update({name:not verify_log(value)[0] for name,value in bad.items()})
+held=log.replace('NORMAL_RESTART_REQUEST 0 0 0','RESTART_BLOCKED_PENDING_INSTALL 258 0 0')
+detail=describe_log(held)
+checks['completed_but_held_distinguished']=detail['workers_completed'] and detail['pending_install_hold']==[258,0,0] and not detail['normal_restart_requested'] and not detail['protocol_passed']
+checks['held_still_fails_strict_gate']=not verify_log(held)[0]
 assert all(checks.values()),checks
 r=dict(scope=__doc__,passed=True,checks=checks,physical_access=False)
 (k/'workload-verifier-checks.json').write_text(json.dumps(r,indent=2)+'\n');print(json.dumps(r,indent=2))

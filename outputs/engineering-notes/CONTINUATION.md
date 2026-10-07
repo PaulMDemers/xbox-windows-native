@@ -1,3 +1,31 @@
+# Physical0101 workers completed; restart held for pending installation
+
+2026-10-07 01:10UTC. User photo of C:\xwncc01\probe.log shows WAIT_RESULT3,
+62205ms; COUNTS500/500/500; NAMESPACE_COUNTS500/500; all errors0; COMPLETE;
+RESTART_BLOCKED_PENDING_INSTALL258. Record log-photo-evidence.json pins the photo
+and transcription. This is user photographic evidence, not cold file readback.
+No worker timeout is shown. The helper deliberately sleeps indefinitely after
+this guard; closing the wizard alone will NOT resume its restart sequence.
+
+FTP still offline (read-only check timed out). Asked once whether the hardware
+wizard remains open and for the exact device name; leave installation choices
+unchanged pending identity. Screen/log questions answered; device question pending.
+No launch, remote write, scan or collection this turn. Observer remains closed.
+
+Host qualifier now reports worker completion separately from restart protocol,
+without relaxing any gate: a pending-install hold still fails strict qualification.
+Host checks cover both retained PASS logs and held/error/partial/malformed cases.
+Normal restart, exact files, strict events, full allocation,3439 hashes/ninehives
+remain required. Do not turn this photographed workload completion into full PASS.
+
+After setup identification arrange normal return, not another workload launch.
+On dashboard access physical.py collect FIRST restores normal startup; preserve
+logs before rollback. Then qualify, unique read-only scan once, complete audits.
+Original0098 rollback/video0093/0088/v0.1.0 unchanged from recorded state. Latest
+push72159e7; current observation and diagnostic distinction being pushed now.
+
+## Earlier continuation (historical)
+
 # Physical0101 desktop photo received; test log needed
 
 2026-10-07 01:05UTC. User photo confirms Windows desktop, an open Found New

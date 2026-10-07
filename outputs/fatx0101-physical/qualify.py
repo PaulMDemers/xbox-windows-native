@@ -1,7 +1,7 @@
 """Strict physical0101 concurrency qualification; no warning or popup waiver."""
 import json,subprocess,sys
 from physical import k,ws,art,sha,passed,save
-from workload import verify_log
+from workload import verify_log,describe_log
 trial=json.loads((k/'physical.json').read_text());assert trial.get('collected_utc') and not trial['startup_enabled']
 for name,entry in trial['collected'].items():
     if entry is not None:assert sha((art/('after-'+name)).read_bytes())==entry['sha256']
@@ -31,4 +31,5 @@ binary=json.loads((k/'binary-audit.json').read_text()) if (k/'binary-audit.json'
 ret=json.loads((k/'windows-return.json').read_text()) if (k/'windows-return.json').exists() else {}
 gates=dict(workload=workload,exact_files=all(v['exact'] for v in files),intermediate_absent=trial['collected']['meta.tmp'] is None,normal_shutdown=normal,dashboard_return=ret.get('dashboard_return',False),strict_events=not errors and not popups and not events['application'],payload=passed(trial['candidate_checks']),rollback=trial['rollback_exact'],probe=trial['probe_unchanged'],startup_disabled=not trial['startup_enabled'],allocation=bool(allocation.get('capture_complete') and allocation.get('allocation_consistent') and not allocation.get('errors') and not allocation.get('orphan_cluster_count')),binary_audit=bool(binary.get('complete') and binary.get('passed') and binary.get('checked')==binary.get('expected_count')==3439 and len(binary.get('hives',[]))==9 and all(h['tree']['passed'] and h['matching_sequences'] and h['checksum_valid'] for h in binary.get('hives',[]))))
 r=dict(scope=__doc__,physical_result=True,passed=all(gates.values()),gates=gates,log=log,files=files,new_events=events,unexpected_errors=errors,popups=popups,elapsed_ms=elapsed_ms,allocation_pending=not allocation,binary_audit_pending=not binary.get('complete',False),limits='One five-worker500-round physical test, not the15-minute mapping soak, Paint UI, generic PnP, arbitrary mapped truncation or video qualification. Earlier strict physical failures remain preserved.')
-save(r,k/'qualification.json');print(json.dumps({n:r[n] for n in ['passed','gates','elapsed_ms','unexpected_errors','popups']},indent=2))
+r['workload_detail']=describe_log(log)
+save(r,k/'qualification.json');print(json.dumps({n:r[n] for n in ['passed','gates','workload_detail','elapsed_ms','unexpected_errors','popups']},indent=2))

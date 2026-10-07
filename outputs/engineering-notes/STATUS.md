@@ -9,8 +9,10 @@ Two independent five-worker500-round runs and the full fifteen-minute mapping/
 BMP persistence soak passed all workload, normal-restart, event, exact-file,
 five-hive and allocation gates. Candidate0101 is eligible for a controlled
 hardware trial, not physically or release qualified. One controlled physical0101/video0093 concurrency trial launched at00:50:29UTC
-on7October, with0098 rollback and startup preserved. Its13-minute observer expired without dashboard return; guest state is unknown
-and one screen question is pending. No owned process remains active. See
+on7October, with0098 rollback and startup preserved. Its13-minute observer expired without dashboard return. User photos then showed
+the desktop and all five500-round workers complete in62.205seconds with zero
+API errors; restart was deliberately held for pending device installation. Cold
+file/shutdown audits are pending. No owned host process remains active. See
 [continuation](CONTINUATION.md) for evidence and the hardware handoff.
 
 The project has reached a usable native desktop milestone. It is still an
