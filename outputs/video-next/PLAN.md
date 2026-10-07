@@ -20,8 +20,20 @@ UC reserved-RAM PTEs. Large overlap medians were75/72ms; there is no convincing
 emulator speed benefit from direct mapping. These are shared-slot functional
 timings, not physical performance or scanout qualification. No hardware change.
 
-Next identify the actual installed desktop transfer/flush path with bounded
-resident-pinned observation before implementing another renderer. Retain generic
+The installed transfer path is now captured in ../video-transfer-observed:
+138 events,63 paired calls,240 resident pins. BitBlt reaches the live NT5 service
+and EngCopyBits; GdiFlush is a separate subsequent syscall. Large screen overlap
+expanded to15 EngCopyBits calls with small cursor-sized surfaces. This suggests
+software pointer handling, not a measured time attribution. No format conversion
+in the observed matching32-bit row-copy path.
+
+A first visible-pointer comparison passed inside but failed outside initialization
+before any timing. The failure and manual shutdown remain unqualified. A fresh
+../video-cursor-client pair compares positions within the same client and logs
+exact cursor-state failures. Both revised ordinary cases are now strict PASS.
+Large overlap was72ms at both positions and upload66ms at both: no convincing
+pointer-placement benefit. Next separate operation/flush/check costs with
+calibrated QPC brackets or capture the actual row-copy branch. No renderer patch yet. Retain generic
 PnP lifecycle, complete alias/cache inventory and independent scanout gates.
 The existing0096 remains a bounded prototype;1080i is a separate handoff project.
 See ../video-map-profile/NEXT.md and ../video-copy-profile-visible/SHADOW-DESIGN.md.

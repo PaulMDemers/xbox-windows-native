@@ -1,3 +1,152 @@
+# Video transfer and cursor comparison complete; all owned sessions CLOSED
+
+2026-10-07T17:05:56.768924+00:00. Ready for review/commit/push. New source/report kits:
+outputs/video-transfer-trace (partial failure), video-transfer-observed
+(trace003 diagnosticPASS), video-cursor-profile (insidePASS/outsideFAIL), and
+video-cursor-client (both ordinary strictPASS). Never relaunch/recollect any.
+
+Transfer trace003:138events/63pairedcalls/240residentpins, four complete API and
+flush brackets, full breakpoint teardown/resume. Actual BitBlt -> live NT5
+service -> EngCopyBits. Large overlap15calls vs small1, small cursor surfaces;
+row dispatch RVA26e60 -> RVA117125, actual inner branch NOT captured. Matching
+32-bit formats; no format conversion in observed route. Diagnostic timing is
+not ordinary evidence. trace001 E14 incomplete and trace002 host failure remain.
+
+Corrected cursor-client pair: each54cases/162pixelstages, exact visible arrow
+state, normal automatic restart/dashboard, full clean allocation324dirs6755files
+325dirclusters,5hives/protected/config/pagefile, zero warning/error/application
+events. Inside512,288 vs outside820,460 within client:768x384 overlap72/72ms,
+upload66/66ms, readback7.14/6.98ms. No convincing pointer-placement effect.
+Probe109 SHA24189ee81699d06edacb643dcb9673057ef09b53f1d99edee634ef06cc9f9cc7.
+Pair-review checks frozen sources/fixture/backing/disk/metadata pins. No debugger
+or UI during these ordinary runs. Prep17946/4831, inside97376/54695/50221,
+outside66035/1718/8289 all CLOSED. No owned emulator or supervisor remains.
+
+Old cursor-profile outside001 failed initialization before timing, responsive
+desktop; manually inspected/restarted. intervention-review.json corrects its
+frozen audit's default false intervention fields. Integrity/events clean does
+not qualify missing workload. Never reuse this case or generate its pair review.
+
+Next: video-cursor-client/NEXT.md: calibrated QPC operation/flush/loop-check
+brackets with64-bit sums and counter overhead checks, OR actual row descriptor/
+branch trace. No speculative cache/renderer patch. Keep strict pixel/cold/event
+gates.128GiB dump write/recovery emulator closureac8f06f preserved; physical
+FATX0101/video0093,0088rollback,immutable0.1.0 unchanged. No physicalFTP/deploy/test.
+Original111nonASCII hardware damage/restart unresolved. Automation remainsPAUSED.
+Host C:23,096,377,344 bytes free(~21.51GiB),20GiB guard unchanged. Old closed
+standalone025/026 offloaded hash-verified to E with original junction paths;
+manifest outputs/task-storage-offload/manifest-20261007c.json. No backing-chain
+relocation. All current private disk/fixture paths retained; reports/source only
+enter Git. Final repository checks and push follow.
+
+# Revised pointer inside strictPASS; outside active
+
+2026-10-07T17:02:59.875073+00:00. video-cursor-client inside001 CLOSED strictPASS54/162,
+normal shutdown/dashboard, full allocation/hive/protected/config/pagefile/event
+checks. Runner97376/supervisor54695/audit50221 CLOSED. Outside runner66035 and
+supervisor1718 ACTIVE; inspect launch.json, never duplicate launch/collection.
+No debugger/UI. On return audit once, config/map after, closure and summarize.
+Then finalize reports/review/check/commit/push. Older closed failures preserved.
+
+# Cursor client comparison active
+
+2026-10-07T16:59:42.726925+00:00. New outputs/video-cursor-client both fixtures PREPARED,
+compiled109 probe logs cursor failures and uses outside820,460 within own client.
+Same drivers/settings/policy. Preparation17946/4831 CLOSED. Inside runner97376
+ACTIVE; supervisor session recorded in live tool result/launch.json. Outside NEVER
+launched. No debugger/UI on new pair. Audit/config/map/closure each once, then
+ordinary pair review if both strictPASS. Never reuse older cases.
+
+video-cursor-profile outside001 CLOSED failed initialization before timing,
+responsive desktop, explicit post-exit captures/manual Notepad/restart. See
+intervention-review.json correcting frozen audit default intervention flags.
+Integrity/events/config/pagefile clean; manual shutdown is not workload PASS.
+Inside old case strictPASS. All old runners/observers closed; audit63096 closed.
+Transfer trace003 CLOSED diagnosticPASS138events63pairs240pins/full teardown;
+trace001 partialE14 and trace002 never-launched host failure preserved.
+Two old closed standalone runs025/026 offloaded/readback-hash-verified to E with
+original paths via junctions; manifest outputs/task-storage-offload/manifest-20261007c.json.
+No backing chains moved. C:~21.9GiB before new pair,20GiB guard unchanged.
+No physical access. Automation remains PAUSED. Physical0101/video0093,0088rollback,
+immutable0.1.0 and128GiB emulator closureac8f06f unchanged. Uncommitted new kits;
+finish checks/source review/commit/push and final exact continuation.
+
+# Cursor outside case active; inside strictPASS
+
+2026-10-07T16:48:09.896498+00:00. video-cursor-profile/inside001 CLOSED strictPASS54cases162pixelstages,
+normalshutdown/dashboard, all allocation/hive/protected/config/pagefile/event gates.
+Preparation19886/72924, inside runner35961/supervisor73235/audit85595 CLOSED.
+outside001 accepted16:47:29UTC, runner72132/supervisor72741 ACTIVE. No debugger
+or host UI interaction. Same visible standard arrow, placement1000,550 instead
+of512,288; helper checks exact cursor position/handle/visibility in every loop.
+After return audit ONCE, config/map after, closure, summarize.py. Preserve all
+older closed traces; trace003 diagnosticPASS63pairs240pins, trace001 incomplete
+and trace002 never-launched host failure remain. No physical access or drivers
+changed. Then review/check/commit/push and update current notes. No duplicate
+launches or collections.128GiB closure and physical baselines remain intact.
+
+# Cursor-position ordinary comparison active
+
+2026-10-07T16:44:52.594543+00:00. Transfer trace003 CLOSED diagnosticPASS138events63pairedcalls240pins,
+four routes/fullteardown and clean54cases162pixelstages/cold/event/shutdown checks.
+See video-transfer-observed/REPORT.md,trace-verification.json. All its sessions
+runner91321/tracer65755/supervisor29526/audit30480/prep71551 CLOSED. Earlier
+trace001 incomplete E14 and trace002 host source-copy failure remain failures.
+Large overlap invokes15 EngCopyBits with small31x27 surfaces near pointer;
+small uses1. Separate flush bracket; no debugger-duration performance claims.
+
+New outputs/video-cursor-profile both fresh fixtures PREPARED. Prep19886/72924
+CLOSED; all before config/map checks pass. Same new probe108, all drivers/mode/
+registry/device policy unchanged; visible standard arrow selected equally.
+inside001 accepted16:44:04UTC, runner35961/supervisor73235 ACTIVE. outside001
+NEVER launched. No host input/debugger. Both preparations completed before
+measurement. Helper checks cursor handle/visibility/position throughout timing.
+After inside return/audit/config/map/closure, launch outside once; same closure
+checks, then summarize matched pair. No physical access. Old automation PAUSED.
+Physical0101/video0093,0088rollback,0.1.0 and128GiB closureac8f06f preserved.
+
+# Transfer observer trace003 active
+
+2026-10-07T16:37:55.713803+00:00. video-transfer-trace/trace001 CLOSED: all54cases162pixelstages and cold/
+event/shutdown gates pass, but route capture INCOMPLETE E14 after two small
+samples/10 paired calls; full teardown and guest resume. Never relaunch/recollect.
+Old runner39433/tracer97528/supervisor15972/prep13897/audit90739 CLOSED.
+New video-transfer-observed/trace002 host preparation CLOSED failure: probe.c
+omitted from copy; no fixture/seed or guest existed. Preserved failure/source.
+New trace003 accepted16:37:17UTC; prep71551 CLOSED, runner91321/tracer65755/
+supervisor29526 ACTIVE. Same compiled probe and all drivers/settings; observer
+now records exact failed read and caches already-validated module headers, still
+pins each actual code site. Added six bounded EngCopyBits internal callsite leads
+because trace001 reached that actual export. No physical access.
+After trace teardown and dashboard return: cold audit once, config/map after,
+closure, verify actual routes/pins and interpret targets. Diagnostic evidence
+only, no timing claims. All prior mapping/dump closures unchanged, automation
+PAUSED,20GiB build guard intact. Do not duplicate any launches or collections.
+
+# Video transfer trace active; no duplicate launch
+
+2026-10-07T16:31:52.143937+00:00. trace001 accepted16:31:19UTC. Runner39433/tracer97528/supervisor15972
+ACTIVE, preparation13897 and before config/map CLOSED. Tracer armed before
+single launch; same video0093/Microsoft framebuf, markers only in prechecks.
+Read actual records, do not relaunch. After bounded trace full teardown/resume,
+normal dashboard return: audit once, after config/map, closure and verify trace.
+Ordinary_qualifiedFALSE even if all diagnostic/persistence gates pass. No physical
+access, no speculative rendering/cache change.512stops600sec bound. Prior
+9ec5eb7/ac8f06f baselines preserved, all older attempts remain CLOSED.
+
+# Video transfer trace preparation active
+
+2026-10-07T16:30:34.710332+00:00. New outputs/video-transfer-trace/trace001 preparing session13897 ACTIVE;
+no guest launch yet. Probe107 keeps video0093 and all storage/device policy,
+adds noinline markers around first small/large upload/overlap prechecks.
+NT5 imports and static module/syscall review passed; driver code unchanged.
+Fresh child of ordinary0105 fixture. Next before config/map, Run, arm trace,
+then supervise once. Trace bounds512 stops600sec, requires four routes with
+paired API/kernel calls and resident pins; remove all breakpoints and resume.
+Then cold audit/config/map/closure and diagnostic verification. No ordinary
+performance claim for debugger timings. No physical access. Old attempts closed;
+9ec5eb7 video comparison and ac8f06f128GiB closure remain pushed.20GiB guard.
+
 # Video comparison complete; all owned sessions CLOSED
 
 2026-10-07T16:18:09.572862+00:00. All video-copy-profile, video-copy-profile-visible and video-map-profile
