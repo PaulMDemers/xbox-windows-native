@@ -1,5 +1,12 @@
 # Native Xbox Windows 2000 status — 6 October 2026
 
+7October02:53UTC: two fresh emulator append-boundary runs passed96 cases each,
+including the exact physical log offset. All192 files matched cold expected
+bytes; normal restart, hive parsing and allocation passed. No new unexpected
+events; SetupAPI unchanged. This serial explicit-flush test did not reproduce
+the first-install log anomaly. Physical state is unchanged. See
+[append report](../fatx-append-boundary/REPORT.md) and its next-stage plan.
+
 7October01:46UTC update: authorized X/Y cache cleanup reclaimed1.39GiB after
 verified private backup. A read-only raw-C scan found the508.6MB shadowc.img and
 exactly matched Windows'2,932,736-byte free-space reading; no corruption/orphans

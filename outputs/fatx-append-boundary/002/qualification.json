@@ -1,0 +1,35 @@
+{
+  "scope": "Qualify one completed serial append diagnostic; a timeout never passes.",
+  "case": "002",
+  "passed": true,
+  "gates": {
+    "workload": true,
+    "append_files": true,
+    "directory_exact": true,
+    "setup_log_prefix": true,
+    "no_new_non_ascii_setup_bytes": true,
+    "audit": true,
+    "normal_shutdown": true,
+    "return_observed": true,
+    "no_new_event_failures": true,
+    "five_structural_hives": true,
+    "allocation": true,
+    "ordinary_before_deadline": true,
+    "no_timeout_capture": true
+  },
+  "evidence_sha256": {
+    "audit.json": "975742e940880fbc2a1a2ceb8e24dc5812732ecb31dd4185dbe688fbd6d0040e",
+    "allocation.json": "6a486d034cdeba5e29deab83a680f8e8a88c3fc0209a6737e04ace1dfa3a3546",
+    "collection.json": "ff6398d93213a090ee73b2636a65981124daf9a0271223da080dce6a6adc8d5b",
+    "launch.json": "e2f7d0dad2861044849bb747f520e00c76c36894d92548672d50a82950a3f9c4"
+  },
+  "elapsed_ms": 3975,
+  "cleanup": {
+    "completedUtc": "2026-10-07T02:52:56.9733591Z",
+    "scratchDirectory": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\work\\scratch\\windows-native-57bdf2dc571049ff9473d28d4e7fda99",
+    "retained": false,
+    "reason": ""
+  },
+  "hardware_qualified": false,
+  "limits": "A bounded serial append pass cannot exclude intermittent corruption or qualify the physical setup-log write. A cold allocation pass after timeout does not qualify workload completion or normal shutdown. Physical baseline and earlier failures are unchanged."
+}

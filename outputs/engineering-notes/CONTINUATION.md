@@ -1,3 +1,32 @@
+# Two append-boundary emulator passes; physical anomaly still unresolved
+
+2026-10-07 02:53 UTC. outputs/fatx-append-boundary cases001 and002 both finished,
+collected and qualified. Each completed96 serial append cases with exact live
+and cold bytes (8,238,784 payload bytes), normal restart, five parseable hives,
+full F allocation323dirs/6850files/324dirclusters and zero orphan/errors. No new
+unexpected errors/popups/application events; inherited identical HID SCM7000
+is explicitly classified. SetupAPI remains byte-identical144784bytes in both.
+
+Same immutable fatx-directory-order001 parent, unchanged0101/video0093, exact
+probe1be9096aeb48a2cdae6bedcff07037f8085dc434bddd0d58f89962009dc0258f.
+No driver edit, debugger, recorder or physical FTP/change. Fresh sibling002
+is NOT based on001 output. Both owned runners/supervisors and read-only audit
+processes closed. No automation active/modified by this work; no process remains.
+All completed JSONs retained; do not relaunch/recollect these cases.
+
+REPORT.md gives results/limits; NEXT.md specifies repeated log-style append
+with end-only versus per-append flush, then separately controlled first install.
+Passing serial appends does NOT reproduce/resolve the physical malformed111-byte
+span or qualify unattended hardware. Physical0101/video0093/normal startup,
+GPU registration, remaining prompts, raw-C warning and all rollback/v0.1.0 remain
+as previously recorded. No new physical run or recovery snapshot.
+
+Exact source/evidence byte preservation is scoped in .gitattributes to this kit;
+verify-evidence.py checks staged hashes and both immutable case reports. Source
+and reports reviewed, checks/commit/push completing this turn; prior9a3a81f.
+
+## Earlier continuation (historical)
+
 # GPU registration verified after normal restart; all postboot audits complete
 
 2026-10-07. User All set confirmed return after requested normal Windows Restart.

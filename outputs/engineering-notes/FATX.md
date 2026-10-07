@@ -346,3 +346,19 @@ method remains unknown pending optional user clarification. Second boot preserve
 that file prefix and appends3224 valid ASCII bytes. This clue warrants separate
 caller-buffer/append/flush/first-install reproduction; do not declare a FATX,
 video or power-loss cause from it. Raw logs remain untouched and private.
+
+## A sector-aligned damaged log is a clue, not a diagnosis
+
+The physical first GPU installation left111 malformed bytes ending at both a
+512-byte sector and4KiB page boundary. A later normal boot preserved those bytes
+and added clean ASCII. Two fresh owned emulator runs then tested192 serial
+appends across sector/page/cluster boundaries and the exact original offset.
+Caller buffers, write completion, live reads and cold bytes all matched, with
+consistent allocation. See [append evidence](../fatx-append-boundary/REPORT.md).
+
+This does not exonerate the filesystem or attribute the fault to the caller:
+the tests explicitly flush and use already-settled device installation. Preserve
+the original failure and separate file-byte correctness, allocation consistency,
+caller-buffer identity, shutdown behavior and first-install concurrency. A
+negative bounded test should guide the next reproduction rather than justify an
+unrelated filesystem patch or waiver of a physical qualification failure.
