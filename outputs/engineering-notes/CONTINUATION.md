@@ -1,3 +1,90 @@
+#128GiB emulator closure complete; all owned processes closed
+
+2026-10-07T15:46:45.436289+00:00. Renewed user request was to wrap up128GiB, then other issues.
+ATAPI0105 correction and complete separate recovery PASS. See
+outputs/atapi-dump-lba48/REPORT.md and NEXT.md. Old automation remains PAUSED.
+No physical access or deployment; physical0101/video0093,0088rollback,0.1.0 unchanged.
+
+Unchanged crash005 pinpoints old dump-only legacy address mask despite actual
+48-bit capability and EnableBigLba=1. Candidate105-byte selector routes genuine
+extendedPIO and rejects unsafe legacy ranges.4480 instruction tests PASS.
+Fresh matched atapi-lba48-network/control001,candidate001 CLOSED strictPASS:
+792 appends/32 allocation shrinks/132 reopens/11 exact cold files, two bounded
+32x4096 bidirectional TCP exchanges, normal shutdown, full allocation/5hives/
+protected hashes and no warning/error/application event deltas. OnlyATAPI differs.
+Candidate409c4de7313fe8889b6d2f7208616b06c70596db8720a657b4ed2f60fd838de1.
+
+atapi-lba48-crash/crash006 CLOSED.31events53pins/fullteardown. Actual command39
+and all65536 bytes match runtime payload at148440145920 (>128GiB); low alias
+11001192448 unchanged; all9 observed post-command writes contained. Full cold
+allocation/hives/protected hashes pass. NEVER BOOT original crash image SHA
+980611b0bdd1b442db457872e06fed19ac5f1dc1b0e68b47d692256e61314843.
+
+Recovery003 CLOSED. Runner12437/supervisor14100/prepare58311/audit64817 and
+before config41262/map16244 all closed. One boot accepted15:37:39UTC, normal
+dashboard return15:39:09UTC. Saved C:\WINNT\Minidump\Mini100726-01.dmp exact
+65536 bytes SHA5ea3efb2a21c93fd6dd06411aa0344d2a4e74c02cc99863df636f989795da370.
+Full allocation326dirs6760files327dirclusters0errors/orphans,5hives/protected,
+pagefile map/config unchanged; SaveDump1001 exactcookie,normalshutdown1,no warnings/
+errors/applicationdelta. Independent signed MicrosoftCDB reads header/cookie/
+context/modules; no fully symbolized stack-unwind claim. Recovery verificationPASS.
+Original crash/parents unchanged. Recovery uses a compared copy of top overlay;
+qemu-img compare reported identical logical images. Failures recovery001/002
+preserved before guest boot;003 preflight CRLF mismatch restored before launch.
+Never relaunch/recollect closed cases. All fixture/source/hash records preserved.
+
+Scope512-byte WRITE(10), upstream32-bit LBA ceiling2TiB; not general256TiB support.
+Original111nonASCII physical SetupAPI damage/restart remains unresolved and separate.
+Next: video performance measurement/lifecycle, mode plan1080i, public/reproducible
+build documentation. Read NEXT; no new hardware or crash experiment scheduled.
+C:~21.4GiB;20GiB guard unchanged. Commit ea347e8 pushed after transient GitHub
+InternalServerError. Implementation/results are included with this continuation in the closure commit.
+Repository binary/credential checks and staged whitespace checks passed;133Python
+sources and all new PowerShell sources parsed. See closure-review.json.
+
+# Active recovery003; do not duplicate
+
+2026-10-07 15:38:01 UTC status. Recovery003 launched at15:37:39UTC, runner12437; supervisor14100 active.
+Preparation58311 and before configuration41262/map16244 CLOSED. Recovery003
+uses a qemu-img-compared copy of crash006 top overlay beside its original parent;
+comparison says identical logical images. Original source chain unchanged.
+Both previous recovery001/002 closed before guest boot, exact unbooted seeds.
+Recovery003 preflight caught Build-Recovery.ps1 CRLF conversion; exact original
+pinned bytes restored before run directory or guest existed. Gate not changed.
+Inspect launch.json and resume sessions, then audit/config/map/closure once closed.
+Git push of ea347e8 now succeeded. New implementation/results remain uncommitted.
+
+# Current: ATAPI128GiB write passed; separate recovery preparation
+
+2026-10-07 15:37 UTC. User renewed emulator work and prioritizes wrapping up128GiB.
+Old automation remains PAUSED. No physical FTP/deploy/test.
+Candidate0105 SHA409c4de7313fe8889b6d2f7208616b06c70596db8720a657b4ed2f60fd838de1.
+Exact selector4480 host cases PASS. atapi-lba48-network/control001 and candidate001
+CLOSED strictPASS:792 appends/32 shrinks/132 reopens/11 cold files, two exact
+32x4096 bidirectional TCP exchanges, normal shutdown, clean allocation/5 hives,
+protected hashes and no warning/error/application deltas. Only ATAPI differs.
+atapi-lba48-crash/crash006 CLOSED:31 events/53 pins; correct48bit command39;
+all65536 dump bytes match captured payload at disk148440145920; old alias
+11001192448 unchanged; all9 post-command writes contained in intended extent.
+See payload-verification.json. Original crash disk SHA980611b0bdd1b442db457872e06fed19ac5f1dc1b0e68b47d692256e61314843.
+Never boot it. Signed Microsoft CDB recognizes exact kernel dump/cookie/context;
+saved-file recovery not qualified yet. Microsoft tools remain private/uninstalled.
+
+Recovery001 and002 CLOSED before guest boot due host backing path failures;
+run disk equals unbooted seed in both. Preserve host-failure/closure and sources.
+Fresh recovery003 preparation session58311 ACTIVE. It copies only crash006's
+28MB top overlay beside its existing parent, changes copy's backing name and
+requires full qemu-img logical comparison. Original chain unchanged. Then use
+configuration/cold-map before, Run.ps1 recovery003 once, supervise.py once,
+cold audit/closure/config/map and independent CDB saved-file parse. Inspect actual
+records first; do not duplicate preparation/launch/collection. No guest active now.
+
+Commit ea347e8 records original runtime fault; GitHub push rejected twice with
+Internal Server Error. Retry after finishing review. New implementation/tests/
+recovery kits are uncommitted. Preserve physical0101/video0093,0088rollback,
+immutable0.1.0 and all failures. Original111 nonASCII physical damage unresolved.
+C:21.49GiB before28MB replica; retain20GiB guard. No old crashes may be rerun.
+
 # ATAPI128GiB correction under emulator validation
 
 2026-10-07T15:13:46.817491+00:00. Renewed user authorization focuses on wrapping

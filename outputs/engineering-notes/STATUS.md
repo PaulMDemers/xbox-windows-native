@@ -1,5 +1,20 @@
 # Native Xbox Windows 2000 status — 6 October 2026
 
+2026-10-07 15:45 UTC: the128GiB crash-dump defect is corrected and validated end
+to end in the emulator. CandidateATAPI0105 selects the genuine extended ATA
+routine; complete64KiB writes at148440145920 match runtime payloads, the lower
+wrapped alias is unchanged, and a separate boot saved an identical readable
+Windows minidump. Both matched ordinary storage/TCP runs passed strict gates;
+controlled crash/recovery passed their distinct gates. Original crash image
+preserved. No physical deployment. See [closure report](../atapi-dump-lba48/REPORT.md).
+
+The clean emulator stack additionally contains HAL0102 dump-usage tracking,
+FATX0103 resident pagefile extent mapping and NVNet0104 resident shutdown helper.
+Inherited emulator device policy and restored matching HidServ remain explicit;
+none of these results promotes physical0101/video0093 or changes0.1.0.
+Original111-byte physical SetupAPI damage remains unresolved. Next work is
+[scoped in the handoff](../atapi-dump-lba48/NEXT.md).
+
 2026-10-07 04:37 UTC: matched aligned first-install control/GDI diagnostics both
 passed. Drawing began before the target log entry and completed4688 cycles;
 all220 target bytes at270225 survived cold readback. Normal shutdown, events,

@@ -1,0 +1,67 @@
+{
+  "scope": "Verify the closed ordinary ATAPI comparison and unchanged dump configuration.",
+  "changed_protected_files": [
+    "F/winnt/system32/drivers/atapi.sys"
+  ],
+  "same_helper_and_initial_hives": true,
+  "same_build_flags": true,
+  "same_dump_settings": true,
+  "dump_settings": {
+    "CrashDumpEnabled": {
+      "type": 4,
+      "data_hex": "03000000"
+    },
+    "LogEvent": {
+      "type": 4,
+      "data_hex": "01000000"
+    },
+    "AutoReboot": {
+      "type": 4,
+      "data_hex": "00000000"
+    },
+    "Overwrite": {
+      "type": 4,
+      "data_hex": "01000000"
+    },
+    "DumpFile": {
+      "type": 2,
+      "data_hex": "2500530079007300740065006d0052006f006f00740025005c004d0045004d004f00520059002e0044004d0050000000"
+    },
+    "PagingFiles": {
+      "type": 7,
+      "data_hex": "43003a005c007000610067006500660069006c0065002e00730079007300200039003600200031003900320000000000"
+    }
+  },
+  "same_pagefile_chain": true,
+  "pagefile_size": 100663296,
+  "expected_65536_mapping": [
+    {
+      "byte_length": 65536,
+      "volume_byte_offset": 140436013056
+    },
+    {
+      "byte_length": 0,
+      "volume_byte_offset": 0
+    }
+  ],
+  "physical_access": false,
+  "actual_crash_dump_write_qualified": false,
+  "results": [
+    {
+      "case": "control001",
+      "workload": true,
+      "integrity": true,
+      "strict": true,
+      "normal_shutdown_count": 1,
+      "events": []
+    },
+    {
+      "case": "candidate001",
+      "workload": true,
+      "integrity": true,
+      "strict": true,
+      "normal_shutdown_count": 1,
+      "events": []
+    }
+  ]
+}

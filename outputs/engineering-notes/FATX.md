@@ -491,3 +491,22 @@ Both still fail strict qualification on inheritedSCM7000/Ftdisk49 events; neithe
 is promoted as a physical fix. All failure paths should signal stop and bounded
 join, and reports must distinguish join bounds from potentially blocking I/O.
 A synthetic failed-log validator is not execution of the helper's failure path.
+
+
+## Dump address correctness below the filesystem
+
+The [128GiB investigation](../atapi-dump-lba48/REPORT.md) found an ATAPI dump-only
+address truncation, not a FATX allocation bug. Runtime proved the correct64-bit
+file extent, partition translation, SRB LBA and source payload reached ATAPI;
+the legacy ATA routine then masked the high address nibble. The caller still
+reported success. Registry48-bit enablement and ordinary high-LBA I/O success
+did not establish dump-path safety.
+
+For cross-project validation, compare the logical extent, partition-relative
+versus whole-disk byte offset, task-file commands, block backend writes and cold
+bytes independently. Deliberately put the test beyond2^37 bytes and check the
+wrapped alias too. A PAGEDUMP header or a success screen alone is insufficient.
+Here the correction retained every64KiB payload byte at the intended address,
+left the alias unchanged and recovered the exact file on a separate child.
+This is not evidence that a Linux FATX implementation shares the Windows ATAPI bug.
+Keep crash images immutable; establish address containment before recovery boot.
