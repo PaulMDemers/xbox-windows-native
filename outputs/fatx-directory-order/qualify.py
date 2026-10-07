@@ -2,7 +2,7 @@
 import hashlib,json,sys
 from pathlib import Path
 k=Path(__file__).resolve().parent;ws=k.parents[1]
-case=sys.argv[1];assert case=='001';out=k/case
+case=sys.argv[1];assert case in ['001','002'];out=k/case
 read=lambda p:json.loads(p.read_text())
 reports={};evidence={}
 for name in ['audit','allocation','collection','launch']:

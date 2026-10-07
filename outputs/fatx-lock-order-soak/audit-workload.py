@@ -81,10 +81,12 @@ r['probe_completed']=r['workload']['passed']
 r['persistence_passed']=all(v['exact'] for v in r['files']) and all(v['unchanged'] for v in r['disk_tails'])
 r['diagnostic_checks_passed']=all([r['probe_completed'],r['dashboard_return'],r['normal_shutdown_count']==1,not r['unexpected_errors'],not r['popup_records'],not r['new_events']['application'],r['persistence_passed'],all(v['matched'] for v in r['payloads']),all(r['baseline_checks'].values()),r['fatx_exact']])
 r['diagnostic_checks_passed']=r['diagnostic_checks_passed'] and all(v['matched'] for v in r['runtime_binary_checks'])
-r['ordinary_run_valid']=True
+r['post_deadline_snapshot']=(out/'timeout-memory.json').exists()
+r['ordinary_run_valid']=not r['post_deadline_snapshot']
 r['mapped_eof_passed']=False
 r['mapped_checks_passed']=r['probe_completed'] and not r['mapping_failures']
 r['limits']='Ordinary original60-second rehearsal after explicit GPU/null-device setup; no debugger, recorder or UI automation. No event failure waived. Physical qualification is separate. Full allocation audit follows.'
 if case=='004':r['limits']='Ordinary original15-minute workload after settled setup; no debugger, recorder or UI actions. No event failures waived; physical qualification separate.'
+if r['post_deadline_snapshot']:r['limits']='Original workload ran without debugger until its recorded deadline; a later retained diagnostic snapshot cannot qualify completion or ordinary shutdown. Physical qualification separate.'
 (out/'audit.json').write_text(json.dumps(r,indent=2)+'\n')
 print(json.dumps({**{n:r[n] for n in ['diagnostic_checks_passed','ordinary_run_valid','mapped_checks_passed','mapping_checks','persistence_passed','normal_shutdown_count']},'mapping_failure_count':len(r['mapping_failures']),'unexpected_errors':r['unexpected_errors'],'popups':r['popup_records']},indent=2))

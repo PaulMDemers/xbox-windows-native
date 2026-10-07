@@ -1,3 +1,28 @@
+# Candidate0101 concurrency PASS; full persistence staging
+
+2026-10-07 00:22UTC. Directory-order001 returned normally00:20:02UTC, runner74791
+and supervisor64781 closed. Collected/qualified once: PASS. Five500-round workers,
+zero API errors,19260ms workload, exact three4097-byte files, meta.tmp absent,
+normal shutdown1, no popup or new disallowed warning/error, five structural hives
+and complete allocation audit passed. No debugger/snapshot on this ordinary run.
+
+Full15min original mapping/BMP soak004 preparation53669 completed. Single launch
+accepted00:24:41.363UTC; runner33070/supervisor47155 active. Deadline~00:45:42UTC,
+runner limit~00:49UTC. Do not relaunch. Wait normal return, closed cold collection
+and qualify004; timeout requires retained memory/decode before signal/cleanup.
+
+Directory-order fresh sibling002 preparation41353 completed; NOT LAUNCHED.
+Same helper/driver and original settled parent, independent writable fixture.
+Run only after soak closes (same ports4594/4596). Then collect/qualify002 once.
+Candidate eligibility script requires stress001,002 and full_soak004 PASS.
+Hardware keyboard readiness remains pending; physical unchanged.
+
+Latest pushedaff0475 includes both deadlock diagnoses and0101source/build/launch.
+New PASS reports and repeat tooling need commit. Physical baseline and keyboard
+question unchanged. Prior strict physical failures are not waived.
+
+## Earlier continuation (historical)
+
 # Directory-stream candidate0101 preparing after second confirmed cycle
 
 2026-10-07 00:18UTC. Cleanup-repeat001 captured/decoded/closed/collected/qualified

@@ -1,7 +1,7 @@
 """Preserve one post-timeout snapshot from this owned experiment; never alter guest data."""
 import datetime,hashlib,json,sys
 from pathlib import Path
-k=Path(__file__).resolve().parent;ws=k.parents[1];case=sys.argv[1];assert case in ['001'];out=k/case
+k=Path(__file__).resolve().parent;ws=k.parents[1];case=sys.argv[1];assert case in ['001','002'];out=k/case
 run=ws/('work/runs/nt5-fatx-directory-order-'+case)
 assert (run/'instance.json').exists() and not (run/'cleanup.json').exists()
 launch=json.loads((out/'launch.json').read_text())

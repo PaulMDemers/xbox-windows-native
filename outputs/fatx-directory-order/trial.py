@@ -33,4 +33,4 @@ def collect(case):
     print('Cold collection complete for '+case)
 
 if __name__=='__main__':
-    assert len(sys.argv)==3 and sys.argv[1]=='collect' and sys.argv[2] in ['001'];collect(sys.argv[2])
+    assert len(sys.argv)==3 and sys.argv[1]=='collect' and sys.argv[2] in ['001','002'];collect(sys.argv[2])

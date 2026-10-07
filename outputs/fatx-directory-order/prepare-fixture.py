@@ -2,7 +2,8 @@
 import importlib,json,subprocess,sys
 from pathlib import Path
 k=Path(__file__).resolve().parent;ws=k.parents[1]
-case=sys.argv[1];assert case=='001'
+case=sys.argv[1];assert case in ['001','002']
+if case=='002':assert json.loads((k/'001/qualification.json').read_text())['passed']
 sys.path.insert(0,str(k.parent/'native-windows-paint-save'));m=importlib.import_module('prepare-fixture')
 r=json.loads((k.parent/'shutdown-null-placeholder/fixture-001.json').read_text())
 review=json.loads((k/'probe-review.json').read_text());helper=(k/'artifacts/probe.exe').read_bytes()

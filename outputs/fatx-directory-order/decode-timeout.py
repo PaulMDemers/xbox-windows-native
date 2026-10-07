@@ -1,6 +1,6 @@
 """Offline-only analysis of the retained post-timeout snapshot. No monitor access."""
 import hashlib,json,pathlib,re,struct,sys
-k=pathlib.Path(__file__).resolve().parent;case=sys.argv[1];assert case in ['001']
+k=pathlib.Path(__file__).resolve().parent;case=sys.argv[1];assert case in ['001','002']
 caseout=k/case;out=k.parent/'native-windows-nt5-kernel'
 snapshot=caseout/'timeout-memory.json'
 if len(sys.argv)>2:

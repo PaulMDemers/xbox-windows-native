@@ -1,5 +1,5 @@
 #requires -Version 7.4
-param([ValidateSet('001')][string]$Case='001')
+param([ValidateSet('001','002')][string]$Case='001')
 $ErrorActionPreference='Stop'
 if (!$Case) { throw 'Case required' }
 $ws=Split-Path -Parent (Split-Path -Parent $PSScriptRoot)

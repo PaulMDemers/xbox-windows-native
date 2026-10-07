@@ -1,4 +1,4 @@
-"""Resume cold collection for an owned targeted GPU wizard completion experiment."""
+"""Resume cold collection for the owned FATX lock-order persistence soak."""
 import argparse,hashlib,json,subprocess,sys
 from pathlib import Path
 k=Path(__file__).resolve().parent;ws=k.parents[1]

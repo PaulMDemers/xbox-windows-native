@@ -257,3 +257,38 @@ per-inode, writeback and eviction lock ordering, not evidence of a Linux FATX
 bug. NT ERESOURCE/cache-manager layouts and the observed Windows stack do not
 describe Linux synchronization. Preserve ownership and lifetime evidence before
 translating a proposed fix between implementations.
+
+## Directory-stream exception and candidate0101 (2026-10-07)
+
+The cleanup-only0099 run first completed all three500-round workers but was
+held by a test-helper bug: WaitForMultipleObjects with wait-all accepts the
+whole documented success range, and returned2 rather than0. That attempt is
+preserved as a failed shutdown qualification, despite complete file contents.
+Correcting the helper in a fresh sibling run then exposed another real cycle.
+
+WinMgmt's rename path held DirResource and flushed a parent directory's cache.
+AcquireForCcFlush waited for that directory MainResource, which was owned by
+the volume-flush worker waiting back on DirResource. The directory was
+`\winnt\system32\wbem\repository`; counters stopped at17/18/10 with zero API
+errors. The [retained ownership report](../fatx-cleanup-repeat/001/deadlock-summary.json)
+distinguishes this from the first helper hold and from the original cleanup cycle.
+
+Candidate0101 preserves Main-before-Dir for ordinary files, but uses
+Dir-before-Main consistently for directory streams when both are required.
+It retains cache flushes, FCB lifetime pins and fresh pathname/share validation
+after overwrite retries. [The lock review](../fatx-directory-order/LOCK-REVIEW.md)
+identifies each changed caller and the unqualified paths. Candidate0100 was
+built but held before launch because its uniform ordering missed this exception.
+
+The first0101 emulator run passed500 rounds in each of five simultaneous
+workers, including resize, attributes, rename/replace, directory enumeration,
+ordinary writes and volume flush. Windows restarted normally; all final bytes,
+five registry hives, event deltas and complete FATX allocation checks passed.
+Full mapping/BMP soak and independent repeat qualification remain separate gates.
+No hardware driver was changed by this result.
+
+The transferable lesson is to include indirect cache/writeback callbacks and
+parent-directory operations in the lock graph. A regular-file ordering cannot
+be blindly applied to metadata streams. Linux implementations need to establish
+their own inode/directory/writeback contract; these NT callback names are not
+prescriptive Linux locking rules.

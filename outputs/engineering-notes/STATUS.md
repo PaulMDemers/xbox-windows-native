@@ -1,13 +1,14 @@
 # Native Xbox Windows 2000 status — 6 October 2026
 
-Late6October/early7October emulator follow-up: an ordinary fifteen-minute0098
-workload passed after supported GPU setup and an emulator-only null-device INF.
-A new concurrency control nevertheless proved a cleanup/volume-flush deadlock.
-Cleanup-only0099 completed all1500 operations, but its helper held on a valid
-wait-all result; that attempt remains a failed shutdown qualification. A corrected
-repeat is running. Candidate0100 also addresses known namespace/file lock-order
-paths and awaits expanded stress/full-soak qualification. None is deployed to
-the physical console. See [continuation](CONTINUATION.md) for current runs.
+Early7October emulator follow-up: the ordinary fifteen-minute0098 workload
+passed after supported GPU setup and an emulator-only null-device INF. New
+concurrency tests then proved two separate FATX deadlocks: regular-file cleanup
+versus volume flush, and rename's parent-directory cache flush versus volume
+flush. Candidate0101 separates ordinary-file and directory-stream lock ordering.
+Its first five-worker500-round test passed all workload, normal-restart, event,
+exact-file, five-hive and full-allocation gates. The full persistence soak is
+running and an independent concurrency repeat is being prepared. The physical
+console still runs0098/video0093. See [continuation](CONTINUATION.md) for live state.
 
 The project has reached a usable native desktop milestone. It is still an
 experimental system with incomplete device setup and bounded, rather than

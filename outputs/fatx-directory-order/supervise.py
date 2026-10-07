@@ -8,7 +8,7 @@ from pathlib import Path
 import time
 
 root = Path(__file__).resolve().parent
-case = sys.argv[1]; assert case in ['001']
+case = sys.argv[1]; assert case in ['001','002']
 k = root / case
 k.mkdir(exist_ok=True)
 run = root.parents[1] / ('work/runs/nt5-fatx-directory-order-'+case)
