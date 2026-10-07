@@ -1,3 +1,49 @@
+# Cutoff closeout: NVNet fixed; large-LBA dump remains unsafe and unqualified
+
+2026-10-07 13:00UTC cutoff. ALL owned sessions CLOSED; start no new experiments.
+Read outputs/dump-lba-trace/REPORT.md,NEXT.md,verification.json,wire-verification.json.
+Crash00418events27pins: exactNVNetshutdownreturn,correct64bitvolumeoffset
+140436013056 andPAGEDUMPsource into pinned dump_atapi.sys(atapiRVA13454),firstwrite0,
+finalTRUE/status0. ATA0xC5 registers decode loweralias11001192448 instead of
+148440145920 (difference2^37);8+64+56sectors=65536bytes. Exactcoldaliasheader,
+intendedPAGEPAGE. DumpqualificationFALSE; no recoveryboot. Preciselowerinstruction/
+configuration selectingwrongcommand unresolved. No speculativedriverpatch.
+Cleanmetadata324dirs6756files325clusters,5hives/protectedhashes does NOT imply
+allfilecontentsunaffected. Original111nonASCIIphysicaldamage/restart unresolved.
+Runner96747,tracer15674,supervisor73542,prepare55079,audit86138 CLOSED. Earlier
+crash003 and allnormal/failedcases CLOSED; neverrelaunch/recollect. Corrected
+NVNet0104 ordinarypair strictPASS is separate; source693c0cc already pushed.
+Finalevidence/reports reviewed and being committed/pushed. Physical0101/video0093,
+0088rollback,0.1.0 untouched. No physicalaccess. C:~27.8GB,20GiBbuildguard unchanged.
+Automation must be PAUSED at cutoff. Nextauthorizedwork: trace actual atapi dump
+writer64bitoffset throughpartitionaddition/commandselection; retain highLBAgate.
+# Wrong-address dump discovered; final bounded LBA diagnostic active
+
+2026-10-07 12:50UTC. nvnet-controlled-dump/crash003 CLOSED and verified; no
+relaunch/recollection. NVNet0104shutdown/idle/pairedreturn proved. Observer64hit
+limit due retainedprecallbreakpoint;allremoved/resumed. Screenclaimedcomplete.
+ColdPAGEDUMP+exactcookie at11001192448, intended148440145920 remainsPAGEPAGE,
+difference2^37;9aliaswrites57456changedbytes. Failedqualification, NOrecoveryboot.
+Fullmetadata/hive/protectedaudit is not exhaustivefilecontentsafety. New
+outputs/dump-lba-trace/crash004 accepted12:48:56UTC, runner96747,tracer15674,
+supervisor73542 ACTIVE;prepare55079 CLOSED. One-shotbreakpoints,firstwriteoffset/
+MDL/sourceheader,finalreturn plusATAport/commandtrace;unchangeddrivers/settings.
+One prelaunchhosthashfailure(normalizedhelpercopy) repaired withexactoriginal
+bytes beforeanylaunch; preserved. No speculativedriverpatch. Inspect/resume,
+neverduplicate. At13UTC no newexperiments;allowboundedcleanup/preserveaudit and
+report/pauseautomation. Samephysicalbaselinesuntouched. Latestpushed693c0cc;
+newcrashreports/aliasverificationandLBAkitneedreview/check/commit/push. C:27.8GB.
+# New NVNet crash003 active; ordinary results pushed693c0cc
+
+2026-10-07 12:11UTC. New nvnet-controlled-dump/crash003 accepted12:11:08.
+Owned runner45130,tracer58848,supervisor90532 ACTIVE; preparation46222 CLOSED.
+Inspect actualtrace/launch/cleanup; do not duplicate. Sameone-shotE058D103cookie,
+NVNet0104aee9c501...,FATX0103/HAL0102/video0093; all settings unchanged. Observer
+pins shutdownentry/idle/pairedreturn and actualdump path;600sec bound/teardown,
+supervisor30secfinalwait/capture/ownedcleanup. Then audit-crash.py once,aftercold
+configuration/map,closure,independentrawpin/evidenceverification. Only successful
+realhighLBAdump allows separate recoverychild. Both ordinary comparisoncases
+closedstrictPASS,pushed693c0cc. All earlierfailures preserved; emulatorONLY13UTC.
 # NVNet0104 ordinary comparison passed; new crash003 preparing
 
 2026-10-07 12:10UTC. Read outputs/nvnet-shutdown-network/REPORT.md,pair-review.json

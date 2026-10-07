@@ -1,0 +1,1061 @@
+{
+  "control001": {
+    "name": "fatx-control001.sys",
+    "sha256": "a35d963cf4683833e107f28880a48144616355668940635d2f7eb85fa5c2927d",
+    "build": "fatx-dump-control-001",
+    "source_tree": "8beed93598b97994a7836ab91285df1fcb8af27c",
+    "source_sha256": "6a3af3a01f41df619166f4d87bb6dad52713885f11bc0f6b2e5cd8d58d605e0a",
+    "imports": [
+      {
+        "dll": "hal.dll",
+        "name": "ExAcquireFastMutex"
+      },
+      {
+        "dll": "hal.dll",
+        "name": "ExReleaseFastMutex"
+      },
+      {
+        "dll": "hal.dll",
+        "name": "ExTryToAcquireFastMutex"
+      },
+      {
+        "dll": "hal.dll",
+        "name": "KfAcquireSpinLock"
+      },
+      {
+        "dll": "hal.dll",
+        "name": "KfReleaseSpinLock"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "CcCanIWrite"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "CcCopyRead"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "CcCopyWrite"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "CcDeferWrite"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "CcFlushCache"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "CcInitializeCacheMap"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "CcMapData"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "CcPinRead"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "CcSetDirtyPinnedData"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "CcSetFileSizes"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "CcUninitializeCacheMap"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "CcUnpinData"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "CcZeroData"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "DbgPrint"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExAcquireResourceExclusiveLite"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExAcquireResourceSharedLite"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExAllocateFromPagedLookasideList"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExAllocatePoolWithTag"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExDeleteResourceLite"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExFreePool"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExFreePoolWithTag"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExFreeToPagedLookasideList"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExGetPreviousMode"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExInitializeNPagedLookasideList"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExInitializePagedLookasideList"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExInitializeResourceLite"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExInterlockedPopEntrySList"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExInterlockedPushEntrySList"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExIsResourceAcquiredExclusiveLite"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExLocalTimeToSystemTime"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExQueueWorkItem"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExReleaseResourceLite"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExSystemTimeToLocalTime"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlAreNamesEqual"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlCheckLockForReadAccess"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlCheckLockForWriteAccess"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlDoesNameContainWildCards"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlFastUnlockAll"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlInitializeFileLock"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlIsNameInExpression"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlNotifyCleanup"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlNotifyFullChangeDirectory"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlNotifyFullReportChange"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlNotifyInitializeSync"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlNotifyUninitializeSync"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlNotifyVolumeEvent"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlPostPagingFileStackOverflow"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlPostStackOverflow"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlProcessFileLock"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlUninitializeFileLock"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoAcquireVpbSpinLock"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoAllocateIrp"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoAllocateMdl"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoAllocateWorkItem"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoBuildDeviceIoControlRequest"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoBuildPartialMdl"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoBuildSynchronousFsdRequest"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoCheckShareAccess"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoCreateDevice"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoCreateFile"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoCreateStreamFileObject"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoDeleteDevice"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoFileObjectType"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoFreeIrp"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoFreeMdl"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoGetDeviceToVerify"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoGetRelatedDeviceObject"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoGetRequestorProcess"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoGetStackLimits"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoIsOperationSynchronous"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoQueueWorkItem"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoRegisterFileSystem"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoReleaseVpbSpinLock"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoRemoveShareAccess"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoSetDeviceToVerify"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoSetShareAccess"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoUpdateShareAccess"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoVerifyVolume"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IofCallDriver"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IofCompleteRequest"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "KeBugCheckEx"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "KeEnterCriticalRegion"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "KeGetCurrentThread"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "KeInitializeEvent"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "KeLeaveCriticalRegion"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "KeNumberProcessors"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "KeQuerySystemTime"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "KeSetEvent"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "KeWaitForSingleObject"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "MmBuildMdlForNonPagedPool"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "MmCanFileBeTruncated"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "MmFlushImageSection"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "MmMapLockedPagesSpecifyCache"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "MmProbeAndLockPages"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ObReferenceObjectByHandle"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ObfDereferenceObject"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ObfReferenceObject"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlAppendUnicodeStringToString"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlAppendUnicodeToString"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlCompareMemory"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlCompareUnicodeString"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlCopyUnicodeString"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlDowncaseUnicodeString"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlEqualUnicodeString"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlFreeUnicodeString"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlGenerate8dot3Name"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlIsNameLegalDOS8Dot3"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlOemStringToUnicodeString"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlTimeFieldsToTime"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlTimeToTimeFields"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlUnicodeStringToOemString"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlUnwind"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlUpcaseUnicodeString"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ZwClose"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "memcpy"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "memmove"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "memset"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "strncmp"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "towlower"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "wcschr"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "wcscpy"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "wcslen"
+      }
+    ],
+    "resident_functions": {
+      "_VfatFileSystemControl": {
+        "rva": "0xfc90",
+        "section": ".text",
+        "discardable": false
+      }
+    },
+    "checksum_valid": true
+  },
+  "candidate001": {
+    "name": "fatx-candidate001.sys",
+    "sha256": "247246b61f6b2f6bee25423860b8b3800290e84e405186efa69785b1609213b3",
+    "build": "fatx-dump-map-001",
+    "source_tree": "3f7316b6079e28eab45c07d8abdf720b118aa90f",
+    "source_sha256": "047dd1e457c3ff032f4da4d70dd30781806f8792b2b2e21ab79ca65f25082f6d",
+    "imports": [
+      {
+        "dll": "hal.dll",
+        "name": "ExAcquireFastMutex"
+      },
+      {
+        "dll": "hal.dll",
+        "name": "ExReleaseFastMutex"
+      },
+      {
+        "dll": "hal.dll",
+        "name": "ExTryToAcquireFastMutex"
+      },
+      {
+        "dll": "hal.dll",
+        "name": "KfAcquireSpinLock"
+      },
+      {
+        "dll": "hal.dll",
+        "name": "KfReleaseSpinLock"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "CcCanIWrite"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "CcCopyRead"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "CcCopyWrite"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "CcDeferWrite"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "CcFlushCache"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "CcInitializeCacheMap"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "CcMapData"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "CcPinRead"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "CcSetDirtyPinnedData"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "CcSetFileSizes"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "CcUninitializeCacheMap"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "CcUnpinData"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "CcZeroData"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "DbgPrint"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExAcquireResourceExclusiveLite"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExAcquireResourceSharedLite"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExAllocateFromPagedLookasideList"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExAllocatePoolWithTag"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExDeleteResourceLite"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExFreePool"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExFreePoolWithTag"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExFreeToPagedLookasideList"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExGetPreviousMode"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExInitializeNPagedLookasideList"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExInitializePagedLookasideList"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExInitializeResourceLite"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExInterlockedPopEntrySList"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExInterlockedPushEntrySList"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExIsResourceAcquiredExclusiveLite"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExLocalTimeToSystemTime"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExQueueWorkItem"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExReleaseResourceLite"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ExSystemTimeToLocalTime"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlAreNamesEqual"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlCheckLockForReadAccess"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlCheckLockForWriteAccess"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlDoesNameContainWildCards"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlFastUnlockAll"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlInitializeFileLock"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlIsNameInExpression"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlNotifyCleanup"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlNotifyFullChangeDirectory"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlNotifyFullReportChange"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlNotifyInitializeSync"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlNotifyUninitializeSync"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlNotifyVolumeEvent"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlPostPagingFileStackOverflow"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlPostStackOverflow"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlProcessFileLock"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "FsRtlUninitializeFileLock"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoAcquireVpbSpinLock"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoAllocateIrp"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoAllocateMdl"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoAllocateWorkItem"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoBuildDeviceIoControlRequest"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoBuildPartialMdl"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoBuildSynchronousFsdRequest"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoCheckShareAccess"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoCreateDevice"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoCreateFile"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoCreateStreamFileObject"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoDeleteDevice"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoFileObjectType"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoFreeIrp"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoFreeMdl"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoGetDeviceToVerify"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoGetRelatedDeviceObject"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoGetRequestorProcess"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoGetStackLimits"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoIsOperationSynchronous"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoQueueWorkItem"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoRegisterFileSystem"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoReleaseVpbSpinLock"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoRemoveShareAccess"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoSetDeviceToVerify"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoSetShareAccess"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoUpdateShareAccess"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IoVerifyVolume"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IofCallDriver"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "IofCompleteRequest"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "KeBugCheckEx"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "KeEnterCriticalRegion"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "KeGetCurrentThread"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "KeInitializeEvent"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "KeLeaveCriticalRegion"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "KeNumberProcessors"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "KeQuerySystemTime"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "KeSetEvent"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "KeWaitForSingleObject"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "MmBuildMdlForNonPagedPool"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "MmCanFileBeTruncated"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "MmFlushImageSection"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "MmMapLockedPagesSpecifyCache"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "MmProbeAndLockPages"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ObReferenceObjectByHandle"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ObfDereferenceObject"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ObfReferenceObject"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlAppendUnicodeStringToString"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlAppendUnicodeToString"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlCompareMemory"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlCompareUnicodeString"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlCopyUnicodeString"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlDowncaseUnicodeString"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlEqualUnicodeString"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlFreeUnicodeString"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlGenerate8dot3Name"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlIsNameLegalDOS8Dot3"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlOemStringToUnicodeString"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlTimeFieldsToTime"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlTimeToTimeFields"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlUnicodeStringToOemString"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlUnwind"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "RtlUpcaseUnicodeString"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "ZwClose"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "memcpy"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "memmove"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "memset"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "strncmp"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "towlower"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "wcschr"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "wcscpy"
+      },
+      {
+        "dll": "ntoskrnl.exe",
+        "name": "wcslen"
+      }
+    ],
+    "resident_functions": {
+      "_VfatFileSystemControl": {
+        "rva": "0x10110",
+        "section": ".text",
+        "discardable": false
+      },
+      "_VfatQueryRetrievalPointers": {
+        "rva": "0xe530",
+        "section": ".text",
+        "discardable": false
+      }
+    },
+    "checksum_valid": true
+  },
+  "scope": "Collect matched FATX builds and verify their imports, source and PE identity.",
+  "physical_access": false,
+  "qualified": false,
+  "limits": "Fresh matched builds; host algorithm tests and binary/source review do not qualify runtime extents or dump writing."
+}

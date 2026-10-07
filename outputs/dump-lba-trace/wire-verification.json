@@ -1,0 +1,78 @@
+{
+  "scope": "Compare pinned kernel dump input with captured ATA register/address evidence.",
+  "physical_access": false,
+  "kernel_volume_offset": 140436013056,
+  "kernel_header_exact": true,
+  "writer": "0xfccd2454",
+  "writer_pin": {
+    "address": "0xfccd2454",
+    "base": "0xfccbf000",
+    "rva": "0x13454",
+    "module": "atapi.sys",
+    "loaded_name": "dump_atapi.sys",
+    "source_sha256": "faf9639ac8d14e9c72a4a2d7b8d3a6ceb9965f8bbc79c77d89a45733d745c675",
+    "raw": "8b44240883ec148b0d64c4010033d253",
+    "resident": "8b44240883ec148b0d64b4ccfc33d253",
+    "relocations": [
+      9
+    ]
+  },
+  "first_write_status": "0x0",
+  "dump_return": true,
+  "final_status": "0x0",
+  "actual_wire_commands": [
+    {
+      "line": 121383,
+      "command": "0xc5",
+      "registers": {
+        "0x1f2": "0x8",
+        "0x1f3": "0x70",
+        "0x1f4": "0xdc",
+        "0x1f5": "0x47",
+        "0x1f6": "0xe1",
+        "0x1f7": "0xc5"
+      },
+      "lba28": 21486704,
+      "disk_offset": 11001192448,
+      "sectors": 8
+    },
+    {
+      "line": 121393,
+      "command": "0xc5",
+      "registers": {
+        "0x1f2": "0x40",
+        "0x1f3": "0x78",
+        "0x1f4": "0xdc",
+        "0x1f5": "0x47",
+        "0x1f6": "0xe1",
+        "0x1f7": "0xc5"
+      },
+      "lba28": 21486712,
+      "disk_offset": 11001196544,
+      "sectors": 64
+    },
+    {
+      "line": 121409,
+      "command": "0xc5",
+      "registers": {
+        "0x1f2": "0x38",
+        "0x1f3": "0xb8",
+        "0x1f4": "0xdc",
+        "0x1f5": "0x47",
+        "0x1f6": "0xe1",
+        "0x1f7": "0xc5"
+      },
+      "lba28": 21486776,
+      "disk_offset": 11001229312,
+      "sectors": 56
+    }
+  ],
+  "intended_disk_offset": 148440145920,
+  "alias_offset": 11001192448,
+  "lost_address_bit_bytes": 137438953472,
+  "wire_trace_sha256": "f738715f464859d098e2c4b28d1da8f752062caf6775b4a2b656078b78ea20a1",
+  "source_header_matches_cold_alias": true,
+  "dump_qualified": false,
+  "recovery_allowed": false,
+  "limits": "Correct upper dump offset and header, successful returns, but low ATA address and wrong cold destination. The exact lower instruction/configuration that selects this command remains unresolved. No speculative driver patch."
+}
