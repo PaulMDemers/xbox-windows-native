@@ -50,6 +50,18 @@ restart and all drawing/cold/event checks passed. Next design one coordinated
 cache/mapping policy covering both owners, reservation and late shutdown; verify
 actual NT5 API behavior and current MSRs where the design depends on them.
 See ../video-alias-inventory/REPORT.md and NEXT.md. No desktop-only WC flag edit.
+The subsequent ../video-cache-handoff diagnostic now pairs both actual mappings
+and their nested kernel call. Bootvid maps while MiWriteCombiningPtes=0; desktop
+mapping sees1. Isolated replay of the entire pinned resident MmMapIoSpace rejects
+an early WC request and accepts the desktop-state request. This is not a live WC
+test. The early current root has no target aliases; desktop again has both4MiB
+views in20roots. Mapping-time PAT is UC for their PTE flags. Drawing/cold/event
+checks passed. The first omitted-step-over observer failure is preserved in
+../video-cache-contract. Next prototype a single-owner framebuffer handoff with
+UC unchanged first, including error/shutdown ownership and pointer lifetime,
+before a coordinated WC trial. See ../video-cache-handoff/NEXT.md. Do not simply
+change both calls to WC at startup; the observed kernel state would reject the
+bootvid request. Physical hardware remains unchanged.
 No renderer patch yet. Retain generic
 PnP lifecycle, complete alias/cache inventory and independent scanout gates.
 The existing0096 remains a bounded prototype;1080i is a separate handoff project.

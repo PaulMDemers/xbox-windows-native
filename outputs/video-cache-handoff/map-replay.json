@@ -1,0 +1,132 @@
+{
+  "passed": true,
+  "scope": "Isolated actual NT5 code replay; modeled allocation/TLB helpers, no guest changes.",
+  "source_sha256": "e458a35e6aa2d595e29b5b851ff68a6019ed9d7047f6ee794200d169f1541009",
+  "kernel_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+  "trace_sha256": "6f2865b01519a5b5b41b6947f275f1444f9af7b262c2650571979246bb2f64d4",
+  "early_snapshot_sha256": "738654d4d5fcfe95ab1ec39bd480b72cd0f33cf3062b69c1ebed27208c9b60e8",
+  "resident_function_sha256": "5ee45eeef90ee8668a13c01161050312f08768b5768427d131c34843a9f2b2f9",
+  "function_rva": 228728,
+  "function_bytes": 418,
+  "early_current_root": {
+    "cr3": 42635264,
+    "ranges": [],
+    "pdes": 1024,
+    "ptes": 176128
+  },
+  "observed_globals": [
+    {
+      "phase": "bootvid",
+      "KeFeatureBits": 12286,
+      "MiWriteCombiningPtes": "00",
+      "ValidKernelPte": 355
+    },
+    {
+      "phase": "desktop",
+      "KeFeatureBits": 12286,
+      "MiWriteCombiningPtes": "01",
+      "ValidKernelPte": 355
+    }
+  ],
+  "cases": [
+    {
+      "phase": "bootvid",
+      "cache_argument": 0,
+      "returned": 4160749568,
+      "rejected": false,
+      "first_pte": 62914939,
+      "last_pte": 67105147,
+      "modeled_helpers": [
+        {
+          "helper": "reserve",
+          "arguments": [
+            1024,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "bootvid",
+      "cache_argument": 2,
+      "returned": 0,
+      "rejected": true,
+      "first_pte": 0,
+      "last_pte": 0,
+      "modeled_helpers": [
+        {
+          "helper": "reserve",
+          "arguments": [
+            1024,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "helper": "release",
+          "arguments": [
+            3225288704,
+            1024,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "desktop",
+      "cache_argument": 0,
+      "returned": 4160749568,
+      "rejected": false,
+      "first_pte": 62914939,
+      "last_pte": 67105147,
+      "modeled_helpers": [
+        {
+          "helper": "reserve",
+          "arguments": [
+            1024,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "desktop",
+      "cache_argument": 2,
+      "returned": 4160749568,
+      "rejected": false,
+      "first_pte": 62914923,
+      "last_pte": 67105131,
+      "modeled_helpers": [
+        {
+          "helper": "reserve",
+          "arguments": [
+            1024,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "helper": "invalidate_caches",
+          "arguments": []
+        },
+        {
+          "helper": "flush_tlb",
+          "arguments": [
+            1
+          ]
+        }
+      ]
+    }
+  ],
+  "limits": "CPU instruction replay uses actual pinned resident NT5 code and observed globals but modeled allocation/cache/TLB helpers. No real guest WC request, cache transition or runtime speed claim. Early aliases cover only current CR3, not all active roots/TLBs."
+}

@@ -1,3 +1,44 @@
+# Cache handoff diagnostics CLOSED; early WC mapping gate identified
+
+Read outputs/video-cache-handoff/REPORT.md,NEXT.md,contract-verification.json,
+map-replay.json and actual records. trace002 accepted2026-10-07T19:34:24UTC,
+dashboard19:36:06UTC. Preparation58615/runner83512/tracer88800/supervisor81846/
+audit39517 all CLOSED.18stops,3pairedcalls: bootvid MmMapIoSpace directRAM and
+videoprt MmMapVideoDisplay->MmMapIoSpace aperture, all4MiB/cacheargument0.
+Captured MiWriteCombiningPtes=0 atbootvid,1 atdesktop. Entire418byte resident
+kernel mapping function matches; isolated actual-code Unicorn replay4cases
+proves earlyWC2 returnsNULL/releases reservation, desktopWC2 makes1024 expected
+WC PTEs with modeled cache/TLB helpers. No real guest WC request or transition.
+Full resident0094 miniport4928textbytes andvideoprtcaller pinned; bootvidtext/
+globals match. Early currentCR3 has no targetaliases (not allroot/TLBproof).
+Desktop20roots eachtwo4MiB mappingsPCD/PWT1PAT0. Mapping-time MSRs decoded from
+read-only0094logger; PAT0007010600070106 index3UC. Not simultaneous snapshotMSRs.
+54cases162RGBstages,normalrestart,clean324dirs6755files325clusters0errors/orphans,
+5hives/protected/config/actualbootvid/96MiBpagefile,emptywarning/error/appdelta.
+DiagnosticPASS; ordinary_qualifiedFALSE. FullRAM/17MBaliasinventory private.
+
+Preceding outputs/video-cache-contract/trace001 is CLOSED diagnosticFAIL:
+omitted breakpoint step-over reached2048bound without pairs/snapshot. Teardown
+and resumed workload/coldPASS verified separately in failure-verification.json.
+prepare26347/runner46048/tracer60546/supervisor89239/audit57969 CLOSED. Never
+relaunch/recollect either case or run snapshot verifiers on failed001. Corrected
+observer removes breakpoint,steps,rearms; prior failure source/evidence intact.
+
+Only existing read-only0094 diagnostic miniport substituted0093 in fresh emulator
+children. No new guest driver build,cache policy,registry,mode or physical change.
+Historical0094physicalpopupFAIL retained. Next single-provider framebuffer
+ownership/handoff prototype with UC control first: prove loader/import ABI,
+quiescence, consumer lifetime and crash/shutdown behavior, then coordinated WC.
+No startupWCflag change/private kernel flag edit or repeated equivalent trace.
+See NEXT.md for implementation gates and shadow-display alternative.
+No ownedxemu/qemu remains. C:free21888266240bytes;20GiBbuildguard unchanged,
+recheck before any fresh build. Old automationPAUSED. Preservephysical0101/
+video0093,0088rollback,immutable0.1.0,completed128GiB recovery andallfailures.
+Originalphysical111nonASCII anomaly unresolved. Python/PowerShell parsing,
+58staged frozen-source pairs, contract/summary hashes and repository payload/
+credential checks passed. This note accompanies reviewed source/evidence commit;
+preceding pushed264b9b5.
+
 # Framebuffer alias inventory CLOSED and diagnostic PASS
 
 Read outputs/video-alias-inventory/REPORT.md, NEXT.md, verification.json,
