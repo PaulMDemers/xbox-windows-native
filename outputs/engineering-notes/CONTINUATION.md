@@ -33,7 +33,8 @@ strictFALSE49. Inherited emulator-only synthetic null-device/unsupported-device
 policy preserved. Physical0101/video0093,0088rollback,immutable0.1.0 unchanged.
 Original111nonASCII physical SetupAPI damage/firstrestart unresolved; intentional
 111zero/109correct interruption mechanism and negative source search remain
-separate. Priorpusheda49109f; this kit awaits reviewedcheck/commit/push.
+separate. Source/evidence reviewed, checked and pushed as d198532. All5773 tracked files
+passed repository payload checks; the index preserves exact diagnostic bytes.
 
 Closed sessions: preparation58755/49232/70520/23805/97292; runners82475/49561/
 97183/91135/76923; tracers31191/66641/50414/92354/91958; supervisors84231/31368/
