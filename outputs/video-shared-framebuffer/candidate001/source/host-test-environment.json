@@ -1,0 +1,8 @@
+{
+  "compiler": "gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+  "compile_command": "gcc -std=c11 -Wall -Wextra -Werror -g -O1 -pthread -fsanitize=address,undefined -Itests tests/provider.c -o artifacts/provider-test",
+  "run_command": "ASAN_OPTIONS=detect_leaks=1 timeout 60 artifacts/provider-test > host-tests.json",
+  "exit_code": 0,
+  "stderr": "",
+  "scope": "Single initializer before consumers; pthread locks model exclusion only. 64-bit host pointers with explicit 32-bit wire ABI. Actual NT5 ABI/IRQL/loader validation remains a separate guest gate."
+}

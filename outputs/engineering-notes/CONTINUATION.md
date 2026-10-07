@@ -1,3 +1,30 @@
+# Shared UC framebuffer0106 ordinary pair CLOSED and PASS
+
+Read outputs/video-shared-framebuffer/REPORT.md,NEXT.md,pair-review.json and
+actual case records. New tree53e9aedc58152d03116c00579185000483379837, matched
+OFF/ON builds from0093. Candidate bootvid99c6f5bf.../miniportc4ac1bfc...; exact
+hashes in build-report.json and pe-review.json. Permanent original UC mapping,
+no cache/PAT/MTRR/PTE/mode/device policy change. New3 bootvid.dll imports resolved
+in actual NT5 boot; old11export ordinals preserved. Provider host80checks plus
+400000concurrent attempts,8joins,ASan/UBSan/leakPASS. Single boot publication.
+Both ordinary cases54drawing/162pixel stages,normalrestart/dashboard,clean full
+F allocation324dirs6755files325clusters0errors/orphans,5hives/protected hashes,
+configuration and96MiB/1536cluster pagefile unchanged,strict eventsPASS.
+Candidate trace44records0dropped,AcquireSUCCESS pointerFCED6000 physical03C00000;
+control43records/no shared events. No release/unload event observed in guest.
+Build94303,prep65504/7944,runner9310/61900,supervisor84264/75140,audit33224/55417
+ALL CLOSED. Never relaunch/recollect. No owned emulator/qemu remains.
+Next NEW bounded read-only diagnostic: pin live provider/bootvid/miniport, prove
+pointer/global identity and actual alias inventory/ownership order. Then new
+sacrificial crash rendering check. Ordinary pair is not PTE/TLB/crash/genericPnP
+or WC qualification. Permanent UC pointer removes lifetime change, but counted
+references and InbvCheckDisplayOwnership do not establish drawing quiescence.
+No physical action; preserve0101/video0093,0088rollback,immutable0.1.0,all failures
+and completed128GiB recovery. Original111nonASCIIphysical anomaly unresolved.
+Offload4814 CLOSED: two standalone old runs hash-verified to E with junctions,
+manifest outputs/task-storage-offload/manifest-20261007d.json. Cfree23850192896;
+20GiB build guard unchanged. Old automationPAUSED. Prior pushed81530fa.
+
 # Cache handoff diagnostics CLOSED; early WC mapping gate identified
 
 Read outputs/video-cache-handoff/REPORT.md,NEXT.md,contract-verification.json,
