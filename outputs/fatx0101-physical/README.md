@@ -54,3 +54,11 @@ are required. No recovery bundle or release qualification follows a partial pass
 This test is not the15-minute hardware mapping soak, an actual Paint UI test,
 generic PnP qualification, arbitrary mapped truncation testing or a video change.
 Current state is in the JSON records and the main continuation note.
+
+## Host observation at01:03UTC
+
+The13-minute observer ended without dashboard return. Screen state and workload
+outcome remain unknown; this is neither a pass nor an established deadlock.
+One screen question is pending. Normal startup is still pending restoration
+because FTP is offline. No collection, allocation scan, binary audit or recovery
+capture has run. The host observer exited; no background process remains.

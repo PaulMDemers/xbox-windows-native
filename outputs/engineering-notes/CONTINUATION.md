@@ -1,3 +1,31 @@
+# Physical0101 awaiting screen evidence; host observer closed
+
+2026-10-07 01:03:35UTC. Single launch at00:50:29UTC accepted, FTP went offline,
+and the13-minute observer completed with NO dashboard return. Session83795 has
+exited. No owned process remains running. No crash, deadlock, workload completion
+or installer hold is inferred. The screen question asked00:56UTC is still pending;
+do not ask it repeatedly or relaunch Windows. No scan has been launched.
+
+Installed0101 SHA ba62acbb7dedf30154baba8d4cc2cf457f1a3e499bf7800e31011fba0e96d6a9,
+video0093 unchanged. Normal startup restoration remains pending dashboard access;
+last verified startup invokes C:\xwn101a\probe.exe. Helper exclusively creates
+C:\xwncc01 and holds on timeout or pending installation. User screen evidence is
+required to distinguish boot state, pending wizard, or Windows failure.
+
+All rollback/startup bytes preserved locally in outputs/fatx0101-physical/artifacts
+and at /F/xwn101a/rollback.sys and startup.cmd. On dashboard return run
+physical.py collect FIRST, then qualify.py. Preserve results before driver rollback.
+The prepared read-only allocation scan has NOT launched; if proceeding with it,
+scan.py launch ONCE, watch.py scan, scan.py collect, audit-binaries.py (resume only
+incomplete), qualify.py. Strict event gates and3439 hashes/ninehives stay required.
+Never fabricate a qualification from the timeout or earlier emulator passes.
+
+Original0088, immutable0.1.0 and all prior failures preserved. No automation
+created/resumed/modified. Trial source/launch pushed487e05c; this final observation
+and notes are being reviewed and pushed now. See physical final-state.json.
+
+## Earlier continuation (historical)
+
 # Candidate0101 single physical concurrency trial active
 
 2026-10-07 00:50:29UTC. Latest human Proceed accepted as readiness after the
@@ -15,10 +43,10 @@ causes a held test, not a forced restart. No claim of hardware PASS yet.
 On return run physical.py collect FIRST (restores normal startup), qualify.py,
 scan.py launch ONCE at /E/Applications/XWNLock101a, watch.py scan, scan.py collect,
 audit-binaries.py (resume only incomplete), qualify.py. Full3439 hashes/ninehives
-and allocation required. Strict Srv/popups remain failures. If observer expires,
-ask once for actual screen; do not infer deadlock. Preserve before any rollback.
+and allocation required. Strict Srv/popups remain failures. A screen question was asked at00:56UTC while the observer continues; do not
+repeat it. No dashboard return alone cannot identify a deadlock. Preserve before any rollback.
 All earlier emulator runs closed. No automation modified. Original0088 and
-immutable0.1.0 preserved. Last pushedc283f25; current physical tools/results uncommitted.
+immutable0.1.0 preserved. Trial tools and launch pushed487e05c. Screen question/status updates pending commit.
 
 ## Earlier continuation (historical)
 
