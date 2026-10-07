@@ -371,3 +371,24 @@ restart under the narrowly targeted existing UI helper. Installer warning writes
 landed at different offsets from the physical failure. These results strengthen
 the bounded evidence but do not identify its cause; see the first-install report
 and the planned alignment variant before proposing a filesystem change.
+
+## Actual installer append aligned to the malformed physical span
+
+Two fresh0101/video0093 UI-assisted first-install emulator runs put the post-copy
+unsigned-driver warning at exactly270225 (sector401/page3985), using explicit
+prefix-preserving ASCII padding. All220 bytes, including the physical anomaly's
+111-byte region, remained exact after normal shutdown. Both complete allocation
+and five-hive checks passed. The two cold target sectors and the saved physical
+second-boot target are above28-bit LBA; matching logical offsets does not imply
+identical disk/memory/controller state. Original physical corruption remains
+unresolved, not repaired or assigned to a cause by these negative controls.
+
+For Linux/FATX investigations: verify the **actual** file offset after a workload,
+not only the planned padding; identify the corresponding repeated log record by
+context; then map it through the captured FAT chain to a disk LBA. Keep source
+buffer evidence, completion/flush evidence and cold bytes separate. A correctly
+allocated file can contain malformed data. A negative serial reproduction does
+not settle concurrency or interruption behavior. See
+[aligned installer report](../fatx-install-alignment/REPORT.md) and its layout
+comparison records. The original111-byte span has91 high-bit bytes and one DEL;
+old92-non-ASCII wording included that control byte.

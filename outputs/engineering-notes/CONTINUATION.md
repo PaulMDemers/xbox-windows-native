@@ -1,3 +1,35 @@
+# Both aligned installer emulator runs passed; physical anomaly unresolved
+
+2026-10-07 03:54 UTC. outputs/fatx-install-alignment001/002 completed, cold-collected
+and qualified PASS. Both actual post-copy warnings start270225 (mod512401,
+mod40963985), all220 bytes and first111 exact. Original135501-byte prefix and
+131059-byte padding preserved;5300 newASCIIbytes each. Normal restart, queueidle,
+no unexpected errors/popups/application records, five hives and fullF allocation
+322dirs6743files323dirclusters0orphans/errors. These are UI-assisted diagnostics;
+ordinary/physical qualification remain false. No driver source change warranted.
+
+001 launch03:45:33 return03:48:32;002 launch03:50:41 return03:53:31 UTC.
+001 runner19250/supervisor86930 and002 runner4466/supervisor14833 closed; owned
+PIDs75508/75152 cleaned. Preparation82845/81030 and all cold readers closed.
+Do not relaunch/recollect completed cases. No owned process or automation active.
+Parent is immutable fatx-first-install-0101/fixture-001.json; both sibling fixtures
+in native-windows-fatx-forensics/artifacts, run disks retained under unique runs.
+
+Saved physical second-boot layout maps target LBA292691839 versus emulator
+290163071; both high-address, different sectors. Physical first-write topology
+not established. Original damaged111-byte span includes91 high-bit bytes plus
+oneDEL, clarifying earlier label92non-ASCII; original records/logs unchanged.
+First physical reboot method still unknown. NEXT.md specifies a paired bounded
+GDI drawing/file-I/O load comparison with known-source and cold byte oracles;
+no direct GPU access/debugger/reset injection or physical launch included.
+
+Physical Xbox untouched:0101/video0093/normal startup/GPU registration, prompts,
+raw-C warning, rollback0088 and immutable0.1.0 remain. No release/recovery/tag
+or automation change. Reports and reviewed source checks/commit/push completing;
+prior570715e. No user action required for these completed emulator diagnostics.
+
+## Previous completed state
+
 # Sequence and first-install emulator tests complete; physical anomaly unresolved
 
 2026-10-07 03:23UTC. fatx-append-sequence001/002 both PASS:16,384 appends total,

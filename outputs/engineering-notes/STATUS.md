@@ -1,5 +1,12 @@
 # Native Xbox Windows 2000 status — 6 October 2026
 
+2026-10-07 03:54 UTC: two fresh aligned first-install diagnostics passed. The actual
+post-copy warning landed at the physical log offset270225 in both, including
+sector offset401, and all220 bytes survived cold readback. Normal restarts,
+event deltas, five hives and full allocation checks passed. Physical anomaly
+remains unresolved; no hardware or driver change. See
+[aligned installer report](../fatx-install-alignment/REPORT.md).
+
 7 October 03:23 UTC: two repeated-append runs passed 16,384 appends and 32 exact
 cold files. A separate UI-assisted first GPU installation on0101 also passed its
 cold checks, adding5300 ASCII-only SetupAPI bytes and restarting normally. No
