@@ -1,3 +1,39 @@
+# ATAPI128GiB correction under emulator validation
+
+2026-10-07T15:13:46.817491+00:00. Renewed user authorization focuses on wrapping
+up128GiB dump safety, then other issues. Old automation remains PAUSED.
+Unmodified atapi-dump-address/crash005 CLOSED:26events43pins confirm the exact
+mask atATAPI28e7, correctLBA1147dc70 ->0147dc70; EnableBigLba=1 and device48bit
+flag already set. ColdwrongaliasPAGEDUMP/intendedPAGEPAGE; no recoveryboot.
+See REPORT,address-verification,verification. All crash005 sessions closed.
+
+Candidate0105 in outputs/atapi-dump-lba48: owned105byte selector routes capable
+PIO requests to existing48bit routine, rejects invalid/highlegacy requests.
+Private pinned binary409c4de7..., unchanged old RVAs; only old code change is
+five-byte dump call. Host exact-byte tests4480 PASS. Not guest-qualified yet.
+Ordinary atapi-lba48-network/control001 launched15:13:05UTC: runner13455,
+network96584,supervisor47617 ACTIVE. Candidate001 prepare13895 ACTIVE.
+Inspect records/resume sessions; never duplicate launch or collection.
+Both use NVNet0104/FATX0103/HAL0102/video0093/HidServ and inherited emulator
+null/unsupported-device policy. OnlyATAPI differs. Next close/audit ordinary
+pair, then fresh sacrificial candidate crash with full payload/address evidence,
+then separate recovery child only after highLBA gate passes. No physical access.
+Preserve0101/video0093,0088rollback,0.1.0 and all failed disks.
+
+# Renewed authorized emulator session: ATAPI address localization
+
+2026-10-07 14:59UTC. User said Proceed after the cutoff status, renewing this
+session; old automation remains PAUSED. Physical access remains prohibited.
+New outputs/atapi-dump-address/crash005 preparing on owned session51648;
+not launched yet. Inspect actual records before further action. Closed crash004
+and earlier cases must never be relaunched/recollected. Static pinned ATAPI
+RVA1360e calls legacy27fe directly;28e7 masks high address nibble. Cold actual
+registry already EnableBigLba=1. New runtime will capture first division,
+SRB/decoded LBA, address mask and command selection, with unchanged drivers,
+unique fresh child, one-shot breakpoints and full teardown/cold audit.
+See DESIGN.md/address-review.json/registry-state.json. Physical0101/video0093,
+0088rollback/0.1.0 unchanged. No correction or recovery boot yet.
+
 # Session closed and automation paused
 
 2026-10-07 13:01UTC. Evidence and reports pushed as1482970; implementation and
