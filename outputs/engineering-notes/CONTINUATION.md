@@ -1,3 +1,22 @@
+# Physical0101 awaiting user normal restart after installer hold
+
+2026-10-07 01:11UTC. User reports multiple Found New Hardware prompts had to be
+closed for the keyboard to register. Device identities unknown; do not ask user
+to reproduce/reopen those dialogs. This is manual setup interaction, separate
+from the photographed500-round workload completion. Guard remains indefinitely
+held even if installation queue has since cleared. FTP refused connection.
+
+Next user action: close open apps and use Start/Shut Down/Restart normally.
+If shutdown stops on a prompt or hangs, preserve actual state; do not assume
+normal shutdown or silently force it. On dashboard access physical.py collect
+FIRST restores startup, then qualify, unique allocation scan once and full audits.
+Read collected SetupAPI/hives for device identities. No new Windows test launch.
+No remote writes this turn. Device-name question superseded by user's account.
+Prior13787da pushed; observation/continuation being pushed now. No background
+observer or automation active for this trial. Exact installed/rollback data below.
+
+## Earlier continuation (historical)
+
 # Physical0101 workers completed; restart held for pending installation
 
 2026-10-07 01:10UTC. User photo of C:\xwncc01\probe.log shows WAIT_RESULT3,
