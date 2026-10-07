@@ -38,8 +38,12 @@ is about11us versus66-72ms drawing calls. Small timings are more variable; this
 is emulator elapsed time, not physical bandwidth. The new ../video-row-copy-trace
 diagnostic passed with 24 first-row calls all selecting kernel memmove and screen
 destinations mapping through the framebuffer aperture. Raw PCD/PWT bits were
-captured; effective PAT/MTRR policy is not established. Next observe the actual
-kernel copy loop once per first row. No renderer patch yet. Retain generic
+captured; effective PAT/MTRR policy is not established by that run. The subsequent
+../video-memmove-loop-trace diagnostic passed:23 forward REP MOVSD rows and one
+seven-DWORD scalar row, with exact entry/count/direction/return evidence. Next
+inventory framebuffer aliases, reservations and lifetime, reusing prior0094/0096
+MSR evidence before a new read-only observation or justified speed experiment.
+No renderer patch yet. Retain generic
 PnP lifecycle, complete alias/cache inventory and independent scanout gates.
 The existing0096 remains a bounded prototype;1080i is a separate handoff project.
 See ../video-map-profile/NEXT.md and ../video-copy-profile-visible/SHADOW-DESIGN.md.

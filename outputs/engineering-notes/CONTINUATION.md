@@ -1,3 +1,35 @@
+# Kernel memmove loop trace CLOSED and diagnostic PASS
+
+Read outputs/video-memmove-loop-trace/REPORT.md,NEXT.md,trace-verification.json.
+trace001 captured234events87pairedcalls457pins24kernelentries/loops:23forward
+REP MOVSD atkernel60923,one7DWORDscalar at609ec. LargeECX768/3072bytesDF0;
+all exact argument/stack/frame/table/return pins verified. No backward loop
+observed. CPU path established, not loop-vs-access time or hardware bandwidth.
+54cases162RGBstages, normalrestart/dashboard, clean324dirs6755files325clusters,
+5hives/protected/config/pagefile, emptywarning/error/applicationdeltas. Debugger
+ordinary_qualifiedFALSE. Preparation33566/runner13662/tracer6827/supervisor50201/
+audit40754 all CLOSED. Never relaunch/recollect. No physical/driver change.
+Next framebuffer alias/reservation/lifetime source inventory; reuse0094physical
+and0096emulator MSR evidence with their limits before new readonly cache audit.
+Old automationPAUSED; preservephysical0101/video0093,0088rollback,0.1.0,128GiB.
+Source/report review, Python/PowerShell parse, frozen/staged byte pins and
+repository payload/credential checks passed. No owned emulator remains.
+C: free22868553728bytes;20GiB build guard unchanged. This note accompanies the
+new source/evidence commit; preceding row trace pushed1db5b2a.
+
+# Historical kernel loop launch record (now closed)
+
+New outputs/video-memmove-loop-trace/trace001 launch accepted2026-10-07
+18:48:15UTC. Preparation33566 CLOSED; runner13662/tracer6827/supervisor50201
+ACTIVE. Inspect records/resume sessions; never duplicate launch/collection.
+Same compiled probe107/driver/settings/policy, fresh owned child. One kernel
+entry and first REP/scalar instruction per sampled first row,512stops600sec,
+full teardown and strict cold audit. No physical access or driver change.
+After closed: audit once, after configuration/cold-map, record-closure and
+verify-trace.py, report/source review/check/commit/push. No ordinary timing
+qualification under debugger. Earlier row trace closed/pushed1db5b2a.
+Old automation PAUSED; preserve physical0101/video0093,0088rollback,0.1.0.
+
 # First-row branch trace CLOSED and verified
 
 Read outputs/video-row-copy-trace/REPORT.md, NEXT.md and trace-verification.json.
