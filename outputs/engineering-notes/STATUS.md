@@ -8,8 +8,8 @@ flush. Candidate0101 separates ordinary-file and directory-stream lock ordering.
 Two independent five-worker500-round runs and the full fifteen-minute mapping/
 BMP persistence soak passed all workload, normal-restart, event, exact-file,
 five-hive and allocation gates. Candidate0101 is eligible for a controlled
-hardware trial, not physically or release qualified. The physical console still
-runs0098/video0093; keyboard readiness remains pending. See
+hardware trial, not physically or release qualified. One controlled physical0101/video0093 concurrency trial launched at00:50:29UTC
+on7October, with0098 rollback and startup preserved. Its result is pending. See
 [continuation](CONTINUATION.md) for evidence and the hardware handoff.
 
 The project has reached a usable native desktop milestone. It is still an
@@ -27,7 +27,9 @@ ordinary files on FATX; xemu is the separate development/test environment.
   bulk-network qualification or evidence of hardware-accelerated OpenGL.
 - A root-level Windows entry in UnleashX. Video0093 subsequently passed two
   physical boots without resetting its diagnostic trace between them.
-- Current recorded installed combination: FATX0098/video0093, normal startup.
+- Current controlled trial: FATX0101/video0093, one-shot concurrency startup.
+  Original0098 driver/startup saved locally and in /F/xwn101a; collection restores
+  normal startup first. Hardware qualification is pending.
   Original0088 rollback and the immutable v0.1.0 release remain preserved.
 
 ## Storage and stability

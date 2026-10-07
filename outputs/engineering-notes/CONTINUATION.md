@@ -1,3 +1,27 @@
+# Candidate0101 single physical concurrency trial active
+
+2026-10-07 00:50:29UTC. Latest human Proceed accepted as readiness after the
+keyboard-unplug request. Read-only ownership, installed0098/video0093, startup
+and unique-path preflight passed. Exact emulator-qualified0101 and five-worker
+helper deployed with readback. Original0098 and startup preserved privately and
+at /F/xwn101a/rollback.sys and startup.cmd. Video/boot chain unchanged.
+
+Single SITE EXEC accepted. outputs/fatx0101-physical/physical.json is authoritative.
+Observer session83795 watches windows-return.json; never relaunch or duplicate it.
+Helper creates /F/xwncc01 exclusively; do not precreate/reuse it. Five500-round
+workers, ten-minute wait bound; host observer thirteen minutes. Pending installer
+causes a held test, not a forced restart. No claim of hardware PASS yet.
+
+On return run physical.py collect FIRST (restores normal startup), qualify.py,
+scan.py launch ONCE at /E/Applications/XWNLock101a, watch.py scan, scan.py collect,
+audit-binaries.py (resume only incomplete), qualify.py. Full3439 hashes/ninehives
+and allocation required. Strict Srv/popups remain failures. If observer expires,
+ask once for actual screen; do not infer deadlock. Preserve before any rollback.
+All earlier emulator runs closed. No automation modified. Original0088 and
+immutable0.1.0 preserved. Last pushedc283f25; current physical tools/results uncommitted.
+
+## Earlier continuation (historical)
+
 # Candidate0101 qualified for controlled hardware trial; no owned run active
 
 2026-10-07 00:45UTC. All planned0101 emulator gates PASS:

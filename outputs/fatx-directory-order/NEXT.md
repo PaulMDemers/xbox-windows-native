@@ -6,9 +6,10 @@ fifteen-minute mapping/BMP soak004, with all reports and evidence hashes intact.
 The eligibility result permits planning a controlled trial; it is not a claim
 that the console has passed or that the earlier physical strict failure is fixed.
 
-The earlier keyboard-readiness question is still pending. Xromwell can hang with
-the Razer keyboard attached. Obtain that operational readiness information before
-launching the physical console; an FTP connection does not answer it.
+Latest human Proceed was accepted as readiness following the keyboard-unplug
+request. One physical trial is now recorded in ../fatx0101-physical; inspect its
+stage records and never launch a duplicate. Xromwell can hang with the Razer
+keyboard attached; preserve this constraint for future launches.
 
 Refresh the read-only installed baseline and normal-startup checks before any
 deployment. Preserve exact0098 and startup bytes locally and in the trial's own
