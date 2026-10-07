@@ -427,3 +427,40 @@ cache, DMA or reset path is correct. File size/frame samples bracket a worker's
 lifetime but cannot identify the precise write syscall or its overlap with a blit.
 The next discriminator is a bounded observation of the actual request and buffer
 at successive layers, with debugger timing kept separate from ordinary validation.
+
+## Mapped appends, delayed page writeback and interruption
+
+The [actual SetupAPI lifecycle](../fatx-mapped-lifecycle/REPORT.md) is now observed,
+not inferred from a static import. A pinned owned DLL produced58 complete captured
+append lifecycles and175 retained source references. At the target offset270225,
+the mapped source contains all220 correct bytes. Mapping growth, seek while mapped,
+unmap, mapping-handle close, SetEndOfFile and file close all succeed. Every captured
+append matches the normally shut down disk. This debugger experiment changes timing
+and is not a complete census of system-wide flushes or proof of a driver defect.
+
+The separate normal paging trace sees the109-byte suffix reach the filesystem
+before the page containing the111-byte prefix. The prefix eventually arrives
+during normal shutdown and cold readback is exact. The observed interval includes
+debugger pauses; it must not be used as a cache-latency benchmark.
+
+An [intentional interruption](../fatx-interrupted-append/REPORT.md) after a later
+successful suffix-page write produced a file-visible111-zero/109-correct split
+at this same boundary, with clean allocation and parseable hives. That is an
+emulator interrupted-writeback mechanism. The physical damaged prefix contained
+non-ASCII bytes, not zeros, and the first physical restart method is unknown.
+Those differences prevent assigning this mechanism as the original hardware cause.
+An earlier interrupted attempt also left an allocation error; preserve it rather
+than reporting only the clean-allocation example.
+
+For FATX/Linux work, separate an application's memory stores, paging-write source
+buffers, per-request successful completion, explicit flush completion, ordinary
+shutdown and eventual cold bytes. None substitutes for the others. A logical
+record spanning two cache pages need not reach storage as one atomic record.
+Valid allocation ownership and registry structure do not prove file-content
+durability. Keep power/reset method and exact on-disk byte pattern in the report.
+
+The [mapped-append regression](../fatx-map-append-regression/REPORT.md) tests the
+observed API lifecycle with independent cold byte oracles. Its inherited emulator
+device configuration must remain explicit. A pending-install timeout before the
+first operation is a held test, not a filesystem failure or a completed workload;
+historically recurring event errors must not silently become strict passes.

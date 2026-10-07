@@ -1,3 +1,54 @@
+# Ordinary mapped-append pair complete; strict service errors retained
+
+2026-10-07 07:13 UTC. ALL owned sessions CLOSED, no guest/tracer/observer active.
+Authorized emulator-only work continues until09:00EDT (13:00UTC). Check time
+before new work; at cutoff cleanup/report/pause existing heartbeat. Never use
+physical FTP/deploy/test. Preserve physical0101/video0093,0088rollback,0.1.0 and
+all failures. No driver, physical payload or release baseline changed this turn.
+
+Current kit outputs/fatx-map-append-regression; read REPORT.md, comparison.json,
+coverage.json and NEXT.md. Both settled0/settled1 completed936 mapping/seek/unmap/
+EOF/close cycles,52 reopens and13 exact final cold files. Identical helper and
+parent; mode1 adds explicit flushes. Both normal shutdown count1/dashboard return,
+full allocation0errors/orphans, five hives, selected protected hashes pass.
+Both STRICT qualifications FALSE: exactly recurring SCM7000(HID Input Service)
+and Ftdisk49(HarddiskVolume6), retained as failures. No new popup/application
+events. This bounded ordinary negative reproduction does not explain the physical
+111-byte non-ASCII span or qualify a driver/release. No debugger/UI action in pair.
+
+settled0 launch07:03:42,return07:05:44UTC; settled1 launch07:06:47,return07:09:05.
+Closed0runner3852/supervisor3692/audit28751; closed1runner28213/supervisor28087/
+audit63728; comparison3762 closed. Every launched case has closure.json, private
+disk hash and cleanup metadata. All collection done ONCE; never relaunch/recollect.
+
+Failures preserved: mode0 xemu host startup path expansion failure06:52:40,
+no Windows launch. Copied/rebased actual-lifecycle002 parent and qemu-img compare
+proved identical virtual contents, unchanged original (parent-copy.json).
+mode0b launched06:55:07; Found New Hardware recurred. Initial pending-install
+guard logged258 and ran ZERO workload operations. Owned stop06:59:32, no normal
+shutdown; allocation/hives/protected files intact. Closedrunner17432/supervisor
+63640/audit41425. mode1 is prepared but NEVER launched; not-launched.json records
+why. Earlier harness versions remain mode0/source and mode0b/source.
+
+For actual pair reused known settled fatx-directory-order001 immutable fixture,
+same0101/video0093. No offline hive/policy edits; before/after configuration.py
+records installed GPU, exact QEMU1B36:0005 null INF and inherited01B0/01B4 flags64.
+This configuration is emulator-specific and must not be promoted to hardware.
+
+Coverage: per mode168sector/20page/8cluster-crossing appends, four exact111/109
+warning splits. ZERO cluster-releasing truncations and no concurrent flusher.
+NEXT proposes a NEW kit with65290/65300/65315 prefixes so mapping allowance
+crosses65536 while finalEOF is below, plus exactEOF/regrowth. Establish serial
+control then paired concurrent volume-flush worker with overlap/stop/join gates.
+Use existing reviewed worker contracts, not old wait-all==0 mistake. Preserve
+any failure, trace it before speculative driver edits. No new kit/build yet.
+
+Actual SetupAPI lifecycle and all interrupted-append attempts remain closed,
+reported in previous note. Engineering FATX.md now records source/paging/cold
+distinctions and interruption caveats for Linux/FATX readers. Source/raw/fixture/
+disk evidence verifier and paired comparison passed. Commit/push after final
+repository review; active automation must be updated to this new state.
+
 # Actual mapped-append lifecycle verified; paired regression helper prepared
 
 2026-10-07 06:44 UTC. ALL owned sessions CLOSED, no active guest. Authorized
