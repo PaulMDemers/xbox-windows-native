@@ -1,0 +1,414 @@
+{
+  "scope": "Bind fault RVA to exact cold NVNet symbols and the shutdown call graph.",
+  "physical_access": false,
+  "driver_sha256": "d4aafead757f43c46ba161d2d034aafe05b7024ae693c39d224da42d485927d1",
+  "symbols": {
+    "_MiniportShutdown@4": {
+      "rva": "0x21f0",
+      "section": ".text",
+      "nonpaged": true,
+      "discardable": false
+    },
+    "_NvNetIdleTransmitter": {
+      "rva": "0x7800",
+      "section": "PAGE",
+      "nonpaged": false,
+      "discardable": false
+    },
+    "_NvNetStopTransmitter": {
+      "rva": "0x1e70",
+      "section": ".text",
+      "nonpaged": true,
+      "discardable": false
+    },
+    "_NvNetStopReceiver": {
+      "rva": "0x1c80",
+      "section": ".text",
+      "nonpaged": true,
+      "discardable": false
+    },
+    "_SidebandUnitReleaseSemaphore": {
+      "rva": "0x2500",
+      "section": ".text",
+      "nonpaged": true,
+      "discardable": false
+    },
+    "_NvNetSetPowerState": {
+      "rva": "0x2d60",
+      "section": ".text",
+      "nonpaged": true,
+      "discardable": false
+    },
+    "_NvNetPauseProcessing": {
+      "rva": "0x21a0",
+      "section": ".text",
+      "nonpaged": true,
+      "discardable": false
+    }
+  },
+  "handler_disassembly": [
+    {
+      "rva": "0x21f0",
+      "bytes": "55",
+      "instruction": "push ebp"
+    },
+    {
+      "rva": "0x21f1",
+      "bytes": "89e5",
+      "instruction": "mov ebp, esp"
+    },
+    {
+      "rva": "0x21f3",
+      "bytes": "56",
+      "instruction": "push esi"
+    },
+    {
+      "rva": "0x21f4",
+      "bytes": "53",
+      "instruction": "push ebx"
+    },
+    {
+      "rva": "0x21f5",
+      "bytes": "83ec10",
+      "instruction": "sub esp, 0x10"
+    },
+    {
+      "rva": "0x21f8",
+      "bytes": "8b5d08",
+      "instruction": "mov ebx, dword ptr [ebp + 8]"
+    },
+    {
+      "rva": "0x21fb",
+      "bytes": "8b35dcc10100",
+      "instruction": "mov esi, dword ptr [0x1c1dc]"
+    },
+    {
+      "rva": "0x2201",
+      "bytes": "8b430c",
+      "instruction": "mov eax, dword ptr [ebx + 0xc]"
+    },
+    {
+      "rva": "0x2204",
+      "bytes": "85c0",
+      "instruction": "test eax, eax"
+    },
+    {
+      "rva": "0x2206",
+      "bytes": "7838",
+      "instruction": "js 0x2240"
+    },
+    {
+      "rva": "0x2208",
+      "bytes": "8b03",
+      "instruction": "mov eax, dword ptr [ebx]"
+    },
+    {
+      "rva": "0x220a",
+      "bytes": "c744240400000000",
+      "instruction": "mov dword ptr [esp + 4], 0"
+    },
+    {
+      "rva": "0x2212",
+      "bytes": "83c004",
+      "instruction": "add eax, 4"
+    },
+    {
+      "rva": "0x2215",
+      "bytes": "890424",
+      "instruction": "mov dword ptr [esp], eax"
+    },
+    {
+      "rva": "0x2218",
+      "bytes": "ffd6",
+      "instruction": "call esi"
+    },
+    {
+      "rva": "0x221a",
+      "bytes": "83ec08",
+      "instruction": "sub esp, 8"
+    },
+    {
+      "rva": "0x221d",
+      "bytes": "891c24",
+      "instruction": "mov dword ptr [esp], ebx"
+    },
+    {
+      "rva": "0x2220",
+      "bytes": "c744240800000000",
+      "instruction": "mov dword ptr [esp + 8], 0"
+    },
+    {
+      "rva": "0x2228",
+      "bytes": "c744240404000000",
+      "instruction": "mov dword ptr [esp + 4], 4"
+    },
+    {
+      "rva": "0x2230",
+      "bytes": "e82b0b0000",
+      "instruction": "call 0x2d60"
+    },
+    {
+      "rva": "0x2235",
+      "bytes": "8d65f8",
+      "instruction": "lea esp, [ebp - 8]"
+    },
+    {
+      "rva": "0x2238",
+      "bytes": "5b",
+      "instruction": "pop ebx"
+    },
+    {
+      "rva": "0x2239",
+      "bytes": "5e",
+      "instruction": "pop esi"
+    },
+    {
+      "rva": "0x223a",
+      "bytes": "5d",
+      "instruction": "pop ebp"
+    },
+    {
+      "rva": "0x223b",
+      "bytes": "c20400",
+      "instruction": "ret 4"
+    },
+    {
+      "rva": "0x223e",
+      "bytes": "6690",
+      "instruction": "nop "
+    },
+    {
+      "rva": "0x2240",
+      "bytes": "ff159cc10100",
+      "instruction": "call dword ptr [0x1c19c]"
+    },
+    {
+      "rva": "0x2246",
+      "bytes": "3c02",
+      "instruction": "cmp al, 2"
+    },
+    {
+      "rva": "0x2248",
+      "bytes": "7666",
+      "instruction": "jbe 0x22b0"
+    },
+    {
+      "rva": "0x224a",
+      "bytes": "891c24",
+      "instruction": "mov dword ptr [esp], ebx"
+    },
+    {
+      "rva": "0x224d",
+      "bytes": "c744240401000000",
+      "instruction": "mov dword ptr [esp + 4], 1"
+    },
+    {
+      "rva": "0x2255",
+      "bytes": "e8a6550000",
+      "instruction": "call 0x7800"
+    },
+    {
+      "rva": "0x225a",
+      "bytes": "891c24",
+      "instruction": "mov dword ptr [esp], ebx"
+    },
+    {
+      "rva": "0x225d",
+      "bytes": "e80efcffff",
+      "instruction": "call 0x1e70"
+    },
+    {
+      "rva": "0x2262",
+      "bytes": "891c24",
+      "instruction": "mov dword ptr [esp], ebx"
+    },
+    {
+      "rva": "0x2265",
+      "bytes": "e816faffff",
+      "instruction": "call 0x1c80"
+    },
+    {
+      "rva": "0x226a",
+      "bytes": "8b03",
+      "instruction": "mov eax, dword ptr [ebx]"
+    },
+    {
+      "rva": "0x226c",
+      "bytes": "8b5310",
+      "instruction": "mov edx, dword ptr [ebx + 0x10]"
+    },
+    {
+      "rva": "0x226f",
+      "bytes": "8b35dcc10100",
+      "instruction": "mov esi, dword ptr [0x1c1dc]"
+    },
+    {
+      "rva": "0x2275",
+      "bytes": "83ca14",
+      "instruction": "or edx, 0x14"
+    },
+    {
+      "rva": "0x2278",
+      "bytes": "0544010000",
+      "instruction": "add eax, 0x144"
+    },
+    {
+      "rva": "0x227d",
+      "bytes": "89542404",
+      "instruction": "mov dword ptr [esp + 4], edx"
+    },
+    {
+      "rva": "0x2281",
+      "bytes": "890424",
+      "instruction": "mov dword ptr [esp], eax"
+    },
+    {
+      "rva": "0x2284",
+      "bytes": "ffd6",
+      "instruction": "call esi"
+    },
+    {
+      "rva": "0x2286",
+      "bytes": "83ec08",
+      "instruction": "sub esp, 8"
+    },
+    {
+      "rva": "0x2289",
+      "bytes": "c7042404000000",
+      "instruction": "mov dword ptr [esp], 4"
+    },
+    {
+      "rva": "0x2290",
+      "bytes": "ff15a4c10100",
+      "instruction": "call dword ptr [0x1c1a4]"
+    },
+    {
+      "rva": "0x2296",
+      "bytes": "83ec04",
+      "instruction": "sub esp, 4"
+    },
+    {
+      "rva": "0x2299",
+      "bytes": "891c24",
+      "instruction": "mov dword ptr [esp], ebx"
+    },
+    {
+      "rva": "0x229c",
+      "bytes": "e85f020000",
+      "instruction": "call 0x2500"
+    },
+    {
+      "rva": "0x22a1",
+      "bytes": "e962ffffff",
+      "instruction": "jmp 0x2208"
+    },
+    {
+      "rva": "0x22a6",
+      "bytes": "8db42600000000",
+      "instruction": "lea esi, [esi]"
+    },
+    {
+      "rva": "0x22ad",
+      "bytes": "8d7600",
+      "instruction": "lea esi, [esi]"
+    },
+    {
+      "rva": "0x22b0",
+      "bytes": "891c24",
+      "instruction": "mov dword ptr [esp], ebx"
+    },
+    {
+      "rva": "0x22b3",
+      "bytes": "e8e8feffff",
+      "instruction": "call 0x21a0"
+    },
+    {
+      "rva": "0x22b8",
+      "bytes": "eb90",
+      "instruction": "jmp 0x224a"
+    },
+    {
+      "rva": "0x22ba",
+      "bytes": "8db600000000",
+      "instruction": "lea esi, [esi]"
+    },
+    {
+      "rva": "0x22c0",
+      "bytes": "55",
+      "instruction": "push ebp"
+    },
+    {
+      "rva": "0x22c1",
+      "bytes": "31c0",
+      "instruction": "xor eax, eax"
+    },
+    {
+      "rva": "0x22c3",
+      "bytes": "ba01000000",
+      "instruction": "mov edx, 1"
+    },
+    {
+      "rva": "0x22c8",
+      "bytes": "89e5",
+      "instruction": "mov ebp, esp"
+    },
+    {
+      "rva": "0x22ca",
+      "bytes": "53",
+      "instruction": "push ebx"
+    },
+    {
+      "rva": "0x22cb",
+      "bytes": "83ec0c",
+      "instruction": "sub esp, 0xc"
+    },
+    {
+      "rva": "0x22ce",
+      "bytes": "8b5d0c",
+      "instruction": "mov ebx, dword ptr [ebp + 0xc]"
+    },
+    {
+      "rva": "0x22d1",
+      "bytes": "f00fb1938c030000",
+      "instruction": "lock cmpxchg dword ptr [ebx + 0x38c], edx"
+    },
+    {
+      "rva": "0x22d9",
+      "bytes": "85c0",
+      "instruction": "test eax, eax"
+    },
+    {
+      "rva": "0x22db",
+      "bytes": "7533",
+      "instruction": "jne 0x2310"
+    },
+    {
+      "rva": "0x22dd",
+      "bytes": "891c24",
+      "instruction": "mov dword ptr [esp], ebx"
+    },
+    {
+      "rva": "0x22e0",
+      "bytes": "e8bbfeffff",
+      "instruction": "call 0x21a0"
+    },
+    {
+      "rva": "0x22e5",
+      "bytes": "899b64030000",
+      "instruction": "mov dword ptr [ebx + 0x364], ebx"
+    }
+  ],
+  "matched_source_tree": "3f7316b6079e28eab45c07d8abdf720b118aa90f",
+  "source_sha256": {
+    "nvnet.c": "88824b108eac77b49a235bf489696d4c774fff9a5f64c538a64471294324f48c",
+    "nic.c": "ce09e32b2fe77c8658630a9d718861a1de21baa3bbff7ae4c97491184d8d0a21",
+    "requests.c": "868b7c530802f4bcaed4f2f411276cccfd2c398fa83c931c42231c2fe8042519",
+    "phy.c": "8c83439f03c2921abc3adcca768a323a15a538b55316d432606d237132f568a8",
+    "nvnet.h": "606c176fa00de896cd2faad365db3207ccfe85c28bea07250566b79134bfaaf7"
+  },
+  "source_note": "Existing source annotations reviewed against cold symbol/section and resident handler evidence. Proposed change is only to make the shutdown-reachable idle helper resident; no driver changed in this diagnostic.",
+  "primary_references": [
+    "https://learn.microsoft.com/en-us/previous-versions/windows/hardware/network/ff550533(v=vs.85)",
+    "https://learn.microsoft.com/en-us/previous-versions/windows/hardware/network/ff557121(v=vs.85)"
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "passed": true,
+  "scope": "Pin explicit crash helper/driver imports and actual owned kernel dump boundaries.",
+  "physical_access": false,
+  "intentional_crash_only": true,
+  "binaries": {
+    "probe.exe": {
+      "sha256": "b415290a2e8d2c27656232a4afb83148513f3d2d9196add61e17ef743c19e5e2",
+      "size": 10221,
+      "entry_rva": 4230,
+      "imports": {
+        "ADVAPI32.dll": [
+          "CloseServiceHandle",
+          "CreateServiceA",
+          "OpenSCManagerA",
+          "RegCloseKey",
+          "RegOpenKeyExA",
+          "RegQueryValueExA",
+          "StartServiceA"
+        ],
+        "KERNEL32.dll": [
+          "CloseHandle",
+          "CreateFileA",
+          "DeviceIoControl",
+          "ExitProcess",
+          "FlushFileBuffers",
+          "Sleep",
+          "WriteFile",
+          "lstrlenA"
+        ]
+      },
+      "checksum_valid": true
+    },
+    "trigger.sys": {
+      "sha256": "385e167306237abe6c94d9f5437e62de04b933c3f0ba22bcdeb2d798159d096f",
+      "size": 7612,
+      "entry_rva": 4316,
+      "imports": {
+        "ntoskrnl.exe": [
+          "IoCreateDevice",
+          "IoCreateSymbolicLink",
+          "IoDeleteDevice",
+          "IoDeleteSymbolicLink",
+          "IofCompleteRequest",
+          "KeBugCheckEx",
+          "RtlInitUnicodeString"
+        ]
+      },
+      "checksum_valid": true
+    }
+  },
+  "sources": {
+    "trigger.c": "f025d1fa6be6cbd4705e2ca2d40db7881eccf50c061de0da06f53255673ff410",
+    "probe.c": "a22c6bf7c56df7f082e1415803d25c58fb13dde0c43f7a935f1db049448ee724",
+    "Build.ps1": "22bb51584b9c29d01fd42b58cd07b26845e88c624a1c02136d4f2552031f63fd",
+    "review.py": "3811a0432684f48ca929c5b9d831f856eaa943221af01ea2e1e335ac80b1bab3"
+  },
+  "targets": {
+    "ADVAPI32.dll": "d24493dbb2b1818f9cd605acd3b2008d63354c0975e9a090ccdd04bcc339cc59",
+    "KERNEL32.dll": "6b05b0749b5dd86da94cc4acd062ca05472509f70216b56cd4a5b9809c602e73",
+    "ntoskrnl.exe": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+  },
+  "compiler": "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc",
+  "compiler_sha256": "83015512671faaa0dbe6f043a0107f79c049f4268a67e39955388a8d9a0182e5",
+  "build_dependencies": {
+    "/home/paul/xbox-windows-native/build/fatx-dump-map-001/build-fatx/ntoskrnl/CMakeFiles/libntoskrnl.dir/libntoskrnl.a": "7ddceef5d09b6d754f7003d92df45890dfbf56f2230361c0546b8f162812e940",
+    "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/i386/i686-w64-mingw32/include/ddk/ntddk.h": "93419bae179dce34f4477822c16a6b8937afe955ea50e0599e5ba3ba79472b80",
+    "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/i386/i686-w64-mingw32/include/ddk/wdm.h": "2c0ed466be0495c61d0e7cdfab07d4aedad6644b7a05e60394334960aa84ca2b"
+  }
+}

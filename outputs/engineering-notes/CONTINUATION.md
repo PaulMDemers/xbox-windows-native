@@ -1,3 +1,41 @@
+# Dump blocker localized to pageable NVNet shutdown helper; all sessions closed
+
+2026-10-07 11:29UTC. Read outputs/controlled-dump-observe/REPORT.md,NEXT.md,
+callback-review.json,verification.json and actualcrash002records. Never relaunch
+or recollect. Same0103FATX/0102HAL/video0093/helper launched11:11:25;5events/8pins
+reach bugcheckcallbackscan then boundedtimeout. Fullteardown/resume. Post-timeout
+RAM confirms activeNDISminiportcallback -> NVNetMiniportShutdown21f0 -> pageable
+NvNetIdleTransmitter7800. CR2f8d17800,PTE00720060 absent,nestedD1(f8d17800,1f,0,
+f8d17800),HALhalt. ColdNDIS/NVNet exactbefore/after and residenthandlerpins match.
+NoIoWriteCrashDump entry/header/recovery. Clean324dirs6756files325clusters,5hives/
+protectedhashes,exactintent;normalshutdown0 deliberatecrash. ALL sessions CLOSED:
+prepare26220,runner44238,tracer34812,supervisor14139,audit78930,snapshot50986;
+waitingobserver22677 canceled beforeguestaccess. Offload42428 completed045-048
+standaloneoldruns hashverifiedtoE: withjunctionpaths;manifest20261007b.json,
+activechainexcluded,C:~29.5GBfree,20GiBbuildguardunchanged. NextNEW0104 source
+patch keepNvNetIdleTransmitter resident withsamehardwarebehavior; fullcallgraph
+review,freshmatchedNVNetbuilds,normal/networkregression,controlleddumpthenrecovery.
+No networkpatch/build yet. Preservephysical0101/video0093,0088rollback,0.1.0;
+original111nonASCIIphysicaldamage/restartunresolved. EmulatorONLY until13UTC,
+no physicalFTP/deploy/test. No suppression/fakesuccess/gatewaiver.
+
+# New crash002 observer active; inspect/resume, never duplicate
+
+2026-10-07 11:12UTC. Failed controlled-dump/crash001 closed,verified,pushedd670e00.
+New UNCOMMITTED outputs/controlled-dump-observe/crash002 accepted11:11:25UTC.
+Same compiledtrigger/probe and0103FATX/0102HAL/video0093; no build/settingspatch.
+Freshchild from immutable dump-map-trace fixture. Replaces discardedentrypoint
+pins with residentHAL/FATXdispatch pins, adds actualbugcheck stages and dump
+call/return/callback observations. Frozeninputs and unique preflight recorded.
+Owned runner44238,tracer34812,supervisor14139 ACTIVE. Preparation26220 CLOSED.
+Do not relaunch or recollect. Inspecttrace/launch/cleanup. Observerbounded600sec,
+removesallbreakpoints,resumes; supervisorwaits30sec,captures,requestsownedcleanup.
+Then audit-crash.py once,configuration/cold-map after,record-closure and appropriate
+rawtraceverification. No recoveryboot until crashresult supports it. Earlier
+crash001 E14 observerfailure preserved; PAGEPAGE header,no dumpqualification.
+Originalphysicalcorruption/restart unresolved. EmulatorONLY until13UTC,no physical
+FTP/deploy/test. C:below20GiBbuildguard; no furtherbuild absentcapacityrecovery.
+
 # Controlled crash001 closed: incomplete observer, no dump qualification
 
 2026-10-07 11:08UTC. Read outputs/controlled-dump/REPORT.md,DESIGN.md,
