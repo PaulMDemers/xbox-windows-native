@@ -1,6 +1,71 @@
+# Matched HAL root dump-path comparison closed; later dump failure remains
+
+2026-10-07 09:47UTC. ALL owned sessions CLOSED. Read outputs/hal-dump-path/REPORT.md,
+NEXT.md,DESIGN.md,pair-review.json and actualrecords. Do not relaunch/recollect
+control001 or candidate001. Previous pushed9b7ccad records completedlowertrace;
+thisnew0102source/build/ordinarycomparison is readyfor reviewedcommit/push.
+
+0102 adds independent bounded paging/dump counters, stop/remove protection and
+not-disableable state; root remains fixedpowered/resident with no idle/parent
+dependency. It does not fake lower completion or implement full dumpwriting.
+Hostcountertest actualfunction passes400000concurrentpairs andboundary cases.
+Matched freshbuildcontrol44a6d83116b3fc056c81159905f9c635bd1aebfda21a7da37cf7a4fc14826c45;
+candidate7c6a3bfb9b6794c3b6fbce95fb76dc57d003843c19512b3ddb186604f668ed08.
+Imports/residentdispatch/checksums verified, sameflags, only0102source difference.
+
+Bothordinaryruns792appends/32shrinks/132reopens/11exactcoldfiles; normalshutdown/
+dashboard,fullallocation323dirs6765files324clusters0errors/orphans,5hives/protected
+hashes, HidServ4/0/0. ControlstrictFALSE49; candidatestrictFALSE44(error4)+49(error3).
+Additional44 indicates laterfailure but NOT yetruntimeFSCTL/status proof. No
+debugger/UI intervention. Frozeninputs/closeddisks/rawfiles/pair invariants pass.
+Physical0101/video0093,0088rollback,immutable0.1.0 andinstalledHAL unchanged.
+
+Next NEW bounded candidate diagnostic: paired IopConfigureCrashDump usage call,
+IopCompleteDumpInitialization, actual reference/query/FSCTL inputs/output/status,
+pending completion and callerbranch. Preserve pins/teardown/fullcoldaudits.
+Never infer newFSCTLcause fromeventalone or patchspeculatively. No suppression or
+silentgatewaivers. End-to-end controlleddump/recovery remains latergate. Original
+physical111nonASCIIprefix/restart unresolved; interruptionmechanism separate.
+
+Spaceguardblockedbuild001 beforecreation; oldPowerShellwrapper failedto propagate
+Python exit, correctedretry. Fourclosedstandaloneoldruns036/041/042/043 copied/
+hashverified toEwithjunctions preservingoldpaths. Manifesttask-storage-offload/
+manifest-20261007.json. No backingchain moved. Candidatebuild002/controlbuild001
+passedunchanged20GiBguard. Closedsessionslisted in hal-dump-path/NEXT.md. No
+runningguest/build/observer. EmulatorONLYuntil13:00UTC; checktimefirst, atcutoff
+cleanup/report/pauseautomation. No physicalFTP/deploy/test.
+
+---
+
+# Active matched HAL root dump-path experiment
+
+2026-10-07 09:39UTC. Latest pushed9b7ccad closes dump-usage-trace. NEW uncommitted
+outputs/hal-dump-path adds0102 bounded separate paging/dump counters and PnP
+stop/remove/not-disableable protection. Root remains fixed powered/resident;
+no fake lower completion or device policy change. Full dump support UNQUALIFIED.
+Read DESIGN.md. Originalphysical111nonASCIIcorruption remains separate.
+
+Candidate buildhal-dump-path-002 and matchedcontrolhal-dump-control-001 compiled
+fresh with matchingpins/flags. Build001 was blocked beforecreation by20GiBspace
+guard, retained in DESIGN; fourclosedstandaloneruns036/041/042/043 offloaded toE
+with verifiedjunctions, manifestoutputs/task-storage-offload/manifest-20261007.json.
+400000concurrent counterpairs andboundarytests passed; imports/residentfunctions
+reviewed. PhysicalHAL/FATX0101/video0093 and0.1.0 untouched.
+
+CURRENT owned: control001 runner85940, supervisor46209 launched09:38:28UTC;
+candidate001 preparation9108 stillrunning. Controlprep88373/build26564/controlbuild
+99884/offload57427/WSLread37398 closed. Do not duplicate launches. Aftercontrol
+cleanup, cold audit/configuration/closure/evidence once; candidate preflight
+requires closedcontrol workload+integrity. Candidate is notyetlaunched. Use
+localhost4596 only with XWN_EMULATOR_FTP_USER/PASSWORD; neverphysicalFTP. Deadline
+13:00UTC remains. Keepstrictgates; likely laterdumpinitialization issue is only
+a staticlead untilactualruntime evidence. Alloldtracecases closed.
+
+---
+
 # Crash-dump rejection localized to the fixed-root HAL
 
-2026-10-07 09:32UTC. ALL owned sessions CLOSED. Read dump-usage-trace/REPORT.md,
+2026-10-07 09:26UTC. ALL owned sessions CLOSED. Read dump-usage-trace/REPORT.md,
 NEXT.md, trace-verification.json and hal-source-audit.json under outputs. Both
 dispatch001/002 are closed and cold-audited; NEVER relaunch or recollect them.
 Emulator-only authorization continues until13:00UTC. No physical FTP/deploy/test.

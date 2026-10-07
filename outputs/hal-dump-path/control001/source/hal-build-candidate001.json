@@ -1,0 +1,80 @@
+{
+  "status": "compiled",
+  "started_utc": "2026-10-07T09:32:43.617465+00:00",
+  "profile": "boot",
+  "space_preflight": {
+    "minimum_free_gib": 20,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/home/paul/xbox-windows-native/build",
+        "free_bytes": 950141812736
+      },
+      {
+        "free_bytes": 25770020864,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "source_base": "afc0127e8f937ab68503d715d948844973756aa1",
+  "source_tree": "8beed93598b97994a7836ab91285df1fcb8af27c",
+  "inputs_sha256": "7572ebb4223ad86897504496cddb8fc01da9092f6c059e0ef3c680d8f2ad7979",
+  "tool_sha256": {
+    "RosBE.sh": "1d04daf7393952441c62691bb7735042d236b0196778f1632f0a4383476143b7",
+    "bin/cmake": "049737b62e2803fd657041cf65b6bb6de7756db377c92c686c63eec373604e75",
+    "bin/ninja": "371e855768aa214225d4b17f49902cdd2b2daa8764514134524b07282c9e9e07",
+    "i386/bin/i686-w64-mingw32-gcc": "83015512671faaa0dbe6f043a0107f79c049f4268a67e39955388a8d9a0182e5"
+  },
+  "commands": [
+    [
+      "git",
+      "init",
+      "-q",
+      "/home/paul/xbox-windows-native/build/hal-dump-path-002/source"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/hal-dump-path-002/source",
+      "fetch",
+      "--depth=1",
+      "/home/paul/xbox-windows-native/sources/reactos",
+      "afc0127e8f937ab68503d715d948844973756aa1"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/hal-dump-path-002/source",
+      "checkout",
+      "--detach",
+      "FETCH_HEAD"
+    ],
+    [
+      "/usr/bin/python3",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/tools/apply-series.py",
+      "--source",
+      "/home/paul/xbox-windows-native/build/hal-dump-path-002/source",
+      "--manifest",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/hal-dump-path/manifest.json"
+    ],
+    [
+      "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/RosBE.sh",
+      "/home/paul/xbox-windows-native/build/hal-dump-path-002/source",
+      "0",
+      "i386"
+    ]
+  ],
+  "artifacts": [
+    {
+      "name": "halxboxnt5.dll",
+      "bytes": 2422745,
+      "sha256": "7c6a3bfb9b6794c3b6fbce95fb76dc57d003843c19512b3ddb186604f668ed08",
+      "profile": "boot"
+    }
+  ],
+  "scope": "fresh source and compilation only; no runtime qualification",
+  "verified_source_tree": "8beed93598b97994a7836ab91285df1fcb8af27c",
+  "finished_utc": "2026-10-07T09:33:10.239931+00:00"
+}

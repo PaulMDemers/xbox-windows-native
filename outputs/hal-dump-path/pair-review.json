@@ -1,0 +1,45 @@
+{
+  "scope": "Verify the closed ordinary comparison without waiving any strict event gate.",
+  "changed_protected_files": [
+    "E/Applications/XWNFBoot/loader/halxboxnt5.dll"
+  ],
+  "same_helper_and_initial_hives": true,
+  "same_build_flags": true,
+  "physical_access": false,
+  "actual_crash_dump_write_qualified": false,
+  "results": [
+    {
+      "case": "control001",
+      "workload": true,
+      "integrity": true,
+      "strict": false,
+      "normal_shutdown_count": 1,
+      "events": [
+        {
+          "source": "Ftdisk",
+          "id": 49,
+          "data": "000000000100560000000000310004c0030000000000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "case": "candidate001",
+      "workload": true,
+      "integrity": true,
+      "strict": false,
+      "normal_shutdown_count": 1,
+      "events": [
+        {
+          "source": "Ftdisk",
+          "id": 44,
+          "data": "0000000001005600000000002c0004c0040000000000000000000000000000000000000000000000"
+        },
+        {
+          "source": "Ftdisk",
+          "id": 49,
+          "data": "000000000100560000000000310004c0030000000000000000000000000000000000000000000000"
+        }
+      ]
+    }
+  ]
+}
