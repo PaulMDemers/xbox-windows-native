@@ -1,3 +1,45 @@
+# Reset152 and swizzled154 PASS; failures151/153 preserved; all CLOSED
+
+Read outputs/gpu-reset-network151/REPORT.md, candidate001/handshake.json and
+series-closure.json; outputs/gpu-reset-banner152/REPORT.md and verification.json;
+outputs/gpu-swizzle153/REPORT.md; outputs/gpu-swizzle154/REPORT.md and verification.json.
+No emulator, Windows or physical driver change this turn; unchanged build003 pair.
+
+151 control coldPASS. Candidate completed both probes/twelve exact snapshots but
+failed second FTP return. DHCP REQUEST/ACK, guest link/RX and10.0.2.15 screenshot
+present. Forty FTP greetings arrived after host FIN:2.046431..16.271158s from SYN,
+2.046155..16.270989s from SYN/ACK. Two-second observer caused premature closure.
+150 control DHCP0.0.0.0 cause remains unresolved; no network patch justified.
+152 NEW matched pair coldPASS using eight-second WHOLE exchange deadline capped
+by unchanged overall return limits. Both explicit reset/second probe/normal return,
+twelve exact32768-byte files, full clean E allocation, existing E contents/chains
+and entire F unchanged. Deadline fragmentation/expiry tests and18network mutations
+PASS. Raw PCAP stays private; tracked summaries omit FTP payload/credentials.
+
+153 both coldFAIL despite exact colors and clean protocol/disk/return: drawnZ16=1
+instead of frozen expected0. Shared pbkit target binding selects W-buffering;
+vertices w=1 explain matched result. Original failures never waived or changed.
+154 fresh probe explicitly selectsZ-buffer0x00100001, draws depths0 and16384.
+Both cold/lifecyclePASS:64x32/32x64 swizzledA8R8G8B8/Z16,twelve exact32768-byte
+arenas,eight sparseCPU stores,untouched bytes,actual3CPUwrite evictions perarena
+in candidate and incompatible replacement in control.67oracle checks eachkit and
+10negative lifecycle gates PASS. XBE154SHA096a8536b29b0ac6db1d05a4a9e2235ee3bce93fa31237a92dbdcfa4560bd2af.
+No Windows, physical or performance qualification; no forced callback-race claim.
+
+ALL owned sessions CLOSED.151 control5029/79370/43655/93174,
+candidate34878/42380/44077(failed)/69994.152 control47960/78168/31586/19250,
+candidate41985/29433/45707/1416.153 builder60767,control49384/89073/13214/51177,
+candidate7056/40713/33529/87537.154 control31670/35886/34648/41603,
+candidate44477/7152/55225/63453. Eight cases sealed; never relaunch/recollect.
+Shared SDK and borrowed sources unchanged/restored, all frozen inputs verified.
+Next NEW pinned Windows correctness fixture using reviewed build003 candidate,
+strict events/storage/cold audit retained; comparable bounded performance after
+correctness. Native probes cover linear/swizzled color/depth, overlap, primitive
+lifetime and explicit system reset; these don't qualify physical redraw or modes.
+Preserve physical0101/video0093,0088rollback,immutable0.1.0 and all failed evidence.
+Emulator-only; no physical FTP/deployment/tests. C free~24.2GiB last observation;
+20GiB guard unchanged, inspect actual capacity before new work.
+
 # Native149 PASS; reset150 candidate PASS, control timeout; all CLOSED
 
 Read outputs/gpu-overlap149/REPORT.md and verification.json; then
