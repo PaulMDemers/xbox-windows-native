@@ -1,0 +1,35 @@
+# RAM0109 controlled crash handoff
+
+Fresh sacrificial emulator child from the immutable video-mode-reset prepared
+fixture. Reuse the exact previously reviewed probe/trigger bytes and source;
+no driver build, setting, service suppression, device-policy change or physical
+access. Preserve prior failed evidence and all rollback/release artifacts.
+
+Probe entry is the initial fixed-address breakpoint. At its actual execution,
+identify the pinned kernel from two IDT gates and PE timestamp/image size; then
+arm kernel-relative crash sites. Bound foreign entry hits and demand-fault
+steps, retain raw CPU/owner evidence, never edit registers or guest code.
+One local-emulator FTP launch, 600-second observer, at most64 stops; cleanup
+removes all breakpoints and resumes. Supervisor allows30 seconds of final
+output before capture/owned runner cleanup. Never stop immediately on bugcheck.
+
+At the real E058D103 cookie, pin every relocated RAM0109 text byte. Read the
+bounded32-slot ownership table and actual28-byte PDEV prefix before and after.
+Observe first entries of DrvAssertMode, DrvDisableSurface, DrvDisablePDEV and
+XwnUpload if executed after the bugcheck. No assumption that crash takeover
+deletes or disables the desktop primary. Require actual boot-video callbacks,
+retained shared descriptor, independent physical-page translation and resident
+boot-video text. Preserve a full64MiB physical snapshot at real dump return.
+
+Require paired NVNet shutdown and successful genuine dump return; all65,536
+captured payload bytes must match cold high-LBA pagefile bytes. Require extended
+ATA writes and containment within the intended64KiB, unchanged28-bit alias,
+full clean allocation, five structural hives, protected/parent payload/startup
+hashes, unchanged pagefile chain/configuration and clean event history/deltas.
+Normal shutdown0 is intentional; this can only qualify a debugger crash test.
+No recovery boot of the original image, physical qualification, arbitrary crash
+timing, provider-lock interruption, new mode or exhaustive file-content claim.
+
+Prepared parent includes unused mode124 helper and xwnram control DLL; both are
+protected unchanged. Exactly the startup command and new dump helper directory
+are staged. Existing synthetic null and unsupported-device policy is retained.

@@ -1,3 +1,49 @@
+# RAM0109 crash handoff diagnostic PASS; ALL owned sessions CLOSED
+
+Read outputs/video-ram-crash3/REPORT.md,NEXT.md,ram-verification.json,
+verification.json,payload-verification.json,render-verification.json,
+screen-verification.json,history-review.json and exact attempt records.
+All crash001 cases in video-ram-crash,video-ram-crash2,video-ram-crash3 CLOSED;
+never relaunch/recollect. No owned emulator/helper remains. Emulator-only.
+
+Third actual launch2026-10-08T02:19:45UTC:34events/59pins, kernel823e0000
+identified by two IDT gates. Same RAM0109 SHAed901376... and unchanged guest
+helpers/storage/sharedUC baseline. One ownership slot/PDEV/primary/shadow/active
+state unchanged across real E058D103 crash. No watched RAM disable/assert/upload
+callback. Actual VidResetDisplay,solidfill,string atIRQL31; complete5672resident
+bootvidtext exact, retained FCED6000->03C00000/Ready1/References1.589824physical
+RGB pixels exactly match legible crash-screen PNG. Full breakpoints teardown.
+
+Explicit scope:7572mapped RAM text bytes exact before/after;4096first text bytes
+unmapped. WholeRAMtextresidency NOT qualified. Original full-residency attempt
+remains failed, not silently waived. Page oracle rejects3actual RAM/PTE mutations;
+fixed/relocated/header-E14 pin cases reject code mutations.
+
+PairedNVNetshutdown and actualdumpreturn success;3payloads65536bytes exactly match
+cold offset148440145920. ExtendedATA39 LBAs289922160/8,289922168/64,289922232/56;
+all9writes contained. Alias11001192448 untouched. Cleanallocation326dirs6761files
+327dirclusters0errors/orphans,5structuralhives/35protected/payload/startup,
+unchangedconfiguration/pagefile1536clusters,zero warning/error/applicationevents.
+Intentionalnormalshutdown0, ordinaryFALSE/physicalFALSE/newrecoveryFALSE.
+CrashdiskSHA36a4a1b48fe440afb5819b2977393b6251d0860393d1938e7002accbad200df7.
+Never reboot original image. Prior128GiBrecovery remains separate completed work.
+
+Failurespreserved: firstfixedPErelocation assumption stopped observer beforetrigger;
+30sec cleanup interruptedunflushedWMI:12orphans/4chainerrors, strictFALSE.
+Secondfulltextpin E14; later read-only physicalsnapshot18processes sameabsentPTE;
+correctcoldheader/cleanallocation but missingreturn/payloadtrace,strictFALSE.
+Newthird mapped-page scope measuresactualmapping; no driver/settings changes.
+All3frozeninputs/uniqueclosedruns/unchangedparents reconciled inhistory-review.
+
+Next inspect actual NT5 Win32k surface lifecycle for a supported API test before
+new experiments. Same-mode reset/crashhandoff do not replace surfaces. Fourreal
+GDIhooks stillunobserved; performance/newmodes/1080i andhardware remain futurework.
+Physical0101/video0093,0088rollback,immutable0.1.0 unchanged. C~25GBfree20GiBguard.
+Closedstandalone rename001/005 offload complete/readbackverified onE viajunctions;
+manifest outputs/task-storage-offload/manifest-20261008.json. No backingchainmoved.
+
+--- Previous completed state ---
+
 # RAM0109 same-mode disable/re-enable PASS; all owned sessions CLOSED
 
 Read outputs/video-mode-reset/REPORT.md and verification.json, then
