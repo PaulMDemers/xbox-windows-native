@@ -1,3 +1,230 @@
+# RAM0109 real GDI and independent scanout PASS; ALL sessions CLOSED
+
+Read outputs/video-gdi-coverage4/REPORT.md, NEXT.md, verification.json,
+protocol-tests.json, evidence-verification.json and outputs/video-gdi-scanout5/
+REPORT.md/verification.json. All9 new guests CLOSED. Never relaunch/recollect
+coverage[1-4] or scanout[1-5] candidate001. Older ACTIVE headings superseded.
+No xemu process remains. Source/driver unchanged from RAM0109; no physical access.
+
+Ordinary probe121:26actual Win32GDIcases,2,555,904RGBpixels all exact; allAPI,
+source/reference immutability,zero reference callback deltas,26coherencechecks,
+26cold393216-byte files pass. Normalshutdown1/dashboard. Fullallocation325dirs/
+6785files/326directoryclusters,noerrors/orphans,5hives/protected/payload/startup
+hashes,zero warning/error/applicationevents. Same96MiB/1536clusterpagefile,
+sharedUCFCED6000->03C00000,configuration and inherited emulator policy unchanged.
+13actual-log mutation rejection tests pass.10/14callback routes observed;
+FillPath,StrokeAndFillPath,Paint,StretchBlt remain unobserved, not qualified.
+
+Independent same-binary scanout5:26raw emulated framebuffer captures/2,555,904RGB
+pixels,zero mismatches; runtime references equal26coldfileSHA256values.277resident
+pins,all11668relocateddisplay.textbytes; displayheaderE14 explicitly unavailable.
+2real entry demand-fault deferrals;73foreign API hits recorded/stepped. Full
+breakpoint teardown/resume. Same strict workload/integrity/events pass with normal
+shutdown1/dashboard. ordinary_qualifiedFALSE/physical_qualifiedFALSE for debugger
+run. No hardware speed or complete display lifecycle claim.
+
+Probe SHA276da9973597131f11fc9de031c5660b91df6cc8053e0ba577a3110d078bf3ac;
+91335-byte xwnown.dll ed901376d61e70a125fce834e20b366e49a1d632879debbcfedd621c18b6a440;
+source tree1f5aa1cee2bf9b4ca03e5581a8536db9c11db3d2.
+
+Preserved failures: first incomplete ordinary;3observer faults; fourth actual
+harness exit10 plus assisted restart/kbdhidwarning;119visibility guard failure;
+120zeroRGBerrors but8globalCopyBits reference-count failures. No waiver/relabel.
+121full-desktop window has zeroextra counts but does not retroactively attribute
+120's calls. Failed forced-stop SYSTEM hive checks remain failures; all final
+normal-shutdown hives pass. Exact frozeninputs/closedimages/backingchains verified.
+
+Final runner84531/tracer56790/supervisor39640/audit28249/evidence4749 CLOSED.
+Preparations33668/99072 and preceding named sessions also CLOSED. Cfree24265019392;
+20GiBguard unchanged. Preserve physical0101/video0093,0088rollback,immutable0.1.0,
+qualified128GiBrecovery and original111nonASCIIphysicalcorruption/restartunknown.
+
+Next NEW focused work: cursor exclusion/restoration and actual NT5 disable/
+re-enable/mode/bootvid/crash ownership, plus evidence for remaining4routes before
+claiming complete DDI support. Then bounded upload optimization with measured
+emulator and later hardware timings. Do not deploy RAM0109 yet. No required user
+action. Current direct work supersedes old elapsed automation cutoff; automation
+was not resumed or modified in this turn.
+
+# Independent probe121 scanout ACTIVE (2026-10-08 00:10:46 UTC)
+
+video-gdi-scanout5 candidate001 accepted00:10:46UTC; preparation33668 CLOSED.
+Owned runner84531/tracer56790/supervisor39640 ACTIVE. Same exact probe121 and
+RAM0109 as ordinary coverage4 strictPASS. Capture26 physical/reference snapshots,
+full runtime pins, bounded600sec/teardown; normal shutdown and cold audits remain.
+Do not duplicate launch. On close audit once, config/map after, closure/verify.
+Ordinary coverage4 verificationPASS and13actual-log mutation gates PASS. No
+physical access. All previous guests CLOSED; prior failures remain failures.
+
+# Probe121 ordinary CLOSED strictPASS; independent scanout preparation ACTIVE
+
+video-gdi-coverage4 candidate001 CLOSED (runner8297/supervisor52961/audit33981).
+26cases/2,555,904RGBpixels match, allAPI/reference/source/26files/coherence pass,
+zero reference callback deltas. Normalshutdown1/dashboard, cold integrity/events
+PASS, allocation325/6785/326,noerrors/orphans,5hives/protected/payloads. Same
+RAM0109, unchanged configuration/pagefile/sharedUC. This isolates the workload
+successfully but does not retrospectively identify the eight callbacks in120.
+
+NEW video-gdi-scanout5 candidate001 preparation33668 ACTIVE, not launched. Exact
+same probe121 and driver bytes, repaired actual-entry/process-filter observer,
+26 raw framebuffer/DIB snapshots, runtime/cold SHA matching, strict cold gates.
+Debugger qualification stays separate. All earlier guests CLOSED; never reuse.
+No physical access, driver change or relaxed gates. Await independent scanout.
+
+# Probe120 CLOSED: zero pixel errors, strict reference-counter failure
+
+video-gdi-coverage3 CLOSED (runner60591/supervisor29643/audit96869).26cases,
+2,555,904 RGB pixels all match; allAPI/source/reference/26coldfiles/coherence pass.
+Eight cases have +1 globalCopyBits during reference interval (0,2,6,14,16,18,21,23),
+strictFALSE preserved.10/14hooks observed;FillPath,StrokeAndFillPath,Paint,
+StretchBlt unobserved. Normalshutdown1/dashboard, cold integrity/eventsPASS,
+allocation325/6785/326,5hives/protected/payloads/pagefile/sharedUC unchanged.
+
+NEW video-gdi-coverage4 probe121 preparation99072 ACTIVE, compiled/reviewed,
+not launched. Only own window becomes full-desktop borderless topmost;same384x256
+cases and zero-reference-callback requirement. Controlled UI-activity discriminator,
+not proof/waiver of previous extra counts. No driver or physical changes.
+
+# Probe120 ordinary ACTIVE (2026-10-08 00:00:46 UTC)
+
+video-gdi-coverage3/candidate001 preparation34136 CLOSED; runner60591 and
+supervisor29643 ACTIVE, inspect launch.json acceptance. No debugger. Same RAM0109
+and26 cases. Only own-window bounded visibility establishment added; clip guard
+still requires simple full region. After cleanup audit once, config/map after,
+closure/verify; inspect actual results. All earlier guests CLOSED. No physical
+access. Preserve errors/harness/observer evidence, no relaxed qualification gates.
+
+# Ordinary119 CLOSED; visibility fix120 preparation ACTIVE
+
+video-gdi-coverage2 candidate001 CLOSED, runner54419/supervisor36629/audit46630
+CLOSED. No debugger/UI intervention. Normalshutdown1/dashboard, clean strict
+events/integrity. WorkloadFALSE: HARNESS_FAILURE case0/stage1, actualGetClipBox
+COMPLEXREGION3 bounds0,0,424,285; guard requiresSIMPLEREGION2 before any drawing.
+Error8 not evidence of memory exhaustion. No display defect established.
+
+NEW video-gdi-coverage3 probe120 same rendering operations/gates/driver adds
+bounded10sec own-window SetWindowPos HWND_TOPMOST/pump/wait (same established
+older GDI harness pattern), still requires simple full visibility. No dialogs
+closed or policy changed. Compiled/import-reviewed; preparation34136 ACTIVE,
+not yet launched. Physical baseline untouched; preserve all failed runs.
+
+# Instrumented ordinary GDI run ACTIVE (23:56 UTC)
+
+video-gdi-coverage2/candidate001 prepared50662 CLOSED; runner54419 and
+supervisor36629 ACTIVE. Inspect launch.json for acceptance. No debugger. Probe119
+same rendering tests/driver, stage diagnostics plus per-record flush and failed
+probe normal restart. After dashboard/cleanup audit ONCE, configuration/map after,
+closure/verify, inspect actual HARNESS_FAILURE stage before any new fix or launch.
+All prior listed guests CLOSED. No physical access; preserve all failed evidence.
+
+# Scanout4 CLOSED; stage-instrumented ordinary preparation ACTIVE
+
+Fourth diagnostic captured252pins/fulltext, file create success and actual probe
+exit10 before case0. No tool failure at that exit; workload failed. After explicit
+assisted Windows Restart via local emulator keys, normal shutdown1/dashboard and
+cold result.log recovered HARNESS_FAILURE0/error8. Error8 may be stale. Integrity
+PASS(allocation325/6759/326,5hives,protected/payloads); strictFALSE also kbdhid1
+warning retained. No rendering cases. Sessions21539/13742/74121/3371 CLOSED.
+
+NEW video-gdi-coverage2 candidate001 preparation50662 ACTIVE. Instrumented probe
+xwngdi119, same26 cases/driver/gates; records exact stage/clip/stats; flushes every
+log record, normal restart requested on harness failure without faking COMPLETE.
+Compiled/import reviewed; not launched yet. Earlier four failed guests preserved.
+No physical access or driver changes. All old active headings superseded.
+
+# Fourth GDI observer ACTIVE (23:51:22 UTC)
+
+video-gdi-scanout4/candidate001 accepted23:51:22UTC; preparation75626 CLOSED.
+Owned runner21539/tracer13742/supervisor74121 ACTIVE. Current observer records/
+steps through up to128 foreign-process shared API hits; actual probe operations
+retain process/thread/frame pairing and resident-code pins. Same unchanged
+probe/RAM0109. Earlier ordinary and3diagnostic cases CLOSED and failed; never
+relaunch/recollect. On tracer exit inspect its actual reason before ending guest;
+audit once after cleanup, after config/map, closure/verify. No physical access.
+
+# GDI scanout3 CLOSED FAIL; scanout4 preparation ACTIVE
+
+Probe first CreateFileA paired return handle960, last_error0 (owned GetLastError
+bytes confirmTEB+0x34). Two demand-page deferrals succeeded; observer then failed
+on shared API hit from non-probe process (identity not recorded by assertion).
+Teardown/resume true. Explicit stop, cold no log/refs/events, normalshutdown0,
+SYSTEM structural failure, allocation/protected/payloads clean. All sessions79380/
+13959/68453/44349 CLOSED. New scanout4 preparation75626 ACTIVE, same exact inputs,
+bounded foreign-process hit filter/step and preserved thread/frame pairing.
+No driver/probe fixes made speculatively. No physical access.
+
+# Third GDI observer ACTIVE (23:48:02 UTC)
+
+video-gdi-scanout3/candidate001 accepted23:48:02UTC. Preparation6488 CLOSED;
+runner79380/tracer13959/supervisor68453 ACTIVE. Exact same probe/driver as initial
+ordinary attempt. Both earlier diagnostic cases CLOSED/unqualified; never reuse.
+Actual API-entry pinning only; first-create arguments recorded before call and
+path/raw user TEB only after return. Up to3 real-fault deferrals per current entry,
+600sec trace bound, full teardown/resume. Inspect actual trace and sessions.
+
+# GDI scanout2 CLOSED FAIL; scanout3 preparation ACTIVE
+
+Second observer got through probe entry after one real fault/step/re-entry, then
+premature kernel32 API pin E14.250pins,0case events,teardown/resume true. Explicit
+stop/cold audit failed as earlier; no normal shutdown, SYSTEM structural failure,
+no log/refs, protected/payload/allocation clean. Never reuse. All sessions64572/
+33742/78888/12066 CLOSED. NEW video-gdi-scanout3 preparation6488 ACTIVE, not yet
+launched. Same binary inputs. Pin API only when actually executed, defer unreadable
+current entry at most3times/address through real CPU fault/step. Record first
+CreateFile return, pathname after access and raw user TEB; then actual exit/26cases.
+No physical access, no driver or test-probe changes, no waived gates.
+
+# Second GDI observer ACTIVE (23:44:21 UTC)
+
+video-gdi-scanout2/candidate001 accepted23:44:21UTC. Preparation50791 CLOSED;
+runner64572/tracer33742/supervisor78888 ACTIVE. Inspect actual records and resume
+these sessions, never duplicate. Entry E14 deferral bound3; capture bound600sec.
+No physical access/driver change. Earlier failed cases closed and preserved.
+
+# GDI scanout observer1 CLOSED FAIL; observer2 preparation ACTIVE
+
+video-gdi-coverage ordinary and video-gdi-scanout diagnostic candidate001 CLOSED,
+never relaunch/recollect. Their verification.json is false. Diagnostic1 reached
+probe entry,249 resident pins/full display text before probe text read E14.
+No actual cases captured. Teardown/resume successful; explicit early stop,
+normal shutdown0, no log/refs/events; SYSTEM structural hive check false after
+forced stop, protected/payload/allocation checks clean. Demand paging hypothesis
+only. Sessions56102/1421/98134/34149 all CLOSED.
+
+NEW video-gdi-scanout2 candidate001 preparation50791 ACTIVE. Same exact unchanged
+probe/driver. New observer records bounded unreadable-entry hits, lets CPU take
+its actual fault/step and rearms entry, up to3 deferrals before failure. No code,
+registers, return statuses or gates forced. Not yet launched. Preserve original
+probe compiler failure and all failed images. Physical baseline unchanged.
+
+# GDI ordinary incomplete CLOSED; startup/scanout diagnostic ACTIVE
+
+outputs/video-gdi-coverage/candidate001 CLOSED at23:38UTC after desktop/no probe
+window/no requested restart. Explicit early-stop.json; no successful ordinary
+claim. Cold audit: no result.log/reference files, zero new events/normal shutdown,
+clean allocation and protected/payload hashes, SYSTEM hive structural parse FAIL.
+Other4 hives parse. Do not relaunch/recollect. Runner30104/supervisor42137/audit84963
+CLOSED. This is an incomplete harness run, not proof of driver fault.
+
+NEW outputs/video-gdi-scanout/candidate001 uses same exact probe/driver and fresh
+immutable parent. Preparation46273 CLOSED; runner56102/tracer1421 ACTIVE; inspect
+launch.json for supervisor acceptance/session. Observer additionally pins probe
+entry, first CreateFileA and paired return and ExitProcess to explain missing
+workload. 26 raw scanout/reference captures only if real markers reached. Full
+teardown;600sec bound. No guest return or result forced. No physical access.
+
+# Real GDI coverage ACTIVE (2026-10-07 23:34 UTC)
+
+New outputs/video-gdi-coverage/candidate001 is running ordinary RAM0109 GDI
+reference coverage. Preparation19759 CLOSED; runner30104 and supervisor42137
+ACTIVE. Accepted23:34:01UTC; local emulator only. Do not duplicate launches.
+Probe26 operations, independent DIB reference files, per-case hook routing,
+RGB readback and full visible selfcheck; unchanged driver. One build indentation
+warning failure preserved in probe-build-failure001 before corrected compile.
+After normal return audit ONCE, configuration/pagefile after, closure; inspect
+all case outcomes before next diagnostic. New independent scanout child planned,
+not yet prepared/launched. No physical access or changes. Prior sessions CLOSED.
+
 # RAM0109 ownership and independent scanout PASS; ALL sessions CLOSED
 
 Read outputs/video-ram-ownership/REPORT.md, DESIGN.md, NEXT.md, pair-review.json,

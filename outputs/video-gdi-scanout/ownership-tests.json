@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "threads": 8,
+  "register_lookup_remove_cycles": 80000,
+  "limit": 32,
+  "foreign_guard_page": true,
+  "mixed_pdev_rejected": true,
+  "scope": "Membership concurrency; GDI call lifetime remains required, no racing render/destruction claim",
+  "pins": {
+    "display/ownership.c": "bf33820d4d35bc45e071be0aaef1e17e40a698eb55f7ce725f01a74e0a0eda0a",
+    "ownership-tests.c": "a9a5348e1ccf69ff99ec46173f57308c7709c1141ace8a34086c5d247585ea58",
+    "tests/framebuf.h": "490fcc8f2911b208445ed858d691e5617d461d54f1988433fc3de842fa127de4",
+    "tests/semaphore-shim.inc": "822b609969a363f87f5fc5525b2df98257d14d67879b0410db3b795fa2feac84"
+  },
+  "command": [
+    "gcc",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-fsanitize=address,undefined",
+    "-g",
+    "-pthread",
+    "/home/paul/xbox-windows-native/build/video-ram-ownership-registry001/ownership-tests.c",
+    "-o",
+    "/home/paul/xbox-windows-native/build/video-ram-ownership-registry001/ownership-test"
+  ],
+  "compiler": "gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+  "binary_sha256": "8cbdaab1c03031ae46cb88f30da187b2dce053c0ad341394b9f08d2ec03a0426",
+  "verifier_sha256": "920a0b1d331b6c369772f5185f07a3251bad559742424628108f44a8a967dc95"
+}
