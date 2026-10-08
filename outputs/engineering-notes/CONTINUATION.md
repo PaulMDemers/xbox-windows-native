@@ -1,3 +1,80 @@
+# Native GPU coherence143/144 PASS; all owned sessions CLOSED
+
+Read outputs/gpu-cpu-coherence144/REPORT.md, NEXT.md, closure.json,
+lifecycle-verification.json, recorded-lifecycle-tests.json and actual143/144 audits.
+142 is a preserved failed harness (missing outputs, likely unmounted E); NEVER
+relaunch/recollect any142/143/144 case. No next fixture or xemu candidate exists.
+
+143 read-first and144 unread-GPU/write-first each pass16 exact640x480 color/Z24S8
+readbacks (19,660,800bytes),120292 volatile CPU stores,2 pbkit lifetimes, normal
+reboot/dashboard, clean E allocation, unchanged existing E files and entire F
+(no top-overlay F ranges; backing chain rechecked).144 exact18 new files.
+Private pbkit adds only two read-only accessors. Shared SDK unchanged. Explicit
+mount diagnostics prove E initially unmounted.143 FTP RETR failure preserved;
+cold collection recovered every file.144 uses authoritative offline collection.
+
+Complete transfer order/geometry verified:143 color3uploads6downloads/depth4up6down;
+144 color3up8down/depth4up8down. Extra downloads cover first CPU store into unread
+GPU data. Same surfaces0x03850000/0x0397c000 survive pbkit reinit; later invalidation
+and recreation occur on dashboard handoff. No explicit emulator reset, overlapping
+watch, Z16/swizzled, Windows performance or physical qualification.14 recorded
+trace corruption gates and independent pixel/protocol failure checks pass.
+
+NEXT: design CPU-thread watch removal/rearm ownership around async_safe_run_on_cpu,
+TLB flush, PGRAPH lock, renderer context and in-flight callbacks, then add targeted
+reset/overlap coverage before optimization qualification. No immediate free from
+callback, blind callback disable, shared dirty-bitmap shortcut or guest cache fix.
+Only a correct candidate proceeds to matched ordinary Windows correctness and
+position/transfer/window performance runs. No speed improvement claimed yet.
+
+144 launch15:49:47UTC, dashboard15:50:09, cleanup15:50:10 October8. Runner89084,
+supervisor60145,audit41708,preparation11223 CLOSED.143 runner68734/supervisor71184/
+audit31369/preparation14731 CLOSED;142 runner67024/supervisor13958/audit46003/
+preparation35402 CLOSED. All source/binary/SDK pins rechecked; private artifacts
+pinned in each closure.json. No Windows or physical console launched.
+
+Safe offload20261008c moved closed standalone boot002/advance001 to E, preserving
+hash-verified contents and original paths through junctions. C~23GiB; unchanged
+20GiB guard. Preserve physical0101/video0093,0088rollback,immutable0.1.0/all failures.
+
+# Native GPU coherence143 PASS; unread-GPU-write144 ACTIVE
+
+Read outputs/gpu-cpu-coherence143/control001/audit.json and lifecycle-verification.json.
+Single143 launch15:45:51UTC/dashboard15:46:17UTC/cleanup15:46:18UTC.16 exact full
+color/Z24S8 readbacks (19,660,800 bytes),120292 CPU stores,2 pbkit epochs, normal
+reboot/dashboard. Exact transfer order verified: retained color3uploads6downloads,
+depth4uploads6downloads before first invalidation. Same surfaces survived reinit;
+later invalidation/recreation at dashboard handoff. No explicit device-reset proof.
+E allocation clean, all existing E files unchanged, no F overlay ranges. Bootstrap
+proves E initially unmounted then successfully mounted. FTP RETR failed but cold
+audit recovered every file; preserve transport failure separately. All143 sessions
+CLOSED (runner68734,supervisor71184,audit31369,preparation14731).
+
+New outputs/gpu-cpu-coherence144/control001 launchedONCE15:49:47UTC. Runner89084 and
+supervisor60145 ACTIVE;preparation11223 CLOSED. Same GPU patterns except extra GPU
+clear with DIFFERENT background immediately before first CPU store, NO CPU read.
+This tests first-write download preserving untouched GPU pixels. New frozen inputs,
+unique paths, same emulator/SDK, no drivers or hardware changed. Observe return,
+close runner, audit.py ONCE and verify-lifecycle.py. Expected8 downloads per surface
+before first invalidation (vs6 in143). No optimization patch yet. Preserve142 failure.
+C~23GiB,20GiB guard retained. Offload manifest20261008c preserved original paths.
+
+# Native GPU coherence143 ready for single emulator launch
+
+Read outputs/gpu-cpu-coherence142/control001/audit.json: CLOSED failed harness,
+accepted15:42:11UTC/dashboard15:42:36UTC, no output log/readbacks. E allocation clean,
+all existing E files unchanged, entire F unchanged (no top-overlay F ranges).
+Missing E DOS mount is likely: WinAPI uses ObDosDevicesDirectory; nxdk mounts D only.
+Never relaunch/recollect142. Runner67024/supervisor13958/audit46003/prep35402 CLOSED.
+
+NEW143 adds explicit E mount plus D bootstrap.log. Build and fresh fixture verified,
+preparation14731 CLOSED. No guest yet. Frozen inputs recorded. Next one native launch,
+then16 full color/Z24S8 readbacks, independent oracle and lifecycle coverage.
+GPU clears/17 repeated CPU writes/partial reuse/full clear,2 pbkit epochs. Do not
+claim reset/invalidation until trace proves it. No xemu/Windows/physical change.
+Offload20261008c safely relocated closed standalone boot002/advance001 to E;
+all hashes checked, original paths junctions. C~23.5GiB,20GiB guard unchanged.
+
 # Surface lifetime diagnostic PASS; all owned sessions CLOSED
 
 Read outputs/video-surface-history/REPORT.md, NEXT.md, OPTIMIZATION-DESIGN.md,
