@@ -1,3 +1,41 @@
+# RAM0109 monochrome cursor PASS; all owned sessions CLOSED
+
+Read outputs/video-cursor-exclusion/REPORT.md, verification.json, protocol-tests.json
+and outputs/video-cursor-scanout/REPORT.md, verification.json, oracle-tests.json,
+pair-review.json and NEXT.md. Both candidate001 cases CLOSED; never relaunch or
+recollect. No xemu/helper remains. Emulator-only; no driver or physical changes.
+
+Ordinary probe122 completed26actual GDI draws beneath authored visible32x32
+monochrome cursor with hotspot7,11/fourAND-XORquadrants/fourpositions. Move-away
+readback:2,555,904RGBpixels exact,26coldreferencefiles,source/reference immutability,
+zero reference callbacks,fullcoherence. Normalshutdown1/dashboard,fullallocation
+325dirs/6785files/326dirclusters,0errors/orphans,5hives/protected/payload/startup,
+strict events clean.16actual-log mutations rejected.10/14drawingcallbacks seen;
+FillPath/StrokeAndFillPath/Paint/StretchBlt still unobserved.174CopyBits counts span
+cursor movement and drawing, not proof of each call's origin.
+
+Independent same-binary debugger:26cursor-present+26restoredrawframebuffer shots,
+5,111,808RGB comparisons,0mismatches;18,109cursorpixels/13,579changedfrombackground.
+All runtime refs exactly equal26coldSHA256files.433residentpins/full11668bytes
+relocateddisplay.text;headerE14 explicitly retained;2realentryfaultdeferrals and
+72foreignsharedAPIhits. Pairedprocess/thread/index,actualStage15/pre-movecompiler
+site,EAX1000/EDX550,boundedreads,fullbreakpointteardown/resume. Same clean cold gates
+normalshutdown1/dashboard.5oracle mutations rejected. Diagnostic ordinaryFALSE,
+physicalFALSE; separateordinaryTRUE. Top-left desktop edge and test-area right/
+bottom clipping covered, not desktop right/bottom. No color/animated/lifetime-race
+or mode/boot-video/crash qualification. No physical speed claim.
+
+Probe122 SHA02bc4a802a8717e08ce2cfccebec4cba99d7ee9a0148ecd001f7c0595ccf8cf0;
+unchanged91335-byteRAM0109 ed901376d61e70a125fce834e20b366e49a1d632879debbcfedd621c18b6a440,
+tree1f5aa1cee2bf9b4ca03e5581a8536db9c11db3d2. Same96MiB/1536clusterpagefile,
+sharedUCFCED6000->03C00000 and inheritedsyntheticdevicepolicy. C:about23.9GBfree,
+20GiBbuildguardunchanged. Pair verifier rechecks frozeninputs/closeddisks/parents.
+
+Next fresh kit:colorcursorreplacement/hide/show, thenactualNT5displaydisable/
+re-enable/mode/boot-videoownership; useevidencebeforesourcechanges. Preservephysical
+FATX0101/video0093,original0088,immutable0.1.0,qualified128GiBrecovery andallfailures.
+Original111nonASCIIphysicaldamage/restart remainsunresolved. Do not deployRAM0109yet.
+All prior headings below are historical; no active sessions carried forward.
 # RAM0109 real GDI and independent scanout PASS; ALL sessions CLOSED
 
 Read outputs/video-gdi-coverage4/REPORT.md, NEXT.md, verification.json,
