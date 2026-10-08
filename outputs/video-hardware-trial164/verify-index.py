@@ -45,7 +45,9 @@ review = json.loads((k / 'controller-source-review.json').read_text(encoding='ut
 ready = json.loads((k / 'hardware-diagnostic-ready.json').read_text(encoding='utf-8'))
 assert review['controller_sha256'] == ready['controller_sha256'] == sha((k / 'physical-controller.py').read_bytes())
 result = dict(passed=True, manifests=pins, disk_pins=disk, indexed_pins=index,
-              parsed_python_sources=syntax, physical_deployment_performed=False,
+              parsed_python_sources=syntax, verifier_console_access=False,
+              physical_deployment_performed=(k/'physical.json').exists() and
+                  json.loads((k/'physical.json').read_text(encoding='utf-8'))['launch_requested'],
               frozen_runtime_sources_changed=False,
               inherited_git_newline_normalization=inherited_newlines)
 (k / 'index-verification.json').write_bytes((json.dumps(result, indent=2) + '\n').encode('utf-8'))
