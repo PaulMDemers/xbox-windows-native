@@ -1,3 +1,41 @@
+# Position sensitivity measured; ALL owned sessions CLOSED
+
+Read outputs/video-transfer-position/REPORT.md,NEXT.md,analysis.json and
+candidate001/verification.json. Strict ordinary emulator/timingPASS:45cases,
+90phases,13,271,040exactlivepixels,45coldrefs/45actualRGB,89,856BitBltcalls.
+Normalshutdown/dashboard,clean327dirs6851files328clusters,zeroerrors/orphans,
+5hives/protected/startup/pagefile/configuration and strict events allPASS.
+Unchanged0112 and emulator. Exclusive build/xemu leases verified; no heavyhost
+work during measurement. No physical access or new driver binary.
+
+Solid192x96 translation y0->160 increases primary median72.50->3479.85us(48x),
+x128 stays71.24us; memory~29us. H16 down2.06x,V16down17.79x. Samebytes/count/shape
+withintranslatedgroups. Widths64..384 fixedheight96 at(320,64) cost638..5176us.
+Allsamplesretained, substantialvariation, oneboot only. Not purecopybandwidth or
+physicalFPS. Staticrowcopy/virtualpageTLB/dirtydisplay leads pinned, no causeclaim.
+NEXT: NEW boundeddebugger observation of actualsource/dest/stride/rectangle,
+memcpy target/residentbytes and page translations for top/lowercases, then assess
+emulator translation/dirty-path discriminator. No speculative driverpatch.
+
+Preparation52776,runner70466,supervisor41487,audit46083,verifier92378 CLOSED.
+Single launch05:00:37.931577UTC Oct8;dashboard05:05:35.842531;leaseclosed05:05:36.1751498.
+Never relaunch/recollect. Privatework/runs/nt5-vposition-candidate001/hdd.qcow2
+pinned in closure. C:~20.75GiBfree,20GiBguard unchanged. No nextattempt prepared.
+Preservephysical0101/video0093,0088rollback,immutable0.1.0 and all earlier evidence.
+Reviewed source/reports readyforcommit/push.
+
+# Position/width discriminator in preparation
+
+New outputs/video-transfer-position, unchanged0112, probe140.754geometrychecks
+and8protocolfailuregates PASS; compile/NT5review PASS. Three shapes at three
+origins plus sixwidths fixedheight96,45samples,strictpriorclock/cold/eventgates.
+Static rowcopy/TLB/dirtydisplay leads are pinned in source-review.json; no runtime
+cause inferred. No physicalaccess, debugger or driver/emulatorbinary changes.
+Preparation52776 CLOSED. Runner70466 and supervisor41487 ACTIVE. Single launch
+accepted2026-10-08T05:00:37.931577UTC. Exclusive build/xemu leases verified.
+No heavy host work during measurement. Inspect records; never duplicate launch.
+Previous transfer kits CLOSED. Preserve all evidence and20GiBguard.
+
 # Exclusive transfer-cost benchmark complete; ALL owned sessions CLOSED
 
 Read outputs/video-transfer-exclusive/REPORT.md, NEXT.md, analysis.json and
