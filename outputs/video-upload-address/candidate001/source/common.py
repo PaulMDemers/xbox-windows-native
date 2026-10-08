@@ -1,0 +1,24 @@
+"""Cold readers, pinned identities and strict video profile log validation."""
+import hashlib,importlib,json,sys
+from pathlib import Path
+k=Path(__file__).resolve().parent;ws=k.parents[1]
+sys.path.insert(0,str(k.parent/'fatx-mapped-eof'))
+from coldio import ColdIO
+sys.path.insert(0,str(ws/'outputs/native-windows-paint-save'))
+m=importlib.import_module('prepare-fixture')
+m.fatx.PARTITIONS['F']=(15633072*512,472764096*512)
+STARTUP='Documents and Settings/All Users/Start Menu/Programs/Startup/xwnsetup.cmd'
+HIVES=['system','software','default','sam','security']
+PROTECTED=[('F','winnt/system32/drivers/'+p) for p in ['xwnfatx.sys','xboxvnt5.sys','nvnetnt5.sys','atapi.sys','ndis.sys','tcpip.sys']]+[('F','winnt/system32/'+p) for p in ['setupapi.dll','ntoskrnl.exe','kernel32.dll','ntdll.dll']]+[('E','Applications/XWNFBoot/'+p) for p in ['default.xbe','freeldr.sys','loader/halxboxnt5.dll']]
+PROTECTED += [('F','winnt/system32/'+p) for p in ['msvcrt.dll','advapi32.dll','user32.dll','hid.dll','shell32.dll']]
+PROTECTED += [('F','winnt/system32/drivers/videoprt.sys')]
+PROTECTED += [('F','winnt/system32/'+p) for p in ['gdi32.dll','win32k.sys','bootvid.dll']]
+PROTECTED += [('E','Applications/XWNFBoot/loader/xboxbvid.dll')]
+PROTECTED += [('F','winnt/system32/msimg32.dll')]
+read=lambda p:json.loads(p.read_text())
+def sha(p):
+    with p.open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
+def save(p,r):p.write_text(json.dumps(r,indent=2)+'\n')
+def readers(io,disk):return {v:m.Writer(io,m.fatx.open_partition(io,disk,v)) for v in ['E','F']}
+
+from protocol import CASES,HOOKS,fnv,validate_log

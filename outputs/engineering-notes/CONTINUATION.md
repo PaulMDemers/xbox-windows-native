@@ -1,3 +1,55 @@
+# Upload address diagnostic complete; ALL owned sessions CLOSED
+
+Read outputs/video-upload-address2/REPORT.md,NEXT.md,trace-verification.json,
+verifier-tests.json and source-followup.json. DiagnosticPASS, ordinary/timingFALSE.
+Three translated solids captured:24events/15residentpins, same localmemmove/forward
+repmovsd,768exactfirstrowbytes,pairedcopy/uploadreturns. Full96rowmapping per side:
+shadow0xe1c00000,framebuffer0xfced6000,pitch4096,CR3 0x03985000. SourcePWT/PCD/PAT0/0/0,
+destination1/1/0 atallpositions; all4KiBpages. Destinationphysical0x03c00000+pixeloffset,
+sourcefragmented,nooverlap in sampledsets. No effectivePAT/MTRR or TLBmiss claim.
+DisplayheaderE14 explicit;kernel loaderidentity/exactrelocatedcode/coldhash retained.
+
+Full45casecoldPASS:13,271,040pixels,45refs/45actualRGB,86,528BitBltcalls,normalshutdown/
+dashboard,zeroeventwarnings/errors/applicationdelta,327dirs6851files328clusters,
+0errors/orphans,5hives/protected/startup/pagefile/configuration. Allbreakpointsremoved
+and resumed.8synthetictracecorruptiongatesPASS. No driver/emulatorbinarychange.
+First outputs/video-upload-address remains diagnosticFAIL (userloaderlist E14),
+cleanresumedworkload;diagnostic-result.jsonFALSE. Neverrelaunch/recollecteither.
+
+NEXT: verify existing xemu surface_cpu_read/write tracebackend/routing, then NEW
+bounded marker-gated eventcapture to test GPU surface CPU-access callback overlap
+at slowaddresses. Staticcallback/PGRAPHlock/dirtydownload path is a lead,notcause.
+Do notdisablecallbacks or changeguestcache toforcespeed; no speculativepatch.
+Preparation51131,runner6302,tracer80999,supervisor81307,audit90793,verifier96282 CLOSED.
+Launch05:25:44.530603UTC Oct8,return05:30:35.583805. Private nt5-vaddress2-candidate001
+HDD pinned;no nextfixture. Physical0101/video0093,0088rollback,0.1.0 unchanged.
+C:~21GiBfree,20GiBguard unchanged. Reviewedsource/evidence readyforcommit/push.
+
+# Address diagnostic retry active; first attempt closed and preserved
+
+outputs/video-upload-address/candidate001 CLOSED diagnosticFAIL: userloaderlist
+E14 beforeuploadcapture; breakpointremoved/resumed. Full45casecold/eventPASS,
+normalshutdown/dashboard,ordinary/timingFALSE. diagnostic-result.json preserves
+failure, neverrelaunch/recollect. Sessions33253/14400/87135/11815/81784/69156/99855 CLOSED.
+Fresh outputs/video-upload-address2 sameprobe141/driver/emulator; onlyobserver
+identifies actualprobeheader/code withoutunreadablePEBlist. Preparation51131 CLOSED.
+Runner6302,tracer80999,supervisor81307 ACTIVE, singlelaunchaccepted05:25:44.530603UTC
+Oct8. Inspectrecords; no duplicate launch. Tracerbound64stops/600sec,fullteardown.
+Afterreturn collect/audit/config/map once,closure/verify,verify-trace/test-verifier;
+neverqualifydiagnostictimings. No physicalaccess, driver/emulatorpatch or settings.
+
+# Upload address diagnostic in preparation
+
+New outputs/video-upload-address, unchanged0112/emulator, probe141. Adds two
+markers and one untimedprimarydraw for first3translatedsolids before oldwarmup;
+full45case cold/event workload retained.754geometry/8protocolchecks and NT5build
+reviewPASS. Preparation14400 ACTIVE; no guestlaunch yet. Compile33253 CLOSED.
+Tracer64stop/600sec bound,allbreakpointcleanup,actualPDEV/96rowpagewalk/copyargs/
+localmemmove repmovsd and pairedreturns. Debugger timing/ordinaryqualifiedFALSE.
+Staticbinaryreview shows source memcpy resolves to localmemmove,notimportedcopy.
+No physicalaccess, source/emulatorchanges or speculativecachefix. Preserveprior
+results/failedcases and20GiBguard. Inspectrecords beforelaunch; do notduplicate.
+
 # Position sensitivity measured; ALL owned sessions CLOSED
 
 Read outputs/video-transfer-position/REPORT.md,NEXT.md,analysis.json and
