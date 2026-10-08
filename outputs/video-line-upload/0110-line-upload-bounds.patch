@@ -1,0 +1,32 @@
+--- a/win32ss/drivers/displays/framebuf/enable.c
++++ b/win32ss/drivers/displays/framebuf/enable.c
+@@ -33,12 +33,12 @@
+    if (!p->ScreenPtr || !p->hSurfEng || !p->ShadowObject || !p->ShadowActive) return 0;
+    if (Escape == 0x58574431 && OutBytes == 32)
+    {
+-      Data[0]=0x44525758;Data[1]=109;Data[2]=p->ScreenWidth;Data[3]=p->ScreenHeight;
++      Data[0]=0x44525758;Data[1]=110;Data[2]=p->ScreenWidth;Data[3]=p->ScreenHeight;
+       Data[4]=p->ScreenDelta;Data[5]=p->BitsPerPixel;Data[6]=p->ScreenDelta*p->ScreenHeight;Data[7]=1;
+       memcpy(Out,Data,32);return 1;
+    }
+    if (Escape != 0x58574432 || OutBytes != sizeof(Data)) return 0;
+-   RtlZeroMemory(Data,sizeof(Data));Data[0]=0x53525758;Data[1]=109;
++   RtlZeroMemory(Data,sizeof(Data));Data[0]=0x53525758;Data[1]=110;
+    for(i=0;i<14;i++) Data[2+i]=p->ShadowCalls[i];
+    Data[16]=p->ShadowUploads;Data[17]=(ULONG)p->ShadowBytes;Data[18]=(ULONG)(p->ShadowBytes>>32);
+    Data[19]=XwnCheckScanout(p);Data[20]=p->ShadowActive;
+--- a/win32ss/drivers/displays/framebuf/shadow.c
++++ b/win32ss/drivers/displays/framebuf/shadow.c
+@@ -108,7 +108,11 @@
+  if (!p || !p->ShadowActive) return FALSE;
+  if (p->ShadowCalls[6] != 0xffffffff) ++p->ShadowCalls[6];
+  ok=EngLineTo((TRUE ? XwnSub(p, pso) : NULL), pco, pbo, x1, y1, x2, y2, prclBounds, mix);
+- if (XwnOwner(pso)) XwnUpload(p, NULL, pco);
++ /* NT5 supplies conservative bounds including both integer endpoints.
++    Keep the old full-clip fallback for absent or degenerate bounds. */
++ if (XwnOwner(pso)) XwnUpload(p,
++     prclBounds && prclBounds->left < prclBounds->right &&
++     prclBounds->top < prclBounds->bottom ? prclBounds : NULL, pco);
+  return ok;
+ }
+ 

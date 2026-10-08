@@ -1,4 +1,51 @@
-# Upload baseline complete; ALL owned sessions CLOSED
+# RAM0110 line upload optimization complete; ALL owned sessions CLOSED
+
+Read outputs/video-line-upload/REPORT.md, NEXT.md and review.json, plus
+outputs/video-line-regression/pair-review.json and
+outputs/video-line-gdi/candidate001/verification.json. All source/build/evidence
+pins reviewed. No physical access or deployment. Never relaunch/recollect closed
+cases; inspect actual records before new work.
+
+Only valid LineTo upload bounds and revision values changed from RAM0109. NULL,
+empty or inverted bounds retain the old full-clip fallback; rendering,ownership,
+cache,cursor and lifetime paths unchanged. Actual shadow.c passed241 ASan/UBSan
+host cases. Build15948 CLOSED. Candidate DLL91335 bytes SHA256:
+a1d5cf1eea27729a23c06e177f89f862eedcff0a1d0aa002815f4456279b4e98.
+Source tree e6ebd1273a9214051818173a2e6a4b4b6c825a79.
+
+Matched ordinary video-line-regression control001/candidate001 both strictPASS
+and attributionPASS:18 exact cold images each,1769472 compared pixels per run. Same parent/probe130; only display payload differs.
+Short horizontal/vertical line upload2359296 ->132 bytes; all18 samples total
+21258272 ->42564. No physical FPS or actual window-drag timing claim. Control
+preparation28151/runner6315/supervisor86300/audit14099 and candidate57307/81628/
+75212/87350 CLOSED. Pair verifier metadata path failure is preserved separately;
+corrected analysis required no guest rerun. Stale inherited109 captions are
+explained in REPORT.md; real hashes/revision logs identify the candidate.
+
+Broader video-line-gdi/candidate001 strict ordinaryPASS:26 exact images and
+2555904 RGB pixels,78 authored cursor phases,successful same-mode CDS_TEST/RESET.
+Accepted2026-10-08T03:36:49.377433UTC; returned03:38:18.898910UTC. Preparation47550,
+runner79660,supervisor16014,audit63330 CLOSED. Full allocation326dirs6786files/
+327directoryclusters,zeroerrors/orphans;5hives/protected/startup/config/pagefile
+unchanged;normalshutdown/dashboard;zero warning/error/application events.
+Unobserved FillPath/StrokeAndFillPath/Paint/StretchBlt callbacks remain unqualified.
+No independent new cursor-pixel or surface-lifetime observation is claimed.
+
+Preserve failed video-line-bounds diagnostic: all18linepairs/36markers/73pins
+verified narrowly in bounds-evidence.json, but full diagnosticFALSE due late
+ExitProcess kernel32headerE14. Breakpoints removed/resumed; cold workloadPASS.
+Original non-NULL clip/empty-line assumptions were disproved by real captures.
+Preparation76062/config10981/runner47613/tracer36154/supervisor25913/audit65036/
+bounds-verifier30577 CLOSED. Never rewrite the failed whole-run outcome.
+
+NEXT: investigate measured complex-clip upload waste in a new isolated kit, with
+actual NT5 enumeration evidence before a separate patch; see video-line-upload/NEXT.
+Physical FATX0101/video0093,0088 rollback,immutable0.1.0,completed128GiB work and all
+failures remain preserved. Emulator synthetic null/unsupported-device policy is
+unchanged. C free about23.9GB decimal;20GiB build guard unchanged. No owned process
+remains running. Commit/push this reviewed result; subsequent work begins fresh.
+
+# Prior upload baseline complete; ALL prior sessions CLOSED
 
 Read outputs/video-upload-bounds/REPORT.md, NEXT.md, verification.json and
 profile-verification.json plus actual candidate001 records. Accepted
