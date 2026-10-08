@@ -1,3 +1,14 @@
+# Physical drawing diagnostic164 completed — October8,2026
+
+The optimized stack passed four live copy checks and five bounded GDI loops on
+the console, with a normal restart and correct persisted bindings/shared trace.
+Original display/SYSTEM restored and readback verified. Sole Ftdisk49 retained
+as strict failure; no new application errors or popups. Historical timing suggests
+large readback/overlap gains but slower fills/uploads; fresh paired measurements
+are next. No permanent candidate installation or new video-mode qualification.
+
+## Prior status (superseded above)
+
 # October8 physical-stack display compatibility and hardware diagnostic preparation
 
 The optimized shared-UC/RAM0112 display stack passed ordinary drawing and normal

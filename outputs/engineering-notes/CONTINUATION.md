@@ -1,3 +1,33 @@
+# Physical display diagnostic164 PASS; baseline restored; timing tradeoffs identified
+
+User confirmed console ready. ONE accepted physical launch22:15:25UTC Oct8;
+dashboard return observed; collected22:18:02, restored22:18:12. Actual sources:
+outputs/video-hardware-trial164/physical.json, physical-return.json,
+physical-audit.json, physical-hive-audit.json, restored-verification.json,
+physical-summary.json and REPORT.md. Never relaunch/recollect164.
+
+4live pixel/copy checks,5bounded loops,childexit0,normal restart/EventLog6006 and
+dashboard PASS. Caps1024x576x32/60;3candidatepayloads exact;44trace/dropped0,
+shared acquire status0/FCED0000/03C00000. Two typedxwnown bindings persisted in
+savedSYSTEM;SYSTEM/SOFTWARE fullparse/headerchecks PASS. Noapplicationerrors/popup.
+SoleFt49 exactknownsignature remainsstrictFALSE. Scopedphysicaldisplaydiagnostic
+PASS only; nofullphysicalallocation/all-file audit orperformancequalification.
+
+Startup restoredFIRST; afterevidence preserved; original miniport/provider/SYSTEM
+restored;introducedxwnown removed. Readback14baselinefiles+console rollback ZIP
+exact. Actual0101/video0093 remainsinstalled;0088/0.1.0 unchanged. ALL owned
+sessions64718(deploy),91913(observer),45847(collect/restoreverify) CLOSED.
+Noemulator/observer/build/NBD currently running. No furtherlaunchthisturn.
+
+Exploratory SAMEprobe historicalphysical003comparison:screenreadback42.42x,
+overlapright/down21.91x,left/up6.79x faster;fillthroughput0.648x,upload0.564x.
+Notfreshpairedcontrol,notwindowdragFPS. NEXT:newunique pairedphysicaltimingkit
+withrepeatvariance, investigatefill/uploadcost, preservebaseline/strictFt49failure;
+do notinstallcandidatepermanently fromthissinglesample. OptionalHDMI/cablequestion
+forlater720p/1080i stillpending; no newmodequalified. Review/check/commit/push.
+
+## Prior preparation state (superseded by completed164 above)
+
 # Display compatibility163 and fresh helper165 PASS; hardware diagnostic164 prepared
 
 Read outputs/video-physical-review159/REPORT.md and capture/binding JSON;

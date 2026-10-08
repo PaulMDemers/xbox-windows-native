@@ -1,4 +1,33 @@
-# One-shot hardware diagnostic packet prepared; not deployed
+# Physical display diagnostic completed; original baseline restored
+
+The user confirmed the console ready. Exactly one launch was accepted at
+2026-10-08 22:15:25 UTC; dashboard return was observed, and collection completed
+at22:18:02. Startup was restored first, then all results were preserved and the
+original miniport, boot-video provider and SYSTEM restored. The introduced xwnown
+DLL was removed. Readback verified14 baseline files plus the console rollback ZIP.
+
+Four live copy/pixel checks and all five bounded timed loops passed. The runner
+logged child exit0 and NORMAL_RESTART_REQUEST; EventLog recorded one normal
+shutdown. Runtime caps were1024x576x32/60. All three deployed binary hashes were
+exact;44 current-boot trace records, no drops, shared framebuffer acquisition
+status0/addressFCED0000/physical03C00000. Both typed xwnown bindings persisted in
+the saved SYSTEM. Saved SYSTEM/SOFTWARE parse and header checksum/sequence checks
+passed. No new application events/popups. Sole warning/error: the exact inherited
+Ftdisk49 signature. Scoped drawing diagnostic PASS, strict release qualification
+FALSE; no full physical allocation/all-file audit or performance qualification.
+
+The same-probe historical baseline comparison is exploratory, not a fresh paired
+trial. Screen-to-DIB was42.42x faster; overlapping copies21.91x/right-down and
+6.79x/left-up. Opaque fill throughput was0.648x and DIB upload0.564x baseline.
+All timing includes flush, visibility and message checks. Hardware window-drag
+FPS is unmeasured. Next: fresh paired baseline/candidate timing with repeated
+samples and investigation of fill/upload cost, before changing installed display.
+
+Read physical-summary.json, physical-audit.json, physical-hive-audit.json,
+restored-verification.json and physical.json. All owned processes closed; never
+repeat this launch or collection. Original0101/video0093 installed,0.1.0 preserved.
+
+## Prior preparation and emulator evidence
 
 The fresh xwnv164 helper is compiled/reviewed with the same NT5 import set and
 success/normal-restart behavior as the previously physical-tested runner. Only
