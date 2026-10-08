@@ -1,0 +1,75 @@
+--- a/win32ss/drivers/displays/framebuf/enable.c
++++ b/win32ss/drivers/displays/framebuf/enable.c
+@@ -33,12 +33,12 @@
+    if (!p->ScreenPtr || !p->hSurfEng || !p->ShadowObject || !p->ShadowActive) return 0;
+    if (Escape == 0x58574431 && OutBytes == 32)
+    {
+-      Data[0]=0x44525758;Data[1]=110;Data[2]=p->ScreenWidth;Data[3]=p->ScreenHeight;
++      Data[0]=0x44525758;Data[1]=112;Data[2]=p->ScreenWidth;Data[3]=p->ScreenHeight;
+       Data[4]=p->ScreenDelta;Data[5]=p->BitsPerPixel;Data[6]=p->ScreenDelta*p->ScreenHeight;Data[7]=1;
+       memcpy(Out,Data,32);return 1;
+    }
+    if (Escape != 0x58574432 || OutBytes != sizeof(Data)) return 0;
+-   RtlZeroMemory(Data,sizeof(Data));Data[0]=0x53525758;Data[1]=110;
++   RtlZeroMemory(Data,sizeof(Data));Data[0]=0x53525758;Data[1]=112;
+    for(i=0;i<14;i++) Data[2+i]=p->ShadowCalls[i];
+    Data[16]=p->ShadowUploads;Data[17]=(ULONG)p->ShadowBytes;Data[18]=(ULONG)(p->ShadowBytes>>32);
+    Data[19]=XwnCheckScanout(p);Data[20]=p->ShadowActive;
+--- a/win32ss/drivers/displays/framebuf/shadow.c
++++ b/win32ss/drivers/displays/framebuf/shadow.c
+@@ -12,18 +12,50 @@
+ {
+  return XwnOwner(s)==p ? p->ShadowObject : s;
+ }
++static VOID XwnUploadBox(PPDEV p, const RECTL *r)
++{
++ LONG y; ULONG bytes;
++ if (r->left>=r->right || r->top>=r->bottom) return;
++ bytes=(r->right-r->left)*4;
++ for(y=r->top;y<r->bottom;y++) memcpy((BYTE*)p->ScreenPtr+y*p->ScreenDelta+r->left*4,(BYTE*)p->ShadowBits+y*p->ScreenDelta+r->left*4,bytes);
++ if(p->ShadowUploads!=0xffffffff) ++p->ShadowUploads;
++ p->ShadowBytes+=(ULONGLONG)bytes*(r->bottom-r->top);
++}
+ VOID XwnUpload(PPDEV p, const RECTL *rect, const CLIPOBJ *clip)
+ {
+- RECTL r; LONG y; ULONG bytes;
++ RECTL r;
+  if (!p->ShadowActive || !p->ScreenPtr || !p->ShadowBits) return;
+  r.left=0;r.top=0;r.right=p->ScreenWidth;r.bottom=p->ScreenHeight;
+  if(rect) {r.left=max(r.left,rect->left);r.top=max(r.top,rect->top);r.right=min(r.right,rect->right);r.bottom=min(r.bottom,rect->bottom);}
+  if(clip) {r.left=max(r.left,clip->rclBounds.left);r.top=max(r.top,clip->rclBounds.top);r.right=min(r.right,clip->rclBounds.right);r.bottom=min(r.bottom,clip->rclBounds.bottom);}
+  if(r.left>=r.right || r.top>=r.bottom) return;
+- bytes=(r.right-r.left)*4;
+- for(y=r.top;y<r.bottom;y++) memcpy((BYTE*)p->ScreenPtr+y*p->ScreenDelta+r.left*4,(BYTE*)p->ShadowBits+y*p->ScreenDelta+r.left*4,bytes);
+- if(p->ShadowUploads!=0xffffffff) ++p->ShadowUploads;
+- p->ShadowBytes+=(ULONGLONG)bytes*(r.bottom-r.top);
++ if (clip && clip->iDComplexity==DC_COMPLEX)
++ {
++  struct { ULONG count; RECTL rects[32]; } batch;
++  ULONG step,i; BOOL more;
++  /* Relevant-only enumeration has no reliable start count on NT5. */
++  CLIPOBJ_cEnumStart((CLIPOBJ*)clip,FALSE,CT_RECTANGLES,CD_ANY,0);
++  for (step=0;step<256;step++)
++  {
++   batch.count=0;
++   more=CLIPOBJ_bEnum((CLIPOBJ*)clip,sizeof(batch),&batch.count);
++   if (batch.count>32) break;
++   for (i=0;i<batch.count;i++)
++   {
++    RECTL part=batch.rects[i];
++    if(part.left>part.right || part.top>part.bottom) goto fallback;
++    part.left=max(part.left,r.left);part.top=max(part.top,r.top);
++    part.right=min(part.right,r.right);part.bottom=min(part.bottom,r.bottom);
++    XwnUploadBox(p,&part);
++   }
++   /* FALSE can contain the final nonempty batch; TRUE can contain none. */
++   if (!more) return;
++  }
++ }
++ else {XwnUploadBox(p,&r);return;}
++fallback:
++ /* Partial uploads copy completed RAM pixels: repeating the full box is safe. */
++ XwnUploadBox(p,&r);
+ }
+ ULONG XwnCheckScanout(PPDEV p)
+ {

@@ -1,0 +1,72 @@
+{
+  "binary": "E:\\Codex-archive\\xbox-windows-native\\0.1.0\\physical-files\\F\\winnt\\system32\\win32k.sys",
+  "sha256": "414cc2568ba7f11fa58490060c947477f44d6218e6c52e01deea1bbe8a364a92",
+  "export_rva": 88787,
+  "private_entry_rva": 88814,
+  "relevant_branch_rva": 89053,
+  "raw": "394508740a8b49743b4d148bc176028bc75f5e5b5dc21000",
+  "instructions": [
+    {
+      "rva": 89053,
+      "mnemonic": "cmp",
+      "operands": "dword ptr [ebp + 8], eax"
+    },
+    {
+      "rva": 89056,
+      "mnemonic": "je",
+      "operands": "0x15bec"
+    },
+    {
+      "rva": 89058,
+      "mnemonic": "mov",
+      "operands": "ecx, dword ptr [ecx + 0x74]"
+    },
+    {
+      "rva": 89061,
+      "mnemonic": "cmp",
+      "operands": "ecx, dword ptr [ebp + 0x14]"
+    },
+    {
+      "rva": 89064,
+      "mnemonic": "mov",
+      "operands": "eax, ecx"
+    },
+    {
+      "rva": 89066,
+      "mnemonic": "jbe",
+      "operands": "0x15bee"
+    },
+    {
+      "rva": 89068,
+      "mnemonic": "mov",
+      "operands": "eax, edi"
+    },
+    {
+      "rva": 89070,
+      "mnemonic": "pop",
+      "operands": "edi"
+    },
+    {
+      "rva": 89071,
+      "mnemonic": "pop",
+      "operands": "esi"
+    },
+    {
+      "rva": 89072,
+      "mnemonic": "pop",
+      "operands": "ebx"
+    },
+    {
+      "rva": 89073,
+      "mnemonic": "pop",
+      "operands": "ebp"
+    },
+    {
+      "rva": 89074,
+      "mnemonic": "ret",
+      "operands": "0x10"
+    }
+  ],
+  "interpretation": "The wrapper passes bAll as private [ebp+8]. At15bdd bAll is compared with zero; FALSE jumps to15bec returning EDI=-1 set at15b2d. The limit comparison at15be5 is only reached for bAll TRUE. This is static owned-binary analysis, combined separately with actual paired runtime returns.",
+  "physical_access": false
+}

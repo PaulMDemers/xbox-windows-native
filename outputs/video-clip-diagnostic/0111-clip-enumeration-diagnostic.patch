@@ -1,0 +1,48 @@
+--- a/win32ss/drivers/displays/framebuf/enable.c
++++ b/win32ss/drivers/displays/framebuf/enable.c
+@@ -33,12 +33,12 @@
+    if (!p->ScreenPtr || !p->hSurfEng || !p->ShadowObject || !p->ShadowActive) return 0;
+    if (Escape == 0x58574431 && OutBytes == 32)
+    {
+-      Data[0]=0x44525758;Data[1]=110;Data[2]=p->ScreenWidth;Data[3]=p->ScreenHeight;
++      Data[0]=0x44525758;Data[1]=111;Data[2]=p->ScreenWidth;Data[3]=p->ScreenHeight;
+       Data[4]=p->ScreenDelta;Data[5]=p->BitsPerPixel;Data[6]=p->ScreenDelta*p->ScreenHeight;Data[7]=1;
+       memcpy(Out,Data,32);return 1;
+    }
+    if (Escape != 0x58574432 || OutBytes != sizeof(Data)) return 0;
+-   RtlZeroMemory(Data,sizeof(Data));Data[0]=0x53525758;Data[1]=110;
++   RtlZeroMemory(Data,sizeof(Data));Data[0]=0x53525758;Data[1]=111;
+    for(i=0;i<14;i++) Data[2+i]=p->ShadowCalls[i];
+    Data[16]=p->ShadowUploads;Data[17]=(ULONG)p->ShadowBytes;Data[18]=(ULONG)(p->ShadowBytes>>32);
+    Data[19]=XwnCheckScanout(p);Data[20]=p->ShadowActive;
+--- a/win32ss/drivers/displays/framebuf/shadow.c
++++ b/win32ss/drivers/displays/framebuf/shadow.c
+@@ -12,10 +12,28 @@
+ {
+  return XwnOwner(s)==p ? p->ShadowObject : s;
+ }
++/* Diagnostic only: enumerate twice; retain the original bounding-box upload. */
++static __attribute__((noinline)) VOID XwnInspectClip(CLIPOBJ *clip)
++{
++ struct { ULONG count; RECTL rects[8]; } batch;
++ ULONG pass, step; BOOL more;
++ if (!clip || clip->iDComplexity != DC_COMPLEX) return;
++ for (pass=0;pass<2;pass++)
++ {
++  CLIPOBJ_cEnumStart(clip,FALSE,CT_RECTANGLES,CD_ANY,pass ? 4096 : 0);
++  for (step=0;step<128;step++)
++  {
++   batch.count=0;
++   more=CLIPOBJ_bEnum(clip,sizeof(batch),&batch.count);
++   if (batch.count>8 || !more) break;
++  }
++ }
++}
+ VOID XwnUpload(PPDEV p, const RECTL *rect, const CLIPOBJ *clip)
+ {
+  RECTL r; LONG y; ULONG bytes;
+  if (!p->ShadowActive || !p->ScreenPtr || !p->ShadowBits) return;
++ XwnInspectClip((CLIPOBJ*)clip);
+  r.left=0;r.top=0;r.right=p->ScreenWidth;r.bottom=p->ScreenHeight;
+  if(rect) {r.left=max(r.left,rect->left);r.top=max(r.top,rect->top);r.right=min(r.right,rect->right);r.bottom=min(r.bottom,rect->bottom);}
+  if(clip) {r.left=max(r.left,clip->rclBounds.left);r.top=max(r.top,clip->rclBounds.top);r.right=min(r.right,clip->rclBounds.right);r.bottom=min(r.bottom,clip->rclBounds.bottom);}

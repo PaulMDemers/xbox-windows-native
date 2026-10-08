@@ -1,0 +1,1 @@
+First host build failed before compilation: CRLF patch context did not match LF source. Exact failed patch, changed source files, scripts and report preserved. Corrected input bytes use LF, updated hashes and fresh build002; source verified after patch. No guest used this failure.

@@ -1,3 +1,63 @@
+# RAM0112 complex clipping complete; ALL owned sessions CLOSED
+
+Read outputs/video-clip-upload/REPORT.md,NEXT.md,review.json,
+outputs/video-clip-regression/pair-review.json and
+outputs/video-clip-gdi/candidate001/verification.json. Integrated source/binary/
+ordinary evidence reviewPASS. All current attempts closed;never relaunch/recollect.
+No physical FTP/deployment/testing. Physical0101/video0093,0088rollback,immutable
+0.1.0 and completed128GiB dump/recovery work unchanged.
+
+RAM0112 enumerates relevant complex-clip rectangles after rendering and intersects
+screen/destination bounds before RAM-to-scanout copies.32rectangle batches,256batch
+bound;invalid/incomplete enumeration falls back to the original full-box copy.
+Simple/NULLclip and0110linebounds retained. Only shadow.c and revision values change;
+no111diagnostic helper in candidate.385actual-source ASan/UBSan host casesPASS.
+Build27625 CLOSED. DLL91785bytes SHA256:
+ba6e37ddb2bdaad05cc12585fe9c986bdb5203c94101443500ebf1c547c81da8.
+Source tree ef5d01ee07931126dbf202bf98bdf3fefaf23bc6,base0110e6ebd127.
+
+Matched ordinary video-clip-regression control001/candidate001 strictPASS and
+attributionPASS:18exactimages each,1769472pixels each,identicalcallbacks/pixels and
+three identical repetitions. Two distant16x16islands122304 ->2048bytes;all18samples
+2620032 ->45120bytes. No FPS/physical/window-drag claim. Both normalshutdown/dashboard,
+fullallocation327dirs6779files328clusters,5hives/protected/startup/pagefile/config,
+zero warning/error/application events. Control21724/52532/46056/82751 and candidate
+52529/88505/63827/48801 CLOSED. Pairverifier rejects5actual-result mutations.
+
+Broader video-clip-gdi/candidate001 strict ordinaryPASS:26exactimages/2555904pixels,
+78authoredcursorphases,same-mode CDS_TEST/RESET success. Fullallocation327dirs6787
+files328clusters,zeroerrors/orphans,5hives/protected/config/pagefile,normalshutdown/
+dashboard,clean strict events. Accepted2026-10-08T04:06:37.313704UTC;returned04:08:08.228307UTC.
+Preparation84617/runner1621/supervisor40604/audit53044 CLOSED. Four unobservedhooks
+remain unqualified;no new independentcursorpixels/surface-lifetimetrace claimed.
+
+Preserve diagnostics: video-clip-enum first observer failed undecorated-export lookup
+beforelaunch; pinnedtrace-v2 then captured30markers/15BitBlt but stopped at64foreign
+hits from WinMgmt atsamevirtualmarker. No exported enumeration captured. WholeFALSE,
+coldworkloadPASS.84546/42186/19766/9827/23888 CLOSED. No repeat.
+
+video-clip-enum2 used distinct probeimagebase and diagnostic111 (two bounded passes,
+originalcopyarea unchanged).36markers/132pairedcalls/302pins,all18pixels/coldchecksPASS.
+Original countoracleFALSE preserved: NT5 relevant-only cEnumStart returns-1 even
+withlimit4096. Owned staticbranch and actualreturns explain it. Corrected explicit
+oracle,not waived guesterror: enumeration-verification.json and diagnostic-verification
+PASS,original verificationFALSE retained.7evidencemutations rejected,teardowncomplete.
+76304/62246/61087/29341/11767/37594 CLOSED. Diagnostic111 neverphysicallydeployed.
+Its initial hostbuild2119 CRLFpatchfailure preserved underfailure-build001; fresh
+LFbuild002session24988 compiled. No guestusedfailedbuild.
+
+Space: broadprobe build initiallyblocked by20GiBguard. Verifiedclosed standalone
+nt5-extended-f-008/nt5-fatx-boot-001 offloaded toE with originalpaths retained as
+junctions; outputs/task-storage-offload/manifest-20261008b.json,session37971 CLOSED.
+An initial processprecheckmatched its ownpreparationcommand; corrected toactualxemu
+names beforecopy. Activebackingchains untouched. C about24GBdecimal;guardunchanged.
+
+NEXT: bounded representative real window-move/redraw measurement,exactpixels/bytes,
+then isolate transferthroughput versus remainingoverbroadhooks. See NEXT.md. Additional
+video modes and physical packaging/rollback require separate validation; do not infer
+hardware FPS from bytevolume. All owned processes closed; reviewed source/reports
+ready for commit/push,then new work starts with fresh IDs and exactrecords.
+
 # RAM0110 line upload optimization complete; ALL owned sessions CLOSED
 
 Read outputs/video-line-upload/REPORT.md, NEXT.md and review.json, plus
@@ -259,7 +319,7 @@ pagefile/configuration/strict events.11actual-log mutations rejected.
 video-mode-trace3 strictdiagnosticPASS:104physicalframes/10223616RGBpixels exact
 against26exactcoldrefs and runtime marker digests.371residentpins,complete11668
 display.text bytes. Actual DrvAssertMode(FALSE)/TRUE both return1; samePDEV/primary,
-ShadowActive1→0→1. Named PCs,thread/stack return pairing and chronology verified.
+ShadowActive1â†’0â†’1. Named PCs,thread/stack return pairing and chronology verified.
 No surface/PDEV replacement observed.7callback-record and10RGB mutations rejected.
 121single_steps include3no-progress replies; each bounded extra real step advanced
 the entry instruction. No marker deduplication/register edits. Allteardown/resume.
@@ -274,7 +334,7 @@ Original pair-review host assumption incorrectly demanded unique fixture hashes;
 failed script/report retained. history-review validates distinctpaths and same
 inputs acrossall4cases, frozen sources/closeddisks/parents and26identicalrefs.
 
-Next: design real RAM0109→boot-video/crash handoff in a NEW sacrificial owned
+Next: design real RAM0109â†’boot-video/crash handoff in a NEW sacrificial owned
 child, using prior qualified large-LBA dump/recovery protocol. Inspect those actual
 records first. No test launched yet. Surface replacement and4unobserved realGDI
 hooks remain gaps; newresolutions/performance/hardware are not qualified here.
@@ -620,7 +680,7 @@ Full compiled source and actual NT5 imports checked. Generator draft assertion
 Fresh ordinary matched0108/0109 each54cases162GDIpixelstages54driver selfchecks,
 normalshutdown1/dashboard,clean325dirs6759files326dirclusters0errors/orphans,
 5hives/protected/payload hashes,zero warning/error/application events. Same96MiB/
-1536cluster pagefile and sharedUCFCED6000→03C00000,44trace records0drops. Both
+1536cluster pagefile and sharedUCFCED6000â†’03C00000,44trace records0drops. Both
 observe7of14callbacks. Candidate29783uploads807095708bytes. No speed claim.
 
 Separate ownership-scanout diagnostic PASS12raw physicalframes1794048RGBpixels,
@@ -700,7 +760,7 @@ Ordinary matched direct0107/RAM0108 each54cases162pixel stages, normalshutdown1/
 dashboard, clean325dirs6759files326dirclusters0errors/orphans,5hives/protected/
 payloads, zero warning/error/application delta, same96MiB1536cluster pagefile.
 RAM passed54selfchecks;7of14callbacks observed,30983uploads769149104bytes. Same
-permanentUC0106 acquisitionFCED6000→03C00000,44records0drops. No speed claim.
+permanentUC0106 acquisitionFCED6000â†’03C00000,44records0drops. No speed claim.
 Tree0cb24809fa673421024b4a409d7a9fc08d40d8d0; xwnram.dllSHA256
 51d98cf9ee2d2f42c360d96152877491b32773471ef8a0680d40264b49f6efc5.46actual-source
 host cases plus65536ROP truth tables pass ASan/UBSan/leak detection; source/import
@@ -1881,7 +1941,7 @@ or recovered yet; no physical qualification. Original111nonASCIIdamage/restart
 remains unresolved. Preserve physical0101/video0093,0088rollback,immutable0.1.0.
 Closed session list inNEXT. No ownedguest/build/observer. C:about21.8GB free;
 20GiBbuildguard unchanged. Emulator ONLY until13:00UTC; no physicalFTP/deploy/test.
-# FATX0103 matched comparison in progress — inspect before acting
+# FATX0103 matched comparison in progress â€” inspect before acting
 
 2026-10-07 10:22UTC. Pushed df24162 closes dump-fsctl-trace/trace001:
 actual0x9003b/C0000010 proven,19events/23pins, full cold audit strictFALSE44+49.
@@ -3781,7 +3841,7 @@ No new driver, registry change, physical launch or recovery capture. Automation
 stays PAUSED and physical soak3 strict FAIL remains. All owned processes finished.
 
 003 reduces observation to seven sites/nine events. Existing GPU installer
-creation succeeds (events0–1). Its wait returns0 at event2/tick7925. Services
+creation succeeds (events0â€“1). Its wait returns0 at event2/tick7925. Services
 calls CreateProcessAsUserW for PCI1B36:0005 at3/tick7926 with token0x8ac. Another
 services thread enters PnP control5 at4/tick7930; the creation returns false with
 error6 at5/tick7931, saved token0 and zero PROCESS_INFORMATION. No hard error.
@@ -3879,15 +3939,15 @@ installer thread0xffb70da0 checks a nonzero saved token. A separate services.exe
 thread0xff9a6580 enters umpnpmgr control5, successfully closes0x770 and clears
 the saved global. The installer then loads/passes zero to CreateProcessAsUserW.
 Native token queries return0xc0000008; inner creation succeeds but outer setup
-fails with last-error6 and removes the child. Events49–66 prove this ordering
+fails with last-error6 and removes the child. Events49â€“66 prove this ordering
 within the debugger run. Prior numeric-handle reuse is no longer the sole clue.
 
-Run002 removes generic CloseHandle observation, reducing ignored hits25113→51.
+Run002 removes generic CloseHandle observation, reducing ignored hits25113â†’51.
 The first01B0 launch again succeeds. The later01B4 call begins with token0x908
 and its initial native query succeeds. While inner creation is active, another
 thread closes0x908 and clears the global. After inner creation succeeds, a query
 of the original handle returns0xc0000008 and outer creation fails with error6.
-Events49–65 capture the second interleaving. Do not retroactively assign either
+Events49â€“65 capture the second interleaving. Do not retroactively assign either
 ordering to shutdown-createprocess/001's earlier nonzero reused-handle trace.
 
 Both helpers completed normal restart, dashboard return and cold diagnostic
