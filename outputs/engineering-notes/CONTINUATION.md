@@ -1,3 +1,48 @@
+# Exact desktop API result resolved; ALL owned sessions CLOSED
+
+Read outputs/video-desktop-api/REPORT.md,NEXT.md,api-verification.json,
+ownership-verification.json,history-review.json and actual candidate001 records.
+Never relaunch/recollect. Preparation76568/runner75589/tracer54662/supervisor56111/
+audit26799 CLOSED; no owned emulator/helper remains. Previous cases also CLOSED.
+
+Same probe126/RAM0109/immutable parent.11real user32pairs,15markers,47stops,73pins.
+First2postclose OpenDesktopA calls returnedNULL/error2; third nameXwnDesktop126_2
+returned validhandle920 after CloseDesktop1. Reopenedhandle successfullyclosed.
+This resolves oldzero-logambiguity; no driver fix or assertion relaxation made.
+Actual retainedreference owner/eventualdestruction/debugger timing stillunknown.
+CloseDesktop documents handleclosure, not immediate name disappearance.
+
+All3create-through-close intervals:9watched driver lifecycle sites,0calls,same
+oneownershipslot/PDEV/primary/shadow fields. Surface recreation NOTqualified.
+Actual ExitProcess7 captured; everybreakpointremoved andguestresumed; supervisor
+waitedforobserverclosure beforeVMcleanup. Sevenevidencemutationsrejected.
+
+WorkloadstrictFALSE preserved:8exact49152byteimages; ninthnotattempted after
+assertionfailure. Clean326dirs6768files327clusters0errors/orphans,5hives/protected/
+startup/config/pagefile1536clusters;normalshutdown/dashboard;zero warning/error/app
+records. Observationverified isNOTordinary/physical/fullworkloadqualification.
+Priorordinary3cycle/9imagePASS unchanged; priorincompletetracefailure unchanged.
+
+Nextparkdesktop-switching as PDEVteardowntrigger; use genuine supportedfuturemode
+change for that gap. Inspect RAM0109 upload/copy/dirtyrectangle path for measured
+window-move/repaint control before optimization; exactpixels/bytes/rectangles,
+notemulatorFPSasphysicalperformance. SeeNEXT for scopedpriorities.
+Emulator-only; physical0101/video0093,0088rollback,immutable0.1.0,qualified128GiB
+recovery/crashhandoff baselines unchanged. No physical access or driver edit.
+
+--- Historical state below (superseded by current closed status) ---
+
+# Exact desktop API diagnostic preparing; emulator-only
+
+New outputs/video-desktop-api/candidate001 preparation76568 CLOSED. Accepted
+2026-10-08T02:51:34UTC; runner75589/tracer54662/supervisor56111 ACTIVE. Same compiled probe126, sameRAM0109, same immutable prepared parent.
+Observe real OpenDesktopA/CloseDesktop returns + raw TEB last-error; actual
+ExitProcess observer and supervisor/trace closure handshake added. Old ordinary
+PASS and incomplete trace remain CLOSED and unchanged. Inspect records/resume
+owned processes, never duplicate launch/collection. No physical or driver edits.
+
+--- Prior closed state ---
+
 # Desktop ordinary PASS; callback diagnostic incomplete; ALL owned sessions CLOSED
 
 Read outputs/video-desktop-lifecycle/REPORT.md,verification.json and
