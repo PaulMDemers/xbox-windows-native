@@ -1,0 +1,72 @@
+{
+  "binaries": {
+    "kernel32.dll": {
+      "path": "outputs/video-physical-rehearsal160/artifacts/F/winnt/system32/kernel32.dll",
+      "sha256": "6b05b0749b5dd86da94cc4acd062ca05472509f70216b56cd4a5b9809c602e73",
+      "preferred_base": 2086076416,
+      "timestamp": 1176727448,
+      "image_size": 737280
+    },
+    "ntoskrnl.exe": {
+      "path": "outputs/video-physical-review159/artifacts/F/winnt/system32/ntoskrnl.exe",
+      "sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+      "preferred_base": 4194304,
+      "timestamp": 1266293717,
+      "image_size": 1691648
+    },
+    "umpnpmgr.dll": {
+      "path": "outputs/video-process-lifecycle169/artifacts/umpnpmgr.dll",
+      "sha256": "02fd896d3f2318a3bd624dd1357ec1f66ea67553ef96c602bede7c4ec5bef685",
+      "preferred_base": 1987706880,
+      "timestamp": 1125653045,
+      "image_size": 102400,
+      "provenance": "Owned immutable0.1.0 file; new cold fixture preflight must match actual guest bytes, not assumed by same name"
+    }
+  },
+  "sites": [
+    {
+      "name": "CreateProcessInternalW",
+      "module": "kernel32.dll",
+      "rva": 151731,
+      "address": 2086228147,
+      "bytes": "558bec",
+      "argc": 11,
+      "kind": "create",
+      "validation_bytes": "558bec6aff687829577c6860215c7c64a1000000005064892500000000515181"
+    },
+    {
+      "name": "_NtRaiseHardError@24",
+      "rva": 608302,
+      "bytes": "558bec",
+      "argc": 6,
+      "frame": "esp",
+      "module": "ntoskrnl.exe",
+      "kind": "harderror",
+      "address": 2185644078,
+      "validation_bytes": "558bec6aff68a80e400068a0fc450064a1000000005064892500000000515183"
+    },
+    {
+      "name": "_NtShutdownSystem@4",
+      "rva": 591052,
+      "bytes": "8b4424",
+      "argc": 1,
+      "frame": "esp",
+      "module": "ntoskrnl.exe",
+      "kind": "shutdown",
+      "address": 2185626828,
+      "validation_bytes": "8b44240483e800741548740e487407b80d0000c0eb186a06eb066a05eb026a04"
+    }
+  ],
+  "kernel_base_expected": 2185035776,
+  "thread_owner_offset": 556,
+  "layouts_sha256": "12e1ce901813cef27400e1593930fa5f5a16e79febf507588a5aadc1a2421ce3",
+  "publics_sha256": "72deb8a4c0036e5eb8136207e78cbf78cadae18b64c6905cbe0547cf7b13b614",
+  "ordinary_qualified": false,
+  "physical_access": false,
+  "dependency_pins": {
+    "outputs/native-windows-nt5-kernel/process-layouts.json": "12e1ce901813cef27400e1593930fa5f5a16e79febf507588a5aadc1a2421ce3",
+    "outputs/native-windows-nt5-kernel/kernel-publics.json": "72deb8a4c0036e5eb8136207e78cbf78cadae18b64c6905cbe0547cf7b13b614",
+    "outputs/native-windows-nt5-kernel/trace-entry.py": "5aadab63c678a7991fafb2cb3152e3d5743a3d515e89b52d3497d85bd5c9a282",
+    "outputs/native-windows-prebuild/monitor_capture.py": "51266cb64c3557c401b84d8a5a31ee8c4799f3f2c8f1bfa59ac0addc08866451"
+  }
+}

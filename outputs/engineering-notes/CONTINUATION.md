@@ -1,3 +1,52 @@
+# Process lifecycle169 CLOSED; next engine/upload timing diagnostic
+
+Read outputs/video-process-lifecycle169/REPORT.md, NEXT.md, TIMING-PLAN.md and
+candidate001/trace-verification.json/device-inventory.json. Evidence review PASS.
+49events/24paired creation+return/1shutdown; live kernel82403000 vsstatic823d0000.
+servicesPID208 launches actualnewdev installers01B0 (child944/TID732) and01B4
+(child732/TID944). InnerreturnTRUE; outerAsUser/childstartup stillunknown, noUMP
+callerpin.2nonresidenthits retained; allbreakpoints removed/resume, no pending.
+No popup indebugger DOESNOTresolve167/168 failures. Unbound01B0/01B4 before/after
+coldactualhives; genuine pendinginstallwork, not provenpopupcause/policyfix.
+20copies25loops50coherence+normalshutdown/fullallocation5hives/protected PASS.
+StrictFALSE soleexactFt49; no ordinary/performance/physical qualification.
+36frozenpins/snapshots exact. Runner42522/tracer8350/supervisor92673/audit5047 CLOSED.
+168 CLOSED failedaddressassertion before0events, safe3BPteardown/resume;2popups,
+workload/fullcoldintegrityPASS, strictFALSE. Never rerun/recollect oldcases.
+Offload20261008e2closedstandalone artifacts exacthash/junctions preserved backing.
+No physicalFTP/deploy/test thisturn; physical0101/video0093/0088/0.1.0 unchanged.
+ActualWin32k/DDK timercontract staticchecked; runtimecalibration/engine-upload
+latency split pending. Next narrow instrumented113 diagnostic, no storeoptimization.
+No owned guest/observer/NBD running. Historical progress notes below superseded.
+# Process-lifecycle169 ACTIVE; predecessor168 CLOSED failed trace preserved
+
+New169 source frozen/preflighted; unchanged drivers/probe/launcher/settings.
+ONE guest launch requested after observer armed. Owned runner42522/tracer8350/
+supervisor92673 ACTIVE; no physical.
+Uses runtime kernel IDT discovery before kernel sites, not old physical address.
+Read actual candidate001/launch.json/trace.json before further work; never duplicate.
+168 CLOSED: runner30178/tracer89741/supervisor17282/audit90653.36pins/snapshots exact,
+20copies25loops50coherence+normalshutdown/fullallocation5hives/protected PASS.
+Trace failed expected-kernel-base assertion before0events;3breakpoints removed/resume.
+StrictFALSE Ft49 and2shutdownrundll32popup26/type4. Preserve frozen168 evidence.
+Verified offload closed; C24.98GB before169,20GiB guard unchanged. No driver builds.
+# Process-lifecycle168 preparation; emulator-only investigation in progress
+
+User authorized Proceed. Read video-hook-counters167 failure/gate notes below.
+Fresh168 fixture prepared CLOSED session28305; no guest launch yet. Pinned same
+167 v4 helper and166 launcher/112 RAM driver, unchanged physical0101/video0093.
+Kit outputs/video-process-lifecycle168 traces actual process creation/paired return,
+parent command/PID, resident caller bytes, hard-error and shutdown before cold audit.
+Actual captured kernel32/kernel/umpnpmgr bytes pinned; cold fixture umpnp verified.
+Read-only debugger only; no UI/data/register/policy changes; not performance/ordinary
+qualification. Static actual Win32k/DDK review verified EngQueryPerformanceCounter/
+Frequency pointer-output VOID API signatures; runtime timing contract still pending.
+Runtime sources/preflight frozen. ONE launch accepted23:35:18UTC; owned runner30178, tracer89741, supervisor17282 ACTIVE. Inspect/resume these; never duplicate. No physical FTP/deploy/test.
+
+Verified closed standalone offload manifest-20261008e.json moved boot-rename004 and
+boot-metadata001 to E with exact hashes/original-path junctions; session98781 CLOSED.
+Backing chain preserved; C free25.5GB at23:31UTC,20GiB guard unchanged. ALL167 sessions
+closed; no owned running guest/NBD. Update this note before/after168 launch.
 # Counter167 functional hardware evidence; emulator popup/gate failure retained
 
 User authorized Proceed after166. New outputs/video-hook-counters167/DESIGN.md:
