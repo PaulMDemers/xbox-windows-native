@@ -1,0 +1,109 @@
+{
+  "utc": "2026-10-08T20:16:55.207167+00:00",
+  "scope": "Offline review bundle only: exact emulator-tested display chain and historical file rollback.",
+  "passed": true,
+  "physical_access": false,
+  "physical_qualified": false,
+  "deployment_ready": false,
+  "source_script_sha256": "91d640c0ccf29cc28c80836ec4e2b91386f9568284a2f52d3713fab09a6895c7",
+  "candidate": [
+    {
+      "target": "F/winnt/system32/drivers/xboxvnt5.sys",
+      "source": "outputs/video-shared-framebuffer/candidate001/artifacts/xboxvnt5.sys",
+      "bytes": 41881,
+      "sha256": "c4ac1bfc38d29397c953f4cbef6c150dccdbdc82f702ace2aa4d79d2b9cf75db"
+    },
+    {
+      "target": "E/Applications/XWNFBoot/loader/xboxbvid.dll",
+      "source": "outputs/video-shared-framebuffer/candidate001/artifacts/xboxbvid.dll",
+      "bytes": 45240,
+      "sha256": "99c6f5bf499b57d3ea30c410487c60f327302e8aa6497333464d3840e7490c3e"
+    },
+    {
+      "target": "F/winnt/system32/xwnown.dll",
+      "source": "outputs/video-clip-upload/candidate001/artifacts/xwnown.dll",
+      "bytes": 91785,
+      "sha256": "ba6e37ddb2bdaad05cc12585fe9c986bdb5203c94101443500ebf1c547c81da8"
+    }
+  ],
+  "provider_imports": [
+    "XwnFbAcquire",
+    "XwnFbRelease",
+    "XwnFbReleaseOwner"
+  ],
+  "provider_exports": [
+    "VidBitBlt",
+    "VidBufferToScreenBlt",
+    "VidCleanUp",
+    "VidDisplayString",
+    "VidDisplayStringXY",
+    "VidInitialize",
+    "VidResetDisplay",
+    "VidScreenToBufferBlt",
+    "VidSetScrollRegion",
+    "VidSetTextColor",
+    "VidSolidColorFill",
+    "XwnFbAcquire",
+    "XwnFbRelease",
+    "XwnFbReleaseOwner"
+  ],
+  "historical_rollback": [
+    {
+      "target": "F/winnt/system32/drivers/xboxvnt5.sys",
+      "bytes": 40882,
+      "sha256": "3e74a5c35b68d7fa0e047b4ba9cec25e7ec0ea5a94e796fc07508f667fcc85cf",
+      "matches_last_physical_check": true
+    },
+    {
+      "target": "F/winnt/system32/framebuf.dll",
+      "bytes": 8752,
+      "sha256": "5da1fe7c3cdaf67a4a487c8872c2034fbc425bfd36d2b7715b2a1c4caa51df86",
+      "matches_last_physical_check": true
+    },
+    {
+      "target": "E/Applications/XWNFBoot/loader/xboxbvid.dll",
+      "bytes": 43361,
+      "sha256": "2196f646653c4c944d73fee4944ee3d056c82cf01903e4f435e67d63c03ed4b7",
+      "matches_last_physical_check": false
+    }
+  ],
+  "old_archives_unchanged": [
+    {
+      "path": "E:\\Codex-archive\\xbox-windows-native\\0.1.0\\xwn-0.1.0-physical-system.zip",
+      "sha256": "279c55837192e21ec938760bd10164b194488500f38b3d063fa60c13fc1cc25b"
+    },
+    {
+      "path": "E:\\Codex-archive\\xbox-windows-native\\0.1.0\\xwn-0.1.0-boot-dashboard.zip",
+      "sha256": "c2e6be3f96834afcad9a477df35ea44d700f330ef6593d9c7249e7372e8d8799"
+    }
+  ],
+  "bundles": [
+    {
+      "path": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\outputs\\video-hardware-candidate158\\artifacts\\candidate-display158.zip",
+      "bytes": 38616,
+      "sha256": "6e65881177694ad78f4eeec3cd9b2432e5180540016b8fa72a3ad3945241ff5d",
+      "entries_readback_verified": true
+    },
+    {
+      "path": "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\outputs\\video-hardware-candidate158\\artifacts\\historical-display-rollback158.zip",
+      "bytes": 19246,
+      "sha256": "d9ff4afb586b47e56f91be581501acf385e54a3fc3f238bbae6128e36d3a7e29",
+      "entries_readback_verified": true
+    }
+  ],
+  "pins": {
+    "outputs/video-windows-timing156/fixture-candidate001.json": "c30023b2bb54be660db2ae716953cd3c938155b02208fada20e043d78b521aae",
+    "outputs/video-windows-timing156/series-closure.json": "7465f231a06d19ed5ee94db7807a20cdefa8b23c9ca9ef35559a1ac312ff2fc9",
+    "outputs/video-window-foreground/pair-review.json": "3dc6f67ea442d16e201cb569e5a00a84b71243f43d9d08f0536fdcf587de6b82",
+    "outputs/fatx0101-physical/installed-state.json": "19108e8b2ef8b14319c5f4e03da593b7db616440591b4f4f6385a0c96d89af24",
+    "outputs/video-trace-reuse-settled/qualification.json": "19fede68174c5f40528da01aca591cb2cad4ab1f145f65e701e31ddfdfde3e23",
+    "outputs/release-0.1.0/capture-summary.json": "daaa41883047c75dbfa3e133a44a259e8174d5bb34c773bf502dfc6abc96f4b0",
+    "outputs/video-hardware-candidate157/failure.json": "d0301cdb300a6785dd8ac914e139629f89d1f2f8652d79d00e663f6d19ff5685"
+  },
+  "pending": [
+    "Fresh read-only physical hashes/configuration/geometry and live rollback capture; historical provider is not in last installed-state checks.",
+    "Review exact Windows display binding update to xwnown in the real physical registry; retain native device policy and all current settings.",
+    "Fresh ordinary emulator trial reconstructed from the physical baseline with only the display chain/bindings changed; retain strict cold gates.",
+    "Bounded hardware boot/drawing/app-save/restart trial followed by cold file/event/hive/allocation audit. No physical speed or new mode qualification yet."
+  ]
+}

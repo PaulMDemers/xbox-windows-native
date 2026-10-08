@@ -1,4 +1,28 @@
-# Native Xbox Windows 2000 status — 6 October 2026
+# Native Xbox Windows 2000 status — 8 October 2026
+
+2026-10-08: the reviewed xemu CPU-write surface eviction now has a qualified
+isolated ordinary Windows timing comparison,with identical guest RAM0112/probe141.
+Affected192x96 bottom draw median4.387ms to0.098ms (44.678x),while equal-area top
+rectangles and memory-only paths stay near their former costs. Both runs pass
+strict pixel/event/cold-integrity gates. This is an emulator microbenchmark gain,
+not physical FPS or a guest-driver latency comparison. See
+[Windows timing report](../video-windows-timing156/REPORT.md).
+
+The guest display improvement is already written and functionally validated:
+RAM0112 cuts actual window-movement copy bytes4.71% and repaint bytes17.50% with
+exact pixels. Physical latency gain remains unmeasured. An offline three-file
+shared-UC provider/miniport/display candidate and qualified0093/historical rollback
+are bundled/readback-verified; deployment_ready remains FALSE pending fresh physical
+state/binding/rollback review and a display-only emulator reconstruction. The older
+0.1.0 miniport mismatch was caught/preserved,then the correct0093 artifact used.
+No physical files/settings were changed. See
+[candidate bundle158](../video-hardware-candidate158/README.md).
+
+Additional video modes including1080i and WC/GPU-transfer acceleration remain
+implementation work with separate geometry/encoder/ownership/physical validation.
+The128GiB dump/recovery emulator closure remains complete. Physical0101/video0093,
+0088rollback,immutable0.1.0 and unresolved physical SetupAPI corruption remain
+explicitly distinct from the newer emulator stack.
 
 2026-10-07 15:45 UTC: the128GiB crash-dump defect is corrected and validated end
 to end in the emulator. CandidateATAPI0105 selects the genuine extended ATA
