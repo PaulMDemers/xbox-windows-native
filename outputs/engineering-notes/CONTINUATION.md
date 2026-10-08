@@ -1,3 +1,54 @@
+# Surface callback diagnostic PASS; all owned sessions CLOSED
+
+Read outputs/video-surface-callback/REPORT.md, NEXT.md, surface-verification.json,
+trace-verification.json, recorded-surface-tests.json and lifecycle-followup.json.
+No next fixture exists. Never relaunch/recollect this candidate or earlier closed kits.
+
+Unchanged probe141/RAM0112/xemu: two top 192x96 uploads record zero selected surface
+CPU callbacks. Lower y160 upload records 17,280 writes against GPU surface base
+0x03c64000: every four-byte destination start in rows160..249, 192 per row; none
+in the final six rows, source reads or unrelated addresses. Actual guest operands,
+all96-row mappings, first-row copy and paired returns verified. 24 events/15 pins;
+15 bounded windows/864,000 bytes; trace off before debugger reads, fully disabled
+at end; breakpoints removed and guest resumed. Same page flags/copy instructions.
+
+Diagnostic/cold PASS:45 cases,13,271,040 pixels,45 exact references/45 RGB readbacks,
+87,168 BitBlt calls, normal shutdown/dashboard, clean full allocation327dirs6851files
+328clusters, zero errors/orphans,5 hives/protected hashes/startup/config/pagefile and
+strict event deltas. Ordinary/timing/physical qualification FALSE. Eight mapping
+and nine recorded-window corruption gates pass, plus six parser/range checks.
+Runtime proves overlap, NOT surface origin/lifetime, dirty-download waits, exclusive
+causality or physical speed. Next sparse startup/lifecycle trace must identify the
+surface creation/size/handoff before a synchronization/reset fix. No blind callback
+removal, guest cache change or invalidation to force speed.
+
+Single launch06:12:27.712974UTC October8; capture ended06:13:21.626520;
+dashboard06:17:17.134302, cleanup06:17:17.5353558. Preparation33640,runner27052,
+tracer14325,supervisor44922,audit34665,verifier82865 CLOSED. Private disk/log/windows
+pinned, all failures preserved. Physical0101/video0093,0088rollback,immutable0.1.0
+unchanged. No hardware access. C:about20.6GiB free;20GiB guard unchanged.
+
+# Surface callback diagnostic ACTIVE
+
+outputs/video-surface-callback/candidate001 launched once06:12:27.712974UTC Oct8.
+Preparation33640 CLOSED. Runner27052,tracer14325,supervisor44922 ACTIVE. Exclusive
+build/xemu leases checked. Actual CPU-stopped HMP toggles on/off both surface CPU
+trace events verified before launch. Same binaries,15 bounded upload windows with
+tracing disabled before debugger memory reads;24stops/15pins/full mappings expected.
+Resume owned sessions; never duplicate launches/collections. After return/cleanup:
+audit/configuration/cold-map once,record-closure,verify,verify-trace,test-verifier,
+verify-surface. All45cases/coldfullallocation/hives/protected/events required.
+No physicalaccess or driver changes; preserve all prior evidence and20GiBguard.
+
+# Surface callback diagnostic preparation; no guest launched yet
+
+New outputs/video-surface-callback reuses exact probe141/RAM0112/xemu. Pinned
+binary trace-help and generated LOG backend verified. Marker-gated15 bounded
+upload windows; tracing disabled before all debugger reads and in teardown.
+Same24stops/15pins/all96row mappings and full45case cold workload expected.
+No driver/emulator changes or physical access. Preserve prior closed kits.
+Fresh preparation next;20GiBguard unchanged. No owned running sessions yet.
+
 # Upload address diagnostic complete; ALL owned sessions CLOSED
 
 Read outputs/video-upload-address2/REPORT.md,NEXT.md,trace-verification.json,
