@@ -1,3 +1,7 @@
+> Follow-up: build002 failed the later open-primitive draw test. Build003 fixes
+> that regression and passes the draw and color/depth pairs. Continue from
+> ../gpu-draw-lifetime147/NEXT.md and its evidence; do not promote build002.
+
 # CPU-write surface eviction: native pair passes, broader qualification pending
 
 The guarded experimental xemu candidate preserved every expected byte in the

@@ -1,3 +1,96 @@
+# Build003 primitive-lifetime fix validated; all owned runs CLOSED
+
+Read outputs/gpu-draw-lifetime147/REPORT.md, NEXT.md, series-closure.json,
+verification.json and outputs/gpu-evict-regression148/verification.json.
+145 control failed broad trace16MiB guard; four cold images correct, return not
+observed.146 reproduced build002 regression: CPU store after BEGIN or queued
+vertices before END drops all4096 drawn pixels; control passes. Preserve both
+failures. Never relaunch/recollect any145/146/147/148 case.
+
+Corrected build003 adds primitive-state checks at request AND renderer worker;
+consumes pending eviction flag, retains bindings through BEGIN/END, original
+upload/download fallback when active. Candidate SHA:
+685f24e317322469cac8710286bf928f7b2accbde5062f3cf8c86a9b21e97890
+147 matched pair: four exact full-surface draw cases, actual eviction beforeBEGIN
+and retained bindings inside.148 matched pair:16 exact color/depth files,
+19660800bytes,120292 CPU stores per run, actual2color/3depth evictions retained.
+Both pairs normal return, clean E allocation, exact new files, existing E contents/
+chains unchanged, entire F unchanged.11 draw-trace mutation checks and independent
+pixel/protocol failure gates pass. No Windows/physical/performance qualification.
+
+All owned sessions CLOSED: builder25560;147 control1899/66212/50442,
+candidate20400/81280/50964;148 control21633/52935/50846,
+candidate6571/41705/29239. Prior145/146 failures and preparation sessions CLOSED.
+No debugger changes. Shared SDK/borrowed source/frozen input hashes verified.
+
+NEXT: overlapping surface addresses/pitches including Z16, explicit emulator
+reset/resumed rendering, swizzled oracle; then Windows correctness/performance.
+The short request-to-worker BEGIN race is source-reviewed, not forcibly scheduled.
+C is now very close to20GiB guard: inspect capacity and recover verified closed
+standalone storage before new copies/builds; no backing-chain relocation.
+Preserve physical0101/video0093,0088rollback,immutable0.1.0 and all failures.
+
+# Draw147 corrected pair PASS; coherence148 candidate ACTIVE
+
+147 both cases coldPASS4exactdraws each,normaldashboardreturn,cleanE/F; verifier
+proves one CPU-write eviction outside primitive and retained bindings inside.
+11 recordedtrace mutationchecksPASS.147candidate runner20400/supervisor81280/
+auditor50964 CLOSED; control CLOSED previously. Build003 candidate685f24e3...;
+both guards remain; request-to-worker race not forcibly exercised, retain limit.
+148control prep33681/runner21633/supervisor52935/audit50846 CLOSED PASS16exact
+color/depth files.148candidate prep21427 CLOSED; runner6571 ACTIVE; supervisor
+started. Observe/collect ONCE then verify exactlifecycle using preserved prior
+oracle. All145/146/147 casesclosed,neverrepeat. Diskguard20GiBunchanged,capacitylow.
+No Windows/hardware/performance claim; preserve failures and physicalbaseline.
+
+# Primitive-aware build003 compiled;147 candidate ACTIVE
+
+Builder25560 CLOSED, matched fullsourcepins differ onlysurface.c/renderer.h;
+borrowed sources restored. CandidateSHA685f24e317322469cac8710286bf928f7b2accbde5062f3cf8c86a9b21e97890.
+147control prep67432/runner1899/supervisor66212/audit50442 CLOSED PASS4exactdraws,
+normaldashboard/coldaudit. Candidate prep16142 CLOSED;runner20400/supervisor81280
+ACTIVE; inspect before collection. 148control preparation33681 ACTIVE (immutable
+parent, separate target), no148guest launched. Keep20GiB guard; C nearing20GiB.
+146build002 failedcases2/3 remainpreserved,145traceoverflow retained. No physical.
+
+# Draw146 reproduced candidate regression; build003 fix ACTIVE
+
+145 failed trace CLOSED;146 control/candidate CLOSED and fully cold-audited.
+Control all4 imagesPASS, candidate cases0/1PASS but cases2/3 lose all4096 expected
+rectangle pixels. Same-value disjoint CPU store betweenBEGIN/END invalidates
+current binding before draw flush. Candidatebuild002 NOT qualified; preserve it.
+Both guests completedprotocol and normaldashboardreturn; disk checks clean.
+See gpu-draw-lifetime146/regression.json; no speculative root-cause jump needed.
+New xemu-cpu-surface-evict/build003 checks primitive invalid at CPU request AND at
+renderer-worker invalidation; clears pending flag when request is consumed, falls
+back to old download/upload path while primitive open. Builder25560 ACTIVE. Do not
+duplicate. Afterbuild fresh147 matched draw pair and fresh144-workload regression
+required. No Windows/physical/performance test. All earlier cases remainclosed.
+
+# Native draw146 candidate ACTIVE; control PASS;145 failed trace preserved
+
+145control001 CLOSED: broad method trace exceeded16MiB guard; protocol/full4images
+cold-correct but no dashboard-return observation; strictFALSE. Never repeat145.
+New146 retains exact145 app/shaders/oracle, sparse lifecycle tracing only. Control
+prep6697/runner61541/supervisor17942/audit29038 CLOSED PASS4 exactrectanglefiles,
+normalreturn,cleanEallocation/existingfiles/Funchanged. Candidate prep7359 CLOSED;
+runner59648 ACTIVE and supervisor started; inspect launch/cleanup before action.
+Candidate uses unchanged evictionbuild002. One cold audit after closure; do not
+interpret framebuffer until oracle + protocol + lifecycle ordering checked.
+No Windows/physical/performance qualification. Originals/frozeninputs preserved.
+
+# Native draw145 control ACTIVE
+
+New outputs/gpu-draw-lifetime145 tests actual triangles with four modes: no CPU
+store, same-value sentinel beforeBEGIN, afterBEGIN and afterARRAYS beforeEND.
+CPU sentinel at3,5 is outside drawn128..191/96..159 rectangle. Independent expected
+full surface frozen before launch. Actual GPU method trace enabled only during
+app/handoff;16MiB bound retained. Uses previous matched evictionbuild002 unchanged.
+Build complete; control preparation15113 CLOSED. Runner31727 ACTIVE; supervisor
+started, inspect actual records, never duplicate. candidate001 not prepared/launched.
+Cold audit and exact method/eviction ordering required before interpreting result.
+All prior145 sources/shaders/harness frozen. No Windows/physical/performance test.
+
 # Guarded CPU-write eviction native pair PASS; ALL owned sessions CLOSED
 
 Read outputs/xemu-cpu-surface-evict/REPORT.md, DESIGN.md, NEXT.md,
