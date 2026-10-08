@@ -1,3 +1,63 @@
+# Counter167 functional hardware evidence; emulator popup/gate failure retained
+
+User authorized Proceed after166. New outputs/video-hook-counters167/DESIGN.md:
+v4 user probe queries existing112 identity/stats escapes OUTSIDE timed loops;
+unchanged qualified166 launcher, no driver patch. Compiled/import-reviewed against
+actual160 NT5 exports, parser synthetic positive/12 corrupt-negative cases pass.
+Fresh immutable162 child CLOSED: prep15785, runner52706/supervisor75220,
+audit75280. Inputs/runtime frozen before bootstrap, source snapshots exact23pins.
+One emulator Windows launch23:00:15UTC Oct8, normalshutdown/dashboard23:02:23.
+5samples/20pixels/25loops/50fullscan coherence checks allPASS; allocation
+322dirs6721files323clusters0errors/orphans,5hives/protected exact. SoleFt49 strict
+FALSE, additionally final review found type4 Application Popup26/rundll32 DLL
+initialization failed because window station shutting down. Read
+outputs/video-hook-counters167/REPORT.md, summary.json, eligibility-correction.json,
+NEXT.md and actual case records. Scoped diagnosticqualifiedFALSE. Counts/cold
+integrity pass; no event waiver. Read emulator-counters.json: writer medians
+131072bytes/op,1rectangle/op;
+all5readback samples0uploads/bytes viaCopyBits. Fill sample0 background drawing
+retained. No engine/upload latency attribution from counts. Host Windows freeze
+import failure and following absent-input refusal preserved; WSL freeze succeeded,
+no source patch or duplicate launch/audit.
+
+Physical source packet candidateONLY (originalframebuf lacks escapes), unchanged
+158/166drivers,newv4userprobe,same166runner. Accepted23:04:15UTC Oct8;dashboard
+23:07:17,collected23:07:28/restored23:07:37. ONE launch/collection all CLOSED,
+never duplicate. Unique/F/xwnvh167 and/F/xwn-display167;fresh rollback
+readback before changes, startupLAST/FIRST, exactactual159typedbindings, emulator
+hives neverdeployed. EXECUTED eligibility review missed emulator informational
+system-log popup (warning/error and app-log screens insufficient); discovered
+by report-summary.py assertion AFTER physical collection. Original executed
+packets/source frozen and retained; report-summary002.py records failure, new
+prospective check-eligibility.py rejects all popup types/actual failed log.
+Do not retroactively edit sources or call whole diagnosticqualified. Hardware
+has NO popup/app event delta; exactFt49 stillstrictFALSE.20copychecks25loops50
+coherence checks allPASS,identity112/caps1024x576x32/60,stride4096.2hives/types/
+headers pass,3candidatefiles/44trace0dropped/sharedacquire;14restoredfiles and
+rollbackZIP readback exact. Physical original0101/video0093 restored;0088/
+immutable0.1.0 preserved. No fullphysicalallocation/allfile/release promotion.
+
+Physical19/20writer intervals exact1rectangle131072bytes/op; fillsample4 adds
+2uploads10184bytes with extraBitBlt/TextOut. Readback3/5intervals0uploads/bytes;
+sample0extraBitBlt/TextOut2uploads10184bytes,sample3extra2CopyBits/2BitBlt/
+3TextOut18uploads664176bytes. Processorigin unknown, allrawsamples retained.
+Fullscan120..195ms median120 OUTSIDE timing. No engine/uploadlatency split yet.
+Currentdatarejects generalfull-screen/duplicateuploads for testedrectangles,
+actualcompiledbulkcopyalreadyREP MOVSL. NEXT: fresh bounded emulator trace of
+actualrundll32parent/command/shutdowntiming with device/UI policy intact; verify
+actualNT5timing interface then narrow matched engine/uploadbody diagnostic.
+Addexplicit expectedblack/white/DIBpixels before optimizing theseoperations;
+current20checks arecopies/overlaps,50coherencechecks onlyRAM/scanoutequality.
+No arbitrarywait/service/event/device suppression or speculativepatch.
+Read-only startup-inventory.json on4already-preserved SOFTWARE hives (no guest/
+NBD/FTP) finds Run mobsync.exe/logon and emptyRunOnce/RunOnceEx before/after.
+No runtimeparent/command identified; cannotexclude transiententries or infercause.
+
+ALL owned167sessionsCLOSED:15785prep,52706/75220emulator,75280audit,32254physical
+deploy,56985watch,30959collect. No runningguest/observer/NBD. C~21.7GB onlyslightly
+above20GiBguard;capacity review/verified ownedclosedoffload before anotherdriver
+build. Never casually movebackingchains or discard failures. Never rerun167/166.
+
 # Paired physical timing166 PASS; original stack restored; readback/copy gains confirmed
 
 Read outputs/video-paired-timing166/REPORT.md, paired-physical.json, physical-ready.json
