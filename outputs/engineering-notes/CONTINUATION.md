@@ -1,3 +1,49 @@
+# RAM0109 color cursor lifecycle PASS; all owned sessions CLOSED
+
+Read outputs/video-color-cursor/REPORT.md, verification.json, protocol-tests.json
+and outputs/video-color-scanout2/REPORT.md, verification.json, oracle-tests.json,
+pair-review.json, history-review.json and NEXT.md. All three candidate001 cases
+CLOSED; never relaunch/recollect. No owned xemu/helper remains. Emulator-only.
+
+Ordinary probe123: 26 actual GDI cases, two authored 32x32 top-down24bpp color
+cursors, hotspots7,11/15,3, SetCursor(NULL) hide and replacement at same position,
+then move-away readback. All78state phases and2,555,904restoredRGBpixels exact;
+zero reference callbacks, source/reference immutability,26coherence/coldfiles.
+Normalshutdown1/dashboard, fullallocation325dirs/6785files/326dirclusters,
+0errors/orphans,5hives/protected/payload/startup, strict events clean.18log
+mutations rejected. First compiler indentation failure preserved before build.
+
+First video-color-scanout CLOSED strictFAIL:75cursorphases+24restoredframes,
+9,732,096RGBpixels exact, then observer ordering assertion before raw failing args
+were preserved. Fullteardown/resume; guest completed all26cases, normalshutdown1,
+clean cold gates. verify-partial.py requires that exact incomplete case and keeps
+passedFALSE. Do not infer guest marker skip or observer root cause.
+
+Fresh video-color-scanout2 CLOSED strict diagnosticPASS, same guest/driver,
+additional stop/step journals and unchanged104frame requirement.78cursor phases
+plus26restoredframes,10,223,616RGBpixels exact;35,898cursorpixels/21,989changed.
+All104runtime refs equal26coldSHA256files.355residentpins/full11668relocateddisplay
+text; headerE14 explicit.111stops/110steps;103markersteps advancedonebyte with no
+processchange.2entryfaultdeferrals/2foreignAPIhits; fullbreakpointteardown/resume.
+Same normalshutdown1/dashboard/clean allocation,hives,protected,events.5oracle
+mutations rejected. Prior ordering issue did not recur; not a proven fix/cause.
+Diagnostic ordinaryFALSE/physicalFALSE; separateordinaryTRUE. History verifier
+pins all3actual outcomes and private closed images/frozeninputs/backingparents.
+
+Probe123 c00a46bbf5391532ad43e8a0c29c1475439b47800f0972f6e1dd262cd350ef57;
+RAM0109 ed901376d61e70a125fce834e20b366e49a1d632879debbcfedd621c18b6a440,
+tree1f5aa1cee2bf9b4ca03e5581a8536db9c11db3d2. No driver/cache/policy/physical change.
+Same96MiB/1536clusterpagefile/sharedUCFCED6000->03C00000. C:about22.7GBfree,
+20GiBbuildguard unchanged. No alpha/animated/ShowCursor-count/lifetime-race or
+mode/boot-video/crash qualification. Four drawing callbacks still unobserved.
+
+Next execute fresh actualNT5transition discriminator from
+outputs/video-color-scanout/TRANSITION-PLAN.md: enumerate modes, determine whether
+same-mode CDS_RESET actually causes DrvAssertMode or surface/PDEV transitions,
+pin pairedcallbacks/lifetimes and independentpixels. API success alone is not
+coverage. No mode experiment launched yet. Preservephysical0101/video0093,
+0088rollback,immutable0.1.0,qualified128GiBrecovery and allfailures. Original111
+nonASCIIphysicaldamage/restart unresolved. Prior headings below historical.
 # RAM0109 monochrome cursor PASS; all owned sessions CLOSED
 
 Read outputs/video-cursor-exclusion/REPORT.md, verification.json, protocol-tests.json
