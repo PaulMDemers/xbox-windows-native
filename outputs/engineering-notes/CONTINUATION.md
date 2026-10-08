@@ -1,3 +1,42 @@
+# Windows155 ordinary matched coherence PASS; all CLOSED
+
+Read outputs/video-windows-coherence155/REPORT.md,NEXT.md,verification.json,
+series-closure.json and each case's audit/verification/closure JSON. Fresh identical
+RAM0112/compiled141 Windows children; ONLY unchanged xemu build003 pair differs.
+Both45 functional cases,13271040pixels,45exactreferences/45RGBcoldreadbacks pass.
+BitBlt65920control/301056candidate reflect independent loop calibration,not speed.
+StrictPASS normalshutdown1/dashboard return,327dirs6851files328dirclusters,zero
+errors/orphans,5hives/protected/payload/startup/config/pagefile. No warning/error/
+application deltas. Same96MiB1536cluster pagefile map and emulator-only policy.
+
+Prelaunch640x480linearZ16,pitch1280/BPP2,extent03c64000..03cfa000 reconstructed.
+Both download it; candidateCPUwrite-evicts/invalidates it and two retainedcolors,
+controlhasnoCPUwrite-eviction before initialgeneration ends. Verifier bounds at
+firstinvalidation; lateraddressreuse cannot qualify earlierwatch. No per-store
+trace/individualGDI pairing. First3rectangleoverlap oracle0/0/17280pixels.
+754geometry,8protocol,36coldRGB,7lifetimecorruption host gates PASS.
+
+ALL owned sessions CLOSED. Control prep91277,runner91006,supervisor28239,
+cold60725 (remaining WSL verifier host path failed), Windows verifier9819.
+Candidate prep48975,runner82180,supervisor53853,cold73400,Windows verifier50141.
+Pair verifier35874 and closer stages complete; inspect JSON, never rerun stages.
+Controlaccepted19:26:14.606795/returned19:31:02.127493; candidate19:34:18.329830/
+19:38:54.218686UTC October8. Inputs/source restored/frozen; failures preserved.
+Offline verifier source tightening after snapshots is separate from runtime inputs.
+
+TimingFALSE: candidate preparation overlappedcontrol runtime and read-only HMP
+screen capture occurredinsidecontrol. Rejected screendump was nonmutating; accepted
+framebuffer query/pmemsave captured authoredprobe. No debugger breakpoints/register/
+guestmemorywrites/UIinterventions; remaining failedpath verifier used correcthost
+without repeating audit. Runningnote archivedin155/running-note-history.md.
+Next NEW isolated emulator timingpair: prepareboth BEFORE runtime, actualbuild+
+exclusiveXemu leases, no concurrentprep/audit/capture/debugger, samecompiled141,
+strictpixel/events/integrity,clock+quietcounter gates; top/topoffset/bottomcells
+separate. Then fresh real-window-foreground138 movement/repaint correctness/timing.
+No physicalspeed/newmode/scanout qualification. Preservephysical0101/video0093,
+0088rollback,immutable0.1.0,completed128GiBdump/recovery,allGPU/host failures.
+No physicalFTP/deploy/test this turn.20GiBguard unchanged; inspectactualcapacity.
+
 # Reset152 and swizzled154 PASS; failures151/153 preserved; all CLOSED
 
 Read outputs/gpu-reset-network151/REPORT.md, candidate001/handshake.json and
