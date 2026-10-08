@@ -1,3 +1,64 @@
+# Surface lifetime diagnostic PASS; all owned sessions CLOSED
+
+Read outputs/video-surface-history/REPORT.md, NEXT.md, OPTIMIZATION-DESIGN.md,
+lifecycle-verification.json, surface-verification.json and trace-verification.json.
+Never relaunch/recollect this or any earlier closed case. No next fixture exists.
+
+The watched surface is a prelaunch640x480 linear ZETA/depth buffer:base0x03c64000,
+pitch1280,BPP2,614400-byte extent ending0x03cfa000. Creation before FTP request is
+recorded. One depth download occurs during handoff, no invalidation/replacement
+before final callback and no GPU transfer in the three selected Windows uploads.
+Exact extent predicts callback counts0/0/17280; lower rows160..249 have192 writes
+per row. Other retained prelaunch color surfaces0x03d04000/0x03e30000 are outside
+selected rectangles. 489 lifecycle events/17280 CPU writes/914192 captured bytes.
+This establishes retained watch lifetime, NOT a reset-contract violation, measured
+lock/wait time, a qualified optimization or physical-console performance cause.
+
+Same probe141/RAM0112/xemu. 24 guest events/15 resident pins/all96-row mappings,
+15 bounded CPU windows. All trace events disabled, breakpoints removed, resumed.
+All45 graphics cases/13,271,040pixels/45refs45RGB/82688BitBlt pass; normal shutdown,
+clean327dirs6851files328clusters allocation,0errors/orphans,5hives/protected hashes,
+startup/config/pagefile and strict event deltas pass. Ordinary/timing/physicalFALSE.
+Lifecycle parser7formats,6 failure gates; inherited oracle/protocol/map/window
+corruption checks pass. Frozen inputs unchanged. Hardware untouched.
+
+NEXT: bounded owned GPU/CPU coherence regression, then a safe CPU-authoritative
+watch removal/rearm design before candidate patch. Respect async CPU ownership,
+TLB flushes, in-flight callbacks, PGRAPH lock and renderer context. Existing non-TCG
+bitmap/eager-download path is NOT a drop-in TCG fix; DIRTY_MEMORY_NV2A also has
+vertex consumers. No blind callback disable/reset/cache change for speed.
+
+Launch07:02:12.045133UTC Oct8; capture ended07:03:04.590322; dashboard07:06:54.341653,
+cleanup07:06:54.7622841. Preparation25086,backend99123,runner95963,tracer36355,
+supervisor7188,audit72149,verifier94513 CLOSED. Private disk/log/windows pinned.
+Initial host-only naming collision with historical ignored video-surface-lifecycle
+stopped before fixture/guest; only new files moved/removed, historical kit untouched.
+C:about20.26GiB free; unchanged20GiB guard. Recover capacity safely before new large
+builds/fixtures; preserve backing chains. Preserve physical0101/video0093,0088rollback,
+immutable0.1.0 and all failures.
+
+# Surface lifetime diagnostic ACTIVE
+
+New outputs/video-surface-history/candidate001 launched once07:02:12.045133UTC Oct8.
+Preparation25086 and backend99123 CLOSED. Runner95963,tracer36355,supervisor7188
+ACTIVE. Seven sparse lifecycle events enabled from startup, verified live before
+launch. Before/after FTP request both log offset49692. Same probe141/RAM0112/xemu;
+CPU events remain in15 bounded upload windows, full guest pinning and45case audit.
+Resume owned sessions; no duplicate launch or collection. After return/cleanup:
+audit/configuration/cold-map once, closure, verify, verify-trace/test-verifier,
+verify-surface/test-recorded-surface, verify-lifecycle and evidence checks.
+Hardware unchanged.20GiB guard retained. Historical similarly named kit untouched.
+
+# Surface lifetime diagnostic preparation
+
+New outputs/video-surface-history: same probe141/RAM0112/xemu, seven sparse surface
+lifecycle events from startup plus bounded CPU-access windows. Actual source uses
+ln/lin for linear create/transfer; parser explicitly normalizes this pinned format.
+Host tests pass; unique fixture preparation next. No Windows launch yet. Historical
+ignored video-surface-lifecycle kit is unrelated and preserved; its no-overwrite
+guard stopped an initial host-kit naming collision before any fixture/guest action.
+No physical access. Preserve all prior evidence and the20GiB build guard.
+
 # Surface callback diagnostic PASS; all owned sessions CLOSED
 
 Read outputs/video-surface-callback/REPORT.md, NEXT.md, surface-verification.json,
