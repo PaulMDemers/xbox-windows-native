@@ -1,3 +1,53 @@
+# Paired physical timing166 PASS; original stack restored; readback/copy gains confirmed
+
+Read outputs/video-paired-timing166/REPORT.md, paired-physical.json, physical-ready.json
+(prospective source-pinned protocol, not current launch status), emulator-closure.json,
+and each case's actual physical/return/audit/hive/restoration JSON. NEVER relaunch or
+recollect166control001/candidate001 or earlier164. All cases CLOSED.
+
+New path-derived five-sample helper, unchanged v3 probe7d90f3c0..., pinnedRosBE2.2.1
+build/import review and8real-log negative gates. Initial warning/missingADVAPI32
+review failure preserved. Actual new imports checked on160NT5 DLLs; unchanged
+ADVAPI32 imports checked on owned0.1.0 DLL. Emulator matched control/candidate:
+5samples/20pixelchecks/25loops each, normalshutdown/dashboard,5hives/protected/full
+cleanallocation:322dirs6720/6721files323clusters. ExactFt49 strictFALSE unchanged.
+Source snapshots/pins verified, no emulator null-policy transplant or UI intervention.
+
+Physical control accepted22:36:53UTC Oct8, collected22:40:49/restored22:40:58;
+candidate accepted22:41:35, collected22:44:44/restored22:44:52. User authorized
+continuation from ready console. 5samples/20pixelchecks/25loops each; actualcaps
+1024x576x32/60, normalrestart/EventLog6006/dashboard;SYSTEM/SOFTWARE header/fullparse
+and two typedbindings correct. Candidate3files exact/currentsharedacquire success;
+controlno shared-eventexpected. Noapplicationevents/popups;Ft49 exactsame signature
+retainedstrictFALSE. NO full physical allocation/all-file audit or release promotion.
+Startup restoredFIRST, preserved allafterevidence, originalminiport/provider/SYSTEM
+restored;introducedxwnown removed;14baselinefiles+rollback ZIP readback exact each.
+Physical0101/video0093 installed,0088rollback/immutable0.1.0 preserved.
+
+Paired medians ms/op baseline->candidate:fill1.490->2.137 (rate0.697x), upload
+1.567->2.609 (0.601x),readback26.121->1.027 (25.442x),overlapRD29.135->2.669
+(10.916x),overlapLU29.412->2.778 (10.588x). Raw ranges/outlier retained in JSON;
+two boots/controlfirst/sameorder,notwindowdragFPS. Earlier historical164 ratios
+remain separate, not rewritten to match166. Both support mixed performance.
+
+Compiled upload/copy instructions captured hash-pinned in upload-instructions.json:
+per-rowcall13f10 memcpy/memmovealias;bulkcopyalready aligns andREP MOVSL. Do NOT
+blindly replacebytecopy or changecachepolicy. NEXT:newbounded probe querying
+existing read-only identity0x58574431 andstats0x58574432 of112 driver OUTSIDE timed
+operations. Stats128bytes includes14hookcounts/uploadcount/64bitbytecount and
+XwnCheckScanout fulluncachedread (Data19), so overhead mustnot enter timedwork.
+Use actualhook/byte/coherence evidence then splitengine/upload cost if needed.
+No newdriverpatch yet; newmodes laterneed cable/encoder info, questionoptionalpending.
+
+ALL owned sessions CLOSED:79232(prep),91634/67141(control emulator),43176(audit),
+62774/26359(candidate emulator),37649(audit/review),42908/24377(controlphysical
+deploy/watch),57223(collect/audit),34526/85834(candidate deploy/watch),92502
+(collect/audit/compare). No ongoing emulator, observer, build or NBD. C~22.2GB,
+20GiBguard unchanged; check current capacity before new builds. Review/check/commit/
+push source/reports; raw private binaries/hives/ZIPs excluded.
+
+## Earlier164 state and preparation history
+
 # Physical display diagnostic164 PASS; baseline restored; timing tradeoffs identified
 
 User confirmed console ready. ONE accepted physical launch22:15:25UTC Oct8;

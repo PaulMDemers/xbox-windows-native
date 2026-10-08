@@ -1,0 +1,58 @@
+
+/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-clip-upload/candidate001/artifacts/xwnown.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+000127b0 <_XwnUploadBox>:
+   127b0:	55                   	push   %ebp
+   127b1:	89 e5                	mov    %esp,%ebp
+   127b3:	57                   	push   %edi
+   127b4:	56                   	push   %esi
+   127b5:	53                   	push   %ebx
+   127b6:	83 ec 1c             	sub    $0x1c,%esp
+   127b9:	8b 0a                	mov    (%edx),%ecx
+   127bb:	8b 72 08             	mov    0x8(%edx),%esi
+   127be:	39 f1                	cmp    %esi,%ecx
+   127c0:	7d 63                	jge    12825 <_XwnUploadBox+0x75>
+   127c2:	8b 5a 04             	mov    0x4(%edx),%ebx
+   127c5:	3b 5a 0c             	cmp    0xc(%edx),%ebx
+   127c8:	7d 5b                	jge    12825 <_XwnUploadBox+0x75>
+   127ca:	29 ce                	sub    %ecx,%esi
+   127cc:	89 c7                	mov    %eax,%edi
+   127ce:	c1 e6 02             	shl    $0x2,%esi
+   127d1:	eb 02                	jmp    127d5 <_XwnUploadBox+0x25>
+   127d3:	8b 0a                	mov    (%edx),%ecx
+   127d5:	8b 47 6c             	mov    0x6c(%edi),%eax
+   127d8:	89 74 24 08          	mov    %esi,0x8(%esp)
+   127dc:	89 55 ec             	mov    %edx,-0x14(%ebp)
+   127df:	0f af c3             	imul   %ebx,%eax
+   127e2:	83 c3 01             	add    $0x1,%ebx
+   127e5:	8d 0c 88             	lea    (%eax,%ecx,4),%ecx
+   127e8:	8b 47 14             	mov    0x14(%edi),%eax
+   127eb:	01 c8                	add    %ecx,%eax
+   127ed:	89 44 24 04          	mov    %eax,0x4(%esp)
+   127f1:	03 8f 84 00 00 00    	add    0x84(%edi),%ecx
+   127f7:	89 0c 24             	mov    %ecx,(%esp)
+   127fa:	e8 11 17 00 00       	call   13f10 <_memmove>
+   127ff:	8b 55 ec             	mov    -0x14(%ebp),%edx
+   12802:	8b 42 0c             	mov    0xc(%edx),%eax
+   12805:	39 d8                	cmp    %ebx,%eax
+   12807:	7f ca                	jg     127d3 <_XwnUploadBox+0x23>
+   12809:	8b 4f 54             	mov    0x54(%edi),%ecx
+   1280c:	83 f9 ff             	cmp    $0xffffffff,%ecx
+   1280f:	74 09                	je     1281a <_XwnUploadBox+0x6a>
+   12811:	83 c1 01             	add    $0x1,%ecx
+   12814:	89 4f 54             	mov    %ecx,0x54(%edi)
+   12817:	8b 42 0c             	mov    0xc(%edx),%eax
+   1281a:	2b 42 04             	sub    0x4(%edx),%eax
+   1281d:	f7 ee                	imul   %esi
+   1281f:	01 47 58             	add    %eax,0x58(%edi)
+   12822:	11 57 5c             	adc    %edx,0x5c(%edi)
+   12825:	83 c4 1c             	add    $0x1c,%esp
+   12828:	5b                   	pop    %ebx
+   12829:	5e                   	pop    %esi
+   1282a:	5f                   	pop    %edi
+   1282b:	5d                   	pop    %ebp
+   1282c:	c3                   	ret    
+   1282d:	8d 76 00             	lea    0x0(%esi),%esi

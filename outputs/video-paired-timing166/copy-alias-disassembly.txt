@@ -1,0 +1,104 @@
+
+/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-clip-upload/candidate001/artifacts/xwnown.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+00013f10 <_memmove>:
+   13f10:	55                   	push   %ebp
+   13f11:	89 e5                	mov    %esp,%ebp
+   13f13:	56                   	push   %esi
+   13f14:	57                   	push   %edi
+   13f15:	8b 7d 08             	mov    0x8(%ebp),%edi
+   13f18:	8b 75 0c             	mov    0xc(%ebp),%esi
+   13f1b:	8b 4d 10             	mov    0x10(%ebp),%ecx
+   13f1e:	39 f7                	cmp    %esi,%edi
+   13f20:	76 08                	jbe    13f2a <.CopyUp>
+   13f22:	89 c8                	mov    %ecx,%eax
+   13f24:	01 f0                	add    %esi,%eax
+   13f26:	39 c7                	cmp    %eax,%edi
+   13f28:	72 37                	jb     13f61 <.CopyDown>
+
+00013f2a <.CopyUp>:
+   13f2a:	fc                   	cld    
+   13f2b:	83 f9 10             	cmp    $0x10,%ecx
+   13f2e:	72 24                	jb     13f54 <.CopyUp+0x2a>
+   13f30:	89 ca                	mov    %ecx,%edx
+   13f32:	f7 c7 03 00 00 00    	test   $0x3,%edi
+   13f38:	74 10                	je     13f4a <.CopyUp+0x20>
+   13f3a:	89 f9                	mov    %edi,%ecx
+   13f3c:	83 e1 03             	and    $0x3,%ecx
+   13f3f:	83 e9 05             	sub    $0x5,%ecx
+   13f42:	f7 d1                	not    %ecx
+   13f44:	29 ca                	sub    %ecx,%edx
+   13f46:	f3 a4                	rep movsb %ds:(%esi),%es:(%edi)
+   13f48:	89 d1                	mov    %edx,%ecx
+   13f4a:	c1 e9 02             	shr    $0x2,%ecx
+   13f4d:	f3 a5                	rep movsl %ds:(%esi),%es:(%edi)
+   13f4f:	89 d1                	mov    %edx,%ecx
+   13f51:	83 e1 03             	and    $0x3,%ecx
+   13f54:	85 c9                	test   %ecx,%ecx
+   13f56:	74 02                	je     13f5a <.CopyUp+0x30>
+   13f58:	f3 a4                	rep movsb %ds:(%esi),%es:(%edi)
+   13f5a:	8b 45 08             	mov    0x8(%ebp),%eax
+   13f5d:	5f                   	pop    %edi
+   13f5e:	5e                   	pop    %esi
+   13f5f:	c9                   	leave  
+   13f60:	c3                   	ret    
+
+00013f61 <.CopyDown>:
+   13f61:	fd                   	std    
+   13f62:	01 cf                	add    %ecx,%edi
+   13f64:	01 ce                	add    %ecx,%esi
+   13f66:	83 f9 10             	cmp    $0x10,%ecx
+   13f69:	72 41                	jb     13fac <.CopyDown+0x4b>
+   13f6b:	89 ca                	mov    %ecx,%edx
+   13f6d:	f7 c7 03 00 00 00    	test   $0x3,%edi
+   13f73:	74 2f                	je     13fa4 <.CopyDown+0x43>
+   13f75:	89 f9                	mov    %edi,%ecx
+   13f77:	83 e1 03             	and    $0x3,%ecx
+   13f7a:	29 ca                	sub    %ecx,%edx
+   13f7c:	4e                   	dec    %esi
+   13f7d:	4f                   	dec    %edi
+   13f7e:	f3 a4                	rep movsb %ds:(%esi),%es:(%edi)
+   13f80:	89 d1                	mov    %edx,%ecx
+   13f82:	83 ee 03             	sub    $0x3,%esi
+   13f85:	83 ef 03             	sub    $0x3,%edi
+   13f88:	c1 e9 02             	shr    $0x2,%ecx
+   13f8b:	f3 a5                	rep movsl %ds:(%esi),%es:(%edi)
+   13f8d:	89 d1                	mov    %edx,%ecx
+   13f8f:	83 e1 03             	and    $0x3,%ecx
+   13f92:	74 08                	je     13f9c <.CopyDown+0x3b>
+   13f94:	83 c6 03             	add    $0x3,%esi
+   13f97:	83 c7 03             	add    $0x3,%edi
+   13f9a:	f3 a4                	rep movsb %ds:(%esi),%es:(%edi)
+   13f9c:	fc                   	cld    
+   13f9d:	8b 45 08             	mov    0x8(%ebp),%eax
+   13fa0:	5f                   	pop    %edi
+   13fa1:	5e                   	pop    %esi
+   13fa2:	c9                   	leave  
+   13fa3:	c3                   	ret    
+   13fa4:	83 ef 04             	sub    $0x4,%edi
+   13fa7:	83 ee 04             	sub    $0x4,%esi
+   13faa:	eb dc                	jmp    13f88 <.CopyDown+0x27>
+   13fac:	85 c9                	test   %ecx,%ecx
+   13fae:	74 ec                	je     13f9c <.CopyDown+0x3b>
+   13fb0:	4e                   	dec    %esi
+   13fb1:	4f                   	dec    %edi
+   13fb2:	eb e6                	jmp    13f9a <.CopyDown+0x39>
+
+00013fb4 <__CTOR_LIST__>:
+   13fb4:	ff                   	(bad)  
+   13fb5:	ff                   	(bad)  
+   13fb6:	ff                   	(bad)  
+   13fb7:	ff 00                	incl   (%eax)
+   13fb9:	00 00                	add    %al,(%eax)
+	...
+
+00013fbc <__DTOR_LIST__>:
+   13fbc:	ff                   	(bad)  
+   13fbd:	ff                   	(bad)  
+   13fbe:	ff                   	(bad)  
+   13fbf:	ff 00                	incl   (%eax)
+   13fc1:	00 00                	add    %al,(%eax)
+	...

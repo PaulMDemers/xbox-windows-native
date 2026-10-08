@@ -1,3 +1,15 @@
+# Paired physical timing166 completed — October8,2026
+
+Fresh baseline/candidate boots each passed five probe samples,20pixelchecks and
+25timingloops, with normal restart and exact post-collection baseline restoration.
+Median readback25.44x and overlapping copies10.59–10.92x faster. Fill throughput
+0.697x and upload0.601x baseline. Raw variance retained; no window-drag FPS claim.
+Only the inherited Ft49 error, no new application events/popups; strict release
+stillFALSE. Physical0101/video0093 remains installed. Next: existing driver
+identity/hook/byte/coherence counters before changing rendering/upload code.
+
+## Earlier diagnostic
+
 # Physical drawing diagnostic164 completed — October8,2026
 
 The optimized stack passed four live copy checks and five bounded GDI loops on
