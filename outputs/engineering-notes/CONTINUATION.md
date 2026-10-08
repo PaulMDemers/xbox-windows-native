@@ -1,3 +1,57 @@
+# Guarded CPU-write eviction native pair PASS; ALL owned sessions CLOSED
+
+Read outputs/xemu-cpu-surface-evict/REPORT.md, DESIGN.md, NEXT.md,
+pair-verification.json and closure.json. build002 guarded candidate and matched
+control each16 exact full640x480 color/Z24S8 snapshots (19660800bytes),120292 CPU
+stores,2 pbkit lifetimes, normalreboot/dashboard, clean E allocation,18 exact new
+files, existing E content/chains unchanged, entire inherited F unchanged. Actual
+candidate color2/depth3 CPU-write evictions and recreation; exact transfer order
+and16 trace-mutation failure gates verified. No timing/Windows/physical qualification.
+Control creates1/1; candidate3color/4depth; both3/4uploads,8downloads per surface.
+
+Control002 launch16:12:12UTC/return16:12:39UTC, candidate00216:13:48/16:14:11 Oct8.
+Runner11520/supervisor3108/audit40217 and runner26692/supervisor58087/audit74088 CLOSED.
+Build00249092 and preparations10799/54400 CLOSED; source restored and rehashed.
+Never relaunch/recollect anyclosedcase. Root unguarded build001 NEVER guest-launched,
+control001 prepared NEVER launched; failed-build001 Git ownership failure preserved.
+Frozen inputs unchanged. Tested candidateSHA f2dcf1934cf25a076c1ea5f34459d51321ebf110ccd674f3f6c1529cd87f355a.
+
+NEXT: concrete native draw-batch/overlap/reset coverage before Windows/performance.
+Review pending renderer work between draw_begin (surface_update) and draw_end
+(primitive flush): current clear-only pair cannot establish bound-surface lifetime
+there. No reproduced draw failure or speculative follow-up patch. Preserve vCPU
+only guard, existing queued CPU watch/TLB work, renderer-owned GL deletion.
+No hardware access. C~21.4GiB;20GiB guard unchanged, inspect before new copies.
+
+# CPU-write eviction matched native validation ACTIVE
+
+Build002 completed/restored borrowed sources; guarded candidate only evicts for
+vCPU-thread writes. control002 launched once16:12:12UTC, returned16:12:39UTC;
+runner11520/supervisor3108 CLOSED. Cold audit40217 ACTIVE. candidate002 prepared,
+NEVER launched yet. control001 prepared NEVER launched; build001 unguarded NEVER
+launched. Preserve frozen-inputs.json and all prior failed builds. Next inspect
+control audit then launch candidate002 once, cold audit and verify actual surface
+lifecycles. No Windows/hardware/performance qualification. No physical access.
+
+# Experimental renderer-owned CPU-write eviction build ACTIVE
+
+New outputs/xemu-cpu-surface-evict/DESIGN.md and patch generators. No guest launched.
+Evict on first CPU write through renderer download worker; preserve GPU contents,
+mark bound buffers dirty for recreation, delete GL only on renderer thread, queue
+existing CPU watch removal and TLB flush. No new synchronous CPU job or dirty bitmap.
+
+Initial build failed root Git ownership before compilation; original source restore
+verified; preserved failed-build001. Matched build001 compiled, but unguarded
+candidate NEVER launched: source review found physical-memory DMA/debugger callers.
+Prepared control001 fixture also NEVER launched; preserve. New build002 restricts
+eviction to qemu_cpu_is_self(CPU0), leaving other callers on original behavior.
+Build session49092 ACTIVE; first successful builder7405 and fixture7018 CLOSED.
+Inspect build002/build-progress.json and build-closure.json; do not duplicate build.
+After completion prepare fresh control002/candidate002, same immutable native144
+payload and clean parent, single launches, exact16 readbacks/cold audit and actual
+cpu-write eviction/recreation trace. No performance or production qualification.
+No Windows/hardware changes. Preserve all failed/never-launched artifacts.
+
 # Native GPU coherence143/144 PASS; all owned sessions CLOSED
 
 Read outputs/gpu-cpu-coherence144/REPORT.md, NEXT.md, closure.json,
