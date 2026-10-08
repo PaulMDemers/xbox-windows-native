@@ -1,3 +1,72 @@
+# Desktop ordinary PASS; callback diagnostic incomplete; ALL owned sessions CLOSED
+
+Read outputs/video-desktop-lifecycle/REPORT.md,verification.json and
+outputs/video-desktop-trace/REPORT.md,NEXT.md,failure-verification.json,pair-review.json.
+Never relaunch/recollect either unique candidate001. No owned emulator/helper remains.
+Ordinary preparation88177/runner96531/supervisor24632/audit70883 CLOSED; diagnostic
+preparation74084/runner60028/tracer53952/supervisor28819/audit94560 CLOSED.
+
+Ordinary:3supported create/attach/switch/restore/close cycles;9exact host-oracle RGB
+files/110592pixels;normal shutdown/dashboard;clean326dirs6771files327clusters,
+0errors/orphans;5hives/protected/startup/pagefile/config;zero warning/error/app events.
+RAM0109,probe126 and all parent drivers/settings unchanged.11host mutations rejected.
+
+Separate identical-helper diagnostic: first5markers/sameowner/no watched driver
+lifecycle calls. CloseDesktop returned1; immediate ABSENT_AFTER0 failed. Exact
+OpenDesktop return is NOT recorded: zero may mean nonnull handle OR NULL/error0.
+Two exact images then clean failure cleanup/restart; allocation326dirs6764files,
+327clusters0errors/orphans;5hives/protected/pagefile/events clean. StrictFALSE remains.
+Supervisor closed VM at dashboard while tracer awaited more markers; connection
+reset, one helper breakpoint not removed before owned process exit. No claimed
+successful teardown.4failure-evidence mutations rejected; all sources/parents pinned.
+
+Next NEW bounded diagnostic should pin actual OpenDesktopA/CloseDesktop return and
+TEB last-error plus early ExitProcess. Coordinate supervisor with observer closure
+before VM cleanup. Keep same helper initially; investigate exact API result before
+changing any assertion. No driver fix, policy change or gate waiver justified.
+Desktop deletion is not proof of PDEV/surface deletion. No later-cycle trace claim.
+Actual owned API export RVAs/debug identifiers and exact symbol-server404s recorded
+under video-lifecycle-research. No substitute Win32k symbols or internal names.
+
+Emulator-only. Physical0101/video0093,0088rollback,immutable0.1.0,qualified128GiB
+recovery and prior RAM crash-handoff results preserved. No physical change.
+
+--- Historical state below (superseded by current closed status) ---
+
+# Ordinary desktop lifecycle PASS; separate observer child preparing
+
+Read outputs/video-desktop-lifecycle/REPORT.md and verification.json. candidate001
+CLOSED; preparation88177/runner96531/supervisor24632/audit70883 allclosed.
+3create/switch/restore/close cycles,9exacthostRGB files/110592pixels,normalshutdown,
+clean326dirs6771files327clusters0errors/orphans,5hives/protected/pagefile/config,
+zero warning/error/application deltas. No driver lifecycle callback claim yet.
+
+New outputs/video-desktop-trace fresh candidate001 preparation74084 CLOSED.
+Same helper126/display0109, no rebuild/driver/registry changes.15API markers,
+9watched lifecycle functions/thread+framepaired returns,32ownership slots/PDEV
+snapshots,600sec/384stop bound,complete teardown; ordinaryFALSE. Inspect records
+and resume owned sessions, never duplicate. Unique trace launched; do not duplicate.
+Trace accepted2026-10-08T02:41:08UTC; ownedrunner60028/tracer53952/supervisor28819
+ACTIVE. Host preflight newline mismatch preserved and corrected before launch.
+All older cases CLOSED. Physical0101/video0093 and immutable0.1.0 preserved.
+
+--- Prior state ---
+
+# Desktop lifecycle API probe prepared in progress; emulator-only
+
+New kit outputs/video-desktop-lifecycle from immutable video-mode-reset parent.
+New probe126 compiles and exact NT5 imports pass; drivers/settings untouched.
+Three supported create/attach/switch/restore/close desktop cycles, nine independent
+host RGB oracles and strict cold/event/allocation/hive/pagefile gates. Eleven host
+protocol/pixel mutations rejected. No surface/PDEV callback coverage claimed.
+Preparation88177 CLOSED. Unique candidate001 accepted2026-10-08T02:35:49UTC;
+owned runner96531 and supervisor24632 ACTIVE. Inspect/resume, never duplicate.
+Before configuration and pagefile checks pass. Inspect records before starting anything. All old cases remain CLOSED. Never relaunch/recollect them.
+Symbol server exact Win32k DBG, compressed DBG and pointer forms all404, recorded
+under outputs/video-lifecycle-research. No symbols guessed or substituted.
+
+--- Prior qualified baseline ---
+
 # RAM0109 crash handoff diagnostic PASS; ALL owned sessions CLOSED
 
 Read outputs/video-ram-crash3/REPORT.md,NEXT.md,ram-verification.json,
