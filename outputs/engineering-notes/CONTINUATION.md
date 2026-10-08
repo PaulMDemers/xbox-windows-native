@@ -1,3 +1,46 @@
+# Native149 PASS; reset150 candidate PASS, control timeout; all CLOSED
+
+Read outputs/gpu-overlap149/REPORT.md and verification.json; then
+outputs/gpu-reset150/REPORT.md, NEXT.md, verification.json and series-closure.json.
+Unchanged xemu build003 pair. Native149 both coldPASS: six exact32768-byte arenas,
+50CPU stores, color/Z16 pitch/address overlap, unreadGPU preservation and candidate
+CPU-write eviction. Normal return, clean E/F.48negative evidence checks pass.
+Replacement of overlaps, not simultaneous overlapping watches.
+
+Reset150 candidate coldPASS: one HMP system_reset with live marker, CPU reset and
+invalidation, FTP return, second native149 launch, twelve exact snapshots and full
+clean disk checks. Control rendered dashboard DHCP0.0.0.0; FTP timed out150seconds;
+second app NEVER launched. Control coldFAIL preserved; matched reset pair NOT
+qualified. Network difference unresolved. Both pre-reset phases exact, E allocation,
+existing files/chains and entire F clean.10reset evidence mutation checks pass.
+No GPU-only RAM persistence, forced callback race, Windows, physical or timing claim.
+
+ALL owned sessions CLOSED.149 control30685/18582/25404/40034,
+candidate23533/50197/48204/91024.150 control prep32439,runner92265,
+supervisor52851(failed),audit94241; candidate prep41777,runner94236,
+supervisor43832,audit24786. Four cases sealed; never relaunch/recollect.
+Shared SDK/borrowed source unchanged/restored; frozen inputs verified.
+Next NEW bounded reset kit: NVNet/link/DHCP discriminator before patches or timeout
+changes. Candidate success is not a network fix. Swizzled oracle then Windows
+correctness/performance remain pending. Preserve physical0101/video0093,
+0088rollback,immutable0.1.0 and145/146failures. No physical access this turn.
+Closed standalone rename007/paging002 offloaded with hash/readback verification and
+original-path junctions; manifest20261008d. No active backing chains moved.
+20GiB guard unchanged; inspect current capacity before new work.
+
+# Overlap149 prepared; offload20261008d complete
+
+Two closed standalone old runs nt5-fatx-boot-rename-007 and nt5-fatx-boot-paging-002
+copied to E, SHA/readback verified, original paths preserved via junctions. Manifest
+outputs/task-storage-offload/manifest-20261008d.json; no active backing-chain moves.
+New gpu-overlap149 probes64x64 A/B surfaces with offset and pitch overlap for
+A8R8G8B8 and Z16. Whole32768-byte arenas include padding/tail. No read between A
+full clear and B partial clear; CPU patch then A rebind/partial clear. Six exact
+snapshots expected. Compiled/pinned SDK/main/oracle/harness. Control preparation30685
+started; inspect fixture/records before launch. No guest yet at note creation.
+Use existing build003 matched xemu pair unchanged. No physical/Windows testing.
+Explicit reset next only after native overlap results; preserve all prior cases.
+
 # Build003 primitive-lifetime fix validated; all owned runs CLOSED
 
 Read outputs/gpu-draw-lifetime147/REPORT.md, NEXT.md, series-closure.json,
