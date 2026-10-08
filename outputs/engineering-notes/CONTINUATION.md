@@ -1,3 +1,51 @@
+# Exclusive transfer-cost benchmark complete; ALL owned sessions CLOSED
+
+Read outputs/video-transfer-exclusive/REPORT.md, NEXT.md, analysis.json and
+candidate001/verification.json. Ordinary strictPASS, timingPASS:45cases/90phases,
+13,271,040 exact livepixels,45coldreferences/45actualRGBreadbacks,267,200BitBltcalls.
+Normalshutdown/dashboard,clean327dirs6851files328clusters allocation,5hives,
+protected/startup/pagefile/configuration and strict event deltas allPASS.
+Unchanged0112 driver. Actualexclusive xemu plus heldbuildlease checked against
+competing acquisition; no host preparation/build/audit during measurement.
+
+Equal-area layout matters far more than a simple per-upload count model predicts.
+At192x96 primary median:solid67.69us,H4 1652.77,V4 92.28,H16 1676.77,V16 174.73.
+H16/V16 samebytes/calls but9.60x cost; V16 copies16xrows. This does NOT identify
+hardware/cache/emulator cause. Boundingextent/addresses differ; keep allsamples
+and substantial variation. QPC/tick/calibration checks passed; no physicalFPS,
+purememcpybandwidth or independent-boot reproducibility claim.
+
+NEXT: inspect actual pinned copy/xemu paths, then translated identicalgeometry/
+width experiment with exclusive leases and same strict gates. No speculative
+patch. No new run prepared. Physical0101/video0093,0088rollback,0.1.0 unchanged.
+Preserve video-transfer-cost hostfailure beforeWindows, source/compilefailure.
+Never relaunch/recollect eithercase. Preparation26706,runner57733,supervisor24708,
+audit62974,verifier5118 CLOSED. Accepted04:47:26.924971UTC Oct8, returned04:52:22.749015,
+cleaned04:52:23.0297867. Private disk work/runs/nt5-vexclusive-candidate001/hdd.qcow2.
+C: about21.1GiBfree; preserve20GiBguard. Source/evidence reviewed for commit/push.
+
+# Exclusive transfer runner corrected after pre-Windows host failure
+
+outputs/video-transfer-cost/candidate001 CLOSED hostfailure: unresolved ../root
+placed stageddisk underkit/work,breakingrelativebackingchain. No Windows launch.
+PID72932 exited;cleanupandfailedinputhashesretained;neverrelaunch. Drivers/probe
+unchanged. New outputs/video-transfer-exclusive canonicalizes/assertsroot and
+preflightchecksseedbackingpathatintendedrundir. Exactcompiledprobe139 reused.
+Preparation26706 ACTIVE, no guestlaunch yet. Geometry808 and8protocolgatechecksPASS.
+Physicalbaselineunchanged. No debugger. See failedkitREPORT andnewDESIGN.
+
+# Exclusive RAM0112 transfer-cost fixture in preparation
+
+New outputs/video-transfer-cost uses unchanged0112,probe139,three equal-area sizes,
+solid/4/16horizontal/vertical layouts,45samples and paired DIB/primary timing.
+500ms calibration target,>=250ms finalbatch timinggate,QPC+tick consistency,
+exact callbacks/uploads/bytes and live/coldpixels. Existingstrictcold/event gates.
+Exclusive xemu lease plus build lease duringrunner; no concurrenthostpreparation/
+auditduringmeasurement. No debugger or physical access. Hostgeometry808checksPASS,
+NT5importreviewPASS. Host compiler indentationrejection preserved; nobinarylaunch.
+Preparation82793 ACTIVE for candidate001; inspect records,do notduplicate.
+All priorrunsCLOSED. Physicalbaseline/rollback/release unchanged.
+
 # Native window movement comparison complete; ALL owned sessions CLOSED
 
 Read outputs/video-window-foreground/REPORT.md,NEXT.md,pair-review.json,
