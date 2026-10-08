@@ -1,3 +1,45 @@
+# RAM0109 same-mode disable/re-enable PASS; all owned sessions CLOSED
+
+Read outputs/video-mode-reset/REPORT.md and verification.json, then
+outputs/video-mode-trace3/REPORT.md,NEXT.md,verification.json,
+transition-verification.json,step-verification.json,oracle-tests.json and
+history-review.json. All four candidate001 cases CLOSED; never relaunch/recollect.
+No owned xemu/helper remains. Emulator-only, unchanged RAM0109 driver.
+
+Probe124 SHA723245eda5c758f4145bfbf8a42ca5b55b2cd0f0865d889207215f9a21acfd4f.
+Ordinary video-mode-reset strictPASS: actual CDS_TEST/CDS_RESET1024x576x32at60Hz,
+26realGDIcases,78colorcursorphases,2555904exactreadbackpixels,26exactcoldrefs.
+Normalshutdown1/dashboard,clean325dirs6785files326dirclusters,5hives/protected,
+pagefile/configuration/strict events.11actual-log mutations rejected.
+
+video-mode-trace3 strictdiagnosticPASS:104physicalframes/10223616RGBpixels exact
+against26exactcoldrefs and runtime marker digests.371residentpins,complete11668
+display.text bytes. Actual DrvAssertMode(FALSE)/TRUE both return1; samePDEV/primary,
+ShadowActive1→0→1. Named PCs,thread/stack return pairing and chronology verified.
+No surface/PDEV replacement observed.7callback-record and10RGB mutations rejected.
+121single_steps include3no-progress replies; each bounded extra real step advanced
+the entry instruction. No marker deduplication/register edits. Allteardown/resume.
+Same full cold gates PASS; debugger result is not ordinary/physical qualification.
+
+Preserved failures: video-mode-trace stopped after5matchingframes when step left
+all10registers/owner unchanged and same marker repeated; step-evidence.json pins
+actualPUSH EBP. video-mode-trace2 stopped after3matchingframes when live memsave
+returned57344/393216referencebytes; exactcoldprefix matches, HMPresponse absent,
+cause unresolved. Both cold workloads pass but strictdiagnostics remainFALSE.
+Original pair-review host assumption incorrectly demanded unique fixture hashes;
+failed script/report retained. history-review validates distinctpaths and same
+inputs acrossall4cases, frozen sources/closeddisks/parents and26identicalrefs.
+
+Next: design real RAM0109→boot-video/crash handoff in a NEW sacrificial owned
+child, using prior qualified large-LBA dump/recovery protocol. Inspect those actual
+records first. No test launched yet. Surface replacement and4unobserved realGDI
+hooks remain gaps; newresolutions/performance/hardware are not qualified here.
+Physical0101/video0093,0088rollback,immutable0.1.0 untouched. No deployment.
+C~21.8GB (~20.3GiB)free; preserve20GiBbuildguard and recover verified owned space
+before further large work. See NEXT.md for capture/tool limits and exact scope.
+
+--- Previous completed state ---
+
 # RAM0109 color cursor lifecycle PASS; all owned sessions CLOSED
 
 Read outputs/video-color-cursor/REPORT.md, verification.json, protocol-tests.json

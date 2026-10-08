@@ -1,0 +1,67 @@
+{
+  "passed": true,
+  "mode": {
+    "passed": true,
+    "assert_cycle": true,
+    "surface_replacement": false,
+    "calls": 2,
+    "unobserved": [
+      "DrvEnableSurface",
+      "DrvDisableSurface",
+      "DrvEnablePDEV",
+      "DrvCompletePDEV",
+      "DrvDisablePDEV",
+      "XwnRegisterPrimary",
+      "XwnUnregisterPrimary",
+      "XwnOwnershipDisable"
+    ],
+    "observed": [
+      "DrvAssertMode",
+      "DrvAssertMode"
+    ],
+    "assert_cycle_pairs": [
+      [
+        0,
+        1
+      ]
+    ],
+    "replacement_pairs": []
+  },
+  "actual_mutation_tests": [
+    {
+      "name": "missing_return",
+      "rejected": true
+    },
+    {
+      "name": "wrong_return_thread",
+      "rejected": true
+    },
+    {
+      "name": "wrong_return_stack",
+      "rejected": true
+    },
+    {
+      "name": "missing_end_marker",
+      "rejected": true
+    },
+    {
+      "name": "module_change",
+      "rejected": true
+    },
+    {
+      "name": "no_callbacks",
+      "rejected": true
+    },
+    {
+      "name": "API_failure",
+      "rejected": true
+    }
+  ],
+  "pins": {
+    "candidate001\\artifacts\\xwnown.dll": "ed901376d61e70a125fce834e20b366e49a1d632879debbcfedd621c18b6a440",
+    "candidate001/trace.json": "bbc5f0f0c0314b0919ec5aec7dfb7ce5c646c256dac7fe407e1da2ace64ec779",
+    "verification.json": "a5dfca2dcfadbe1663ab58b458759e4bed6d53d28850da1c847dea66b4012363",
+    "verifier": "eba71b3612d15315ce26aba63a54cbc72d22f2f0dda3568136faaea70f90c13f"
+  },
+  "scope": "Actual named lifecycle PCs/return sites, chronological stop records, live PDEV fields and strict oracle/cold result; no hardware or new-resolution claim."
+}
