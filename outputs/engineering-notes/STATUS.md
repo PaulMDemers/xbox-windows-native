@@ -1,3 +1,18 @@
+# October8 physical-stack display compatibility and hardware diagnostic preparation
+
+The optimized shared-UC/RAM0112 display stack passed ordinary drawing and normal
+restart on a reconstruction containing actual physical159 core/SYSTEM/SOFTWARE,
+with only3displayfiles/2typedbindingtokens changed. Same1024x576x32/60 runtime,
+successful shared acquisition, retainedbindings, exactprotectedbytes/5hives/full
+allocation, no applicationevent/popups. StrictFALSE for samephysicalbaseline
+Ftdisk49; never treat this as release or physical qualification. Fresh unique
+one-shot helper165 also passed its real child/restart/cold checks. Hardware packet164
+is prepared with local/console rollback and restore of0093 display/SYSTEM after
+collection. Await actual unpluggedRazer/UnleashX state; no deployment/launch yet.
+Physical0101/video0093 unchanged;0088/0.1.0 and all failures preserved. Earlier saved
+640defaults were not active-mode proof. See164/REPORT.md and continuation for exact
+artifacts, failures, sourcepins and next command. No running owned process.
+
 # Native Xbox Windows 2000 status — 8 October 2026
 
 2026-10-08: the reviewed xemu CPU-write surface eviction now has a qualified
