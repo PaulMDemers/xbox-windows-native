@@ -1,0 +1,1 @@
+Prelaunch review corrected stats helper: cursor-visible snapshots must not require whole-frame RAM/scanout equality. Hidden final redraw still requires exact zero mismatch. Earlier compiled probe was NEVER launched, preserved as artifacts/probe-prelaunch.exe with prelaunch-review.json.

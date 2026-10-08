@@ -1,3 +1,44 @@
+# Native window movement comparison complete; ALL owned sessions CLOSED
+
+Read outputs/video-window-foreground/REPORT.md,NEXT.md,pair-review.json,
+redraw-model.json and control001/candidate001/verification.json. Both ordinary
+runs strictPASS,matched parent/probe138 and identical native paint/callback counts.
+Unchanged RAM0110 control vs RAM0112 candidate. No new driver source/binary changes,
+no debugger,physical FTP/deployment/testing. Preserve physical0101/video0093,
+0088rollback,immutable0.1.0 and completed128GiB work.
+
+18moves+18forcedrepaints perrun:3,538,944exactlivepixels;18coldreferencefiles,
+36coldactualreadbacks and identical checked fontsource. Fullrepaint geometric
+prediction matchesoldboundingbox andnewvisibleregion bytes on all18cases.
+Movebytes1,099,128 ->1,047,360(-4.71%);repaint8,711,232 ->7,186,368(-17.50%).
+Uploads87->117/move,72->180/repaint. Actualcallbacks18BitBlt117CopyBits27TextOut
+identical.172hostoraclechecks;6pairmutations,4protocolmutations,1bytemodelmutation
+rejected. Measuredmsmedians7.5->15move,15->15redraw NOT speedqualified:coarseclock,
+sharedhost and overlappinghostI/O. Fewer bytes is NOT proven physical FPS gain.
+
+Both normalshutdown/dashboard,strict events clean,fullallocation327dirs328clusters,
+6816control/6817candidatefiles,zeroerrors/orphans,5hives/protected/startup/pagefile/
+configuration intact. Actual ROI384x256 on1024x576,128x80movingchild behind96x144
+fixedchild,sixpositions repeated3times. Position4extends20rowsbelowROI;modelcounts
+thosebytes. No new independent cursor/rawphysicalscanout or whole-screen claim.
+Control94574/37151/21089/83378 and candidate39514/98227/61525/72060 ALLCLOSED.
+Single accepted launches04:27:16UTC/control and04:29:40UTC/candidate onOct8.
+
+Preserve failures: video-window-move/control001 strictFALSE with18failedcases;
+allintegrity/eventgatespassed. CandidatepreparedNEVERLAUNCHED. Sessions86801/47300/
+6251/80516/95807 CLOSED. Hostcompilemisleadingindentationfailure and neverlaunched
+initialprobe before cursor-visible statscontractfix preserved. Configurationhost
+LD_LIBRARY_PATH failure corrected withoutrepreparing. Rejected HMPscreendump was
+nonmutating/no pause. video-window-observe/control001 strictFALSE;rawreadbacks show
+Getting Startedcoversx270..383/y100..255,allmismatchesinside;parentorigin0,0correct.
+59780/95295/63499/67493 CLOSED. Finalforegroundkit raises ONLY ownedtestparent before
+measurement;doesnotdismissanotherapp/dialog orchangeanysettings. No failurewaived.
+
+NEXT: larger-surface controlled area/fragment-count transfer-cost experiment,
+explicit timingresolution and exclusiveperformancelease ifsupported. Prepare/audit
+outside measuredruns. Currentmodeldoesnotjustifyanotherclippingpatch. SeeNEXT.md.
+All ownedprocessesclosed; reviewed measurement/evidence readyforcommit/push.
+
 # RAM0112 complex clipping complete; ALL owned sessions CLOSED
 
 Read outputs/video-clip-upload/REPORT.md,NEXT.md,review.json,
