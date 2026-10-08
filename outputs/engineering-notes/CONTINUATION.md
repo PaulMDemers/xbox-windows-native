@@ -1,4 +1,41 @@
-# Exact desktop API result resolved; ALL owned sessions CLOSED
+# Upload baseline complete; ALL owned sessions CLOSED
+
+Read outputs/video-upload-bounds/REPORT.md, NEXT.md, verification.json and
+profile-verification.json plus actual candidate001 records. Accepted
+2026-10-08T03:08:19.495366UTC, returned03:09:50.470489UTC. Preparation73216,
+runner88536, supervisor95044, audit4723 CLOSED. Never relaunch/recollect.
+
+Unchanged RAM0109/probe128 ordinary strictPASS and attributionPASS. Six operations
+repeated3times with identical counters, quiet idle/reference intervals, full-screen
+clip recorded.18exact393216byte cold images;1,769,472RGBpixels;60host checks and
+6actual-evidence mutations rejected. Short32pixel LineTo uploaded2359296bytes;
+same tight-clipped line128bytes:18432x transfer volume, identical output. Two
+separated16x16 clip islands uploaded122304bytes versus2048changed bytes. Fill,
+overlapCopyBits and smallStretchBltROP already destination-sized. These are bytes,
+not physical FPS or an actual drag measurement. No optimization yet deployed.
+
+Clean326dirs6778files327directoryclusters,0errors/orphans,5hives/protected/helper/
+startup/config,unchanged96MiB1536cluster pagefile;normalshutdown/dashboard;zero
+warning/error/application events. No debugger or settings/driver changes. Preserve
+emulator-only null/unsupported-device policy and physical0101/video0093,0088rollback,
+immutable0.1.0,completed128GiB work and all failed evidence.
+
+Earlier video-upload-profile/candidate001 CLOSED strictFALSE before any drawing:
+exact-screen visibility guard rejectedcase0/stage1 without recording actual bounds.
+Original reason remainsunknown; no driverfault established. Clean326dirs6762files/
+327clusters,hives/protected/pagefile/events/normalshutdown. Preserve REPORT.md and
+verification.json; never retroactively pass/relaunch/recollect. Its preparation68838,
+runner59864,supervisor47134,audit49243 all CLOSED.
+
+NEXT: measured LineTo upload bounds first; complex-clip enumeration separately.
+Actual NT5 prclBounds contents not yet observed. A fresh bounded resident-pinned
+LineTo argument diagnostic across meaningful line directions/clips should establish
+contract before narrow patch, actual-code host boundary tests, matched ordinary
+pixels/bytes/cold checks and broaderGDI/cursor/mode regression. See NEXT.md.
+Physical throughput/additional modes/surface replacement remain unqualified.
+No owned emulator/helper remains. C free about25.3GB decimal;20GiBguard unchanged.
+
+# Prior: Exact desktop API result resolved; ALL prior sessions CLOSED
 
 Read outputs/video-desktop-api/REPORT.md,NEXT.md,api-verification.json,
 ownership-verification.json,history-review.json and actual candidate001 records.
