@@ -1,3 +1,43 @@
+# Current:201 Cancel003 CLOSED failure; readiness004 preparing
+
+Cancel003 runner82479/supervisor97649/audit37429 CLOSED, one accepted19:09:31UTC,
+owned480sec closure19:17:07UTC. Helper3actions/2closures/timeout15, joined0;
+guardian read-only188 observer joined0/exit0; no normal restart/dashboard. Fullcold
+318dirs6719files319clusters/noerrors-orphans,5hives/protected/startup/history/
+typedpolicy/no-new-disabling PASS;30naturalbinding deltas, strictsoleFt49FALSE.
+Original audit FALSE host importlib.util error retained. Independent strict188
+parser FALSE nonASCII270340: four complete samples, fifth incomplete/no terminal.
+Actual QEMU DevInstall command/458896 welcome dialog/Cancelenabled captured, no
+confirmation or ownership replacement observed. Source of failed cancel UNKNOWN.
+
+Observer285176bytes has stale14840-byte suffix from270336, equalprelaunchFATfree
+cluster2144598 bytes atphysical148567220224+8192, seed11 rotate/lifetime pattern.
+Independent qemu-range/NBD agree. Do not turnpartiallog/storagestructure intoPASS;
+writeproducer/relationshiptooriginalphysicalcorruption remainunknown. Initial
+largeexception/report/source preservedprivately;compactforensics metadata avoids
+embeddingrawfile inreport. Neverrelaunch/recollect003 or earlierclosed cases.
+
+NEW helper003 waits5sec continuouslyverifiedwelcome text/heldownercreation/window
+before sameoneCancel/owner; no forcedclose/retry/install/disable/policychange.
+5011actual readinessheader ASan/UBSan assertions/import/compiler reviewPASS.
+Freshcancel004prepare53050 CLOSED, standaloneE/Imageidentical/fullcoldbefore
+318dirs6713files319clusters/5hives/protected/providerPASS;92frozeninputs. Single
+launch accepted19:28:52UTC. Owned runner27632/supervisor67563 ACTIVE,300sec bound;
+inspect/resume, audit-cancel004.py ONCE aftercleanup. Timingdiscriminator doesNOT solve003stale tail.
+Require actualreadiness/closure/childjoin0/realidle/normalrestart/dashboard/cold
+integrity/typedpolicy;strictFt49 retained. 20GiBguard+projectedcloneheadroom.
+
+No201physicaldeployment. Physical200candidatependingonescreenquestion,FTPtimeout
+last19:07UTC,no collection/restoration/relaunch. Tempstartup/display/SYSTEM remain,
+verified31-entryrollback retained. OnactualdashboardcollectONCErestorestartupfirst,
+thenindependentrestore/hive/display/eventreviews. Persistentkeyboardauthorization.
+Verified09i offload ofauditedCLOSED001/002 standalones preservedhashes/junctions.
+Verified09j offload CLOSED audited003 standalone, everyfilehash/junctionreadback
+kept originalpath;C:22.65GiB after004clone. Latestpushed004eceb; newresults/sourcependingpush. Preserve0101/video0093/0088/
+immutable0.1.0/allfailures. Nootheractiveownedprocesses thanrunner27632/supervisor67563.
+
+# Earlier continuation (historical)
+
 # Current:201 Cancel002 CLOSED failure; remaining-dialog003 preparing
 
 Both known Cancel paths closed audio/SMBus but left third emulator QEMU PCI wizard

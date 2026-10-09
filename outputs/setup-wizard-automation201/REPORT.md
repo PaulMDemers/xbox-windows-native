@@ -1,3 +1,27 @@
+# Cancel003 failed; useful partial inventory and stale-tail evidence
+
+The failure-path observer ran and joined with exit0 after helper15. The cold log
+failed strict parsing: four samples are complete, the fifth has stale bytes and
+no terminal completion record. The original audit also retained a host importlib
+util import error; it is unchanged and FALSE. Independent byte/cluster review
+preserves and identifies the content failure rather than promoting a partial log.
+
+The intact samples show the emulator PCI wizard still on its welcome page with
+Cancel enabled, no confirmation dialog, and the exact target command/window.
+The14840-byte bad suffix starts at270336 and exactly equals bytes already present
+in the previously free final cluster. Two cold read transports agree; its pattern
+matches the earlier rotate/lifetime test formula with seed11. This establishes
+stale on-disk content in this owned run, not the responsible writer or a causal
+connection to the original physical corruption. Full allocation/five structural
+hives/protected/startup/typed policy pass; strict events retain soleFtdisk49.
+
+A new helper003 readiness timing experiment waits for five seconds of verified
+welcome page/owner/window stability before the same Cancel action. Actual-header
+5011 ASan/UBSan assertions and actual NT5 import/compiler review pass. Fresh
+cancel004 preparation active, runtime unverified; no201 physical deployment.
+
+# Earlier results (historical)
+
 # Current result: cancellation still incomplete
 
 Cancel002 closed the first two known wizards, but the third emulator-specific PCI
