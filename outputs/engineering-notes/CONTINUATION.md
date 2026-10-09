@@ -1,3 +1,18 @@
+# Current: physical durability189 launched ONCE, user screen reply pending
+
+Single physical189 request accepted2026-10-09T06:03:11.215323+00:00. Read189physical/REPORT/NEXT.
+17protected/provider bytes plus actualpost188SYSTEM/startup matched; exact188
+Build003 observer reused. No driver/registry/settings changed. StartupenabledTRUE
+for this single boot; restore startupFIRST on eventual collectONCE. No relaunch.
+User confirmed UnleashX/keyboardunplugged before launch. Requested leave hardware
+wizard unchanged through120seconds, then reportdevice/desktop. Screen question
+pending. No physical result/qualification, no automatic restart/UI action.
+No owned local processes/emulator.189sources/readiness pushed e89c5c3;188CLOSED
+source/evidence pushed6995017. Keep0101/video0093/0088/0.1.0 and all failures.
+No physicalgraphics speed pair. Notes/runtime record uncommitted at this note.
+
+# Historical continuation below
+
 # Current: durability189 prepared, current hardware state confirmed; launch next ONCE
 
 Read outputs/device-durability189 DESIGN/ready/NEXT/protocol-tests. Exact188Build003

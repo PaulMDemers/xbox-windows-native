@@ -1,3 +1,17 @@
+#189 launched ONCE; no result/collection yet
+
+Single request accepted2026-10-09T06:03:11.215323+00:00. physical.json startup_enabledTRUE.
+Fresh user confirmed keyboardunplugged;17protected/provider and actualpost188
+SYSTEM/startup checks matched. No drivers/registry/settings changed. Never repeat
+launch,188or187. User screen question pending after observercloses120seconds;
+leave any wizard unchanged. A desktop alone is not installer-idle qualification.
+Then normal Windows restart when appropriate, read-only dashboard return and
+physical.py collectONCE startupFIRST. WSL audit-physical preserves warnings,
+SetupAPI/history/hives. Pending setup remains failure; no new display pair yet.
+No owned local processes/emulator at this note. Preserve0101/video0093/0088/0.1.0.
+
+# Historical189 preparation below
+
 #189 prepared, NEVER launched
 
 Read DESIGN/ready/protocol-tests. Same exact188 observer, current post188 SYSTEM,
