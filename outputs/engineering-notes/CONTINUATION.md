@@ -1,3 +1,92 @@
+# Live physical202 control: single accepted21:06:44UTC; owned finish89459 ACTIVE
+
+Deploy50962 CLOSED. Single FTP200EXEC requested physical control001 at
+2026-10-09T21:06:44.640459UTC. Recordcontrol001/physical.json; exact current32-entry
+rollback uploaded/readback, original display/SYSTEM/startup preserved. Temporary
+202 startup/display/SYSTEM active until collect. Never relaunch or duplicate observer.
+Owned finish89459 observes1200sec bound then once-only startup-first collection,
+original display/SYSTEM restoration, independent readback,10hives/typedpolicy,
+raw pixel/window/phase/event audit and closure. No manual input requested.
+
+Both202 emulator cases CLOSED scoped display/integrity PASS. Candidate runner18790,
+supervisor40206,audit72666 CLOSED, control48636/9412/55098 CLOSED. Eachhelper006
+three targets1/2/5 joined0, actualidle>=5100ms, fiveprobes0,284810identical SetupAPI
+bookends,265pixels/200windowreadbacks/25loops/50scanout, finalinstall0/normalrestart/
+6006/dashboard. Full allocation324dirs6727files325dirclusters0errors/orphans,
+5hives/providers/history/typedpolicy,30naturalbindings retained. Strict soleFt49
+FALSE both. Pair-review and independentraw-review-emulator PASS; no hardware speed
+inference. Control snapshot stop/resumes separately documented; candidate no snapshots.
+
+Physical frozenphysical-ready.json; same exact198profileOFF/ON scalarOFF DLLs,
+sharedminiport/bootvideo, exact199v9 probe and exact201helper006 with NEW joined202
+runner. No acceleration/mode/device-policy changes. Candidate physical202 NEVER
+launched; requires control scopedPASS/hives/restoration/documented warnings before
+one authorized deployment. Persistentkeyboardunplugged/hardwareauthorization applies.
+All202 root sources/pins frozen; supplemental read-only reviewer in tools separately
+pinned. Verified09l offload preserves originalpaths/hashes/junctions. C20.66GiB after
+bothowned disk copies,20GiB guard unchanged; no more emulatorbuild/clone now.
+Preservephysical0101/video0093,0088rollback,immutable0.1.0/allfailures,003stalesuffix
+and original111 physicalnonASCII corruption/restartunknown. Latest committeddeeb733.
+
+# Earlier record (historical)
+
+# Live202: emulator control CLOSED scoped PASS; candidate launched once
+
+Control runner48636/supervisor9412/audit55098 CLOSED. Single accepted20:56:52UTC,
+normal dashboard return21:00:05UTC. Exact helper006 three known targets1,2,5,
+joined0; actual idle5100ms, all five probes exit0, identical284810-byte SetupAPI
+bookends, final install query0/unforced normal restart/EventLog6006 once. Native
+265 pixels/200 real-window readbacks/25 loops/phase/counter/caps gates pass.
+Full cold allocation324dirs6727files325dirclusters zeroerrors/orphans; five hives,
+protected providers/startup/history/typed policy pass. Thirty natural device-binding
+deltas retained; sole inheritedFt49 strictFALSE. Three brief snapshot stop/resumes
+are recorded in observer-note.json, no unaffected emulator timing qualification.
+
+Candidate runner18790 and owned one-shot supervisor ACTIVE (inspect launch.json
+and cleanup records; never duplicate). Fresh separate immutable fixture, same
+helper/probe/shared providers, only profileON198 DLL. No hardware202 deployment.
+All root202 sources frozen; no edits until both audits closed. Candidate preparation
+91830 CLOSED. Physical capture/typed two-token proposal read-only prepared.
+After candidate cold scoped PASS, pair review/package/physical freeze then single
+physical control and candidate, each startup-first restore/independent rollback.
+Persistent unplugged-keyboard/deployment authorization applies; do not re-ask.
+20GiB guard unchanged. Preserve all prior failures,003 stale-tail/original111 cause
+unknown, physical0101/video0093,0088rollback,immutable0.1.0. Latest committeddeeb733.
+
+# Earlier record (historical)
+
+# Live202: joined wizard helper benchmark, emulator control launched once
+
+New kit outputs/video-unattended202. Runner joins exact201 helper006 (mode-specific),
+requires its exit0 and then unchanged194 actual setup idle/per-sample/bookend/final
+restart guards. Probe exact199v9; display exact198 profileOFF/ON scalarOFF, shared
+miniport/boot-video. No acceleration/mode/device-policy changes. Host parser16
+rejection tests/build/import/guard reviews PASS; both NEW standalone emulator
+fixtures prepared, full cold allocation319dirs6716files320dirclusters zeroerrors.
+No inherited synthetic/null policy: fresh actual physical-core unsupported queue.
+53 source/input pins frozen in emulator-frozen.json; never mutate them midrun.
+
+Control202 runner48636 and one-shot supervisor9412 ACTIVE. Inspect emu-control001/
+launch.json and work/runs/nt5-unattended202-control001/cleanup.json; never duplicate.
+Candidate fixture prepared but NEVER launched. Candidate preparation91830 CLOSED.
+After control owned cleanup, audit-emulator.py control001 ONCE, then fresh candidate
+only if scoped/integrity gates pass. Both require cold pixel/window/counter/timing,
+5hives/full allocation/history/policy and normal restart/dashboard. Strict wholeboot
+Ft49 remains failure; emulator timings do not imply hardware speed.
+
+Physical202 capture/provider/only-two-token SYSTEM proposal prepared read-only;
+NO202 physical launch. Package and physical freeze require both NEW emulator scope
+passes and prior201 physical helper review. Persistent hardware/keyboard-unplugged
+authorization applies, no re-ask. Physical baseline0101/video0093 and normal startup
+remain restored at dashboard. Exact per-case rollback mandatory after each trial.
+
+Verified closed201 cancel006/007 disks offloaded09l with copy/hash/readback and
+original-path junctions; manifest-20261009l.json. No backing-chain relocation.
+20GiB guard unchanged; C23.2GiB before202control copy. Previous committeddeeb733.
+Preserve observer003 stale-tail, original111 physical nonASCII damage and all failures.
+
+# Earlier record (historical)
+
 # Current: known-wizard automation validated on the Xbox; all sessions CLOSED
 
 Physical201 launched ONCE2026-10-09T20:14:28.644610UTC and returned automatically to
