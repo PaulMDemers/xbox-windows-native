@@ -1,3 +1,28 @@
+# Current: physical device-observation188 CLOSED; next baseline durability check pending
+
+Read outputs/device-observation188 REPORT/NEXT and physical-evidence-review.json.
+Single physical188 launch05:37:18UTC2026-10-09, startup-FIRST collection2026-10-09T05:55:02.612065+00:00.
+All17protected/provider files exact, ten hives parse, both SYSTEM headers/checksums
+valid, all prior event/SetupAPI history retained. Five samples123855ms all pending258;
+actual audio01B0 owner. User completed real no-driver searches for two PCI labels
+(SetupAPI01B4/01C1), then unidentifiedUSBFFFF:FFFF; reports no prompts/restarted.
+Actual method not explicitly confirmed; EventLog6006count1. No device Enum/binding
+changes, no new application/rundll32 shutdown errors; Ft49/Srv2013 strict failures
+remain. No durable installer-idle or physical graphics speed pair qualification.
+
+Both read-only return observers CLOSED; no owned sessions/emulator. Startupnormal,
+no driver/registry/settings changes by deployment; human setup effects preserved.
+Next prepare unique post188 baseline durability observer, no new driver/policy.
+Current dashboard/keyboard-unplugged question pending before any new Xromwellboot.
+Existing raw-C independent audit already explains shadowc.img intendedoccupancy;
+liveWindowsF free2932736/179clusters matches. WindowsC on dashboardF free100274667520.
+No cleanup or repeat raw-C scan. Preserve0101/video0093,0088rollback,immutable0.1.0,
+187held/candidateNEVERlaunched. New188sources/reports uncommitted at this note;
+latest pushedae319c4. Local review import refusal without bundled LD path retained;
+corrected read-only review completed once. Source/readiness pins unchanged.
+
+# Historical continuation below
+
 # Current: device-observation188 emulator CLOSED; startup-only hardware diagnostic prepared, NOT launched
 
 Read outputs/device-observation188 REPORT/DESIGN/NEXT, emulator001 observation/

@@ -34,9 +34,14 @@ an uncertain reply. Require current dashboard/unplugged-keyboard state.
 Older physical shutdown-diagnostics mapped Windows F: to dashboard C: and measured
 2932736 free bytes there; Windows C: mapped to dashboard F: with100302127104 free.
 Those are historical measurements, not current188 results. Both free APIs share
-the filesystem implementation. Confirm current live mapping and, before deleting
-anything, account for the softmod shadow-C distinction and actual owned files.
-No dashboard-C/cache cleanup is authorized by a capacity warning alone.
+the filesystem implementation. The earlier independent raw-C audit already
+established the shadow-C distinction: Partition0 at2359820288, FATX16/16KiB
+clusters,33directories/83files,179free clusters and no allocation errors/orphans.
+The508559360-byte nkpatcher/shadowc/shadowc.img explains intended raw-C occupancy;
+the dashboard exposed only11files totaling3259668bytes. Preserve the softmod.
+See ../raw-c-inventory/physical-allocation.json and ../engineering-notes/FATX.md.
+Current live free space remains to be sampled; do not repeat the completed raw
+scan or infer that deleting dashboardC: would reclaim the shadow image's space.
 
 After actual live ownership is known, complete the relevant unsupported-device
 acknowledgement without claiming driver support. Then prepare a NEW guarded
