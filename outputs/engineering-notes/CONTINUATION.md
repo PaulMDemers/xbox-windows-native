@@ -1,3 +1,29 @@
+# Current: NEWphysical phase/window200 PREPARED/frozen, no launch
+
+Latest199observations pushedc905131; BOTHordinary199CLOSED, neverrepeat. New200
+uses exact198profileOFF/ON/scalarOFFboth,199probeSHA bc9cf22b1f800bb493ad1618abf53f4666f33901d26b26d591a8459a8144f89e
+and unchanged194guard359c0a0e.... Actualphysicalcapture/dashboard preflight/provider
+pins exact, two-token proposedSYSTEM only, rollbackprivate readbackverified.
+No200physical.json/no actualhardwarewrite orWindowslaunch yet; no activeowned
+process.200capture20680/prep58474 CLOSED. Hostprotocolprints mocklaunch only.
+Source/inputfreeze physical-ready.json; no source mutation afterfreeze.
+
+Current protocol003 tests include supplementalGDI protection, phase/window/actual
+boundary/adversaries pass, closed199functional/cold prerequisites pass with strict
+Ft49 false retained. Read200REPORT/DESIGN/NEXT. Next deploy-launch control001 ONCE,
+ownedfinish observer/collect/startupFIRST/finallydisplaySYSTEMrestore/audits/closure,
+humanknownwizardcancel/Welcomeclose/replayunobscured. Candidate blockeduntilproper
+controlcoverage/eventinterval/coldtypedpolicies/restoration gates. Keyboardpersistent
+unplugged and deploymentauthorization retained; no repeatstatequestion. Physical
+0101/video0093/0088/immutable0.1.0 preserved; no promotion/release/fullstorageclaim.
+
+199clockmedian/windowdetails saved; emulatorclocks notphysicalbus/FPS. Original111
+nonASCIIcorruption/restart and194rawSYSTEMdamage unresolved. Creation200001 old
+prebuild199probeSHArefusal preserved; corrected use actualsuccessfulbuildreview,
+no changedbinary/gate. C:last21.760GiB/20GiBguard, no additionalbuild needed.
+
+# Earlier continuation (historical)
+
 # Current: ordinary phase/window199 BOTH CLOSED, physical phase kit next
 
 Source/preflight fed3f67; latest199 evidence/reports awaiting push. No owned
