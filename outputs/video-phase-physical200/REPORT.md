@@ -1,3 +1,18 @@
+# Physical200 control ACTIVE; no candidate launch
+
+Single control launch accepted2026-10-09 17:47:57UTC, SITE EXEC200 success.
+Deployment66838 CLOSED; owned finish-physical.py session21435 ACTIVE observing
+recorded launch, then once-only startup-first collect/restore/audit/closure.
+Normal startup currentlytemporarily test-enabled; originaldisplay/SYSTEM NOTyet
+restored. Evidence/rollback preserved. No physicaltestresult or timingclaim yet.
+Candidate200prepared NEVERlaunched, requirescontrolclosuregates. Human askedto
+cancelknownwizards withoutdisablingdevices/Welcome andleavebenchmarkunobscured.
+Neverduplicate launch/observer/collection; inspect physical.json/finish-state.json/
+physical-return.json andresume21435. If observer needsmanualscreen preserve actual
+state, no inferredcrash. All strict eventgate/rollback proceduresunchanged.
+
+# Earlier preparation record (historical)
+
 # Physical phase/window200 prepared; not launched
 
 NEW200 sources/helpers/providers/packages frozen in physical-ready.json after

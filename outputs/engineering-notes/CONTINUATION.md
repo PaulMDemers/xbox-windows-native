@@ -1,3 +1,30 @@
+# Current: physical200 control ACTIVE; candidate NEVER launched
+
+Prepared/frozen source/payload pushcb4eeb1, priorordinary199evidencec905131.
+Singlecontrol accepted2026-10-09 17:47:57UTC, FTP200EXECsuccess; deploy66838 CLOSED.
+Owned finish-physical.py session21435 ACTIVE (observer/collect/restore/hive/audit/
+closure once). Inspect actual200control001 physical.json/physical-return.json/
+finish-state.json beforefurtheraction; resumeowned21435, NEVERduplicate launch or
+observer/collection. Human screenquestionpending: knownwizardcancelwithoutdisable,
+Welcomeclose, benchmarkunobscured. Persistentkeyboardunpluggedauthorizationretained.
+
+StartuptemporarilytestenabledTRUE, display/SYSTEM NOTrestoredyet; oldbytes and
+rollbackprivate/consolearchivesreadbackverified. CollectorrestoresstartupFIRST,
+finallyoriginalpayloadSYSTEM, thenindependentbaseline/rollbackverificationand
+coldhive/policy/event/phase/windowaudit. CandidatepreparedNEVERlaunched; blocked
+untilpropercontrolcoverage/measurementinterval/coldrestoration/closuregates. No
+currentphysicalsuccess/timingclaim. Physicalbaseline0101/video0093willberestored;
+0088rollback/immutable0.1.0 preserved. Nootherownedactiveprocesses ornewexperiment.
+
+199bothclosed functional/cold265pixels/25loops/50scanout/200actualwindow PASS,
+strictFALSE soleFt49 retained. Exact198profileOFFON/scalarOFFboth200DLLs andexact
+199successfullybuiltprobe bc9cf22b.../194guard359c0a0e... frozen/protocolreviewed.
+No sourceeditsafterfreeze. Read200REPORT/DESIGN/NEXT and199evidence-review.
+Original111nonASCIIcorruption/firstrestart and194malformedSYSTEMproducerunresolved.
+C:last21.760GiB/20GiBguard; noextra build. Noemulatorrunning.
+
+# Earlier continuation (historical)
+
 # Current: NEWphysical phase/window200 PREPARED/frozen, no launch
 
 Latest199observations pushedc905131; BOTHordinary199CLOSED, neverrepeat. New200
