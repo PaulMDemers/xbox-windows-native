@@ -1,3 +1,163 @@
+# Current:209 hardware and emulator pairs CLOSED; scalar copier no speed benefit
+
+Physical80707/87898 CLOSED collected/restored/audited; both scoped display PASS.
+Only UC scalar flag differed, bounds/bodyclocksOFF both. All265copy/200window/
+25timedloops/50coherence plus2,129,920textpixels/65coherence exact. Actual ON
+fast rows/bytes confirmed. OFF/ON hardware fill medians2.060440/2.086231ms,
+DIB2.467105/2.495840; overlaps unchanged within small differences. Five raw
+samples retained, including candidate readback outlier; no hardware speedup,
+causal regression or FPS claim. Scalar remains OFF; no baseline promotion.
+
+Both helpers1/2/3/4 joined/idle5100ms/bookends PASS, normalrestart6006/dashboard,
+10before/afterhives/protected/typedpolicy and exact original0101/video0093 display/
+SYSTEM restoration PASS. Startup restored FIRST after each. StrictFALSE sole
+inherited premeasurementFt49; no application/popup/measurementerrors. No full
+physical allocation/content/dump/release qualification. Candidate accepted
+2026-10-09T23:31:27.045580Z, dashboard23:36:01.242859Z. Never relaunch/recollect.
+
+Ordinary79764/73411 CLOSED scopedPASS/fullcoldclean324dirs6727files325clusters,
+5hives/protected/policies, helper1/2/5 and normalshutdown/dashboard. SoleFt49
+strictFALSE. Emulator gains12–19% do not predict physical speeds; readback9.4%
+worse retained. Pair reviews and316-pin evidence review PASS; parser21+18 negative
+checks PASS. Build91073/preps8685/34799/capture27007/offload49436 also CLOSED.
+No root-owned process remains. Repository19391-file checks, Python/PowerShell
+syntax,161 exact staged source/evidence byte comparisons and whitespace checks
+PASS. This milestone's source/reports are committed together; verify main/origin
+in git log before the next fresh kit.
+
+NEXT: NEW controlled window exposure/drag callback byte accounting, retain206 text
+bounds with scalarOFF; identify actual redundant producer before another patch.
+209/NEXT.md documents NULL rectangle API leads and conservative bounds/fallback
+gates. No isolated WC flag or speculative GPU change. Device chats retain separate
+emulator-only branches; this chat owns sequential hardware integration. Preserve
+0101/video0093,0088rollback,immutable0.1.0 and failed/closed evidence.
+
+Capacity: closed historical FAILED bootvid-ram001 standalone offloaded/hash-
+verified to E, original junction preserved, manifest-bootram001-20261009.json.
+No active chain moved/no new Windows PASS. Last Cfree23,321,784,320 bytes; preserve
+20GiB reserve and projected clone headroom. Initial208lease refusal and incorrect
+fullbinary identity assertion retained, timestamp/checksum-only difference proven.
+
+# Historical:209 hardware control CLOSED PASS; candidate deploy/finish ACTIVE
+
+Physical control80707 CLOSED collected/restored/audited. Scoped display/workload,
+measurement interval, helper1/2/3/4 idle/bookends, normalshutdown1/dashboard,
+10before/after hives/protected and exact original0093 display/SYSTEM/startup
+restoration PASS. StrictFALSE sole documented pre-measurementFt49 retained.
+Control launch2026-10-09T23:25:20.050440+00:00; never relaunch/recollect.
+
+Candidate combined deploy/finish87898 ACTIVE. Controller checks frozen ready and
+closed control/hive/restoration gates. Inspect candidate001/physical.json and
+finish-state/physical-return before any action; no duplicate observer, launch or
+collection. It restores startup FIRST, preserves evidence and restores baseline
+in finally, then readback/10hives/audit/closure. While deployed its test startup
+is temporary; actual record determines whether launch accepted/restored.
+
+Both ordinary209 emulators79764/73411 CLOSED scopedPASS/full cold clean, actual
+scalarOFF/ON rows and pixel oracle PASS, soleFt49 strictFALSE; emu timings are
+not physical speed. Exact206probe/202runner/201helper reused. Row-parser18 and
+text/lifecycle21 negative checks PASS. Native208 source tree118, onlyUC flag,
+bodyclocks/textboundsOFF both, imports/instructions PASS. Physical ready frozen.
+
+Offload49436 CLOSED: historical failed nt5-fatx-boot-bootvid-ram-001 standalone
+copied/hash-verified to E, original path retained junction; no active chain moved,
+no new Windows result fabricated. manifest-bootram001-20261009.json. First build
+lease refusal and wrong full-binary identity host assertion retained; normalized
+PE comparison proves only two timestamps/checksum differ, no deployed edits.
+
+NEXT: inspect owned87898 until closure. Run WSL compare.py --physical once and
+review-evidence.py once; interpret raw timings/unchanged readback and run-order
+limits. Update reports/notes, repository/source/evidence/whitespace checks, commit/
+push private main. Current source UNCOMMITTED. Preserve physical0101/video0093,
+0088rollback,0.1.0 and all187/204/206 failures/closures. Device chats own separate
+emulator-only branches; no messaging authorization inferred.
+
+# Current:209 physical control ACTIVE; emulator pair CLOSED scopedPASS
+
+Ordinary209 control79764 and candidate73411 CLOSED. Both scope/integrityPASS,
+actual ON scalar coverage and OFF zero-fast coverage;25timedloops,265copychecks,
+200windowreadbacks,2,129,920newtextpixels/65wholecoherence per boot. Full cold
+allocation324dirs6727files325dirclusters0errors/orphans,5hives/protected/typedpolicy,
+actual helper1/2/5 join+idle/bookends and normalshutdown/dashboard PASS. Strict
+FALSE sole inheritedFt49. No synthetic null-device policy. Actual row-parser18
+and text/lifecycle21 negative checks PASS; emulator-pair-review PASS. Candidate
+write-loop medians improved~12–19% but unchanged readback worsened9.4%; retain
+raw samples, no hardware/desktop speed inference from emulator timings.
+
+Physical209 control accepted23:25:20UTC October9,200EXEC. Owned combined deploy/
+finish80707 ACTIVE, no duplicate observer/launch/collection. Startup currently
+ENABLED temporary control; baseline not yet restored. Inspect control001/physical,
+finish-state and physical-return. finish-physical restores startup FIRST, preserves
+then restores original0093 display/SYSTEM in finally, verifies readback and10hives,
+audits/closure. Only actual scoped control/hive/restoration PASS allows a single
+NEW candidate001 hardware launch. Physical candidate NEVER launched. Ready/package
+all source/input pins frozen and direct replay.exe preflight fixed before freeze.
+
+No new display promotion/release/storage qualification. Fresh208 source tree118,
+onlyUC storesOFF/ON; clocks/textboundsOFF both. Exact206 v11/source and202/201
+helpers reused, source/import/instruction checks PASS. New E standalone images/
+runs preserve existing chains and C20GiB reserve. Build91073/preps8685/34799/
+read-onlycapture27007 CLOSED. All failures/historical187/204/206 preserved.
+
+Next: inspect owned80707 until close; candidate once only after gates, finishonce,
+compare.py --physical under WSL, review-evidence.py, report actual hardware raw
+sample/readback/order limits, notes/checks/commit/push private main. Original
+physical0101/video0093,0088rollback,immutable0.1.0 remain preserved. Childdevice
+chats own emulator-only branches; hardware integration serialized here. No
+messaging permission inferred. Current source/evidence UNCOMMITTED.
+
+# Current:209 ordinary control ACTIVE; candidate NEVER launched
+
+Fresh208 matched scalar builds/imports/instructions PASS,118 source tree,
+UC stores OFF/ON only, text bounds/body clocks OFF both. Exact206 v11/source
+and202/201 runner/helper reused. Both209 standalone preparations8685/34799
+CLOSED full cold clean319dirs6716files320clusters0errors/orphans and5hives.
+Read-only physical capture27007 CLOSED, rollback/provider/typed binding proposal
+PASS; no physical write or launch. Original0093/0101 normal startup unchanged.
+
+Control host79764 ACTIVE.15 cooperative prelaunch resource refusals preserved,
+no marker/run created by those. New single runner103724, observer100280 and xemu
+99884 ACTIVE; launch accepted23:14:59UTC October9. Read actual host-state/launch/
+instance/cleanup records at outputs/video-scalar-runtime209/emu-control001 and
+E:/Codex-private-artifacts/xbox-windows-feasibility/scalar209-runs/nt5-scalar209-control001.
+Never duplicate. Host handles single observer/closure/cold audit. Candidate not
+launched; only after scoped control PASS run its new host controller once. Then
+compare/parser/physical package/ready gates and one-shot hardware pair with fresh
+startup-FIRST collection/restore. Keep soleFt49 strictFALSE and all timing limits.
+
+Fresh OFF binary code/data/imports match205. Initial host full-byte assertion
+failed (preserved); zeroing only PE timestamps and checksum proves whole-byte
+identity, no deployed file normalized. First208 build lease refusal also retained.
+Fresh E standalone locations preserve existing backing chains; C20GiB guard,
+projected E copy/headroom and exclusive resource acquisition before run creation.
+Build91073 CLOSED; source/evidence UNCOMMITTED. Check/review/private commit/push
+once active evidence closes. Device chats own emulator-only audio/PCI/USB work;
+no messaging authorization inferred. Preserve historical187/204/206 closures.
+
+# Current:208 scalar pair built;209 fixture cold preparation ACTIVE
+
+Authorized resume of video work.208 fresh source replay tree118, only UC stores
+OFF/ON; text bounds/body clocks OFF both. Build91073 CLOSED compiled. First build
+lease refusal before source creation preserved; lease subsequently acquired.
+Compiled imports and actual eight scalar stores/control REP review PASS. Exact
+206 v11 probe/source and202 joined runner/201 helper reused, not recompiled.
+New209 scripts/source frozen; no existing case was retried. Fix old replay alias
+before freeze; controller references pinned replay.exe directly.
+
+209 control/candidate preparation8685/34799 ACTIVE; no guest or physical launch.
+New standalone seeds and future runs on E: with fresh names, no existing disk or
+backing-chain relocation. C20GiB reserve retained, projected E copy/headroom
+checked; both build/xemu leases acquired before runner-start/run creation.
+Read209 DESIGN, frozen source and actual fixture/attempt records before continuing.
+Next: finish cold preparations, run ordinary matched control then candidate ONCE,
+full cold/pixel/row/idle/event audits. Only matching scoped PASS permits fresh
+hardware capture/package/one-shot pair with startup-FIRST collect and baseline
+rollback. Keep strictFt49 false, background/readback/order limits; no desktop FPS.
+Physical0093/0101 normal startup unchanged; console access not performed this turn.
+Device chats own audio/PCI/USB branches, initial emulator-only. No messaging
+permission inferred. Preserve all187/204/206 historical failures and closures.
+Current source UNCOMMITTED; review/check/commit/private push when evidence closes.
+
 # Current: three device chats ACTIVE; video and hardware coordination stay here
 
 User requested independent device work while video continues. Created and dispatched

@@ -1,0 +1,89 @@
+{
+  "passed": true,
+  "builds": [
+    {
+      "case": "control001",
+      "binary_sha256": "394c38f737faf408bc63b94c3693e73854dc02a3070cd1e8482926b916e9b9c5",
+      "upload_address": 76176,
+      "upload_rva": 10640,
+      "upload_bytes": 416,
+      "upload_sha256": "249231af36cf492ee8a0bbf771ffa5799724d85b3b3dec7cb244a4b04ad9555c",
+      "resident_section": ".text",
+      "scalar_stores": [],
+      "memmove_address": 86384,
+      "memmove_prefix_sha256": "eec66d114bfa95360992321158ede2969fa52f8157d90d0eaf1930d5ce57a715",
+      "baseline_rep_movsd_observed": true,
+      "no_vector_fpu_observed": true
+    },
+    {
+      "case": "candidate001",
+      "binary_sha256": "7c11f81719d30dadf6b03f45cfe53cc3ffa0428bbc92220edfe1a6ea51c1b4f1",
+      "upload_address": 76176,
+      "upload_rva": 10640,
+      "upload_bytes": 672,
+      "upload_sha256": "28dcd9e3569c7f1dd138ebecd6bed83532e8ed4007cfbad03793bc8c30c2f22c",
+      "resident_section": ".text",
+      "scalar_stores": [
+        {
+          "address": 76424,
+          "displacement": -32,
+          "bytes": "8950e0",
+          "text": "mov dword ptr [eax - 0x20], edx"
+        },
+        {
+          "address": 76430,
+          "displacement": -28,
+          "bytes": "8950e4",
+          "text": "mov dword ptr [eax - 0x1c], edx"
+        },
+        {
+          "address": 76436,
+          "displacement": -24,
+          "bytes": "8950e8",
+          "text": "mov dword ptr [eax - 0x18], edx"
+        },
+        {
+          "address": 76442,
+          "displacement": -20,
+          "bytes": "8950ec",
+          "text": "mov dword ptr [eax - 0x14], edx"
+        },
+        {
+          "address": 76448,
+          "displacement": -16,
+          "bytes": "8950f0",
+          "text": "mov dword ptr [eax - 0x10], edx"
+        },
+        {
+          "address": 76454,
+          "displacement": -12,
+          "bytes": "8950f4",
+          "text": "mov dword ptr [eax - 0xc], edx"
+        },
+        {
+          "address": 76460,
+          "displacement": -8,
+          "bytes": "8950f8",
+          "text": "mov dword ptr [eax - 8], edx"
+        },
+        {
+          "address": 76466,
+          "displacement": -4,
+          "bytes": "8950fc",
+          "text": "mov dword ptr [eax - 4], edx"
+        }
+      ],
+      "memmove_address": 86640,
+      "memmove_prefix_sha256": "eec66d114bfa95360992321158ede2969fa52f8157d90d0eaf1930d5ce57a715",
+      "baseline_rep_movsd_observed": true,
+      "no_vector_fpu_observed": true
+    }
+  ],
+  "only_definition_difference": "XWN_UC_STORES",
+  "source_tree": "4e335dc7a23b4fc058db597a1dded0c098af3cb1",
+  "inherited_host_tests_sha256": "ed4a59c60b7987992c6eeef59469e5c4b6ebca89af48ce88dbf09bea6cf75153",
+  "row_source_sha256": "1ba9464b78104a9176a59b34caede9fde072e2ec05d264d183532af1eee0a3d0",
+  "physical_access": false,
+  "runtime_qualified": false,
+  "limits": "New actual scalar stores and fallback REP pinned. Exact historical host row oracle retained separately; no throughput qualification."
+}
