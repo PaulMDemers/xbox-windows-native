@@ -1,3 +1,104 @@
+# Body timing170 and matched ordinary172 CLOSED; reviewed functional PASS, strict FALSE
+
+Current state supersedes all historical ACTIVE entries below. ALL owned168–172
+sessions CLOSED; no guest/NBD/observer running. No physical FTP/deploy/test this
+turn. Preserve physical0101/video0093,0088 rollback,immutable0.1.0 and all failures.
+Read outputs/video-body-runtime172/REPORT.md, NEXT.md, INTERPRETATION.md,
+pair-analysis.json and evidence-review.json. Final read-only evidence review PASS.
+
+170 new diagnostic113 calibrates actual NT5 performance-counter calls and measures
+EngBitBlt/EngCopyBits, framebuffer copy body and full upload wrapper. Render/ROP/
+clip/copy algorithms unchanged. Matched OFF/ON source52788720..., actual resident
+imports reviewed;4142 ASan/UBSan arithmetic checks PASS. First build hash refusal
+(mixed line endings) preserved; fresh normalized002 compiled, no failed guest.
+171 control host-blocked before ZERO Windows launches; candidate prepared NEVER
+launched. Cold integrity PASS; inherited fixed closure counts are planned only.
+172 fresh PowerShell AST contracts fixed BOTH case validators before freezing.
+Host freeze/Run refusals while preflight pending preserved; no guest from refusals.
+
+172 control ONE launch00:13:38→dashboard00:15:52UTC Oct9; candidate ONE launch
+00:20:09→dashboard00:22:24. Each5samples/30expectedpixelchecks/25timedloops/
+50fullscan RGB coherence, normal shutdown/dashboard, full322dirs6721files323dir
+clusters0errors/orphans/5hives/protected/startup and46frozenpins/snapshots PASS.
+Clock1125000Hz/128pairs, zero errors/overflow, exact64bit/read accounting PASS.
+Strict FALSE exact inheritedFt49 PLUS ONE informational shutdown rundll32 popup26/
+type4 EACH; application deltas empty. No waiver or hardware/performance promotion.
+
+Emulator DIB median engine0.10539ms/op and copy0.09589ms/op: both material costs.
+Elapsed totals include background/preemption, not exclusive CPU; common2000op cap
+and coarse GetTickCount remain limits. ON/OFF measures queries AND enabled tick/
+read accounting, not queries alone or total profiling versus untouched112.128pair
+direct-query calibration does not measure complete wrappers. Frozen narrower
+wording preserved; INTERPRETATION.md and derivative reports correct it explicitly.
+
+Next discriminator: trace actual outer CreateProcessAsUser and child startup for
+169 captured01B0/01B4 pending installers. InnerTRUE/no-popup debugger does not prove
+outer success or resolve ordinary recurrence. No arbitrary wait/device suppression.
+Hardware diagnostic eligibility must reject ALL popup types. Separately bound
+total profiling overhead with fresh untouched112 control and explicit missing
+profile-ABI handling; current v5 requires113 and cannot simply be run on112 as PASS.
+No speculative framebuffer-store/cache/memory-type/ROP optimization from these
+emulator timings. Never relaunch/recollect CLOSED cases. C:23.26GB last checked;
+20GiB build guard unchanged. Source/report and evidence review complete; repository
+binary/media/credential checks PASS (15651 tracked files). Exact frozen patch
+context and compiler disassembly whitespace retained through narrow attributes.
+Private Git history records this completed source/evidence checkpoint.
+
+# Historical: Body runtime172 control CLOSED functional/calibration PASS; candidate ACTIVE
+
+ControlONElaunch00:13:38UTC→dashboard00:15:52, runner21138/supervisor18443 CLOSED.
+Cold30expectedpixelchecks(20copy10solid),25loops50coherence,full322dirs6721files323
+clusters0errors/orphans/5hives/protected/startupPASS. Clockfreq1125000,128pairs,
+mode0bodyticks0/reads256/errors0/overflow0, all5samplestimercontractPASS.46frozen
+pins/snapshotsexact. STRICTFALSE exactFt49 + ONEshutdownrundll32popup26/type4.
+No eventwaiver or ordinary/performance/physicalqualification.
+Candidate runner2774/supervisor30160 ACTIVE; ONEacceptedrequest00:20:09UTC. Same
+170source/helper, onlyON compiledefinition enablesclocks/extraaccounting. NoHW.
+Read INTERPRETATION.md: frozen"onlyclockqueries" wordingtoo narrow; ratioincludes
+ON tick/read64bitaccounting too. DirectDDI128paircalibrationdoesnotcoverfullwrapper;
+never subtractknownconstant. Derivativeanalysis/reportcorrects; frozenfilesunchanged.
+Allotherowned168/169/170/171tasksCLOSED;171candidatepreparedNEVERlaunched.
+# Body runtime172 control ACTIVE; all171 host-blocked evidence CLOSED
+
+170 matched113 source/binaries compiled/reviewed; actual4142ASan/UBSan arithmetic
+checks PASS, v5helper/actualimports/residency PASS. Both172fixtures/preflights/
+source snapshots frozen; actualPS AST Case validators bothreviewed beforebootstrap.
+Control runner21138/supervisor18443 ACTIVE; inspectcontrol001/
+launch.json for SINGLE acceptedWindowsrequest. Candidate prepared NEVERlaunched.
+No debugger, physicalFTP/deploy/test, device/dialog/service/cache/modechange.
+Timer/body measurements requirecoldaudit/calibration/error/overflow/monotonic/
+readscoverage, expectedpixel/coherence and unchangedfiles/hives/fullallocation.
+
+171 runner85358/audit9152 CLOSED; supervisor was blocked beforeZEROlaunchcycles
+becausecandidate-onlyPSvalidator. Cold317dirs6713files318clusters/hives/protected
+PASS;workloadFALSE. Its closure inheritedfixedplanned5/20/25fieldsNOTobserved;
+REPORT.md explicitly correctsinterpretation.172closurederivesactualcoverage.
+171candidate preparedNEVERlaunched. Never rerun/recollect171.172firsthostfreeze
+was requestedwhilecandidatepreflight19579stillrunning, refusedmissingpreflight;
+initialRunrefusedmissingreadyBEFOREbootstrap. No source/mutation/launch there.
+PreflightcompletedONCE, freshruntimefreezethensuccess, oneownedcontrolnowrunning.
+All168/169,170build/helper,171 CLOSED. C~22.7GB,20GiBguardunchanged.
+# Timing170 compiled; ordinary clock/body171 control ACTIVE
+
+New170113 instrumentation on exact112 driver parent, preserves render/copy/clip
+algorithms, adds calibrated clock/body counters/privateescape. Matched controlOFF/
+candidateON source52788720..., actualNT5imports+residentcode reviewed; v5 helper
+explicitblack/white+pattern pixels,166launcher unchanged.4142ASan/UBSanactual-header
+checks PASS;171parser2positive/16corruptcontractsPASS. First hostclang unavailable
+(sourcehost-tests001.py retained);gccpass. Build001 sourcehashfailure due mixed
+lineendings retained underbuild001-expected and WSLbuild/video-body-timing170-001;
+no compile/guest there. Normalized LF fresh002compiled, warningsunusedstaticheader
+functions retained. Driver review limits: timer/runtime stillUNVERIFIED. No physical.
+
+171 bothfresh162candidatechildren prepared/coldpreflighted/sourcefrozen; only170
+payload differs and samestagedv5helper; geometry/devices/hives unchanged. Control
+owned runner85358 ACTIVE; supervisor actualsessionbelow, ONElaunch requested.
+Inspectactualcontrol001/launch.json beforemorework; never duplicate. Candidate
+prepared NEVERlaunched; runonlyaftercontrolcoldworkload/integrity checks. Pending
+cold audit/profilefrequency/64bitmonotonic/error/overflow/reads coverage plusfull
+allocation/hives/protected/events. No debugger/dialogpolicychanges; popupreject
+alltypes, exactFt49 remainsstrictfailure. C~23.1GB beforeprep,20GiBguard unchanged.
+All168/169 and170build/helper/sanitizertasks CLOSED. Historicalnotes below.
 # Process lifecycle169 CLOSED; next engine/upload timing diagnostic
 
 Read outputs/video-process-lifecycle169/REPORT.md, NEXT.md, TIMING-PLAN.md and

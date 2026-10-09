@@ -1,0 +1,234 @@
+--- a/win32ss/drivers/displays/framebuf/CMakeLists.txt
++++ b/win32ss/drivers/displays/framebuf/CMakeLists.txt
+@@ -7,6 +7,7 @@
+     surface.c
+     shadow.c
+     ownership.c
++    profile_math.h
+     framebuf.h)
+ 
+ add_library(xwnown MODULE
+@@ -19,3 +20,10 @@
+ add_importlibs(xwnown win32k)
+ add_dependencies(xwnown psdk)
+ add_cd_file(TARGET xwnown DESTINATION reactos/system32 FOR all)
++
++option(XWN_BODY_PROFILE "Diagnostic elapsed engine/upload bodies" OFF)
++if(XWN_BODY_PROFILE)
++ target_compile_definitions(xwnown PRIVATE XWN_BODY_PROFILE=1)
++else()
++ target_compile_definitions(xwnown PRIVATE XWN_BODY_PROFILE=0)
++endif()
+--- a/win32ss/drivers/displays/framebuf/enable.c
++++ b/win32ss/drivers/displays/framebuf/enable.c
+@@ -31,6 +31,10 @@
+    p = XwnOwner(Surface);
+    if (!p) return 0;
+    if (!p->ScreenPtr || !p->hSurfEng || !p->ShadowObject || !p->ShadowActive) return 0;
++   if (Escape == 0x58574433 && OutBytes == sizeof(Data))
++   {
++      XwnProfileSnapshot(p,Data);memcpy(Out,Data,sizeof(Data));return 1;
++   }
+    if (Escape == 0x58574431 && OutBytes == 32)
+    {
+       Data[0]=0x44525758;Data[1]=112;Data[2]=p->ScreenWidth;Data[3]=p->ScreenHeight;
+@@ -192,6 +196,7 @@
+       return NULL;
+    }
+ 
++   XwnProfileInit(ppdev);
+    memcpy(pdi, &DevInfo, min(sizeof(DEVINFO), cjDevInfo));
+    memcpy(pdevcaps, &GdiInfo, min(sizeof(GDIINFO), cjCaps));
+ 
+--- a/win32ss/drivers/displays/framebuf/framebuf.h
++++ b/win32ss/drivers/displays/framebuf/framebuf.h
+@@ -30,6 +30,8 @@
+ 
+ //#define EXPERIMENTAL_MOUSE_CURSOR_SUPPORT
+ 
++
++#include "profile_math.h"
+ typedef struct _PDEV
+ {
+    HANDLE hDriver;
+@@ -40,6 +42,7 @@
+    PVOID ShadowBits;
+    BOOL ShadowActive;
+    ULONG ShadowCalls[14];
++   XWN_PROFILE Profile;
+    ULONG ShadowUploads;
+    ULONGLONG ShadowBytes;
+    ULONG ModeIndex;
+@@ -203,3 +206,8 @@
+ PPDEV XwnOwner(SURFOBJ *s);
+ BOOL XwnSelectOwner(PPDEV *selected, SURFOBJ *s);
+ #endif /* _FRAMEBUF_PCH_ */
++
++VOID XwnProfileInit(PPDEV);
++LONGLONG XwnProfileStart(VOID);
++VOID XwnProfileEnd(PPDEV,ULONG,LONGLONG);
++VOID XwnProfileSnapshot(PPDEV,ULONG *);
+--- a/win32ss/drivers/displays/framebuf/ownership.c
++++ b/win32ss/drivers/displays/framebuf/ownership.c
+@@ -100,3 +100,52 @@
+     *selected = p;
+     return TRUE;
+ }
++
++/* Separate elapsed diagnostic. Never hold membership lock across an Eng render
++ * call, clock query or framebuffer copy. It only protects64bit accounting and
++ * snapshots; it remains no replacement for GDI's submitted-PDEV lifetime. */
++VOID XwnProfileInit(PPDEV p)
++{
++    ULONG i; LONGLONG a,b;
++    p->Profile.Enabled=XWN_BODY_PROFILE;
++    p->Profile.Minimum=~(ULONGLONG)0;
++    EngQueryPerformanceFrequency(&p->Profile.Frequency);
++    if (p->Profile.Frequency<=0) ++p->Profile.Errors;
++    for(i=0;i<128;i++) {
++        a=b=-1;EngQueryPerformanceCounter(&a);EngQueryPerformanceCounter(&b);
++        XwnProfileCalibration(&p->Profile,a,b);
++    }
++}
++LONGLONG XwnProfileStart(VOID)
++{
++#if XWN_BODY_PROFILE
++    LONGLONG tick=-1;EngQueryPerformanceCounter(&tick);return tick;
++#else
++    return 0;
++#endif
++}
++VOID XwnProfileEnd(PPDEV p, ULONG kind, LONGLONG begin)
++{
++    LONGLONG end=XwnProfileStart();
++    EngAcquireSemaphore(XwnOwnerLock);
++    XwnProfileAccumulate(&p->Profile,kind,begin,end);
++    EngReleaseSemaphore(XwnOwnerLock);
++}
++VOID XwnProfileSnapshot(PPDEV p, ULONG *out)
++{
++    ULONG i,at;
++    RtlZeroMemory(out,128);
++    EngAcquireSemaphore(XwnOwnerLock);
++    out[0]=0x544d5758;out[1]=113;out[2]=128;out[3]=p->Profile.Enabled;
++    out[4]=(ULONG)p->Profile.Frequency;out[5]=(ULONG)((ULONGLONG)p->Profile.Frequency>>32);
++    out[6]=p->Profile.Samples;
++    out[7]=(ULONG)p->Profile.Minimum;out[8]=(ULONG)(p->Profile.Minimum>>32);
++    out[9]=(ULONG)p->Profile.Maximum;out[10]=(ULONG)(p->Profile.Maximum>>32);
++    out[11]=p->Profile.Errors;out[12]=p->Profile.Overflows;
++    for(i=0;i<4;i++) {
++        at=14+i*3;out[at]=p->Profile.Count[i];
++        out[at+1]=(ULONG)p->Profile.Ticks[i];out[at+2]=(ULONG)(p->Profile.Ticks[i]>>32);
++    }
++    out[26]=p->Profile.Reads;
++    EngReleaseSemaphore(XwnOwnerLock);
++}
+--- /dev/null
++++ b/win32ss/drivers/displays/framebuf/profile_math.h
+@@ -0,0 +1,40 @@
++/* Diagnostic arithmetic, GPL-2.0-or-later as framebuf. ULONG/ULONGLONG/LONGLONG
++ * are supplied by the NT5 DDK (or exact-width host test shim). */
++typedef struct {
++    LONGLONG Frequency;
++    ULONGLONG Minimum, Maximum, Ticks[4];
++    ULONG Count[4], Errors, Overflows, Reads, Samples, Enabled;
++} XWN_PROFILE;
++static void XwnProfileIncrement(ULONG *value, ULONG *overflows)
++{
++    if (*value != (ULONG)~(ULONG)0) ++*value;
++    else if (*overflows != (ULONG)~(ULONG)0) ++*overflows;
++}
++static void XwnProfileCalibration(XWN_PROFILE *s, LONGLONG before, LONGLONG after)
++{
++    ULONGLONG delta;
++    XwnProfileIncrement(&s->Reads,&s->Overflows);
++    XwnProfileIncrement(&s->Reads,&s->Overflows);
++    XwnProfileIncrement(&s->Samples,&s->Overflows);
++    if (before < 0 || after < before) {
++        XwnProfileIncrement(&s->Errors,&s->Overflows); return;
++    }
++    delta=(ULONGLONG)after-(ULONGLONG)before;
++    if (delta<s->Minimum) s->Minimum=delta;
++    if (delta>s->Maximum) s->Maximum=delta;
++}
++static void XwnProfileAccumulate(XWN_PROFILE *s, ULONG kind, LONGLONG before, LONGLONG after)
++{
++    ULONGLONG delta;
++    if (kind>=4) {XwnProfileIncrement(&s->Errors,&s->Overflows);return;}
++    XwnProfileIncrement(&s->Count[kind],&s->Overflows);
++    if (!s->Enabled) return;
++    XwnProfileIncrement(&s->Reads,&s->Overflows);
++    XwnProfileIncrement(&s->Reads,&s->Overflows);
++    if (before<0 || after<before) {XwnProfileIncrement(&s->Errors,&s->Overflows);return;}
++    delta=(ULONGLONG)after-(ULONGLONG)before;
++    if (delta>(~(ULONGLONG)0)-s->Ticks[kind]) {
++        s->Ticks[kind]=~(ULONGLONG)0;
++        XwnProfileIncrement(&s->Overflows,&s->Overflows);
++    } else s->Ticks[kind]+=delta;
++}
+--- a/win32ss/drivers/displays/framebuf/shadow.c
++++ b/win32ss/drivers/displays/framebuf/shadow.c
+@@ -14,14 +14,16 @@
+ }
+ static VOID XwnUploadBox(PPDEV p, const RECTL *r)
+ {
+- LONG y; ULONG bytes;
++ LONG y; ULONG bytes; LONGLONG begin;
+  if (r->left>=r->right || r->top>=r->bottom) return;
+  bytes=(r->right-r->left)*4;
++ begin=XwnProfileStart();
+  for(y=r->top;y<r->bottom;y++) memcpy((BYTE*)p->ScreenPtr+y*p->ScreenDelta+r->left*4,(BYTE*)p->ShadowBits+y*p->ScreenDelta+r->left*4,bytes);
++ XwnProfileEnd(p,2,begin);
+  if(p->ShadowUploads!=0xffffffff) ++p->ShadowUploads;
+  p->ShadowBytes+=(ULONGLONG)bytes*(r->bottom-r->top);
+ }
+-VOID XwnUpload(PPDEV p, const RECTL *rect, const CLIPOBJ *clip)
++static VOID XwnUploadInternal(PPDEV p, const RECTL *rect, const CLIPOBJ *clip)
+ {
+  RECTL r;
+  if (!p->ShadowActive || !p->ScreenPtr || !p->ShadowBits) return;
+@@ -57,6 +59,12 @@
+  /* Partial uploads copy completed RAM pixels: repeating the full box is safe. */
+  XwnUploadBox(p,&r);
+ }
++VOID XwnUpload(PPDEV p, const RECTL *rect, const CLIPOBJ *clip)
++{
++ LONGLONG begin=XwnProfileStart();
++ XwnUploadInternal(p,rect,clip);
++ XwnProfileEnd(p,3,begin);
++}
+ ULONG XwnCheckScanout(PPDEV p)
+ {
+  ULONG i,n=p->ScreenDelta*p->ScreenHeight/4,bad=0;
+@@ -66,25 +74,29 @@
+ }
+ BOOL APIENTRY XwnBitBlt(SURFOBJ *psoTrg, SURFOBJ *psoSrc, SURFOBJ *psoMask, CLIPOBJ *pco, XLATEOBJ *pxlo, RECTL *prclTrg, POINTL *pptlSrc, POINTL *pptlMask, BRUSHOBJ *pbo, POINTL *pptlBrush, ROP4 rop4)
+ {
+- PPDEV p=NULL; BOOL ok;
++ PPDEV p=NULL; BOOL ok; LONGLONG begin;
+  if ((TRUE) && !XwnSelectOwner(&p, psoTrg)) return FALSE;
+  if ((XwnRopUsesSource(rop4)) && !XwnSelectOwner(&p, psoSrc)) return FALSE;
+  if ((XwnRopUsesMask(rop4)) && !XwnSelectOwner(&p, psoMask)) return FALSE;
+  if (!p || !p->ShadowActive) return FALSE;
+  if (p->ShadowCalls[0] != 0xffffffff) ++p->ShadowCalls[0];
++ begin=XwnProfileStart();
+  ok=EngBitBlt((TRUE ? XwnSub(p, psoTrg) : NULL), (XwnRopUsesSource(rop4) ? XwnSub(p, psoSrc) : NULL), (XwnRopUsesMask(rop4) ? XwnSub(p, psoMask) : NULL), pco, pxlo, prclTrg, pptlSrc, pptlMask, pbo, pptlBrush, rop4);
++ XwnProfileEnd(p,0,begin);
+  if (XwnOwner(psoTrg)) XwnUpload(p, prclTrg, pco);
+  return ok;
+ }
+ 
+ BOOL APIENTRY XwnCopyBits(SURFOBJ *psoDest, SURFOBJ *psoSrc, CLIPOBJ *pco, XLATEOBJ *pxlo, RECTL *prclDest, POINTL *pptlSrc)
+ {
+- PPDEV p=NULL; BOOL ok;
++ PPDEV p=NULL; BOOL ok; LONGLONG begin;
+  if ((TRUE) && !XwnSelectOwner(&p, psoDest)) return FALSE;
+  if ((TRUE) && !XwnSelectOwner(&p, psoSrc)) return FALSE;
+  if (!p || !p->ShadowActive) return FALSE;
+  if (p->ShadowCalls[1] != 0xffffffff) ++p->ShadowCalls[1];
++ begin=XwnProfileStart();
+  ok=EngCopyBits((TRUE ? XwnSub(p, psoDest) : NULL), (TRUE ? XwnSub(p, psoSrc) : NULL), pco, pxlo, prclDest, pptlSrc);
++ XwnProfileEnd(p,1,begin);
+  if (XwnOwner(psoDest)) XwnUpload(p, prclDest, pco);
+  return ok;
+ }
