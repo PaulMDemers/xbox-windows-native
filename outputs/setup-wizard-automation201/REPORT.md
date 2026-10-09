@@ -1,3 +1,81 @@
+# Current result: cancellation still incomplete
+
+Cancel002 closed the first two known wizards, but the third emulator-specific PCI
+wizard remained pending until120210ms timeout. Three actions/two window closures;
+creation-time tuples distinguish legitimate PID936 reuse. Helper joined and
+exited15; guardian correctly refused restart. Full cold allocation, five structural
+hives, protected/provider/startup hashes, event/SetupAPI history, typed device policy
+and no new device-disable flags pass. Thirty natural binding deltas retained. Sole
+inherited Ftdisk49 remains strict failure. No normal shutdown/dashboard or end-to-end
+qualification. Prior Cancel001 failed the same UI boundary; neither is repeated.
+
+A new failure-path diagnostic uses unchanged helper002 plus exact read-only188
+observer after timeout to capture the actual remaining page/control/process state.
+It does not install, disable, activate or close devices, or reboot after failure.
+Host/compiler/import/failure-branch reviews pass; new runtime result pending.
+
+Qualification correction: Cancel001 successful framebuffer capture called HMP stop
+and cont. Earlier no-pause text is incorrect; separate correction JSON preserves
+the original audit and marks that UI snapshot as debugger observation. No ordinary
+qualification is inferred. Cancel002 late capture could not connect after closure.
+
+No201 physical changes. Physical200 candidate remains pending manual screen/FTP
+return, collection and restoration. The working baseline/release archives remain
+preserved. Guardian003 host template wrote the wrong metadata filename; the actual
+new record is retained and the exact old frozen metadata restored, without rebuild
+or changing any old runtime evidence.
+
+# Earlier reports (historical)
+
+#201 alternate Cancel-notification002 ACTIVE
+
+NEWcancel002 accepted2026-10-09 18:49:33UTC. Fresh sameimmutableprelaunch plus
+reviewed helpera7373736... andunchangedguardian002;69source/provider/artifact pins,
+clean318dirs6713files319clusters/5hives/protectedbefore. Runtimejoin/queueidle/
+normalshutdown/dashboard and fullcold/typedpolicy/strict-event result pending.
+No physical201 deployment; physical200 stillawaitsscreen/collection/restoration.
+Firstmessage failure and all earlier evidence retained below.
+
+#201 Cancel001 failed safely; alternate notification002 preparation
+
+Actualthree sends; audio/SMBus closures observed, lastQEMUwizard remained until
+120060ms timeout. Childjoined/exited15; guardblockednormalrestart. No shutdown/
+dashboard. Fullcoldallocation318dirs6717files319clusters,5hives,protected/startup/
+SetupAPI/events/header/corepolicy/new-disable checks PASS. Thirtynatural device
+metadata changes preserved. SoleFt49 strict failure retained. This is a UI failure,
+not end-to-end success. Oldparser also rejected legitimatePIDreuse; creation-time
+sourcepairing/rawlogs/partialreview remain distinct, no re-audit or verdict repair.
+
+A NEW helper sends the verified enabled Cancel control notification to its parent,
+WM_COMMAND with BN_CLICKED/IDCANCEL and actualbuttonHWND. This is separate from
+PSM_PRESSBUTTON and does not forceclose/kill/install/disable anything. Sameguard/
+policy/source-provider pins apply; creationtuple logs makePIDreuse explicit.
+Build002 imports/compiler review passes; ordinaryruntime not yettested. Modern
+message metadata is not runtimeproof. Microsoft documents parent notification and
+parameters at https://learn.microsoft.com/en-us/windows/win32/controls/bn-clicked
+and Windows2000 WM_COMMAND at https://learn.microsoft.com/en-us/windows/win32/menurc/wm-command .
+Newparser2valid/10invalid syntheticcases only. FreshCancel002 preparation active;
+no physical201 deployment. Oldfailure retained below. Rejected HMP screendumps
+are hosttool limitations; supported read-only framebuffer snapshot exists privately.
+
+#201 passive002 verified; targeted Cancel001 active
+
+The representation-only passive002 run CLOSED:1348 records/439 eligibleaudio
+wizard matches/450 actualpendingqueries, noCancel/failure,120165ms timeout/exit15.
+Fullcold318dirs6716files319clusters/zeroerrors-orphans,5hives/protected/startup/
+SetupAPI/eventhistory PASS. SoleinheritedFt49 strict failure retained; no app
+warnings. No normalshutdown was requested, no ordinary/physical qualification.
+This supports the read-only matcher; does not establish originalcorruptioncause.
+
+NEW freshcancel001 stagesreviewedguardian002 andstartup, unchanged201helper and
+allguestdrivers/hives/devicepolicy. E standaloneprelaunch Imagesidentical and
+5hives/fullallocation/protected readbackPASS. Frozen56inputs; nativeknownCancel
+is explicit, up to8processlifetimes/120sec bound. Guardianrequireschildjoined0,
+actualsetupidle andunchanged194normalrestartguard. Runtime/coldresultpending.
+Additional typedSYSTEM policy/header/no-new-disable checks required. Parser
+1valid/9invalid syntheticchecks do not prove UIbehavior. Nothing deployed201
+onphysicalconsole. Old001 failure preserved below; neverrepeatclosedcases.
+
 #201 passive001 failed before helper; standalone002 preparation active
 
 Helper Build00152881e81... uses exact known instance/held owner/window/Cancel

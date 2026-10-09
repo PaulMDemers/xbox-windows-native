@@ -1,3 +1,129 @@
+# Current:201 Cancel002 CLOSED failure; remaining-dialog003 preparing
+
+Both known Cancel paths closed audio/SMBus but left third emulator QEMU PCI wizard
+pending. Cancel002 actions3/closed2, helper120210ms/exit15, joined0/restart blocked.
+Fullcold318dirs6717files319clusters/noerrors-orphans,5hives/protected/history/
+startup/typedpolicy/no-new-disable PASS;30 natural binding deltas retained. Sole
+inherited Ftdisk49 strictFALSE. No normal shutdown/dashboard or UI qualification.
+All cancel001/cancel002 sessions CLOSED; never relaunch/recollect them. Cancel001
+framebuffer capture used HMP stop/cont: qualification correction separately records
+this debugger observation and preserves original audit/raw data, no ordinary PASS.
+
+NEW cancel003 specific discriminator retains exact helper002, guardian003 runs
+exact read-only188 observer after joined helper failure, five UI/process/device/
+volume samples, bounded180sec join, no restart on failure. Prepared new standalone
+E source only after immutable prelaunch/provider/hive/allocation readback. Native
+compiler/import and failure-branch reviews pass; no runtime claim yet. Preparation61193 CLOSED, Imagesidentical/318dirs6714files319clusters/5hives
+protected/provider readback PASS. Frozen84 inputs exact. Single launch accepted
+19:09:31UTC; owned runner82479/supervisor97649 ACTIVE, host480sec bound. Inspect
+records and resumeowned sessions, neverduplicate; audit-cancel003.py ONCE after
+cleanup; expectedfailure-path fullremaining inventory and cold integrities. Guardian
+build script record-name error preserved; actual003 metadata saved separately and
+002 exact frozen metadata restored, no binary rebuild or old verdict repair.
+
+No201 physical deployment. Physical200 candidate still not collected/restored;
+startup/display/SYSTEM temporary, verified31-entry rollback preserved. One screen
+question pending, no inferred crash/no relaunch. Read-only dashboard check19:07UTC
+still timeout. Collect ONCE only on real FTP return, restore startup FIRST, then
+independent restore/hive/display/event review. Persistent keyboard authorization.
+
+Verified09i offload moved only two CLOSED audited standalone201 failure runs,
+everyfile/junction readback retained original paths; C:22.98GiB afteroffload,
+20GiB build guard unchanged. Physical0101/video0093/0088/immutable0.1.0/allfailures
+preserved. Latest pushed e400626; subsequent source/evidence pending reviewed push.
+
+# Earlier continuation (historical)
+
+# Current:201 Cancel002 emulator ACTIVE; physical200 screen pending
+
+Cancel002 freshprelaunch standalone E source prepared/Imagesidentical/5hives/
+fullclean318dirs6713files319clusters/protected/provider readback PASS. Frozen69
+actualinputs, helpera7373736... actualNT5imports/reviewed source078bb9e5...
+Known verifiedenabledCancel control WM_COMMAND/BN_CLICKED path only; samepolicy,
+120sec/8uniqueprocesslifetimes/1MiB log/realidle/unchangedguardian002 guards.
+Twohostparserpositives/10adversaries includePIDreuse bydistinct creationtuples.
+Owned runner43035 and supervisor83294 ACTIVE. prepare86084 CLOSED. Inspect actual
+cancel002 launch/cleanup/source/fixture, resumeowned sessions; neverduplicate.
+Afterclose audit-cancel002.py ONCE inWSL: tuplepairedintent/send/windowclosure,
+joinedchild0, realidle/normalrestart/dashboard/6006, fullcoldallocation/hives/
+protected/history/typedpolicy/no-new-disable flags; strict events neverwaived.
+
+Cancel001 CLOSEDpartialfailure: two closed, thirdunclosed, timeout15/guardblocked
+restart; integrityPASS, strictFt49FALSE. PreserveoldparserPIDreuse-refusal and
+hostscreen-command failures/read-onlysupportedframebuffer capture. Neverrepeat.
+Passive001rawSYSTEMfailure and002fullcoldpass retained, corruptioncauseunknown.
+No201physicaldeployment. Physical200observer closed withoutFTPreturn; source/
+SYSTEM/startup stilltemporaryteststate withverified31entryrollback. Pendingone
+screenquestion, no inferredcrash/no relaunch. Latestone read-onlypostboundcheck
+18:38:26UTC FTPtimeout; no collectionyet. Controllercollectonce onrealreturn,
+thenindependentrestore/hive/event/displayreview. Persistentkeyboardauthorization.
+
+20GiBcapacityguard unchanged, C:~21.8GiB beforeclone. Verified09h oldstandalone
+paging/eof offloadcomplete; oldpaths viareadbackjunction, no backingchain moves.
+No other ownedactiveprocesses. Priorpushe400626; latestsources/results pending
+review/check/commit/push. Preservephysical0101/video0093/0088/immutable0.1.0.
+
+# Earlier continuation (historical)
+
+# Current:201 Cancel001 FAILED/CLOSED; Cancel002 preparation ACTIVE
+
+ClosedCancel0013intents/sends targets1audio/2SMBus/5QEMU; firsttwo closed, third
+remainedpending until120060ms timeout. Childjoined0/exit15, guardcorrectlyblocked
+restart; no6006/dashboard. Fullcold318dirs6717files319clusters/noerrors/orphans,
+5hives/protected/startup/SetupAPI/eventhistory/header/corepolicy andno-new-device-
+disable PASS;30naturalPCI/USBbindingdeltas retained. StrictFt49FALSE. OverallUI
+failure, neverrepeat/recollect. Runner75185/supervisor33741/audit40846 CLOSED.
+Oldparser additionallyrefusedreusedPID940 without creationcontext; preserve raw
+failure pluspartial-result-review, notproofsameprocess. Hostscreendumprefusals
+preserved; supported monitor_capture.py read-only snapshot showsdesktop/wizard,
+no pause/input. No201physicaldeployment orhardware collection.
+
+NEW helperBuild002 changesONLY targetedmessage to verified enabledactualCancel
+control WM_COMMAND/BN_CLICKED,LPARAMbutton; sameexactinstance/window/creation
+revalidation/action/waitbounds. Logs creationtuples forPIDreuse. ActualNT5import/
+compiler/staticreviewPASS, same237hostpolicycases retained. Guardian002 unchanged.
+Newparser2valid/10invalidsyntheticcases includesdifferentcreationPIDreuse; noUI
+claim. prepare-cancel002.py session86084 ACTIVE, freshsameimmutable002prelaunch
+plusguardian/newhelper/startup; neveroldguestdisk. Inspect/resumeactualrecords.
+Only afterprepared/fullcold/freeze launch NEWcancel002 once, then genuinejoin/
+idle/normalrestart/coldpolicy/storage/strictgates. Unknownunclosedqueue fails.
+Physical200screenquestionpending; notrestored/noFTP/noinferredcrash/norelaunch.
+Latestpush e400626, reviewed later source/results remainuncommitted. Capacity
+20GiBguard retained afterverified09h offload, current~22GiB; no other activeprocess.
+Preserve allbaseline/release/rollback/failure evidence.
+
+# Earlier continuation (historical)
+
+# Current:201 Cancel001 emulator ACTIVE; physical200 screen pending
+
+Passive002 CLOSED/fullcold diagnosticusableTRUE:1348 logrecords/439 exact audio
+wizard matches/450pendingqueries/zeroactions, actualtimeout120165ms/exit15.
+Fullclean318dirs6716files319clusters/noerrors/orphans,5hives/protected/startup/
+SetupAPI/eventhistory PASS; strictsoleinheritedFt49 FALSE, no app delta/normal
+shutdown by design. Source byte-equivalentstandalone differs onlyhostlayout;
+this does not establish original001/194 corruptionproducer. Never repeat001/002.
+
+NEW cancel001 freshimmutable002prelaunch+reviewedguardian002/startup only, sourceE
+standalone/Imageidentical/readback/5hives/fullclean318dirs6713files319clusters PASS.
+Frozen56 actualinputs, syntheticparser1accepted/9rejected markedHOSTONLY.
+Owned runner75185 and supervisor33741 ACTIVE, resume/inspect actualrecords,
+neverduplicate launch/observer/collection. No201physicaldeployment. Requires
+actualknownCancel intent/send/closure, joinedchild0, real5secidle, exact194normal
+restart gates, normalshutdown/dashboard then audit-cancel001.py ONCE inWSL.
+TypedSYSTEM headers/corepolicies/newdevice-disableflags must pass; retain any
+naturaldevicebindingdelta and strictwarnings. No forcedrestart/processkill/
+nullbinding/configedit/waiver. Unknown queue/dialog failsboundedmanual.
+
+C:~23GiB before newclone. VerifiedclosedstandaloneOct4 paging001/eof001 offloaded
+using Offload-20261009h.ps1; everyfilehash/junctionreadback, originalpaths retained,
+no activebacking relocation. Manifest09h complete,20GiBguardunchanged.
+Physical200 candidate remainsuncollected/notrestored afterobserverclosed98825;
+onlypending screenquestion; neverrelaunchWindows or infercrash. Control scoped
+PASS/strictFt49FALSE preserved. Baseline0101/video0093/0088/0.1.0/allfailures kept.
+Nootherownedactiveprocesses. Latestpush e400626 precedingCancel preparation.
+
+# Earlier continuation (historical)
+
 # Current:201 observe002 ACTIVE, passive001 failure preserved
 
 Representation-only prelaunch copy onE prepared/Imagesidentical,5hives/fullclean
