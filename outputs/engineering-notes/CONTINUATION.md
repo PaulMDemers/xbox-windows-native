@@ -1,3 +1,30 @@
+# Current: physical187 control CLOSED held/failed; baseline restored; candidate NEVER launched
+
+User reported Windows desktop and asked whether to restart; normal Windows Start/
+ShutDown/Restart requested. Separate manual-return observer CLOSED with dashboard
+04:43:06UTC; actual restart method not independently captured. Collect72871 CLOSED:
+startupFIRST, preserve reports/events/five hives/SetupAPI/trace/protected payloads,
+restore original providers/SYSTEM and normal startup. verify-restored PASS14fixed
+files/3payload states/introducedDLLabsence/console rollback; original0101/video0093
+and0088/immutable0.1.0 preserved. No owned local sessions/emulators running.
+Never relaunch/recollect187control or run prepared187candidate. Read187REPORT/NEXT,
+control closure.json/physical-audit.json/physical-hive-audit/pending-inventory.
+All5probes exit0,65pixel/copy checks,25loops>=1500ms,50scanout comparisons,
+ABI112/115 OFFcoverage/identity,1024x576x32/60/sharedacquire,protected hashes,
+payloads exact;10before/after hives valid and selected policy unchanged. Guard
+INSTALL_WAIT_RESULT258/RESTART_BLOCKED_PENDING_INSTALL258 held rather than normal
+restart. Strict/scopedFALSE: Ft49 +Srv2013(F:) +2rundll32 shutdown popup26; normal
+6006once after later return does not replace expected automatic completion.
+SetupAPI exact2296byteappend: PCI01B0 Multimedia Audio Controller at04:32:32 and
+PCI01B4 PCI Device at04:42:40, no-compatible-driver0xe0000228, metadata unchanged
+and no completed driver/service entries. Live pending owner NOT captured; leads
+only. No disable/null policy/settings/service/event suppression or driver patch
+to obtainPASS. Next identify/complete actual pending setup with live ownership and
+explicit unsupported-device acknowledgement before NEW hardware comparison.
+Keep187failure/pins; no hardware ON/OFF speed comparison or release promotion.
+Prior evidence pushede5cdc7b; current completion reports/checks commit follows.
+
+# Historical continuation below
 # Current: physical187 control unresolved; screen question pending; local sessions CLOSED
 
 Single OFF control187 accepted04:31:42UTC2026-10-09; observer50668 CLOSED at
