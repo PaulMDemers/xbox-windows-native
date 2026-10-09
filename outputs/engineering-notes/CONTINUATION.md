@@ -1,3 +1,20 @@
+# Current: durability189 prepared, current hardware state confirmed; launch next ONCE
+
+Read outputs/device-durability189 DESIGN/ready/NEXT/protocol-tests. Exact188Build003
+observer, actual post188 SYSTEM and original startup,17protected/providers. User
+now confirms UnleashX and keyboard unplugged. No driver/registry/settings change.
+Unique/F/xwnobs189a; no physical189record yet. LaunchONCE then leave actual wizards
+unchanged120seconds for five live samples; helper exits/no automatic restart.
+Pending setup remains a failure, not silently waived. Collection on dashboard
+restores startup FIRST, preserves full evidence, no metadata rollback.189production
+readiness passed locally; offline startup/uncertain-send/partial-collect/repeat
+failure tests passed without physical access. Original20GiBhostguard retained.
+No local owned processes.188CLOSED/source-evidence pushed6995017; never repeat.
+New189preparation uncommitted at this note. Preserve0101/video0093,0088/0.1.0,
+187held/candidateNEVERlaunched and all failures. No physical graphics pair yet.
+
+# Historical continuation below
+
 # Current: physical device-observation188 CLOSED; next baseline durability check pending
 
 Read outputs/device-observation188 REPORT/NEXT and physical-evidence-review.json.
