@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "checks": 44005,
+  "byte_oracle_cases": 16000,
+  "stdout": "PASS 44005 checks;16000 byte-oracle cases;both modes,unaligned/tails,alias,wrap,redzones\n",
+  "asan_ubsan": true,
+  "commands": [
+    [
+      "gcc",
+      "-std=c99",
+      "-O1",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=address,undefined",
+      "-fno-omit-frame-pointer",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-word-store184/row-tests.c",
+      "-o",
+      "/tmp/xwn-word184-recorded-tests"
+    ],
+    [
+      "/tmp/xwn-word184-recorded-tests"
+    ]
+  ],
+  "compiler_version": "gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+  "pins": {
+    "row_store.h": "1ba9464b78104a9176a59b34caede9fde072e2ec05d264d183532af1eee0a3d0",
+    "row-tests.c": "fbe0f9dd70ed7a0d68c27a102000cdb66b7f1ec39b210d67be1a7c9d44a7bd55",
+    "host-tests.py": "01bd0e44782db74caf5b050ab858e1c9f2777107363b96443cc9e790854c8f7d"
+  },
+  "compiled_host_sha256": "1406a277dacc0f1fdf3cd7f21dd50db5b4a96fd30526cb879eb363a0cfb1a211",
+  "guest_qualified": false,
+  "limits": "Host RAM bytes/guards only, not UC throughput/hardware ordering qualification"
+}

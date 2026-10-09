@@ -1,3 +1,50 @@
+# Current: scalar184/ordinary185 CLOSED; timing attribution unresolved
+
+All owned sessions CLOSED. Both185 ordinary cases passed65 exact pixel/copy
+checks,25timing loops50scanout comparisons, guard0/0 normalrestart/6006/dashboard,
+full cold334dirs6739files335clusters0errors/orphans,5hives40protected/startup,
+SetupAPI unchanged/packagebindings/86frozenpins and exact source snapshots.
+Candidate fast rows/bytes observed; controlzero. StrictFALSE sole exact inherited
+Ft49; no application/popup delta or event waiver. Actual1024x576x32/60 both.
+Control03:49:26->03:51:51UTC; candidate03:53:16->03:55:32UTC. Read184/185 REPORT,
+NEXT, pair-review/evidence-review. Never relaunch/recollect closed185 cases.
+
+Upload median0.210->0.1725ms, fill0.1725->0.150, overlaps0.1875/0.195->0.1725;
+unchanged readback also0.150->0.135. Coarse ticks/short2000-op loops and ordered
+boots confound causal attribution.115 NOT selected or physical-qualified. Next
+NEW reverse-order longer-duration kit with exact same184drivers and immutable
+181 parent; require actual1.5sec loop coverage and all existing checks. No new
+speculative patch, no normalization into physical speed. Host18400245641checks
+PASS, actual eight ordered32bit stores reviewed; baseline alreadyREP MOVSD.
+Physical0101/video0093/0088rollback/immutable0.1.0 untouched, no physicalFTP.
+C~21.1GiB,20GiB guard unchanged.182/183closed negative result preserved b1cb0ae.
+
+# Historical continuation below
+# Current: scalar row-store184 compiled; ordinary185 preflight
+
+New115 starts from112, not negative114. Only aligned/disjoint RAM-to-UC rows use
+ordered eight-word32bit scalar stores plus tail; geometry/Eng/clip/cache/modes/
+ownership remain unchanged. Matched OFF/ON RosBE source compiled; resident actual
+instructions/imports reviewed. Original aligned REP MOVSD is documented. Host
+ASan/UBSan00245641 checks/16544 byte cases PASS, explicit16 fast/12 block/8 tail/
+4 small cases. Original host001 coverage limitation preserved; no driver change.
+Read outputs/video-word-store184 actual build/driver/instruction/host reviews.
+
+185 reuses immutable readback-verified183 copy of normally shut down181 parent;
+original/live183 images unused and preserved. Both unique185 siblings prepared,
+clean before allocation329dirs6733files330clusters0errors/orphans. V7 probe has
+four original copy checks, six DIB/clip/format cases, five timing loops, three
+posttiming exact pixel checks and115 fast-row/byte counters outside timing.
+Same compiled178 pending-install guard, inherited179 explicit unused-device
+policy and strict Ft49 failure, no setup/hive/log reset, no debugger/physical.
+Sources frozen; control preflight CLOSED PASS; candidate preflight23918 ACTIVE.
+No guest launch yet. Build28421/parent62643/prepares19184,39093 CLOSED.
+Next finish candidate preflight/runtime freeze, then control single ordinary
+launch/audit/close before candidate. Do not rerun guarded/completed stages.
+Physical0101/video0093/0088rollback/immutable0.1.0 untouched. C~21.4GiB,20GiB guard.
+Previous182/183 CLOSED and pushed b1cb0ae; never relaunch/recollect.114 not selected.
+
+# Historical continuation below
 # Current: DIB182/183 CLOSED; exact copies pass, no upload benefit
 
 All owned sessions CLOSED. New114 matched treeee6556aa1cbb3a23f7ce4bef0f15cc489cc1fef8

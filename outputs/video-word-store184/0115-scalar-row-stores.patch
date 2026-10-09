@@ -1,0 +1,167 @@
+diff --git a/win32ss/drivers/displays/framebuf/CMakeLists.txt b/win32ss/drivers/displays/framebuf/CMakeLists.txt
+index 42c910c..3237b55 100644
+--- a/win32ss/drivers/displays/framebuf/CMakeLists.txt
++++ b/win32ss/drivers/displays/framebuf/CMakeLists.txt
+@@ -7,6 +7,7 @@ list(APPEND SOURCE
+     surface.c
+     shadow.c
+     ownership.c
++    row_store.h
+     framebuf.h)
+ 
+ add_library(xwnown MODULE
+@@ -19,3 +20,10 @@ target_link_libraries(xwnown libcntpr)
+ add_importlibs(xwnown win32k)
+ add_dependencies(xwnown psdk)
+ add_cd_file(TARGET xwnown DESTINATION reactos/system32 FOR all)
++
++option(XWN_UC_STORES "Bounded aligned scalar32bit scanout stores" OFF)
++if(XWN_UC_STORES)
++ target_compile_definitions(xwnown PRIVATE XWN_UC_STORES=1)
++else()
++ target_compile_definitions(xwnown PRIVATE XWN_UC_STORES=0)
++endif()
+diff --git a/win32ss/drivers/displays/framebuf/enable.c b/win32ss/drivers/displays/framebuf/enable.c
+index 8f6d447..898b5f7 100644
+--- a/win32ss/drivers/displays/framebuf/enable.c
++++ b/win32ss/drivers/displays/framebuf/enable.c
+@@ -31,6 +31,10 @@ XwnDirectEscape(SURFOBJ *Surface, ULONG Escape, ULONG InBytes, PVOID In,
+    p = XwnOwner(Surface);
+    if (!p) return 0;
+    if (!p->ScreenPtr || !p->hSurfEng || !p->ShadowObject || !p->ShadowActive) return 0;
++   if (Escape == 0x58574435 && OutBytes == sizeof(Data))
++   {
++      XwnRowSnapshot(p,Data);memcpy(Out,Data,sizeof(Data));return 1;
++   }
+    if (Escape == 0x58574431 && OutBytes == 32)
+    {
+       Data[0]=0x44525758;Data[1]=112;Data[2]=p->ScreenWidth;Data[3]=p->ScreenHeight;
+diff --git a/win32ss/drivers/displays/framebuf/framebuf.h b/win32ss/drivers/displays/framebuf/framebuf.h
+index 1423710..863fd4e 100644
+--- a/win32ss/drivers/displays/framebuf/framebuf.h
++++ b/win32ss/drivers/displays/framebuf/framebuf.h
+@@ -40,6 +40,8 @@ typedef struct _PDEV
+    PVOID ShadowBits;
+    BOOL ShadowActive;
+    ULONG ShadowCalls[14];
++   ULONG RowBoxes, RowFast, RowSlow;
++   ULONGLONG RowBytes, RowFastBytes;
+    ULONG ShadowUploads;
+    ULONGLONG ShadowBytes;
+    ULONG ModeIndex;
+@@ -202,4 +204,6 @@ BOOL XwnRegisterPrimary(PPDEV p);
+ VOID XwnUnregisterPrimary(PPDEV p);
+ PPDEV XwnOwner(SURFOBJ *s);
+ BOOL XwnSelectOwner(PPDEV *selected, SURFOBJ *s);
++VOID XwnRowRecord(PPDEV p, ULONG fast, ULONG slow, ULONG bytes);
++VOID XwnRowSnapshot(PPDEV p, ULONG *out);
+ #endif /* _FRAMEBUF_PCH_ */
+diff --git a/win32ss/drivers/displays/framebuf/ownership.c b/win32ss/drivers/displays/framebuf/ownership.c
+index bda0696..7162823 100644
+--- a/win32ss/drivers/displays/framebuf/ownership.c
++++ b/win32ss/drivers/displays/framebuf/ownership.c
+@@ -100,3 +100,25 @@ BOOL XwnSelectOwner(PPDEV *selected, SURFOBJ *s)
+     *selected = p;
+     return TRUE;
+ }
++
++/* Accounting only: never hold membership lock across render/copy. */
++VOID XwnRowRecord(PPDEV p, ULONG fast, ULONG slow, ULONG bytes)
++{
++    ULONGLONG total=(ULONGLONG)bytes*(fast+slow), quick=(ULONGLONG)bytes*fast;
++    EngAcquireSemaphore(XwnOwnerLock);
++    if(p->RowBoxes!=0xffffffff)++p->RowBoxes;
++    p->RowFast=0xffffffff-p->RowFast<fast?0xffffffff:p->RowFast+fast;
++    p->RowSlow=0xffffffff-p->RowSlow<slow?0xffffffff:p->RowSlow+slow;
++    p->RowBytes=(~(ULONGLONG)0)-p->RowBytes<total?~(ULONGLONG)0:p->RowBytes+total;
++    p->RowFastBytes=(~(ULONGLONG)0)-p->RowFastBytes<quick?~(ULONGLONG)0:p->RowFastBytes+quick;
++    EngReleaseSemaphore(XwnOwnerLock);
++}
++VOID XwnRowSnapshot(PPDEV p, ULONG *out)
++{
++    RtlZeroMemory(out,128);EngAcquireSemaphore(XwnOwnerLock);
++    out[0]=0x57525758;out[1]=115;out[2]=128;out[3]=XWN_UC_STORES;
++    out[4]=p->RowBoxes;out[5]=p->RowFast;out[6]=p->RowSlow;
++    out[7]=(ULONG)p->RowBytes;out[8]=(ULONG)(p->RowBytes>>32);
++    out[9]=(ULONG)p->RowFastBytes;out[10]=(ULONG)(p->RowFastBytes>>32);
++    EngReleaseSemaphore(XwnOwnerLock);
++}
+diff --git a/win32ss/drivers/displays/framebuf/row_store.h b/win32ss/drivers/displays/framebuf/row_store.h
+new file mode 100644
+index 0000000..2cdea3c
+--- /dev/null
++++ b/win32ss/drivers/displays/framebuf/row_store.h
+@@ -0,0 +1,44 @@
++/* Exact scalar-word scanout sequence; no cache/FPU/GPU state changes.
++ * Caller supplies valid mapped spans; alignment/alias guards choose old copy.
++ * SPDX-License-Identifier: GPL-2.0-or-later */
++#ifndef XWN_ROW_STORE_H
++#define XWN_ROW_STORE_H
++typedef unsigned int XW_U32;
++typedef __UINTPTR_TYPE__ XW_PTR;
++typedef unsigned long long XW_U64;
++typedef char XW_WIDTH_CHECK[(sizeof(XW_U32)==4 && sizeof(XW_PTR)==sizeof(void*))?1:-1];
++static __inline int XwEligible(XW_PTR d,XW_PTR s,unsigned bytes)
++{
++    XW_PTR endd,ends;
++    if(!bytes || ((d|s|bytes)&3))return 0;
++    endd=d+bytes;ends=s+bytes;
++    if(endd<d || ends<s)return 0;
++    return !(d<ends && s<endd);
++}
++static __inline XW_U32 XwLoad(const unsigned char *source)
++{
++    XW_U32 word;
++    /* Explicit builtin avoids type-punning a GDI byte buffer; compiled NT5
++     * review must show integer loads/stores, no helper/FPU/vector sequence. */
++    __builtin_memcpy(&word,source,4);
++    return word;
++}
++static __inline unsigned XwCopyRow(void *target,const void *source,
++                                   unsigned bytes,int enabled)
++{
++    volatile XW_U32 *d;const unsigned char *s;unsigned words;
++    if(!enabled || !XwEligible((XW_PTR)target,(XW_PTR)source,bytes)) {
++        memmove(target,source,bytes);return 0;
++    }
++    d=(volatile XW_U32*)target;s=(const unsigned char*)source;words=bytes/4;
++    /* Ordered full-expression volatile32bit stores match the old forward
++     * word copy's store width. Never emit wider writes or cross row bounds. */
++    while(words>=8) {
++        d[0]=XwLoad(s);d[1]=XwLoad(s+4);d[2]=XwLoad(s+8);d[3]=XwLoad(s+12);
++        d[4]=XwLoad(s+16);d[5]=XwLoad(s+20);d[6]=XwLoad(s+24);d[7]=XwLoad(s+28);
++        d+=8;s+=32;words-=8;
++    }
++    while(words){*d++=XwLoad(s);s+=4;--words;}
++    return 1;
++}
++#endif
+diff --git a/win32ss/drivers/displays/framebuf/shadow.c b/win32ss/drivers/displays/framebuf/shadow.c
+index 5b88797..647b0bb 100644
+--- a/win32ss/drivers/displays/framebuf/shadow.c
++++ b/win32ss/drivers/displays/framebuf/shadow.c
+@@ -1,5 +1,6 @@
+ /* RAM-primary prototype. GPL-2.0-or-later, as the containing framebuf driver. */
+ #include "framebuf.h"
++#include "row_store.h"
+ static BOOL XwnRopUsesSource(ROP4 rop)
+ {
+  return ((rop ^ (rop >> 2)) & 0x3333) != 0;
+@@ -14,10 +15,15 @@ static SURFOBJ *XwnSub(PPDEV p, SURFOBJ *s)
+ }
+ static VOID XwnUploadBox(PPDEV p, const RECTL *r)
+ {
+- LONG y; ULONG bytes;
++ LONG y; ULONG bytes,fast=0,slow=0;
+  if (r->left>=r->right || r->top>=r->bottom) return;
+  bytes=(r->right-r->left)*4;
+- for(y=r->top;y<r->bottom;y++) memcpy((BYTE*)p->ScreenPtr+y*p->ScreenDelta+r->left*4,(BYTE*)p->ShadowBits+y*p->ScreenDelta+r->left*4,bytes);
++ for(y=r->top;y<r->bottom;y++) {
++  if(XwCopyRow((BYTE*)p->ScreenPtr+y*p->ScreenDelta+r->left*4,
++               (BYTE*)p->ShadowBits+y*p->ScreenDelta+r->left*4,bytes,XWN_UC_STORES))++fast;
++  else ++slow;
++ }
++ XwnRowRecord(p,fast,slow,bytes);
+  if(p->ShadowUploads!=0xffffffff) ++p->ShadowUploads;
+  p->ShadowBytes+=(ULONGLONG)bytes*(r->bottom-r->top);
+ }
