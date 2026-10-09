@@ -1,3 +1,39 @@
+# Current: phase198 compiled/reviewed; runtime199 frozen and ready, no launch yet
+
+195 hardware pair CLOSED/restored, modest scalar gains reported/pushed e210f62.
+All physical changes rolled back; do not relaunch/recollect/recompare old cases.
+New198 tree a4882af88f6b10ed96996c959315d42c9fe4edbf combines pinned115 and113 phase
+observation, scalar stores OFF both, only profile flag differs. Fresh build7516
+CLOSED, actual imports/resident clocks/row/engine/upload sites reviewed,4142 actual
+header ASan/UBSan cases PASS. No algorithm/cache/mode/lifetime change.
+
+New199 exact186 restart guard plus v9 probe: original65 pixel/25loop/50scanout
+checks and200 real-window move/paint/text/readbacks.52 window packet adversaries
+and20 phase parser host checks PASS; not guest evidence. Probe002 compiled/import
+reviewed. Both fresh settled181 siblings prepared329dirs6733files330clusters clean,
+protected/staged bytes/5hives preflight PASS. Freeze actual input/runtime pins and
+source snapshots complete; prepare6272/preflight63990/5362 CLOSED. No experiment,
+observer or emulator active yet. Next single bounded control then candidate ordinary
+Run.ps1/supervise.py, inspect stages, cold audit/inventory/package/closure once each.
+Use unique nt5-phase199-case IDs, held leases and20GiB reserve. No debugger/automatic
+UI/physical FTP. Existing emulator-only null policy explicit, strictFt49 fails.
+
+Preserve creator raw-line-ending refusal/failed probe cleanup-indent source and
+host synthetic-blank-line refusal. All prelaunch, no gate relaxation. Historical
+first50 host window checks separate from corrected52 packet coverage. Closed197
+standalone offload completed hash/junction verification manifest20261009e; first
+broad process self-match refusal retained. Closed186 offload correctly refused its
+backing header before writes (refusal001), never relocate that chain. C:20.227GiB
+last read; guard retained, check actual capacity before runtime.
+
+Phase clocks include preemption/background and wrapper nested accounting. OFF
+retains common bookkeeping/calibration; ON/OFF is enabled profiling increment,
+not complete overhead versus untouched driver. Window elapsed includes readback/
+oracle and is not dragging FPS. No physical candidate yet. Retain0101/video0093,
+0088rollback,immutable0.1.0,194 malformed hive and original111 corruption unknown.
+
+# Earlier continuation (historical)
+
 # Physical195 paired comparison complete; baseline restored
 
 Both one-shot physical runs are CLOSED. Control accepted 2026-10-09 16:30:49 UTC,

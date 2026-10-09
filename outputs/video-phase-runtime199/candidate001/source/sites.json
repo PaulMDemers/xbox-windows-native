@@ -1,0 +1,256 @@
+{
+  "binaries": {
+    "kernel32.dll": {
+      "path": "outputs/video-physical-rehearsal160/artifacts/F/winnt/system32/kernel32.dll",
+      "sha256": "6b05b0749b5dd86da94cc4acd062ca05472509f70216b56cd4a5b9809c602e73",
+      "preferred_base": 2086076416,
+      "timestamp": 1176727448,
+      "image_size": 737280
+    },
+    "ntoskrnl.exe": {
+      "path": "outputs/video-physical-review159/artifacts/F/winnt/system32/ntoskrnl.exe",
+      "sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+      "preferred_base": 4194304,
+      "timestamp": 1266293717,
+      "image_size": 1691648
+    },
+    "umpnpmgr.dll": {
+      "path": "outputs/device-settled-reboot181/artifacts/umpnpmgr.dll",
+      "sha256": "02fd896d3f2318a3bd624dd1357ec1f66ea67553ef96c602bede7c4ec5bef685",
+      "preferred_base": 1987706880,
+      "timestamp": 1125653045,
+      "image_size": 102400,
+      "provenance": "Owned immutable0.1.0 file; new cold fixture preflight must match actual guest bytes, not assumed by same name"
+    },
+    "advapi32.dll": {
+      "path": "outputs/device-settled-reboot181/artifacts/advapi32.dll",
+      "sha256": "d24493dbb2b1818f9cd605acd3b2008d63354c0975e9a090ccdd04bcc339cc59",
+      "preferred_base": 2083323904,
+      "timestamp": 1114070922,
+      "image_size": 413696
+    },
+    "ntdll.dll": {
+      "path": "outputs/device-settled-reboot181/artifacts/ntdll.dll",
+      "sha256": "ed276d6a3ae93c71a6cef73672b82e3808211da1c63bf7d3e23d93294e54813a",
+      "preferred_base": 2012741632,
+      "timestamp": 1105610976,
+      "image_size": 512000
+    },
+    "user32.dll": {
+      "path": "outputs/video-physical-rehearsal160/artifacts/F/winnt/system32/user32.dll",
+      "sha256": "291210cf381dc269f8847a86e59a7cf775e5dd4086f94ff1266714f34ff55063",
+      "preferred_base": 2011234304,
+      "timestamp": 1173179866,
+      "image_size": 389120
+    },
+    "setupapi.dll": {
+      "path": "outputs/device-settled-reboot181/artifacts/setupapi.dll",
+      "sha256": "1d0a6e9d062a51e71eaae93d776746823834f5c518096d340f2b332fc059a23d",
+      "preferred_base": 2005401600,
+      "timestamp": 1056077021,
+      "image_size": 581632
+    }
+  },
+  "sites": [
+    {
+      "name": "CreateProcessInternalW",
+      "module": "kernel32.dll",
+      "rva": 151731,
+      "address": 2086228147,
+      "bytes": "558bec",
+      "argc": 11,
+      "kind": "create_inner",
+      "validation_bytes": "558bec6aff687829577c6860215c7c64a1000000005064892500000000515181"
+    },
+    {
+      "name": "_NtRaiseHardError@24",
+      "rva": 608302,
+      "bytes": "558bec",
+      "argc": 6,
+      "frame": "esp",
+      "module": "ntoskrnl.exe",
+      "kind": "harderror",
+      "address": 2185644078,
+      "validation_bytes": "558bec6aff68a80e400068a0fc450064a1000000005064892500000000515183"
+    },
+    {
+      "name": "_NtShutdownSystem@4",
+      "rva": 591052,
+      "bytes": "8b4424",
+      "argc": 1,
+      "frame": "esp",
+      "module": "ntoskrnl.exe",
+      "kind": "shutdown",
+      "address": 2185626828,
+      "validation_bytes": "8b44240483e800741548740e487407b80d0000c0eb186a06eb066a05eb026a04"
+    },
+    {
+      "name": "CreateProcessAsUserW",
+      "module": "advapi32.dll",
+      "rva": 74795,
+      "address": 2083398699,
+      "argc": 11,
+      "kind": "create_outer",
+      "validation_bytes": "8bc0558bec83ec1053568365f8008065ff00578b7d208bdfc1eb0283e30164a1"
+    },
+    {
+      "name": "LdrInitializeThunk",
+      "module": "ntdll.dll",
+      "rva": 32840,
+      "address": 2012774472,
+      "argc": 0,
+      "kind": "loader_entry",
+      "validation_bytes": "8d4424108944240433ede9a3b7ffff90558bec5657538bf4ff7514ff7510ff75"
+    },
+    {
+      "name": "NtRaiseHardError",
+      "module": "ntdll.dll",
+      "rva": 35436,
+      "address": 2012777068,
+      "argc": 6,
+      "kind": "harderror",
+      "validation_bytes": "b8a00000008d542404cd2ec218008bffb8a10000008d542404cd2ec224008bff"
+    },
+    {
+      "name": "NtTerminateProcess",
+      "module": "ntdll.dll",
+      "rva": 36460,
+      "address": 2012778092,
+      "argc": 2,
+      "kind": "terminate",
+      "validation_bytes": "b8e00000008d542404cd2ec208008bffb8e10000008d542404cd2ec208008bff"
+    },
+    {
+      "name": "NtQueryInformationToken",
+      "module": "ntdll.dll",
+      "kind": "native_api",
+      "argc": 5,
+      "rva": 35052,
+      "address": 2012776684,
+      "validation_bytes": "b8880000008d542404cd2ec214008bffb8890000008d542404cd2ec204008bff"
+    },
+    {
+      "name": "NtDuplicateToken",
+      "module": "ntdll.dll",
+      "kind": "native_api",
+      "argc": 6,
+      "rva": 33832,
+      "address": 2012775464,
+      "validation_bytes": "b83b0000008d542404cd2ec218008bffb83c0000008d542404cd2ec218008bff"
+    },
+    {
+      "name": "NtSetInformationProcess",
+      "module": "ntdll.dll",
+      "kind": "native_api",
+      "argc": 4,
+      "rva": 36044,
+      "address": 2012777676,
+      "validation_bytes": "b8c60000008d542404cd2ec210008bffb8c70000008d542404cd2ec210008bff"
+    },
+    {
+      "name": "NtClose",
+      "module": "ntdll.dll",
+      "kind": "native_api",
+      "argc": 1,
+      "rva": 33272,
+      "address": 2012774904,
+      "validation_bytes": "b8180000008d542404cd2ec204008bffb8190000008d542404cd2ec20c008bff"
+    },
+    {
+      "name": "_NtClose@4",
+      "module": "ntoskrnl.exe",
+      "kind": "native_api",
+      "argc": 1,
+      "rva": 322320,
+      "address": 2185358096,
+      "validation_bytes": "558bec6aff68605e400068a0fc450064a1000000005064892500000000515183"
+    },
+    {
+      "name": "owner_cleanup_entry",
+      "module": "umpnpmgr.dll",
+      "kind": "token_lifecycle",
+      "argc": 0,
+      "rva": 22873,
+      "address": 1987729753,
+      "validation_bytes": "837c2404057562b8f05b7b76568bc885c9740d6aff6a00506a02ff15f4107a76"
+    },
+    {
+      "name": "owner_cleanup_token_load",
+      "module": "umpnpmgr.dll",
+      "kind": "token_lifecycle",
+      "argc": 0,
+      "rva": 22921,
+      "address": 1987729801,
+      "validation_bytes": "a1645b7b768b35ec107a7685c0740350ffd6a1685b7b7685c0740350ffd6ff35"
+    },
+    {
+      "name": "owner_cleanup_token_closed",
+      "module": "umpnpmgr.dll",
+      "kind": "token_lifecycle",
+      "argc": 0,
+      "rva": 22939,
+      "address": 1987729819,
+      "validation_bytes": "a1685b7b7685c0740350ffd6ff35f45b7b768325645b7b76008325685b7b7600"
+    },
+    {
+      "name": "owner_cleanup_before_clear",
+      "module": "umpnpmgr.dll",
+      "kind": "token_lifecycle",
+      "argc": 0,
+      "rva": 22957,
+      "address": 1987729837,
+      "validation_bytes": "8325645b7b76008325685b7b7600ff15e8107a765e33c0c20400837c240c2773"
+    },
+    {
+      "name": "owner_cleanup_after_clear",
+      "module": "umpnpmgr.dll",
+      "kind": "token_lifecycle",
+      "argc": 0,
+      "rva": 22964,
+      "address": 1987729844,
+      "validation_bytes": "8325685b7b7600ff15e8107a765e33c0c20400837c240c2773056a7a58eb688b"
+    },
+    {
+      "name": "owner_acquire_token_call",
+      "module": "umpnpmgr.dll",
+      "kind": "token_lifecycle",
+      "argc": 0,
+      "rva": 23932,
+      "address": 1987730812,
+      "validation_bytes": "ff1548107a76eb066a135e8975dcff1580117a7685f67510a1905b7b7685c074"
+    },
+    {
+      "name": "owner_acquire_token_return",
+      "module": "umpnpmgr.dll",
+      "kind": "token_lifecycle",
+      "argc": 0,
+      "rva": 23938,
+      "address": 1987730818,
+      "validation_bytes": "eb066a135e8975dcff1580117a7685f67510a1905b7b7685c0740750ff150c11"
+    },
+    {
+      "name": "installer_token_push",
+      "module": "umpnpmgr.dll",
+      "kind": "token_lifecycle",
+      "argc": 0,
+      "rva": 26322,
+      "address": 1987733202,
+      "validation_bytes": "ff35645b7b76ff154c107a7685c074356affffb588fdffffff1514117a76ffb5"
+    }
+  ],
+  "kernel_base_expected": 2185035776,
+  "thread_owner_offset": 556,
+  "layouts_sha256": "12e1ce901813cef27400e1593930fa5f5a16e79febf507588a5aadc1a2421ce3",
+  "publics_sha256": "72deb8a4c0036e5eb8136207e78cbf78cadae18b64c6905cbe0547cf7b13b614",
+  "ordinary_qualified": false,
+  "physical_access": false,
+  "dependency_pins": {
+    "outputs/native-windows-nt5-kernel/process-layouts.json": "12e1ce901813cef27400e1593930fa5f5a16e79febf507588a5aadc1a2421ce3",
+    "outputs/native-windows-nt5-kernel/kernel-publics.json": "72deb8a4c0036e5eb8136207e78cbf78cadae18b64c6905cbe0547cf7b13b614",
+    "outputs/native-windows-nt5-kernel/trace-entry.py": "5aadab63c678a7991fafb2cb3152e3d5743a3d515e89b52d3497d85bd5c9a282",
+    "outputs/native-windows-prebuild/monitor_capture.py": "51266cb64c3557c401b84d8a5a31ee8c4799f3f2c8f1bfa59ac0addc08866451"
+  },
+  "teb_offset": 32,
+  "last_error_offset": 52,
+  "limits": "Create inner/outer argc11 both stdcall48-byte stack delta. Loader entry symbol only: no APC argument semantics inferred. Preferred user addresses are leads; require loader identity or actual readable PE metadata AND resident relocated bytes on hits. No guest-data/register writes."
+}
