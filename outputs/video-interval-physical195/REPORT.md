@@ -1,14 +1,36 @@
-#195 hardwareCONTROL ACTIVE, candidate NEVER launched
+# Physical195 control closed; candidate active
 
-Singlecontrol accepted2026-10-09T16:30:49.190166UTC,200EXEC. Deploy30167 CLOSED.
-Original30entryrollback archive/readback/protected/SYSTEM/startup captured before
-changes; scopedtemporaryOFF chain/proposal/helper staged/readback beforestartupLAST.
-Owned finisher26912 ACTIVE (watch->collectionstartupFIRST->restorefinally->independent
-baseline/10hives/events/audit/closure). It never launchesWindows or candidate.
-Currentteststartup enabled, baseline NOTyet restored during livecontrol. Await human
-knownwizard dismissal, leavebenchmarkunobscured/noapps and allow normalrestart.
-Human screen question pending; no physicalscreen/benchmarkPASS inferred fromFTP.
-Candidate remains blocked until complete reviewed restored scopedcontrol.
+Control001 accepted 2026-10-09 16:30:49 UTC and returned at 16:34:47 UTC.
+The owned collector restored startup first, preserved evidence, restored the original
+SYSTEM/display payloads, verified the console rollback archive and baseline, audited
+ten before/after hive snapshots and closed at 16:35:12 UTC. All owned control sessions
+30167/26912 are CLOSED. Never relaunch or recollect control001.
+
+Control scoped measurement PASS: actual 5100ms setup idle after 62340ms wait, all
+boundary queries zero, two identical 298120-byte SetupAPI bookends, five samples,
+65 pixel checks, 25 timed loops, 50 scanout comparisons and normal requested restart
+with dashboard return/EventLog6006. No application events or measurement warnings.
+Whole-boot strict qualification remains FALSE for the documented Ftdisk49 on
+HarddiskVolume6; it occurred before measurement. All ten hives, exact protected and
+deployed files, unchanged device/service/dump policy and restoration checks PASS.
+Control median ms/operation: fill 2.0464, DIB upload 2.4590, screen readback 0.9734,
+overlap right/down 2.5210, overlap left/up 2.6502. No speedup claim before comparison.
+The human reported the control was measuring; that observation is separately saved.
+
+Candidate001 accepted ONCE at 2026-10-09 16:37:44.016164 UTC, reply 200 EXEC.
+Deployment7461 CLOSED. Local/console rollback30entries readback verified, exact
+same shared providers/helper/probe/proposal, only matched OFF/ON display DLL differs.
+Owned finisher95158 ACTIVE: single observer -> collect startup FIRST/restore finally
+-> baseline verification/ten hives/event+interval audit/closure. Do not duplicate or
+relaunch. Temporary candidate display/SYSTEM/test startup active; baseline NOT yet
+restored for this candidate. Human setup/measuring reply pending. User keyboard
+always unplugged and deployment authorization persist. No emulator is active.
+
+Inspect actual finish-state/physical-return/physical records before actions. After
+candidate closure review raw evidence/pins and restore; paired comparison only if
+both scoped trials pass. Strict whole-boot failures remain failures, no promotion.
+Physical0101/video0093,0088rollback and immutable0.1.0 remain preserved. No additional
+mode, storage/cache policy or service/dump suppression. Source/input pins frozen.
 
 # Preparation/readiness evidence (completed)
 
