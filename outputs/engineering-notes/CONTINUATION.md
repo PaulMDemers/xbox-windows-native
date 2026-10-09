@@ -1,3 +1,38 @@
+# Current: physical200 control CLOSED, candidate ACTIVE
+
+Control200 allonceonlyfinish21435stages completed0 andCLOSED17:52:49UTC. Scope
+PASS265pixels/200window/25loops/50scanout/phaseOFF, normalrestart/dashboard/6006,
+10hive/checksum/policy/protectedbytes/31entryrollbackreadback. Baseline/SYSTEM/
+startuprestoreindependentlyPASS.304564byteidenticalmeasurementSetupAPIbookends,
+80505mswait/5100msidle,nointerval/appwarnings. StrictFALSE soleFt49beforeinterval.
+Independentrawpacket/closure review.json andhumanreturnobservationseparate.
+Neverrelaunch/recollectclosedcontrol.
+
+Singlecandidate200 accepted2026-10-09 17:55:40UTC, FTP200success; deploy28061CLOSED.
+Owned finish-physical.py session98825 ACTIVE (observer→collectstartupFIRST→finally
+payloadSYSTEMrestore→verify→hive/audit/closure). Lastobserver17:58:00UTC dashboard
+FALSE, closedFALSE; donotinfercrash/benchmarkstate. Inspect actualcandidate001
+physical.json/physical-return.json/finish-state.json andresume98825, NEVERduplicate
+launch/observer/collection. Human instructedsameknownwizardcancelwithoutdisable,
+Welcomeclose/replayunobscured;keyboardunpluggedauthorizationpersistent. Candidate
+startup/display/SYSTEM stilltemporarilytestenabled, notrecordedrestoredyet.
+Originalbytes/31entryconsoleprivate rollbackretained. Nootherownedactiveprocess.
+
+No sourcechangesafter200freeze, cb4eeb1/d1850f4source/launch pushes.199matched
+ordinarybothclosedc905131; strictFt49false retained. Baseline0101/video0093/0088/
+immutable0.1.0 preserved. Aftercandidateclosure independentlyreviewphysicalphase
+measurements tochooseactualdisplayoptimization; no promotion/FPS/fullstorageclaim.
+
+Useraskswhywait/canignorewizardsforunattendedtest: answeredcurrentcustomguardchecks
+PnPactivity, notonlyvisibleUI. NEW201read-onlyDESIGN/planningpins actual188/189/200
+queueevidence andMicrosoftdocumentation. No201compiledhelper/guestlaunch/policy
+change. ProposedexactknownwizardCancel automation, preserve194realidle/boundary/
+restartandstrictgates, unknownowner/dialog/device failsmanual; firstinventoryand
+boundedordinaryemulatortest afterpair. Do not blanketCancel/reusephysicalQEMU/null
+policy or assumeXP SuppressNewHWUI onNT5. Original111/194corruptionunresolved.
+
+# Earlier continuation (historical)
+
 # Current: physical200 control ACTIVE; candidate NEVER launched
 
 Prepared/frozen source/payload pushcb4eeb1, priorordinary199evidencec905131.

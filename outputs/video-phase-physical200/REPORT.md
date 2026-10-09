@@ -1,3 +1,32 @@
+# Physical200 control CLOSED/pass scoped; candidate ACTIVE
+
+Control returned/dashboard17:52:07UTC, collected17:52:40UTC, closed17:52:49UTC on
+2026-10-09. finish21435 CLOSED all six stages0. Originalbaseline/SYSTEM/startup
+restored and independentlyverified;31-entry rollbackexact (addedGDIprovider).
+265pixels/200actualwindow/25loops/50scanout/phaseOFF clockmode pass. Tenpreserved
+hives structural/checksum/sequences and typedpolicy/protected/deployedbytes pass.
+Actual1125000Hz, zerophaseelapsedOFF/errors/overflow, allcoveragepositive.
+Setupwait80505ms then5100msidle;304564byteidentical measurementSetupAPIbookends.
+No intervalwarnings/applicationevents, normalrestart/6006/dashboard. StrictFALSE
+solewholebootpremeasurementFt49. Independent review.json verifiesrawpackets and
+closurepins. Human reportsreboot/dashboard separately. No fullstoragequalification.
+
+Candidate accepted17:55:40UTC, singleFTP200EXECsuccess, deploy28061 CLOSED.
+Owned finish98825 ACTIVE; observernotyetdashboardreturned, no candidateresult.
+Temporaryteststartup/display/SYSTEM active untilcollector restoresonreturn.
+User instructedknownwizardcancel/Welcomeclose/replayunobscured ascontrol; no
+automation/policychangeinsidepair. No repeatlaunch/observer/collection. Original
+bytes androllbackpreserved. No furtherhardwaretestlaunched.
+
+Usertangent on unattendeddialoghandling recordedin ../setup-wizard-automation201/
+DESIGN.md and planning.json. Read-onlyplan only, no newhelpercompiled/launched.
+Currentwait protectssettledmeasurement andguardedrestart, notgeneralapplication
+boot. Actual189queue recurredafternormalcancellation. Proposeverifiedbounded
+knownwizardCancel with realidle/event/coldgates retained, testedseparatelyafterpair.
+UnknownUSBfunction andtransientDevInstallUiOnlyplaceholder notassumedcancelable.
+
+# Earlier activity record (historical)
+
 # Physical200 control ACTIVE; no candidate launch
 
 Single control launch accepted2026-10-09 17:47:57UTC, SITE EXEC200 success.
