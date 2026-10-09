@@ -1,3 +1,91 @@
+# Current: unattended Cancel passed in two fresh emulator runs; physical trial prepared
+
+Helper build006 uses BM_CLICK on the actual verified Cancel button. The complete
+held process identity, command, welcome page, enabled button and foreground/active
+state are checked again immediately after durable GUI logging. It does not activate
+windows, install drivers, disable devices or cancel unknown dialogs. Previous
+PSM_PRESSBUTTON and parent WM_COMMAND attempts, readiness delay and GUI diagnostics
+remain distinct failed cases. Build005 was reviewed but NEVER launched; build006
+closes its post-log revalidation gap.
+
+Cancel006 and cancel007 are CLOSED. Each issued three known actions (targets1,2,5),
+observed three closures, joined helper0, observed at least five seconds of genuine
+setup idle, requested one unforced normal restart, recorded EventLog6006 once and
+returned automatically to dashboard FTP. Accepted19:55:07/20:07:11UTC October9;
+returned19:56:31/20:08:36UTC. Full allocation318 directories/6717 files/319 directory
+clusters, zero errors/orphans; five structural hives, protected/provider/startup
+hashes, event/SetupAPI history and typed policy/no-new-disable checks pass. Thirty
+natural binding deltas remain evidence. Scoped diagnostic lifecycle PASS both;
+whole-boot strict FALSE sole inherited Ftdisk49. No ordinary/release qualification.
+All owned emulator sessions, including007 runner53125/supervisor29524/audit71347,
+are CLOSED. Never relaunch or recollect any closed201 case.
+
+Physical200 candidate is now collected and CLOSED. Dashboard became reachable at
+20:07:17UTC. Normal startup restored FIRST, original display payloads and SYSTEM
+restored, then independent readback verified. Ten captured hives/typed policy pass.
+Its runner timed out after900000ms waiting for setup idle: no benchmark measurements,
+scoped display FALSE. Ft49 and Srv2013 remain strict failures. Original1200sec return
+observer remains FALSE; later dashboard availability is separate, not rewritten.
+No candidate timing comparison or video performance conclusion follows.
+
+Physical201 protocol is prepared, NOT launched: physical001/ready.json. Same helper
+build006, guardian physical001 differs from guardian002 only in /cancel-physical.
+Exact NT5 imports/compiler review and actual-header host policy/idle/restart tests
+pass. Physical mode excludes QEMU target5; four exact known hardware instances only.
+Temporary startup and new /F/xwnwiz201p helpers/readback rollback only; no driver,
+SYSTEM, service or device policy edits. Before launch recheck ownership, current
+baseline/providers, original startup/SYSTEM and absent namespace. Request recorded
+before one FTP EXEC. After normal return collect ONCE, restore startup FIRST, preserve
+logs/events/five before-after hives, audit native lifecycle and typed policy. Unknown
+or inactive dialogs remain bounded/manual. No Welcome or benchmark automation yet.
+Persistent keyboard-unplugged/deployment authorization applies; do not re-ask.
+
+The003 observer stale-tail failure remains unresolved:14840 bytes at270336 match
+prelaunch FAT-free cluster2144598 seed11 content through two cold transports. Four
+complete samples and incomplete fifth/no terminal; strict parser FALSE. Clean metadata
+does not prove file contents. Original physical111 non-ASCII damage and restart
+method remain unresolved and separate. Preserve all failures, physical0101/video0093,
+original0088 rollback, immutable0.1.0. Verified CLOSED004/005 offload09k preserves
+all hashes and original-path junctions;20GiB build guard unchanged.
+
+# Earlier record (historical)
+
+# Current:201 readiness004 CLOSED failure; read-only GUI005 preparing
+
+Cancel004 runner27632/supervisor67563/audit35301 CLOSED. Single19:28:52UTC launch,
+300sec host closure; actualready5130ms(audio)/5220ms(SMBus),2actions/1closure,
+helper120180ms/exit15, joined0/guardblockedrestart. Fullcold318dirs6717files319
+clusters/noerrors-orphans,5hives/protected/startup/history/typedpolicyPASS,30natural
+bindingdeltas retained. StrictsoleFt49FALSE, no normalshutdown/dashboard. Timing
+waitdidNOTsolve. Neverrelaunch/recollect004 or earlierclosedcases.
+
+NEW helper004 adds ONLY read-onlyforeground/targetGUIthread metadata before/after
+unchangedfast Cancel and5secwhilepending. No focus/activation/newclick/devicepolicy
+change. ActualpinnedNT5imports/compiler reviewPASS. Freshcancel005prepare93697/freeze91408 CLOSED, fullcold318dirs6713files319clusters/
+5hives/protected/providerPASS,101frozeninputs. Single accepted19:40:54UTC; owned
+runner57179/supervisor80541 ACTIVE,300sec bound;inspect/resume and audit005 ONCE
+afterclosure. Freeze005 initially refused missing template metadata before output;
+exactsource/failure retained then corrected to actualunchangedguardian002 metadata.
+Requirebefore-actionmetadata; retainpostactionquery failures asunknown(exitingGUI
+thread is possible). Metadatausability separatefromUI lifecycle/normalrestart/
+strict-eventqualification. No waiver. Sameimmutableprelaunch/drivers/guardian002.
+
+003rawobserver tail failure retained:14840bytesat270336 exactprelaunchFAT-free
+cluster2144598/seed11pattern, independentNBD/rawrangematch; fourcompletesamples,
+strictgrammarmissingterminalFALSE. Do not connecttooriginalphysical111corruption
+or claimfilecontentPASSfromcleanmetadata. Originalaudit importlib.util hostfailure
+andrawsource/report retained. 09j verified CLOSED003standaloneoffload/junctionhashes
+preserved. C:22.65GiBafter004clone;20GiBguard+cloneheadroom unchanged.
+
+Physical200 pendinguseronescreenquestion/FTPreturn, no collection/restoration/
+relaunch. Tempstartup/display/SYSTEM stillonhardware,31entryverifiedrollbackkept.
+No201physicaldeployment. Keyboardalwaysunpluggedauthorization persists. Onactual
+returncollectONCEstartupfirst,independentrestore/hive/display review. Latestpushed
+a6d3930, newresults/sourcependingpush. Nootheractiveownedprocesses thanrunner57179/supervisor80541.
+Preserve0101/video0093/0088/immutable0.1.0/allfailures.
+
+# Earlier continuation (historical)
+
 # Current:201 Cancel003 CLOSED failure; readiness004 preparing
 
 Cancel003 runner82479/supervisor97649/audit37429 CLOSED, one accepted19:09:31UTC,

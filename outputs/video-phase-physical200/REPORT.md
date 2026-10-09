@@ -1,3 +1,16 @@
+# Candidate200 CLOSED: setup timeout, baseline restored
+
+The single candidate launch collected after dashboard became reachable at20:07:17UTC
+October9. Its runner timed out after900000ms waiting for actual setup idle, so no
+benchmark measurements exist. Scoped display/workload FALSE; Ft49 and Srv2013 remain
+strict failures. Normal startup was restored first, then original display files and
+SYSTEM; independent readback, ten captured hive headers/structures and typed policy
+checks pass. The original return observer remains timed out/FALSE. Later dashboard
+availability is separate evidence. Do not relaunch/recollect or derive a performance
+comparison from this failed coverage. Test known-wizard automation independently next.
+
+# Earlier record (historical)
+
 # Physical200 control CLOSED/pass scoped; candidate ACTIVE
 
 Control returned/dashboard17:52:07UTC, collected17:52:40UTC, closed17:52:49UTC on

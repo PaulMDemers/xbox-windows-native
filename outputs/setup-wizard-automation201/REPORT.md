@@ -1,3 +1,24 @@
+# Current result: two unattended emulator lifecycle passes
+
+The actual button BM_CLICK route in helper006 closed all three observed known
+wizards in each of two fresh cold fixtures. Genuine queue idle, joined helper0,
+unforced normal restart, one shutdown event and dashboard return were verified.
+Both complete cold allocation/hive/protected/typed-policy audits passed. Sole
+inherited Ftdisk49 keeps whole-boot strict results FALSE. This qualifies the scoped
+cancellation lifecycle, not Windows/device support or a release.
+
+Read-only GUI005 showed all three prior target dialogs were already foreground and
+active. Readiness delay004 did not fix cancellation. Parent notification and property
+sheet routes failed; actual button006 passed. No unknown dialogs, foreground/focus
+changes, installs, device disabling, service suppression or gate waivers were used.
+Helper005's logging/revalidation gap was found before launch; preserved005 is unrun.
+Native physical guardian has reviewed NT5 imports and exact same idle/restart guards,
+with physical-only target mode; hardware runtime remains unverified until its isolated
+trial. A separate large read-only observer log has a reproduced stale suffix, still
+unresolved and not closed by this UI success.
+
+# Earlier record (historical)
+
 # Cancel003 failed; useful partial inventory and stale-tail evidence
 
 The failure-path observer ran and joined with exit0 after helper15. The cold log

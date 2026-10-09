@@ -1,3 +1,72 @@
+# Current: unattended Cancel passed in two fresh emulator runs; physical trial prepared
+
+Helper build006 uses BM_CLICK on the actual verified Cancel button. The complete
+held process identity, command, welcome page, enabled button and foreground/active
+state are checked again immediately after durable GUI logging. It does not activate
+windows, install drivers, disable devices or cancel unknown dialogs. Previous
+PSM_PRESSBUTTON and parent WM_COMMAND attempts, readiness delay and GUI diagnostics
+remain distinct failed cases. Build005 was reviewed but NEVER launched; build006
+closes its post-log revalidation gap.
+
+Cancel006 and cancel007 are CLOSED. Each issued three known actions (targets1,2,5),
+observed three closures, joined helper0, observed at least five seconds of genuine
+setup idle, requested one unforced normal restart, recorded EventLog6006 once and
+returned automatically to dashboard FTP. Accepted19:55:07/20:07:11UTC October9;
+returned19:56:31/20:08:36UTC. Full allocation318 directories/6717 files/319 directory
+clusters, zero errors/orphans; five structural hives, protected/provider/startup
+hashes, event/SetupAPI history and typed policy/no-new-disable checks pass. Thirty
+natural binding deltas remain evidence. Scoped diagnostic lifecycle PASS both;
+whole-boot strict FALSE sole inherited Ftdisk49. No ordinary/release qualification.
+All owned emulator sessions, including007 runner53125/supervisor29524/audit71347,
+are CLOSED. Never relaunch or recollect any closed201 case.
+
+Physical200 candidate is now collected and CLOSED. Dashboard became reachable at
+20:07:17UTC. Normal startup restored FIRST, original display payloads and SYSTEM
+restored, then independent readback verified. Ten captured hives/typed policy pass.
+Its runner timed out after900000ms waiting for setup idle: no benchmark measurements,
+scoped display FALSE. Ft49 and Srv2013 remain strict failures. Original1200sec return
+observer remains FALSE; later dashboard availability is separate, not rewritten.
+No candidate timing comparison or video performance conclusion follows.
+
+Physical201 protocol is prepared, NOT launched: physical001/ready.json. Same helper
+build006, guardian physical001 differs from guardian002 only in /cancel-physical.
+Exact NT5 imports/compiler review and actual-header host policy/idle/restart tests
+pass. Physical mode excludes QEMU target5; four exact known hardware instances only.
+Temporary startup and new /F/xwnwiz201p helpers/readback rollback only; no driver,
+SYSTEM, service or device policy edits. Before launch recheck ownership, current
+baseline/providers, original startup/SYSTEM and absent namespace. Request recorded
+before one FTP EXEC. After normal return collect ONCE, restore startup FIRST, preserve
+logs/events/five before-after hives, audit native lifecycle and typed policy. Unknown
+or inactive dialogs remain bounded/manual. No Welcome or benchmark automation yet.
+Persistent keyboard-unplugged/deployment authorization applies; do not re-ask.
+
+The003 observer stale-tail failure remains unresolved:14840 bytes at270336 match
+prelaunch FAT-free cluster2144598 seed11 content through two cold transports. Four
+complete samples and incomplete fifth/no terminal; strict parser FALSE. Clean metadata
+does not prove file contents. Original physical111 non-ASCII damage and restart
+method remain unresolved and separate. Preserve all failures, physical0101/video0093,
+original0088 rollback, immutable0.1.0. Verified CLOSED004/005 offload09k preserves
+all hashes and original-path junctions;20GiB build guard unchanged.
+
+# Earlier record (historical)
+
+# Current next step: read-only GUI context005
+
+Cancel004 CLOSED. Five-second verified welcome readiness observed5130ms(audio)/
+5220ms(SMBus). Audio closed, SMBus remained pending; timeout120180ms/exit15, guard
+blocked reboot. Full cold318dirs6717files319clusters,5hives/protected/history/
+typedpolicy PASS, strict inheritedFt49 FALSE; no normal shutdown/dashboard.
+Readiness timing did not solve it and cannot promote the helper. Neverrepeat004.
+
+NEW diagnostic helper004 uses unchanged fast Cancel actions plus GetForegroundWindow
+and target GetGUIThreadInfo before/after the sends and at5sec while pending. No
+activation, focus change, extra clicks or device/driver edits. Exact NT5 exports/
+compiler review pass. A fresh cancel005 preparation93697 is ACTIVE. Inspect then
+freeze/one300sec run/one supervisor/audit-cancel005.py ONCE after closure. Metadata
+query failures remain unknown; pre-action metadata is required. GUI thread exit
+may invalidate a post-action query, which is retained rather than called success.
+Diagnostic usability and cancellation/normalrestart/strict events are separate.
+
 # Next discriminator and limits
 
 All201 passive001/002 and cancellation001/002/003 runs are CLOSED. Never relaunch

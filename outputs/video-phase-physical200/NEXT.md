@@ -1,3 +1,13 @@
+# Both200 cases CLOSED; do not repeat them
+
+Control scoped display PASS, candidate scoped display FALSE due900000ms setup-idle
+timeout/no measurements. Both baselines restored and verified. Candidate strict Ft49
+and Srv2013 retained. Next separate known-wizard cancellation trial is prepared in
+../setup-wizard-automation201/physical001; no display or registry edits. Only after
+successful physical lifecycle qualification plan a new benchmark case with new IDs.
+
+# Earlier record (historical)
+
 # One fresh control200 launch next
 
 All prepared/frozen200 sources and inputs verified. No physical.json yet, no actual
