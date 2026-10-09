@@ -1,0 +1,75 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "guest_runtime_qualified": false,
+  "source_sha256": "0b0babf3854ade2c66cfa43559862c982fbb9c67e933b6554c0f4310121a2e0a",
+  "sha256": "93a35db915ec43bd09509568d297d48a7ff2d66d71294024668a82f5499ab608",
+  "header_sha256": "932d5e039757c40b13ee214e56f48c590f8293dd1ef07e9b1d600050d99bec4d",
+  "probe_sha256": "f9c245b4af35abcb3d64316eb59d6562c23cb4519f83e726298ec94893ab0285",
+  "imports": {
+    "advapi32.dll": [
+      "AdjustTokenPrivileges",
+      "LookupPrivilegeValueA",
+      "OpenProcessToken"
+    ],
+    "kernel32.dll": [
+      "CloseHandle",
+      "CreateDirectoryA",
+      "CreateFileA",
+      "CreateProcessA",
+      "ExitProcess",
+      "FlushFileBuffers",
+      "GetCurrentProcess",
+      "GetExitCodeProcess",
+      "GetLastError",
+      "GetModuleFileNameA",
+      "GetProcAddress",
+      "LoadLibraryA",
+      "SetLastError",
+      "Sleep",
+      "WaitForSingleObject",
+      "WriteFile"
+    ],
+    "user32.dll": [
+      "ExitWindowsEx",
+      "wsprintfA"
+    ]
+  },
+  "providers": {
+    "advapi32.dll": {
+      "path": "outputs/video-restart-guard178/artifacts/advapi32.dll",
+      "sha256": "d24493dbb2b1818f9cd605acd3b2008d63354c0975e9a090ccdd04bcc339cc59"
+    },
+    "kernel32.dll": {
+      "path": "outputs/video-physical-rehearsal160/artifacts/F/winnt/system32/kernel32.dll",
+      "sha256": "6b05b0749b5dd86da94cc4acd062ca05472509f70216b56cd4a5b9809c602e73"
+    },
+    "user32.dll": {
+      "path": "outputs/video-physical-rehearsal160/artifacts/F/winnt/system32/user32.dll",
+      "sha256": "291210cf381dc269f8847a86e59a7cf775e5dd4086f94ff1266714f34ff55063"
+    }
+  },
+  "dynamic_setupapi": {
+    "path": "outputs/video-restart-guard178/artifacts/setupapi.dll",
+    "sha256": "1d0a6e9d062a51e71eaae93d776746823834f5c518096d340f2b332fc059a23d",
+    "preferred_base": 2005401600,
+    "timestamp": 1056077021,
+    "image_size": 581632
+  },
+  "wait_export_rva": 337483,
+  "compiler": "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc",
+  "compiler_pins": [
+    "b5f1b773a7c733738352000c92a077dc5852a1a2fc6d836b1e411be1e9ec5f88  /usr/bin/gcc",
+    "83015512671faaa0dbe6f043a0107f79c049f4268a67e39955388a8d9a0182e5  /home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc"
+  ],
+  "host_tests": {
+    "passed": true,
+    "asan_ubsan": true,
+    "cases": 8,
+    "header_sha256": "932d5e039757c40b13ee214e56f48c590f8293dd1ef07e9b1d600050d99bec4d",
+    "source_sha256": "3aaf4394dfa0c387112eab53e56e0032eac051822fe6fc9a3b6fe32f2c4451ad",
+    "binary_sha256": "b34b4e6e87290e80792808778099dc27f577de38e3083737d5466587b8a6e6c8",
+    "coverage": "Idle permits one request; pending-first, stale-idle then pending, query failures/unexpected results never request restart; restart API failure remains failure."
+  },
+  "limits": "Import/export and isolated host tests are not runtime qualification. Prepare/preflight must cold-match all providers including SetupAPI."
+}

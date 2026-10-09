@@ -1,4 +1,87 @@
-# Current: cross-thread installer token race captured; ALL owned sessions CLOSED
+# Current: PnP logoff race attributed, restart guard refusal verified; ALL owned CLOSED
+
+Read outputs/video-installer-owner177/REPORT.md/owner-verification.json (in
+candidate001) and outputs/video-restart-guard178/REPORT.md/guard-verification.json.
+177 single debugger launch01:36:13UTC -> dashboard01:38:42;241events221pins,
+29creation82nativepairs47sourcepins,4unreadable,completecapture/fullteardown.
+ActualUMPconsolelogoffhandler5959 argument5 closes savedtoken1896 via verified
+kernel32frame returningUMP599b; clears15b64 while01B4installerthread stilluses
+copiedhandle -> C0000008/outererror6. Acquisition/caller/slot sequence verified.
+Normalshutdown/fullcoldworkloadintegrityPASS;strictFALSE soleFt49, no popup.
+Host schema-refusal preserved; offline002 explicitly pairs call fields not names.
+
+178 single ordinary launch01:49:42UTC, runner21685/supervisor52283/audit50211 CLOSED.
+Onlyownedrunner changed; actualsharedheader8hostASan/UBSan cases/NT5imports and
+SetupAPI cold-provider checks PASS. All5samples20copychecks25loops50RGBcoherence
+passed; firstpendingqueryWAIT_TIMEOUT258 -> RESTART_BLOCKED_PENDING_INSTALL258;
+NOrestartrequest. Host210s stopped heldWindows01:52:42; private disk preserved.
+No normalshutdown/dashboardreturn, full lifecycle workload/strictFALSE retained.
+Fullcold322dirs6721files323clusters0errors/orphans/5hives/35protected+startup PASS,
+soleFt49, no appdelta or popup. No-popup withoutshutdown is NOT a fix. Screenshot
+read-only HMPpause/resume shows2wizards withdevice textcovered. Cold01B0/01B4 each
+still lackDriver/Service.40sourcepins/snapshotsexact, no debugger/UI/physicalaccess.
+Frozenready.scope legacyownershipwording inaccurate, retained; actualRun/launch/
+audit flags andDESIGN authoritative. Initialunavailableclanghostrefusal preserved,
+GCC identicalheader/cases ASan/UBSan PASS. Positiveidle guestbranch not yetvalidated.
+
+Next finish genuine supportedPnP setup or explicitunsupported-device outcome,
+then NEW guardedordinaryreboot withstrictgates/coldaudit. Guardhold is prerequisite,
+not successfulsoak. Twoidlequeries cannotexclude futureenqueue. No speculativeUMP
+patch, unidentifiedautomaticwizardcancel, device/event/service/dump suppression.
+Intermittentpopup producer unresolved; graphicsoptimization remainsaftersettledsetup.
+No physicalFTP/deploy/test; physical0101/video0093/0088rollback/immutable0.1.0 unchanged.
+All173–178 CLOSED neverrerun/recollect. C~26.6GB,20GiBguardunchanged.3oldstandalone
+runs Eoffloaded hash/readback verified; manifest-20261009.json, originaljunctionpaths
+retained, noactiveparentsmoved. No ownedrunningprocesses. HistoricalACTIVE notes stale.
+
+# Historical: ordinary pending-install guard178 ACTIVE;177 and all older CLOSED
+
+Owned runner21685/supervisor52283 ACTIVE. Inspect outputs/video-restart-guard178/
+candidate001/launch.json and work/runs/nt5-vguard178-candidate001/instance.json.
+Never duplicate request or collection. Fresh immutable162candidate, same112/v4,
+only owned five-sample runner now checks bounded CMP_WaitNoPendingInstallEvents
+then finalzero-time query before requesting restart. Actualshared header8hostcases
+ASan/UBSan PASS, real NT5imports+actualSetupAPIprovider coldexact/frozen preflight
+PASS. No debugger, physicalFTP/deploy/test, driver/device/settings/UI suppression.
+If pendingguardblocks, runnerexits withoutrestart; owned hostbound210sec preserves
+private disk. This is a held run with forcedhoststop, not normalshutdown/soakPASS.
+Afterownedclosure auditONCE, coldguard/integrity review, closure/report. Strict
+Ft49/ALLpopup gates unchanged. Frozen ready.scope retains legacy ownership wording;
+DESIGN/actual Run.ps1/launch flags distinguish ordinary newhelper from177debugger.
+
+177ALLCLOSED241events221pins29creation82nativepairs47sourcepins completecapture,
+fullteardown, normalshutdown/fullcoldworkloadintegrityPASS,strictFALSE soleFt49;
+NOpopup. Actualconsolelogoffarg5 handlerUMP5959 closes token1896 -> wrapperframe
+returnsUMP599b, slot15b64 becomes0 while01B4 installerthread usescopiedhandle:
+innerTRUE, queryC0000008, outererror6. Acquisition+caller/slot verified independently.
+Read177REPORT.md/owner-verification.json/evidence-review.json. Host verifier schema
+refusal retained; newoffline002 requires explicit call fields rather than name.
+
+Three old CLOSED standalone runs offloaded hashverified toE, originalpaths retained
+as junctions; manifest-20261009.json.20GiBguard unchanged; no activeparents moved.
+Physical0101/video0093/0088rollback/immutable0.1.0 unchanged; all173–177neverrerun.
+HistoricalACTIVE notes below stale. Next complete genuine supportedPnP setup or
+retain guardhold, independently resolve intermittentpopup. No speculativeUMPpatch.
+
+# Historical: ownership177 ACTIVE; all older runs CLOSED
+
+Owned runner56909/tracer70936/supervisor22465 ACTIVE. Inspect actual177 records,
+never duplicate launch or collection. Fresh immutable162candidate/unchanged112,
+v4/166runner/settings/devices; no physicalFTP/deploy/test. New one-shot namespace
+xwnvo177, frozen runtime/current sources and actual5binaries/hives/preflight PASS.
+6identity+5scope+5return+6boundedCloseHandleframe host tests PASS. Observation adds
+UMP acquisition/cleanup/clear/tokenpush code sites and exactly one verified standard
+kernel32 wrapper frame at a matching cross-thread token close. No guessed FPOwalk,
+static source attribution, data/register/UI changes or patch. Same capturebounds
+and strict Ft49/ALLpopup gates. Afterownedclosure auditONCE, verify/closure/evidence
+review and report. Sources frozen before guest; preserve any incomplete observation.
+
+Recovered capacity from3old CLOSED standalone runs by byte/hash verified Eoffload,
+originalpaths retained through junctions; outputs/task-storage-offload/manifest-20261009.json.
+No active177parents moved. C~27.4GB before177,20GiBguardunchanged. Physical0101/
+video0093/0088rollback/immutable0.1.0 unchanged. All173–176closed, no reruns.
+
+# Historical: cross-thread installer token race captured; ALL owned sessions CLOSED
 
 Fresh176 single launch2026-10-09 01:18:16UTC -> dashboard01:20:43UTC. Runner84735,
 tracer49818,supervisor86204,audit27084 CLOSED. Read outputs/video-installer-close176/
