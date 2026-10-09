@@ -1,3 +1,70 @@
+# Current: unattended202 physical benchmark pair CLOSED; baseline restored
+
+Both single physical boots completed end to end without manual wizard requests.
+Controlaccepted21:06:44UTC→dashboard21:10:38; candidate21:12:32→21:16:36October9.
+Each exact201helper006 fourtargets1/2/3/4 joined0,5100msrealinstallidle, fiveprobe0,
+265pixels/200windowreadbacks/25loops/50scanout/counters/profileOFFON/caps PASS.
+Byteexact measurement SetupAPIbookends314234(control)/317456(candidate), final
+install0/normalunforcedrestart6006once/dashboard. Normalstartup restoredFIRST,
+originaldisplay/SYSTEM readback/current32entryrollback verified,10hives/typedPCI/
+services/dump policy/protected files pass. Both scopePASS; strict sole inheritedFt49
+beforemeasurement FALSE; no fullphysicalstorage/dump/mode/release qualification.
+No baselinepromotion. Actualphysical observations separate from emulator timing.
+
+All owned sessions CLOSED: emulator48636/9412/55098 and18790/40206/72666; preparation
+91830; physicaldeploy50962/73658 andfinish89459/56861; offload15489. No test startup,
+futurelaunch or automation active. Both202 guestdisks verified standaloneoffload09m
+with copies/hash/junctionreadback preservingoriginalpaths; no backingchain relocation.
+C22.8GiB recovered,20GiBguardunchanged. New immutablefixturesE unchanged.
+
+Read outputs/video-unattended202/REPORT.md,NEXT.md,physical-comparison.json and
+raw-review-emulator/control001/candidate001.json. Uploadbody global observedmean
+~1.55ms vs copyengine~0.83-1.11ms; inclusivewrapper mustnotbeadded. WindowworkNOTglobally
+matched:20.17MB1066boxes570ms(control) versus43.53MB2082boxes825ms(candidate);TextOut
+279vs876. No profiling-overhead/speedup conclusion from walltime, producerunresolved.
+Primitive loop medians change~-0.7..+1.5percent, onebootpermodefivewithinbootsamples.
+Next actual optimization: validate actual text/glyph/opaque/extra bounds then NEW
+bounded TextOut upload candidate with fullclipfallback, unchanged framebuffer/cache/
+ownership/visibility. Need actualbytecoverage/pixels/boundedhostcases/freshordinary
+emulatorcold thenhardwarepair; don'tguessfontbounds orrelaxgates. Exact198display,
+199probe,201helperunchanged;202runneronlyjoinschildbeforeunchanged194guards.
+
+Preservephysical0101/video0093,0088rollback,immutable0.1.0/allfailures. 003largeobserver
+stalesuffix and original111physicalnonASCIIcorruption/restartunknown remainseparate.
+Main5b10446 pushed source/emulatorproof; finalphysicalreports reviewed and being
+committed/pushed. Persistenthardwarepermission/keyboardalwaysunplugged applies.
+
+# Earlier record (historical)
+
+# Live physical202 candidate accepted21:12:32UTC; owned finish56861 ACTIVE
+
+Control202 now CLOSED scopedPASS; finish89459/deploy50962 CLOSED. Actual fourknown
+Cancel targets1/2/3/4 joined0 in39930ms then5100msrealidle. Five native probes exit0,
+265pixel/200windowreadbacks/25loops/50scanout/phaseOFF/counters/caps pass; identical
+314234-byte SetupAPIbookends/finalinstall0/normalrestart6006/dashboard21:10:38UTC.
+Collection restored normalstartupFIRST, originaldisplay/SYSTEM readbackverified,
+10hives/protected/typedpolicy pass; zero persistent PCI/servicepolicy changes.
+Sole inheritedFt49 strictFALSE. Independentraw-review-control001 PASS/rawpins.
+
+Candidate deploy73658 CLOSED, FTP200EXEC accepted ONCE2026-10-09T21:12:32.283617UTC.
+32-entrycurrentrollbackpreserved/readback; temporarydisplay/SYSTEM/teststartup active.
+Owned finish56861 observing then startup-first collect/exactbaseline restore,
+independentverification/hives/audit/closure. Inspect actualrecords, NEVERduplicate.
+No manualinputrequested. Both matched202emulators CLOSED scopedPASS/strictFt49FALSE.
+All202root sources frozen. tools/review-unattended202.py is external read-onlyreviewer;
+new tools/compare-unattended202.py descriptive only, not yet run/no result.
+
+Verified09m offload of both CLOSED standalone202 guestdisks now COMPLETE, exact
+copyhashes/junctionreadback/originalpaths preserved. No backingchain relocation.
+C22.8GiB recovered,20GiBguardunchanged. Main5b10446 pushed integration/emulator
+proof; newphysical results awaitingcandidateclosure beforefinalreport/push.
+Preservephysical0101/video0093,0088rollback,immutable0.1.0/allfailures,003stalesuffix,
+original111 physicalnonASCII corruption/restartunknown. Existinghardwareauthorization
+and always-unplugged keyboard apply. Next aftercandidateclosure: rawreview, descriptive
+inclusivephase report to choose concreteoptimization, no FPS/speedup/promotion claim.
+
+# Earlier record (historical)
+
 # Live physical202 control: single accepted21:06:44UTC; owned finish89459 ACTIVE
 
 Deploy50962 CLOSED. Single FTP200EXEC requested physical control001 at
