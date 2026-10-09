@@ -1,3 +1,79 @@
+# Current:201 observe002 ACTIVE, passive001 failure preserved
+
+Representation-only prelaunch copy onE prepared/Imagesidentical,5hives/fullclean
+allocation/protected bytes/originalchain hashes PASS. Frozen44 actual inputs.
+Owned Run-Observe002 session42823 and supervisor46450 ACTIVE; resume/inspect,
+neverduplicate launch or collection. prepare14061/freeze58232 CLOSED. New source
+E:/Codex-archive/xbox-windows-native/wizard201/observe002.qcow2 is standalone;
+oldchains unchanged. Onlypassive201 helper, noCancel/restart. At240sec owned
+closure run audit-observe002.py ONCE inWSL. Knownfailed001 remains CLOSED.
+
+Physical200candidate observerclosed manualscreenpending and notyetrestored;
+do notrelaunchWindows/reaskkeyboard or infercrash. Single screenquestionpending.
+Guardian002 reviewed/hostgatespass but neverlaunched; no201physicaldeployment.
+No other ownedprocesses. Preserve20GiBguard/allfailures/baseline/release.
+
+# Earlier continuation (historical)
+
+# Current:201 passive001 FAILED/CLOSED; representation-only002 preparation
+
+201 observe001 CLOSED/audited: helper absent; rawSYSTEM malformed reachable
+NtmsSvc\Config\Standalone value-list0x199980, matchingprior194. Protected/startup/
+fullallocation318dirs6712files319clusters/noerrors/orphans and4hives PASS,
+SYSTEM/integrity/usable/ordinary/physicalFALSE. Never relaunch/recollect.
+Owned21897/77676/67369 CLOSED. New prepare-observe002.py session14061 converts
+immutable201prelaunch to NEW E standalone; Images identical/fullcold pins verified,
+check fixture-observe002.json and session before launch, neverduplicate.
+No guest002 launch yet. Representation-only discriminator, unchangedguestbytes.
+
+Guardian002 NT5compile/import review PASS and unchanged194 headers,
+8restart/8011setup actual-header ASan/UBSan assertions PASS. Guardian001 warning
+refusal preserved. No guardian/cancel guest launch; must qualify passive first.
+No201hardwaredeployment/noUIaction. Physical200 candidate requires screen reply,
+observer98825closed baseline_restoredFALSE; single pendingquestionalready sent.
+Collectonce on actualdashboardreturn then baseline/SYSTEM/startup independent
+readback andcoldhives/events/closure. Do not infercrash/relaunch. FreeC~21GiB,
+20GiBguardunchanged. Preserve baseline/rollback/releases/failures, no suppression.
+
+# Earlier continuation (historical)
+
+# Current:201 passive emulator observation ACTIVE; physical200 pending screen
+
+201 helper Build001/import review PASS;237 actual-header ASan/UBSan adversaries
+PASS, Windows2000 x86/subsystem5.0 provider pins checked. Exact known device
+instances/held live creation-time owner/full command/window/Cancel verified;
+PSM_PRESSBUTTON PSBTN_CANCEL is the sole proposed action, real PnP idle required.
+No physical201 deployment. Frozen29 actual inputs/source snapshots. NEW immutable
+prelaunch188 child observe001 staged (318dirs/6712files/319dirclusters,0errors/
+orphans,5hives/provider/protected pins before). Same drivers/hives/device policy,
+no null binding. Passive mode sends noCancel and requests no restart;120sec
+helper/240sec owned host bound, not ordinary persistence qualification.
+Single201 observe001 accepted2026-10-09 18:17:51UTC. Owned runner21897 and
+supervisor77676 ACTIVE; inspect records/resume them,neverduplicate. prepare19025
+CLOSED. After cleanup audit-observe001.py ONCE in WSL with offline hivex library.
+Frozen source cannot change; new guardian sources not yet built or launched.
+Preserve policy-test001 parser refusal/unrun test, and Windows freeze-host refusal
+before lease/runner-start; successful source/tests/freeze remain distinct.
+
+Physical200 candidate finish98825 CLOSED18:15:55UTC after observer bound: no
+FTPreturn, baseline_restoredFALSE, no collection/no performance verdict. Pending
+single screen question sent18:05UTC; do not ask again/infercrash/relaunch Windows.
+Startup/display/SYSTEM temporarilytestenabled with31entry oldbytes/readback
+rollback preserved. On human/dashboard return use controller collect ONCE
+startupFIRST/finallybaseline restore then independent verify-restored/hives/
+audit/closure; no duplicate observer. Control200 CLOSED/PASS scoped display and
+rollback; strict sole premeasurementFt49 FALSE. See actual candidate records.
+
+No driver/settings/device suppression. Preserve0101/video0093 physicalbaseline,
+0088rollback,immutable0.1.0,all failures. After passive observation/cold audit,
+only a NEW unique owned cancellation child may test supported Cancel, closure,
+actual idle, child stop/join, unchanged194 idle/restart gates and normalshutdown.
+Never bypass queues or inventsupport for USBffff:ffff. Unknown dialog/request
+fails safely. Performance200 source frozen unchanged; physical evidence pending.
+C:21.3GiB free,20GiBguard retained. No other owned active processes.
+
+# Earlier continuation (historical)
+
 # Current: physical200 control CLOSED, candidate ACTIVE
 
 Control200 allonceonlyfinish21435stages completed0 andCLOSED17:52:49UTC. Scope

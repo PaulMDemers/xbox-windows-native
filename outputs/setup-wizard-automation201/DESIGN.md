@@ -1,8 +1,22 @@
-# Unattended handling of known hardware wizards:201 planning only
+# Unattended handling of known hardware wizards:201 implementation and passive validation
 
-Human asks why benchmark waits for cancelled wizards and whether they can be
-ignored for end-to-end testing. No newhelper/driver/settings/policy implemented,
-compiled, deployed or launched here. Finish unchanged200 OFF/ON pair first.
+Human authorizes targeted cancellation for end-to-end testing. Build001 helper
+compiled and actual owned NT5 import review passed;237 policy adversaries passed
+ASan/UBSan. Only passive observe001 launched in a fresh owned immutable188 child.
+No Cancel action or physical201 deployment yet; physical200 remains unchanged.
+Static/import/host results are not UI or lifecycle qualification. Preliminary
+PowerShell parser and incorrect host freeze environment refusals are preserved;
+neither reached resources or a guest launch. Passive runtime/cold result pending.
+
+The helper uses PSM_PRESSBUTTON/PSBTN_CANCEL, the property sheet Cancel path.
+A send acknowledgment alone never proves cancellation. Hold and revalidate the
+original process object/creation time/full instance command, current window and
+actual enabled Cancel before sending; then await closure and real queue idle.
+No repeated action for the same process lifetime. Eight-action/120-second total
+bounds and a 1MiB write-through log cap apply. Pure host policy tests do not
+exercise window reuse, Windows message behavior or queue completion.
+Reference: https://learn.microsoft.com/windows/desktop/Controls/psm-pressbutton
+Modern API minimum metadata is not proof of NT5 runtime behavior.
 
 Current194compiled guard waits up to900000ms for observed5000ms installeridle,
 records actual zero/pending258 status, queries around each sample/checkpoint and
