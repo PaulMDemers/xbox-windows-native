@@ -1,10 +1,8 @@
-#192 pending helper discriminator
+#192 closed
 
-Fresh fixture prepared318directories6713files319directoryclusters0errors/orphans;
-source is immutable prelaunch188 delta, not CLOSED interrupted run. No192 launch.
-Freeze/pin/review then singleowned420second run and supervisor. Observe actual
-helper timeout; if held past timeout capture owned framebuffer with640x480x32
-geometry as in188 baseline and explicit pause/resume record. Cold audit once;
-actual pending258 timeout>=300000ms/no probe/restart required. Preserve failures.
-191idle usable runtime/191pending absent-helper failure remain separate. No
-physical action or driver/device-policy change; all strict events retained.
+Diagnostic usable: actual0->258, timeout300000/no probe/restart, full cold integrity.
+Strict inheritedFt49FALSE, no ordinary/performance/physical qualification. All owned
+sessions CLOSED. Never relaunch/recollect192 or191. Next NEW hardware kit/current
+read-only capture, exact184 OFF/ON payloads and validated190 helper. Preserve original
+baseline, startup-FIRST rollback, strict warnings and fresh keyboard state before
+any launch. Do not copy emulator-only unused-device bindings to hardware.

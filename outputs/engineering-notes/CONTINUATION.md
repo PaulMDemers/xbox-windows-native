@@ -1,18 +1,21 @@
-# Current:191 CLOSED;192 fresh pending fixture prepared/frozen, NEVER launched
+# Current:193 hardware comparison READY/NEVER launched;191/192 CLOSED
 
-Latest pushed909a145.191idle68855/91958/20157 CLOSED: actualidle5145ms, five probes,
-ten zero boundaries, originalguard0/0, normalshutdown1/dashboard, clean340/6747/341,
-5hives/protected; diagnosticusable, strictFt49FALSE. Registers/framebuffer snapshot
-pause/resume nearreturn documented; unreadable wronggeometry image not Windows
-screen proof or performance evidence.191pending CLOSED missinghelperlogs, integrity
-PASS318/6716/319; no pendingrefusal coverage. Never repeat either191 or190closedcase.
-New192 immutable prelaunch188 parent (not CLOSED188 posthoststop disk), same190
-helper/186probe. Prepared/frozen318/6713/319clean, all providers/hives/readback;
-prep74545 CLOSED. No192 launch yet, noownedprocesses. Next192pending Run ONCE,
-supervise, heldscreen ifneeded with640x480geometry, cold audit ONCE. No UI or driver
-policy changes. Physical189normalstartup/userdashboard,0101/video0093/0088/0.1.0
-preserved. Offloadclosedverified/C~25GB/20GiBguard. No automation/hardwareworkload.
-191final/192preparation uncommitted at this note; review/check/push before launch.
+Read193REPORT/NEXT/physical-ready/readiness-completion and actual captures. Current
+read-only dashboard capture50490 CLOSED; exactbaseline/double reads, fresh typed
+SYSTEM proposal onlytwo displaytokens, privateOFF/ON/rollbackarchives verified.
+Actual4NT5provider DLLs exact; source/input/dependency/capture bytes pinned. Host
+protocolfailure and exactproduction parser tests passed. Same184 DLLs/186v8probe,
+validated190 helper, unchanged178restartguard. No193physicalwrite/launch. Bothcases
+NEVER launched. Currentdashboard/Razerunplugged and humanprompt-handling state
+required before control singlelaunch; no automatic UI action/emulatornullpolicy.
+Strict/original gates retained: Ftdisk49/Srv warnings stayfailures, failedcontrol
+blocks candidate. StartupFIRST/finallyrollback/sourcepins unchanged. Physical189
+normalstartup/0101video0093/0088/0.1.0 preserved. No activeprocesses/automation.
+192runner41419/supervisor85177/audit51123 CLOSED: actual0->258/300000 timeout/no
+probes orrestart, clean318/6716/319/hives/protected, strictFt49FALSE. Correctedlive
+snapshot Windowsdesktop/wizard from1024x57603c; wrong640geometry image retained.
+191idle runtimePASS/191pendingfailure remain CLOSED, never repeat. Latestpushede08a117;
+192closure/193preparation uncommitted atthisnote. C~24.8GB/20GiBguard unchanged.
 
 # Historical continuation below
 
