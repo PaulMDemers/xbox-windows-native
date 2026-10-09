@@ -1,3 +1,49 @@
+# Current: physical187 control unresolved; screen question pending; local sessions CLOSED
+
+Single OFF control187 accepted04:31:42UTC2026-10-09; observer50668 CLOSED at
+04:38:53UTC after23 samples without dashboard FTP return. No workload/event
+results collected; no crash inferred. One actual-screen question pending. User
+had confirmed dashboard/Razer unplugged before launch. Never relaunch control or
+duplicate observer. Candidate001 NEVER launched. Startup remains enabled for
+the single test and OFF display/proposed SYSTEM temporary; original baseline
+NOT YET RESTORED because console offline. On dashboard return collect ONCE,
+startupFIRST, preserve reports/five hives/logs/protected payloads, restore original
+display/SYSTEM/readback, then physical/event/WSL hive audits. Any failed/partial
+control blocks candidate. Do not force dialogs/restart to obtain PASS.
+Read outputs/video-word-physical187 REPORT/NEXT/control001 physical.json,
+physical-return.json/waiting-manual.json. Host-only failure tests passed; exact
+21source/24input preparation pins unchanged. FTP/ownership dependencies match
+committedHEAD except recorded line endings; actual raw hashes pinned. Original
+strict dependency raw-byte refusal/capture001 preconnection refusal retained.
+No physical storage/HAL/NVNet/device-policy/cache/mode/dump/service edits or
+release promotion. Rollback26entries readback-verified on /F/xwn-display187a;
+immutable0.1.0 and0101/video0093/0088 preserved. All local owned sessions CLOSED
+(capture39444/deploy65759/watch50668); no emulator running.187 sources/reports
+reviewed for private commit/push; priorHEAD785a44e. No automation started.
+
+# Historical continuation below
+# Current: physical187 control single launch accepted; owned watcher ACTIVE
+
+Fresh187 capture002/typed proposal/package/protocol tests/readiness complete.
+Capture001 FileExistsError before network preserved; corrected capture002 reads
+baseline twice and matches original physical files. Rollback archives readback
+verified. Same184 OFF/ON DLLs, shared166 providers, exact186v8 probe/178 guard.
+No builds, physical device policy, storage/settings edits or release promotion.
+Current human keyboard/dashboard report confirmed before launch. Control001
+accepted04:31:42UTC2026-10-09; owned watch-physical.py control001 session ACTIVE.
+Read physical.json/physical-return.json in outputs/video-word-physical187 and
+NEXT.md before action. Never duplicate launch/observer or old185/186 closed work.
+Startup currently single-test enabled; OFF display/proposed SYSTEM temporary.
+On dashboard return collect ONCE startup-FIRST, preserve evidence and restore
+original baseline; verify-restored/readback, physical probe/event audit and WSL
+five before/after hive audit. Only complete scoped control with exact inherited
+Ft49 failure signature/restored baseline permits candidate ONCE. No gate waiver.
+Physical F: namespace xwnws187a/rollback xwn-display187a; candidate b variants.
+Partial collection failure restores baseline and blocks recollection/promotion.
+No emulator sessions running. C~21.4GiB,20GiB guard unchanged. Sources currently
+uncommitted187; last pushed785a44e. On completion compare/report/check/commit/push.
+
+# Historical continuation below
 # Current: scalar184/185/186 CLOSED; candidate selected for hardware benchmark
 
 All owned sessions CLOSED. Implementation/evidence pushedd2c8634 (185pushed8787ccc);186 reverse-order
