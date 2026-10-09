@@ -1,6 +1,46 @@
-# Current: scalar184/ordinary185 CLOSED; timing attribution unresolved
+# Current: scalar184/185/186 CLOSED; candidate selected for hardware benchmark
 
-All owned sessions CLOSED. Both185 ordinary cases passed65 exact pixel/copy
+All owned sessions CLOSED. Latest185 evidence pushed8787ccc;186 reverse-order
+longer pair completed, source/reports ready for review/commit. Never relaunch or
+recollect any185/186 cases. Read184/185/186 REPORT/NEXT and186pair-review,
+evidence-review/order-comparison.json. Exact184drivers unchanged.186 candidate
+04:06:05->04:09:05UTC thencontrol04:10:48->04:13:46; each65pixel/copy checks,
+25loopsall1500ms50scanout comparisons, guard0/0 normalrestart/6006/dashboard,
+fullcold334dirs6739files335clusters0errors/orphans,5hives40protected/startup,
+SetupAPI/package unchanged and92pins/snapshots exact. StrictFALSE sole exact
+inheritedFt49, no application/popup delta, no waiver. Actual1024x576x32/60.
+
+186 median control/candidate ms: fill0.16211/0.14004,upload0.20442/0.17444,
+readback0.13908/0.13939,overlaps0.19557/0.16743 and0.19460/0.16587. Rendering
+13.6–14.8% lower elapsed; same direction in short control-first185. Readback
+nearlyequal now, first3zero uploadrows/last2background uploads inboth; noexclusive
+latency/hardwareclaim/normalization.115 selected ONLY for separate physicalOFF/ON
+benchmark, not installed/promoted. No more blind emulator repetitions planned.
+Next prepare new hardware controller/readiness/current-console capture/rollback,
+exact184DLLs+same166 physical-tested shared providers/probeV8/178guard. Preserve original
+166cases and immutable0.1.0, physical0101/video0093/0088. No physicalFTPthissession.
+Do not copy emulator null policy. Keyboard unplugged status must be current before
+Xromwell launch; no old-report assumption. C~20.6GiB,20GiB guard unchanged.
+
+Generation186001 rawCRLF guard assertion refusal and numeric-site mutation
+preserved before any build/fixture; corrected002 restricts names/preserves raw
+sites/guard and reviewed exact probe/duration/order deltas. No driver change.
+182/183 negativeDIB114 remains CLOSED/notselected, pushedb1cb0ae.
+
+# Historical continuation below
+# Current: ordinary185 CLOSED/pushed8787ccc; reverse-order186 preparing
+
+All185 owned sessions CLOSED.186 candidate single boot04:06:05->04:09:05UTC
+CLOSED PASS65pixel/copy/25loopsall1500ms/fullcold334dirs6739files335clusters,
+5hives40protected/startup/normalshutdown/guard0/0/package/SetupAPI exact. Sole
+strictFt49 preserved. New186 control single launch accepted04:10:48UTC; runner
+21293 and observer71470 ACTIVE. Never duplicate launch/observer. Next cold audit,
+inventory/package/closure control, then pair/evidence/order comparisons. Exact184
+drivers/immutable181 parent and v8 longer intervals/reversed order; no physical.
+Generation001 refusal and restricted corrected002 review preserved. C~20.6GiB,
+20GiB guard unchanged. Inspect actual186records, no old stage reruns.
+
+Both185 ordinary cases passed65 exact pixel/copy
 checks,25timing loops50scanout comparisons, guard0/0 normalrestart/6006/dashboard,
 full cold334dirs6739files335clusters0errors/orphans,5hives40protected/startup,
 SetupAPI unchanged/packagebindings/86frozenpins and exact source snapshots.
