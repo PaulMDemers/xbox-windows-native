@@ -1,3 +1,106 @@
+# Current: explicit unused-device setup and subsequent boot verified; ALL owned CLOSED
+
+Latest179/181 ordinary emulator configuration sequence is reviewed in
+outputs/device-settled-reboot181/sequence-review.json and REPORT.md. 179 single
+launch02:09:29UTC -> dashboard02:11:50;18102:21:05 -> dashboard02:23:19. Each
+five samples,20copy checks,25timed loops,50RGBcoherence, guard0/0, normal restart/
+EventLog6006/dashboard/fullcoldallocation/5hives/protected files/startup PASS.
+179322dirs6723files323clusters;181328dirs6731files329clusters;0errors/orphans.
+ActualSetupAPI installed original exact-ID unusedINF on01B0/01B4/1B36:0005.
+Both boots retain identical devnodes/IDs/System bindings0014/0015/0016, ConfigFlags0,
+no associated functionService, explicit unused/no-function descriptions, exactINF
+SHA c52b8e8d578dbc428043a13b155e2baf90dfda9ddd2789ec4349893316b8b21d.
+181 SetupAPI is byte-unchanged from179. No new installer activity, setup helper,
+INF restaging, log/trace/hive reset, UI actions or debugger on181. Original178
+compiled guard/probe/112 providers are unchanged. This is a disposable emulator
+compatibility policy, NOT functional audio/SMBus support, a Windows token fix or
+physical eligibility. Unsigned179INF trust diagnostics preserved. No error/event
+waiver: bothstrictFALSE sole exactFt49, no new popup/application delta. Positive
+idle guest guard branch and durable settled configuration observed in two boots.
+
+179runner11878/supervisor69410/audit44879 CLOSED;43frozen pins exact.
+180hostbootstrapfailed BEFORE Windows request: copied parent had POSIX absolute
+backing path. No supervisor/SITE EXEC/Windowsworkload. Host-ready refusal retained;
+all prepared payloads/5hives unchanged/fullallocation clean44pins exact. CLOSED,
+never rerun/recollect.181NEW sibling fixes only copied backing metadata using
+verified same-directory relativebasename, full storedchainportable, qemu-imgcompare
+identical and original/parenthashes unchanged.180failedsource/disks/logs preserved.
+181runner19410/supervisor83713/audit22916 CLOSED;44pins/snapshots exact.
+No owned running processes. ALL179–181closed; never duplicate launch/collection.
+179read-only monitor screen during shutdown brieflypaused/resumed without input;
+missing separate UIlease retained in report.181has no capture/performanceclaims.
+
+Next NEW matched graphics kit from181normallyshutstate. Target measured DIBupload/
+engine costs before higher video modes. Pin current driver/providers/source and
+geometry; preserve explicit unused-device policy as an emulator limitation. No
+speculative cache/WC/GPU/mode switch, no automatic unidentifiedwizard cancellation,
+no Windowsbinarytoken patch or event/service/dump suppression. Retain inherited
+Ft49strictfailure and separately unresolved intermittentpopup/original111physical
+SetupAPI corruption. Physical0101/video0093/0088rollback/immutable0.1.0 unchanged;
+NO physicalFTP/deploy/test this turn. C~23.8GiB,20GiBguard unchanged. Exact private
+closed179image/181portableparent and sources/artifacts retained. Commit/push reports
+and source only; no Windows binaries/disk images/public release or new release tag.
+
+# Historical continuation below
+# Current:181 fresh no-action subsequent boot ready;179/180 CLOSED
+
+179 successful explicitunused setup: idleguard0/0, normalshutdown/dashboard,
+fullgraphics/coldintegrityPASS; strictFALSE soleFt49. ActualINF3bindings retained,
+no functionservices/audio/SMBus capability. All179sessions CLOSED. Neverrecollect.
+180 hostbootstrapfailure BEFORE Windowsrequest: POSIXabsolute copiedparent path
+rejected by Windowsxemu. Originalfailedsources/disk/log retained; payloads/5hives
+unchanged/fullallocationclean44pins exact. No guest launch or supervisor occurred.
+Hostearlyreadyrefusal preservedtoo. All180sessions CLOSED; neverrerun/recollect.
+
+181 fresh sibling from179 closedstate fixes only copiedparent metadata backingto
+verifiedsame-directory basename; qemu-imgcompare identical, fullstoredchainportable,
+original/parenthashes unchanged. Exact compiledguard/probe/112driver, no new setup
+helper/INFrestage/UIcapture/GDB/physicalaccess. Hives/setup/log/trace/package retained.
+Actualpreflight/freeze READY. Next single Run/supervisor; inspect actualrecords,
+neverduplicate. Afterclosure audit/inventory/package/closure ONCE, independent
+binding/setup-history review; all strictgatesunchanged. C~24GiB/20GiBguard. Physical
+0101/video0093/0088/0.1.0 untouched. Graphicsuploads/engine optimization follows.
+
+# Historical continuation below
+# Current:179 CLOSED configuration outcome;180 subsequent boot prepared
+
+179 single launch02:09:29UTC -> normal dashboard02:11:50. Runner11878/supervisor
+69410/audit44879 CLOSED. Original unusedINF installed by actual SetupAPI for exact
+01B0/01B4/1B36:0005; original identities/devnodes retained, System driverbindings
+0014/0015/0016, ConfigFlags0/no functionService. Audio/SMBus/test function remain
+unsupported. No offline registry edit, dialog action, driver/service/dump change,
+debugger or physicalaccess. UnsignedINF diagnostics retained. Bothguardreads0,
+normalrestart/6006/dashboard/fullcold322dirs6723files323clusters0errors/orphans/
+5hives36protected PASS. StrictFALSE sole exactFt49,no appdelta/popup.43sourcepins
+and snapshots exact. Read179REPORT/package-verification/audit/closure; neverrerun.
+
+180 prepares NEW no-action subsequentboot from179 normally shut down state.
+Private179disk preserved; metadata-only backing-path copy qemu-imgcompare identical
+before newchild. No hives/setup/log/trace/INF reset, no new setuphelper/INFrestage/
+UIactions/GDB/physicalaccess. Exact same178 compiledguard/v4/112providers. Inspect
+outputs/device-settled-reboot180 actualpreflight/runner/launch records beforeacting,
+neverduplicate. Afterownedclosure cold audit/inventory/package/closure ONCE.
+C~24.4GiB,20GiBguardunchanged. Physical0101/video0093/0088/0.1.0 unchanged.
+
+# Historical continuation below
+# Current: unused-device package179 preflighted; single ordinary launch next
+
+177/178 and all older owned sessions CLOSED; never relaunch/recollect. New179
+uses fresh immutable162candidate, same112/v4 and byte-identical178 guard runner.
+Original narrowly matched INF declares01B0/01B4 and synthetic1B36:0005 unused/no
+function driver, installs no binary/service. This is explicit emulator-only
+configuration intervention, not audio/SMBus support or Windows race fix. No offline
+registry edits, event/service/dump suppression, UI actions, debugger or physical
+access. Input/build reuse/preflight/source freeze passed; initial host CRLF-only
+source equality refusal preserved and sources restored exact BEFORE freeze/launch.
+Read outputs/device-unused-package179/DESIGN.md, actual launch/instance records.
+Single guarded ordinary launch and host210s bound; do not duplicate. After closure
+cold audit/inventory/package verification/source closure ONCE. Guard timeout is
+held run, not normal lifecyclePASS. All warning/popup gates unchanged. Need later
+independent no-action reboot to show durable setup. C~24.7GiB,20GiBguard preserved.
+Physical0101/video0093/0088rollback/immutable0.1.0 unchanged.
+
+# Historical continuation below
 # Current: PnP logoff race attributed, restart guard refusal verified; ALL owned CLOSED
 
 Read outputs/video-installer-owner177/REPORT.md/owner-verification.json (in

@@ -1,0 +1,88 @@
+{
+  "captured_win32k_path": "outputs/video-physical-rehearsal160/artifacts/F/winnt/system32/win32k.sys",
+  "sha256": "414cc2568ba7f11fa58490060c947477f44d6218e6c52e01deea1bbe8a364a92",
+  "exports": [
+    {
+      "name": "EngQueryPerformanceCounter",
+      "rva": 457851,
+      "bytes": "6a00ff15c84716a08b4c24048901895104c20400558bec8b4508ff3584aa17a08945088d450850e8bb5407006a01585dc2040053555633ed575555be047016a055566a085533dbe88e6402008bf883ff0c761f6a02685573636d57e840fc0000",
+      "instructions": [
+        {
+          "rva": 457851,
+          "bytes": "6a00",
+          "instruction": "push 0"
+        },
+        {
+          "rva": 457853,
+          "bytes": "ff15c84716a0",
+          "instruction": "call dword ptr [0xa01647c8]"
+        },
+        {
+          "rva": 457859,
+          "bytes": "8b4c2404",
+          "instruction": "mov ecx, dword ptr [esp + 4]"
+        },
+        {
+          "rva": 457863,
+          "bytes": "8901",
+          "instruction": "mov dword ptr [ecx], eax"
+        },
+        {
+          "rva": 457865,
+          "bytes": "895104",
+          "instruction": "mov dword ptr [ecx + 4], edx"
+        },
+        {
+          "rva": 457868,
+          "bytes": "c20400",
+          "instruction": "ret 4"
+        }
+      ]
+    },
+    {
+      "name": "EngQueryPerformanceFrequency",
+      "rva": 463924,
+      "bytes": "ff742404ff15c84716a0c20400558bec83ec18535657e842f8f8ff8b4d08e8290ff9ff8bd885db7475e84ab3f9ff3bd8746ce872e102003bd874638b35bc9417a08b4d0c8b46208945f48d45f4894620895df8ff4304e8f10ef9ff8bf885ff74",
+      "instructions": [
+        {
+          "rva": 463924,
+          "bytes": "ff742404",
+          "instruction": "push dword ptr [esp + 4]"
+        },
+        {
+          "rva": 463928,
+          "bytes": "ff15c84716a0",
+          "instruction": "call dword ptr [0xa01647c8]"
+        },
+        {
+          "rva": 463934,
+          "bytes": "c20400",
+          "instruction": "ret 4"
+        }
+      ]
+    }
+  ],
+  "nt5_source_contract_checked": true,
+  "runtime_contract_checked": false,
+  "driver_changed": false,
+  "limits": "Actual captured exports/disassembly only; match DDK signature and runtime frequency/counter before instrumenting a new driver.",
+  "ddk_declarations": {
+    "path": "/home/paul/xbox-windows-native/build/video-reuse-001/source/sdk/include/psdk/winddi.h",
+    "sha256": "2e87b68c64a04bee07769f6266ad80950816816d611e666eb939d1e105c69e73",
+    "declarations": [
+      {
+        "line": 2276,
+        "source": "ENGAPI\nVOID\nAPIENTRY\nEngQueryPerformanceCounter(\n    _Out_ LONGLONG *pPerformanceCount);\n"
+      },
+      {
+        "line": 2282,
+        "source": "ENGAPI\nVOID\nAPIENTRY\nEngQueryPerformanceFrequency(\n    _Out_ LONGLONG *pFrequency);\n"
+      }
+    ]
+  },
+  "actual_common_import": {
+    "dll": "HAL.dll",
+    "name": "KeQueryPerformanceCounter",
+    "iat": 2685814728
+  }
+}

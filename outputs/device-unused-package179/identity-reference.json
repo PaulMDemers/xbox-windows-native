@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "source_manifest_sha256": "db75df9a0b59ca0e3cc646c0b7548f1553a0739b7e7f50b9697072edb3f8ecb9",
+  "sources": {
+    "include/hw/pci/pci_ids.h": {
+      "sha256": "e1d3ae34353d370153f8fa9a4b0d01eedf340e0038974ac846759fc0caed0b77",
+      "matched_compiled_source_manifest": true,
+      "selected_lines": [
+        {
+          "line": 297,
+          "text": "#define PCI_DEVICE_ID_NVIDIA_MCPX_APU     0x01b0"
+        },
+        {
+          "line": 300,
+          "text": "#define PCI_DEVICE_ID_NVIDIA_NFORCE_SMBUS 0x01b4"
+        }
+      ]
+    },
+    "hw/xbox/mcpx/apu/apu.c": {
+      "sha256": "300643a11239756c05993f5651cda5dc1fdf77a17c07ab59e31dd2ccd0b44c5f",
+      "matched_compiled_source_manifest": true,
+      "selected_lines": [
+        {
+          "line": 559,
+          "text": "    k->device_id = PCI_DEVICE_ID_NVIDIA_MCPX_APU;"
+        }
+      ]
+    },
+    "hw/xbox/xbox_pci.c": {
+      "sha256": "22963a0ffab9a68ca8ba719419a129c87cafd99e32f13e5e13056ac808617f82",
+      "matched_compiled_source_manifest": true,
+      "selected_lines": [
+        {
+          "line": 299,
+          "text": "    k->device_id = PCI_DEVICE_ID_NVIDIA_NFORCE_SMBUS;"
+        }
+      ]
+    }
+  },
+  "reference": "https://learn.microsoft.com/en-us/windows-hardware/drivers/install/installing-a-null-driver",
+  "limits": "Matched actual xemu compilation source IDs support emulator device labels; generic physical wizard labels and absence of a function driver do not establish audio/SMBus functionality."
+}

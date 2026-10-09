@@ -1,3 +1,22 @@
+# Emulator setup settled for graphics work — October9,2026
+
+Two ordinary boots now complete setup and guarded normal restart in a disposable
+emulator configuration. An original exact-ID package explicitly labels the audio
+processor, SMBus controller and synthetic PCI test function unused, with no
+function service or binary. The subsequent boot retains identical bindings and
+adds no SetupAPI records. This is configuration completion, not audio/SMBus support
+or a Windows race fix; the physical console remains unchanged.
+
+Both boots pass five graphics samples,20copy checks,25timing loops,50scanout RGB
+checks, normal shutdown/dashboard, full allocation, five hives and protected files.
+The exact inherited Ftdisk49 remains a strict failure; no new popup/application
+errors or gate waiver. Failed host backing-path attempt is preserved separately.
+See [sequence report](../device-settled-reboot181/REPORT.md) and its independent
+sequence-review.json. All owned sessions are closed. Next target measured DIB
+upload/engine costs, then additional video modes. Physical0101/video0093,0088 and
+immutable0.1.0 remain unchanged.
+
+## Earlier status
 # Paired physical timing166 completed — October8,2026
 
 Fresh baseline/candidate boots each passed five probe samples,20pixelchecks and
