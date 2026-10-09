@@ -1,3 +1,55 @@
+# Current: ordinary phase/window199 BOTH CLOSED, physical phase kit next
+
+Source/preflight fed3f67; latest199 evidence/reports awaiting push. No owned
+experiment/emulator/observer/collector remains active. control40206/19540,
+candidate76835/24314 and cold46236/13397 CLOSED. Both launches returned normally;
+all once-only cold/inventory/package/closure stages complete, independent
+review-evidence.py/evidence-review.json raw/source/closure pins PASS. Never
+relaunch/recollect199 or old195/194/196/197 cases.
+
+Each199:265 exact pixels (65 original+200 actual window),25loops/50scanout,
+normalrestart/dashboard/6006, allocation334dirs6739files335clusters0errors/orphans,
+5hives/protected/staged/startup/configuration pass.113 clocks1125000Hz/128cal,
+OFFzero ticks, ONpositive/error0, same198 tree with scalarOFFboth. StrictFALSE
+sole inheritedFtdisk49; no event waiver/release/physical/performance qualification.
+Elapsed global timings and window wall include background/readback, not FPS or
+physical bus speed. Stats/phase snapshots separate; TextOut engine unmeasured.
+Inherited ready marker says115OFF/ON historically; actual198profileOFF/ON and
+scalarOFFboth authoritative. Read199REPORT/evidence-review for measurements.
+
+Next NEW physical phase diagnostic should use tested198 DLLs/199 v9 probe,
+exact194 idle/checkpoint/restart helper and195 rollback/control-before-candidate
+protocol with fresh captured hives/providers, unique IDs and strict events.
+No physical driver changed this turn;0101/video0093 restored after195. Keyboard
+unplugged/deployment authorization persists; no repeated keyboard question.
+No physical200 kit yet, no launch yet. Preserve0088/immutable0.1.0 and all failures.
+Original111 damage/restart and194 malformed rawSYSTEM producer unresolved.
+
+Closed standalone old030/034 copied/hash/readback verified to E, originalpaths
+junction retained; Offload-20261009g.ps1/manifest20261009g.json COMPLETE. No backing
+chain moved.186 backed offload refusal preserved. C:last21.760GiB, unchanged20GiB
+guard. Independent reviewer tuple/list host refusal preserved, no guest failure.
+
+# Earlier continuation (historical)
+
+# Current: ordinary199 control ACTIVE; candidate prepared NEVER launched
+
+Latest source/preflight push fed3f67. Single control bootstrap runner40206 ACTIVE,
+xemuPID84324, supervisor19540 ACTIVE. Private4596FTP/4594monitor, exclusive/build
+leases held, no debugger/UI action/physical access. Inspect launch/cleanup JSON and
+resume owned sessions; never duplicate or relaunch. Candidate199 NOT launched.
+After control closure run audit/inventory/audit-package/close ONCE, review actual
+phase/window coverage and cold integrity before candidate. Bounded300sec runner.
+
+198 source/import/residency/4142 ASan/UBSan arithmetic checks complete;199 actual
+both cold preflights and frozen snapshots/pins complete. New v9 actual window
+move/paint/text oracle unverified until runtime. Keep all failures and strict
+Ft49 event gate. No physical driver changed;195originalbaseline restored. C:last
+20.227GiB, guard unchanged. New timers observe elapsed globals, not CPU/FPS or
+physical throughput. Preserve0101/video0093/0088/0.1.0 and194 malformed raw hive.
+
+# Earlier continuation (historical)
+
 # Current: phase198 compiled/reviewed; runtime199 frozen and ready, no launch yet
 
 195 hardware pair CLOSED/restored, modest scalar gains reported/pushed e210f62.

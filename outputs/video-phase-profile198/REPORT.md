@@ -1,3 +1,14 @@
+# Phase198 clocks and window output observed in ordinary199
+
+Fresh matched199 OFF/ON ordinary boots completed with correct clock mode/positive
+coverage,265 exact pixels each and full cold checks. Functional/integrity PASS;
+strict FALSE sole inheritedFtdisk49, no qualification/promotion. Exact compiled
+source/provider/residency/4142 actual-header ASan/UBSan checks retained. See
+../video-phase-runtime199/REPORT.md and evidence-review.json for actual raw-pinned
+measurements and limits. Hardware unchanged, physical phase timing next.
+
+# Earlier compiled review (historical)
+
 # Phase198 compiled, not yet runtime qualified
 
 Reconstructed pinned184/115 REP-copy control and added the exact170/113 phase
