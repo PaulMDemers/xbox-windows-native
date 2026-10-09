@@ -1,15 +1,22 @@
-#195 new explicit interval hardware package prepared read-only
+#195 reviewed/frozen for one hardware control; no launch yet
 
-Freshcurrentbaseline/providers/currenthives/events/SetupAPI captured with exact
-secondreads. TypedprivateSYSTEMproposal changes onlytwoframebuf->xwnowntokens;
-no device/service/dump/cache/mode policy changes. Same184 OFF/ON payloads/158shared
-providers/186probe and exact194helper; private packages/rollback readback verified.
-Hostprotocol tests002 and actual194interval/actual193failedcontrol policy checks
-passed. Initialprotocoltest sourcepins preserved separately;002 pins the actual
-candidatepolicy/closed-evidence guard revision. Mock launch stdout is host-only,
-not an actualconsolelaunch. No physical195 writes or launch; readiness absent.
+194idle functional checkpoints/probes/normalreturn/coldintegrity and NEW197 ordinary
+900000ms pending refusal/coldintegrity passed.196debugger observations separate;
+failed194rawhive/boot remains failed/unresolved. Production prerequisite20host cases
+passed; actual197 evidence separately required and present. A parser rawbyte comparison
+refused the authoredCRLF copy first; preserved failure/source. Difference verified
+newline-only (86CRs), normalizedbytes/AST identical; originalraw hashes frozen. No gate
+function, helper byte, event/service/device policy or original failure was changed.
 
-Both194runtimebranches must close usable before review/freeze/deploy. Idlepassed,
-pendingactive. Newexperimentalintervalcriteria are explicit inDESIGN; all boot
-warnings remain strictfailures. This does notoverride193gates or authorize its
-candidate. Actualhardwarecomparison/newmodes/release/storage remains unqualified.
+Physical dashboard readonly preflight verifies restored baseline/normalstartup/no
+introducedDLL/stagednamespace; no writes or launch.195 physical-ready.json now pins
+source/providers/proposals/actualprerequisites/tests/rollback inputs and two documented
+physical warning signatures. Wholeboot strictfailures remain failures. A one-shot
+finisher will observe an ALREADY launched trial, collectstartupFIRST/restorefinally,
+verifyrestored/tenhives/audit/closecase on return; never launchesWindows or candidate.
+On observer expiry it stops for manual screen evidence. No new drivers or modes.
+
+Next stage/readback/launchCONTROL once, user closes knownunsupportedwizards without
+disabling devices and leaves benchmark unobscured. Control results/cold hives/baseline
+restore required before anycandidate. Same184OFF/ON,158shared,186v8probe,194helper.
+Not release qualification, desktopFPS, HDmode or fullphysical storage/dump validation.

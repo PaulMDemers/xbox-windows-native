@@ -1,3 +1,31 @@
+# Current:195 reviewed/frozen, hardware control NOTlaunched;197/196 CLOSED
+
+Latestpush1132782; current197closure/195readiness uncommitted. ALL owned emulator/
+observer/audit sessions CLOSED.197unobserved singlelaunch16:08:22UTC: actual0->258,
+900000msrefusal,no probes/checkpoints/restart, fullcold318/6716/319clean/5hives/protected/
+history PASS. Runner88748/supervisor96023/audit99435 CLOSED. StrictFALSE soleFt49;
+normalshutdown0/dashboardFALSE intentionalhostboundpending, not wholebootqualification.
+196debugger proof separate,194failedrawhive/producer unresolved andjournals retained.
+
+195review/freeze passed actual197supplement+194idle/196cold and source/package/policy/
+hosttests; nofailed194rewrite. Initialsourcecomparison refused only197CRLF:86addedCRs,
+normalizedbytes+AST identical, allrawSHA/frozenpins retained. Readyinput/sourcepins
+immutable, no195physicalwrite/launchyet. ReadonlydashboardpreflightPASSbaseline/
+normalstartup/nointroducedDLL/namespace. Production20hostgate cases remain SYNTHETIC.
+Nextreview/repositorychecks+commitpushthenCONTROL staging/readback/launchONCE. Persistent
+userkeyboardALWAYSunplugged/deployauthorization. Notifyuser tocancelknownhardwarewizards
+withoutdisableddevices/closewelcome, leavebenchmarkunobscured/noapps. Startnew one-shot
+finish-physical.py control001 once, recordsownedwatch/collection/startupFIRST/finally
+restore/verification/tenhives/audit/closure; no launch/candidate fromfinisher. Offline
+observerexpiry asksmanualscreen once; no crashinference. Candidateonlyreviewedcomplete
+restored scopedcontrol. Allwholebootwarnings strictFALSE, noevent/service/policywaiver.
+Physical1930101/video0093 baseline restored/startupnormal;0088/immutable0.1.0 intact.
+No automation. Keep20GiBguard, closedstandalone196offloadmanifest20261009c verified,
+originalpaths preserved/no backingchain relocation. Recordactualhardwarelaunch/finisher
+session before leaving. Neverrelaunch/recollectclosed193/194/196/197.
+
+# Historical continuation below
+
 # Current:197 ACTIVE ordinary pending supplement;196 CLOSED;195 undeployed
 
 Single197accepted16:08:22.133632UTC, runner88748/supervisor96023 ACTIVE. Never duplicate.

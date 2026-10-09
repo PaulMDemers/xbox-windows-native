@@ -1,9 +1,16 @@
-#197 ordinary pending supplement ACTIVE, not qualified
+#197 CLOSED: unobserved pending refusal and full cold integrity passed
 
-The same immutable standalone196 source was reverified for all staged/protected/helper/
-startup files, five hives and full318/6713/319cleanallocation.196closure/failed194closure
-and frozen inputs pinned. Fresh unique197 pending001 singleaccepted16:08:22.133632UTC.
-Runner88748/supervisor96023 ACTIVE, no debugger/monitor/UI actions. Same exact194helper,
-900000ms query refusal;1120second host bound, cold audit pending. No normalshutdown or
-ordinary wholeboot/physical qualification claimed; source/settings/drivers unchanged.
-195 readiness still blocked, no physical deployment. Keep originalfailed194 unchanged.
+Single accepted16:08:22.133632UTC, owned1120sec host closure. Runner88748/supervisor96023/
+audit99435 CLOSED. Actual query began0 then258; helper refused at exactly900000ms with
+no checkpoints/probes/restart. No monitor/debugger/UI actions. Fullcold318dirs6716files/
+319directoryclusters/0errors/orphans, fivehives/protected/startup/history PASS. Pending
+functional/diagnosticusableTRUE, strictFALSE soleinheritedFtdisk49. Normalshutdown0 and
+no dashboard return are intentionalhostbound refusal; ordinarywholeboot/physicalFALSE.
+Same exact359c0a0ehelper/immutable standalone source;194rawfailure remains unresolved.
+
+195 prerequisite review now requires this actual unobserved proof plus194idle and
+separate196debugger/fullcold results. Host gate20adversaries remain marked synthetic.
+Readiness source comparison first refused197CRLF-copy difference; failure/source
+retained. Verified difference is exactly86CRs at existing line endings, normalized
+bytes and AST identical, every original rawsourceSHA/frozen input retained. No parser
+function/gate changed; no strict event gate waiver or old failure rewrite.

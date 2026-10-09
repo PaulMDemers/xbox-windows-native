@@ -1,10 +1,10 @@
-#195 BLOCKED on ACTIVE197; not ready/deployed/launched
+#195 source/inputs frozen, control not launched yet
 
-196 debugger closed with actual timeout/fullcold integrity;194 failure unchanged.
-Fresh197 unobserved pending run ACTIVE; require its actual full refusal/cold integrity.
-Updated review-physical pins both successful supplements and failed194, checks exact
-same helper/source/fixture and new production prerequisite predicate.20 host adversaries
-passed using a explicitly SYNTHETIC197 row; host tests do not constitute runtime.
-After197 actual closure/audit, review/freeze195 once, repo/evidence checks, commit/push
-then hardwarecontrol FIRST. Human closes known unsupported wizards w/o disabling,
-leaves helper/benchmark unobscured/noapps. Source/gates/strictboot failures preserved.
+Review passed actual194idle/197ordinarypending and separate196 evidence;194failed
+retained. Do not edit source/input pins. Readinessfalse forrelease/physicalqualification.
+Read-only dashboard preflight PASS. Stage/launchCONTROL once with supplied credentials,
+persistentunpluggedkeyboard report. Start finish-physical.py control001 once to observe/
+collectstartupFIRST/finallyrestore/verifyhives/audit/close automatically onreturn.
+If observer expiresoffline ask once forscreen, no crash inference or repeatedlaunch.
+Candidate only after reviewed complete restored scoped control; allbootstrictfailures
+remain failures. No automatic UI actions or device/service/dump-policy changes.

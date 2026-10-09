@@ -19,6 +19,10 @@ package = read(k / 'package-review.json')
 tests = read(k / 'protocol-tests002.json')
 policy_tests = read(k / 'interval-policy-tests.json')
 assert capture['passed'] and package['passed'] and tests['passed'] and policy_tests['passed']
+dashboard = read(k / 'dashboard-preflight.json')
+assert dashboard['passed'] and dashboard['writes'] == 0 and dashboard['launch_requested'] is False
+assert dashboard['source_sha256'] == sha(k / 'dashboard-preflight.py')
+assert dashboard['controller_sha256'] == sha(k / 'physical-controller.py')
 audit_tests = read(k / 'audit-boundary-tests.json')
 assert audit_tests['passed'] and not audit_tests['physical_access']
 assert audit_tests['production_ast_source_sha256'] == sha(k / 'audit-physical.py')
@@ -42,10 +46,17 @@ prerequisite_tests = read(k / 'prerequisite-tests.json')
 assert prerequisite_tests['passed'] and prerequisite_tests['actual197_evidence'] is False
 for name, expected in prerequisite_tests['source_pins'].items():
     assert sha(k / name) == expected
+parser_comparisons = []
+reference_parser = (helper / 'boundary_analysis.py').read_bytes()
 for folder in [observed, ordinary]:
     for name, expected in read(folder / 'frozen-inputs.json').items():
         assert sha(ws / name) == expected
-    assert (folder / 'boundary_analysis.py').read_bytes() == (helper / 'boundary_analysis.py').read_bytes()
+    parser = (folder / 'boundary_analysis.py').read_bytes()
+    # The197 authored copy adds only86 CRs at existing line endings; preserve raw pins.
+    assert parser.replace(b'\r\n', b'\n') == reference_parser.replace(b'\r\n', b'\n')
+    assert ast.dump(ast.parse(parser.decode('utf-8')), include_attributes=False) == ast.dump(ast.parse(reference_parser.decode('utf-8')), include_attributes=False)
+    parser_comparisons.append(dict(folder=folder.name, raw_sha256=hashlib.sha256(parser).hexdigest(),
+        reference_sha256=hashlib.sha256(reference_parser).hexdigest(), newline_only_difference=True, ast_identical=True))
 of = read(ordinary / 'fixture-pending001.json')
 assert of['fixture_sha256'] == read(observed / 'fixture-pending002.json')['fixture_sha256']
 assert of['prerequisite196_closure_sha256'] == sha(observed / 'pending002/closure.json')
@@ -90,7 +101,7 @@ inputs += baseline_paths + [helper / 'build-review.json', helper / 'frozen-input
 inputs += [helper / case / name for case in ['idle001', 'pending001'] for name in ['audit.json', 'closure.json']]
 inputs += [folder / case / name for folder, case in branches[2:] for name in ['audit.json', 'closure.json']]
 inputs += [folder / name for folder in [observed, ordinary] for name in ['frozen-inputs.json']]
-inputs += [observed / 'fixture-pending002.json', ordinary / 'fixture-pending001.json', k / 'prerequisite-tests.json']
+inputs += [observed / 'fixture-pending002.json', ordinary / 'fixture-pending001.json', k / 'prerequisite-tests.json', k / 'dashboard-preflight.json']
 inputs += [ws / row['source'] for values in package['cases'].values() for row in values]
 inputs += [ws / 'outputs' / name for name in ['fatx0098-soak3/physical.py', 'native-windows-physical-f/decode-legacy-events.py',
           'native-windows-nt5-kernel/nt5_hive_indexes.py', 'release-0.1.0/release.json']]
@@ -98,6 +109,7 @@ result = dict(prepared=True, physical_launch_performed=False, physical_qualified
               release_qualified=False, strict_error_waiver=False,
               control_before_candidate=True, measurement_event_margin_seconds=1,
               helper_prerequisites='194 idle plus NEW unobserved197 pending; failed194 retained,196 debugger observation separate',
+              parser_comparisons=parser_comparisons,
               documented_physical_warning_signatures=documented,
               scope='NEW explicit settled measurement comparison; all whole-boot warnings remain strict failures. '
                     'No override of193 gates, policy change or baseline promotion.',
