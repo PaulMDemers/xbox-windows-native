@@ -1,11 +1,7 @@
-#191 next
+#191 closed
 
-Pending001 CLOSED failed helper coverage; frozen audit and supplemental integrity
-closure preserved. Never repeat. Idle001 remains prepared/frozen NEVER launched:
-independent settled parent is the discriminator for whether helper executes and
-all five probes/ten zero setup boundaries/original restart guard work. Run ONCE,
-owned supervisor, full cold audit. If held beyond expected completion, capture
-only the selected owned framebuffer with explicit pause/resume documentation;
-that becomes observational diagnostic evidence, not ordinary timing qualification.
-Do not transplant emulator policy or deploy helper to physical yet. Hardware plan
-is documented separately; preserve all strict gates and baseline/release bundles.
+Both cases CLOSED, never relaunch/recollect. Idle actual5145ms setup0, five probes,
+all boundaryqueries0 and normal restart/cold integrity passed; strictFt49 remains
+false. Pending has no helper/probe logs, failed coverage; incomplete integrity
+completion passed. New192 immutable prelaunch188 fixture is next discriminator,
+not repeat of the post-interrupted CLOSED188 child. No physical deployment yet.

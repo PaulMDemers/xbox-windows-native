@@ -1,18 +1,18 @@
-# Current:191pending CLOSED failed helper coverage;191idle NEVER launched
+# Current:191 CLOSED;192 fresh pending fixture prepared/frozen, NEVER launched
 
-Read191REPORT/NEXT/failed-audit/closure/video-trace-review. Singlepending accepted
-06:45:11UTC; runner61195/supervisor70986 CLOSED, PID92748gone. Frozen audit68143
-rejected absent helper/probe logs. Supplemental89330 CLOSED integrityPASS318dirs/
-6716files/319clusters0errors/orphans,5hives/protected exact. Persisted events/SetupAPI
-unchanged, video trace changed; stopped boot stage unresolved, no screen captured.
-Never relaunch/recollect. Independent191idle prepared/frozen NEVER launched, next
-single owned run/supervisor/cold audit. Capture selected framebuffer only if held
-past expected completion, explicitly separate pause/resume diagnostic from timing.
-190hostfailureCLOSED and unusedidle preserved. Same190binary/186probe; no drivers,
-UI or devicepolicy changes. Offload64926 CLOSED hashverified standalone image-read
-001/002, junction original paths retained, C~25.3GB;20GiBguard unchanged. Physical189
-startupnormal/userdashboard;0101/video0093/0088/0.1.0 preserved. No hardware workload
-or activeautomation. Latest pushedcf0f52a, current191failure/offloadnotes uncommitted.
+Latest pushed909a145.191idle68855/91958/20157 CLOSED: actualidle5145ms, five probes,
+ten zero boundaries, originalguard0/0, normalshutdown1/dashboard, clean340/6747/341,
+5hives/protected; diagnosticusable, strictFt49FALSE. Registers/framebuffer snapshot
+pause/resume nearreturn documented; unreadable wronggeometry image not Windows
+screen proof or performance evidence.191pending CLOSED missinghelperlogs, integrity
+PASS318/6716/319; no pendingrefusal coverage. Never repeat either191 or190closedcase.
+New192 immutable prelaunch188 parent (not CLOSED188 posthoststop disk), same190
+helper/186probe. Prepared/frozen318/6713/319clean, all providers/hives/readback;
+prep74545 CLOSED. No192 launch yet, noownedprocesses. Next192pending Run ONCE,
+supervise, heldscreen ifneeded with640x480geometry, cold audit ONCE. No UI or driver
+policy changes. Physical189normalstartup/userdashboard,0101/video0093/0088/0.1.0
+preserved. Offloadclosedverified/C~25GB/20GiBguard. No automation/hardwareworkload.
+191final/192preparation uncommitted at this note; review/check/push before launch.
 
 # Historical continuation below
 
