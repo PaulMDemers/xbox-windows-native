@@ -1,4 +1,36 @@
-# Current:206 text improvement confirmed on hardware; all sessions CLOSED
+# Current: three device chats ACTIVE; video and hardware coordination stay here
+
+User requested independent device work while video continues. Created and dispatched
+three local chats, all confirmed active/inProgress; isolated E: checkouts based on
+47fe46f, independent object stores, correct private origin/branches verified. Clone
+bootstrap84307 CLOSED. Initial review writer wrote only audio inside its loop then
+refused overwrite; that partial host record is preserved. Complete distinct review
+passes all three; no guest or physical access occurred during setup.
+
+Audio:01a122df-2515-7771-af51-845a17aef351, codex/xbox-native-audio.
+PCI:01a122e0-8af9-7701-b31d-bb5d044829b3, codex/xbox-native-pci.
+USB/gamepad:01a122e0-90d9-7cc3-9457-867066f7dd06, codex/xbox-native-usb.
+Exact paths and task directories in outputs/device-workstreams207/threads.json;
+ownership, shared source/toolchain/artifact read-only rules, global build/xemu leases,
+capacity guard and integration gates in HANDOFF.md. Device chats initial work is
+emulator-only and must prepare reviewed hardware packages. This original video chat
+serializes console testing/rollback. No concurrent physical deployments or edits
+to this checkout/shared WSL sources; child source/reports push only assigned branches.
+No messaging authorization inferred; use wait_threads/read_thread and branch reports.
+
+Targets are real functional audio and persistent PCI/USB support. Historical189
+01B0/01B4/01C1/USBFFFF:FFFF are identification leads, not blanket INF matches. Each
+owner proves its device without cancelling its prompt; unrelated actions stay scoped.
+Final combined prompt-free result requires ordinary boots without the helper. No
+dummy/null binding, device/event/service suppression or relaxed qualification. Keep
+keyboard/mouse/network/storage/display intact and evidence classes separate. Current
+physical baseline/normal startup remain restored as below; no console access here.
+Video's next work remains a fresh scalar UC copier hardware pair. Preserve all
+originals/tags/failures. New chats have own REPORT/NEXT and running-process records;
+their dispatch is not device qualification. Setup handoff and registry included with
+this coordination snapshot; review/checks/commit/private push required.
+
+# Prior completed milestone:206 text improvement confirmed on hardware
 
 Physical206 control/candidate both CLOSED scoped PASS; five samples each confirm
 100656→5632 (94.40%) and55760→5120 (90.82%) fewer redundant text-copy bytes for
