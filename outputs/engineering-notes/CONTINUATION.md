@@ -1,3 +1,71 @@
+# Current: known-wizard automation validated on the Xbox; all sessions CLOSED
+
+Physical201 launched ONCE2026-10-09T20:14:28.644610UTC and returned automatically to
+UnleashX20:16:28UTC. Native helper006 cancelled the four exact known physical wizard
+instances (targets1,2,3,4), four actions/four closures, 43365ms total; genuine idle
+5100ms. Guardian joined helper0, observed another5100ms continuous setup idle,
+final install query0, and requested one normal unforced restart. EventLog6006 once.
+No human intervention was requested during this trial. Controller47036/watch38963
+CLOSED; collection20:17:31UTC restored normal startup FIRST and readback-verified it.
+
+physical001/audit.json and independent review.json scoped lifecycle/integrity PASS.
+Twenty-eight-entry rollback/readback,18 protected/provider files, actual helper
+hashes, event/SetupAPI history, ten before/after structural/checksummed/sequenced
+hives and typed policy checks pass. ZERO persistent device-binding deltas/new disable
+flags. No driver, SYSTEM, service, dump or device-policy edits. Sole inheritedFt49
+remains whole-boot strict FALSE; no physical/release-wide qualification or complete
+physical allocation/all-file audit. Never relaunch or recollect this CLOSED trial.
+
+Emulator cancel006/cancel007 also CLOSED scoped lifecycle PASS: same helper006,
+three actions/closures (1,2,5), joined0, genuine idle, normal restart/6006/dashboard;
+full clean allocation318 directories/6717 files/319 directory clusters, five hives,
+protected/providers/history/typed policy checks. Thirty natural emulator binding
+deltas retained; strict soleFt49 FALSE. completed-review.json independently checks
+raw logs, actual006 binary and every frozen source pin. All owned sessions CLOSED.
+
+Physical200 control scoped display PASS; candidate CLOSED setup-idle timeout after
+900000ms/no measurements. Both baselines fully restored and independently verified.
+Candidate strictFt49+Srv2013 retained, original return observer timeout not rewritten.
+No performance comparison follows. Current console is at dashboard with normal startup.
+
+Next: NEW benchmark IDs/package. Run compiled201 helper /cancel-physical as a bounded
+joined child before existing194 setup-idle/measurement/restart guards. Record known
+Cancel actions separately from install completion; refuse measurement if helper
+fails, leaves unknown/inactive wizard, or real queue is pending. Do not use guardian
+physical001 in that integration (it would reboot before measurement). Keep unknown
+and Welcome handling separate: benchmark visibility must be observed, not guessed.
+Run matched fresh emulator control/candidate then matched isolated physical pair,
+with rollback, native pixel/counter/timing coverage, normal restart and strict events.
+Do not reuse/relaunch closed200 cases or change devices to force a PASS. Persistent
+keyboard-unplugged/deployment authorization remains; do not re-ask.
+
+The003 large observer stale suffix is unresolved:14840bytes at270336 exactly match
+prelaunch FAT-free cluster2144598 seed11 bytes. Four complete samples/incomplete fifth,
+missing terminal; strict parser FALSE. UI success does not establish storage-write
+correctness. Original physical111 non-ASCII corruption/restart method also unresolved
+and separate. Preserve physical0101/video0093,0088 rollback,immutable0.1.0/all failures.
+20GiB build guard unchanged; verified09k offload004/005 preserved hashes/junctions.
+Reviewed implementation/evidence through1ae0241 already pushed. Final physical
+closure independently reviewed;18792-file repository and staged whitespace checks
+pass. Source/reports are committed and pushed with this record. No active automations or owned
+processes were started for future work in this turn.
+
+# Earlier record (historical)
+
+# Live physical201: single launch20:14:28UTC, observer38963 active
+
+Controller47036 CLOSED; FTP200 EXEC accepted2026-10-09T20:14:28.644610UTC.
+Record: outputs/setup-wizard-automation201/physical001/physical.json; temporary
+startup enabled. Same reviewed helper006 and physical guardian001; no driver,
+SYSTEM or device settings changed. Current28-entry rollback and18 protected/provider file readbacks preserved.
+Never relaunch. Inspect owned observer38963/physical001/return.json; after actual
+return controller.py collect ONCE restores normal startup FIRST. Then WSL audit.py
+once preserves native logs, strict events and ten hives/typed policy. Whole-boot
+warnings remain strict failures. Physical runtime not yet qualified. No current
+manual question for201; earlier screen question concerned now CLOSED/restored200.
+Persistent keyboard/deployment authorization applies. Latest pushed1ae0241; all
+emulator sessions CLOSED, two fresh cold unattended lifecycle scope passes.
+
 # Current: unattended Cancel passed in two fresh emulator runs; physical trial prepared
 
 Helper build006 uses BM_CLICK on the actual verified Cancel button. The complete

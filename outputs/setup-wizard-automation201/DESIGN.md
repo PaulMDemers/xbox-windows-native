@@ -1,3 +1,23 @@
+# Current design: verified normal Cancel button, with genuine completion gates
+
+Build006 sends BM_CLICK to the actual Cancel BUTTON after held process identity,
+full whitelisted command, welcome-page text, parent/button ownership, enabled state
+and active/foreground state are revalidated immediately after logging. It never
+activates a dialog. Physical mode allows only four recorded exact instances and
+excludes QEMU target5; DevInstallUiOnly and unknown commands/pages remain manual.
+One action per process creation lifetime, eight actions/120 seconds, bounded reads
+and sends, 1MiB CREATE_NEW log. Unknown or failed operations remain failures.
+
+Guardian requires joined helper0, continuous five-second actual queue idle and a
+final query, then requests normal restart without force flags. New hardware test
+changes only own helpers/backups and temporary startup; normal startup restored
+FIRST on collection. No permanent PnP/device/driver/registry changes. Welcome or
+unfamiliar dialogs and benchmark visibility are separate issues. Two fresh cold
+emulator lifecycles passed; physical201 single launch accepted20:14:28UTC October9,
+observer38963 active. Whole-boot event qualification remains separate and strict.
+
+# Earlier design/evidence (historical)
+
 # Unattended handling of known hardware wizards:201 implementation and passive validation
 
 Human authorizes targeted cancellation for end-to-end testing. Build001 helper
