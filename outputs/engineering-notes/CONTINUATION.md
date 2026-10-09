@@ -1,3 +1,54 @@
+# Current:189 CLOSED,190 both emulator branches prepared/frozen, NEVER launched
+
+Read outputs/video-setup-preflight190 DESIGN/NEXT/build-review/frozen-inputs and
+fixture-pending001/idle001. BothColdreadback/actualproviders/fivehives/allocation
+PASS; pending318dirs6716files319dirclusters0errors/orphans; idle335/6741/336clean.
+Allprep/buildsessions CLOSED (7337/45136/5694), noownedemulator running. Newhelper
+actualsetupidle5secwithin300000beforeprobes; before/aftereachsamplequeries0; exact
+178restartgate unchanged. Build002ASanUBSan8001setup/8restartPASS, actualNT5providers
+reviewPASS; Build001parsefailure preserved. No physical190writes/launch/qualification.
+Next190pendingRunONCE/superviseowned/coldaudit then190idleRunONCE/supervise/coldaudit;
+noUI/debugger/installerpolicy action. Frozeninputs mustremainexact. Independent
+helperbranches, notmatchedperformance. Idleinherits explicitemulator-onlynullpolicy
+and115display; pendingoriginal187capturedcore with emulateddevices. Nothingcopied
+physical. Priorclosedattemptsneverrelaunch/recollect.20GiBguard remains (~22.2GBfree).
+
+189CLOSEDstartupnormal,17protected/provider bytes exact,10hivesvalid, noEnumchanges,
+normalshutdown1/noappdelta, recurringfourprompts confirmedphysical, Ft49/Srv2013
+strictfailures retained. Userconfirmsdashboard, no currentteststartup. Preserve
+0101/video0093,0088rollback,immutable0.1.0/187failed/candidateNEVERlaunched. No further
+blindbaselineobserverboots. Actual190branchvalidation requiredbeforeNEWphysical
+OFF/ONpair; freshkeyboardstate checklater. Workuncommitted atthisnote; latestpush
+607956b. No automation active.
+
+# Historical continuation below
+
+# Current: physical189 CLOSED; new190 setup-before-measurement runner built, emulator preparation active
+
+189CLOSED singlecollection restored startupFIRST. Samefourprompts recur; actual
+124140ms/fivesamples allpending258/audio01B0 owner. All17protected/providers exact,
+10hives parse, Enum/devicebindings unchanged, normalshutdown6006count1, no newapp
+popups. Ft49/Srv2013 strictfailures retained. Never relaunch/recollect189/188/187.
+No newphysicaldisplaypair yet. UserconfirmsUnleashX; currentkeyboardstate before
+futurelaunch willneedfreshconfirmation. Preserve0101/video0093/0088/0.1.0.
+
+190sources outputs/video-setup-preflight190; runnerwaits actualAPIidle0 for5seconds
+within300000ms beforeanyprobe, pendingresetsidle/errorrefuses, before/aftereachsample
+query; exactoldrestart_gate preserved. No installerUI, driver, policy or suppression.
+Build002/sharedASanUBSan8001setup/8restartcases and NT5import/export reviewPASS.
+Build001 comma parse refusal beforeanybuildaccess preserved.190runtimeUNQUALIFIED,
+NO physical190writes/launch. Fresh independentpending/idle emulatorhelperbranches
+planned, not matchedspeedpair. pending001preparation owns session7337 ACTIVE;
+noemulatorlaunched. Readactualrecords/resume, neverduplicateprepare/launch/audit.
+Pendingparent CLOSED188 originalcapturedphysical187 hives/core with emulateddevices;
+idleparent CLOSED186candidate/explicitinheritedemulatornullpolicy/115display. No
+emulatorpolicycopiedphysical. Parentpaths retained; onlynewchild metadatarelative
+rebase with coldreadback/pins.20GiBguard remains,C~22.2GB.190prep/189closureuncommitted
+atthisnote; latestpushed607956b. Finishprepare bothcases/freeze/uniqueownedruns/cold
+audits beforehardware. No activeautomation; noownedphysicaltestpendingstartup.
+
+# Historical continuation below
+
 # Current: physical durability189 launched ONCE, user screen reply pending
 
 Single physical189 request accepted2026-10-09T06:03:11.215323+00:00. Read189physical/REPORT/NEXT.
