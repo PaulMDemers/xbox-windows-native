@@ -1,3 +1,33 @@
+# Current:196 pending002 ACTIVE diagnostic;194 pending failed CLOSED
+
+Latest push0686c4a. Physical193 CLOSED/restored; normal startup and original
+0101/video0093 baseline verified.195 prepared read-only, NOTready/deployed/launched.
+User keyboard ALWAYS unplugged/deployment authorization persists; no routine checks.
+No automation.196prep2025 CLOSED. New196 runner1054/supervisor49187/observer30090 ACTIVE; one accepted launch15:47:41.267541UTC, owned PID89132. Never duplicate.
+
+194 idle CLOSED diagnosticusableTRUE (ordinaryFALSE inheritedFt49), full checkpoint/
+probe/restart/cold checks passed.194 pending001 CLOSED after1120second host bound:
+no helper/event/SetupAPI progress, no shutdown/dashboard; protected/clean allocation
+PASS but SYSTEM hive refused reachable references. Audit30778 CLOSED. Never repeat.
+Independent196 raw-cell oracle confirms invalid Standalone value-list0x199980 under
+NtmsSvc; header/checksum/span layout valid. This is malformed raw data, not producer,
+boot-stage, hardware-failure or recovery proof. Original111physicalnonASCII damage
+and first restart remain unresolved; failed evidence and journals must be retained.
+
+196 NEW pending002 standalone compressed immutable prelaunch194 copy on E (original
+chains untouched), qemu-img Images identical, five initial hives/protected/helper/
+startup/allocation318dirs6713files319clusters clean. Same exact194 binary, no device/
+registry/driver/helper changes. This host-backing discriminator is a debugger test,
+not ordinary/performance qualification or a fix. Read196 DESIGN/fixture/forensics.
+196 exact inputs frozen; runner/supervisor/observer launched ONCE. Selected
+90/300/960second bounded stop/read/resume snapshots, no UI/breakpoints;
+1120second owned closure then audit ONCE. Record actual session IDs/launch before
+leaving work. Preserve20GiB projected-copy guard (C~22GiB, source~1.13GiB).
+195 remains blocked until honest pending validation, never rewrite failed194 gates.
+0088rollback/immutable0.1.0 preserved; no current physical test startup.
+
+# Historical continuation below
+
 # Current:194 pending emulator ACTIVE;195 physical prepared read-only;193 restored
 
 Read194 REPORT/NEXT/frozen-inputs and actual pending001 launch. Singleaccepted

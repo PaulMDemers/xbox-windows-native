@@ -1,3 +1,13 @@
+#195 BLOCKED; no readiness, deployment or launch
+
+194 pending closure FAILED before helper and SYSTEM raw references are malformed.
+Do not run review-physical or deploy until a documented new validation resolves the
+missing pending evidence. Preserve194 failure and all195/193 gates.196 new debugger
+child changes only host backing representation with byte-equivalence and full pins;
+its result alone cannot be ordinary physical readiness. Baseline remains restored.
+
+# Historical preparation (superseded)
+
 #195 prepared read-only, NOTready or launched
 
 Wait194pending ownedclosure/coldaudit; both194branches mustbe usable. Then run
