@@ -1,20 +1,18 @@
-# Current:189 CLOSED;190 host failure CLOSED;191 frozen and ready, NEVER launched
+# Current:191pending CLOSED failed helper coverage;191idle NEVER launched
 
-Latest pushed64ee3b5. Physical189 normal startup restored; user confirms dashboard.
-Same four unsupported-device prompts; no physical driver/policy change. Preserve
-0101/video0093,0088rollback,immutable0.1.0 and closed187/188/189. No hardware pair yet.
-190pending001 CLOSED before Windows launch: backing path too long; disk equalsseed,
-PID99324 gone/cleanup. Never relaunch/recollect.190idle prepared NEVER launched.
-New191 parent COPIES virtual-equal; original whole chains unchanged. Both fresh
-fixtures prepared/cold providers/hives/allocation passed: pending318/6716/319clean;
-idle335/6741/336clean. Sessions12055/40472/86499 CLOSED, no emulator running.
-191 active PS parser passed, sources/binaries/fixtures/dependencies frozen. Same
-190Build002 runner and186probe; xwnpre191. No build or setup intervention. Idle
-inherits explicit emulator-only null policy; independent branches, not speed pair.
-Native Windows freeze import refusal occurred before any write; WSL freeze succeeded.
-Next191 pending Run ONCE/supervise owned/cold audit, then idle Run ONCE/full cold audit.
-20GiB guard unchanged (~21.9GB free). No automation or physical workload. New191/
-190 failure reports uncommitted at this note; commit before runtime launch.
+Read191REPORT/NEXT/failed-audit/closure/video-trace-review. Singlepending accepted
+06:45:11UTC; runner61195/supervisor70986 CLOSED, PID92748gone. Frozen audit68143
+rejected absent helper/probe logs. Supplemental89330 CLOSED integrityPASS318dirs/
+6716files/319clusters0errors/orphans,5hives/protected exact. Persisted events/SetupAPI
+unchanged, video trace changed; stopped boot stage unresolved, no screen captured.
+Never relaunch/recollect. Independent191idle prepared/frozen NEVER launched, next
+single owned run/supervisor/cold audit. Capture selected framebuffer only if held
+past expected completion, explicitly separate pause/resume diagnostic from timing.
+190hostfailureCLOSED and unusedidle preserved. Same190binary/186probe; no drivers,
+UI or devicepolicy changes. Offload64926 CLOSED hashverified standalone image-read
+001/002, junction original paths retained, C~25.3GB;20GiBguard unchanged. Physical189
+startupnormal/userdashboard;0101/video0093/0088/0.1.0 preserved. No hardware workload
+or activeautomation. Latest pushedcf0f52a, current191failure/offloadnotes uncommitted.
 
 # Historical continuation below
 
