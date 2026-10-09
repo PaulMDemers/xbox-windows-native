@@ -1,3 +1,143 @@
+# Current:206 text improvement confirmed on hardware; all sessions CLOSED
+
+Physical206 control/candidate both CLOSED scoped PASS; five samples each confirm
+100656→5632 (94.40%) and55760→5120 (90.82%) fewer redundant text-copy bytes for
+extended opaque rectangular/complex cases. Ordinary text bytes equal. Actual
+input clips/string bounds/client geometry/rendered coverage matched. Each13case
+suite passed2,129,920 new reference pixels/65 full RAM-scanout coherence checks,
+plus265oldchecks/200windowreadbacks/25loops/50coherence. Both helper targets1/2/3/4
+joined0,5100ms idle; SetupAPI320680/323903 bytes unchanged during measurement,
+normal restart/6006once/dashboard. Measurement errors and application events zero;
+strict whole-boot FALSE sole inherited pre-measurement Ftdisk49, never waived.
+
+Control accepted22:34:54→dashboard22:39:08; candidate22:40:50→22:45:23UTC October9.
+Both single collections restored startup FIRST, preserved exact archives and
+restored original0101/video0093 display/SYSTEM.10before/after hives each, typed
+policies/protected/payload/helper pins and baseline readback PASS. Physical pair
+review PASS;286 source/input/archive pins reviewed. No physical allocation scan,
+whole-operation speed/FPS/new-mode/storage/dump/release claim or promotion.
+Read206/REPORT.md, physical-pair-review.json, evidence-review.json and NEXT.md.
+
+ALL owned sessions CLOSED, including resumes1301, control finish90345, candidate
+launch56445/finish4030, offload75077 and all build/emulator/audit sessions below.
+Never relaunch/recollect any206/204 closed case. Candidate204 and old187scalar ON
+were prepared NEVERlaunched. Local missing-alias staging failed BEFORE driver/
+SYSTEM/startup/SITE, resumed verified first single control launch only; frozen
+controller/ready unchanged and candidate alias pinned. HOST-FAILURES.md retains
+this and Windows comparator import failure before any output/console access.
+
+Ordinary206 emulator pair CLOSED same narrow reduction/pixel scope; full cold
+allocation324dirs6727files325clusters0errors/orphans,5hives/protected/typedpolicy
+PASS each;30 natural binding deltas and soleFt49 strict failure retained. Host
+ASan/UBSan20013 geometry/accounting checks and21 parser fault checks PASS. Source
+tree4e335dc7a23b4fc058db597a1dded0c098af3cb1; onlyboundsOFF/ON, clocks/scalar OFF.
+Both206 guest disks verified offloaded with original path junctions; no backing
+chain relocated. C~21.55GiB,20GiB projected guard unchanged. Source, reports and
+closures are included with this snapshot;286pin review, repository binary/media/
+credential scan and staged whitespace checks PASS. Resolve gitHEAD/origin for the
+snapshot revision. Immutable0.1.0/original0088/failures retained.
+
+NEXT: fresh scalar UC copier hardware OFF/ON pair with identical probe/gates and
+same202 bounded helper, new IDs and fresh rollback; never retry187. Keep text
+bounds/body clocks equal between modes. Do not claim desktop FPS from broad window
+counters. Additional video modes/GPU2D/FATX Linux notes/repro/public/xemu upstream
+remain separate. User authorizes hardware as needed; keyboard ALWAYS unplugged,
+do not re-ask. The box is at dashboard on original working baseline/normal startup.
+
+# Historical:206 physical candidate ACTIVE; ordinary emulator pair CLOSED
+
+206 control hardware launch22:34:54UTC October9 returned22:39:08; single
+finish90345 CLOSED with scope PASS, 10 before/after hives and restored baseline
+readback PASS. Startup restored FIRST; original0101/video0093 chain and SYSTEM
+restored. Exact known wizard targets1/2/3/4 joined0 and real idle5100ms. Sole
+inherited pre-measurement Ftdisk49 remains strict FALSE, no waiver. Missing local
+probe alias failed BEFORE driver/SYSTEM/startup/SITE; exact pinned alias and
+verified original state resumed the first single launch. See HOST-FAILURES.md and
+control001/prelaunch-resume.json; never launch/recollect control again.
+
+Candidate launch wrapper56445 CLOSED; single launch22:40:50UTC accepted. Alias
+preflight and ready/control closure pins exact. Owned finish4030 ACTIVE, observer
+inside it only; inspect candidate001/finish-state.json and physical-return.json.
+Never duplicate observer, launch or collection. On dashboard return it restores
+startup FIRST, preserves all evidence, restores original display/SYSTEM in finally,
+then readback,10 hives, actual13 text/pixel/copy scope and closure. Current source
+UNCOMMITTED. No promotion or release. After closure run compare-physical.py ONCE,
+review exact evidence, update reports/notes, stage/check/commit/private push.
+
+Both206 ordinary emulator siblings CLOSED scoped PASS: five samples each,13
+text cases,2,129,920 new pixels/65 whole coherence plus prior265copy/200window/
+25loops/50coherence. Extended opaque text copied100656→5632; complex55760→5120.
+Ordinary text bytes equal. Reduction is subsequent redundant TEXT upload only,
+background remains; no total operation/window-drag/FPS claim. Each full cold
+allocation324dirs6727files325clusters0errors/orphans,5hives/protected/history/
+typedpolicy PASS;30natural binding deltas. Strict FALSE soleFt49. Source tree
+4e335dc7a23b4fc058db597a1dded0c098af3cb1, bounds only OFF/ON; clocks/scalar OFF
+both. Corrected input clip metadata118 and v11 probe; failed204 remains CLOSED,
+candidate204 prepared NEVERlaunched. See203/205 source/build/host tests and206
+emulator-pair-review.json. All emulator/build/offload sessions CLOSED. Both206
+standalone disks offloaded with exact hashes and original path junctions, manifests
+text206-control001/candidate001; C about21.55GiB, keep20GiB projected build guard.
+Immutable0.1.0/original0088 and failed evidence retained. Persistent authorization:
+keyboard always unplugged; physical testing allowed, do not re-ask that check.
+
+# Historical:206 control ACTIVE;204 failed oracle CLOSED, no hardware changes
+
+Actual204 OFF call copied5632 bytes for11 glyphs/one box, equal88x16x4 string
+bounds, while the probe wrongly predicted249944 whole-client bytes. It failed
+before new pixel/coherence checks, runnerFAIL_REPLAY_EXIT, host-bound22:06:34UTC,
+no normal shutdown/dashboard return. Closed cold audit passed320dirs6722files321
+clusters0errors/orphans,5hives/protected/history/typedpolicy;30naturalbinding deltas.
+SoleFt49 remains strict failure. Never relaunch/recollect; candidate204 prepared
+NEVERlaunched. Read204/REPORT.md and actual audit/closure/rawsample0.
+
+New205 adds atomic118/160-byte actual input-clip metadata, no new drawing or copy
+algorithm beyond117. Both builds/source/import review PASS; source tree4e335dc...
+Phase clocks/scalar stores OFF; only XWN_TEXT_BOUNDS differs. New206 probev11 logs
+actual origin/client and intersects actual GDI input clip with app clip and bounds;
+independent host pixel-count oracle required. Same202 runner/201helper/194 guards,
+neutral backdrop, old199 checks and13 new text/pixel/whole scanout cases retained.
+Control and candidate prep91877/97863 CLOSED. Single206 control runner9115 and
+observer pending ACTIVE; never duplicate. Candidate206 prepared NEVERlaunched.
+
+204 runner38926/observer44958/audit5082 and205build38608 CLOSED. Closed204 control
+and old201 observer offloaded with hash/junction readback; original paths retained;
+no backing-chain relocation. Read manifest-text204-control001 and20261009n.
+C~22GiB before206 clone; maintain20GiB including512MiB projected headroom. Source
+UNCOMMITTED. No physical access/new test startup. Baseline0101/video0093,0088rollback,
+immutable0.1.0/failures unchanged.
+
+Next inspect206 actual launch, complete single control cold audit, then new sibling
+candidate only if corrected scope passes. Equal copied bytes rejects a useful text
+optimization; no hardware promotion just for pixel PASS. Scalar115 hardware ON was
+never tested because187 control setup/restart held (now202 helper resolved); that
+is an evidence-supported next option after closing the text discriminator. Review,
+checks, commit/private push and exact notes required; no stale oldattempt retries.
+
+# Current: text203 compiled; new204 ordinary control ACTIVE
+
+New conservative117 text upload implements the documented string/opaque union,
+with full-clip fallback, unchanged rendering/clipping/cache/ownership and actual
+per-call copied-byte counters. Host ASan/UBSan20013 checks PASS. Both matched203
+builds compiled (session66250 CLOSED), source/import/definition review PASS;
+only XWN_TEXT_BOUNDS differs; phase clocks and scalar UC stores OFF both.
+New204 probe compiled/import reviewed, retains199 tests and adds13 actual text
+cases, whole RAM/scanout coherence, reference DIB/client pixels, paired117 bytes,
+and an owned neutral backdrop. Exact202 runner/201 helper and194 gates unchanged.
+No new hardware access. Physical baseline remains restored0101/video0093.
+
+Control preparation85240 CLOSED. Single ordinary control runner38926/observer44958
+ACTIVE; launch accepted21:59:03UTC October9. Candidate preparation64942 ACTIVE,
+no candidate launch. Never duplicate launches/collection or mutate frozen inputs. Initial module-import
+failure occurred BEFORE output creation; preserved, retried with owned libhivex
+LD_LIBRARY_PATH. No guest launched or candidate prepared yet. Exact frozen source,
+compiled hashes and fixture identity in203/204 JSON. Capacity~21.96GiB C; preserve
+20GiB guard including clone projection; E ample. Current source UNCOMMITTED.
+
+Next inspect preparation, launch control ONCE, audit actual text/pixel/counters and
+cold state. Candidate only in a new sibling after control evidence. No speedup,
+physical qualification, or inherited strict event waiver. Update notes on launch
+and closure; source/reports require repository checks/review/commit/private push.
+
 # Current: unattended202 physical benchmark pair CLOSED; baseline restored
 
 Both single physical boots completed end to end without manual wizard requests.

@@ -1,0 +1,248 @@
+diff --git a/win32ss/drivers/displays/framebuf/CMakeLists.txt b/win32ss/drivers/displays/framebuf/CMakeLists.txt
+index 443fd27..e0959fd 100644
+--- a/win32ss/drivers/displays/framebuf/CMakeLists.txt
++++ b/win32ss/drivers/displays/framebuf/CMakeLists.txt
+@@ -8,6 +8,7 @@ list(APPEND SOURCE
+     shadow.c
+     ownership.c
+     profile_math.h
++    text_bounds.h
+     row_store.h
+     framebuf.h)
+ 
+@@ -35,3 +36,10 @@ if(XWN_BODY_PROFILE)
+ else()
+  target_compile_definitions(xwnown PRIVATE XWN_BODY_PROFILE=0)
+ endif()
++
++option(XWN_TEXT_BOUNDS "Conservative string/opaque text upload bounds" OFF)
++if(XWN_TEXT_BOUNDS)
++ target_compile_definitions(xwnown PRIVATE XWN_TEXT_BOUNDS=1)
++else()
++ target_compile_definitions(xwnown PRIVATE XWN_TEXT_BOUNDS=0)
++endif()
+diff --git a/win32ss/drivers/displays/framebuf/enable.c b/win32ss/drivers/displays/framebuf/enable.c
+index 3401178..4324892 100644
+--- a/win32ss/drivers/displays/framebuf/enable.c
++++ b/win32ss/drivers/displays/framebuf/enable.c
+@@ -31,6 +31,10 @@ XwnDirectEscape(SURFOBJ *Surface, ULONG Escape, ULONG InBytes, PVOID In,
+    p = XwnOwner(Surface);
+    if (!p) return 0;
+    if (!p->ScreenPtr || !p->hSurfEng || !p->ShadowObject || !p->ShadowActive) return 0;
++   if (Escape == 0x58574436 && OutBytes == sizeof(Data))
++   {
++      XwnTextSnapshot(p,Data);memcpy(Out,Data,sizeof(Data));return 1;
++   }
+    if (Escape == 0x58574435 && OutBytes == sizeof(Data))
+    {
+       XwnRowSnapshot(p,Data);memcpy(Out,Data,sizeof(Data));return 1;
+diff --git a/win32ss/drivers/displays/framebuf/framebuf.h b/win32ss/drivers/displays/framebuf/framebuf.h
+index 364926e..9d6dd2b 100644
+--- a/win32ss/drivers/displays/framebuf/framebuf.h
++++ b/win32ss/drivers/displays/framebuf/framebuf.h
+@@ -31,6 +31,7 @@
+ //#define EXPERIMENTAL_MOUSE_CURSOR_SUPPORT
+ 
+ #include "profile_math.h"
++#include "text_bounds.h"
+ typedef struct _PDEV
+ {
+    HANDLE hDriver;
+@@ -44,6 +45,7 @@ typedef struct _PDEV
+    ULONG RowBoxes, RowFast, RowSlow;
+    ULONGLONG RowBytes, RowFastBytes;
+    XWN_PROFILE Profile;
++   XWT_STATS TextStats;
+    ULONG ShadowUploads;
+    ULONGLONG ShadowBytes;
+    ULONG ModeIndex;
+@@ -212,4 +214,6 @@ VOID XwnProfileInit(PPDEV);
+ LONGLONG XwnProfileStart(VOID);
+ VOID XwnProfileEnd(PPDEV,ULONG,LONGLONG);
+ VOID XwnProfileSnapshot(PPDEV,ULONG *);
++VOID XwnTextRecord(PPDEV,ULONG,ULONG,const XWT_RECT *,const XWT_COPY *);
++VOID XwnTextSnapshot(PPDEV,ULONG *);
+ #endif /* _FRAMEBUF_PCH_ */
+diff --git a/win32ss/drivers/displays/framebuf/ownership.c b/win32ss/drivers/displays/framebuf/ownership.c
+index 7114f0e..91e26af 100644
+--- a/win32ss/drivers/displays/framebuf/ownership.c
++++ b/win32ss/drivers/displays/framebuf/ownership.c
+@@ -171,3 +171,26 @@ VOID XwnProfileSnapshot(PPDEV p, ULONG *out)
+     out[26]=p->Profile.Reads;
+     EngReleaseSemaphore(XwnOwnerLock);
+ }
++
++/* Actual per-call copied bytes, published only after copy, lock never spans Eng/copy. */
++VOID XwnTextRecord(PPDEV p,ULONG reason,ULONG glyphs,const XWT_RECT *bound,const XWT_COPY *copied)
++{
++ EngAcquireSemaphore(XwnOwnerLock);
++ XwtRecord(&p->TextStats,XWN_TEXT_BOUNDS,reason,glyphs,bound,copied);
++ EngReleaseSemaphore(XwnOwnerLock);
++}
++VOID XwnTextSnapshot(PPDEV p,ULONG *out)
++{
++ ULONG i;XWT_STATS *s=&p->TextStats;
++ RtlZeroMemory(out,128);EngAcquireSemaphore(XwnOwnerLock);
++ out[0]=0x54585758;out[1]=117;out[2]=128;out[3]=XWN_TEXT_BOUNDS;
++ out[4]=s->calls;out[5]=s->bounded;out[6]=s->fallback;out[7]=s->empty;
++ out[8]=s->boxes;out[9]=(ULONG)s->bytes;out[10]=(ULONG)(s->bytes>>32);
++ out[11]=s->overflow;
++ for(i=0;i<7;i++)out[12+i]=s->reasons[i];
++ out[19]=s->last_glyphs;out[20]=s->last_reason;out[21]=s->last_mode;
++ out[22]=s->last.left;out[23]=s->last.top;out[24]=s->last.right;out[25]=s->last.bottom;
++ out[26]=s->copied.boxes;out[27]=(ULONG)s->copied.bytes;out[28]=(ULONG)(s->copied.bytes>>32);
++ out[29]=s->copied.overflow;
++ EngReleaseSemaphore(XwnOwnerLock);
++}
+diff --git a/win32ss/drivers/displays/framebuf/shadow.c b/win32ss/drivers/displays/framebuf/shadow.c
+index be242bb..83580bd 100644
+--- a/win32ss/drivers/displays/framebuf/shadow.c
++++ b/win32ss/drivers/displays/framebuf/shadow.c
+@@ -13,7 +13,7 @@ static SURFOBJ *XwnSub(PPDEV p, SURFOBJ *s)
+ {
+  return XwnOwner(s)==p ? p->ShadowObject : s;
+ }
+-static VOID XwnUploadBox(PPDEV p, const RECTL *r)
++static VOID XwnUploadBox(PPDEV p, const RECTL *r, XWT_COPY *account)
+ {
+  LONG y; ULONG bytes,fast=0,slow=0; LONGLONG begin;
+  if (r->left>=r->right || r->top>=r->bottom) return;
+@@ -28,8 +28,9 @@ static VOID XwnUploadBox(PPDEV p, const RECTL *r)
+  XwnRowRecord(p,fast,slow,bytes);
+  if(p->ShadowUploads!=0xffffffff) ++p->ShadowUploads;
+  p->ShadowBytes+=(ULONGLONG)bytes*(r->bottom-r->top);
++ if(account) XwtCopy(account,(ULONGLONG)bytes*(r->bottom-r->top));
+ }
+-static VOID XwnUploadInternal(PPDEV p, const RECTL *rect, const CLIPOBJ *clip)
++static VOID XwnUploadInternal(PPDEV p, const RECTL *rect, const CLIPOBJ *clip, XWT_COPY *account)
+ {
+  RECTL r;
+  if (!p->ShadowActive || !p->ScreenPtr || !p->ShadowBits) return;
+@@ -54,21 +55,21 @@ static VOID XwnUploadInternal(PPDEV p, const RECTL *rect, const CLIPOBJ *clip)
+     if(part.left>part.right || part.top>part.bottom) goto fallback;
+     part.left=max(part.left,r.left);part.top=max(part.top,r.top);
+     part.right=min(part.right,r.right);part.bottom=min(part.bottom,r.bottom);
+-    XwnUploadBox(p,&part);
++    XwnUploadBox(p,&part,account);
+    }
+    /* FALSE can contain the final nonempty batch; TRUE can contain none. */
+    if (!more) return;
+   }
+  }
+- else {XwnUploadBox(p,&r);return;}
++ else {XwnUploadBox(p,&r,account);return;}
+ fallback:
+  /* Partial uploads copy completed RAM pixels: repeating the full box is safe. */
+- XwnUploadBox(p,&r);
++ XwnUploadBox(p,&r,account);
+ }
+ VOID XwnUpload(PPDEV p, const RECTL *rect, const CLIPOBJ *clip)
+ {
+  LONGLONG begin=XwnProfileStart();
+- XwnUploadInternal(p,rect,clip);
++ XwnUploadInternal(p,rect,clip,NULL);
+  XwnProfileEnd(p,3,begin);
+ }
+ ULONG XwnCheckScanout(PPDEV p)
+@@ -109,12 +110,29 @@ BOOL APIENTRY XwnCopyBits(SURFOBJ *psoDest, SURFOBJ *psoSrc, CLIPOBJ *pco, XLATE
+ 
+ BOOL APIENTRY XwnTextOut(SURFOBJ *pso, STROBJ *pstro, FONTOBJ *pfo, CLIPOBJ *pco, RECTL *prclExtra, RECTL *prclOpaque, BRUSHOBJ *pboFore, BRUSHOBJ *pboOpaque, POINTL *pptlOrg, MIX mix)
+ {
+- PPDEV p=NULL; BOOL ok;
++ PPDEV p=NULL; BOOL ok; ULONG reason; LONGLONG begin;
++ XWT_RECT string={0,0,0,0},opaque={0,0,0,0},bound={0,0,0,0};
++ RECTL rect; const RECTL *chosen=NULL; XWT_COPY copied={0,0,0}; ULONG glyphs=0;
+  if ((TRUE) && !XwnSelectOwner(&p, pso)) return FALSE;
+  if (!p || !p->ShadowActive) return FALSE;
+  if (p->ShadowCalls[2] != 0xffffffff) ++p->ShadowCalls[2];
++ /* Snapshot metadata before Eng can consume an enumeration. No glyph walk. */
++ if(pstro) {glyphs=pstro->cGlyphs;string.left=pstro->rclBkGround.left;
++  string.top=pstro->rclBkGround.top;string.right=pstro->rclBkGround.right;string.bottom=pstro->rclBkGround.bottom;}
++ if(prclOpaque) {opaque.left=prclOpaque->left;opaque.top=prclOpaque->top;
++  opaque.right=prclOpaque->right;opaque.bottom=prclOpaque->bottom;}
++ reason=XwtBounds(pstro!=NULL,glyphs,&string,prclOpaque?&opaque:NULL,prclExtra!=NULL,&bound);
+  ok=EngTextOut((TRUE ? XwnSub(p, pso) : NULL), pstro, pfo, pco, prclExtra, prclOpaque, pboFore, pboOpaque, pptlOrg, mix);
+- if (XwnOwner(pso)) XwnUpload(p, NULL, pco);
++ if (XwnOwner(pso)) {
++  if(!ok) reason=XWT_ENGINE_FAILED;
++  if(XWN_TEXT_BOUNDS && reason==XWT_BOUNDED) {
++   rect.left=bound.left;rect.top=bound.top;rect.right=bound.right;rect.bottom=bound.bottom;chosen=&rect;
++  }
++  begin=XwnProfileStart();
++  if(!(XWN_TEXT_BOUNDS && reason==XWT_EMPTY)) XwnUploadInternal(p,chosen,pco,&copied);
++  XwnProfileEnd(p,3,begin);
++  XwnTextRecord(p,reason,glyphs,&bound,&copied);
++ }
+  return ok;
+ }
+ 
+diff --git a/win32ss/drivers/displays/framebuf/text_bounds.h b/win32ss/drivers/displays/framebuf/text_bounds.h
+new file mode 100644
+index 0000000..d7d5159
+--- /dev/null
++++ b/win32ss/drivers/displays/framebuf/text_bounds.h
+@@ -0,0 +1,64 @@
++/* GPL-2.0-or-later, as framebuf. No coordinate subtraction or pointer enumeration. */
++#ifndef XWN_TEXT_BOUNDS_H
++#define XWN_TEXT_BOUNDS_H
++#include <stdint.h>
++typedef struct { int32_t left, top, right, bottom; } XWT_RECT;
++enum { XWT_BOUNDED=0, XWT_EMPTY=1, XWT_NO_STRING=2, XWT_EXTRA=3,
++       XWT_BAD_STRING=4, XWT_BAD_OPAQUE=5, XWT_ENGINE_FAILED=6 };
++static inline int XwtValid(const XWT_RECT *r)
++{ return r && r->left<r->right && r->top<r->bottom; }
++static inline unsigned XwtBounds(int has_string, uint32_t glyphs,
++ const XWT_RECT *string, const XWT_RECT *opaque, int extra, XWT_RECT *out)
++{
++    XWT_RECT r={0,0,0,0};
++    if (!has_string) return XWT_NO_STRING;
++    if (extra) return XWT_EXTRA; /* Unexpected on documented GDI calls: never scan it. */
++    if (glyphs && !XwtValid(string)) return XWT_BAD_STRING;
++    if (opaque && !XwtValid(opaque)) return XWT_BAD_OPAQUE;
++    if (glyphs) r=*string;
++    if (opaque) {
++        if (!glyphs) r=*opaque;
++        else {
++            if (opaque->left<r.left) r.left=opaque->left;
++            if (opaque->top<r.top) r.top=opaque->top;
++            if (opaque->right>r.right) r.right=opaque->right;
++            if (opaque->bottom>r.bottom) r.bottom=opaque->bottom;
++        }
++    }
++    *out=r;
++    return glyphs || opaque ? XWT_BOUNDED : XWT_EMPTY;
++}
++typedef struct { uint64_t bytes; uint32_t boxes, overflow; } XWT_COPY;
++typedef struct {
++    uint32_t calls, bounded, fallback, empty, reasons[7], overflow;
++    uint64_t bytes;
++    uint32_t boxes, last_glyphs, last_reason, last_mode;
++    XWT_RECT last;
++    XWT_COPY copied;
++} XWT_STATS;
++static inline void XwtInc(uint32_t *p, uint32_t *overflow)
++{ if (*p!=UINT32_MAX) ++*p; else *overflow=1; }
++static inline void XwtCopy(XWT_COPY *p, uint64_t bytes)
++{
++    XwtInc(&p->boxes,&p->overflow);
++    if (UINT64_MAX-p->bytes<bytes) {p->bytes=UINT64_MAX;p->overflow=1;}
++    else p->bytes+=bytes;
++}
++static inline void XwtRecord(XWT_STATS *s, unsigned mode, unsigned reason,
++ uint32_t glyphs, const XWT_RECT *r, const XWT_COPY *copied)
++{
++    XwtInc(&s->calls,&s->overflow);
++    if (reason>6) {s->overflow=1;return;}
++    XwtInc(&s->reasons[reason],&s->overflow);
++    if (mode && reason==XWT_BOUNDED) XwtInc(&s->bounded,&s->overflow);
++    else if (mode && reason==XWT_EMPTY) XwtInc(&s->empty,&s->overflow);
++    else XwtInc(&s->fallback,&s->overflow);
++    if (UINT64_MAX-s->bytes<copied->bytes) {s->bytes=UINT64_MAX;s->overflow=1;}
++    else s->bytes+=copied->bytes;
++    if (UINT32_MAX-s->boxes<copied->boxes) {s->boxes=UINT32_MAX;s->overflow=1;}
++    else s->boxes+=copied->boxes;
++    s->overflow |= copied->overflow;
++    s->last_glyphs=glyphs;s->last_reason=reason;s->last_mode=mode;
++    s->last=*r;s->copied=*copied;
++}
++#endif

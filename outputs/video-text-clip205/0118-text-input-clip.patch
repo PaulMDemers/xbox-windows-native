@@ -1,0 +1,108 @@
+diff --git a/win32ss/drivers/displays/framebuf/enable.c b/win32ss/drivers/displays/framebuf/enable.c
+index 4324892..aedcf52 100644
+--- a/win32ss/drivers/displays/framebuf/enable.c
++++ b/win32ss/drivers/displays/framebuf/enable.c
+@@ -31,6 +31,10 @@ XwnDirectEscape(SURFOBJ *Surface, ULONG Escape, ULONG InBytes, PVOID In,
+    p = XwnOwner(Surface);
+    if (!p) return 0;
+    if (!p->ScreenPtr || !p->hSurfEng || !p->ShadowObject || !p->ShadowActive) return 0;
++   if (Escape == 0x58574437 && OutBytes == 160)
++   {
++      ULONG Extended[40];XwnTextExtended(p,Extended);memcpy(Out,Extended,160);return 1;
++   }
+    if (Escape == 0x58574436 && OutBytes == sizeof(Data))
+    {
+       XwnTextSnapshot(p,Data);memcpy(Out,Data,sizeof(Data));return 1;
+diff --git a/win32ss/drivers/displays/framebuf/framebuf.h b/win32ss/drivers/displays/framebuf/framebuf.h
+index 9d6dd2b..3889108 100644
+--- a/win32ss/drivers/displays/framebuf/framebuf.h
++++ b/win32ss/drivers/displays/framebuf/framebuf.h
+@@ -46,6 +46,8 @@ typedef struct _PDEV
+    ULONGLONG RowBytes, RowFastBytes;
+    XWN_PROFILE Profile;
+    XWT_STATS TextStats;
++   RECTL TextInputClip;
++   ULONG TextHasClip,TextComplexity;
+    ULONG ShadowUploads;
+    ULONGLONG ShadowBytes;
+    ULONG ModeIndex;
+@@ -214,6 +216,7 @@ VOID XwnProfileInit(PPDEV);
+ LONGLONG XwnProfileStart(VOID);
+ VOID XwnProfileEnd(PPDEV,ULONG,LONGLONG);
+ VOID XwnProfileSnapshot(PPDEV,ULONG *);
+-VOID XwnTextRecord(PPDEV,ULONG,ULONG,const XWT_RECT *,const XWT_COPY *);
++VOID XwnTextRecord(PPDEV,ULONG,ULONG,const XWT_RECT *,const XWT_COPY *,const RECTL *,ULONG);
++VOID XwnTextExtended(PPDEV,ULONG *);
+ VOID XwnTextSnapshot(PPDEV,ULONG *);
+ #endif /* _FRAMEBUF_PCH_ */
+diff --git a/win32ss/drivers/displays/framebuf/ownership.c b/win32ss/drivers/displays/framebuf/ownership.c
+index 91e26af..1bc0c71 100644
+--- a/win32ss/drivers/displays/framebuf/ownership.c
++++ b/win32ss/drivers/displays/framebuf/ownership.c
+@@ -173,10 +173,12 @@ VOID XwnProfileSnapshot(PPDEV p, ULONG *out)
+ }
+ 
+ /* Actual per-call copied bytes, published only after copy, lock never spans Eng/copy. */
+-VOID XwnTextRecord(PPDEV p,ULONG reason,ULONG glyphs,const XWT_RECT *bound,const XWT_COPY *copied)
++VOID XwnTextRecord(PPDEV p,ULONG reason,ULONG glyphs,const XWT_RECT *bound,const XWT_COPY *copied,const RECTL *clip,ULONG complexity)
+ {
+  EngAcquireSemaphore(XwnOwnerLock);
+  XwtRecord(&p->TextStats,XWN_TEXT_BOUNDS,reason,glyphs,bound,copied);
++ p->TextHasClip=clip!=NULL;p->TextComplexity=complexity;
++ if(clip)p->TextInputClip=*clip;else RtlZeroMemory(&p->TextInputClip,sizeof(p->TextInputClip));
+  EngReleaseSemaphore(XwnOwnerLock);
+ }
+ VOID XwnTextSnapshot(PPDEV p,ULONG *out)
+@@ -194,3 +196,22 @@ VOID XwnTextSnapshot(PPDEV p,ULONG *out)
+  out[29]=s->copied.overflow;
+  EngReleaseSemaphore(XwnOwnerLock);
+ }
++
++/* Atomic118 snapshot: actual input clip plus the same117 last-call accounting. */
++VOID XwnTextExtended(PPDEV p,ULONG *out)
++{
++ ULONG i;XWT_STATS *s=&p->TextStats;
++ RtlZeroMemory(out,160);EngAcquireSemaphore(XwnOwnerLock);
++ out[0]=0x54585758;out[1]=118;out[2]=160;out[3]=XWN_TEXT_BOUNDS;
++ out[4]=s->calls;out[5]=s->bounded;out[6]=s->fallback;out[7]=s->empty;
++ out[8]=s->boxes;out[9]=(ULONG)s->bytes;out[10]=(ULONG)(s->bytes>>32);
++ out[11]=s->overflow;
++ for(i=0;i<7;i++)out[12+i]=s->reasons[i];
++ out[19]=s->last_glyphs;out[20]=s->last_reason;out[21]=s->last_mode;
++ out[22]=s->last.left;out[23]=s->last.top;out[24]=s->last.right;out[25]=s->last.bottom;
++ out[26]=s->copied.boxes;out[27]=(ULONG)s->copied.bytes;out[28]=(ULONG)(s->copied.bytes>>32);
++ out[29]=s->copied.overflow;
++ out[32]=p->TextInputClip.left;out[33]=p->TextInputClip.top;out[34]=p->TextInputClip.right;out[35]=p->TextInputClip.bottom;
++ out[36]=p->TextComplexity;out[37]=p->TextHasClip;
++ EngReleaseSemaphore(XwnOwnerLock);
++}
+diff --git a/win32ss/drivers/displays/framebuf/shadow.c b/win32ss/drivers/displays/framebuf/shadow.c
+index 83580bd..fb19f8e 100644
+--- a/win32ss/drivers/displays/framebuf/shadow.c
++++ b/win32ss/drivers/displays/framebuf/shadow.c
+@@ -112,7 +112,7 @@ BOOL APIENTRY XwnTextOut(SURFOBJ *pso, STROBJ *pstro, FONTOBJ *pfo, CLIPOBJ *pco
+ {
+  PPDEV p=NULL; BOOL ok; ULONG reason; LONGLONG begin;
+  XWT_RECT string={0,0,0,0},opaque={0,0,0,0},bound={0,0,0,0};
+- RECTL rect; const RECTL *chosen=NULL; XWT_COPY copied={0,0,0}; ULONG glyphs=0;
++ RECTL rect,inputClip={0,0,0,0}; ULONG complexity=0; const RECTL *chosen=NULL; XWT_COPY copied={0,0,0}; ULONG glyphs=0;
+  if ((TRUE) && !XwnSelectOwner(&p, pso)) return FALSE;
+  if (!p || !p->ShadowActive) return FALSE;
+  if (p->ShadowCalls[2] != 0xffffffff) ++p->ShadowCalls[2];
+@@ -121,6 +121,7 @@ BOOL APIENTRY XwnTextOut(SURFOBJ *pso, STROBJ *pstro, FONTOBJ *pfo, CLIPOBJ *pco
+   string.top=pstro->rclBkGround.top;string.right=pstro->rclBkGround.right;string.bottom=pstro->rclBkGround.bottom;}
+  if(prclOpaque) {opaque.left=prclOpaque->left;opaque.top=prclOpaque->top;
+   opaque.right=prclOpaque->right;opaque.bottom=prclOpaque->bottom;}
++ if(pco) {inputClip=pco->rclBounds;complexity=pco->iDComplexity;}
+  reason=XwtBounds(pstro!=NULL,glyphs,&string,prclOpaque?&opaque:NULL,prclExtra!=NULL,&bound);
+  ok=EngTextOut((TRUE ? XwnSub(p, pso) : NULL), pstro, pfo, pco, prclExtra, prclOpaque, pboFore, pboOpaque, pptlOrg, mix);
+  if (XwnOwner(pso)) {
+@@ -131,7 +132,7 @@ BOOL APIENTRY XwnTextOut(SURFOBJ *pso, STROBJ *pstro, FONTOBJ *pfo, CLIPOBJ *pco
+   begin=XwnProfileStart();
+   if(!(XWN_TEXT_BOUNDS && reason==XWT_EMPTY)) XwnUploadInternal(p,chosen,pco,&copied);
+   XwnProfileEnd(p,3,begin);
+-  XwnTextRecord(p,reason,glyphs,&bound,&copied);
++  XwnTextRecord(p,reason,glyphs,&bound,&copied,pco?&inputClip:NULL,complexity);
+  }
+  return ok;
+ }
