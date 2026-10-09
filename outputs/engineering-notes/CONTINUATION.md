@@ -1,3 +1,32 @@
+# Current:physical195CONTROL ACTIVE; candidate NEVERlaunched; emulators CLOSED
+
+Singleaccepted16:30:49.190166UTC,200EXEC; deploy30167 CLOSED. Ownedfinisher26912 ACTIVE,
+sourcefrozen actualready pins. It invokeswatchonce1200sec, ondashboard collectstartup
+FIRST/finallybaseline restore,verifyrestored/tenhives/event+intervalaudit/closecase.
+Inspectfinish-state/physical-return/physical.json BEFORE actions; do NOT duplicate
+observer/collection/launch. Human knownwizard dismissal/screen reply pending; question
+already asked once. Leavebenchmarkunobscured/noapps, letnormalrestart. Currenttemporary
+OFFchain/proposedSYSTEM/teststartup enabled; baseline NOTyet restored whilelive.
+Original30entryrollback/readback/protected+startup preserved. CandidateNEVERlaunched,
+blockeduntilreviewedcompleterestoredscopedcontrol; bootwarningsstrictfailures remain.
+If finisherexpiryoffline, waitmanualscreen/dash, neverinfercrash or repeatlaunch; only
+missingoncecollection/audits afterdashboard. Partialcollectionfailure mustnotrecollect.
+No automation; noactiveemulator. Latestpush3e01826; newlaunch/notes currentlyuncommitted.
+
+197 CLOSED actual0->258/900000msrefusal, no snapshots/probes/restart; fullcold318/6716/
+319clean/5hives/protected/historyPASS; unobservednoUI/debugger, strictFALSE soleFt49,
+ordinarywholeboot/physicalFALSE intentionalhoststop. Runner88748/supervisor96023/
+audit99435 CLOSED.196debugger/coldPASS separate; failed194rawhivecause remainsunresolved,
+journals/failedsource retained. Newsourcebytecomparison refusalonly19786CRLFchanges:
+normalizedbytes/ASTidentical, rawsourceSHA/frozeninputs retained; nofunction/gatechange.
+195reviewreadiness actual197supplement+194idle/196separate/hash/package/source/policy/
+20hostadversariesPASS; physicalreadonlydashboardpreflightPASS before staging. Keep
+20GiBguard; closedstandalone196verifiedoffloadmanifest20261009c/originalpathjunction,
+no backingchain moved. KeyboardALWAYSunplugged/deployauthorization persists. Preserve
+physical0101/video0093rollback,0088rollback,immutable0.1.0; neverrepeatclosedcases.
+
+# Historical continuation below
+
 # Current:195 reviewed/frozen, hardware control NOTlaunched;197/196 CLOSED
 
 Latestpush1132782; current197closure/195readiness uncommitted. ALL owned emulator/

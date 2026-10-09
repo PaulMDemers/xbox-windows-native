@@ -1,3 +1,17 @@
+#195 hardwareCONTROL ACTIVE, candidate NEVER launched
+
+Singlecontrol accepted2026-10-09T16:30:49.190166UTC,200EXEC. Deploy30167 CLOSED.
+Original30entryrollback archive/readback/protected/SYSTEM/startup captured before
+changes; scopedtemporaryOFF chain/proposal/helper staged/readback beforestartupLAST.
+Owned finisher26912 ACTIVE (watch->collectionstartupFIRST->restorefinally->independent
+baseline/10hives/events/audit/closure). It never launchesWindows or candidate.
+Currentteststartup enabled, baseline NOTyet restored during livecontrol. Await human
+knownwizard dismissal, leavebenchmarkunobscured/noapps and allow normalrestart.
+Human screen question pending; no physicalscreen/benchmarkPASS inferred fromFTP.
+Candidate remains blocked until complete reviewed restored scopedcontrol.
+
+# Preparation/readiness evidence (completed)
+
 #195 reviewed/frozen for one hardware control; no launch yet
 
 194idle functional checkpoints/probes/normalreturn/coldintegrity and NEW197 ordinary
