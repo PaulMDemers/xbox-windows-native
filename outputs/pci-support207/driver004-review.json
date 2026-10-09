@@ -1,0 +1,453 @@
+{
+  "scope": "Pin actual NT5 providers and verify every experimental import; no runtime claim.",
+  "files": [
+    {
+      "name": "install.exe",
+      "sha256": "795c6d96584c7b0d22f197c4182fd5cf19ae353ab095022bf8d1d89710a89c75",
+      "machine": 332,
+      "subsystem": 3,
+      "version": [
+        5,
+        0
+      ],
+      "imports": [
+        {
+          "dll": "kernel32.dll",
+          "name": "CloseHandle",
+          "available": true
+        },
+        {
+          "dll": "kernel32.dll",
+          "name": "CreateFileA",
+          "available": true
+        },
+        {
+          "dll": "kernel32.dll",
+          "name": "ExitProcess",
+          "available": true
+        },
+        {
+          "dll": "kernel32.dll",
+          "name": "FlushFileBuffers",
+          "available": true
+        },
+        {
+          "dll": "kernel32.dll",
+          "name": "GetLastError",
+          "available": true
+        },
+        {
+          "dll": "kernel32.dll",
+          "name": "GetProcAddress",
+          "available": true
+        },
+        {
+          "dll": "kernel32.dll",
+          "name": "LoadLibraryA",
+          "available": true
+        },
+        {
+          "dll": "kernel32.dll",
+          "name": "WriteFile",
+          "available": true
+        },
+        {
+          "dll": "kernel32.dll",
+          "name": "lstrlenA",
+          "available": true
+        }
+      ],
+      "relocations": false,
+      "sections": [
+        {
+          "name": ".text",
+          "flags": "0x60300020"
+        },
+        {
+          "name": ".rdata",
+          "flags": "0x40300040"
+        },
+        {
+          "name": ".bss",
+          "flags": "0xc0300080"
+        },
+        {
+          "name": ".idata",
+          "flags": "0xc0300040"
+        }
+      ]
+    },
+    {
+      "name": "probe.exe",
+      "sha256": "bc50681878a020152504848abfedb06349b2cdd1d3f2328265571316682eae77",
+      "machine": 332,
+      "subsystem": 3,
+      "version": [
+        5,
+        0
+      ],
+      "imports": [
+        {
+          "dll": "kernel32.dll",
+          "name": "CloseHandle",
+          "available": true
+        },
+        {
+          "dll": "kernel32.dll",
+          "name": "CreateFileA",
+          "available": true
+        },
+        {
+          "dll": "kernel32.dll",
+          "name": "DeviceIoControl",
+          "available": true
+        },
+        {
+          "dll": "kernel32.dll",
+          "name": "ExitProcess",
+          "available": true
+        },
+        {
+          "dll": "kernel32.dll",
+          "name": "FlushFileBuffers",
+          "available": true
+        },
+        {
+          "dll": "kernel32.dll",
+          "name": "GetLastError",
+          "available": true
+        },
+        {
+          "dll": "kernel32.dll",
+          "name": "WriteFile",
+          "available": true
+        },
+        {
+          "dll": "kernel32.dll",
+          "name": "lstrlenA",
+          "available": true
+        },
+        {
+          "dll": "setupapi.dll",
+          "name": "CM_Get_DevNode_Status",
+          "available": true
+        },
+        {
+          "dll": "setupapi.dll",
+          "name": "SetupDiDestroyDeviceInfoList",
+          "available": true
+        },
+        {
+          "dll": "setupapi.dll",
+          "name": "SetupDiEnumDeviceInterfaces",
+          "available": true
+        },
+        {
+          "dll": "setupapi.dll",
+          "name": "SetupDiGetClassDevsA",
+          "available": true
+        },
+        {
+          "dll": "setupapi.dll",
+          "name": "SetupDiGetDeviceInterfaceDetailA",
+          "available": true
+        }
+      ],
+      "relocations": false,
+      "sections": [
+        {
+          "name": ".text",
+          "flags": "0x60300020"
+        },
+        {
+          "name": ".data",
+          "flags": "0xc0600040"
+        },
+        {
+          "name": ".rdata",
+          "flags": "0x40300040"
+        },
+        {
+          "name": ".bss",
+          "flags": "0xc0300080"
+        },
+        {
+          "name": ".idata",
+          "flags": "0xc0300040"
+        }
+      ]
+    },
+    {
+      "name": "xwnsmb.sys",
+      "sha256": "15dba6948fd9184d09d94a4ab1517c2b86e8497af0e361b41359d1c20fc8057e",
+      "machine": 332,
+      "subsystem": 1,
+      "version": [
+        5,
+        0
+      ],
+      "imports": [
+        {
+          "dll": "hal.dll",
+          "name": "ExAcquireFastMutex",
+          "available": true
+        },
+        {
+          "dll": "hal.dll",
+          "name": "ExReleaseFastMutex",
+          "available": true
+        },
+        {
+          "dll": "hal.dll",
+          "name": "KeGetCurrentIrql",
+          "available": true
+        },
+        {
+          "dll": "hal.dll",
+          "name": "KeStallExecutionProcessor",
+          "available": true
+        },
+        {
+          "dll": "hal.dll",
+          "name": "READ_PORT_UCHAR",
+          "available": true
+        },
+        {
+          "dll": "hal.dll",
+          "name": "READ_PORT_USHORT",
+          "available": true
+        },
+        {
+          "dll": "hal.dll",
+          "name": "WRITE_PORT_UCHAR",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "ExAllocatePoolWithTag",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "ExFreePool",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoAcquireRemoveLockEx",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoAllocateWorkItem",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoAttachDeviceToDeviceStack",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoCreateDevice",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoDeleteDevice",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoDetachDevice",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoFreeWorkItem",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoGetDeviceProperty",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoInitializeRemoveLockEx",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoQueueWorkItem",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoRegisterDeviceInterface",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoRegisterShutdownNotification",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoReleaseRemoveLockAndWaitEx",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoReleaseRemoveLockEx",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoSetDeviceInterfaceState",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoUnregisterShutdownNotification",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IofCallDriver",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IofCompleteRequest",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "KeInitializeEvent",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "KeSetEvent",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "KeWaitForSingleObject",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "PoCallDriver",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "PoSetPowerState",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "PoStartNextPowerIrp",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "RtlEqualUnicodeString",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "RtlFreeUnicodeString",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "RtlInitUnicodeString",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "memcpy",
+          "available": true
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "memset",
+          "available": true
+        }
+      ],
+      "relocations": true,
+      "sections": [
+        {
+          "name": ".text",
+          "flags": "0x68000020"
+        },
+        {
+          "name": ".rdata",
+          "flags": "0x48000040"
+        },
+        {
+          "name": ".edata",
+          "flags": "0x40000040"
+        },
+        {
+          "name": ".idata",
+          "flags": "0xc8000040"
+        },
+        {
+          "name": ".reloc",
+          "flags": "0x42000040"
+        }
+      ]
+    }
+  ],
+  "providers": {
+    "kernel32.dll": {
+      "path": "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\pci-support207\\artifacts\\providers001\\kernel32.dll",
+      "sha256": "6b05b0749b5dd86da94cc4acd062ca05472509f70216b56cd4a5b9809c602e73",
+      "exports": 829,
+      "file_version": [
+        5,
+        0,
+        2195,
+        7135
+      ]
+    },
+    "setupapi.dll": {
+      "path": "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\pci-support207\\artifacts\\providers001\\setupapi.dll",
+      "sha256": "1d0a6e9d062a51e71eaae93d776746823834f5c518096d340f2b332fc059a23d",
+      "exports": 573,
+      "file_version": [
+        5,
+        0,
+        2195,
+        6622
+      ]
+    },
+    "hal.dll": {
+      "path": "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\pci-support207\\artifacts\\providers001\\halxboxnt5.dll",
+      "sha256": "a3a84368d59936dfa6bbcdc6d5839d57b886342211142d305e9dde941e4d1648",
+      "exports": 100,
+      "file_version": [
+        42,
+        4,
+        17,
+        0
+      ]
+    },
+    "ntoskrnl.exe": {
+      "path": "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\pci-support207\\artifacts\\providers001\\ntoskrnl.exe",
+      "sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+      "exports": 1256,
+      "file_version": [
+        5,
+        0,
+        2195,
+        7376
+      ]
+    }
+  },
+  "passed": true
+}

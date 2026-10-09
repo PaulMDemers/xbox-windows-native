@@ -1,0 +1,65 @@
+
+/mnt/e/Codex-private-artifacts/xbox-windows-feasibility/device-workstreams207/pci/repo/outputs/pci-support207/artifacts/providers001/halxboxnt5.dll:     file format pei-i386
+
+
+Disassembly of section .text:
+
+000196c0 <_HalpXboxPowerAction>:
+   196c0:	55                   	push   %ebp
+   196c1:	89 e5                	mov    %esp,%ebp
+   196c3:	56                   	push   %esi
+   196c4:	53                   	push   %ebx
+   196c5:	83 ec 08             	sub    $0x8,%esp
+   196c8:	fa                   	cli
+   196c9:	0f b6 f0             	movzbl %al,%esi
+   196cc:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
+   196d0:	c7 04 24 00 c0 00 00 	movl   $0xc000,(%esp)
+   196d7:	e8 04 b9 ff ff       	call   14fe0 <_READ_PORT_USHORT@4>
+   196dc:	83 ec 04             	sub    $0x4,%esp
+   196df:	f6 c4 08             	test   $0x8,%ah
+   196e2:	75 ec                	jne    196d0 <_HalpXboxPowerAction+0x10>
+   196e4:	bb 32 00 00 00       	mov    $0x32,%ebx
+   196e9:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
+   196f0:	c7 44 24 04 20 00 00 	movl   $0x20,0x4(%esp)
+   196f7:	00
+   196f8:	c7 04 24 04 c0 00 00 	movl   $0xc004,(%esp)
+   196ff:	e8 5c b9 ff ff       	call   15060 <_WRITE_PORT_UCHAR@8>
+   19704:	83 ec 08             	sub    $0x8,%esp
+   19707:	c7 44 24 04 02 00 00 	movl   $0x2,0x4(%esp)
+   1970e:	00
+   1970f:	c7 04 24 08 c0 00 00 	movl   $0xc008,(%esp)
+   19716:	e8 45 b9 ff ff       	call   15060 <_WRITE_PORT_UCHAR@8>
+   1971b:	83 ec 08             	sub    $0x8,%esp
+   1971e:	89 74 24 04          	mov    %esi,0x4(%esp)
+   19722:	c7 04 24 06 c0 00 00 	movl   $0xc006,(%esp)
+   19729:	e8 32 b9 ff ff       	call   15060 <_WRITE_PORT_UCHAR@8>
+   1972e:	83 ec 08             	sub    $0x8,%esp
+   19731:	c7 04 24 00 c0 00 00 	movl   $0xc000,(%esp)
+   19738:	e8 a3 b8 ff ff       	call   14fe0 <_READ_PORT_USHORT@4>
+   1973d:	83 ec 04             	sub    $0x4,%esp
+   19740:	0f b7 c0             	movzwl %ax,%eax
+   19743:	89 44 24 04          	mov    %eax,0x4(%esp)
+   19747:	c7 04 24 00 c0 00 00 	movl   $0xc000,(%esp)
+   1974e:	e8 1d b9 ff ff       	call   15070 <_WRITE_PORT_USHORT@8>
+   19753:	83 ec 08             	sub    $0x8,%esp
+   19756:	c7 44 24 04 1a 00 00 	movl   $0x1a,0x4(%esp)
+   1975d:	00
+   1975e:	c7 04 24 02 c0 00 00 	movl   $0xc002,(%esp)
+   19765:	e8 f6 b8 ff ff       	call   15060 <_WRITE_PORT_UCHAR@8>
+   1976a:	83 ec 08             	sub    $0x8,%esp
+   1976d:	8d 76 00             	lea    0x0(%esi),%esi
+   19770:	c7 04 24 00 c0 00 00 	movl   $0xc000,(%esp)
+   19777:	e8 54 b8 ff ff       	call   14fd0 <_READ_PORT_UCHAR@4>
+   1977c:	83 ec 04             	sub    $0x4,%esp
+   1977f:	a8 36                	test   $0x36,%al
+   19781:	74 ed                	je     19770 <_HalpXboxPowerAction+0xb0>
+   19783:	a8 10                	test   $0x10,%al
+   19785:	75 18                	jne    1979f <_HalpXboxPowerAction+0xdf>
+   19787:	c7 04 24 01 00 00 00 	movl   $0x1,(%esp)
+   1978e:	e8 d4 0d 00 00       	call   1a567 <_KeStallExecutionProcessor@4>
+   19793:	83 ec 04             	sub    $0x4,%esp
+   19796:	83 eb 01             	sub    $0x1,%ebx
+   19799:	0f 85 51 ff ff ff    	jne    196f0 <_HalpXboxPowerAction+0x30>
+   1979f:	f4                   	hlt
+
+Disassembly of section INIT:
