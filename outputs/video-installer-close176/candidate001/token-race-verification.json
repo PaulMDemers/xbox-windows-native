@@ -1,0 +1,58 @@
+{
+  "passed": true,
+  "debugger": true,
+  "ordinary_qualified": false,
+  "physical_qualified": false,
+  "sources": {
+    "verify-token-race.py": "4dfd06e4be4afd6d7705292ee900de5fb3027d4c15f614af1839b9571fed3fd2",
+    "trace.json": "bb564b5e6977c6108468524ac0dbb6ccb215134a90e3fd820ea1f4851705e4eb",
+    "trace-verification.json": "3ac27f294092788351027164c0f3020e7eac12d519723f177b0503454eaf82e0",
+    "closure.json": "03151983ae57703296deaa94018c865bb836f209c5b2b04c7272078177e77272"
+  },
+  "outer_entry": 189,
+  "token_handle": 1880,
+  "process": 4266433344,
+  "pid": 208,
+  "installer_thread": 4290179104,
+  "closing_thread": 4288548896,
+  "valid_query": [
+    190,
+    191
+  ],
+  "user_close": [
+    199,
+    202
+  ],
+  "kernel_close": [
+    200,
+    201
+  ],
+  "inner_creation": [
+    192,
+    209
+  ],
+  "invalid_query": [
+    210,
+    211
+  ],
+  "outer_failure": [
+    189,
+    220
+  ],
+  "immediate_user_close_caller": {
+    "module": "kernel32.dll",
+    "export": "CloseHandle",
+    "export_rva": 32417,
+    "return_rva": 32496,
+    "resident_pin": 185,
+    "binary_sha256": "6b05b0749b5dd86da94cc4acd062ca05472509f70216b56cd4a5b9809c602e73"
+  },
+  "observed": "Same-process other thread successfully closes the supplied token during inner creation; the installer then queries that handle and receives STATUS_INVALID_HANDLE, followed by outer FALSE/LastError6.",
+  "limits": [
+    "No higher closing-thread call stack or token object identity captured.",
+    "Owner EPROCESS comparison does not establish arbitrary APC attached-process contexts.",
+    "Debugger scheduling may expose or change race timing; this is not ordinary validation.",
+    "No popup in this run does not fix the popup captured in other runs.",
+    "No evidence here of graphics, FATX, or physical storage corruption."
+  ]
+}

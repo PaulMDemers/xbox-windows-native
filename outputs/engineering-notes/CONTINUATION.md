@@ -1,4 +1,130 @@
-# Body timing170 and matched ordinary172 CLOSED; reviewed functional PASS, strict FALSE
+# Current: cross-thread installer token race captured; ALL owned sessions CLOSED
+
+Fresh176 single launch2026-10-09 01:18:16UTC -> dashboard01:20:43UTC. Runner84735,
+tracer49818,supervisor86204,audit27084 CLOSED. Read outputs/video-installer-close176/
+REPORT.md, NEXT.md, candidate001/token-race-verification.json and evidence-review.json.
+222 events/201 resident pins,27 creation+82 native pairs, full teardown/resume,
+zero pending returns,5 unreadable unknowns, complete bounded diagnostic capture.
+Actual01B4 token1880 valid queryclass12tick6621; other services.exe thread successfully
+closes exact token via userNtClose+livekernelNtClose tick6624; innerTRUE then query
+class8 C0000008 tick6631, outerFALSE/LastError6. Same ownerEPROCESS, differentETHREAD.
+Immediate resident user wrapper kernel32!CloseHandle pinned; higher cleanup caller
+and token owner lifecycle UNKNOWN. Demonstrated lifetime race in this debugger
+run; no ordinary frequency/physical corruption or popup-cause claim.
+
+176/175 no popup, strictFALSE sole exactFt49;174/173 retain one shutdown popup each.
+All four workload/normalshutdown/fullcold322dirs6721files323clusters0errors/orphans,
+5hives/protected/startup PASS.173 captureFALSE earlyloader bound retained;174/175/176
+captureTRUE. No guest driver/settings/device/UI/service/dump change or physical
+FTP/deploy/test. Physical0101/video0093/0088rollback/immutable0.1.0 unchanged.
+Final17651 frozen pins/source exact;6identity+5close+5returnscope tests pass. Initial
+pre-return-selector source/tests retained; api-scope-review intentionally pins that
+initialsource. Current002 tests and frozen finalsource match runtime. Offline review
+host popup-count assumption failure preserved and corrected without guest action.
+
+Next isolate actual higher closing-thread caller/ownership lifecycle with resident
+frame evidence before any real synchronization fix. Shutdown popup producer remains
+separate and unresolved; no automaticwizard/PnP/event suppression or gate waiver.
+C21690884096bytes after closure, near unchanged20GiB guard: recover capacity using
+verified closed standalone offload before substantial new child. Never relaunch or
+recollect173–176. No running owned sessions. Historical ACTIVE entries below stale.
+
+# Historical: Installer close176 ACTIVE;173/174/175 CLOSED
+
+176 owned runner84735/tracer49818/supervisor86204 ACTIVE; inspect actualinstance/
+trace.json/launch.json, SINGLE accepted request, NEVERduplicate. Fresh162candidate
+same112/v4/166runner/settings/devices. Actual cold5binaries/fullallocation/5hive
+preflight PASS. Current exact-source tests6identity+5closescope+5returnscopePASS;
+earlier pre-return-selector source/tests retained, no guest from source evolution.
+Runtime source pins/snapshots frozen. Adds actual kernel NtClose derived AFTER
+liveIDT identity; insideactiveoutercalls permits otherthread close only ifexact
+handle AND owner EPROCESS match outertoken. Sharedkernelreturn foreignthread/
+stackhits retained/excluded, only exactpendingpair counts; no relaxedlimits.
+No physicalFTP/deploy/test. C~22.03GB beforelaunch,20GiBguardunchanged.
+
+175ALLCLOSED;180events179residentpins27creation+61nativepairs,fullteardown/capture
+PASS40sourcepins. Supplied01B4token1864 queryclass12success tick6589, innerTRUE
+6593, queryclass8 INVALID_HANDLE C0000008 at6593, outerFALSE/error6at6594.
+No same-thread suppliedtoken close;85otherthreadhits excluded. Actorunknown,
+no reuse/graphics/storage corruption claim.15 BUFFER_TOO_SMALL sizingresponses
+retained separately from1fatal tokenquery. Normalshutdown/fullcoldintegrityPASS;
+strictFALSE soleFt49, NOpopup here.174/172popups unresolved, nofix/eventwaiver.
+All173/174CLOSEDfailed/positiveobservations distinct; neverrecollectoldcases.
+Physical0101/video0093/0088rollback/immutable0.1.0 unchanged. Historicalnotes stale.
+
+# Historical: Installer token175 ACTIVE;173/174 CLOSED evidence preserved
+
+175 owned runner81996/tracer18800/supervisor55584 ACTIVE; inspectactualinstance,
+launch.json andtrace.json beforemorework; SINGLE acceptedrequest, NEVERduplicate.
+Samefresh162candidate/112/v4/166runner/settings/device state. Cold5actualbinaries,
+fullallocation/5hives/preflight and6actualpin-function tests PASS; sources frozen.
+NativeNtQueryInformationToken/NtDuplicateToken/NtSetInformationProcess/NtClose
+armed ONLY during actual services.exe rundll32 outer call; exactthread/stackpairs
+andrawNTSTATUS/arguments/output buffers. Otherthreadhits excluded/retained; no
+globalclosetracking, unknownpriorclosingactor retained. Same32/1024/360bounds.
+No guestpatch/physicalaccess. C~22.4GB last checked,20GiBguardunchanged.
+
+174ALLCLOSED;63events62residentpins29creation+returnpairs1shutdown,432excluded
+unvalidatedleads/7unreadable, completecapture/fullteardown.40frozenpins exact.
+01B0/01B4 bothinner+outerTRUE andactualchildloader entries. Third1B36/0005
+innerTRUE butouterFALSE/error6; inputtoken1868 equalsoutputthreadhandle1868.
+NofailingAPI/closingactor yet; noharderrorhit despitecoldONEshutdownpopup. Do not
+conflateerror6andpopup, orfinalNtShutdownentrywithstartofwindowstationteardown.
+Workload/normalshutdown/fullcoldintegrityPASS;strictFALSE exactFt49+ONEpopup.
+173CLOSEDfailedcapture33unreadableearlyloaderbound,workload/integrityPASS,strict
+Ft49+ONEpopupFALSE. Reports/closures preserved, neverrelaunch/recollect either.
+Physical0101/video0093/0088rollback/immutable0.1.0 unchanged. Historicalnotes stale.
+
+# Historical: Installer target174 ACTIVE;173 CLOSED failed capture preserved
+
+174 fresh162candidate child, unchanged112/v4/166runner/settings/device state.
+Read outputs/video-installer-target174/DESIGN.md and observer-scope-review.json.
+Six pin-contract host checks PASS; protected5actual binaries/fullallocation and
+5hive preflight PASS, runtime pins/source snapshots frozen before bootstrap.
+Owned runner7809/tracer37642/supervisor10514 ACTIVE; inspect actual launch.json,
+trace.json and instance.json. SINGLE request accepted; never duplicate launch.
+Only observation scope changed: early loader/termination limited to current
+rundll32 image, excluded unvalidated address-lead hits retained. Unreadable32/
+hit1024/wall360bounds and identity/ALL-popup strict gates unchanged. Capture
+through dashboard AFTER shutdown entry, complete teardown before cold audit.
+
+173 runner39127/tracer99690/supervisor8842/audit52115 CLOSED.182events181pins,
+14 creation/return pairs;33unreadable early unrelated loader hits exceededbound32
+before late installers. No target lifecycle/shutdown captured, captureFALSE.
+All breakpointsremoved/resume. Guest5samples20copies25loops50coherence and normal
+shutdown/dashboard/full322dirs6721files323clusters0errors/orphans/5hives/protected/
+startup PASS.41frozenpins/snapshotsexact. StrictFALSE Ft49+ONEshutdownpopup26/type4.
+Host import/libhivex failures/coldhive retained. Never relaunch/recollect173.
+Allolder168–172CLOSED. EmulatorONLY no physicalFTP/deploy/test; preservephysical
+0101/video0093/0088rollback/immutable0.1.0. Historical running notes below stale.
+
+# Historical: Installer startup173 ACTIVE; SINGLE Windows launch accepted
+
+Owned runner session39127, tracer99690, supervisor8842 ACTIVE. EmulatorPID93768,
+task windows-native-vstart173, GDB4595/monitor4594/loopbackFTP4596. Launch recorded
+candidate001/launch.json; observer armed beforehand. Inspect/resume these sessions,
+never duplicate launch/collection. On closure, cold audit.py candidate001 with
+owned offline-toolchain LD_LIBRARY_PATH, verify-trace.py then close-emulator.py.
+No physical FTP/deploy/test. All older168–172 CLOSED.
+
+173 fresh immutable162candidate child, unchanged112/v4/166runner/settings/devices.
+Read outputs/video-installer-startup173/DESIGN.md/HOST-REFUSALS.md and actual records.
+All5actual kernel32/kernel/UMP/advapi32/ntdll binaries cold-exact, full allocation
+preparation PASS317dirs6713files318clusters0errors/orphans;5hives/protected preflight
+PASS, all runtime sources frozen/snapshots exact. Six actual-function pin-contract
+host checks PASS. Two host environment refusals retained (Windows import path,
+owned libhivex LD_LIBRARY_PATH); no guest from either, failed cold hive preserved.
+
+New observer captures outer AsUser+inner creation/paired returns, child loader
+entry and termination, user/kernel harderrors, continues AFTER kernel shutdown
+until dashboard or360second bound. Caller loader metadata and relocated byte pins;
+early loader inventory absent requires real matching PE metadata AND resident code.
+Unknowns retained; no forced pages/data/register writes or UI acknowledgements.
+Once runner launched, inspect candidate001/runner-start.json, trace.json and
+launch.json; never duplicate. All168–172owned sessions CLOSED. Emulator ONLY;
+no physical FTP/deploy/test. Physical0101/video0093/0088rollback/0.1.0 preserved.
+
+# Historical: Body timing170 and matched ordinary172 CLOSED; reviewed functional PASS, strict FALSE
 
 Current state supersedes all historical ACTIVE entries below. ALL owned168–172
 sessions CLOSED; no guest/NBD/observer running. No physical FTP/deploy/test this
