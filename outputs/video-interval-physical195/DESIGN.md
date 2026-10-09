@@ -6,8 +6,15 @@ protocol explicitly measures a different interval: actual setup idle through fiv
 probes and the two guarded SetupAPI checkpoints. It is not an override of193.
 
 Reuse exact184 OFF/ON display DLLs, the same physical-tested158 miniport/bootvideo,
-exact186 v8probe and exact194 helper. Before any hardware staging,194 idle and
-pending runtime branches must close with complete integrity/coverage audits.
+exact186 v8probe and exact194 helper. Before any hardware staging, require194 idle
+functional proof plus a NEW unobserved197 pending refusal/integrity supplement.
+The original194 pending failed before the helper and is permanently retained as
+failed; its raw SYSTEM references are malformed and its cause remains unresolved.
+Debugger196 used byte-equivalent standalone prelaunch source and passed actual
+refusal/fullcold integrity, but its pauses prevent using it as ordinary evidence.
+197 reuses that immutable source with no guest changes and must independently
+close with complete coverage/integrity; no debugger196-only readiness. This is
+explicit new prerequisite evidence, not a rewrite of194 or release promotion.
 Fresh current physical capture/proposal/pins and private verified rollback remain
 mandatory; startup LAST, collection startup FIRST, restore in finally, one launch
 and one collection per case, uncertain replies never repeated. The original

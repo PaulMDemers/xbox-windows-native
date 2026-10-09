@@ -1,6 +1,34 @@
+# Current:197 ACTIVE ordinary pending supplement;196 CLOSED;195 undeployed
+
+Single197accepted16:08:22.133632UTC, runner88748/supervisor96023 ACTIVE. Never duplicate.
+Same immutable byte-equivalent standalone source/guest bytes/exact194helper, noUI/
+monitor/debugger.1120sec bound then cold auditONCE underWSL. Require actual900000ms
+refusal/no checkpoints/probes/restart and full5hives/allocation/protected/history.
+20GiB projected guard preserved. Sourcefrozen, parent/hash/sourcepolicy explicit.
+196 CLOSED16:05:50UTC, helper realtimeout/refusal and fullcold318dirs6716files319clusters
+clean/5hives/protected/history PASS; diagnosticusableTRUE, strictFALSE soleFt49,
+ordinary/physical/performanceFALSE. Three bounded snapshots resumed, actualrunner/
+installer codepins proved. All196sessions1054/49187/30090/14542 CLOSED; never repeat.
+194pending CLOSEDfailed rawhive references/producer unresolved; failure/journals and
+exact source preserved.196 standalone representation/timing not established cause.
+196closed standalone offload83287 COMPLETE/hashreadback/originalpathjunction, manifest
+outputs/task-storage-offload/manifest-20261009c.json. No backingchains relocated.
+197prep17445 CLOSED; sameimmutable source initial318/6713/319 clean/5hives verified.
+
+195 still NOTready/physicalwrite/launch. Reviewed draftprerequisite explicitly uses
+194idle + NEW197ordinarypending, retainsfailed194 and separate196debugger evidence;
+20 host adversaries passed SYNTHETIC197 row, not runtime. Wait197closure/audit then
+review/freeze195ONCE only if actualfunctional/integrity pass; repo/source checks,
+commit/push, control FIRST with rollback/collectionstartupFIRST. No193candidate.
+Physical193 restored baseline0101/video0093/startupnormal. User deploy authorization/
+keyboardALWAYSunplugged persists. No automation.0088rollback/immutable0.1.0 intact.
+Latest push3df8ccf; current196closure/197/195draftchanges uncommitted.
+
+# Historical continuation below
+
 # Current:196 pending002 ACTIVE diagnostic;194 pending failed CLOSED
 
-Latest push0686c4a. Physical193 CLOSED/restored; normal startup and original
+Latest push3df8ccf. Physical193 CLOSED/restored; normal startup and original
 0101/video0093 baseline verified.195 prepared read-only, NOTready/deployed/launched.
 User keyboard ALWAYS unplugged/deployment authorization persists; no routine checks.
 No automation.196prep2025 CLOSED. New196 runner1054/supervisor49187/observer30090 ACTIVE; one accepted launch15:47:41.267541UTC, owned PID89132. Never duplicate.
@@ -23,6 +51,8 @@ not ordinary/performance qualification or a fix. Read196 DESIGN/fixture/forensic
 90/300/960second bounded stop/read/resume snapshots, no UI/breakpoints;
 1120second owned closure then audit ONCE. Record actual session IDs/launch before
 leaving work. Preserve20GiB projected-copy guard (C~22GiB, source~1.13GiB).
+90/300 snapshots show desktop/runner PID896 exact entrypin, installer PID924 PCI01B0.
+No UI actions; both resumed.196 journals preserved separately, no recovery claim.
 195 remains blocked until honest pending validation, never rewrite failed194 gates.
 0088rollback/immutable0.1.0 preserved; no current physical test startup.
 

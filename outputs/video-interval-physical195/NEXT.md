@@ -1,21 +1,10 @@
-#195 BLOCKED; no readiness, deployment or launch
+#195 BLOCKED on ACTIVE197; not ready/deployed/launched
 
-194 pending closure FAILED before helper and SYSTEM raw references are malformed.
-Do not run review-physical or deploy until a documented new validation resolves the
-missing pending evidence. Preserve194 failure and all195/193 gates.196 new debugger
-child changes only host backing representation with byte-equivalence and full pins;
-its result alone cannot be ordinary physical readiness. Baseline remains restored.
-
-# Historical preparation (superseded)
-
-#195 prepared read-only, NOTready or launched
-
-Wait194pending ownedclosure/coldaudit; both194branches mustbe usable. Then run
-review-physical.py ONCE tocheck providers/pins, actual threephysicalwarning sets,
-source syntax and caseuniqueness/freeze. Review/testrepository and source before
-hardwaredeployment. Userauthorizeshardware/alwaysunpluggedkeyboard; no routine
-statequestions. Notifyhuman tocloseknownwizards withoutdisableddevices during
-visible15minwait, leavebenchmarkunobscured/noapps. Controlsinglelaunch FIRST, owned
-1200sec dashboardobserver, collectstartupFIRST/finallyrollback thenverifyrestored,
-audits/close-case. Candidate onlycomplete restoredscopedcontrol and explicitnew
-experimentalpermission. Allbootstrictfailures retained; no193candidateoverride.
+196 debugger closed with actual timeout/fullcold integrity;194 failure unchanged.
+Fresh197 unobserved pending run ACTIVE; require its actual full refusal/cold integrity.
+Updated review-physical pins both successful supplements and failed194, checks exact
+same helper/source/fixture and new production prerequisite predicate.20 host adversaries
+passed using a explicitly SYNTHETIC197 row; host tests do not constitute runtime.
+After197 actual closure/audit, review/freeze195 once, repo/evidence checks, commit/push
+then hardwarecontrol FIRST. Human closes known unsupported wizards w/o disabling,
+leaves helper/benchmark unobscured/noapps. Source/gates/strictboot failures preserved.
