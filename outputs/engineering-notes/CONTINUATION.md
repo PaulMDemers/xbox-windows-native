@@ -1,3 +1,39 @@
+# Current: device-observation188 emulator CLOSED; startup-only hardware diagnostic prepared, NOT launched
+
+Read outputs/device-observation188 REPORT/DESIGN/NEXT, emulator001 observation/
+audit/closure and evidence-review.json; all owned sessions CLOSED, no emulator.
+Single emu launch05:11:30UTC2026-10-09, owned bound closure05:16:00UTC. Five samples
+126435ms captured actual rundll32 newdev DevInstall audioPCI10DE:01B0, four later
+samples21window records each/welcome wizard/installing; pending258. Original187
+physical hives/core restored into older emulator disk, no null-policy transplant.
+Full cold317dirs6714files318dirclusters0errors/orphans, all5hives/protected/provider
+hashes and SetupAPI/event history pass. Diagnostic usable; ordinary/strictFALSE:
+intentional host stop,6006count0, inheritedFt49 retained. Emulator drive free counts
+agree; physical capacity is not inferred. Preserve0101/video0093,
+0088rollback and immutable0.1.0.187 remains CLOSED held/failed, candidate NEVER
+launched/BLOCKED; latest pushed baseline1918085. No driver/mode/service/cache/UI
+or physical device-policy change this turn. All188 hardware access NONE.
+
+Current physical-ready.json pins startup-only188 protocol+Build003; helper writes
+only its exclusive log. Superseded readiness001 preserved before adding exact NT5
+provider checks; failuresBuild001format/Build002CRTstack and preparation/freeze
+import refusals preserved before any launch. Offline parser/failure protocol tests
+passed; raw frozen emu inputs31 checked. Owned runner67974/supervisor49246/audit93918
+CLOSED. Host HMP screendump unsupported; owned framebuffer snapshot retained.
+
+One user state question pending: current UnleashX and Razer keyboard unplugged.
+Do not infer answer or launch until current state known. NO188 physical.json exists.
+After reply: actual readiness/hash/ownership checks, physical.py launch ONCE with
+supplied per-command FTP env. Unique/F/xwnobs188a. Read NEXT for keyboard/manual
+observation and normal-restart sequence; no automatic restart or forced dialogs.
+On dashboard return collectONCE restores startupFIRST, preserves observer/logs/
+5hives/protected hashes; WSL audit-physical.py. Actual hardware setup owner before
+NEW graphics pair; do not reuse187 or silently waive pending/popup/Ftdisk gates.
+Historical WindowsF->dashboardC near-capacity (~2.9MB) remains separate from large
+WindowsC->dashboardF; verify current mapping/shadowC before any targeted cleanup.
+No running automation started. Source/reports checked then commit/push this turn.
+
+# Historical continuation below
 # Current: physical187 control CLOSED held/failed; baseline restored; candidate NEVER launched
 
 User reported Windows desktop and asked whether to restart; normal Windows Start/
