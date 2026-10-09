@@ -1,21 +1,54 @@
-# Current:193 hardware comparison READY/NEVER launched;191/192 CLOSED
+# Current:194 pending emulator ACTIVE;195 physical prepared read-only;193 restored
 
-Read193REPORT/NEXT/physical-ready/readiness-completion and actual captures. Current
-read-only dashboard capture50490 CLOSED; exactbaseline/double reads, fresh typed
-SYSTEM proposal onlytwo displaytokens, privateOFF/ON/rollbackarchives verified.
-Actual4NT5provider DLLs exact; source/input/dependency/capture bytes pinned. Host
-protocolfailure and exactproduction parser tests passed. Same184 DLLs/186v8probe,
-validated190 helper, unchanged178restartguard. No193physicalwrite/launch. Bothcases
-NEVER launched. Currentdashboard/Razerunplugged and humanprompt-handling state
-required before control singlelaunch; no automatic UI action/emulatornullpolicy.
-Strict/original gates retained: Ftdisk49/Srv warnings stayfailures, failedcontrol
-blocks candidate. StartupFIRST/finallyrollback/sourcepins unchanged. Physical189
-normalstartup/0101video0093/0088/0.1.0 preserved. No activeprocesses/automation.
-192runner41419/supervisor85177/audit51123 CLOSED: actual0->258/300000 timeout/no
-probes orrestart, clean318/6716/319/hives/protected, strictFt49FALSE. Correctedlive
-snapshot Windowsdesktop/wizard from1024x57603c; wrong640geometry image retained.
-191idle runtimePASS/191pendingfailure remain CLOSED, never repeat. Implementation/evidence pushedc7c0a0b; awaiting current dashboard/keyboard and
-human prompt-handling state reply. No193 deployment/launch. C~24.8GB/20GiBguard unchanged.
+Read194 REPORT/NEXT/frozen-inputs and actual pending001 launch. Singleaccepted
+2026-10-09T14:59:43.747171UTC, runner66392/supervisor90772 ACTIVE (1120secondbound).
+Neverduplicate. Idle194CLOSED, fiveprobes/exactcheckpoints/normalreturn/fullallocation
+340dirs6749files341clusters0errors/orphans/5hives/protected/history PASS. Diagnostic
+usableTRUE, ordinaryFALSE soleFt49. Runner37937/supervisor34774/audit22661 CLOSED.
+Pending requires900000ms actualrefusal/no checkpoints/probes/restart, fullcold audit
+ONCE after ownedclosure. Currentbinary359c0a0e...,8011hostsetup/8restart/imports/parser
+checks PASS. Frozen exactsources/deps/fixture/backingpins, no UI/devicepolicychange.
+
+NEW outputs/video-interval-physical195 DESIGN explicitly separates actualmeasurement
+from boot: byteexact guardedsetupbookends, cleanintervalevents with1secmargin,
+allwholebootstrictfailures retained. Candidateexperimentalpermission requires scoped
+restoredcontrol, hives, nounknown/duplicate documented188/189/193warning signatures;
+notreleasepromotion/gateoverride. Read-onlyfreshphysicalcapture/provider/baseline/
+secondreads and privateSYSTEMproposalonly2displaytokens PASS; same184OFF/ON,158shared,
+186v8probe and exact194helper. Packages/readback/hostprotocol002/intervalpolicytests
+PASS; no195physicalwrite/launch/readinessyet. Wait194pendingcoldaudit thenreview195
+source/pins/prereqs before anylaunch.193candidatepermanentlyNEVER/BLOCKED.
+Userauthorizesdeploy/keyboardalwaysunplugged. Physicalbaseline0101video0093/startup
+normal,0088rollback/immutable0.1.0 preserved. No automation. Lastpushfccf3f2/current
+workuncommitted. Currentphysical193detailsbelow.
+
+# Current:193 CLOSED; baseline restored, candidate NEVER launched
+
+Single193control accepted2026-10-09T14:30:02.919527UTC,200EXEC. Actualhelper pending258
+for300000ms then MEASUREMENT_BLOCKED_SETUP_TIMEOUT; five samplefiles absent. No
+benchmark/restart request or physicalperformance result. Observer26774 CLOSED
+14:37:15UTC after25samples/dashboardFALSE. User replied Yes I just restarted it.
+Collect48343 CLOSED14:38:25UTC/startupFIRST, baseline restored14:38:34UTC. Separate
+restored verification PASS18fixed/payloads/originalSYSTEM/introducedDLLabsence/
+console rollback. Tenhives/header/checksums/typedbindings/selectedPCI/services/
+dump-policy PASS. Normalshutdown6006count1; exact UI restart method unconfirmed.
+Allpayloads/protected/history/evidencepins PASS; source/input pins verifiedclosure.
+StrictFALSE Ftdisk49+Srv2013(F:), original inheritedsignature mismatch. SetupAPI
+exact291676byteprefix plus3222ASCIIbytes; audio01B0 then01B4/01C1/USBFFFF:FFFF,
+no-compatible-driver. Untimestampedhelperstart prevents exact deadline correlation.
+Original111nonASCIIphysicaldamage/restart unresolved, no full physicalallocation/
+allfile audit. Never relaunch/recollect193control; candidate193 NEVER/BLOCKED.
+
+Read outputs/video-setup-physical193 REPORT/NEXT/control001closure/audits. Next NEW
+protocol design must separate boot installer activity from actualsettledmeasurement:
+visiblewaitguidance, snapshotSetupAPI at actualidle/measurementboundaries, retain
+fullboot history/strictwarnings and explicitly defined scope. No silent waiver or
+alteration of193gates. Freshhelperidle/pendingvalidation before newhardwaretrial.
+Do not repeat the same five-minute boot or just extenddeadline without addressing
+its separate beforebootSetupAPI equality and inheritedeventsignature failures.
+User persists deployauthorization and keyboardALWAYSunplugged, no routine checks.
+Physical0101video0093/0088/immutable0.1.0 preserved; startupnormal. ALLownedprocesses
+CLOSED, no localemulator/automation. Latestpushedfccf3f2;193closurecurrentlyuncommitted.
 
 # Historical continuation below
 
