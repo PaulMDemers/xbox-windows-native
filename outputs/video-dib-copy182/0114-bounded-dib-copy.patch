@@ -1,0 +1,252 @@
+diff --git a/win32ss/drivers/displays/framebuf/CMakeLists.txt b/win32ss/drivers/displays/framebuf/CMakeLists.txt
+index 42c910c..d6af401 100644
+--- a/win32ss/drivers/displays/framebuf/CMakeLists.txt
++++ b/win32ss/drivers/displays/framebuf/CMakeLists.txt
+@@ -7,6 +7,7 @@ list(APPEND SOURCE
+     surface.c
+     shadow.c
+     ownership.c
++    dib_plan.h
+     framebuf.h)
+ 
+ add_library(xwnown MODULE
+@@ -19,3 +20,10 @@ target_link_libraries(xwnown libcntpr)
+ add_importlibs(xwnown win32k)
+ add_dependencies(xwnown psdk)
+ add_cd_file(TARGET xwnown DESTINATION reactos/system32 FOR all)
++
++option(XWN_DIB_FASTPATH "Bounded standard32bpp DIB to RAM-primary copy" OFF)
++if(XWN_DIB_FASTPATH)
++ target_compile_definitions(xwnown PRIVATE XWN_DIB_FASTPATH=1)
++else()
++ target_compile_definitions(xwnown PRIVATE XWN_DIB_FASTPATH=0)
++endif()
+diff --git a/win32ss/drivers/displays/framebuf/dib_plan.h b/win32ss/drivers/displays/framebuf/dib_plan.h
+new file mode 100644
+index 0000000..19170a4
+--- /dev/null
++++ b/win32ss/drivers/displays/framebuf/dib_plan.h
+@@ -0,0 +1,68 @@
++/* Bounded 32-bit address geometry, shared by NT5 and host checks.
++ * SPDX-License-Identifier: GPL-2.0-or-later */
++#ifndef XWN_DIB_PLAN_H
++#define XWN_DIB_PLAN_H
++typedef unsigned int XD_U32;
++typedef int XD_I32;
++typedef unsigned long long XD_U64;
++typedef long long XD_I64;
++typedef char XD_WIDTH_CHECK[(sizeof(XD_U32)==4 && sizeof(XD_I32)==4)?1:-1];
++typedef struct { XD_U32 base, size, scan; XD_I32 stride, width, height; } XD_SURFACE;
++typedef struct { XD_I32 left, top, right, bottom; } XD_RECT;
++typedef struct {
++    XD_U32 source, target, bytes, rows;
++    XD_I32 source_step, target_step;
++} XD_PLAN;
++enum { XD_HIT=1, XD_EMPTY, XD_DISABLED, XD_FORMAT, XD_CLIP,
++       XD_GEOMETRY, XD_ALIAS };
++
++/* Validate the whole advertised bitmap, including every row's padding-free
++ * pixel span. All sums/products precede narrowing and fit signed64 arithmetic.
++ * Reject overlapping allocations even if this particular copy is disjoint. */
++static int XdSurface(const XD_SURFACE *s)
++{
++    XD_I64 last, low, high, pitch;
++    if (!s->base || !s->size || s->width<=0 || s->height<=0 || !s->stride ||
++        (XD_U64)s->base+s->size>0x100000000ULL) return 0;
++    pitch=s->stride;
++    if (pitch<0) pitch=-pitch;
++    if ((XD_I64)s->width*4>pitch) return 0;
++    last=(XD_I64)s->scan+(XD_I64)(s->height-1)*s->stride;
++    low=last<s->scan?last:s->scan;
++    high=(last>s->scan?last:s->scan)+(XD_I64)s->width*4;
++    return low>=s->base && high<=(XD_I64)s->base+s->size;
++}
++static int XdPlan(const XD_SURFACE *dst, const XD_SURFACE *src,
++                  XD_RECT r, XD_I32 sx, XD_I32 sy,
++                  const XD_RECT *clip, XD_PLAN *out)
++{
++    XD_I64 w=(XD_I64)r.right-r.left, h=(XD_I64)r.bottom-r.top;
++    XD_I64 x=sx, y=sy, from, to;
++    XD_PLAN plan;
++    if (!XdSurface(dst) || !XdSurface(src) || w<=0 || h<=0 ||
++        r.left<0 || r.top<0 || r.right>dst->width || r.bottom>dst->height ||
++        sx<0 || sy<0 || x+w>src->width || y+h>src->height) return XD_GEOMETRY;
++    if ((XD_U64)dst->base<(XD_U64)src->base+src->size &&
++        (XD_U64)src->base<(XD_U64)dst->base+dst->size) return XD_ALIAS;
++    if (clip) {
++        if (clip->left>clip->right || clip->top>clip->bottom) return XD_CLIP;
++        if (r.left<clip->left) { x+=(XD_I64)clip->left-r.left; r.left=clip->left; }
++        if (r.top<clip->top) { y+=(XD_I64)clip->top-r.top; r.top=clip->top; }
++        if (r.right>clip->right) r.right=clip->right;
++        if (r.bottom>clip->bottom) r.bottom=clip->bottom;
++        if (r.left>=r.right || r.top>=r.bottom) return XD_EMPTY;
++    }
++    from=(XD_I64)src->scan+y*src->stride+x*4-src->base;
++    to=(XD_I64)dst->scan+(XD_I64)r.top*dst->stride+(XD_I64)r.left*4-dst->base;
++    /* Full-surface bounds above imply these spans; keep explicit checks before
++     * publishing a plan so callers never partially write on a rejection. */
++    w=(XD_I64)r.right-r.left; h=(XD_I64)r.bottom-r.top;
++    if (from<0 || to<0 || from+w*4>src->size || to+w*4>dst->size ||
++        x<0 || y<0 || x+w>src->width || y+h>src->height) return XD_GEOMETRY;
++    plan.source=(XD_U32)from; plan.target=(XD_U32)to;
++    plan.bytes=(XD_U32)(w*4); plan.rows=(XD_U32)h;
++    plan.source_step=src->stride; plan.target_step=dst->stride;
++    *out=plan;
++    return XD_HIT;
++}
++#endif
+diff --git a/win32ss/drivers/displays/framebuf/enable.c b/win32ss/drivers/displays/framebuf/enable.c
+index 8f6d447..4eeb8db 100644
+--- a/win32ss/drivers/displays/framebuf/enable.c
++++ b/win32ss/drivers/displays/framebuf/enable.c
+@@ -31,6 +31,10 @@ XwnDirectEscape(SURFOBJ *Surface, ULONG Escape, ULONG InBytes, PVOID In,
+    p = XwnOwner(Surface);
+    if (!p) return 0;
+    if (!p->ScreenPtr || !p->hSurfEng || !p->ShadowObject || !p->ShadowActive) return 0;
++   if (Escape == 0x58574434 && OutBytes == sizeof(Data))
++   {
++      XwnDibSnapshot(p,Data);memcpy(Out,Data,sizeof(Data));return 1;
++   }
+    if (Escape == 0x58574431 && OutBytes == 32)
+    {
+       Data[0]=0x44525758;Data[1]=112;Data[2]=p->ScreenWidth;Data[3]=p->ScreenHeight;
+diff --git a/win32ss/drivers/displays/framebuf/framebuf.h b/win32ss/drivers/displays/framebuf/framebuf.h
+index 1423710..07d450a 100644
+--- a/win32ss/drivers/displays/framebuf/framebuf.h
++++ b/win32ss/drivers/displays/framebuf/framebuf.h
+@@ -30,6 +30,8 @@
+ 
+ //#define EXPERIMENTAL_MOUSE_CURSOR_SUPPORT
+ 
++#include "dib_plan.h"
++
+ typedef struct _PDEV
+ {
+    HANDLE hDriver;
+@@ -40,6 +42,8 @@ typedef struct _PDEV
+    PVOID ShadowBits;
+    BOOL ShadowActive;
+    ULONG ShadowCalls[14];
++   ULONG DibCounts[8];
++   ULONGLONG DibBytes;
+    ULONG ShadowUploads;
+    ULONGLONG ShadowBytes;
+    ULONG ModeIndex;
+@@ -202,4 +206,6 @@ BOOL XwnRegisterPrimary(PPDEV p);
+ VOID XwnUnregisterPrimary(PPDEV p);
+ PPDEV XwnOwner(SURFOBJ *s);
+ BOOL XwnSelectOwner(PPDEV *selected, SURFOBJ *s);
++VOID XwnDibRecord(PPDEV p, ULONG result, ULONGLONG bytes);
++VOID XwnDibSnapshot(PPDEV p, ULONG *out);
+ #endif /* _FRAMEBUF_PCH_ */
+diff --git a/win32ss/drivers/displays/framebuf/ownership.c b/win32ss/drivers/displays/framebuf/ownership.c
+index bda0696..c8e93b0 100644
+--- a/win32ss/drivers/displays/framebuf/ownership.c
++++ b/win32ss/drivers/displays/framebuf/ownership.c
+@@ -100,3 +100,26 @@ BOOL XwnSelectOwner(PPDEV *selected, SURFOBJ *s)
+     *selected = p;
+     return TRUE;
+ }
++
++/* Existing membership lock protects counters only. GDI retains the submitted
++ * PDEV/bitmap for its DDI call. Never hold this lock across render or memcpy. */
++VOID XwnDibRecord(PPDEV p, ULONG result, ULONGLONG bytes)
++{
++    if(result<1 || result>7) return;
++    EngAcquireSemaphore(XwnOwnerLock);
++    if(p->DibCounts[0]!=0xffffffff) ++p->DibCounts[0];
++    if(p->DibCounts[result]!=0xffffffff) ++p->DibCounts[result];
++    if((~(ULONGLONG)0)-p->DibBytes<bytes) p->DibBytes=~(ULONGLONG)0;
++    else p->DibBytes+=bytes;
++    EngReleaseSemaphore(XwnOwnerLock);
++}
++VOID XwnDibSnapshot(PPDEV p, ULONG *out)
++{
++    ULONG i;
++    RtlZeroMemory(out,128);
++    EngAcquireSemaphore(XwnOwnerLock);
++    out[0]=0x42445758;out[1]=114;out[2]=128;out[3]=XWN_DIB_FASTPATH;
++    for(i=0;i<8;i++) out[4+i]=p->DibCounts[i];
++    out[12]=(ULONG)p->DibBytes;out[13]=(ULONG)(p->DibBytes>>32);
++    EngReleaseSemaphore(XwnOwnerLock);
++}
+diff --git a/win32ss/drivers/displays/framebuf/shadow.c b/win32ss/drivers/displays/framebuf/shadow.c
+index 5b88797..cd5c9ed 100644
+--- a/win32ss/drivers/displays/framebuf/shadow.c
++++ b/win32ss/drivers/displays/framebuf/shadow.c
+@@ -64,6 +64,53 @@ ULONG XwnCheckScanout(PPDEV p)
+  for(i=0;i<n;i++) if ((screen[i]&0xffffff)!=(ram[i]&0xffffff)) ++bad;
+  return bad;
+ }
++
++/* Only standard system-memory32bpp SRCCOPY into our owned primary. Anything
++ * requiring translation, a complex clip, foreign ownership or aliasing still
++ * uses Eng. No framebuffer cache, mode, scanout or lifetime policy changes. */
++static BOOL XwnDibCopy(PPDEV p, SURFOBJ *source, CLIPOBJ *clip,
++                       XLATEOBJ *xlate, const RECTL *rect, const POINTL *point)
++{
++#if XWN_DIB_FASTPATH
++    XD_SURFACE a,b; XD_RECT r,c; XD_PLAN plan;
++    SURFOBJ *target=p->ShadowObject; ULONG reason,y;
++    BYTE *from,*to;
++    if(!source || source->iType!=STYPE_BITMAP || source->iBitmapFormat!=BMF_32BPP ||
++       (source->fjBitmap&BMF_NOTSYSMEM) || !source->pvBits || !source->pvScan0 ||
++       !target || target->iType!=STYPE_BITMAP || target->iBitmapFormat!=BMF_32BPP ||
++       (target->fjBitmap&BMF_NOTSYSMEM) || target->pvBits!=p->ShadowBits ||
++       !target->pvScan0 || (xlate && xlate->flXlate!=XO_TRIVIAL) || !rect || !point)
++    { XwnDibRecord(p,XD_FORMAT,0);return FALSE; }
++    if(clip && clip->iDComplexity!=DC_TRIVIAL && clip->iDComplexity!=DC_RECT)
++    { XwnDibRecord(p,XD_CLIP,0);return FALSE; }
++    a.base=(XD_U32)(ULONG_PTR)target->pvBits;a.size=target->cjBits;
++    a.scan=(XD_U32)(ULONG_PTR)target->pvScan0;a.stride=target->lDelta;
++    a.width=target->sizlBitmap.cx;a.height=target->sizlBitmap.cy;
++    b.base=(XD_U32)(ULONG_PTR)source->pvBits;b.size=source->cjBits;
++    b.scan=(XD_U32)(ULONG_PTR)source->pvScan0;b.stride=source->lDelta;
++    b.width=source->sizlBitmap.cx;b.height=source->sizlBitmap.cy;
++    r.left=rect->left;r.top=rect->top;r.right=rect->right;r.bottom=rect->bottom;
++    if(clip && clip->iDComplexity==DC_RECT) {
++        c.left=clip->rclBounds.left;c.top=clip->rclBounds.top;
++        c.right=clip->rclBounds.right;c.bottom=clip->rclBounds.bottom;
++    }
++    reason=XdPlan(&a,&b,r,point->x,point->y,
++                   clip && clip->iDComplexity==DC_RECT?&c:NULL,&plan);
++    if(reason==XD_HIT) {
++        from=(BYTE*)source->pvBits+plan.source;to=(BYTE*)target->pvBits+plan.target;
++        for(y=0;y<plan.rows;y++) {
++            memcpy(to,from,plan.bytes);
++            /* Do not form a pointer outside either allocation after last row. */
++            if(y+1<plan.rows) {from+=plan.source_step;to+=plan.target_step;}
++        }
++        XwnDibRecord(p,XD_HIT,(ULONGLONG)plan.bytes*plan.rows);return TRUE;
++    }
++    XwnDibRecord(p,reason,0);return reason==XD_EMPTY;
++#else
++    XwnDibRecord(p,XD_DISABLED,0);return FALSE;
++#endif
++}
++
+ BOOL APIENTRY XwnBitBlt(SURFOBJ *psoTrg, SURFOBJ *psoSrc, SURFOBJ *psoMask, CLIPOBJ *pco, XLATEOBJ *pxlo, RECTL *prclTrg, POINTL *pptlSrc, POINTL *pptlMask, BRUSHOBJ *pbo, POINTL *pptlBrush, ROP4 rop4)
+ {
+  PPDEV p=NULL; BOOL ok;
+@@ -72,7 +119,9 @@ BOOL APIENTRY XwnBitBlt(SURFOBJ *psoTrg, SURFOBJ *psoSrc, SURFOBJ *psoMask, CLIP
+  if ((XwnRopUsesMask(rop4)) && !XwnSelectOwner(&p, psoMask)) return FALSE;
+  if (!p || !p->ShadowActive) return FALSE;
+  if (p->ShadowCalls[0] != 0xffffffff) ++p->ShadowCalls[0];
+- ok=EngBitBlt((TRUE ? XwnSub(p, psoTrg) : NULL), (XwnRopUsesSource(rop4) ? XwnSub(p, psoSrc) : NULL), (XwnRopUsesMask(rop4) ? XwnSub(p, psoMask) : NULL), pco, pxlo, prclTrg, pptlSrc, pptlMask, pbo, pptlBrush, rop4);
++ if (XwnOwner(psoTrg)==p && rop4==0xcccc && !psoMask &&
++     XwnDibCopy(p,psoSrc,pco,pxlo,prclTrg,pptlSrc)) ok=TRUE;
++ else ok=EngBitBlt((TRUE ? XwnSub(p, psoTrg) : NULL), (XwnRopUsesSource(rop4) ? XwnSub(p, psoSrc) : NULL), (XwnRopUsesMask(rop4) ? XwnSub(p, psoMask) : NULL), pco, pxlo, prclTrg, pptlSrc, pptlMask, pbo, pptlBrush, rop4);
+  if (XwnOwner(psoTrg)) XwnUpload(p, prclTrg, pco);
+  return ok;
+ }
+@@ -84,7 +133,9 @@ BOOL APIENTRY XwnCopyBits(SURFOBJ *psoDest, SURFOBJ *psoSrc, CLIPOBJ *pco, XLATE
+  if ((TRUE) && !XwnSelectOwner(&p, psoSrc)) return FALSE;
+  if (!p || !p->ShadowActive) return FALSE;
+  if (p->ShadowCalls[1] != 0xffffffff) ++p->ShadowCalls[1];
+- ok=EngCopyBits((TRUE ? XwnSub(p, psoDest) : NULL), (TRUE ? XwnSub(p, psoSrc) : NULL), pco, pxlo, prclDest, pptlSrc);
++ if (XwnOwner(psoDest)==p &&
++     XwnDibCopy(p,psoSrc,pco,pxlo,prclDest,pptlSrc)) ok=TRUE;
++ else ok=EngCopyBits((TRUE ? XwnSub(p, psoDest) : NULL), (TRUE ? XwnSub(p, psoSrc) : NULL), pco, pxlo, prclDest, pptlSrc);
+  if (XwnOwner(psoDest)) XwnUpload(p, prclDest, pco);
+  return ok;
+ }

@@ -1,3 +1,50 @@
+# Current: DIB182/183 CLOSED; exact copies pass, no upload benefit
+
+All owned sessions CLOSED. New114 matched treeee6556aa1cbb3a23f7ce4bef0f15cc489cc1fef8
+compiled/reviewed. Host321785 ASan/UBSan checks/30000 byte cases pass.183 ordinary
+control03:06:18->03:08:37UTC andcandidate03:10:38->03:13:00 each50pixel/copychecks,
+25loops50scanoutcomparisons, guard0/0 normalrestart/6006/dashboard/fullcoldaudit
+334dirs6739files335clusters0errors/orphans,5hives40protected PASS. Actual10000timed
+upload hits prove new path; controlzero. Complex/24bit fallbacks observed. Both
+SetupAPI byte-unchanged and explicit179 bindings unchanged.83frozenpins/snapshots
+exact. StrictFALSE soleFt49; no event waiver/application/popup delta. Read182/183
+REPORT/NEXT/pair-review.json. Never relaunch/recollect closed cases.
+
+Upload0.2100ms control/0.2175ms candidate median: no demonstrated improvement.
+Retain outlier and all samples. Do NOT deploy114. Actual compiled row copier is
+libcntpr memmove with aligned REP MOVSD, not byte-only. Next NEW isolated kit can
+compare bounded scalar aligned32bit UC row stores with byte/redzone and actual
+instruction checks; start112/settled181, preserve engine/clip/cache/mode/lifetime.
+No SIMD/FPU/WC/GPU change. Emulator times remain distinct from physical performance.
+Physical0101/video0093/0088rollback/immutable0.1.0 untouched; no physicalaccess.
+Private disks/builds and host refusals preserved. C~22.3GiB,20GiB guard unchanged.
+
+# Historical continuation below
+# Current: matched DIB copy182/ordinary183 prepared; preflight ongoing
+
+New114 source replaces only eligible standard system-memory32bpp SRCCOPY into
+owned RAM primary. Signed rows, bounded whole surfaces/rectangles and disjoint
+allocations; other formats/ROP/translation/complex clips use engine fallback.
+Existing112 identity/scanout/surface/cache/mode policies unchanged. New114 escape
+reports counters under existing membership lock, outside render/copy.
+Host321785 ASan/UBSan checks/30000 byte-oracle cases PASS. Fresh matched RosBE
+OFF/ON compiled from treeee6556aa1cbb3a23f7ce4bef0f15cc489cc1fef8, imports/resident
+adapter/geometry reviewed. No runtime coverage or hardware performance claim.
+Read outputs/video-dib-copy182 and outputs/video-dib-runtime183 actual records.
+Original181 shut down image preserved; portable copied parent qemu-img compare
+identical, all original chain hashes unchanged. Both183 siblings staged; full
+before allocation329dirs6733files330clusters0errors/orphans. V6 adds six exact
+DIB orientation/clip/format/XOR cases to four old copies and five timed loops;
+unchanged compiled178 guard. No hive/log/trace resets, setup/UI/GDB or physical
+access. Retain explicit179 unused-device policy and inherited Ft49 strict failure.
+Owned build98044/parent99166/prepare23352,47116 CLOSED. Preflight20772 currently
+ACTIVE; inspect actual records before resuming. No emulator launch yet. All older
+179–181 CLOSED; never relaunch/recollect. Need both preflights/runtime freeze,
+then one control launch/audit before candidate. Host command/refused freeze and
+probe compiler/inline-symbol review failures preserved, no guest launched there.
+C~22.7GiB,20GiB guard unchanged. Physical0101/video0093/0088/immutable0.1.0 unchanged.
+
+# Historical continuation below
 # Current: explicit unused-device setup and subsequent boot verified; ALL owned CLOSED
 
 Latest179/181 ordinary emulator configuration sequence is reviewed in
