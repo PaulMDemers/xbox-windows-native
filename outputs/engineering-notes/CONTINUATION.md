@@ -1,7 +1,8 @@
 # Current: scalar184/185/186 CLOSED; candidate selected for hardware benchmark
 
-All owned sessions CLOSED. Latest185 evidence pushed8787ccc;186 reverse-order
-longer pair completed, source/reports ready for review/commit. Never relaunch or
+All owned sessions CLOSED. Implementation/evidence pushedd2c8634 (185pushed8787ccc);186 reverse-order
+longer pair completed and reviewed. Repository checks/diff checks passed; current
+Git HEAD includes this closed continuation. No owned running processes. Never relaunch or
 recollect any185/186 cases. Read184/185/186 REPORT/NEXT and186pair-review,
 evidence-review/order-comparison.json. Exact184drivers unchanged.186 candidate
 04:06:05->04:09:05UTC thencontrol04:10:48->04:13:46; each65pixel/copy checks,
@@ -20,7 +21,7 @@ Next prepare new hardware controller/readiness/current-console capture/rollback,
 exact184DLLs+same166 physical-tested shared providers/probeV8/178guard. Preserve original
 166cases and immutable0.1.0, physical0101/video0093/0088. No physicalFTPthissession.
 Do not copy emulator null policy. Keyboard unplugged status must be current before
-Xromwell launch; no old-report assumption. C~20.6GiB,20GiB guard unchanged.
+Xromwell launch; no old-report assumption. Final C~21.5GiB,20GiB guard unchanged.
 
 Generation186001 rawCRLF guard assertion refusal and numeric-site mutation
 preserved before any build/fixture; corrected002 restricts names/preserves raw
