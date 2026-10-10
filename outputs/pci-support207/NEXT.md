@@ -1,5 +1,19 @@
 # Next actions
 
+Current continuation: cancel001/REPORT.md. One fresh NT5 emulator boot passed an
+actual open-handle QUERY_REMOVE/CANCEL_REMOVE sequence: CR_REMOVE_VETOED23,
+OutstandingOpen5, original handle recovered without restart (starts1→1, queries0→1),
+then handle closure and successful ordinary removal/re-enumeration. Five native
+invalid-only HAL probes and six D3/D0 transitions pass. Cold E/F allocation,
+protected files, hives and log history pass. Guest and all leases are CLOSED.
+Normal restart still held258 with new SetupAPI audio01B0; strict Ftdisk49 remains.
+STOP/CANCEL_STOP, functional reads, terminal takeover, normal restart/persistence
+and physical readiness remain open. Do not infer repeated-boot storage safety from
+this first-boot result; the separate USB second-boot failure remains outside it.
+No physical or root fixture integration, telemetry remains disabled.
+
+Historical pre-cancellation continuation follows.
+
 Current continuation: halboot001/REPORT.md. Rebuilt control and ownership HAL
 candidate both booted NT5 in fresh emulator fixtures and passed resource-only
 lifecycle. Four native probes found the export absent in control and present in

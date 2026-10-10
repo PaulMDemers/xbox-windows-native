@@ -1,5 +1,9 @@
 # Native HAL control and candidate boot validation
 
+Later cancellation coverage is recorded in [cancel001](../cancel001/REPORT.md):
+genuine QUERY_REMOVE/CANCEL_REMOVE and recovery passed. STOP/CANCEL_STOP and the
+remaining functional/shutdown gates below remain unqualified.
+
 Both the rebuilt control and shared-ownership HAL candidate booted NT5 in fresh
 owned emulator fixtures and passed the resource-only lifecycle workload. The
 candidate's new XwnSmbusReadV1 export was called successfully four times, including
