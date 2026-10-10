@@ -1,5 +1,19 @@
 # Next actions
 
+October10 hardware220 authorization supersedes the physical-access restrictions
+in the historical list below. Current continuation is hardware220/REPORT.md:
+read-only OS inventory built/reviewed. Emulator001 is closed/held (incomplete
+observer, empty exit log, fixture PnP changes); emulator002 closed at05:44:15UTC
+after its360-second bound and awaits cold audit. A reproduced CMD redirection
+bug is corrected in prepared emulator003, which has NOT launched. The coordinator
+requested the next xemu window for root221; PCI stopped only its unlaunched
+emulator003 lease waiter. Audio then USB must
+close restored-baseline tickets before PCI can claim. Never connect to console
+FTP before queue.py grants PCI. The functional SMBus prototype remains ineligible
+for physical deployment while HAL/video/audio ownership is unresolved.
+
+Historical207 continuation (retain its evidence and failed qualification gates):
+
 1. Native001 installation, six live telemetry cases, typed binding and cold
    integrity passed. Installed driver/OEM INF hashes match. Preserve its closed
    host-stopped result; it is not normal-shutdown/persistence qualification.

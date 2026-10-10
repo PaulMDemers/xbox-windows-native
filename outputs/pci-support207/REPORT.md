@@ -1,4 +1,9 @@
-# PCI support207 — native telemetry works; integration blocked; hardware not ready
+# PCI support207 — native telemetry works; serialized hardware identification preparing
+
+October10 update: the new device-hardware220 handoff authorizes serialized
+physical identification after audio and USB restore/close. Current preparation,
+queue status and trial limits are in hardware220/REPORT.md. No physical access
+has occurred; historical emulator evidence below remains unchanged.
 
 Owner: codex/xbox-native-pci in the isolated E: checkout. Starting revision
 47fe46f6189896750ec8972e6ca4486a9072ded1. HEAD/remote guards verified before writes.
