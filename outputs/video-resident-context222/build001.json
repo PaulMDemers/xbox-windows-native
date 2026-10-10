@@ -1,0 +1,113 @@
+{
+  "status": "preserved_failure",
+  "started_utc": "2026-10-10T06:06:32.028955+00:00",
+  "space": {
+    "minimum_free_gib": 20,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-resident-context222",
+        "free_bytes": 24513372160
+      },
+      {
+        "free_bytes": 24513372160,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "source_pins": {
+    "Build001.ps1": "9b494b37854ad77d3796a9ccc8c6de27b3c94c6e078394ddaea43b7b20d5b984",
+    "build001.py": "bcb70dea10ae8fb52659652a6be498cfe1dc1f6d9ed5969de588ab21613cdc89",
+    "context.c": "1dce81df44f587d12a5dabe8571272c9419e7d3df90daad24e5b76405a0b66ce",
+    "context.h": "2d26489996c83b58d1aafaabc4c1d7665f744eb2fb47ecf29963bf1b710a7f1f",
+    "driver.c": "826ae447963779387752220a005f1b60930e382e52e19648cd4a15f18fc19317",
+    "probe.c": "e6cd2423d5782ce2b2c5a65825cf350abcf0dacfdca0fd78e914a85fa1aaf668",
+    "test.c": "2ae598500d54962d0e05c526107450ca599097bce64f64ae43ef207c4e248136"
+  },
+  "compiler_sha256": "83015512671faaa0dbe6f043a0107f79c049f4268a67e39955388a8d9a0182e5",
+  "import_archive_sha256": "7ddceef5d09b6d754f7003d92df45890dfbf56f2230361c0546b8f162812e940",
+  "commands": [
+    [
+      "/usr/bin/gcc",
+      "-std=c11",
+      "-O0",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=address,undefined",
+      "-fno-omit-frame-pointer",
+      "-pthread",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-resident-context222/context.c",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-resident-context222/test.c",
+      "-o",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-resident-context222/artifacts/build001/host-O0"
+    ],
+    [
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-resident-context222/artifacts/build001/host-O0"
+    ],
+    [
+      "/usr/bin/gcc",
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=address,undefined",
+      "-fno-omit-frame-pointer",
+      "-pthread",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-resident-context222/context.c",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-resident-context222/test.c",
+      "-o",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-resident-context222/artifacts/build001/host-O2"
+    ],
+    [
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-resident-context222/artifacts/build001/host-O2"
+    ],
+    [
+      "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc",
+      "-Os",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-nostdlib",
+      "-fno-stack-protector",
+      "-fno-builtin",
+      "-I/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/i386/i686-w64-mingw32/include/ddk",
+      "-D_WIN32_WINNT=0x0500",
+      "-DNTDDI_VERSION=0x05000000",
+      "-shared",
+      "-Wl,--entry,_DriverEntry@8",
+      "-Wl,--subsystem,native:5.0",
+      "-Wl,--image-base,0x10000",
+      "-Wl,--file-alignment,512",
+      "-Wl,--section-alignment,4096",
+      "-o",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-resident-context222/artifacts/build001/resident.sys",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-resident-context222/context.c",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-resident-context222/driver.c",
+      "/home/paul/xbox-windows-native/build/fatx-dump-map-001/build-fatx/ntoskrnl/CMakeFiles/libntoskrnl.dir/libntoskrnl.a"
+    ]
+  ],
+  "host_runs": [
+    {
+      "optimization": "0",
+      "passed": true,
+      "log_sha256": "0a70ca1a7c60f6328211c02f5b846bd93a68578d2c928dbc18dd5a7ff1b3daee"
+    },
+    {
+      "optimization": "2",
+      "passed": true,
+      "log_sha256": "0a70ca1a7c60f6328211c02f5b846bd93a68578d2c928dbc18dd5a7ff1b3daee"
+    }
+  ],
+  "native": {},
+  "physical_access": false,
+  "guest_launch": false,
+  "gpu_access": false,
+  "host_compiler_sha256": "b5f1b773a7c733738352000c92a077dc5852a1a2fc6d836b1e411be1e9ec5f88",
+  "host_compiler_version": "gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+  "error": "CalledProcessError(1, ['/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc', '-Os', '-Wall', '-Wextra', '-Werror', '-nostdlib', '-fno-stack-protector', '-fno-builtin', '-I/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/i386/i686-w64-mingw32/include/ddk', '-D_WIN32_WINNT=0x0500', '-DNTDDI_VERSION=0x05000000', '-shared', '-Wl,--entry,_DriverEntry@8', '-Wl,--subsystem,native:5.0', '-Wl,--image-base,0x10000', '-Wl,--file-alignment,512', '-Wl,--section-alignment,4096', '-o', '/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-resident-context222/artifacts/build001/resident.sys', '/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-resident-context222/context.c', '/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-resident-context222/driver.c', '/home/paul/xbox-windows-native/build/fatx-dump-map-001/build-fatx/ntoskrnl/CMakeFiles/libntoskrnl.dir/libntoskrnl.a'])",
+  "finished_utc": "2026-10-10T06:06:33.645139+00:00"
+}

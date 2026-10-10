@@ -1,3 +1,48 @@
+# Current:222 native CPU ownership runtime001 CLOSED/PASS CPU scope
+
+Full filesystem/network access restored; no config file change required.
+See outputs/video-resident-context222/REPORT.md, NEXT.md, checkpoint-review.json
+and actual runtime001 audit/closure. All30 frozen inputs and exact prior001/002/003
+source copies verified; native005/import review/host ASan+UBSan passed. Failed
+001 import/002 warnings/004 precompile generator error retained; no old reruns.
+
+ONE ordinary launch accepted2026-10-10T16:46:37.779885UTC, dashboard returned
+16:48:16.058507UTC, cold audit closed16:48:34.077982UTC. CPU scope TRUE:64 worker
+leases plus1 handle cleanup,65 allocations/releases/exposure refusals,3194880
+verified bytes,4 joined workers/raw wait-all3. Allocation320dirs6723files321dir
+clusters,0errors/orphans;5 structural hives/28 protected hashes/history/startup/
+typed policy passed. Normal shutdown1, no app events/popups. Strict/ordinary
+whole-boot FALSE: sole inherited Ftdisk49/error3 retained. No gate waived.
+
+Actual16KiB UC contiguous CPU allocation, real FileObject owner references,
+bounded kernel mutex/token fencing and byte checks. EXPOSE always HOLD, no GPU
+MMIO/descriptors/channel grant. Host-substituted actual driver cleanup bridge
+passed retry/exhaustion/IRQL/pending/refcounts; native fallback fault path remains
+UNQUALIFIED. CPU cleanup/retention is not GPU drain/quarantine evidence. Driver
+nondiscardable sections do not establish runtime PTE/cache-alias residency.
+
+resident005 SHA0c272f680b3d6a9574db79629cecb8fe0852260a20ca9de2ed6350dc93c65f06;
+probe005 SHA2d94065fc3166027f17cd17931f27486ab49a7a481e85941c05da65bb99d383e.
+Standalone E:/Codex-archive/xbox-windows-native/resident222/runtime001-source.qcow2;
+closed run E:/Codex-private-artifacts/xbox-windows-feasibility/resident222-runs/
+nt5-resident222-runtime001. Same physical-core211 policy/219candidatebootvid and
+exact211 targeted wizard helper; inherited_null_policy FALSE. No physical access
+or debugger. Preparation69643/controller66959 CLOSED0, observer/runner/audit0.
+ALL root-owned sessions CLOSED; never relaunch/recollect/rebuild closed IDs.
+
+Next NEW kit: actual loader-to-NT5 instance/channel ownership and SetMode TRUE
+boot guard evidence, then bounded GPU service/completion/drain/quarantine before
+16x8 copy. Read212/215/216/218 contracts and221 limits; never firmware-channel
+borrow/global reset/mock ownership. Physical0101/video0093/0088rollback/immutable
+0.1.0 and all failed evidence unchanged. No root physical deployment/branch merge.
+
+Hardware220 all three tickets CLOSED/restored/sessions[]. Audio5fbcc971 passed
+installation/playback/restart/cold scope; audible unverified, strictFt49 remains.
+USBc30a9f4 descriptor captureFFFF:FFFF/XID, input unqualified. PCI2d51147 inventory
+14devices/modem0:6.1/SMBus rangesC000..C00F,C200..C21F; functional support unresolved.
+Original startup/17protected bytes exact,20 specifically reviewed runtime values
+in separate PCI restoration review, not complete-hive equality. No branch merges.
+
 # Current:221 reset/crash guard pair CLOSED/PASS; hardware220 audio owns console
 
 Updated 2026-10-10T05:50:44.201396+00:00.

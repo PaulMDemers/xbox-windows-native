@@ -1,0 +1,173 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "guest_launch": false,
+  "gpu_access": false,
+  "native_runtime_qualified": false,
+  "source_sha256": "9b101936c7b4c37e7050eebcb66b84139f4d52e0996dc86a905bbcce666fa9ab",
+  "build_sha256": "251adf49b071670ec01adcd7978f0c0e7adf960096b92baa1ba39c91d3bb5a59",
+  "bridge_sha256": "4b67d6fc24272580a156bf1f0362d1732786fc57417dc9c5637defd0fdb837c3",
+  "providers": {
+    "ntoskrnl.exe": {
+      "path": "outputs\\video-upload-runtime211\\artifacts\\F\\winnt\\system32\\ntoskrnl.exe",
+      "sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+    },
+    "hal.dll": {
+      "path": "outputs\\video-upload-runtime211\\artifacts\\E\\Applications\\XWNFBoot\\loader\\halxboxnt5.dll",
+      "sha256": "a3a84368d59936dfa6bbcdc6d5839d57b886342211142d305e9dde941e4d1648"
+    },
+    "kernel32.dll": {
+      "path": "outputs\\video-upload-runtime211\\artifacts\\F\\winnt\\system32\\kernel32.dll",
+      "sha256": "6b05b0749b5dd86da94cc4acd062ca05472509f70216b56cd4a5b9809c602e73"
+    },
+    "advapi32.dll": {
+      "path": "outputs\\video-upload-runtime211\\artifacts\\F\\winnt\\system32\\advapi32.dll",
+      "sha256": "d24493dbb2b1818f9cd605acd3b2008d63354c0975e9a090ccdd04bcc339cc59"
+    },
+    "user32.dll": {
+      "path": "outputs\\video-upload-runtime211\\artifacts\\F\\winnt\\system32\\user32.dll",
+      "sha256": "291210cf381dc269f8847a86e59a7cf775e5dd4086f94ff1266714f34ff55063"
+    },
+    "setupapi.dll": {
+      "path": "outputs\\video-upload-runtime211\\artifacts\\F\\winnt\\system32\\setupapi.dll",
+      "sha256": "1d0a6e9d062a51e71eaae93d776746823834f5c518096d340f2b332fc059a23d"
+    }
+  },
+  "binaries": {
+    "resident.sys": {
+      "sha256": "0c272f680b3d6a9574db79629cecb8fe0852260a20ca9de2ed6350dc93c65f06",
+      "bytes": 13747,
+      "imports": {
+        "ntoskrnl.exe": [
+          "ExAllocatePoolWithTag",
+          "ExFreePool",
+          "IoAllocateWorkItem",
+          "IoCreateDevice",
+          "IoCreateSymbolicLink",
+          "IoDeleteDevice",
+          "IoFreeWorkItem",
+          "IoQueueWorkItem",
+          "IofCompleteRequest",
+          "KeInitializeMutex",
+          "KeReleaseMutex",
+          "KeWaitForSingleObject",
+          "MmAllocateContiguousMemorySpecifyCache",
+          "MmFreeContiguousMemorySpecifyCache",
+          "MmGetPhysicalAddress",
+          "ObfDereferenceObject",
+          "ObfReferenceObject",
+          "RtlInitUnicodeString"
+        ],
+        "hal.dll": [
+          "KeGetCurrentIrql"
+        ]
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "flags": 1613758496,
+          "rva": 4096,
+          "bytes": 2396
+        },
+        {
+          "name": ".rdata",
+          "flags": 1080033344,
+          "rva": 8192,
+          "bytes": 240
+        },
+        {
+          "name": ".bss",
+          "flags": 3227517056,
+          "rva": 12288,
+          "bytes": 96
+        },
+        {
+          "name": ".edata",
+          "flags": 1076887616,
+          "rva": 16384,
+          "bytes": 125
+        },
+        {
+          "name": ".idata",
+          "flags": 3224371264,
+          "rva": 20480,
+          "bytes": 764
+        },
+        {
+          "name": ".reloc",
+          "flags": 1110442048,
+          "rva": 24576,
+          "bytes": 108
+        }
+      ],
+      "entry_rva": 6239
+    },
+    "probe.exe": {
+      "sha256": "2d94065fc3166027f17cd17931f27486ab49a7a481e85941c05da65bb99d383e",
+      "bytes": 15242,
+      "imports": {
+        "advapi32.dll": [
+          "AdjustTokenPrivileges",
+          "CloseServiceHandle",
+          "CreateServiceA",
+          "LookupPrivilegeValueA",
+          "OpenProcessToken",
+          "OpenSCManagerA",
+          "StartServiceA"
+        ],
+        "kernel32.dll": [
+          "CloseHandle",
+          "CreateFileA",
+          "CreateThread",
+          "DeviceIoControl",
+          "EnterCriticalSection",
+          "ExitProcess",
+          "FlushFileBuffers",
+          "GetCurrentProcess",
+          "GetExitCodeThread",
+          "GetLastError",
+          "GetProcAddress",
+          "GetTickCount",
+          "InitializeCriticalSection",
+          "LeaveCriticalSection",
+          "LoadLibraryA",
+          "Sleep",
+          "WaitForMultipleObjects",
+          "WriteFile"
+        ],
+        "user32.dll": [
+          "ExitWindowsEx",
+          "wsprintfA"
+        ]
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "flags": 1613758496,
+          "rva": 4096,
+          "bytes": 2780
+        },
+        {
+          "name": ".rdata",
+          "flags": 1076887616,
+          "rva": 8192,
+          "bytes": 676
+        },
+        {
+          "name": ".bss",
+          "flags": 3224371328,
+          "rva": 12288,
+          "bytes": 40
+        },
+        {
+          "name": ".idata",
+          "flags": 3224371264,
+          "rva": 16384,
+          "bytes": 968
+        }
+      ],
+      "entry_rva": 5084
+    }
+  },
+  "limits": "Actual intended211 providers/export names and on-disk sections; not executed NT5 ABI, actual page residency, kernel worker timing, GPU ownership or physical qualification."
+}
