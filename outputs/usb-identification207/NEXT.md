@@ -19,3 +19,5 @@ is validated by screenshots, or the unknown-device wizard is fixed.
 The emulator images are private and retained on E:. Raw log and after-hives
 are under artifacts/emu003; startup/seed/rollback evidence remains preserved.
 No automatic retry, physical deployment or cross-chat follow-up is scheduled.
+
+Native XID follow-up: ../usb-xid-capture/REPORT.md records the real vendor descriptor and 1863 physical completions (one empty, 1862 valid 20-byte packets). The successor ticket is closed and all 55 selected baseline files remain exact. The portable decoder passed host tests and full sample replay. NT5 transport/HID binding and attended physical button/trigger mapping are still unqualified.
