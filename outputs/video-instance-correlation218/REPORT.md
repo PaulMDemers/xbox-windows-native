@@ -77,3 +77,9 @@ Other-device check-in is complete and pushed in161921a. Audio is experimental
 emulator playback, PCI is SMBus support with pending-install shutdown failure,
 USB is descriptor collection without a functional XID minidriver. No combined
 integration or physical qualification occurred. See ../device-checkin217/REPORT.md.
+
+Additional Git reconstruction checking initially rejected historical helper LF
+blobs against working CRLF pins. That host failure is preserved in
+commit-check001-failure.json. check-commit218.py verifies all438 actual working
+pins and either literal Git bytes or exact LF-to-CRLF reconstruction, recording
+each difference in commit-validation.json. No runtime hash was changed.
