@@ -1,5 +1,10 @@
 # USB207 handoff
 
+October10 update: hardware testing is now authorized through the serialized
+device-hardware220 queue. The new trial/report is ../usb-hardware220/REPORT.md.
+The historical coordinator-only restriction below is superseded for that trial;
+the original207 evidence/package remains immutable.
+
 Build007 and emu003 descriptor collection review passed. All owned processes
 and sessions are closed. No physical console access occurred. No message to
 another chat was sent. Source branch: codex/xbox-native-usb.
