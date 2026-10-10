@@ -1,0 +1,58 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "guest_launch": false,
+  "source_pins": {
+    "host-test.c": "2444999b74084f702f7846d4524a562978445a08ebda08994b05821287cc7e62",
+    "upload_account.h": "a86f94cad65d379c432e1594ffce16ea2405b61f16a60552c8986e1bc632a282",
+    "test-host.py": "798cf66f43238c3141b02ab746fc44306495fe870d77acb87e570c9dacb5dc2f"
+  },
+  "runs": [
+    {
+      "mode": 0,
+      "command": [
+        "gcc",
+        "-std=c99",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-function",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-DXWN_UPLOAD_ACCOUNTING=0",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-upload-accounting210/host-test.c",
+        "-o",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-upload-accounting210/artifacts/host001/test0"
+      ],
+      "binary_sha256": "8cf3ee1f055d4a2826d8fd56a1d925ec2a8bbc891bb2e02965df2616317ef097",
+      "output": "accounting host oracle PASS\nchecks=127131 mode=0\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "mode": 1,
+      "command": [
+        "gcc",
+        "-std=c99",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-function",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-DXWN_UPLOAD_ACCOUNTING=1",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-upload-accounting210/host-test.c",
+        "-o",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-upload-accounting210/artifacts/host001/test1"
+      ],
+      "binary_sha256": "3899d0f6e00e12350580608eaa6a2142e9f323516df3a7d609580598917e59a4",
+      "output": "accounting host oracle PASS\nchecks=188580 mode=1\n",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ]
+}

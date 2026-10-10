@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "guest_launch": false,
+  "reviewed_changes": [
+    "shadow.c",
+    "ownership.c",
+    "surface.c",
+    "framebuf.h",
+    "enable.c",
+    "CMakeLists.txt",
+    "upload_account.h"
+  ],
+  "no_render_call_change": true,
+  "no_cache_or_ownership_change": true,
+  "no_semaphore_spanning_render_copy": true,
+  "explicit_fifteen_producers": true,
+  "source_review_sha256": "f0d632b67f6625ceafbedb953eca7a290a6c057e933f3b50151e78e04ddd501e",
+  "notes": [
+    "Existing XWT text-copy accounting preserved; new XWA local copy statistics are additional and published after copy.",
+    "Both SurfaceLifecycle calls explicitly use kind14; TextOut uses kind2 including empty/no-box requests.",
+    "NullBytes count actual completed bytes associated with a NULL input rectangle, including clip fallback copies, not an inferred waste estimate.",
+    "OFF publication is compiled out; read-only packet still reports mode0 and zero rows.",
+    "Existing profile clocks remain OFF and proven text bounds ON; no SIMD, WC mapping, GPU command or device policy change."
+  ]
+}

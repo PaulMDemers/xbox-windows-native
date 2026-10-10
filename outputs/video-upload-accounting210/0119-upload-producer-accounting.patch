@@ -1,0 +1,363 @@
+--- a/win32ss/drivers/displays/framebuf/CMakeLists.txt
++++ b/win32ss/drivers/displays/framebuf/CMakeLists.txt
+@@ -43,3 +43,10 @@
+ else()
+  target_compile_definitions(xwnown PRIVATE XWN_TEXT_BOUNDS=0)
+ endif()
++
++option(XWN_UPLOAD_ACCOUNTING "Diagnostic completed upload bytes by DDI" OFF)
++if(XWN_UPLOAD_ACCOUNTING)
++ target_compile_definitions(xwnown PRIVATE XWN_UPLOAD_ACCOUNTING=1)
++else()
++ target_compile_definitions(xwnown PRIVATE XWN_UPLOAD_ACCOUNTING=0)
++endif()
+--- a/win32ss/drivers/displays/framebuf/enable.c
++++ b/win32ss/drivers/displays/framebuf/enable.c
+@@ -31,6 +31,10 @@
+    p = XwnOwner(Surface);
+    if (!p) return 0;
+    if (!p->ScreenPtr || !p->hSurfEng || !p->ShadowObject || !p->ShadowActive) return 0;
++   if (Escape == 0x58574438 && OutBytes == XWA_WORDS*4)
++   {
++      ULONG Upload[XWA_WORDS];XwnUploadSnapshot(p,Upload);memcpy(Out,Upload,sizeof(Upload));return 1;
++   }
+    if (Escape == 0x58574437 && OutBytes == 160)
+    {
+       ULONG Extended[40];XwnTextExtended(p,Extended);memcpy(Out,Extended,160);return 1;
+--- a/win32ss/drivers/displays/framebuf/framebuf.h
++++ b/win32ss/drivers/displays/framebuf/framebuf.h
+@@ -32,6 +32,7 @@
+ 
+ #include "profile_math.h"
+ #include "text_bounds.h"
++#include "upload_account.h"
+ typedef struct _PDEV
+ {
+    HANDLE hDriver;
+@@ -45,6 +46,7 @@
+    ULONG RowBoxes, RowFast, RowSlow;
+    ULONGLONG RowBytes, RowFastBytes;
+    XWN_PROFILE Profile;
++   XWA_STATS UploadStats;
+    XWT_STATS TextStats;
+    RECTL TextInputClip;
+    ULONG TextHasClip,TextComplexity;
+@@ -187,7 +189,9 @@
+    IN ULONG cColors);
+ 
+ 
+-VOID XwnUpload(PPDEV p, const RECTL *rect, const CLIPOBJ *clip);
++VOID XwnUpload(PPDEV p, const RECTL *rect, const CLIPOBJ *clip, ULONG kind);
++VOID XwnUploadRecord(PPDEV,ULONG,ULONG,const XWA_COPY *);
++VOID XwnUploadSnapshot(PPDEV,ULONG *);
+ ULONG XwnCheckScanout(PPDEV p);
+ BOOL APIENTRY XwnBitBlt(SURFOBJ *psoTrg, SURFOBJ *psoSrc, SURFOBJ *psoMask, CLIPOBJ *pco, XLATEOBJ *pxlo, RECTL *prclTrg, POINTL *pptlSrc, POINTL *pptlMask, BRUSHOBJ *pbo, POINTL *pptlBrush, ROP4 rop4);
+ BOOL APIENTRY XwnCopyBits(SURFOBJ *psoDest, SURFOBJ *psoSrc, CLIPOBJ *pco, XLATEOBJ *pxlo, RECTL *prclDest, POINTL *pptlSrc);
+--- a/win32ss/drivers/displays/framebuf/ownership.c
++++ b/win32ss/drivers/displays/framebuf/ownership.c
+@@ -215,3 +215,21 @@
+  out[36]=p->TextComplexity;out[37]=p->TextHasClip;
+  EngReleaseSemaphore(XwnOwnerLock);
+ }
++
++/* Publish one completed upload; no membership lock spans Eng or framebuffer IO. */
++VOID XwnUploadRecord(PPDEV p,ULONG kind,ULONG has_rect,const XWA_COPY *copied)
++{
++#if XWN_UPLOAD_ACCOUNTING
++ EngAcquireSemaphore(XwnOwnerLock);
++ XwaRecord(&p->UploadStats,kind,has_rect,copied);
++ EngReleaseSemaphore(XwnOwnerLock);
++#else
++ (void)p;(void)kind;(void)has_rect;(void)copied;
++#endif
++}
++VOID XwnUploadSnapshot(PPDEV p,ULONG *out)
++{
++ EngAcquireSemaphore(XwnOwnerLock);
++ XwaSnapshot(&p->UploadStats,out);
++ EngReleaseSemaphore(XwnOwnerLock);
++}
+--- a/win32ss/drivers/displays/framebuf/shadow.c
++++ b/win32ss/drivers/displays/framebuf/shadow.c
+@@ -13,7 +13,7 @@
+ {
+  return XwnOwner(s)==p ? p->ShadowObject : s;
+ }
+-static VOID XwnUploadBox(PPDEV p, const RECTL *r, XWT_COPY *account)
++static VOID XwnUploadBox(PPDEV p, const RECTL *r, XWT_COPY *account, XWA_COPY *producer)
+ {
+  LONG y; ULONG bytes,fast=0,slow=0; LONGLONG begin;
+  if (r->left>=r->right || r->top>=r->bottom) return;
+@@ -29,8 +29,9 @@
+  if(p->ShadowUploads!=0xffffffff) ++p->ShadowUploads;
+  p->ShadowBytes+=(ULONGLONG)bytes*(r->bottom-r->top);
+  if(account) XwtCopy(account,(ULONGLONG)bytes*(r->bottom-r->top));
+-}
+-static VOID XwnUploadInternal(PPDEV p, const RECTL *rect, const CLIPOBJ *clip, XWT_COPY *account)
++ if(producer) XwaBox(producer,(ULONGLONG)bytes*(r->bottom-r->top));
++}
++static VOID XwnUploadInternal(PPDEV p, const RECTL *rect, const CLIPOBJ *clip, XWT_COPY *account, XWA_COPY *producer)
+ {
+  RECTL r;
+  if (!p->ShadowActive || !p->ScreenPtr || !p->ShadowBits) return;
+@@ -55,22 +56,25 @@
+     if(part.left>part.right || part.top>part.bottom) goto fallback;
+     part.left=max(part.left,r.left);part.top=max(part.top,r.top);
+     part.right=min(part.right,r.right);part.bottom=min(part.bottom,r.bottom);
+-    XwnUploadBox(p,&part,account);
++    XwnUploadBox(p,&part,account,producer);
+    }
+    /* FALSE can contain the final nonempty batch; TRUE can contain none. */
+    if (!more) return;
+   }
+  }
+- else {XwnUploadBox(p,&r,account);return;}
++ else {XwnUploadBox(p,&r,account,producer);return;}
+ fallback:
++ if(producer) XwaFallback(producer);
+  /* Partial uploads copy completed RAM pixels: repeating the full box is safe. */
+- XwnUploadBox(p,&r,account);
+-}
+-VOID XwnUpload(PPDEV p, const RECTL *rect, const CLIPOBJ *clip)
+-{
++ XwnUploadBox(p,&r,account,producer);
++}
++VOID XwnUpload(PPDEV p, const RECTL *rect, const CLIPOBJ *clip, ULONG kind)
++{
++ XWA_COPY copied={0,0,0,0};
+  LONGLONG begin=XwnProfileStart();
+- XwnUploadInternal(p,rect,clip,NULL);
++ XwnUploadInternal(p,rect,clip,NULL,&copied);
+  XwnProfileEnd(p,3,begin);
++ XwnUploadRecord(p,kind,rect!=NULL,&copied);
+ }
+ ULONG XwnCheckScanout(PPDEV p)
+ {
+@@ -90,7 +94,7 @@
+  begin=XwnProfileStart();
+  ok=EngBitBlt((TRUE ? XwnSub(p, psoTrg) : NULL), (XwnRopUsesSource(rop4) ? XwnSub(p, psoSrc) : NULL), (XwnRopUsesMask(rop4) ? XwnSub(p, psoMask) : NULL), pco, pxlo, prclTrg, pptlSrc, pptlMask, pbo, pptlBrush, rop4);
+  XwnProfileEnd(p,0,begin);
+- if (XwnOwner(psoTrg)) XwnUpload(p, prclTrg, pco);
++ if (XwnOwner(psoTrg)) XwnUpload(p, prclTrg, pco,0);
+  return ok;
+ }
+ 
+@@ -104,7 +108,7 @@
+  begin=XwnProfileStart();
+  ok=EngCopyBits((TRUE ? XwnSub(p, psoDest) : NULL), (TRUE ? XwnSub(p, psoSrc) : NULL), pco, pxlo, prclDest, pptlSrc);
+  XwnProfileEnd(p,1,begin);
+- if (XwnOwner(psoDest)) XwnUpload(p, prclDest, pco);
++ if (XwnOwner(psoDest)) XwnUpload(p, prclDest, pco,1);
+  return ok;
+ }
+ 
+@@ -112,7 +116,7 @@
+ {
+  PPDEV p=NULL; BOOL ok; ULONG reason; LONGLONG begin;
+  XWT_RECT string={0,0,0,0},opaque={0,0,0,0},bound={0,0,0,0};
+- RECTL rect,inputClip={0,0,0,0}; ULONG complexity=0; const RECTL *chosen=NULL; XWT_COPY copied={0,0,0}; ULONG glyphs=0;
++ RECTL rect,inputClip={0,0,0,0}; ULONG complexity=0; const RECTL *chosen=NULL; XWT_COPY copied={0,0,0}; XWA_COPY producer={0,0,0,0}; ULONG glyphs=0;
+  if ((TRUE) && !XwnSelectOwner(&p, pso)) return FALSE;
+  if (!p || !p->ShadowActive) return FALSE;
+  if (p->ShadowCalls[2] != 0xffffffff) ++p->ShadowCalls[2];
+@@ -130,8 +134,9 @@
+    rect.left=bound.left;rect.top=bound.top;rect.right=bound.right;rect.bottom=bound.bottom;chosen=&rect;
+   }
+   begin=XwnProfileStart();
+-  if(!(XWN_TEXT_BOUNDS && reason==XWT_EMPTY)) XwnUploadInternal(p,chosen,pco,&copied);
++  if(!(XWN_TEXT_BOUNDS && reason==XWT_EMPTY)) XwnUploadInternal(p,chosen,pco,&copied,&producer);
+   XwnProfileEnd(p,3,begin);
++  XwnUploadRecord(p,2,chosen!=NULL,&producer);
+   XwnTextRecord(p,reason,glyphs,&bound,&copied,pco?&inputClip:NULL,complexity);
+  }
+  return ok;
+@@ -144,7 +149,7 @@
+  if (!p || !p->ShadowActive) return FALSE;
+  if (p->ShadowCalls[3] != 0xffffffff) ++p->ShadowCalls[3];
+  ok=EngStrokePath((TRUE ? XwnSub(p, pso) : NULL), ppo, pco, pxo, pbo, pptlBrushOrg, plineattrs, mix);
+- if (XwnOwner(pso)) XwnUpload(p, NULL, pco);
++ if (XwnOwner(pso)) XwnUpload(p, NULL, pco,3);
+  return ok;
+ }
+ 
+@@ -155,7 +160,7 @@
+  if (!p || !p->ShadowActive) return FALSE;
+  if (p->ShadowCalls[4] != 0xffffffff) ++p->ShadowCalls[4];
+  ok=EngFillPath((TRUE ? XwnSub(p, pso) : NULL), ppo, pco, pbo, pptlBrushOrg, mix, flOptions);
+- if (XwnOwner(pso)) XwnUpload(p, NULL, pco);
++ if (XwnOwner(pso)) XwnUpload(p, NULL, pco,4);
+  return ok;
+ }
+ 
+@@ -166,7 +171,7 @@
+  if (!p || !p->ShadowActive) return FALSE;
+  if (p->ShadowCalls[5] != 0xffffffff) ++p->ShadowCalls[5];
+  ok=EngStrokeAndFillPath((TRUE ? XwnSub(p, pso) : NULL), ppo, pco, pxo, pboStroke, plineattrs, pboFill, pptlBrushOrg, mixFill, flOptions);
+- if (XwnOwner(pso)) XwnUpload(p, NULL, pco);
++ if (XwnOwner(pso)) XwnUpload(p, NULL, pco,5);
+  return ok;
+ }
+ 
+@@ -181,7 +186,7 @@
+     Keep the old full-clip fallback for absent or degenerate bounds. */
+  if (XwnOwner(pso)) XwnUpload(p,
+      prclBounds && prclBounds->left < prclBounds->right &&
+-     prclBounds->top < prclBounds->bottom ? prclBounds : NULL, pco);
++     prclBounds->top < prclBounds->bottom ? prclBounds : NULL, pco,6);
+  return ok;
+ }
+ 
+@@ -192,7 +197,7 @@
+  if (!p || !p->ShadowActive) return FALSE;
+  if (p->ShadowCalls[7] != 0xffffffff) ++p->ShadowCalls[7];
+  ok=EngPaint((TRUE ? XwnSub(p, pso) : NULL), pco, pbo, pptlBrushOrg, mix);
+- if (XwnOwner(pso)) XwnUpload(p, NULL, pco);
++ if (XwnOwner(pso)) XwnUpload(p, NULL, pco,7);
+  return ok;
+ }
+ 
+@@ -205,7 +210,7 @@
+  if (!p || !p->ShadowActive) return FALSE;
+  if (p->ShadowCalls[8] != 0xffffffff) ++p->ShadowCalls[8];
+  ok=EngStretchBlt((TRUE ? XwnSub(p, psoDest) : NULL), (TRUE ? XwnSub(p, psoSrc) : NULL), (TRUE ? XwnSub(p, psoMask) : NULL), pco, pxlo, pca, pptlHTOrg, prclDest, prclSrc, pptlMask, iMode);
+- if (XwnOwner(psoDest)) XwnUpload(p, NULL, pco);
++ if (XwnOwner(psoDest)) XwnUpload(p, NULL, pco,8);
+  return ok;
+ }
+ 
+@@ -218,7 +223,7 @@
+  if (!p || !p->ShadowActive) return FALSE;
+  if (p->ShadowCalls[9] != 0xffffffff) ++p->ShadowCalls[9];
+  ok=EngStretchBltROP((TRUE ? XwnSub(p, psoDest) : NULL), (XwnRopUsesSource(rop4) ? XwnSub(p, psoSrc) : NULL), (XwnRopUsesMask(rop4) ? XwnSub(p, psoMask) : NULL), pco, pxlo, pca, pptlHTOrg, prclDest, prclSrc, pptlMask, iMode, pbo, rop4);
+- if (XwnOwner(psoDest)) XwnUpload(p, NULL, pco);
++ if (XwnOwner(psoDest)) XwnUpload(p, NULL, pco,9);
+  return ok;
+ }
+ 
+@@ -231,7 +236,7 @@
+  if (!p || !p->ShadowActive) return FALSE;
+  if (p->ShadowCalls[10] != 0xffffffff) ++p->ShadowCalls[10];
+  ok=EngPlgBlt((TRUE ? XwnSub(p, psoTrg) : NULL), (TRUE ? XwnSub(p, psoSrc) : NULL), (TRUE ? XwnSub(p, psoMsk) : NULL), pco, pxlo, pca, pptlBrushOrg, pptfx, prcl, pptl, iMode);
+- if (XwnOwner(psoTrg)) XwnUpload(p, NULL, pco);
++ if (XwnOwner(psoTrg)) XwnUpload(p, NULL, pco,10);
+  return ok;
+ }
+ 
+@@ -243,7 +248,7 @@
+  if (!p || !p->ShadowActive) return FALSE;
+  if (p->ShadowCalls[11] != 0xffffffff) ++p->ShadowCalls[11];
+  ok=EngAlphaBlend((TRUE ? XwnSub(p, psoDest) : NULL), (TRUE ? XwnSub(p, psoSrc) : NULL), pco, pxlo, prclDest, prclSrc, pBlendObj);
+- if (XwnOwner(psoDest)) XwnUpload(p, prclDest, pco);
++ if (XwnOwner(psoDest)) XwnUpload(p, prclDest, pco,11);
+  return ok;
+ }
+ 
+@@ -254,7 +259,7 @@
+  if (!p || !p->ShadowActive) return FALSE;
+  if (p->ShadowCalls[12] != 0xffffffff) ++p->ShadowCalls[12];
+  ok=EngGradientFill((TRUE ? XwnSub(p, psoDest) : NULL), pco, pxlo, pVertex, nVertex, pMesh, nMesh, prclExtents, pptlDitherOrg, ulMode);
+- if (XwnOwner(psoDest)) XwnUpload(p, NULL, pco);
++ if (XwnOwner(psoDest)) XwnUpload(p, NULL, pco,12);
+  return ok;
+ }
+ 
+@@ -266,6 +271,6 @@
+  if (!p || !p->ShadowActive) return FALSE;
+  if (p->ShadowCalls[13] != 0xffffffff) ++p->ShadowCalls[13];
+  ok=EngTransparentBlt((TRUE ? XwnSub(p, psoDst) : NULL), (TRUE ? XwnSub(p, psoSrc) : NULL), pco, pxlo, prclDst, prclSrc, iTransColor, ulReserved);
+- if (XwnOwner(psoDst)) XwnUpload(p, prclDst, pco);
+- return ok;
+-}
++ if (XwnOwner(psoDst)) XwnUpload(p, prclDst, pco,13);
++ return ok;
++}
+--- a/win32ss/drivers/displays/framebuf/surface.c
++++ b/win32ss/drivers/displays/framebuf/surface.c
+@@ -139,7 +139,7 @@
+       goto FailMapping;
+    }
+    ppdev->ShadowActive=TRUE;
+-   XwnUpload(ppdev,NULL,NULL);
++   XwnUpload(ppdev,NULL,NULL,14);
+ 
+    return hSurface;
+ 
+@@ -244,7 +244,7 @@
+       }
+ 
+       ppdev->ShadowActive=TRUE;
+-      XwnUpload(ppdev,NULL,NULL);
++      XwnUpload(ppdev,NULL,NULL,14);
+       return TRUE;
+    }
+    else
+--- /dev/null
++++ b/win32ss/drivers/displays/framebuf/upload_account.h
+@@ -0,0 +1,67 @@
++/* GPL-2.0-or-later. Bounded after-copy diagnostics; never owns a render lock. */
++#ifndef XWN_UPLOAD_ACCOUNT_H
++#define XWN_UPLOAD_ACCOUNT_H
++#define XWA_KINDS 15
++#define XWA_WORDS (8 + XWA_KINDS * 10)
++typedef struct { ULONG boxes,fallbacks,overflow; ULONGLONG bytes; } XWA_COPY;
++typedef struct {
++ ULONG requests,explicit_rect,null_rect,boxes,fallbacks;
++ ULONGLONG bytes,null_bytes;
++} XWA_ROW;
++typedef struct { ULONG errors,overflow; XWA_ROW row[XWA_KINDS]; } XWA_STATS;
++static void XwaAdd32(ULONG *v,ULONG n,ULONG *overflow)
++{
++ if(n>~(ULONG)0-*v) {*v=~(ULONG)0;*overflow=1;} else *v+=n;
++}
++static void XwaAdd64(ULONGLONG *v,ULONGLONG n,ULONG *overflow)
++{
++ if(n>~(ULONGLONG)0-*v) {*v=~(ULONGLONG)0;*overflow=1;} else *v+=n;
++}
++static void XwaBox(XWA_COPY *c,ULONGLONG bytes)
++{
++#if XWN_UPLOAD_ACCOUNTING
++ XwaAdd32(&c->boxes,1,&c->overflow);XwaAdd64(&c->bytes,bytes,&c->overflow);
++#else
++ (void)c;(void)bytes;
++#endif
++}
++static void XwaFallback(XWA_COPY *c)
++{
++#if XWN_UPLOAD_ACCOUNTING
++ XwaAdd32(&c->fallbacks,1,&c->overflow);
++#else
++ (void)c;
++#endif
++}
++static void XwaRecord(XWA_STATS *s,ULONG kind,ULONG has_rect,const XWA_COPY *c)
++{
++#if XWN_UPLOAD_ACCOUNTING
++ XWA_ROW *r;
++ if(kind>=XWA_KINDS||has_rect>1){s->errors=1;return;}
++ r=&s->row[kind];s->overflow|=c->overflow;
++ XwaAdd32(&r->requests,1,&s->overflow);
++ XwaAdd32(has_rect?&r->explicit_rect:&r->null_rect,1,&s->overflow);
++ XwaAdd32(&r->boxes,c->boxes,&s->overflow);
++ XwaAdd32(&r->fallbacks,c->fallbacks,&s->overflow);
++ XwaAdd64(&r->bytes,c->bytes,&s->overflow);
++ if(!has_rect)XwaAdd64(&r->null_bytes,c->bytes,&s->overflow);
++#else
++ (void)s;(void)kind;(void)has_rect;(void)c;
++#endif
++}
++static void XwaSnapshot(const XWA_STATS *s,ULONG *out)
++{
++ ULONG i,a;const XWA_ROW *r;
++ for(i=0;i<XWA_WORDS;i++)out[i]=0;
++ out[0]=0x41555758;out[1]=119;out[2]=XWA_WORDS*4;
++ out[3]=XWN_UPLOAD_ACCOUNTING;out[4]=XWA_KINDS;
++ out[5]=s->errors;out[6]=s->overflow;
++ for(i=0;i<XWA_KINDS;i++){
++  r=&s->row[i];a=8+i*10;
++  out[a]=r->requests;out[a+1]=r->explicit_rect;out[a+2]=r->null_rect;
++  out[a+3]=r->boxes;out[a+4]=(ULONG)r->bytes;out[a+5]=(ULONG)(r->bytes>>32);
++  out[a+6]=(ULONG)r->null_bytes;out[a+7]=(ULONG)(r->null_bytes>>32);
++  out[a+8]=r->fallbacks;
++ }
++}
++#endif

@@ -1,4 +1,177 @@
-# Current:209 hardware and emulator pairs CLOSED; scalar copier no speed benefit
+# Current:211 upload accounting pair CLOSED; physical baseline restored
+
+Ordinary control58987/candidate81630 and physical control96890/candidate92423
+CLOSED. All new upload119 packets/40steps*5/159transitions plus retained copy/
+text/window/coherence/helper/idle scopes PASS. Ordinary fullcold each324dirs/
+6727files/325clusters0errors/orphans,5hives/protected/typedpolicies PASS. Physical
+normalrestart/dashboard, startupFIRST collection, exact0101/video0093+SYSTEM
+restoration/readback, ten before/after hives/protected/typed policies PASS each.
+Physical candidate accepted00:22:14.442337Z October10, closed00:27:17.315444Z.
+Never relaunch/recollect any closed211case. All root-owned sessions CLOSED,
+including nativebuild/prep/emulator/offload/capture/finish/inventory/preservation.
+
+Actual emulator/physical totals identical. Movement66,738,880bytes across200
+steps: explicit CopyBits57,344,000 (85.92%) and BitBlt9,394,880. Paint27,865,600:
+CopyBits26,214,400+boundedTextOut1,651,200. Readback0. No measured NULL uploads
+or clipfallback. These device-global phase bytes provide no evidence for another
+bounds fix in this scene, no timings/FPS/whole-desktop or transfer-bottleneck proof.
+No speed claim/promotion. Sole actual Ft49 remains strictFALSE on allfour runs,
+no application/measurement errors. No full physical allocation/dump/newmodes/
+release qualification. Evidence387pins PASS, original frozen ordinary metadata
+archives separately verified against unchanged manifest; current physicalfreeze.
+Original0088/immutable0.1.0/all failures preserved. Scalar remainsOFF;119diagnostic
+and206boundsON temporary only, baseline0093 restored.
+
+NEXT: TRANSFER-NEXT.md specifies a NEW separately reviewed transfer-only design.
+Pinned e72e76bd NV062/NV09F local model leads/source hashes/privatearchives in
+transfer-source-leads/preservation JSON. No register/DMA/GPU prototype ran.
+First inventory actual current ShadowBits allocation/lifetime, NT5 exported
+contiguous/locking/physical-address ABI and existing owned GPU setup. A virtual
+Eng bitmap pointer is not automatically valid DMA memory. Preserve0106 permanent
+UC crashpointer, CPUfallback, no cacheflag shortcut. Existing video-late-cache-
+review already rejects fixed-buffer continuously valid UC-to-WC handoff; do not
+repeat. Require safe context/channel ownership, cache visibility, bounded extent/
+completion/drain/failure recovery, tiny disjoint CPU/rawRGB oracle before expansion.
+
+Final repository19,606-file binary/media/credential checks, Python/PowerShell
+syntax,215 exact staged source/evidence byte checks and whitespace PASS. No root
+owned python/xemu process matched211/210. Commit/push private main is the remaining
+handoff step; verify actual main/origin in git log before new experiments.
+Hardware003/004 closed standalone disks offloaded hash/junction verified to E;
+actual manifests in task-storage-offload. C last22,731,145,216 bytes;20GiBguard.
+No active backingchain relocation. Independent PCI801bdbd branch delivered native
+SMBus telemetry/cold retainedbinding, pending audio/shutdown and physicalmodem
+facts; USB5d86c99 collector delivered, still no physicaldescriptors/controller.
+Audio active, separate clone. No main merge or other-device physical deployment.
+
+# Historical:211 physical control CLOSED PASS; candidate deployment ACTIVE
+
+Physical control96890 CLOSED00:21:01Z October10, one normalrestart/dashboard
+00:20:28Z, scopedpixel/counter/helper/idle/measurement PASS; actualwarnings sole
+Ftdisk49, no new application or measurement events. Startup restored FIRST,
+exact0101/video0093 and SYSTEM readback verified, ten before/after structural
+hives/protected/typedpolicy pass, all5 sequence159-transitions pass. No recollect.
+
+Candidate deployment/finish started from current captured baseline; inspect
+candidate001/physical.json for actual acceptance and finish-state/physical-return
+for owned observer. No duplicate launch/observer/collection. Persistently unplugged
+keyboard user authorization retained. Only ACCOUNTING flag differs; boundsON,
+scalar/bodyclocksOFF. No baseline promotion, other device branch or physical policy
+integration. If observer returns, collect startupFIRST, restore/audit/close once.
+
+Both ordinary211cases CLOSED fullcold/scopedPASS, allsequences/paired actual119
+coverage PASS. All earlier211 build/prep/offload sessions CLOSED. Original0088,
+immutable0.1.0 and failures preserved;20GiBguard unchanged. Current .gitattributes
+preserves exact210/211 frozen bytes. Premature index-byte check included normally
+mutable live observer record; host-only failure retained, final index-byte check
+must wait until both trial closures.
+
+NEXT: close owned candidate finish; full sequence --physical, pairedphysical
+comparison and producer-analysis. Review-evidence.py then complete report/NEXT/
+continuation/source/PSsyntax/repository/staged-byte/whitespace checks, commit/push
+private main. Existing late-cache-review rejects same-buffer UC-to-WC handoff;
+if physical explicit-bounded copies also dominate, next design is separately
+reviewed transfer path, not a speculative bounds/store variant. PCI SMBus branch
+801bdbd delivered native telemetry/persisted binding, still pending supported
+audio setup/shutdown and physicalmodem evidence; no merge/deploy. USB5d86c99 is
+collector only. Audio active with preserved failed emulator/harness evidence.
+
+# Historical:211 ordinary pair CLOSED; physical control96890 ACTIVE
+
+Ordinary control58987/candidate81630 CLOSED scoped pixel and full cold integrity
+PASS; each324dirs6727files325clusters, five hives/protected/typed policy, normal
+restart/dashboard. All five159-transition packet sequence reviews PASS each.
+Paired actual119 coverage/caps/text geometry PASS; strictFALSE sole inheritedFt49.
+Candidate accepted00:09:59Z, closed00:13:56Z October10. No duplicate launches.
+
+Emulator movement66,738,880bytes: CopyBits57,344,000 (explicit bounds), BitBlt
+9,394,880 (explicit bounds). Forced paint27,865,600, readback0. No NULL uploads
+or fallback in these measured phases. This scene supports no further bounds fix;
+not a speed/FPS/general desktop claim. Existing late-cache review already rejects
+a fixed-buffer continuously valid UC-to-WC handoff; do not repeat it.
+
+Read-only physical capture/providers/hive review and private typed proposal PASS.
+Original ordinary sources preserved before four physical description-only fixes;
+AST literal-only proof and separate physical-ready freeze retained. Package ready.
+Physical control deploy-launch accepted00:15:41.269241Z, 200EXEC, one-shot startup
+active. Combined finish96890 ACTIVE, inspect control001/physical-return.json and
+finish-state.json; never relaunch or start another observer/collector. Observer
+will collect startup FIRST, restore exact current0101/video0093 display/SYSTEM,
+then hives/pixels/lifecycle audit and closure. Physical candidate NOT launched.
+Only control scoped/hive/restore/full sequence PASS permits candidate once.
+
+All builds/preparations/emulator/offload sessions CLOSED. Hardware003/004 closed
+standalone old disks hash/junction verified to E; no backing-chain move. C last
+22,967,791,616bytes;20GiB build guard unchanged. Original0088/immutable0.1.0 and
+all failures preserved. Independent device chats remain separate emulator clones;
+USB5d86c99 collector completed, no physical descriptors/controller support yet.
+
+NEXT: resume96890; full sequencecontrol --physical once, matched candidate once
+with finish controller, full sequencecandidate and compare --physical. Review
+actual callback bytes and all frozen source/evidence pins (ordinary archived
+metadata plus current physical freeze). Final report/check/commit/push private
+main. No baseline promotion, service/event suppression or strictFt49 waiver.
+
+# Historical:211 control CLOSED scopedPASS; candidate ordinary81630 ACTIVE
+
+Control58987/runner104972/observer103884 CLOSED, one accepted23:58:35Z October9,
+normalrestart/dashboard00:02:19Z October10, coldclosed00:02:39Z. New v12 pixels/
+window/text boundsON allPASS, disabled119 counterszero, fullcold allocation/
+5hives/protected/typedpolicy clean; soleinheritedFt49 strictFALSE. Actual21 text/
+lifecycle negative checks and all5 sequence/159-transitions PASS. New stricter
+sequence review catches resets in inter-step gaps; host-only addition does not
+change frozen ordinary source or pixels. Synthetic gap discriminator PASS.
+
+Candidate combined host81630 ACTIVE, unique fresh source/IDs, same frozen inputs.
+Inspect emu-candidate001 host-state/launch/audit before action, no duplicate
+launch/observer/collection. No producer attribution result yet. Both prep79251/
+17753 and offload28635 CLOSED. Offload hash/junctionverified legacyhardware003;
+lastCfree22,071,341,056bytes;20GiB guard intact. Source/import/protocolfreeze
+reviews PASS. Rendererpreview unsupported HMP screendump retained/no stop-resume.
+
+NEXT: close candidate once; sequence review, paired exacttext/control/caps and
+actual119 coverage compare. Only actual scoped/integrity+sequence PASS allows
+physical planning. Before hardware freeze, correct-physical-scope.py may correct
+four inherited description literals ONLY after both ordinary closures, preserving
+original frozen bytes privately; no gate/driver/probe change. Fresh physical
+capture/typedproposal/package/ready then matched control/candidate once, startup
+FIRST collect and exact0101/video0093 restoration, normalrestart/hives required.
+No assumption of hardware speed or waste from NULL requests. No baseline promotion.
+
+# Historical:119 upload accounting210 built; fresh211 emulator preparations ACTIVE
+
+Native210 matched OFF/ON compiled, build72692 CLOSED/native94884 CLOSED.
+Actual source treec8654947539246de3ce1e386e7007e124fcaa98f; only ACCOUNTING flag,
+textboundsON/scalarOFF/bodyclocksOFF both. Rendering/clipping/ownership/cache
+unchanged. Fifteen named producers, completed local copy publication after
+Eng/copy under existing semaphore, bounded632byte read-only snapshot. Host
+ASan/UBSan315711 checks and actual source/import/definitions review PASS.
+Initial build lease refusal preserved before any source creation; later build
+wait attempt1 acquired normally. No resource bypass.
+
+New211 v12 probe compiles/imports reviewed, exact202runner/201helper retained.
+Four snapshots per40 fixed neutral-backdrop window moves separate move/paint/
+readback, no logging between snapshots. Retains all old copy/DIB/text/timed/
+window/whole-coherence checks. Parser20 malformed cases rejected; inputs frozen.
+Host factory failed001 preserved before binary/fixture/launch; corrected prefreeze.
+
+Owned preparations79251 control and17753 candidate ACTIVE, E upload211 standalone
+children from immutable201. Inspect fixture JSON/preparation and processes before
+any new launch, never duplicate. No211 guest or physical launch yet. New compare.py
+was added after initial frozen manifest; it must be pinned before launch review.
+Offload28635 ACTIVE: CLOSED historical hardware-probe003 standalone on C copying/
+hashing to E with exact cleanup/instance guards and original junction, no new
+Windows qualification/backing-chain edits. C was20.08GiB before offload; retain
+20GiB guard. Inspect manifest-hardware003-20261010.json, do not repeat.
+
+NEXT: close owned preps/offload, validate wrapper/PS syntax/frozen pins (including
+new compare.py), ordinary fresh control then candidate once if scoped control
+passes. Cold allocation/hives/protected/typed policy/full logs and normalshutdown
+required. Analyze actual producer bytes, no redundancy or speed claim solely
+from NULL requests. Hardware remains209-restored0101/video0093; no211 deployment.
+No baseline promotion, preserve0088/immutable0.1.0 and every historical failure.
+
+# Historical:209 hardware and emulator pairs CLOSED; scalar copier no speed benefit
 
 Physical80707/87898 CLOSED collected/restored/audited; both scoped display PASS.
 Only UC scalar flag differed, bounds/bodyclocksOFF both. All265copy/200window/
