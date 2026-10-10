@@ -13,11 +13,15 @@ is installed; the immutable0.1.0 artifacts below retain0088. The earlier0098
 physical soak passed its workload/integrity checks but failed its strict event
 gate, so it is not a newly qualified release.
 
-The latest [boot-video layout219](outputs/video-boot-layout219/REPORT.md) moves
-indexed backing below the observed GPU instance window and bounds reset clearing.
-Matched emulator display/cold audits and read-only live layout checks pass;
-the inherited Ftdisk49 event remains a strict failure. Actual reset/crash tail
-guards are next. No hardware deployment, GPU acceleration or speed gain is claimed.
+The latest [native FIFO preflight224](outputs/video-fifo-retirement224/REPORT.md)
+passes matched read-disabled/read-enabled emulator runs under the native CPU
+ownership bridge. It retains 128 raw register reads and explicitly refuses GPU
+ownership: quiet pointers cannot prove producer or backend retirement. The
+[crash guard221](outputs/video-reset-guard221/REPORT.md) and
+[forced TRUE guard223](outputs/video-boot-guard223/REPORT.md) preserve the reserved
+boot-video tail in their bounded debugger tests. The inherited Ftdisk49 event
+remains a strict failure. Genuine GPU ownership and context service are next;
+no new hardware deployment, GPU acceleration or speed gain is claimed.
 
 The native physical desktop now passes bounded storage soaks and two actual
 Paint saves/reopens, with independent post-reboot bitmap, allocation, binary

@@ -1,3 +1,38 @@
+# Current:224 ordinary read-only FIFO pair CLOSED; observation/CPU scope PASS
+
+Read224 REPORT.md/NEXT.md/pair-review.json and actual records. Matched OFF/ON
+native build002/provider/model table/host tests passed;110 frozen inputs
+verified. Both cases CPU65/3194880/four joined workers, normal shutdown/dashboard,
+clean full allocation/five hives/protected hashes/history/device policy passed.
+control001: reads0; reasons UNMODELED_BUSY,NO_OWNERSHIP;
+strict whole-bootFalse. Accepted2026-10-10T18:07:05.313841+00:00,
+returned2026-10-10T18:08:28.058616+00:00, closed2026-10-10T18:08:48.475111+00:00.
+candidate001: reads128; reasons UNMODELED_BUSY,NO_OWNERSHIP;
+strict whole-bootFalse. Accepted2026-10-10T18:09:53.138139+00:00,
+returned2026-10-10T18:11:23.293740+00:00, closed2026-10-10T18:11:43.183291+00:00.
+
+ALL root-owned224 sessions CLOSED (preparations74368/93283 and actual host-state
+controller/observer/runner PIDs). Never repeat any old launch/collect/audit.
+Preserve failed001 strict-aliasing inputs/import-review misclassification and
+all strict event failures. No GPU writes/grants, debugger, physical access or
+device merges.0101/video0093/0088/0.1.0 preserved; inherited_null_policy FALSE.
+New module maps only approved read windows, resident until normal reboot.
+Every reply retains NO_OWNERSHIP/UNMODELED_BUSY; no backend drain claimed.
+20GiB C: guard retained, all seeds/runs stay at private retirement224 E paths.
+Next actual loader producer/instance/channel handoff plus bounded context/
+completion/backend drain/quarantine before16x8 copy. No register-only idle gate.
+Runtime PTE/cache aliases/native cleanup fallback faults remain unqualified.
+
+Independent224 state-review.json: all8 rounds PFIFO channel1/PGRAPH0/current
+context invalid, cache push/DMA push/cache pull disabled, DMA pointers/IRQs0.
+Pinned matching-context predicate fails; no switch request was issued/observed.
+Hardware context-switch mode was not sampled by224. C: final about20.19GiB free
+(21677465600 bytes), E: about193.65GiB. No more builds below20GiB guard. Closed
+controllers113376/71708, runners111988/96160, observers90444/111140; sessions14348/
+15924 CLOSED0. Reports/source reviewed; final exact staged byte and repository
+checks are recorded in224 repository-review.json. Private publication uses main;
+git HEAD/origin/main are authoritative after push.
+
 # Current:223 forced TRUE control003/candidate003 CLOSED; guard scope passes
 
 Read REPORT.md, pair-verification003.json and actual records. Both003 observers

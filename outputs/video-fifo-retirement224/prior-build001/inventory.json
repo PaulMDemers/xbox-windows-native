@@ -1,0 +1,95 @@
+{
+  "passed": true,
+  "offsets": [
+    {
+      "symbol": "NV_PFIFO_CACHE1_PUSH0",
+      "offset": 12800
+    },
+    {
+      "symbol": "NV_PFIFO_CACHE1_PUSH1",
+      "offset": 12804
+    },
+    {
+      "symbol": "NV_PFIFO_CACHE1_PUT",
+      "offset": 12816
+    },
+    {
+      "symbol": "NV_PFIFO_CACHE1_STATUS",
+      "offset": 12820
+    },
+    {
+      "symbol": "NV_PFIFO_CACHE1_DMA_PUSH",
+      "offset": 12832
+    },
+    {
+      "symbol": "NV_PFIFO_CACHE1_DMA_STATE",
+      "offset": 12840
+    },
+    {
+      "symbol": "NV_PFIFO_CACHE1_DMA_SUBROUTINE",
+      "offset": 12876
+    },
+    {
+      "symbol": "NV_PFIFO_CACHE1_DMA_PUT",
+      "offset": 12864
+    },
+    {
+      "symbol": "NV_PFIFO_CACHE1_DMA_GET",
+      "offset": 12868
+    },
+    {
+      "symbol": "NV_PFIFO_CACHE1_PULL0",
+      "offset": 12880
+    },
+    {
+      "symbol": "NV_PFIFO_CACHE1_GET",
+      "offset": 12912
+    },
+    {
+      "symbol": "NV_PFIFO_RUNOUT_STATUS",
+      "offset": 9216
+    },
+    {
+      "symbol": "NV_PFIFO_INTR_0",
+      "offset": 8448
+    },
+    {
+      "symbol": "NV_PGRAPH_INTR",
+      "offset": 4194560
+    },
+    {
+      "symbol": "NV_PGRAPH_CTX_CONTROL",
+      "offset": 4194628
+    },
+    {
+      "symbol": "NV_PGRAPH_CTX_USER",
+      "offset": 4194632
+    }
+  ],
+  "source_manifest_sha256": "db75df9a0b59ca0e3cc646c0b7548f1553a0739b7e7f50b9697072edb3f8ecb9",
+  "xemu_sha256": "685f24e317322469cac8710286bf928f7b2accbde5062f3cf8c86a9b21e97890",
+  "source_pins": {
+    "nv2a.c": "e1628d94d4afd20abdf832af4932bdd3fe7c47212d8fa5261213476386482f4e",
+    "nv2a_int.h": "b33f946353ae9d8f6cf99c1714cb3f9c936a3cec291c7d250e385fd7f6a42b3b",
+    "nv2a_regs.h": "b6bf453495c7076c1d814e10e45f0a2c49fa1e793da48981d1db5888eae8bea2",
+    "pfifo.c": "1a06a599cc29b2de85d3297b8906f19727a30d3cc0faf954c424be554ebaff90",
+    "user.c": "3a1d7fb615fc904bf47c16bafbd928a6c9b52421e7718de2211e425afe94df13",
+    "pgraph/pgraph.c": "d7261f812aa1f031c3d72b5f070d2a1f753f1b2d6bc4ddedfff396770184f945",
+    "pgraph/pgraph.h": "c1085f35abbb48701685fd7541f339d2a75aa5c424a018d4967fc011a9554059",
+    "pgraph/methods.h.inc": "3173791255c4c407c580622b85700eb68cc588f87abae697badaffbabd1212b1",
+    "pgraph/gl/blit.c": "920c8f993e4948382f93be0c5bead8344ba4bedda81d8e2d227e58e0b2b49a6a",
+    "pgraph/gl/surface.c": "bca46bf0328618bad474058f404999d5c8d79db7d6714ae8bb5e673d6bba7cfb",
+    "pgraph/gl/renderer.h": "9de1045c3f5c16d56d31957886627cb90f872d30016ac62bef17ce8b083db498",
+    "pgraph/vk/blit.c": "8a9f9720086d3189abf7e0d55976318b56dce5f5f2aa1f5b11db078f4b5e5c8f",
+    "pgraph/vk/surface.c": "0fcf4e6ac0277767b0aad8d3e66472d6a10a5a6f99b31cfa4ff7869cbc3f90cd"
+  },
+  "limits": [
+    "Pusher does not maintain DMA busy field; guest-written stored bits are not engine activity.",
+    "RUNOUT read returns constant empty in this model.",
+    "No PGRAPH_STATUS read implementation in pinned graph body; do not invent an idle predicate.",
+    "GET==PUT can coexist with residual method_count, as equality is tested before method execution.",
+    "Sequential samples cannot establish atomicity, backend retirement, CPU producer revocation or instance ownership."
+  ],
+  "physical_access": false,
+  "gpu_ownership_proven": false
+}

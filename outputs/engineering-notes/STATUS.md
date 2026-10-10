@@ -1,3 +1,27 @@
+# Native GPU preflight completed — October 10, 2026
+
+Matched ordinary emulator runs now exercise a bounded read-only FIFO preflight
+under real NT5 FileObject, generation and kernel-mutex ownership of a CPU lease.
+The control performs zero GPU reads; the candidate completes 128 reads. Both
+pass 65 allocations/releases, four joined workers, normal shutdown/dashboard,
+full cold allocation, five structural hives and 28 protected hashes. The same
+Ftdisk 49 error remains a strict failure; no gate was waived.
+
+All eight candidate snapshots agree: PFIFO channel 1, PGRAPH channel 0, current
+context invalid, push/pull disabled, zero DMA pointers and IRQs. Quiet registers
+do not establish producer/backend retirement; the model does not maintain the
+needed busy/status fields. Every reply therefore refuses GPU ownership. See
+[224 report](../video-fifo-retirement224/REPORT.md) and its independent pair and
+state reviews. All owned processes are closed. Genuine handoff, context service
+and bounded completion/drain remain prerequisites to acceleration.
+
+This pair uses the captured physical-core policy and exact targeted wizard
+Cancel helper, without synthetic null bindings. No physical deployment or device
+branch integration occurred. FATX0101/video0093, 0088 rollback and immutable
+0.1.0 remain preserved; this checkpoint does not claim a display speedup.
+
+## Earlier status
+
 # Emulator setup settled for graphics work — October9,2026
 
 Two ordinary boots now complete setup and guarded normal restart in a disposable
