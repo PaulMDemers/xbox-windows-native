@@ -1,4 +1,37 @@
-# Current:225 executable-pinned loader handoff CLOSED; scoped evidence PASS
+# Current:226 serialized ownership reducer and source-consumer review CLOSED
+
+Read outputs/video-owner-transition226/DESIGN.md, REPORT.md, NEXT.md,
+inventory001.json and host001.json. New portable C reducer copies the immutable
+range plan, records exposure before first adapter store, pairs generation/action/
+sequence receipts, separates completion from backend retirement/restore and
+quarantines current failure, timeout, clock regression or cancellation after
+exposure. No runtime proof adapter exists; synthetic host receipts grant no
+native ownership. Actual225 preparation remains refused. No MMIO/source model
+change, guest, physical access or other-device integration in226.
+
+Matched12 compiled-model source pins expose the missing drain contract:
+PFIFO idle broadcasts worker waiting, not consumption; GL shutdown waits shader
+cache only, VK shutdown hooks empty; GL surface flush invalidates surfaces with
+all-dirty download commented out. RAMFC/RAMRO definitions have no consumers in
+examined matched files. Entire old20KiB protected; normalized RAMFC fields are
+not byte extents. No spare instance range or safe acknowledgment inferred.
+
+host001 CLOSED0: O0 and O2 ASan/UBSan each368513 assertions,4096 synthetic cycles,
+100000 inherited/100000 private overlap refusals, action pairing, bounded fault/
+cancel/context/token checks. Import-free RosBE i686 object compilation passed.
+All commands CLOSED; no226 owned guest/observer/session remains. This qualifies
+host ordering/ranges and compile compatibility only, not backend/context/GPU.
+Review001 pins exact staged bytes/source/evidence; HEAD/origin/main authoritative.
+
+Next NEW actual preserving backend drain adapter/protocol: bounded parser/queue
+consumption, fence/download visibility and ended references. Do not reuse
+destructive flush, shader-only shutdown or fabricated idle bits/host permits.
+Then complete inherited allocator/backing census and genuine resident private
+context service before16x8copy. PTE/cache alias/native fallback cleanup remain
+separate. Preserve physical0101/video0093,0088,0.1.0 and all failures.20GiB C:
+guard unchanged; inspect capacity before new builds. No old case replay.
+
+# Previous:225 executable-pinned loader handoff CLOSED; scoped evidence PASS
 
 Read outputs/video-loader-handoff225/DESIGN.md and inventory002.json. Exact
 XBE payload282076 bytes and three linked ELF load sections match;169984-byte

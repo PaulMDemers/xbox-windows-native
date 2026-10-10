@@ -1,0 +1,250 @@
+{
+  "passed": true,
+  "source_sha256": "319e8043c9a35cfb659d4dd9da1e0d4edd201e2cb44453766d1f0de82043d81e",
+  "compiled_manifest_sha256": "db75df9a0b59ca0e3cc646c0b7548f1553a0739b7e7f50b9697072edb3f8ecb9",
+  "xemu_sha256": "685f24e317322469cac8710286bf928f7b2accbde5062f3cf8c86a9b21e97890",
+  "revision": "e72e76bd1f12ce45c6c63b4196c6918ea2cc705d",
+  "unchanged_original_sources": {
+    "hw/xbox/nv2a/pgraph/gl/renderer.c": "2fc08c16ca03a51df81399d4b3acedd0ca3565dbdc871123f8ecf07aa63bbe60",
+    "hw/xbox/nv2a/pgraph/gl/display.c": "cb6fb1ffb6e5e0e1b0aae76a288a40effaf1329dc448b507e95fb4acd2198f27",
+    "hw/xbox/nv2a/pgraph/vk/renderer.c": "a3e1a5edff37686fa559db9613cec96cf75a6e23dd6f9ac9524a5559918b336a",
+    "hw/xbox/nv2a/pgraph/vk/draw.c": "e478beac06c4f3c2f6afd3994b3a207717561f60a3a723ac423fdfc6351ac9c1",
+    "hw/xbox/nv2a/pgraph/vk/renderer.h": "b83900c642a0757dbd4d96144b1d67c514e80a629c404b8255b009ab92049ede"
+  },
+  "prior_reconstructed_candidate_sources": {
+    "hw/xbox/nv2a/nv2a.c": "e1628d94d4afd20abdf832af4932bdd3fe7c47212d8fa5261213476386482f4e",
+    "hw/xbox/nv2a/nv2a_int.h": "b33f946353ae9d8f6cf99c1714cb3f9c936a3cec291c7d250e385fd7f6a42b3b",
+    "hw/xbox/nv2a/nv2a_regs.h": "b6bf453495c7076c1d814e10e45f0a2c49fa1e793da48981d1db5888eae8bea2",
+    "hw/xbox/nv2a/pfifo.c": "1a06a599cc29b2de85d3297b8906f19727a30d3cc0faf954c424be554ebaff90",
+    "hw/xbox/nv2a/pgraph/pgraph.c": "d7261f812aa1f031c3d72b5f070d2a1f753f1b2d6bc4ddedfff396770184f945",
+    "hw/xbox/nv2a/pgraph/gl/surface.c": "bca46bf0328618bad474058f404999d5c8d79db7d6714ae8bb5e673d6bba7cfb",
+    "hw/xbox/nv2a/pgraph/vk/surface.c": "0fcf4e6ac0277767b0aad8d3e66472d6a10a5a6f99b31cfa4ff7869cbc3f90cd"
+  },
+  "consumer_hits": {
+    "NV_PFIFO_RAMFC": [
+      {
+        "file": "hw/xbox/nv2a/nv2a_regs.h",
+        "line": 115,
+        "text": "#define NV_PFIFO_RAMFC                                   0x00000214"
+      },
+      {
+        "file": "hw/xbox/nv2a/nv2a_regs.h",
+        "line": 116,
+        "text": "#   define NV_PFIFO_RAMFC_BASE_ADDRESS1                       0x000001FC"
+      },
+      {
+        "file": "hw/xbox/nv2a/nv2a_regs.h",
+        "line": 117,
+        "text": "#   define NV_PFIFO_RAMFC_SIZE                                0x00010000"
+      },
+      {
+        "file": "hw/xbox/nv2a/nv2a_regs.h",
+        "line": 118,
+        "text": "#   define NV_PFIFO_RAMFC_BASE_ADDRESS2                       0x00FE0000"
+      }
+    ],
+    "NV_PFIFO_RAMRO": [
+      {
+        "file": "hw/xbox/nv2a/nv2a_regs.h",
+        "line": 119,
+        "text": "#define NV_PFIFO_RAMRO                                   0x00000218"
+      },
+      {
+        "file": "hw/xbox/nv2a/nv2a_regs.h",
+        "line": 120,
+        "text": "#   define NV_PFIFO_RAMRO_BASE_ADDRESS                        0x000001FE"
+      },
+      {
+        "file": "hw/xbox/nv2a/nv2a_regs.h",
+        "line": 121,
+        "text": "#   define NV_PFIFO_RAMRO_SIZE                                0x00010000"
+      }
+    ],
+    "fifo_idle_cond": [
+      {
+        "file": "hw/xbox/nv2a/nv2a.c",
+        "line": 281,
+        "text": "qemu_cond_wait(&d->pfifo.fifo_idle_cond, &d->pfifo.lock);"
+      },
+      {
+        "file": "hw/xbox/nv2a/nv2a.c",
+        "line": 369,
+        "text": "qemu_cond_init(&d->pfifo.fifo_idle_cond);"
+      },
+      {
+        "file": "hw/xbox/nv2a/nv2a_int.h",
+        "line": 104,
+        "text": "QemuCond fifo_idle_cond;"
+      },
+      {
+        "file": "hw/xbox/nv2a/pfifo.c",
+        "line": 473,
+        "text": "qemu_cond_broadcast(&d->pfifo.fifo_idle_cond);"
+      }
+    ],
+    "pre_shutdown": [
+      {
+        "file": "hw/xbox/nv2a/nv2a.c",
+        "line": 416,
+        "text": "pgraph_pre_shutdown_trigger(d);"
+      },
+      {
+        "file": "hw/xbox/nv2a/nv2a.c",
+        "line": 419,
+        "text": "pgraph_pre_shutdown_wait(d);"
+      },
+      {
+        "file": "hw/xbox/nv2a/pgraph/pgraph.c",
+        "line": 3243,
+        "text": "void pgraph_pre_shutdown_trigger(NV2AState *d)"
+      },
+      {
+        "file": "hw/xbox/nv2a/pgraph/pgraph.c",
+        "line": 3246,
+        "text": "pg->renderer->ops.pre_shutdown_trigger(d);"
+      },
+      {
+        "file": "hw/xbox/nv2a/pgraph/pgraph.c",
+        "line": 3249,
+        "text": "void pgraph_pre_shutdown_wait(NV2AState *d)"
+      },
+      {
+        "file": "hw/xbox/nv2a/pgraph/pgraph.c",
+        "line": 3252,
+        "text": "pg->renderer->ops.pre_shutdown_wait(d);"
+      },
+      {
+        "file": "hw/xbox/nv2a/pgraph/gl/renderer.c",
+        "line": 168,
+        "text": "static void pgraph_gl_pre_shutdown_trigger(NV2AState *d)"
+      },
+      {
+        "file": "hw/xbox/nv2a/pgraph/gl/renderer.c",
+        "line": 177,
+        "text": "static void pgraph_gl_pre_shutdown_wait(NV2AState *d)"
+      },
+      {
+        "file": "hw/xbox/nv2a/pgraph/gl/renderer.c",
+        "line": 202,
+        "text": ".pre_shutdown_trigger = pgraph_gl_pre_shutdown_trigger,"
+      },
+      {
+        "file": "hw/xbox/nv2a/pgraph/gl/renderer.c",
+        "line": 203,
+        "text": ".pre_shutdown_wait = pgraph_gl_pre_shutdown_wait,"
+      },
+      {
+        "file": "hw/xbox/nv2a/pgraph/vk/renderer.c",
+        "line": 161,
+        "text": "static void pgraph_vk_pre_shutdown_trigger(NV2AState *d)"
+      },
+      {
+        "file": "hw/xbox/nv2a/pgraph/vk/renderer.c",
+        "line": 167,
+        "text": "static void pgraph_vk_pre_shutdown_wait(NV2AState *d)"
+      },
+      {
+        "file": "hw/xbox/nv2a/pgraph/vk/renderer.c",
+        "line": 224,
+        "text": ".pre_shutdown_trigger = pgraph_vk_pre_shutdown_trigger,"
+      },
+      {
+        "file": "hw/xbox/nv2a/pgraph/vk/renderer.c",
+        "line": 225,
+        "text": ".pre_shutdown_wait = pgraph_vk_pre_shutdown_wait,"
+      }
+    ],
+    "flush_complete": [
+      {
+        "file": "hw/xbox/nv2a/nv2a.c",
+        "line": 300,
+        "text": "qemu_event_reset(&d->pgraph.flush_complete);"
+      },
+      {
+        "file": "hw/xbox/nv2a/nv2a.c",
+        "line": 304,
+        "text": "qemu_event_wait(&d->pgraph.flush_complete);"
+      },
+      {
+        "file": "hw/xbox/nv2a/pgraph/pgraph.c",
+        "line": 226,
+        "text": "qemu_event_init(&pg->flush_complete, false);"
+      },
+      {
+        "file": "hw/xbox/nv2a/pgraph/pgraph.c",
+        "line": 3194,
+        "text": "qemu_event_reset(&pg->flush_complete);"
+      },
+      {
+        "file": "hw/xbox/nv2a/pgraph/gl/renderer.c",
+        "line": 116,
+        "text": "qemu_event_set(&d->pgraph.flush_complete);"
+      },
+      {
+        "file": "hw/xbox/nv2a/pgraph/gl/surface.c",
+        "line": 56,
+        "text": "qemu_event_reset(&d->pgraph.flush_complete);"
+      },
+      {
+        "file": "hw/xbox/nv2a/pgraph/gl/surface.c",
+        "line": 62,
+        "text": "qemu_event_wait(&d->pgraph.flush_complete);"
+      },
+      {
+        "file": "hw/xbox/nv2a/pgraph/vk/renderer.c",
+        "line": 104,
+        "text": "qemu_event_set(&d->pgraph.flush_complete);"
+      },
+      {
+        "file": "hw/xbox/nv2a/pgraph/vk/surface.c",
+        "line": 54,
+        "text": "qemu_event_reset(&d->pgraph.flush_complete);"
+      },
+      {
+        "file": "hw/xbox/nv2a/pgraph/vk/surface.c",
+        "line": 60,
+        "text": "qemu_event_wait(&d->pgraph.flush_complete);"
+      }
+    ]
+  },
+  "prior225_evidence_sha256": "5ecc9cd6d7f1e3682e4d23fe4a3ad84392d1cd1a13e7e6dfa17647b4824d82c7",
+  "old_ramht": {
+    "start": 65536,
+    "bytes": 4096,
+    "valid_entries": 22,
+    "fully_captured": true
+  },
+  "retained_old_aperture": {
+    "start": 65536,
+    "bytes": 20480,
+    "whole_range_protected": true,
+    "free_space_claim": false
+  },
+  "ramfc": {
+    "raw": 8978704,
+    "base1_field": 68,
+    "base2_field": 68,
+    "size_field": 1,
+    "extent_verified": false
+  },
+  "ramro": {
+    "raw": 0,
+    "extent_verified": false
+  },
+  "plan_allowed": false,
+  "reasons": [
+    "RAMFC/RAMRO extent/backing and old backend references unresolved.",
+    "No guest/loader ownership receipts or native adapter."
+  ],
+  "findings": [
+    "FIFO idle broadcast means worker waiting; stalled context/access can still have unconsumed DMA.",
+    "OpenGL shutdown waits shader cache only; Vulkan shutdown trigger/wait are no-ops.",
+    "OpenGL surface flush invalidates surfaces; all-dirty download is commented out.",
+    "Flush completion event does not by itself establish queue consumption or old-reference retirement.",
+    "RAMFC/RAMRO have no consumers beyond definitions in the examined matched model files; physical structures remain required.",
+    "Context IRQ acknowledge clears waiting; valid own-channel context must be installed/verified before acknowledge."
+  ],
+  "guest_launch": false,
+  "physical_access": false,
+  "gpu_ownership_qualified": false
+}
