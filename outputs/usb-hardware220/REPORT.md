@@ -5,7 +5,7 @@ USB holds the persistent hardware220 ticket. Windows launch was accepted once at
 The bounded observer closed without dashboard return. An actual screen report and
 manual normal restart were requested once; no response has yet been recorded.
 Trial startup is enabled. Do not relaunch. Baseline is not yet restored; do not
-release the queue. No owned host process/session is currently running.
+release the queue. Observers23387 and59738 are closed after bounded checks without dashboard return. No owned host process/session remains. No new launch is requested.
 
 Incoming capture: 55 files, including five valid hives, their journal/
 backup companions, startup, three event logs, SetupAPI and protected loader/HAL/
@@ -29,7 +29,7 @@ Frozen inputs: prepared.json; prior revisions are preserved as prepared001..004.
 Private raw bytes: artifacts/physical001. Remote collector: /F/xwnusb220a.
 Rollback: /F/xwnusb220a/incoming-rollback.zip and normal-startup.cmd.
 The old USB207 package and evidence are unchanged. Prepared and initial physical
-source/report history is pushed through46b253d on codex/xbox-native-usb.
+source/report history is pushed through16d26b4 on codex/xbox-native-usb.
 
 Next: once the dashboard returns, restore startup FIRST and collect usb.log,
 exit.txt, post-run hives/companions/events/SetupAPI/providers. Validate hives and
