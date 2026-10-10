@@ -1,3 +1,45 @@
+# Current:218 probe calibrated on E; physical readiness pending
+
+User authorized continued GPU work and check-in with existing device chats.
+217/check-in pushed161921a. NEW video-instance-correlation218 REPORT/NEXT/review.
+Build005 query-only NXDK app calibrated in ordinary epath007, five exact E files,
+full E allocation and EVERY original E file hash unchanged; F allocation320dirs/
+6719files/321dirclusters0errors/orphans,5hives/protected hashes PASS. CPU20KiB all
+zero, GPU stable563mismatches: no informative alias or NT5 grant/context/copy.
+Stock app restart REQUEST captured; no observed dashboard return/Windows shutdown.
+
+Failures preserved:001/002 no reports; initial missing C geometry/hivex env host
+failures retained.003 actual DVD probe path disproved boot-selection assumption.
+004 resident stack at firmware return.005 RAM progress stage2/error123 proves
+CreateDirectory wrapper failure before query.006 native NULL-root path ran but
+stock F writes changed SOFTWARE and left6 orphan clusters; strict FAIL, never
+boot/adopt. Forensic report/raw bytes recovered from damaged hive prove execution,
+not PASS. Observed cluster2679 displacement-6873088 exactly matches legacy F ending
+LBA2^28 geometry arithmetic; stock runtime volume-length producer unproven.
+007 switches only report root to fixed E and passes described audits.
+
+All cases/sessions CLOSED: runners27480/9508/83866/68503/53466/64667/70898;
+captures10327/69294/6124; audits29359failed/86572/84216/89382/37212/34182/68851,
+forensics91485/32954, preparation30006, offload50031. Audit002 and initial006
+failed directly without a running session. No owned xemu/NBD/compiler.
+438 frozen hash checks PASS. Build001 never launched; build002 original wrappers,
+build003 progress,build004 native F failure,build005 E calibration. No SDK changes.
+
+Private physical001 payload prepared/readback verified, NOT DEPLOYED. Two physical
+FTP readiness timeouts; async dashboard/network question pending, no screen state
+inferred. Next physical-plan.json guarded F app/E reports, once reachable collect
+actual profile/page/stability/entropy. Then disjoint bootvid/instance layout and
+bounded single-channel context service/drain before guarded16x8 copy. Driver work
+not implemented from host tests alone. Preserve0101/video0093/0088/immutable0.1.0.
+
+Other-device check-in complete: audio experimental ACI playback/reboots emulator
+only, PCI SMBus pending-install shutdownFAIL/sharedSMBus gap, USB descriptor tool
+without functional XID driver. No integration or physical driver changes.
+
+C: about22.9GB after verified offload CLOSED standalone029/031 to E; old paths are
+junctions. No backing chains moved,20GiB guard unchanged. Exact manifest in
+outputs/task-storage-offload/manifest-kernel029031-20261010.json.
+
 # Current:217 stock instance backing and device check-in CLOSED
 
 NEW outputs/video-instance-backing217 REPORT.md/NEXT.md/review.json. No NT5
