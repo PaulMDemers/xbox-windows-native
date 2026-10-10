@@ -86,6 +86,9 @@ def expected():
     fixed={v['path']:v['sha256'] for v in rows if not v['path'].endswith(mutable)}
     providers=read(PREV/'owned-provider-review.json')['files']
     fixed.update({'/F/winnt/system32/drivers/'+n:providers[n]['sha256'] for n in USB})
+    for path,digest in read(K/'audio-incoming-drivers.json')['files'].items():
+        assert path not in fixed or fixed[path]==digest,'Conflicting incoming driver baseline'
+        fixed[path]=digest
     return fixed
 
 def auxiliary():

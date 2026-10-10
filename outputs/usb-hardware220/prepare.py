@@ -16,6 +16,7 @@ assert read(prev/'emu003/audit.json')['descriptor_scope_observed']
 completed=subprocess.run([sys.executable,'-B',str(K/'test-controller.py')],capture_output=True,text=True)
 assert completed.returncode==0,completed.stdout+completed.stderr
 files=list(K.glob('*.py'))+[prev/n for n in ['probe.c','analyze.py','build-review.json','emu003/audit.json','owned-provider-review.json','package-review.json']]+[exe]
+files += [K/'audio-incoming-drivers.json']
 files += [canon/'outputs'/n for n in ['device-hardware220/HANDOFF.md','device-hardware220/queue.py','video-upload-runtime211/capture.json','native-windows-physical-f/physical-cache-preflight.json','native-windows-physical-f/decode-legacy-events.py']]
 r=dict(prepared=True,physical_access=False,physical_tested=False,driver_installed=False,binary=str(exe),
     binary_sha256=sha(exe),pins={str(p):sha(p) for p in files},offline_fault_checks=5,

@@ -11,6 +11,10 @@ socket after queue closure, no repeated uncertain launch, interrupted startup
 write restoration, and startup restoration before a failed result read.
 Frozen controller and dependency pins are in prepared.json. The shared
 state/usb-status.json links this report without claiming or releasing a ticket.
+The original preparation is preserved as prepared001.json. The current revision
+adds guards from audio's fresh, successful capture002 for the legacy ACI and
+supporting audio drivers; actual incoming bytes still require USB's own capture
+after audio's restored-baseline closure. No candidate audio bytes are adopted.
 
 The October 10 user authorization and new220 handoff supersede the historical
 coordinator-only restriction in USB207. This trial uses the unchanged reviewed
@@ -45,3 +49,5 @@ with an actual restored-baseline declaration and this report path.
 Full physical allocation integrity, repeated cold boots, controller input and
 driver installation are not established by the descriptor trial. All earlier
 USB207 failures remain preserved. New failures will be retained in trial records.
+
+Preparation commit4680a5e5e48d07168a546c31c8b6332d04f1ba5c is pushed and remote-verified. The repository scan passed for19279 tracked files. Scan session11374 and commit/push session84317 are closed. No owned session remains.
