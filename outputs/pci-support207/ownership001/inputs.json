@@ -1,0 +1,251 @@
+{
+  "scope": "Read owned cold evidence/source; no console, hive, or source modifications.",
+  "physical_access": false,
+  "fixtures": {
+    "physical220": {
+      "hive_sha256": "98826de3080774a70831dcc51f96f746053db548a218e385476b8306ac91ea71",
+      "key": "\\ControlSet001\\Enum\\PCI\\VEN_10DE&DEV_01B4&SUBSYS_00000000&REV_B1\\2&ebb567f&0&09\\LogConf",
+      "values": {
+        "BasicConfigVector": {
+          "type": 10,
+          "hex": "48010000050000000000000021000000000000000000000000000000010000000100010009000000000101003100000010000000100000000000000000000000ffffffff0000000000810100000000000100000000000000000000000000000000000000000000000101010031000000100000000100000000c00000000000000fc0000000000000080101003100000010000000100000000000000000000000ffffffff0000000000810100000000000100000001000000000000000000000000000000000000000101010031000000200000000100000000c20000000000001fc2000000000000080101003100000020000000200000000000000000000000ffffffff000000000081010000000000010000000200000000000000000000000000000000000000000203000000000000000000ff00000000000000000000000000000000000000"
+        },
+        "BootConfig": {
+          "type": 8,
+          "hex": "01000000050000000000000001000100020000000100010000c0000000000000100000000100010000c200000000000020000000"
+        }
+      }
+    },
+    "emulator004": {
+      "hive_sha256": "6eb237b5a7c6c40235b17a3c263b119270001f17891572c115a875621615f062",
+      "key": "\\ControlSet001\\Enum\\PCI\\VEN_10DE&DEV_01B4&SUBSYS_00000000&REV_B1\\2&ebb567f&0&09\\LogConf",
+      "values": {
+        "BasicConfigVector": {
+          "type": 10,
+          "hex": "880000000500000000000000210000000000000000000000000000000100000001000100030000000101010031000000200000000100000000c00000000000001fc0000000000000080101003100000020000000200000000000000000000000ffffffff000000000081010000000000010000000100000000000000000000000000000000000000"
+        },
+        "BootConfig": {
+          "type": 8,
+          "hex": "01000000050000000000000001000100010000000100010000c000000000000020000000"
+        }
+      }
+    }
+  },
+  "sources": {
+    "video0093/CMakeLists.txt": {
+      "sha256": "2316e5b72f451aaec52a5e2b3f7921e710190bb7edae7262e202ae8889071601",
+      "bus_access_lines": []
+    },
+    "video0093/video_pnp.c": {
+      "sha256": "03f788d67538e835e61712ffed3d8c49e5676b658f4c0281321fd8d635941b66",
+      "bus_access_lines": []
+    },
+    "video0093/video_trace.c": {
+      "sha256": "cafa7335db481437091f8bc305c59ad18f11e54f4651086f518a47aaa0b9df56",
+      "bus_access_lines": [
+        {
+          "line": 96,
+          "text": "BridgeBytes = HalGetBusDataByOffset(PCIConfiguration, 0, 30, Bridge, 0, sizeof(Bridge));"
+        },
+        {
+          "line": 97,
+          "text": "GpuBytes = HalGetBusDataByOffset(PCIConfiguration, 1, 0, Gpu, 0, sizeof(Gpu));"
+        }
+      ]
+    },
+    "video0093/xboxvnt5.c": {
+      "sha256": "c088169ffb9344fa575105e31aad636e7aea91cde231179155c66865a6147b13",
+      "bus_access_lines": []
+    },
+    "audio004/ac97reg.h": {
+      "sha256": "ac137f967926c3b0164510cca8ae0824dcfef14f75364f66adea9f0134d83146",
+      "bus_access_lines": []
+    },
+    "audio004/adapter.h": {
+      "sha256": "2d8f1ba2df10fb7dba6d1a11b387a2b3a2cd6a0ae94fc1b7fe23762d3c846d20",
+      "bus_access_lines": []
+    },
+    "audio004/debug.h": {
+      "sha256": "08633290cd23b98e96370d32b86d1a6c04cec9d78ad7185d915c0fcb339d8209",
+      "bus_access_lines": []
+    },
+    "audio004/guids.h": {
+      "sha256": "81861c5e59f5cb4ef9d73098ed33c7742a654157a10937d937127781f5098f36",
+      "bus_access_lines": []
+    },
+    "audio004/ichreg.h": {
+      "sha256": "8b21ec420fbe8941f239bfef0a58327b322fe1fe400ed2cf2cd046c58bee9ed2",
+      "bus_access_lines": []
+    },
+    "audio004/miniport.cpp": {
+      "sha256": "2285ec5b7a94e1d0eae3170b82e7d192c60b06967b91dfbce7970c05d14905e8",
+      "bus_access_lines": []
+    },
+    "audio004/miniport.h": {
+      "sha256": "ca5a5899d73245b9f31a40fe02a39b5e0a3c2f2539a321ec23704f55ce5a1e22",
+      "bus_access_lines": []
+    },
+    "audio004/mintopo.cpp": {
+      "sha256": "633dd0fe10e6e9236642748792c9781ba5d64454a729887e793a7f1331a5492e",
+      "bus_access_lines": []
+    },
+    "audio004/mintopo.h": {
+      "sha256": "fb3b049a80f4a7f47150ba2c4e10cde7eb3a572289ab4be09b3d44efc3ac996b",
+      "bus_access_lines": []
+    },
+    "audio004/prophnd.cpp": {
+      "sha256": "290ae80840caf3631c005bde9968ec20623c963633c97ebb641d4a7d710dc678",
+      "bus_access_lines": []
+    },
+    "audio004/rtminiport.cpp": {
+      "sha256": "e977035706a61e01a8cbcd86d5dd2950841618dfc5d8ae437f8e906799193094",
+      "bus_access_lines": []
+    },
+    "audio004/rtminiport.h": {
+      "sha256": "c53779d7f324e4fb4efb886df24161dc98c14321863ef6911fb65863cc335d34",
+      "bus_access_lines": []
+    },
+    "audio004/rtstream.cpp": {
+      "sha256": "de6c34de0ef82fb9c570172e6691d992145a5fb36152ac4b3dc4e5a0a347717e",
+      "bus_access_lines": []
+    },
+    "audio004/rtstream.h": {
+      "sha256": "aef2174dcdc41283a83b3d4e5cb91c08785d6156836a279d674e85c27d26ad43",
+      "bus_access_lines": []
+    },
+    "audio004/shared.h": {
+      "sha256": "5eafc73b49d3411dc4c26b2f05a1f8b957532dd223da4c2f07379af572493641",
+      "bus_access_lines": []
+    },
+    "audio004/stream.cpp": {
+      "sha256": "edc6048aeba0b6e3a941992c3da68af0c717c9ca31ee0fb65d4b62dcd1fce92b",
+      "bus_access_lines": []
+    },
+    "audio004/stream.h": {
+      "sha256": "a6732c5cbad5350ba83b87f4e0f024ff48ded7fa5c184fe3e1abc330af3b86ca",
+      "bus_access_lines": []
+    },
+    "audio004/stream2.cpp": {
+      "sha256": "0de8d55b663dd1c7404d550904dbeb1643bf0e47865da7dfd2d52939c5cccb80",
+      "bus_access_lines": []
+    },
+    "audio004/wavecyclicminiport.h": {
+      "sha256": "d787825f75ac4f6528d511c40ca00cfe2ea2b7578e8185e9f8ebfb1e5a7ed6ba",
+      "bus_access_lines": []
+    },
+    "audio004/wavecyclicstream.cpp": {
+      "sha256": "1ebee7c6eddef67f6d0b8ce6a8cffca0571c9685b4a9a043a4e678031720cc73",
+      "bus_access_lines": []
+    },
+    "audio004/wavecyclicstream.h": {
+      "sha256": "af055fb48df2fae400ddd6e605e4e544ce6f5d6ffebd73e5b3079ffbc67e2c34",
+      "bus_access_lines": []
+    },
+    "audio004/wavepciminiport.cpp": {
+      "sha256": "4268cf8b6fd3345266ec9068b96a7329277fd97ab0ead56a7a66cc3e6b21f7a9",
+      "bus_access_lines": []
+    },
+    "audio004/wavepciminiport.h": {
+      "sha256": "f5b4bb470b5a1a3813df59c31b7537c98b4cd58988cefe3f3eecfd103a349112",
+      "bus_access_lines": []
+    },
+    "audio004/wavepcistream.cpp": {
+      "sha256": "5ae9d3c2e0fdd710e1cd7d1226529c94b3311d15a07841bbebab4604a7158161",
+      "bus_access_lines": []
+    },
+    "audio004/wavepcistream.h": {
+      "sha256": "763f86be729026c1a3432881babe429892577306c1133c1fd74ddbc1bda91b30",
+      "bus_access_lines": []
+    },
+    "audio004/adapter.cpp": {
+      "sha256": "d1d4555deeef19aa519092262f0f0e24df18ea7b1139bd59c2c4d30e83e13698",
+      "bus_access_lines": []
+    },
+    "audio004/common.cpp": {
+      "sha256": "28134ddf265c6f62bd9c3fc09112e27d4b2f0e867a76a2aba11577d0c80d2ce7",
+      "bus_access_lines": [
+        {
+          "line": 16,
+          "text": "#define READ_PORT_UCHAR READ_REGISTER_UCHAR"
+        },
+        {
+          "line": 17,
+          "text": "#define READ_PORT_USHORT READ_REGISTER_USHORT"
+        },
+        {
+          "line": 18,
+          "text": "#define READ_PORT_ULONG READ_REGISTER_ULONG"
+        },
+        {
+          "line": 19,
+          "text": "#define WRITE_PORT_UCHAR WRITE_REGISTER_UCHAR"
+        },
+        {
+          "line": 20,
+          "text": "#define WRITE_PORT_USHORT WRITE_REGISTER_USHORT"
+        },
+        {
+          "line": 21,
+          "text": "#define WRITE_PORT_ULONG WRITE_REGISTER_ULONG"
+        },
+        {
+          "line": 1144,
+          "text": "while (READ_PORT_UCHAR (m_pBusMasterBase + CAS) & CAS_CAS)"
+        },
+        {
+          "line": 1215,
+          "text": "*wData = READ_PORT_USHORT (m_pCodecBase + reg);"
+        },
+        {
+          "line": 1220,
+          "text": "Status = READ_PORT_ULONG ((PULONG)(m_pBusMasterBase + GLOB_STA));"
+        },
+        {
+          "line": 1226,
+          "text": "WRITE_PORT_ULONG ((PULONG)(m_pBusMasterBase + GLOB_STA), Status);"
+        },
+        {
+          "line": 1352,
+          "text": "WRITE_PORT_USHORT (m_pCodecBase + reg, TempData);"
+        },
+        {
+          "line": 1408,
+          "text": "DWORD status = READ_PORT_ULONG((PULONG)(m_pBusMasterBase + GLOB_STA));"
+        },
+        {
+          "line": 2324,
+          "text": "WRITE_PORT_UCHAR ((PUCHAR)(m_pBusMasterBase + ulOffset), ucValue);"
+        },
+        {
+          "line": 2343,
+          "text": "WRITE_PORT_USHORT ((PUSHORT)(m_pBusMasterBase + ulOffset), usValue);"
+        },
+        {
+          "line": 2362,
+          "text": "WRITE_PORT_ULONG ((PULONG)(m_pBusMasterBase + ulOffset), ulValue);"
+        },
+        {
+          "line": 2382,
+          "text": "ucValue = READ_PORT_UCHAR ((PUCHAR)(m_pBusMasterBase + ulOffset));"
+        },
+        {
+          "line": 2404,
+          "text": "usValue = READ_PORT_USHORT ((PUSHORT)(m_pBusMasterBase + ulOffset));"
+        },
+        {
+          "line": 2426,
+          "text": "ulValue = READ_PORT_ULONG ((PULONG)(m_pBusMasterBase + ulOffset));"
+        }
+      ]
+    },
+    "audio004/common.h": {
+      "sha256": "def336f5d4e8357a59bcb72b6ca856edc48f5c2552419f557252d4f3b44daf31",
+      "bus_access_lines": []
+    },
+    "audio004/wavecyclicminiport.cpp": {
+      "sha256": "d51790dc0e0bf61e1273cb37a6a9c5a20f650365f83dc050c8169a122cd4097a",
+      "bus_access_lines": []
+    }
+  },
+  "limits": "Audio004 is reviewed candidate source, not provenance for the restored legacy ac97xnt5 binary. Source searches alone do not prove absence of indirect I/O."
+}

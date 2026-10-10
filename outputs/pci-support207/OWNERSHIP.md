@@ -27,3 +27,8 @@ SMBus also overlaps HAL reboot ownership and video encoder access. PCI207's
 restricted telemetry reads avoid encoder writes, power/fan control, EEPROM and
 SMC read-to-clear interrupts. Real resource assignment, shutdown quiescence and
 HAL address compatibility remain promotion gates, not assumptions from qtest.
+
+October10 follow-up: ownership001/REPORT.md narrows the current pinned video/audio
+concerns and documents direct HAL reboot ownership, the C200 preservation gap,
+and the proposed terminal takeover contract. This supersedes broad ownership
+assumptions above without promoting the telemetry prototype to hardware readiness.

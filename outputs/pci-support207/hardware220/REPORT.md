@@ -1,4 +1,4 @@
-# PCI hardware220 â€” physical inventory complete; baseline restored
+# PCI hardware220 — physical inventory complete; baseline restored
 
 The October10 hardware220 handoff supersedes the historical coordinator-only
 restriction. PCI is third, after restored-baseline audio and USB closures.
@@ -48,12 +48,12 @@ The closed runtime is retained and will never be relaunched.
 
 Sixteen typed registry keys differ across both control sets (diagnosis.json).
 Differences include physical-seeded versus emulator PCI resource vectors/BAR sizes,
-IDE class01018Aâ†’010180 and IDE device checksum/timing data. These are real changes,
+IDE class01018A→010180 and IDE device checksum/timing data. These are real changes,
 not an unchanged-binding PASS. No Service/Driver installation was performed by
 the query-only helper. The inherited Ftdisk49 error remains a strict failure.
 
 The complete NT5 inventory has12 present PCI devices. SMBus01B4 at0:1.1 has no
-service/driver, problem1, no allocated log configuration and boot IO C000â€“C01F.
+service/driver, problem1, no allocated log configuration and boot IO C000–C01F.
 AC9701B1 at0:6.0 has the seed's ac97xnt5 binding;01C1 modem remains absent in xemu.
 One NV2A descriptor reports type0/size0: its payload is explicitly unavailable,
 not silently treated as success. Parser001 accepts the complete evidence while
@@ -65,7 +65,7 @@ additional time; it cannot erase emulator001 or establish physical behavior.
 It launched once at05:38:14UTC and closed at05:44:15UTC. Its runtime is closed,
 source unchanged, and xemu lease released. Cold allocation/hive/header/history
 checks passed again, but the observer has the same first nontext byte270337
-(file length285047); only samples0â€“3 have completion records. Six minutes did not
+(file length285047); only samples0–3 have completion records. Six minutes did not
 resolve the tail failure. Both combined trials remain diagnostic_usable=false.
 Underlying cause is unproven; no normal guest shutdown occurred in either run.
 
@@ -88,7 +88,7 @@ clusters with no orphan or allocation error. Both failed combined trials remain
 unchanged. No active PCI guest or lease remains.
 
 Binding_state_unchanged is deliberately false. The exact typed delta matches the
-reviewed/pinned emulator001 physical-seedâ†’emulator transition; that narrow match
+reviewed/pinned emulator001 physical-seed→emulator transition; that narrow match
 is sufficient for query-helper rehearsal only. No broad metadata exclusion or
 physical-baseline waiver is used. Physical returned-state checks compare all selected configuration and hold
 any differences for explicit review, as documented below. The inherited Ftdisk49 and absent normal shutdown keep
@@ -133,14 +133,14 @@ refused collection connection is preserved in physical001-collection-attempt001.
 
 | Physical device | Location | Live Windows result |
 | --- | --- | --- |
-| SMBus10DE:01B4 revB1 |0:1.1| Problem1; no service/driver or allocated configuration. Boot I/O C000â€“C00F and C200â€“C21F. |
+| SMBus10DE:01B4 revB1 |0:1.1| Problem1; no service/driver or allocated configuration. Boot I/O C000–C00F and C200–C21F. |
 | Modem10DE:01C1 revB1 |0:6.1| Present; problem1; no service/driver, allocated or boot configuration. |
 | AC9710DE:01B1 revB1 |0:6.0| Existing ac97xnt5 binding; problem10; no allocated or boot configuration. |
 
 These are live SetupAPI/Configuration Manager observations, not direct BAR or
 codec transactions. Missing Windows resources do not establish missing hardware
 BARs. The modem's presence and SMBus resource ranges differ from xemu: its rehearsal
-had12 present devices, no01C1, and one SMBus boot range C000â€“C01F. Functional modem
+had12 present devices, no01C1, and one SMBus boot range C000–C01F. Functional modem
 support and safe SMBus ownership remain unresolved. NV2A also returned one type0,
 size0 resource descriptor; its payload remains explicitly unavailable.
 

@@ -1,5 +1,18 @@
 # Next actions
 
+Current continuation: ownership001/REPORT.md. Physical220 completed and its
+restored-baseline ticket closed; commit2d51147 preserves the evidence. The new
+offline ownership review found the unconstrained C200 alternative and confirms
+HAL takeover as the remaining shared-controller problem. The strengthened policy
+passed5432 sanitizer cases and5432 cases in a fresh NT5 guest, with exit0 and
+cold file/hive/history/allocation checks. The kernel derivative compiles with
+telemetry disabled and remains uninstalled. Build002 and emulator001 are closed;
+no console/guest session or lease is active. Next is the coordinated HAL takeover
+implementation and genuine PnP/lifecycle tests. Do not reuse the closed hardware220
+ticket or enable telemetry before that ownership contract is implemented.
+
+Historical hardware220 preparation follows; its waiting status is superseded.
+
 October10 hardware220 authorization supersedes the physical-access restrictions
 in the historical list below. Current continuation is hardware220/REPORT.md:
 read-only OS inventory built/reviewed. Emulator001 is closed/held (incomplete

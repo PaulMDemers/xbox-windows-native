@@ -1,9 +1,10 @@
-# PCI support207 — native telemetry works; serialized hardware identification preparing
+# PCI support207 — physical inventory complete; SMBus ownership review
 
-October10 update: the new device-hardware220 handoff authorizes serialized
-physical identification after audio and USB restore/close. Current preparation,
-queue status and trial limits are in hardware220/REPORT.md. No physical access
-has occurred; historical emulator evidence below remains unchanged.
+October10 update: physical220 completed with normal user Restart, preserved
+inventory and verified scoped baseline restoration; its ticket is closed.
+See hardware220/REPORT.md for physical findings and ownership001/REPORT.md for
+the subsequent offline resource/ownership review and pending build guard.
+Historical emulator evidence below remains unchanged.
 
 Owner: codex/xbox-native-pci in the isolated E: checkout. Starting revision
 47fe46f6189896750ec8972e6ca4486a9072ded1. HEAD/remote guards verified before writes.
