@@ -1,3 +1,21 @@
+# Current October10 20:04UTC:229 guard fixes, still unprepared
+
+User-authorized check-in: PCI lifecycle002 active emulator trial after import
+correction. USB build032 compiled/import-reviewed; reported78915 mapping checks
+and nine transport failure cases passed; fixture preparation pending shared
+lease. Neither has been integrated into root or physically qualified by root.
+229 pre-freeze review corrected bounded FTP readiness retry and uncertain GDB
+physical-mode restoration; non-OK/exception quarantines. Actual helper failure
+adapters passed55 checks; this is host harness scope only. Previous source
+review remains historical; guard-correction002.json pins before/after trace.
+A single new Prepare call refused occupied build lease before any artifacts.
+No root active process, fixture, freeze, guest or physical access. Next inspect
+lease, prepare once when available, freeze corrected source then bounded single
+diagnostic; actual228 model publication remains unqualified (relaxed atomics).
+One host note update failed CP1252 decoding of continuation before changing that
+file; reissued with explicit UTF8. New guard review preserves that host failure
+and source review's expected stale-history rejection; no guest/build was started.
+
 # Current:227/228 CLOSED and pushed;229 queued/unprepared, all root sessions CLOSED
 
 Read outputs/xemu-backend-preserve227/REPORT.md and

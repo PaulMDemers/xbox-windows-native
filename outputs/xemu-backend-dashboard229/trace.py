@@ -1,5 +1,5 @@
 """One owned pre-loader dashboard stop and compiled-model diagnostic."""
-import datetime,hashlib,json,re,socket,struct,sys,time,traceback
+import datetime,ftplib,hashlib,json,re,socket,struct,sys,time,traceback
 from pathlib import Path
 k=Path(__file__).resolve().parent;ws=k.parents[1];case=sys.argv[1];assert case=='trace001'
 out=k/case;run=Path('E:/Codex-private-artifacts/xbox-windows-feasibility/dashboard229-runs/nt5-dashboard229-'+case)
@@ -24,6 +24,33 @@ def qom_path(tree):
   if name:stack.append((level,name))
   if m[3]=='nv2a':found.append('/'+'/'.join(v for _,v in stack))
  assert len(found)==1,found;return found[0]
+def wait_dashboard(deadline):
+ attempts=0
+ while True:
+  attempts+=1
+  try:
+   with DeadlineFTP(min(deadline,time.monotonic()+6)) as ftp:
+    ftp.connect('127.0.0.1',4596,timeout=ftp.budget())
+    ftp.login(os.environ['XWN_EMULATOR_FTP_USER'],os.environ['XWN_EMULATOR_FTP_PASSWORD'])
+    return dict(utc=utc(),reply=ftp.sendcmd('NOOP'),attempts=attempts,physical_access=False)
+  except ftplib.all_errors:
+   if time.monotonic()>=deadline:raise
+   time.sleep(min(.2,max(0,deadline-time.monotonic())))
+
+def restore_physical_mode(remote,record):
+ if not record.get('physical_mode_restore_required'):return True
+ try:
+  ok=remote.ask('Qqemu.PhyMemMode:0')=='OK'
+  record['physical_mode_restored']=ok
+  if ok:
+   record['physical_read_mode']=False
+   record['physical_mode_restore_required']=False
+  return ok
+ except Exception as exc:
+  record['physical_mode_restore_error']=repr(exc)
+  record['physical_mode_restored']=False
+  return False
+
 def snapshot(label):
  result=[]
  for name,a,n in [('ramin20k',0xfd710000,0x5000),('reserved_tail84k',0x03feb000,0x15000)]:
@@ -37,13 +64,11 @@ try:
  sys.path.insert(0,str(k.parent/'gpu-reset-banner152'))
  from ftp_deadline import DeadlineFTP
  import os
- with DeadlineFTP(time.monotonic()+6) as ftp:
-  ftp.connect('127.0.0.1',4596,timeout=6)
-  ftp.login(os.environ['XWN_EMULATOR_FTP_USER'],os.environ['XWN_EMULATOR_FTP_PASSWORD'])
-  r['dashboard_barrier']=dict(utc=utc(),reply=ftp.sendcmd('NOOP'),physical_access=False)
+ r['dashboard_barrier']=wait_dashboard(deadline)
  lock=acquire_monitor_lock(4594);cmd('stop');stopped=True
  g=Remote(4595);r['features']=g.ask('qSupported');r['initial_stop']=g.ask('?')
  r['prior_physical_mode']=g.ask('qemu.PhyMemMode');assert r['prior_physical_mode']=='0'
+ r['physical_mode_restore_required']=True # Command/reply may be uncertain.
  assert g.ask('Qqemu.PhyMemMode:1')=='OK';r['physical_read_mode']=True
  r['observed_cpu_registers']=struct.unpack('<10I',bytes.fromhex(g.ask('g'))[:40])
  r['phase']='dashboard before only Windows launch; observed CPU registers, no native code source pin'
@@ -74,9 +99,7 @@ finally:
    try:g.s.settimeout(5);g.interrupt();stopped=True
    except Exception as exc:r['interrupt_error']=repr(exc)
   if stopped:
-   if r.get('physical_read_mode'):
-    try:r['physical_mode_restored']=g.ask('Qqemu.PhyMemMode:0')=='OK';r['physical_read_mode']=False
-    except Exception as exc:r['physical_mode_restore_error']=repr(exc);quarantined=True
+   if not restore_physical_mode(g,r):quarantined=True
    if armed:
     try:g.bp(site,False);armed=False
     except Exception as exc:r['breakpoint_cleanup_error']=repr(exc)
