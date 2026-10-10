@@ -4,10 +4,14 @@ October10 hardware220 authorization supersedes the physical-access restrictions
 in the historical list below. Current continuation is hardware220/REPORT.md:
 read-only OS inventory built/reviewed. Emulator001 is closed/held (incomplete
 observer, empty exit log, fixture PnP changes); emulator002 closed at05:44:15UTC
-after its360-second bound and awaits cold audit. A reproduced CMD redirection
-bug is corrected in prepared emulator003, which has NOT launched. The coordinator
-requested the next xemu window for root221; PCI stopped only its unlaunched
-emulator003 lease waiter. Audio then USB must
+after its360-second bound and cold audit reproduced the observer tail at270337.
+A reproduced CMD redirection bug is corrected; emulator003 closed without launch.
+The coordinator completed root221 and released its leases. Fresh inventory-only
+emulator004 closed at05:54:28UTC and cold-audited successfully: inventory/exit0,
+protected files, hives, histories and allocation. Its exact typed metadata delta
+matches the pinned physical-seed→emulator transition; it is not an unchanged
+physical baseline or normal-shutdown qualification. No active PCI process/lease.
+Audio then USB must
 close restored-baseline tickets before PCI can claim. Never connect to console
 FTP before queue.py grants PCI. The functional SMBus prototype remains ineligible
 for physical deployment while HAL/video/audio ownership is unresolved.

@@ -54,9 +54,9 @@ def audit(phase):
     old=snapshot(repo/p['before']['system']['path']);r['incoming_pci']=pci(old)
     r['incoming_protected_exact']=all(v['matched'] and v['actual']==v['expected']==p['before'][v['path']]['sha256'] for v in p['before_checks'])
     review=read(k/'build001-review.json')
-    r['helper_review_valid']=review['passed'] and all(sha((k/'artifacts/build001'/name).read_bytes())==review[name.split('.')[0]+'_sha256'] for name in ('inventory.exe','observer.exe'))
+    r['helper_review_valid']=review['passed'] and all(sha((k/'artifacts/build001'/name).read_bytes())==review[name.split('.')[0]+'_sha256'] for name in ('inventory.exe',))
     if phase=='before':
-        r['rehearsal_passed']=read(k/'emulator003/audit.json')['diagnostic_usable']
+        r['rehearsal_passed']=read(k/'emulator004/audit.json')['diagnostic_usable']
         r['ready_for_read_only_trial']=r['hives_valid'] and r['incoming_protected_exact'] and r['helper_review_valid'] and r['rehearsal_passed']
         save(dest,r);print(json.dumps({key:r[key] for key in ('hives_valid','incoming_protected_exact','ready_for_read_only_trial')}));return
     new=snapshot(repo/p['after']['system']['path']);r['returned_pci']=pci(new)
@@ -68,11 +68,8 @@ def audit(phase):
     r['inventory_complete']=False
     if p['after'].get('inventory.log'):
         observed=analyze(data(p['after']['inventory.log']));save(k/'physical001-inventory.json',observed);r['inventory_complete']=observed['completed']
-    r['observer_complete']=False
-    if p['after'].get('observer.log'):
-        spec=importlib.util.spec_from_file_location('pci220_observer',repo/'outputs/device-durability189/analyze.py');module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
-        observed=module.analyze(data(p['after']['observer.log']));save(k/'physical001-observer.json',observed);r['observer_complete']=observed['completed']
-    r['helpers_exit_zero']=bool(p['after'].get('result.txt') and data(p['after']['result.txt']).decode('ascii').splitlines()==['INVENTORY_EXIT 0','OBSERVER_EXIT 0'])
+    r['observer_deployed']=False
+    r['helpers_exit_zero']=bool(p['after'].get('result.txt') and data(p['after']['result.txt']).decode('ascii').splitlines()==['INVENTORY_EXIT 0'])
     a=data(p['before']['setupapi.log']);b=data(p['after']['setupapi.log']);r['setupapi_history_preserved']=b.startswith(a)
     if b.startswith(a):save(k/'physical001-setupapi-delta.json',dict(new_bytes=len(b)-len(a),text=b[len(a):].decode('cp1252')))
     r['event_history_preserved']=True;r['new_events']={}
@@ -88,7 +85,7 @@ def audit(phase):
     r['normal_shutdown_event_count']=sum(v['source']=='EventLog' and v['event_id']==6006 for v in r['new_events']['system'])
     r['dashboard_return_recorded']=bool(p.get('dashboard_reply') and p.get('collected_utc'))
     r['baseline_restored']=r['startup_restored'] and r['protected_exact'] and r['configuration_unchanged'] and r['hives_valid'] and r['dashboard_return_recorded']
-    r['diagnostic_usable']=r['baseline_restored'] and r['inventory_complete'] and r['observer_complete'] and r['helpers_exit_zero'] and p['helpers_exact'] and r['event_history_preserved'] and r['setupapi_history_preserved']
+    r['diagnostic_usable']=r['baseline_restored'] and r['inventory_complete'] and r['helpers_exit_zero'] and p['helpers_exact'] and r['event_history_preserved'] and r['setupapi_history_preserved']
     r['limits']='Read-only OS identification. No direct PCI/SMBus/codec probe, full physical allocation audit or performance qualification. EventLog6006 and dashboard access do not alone prove a normal user restart.'
     save(dest,r);print(json.dumps({key:r[key] for key in ('baseline_restored','configuration_unchanged','diagnostic_usable','normal_shutdown_event_count')},indent=2))
 

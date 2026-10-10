@@ -61,13 +61,13 @@ def capture():
     print('PCI220 incoming baseline captured; no writes or launch')
 def launch():
     guard();r=read(record);assert r.get('capture_complete_utc') and not r['launch_requested'] and not r['physical_writes']
-    assert read(k/'emulator003/audit.json')['diagnostic_usable']
+    assert read(k/'emulator004/audit.json')['diagnostic_usable']
     assert read(k/'physical001-preflight.json')['ready_for_read_only_trial']
     review=read(k/'build001-review.json');assert review['passed']
-    payload={name:(k/'artifacts/build001'/name).read_bytes() for name in ('inventory.exe','observer.exe')}
+    payload={name:(k/'artifacts/build001'/name).read_bytes() for name in ('inventory.exe',)}
     for name,b in payload.items():assert sha(b)==review[name.split('.')[0]+'_sha256']
-    test=(k/'emulator003/artifacts/startup.cmd').read_bytes();original=preserved(r['before']['startup.cmd'])
-    assert sha(test)==read(k/'emulator003/fixture.json')['files']['F/'+startup[3:]]
+    test=(k/'emulator004/artifacts/startup.cmd').read_bytes();original=preserved(r['before']['startup.cmd'])
+    assert sha(test)==read(k/'emulator004/fixture.json')['files']['F/'+startup[3:]]
     with connect() as f:
         # Reject changes since capture before touching the console.
         for name,path in aux:assert get(f,path)==preserved(r['before'][name]),'Incoming state changed since capture'
@@ -93,14 +93,14 @@ def launch():
     print('One authorized PCI220 observer launch requested; never repeat from timeout')
 def collect():
     guard();r=read(record);assert r['launch_requested'] and not r.get('collected_utc')
-    original=preserved(r['before']['startup.cmd']);test=(k/'emulator003/artifacts/startup.cmd').read_bytes()
+    original=preserved(r['before']['startup.cmd']);test=(k/'emulator004/artifacts/startup.cmd').read_bytes()
     with connect() as f:
         # FIRST restore actual incoming startup, before any long collection.
         assert get(f,startup) in (original,test),'Unexpected startup drift'
         put(f,startup,original);r['startup_enabled']=False;r['startup_restored_utc']=utc();save(r)
-        for name,path in [('inventory.log',remote+'/inventory.log'),('observer.log',remote+'/observer.log'),('result.txt',remote+'/result.txt'),*aux]:
+        for name,path in [('inventory.log',remote+'/inventory.log'),('result.txt',remote+'/result.txt'),*aux]:
             if name in r['after']:continue
-            b=get(f,path,optional=name in ('inventory.log','observer.log','result.txt'))
+            b=get(f,path,optional=name in ('inventory.log','result.txt'))
             r['after'][name]=preserve('after-'+name,b) if b is not None else None;save(r)
         r['after_checks']=[]
         for index,row in enumerate(r['before_checks']):
@@ -108,7 +108,7 @@ def collect():
             if key not in r['after']:r['after'][key]=preserve('after-protected-'+str(index),b)
             else:assert b==preserved(r['after'][key]),'Changed since partial collection'
             r['after_checks'].append(dict(path=key,sha256=sha(b),matched=sha(b)==row['actual']));save(r)
-        r['helpers_exact']=all(sha(get(f,remote+'/'+name))==sha((k/'artifacts/build001'/name).read_bytes()) for name in ('inventory.exe','observer.exe'))
+        r['helpers_exact']=all(sha(get(f,remote+'/'+name))==sha((k/'artifacts/build001'/name).read_bytes()) for name in ('inventory.exe',))
         r['startup_backup_exact']=get(f,remote+'/normal-startup.cmd')==original
         r['dashboard_reply']=f.pwd();r['collected_utc']=utc();save(r)
     print('Incoming startup restored/read back first; physical evidence collected. Offline baseline audit required before queue close.')

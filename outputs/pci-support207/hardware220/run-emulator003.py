@@ -8,6 +8,7 @@ def sha(p):
     with p.open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
 def now():return datetime.datetime.now(datetime.timezone.utc).isoformat()
 case=k/'emulator003';fixture=json.loads((case/'fixture.json').read_text())
+assert not (case/'closed.json').exists(),'Superseded before launch; preserve prepared fixture'
 out=case/'artifacts/runtime';assert not out.exists()
 source=case/'artifacts/source.qcow2';assert sha(source)==fixture['source_sha256']
 exe=canonical/'outputs/xemu-cpu-surface-evict/build003/artifacts/xemu-candidate.exe'
