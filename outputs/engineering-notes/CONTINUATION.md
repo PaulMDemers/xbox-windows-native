@@ -1,3 +1,40 @@
+# Current:217 stock instance backing and device check-in CLOSED
+
+NEW outputs/video-instance-backing217 REPORT.md/NEXT.md/review.json. No NT5
+launch or GPU/allocator writes. Actual Complex4627 kernel1.0.4627.1 ordinal168
+captured,184-byte function and globals pinned. Claimed size5000; CPU window
+03feb000..03ff0000 and64KiB padding confirmed by actual CR3=f0004KiB walks.
+Exact20KiB arithmetic overlap with retained NT5 bootvid backbuffer. pbkit uses
+queryffffffff ONLY, then subtracts5000; it does not make a new20KiB claim.
+No PRAMIN alias, physical kernel equivalence, live collision or NT5 grant proven.
+Host captured-code arithmetic99cases/891checks PASS with3 modeled callees.
+
+All217 attempts CLOSED, discarded snapshot clones: dashboard001 FTP EOFError,
+002 RSP handshake timeout,003 FTP readiness bound; original failures retained.
+kernel004 and map005 PASS bounded read-only captures, resumed CPU, no breakpoint.
+Private kernel container111 unmapped gaps retained, no gaps in used facts.
+Unchanged source parent f50befc5 retained; no discarded-child cold audit or
+normal guest shutdown claimed. Owned runners41211/13230/93057/81906/62099 and
+captures53733/21585 closed. No owned instance217 xemu process remains.
+
+User authorized check-in with existing audio/PCI/USB chats; all replied idle.
+outputs/device-checkin217/checkin.json and REPORT.md pin owner results and local
+clean checkouts; delivered audio/USB package hashes readback verified.
+Audio7cdb191: experimental ACI playback/installation/two reboots in xemu;
+physical codec/audible/APU/digital behavior unqualified, strictFt49 remains.
+PCI801bdbd: SMBus exact binding/readback, normalshutdown blocked by pending
+installation. C000 fixed HAL SMBus address; private mutex does not serialize
+HAL reboot/video encoder, modem shares AC97 resources. USB5d86c99: descriptors
+only; no functional XID minidriver, normal reboot or physical qualification.
+No integration, merge, guest launch or physical change from these check-ins.
+
+Next NEW discriminator: bounded query-only NXDK CPU/PRAMIN correlation, explicit
+profile/page/stability/entropy checks, no pbkit reset/object writes. xemu separate
+RAMIN cannot prove physical UMA alias. Then disjoint bootvid/instance layout and
+native bounded context acquire/service/drain before guarded16x8 copy. Host
+models/witnesses are not grants. Preserve0101/video0093,0088rollback,immutable0.1.0
+and failures; C about21.87GB, unchanged20GiB guard. All owned sessions CLOSED.
+
 # Current:216 read-only GPU handoff diagnostic CLOSED
 
 Implementation/evidence d44ff8a pushed to private main; final source/repository
