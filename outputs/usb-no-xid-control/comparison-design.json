@@ -1,0 +1,24 @@
+{
+  "reference_commit": "38b247251ef687c383cc143bc617404cd3b1b695",
+  "reference_cases": [
+    "usb-nt5-restart/emu001",
+    "usb-nt5-restart/emu002"
+  ],
+  "matched": [
+    "Immutable USB fixture seed",
+    "Windows2000SP4 providers and core payload hashes",
+    "Pinned xemu binary, 64MiB and emulated controller",
+    "Loopback-only launch, private child disks, 300-second observation, no debugger pause",
+    "First-boot known-wizard cleanup followed by real setup idle and normal restart",
+    "Fresh second-boot child with no wizard actions",
+    "Write-through files with explicit flushes and cold allocation/hive/payload audits"
+  ],
+  "differences": [
+    "No XID driver, INF, installation or HID read workload in either boot",
+    "Storage probe writes known phase-specific2226-byte ASCII payload in75 synchronous write/flush chunks; it does not replay exact HID logging sizes/timing",
+    "One extra exact controller wizard may be canceled in the first no-XID boot",
+    "Different authored application files, names and allocation layout"
+  ],
+  "inference_rule": "Failure without an XID service/binary demonstrates that XID is not necessary for that failure. A passing control would not alone attribute the original failure to XID.",
+  "physical_access": false
+}

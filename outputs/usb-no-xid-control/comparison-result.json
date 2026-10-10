@@ -1,0 +1,20 @@
+{
+  "physical_access": false,
+  "xid_not_necessary_for_observed_failure": true,
+  "first_boot_scoped_restart_passed": true,
+  "second_boot_failed": true,
+  "evidence": {
+    "xid_binary_and_registry_absent": true,
+    "stale_files": [
+      "status2.log",
+      "payload2.txt",
+      "exit2.txt"
+    ],
+    "independent_readers_agree": true,
+    "full_fat_readers_agree": true,
+    "parent_unchanged": true,
+    "orphan_clusters": 12
+  },
+  "limits": "No proof of a specific faulty component, completed flush requests in the failed guest, or normal-shutdown durability. Both failing second boots were host-stopped. Workload/layout differences are explicit in comparison-design.json.",
+  "next": "Freeze results; diagnose the baseline file-data/allocation writeback path in a fresh diagnostic before changing XID."
+}
