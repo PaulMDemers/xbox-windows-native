@@ -1,6 +1,10 @@
+# LIVE: USB owns hardware220; fresh read-only capture starting
+
+Audio restored-baseline closure verified and USB claim granted. No USB physical writes or launch yet. Prepared source commit bd3cb0c. Current records below will be updated after capture.
+
 # USB220 authorized physical trial
 
-Status: PREPARED, WAITING; USB claim refused because audio has not closed its restored
+Historical preparation: USB initially waited because audio had not closed its restored
 baseline. No USB physical access, writes or launch has occurred. No owned guest,
 FTP connection or background controller exists. Shared queue: canonical
 outputs/device-hardware220/state; order audio, USB, PCI.
@@ -60,3 +64,6 @@ driver installation are not yet established by this prepared trial. All earlier
 USB207 failures remain preserved. New failures will be retained in trial records.
 
 Preparation commit4680a5e5e48d07168a546c31c8b6332d04f1ba5c is pushed and remote-verified. The repository scan passed for19279 tracked files. Scan session11374 and commit/push session84317 are closed. No owned session remains.
+
+
+LIVE: incoming capture and all five hive walks passed. One E-only read-only allocation scan launch is recorded in before-scan.json. Windows has not been launched; F: startup and drivers remain incoming bytes. Owned observer is bounded and tracked in shared usb-status.json.

@@ -97,7 +97,7 @@ def expected():
     return fixed
 
 def auxiliary():
-    return {**{n:'/F/winnt/system32/config/'+n for n in HIVES+['sysevent.evt','appevent.evt']},
+    return {**{n:'/F/winnt/system32/config/'+n for n in HIVES+['sysevent.evt','appevent.evt','secevent.evt']},
             'setupapi.log':'/F/winnt/setupapi.log','trace.bin':'/F/winnt/system32/xwn-video-trace.bin'}
 
 def capture():
@@ -132,6 +132,7 @@ def capture():
 
 def launch():
     p=pins();r=read(RECORD);assert r['capture_complete'] and not r['launch_requested']
+    assert r.get('companions_captured'),'Capture incoming hive journals and backups first'
     assert read(K/'before-hive-audit.json')['passed'],'Incoming hives must be reviewed before launch'
     assert read(K/'before-allocation.json')['allocation_consistent'],'Incoming full F allocation must pass'
     assert not r.get('staging_started'),'Preserve partial staging; no automatic retry'
@@ -139,6 +140,7 @@ def launch():
         assert REMOTE.rsplit('/',1)[1].lower() not in names(f,'/F')
         for path in expected():assert get(f,path)==local(r['before'][path]),'Incoming baseline changed: '+path
         for n in HIVES:assert get(f,auxiliary()[n])==local(r['before'][n]),'Incoming hive changed: '+n
+        for n,path in r.get('companions',{}).items():assert get(f,path)==local(r['before'][n]),'Incoming companion changed'
         r['staging_started']=True;save(r)
         f.mkd(REMOTE)
         put(f,REMOTE+'/usbprobe.exe',Path(p['binary']).read_bytes())
@@ -183,8 +185,9 @@ def collect():
         for n in ['usb.log','exit.txt']:
             data=get(f,REMOTE+'/'+n,optional=True)
             r['after'][n]=None if data is None else keep('after/'+n,data);save(r)
-        for name,path in auxiliary().items():
+        for name,path in (auxiliary()|r.get('companions',{})).items():
             r['after'][name]=keep('after/'+name,get(f,path));save(r)
+        r['config_after_names']=sorted(names(f,'/F/winnt/system32/config')-{'.','..'})
         for i,path in enumerate(expected()):
             r['after'][path]=keep('after/fixed-%03d.bin'%i,get(f,path));save(r)
         r['fixed_exact']=all(local(r['after'][p])==local(r['before'][p]) for p in expected())
@@ -202,6 +205,12 @@ def restore():
     assert r['fixed_exact'] and r['collector_exact'] and r['rollback_readback_exact']
     with connect() as f:
         put(f,STARTUP,local(r['before'][STARTUP]))
+        assert r['config_after_names']==r['config_before_names'],'Review new or missing registry files before rollback'
+        for name,path in r.get('companions',{}).items():
+            before=local(r['before'][name]);after=local(r['after'][name])
+            assert get(f,path) in [before,after],'Unexpected intervening companion change'
+            if before!=after:put(f,path,before)
+            assert get(f,path)==before
         for name in HIVES:
             # Restore all incoming registry snapshots for the next device owner's exact baseline.
             before=local(r['before'][name]);after=local(r['after'][name])
@@ -210,6 +219,7 @@ def restore():
             assert get(f,auxiliary()[name])==before
         for path in expected():assert get(f,path)==local(r['before'][path]),'Protected baseline drift'
         r['restored_hives']={n:sha(get(f,auxiliary()[n])) for n in HIVES}
+        r['restored_companions']={n:sha(get(f,path)) for n,path in r.get('companions',{}).items()}
         r['dashboard_verified_after_restore']=True
     r.update(baseline_restored=True,restored_utc=utc(),startup_enabled=False);save(r)
     print('Incoming startup, five hives and protected binaries readback verified at dashboard',flush=True)

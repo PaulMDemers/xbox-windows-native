@@ -27,7 +27,7 @@ if p['after']['usb.log']:
     except (ValueError,AssertionError,KeyError) as e:r.update(probe_complete=False,parse_error=str(e))
 else:r.update(probe_complete=False,parse_error='Missing usb.log')
 r['collector_exit']=None if not p['after']['exit.txt'] else data(p['after']['exit.txt']).decode('ascii').strip()
-for name,label in [('sysevent.evt','system'),('appevent.evt','application')]:
+for name,label in [('sysevent.evt','system'),('appevent.evt','application'),('secevent.evt','security')]:
     decoded=[]
     for phase in ['before','after']:
         d=K/'artifacts/physical001'/(phase+'-'+label+'-events.json')

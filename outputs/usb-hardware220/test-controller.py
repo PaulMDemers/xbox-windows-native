@@ -23,7 +23,7 @@ class Checks(unittest.TestCase):
         self.exe=self.k/'usbprobe.exe';self.exe.write_bytes(b'probe')
         (self.k/'before-hive-audit.json').write_text('{"passed":true}')
         (self.k/'before-allocation.json').write_text('{"allocation_consistent":true}')
-        r=dict(capture_complete=True,launch_requested=False,startup_enabled=False,before={})
+        r=dict(capture_complete=True,companions_captured=True,launch_requested=False,startup_enabled=False,before={})
         for i,key in enumerate([m.STARTUP]+m.HIVES):r['before'][key]=m.keep('before/'+str(i),key.encode())
         m.save(r)
     def tearDown(self):
