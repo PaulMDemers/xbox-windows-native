@@ -1,3 +1,37 @@
+# Current:227/228 preservation diagnostics CLOSED;229 preparation waiting on lease
+
+Read outputs/xemu-backend-preserve227/REPORT.md and
+outputs/xemu-backend-reason228/REPORT.md.227 single trace001 REFUSED state4;
+normal CPU/cold scope passed but backend coverage failed.228 build002 fixes
+an inherited timeout publication race with a CAS claim before halt restoration.
+Actual helper O0/O2 ASan/UBSan each100390 checks/100000 concurrent pairs passed.
+228 at Cromwell exit state3 but ZERO surfaces/downloads; no preservation proof.
+Initial missing loopback credentials failed observer before any Windows request;
+same-instance observer recovery made exactly one request. Frozen failures kept.
+Original controller wait failed; owned480-second bound closed guest. Wizard
+TIMEOUT201120090ms, no CPU result, no normal shutdown/dashboard. Cold integrity
+passed320dirs6722files321clusters/no errors/orphans/five hives/protected hashes.
+StrictFALSE with inheritedFt49. Do not infer diagnostic cause of startup wait.
+All227/228 owned processes CLOSED; read recovered-closure.json for once-only
+collection. Physical0101/video0093,0088 rollback and immutable0.1.0 unchanged.
+
+NEW outputs/xemu-backend-dashboard229 uses exact228 build002 in an earlier
+owned-dashboard pre-SITE-EXEC phase. No new native/model patch, predicate waiver,
+null-device policy or physical access. Credential preflight precedes instance.
+GDB physical-read mode will be restored before resume. Reference retirement and
+native ownership remain unqualified. Author/phase source exists, NOT frozen or
+launched. Wait-Prepare.ps1 session1382 currently ACTIVE with bounded10-minute
+cooperative build lease wait. Inspect preparation-resource.json and fixture
+records; do NOT duplicate preparation or break PCI thread's build lease. Previous
+Finish228-Prepare229 session14411 CLOSED1 after successful cold collection then
+lease refusal before fixture creation. No229 guest, runner or launch yet.
+
+Build003/004/005227 closed artifacts offloaded hash-verified to E at original-path
+junctions; frozen pins intact, no disk backing chain moved.20GiB guard unchanged.
+Next require actual dirty cache/readback coverage at earlier phase, then ended
+references, full inherited allocator/backing census and genuine private context
+service before accelerated16x8copy. Preserve all failed evidence and strict gates.
+Git HEAD/origin/main authoritative; reviewed227/228 checkpoint publication follows.
 # Current:226 serialized ownership reducer and source-consumer review CLOSED
 
 Read outputs/video-owner-transition226/DESIGN.md, REPORT.md, NEXT.md,

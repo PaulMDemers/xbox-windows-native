@@ -1,0 +1,85 @@
+--- a/hw/xbox/nv2a/nv2a.c
++++ b/hw/xbox/nv2a/nv2a.c
+@@ -390,10 +390,11 @@
+         state = qatomic_read(&d->preserve227.state);
+     }
+     return g_strdup_printf("state=%u surfaces=%u dirty=%u downloaded=%u bytes=%" PRIu64
+-                           " error=%u references_retired=0 native_grant=0",
++                           " error=%u reason=%u references_retired=0 native_grant=0",
+         state, qatomic_read(&d->preserve227.surfaces),
+         qatomic_read(&d->preserve227.dirty), qatomic_read(&d->preserve227.downloaded),
+-        qatomic_read(&d->preserve227.bytes), qatomic_read(&d->preserve227.error));
++        qatomic_read(&d->preserve227.bytes), qatomic_read(&d->preserve227.error),
++        qatomic_read(&d->preserve227.reason));
+ }
+ 
+ static void nv2a_realize(PCIDevice *dev, Error **errp)
+--- a/hw/xbox/nv2a/nv2a_int.h
++++ b/hw/xbox/nv2a/nv2a_int.h
+@@ -78,7 +78,7 @@
+      *0 unused,1 queued,2 working,3 preserved,4 refused,5 timeout,6 failed.
+      * Success preserves bytes only; surfaces/context references remain alive. */
+     struct {
+-        unsigned state, surfaces, dirty, downloaded, error;
++        unsigned state, surfaces, dirty, downloaded, error, reason;
+         uint64_t bytes;
+         int64_t deadline;
+         bool old_halt;
+--- a/hw/xbox/nv2a/pgraph/gl/renderer.c
++++ b/hw/xbox/nv2a/pgraph/gl/renderer.c
+@@ -126,6 +126,7 @@
+     if (qatomic_read(&d->preserve227.state) == 1) {
+         unsigned result = 4;
+         bool frontend_locked = !qemu_mutex_trylock(&pg->renderer_lock);
++        if (!frontend_locked) { qatomic_set(&d->preserve227.reason, 2); }
+         if (frontend_locked) {
+             bool queue_empty =
+                 d->pfifo.regs[NV_PFIFO_CACHE1_DMA_GET] ==
+@@ -133,6 +134,7 @@
+                 !(d->pfifo.regs[NV_PFIFO_CACHE1_DMA_STATE] &
+                   (NV_PFIFO_CACHE1_DMA_STATE_METHOD_COUNT |
+                    NV_PFIFO_CACHE1_DMA_STATE_ERROR));
++            if (!queue_empty) { qatomic_set(&d->preserve227.reason, 1); }
+             if (queue_empty &&
+                 qatomic_cmpxchg(&d->preserve227.state, 1, 2) == 1) {
+                 qemu_mutex_unlock(&d->pfifo.lock);
+--- a/hw/xbox/nv2a/pgraph/gl/surface.c
++++ b/hw/xbox/nv2a/pgraph/gl/surface.c
+@@ -826,13 +826,14 @@
+     SurfaceBinding *s, *other;
+     unsigned count = 0, dirty = 0;
+     uint64_t bytes = 0;
+-    if (pg->primitive_mode != PRIM_TYPE_INVALID || pg->draw_arrays_length ||
+-        pg->inline_array_length || pg->inline_elements_length ||
+-        pg->inline_buffer_length || pg->framebuffer_in_use ||
+-        pg->waiting_for_nop || pg->waiting_for_flip ||
+-        pg->waiting_for_context_switch || pg->flush_pending || pg->sync_pending) {
+-        return 4;
+-    }
++    unsigned reason =
++        pg->primitive_mode != PRIM_TYPE_INVALID ? 3 :
++        pg->draw_arrays_length ? 4 : pg->inline_array_length ? 5 :
++        pg->inline_elements_length ? 6 : pg->inline_buffer_length ? 7 :
++        pg->framebuffer_in_use ? 8 : pg->waiting_for_nop ? 9 :
++        pg->waiting_for_flip ? 10 : pg->waiting_for_context_switch ? 11 :
++        pg->flush_pending ? 12 : pg->sync_pending ? 13 : 0;
++    if (reason) { qatomic_set(&d->preserve227.reason, reason);return 4; }
+     /* Validate the complete list BEFORE any readback. Unknown/oversize ranges
+      * refuse without invalidating or clearing dirty surfaces. */
+     QTAILQ_FOREACH(s, &r->surfaces, entry) {
+@@ -840,13 +841,13 @@
+         if (++count > 128 || !s->width || !s->height || !s->size ||
+             s->size > 16 * MiB || span > s->size ||
+             s->vram_addr >= memory_region_size(d->vram) ||
+-            s->size > memory_region_size(d->vram) - s->vram_addr) { return 4; }
++            s->size > memory_region_size(d->vram) - s->vram_addr) { qatomic_set(&d->preserve227.reason, 14);return 4; }
+         /* Conflicting cached aliases cannot all be preserved by list order.
+          * Refuse even clean/dirty overlap rather than guessing the latest owner. */
+         QTAILQ_FOREACH(other, &r->surfaces, entry) {
+             if (other == s) { break; }
+             if (s->vram_addr < other->vram_addr + other->size &&
+-                other->vram_addr < s->vram_addr + s->size) { return 4; }
++                other->vram_addr < s->vram_addr + s->size) { qatomic_set(&d->preserve227.reason, 15);return 4; }
+         }
+         if (s->draw_dirty || s->download_pending) { dirty++; }
+     }

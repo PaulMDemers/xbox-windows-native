@@ -1,0 +1,238 @@
+--- a/hw/xbox/nv2a/nv2a.c
++++ b/hw/xbox/nv2a/nv2a.c
+@@ -342,6 +342,60 @@
+     nv2a_unlock_fifo(d);
+ }
+ 
++/*227 stopped-VM diagnostic. No driver/guest ownership grant. */
++static bool preserve227_get(Object *obj, Error **errp)
++{
++    NV2AState *d = NV2A_DEVICE(obj);
++    return qatomic_read(&d->preserve227.state) == 3;
++}
++
++static void preserve227_set(Object *obj, bool value, Error **errp)
++{
++    NV2AState *d = NV2A_DEVICE(obj);
++    if (!value || qatomic_read(&d->preserve227.state) != 0 ||
++        !(runstate_check(RUN_STATE_PAUSED) || runstate_check(RUN_STATE_DEBUG))) {
++        error_setg(errp, "preserve227 needs unused stopped-VM request");
++        return;
++    }
++    if (d->pgraph.renderer->type != CONFIG_DISPLAY_RENDERER_OPENGL) {
++        error_setg(errp, "preserve227 supports OpenGL only");
++        return;
++    }
++    /* Never block the monitor on a worker that might need the BQL. */
++    if (qemu_mutex_trylock(&d->pfifo.lock)) {
++        error_setg(errp, "preserve227 FIFO lock busy; request not accepted");
++        return;
++    }
++    int64_t now = qemu_clock_get_ns(QEMU_CLOCK_REALTIME);
++    if (now > INT64_MAX - 5000000000LL) {
++        qemu_mutex_unlock(&d->pfifo.lock);
++        error_setg(errp, "preserve227 deadline overflow; request not accepted");
++        return;
++    }
++    d->preserve227.old_halt = qatomic_read(&d->pfifo.halt);
++    d->preserve227.deadline = now + 5000000000LL;
++    qatomic_set(&d->pfifo.halt, true);
++    qatomic_set(&d->preserve227.state, 1);
++    pfifo_kick(d);
++    qemu_mutex_unlock(&d->pfifo.lock);
++}
++
++static char *preserve227_report(Object *obj, Error **errp)
++{
++    NV2AState *d = NV2A_DEVICE(obj);
++    unsigned state = qatomic_read(&d->preserve227.state);
++    if ((state == 1 || state == 2) &&
++        qemu_clock_get_ns(QEMU_CLOCK_REALTIME) >= d->preserve227.deadline) {
++        qatomic_cmpxchg(&d->preserve227.state, state, 5);
++        state = qatomic_read(&d->preserve227.state);
++    }
++    return g_strdup_printf("state=%u surfaces=%u dirty=%u downloaded=%u bytes=%" PRIu64
++                           " error=%u references_retired=0 native_grant=0",
++        state, qatomic_read(&d->preserve227.surfaces),
++        qatomic_read(&d->preserve227.dirty), qatomic_read(&d->preserve227.downloaded),
++        qatomic_read(&d->preserve227.bytes), qatomic_read(&d->preserve227.error));
++}
++
+ static void nv2a_realize(PCIDevice *dev, Error **errp)
+ {
+     NV2AState *d = NV2A_DEVICE(dev);
+@@ -367,6 +421,10 @@
+     qemu_mutex_init(&d->pfifo.lock);
+     qemu_cond_init(&d->pfifo.fifo_cond);
+     qemu_cond_init(&d->pfifo.fifo_idle_cond);
++    object_property_add_bool(OBJECT(d), "xwn-preserve227", preserve227_get,
++                             preserve227_set);
++    object_property_add_str(OBJECT(d), "xwn-preserve227-report",
++                            preserve227_report, NULL);
+ }
+ 
+ static void nv2a_exitfn(PCIDevice *dev)
+--- a/hw/xbox/nv2a/nv2a_int.h
++++ b/hw/xbox/nv2a/nv2a_int.h
+@@ -74,6 +74,15 @@
+ 
+     qemu_irq irq;
+     bool exiting;
++    /*227 opt-in host diagnostic, deliberately not migrated or guest-visible.
++     *0 unused,1 queued,2 working,3 preserved,4 refused,5 timeout,6 failed.
++     * Success preserves bytes only; surfaces/context references remain alive. */
++    struct {
++        unsigned state, surfaces, dirty, downloaded, error;
++        uint64_t bytes;
++        int64_t deadline;
++        bool old_halt;
++    } preserve227;
+ 
+     VGACommonState vga;
+     GraphicHwOps hw_ops;
+--- a/hw/xbox/nv2a/pgraph/gl/renderer.c
++++ b/hw/xbox/nv2a/pgraph/gl/renderer.c
+@@ -120,6 +120,37 @@
+ {
+     PGRAPHState *pg = &d->pgraph;
+     PGRAPHGLState *r = pg->gl_renderer_state;
++
++    /* Request is one-shot and producer admission was halted under FIFO lock.
++     * Frontend references are explicitly not retired by this diagnostic. */
++    if (qatomic_read(&d->preserve227.state) == 1) {
++        unsigned result = 4;
++        bool frontend_locked = !qemu_mutex_trylock(&pg->renderer_lock);
++        if (frontend_locked) {
++            bool queue_empty =
++                d->pfifo.regs[NV_PFIFO_CACHE1_DMA_GET] ==
++                d->pfifo.regs[NV_PFIFO_CACHE1_DMA_PUT] &&
++                !(d->pfifo.regs[NV_PFIFO_CACHE1_DMA_STATE] &
++                  (NV_PFIFO_CACHE1_DMA_STATE_METHOD_COUNT |
++                   NV_PFIFO_CACHE1_DMA_STATE_ERROR));
++            if (queue_empty &&
++                qatomic_cmpxchg(&d->preserve227.state, 1, 2) == 1) {
++                qemu_mutex_unlock(&d->pfifo.lock);
++                qemu_mutex_lock(&pg->lock);
++                result = pgraph_gl_preserve227(d);
++                qemu_mutex_unlock(&pg->lock);
++                qemu_mutex_lock(&d->pfifo.lock);
++            }
++            qemu_mutex_unlock(&pg->renderer_lock);
++        }
++        /* Timeout is terminal; a late worker result never unhalts admission. */
++        if (qatomic_read(&d->preserve227.state) != 5) {
++            if (result == 3 || result == 4) {
++                qatomic_set(&d->pfifo.halt, d->preserve227.old_halt);
++            }
++            qatomic_set(&d->preserve227.state, result);
++        }
++    }
+ 
+     if (qatomic_read(&r->downloads_pending) ||
+         qatomic_read(&r->download_dirty_surfaces_pending) ||
+--- a/hw/xbox/nv2a/pgraph/gl/renderer.h
++++ b/hw/xbox/nv2a/pgraph/gl/renderer.h
+@@ -277,6 +277,7 @@
+ void pgraph_gl_init_buffers(NV2AState *d);
+ void pgraph_gl_finalize_buffers(PGRAPHState *pg);
+ void pgraph_gl_process_pending_downloads(NV2AState *d);
++unsigned pgraph_gl_preserve227(NV2AState *d);
+ void pgraph_gl_reload_surface_scale_factor(PGRAPHState *pg);
+ void pgraph_gl_render_surface_to_texture(NV2AState *d, SurfaceBinding *surface, TextureBinding *texture, TextureShape *texture_shape, int texture_unit);
+ void pgraph_gl_set_surface_dirty(PGRAPHState *pg, bool color, bool zeta);
+--- a/hw/xbox/nv2a/pgraph/gl/surface.c
++++ b/hw/xbox/nv2a/pgraph/gl/surface.c
+@@ -792,6 +792,93 @@
+ 
+     surface->download_pending = false;
+     surface->draw_dirty = false;
++}
++
++/*227 preserving fence/download only. Must run on the actual GL worker with
++ * PGRAPH and renderer locks, stopped guest and halted producer admission.
++ * Host readback calls themselves are not cancellable; the host watchdog still
++ * bounds the wait and quarantines rather than freeing on a late result. */
++static bool preserve227_alive(NV2AState *d)
++{
++    return qatomic_read(&d->preserve227.state) == 2 &&
++           qemu_clock_get_ns(QEMU_CLOCK_REALTIME) < d->preserve227.deadline;
++}
++
++static bool preserve227_fence(NV2AState *d)
++{
++    if (!preserve227_alive(d)) { return false; }
++    GLsync fence = glFenceSync(GL_SYNC_GPU_COMMANDS_COMPLETE, 0);
++    if (!fence) { return false; }
++    int64_t remaining = d->preserve227.deadline -
++                        qemu_clock_get_ns(QEMU_CLOCK_REALTIME);
++    GLenum status = remaining > 0 ?
++        glClientWaitSync(fence, GL_SYNC_FLUSH_COMMANDS_BIT, remaining) :
++        GL_TIMEOUT_EXPIRED;
++    glDeleteSync(fence);
++    return (status == GL_ALREADY_SIGNALED || status == GL_CONDITION_SATISFIED) &&
++           preserve227_alive(d);
++}
++
++unsigned pgraph_gl_preserve227(NV2AState *d)
++{
++    PGRAPHState *pg = &d->pgraph;
++    PGRAPHGLState *r = pg->gl_renderer_state;
++    SurfaceBinding *s, *other;
++    unsigned count = 0, dirty = 0;
++    uint64_t bytes = 0;
++    if (pg->primitive_mode != PRIM_TYPE_INVALID || pg->draw_arrays_length ||
++        pg->inline_array_length || pg->inline_elements_length ||
++        pg->inline_buffer_length || pg->framebuffer_in_use ||
++        pg->waiting_for_nop || pg->waiting_for_flip ||
++        pg->waiting_for_context_switch || pg->flush_pending || pg->sync_pending) {
++        return 4;
++    }
++    /* Validate the complete list BEFORE any readback. Unknown/oversize ranges
++     * refuse without invalidating or clearing dirty surfaces. */
++    QTAILQ_FOREACH(s, &r->surfaces, entry) {
++        uint64_t span = (uint64_t)s->pitch * s->height;
++        if (++count > 128 || !s->width || !s->height || !s->size ||
++            s->size > 16 * MiB || span > s->size ||
++            s->vram_addr >= memory_region_size(d->vram) ||
++            s->size > memory_region_size(d->vram) - s->vram_addr) { return 4; }
++        /* Conflicting cached aliases cannot all be preserved by list order.
++         * Refuse even clean/dirty overlap rather than guessing the latest owner. */
++        QTAILQ_FOREACH(other, &r->surfaces, entry) {
++            if (other == s) { break; }
++            if (s->vram_addr < other->vram_addr + other->size &&
++                other->vram_addr < s->vram_addr + s->size) { return 4; }
++        }
++        if (s->draw_dirty || s->download_pending) { dirty++; }
++    }
++    qatomic_set(&d->preserve227.surfaces, count);
++    qatomic_set(&d->preserve227.dirty, dirty);
++    GLenum error = glGetError();
++    if (error != GL_NO_ERROR) { qatomic_set(&d->preserve227.error, error);return 6; }
++    if (!preserve227_fence(d)) { return preserve227_alive(d) ? 6 : 5; }
++    QTAILQ_FOREACH(s, &r->surfaces, entry) {
++        if (!preserve227_alive(d)) { return 5; }
++        if (s->draw_dirty || s->download_pending) {
++            /* This existing actual worker path downloads GPU pixels into VRAM.
++             * Never use flush_surfaces: it discards dirty contents. */
++            uint8_t *expected = g_memdup2(d->vram_ptr + s->vram_addr, s->size);
++            surface_download_to_buffer(d, s, true, false, true, expected);
++            if (!preserve227_alive(d)) { g_free(expected);return 5; }
++            surface_download(d, s, true);
++            error = glGetError();
++            bool exact = !memcmp(expected, d->vram_ptr + s->vram_addr, s->size);
++            g_free(expected);
++            if (error != GL_NO_ERROR || !exact) {
++                qatomic_set(&d->preserve227.error, error ? error : 0xffffffffu);
++                return 6;
++            }
++            if (!preserve227_alive(d)) { return 5; }
++            bytes += s->size;
++            qatomic_inc(&d->preserve227.downloaded);
++            qatomic_set(&d->preserve227.bytes, bytes);
++        }
++    }
++    if (!preserve227_fence(d)) { return preserve227_alive(d) ? 6 : 5; }
++    return 3; /* Contents preserved; bindings, callbacks and textures RETAINED. */
+ }
+ 
+ void pgraph_gl_process_pending_downloads(NV2AState *d)
