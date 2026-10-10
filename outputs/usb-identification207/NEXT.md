@@ -2,6 +2,7 @@
 
 October10 update: hardware testing is now authorized through the serialized
 device-hardware220 queue. The new trial/report is ../usb-hardware220/REPORT.md.
+The hardware220 descriptor trial is complete; the actual child is FFFF:FFFF with XID interface58/42/00 and IN0x81/OUT0x02. Incoming baseline restoration and all three allocation scans passed. Controller input, normal-shutdown durability and strict events remain unqualified. See the220 report and completion.json.
 The historical coordinator-only restriction below is superseded for that trial;
 the original207 evidence/package remains immutable.
 
