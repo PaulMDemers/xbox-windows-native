@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "source_sha256": "9ab0e4c227182ed02c9725eb85a3bc6e4b5483a29249ed70a6c52b00069280f4",
+  "checked_pins": 49,
+  "current_source_pins": {
+    "protocol.h": "0bb9e25ff718a68bd177e9a9ae340535a8cc85c617a39918b6914ee97b52b80d",
+    "protocol.c": "4f011a74dceb2aa83bb9f3fd95a92d0320eb9bc2600a6b6eead00c5ee5ecbd6b",
+    "test.c": "a0b1eca13fc549ed194711bd52cfa16ee6ce2717926a6a53e9d016da253df8cc",
+    "model-values.h": "f9fe597e98a658e211d8588169f9cad36baf3c1b491380773a4871d3cc9f7539",
+    "run-host.py": "6af8cdb5607f0d047d0edd8b2d7dc7308ea0e600840de4f6239fb0aaf0a14020",
+    "inventory.py": "c56ceaded87961712d47e46d13164ad171cb0988b15a61142979e9727c9c8b7e"
+  },
+  "host_only": true,
+  "packet_words": 27,
+  "packet_bytes": 108,
+  "pixel_cases": 1024,
+  "descriptor_cases": 100000,
+  "transition_table_cases": 144,
+  "accepted_descriptors": 12513,
+  "checks_per_current_run": 18342825,
+  "earlier_token_binding_gap_preserved": true,
+  "guest_launch": false,
+  "physical_access": false,
+  "native_abi_qualified": false,
+  "gpu_transfer_qualified": false,
+  "manual_review": [
+    "Planner limits four disjoint page-aligned resident ranges below known framebuffer reservation;16-byte guards and64-bit span checks.",
+    "Seven single-slot RAMHT entries reject collisions/hash overflow and bound16-byte objects; synthetic locations only.",
+    "27 increasing words bind Kelvin only on subchannel0, use A8R8G8B8/SRCCOPY, release token last.",
+    "Current prepare binds final header,length/token to generation; caller must keep packet immutable and global generations unique/no wrap.",
+    "Complete is not drain; foreign callbacks reject, stale token/fault/clock regression/timeout quarantine; late completion cannot release quarantine.",
+    "State calls require external serialization and real resident/instance/context/address/order/clear/drain evidence. Flags in tests are mock witnesses.",
+    "No MMIO, allocator, native adapter, context switch handler, crash drain or asynchronous runtime integration exists in this kit."
+  ],
+  "limits": "Source and host contract checks only. CPU decoder models a selected command subset, not real QEMU execution or GPU/hardware timing. No authority or permission to submit from these results."
+}

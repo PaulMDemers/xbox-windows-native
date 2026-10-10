@@ -1,0 +1,13 @@
+{
+  "host001_result_preserved": true,
+  "host001_sha256": "3ca20f0c3d190b262cc55b8a48bda878a15071c59b91e9786bf440670fe80774",
+  "source_pins": {
+    "protocol.h": "a2379fdae3d355867f7249040f05efb646ee035cdfbbab353f7400c15e6f5f20",
+    "protocol.c": "2c21efa2ed83d754a03ab23175146b0203806b6afe9421cf0ca2528d4e30b7f5",
+    "test.c": "1ca2db36f2817d0f4d969c4971ddeca955becee4d99400cb673fc4dbc05fa087"
+  },
+  "finding": "Packet planner and lifecycle tokens were tested independently. Preparation must enforce that the final planned release token equals its context generation. This is a design/source review gap, not a sanitizer failure or guest failure; no runtime adapter exists.",
+  "next": "Bind prepare to planned terminal release token/header/length and add explicit mismatch/null guards in new host002; preserve host001 sources/results.",
+  "guest_launch": false,
+  "physical_access": false
+}

@@ -1,3 +1,40 @@
+# Current:215 CPU transfer protocol CLOSED; no GPU submission
+
+NEW outputs/video-transfer-protocol215 implements pure CPU27word/108byte
+62+9f blit packet and97/subchannel0 completion release, four disjoint bounded
+resident range descriptors, seven unique RAMHT slots and serialized lifetime
+model. Synthetic host addresses/Boolean proof flags are NOT native grants.
+Actual source inventory13files reconstructed privately matches compiled685f24e3
+manifest, no borrowedsource changes. Source/evidence49pins PASS.
+
+Host002 O0/O2 ASanUBSan each18342825checks,1024 guarded pixel cases,100000
+valid/malformed descriptors (12513accepted),144 transition-table cases PASS.
+Complete != drain; clock/fault/stale-token/timeout quarantine terminal, late
+completion cannot release. Current prepare binds actual final packet header/
+length/token to context generation. Preserve prior-host001 original code,
+host001 result and host001-review design gap (initial independent token tests),
+not a sanitizer/guest failure. No native ABI/allocator/GPU/physical qualification.
+
+Exact model rejects USER PIO/different channel; definedclass39 unimplemented,
+62+9f implemented;single-slot RAMHT,ignored DMAclass/target,27bitmask/limit
+convention and alpha caveats remain. Semaphorerelease source ordering is not
+physical completion/CPUvisibility. Context mismatch stalls for a handler that
+current NT5miniport lacks. Existing681000mapping excludes RAMIN/USER.
+
+preflight.json records actual submission hold: instance backing/reservation,
+quiescent context grant,DMAaddress/ordering/resident allocation,global tokens,
+serialization and drain/restoration missing. No guest launch,coldscan,MMIO,
+cache/mode/IRQ/settings changes or physical access. All root-owned215 host
+processes CLOSED;214 cases inspected only,neverrelaunch/recollect. Physical
+0101/video0093,0088rollback,immutable0.1.0/all failures unchanged. Ft49 remains
+recorded214 strict failure, no215Windows run or wholebootPASS claimed.
+
+NEXT:215/NEXT.md actual firmware/loader/NT5 ownership handoff source investigation,
+then concrete resident NT5adapter before guarded16x8 ordinary transfer. Host
+planner/witnesses are not an adapter. No device-thread messages/merges. Keep
+20GiBguard;C21950345216bytes free during215, recover capacity before heavybuild.
+Reviewed source/reports awaiting repository checks/private commit/push.
+
 # Current:214 GPU state diagnostic CLOSED; source/evidence review PASS
 
 Matched ordinary control001/candidate001 each launched ONCE and fully closed.

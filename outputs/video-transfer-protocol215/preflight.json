@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "source_sha256": "f975116dae435ce9477338a0169d3b8029117ffb8fbd9c74c16c0c48d41ca214",
+  "review_sha256": "7f8c645bb7dee3fc76751fc57ec307b7ee5705f1b3a65c5680c8973a5337a320",
+  "observations_sha256": "8a0f1977a00d8a786438fbfb0a923c3bbfff609f3955b18257eeaac8051e661e",
+  "submission_authorized": false,
+  "guest_launch": false,
+  "physical_access": false,
+  "current_control_mapping_bytes": 6819840,
+  "required_model_regions": {
+    "pramin_start": 7340032,
+    "user_start": 8388608
+  },
+  "observed_channels": {
+    "pfifo": 1,
+    "pgraph": 0
+  },
+  "missing_contracts": [
+    "No proven resident DMA/command/completion allocations for this protocol.",
+    "No instance-region ownership grant or proven physical PRAMIN backing/reservation.",
+    "No exclusive quiescent context grant, context-valid/debug state or software context-switch handler.",
+    "No mappings for PRAMIN/USER, actual NT5 DMA-address/ordering adapter or completion visibility proof.",
+    "No verified global token namespace, serialization, bounded worker/crash drain or restoration witness."
+  ],
+  "known_limits": [
+    "xemu independently backs RAMIN; hardware alias remains unresolved.",
+    "Model ignores DMA classes/targets and uses limit without plus1; host success cannot validate hardware descriptor ABI.",
+    "Model blit performs CPU copies; no GPU speed conclusion.",
+    "Original physical baseline and strict Ftdisk49 gates remain unchanged."
+  ],
+  "limits": "This is a refusal of GPU submission based on actual source and prior observations, not a guest failure or a prompt for permission. Continue resolving concrete contracts."
+}
