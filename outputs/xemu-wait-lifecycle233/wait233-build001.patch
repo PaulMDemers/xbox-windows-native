@@ -1,0 +1,186 @@
+--- a/hw/xbox/nv2a/nv2a.c
++++ b/hw/xbox/nv2a/nv2a.c
+@@ -308,6 +308,7 @@
+         qatomic_set(&d->pfifo.halt, false);
+     }
+ 
++    nv2a_wait233_record(d, 7, 0, true);
+     memset(d->pfifo.regs, 0, sizeof(d->pfifo.regs));
+     memset(d->pgraph.regs_, 0, sizeof(d->pgraph.regs_));
+     memset(d->pvideo.regs, 0, sizeof(d->pvideo.regs));
+@@ -339,6 +340,7 @@
+         d->puserdac.palette[i*3+2] = i;
+     }
+ 
++    nv2a_wait233_record(d, 8, 0, true);
+     nv2a_unlock_fifo(d);
+ }
+ 
+@@ -458,6 +460,37 @@
+     qatomic_store_release(&d->preserve227.state, result);
+ }
+ 
++/*233 read-only property, all row reads ordered by existing PG lock.
++ * Try-lock FIFO->PGRAPH avoids blocking BQL on a worker that needs BQL. */
++static void wait233_format(GString *s, const NV2AWaitRow233 *row)
++{
++    g_string_append_printf(s, " row=%" PRIu64 ",%" PRIu64 ",%u,%u,%u,%u,%u,%u,%u,%u,%u",
++        row->seq, row->when, row->kind, row->value, row->pending,
++        row->enabled, row->nsource, row->trapped, row->data, row->waits,
++        row->fifo_valid);
++    for (unsigned i = 0; i < 10; i++) { g_string_append_printf(s, ",%u", row->fifo[i]); }
++}
++
++static char *wait233_report(Object *obj, Error **errp)
++{
++    NV2AState *d = NV2A_DEVICE(obj);
++    if (qemu_mutex_trylock(&d->pfifo.lock)) { return g_strdup("version=233 busy=1 lock=1"); }
++    if (qemu_mutex_trylock(&d->pgraph.lock)) {
++        qemu_mutex_unlock(&d->pfifo.lock);return g_strdup("version=233 busy=1 lock=2");
++    }
++    GString *report = g_string_new(NULL);
++    g_string_append_printf(report, "version=233 busy=0 total=%" PRIu64 " count=%u capacity=256 overwritten=%" PRIu64,
++        d->wait233.total, d->wait233.count, d->wait233.total - d->wait233.count);
++    NV2AWaitRow233 current;
++    nv2a_wait233_fill(d, &current, 9, 0, true);wait233_format(report, &current);
++    unsigned start = (d->wait233.next + NV2A_WAIT233_CAPACITY - d->wait233.count) % NV2A_WAIT233_CAPACITY;
++    for (unsigned i = 0; i < d->wait233.count; i++) {
++        wait233_format(report, &d->wait233.rows[(start + i) % NV2A_WAIT233_CAPACITY]);
++    }
++    qemu_mutex_unlock(&d->pgraph.lock);qemu_mutex_unlock(&d->pfifo.lock);
++    return g_string_free(report, false);
++}
++
+ static void nv2a_realize(PCIDevice *dev, Error **errp)
+ {
+     NV2AState *d = NV2A_DEVICE(dev);
+@@ -485,6 +518,7 @@
+     qemu_cond_init(&d->pfifo.fifo_idle_cond);
+     object_property_add_bool(OBJECT(d), "xwn-preserve227", preserve227_get,
+                              preserve227_set);
++    object_property_add_str(OBJECT(d), "xwn-wait233-report", wait233_report, NULL);
+     object_property_add_str(OBJECT(d), "xwn-preserve227-report",
+                             preserve227_report, NULL);
+ }
+--- a/hw/xbox/nv2a/nv2a_int.h
++++ b/hw/xbox/nv2a/nv2a_int.h
+@@ -67,6 +67,14 @@
+     hwaddr limit;
+ } DMAObject;
+ 
++/*233 observer storage, no emulated ownership or register state. */
++#define NV2A_WAIT233_CAPACITY 256
++typedef struct NV2AWaitRow233 {
++    uint64_t seq, when;
++    uint32_t kind, value, pending, enabled, nsource, trapped, data, waits;
++    uint32_t fifo_valid, fifo[10];
++} NV2AWaitRow233;
++
+ typedef struct NV2AState {
+     /*< private >*/
+     PCIDevice parent_obj;
+@@ -77,6 +85,11 @@
+     /*227 opt-in host diagnostic, deliberately not migrated or guest-visible.
+      *0 unused,1 queued,2 working,3 preserved,4 refused,5 timeout,6 failed.
+      * Success preserves bytes only; surfaces/context references remain alive. */
++    struct {
++        uint64_t total;
++        unsigned count, next;
++        NV2AWaitRow233 rows[NV2A_WAIT233_CAPACITY];
++    } wait233;
+     struct {
+         unsigned state, surfaces, dirty, downloaded, error, reason;
+         unsigned consume_stop, consume_steps, consume_words, wait_before, wait_after;
+@@ -239,3 +252,8 @@
+ void nv2a_preserve231_snapshot(NV2AState *d, uint32_t words[10]);
+ 
+ void nv2a_preserve232_consume(NV2AState *d);
++
++void nv2a_wait233_fill(NV2AState *d, NV2AWaitRow233 *row,
++                       unsigned kind, uint32_t value, bool fifo_valid);
++void nv2a_wait233_record(NV2AState *d, unsigned kind, uint32_t value,
++                         bool fifo_valid);
+--- a/hw/xbox/nv2a/pgraph/pgraph.c
++++ b/hw/xbox/nv2a/pgraph/pgraph.c
+@@ -39,6 +39,38 @@
+ 
+ NV2AState *g_nv2a;
+ 
++/*233 caller ALREADY holds PGRAPH lock. Never acquire FIFO here: the
++ * producer released FIFO before dispatch. FIFO snapshots are valid only for
++ * actual guest MMIO/reset callers that already hold both locks. */
++void nv2a_wait233_fill(NV2AState *d, NV2AWaitRow233 *row,
++                       unsigned kind, uint32_t value, bool fifo_valid)
++{
++    PGRAPHState *pg = &d->pgraph;
++    memset(row, 0, sizeof(*row));
++    row->when = qemu_clock_get_ns(QEMU_CLOCK_REALTIME);
++    row->kind = kind; row->value = value;
++    row->pending = pg->pending_interrupts; row->enabled = pg->enabled_interrupts;
++    row->nsource = pgraph_reg_r(pg, NV_PGRAPH_NSOURCE);
++    row->trapped = pgraph_reg_r(pg, NV_PGRAPH_TRAPPED_ADDR);
++    row->data = pgraph_reg_r(pg, NV_PGRAPH_TRAPPED_DATA_LOW);
++    row->waits = (!qatomic_read(&pg->regs_[NV_PGRAPH_FIFO]) ? 1 : 0) |
++        (pg->waiting_for_nop ? 2 : 0) | (pg->waiting_for_flip ? 4 : 0) |
++        (pg->waiting_for_context_switch ? 8 : 0);
++    row->fifo_valid = fifo_valid;
++    if (fifo_valid) { nv2a_preserve231_snapshot(d, row->fifo); }
++}
++
++void nv2a_wait233_record(NV2AState *d, unsigned kind, uint32_t value,
++                         bool fifo_valid)
++{
++    if (d->wait233.total == UINT64_MAX) { return; }
++    NV2AWaitRow233 *row = &d->wait233.rows[d->wait233.next];
++    nv2a_wait233_fill(d, row, kind, value, fifo_valid);
++    row->seq = ++d->wait233.total;
++    d->wait233.next = (d->wait233.next + 1) % NV2A_WAIT233_CAPACITY;
++    if (d->wait233.count < NV2A_WAIT233_CAPACITY) { d->wait233.count++; }
++}
++
+ uint64_t pgraph_read(void *opaque, hwaddr addr, unsigned int size)
+ {
+     NV2AState *d = (NV2AState *)opaque;
+@@ -92,6 +124,7 @@
+ 
+     switch (addr) {
+     case NV_PGRAPH_INTR:
++        nv2a_wait233_record(d, 4, val, true);
+         pg->pending_interrupts &= ~val;
+ 
+         if (!(pg->pending_interrupts & NV_PGRAPH_INTR_ERROR)) {
+@@ -101,9 +134,11 @@
+             pg->waiting_for_context_switch = false;
+         }
+         pfifo_kick(d);
++        nv2a_wait233_record(d, 5, val, true);
+         break;
+     case NV_PGRAPH_INTR_EN:
+         pg->enabled_interrupts = val;
++        nv2a_wait233_record(d, 6, val, true);
+         break;
+     case NV_PGRAPH_INCREMENT:
+         if (val & NV_PGRAPH_INCREMENT_READ_3D) {
+@@ -835,6 +870,7 @@
+     unsigned channel_id =
+         PG_GET_MASK(NV_PGRAPH_CTX_USER, NV_PGRAPH_CTX_USER_CHID);
+ 
++    nv2a_wait233_record(d, 1, parameter, false);
+     assert(!(pg->pending_interrupts & NV_PGRAPH_INTR_ERROR));
+ 
+     PG_SET_MASK(NV_PGRAPH_TRAPPED_ADDR, NV_PGRAPH_TRAPPED_ADDR_CHID,
+@@ -848,12 +884,14 @@
+                  NV_PGRAPH_NSOURCE_NOTIFICATION); /* TODO: check this */
+     pg->pending_interrupts |= NV_PGRAPH_INTR_ERROR;
+     pg->waiting_for_nop = true;
++    nv2a_wait233_record(d, 2, parameter, false);
+ 
+     qemu_mutex_unlock(&pg->lock);
+     bql_lock();
+     nv2a_update_irq(d);
+     bql_unlock();
+     qemu_mutex_lock(&pg->lock);
++    nv2a_wait233_record(d, 3, parameter, false);
+ }
+ 
+ DEF_METHOD(NV097, WAIT_FOR_IDLE)

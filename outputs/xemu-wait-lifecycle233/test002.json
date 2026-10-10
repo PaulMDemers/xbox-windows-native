@@ -1,0 +1,55 @@
+{
+  "passed": true,
+  "source_sha256": "d94cf2a0d97fb74eb5b3102088fe1fa2035a2c2c7d5d543a5132c1c39954971b",
+  "test_sha256": "b54fcc9655c7af22fd3798574ea038f763cb1fcf81a36f02324c8a7ee2d06b77",
+  "build": "build002",
+  "actual_row_sha256": "c8e9f25f986f643a36884304df33c739463efca7c6a754bc3ed71b5f68851a6c",
+  "actual_helper_sha256": "48935e1f296a1f1c916fc7b7dbd173d2b26790d45bb53b63efbec698617bdfc4",
+  "runs": [
+    {
+      "command": [
+        "gcc",
+        "-std=gnu11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-O0",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-pthread",
+        "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xemu-wait-lifecycle233/artifacts/test002",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xemu-wait-lifecycle233/artifacts/test002/test-wait.c",
+        "-o",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xemu-wait-lifecycle233/artifacts/test002/wait-O0"
+      ],
+      "exit_code": 0,
+      "stdout": "checks=1395 records=100000 capacity=256 saturation=covered read_only_fill=covered\n",
+      "stderr": "",
+      "executable_sha256": "dc2f83ed71a587c52922206c916867b5827987472c22a012d20d9dff58ce8514"
+    },
+    {
+      "command": [
+        "gcc",
+        "-std=gnu11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-O2",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-pthread",
+        "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xemu-wait-lifecycle233/artifacts/test002",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xemu-wait-lifecycle233/artifacts/test002/test-wait.c",
+        "-o",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xemu-wait-lifecycle233/artifacts/test002/wait-O2"
+      ],
+      "exit_code": 0,
+      "stdout": "checks=1395 records=100000 capacity=256 saturation=covered read_only_fill=covered\n",
+      "stderr": "",
+      "executable_sha256": "0e46bd4ea281eebd3a04cbd3913430d9c00add969c37e3d6ca6c8608303ed053"
+    }
+  ],
+  "guest_launch": false,
+  "physical_access": false,
+  "scope": "Actual ring/fill with host clock/register/FIFO adapters and caller pthread lock; not QEMU lock scheduling or GPU execution."
+}

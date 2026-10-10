@@ -1,3 +1,51 @@
+# Current: wait233 CLOSED partial journal; observer protocol FAILED
+
+Head before this turn7cf4188. One dashboard-only run CLOSED 2026-10-10T22:55:40.376671+00:00.
+All root sessions53097/65458/56819/44536 and PIDs115256/114788/113876/111276 CLOSED,
+cooperative leases released. Never rerun/recollect closed233 trace001. No
+physical access/device merge/release tag change. Exact frozen sources unchanged.
+
+Actual compiled read-only256-row ring recorded total16682/overwritten16426.
+51 nonzero NV097NO_OPERATION producer pairs and51 guest INTR acknowledgements
+cleared ERROR00100000 and NOP wait; parameter7a080101/trapped100/NSOURCE1. No guest
+PC/instruction pin. Producer FIFO snapshots invalid under PG-only lock; guest
+ack rows dual-lock valid. First current NOP clear is NOT producer shutdown.
+Second fixed live sample FAILED after20 lock2-busy reads/1sec bound. No CPU stop,
+preservation request or Windows launch. Runner owned closure; observer exit1;
+tracer/runner/audit0. Partial decoder002 PASS, full observation protocolFALSE.
+No forced state clear, longer retry, native grant or dirty readback.
+
+Cold320dirs6719files321clusters0errors/orphans,5hives/protected/startup/history/
+device policy passed. No workload/normal6006(0)/new events. CPU/strict scopeFALSE,
+not Windows or repeated-boot storage qualification. Inherited211 wizard policy
+explicit, NO synthetic null devices. Preserve physical0101/video0093,0088rollback,
+immutable0.1.0 and all failed evidence.
+
+Build001 mask host testFAILED retained, never guest-launched. Corrected build002
+actual ring O0/O2 ASan/UBSan1395checks/100000records each, wrap/saturation/read-only;
+72guards/PSsyntax. Prelaunch001 whitespace-helper failure retained; NEW002 actual
+source strip checks passed. Three observer files changed, seven borrowed sources
+restored. Actual parser/GL/publication unchanged from232. Selected exe SHA
+f032eeae8e82e796b009090a9fde0192d59980443c42d43e2c9a577d9337606c.
+
+Read outputs/xemu-wait-lifecycle233/REPORT.md, wait-review002.json and
+SNAPSHOT-NEXT.md. Next NEW worker-published immutable bounded journal with
+ordered terminal/timeout handling; do not bypass locks or assume guest owner
+close. All retired-reference, dirty-readback/allocator/context/alias gates open.
+
+Private fixture E:/Codex-archive/xbox-windows-native/wait233/trace001-source.qcow2;
+private run E:/Codex-private-artifacts/xbox-windows-feasibility/wait233-runs/
+nt5-wait233-trace001. No processes running. Maintain20GiB build guard.
+
+PCI peer e27af87 CANCEL_REMOVE/veto/handle recovery passed, audio-install restart
+still blocked. USB peer32f8217 correct data addresses but seven stale sectors/
+metadata changes; next submitted buffers/completion tracing unresolved. Root
+sent authorized continuations and lease release; root dashboard cold integrity
+does NOT resolve peer repeated-boot failure. No candidate integrated. Previous232 summary file-count corrected here: raw
+allocation files6724, not6723; original evidence untouched.
+
+--- Previous continuation retained byte-exact below ---
+
 # Current checkpoint: consume232 CLOSED; actual guest-dependent wait
 
 ONE fresh opt-in actual consumer run CLOSED at 2026-10-10T22:19:53.529988+00:00. No physical

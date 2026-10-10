@@ -1,0 +1,35 @@
+{
+  "passed": false,
+  "source_sha256": "d94cf2a0d97fb74eb5b3102088fe1fa2035a2c2c7d5d543a5132c1c39954971b",
+  "test_sha256": "b54fcc9655c7af22fd3798574ea038f763cb1fcf81a36f02324c8a7ee2d06b77",
+  "build": "build001",
+  "actual_row_sha256": "c8e9f25f986f643a36884304df33c739463efca7c6a754bc3ed71b5f68851a6c",
+  "actual_helper_sha256": "b90e19ead13ef61bf8e7dbcc38103552e583de34aa02692366935c095f0a1090",
+  "runs": [
+    {
+      "command": [
+        "gcc",
+        "-std=gnu11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-O0",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-pthread",
+        "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xemu-wait-lifecycle233/artifacts/test001",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xemu-wait-lifecycle233/artifacts/test001/test-wait.c",
+        "-o",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xemu-wait-lifecycle233/artifacts/test001/wait-O0"
+      ],
+      "exit_code": -6,
+      "stdout": "",
+      "stderr": "wait-O0: /mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xemu-wait-lifecycle233/artifacts/test001/test-wait.c:32: check: Assertion `value' failed.\n",
+      "executable_sha256": "352d2614a00d1e41a0cdabd42d3aed82b0c1a4bb1166010368524c08369f382e"
+    }
+  ],
+  "guest_launch": false,
+  "physical_access": false,
+  "scope": "Actual ring/fill with host clock/register/FIFO adapters and caller pthread lock; not QEMU lock scheduling or GPU execution.",
+  "error": "AssertionError(\"wait-O0: /mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xemu-wait-lifecycle233/artifacts/test001/test-wait.c:32: check: Assertion `value' failed.\\n\")"
+}
