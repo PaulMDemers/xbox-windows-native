@@ -1,0 +1,92 @@
+{
+  "passed": true,
+  "source_sha256": "a55268072997fd3c1cedb522a396b83c4acbe4a91864ebab5183a0ad70782b64",
+  "harness_sha256": "87a27bb835118041a92634748a4f3277d72dbf3d6aa8314ae10ad92cbc64b8a8",
+  "layout_sha256": "68a2ae2b2301a98f3536427b942fb56febba8234470647cc29c8ba8e14b45686",
+  "source_bodies": {
+    "control": {
+      "full_source_sha256": "1e034e0cc705dce436c026458e9f432ae70025e5fce3b43b666c7a347c0dd7d7",
+      "extracted_sha256": "bc471daee605d4d07d620bf550e4fcd34015466051a1581b40f8f5c182a4e189",
+      "names": [
+        "ApplyPalette",
+        "ResetDisplay",
+        "InitPaletteWithTable",
+        "SetPixel",
+        "PreserveRow",
+        "DoScroll",
+        "DisplayCharacter",
+        "VidSolidColorFill",
+        "VidScreenToBufferBlt"
+      ]
+    },
+    "candidate": {
+      "full_source_sha256": "b4770f28811012cf708ed70191977ea5a8510099c769de1e35713e96abe98851",
+      "extracted_sha256": "41472c3c6415e88748469191f22b384f362fe4b53d08f6dede465b0d9b82c1e5",
+      "names": [
+        "ApplyPalette",
+        "ResetDisplay",
+        "InitPaletteWithTable",
+        "SetPixel",
+        "PreserveRow",
+        "DoScroll",
+        "DisplayCharacter",
+        "VidSolidColorFill",
+        "VidScreenToBufferBlt"
+      ]
+    }
+  },
+  "runs": [
+    {
+      "label": "control",
+      "result": {
+        "passed": true,
+        "checks": 131173,
+        "profiles": 2,
+        "geometries": 4,
+        "control": 1
+      },
+      "command": [
+        "/usr/bin/gcc",
+        "-std=c11",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-DCONTROL=1",
+        "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-boot-layout219/artifacts/host002/control",
+        "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-boot-layout219",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-boot-layout219/test-drawing.c",
+        "-o",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-boot-layout219/artifacts/host002/control/drawing"
+      ],
+      "binary_sha256": "8a74a84950c5ad21b1ea5a5f021c6a1b8acb0f84f1bf1ae2b1d765e6c6bb3d8f"
+    },
+    {
+      "label": "candidate",
+      "result": {
+        "passed": true,
+        "checks": 16547909,
+        "profiles": 2,
+        "geometries": 4,
+        "control": 0
+      },
+      "command": [
+        "/usr/bin/gcc",
+        "-std=c11",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-DCONTROL=0",
+        "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-boot-layout219/artifacts/host002/candidate",
+        "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-boot-layout219",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-boot-layout219/test-drawing.c",
+        "-o",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-boot-layout219/artifacts/host002/candidate/drawing"
+      ],
+      "binary_sha256": "5923246c24bb3debf25024e102fbd0056f2cb8b7c6d24da0a074c264e073f95e"
+    }
+  ],
+  "limits": "Actual extracted drawing/reset bodies with modeled host HAL/palette/font; not actual kernel initialization, timing, interrupts, cache or GPU ownership.",
+  "compiler_sha256": "b5f1b773a7c733738352000c92a077dc5852a1a2fc6d836b1e411be1e9ec5f88"
+}

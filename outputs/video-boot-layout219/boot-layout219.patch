@@ -1,0 +1,116 @@
+--- a/drivers/base/bootvid/i386/xbox/bootvid.c
++++ b/drivers/base/bootvid/i386/xbox/bootvid.c
+@@ -8,6 +8,7 @@
+  */
+ 
+ #include "precomp.h"
++#include "boot_layout.h"
+ #include <drivers/xbox/xgpu.h>
+ #ifdef XBOX_NT5_SHARED_FRAMEBUFFER
+ #include "xwn_fb.h"
+@@ -26,6 +27,7 @@
+ static UCHAR BytesPerPixel;
+ static RGBQUAD CachedPalette[BV_MAX_COLORS];
+ static PUCHAR BackBuffer = NULL;
++static ULONG BootWritableBytes;
+ 
+ /* PRIVATE FUNCTIONS *********************************************************/
+ 
+@@ -172,28 +174,15 @@
+     PanH = (FrameBufferWidth - SCREEN_WIDTH) / 2;
+     PanV = (FrameBufferHeight - SCREEN_HEIGHT) / 2;
+ 
+-    /* Verify that screen fits framebuffer size */
+-    ULONG FrameBufferSize = FrameBufferWidth * FrameBufferHeight * BytesPerPixel;
+-
+-    /* FIXME: obtain fb size from firmware somehow (Cromwell reserves high 4 MB of RAM) */
+-    if (FrameBufferSize > NV2A_VIDEO_MEMORY_SIZE)
+-    {
+-        DPRINT1("Current screen resolution exceeds video memory bounds!\n");
++    ULONG BackBufferSize = SCREEN_WIDTH * (SCREEN_HEIGHT + BOOTCHAR_HEIGHT + 1);
++    XWN_BOOT_LAYOUT Layout;
++    if (!XwnBootLayout(FrameBuffer, FrameBufferWidth, FrameBufferHeight,
++                       BackBufferSize, &Layout))
++    {
++        DPRINT1("Framebuffer intersects protected GPU tail or indexed backing!\n");
+         goto cleanup;
+     }
+-
+-    /*
+-     * Reserve off-screen area for the backbuffer that contains 8-bit indexed
+-     * color screen image, plus preserved row data.
+-     */
+-    ULONG BackBufferSize = SCREEN_WIDTH * (SCREEN_HEIGHT + BOOTCHAR_HEIGHT + 1);
+-
+-    /* Make sure there is enough video memory for backbuffer */
+-    if (NV2A_VIDEO_MEMORY_SIZE - FrameBufferSize < BackBufferSize)
+-    {
+-        DPRINT1("Out of memory!\n");
+-        goto cleanup;
+-    }
++    ULONG FrameBufferSize = Layout.VisibleBytes;
+ 
+     /* Return the address back to GPU memory mapped I/O */
+ #ifdef XBOX_NT5_BOOTVID
+@@ -214,18 +203,19 @@
+     Result = TRUE;
+ 
+     /* Place backbuffer in the hidden part of framebuffer */
+-    BackBuffer = (PUCHAR)(FrameBufferStart + NV2A_VIDEO_MEMORY_SIZE - BackBufferSize);
++    BackBuffer = (PUCHAR)(FrameBufferStart + Layout.HiddenOffset);
++    BootWritableBytes = Layout.WritableBytes;
+ 
+ #ifdef XBOX_NT5_SHARED_FRAMEBUFFER
+     {
+         XWN_FB_VIEW View = {sizeof(View), XWN_FB_VERSION, FrameBufferStart,
+             FrameBuffer, NV2A_VIDEO_MEMORY_SIZE, FrameBufferSize,
+             FrameBufferWidth, FrameBufferHeight, FrameBufferWidth * BytesPerPixel,
+-            NV2A_VIDEO_MEMORY_SIZE - BackBufferSize, MmNonCached};
++            Layout.HiddenOffset, MmNonCached};
+         if (!XwnFbPublish(&View))
+         {
+             MmUnmapIoSpace((PVOID)FrameBufferStart, NV2A_VIDEO_MEMORY_SIZE);
+-            FrameBufferStart = 0; BackBuffer = NULL; Result = FALSE;
++            FrameBufferStart = 0; BackBuffer = NULL; BootWritableBytes = 0; Result = FALSE;
+             goto cleanup;
+         }
+     }
+@@ -260,7 +250,7 @@
+         HalResetDisplay();
+ 
+     /* Re-initialize the palette and fill the screen black */
+-    RtlZeroMemory((PULONG)FrameBufferStart, NV2A_VIDEO_MEMORY_SIZE);
++    RtlZeroMemory((PULONG)FrameBufferStart, BootWritableBytes);
+     InitializePalette();
+     VidSolidColorFill(0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1, BV_COLOR_BLACK);
+ }
+--- /dev/null
++++ b/drivers/base/bootvid/i386/xbox/boot_layout.h
+@@ -0,0 +1,27 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++#ifndef XWN_BOOT_LAYOUT_H
++#define XWN_BOOT_LAYOUT_H
++/* The mapping remains four MiB. This bound limits CPU boot-video writes;
++ * it is not an allocator/GPU capability or firmware-context release. */
++#define XWN_BOOT_RESERVED_BYTES 0x00400000u
++#define XWN_BOOT_PROTECTED_TAIL 0x00015000u
++typedef struct _XWN_BOOT_LAYOUT {
++    ULONG WritableBytes, HiddenOffset, VisibleBytes;
++} XWN_BOOT_LAYOUT;
++static BOOLEAN XwnBootLayout(ULONG Physical, ULONG Width, ULONG Height,
++                            ULONG BackBytes, XWN_BOOT_LAYOUT *Out)
++{
++    XWN_BOOT_LAYOUT Value;
++    if (!Out || (Physical != 0x03c00000u && Physical != 0x07c00000u) ||
++        Width < 640u || Width > 1920u || Height < 480u || Height > 1080u ||
++        !BackBytes || BackBytes >= XWN_BOOT_RESERVED_BYTES-XWN_BOOT_PROTECTED_TAIL)
++        return FALSE;
++    Value.WritableBytes = XWN_BOOT_RESERVED_BYTES-XWN_BOOT_PROTECTED_TAIL;
++    Value.HiddenOffset = Value.WritableBytes-BackBytes;
++    /* Width is bounded before multiplying; divide before height multiplication. */
++    if (Height > Value.HiddenOffset/(Width*4u)) return FALSE;
++    Value.VisibleBytes = Width*4u*Height;
++    *Out = Value;
++    return TRUE;
++}
++#endif

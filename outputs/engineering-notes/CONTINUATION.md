@@ -1,4 +1,30 @@
-# Current:218 physical query probe CLOSED; exact64-byte backing correspondence
+# Current:219 boot-video layout ordinary pair CLOSED; reset/crash guards next
+
+NEW outputs/video-boot-layout219 DESIGN/REPORT/NEXT. Isolated source keeps permanent
+4MiB UC mapping/ABI, protects top84KiB, indexed backing39dd00..3eb000 and bounded
+ResetDisplay clear. Matched native builds/imports/95pins and actual-body host
+ASan/UBSan131173control/16547909candidate checks PASS. Host001 missingclang and
+patch001CRLF failure preserved; fresh002 attempts PASS. Physical unchanged.
+
+Both219 standalone children prepared once on E, parent unchanged. Control accepted
+2026-10-10T04:49:43Z, candidate04:55:02Z; both returned dashboard and cold-audited.
+Each five GDI samples/full159-transition sequences, setup/helper join, shutdown1,
+325dirs6730files326dirclusters0errors/orphans,5hives/28protected matches. Display
+scope PASS both; strict FALSE sole identical Ftdisk49 outside measurement.
+Original observer12572 FALSE fixed823df000 inaccessible. New002 PASS two-IDT kernel
+82403000/resident reset64bytes/HiddenOffset39dd00/WritableBytes3eb000. Separate003
+PASS all1024 present/PCD PTEs, original physical03c00000..04000000 reservation.
+Neither stops/mutates CPU/GPU. Pair review67pins/compiled reset operands PASS.
+Original frozen inputs/gates unchanged. Never relaunch/recollect CLOSED cases.
+
+Next NEW sacrificial tail/indexed-end guard and reset/crash rendering diagnostic,
+see219/NEXT. Ordinary reads/host checks alone do not qualify runtime protection,
+GPU ownership/context/commands/cache handoff, acceleration or hardware promotion.
+Physical0101/video0093,0088rollback/immutable0.1.0 unchanged. C20GiB guard unchanged,
+last free22010236928bytes. All owned sessions16346/12572/19199/18972 CLOSED; mapping
+observer003 closed0. No owned guest/compiler/controller/observer remains.
+
+# Previous:218 physical query probe CLOSED; exact64-byte backing correspondence
 
 After user reboot report, one guarded physical launch at2026-10-10T04:21:26Z.
 Exact build005931e9896 XBE uploaded/readback verified to NEW

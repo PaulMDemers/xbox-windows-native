@@ -8,10 +8,16 @@ host-side test harness.
 
 For post-release installed state and remaining work, see the
 [current overall status](outputs/engineering-notes/STATUS.md) and
-[continuation note](outputs/engineering-notes/CONTINUATION.md). FATX0098/video0093
-is now installed; the immutable0.1.0 artifacts below retain0088. The latest0098
+[continuation note](outputs/engineering-notes/CONTINUATION.md). FATX0101/video0093
+is installed; the immutable0.1.0 artifacts below retain0088. The earlier0098
 physical soak passed its workload/integrity checks but failed its strict event
 gate, so it is not a newly qualified release.
+
+The latest [boot-video layout219](outputs/video-boot-layout219/REPORT.md) moves
+indexed backing below the observed GPU instance window and bounds reset clearing.
+Matched emulator display/cold audits and read-only live layout checks pass;
+the inherited Ftdisk49 event remains a strict failure. Actual reset/crash tail
+guards are next. No hardware deployment, GPU acceleration or speed gain is claimed.
 
 The native physical desktop now passes bounded storage soaks and two actual
 Paint saves/reopens, with independent post-reboot bitmap, allocation, binary
