@@ -18,9 +18,15 @@ assert completed.returncode==0,completed.stdout+completed.stderr
 files=list(K.glob('*.py'))+[prev/n for n in ['probe.c','analyze.py','build-review.json','emu003/audit.json','owned-provider-review.json','package-review.json']]+[exe]
 files += [K/'audio-incoming-drivers.json']
 files += [canon/'outputs'/n for n in ['device-hardware220/HANDOFF.md','device-hardware220/queue.py','video-upload-runtime211/capture.json','native-windows-physical-f/physical-cache-preflight.json','native-windows-physical-f/decode-legacy-events.py']]
+scan=canon/'outputs/native-windows-fatx-preflight'
+validation=read(scan/'validation.json')
+assert validation['emulator_snapshot_passed'] and not validation['top_overlay_F_extents']
+assert read(scan/'analyzer-tests.json')['passed']
+assert sha(scan/'artifacts/default.xbe')==validation['xbe_sha256']=='c6c878447d2a5ace95fced0e6d7c819fd5271e665cd0fc8efe886c5232cbdf05'
+files += [scan/n for n in ['main.c','artifacts/default.xbe','analyze.py','validation.json','analyzer-tests.json']]
 r=dict(prepared=True,physical_access=False,physical_tested=False,driver_installed=False,binary=str(exe),
-    binary_sha256=sha(exe),pins={str(p):sha(p) for p in files},offline_fault_checks=5,
+    binary_sha256=sha(exe),pins={str(p):sha(p) for p in files},offline_fault_checks=6,
     test_output=completed.stdout+completed.stderr,
     gates='Queue predecessor closed/USB claimed; actual incoming bytes; before-hive audit; one launch; startup-first collection; post-hive audit; exact restore and dashboard readback before close.',
     report=str(K/'REPORT.md'),limits='Descriptor-only existing-stack trial. Manual normal restart. Unbound XID reports unavailable; no replacement controller driver.')
-dest.write_text(json.dumps(r,indent=2)+'\n');print('Frozen USB220 physical-trial inputs; five offline fault checks passed; no console access')
+dest.write_text(json.dumps(r,indent=2)+'\n');print('Frozen USB220 physical-trial inputs; six offline fault checks passed; no console access')

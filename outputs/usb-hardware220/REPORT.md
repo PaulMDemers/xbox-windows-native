@@ -34,7 +34,7 @@ startup, five registry hives, events, SetupAPI and all protected loader/HAL/FATX
 video/network/USB/HID files before staging. Historical211 fixed hashes are guards,
 not substitutes for new incoming readback. Preserve0088 and immutable0.1.0.
 
-Launch at most once. Record intent before SITE EXEC; timeout never permits retry.
+Launch Windows at most once. Record intent before SITE EXEC; timeout never permits retry.
 Collector bounds match reviewed207. Normal restart is manual for this diagnostic;
 screen/restart method must come from the user and event/return evidence. Keyboard
 remains unplugged. No wizard actions, device disabling, event suppression, HAL,
@@ -46,8 +46,17 @@ registry snapshots and verify all protected files plus dashboard identity.
 Keep the queue ticket while restoration or user input is pending. Close only
 with an actual restored-baseline declaration and this report path.
 
-Full physical allocation integrity, repeated cold boots, controller input and
-driver installation are not established by the descriptor trial. All earlier
+The existing validated read-only F allocation snapshot XBE is now included,
+with unique E-only launch/report directories XWNU220ScanB/A/R for before,
+after-Windows and restored-baseline captures. Each has its own single-launch
+record and bounded observer. It opens Partition6 read-only and has verified
+emulator evidence of no F writes. Before allocation must pass before Windows;
+after allocation must pass before registry restoration. The original preparations
+remain preserved. Current host failure checks include a sixth check for transient
+atomic-record replacement failure; all six passed. The collector binary is unchanged.
+
+Physical allocation integrity, repeated cold boots, controller input and
+driver installation are not yet established by this prepared trial. All earlier
 USB207 failures remain preserved. New failures will be retained in trial records.
 
 Preparation commit4680a5e5e48d07168a546c31c8b6332d04f1ba5c is pushed and remote-verified. The repository scan passed for19279 tracked files. Scan session11374 and commit/push session84317 are closed. No owned session remains.

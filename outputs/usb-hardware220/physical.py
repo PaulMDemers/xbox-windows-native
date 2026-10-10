@@ -19,7 +19,12 @@ sha=lambda b:hashlib.sha256(b).hexdigest()
 utc=lambda:datetime.datetime.now(datetime.timezone.utc).isoformat()
 
 def save(r):
-    t=RECORD.with_suffix('.tmp');t.write_text(json.dumps(r,indent=2)+'\n');t.replace(RECORD)
+    t=RECORD.with_suffix('.tmp');t.write_text(json.dumps(r,indent=2)+'\n')
+    for i in range(100):
+        try:t.replace(RECORD);return
+        except PermissionError:
+            if i==99:raise
+            time.sleep(.05)
 
 def keep(name,data):
     p=ART/name;p.parent.mkdir(parents=True,exist_ok=True)
@@ -128,6 +133,7 @@ def capture():
 def launch():
     p=pins();r=read(RECORD);assert r['capture_complete'] and not r['launch_requested']
     assert read(K/'before-hive-audit.json')['passed'],'Incoming hives must be reviewed before launch'
+    assert read(K/'before-allocation.json')['allocation_consistent'],'Incoming full F allocation must pass'
     assert not r.get('staging_started'),'Preserve partial staging; no automatic retry'
     with connect() as f:
         assert REMOTE.rsplit('/',1)[1].lower() not in names(f,'/F')
@@ -192,6 +198,7 @@ def restore():
     # Exact incoming SYSTEM restoration is deliberately AFTER preserving/validating after-hive evidence.
     r=read(RECORD);assert r.get('collected_utc') and not r['baseline_restored']
     assert read(K/'after-hive-audit.json')['passed'],'Preserve invalid hive state for recovery review'
+    assert read(K/'after-allocation.json')['allocation_consistent'],'Preserve failed allocation state for recovery review'
     assert r['fixed_exact'] and r['collector_exact'] and r['rollback_readback_exact']
     with connect() as f:
         put(f,STARTUP,local(r['before'][STARTUP]))

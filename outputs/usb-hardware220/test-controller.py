@@ -22,6 +22,7 @@ class Checks(unittest.TestCase):
         m.ART.mkdir();(m.ART/'incoming-rollback.zip').write_bytes(b'rollback')
         self.exe=self.k/'usbprobe.exe';self.exe.write_bytes(b'probe')
         (self.k/'before-hive-audit.json').write_text('{"passed":true}')
+        (self.k/'before-allocation.json').write_text('{"allocation_consistent":true}')
         r=dict(capture_complete=True,launch_requested=False,startup_enabled=False,before={})
         for i,key in enumerate([m.STARTUP]+m.HIVES):r['before'][key]=m.keep('before/'+str(i),key.encode())
         m.save(r)
@@ -38,6 +39,15 @@ class Checks(unittest.TestCase):
         with patch.object(m,'FTP') as ftp:
             with self.assertRaises(FileNotFoundError):m.connect()
             ftp.assert_not_called()
+    def test_transient_record_replace_recovers(self):
+        actual=Path.replace;attempts=[]
+        def flaky(path,target):
+            attempts.append(1)
+            if len(attempts)==1:raise PermissionError('temporary scanner lock')
+            return actual(path,target)
+        with patch.object(Path,'replace',flaky),patch.object(m.time,'sleep'):
+            m.save({'durable':'yes'})
+        self.assertEqual(len(attempts),2);self.assertEqual(m.read(m.RECORD),{'durable':'yes'})
     def test_closed_ticket_prevents_socket(self):
         state=m.QUEUE/'state';state.mkdir(parents=True)
         for name,value in [('audio-closed',{'baseline_restored':True}),('usb-claimed',{'owner':'usb'}),('usb-closed',{})]:

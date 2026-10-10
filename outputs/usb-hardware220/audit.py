@@ -47,6 +47,8 @@ before,after=data(p['before']['setupapi.log']),data(p['after']['setupapi.log'])
 r['setup_history_prefix']=after.startswith(before)
 if r['setup_history_prefix']:(K/'artifacts/physical001/setupapi-delta.txt').write_bytes(after[len(before):])
 r['hives_valid']=all(read(K/(phase+'-hive-audit.json'))['passed'] for phase in ['before','after'])
-r['limits']='Selected files and hives read back from dashboard; no full physical FATX allocation audit. XID input unsupported. EventLog6006 alone does not prove dashboard return or restart method.'
+r['allocation_scans']={phase:read(K/(phase+'-allocation.json')) for phase in ['before','after','restored'] if (K/(phase+'-allocation.json')).exists()}
+r['full_physical_allocation_audit']=all(phase in r['allocation_scans'] and r['allocation_scans'][phase]['allocation_consistent'] for phase in ['before','after'])
+r['limits']='Selected payload files and full hives read back from dashboard; allocation coverage stated separately from file-content coverage. XID input unsupported. EventLog6006 alone does not prove dashboard return or restart method.'
 dest.write_text(json.dumps(r,indent=2)+'\n')
 print(json.dumps({n:r[n] for n in ['probe_complete','collector_exit','fixed_exact','normal_shutdown_records','strict_events_passed','hives_valid','setup_history_prefix']}))
