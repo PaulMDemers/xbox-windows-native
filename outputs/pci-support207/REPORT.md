@@ -185,3 +185,19 @@ QEMU1B36:0005 or fabricate a null modem merely to clear the physical prompt.
 All owned emulators, builds, cold readers and waiters are CLOSED, including
 14882/36698. No physical session exists. No inter-chat messages were sent.
 No main/tag changes. Immutable0.1.0/original0088/physical0101/video0093 preserved.
+
+## Delivery
+
+Implementation and evidence commit: da73019192e8f98bb41a630a539e7ad07d1e4d7e,
+pushed successfully to origin/codex/xbox-native-pci. Repository checks passed
+for binary/media/credential exclusions and staged whitespace. Native sources
+and reports only; original Windows media, firmware, hives, disks and binaries
+remain private. No PR, main merge, tag edit or inter-chat message was created.
+
+Several large push attempts stalled and were closed. The remote advertised a
+new main commit absent from the local object database. Fetching that reference
+without changing the local branch/worktree let Git exclude the already-remote
+history: the final pack was105 objects/124.17KiB instead of10663 objects/8.61MiB,
+and the PCI branch push succeeded. The earlier transport stall's deeper cause
+is not established. No global Git settings or ownership exception were changed;
+Git for Windows used a per-command exception for this assigned E: checkout.

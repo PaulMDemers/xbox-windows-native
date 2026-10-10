@@ -25,3 +25,9 @@ Current processes: none; all native/model/build/cold-audit/wait sessions are clo
 Initial free C:22972096512, E:333771571200 bytes;
 recheck projected20GiB guard for every build/fixture. Sources/builds belong to this
 E: workstream; original checkout and shared WSL source remain read-only.
+
+Implementation/evidence commit da73019192e8f98bb41a630a539e7ad07d1e4d7e is pushed
+to origin/codex/xbox-native-pci. The coordinator can review REPORT/READINESS and
+the two closed native attempts. Resume from a fresh attempt after the pending
+supported setup and modem evidence blockers have been resolved; do not relaunch
+the closed native001/native002 disks.

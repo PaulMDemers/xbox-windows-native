@@ -65,3 +65,14 @@ does not prove that this is the only queued device. Host closure and all raw log
 are preserved. This is an integration-blocked shutdown qualification, not a PCI
 functionality failure and not a completed ordinary/persistence cycle. Ftdisk49
 also remains the inherited strict whole-boot failure on both native attempts.
+
+Delivery: repeated large Git pushes stalled after authentication; both the
+devkitPro MSYS2 Git and native Git for Windows paths were tried. Owned stalled
+processes were closed. A sanitized HTTP trace (only method/length/status/error
+lines, no authentication headers or bodies) is retained privately. Remote main
+had advanced to an object absent locally. A normal no-tags fetch updated only
+remote tracking/object state, leaving the assigned branch/worktree unchanged.
+The next native Git push sent105 objects/124.17KiB and succeeded, versus the
+earlier10663-object/8.61MiB attempts. This establishes the successful delivery
+path, not a proven root cause of the prior transfer stalls. No force push,
+global safe.directory edit, main change or tag modification was used.
