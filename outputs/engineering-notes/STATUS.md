@@ -1,3 +1,24 @@
+# Actual loader handoff traced — October10,2026
+
+One fresh debugger child pins five executing Cromwell/FreeLdr boundaries and
+verifies532480 raw memory bytes. GPU registers,20KiB RAMIN and84KiB reserved
+CPU tail remain unchanged across USB removal, interrupt revocation and transfer.
+22 valid channel0 object-table entries survive, including the proposed blit
+classes. PFIFO1/PGRAPH0 invalid context and disabled hardware switching persist.
+CPU cleanup, normal restart and independent cold integrity checks pass; strict
+whole-boot FALSE remains the sole inherited Ftdisk49 error. No source/binary
+driver change, GPU writes/grant, acceleration or physical access occurred.
+
+See [225 report](../video-loader-handoff225/REPORT.md) and its raw/evidence review.
+All owned sessions are closed. Next is an explicit ownership transition accounting
+for old-owner ranges, bounded backend retirement and software context service.
+No further quiet-register repetition is needed; current state cannot grant
+firmware object reuse. Physical0101/video0093,0088rollback and0.1.0 preserved.
+Two CLOSED historical standalone probes were hash-verified/offloaded with original
+paths retained as junctions, restoring C: above the unchanged20GiB guard.
+
+## Earlier status
+
 # Native GPU preflight completed — October 10, 2026
 
 Matched ordinary emulator runs now exercise a bounded read-only FIFO preflight

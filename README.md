@@ -13,7 +13,11 @@ is installed; the immutable0.1.0 artifacts below retain0088. The earlier0098
 physical soak passed its workload/integrity checks but failed its strict event
 gate, so it is not a newly qualified release.
 
-The latest [native FIFO preflight224](outputs/video-fifo-retirement224/REPORT.md)
+The latest [executing loader trace225](outputs/video-loader-handoff225/REPORT.md)
+pins five actual shutdown/transfer boundaries. All captured GPU state crosses
+the handoff unchanged, including22 valid inherited channel0 object entries.
+Normal restart and cold checks pass; GPU ownership and backend drain remain
+unqualified. The [native FIFO preflight224](outputs/video-fifo-retirement224/REPORT.md)
 passes matched read-disabled/read-enabled emulator runs under the native CPU
 ownership bridge. It retains 128 raw register reads and explicitly refuses GPU
 ownership: quiet pointers cannot prove producer or backend retirement. The

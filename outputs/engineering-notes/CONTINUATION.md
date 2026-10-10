@@ -1,3 +1,53 @@
+# Current:225 executable-pinned loader handoff CLOSED; scoped evidence PASS
+
+Read outputs/video-loader-handoff225/DESIGN.md and inventory002.json. Exact
+XBE payload282076 bytes and three linked ELF load sections match;169984-byte
+FreeLdr exact binary pinned. Four linked Cromwell CPU shutdown/transfer sites
+plus FreeLdr entry derived, not source-name guesses. Nine historical216 source
+pins unchanged; other current-source consumer leads remain bounded. Original
+inventory.json recursive graph incorrectly crossed an unsized thunk into
+embedded data; correction preserves it and uses sized functions only. No GPU
+release/ownership/backend drain or historical clean rebuild claimed.
+
+Fresh trace001 preparation CLOSED0 via exec session95713 (host shell111104,
+prepare PowerShell107184, WSL113096/34188 observed). Full virtual comparison
+identical, clean before320dirs6719files321directory clusters.136 frozen inputs.
+ONE trace001 launch accepted2026-10-10T18:31:18.099143UTC; dashboard return
+18:32:40.281556, closed18:32:59.315779. Owned controller103104,runner111336,
+tracer108876,observer100732 CLOSED0 via exec session49767. Five actual code
+pins/130reads/532480raw bytes independently reviewed; all breakpoints removed,
+guest resumed. No debugger memory/register writes. All26registers/RAMIN20KiB/
+reservedCPUtail84KiB unchanged across actual USB/CLI/FreeLdr transfer.22valid
+channel0 RAMHT entries remain, including97/9f/62 descriptors. PFIFO1/PGRAPH0,
+current context invalid, hardware switchingOFF; no ownership/backend drain.
+Normal CPU65/3194880/four joined workers, one EventLog6006/dashboard, full cold
+320dirs6724files321directory clusters0errors/orphans,five hives/28hashes and
+history/startup/typedpolicy pass. Strict wholebootFALSE sole inheritedFt49/error3;
+ordinary_qualifiedFALSE because debugger, no physical qualification.
+Use private E:/Codex-archive/xbox-windows-native/handoff225 and unique
+E:/Codex-private-artifacts/xbox-windows-feasibility/handoff225-runs/
+nt5-handoff225-trace001. Payloads unchanged224 candidate/probe, compiled
+xwnret224 namespace; candidate219 bootvid, immutable211 parent. No null policy,
+physical access, device merges or ownership grant.180sec/five one-shot diagnostic
+complete with full teardown/resume and normal CPU workload/cold audits. Never
+duplicate preparation/launch/audit or modify frozen inputs; inspect records.
+Frozen DESIGN USB "paired instruction return" is statically pinned call-next
+instruction, not separate runtime function-entry/frame pairing; REPORT clarifies.
+
+C: dropped below20GiB during active guest; no new build started. Two CLOSED
+historical standalone dirs storage-preflight-002/hardware-probe-002 offloaded
+to E with68fullfile hashes/readback and originalpaths verifiedjunctions. No
+backing chains moved. Manifest outputs/task-storage-offload/
+manifest-handoff225-20261010.json; offload session7498 CLOSED0. C: afterward
+22961852416bytes/21.38GiB, E:201035874304bytes/187.23GiB.20GiB guard unchanged.
+Next actual reserved old-owner ranges, genuine explicit NT5 ownership transition,
+bounded completion/backend retirement and software context service/quarantine
+before16x8copy. No further blind quiet snapshots. Runtime PTE/cache aliases and
+native deferredcleanup fallback faultpaths remain separate/unqualified.
+ALL root-owned225 sessions CLOSED. Preserve physical0101/video0093,0088,0.1.0
+and all failed evidence. Private main publication and exact reviewed artifacts
+recorded by225 repository-review.json; Git HEAD/origin/main authoritative.
+
 # Current:224 ordinary read-only FIFO pair CLOSED; observation/CPU scope PASS
 
 Read224 REPORT.md/NEXT.md/pair-review.json and actual records. Matched OFF/ON

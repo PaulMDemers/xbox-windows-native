@@ -1,0 +1,2503 @@
+{
+  "passed": true,
+  "scope": "Pin actual XBE payload/linked ELF and derive bounded executable handoff sites.",
+  "physical_access": false,
+  "guest_launch": false,
+  "gpu_ownership_qualified": false,
+  "source_sha256": "13a62e635394c2e4e0afd72f5d065f491802a799c43875370192ce97e59554b4",
+  "binaries": {
+    "xromwell.xbe": {
+      "path": "outputs/video-loader-handoff225/artifacts/xromwell.xbe",
+      "source": "/home/paul/xbox-windows-native/build/cromwell-physical-f-001/xbe/xromwell.xbe",
+      "sha256": "c7a2b9c863377bd9755a78df57d2f53fcce8c288d058e0492468b8732f4363e0",
+      "bytes": 294384
+    },
+    "image-crom.elf": {
+      "path": "outputs/video-loader-handoff225/artifacts/image-crom.elf",
+      "source": "/home/paul/xbox-windows-native/build/cromwell-physical-f-001/obj/image-crom.elf",
+      "sha256": "44d21b3b77c315b4a7f1dc8f4fb8623e1e0f383db7b6471eb140eab04bb4bade",
+      "bytes": 317044
+    },
+    "image-crom.bin": {
+      "path": "outputs/video-loader-handoff225/artifacts/image-crom.bin",
+      "source": "/home/paul/xbox-windows-native/build/cromwell-physical-f-001/obj/image-crom.bin",
+      "sha256": "f8e98b0df643513e61459188f6fb6c232997c4b56bef30cf09f4ec6bf6b9a8f2",
+      "bytes": 282076
+    },
+    "freeldr.sys": {
+      "path": "outputs/video-loader-handoff225/artifacts/freeldr.sys",
+      "source": "/home/paul/xbox-windows-native/build/physical-f-loader/boot/freeldr/freeldr/freeldr.sys",
+      "sha256": "c936b06e1f26d54436c170ddd056275335008cace3c522ff29a5d8361d10e6a1",
+      "bytes": 169984
+    }
+  },
+  "linked_load_sections": [
+    {
+      "address": 60817408,
+      "bytes": 208296,
+      "sha256": "a2cd5a1544d599002e6257dec405d0fbd2413164303590206e5d8d6f718d5c71"
+    },
+    {
+      "address": 61025704,
+      "bytes": 70335,
+      "sha256": "910bfa785be44f3f98b9f3912f6cd26b8973160611b1e328f5a3079eb1e7fabd"
+    },
+    {
+      "address": 61096039,
+      "bytes": 3445,
+      "sha256": "ad7bd0466e00571b00704e3c5092677d20fdb95375938720cbedf0832015ccf7"
+    }
+  ],
+  "xbe_payload_offset": 12288,
+  "xbe_payload_bytes": 282076,
+  "linked_image_matches_executing_payload": true,
+  "sites": {
+    "producer_exit_entry": 60867808,
+    "usb_stopped": 60867846,
+    "interrupts_revoked": 60867888,
+    "multiboot_transfer": 60868312,
+    "freeldr_entry": 2099744
+  },
+  "multiboot_file_offset": 2560,
+  "multiboot_header": [
+    464367618,
+    65539,
+    3830534139,
+    2099712,
+    2097152,
+    0,
+    0,
+    2099744
+  ],
+  "cromwell_symbols": {
+    "BSS_SIZE_L": 25203,
+    "_binary__home_paul_xbox_windows_native_build_cromwell_physical_f_001_pics_backdrop_jpg_size": 43111,
+    "BSS_SIZE": 100812,
+    "ROM_SIZE": 262144,
+    "_end_complete_rom": 382888,
+    "LOW_ROM": 60817408,
+    "_start_low_rom": 60817408,
+    "Cromwellconfig": 60817413,
+    "tableGdt": 60817472,
+    "tableGdtDescriptor": 60817520,
+    "tableGdtEnd": 60817528,
+    "tableIdtDescriptor": 60817536,
+    "start_linux": 60817552,
+    "reload_cs": 60817632,
+    "IntHandlerTimer0": 60817925,
+    "IntHandler1": 60817940,
+    "IntHandler2": 60817955,
+    "IntHandler3": 60817970,
+    "IntHandler4": 60817985,
+    "IntHandler5": 60818000,
+    "IntHandler6": 60818015,
+    "IntHandler7": 60818031,
+    "IntHandler8": 60818047,
+    "IntHandler9": 60818066,
+    "IntHandler10": 60818085,
+    "IntHandlerI2C": 60818104,
+    "IntHandlerSmc": 60818123,
+    "IntHandler13": 60818154,
+    "IntHandlerIde": 60818173,
+    "IntHandler15": 60818192,
+    "IntHandlerUnused": 60818211,
+    "IntHandlerUnusedPic2": 60818226,
+    "SpareIntNop": 60818262,
+    "IntHandlerException0": 60818263,
+    "IntHandlerException1": 60818274,
+    "IntHandlerException2": 60818285,
+    "IntHandlerException3": 60818296,
+    "IntHandlerException4": 60818307,
+    "IntHandlerException5": 60818318,
+    "IntHandlerException6": 60818329,
+    "IntHandlerException7": 60818340,
+    "IntHandlerException8": 60818351,
+    "IntHandlerException9": 60818362,
+    "IntHandlerExceptionA": 60818373,
+    "IntHandlerExceptionB": 60818384,
+    "IntHandlerExceptionC": 60818395,
+    "IntHandlerExceptionD": 60818406,
+    "IntHandlerExceptionE": 60818417,
+    "IntHandlerExceptionF": 60818428,
+    "IntHandlerException10": 60818439,
+    "BootResetAction": 60818464,
+    "WriteToSMBus": 60819648,
+    "ReadfromSMBus": 60819952,
+    "I2CWriteWordtoRegister": 60820208,
+    "I2CTransmitByteGetReturn": 60820256,
+    "I2CTransmitWord": 60820320,
+    "I2CWriteBytetoRegister": 60820368,
+    "I2CModifyBits": 60820416,
+    "I2cSetFrontpanelLed": 60820560,
+    "I2cResetFrontpanelLed": 60820608,
+    "I2CGetTemperature": 60820640,
+    "I2CRebootQuick": 60820768,
+    "I2CRebootSlow": 60820800,
+    "I2CPowerOff": 60820832,
+    "PciReadByte": 60820864,
+    "PciWriteByte": 60820944,
+    "PciReadWord": 60821040,
+    "PciWriteWord": 60821120,
+    "PciReadDword": 60821216,
+    "PciWriteDword": 60821296,
+    "CMOS_READ": 60821376,
+    "CMOS_WRITE": 60821392,
+    "BiosCmosWrite": 60821408,
+    "BiosCmosRead": 60821440,
+    "rtc_checksum_valid": 60821456,
+    "rtc_set_checksum": 60821552,
+    "LpcSelectRegister": 60821632,
+    "LpcEnterConfiguration": 60821648,
+    "LpcExitConfiguration": 60821664,
+    "LpcReadRegister": 60821680,
+    "LpcWriteRegister": 60821696,
+    "LpcGetSerialState": 60821712,
+    "LpcSetSerialState": 60821744,
+    "LpcGetSerialIRQState": 60821792,
+    "LpcSetSerialIRQState": 60821824,
+    "serial_putchar": 60821856,
+    "bprintf": 60821936,
+    "BootAGPBUSInitialization": 60822112,
+    "BootDetectMemorySize": 60822240,
+    "BootPciPeripheralInitialization": 60822624,
+    "DetectVideoEncoder": 60824384,
+    "VideoEncoderName": 60824480,
+    "AvCableName": 60824544,
+    ".L23": 60824584,
+    ".L22": 60824600,
+    ".L16": 60950728,
+    ".L20": 60931140,
+    ".L19": 60950864,
+    ".L18": 60950664,
+    "BootVgaInitializationKernelNG": 60824688,
+    ".L45": 60826784,
+    ".L46": 60826992,
+    ".L47": 60827040,
+    ".L48": 60827088,
+    ".L43": 60827136,
+    "DetectVideoStd": 60827936,
+    "DetectAvType": 60827984,
+    "SetGPURegister": 60828032,
+    "conexant_calc_vga_mode": 60829200,
+    "conexant_calc_hdtv_mode": 60829360,
+    "conexant_calc_mode": 60829552,
+    ".L85": 60833007,
+    ".L82": 60833551,
+    ".L84": 60833559,
+    ".L79": 60833567,
+    ".L81": 60833595,
+    ".L83": 60833603,
+    "focus_calc_hdtv_mode": 60833616,
+    "focus_calc_pll_settings": 60834080,
+    "focus_calc_mode": 60834496,
+    "xcalibur_calc_hdtv_mode": 60835472,
+    "xcalibur_calc_mode": 60835536,
+    "BootIdeWaitNotBusy": 60835872,
+    "BootIdeWaitDataReady": 60836032,
+    "BootIdeIssueAtaCommand": 60836224,
+    "BootIdeReadData": 60836400,
+    "BootIdeWriteData": 60836576,
+    "BootIdeWriteAtapiData": 60836720,
+    "BootIdeIssueAtapiPacketCommandAndPacketLimit": 60836944,
+    "BootIdeIssueAtapiPacketCommandAndPacket": 60837264,
+    "DriveSecurityChange": 60837296,
+    "CalculateDrivePassword": 60838000,
+    "BootIdeAtapiModeSense": 60838224,
+    "BootIdeAtapiAdditionalSenseCode": 60838496,
+    "BootIdeAtapiReportFriendlyError": 60838752,
+    "BootIdeAtapiPrintkFriendlyError": 60838976,
+    "BootIdeReadSector": 60839056,
+    "BootIdeDriveInit": 60840880,
+    "BootIdeInit": 60842592,
+    "BootIdeWriteSector": 60843056,
+    "BootIdeBootSectorHddOrElTorito": 60843680,
+    "get_diskinfo": 60844144,
+    "BootIdeSetTransferMode": 60844240,
+    "copy_swap_trim": 60844448,
+    "HMAC1hddReset": 60844560,
+    "HMAC2hddReset": 60844816,
+    "HMAC_SHA1": 60845072,
+    "HMAC_hdd_calculation": 60845568,
+    "BootHddKeyGenerateEepromKeyData": 60845728,
+    "rc4_prepare_key": 60846016,
+    "rc4_crypt": 60846432,
+    "SHA1Reset": 60847008,
+    "SHA1ProcessMessageBlock": 60847104,
+    "SHA1Input": 60849392,
+    "SHA1PadMessage": 60849664,
+    "SHA1Result": 60850304,
+    "BootVideoGetCharacterWidth": 60850736,
+    "BootVideoGetStringTotalWidth": 60850832,
+    "BootVideoFontWidthToBitmapBytecount": 60850976,
+    "BootVideoJpegBlitBlend": 60850992,
+    "BootVideoOverlayCharacter": 60851344,
+    "BootVideoOverlayString": 60851840,
+    "BootVideoGetPointerToEffectiveJpegTopLeft": 60851952,
+    "BootVideoClearScreen": 60851984,
+    "BootVideoChunkedPrint": 60852256,
+    "VideoDumpAddressAndData": 60852656,
+    "printk": 60853216,
+    "BootVideoJpegUnpackAsRgb": 60853328,
+    "console_putchar": 60853600,
+    "putchar": 60853648,
+    "number": 60853696,
+    "simple_strtoul": 60854384,
+    "simple_strtol": 60854608,
+    "vsprintf": 60854672,
+    ".L103": 60854784,
+    ".L104": 60854896,
+    ".L106": 60854912,
+    ".L107": 60854928,
+    ".L108": 60854944,
+    ".L109": 60854960,
+    ".L121": 60854992,
+    ".L129": 60855238,
+    ".L134": 60855329,
+    ".L133": 60855401,
+    ".L132": 60855420,
+    ".L125": 60855476,
+    ".L124": 60855637,
+    ".L131": 60855647,
+    ".L128": 60855660,
+    ".L130": 60855700,
+    ".L126": 60855780,
+    ".L178": 60856036,
+    ".L127": 60856046,
+    "sprintf": 60856224,
+    "setLED": 60856256,
+    "resetLED": 60856368,
+    "IconMenuDraw": 60856400,
+    "AddIcon": 60857072,
+    "IconMenu": 60857152,
+    "InitFatXIcons.part.0": 60857936,
+    "InitFatXIcons": 60858112,
+    "InitNativeIcons": 60858160,
+    "IconMenuInit": 60858480,
+    "TextMenuAddItem": 60858800,
+    "TextMenuDraw": 60858864,
+    "TextMenu": 60859056,
+    "TextMenuInit": 60859648,
+    "VideoMenuInit": 60860032,
+    "ResetMenuInit": 60860384,
+    "FlashMenuInit": 60860656,
+    "HddMenuInit": 60860896,
+    "PhyMenuInit": 60861312,
+    "AdvancedMenu": 60861616,
+    "DrawBootMenu": 60861648,
+    "PrepareBootFromCD": 60862032,
+    "BootMenuEntry": 60862128,
+    "DrawChildTextMenu": 60862192,
+    "BootFromEtherboot": 60862224,
+    "SetWidescreen": 60862256,
+    "SetVideoStandard": 60862400,
+    "SlowReboot": 60862624,
+    "QuickReboot": 60862656,
+    "PowerOff": 60862688,
+    "FlashBiosFromCD": 60862720,
+    "LockHdd": 60862752,
+    "UnlockHdd": 60863232,
+    "DisplayHddPassword": 60863504,
+    "IsSerialEnabled": 60863792,
+    "SetSerialEnabled": 60863840,
+    "HasSerialIRQ": 60864032,
+    "SetSerialIRQ": 60864080,
+    "Confirm_Yes": 60864384,
+    "Confirm_No": 60864432,
+    "Confirm": 60864480,
+    "BootPrintConfig": 60864704,
+    "memPlaceKernel": 60865008,
+    "DetectLinuxNative": 60865104,
+    "LoadLinuxNative": 60865360,
+    "DetectLinuxFATX": 60866000,
+    "LoadLinuxFATX": 60866176,
+    "DetectLinuxCD": 60866720,
+    "LoadLinuxCD": 60866848,
+    "startLinux": 60867280,
+    "reload_cs_exit": 60867968,
+    "ExittoLinux": 60867600,
+    "startReactOS.part.0": 60867808,
+    "GetMultibootBootDevice": 60868496,
+    "CheckMultibootHeader": 60868544,
+    "DetectReactOSNative": 60868656,
+    "LoadReactOSNative": 60868816,
+    "DetectReactOSFATX": 60869168,
+    "LoadReactOSFATX": 60869312,
+    "DetectReactOSCD": 60869600,
+    "LoadReactOSCD": 60869776,
+    "ExittoReactOS": 60870048,
+    "startReactOS": 60870320,
+    "InitGrubRequest": 60870352,
+    "FillConfigEntries": 60870544,
+    "AddNestedConfigEntry": 60870624,
+    "DetectSystemNative": 60870784,
+    "BootFromNative": 60871056,
+    "DetectSystemFatX": 60871200,
+    "BootFromFatX": 60871456,
+    "DetectSystemCD": 60871616,
+    "BootFromCD": 60872336,
+    "BootFromDevice": 60872416,
+    "BootLoadFlashCD": 60872608,
+    "setup": 60873248,
+    "isupper": 60873920,
+    "strip_blank": 60873952,
+    "iso9660_name_translate": 60874016,
+    "read_dir": 60874208,
+    "read_file": 60874832,
+    "BootIso9660GetFile": 60875232,
+    "BootPciInterruptEnable": 60875472,
+    "GetTimerTicks": 60875488,
+    "memcpy": 60875504,
+    "strlen": 60875552,
+    "tolower": 60875584,
+    "isspace": 60875600,
+    "memset": 60875632,
+    "memcmp": 60875664,
+    "strcpy": 60875728,
+    "strncpy": 60875760,
+    "strstr": 60875792,
+    "strcat": 60875904,
+    "strpbrk": 60875952,
+    "strsep": 60876032,
+    "strncmp": 60876144,
+    "strcmp": 60876192,
+    "strrchr0": 60876240,
+    "chrreplace": 60876288,
+    "memmove": 60876336,
+    "MemoryManagerGetFree": 60876416,
+    "MemoryManagementInitialization": 60876464,
+    "t_malloc": 60876512,
+    "t_free": 60876848,
+    "malloc": 60877056,
+    "free": 60877104,
+    "ListEntryInsertAfterCurrent": 60877152,
+    "ListEntryRemove": 60877184,
+    "cpuid": 60877216,
+    "intel_interrupts_on": 60877264,
+    "cache_disable": 60877280,
+    "cache_enable": 60877296,
+    "display_cpuid_update_microcode": 60877312,
+    "setup_ioapic": 60877504,
+    "wait_smalldelay": 60877712,
+    "wait_us": 60877760,
+    "wait_ms": 60877888,
+    "BootInterruptsWriteIdt": 60878016,
+    "DVDTrayEject": 60878352,
+    "DVDTrayClose": 60878384,
+    "IntHandlerCSmc": 60878416,
+    ".L35": 60878560,
+    ".L37": 60878616,
+    ".L38": 60931133,
+    ".L39": 60878760,
+    ".L40": 60878880,
+    ".L41": 60878944,
+    ".L34": 60878993,
+    "IntHandlerCIde": 60879296,
+    "IntHandlerCI2C": 60879376,
+    "IntHandlerUnusedC": 60879424,
+    "IntHandlerUnusedC2": 60879488,
+    "IntHandlerCTimer0": 60879552,
+    "IntHandler1C": 60879584,
+    "IntHandler9C": 60879632,
+    "IntHandler2C": 60879680,
+    "IntHandler3VsyncC": 60879728,
+    "IntHandler4C": 60879744,
+    "IntHandler5C": 60879792,
+    "IntHandler6C": 60879840,
+    "IntHandler7C": 60879872,
+    "IntHandler8C": 60879920,
+    "IntHandler10C": 60879952,
+    "IntHandler13C": 60880000,
+    "IntHandler15C": 60880032,
+    "IntHandlerException0C": 60880080,
+    "IntHandlerException1C": 60880112,
+    "IntHandlerException2C": 60880144,
+    "IntHandlerException3C": 60880176,
+    "IntHandlerException4C": 60880208,
+    "IntHandlerException5C": 60880240,
+    "IntHandlerException6C": 60880272,
+    "IntHandlerException7C": 60880336,
+    "IntHandlerException8C": 60880368,
+    "IntHandlerException9C": 60880400,
+    "IntHandlerExceptionAC": 60880432,
+    "IntHandlerExceptionBC": 60880464,
+    "IntHandlerExceptionCC": 60880496,
+    "IntHandlerExceptionDC": 60880528,
+    "IntHandlerExceptionEC": 60880560,
+    "IntHandlerExceptionFC": 60880592,
+    "IntHandlerException10C": 60880624,
+    "fat_mount": 60880656,
+    "fat_read": 60881440,
+    "fat_dir": 60882128,
+    "block_read": 60883200,
+    "read_tree_node": 60883728,
+    "search_stat": 60883888,
+    "next_key": 60884256,
+    "journal_init.isra.0": 60884560,
+    "reiserfs_mount": 60885168,
+    "reiserfs_read": 60885936,
+    "reiserfs_dir": 60886672,
+    "reiserfs_embed": 60887600,
+    "ext2fs_block_map.part.0": 60887808,
+    "ext2fs_mount": 60888592,
+    "ext2fs_read": 60888752,
+    "ext2fs_dir": 60889088,
+    "block_map.part.0": 60890624,
+    "ufs2_mount": 60890944,
+    "ufs2_read": 60891120,
+    "ufs2_dir": 60891520,
+    "ufs2_embed": 60892384,
+    "convert_to_ascii": 60892416,
+    "safe_parse_maxint": 60892528,
+    "grub_tolower": 60892784,
+    "grub_isspace": 60892816,
+    "substring": 60892848,
+    "rawread": 60892896,
+    "devread": 60893184,
+    "next_partition": 60893312,
+    "real_open_partition": 60894144,
+    "open_partition": 60894608,
+    "set_device": 60894624,
+    "open_device": 60894688,
+    "grub_open": 60894832,
+    "grub_read": 60895600,
+    "grub_close": 60896160,
+    "readtables": 60896224,
+    "idctqtab": 60897360,
+    "idct": 60897520,
+    "fillbits.constprop.0": 60898480,
+    "dec_rec2.constprop.0": 60898704,
+    "jpeg_get_size": 60899040,
+    "jpeg_decode": 60899152,
+    "BootFlashGetDescriptor": 60903648,
+    "BootFlashEraseMinimalRegion": 60904320,
+    "BootFlashProgram": 60905440,
+    "DisplayFlashProgressBar": 60906560,
+    "BootFlashUserInterface": 60906976,
+    "BootReflashAndReset": 60907072,
+    "BootEepromReadEntireEEPROM": 60907312,
+    "BootEepromPrintInfo": 60907376,
+    "EepromCRC": 60907792,
+    "EepromSetWidescreen": 60907968,
+    "EepromSetVideoStandard": 60908160,
+    "ParseConfig": 60908352,
+    "checkForLastDirectoryEntry": 60909232,
+    "FATXSignature": 60909264,
+    "FATXRawRead": 60909376,
+    "OpenFATXPartition": 60909776,
+    "LoadFATXCluster": 60910480,
+    "FATXReadChainMapEntry.constprop.0": 60910704,
+    "getNextClusterInChain": 60911104,
+    "_DumpFATXTree": 60911600,
+    "DumpFATXTree": 60912128,
+    "PrintFAXPartitionTable": 60912160,
+    "FATXLoadFromDisk": 60912384,
+    "_FATXFindFile": 60912864,
+    "FATXFindFile": 60913760,
+    "LoadFATXFile": 60913856,
+    "LoadFATXFilefixed": 60914048,
+    "CloseFATXPartition": 60914352,
+    "usb_parse_configuration": 60914416,
+    "usb_destroy_configuration": 60915936,
+    "usb_get_configuration": 60916400,
+    "usb_hcd_pci_remove": 60916896,
+    "usb_hcd_pci_probe": 60917040,
+    "hcd_get_frame_number": 60917552,
+    "hcd_panic": 60917584,
+    "hcd_free_dev": 60917600,
+    "hcd_alloc_dev": 60917728,
+    "unlink_complete": 60917920,
+    "usb_bus_get": 60918000,
+    "usb_bus_put": 60918016,
+    "usb_bus_init": 60918080,
+    "usb_alloc_bus": 60918192,
+    "usb_free_bus": 60918320,
+    "usb_register_bus": 60918400,
+    "usb_deregister_bus": 60918560,
+    "usb_register_root_hub": 60918656,
+    "usb_calc_bus_time": 60918736,
+    "usb_check_bandwidth": 60919136,
+    "usb_claim_bandwidth": 60919248,
+    "usb_release_bandwidth": 60919312,
+    "usb_hcd_giveback_urb": 60919376,
+    "usb_rh_status_dequeue": 60919520,
+    "rh_report_status": 60919616,
+    "hcd_submit_urb": 60919824,
+    "hcd_endpoint_disable": 60921184,
+    "hcd_unlink_urb": 60921664,
+    "usb_hcd_irq": 60922016,
+    "usb_hc_died": 60922192,
+    "hub_ioctl": 60922304,
+    "hub_port_status": 60922432,
+    "hub_hub_status": 60922560,
+    "hub_disconnect": 60922672,
+    "hub_irq": 60922912,
+    "hub_tt_kevent": 60923072,
+    "hub_power_on": 60923216,
+    "hub_probe": 60923360,
+    "hub_port_reset": 60924112,
+    "hub_port_connect_change.constprop.0": 60924528,
+    "usb_hub_tt_clear_buffer": 60925408,
+    "hub_port_disable": 60925552,
+    "usb_hub_init": 60925616,
+    "usb_hub_cleanup": 60925712,
+    "usb_physical_reset_device": 60925760,
+    "hub_thread": 60926528,
+    "usb_reset_device": 60927632,
+    "usb_api_blocking_completion": 60927648,
+    "usb_start_wait_urb.constprop.0": 60927696,
+    "usb_internal_control_msg": 60927904,
+    "usb_control_msg": 60928032,
+    "usb_bulk_msg": 60928272,
+    "usb_get_descriptor": 60928432,
+    "usb_get_string": 60928592,
+    "usb_get_device_descriptor": 60928672,
+    "usb_get_status": 60928704,
+    "usb_set_maxpacket": 60928784,
+    "usb_clear_halt": 60928976,
+    "usb_set_interface": 60929104,
+    "usb_set_configuration": 60929584,
+    "usb_string": 60929872,
+    "ohci_hub_control": 60930368,
+    ".L42": 60930672,
+    ".L14": 60950776,
+    ".L15": 60931098,
+    ".L17": 60931105,
+    ".L12": 60940800,
+    "ed_schedule": 60931280,
+    "ed_deschedule": 60931936,
+    "td_fill": 60932464,
+    "ohci_get_frame": 60932784,
+    "ohci_hcd_free": 60932816,
+    "ohci_hcd_alloc": 60932864,
+    "hc_reset": 60932928,
+    "ohci_stop": 60933104,
+    "td_done.constprop.0": 60933280,
+    "urb_free_priv": 60933696,
+    "finish_urb": 60933856,
+    "ohci_urb_dequeue": 60933984,
+    "ohci_irq": 60934176,
+    "ohci_urb_enqueue": 60935728,
+    "ohci_endpoint_disable": 60937856,
+    "ohci_hub_status_data": 60938240,
+    "ohci_pci_start": 60938640,
+    "module_exit_ohci_hcd_pci_cleanup": 60939504,
+    "hcd_buffer_create": 60939520,
+    "hcd_buffer_destroy": 60939536,
+    "hcd_buffer_alloc": 60939552,
+    "hcd_buffer_free": 60939584,
+    "usb_init_urb": 60939616,
+    "usb_alloc_urb": 60939664,
+    "usb_free_urb": 60939744,
+    "usb_get_urb": 60939824,
+    "usb_submit_urb": 60939840,
+    "usb_unlink_urb": 60940352,
+    "usb_show_device_descriptor": 60940400,
+    ".L6": 60950640,
+    ".L13": 60940776,
+    ".L11": 60940824,
+    ".L10": 60950800,
+    ".L9": 60950528,
+    ".L7": 60950704,
+    "usb_show_config_descriptor": 60940944,
+    "usb_show_interface_descriptor": 60941184,
+    "usb_show_endpoint_descriptor": 60941424,
+    "usb_show_device": 60941808,
+    "usb_show_string": 60942144,
+    "usb_dump_urb": 60942240,
+    "generic_probe": 60942544,
+    "usb_device_remove": 60942560,
+    "usb_hotplug": 60942640,
+    "usb_setup_disable": 60942656,
+    "usb_release_dev": 60942688,
+    "generic_remove": 60942784,
+    "match_device": 60942800,
+    "usb_register": 60942960,
+    "usb_deregister": 60943056,
+    "usb_ifnum_to_if": 60943072,
+    "usb_epnum_to_ep_desc": 60943152,
+    "usb_driver_claim_interface": 60943312,
+    "usb_interface_claimed": 60943344,
+    "usb_driver_release_interface": 60943376,
+    "usb_match_id": 60943424,
+    "usb_device_probe": 60943680,
+    "usb_device_match": 60943760,
+    "usb_find_interface": 60943824,
+    "usb_alloc_dev": 60943904,
+    "usb_get_dev": 60944080,
+    "usb_put_dev": 60944144,
+    "usb_find_device": 60944160,
+    "usb_get_current_frame_number": 60944256,
+    "__usb_get_extra_descriptor": 60944288,
+    "usb_disconnect": 60944368,
+    "usb_connect": 60944640,
+    "usb_set_address": 60944992,
+    "usb_new_device": 60945088,
+    "usb_buffer_alloc": 60946304,
+    "usb_buffer_free": 60946384,
+    "usb_buffer_map": 60946464,
+    "usb_buffer_dmasync": 60946560,
+    "usb_buffer_unmap": 60946576,
+    "usb_buffer_map_sg": 60946624,
+    "usb_buffer_dmasync_sg": 60946688,
+    "usb_buffer_unmap_sg": 60946704,
+    "usb_disabled": 60946720,
+    "subsys_usb_init": 60946752,
+    "module_exit_usb_exit": 60946816,
+    "BootStartUSB": 60946864,
+    "USBGetEvents": 60947024,
+    "BootStopUSB": 60947088,
+    "zxprintf": 60947216,
+    "zxsnprintf": 60947424,
+    "zxsprintf": 60947472,
+    "init_wrapper": 60947520,
+    "handle_irqs": 60947744,
+    "inc_jiffies": 60947840,
+    "do_all_timers": 60947872,
+    "my_kernel_thread": 60947952,
+    "my_device_add": 60948000,
+    "my_driver_register": 60948160,
+    "my_device_unregister": 60948224,
+    "my_get_device": 60948272,
+    "my_device_initialize": 60948288,
+    "my_wake_up": 60948304,
+    "my_schedule_timeout": 60948336,
+    "my_wait_for_completion": 60948448,
+    "my_pci_module_init": 60948528,
+    "my_pci_find_slot": 60948608,
+    "my_request_irq": 60948624,
+    "my_free_irq": 60948720,
+    "xpad_disconnect": 60948736,
+    "xpad_probe": 60948816,
+    "xpad_irq": 60949056,
+    "XPADInit": 60949264,
+    "XPADRemove": 60949376,
+    "xremote_disconnect": 60949408,
+    "xremote_probe": 60949472,
+    "xremote_irq": 60949696,
+    "XRemoteInit": 60949808,
+    "XRemoteRemove": 60949856,
+    "usb_kbd_disconnect": 60949888,
+    "usb_kbd_probe": 60949952,
+    "usb_kbd_irq": 60950176,
+    "UsbKeyBoardInit": 60950256,
+    "UsbKeyBoardRemove": 60950288,
+    "risefall_xpad_BUTTON": 60950320,
+    ".L3": 60950616,
+    ".L25": 60950631,
+    ".L8": 60950752,
+    ".L21": 60950824,
+    ".L4": 60950848,
+    ".L28": 60950912,
+    "dummy": 60951056,
+    "await_qdrain": 60951072,
+    "await_arp": 60951088,
+    "await_tftp": 60951200,
+    "udpchksum.isra.0": 60951280,
+    "eth_probe": 60951392,
+    "eth_poll": 60951424,
+    "eth_transmit": 60951456,
+    "eth_disable": 60951536,
+    "eth_load": 60951568,
+    "build_ip_hdr": 60951760,
+    "build_udp_hdr": 60951888,
+    "await_reply": 60952048,
+    "rx_qdrain": 60952944,
+    "ip_transmit": 60952992,
+    "udp_transmit": 60953616,
+    "bootp": 60953680,
+    "eth_load_configuration": 60954784,
+    "tftp": 60954880,
+    "decode_rfc1533": 60956176,
+    "await_bootp": 60957168,
+    "rfc2131_sleep_interval": 60957536,
+    "elf32_probe": 60957600,
+    "elf32_download": 60958976,
+    "probe_image": 60959984,
+    "load_block": 60960000,
+    "etherboot": 60960320,
+    "pcibios_read_config_byte": 60960448,
+    "pcibios_read_config_word": 60960512,
+    "pcibios_read_config_dword": 60960576,
+    "pcibios_write_config_byte": 60960640,
+    "pcibios_write_config_word": 60960704,
+    "pcibios_write_config_dword": 60960768,
+    "pcibios_bus_base": 60960832,
+    "find_pci": 60960848,
+    "currticks": 60960896,
+    "ndelay": 60960928,
+    "udelay": 60960976,
+    "restart_etherboot": 60961008,
+    "xstart16": 60961072,
+    "xstart32": 60961152,
+    "alloc_rx.constprop.0.isra.0": 60962112,
+    "forcedeth_poll": 60962224,
+    "forcedeth_transmit": 60962384,
+    "stop_rx": 60962704,
+    "mii_rw.constprop.0": 60962816,
+    "forcedeth_probe": 60963104,
+    "forcedeth_disable": 60964864,
+    "ipchksum": 60965040,
+    "add_ipchksums": 60965120,
+    "random": 60965184,
+    "poll_interruptions": 60965344,
+    "sleep": 60965360,
+    "interruptible_sleep": 60965440,
+    "twiddle": 60965536,
+    "strcasecmp": 60965568,
+    "inet_aton": 60965664,
+    "strtoul": 60965824,
+    "scan_pci_bus": 60965888,
+    "adjust_pci_device": 60967088,
+    "pci_bar_start": 60967264,
+    "pci_bar_size": 60967472,
+    "pci_find_capability": 60967648,
+    "print_config": 60967936,
+    "probe": 60968048,
+    "disable": 60968448,
+    "loadkernel": 60968496,
+    "cleanup": 60968848,
+    "prepare_boot_params": 60968880,
+    "elf_start": 60969568,
+    "try_elf_boot": 60969616,
+    "__x86.get_pc_thunk.bx": 60969686,
+    "__x86.get_pc_thunk.ax": 60969690,
+    "__x86.get_pc_thunk.dx": 60969694,
+    "__x86.get_pc_thunk.cx": 60969698,
+    "__x86.get_pc_thunk.si": 60969702,
+    "__x86.get_pc_thunk.di": 60969706,
+    "__x86.get_pc_thunk.bp": 60969710,
+    "_end_low_rom": 61025704,
+    "CSWTCH.11": 61025760,
+    "default_mode": 61025824,
+    "vidstda": 61025952,
+    "focus_defaults": 61026560,
+    "HDTV_XCal_Vals_480p": 61026784,
+    "Composite_XCal_Vals_NTSC": 61027360,
+    "Composite_XCal_Vals_PAL": 61027936,
+    "baCheck11hFormat.0": 61028512,
+    "baCharset": 61028544,
+    "uiPixelsY": 61034860,
+    "uiPixelsX": 61034864,
+    "waStarts": 61034880,
+    "microcode_updates": 61035520,
+    "longdir_pos.0": 61039644,
+    "sblock_try": 61039660,
+    "aaidct": 61039680,
+    "zig": 61039712,
+    "aknownflashtypesDefault": 61039776,
+    "hs_rh_config_descriptor": 61040376,
+    "fs_rh_config_descriptor": 61040404,
+    "usb11_rh_dev_descriptor": 61040432,
+    "usb2_rh_dev_descriptor": 61040452,
+    "cc_to_error": 61040576,
+    "hcd_name": 61040640,
+    "CSWTCH.15": 61040772,
+    "dhcprequest": 61040800,
+    "dhcpdiscover": 61040872,
+    "broadcast": 61040900,
+    "_binary__home_paul_xbox_windows_native_build_cromwell_physical_f_001_pics_backdrop_jpg_start": 61052928,
+    "_start_backdrop": 61052928,
+    "_binary__home_paul_xbox_windows_native_build_cromwell_physical_f_001_pics_backdrop_jpg_end": 61096039,
+    "_end_backdrop": 61096039,
+    "_end_pcrombios": 61096039,
+    "_end_rodata": 61096039,
+    "_start_data": 61096039,
+    "_start_pcrombios": 61096039,
+    "ioapicregvalues": 61096064,
+    "buf_drive": 61096364,
+    "fsys_type": 61096368,
+    "current_drive": 61096372,
+    "zig2": 61096384,
+    "hub_id_table": 61096448,
+    "module_table_hub_id_table": 61096448,
+    "xpad_ids": 61096512,
+    "xremote_id_table": 61097152,
+    "usb_kbd_id_table": 61097248,
+    "iport.4": 61097288,
+    "dhcp_machine_info": 61097292,
+    "rfc1533_cookie": 61097312,
+    "meminfo": 61097344,
+    "szaSenseKeys": 61098016,
+    "isrprep": 61098080,
+    "fsys_table": 61098368,
+    "usb_hcd_operations": 61098496,
+    "usb_bus_list": 61098528,
+    "hub_driver": 61098560,
+    "hub_list": 61098612,
+    "hub_event_list": 61098620,
+    "module_table_pci_ids": 61098656,
+    "pci_ids": 61098656,
+    "ohci_pci_hc_driver": 61098720,
+    "setup_usb_setup_disable": 61098780,
+    "usb_bus_type": 61098784,
+    "usb_generic_driver": 61098800,
+    "xx_ohci_dev": 61098848,
+    "xpad_driver": 61099104,
+    "xremote_driver": 61099168,
+    "usb_kbd_driver": 61099232,
+    "nic": 61099296,
+    "hostname": 61099400,
+    "pci_drivers_end": 61099404,
+    "pci_drivers": 61099408,
+    "forcedeth_driver": 61099412,
+    "forcedeth_nics": 61099436,
+    "driver_name": 61099460,
+    "_GLOBAL_OFFSET_TABLE_": 61099472,
+    "BSS_BASE": 61099484,
+    "_bss": 61099484,
+    "_end_data": 61099484,
+    "vmode": 61099488,
+    "nTempCursorMbrY": 61099548,
+    "nTempCursorMbrX": 61099552,
+    "jpegBackdrop": 61099556,
+    "cromwell_Biostype": 61099576,
+    "cromwell_loadbank": 61099580,
+    "cromwell_retryload": 61099584,
+    "cromwell_config": 61099588,
+    "xbox_ram": 61099592,
+    "VIDEO_AV_MODE": 61099596,
+    "video_encoder": 61099600,
+    "tsaHarddiskInfo": 61099616,
+    "VIDEO_ATTR": 61099832,
+    "VIDEO_CURSOR_POSY": 61099836,
+    "VIDEO_CURSOR_POSX": 61099840,
+    "timedOut": 61099844,
+    "lastVisibleIcon": 61099848,
+    "firstVisibleIcon": 61099852,
+    "selectedIcon": 61099856,
+    "firstIcon": 61099860,
+    "breakOutOfMenu": 61099864,
+    "CurrentSerialIRQState": 61099868,
+    "CurrentSerialState": 61099872,
+    "Confirm_Result": 61099876,
+    "boot_drive": 61099904,
+    "saved_partition": 61099908,
+    "errnum": 61099912,
+    "saved_drive": 61099916,
+    "infoinitrd.0": 61099936,
+    "infokernel.1": 61100000,
+    "fileinfo.2": 61100192,
+    "dwInitrdSize": 61100124,
+    "dwKernelSize": 61100128,
+    "nRet": 61100132,
+    "bootDev.0": 61100160,
+    "ldrSize.1": 61100164,
+    "MemoryManagerStartAddress": 61100252,
+    "nInteruptable": 61100256,
+    "DVD_TRAY_STATE": 61100260,
+    "BIOS_TICK_COUNT": 61100264,
+    "wait_ms_time": 61100268,
+    "traystate": 61100272,
+    "fSeenPowerdown": 61100276,
+    "nCountInterruptsIde": 61100280,
+    "nCountInterruptsSmc": 61100284,
+    "nCountUnusedInterruptsPic2": 61100288,
+    "nCountUnusedInterrupts": 61100292,
+    "nCountI2cinterrupts": 61100296,
+    "mapblock2": 61100300,
+    "mapblock1": 61100304,
+    "mapblock_bsize": 61100308,
+    "mapblock_offset": 61100312,
+    "mapblock": 61100316,
+    "filemax": 61100320,
+    "filepos": 61100324,
+    "buf_geom": 61100328,
+    "buf_track": 61100348,
+    "current_slice": 61100352,
+    "part_length": 61100356,
+    "part_start": 61100360,
+    "bsd_evil_hack": 61100364,
+    "current_partition": 61100368,
+    "fsmax": 61100372,
+    "disk_read_func": 61100376,
+    "disk_read_hook": 61100380,
+    "block_file": 61100384,
+    "in": 61100416,
+    "dhuff": 61100448,
+    "quant": 61118400,
+    "dscans": 61118656,
+    "comps": 61118784,
+    "info": 61118832,
+    "datap": 61118852,
+    "eeprom": 61118880,
+    "fileLoadClusterData": 61119136,
+    "usb_bus_list_lock": 61184672,
+    "busmap": 61184676,
+    "khubd_exited": 61184684,
+    "khubd_wait": 61184692,
+    "nousb": 61184696,
+    "usb_generic_driver_data": 61184700,
+    "hub_thread_handler": 61184704,
+    "usb_curs_y": 61184708,
+    "usb_curs_x": 61184712,
+    "thread_parm": 61184736,
+    "thread_handler": 61184740,
+    "my_current": 61184744,
+    "act_cur": 61184748,
+    "main_timer_list": 61184768,
+    "my_jiffies": 61184848,
+    "need_wakeup": 61184852,
+    "num_irqs": 61184856,
+    "reg_irqs": 61184864,
+    "drvs_num": 61184960,
+    "m_drivers": 61184992,
+    "pci_probe_dev": 61185024,
+    "xpad_num": 61185056,
+    "XPAD_last": 61185088,
+    "XPAD_current": 61185184,
+    "xpad_button_history": 61185280,
+    "remotekeyIsRepeat": 61185288,
+    "current_remote_key": 61185290,
+    "current_keyboard_key": 61185292,
+    "bootp_data": 61185312,
+    "end_of_rfc1533": 61186784,
+    "hostnamelen": 61186788,
+    "rom": 61186792,
+    "arptable": 61186816,
+    "in_encapsulated_options.0": 61186852,
+    "extdata.1": 61186856,
+    "extend.2": 61186860,
+    "warned_fragmentation.3": 61186864,
+    "packet": 61186880,
+    "dhcp_addr": 61188396,
+    "dhcp_server": 61188400,
+    "dhcp_reply": 61188404,
+    "vendorext_isvalid": 61188408,
+    "xid": 61188412,
+    "netmask": 61188416,
+    "os_regs": 61188448,
+    "os_download.0": 61188504,
+    "skip_bytes.1": 61188508,
+    "skip_sectors.2": 61188512,
+    "estate": 61188544,
+    "virt_offset": 61189672,
+    "seg": 61189676,
+    "npx": 61189728,
+    "BASE": 61189840,
+    "np": 61189844,
+    "rxb": 61189856,
+    "rx_ring": 61196128,
+    "txb": 61196160,
+    "tx_ring": 61199288,
+    "seed.0": 61199304,
+    "url_port": 61199308,
+    "notes": 61199328,
+    "BSS_END": 61200296,
+    "_ebss": 61200296,
+    "_heap": 61200296
+  },
+  "source_pins": {
+    "boot/BootFromDevice.c": {
+      "sha256": "c9802f282e18ffb46d563a2184f22ee436d00a587744cea2df5df03cedc81d2e",
+      "bytes": 10978
+    },
+    "boot/BootResetAction.c": {
+      "sha256": "98dbcba85463effec73c3c86f3c1fcfb37be02afce242f3a017e6ad51c896f52",
+      "bytes": 7698
+    },
+    "boot/BootStartup.S": {
+      "sha256": "3dfbb3c3fedfaa36d6c2c7b8429e9575008c4be3b2b7bf28cb3fff95456b858f",
+      "bytes": 12133
+    },
+    "boot/LoadLinux.c": {
+      "sha256": "3c8e4aaaeb96a4d0b49e692b96bee5bd6b1b015853541cdacb4cfb17393fd7e6",
+      "bytes": 12501
+    },
+    "boot/LoadReactOS.c": {
+      "sha256": "eef51e52b605eb3018a7f6b6b547afaf8aba99186ae7cbc51df628ce0d15b9c2",
+      "bytes": 14334
+    },
+    "boot/loaders.h": {
+      "sha256": "2a9f4e7e9d18278d51340e70efd8eac04f15229efe2f0744f7c5b35cc0c339eb",
+      "bytes": 880
+    },
+    "boot_eth/eth_Startup.S": {
+      "sha256": "fdac71f77769f871fa1e1fa403bae176ee21734ea323817e26a287666e16aa46",
+      "bytes": 889
+    },
+    "boot_rom/2bBootLibrary.c": {
+      "sha256": "625bec308d75aea8aed6844ad4250c39550b4a252874279ad7d66049e25b35dc",
+      "bytes": 1921
+    },
+    "boot_rom/2bBootStartBios.c": {
+      "sha256": "5678283ea870ea4bebbaf090eac9469a966ca5e9a74f111e38971b3bae917e96",
+      "bytes": 6874
+    },
+    "boot_rom/2bBootStartup.S": {
+      "sha256": "e5a61f9aa56b730e295d238ba5c620b165453eb77ba771bbe3ee978b06f42b34",
+      "bytes": 9409
+    },
+    "boot_rom/2bPicResponseAction.c": {
+      "sha256": "3da9788f33645cd311696c880f3e35c7caaf6af95a78fefdeefbf10a2ec3465c",
+      "bytes": 4076
+    },
+    "boot_rom/2bconsts.h": {
+      "sha256": "9acf1089573a1c2254a4ea0d1c2b57362a23bddcf8b660b4a3878f80ef1f5b5c",
+      "bytes": 1728
+    },
+    "boot_rom/2bload.h": {
+      "sha256": "fdf7679d240279beefc7beae629d889ff3be1b6de41502461b1d9680e06e3822",
+      "bytes": 3267
+    },
+    "boot_rom/Xcodes.h": {
+      "sha256": "f3e696922ad757e44db68c50d338cd62805b57b33a67f35d811fd176be030173",
+      "bytes": 9103
+    },
+    "boot_vml/vml_Startup.S": {
+      "sha256": "0f05969a35c86b7f86178b05160219f774ebc9ff41f396f2e5f884c5e8386b1a",
+      "bytes": 401
+    },
+    "boot_xbe/font.S": {
+      "sha256": "8f8dc5ff0bc015e6eb88ff43b54390057dbc866345a09ddbe88baf153da5df45",
+      "bytes": 26002
+    },
+    "boot_xbe/xbe.S": {
+      "sha256": "dfa3fa5a31bb6ed01d774d9269682c03f7bfe8a5e047287377423a3a546f9a73",
+      "bytes": 10561
+    },
+    "boot_xbe/xbeboot.S": {
+      "sha256": "c0de6ec31b433ffd414a52ad5f1e3a757cec20d2e69fed65564b76b7211b1ab9",
+      "bytes": 13330
+    },
+    "drivers/cpu/cpu.h": {
+      "sha256": "e6a2c01f520ecccce23d3dc9c801adb05147931fa09e895b865ec5c7e646862d",
+      "bytes": 871
+    },
+    "drivers/cpu/cputools.c": {
+      "sha256": "8b269a75d4c96c68fd664c64fc4b13c8b03632677f258a3cc34e52083b30a23c",
+      "bytes": 1256
+    },
+    "drivers/cpu/ioapic.c": {
+      "sha256": "313fe7905c43b4acb15ad5ff32fa169a398f24de18f94ffba230b01f060d5350",
+      "bytes": 1885
+    },
+    "drivers/cpu/microcode.c": {
+      "sha256": "c8df990e43c9346c187417ded1f93aeca2d65a9d72ecacee8a34b383cc91e69a",
+      "bytes": 14223
+    },
+    "drivers/flash/BootFlash.c": {
+      "sha256": "34057a427a5fc20da45730dc9fc123ed6a7916f047677f62d186246083103566",
+      "bytes": 14747
+    },
+    "drivers/flash/BootFlash.h": {
+      "sha256": "fa1d4b99071a09255cdaaec2967d83265e8e47e09304718e907e9bc72af1b956",
+      "bytes": 2503
+    },
+    "drivers/flash/BootFlashUi.c": {
+      "sha256": "4d450dd46c2fcd617903de99531e1b096c1fb1a8aa73d3a08e22ea119827b809",
+      "bytes": 4013
+    },
+    "drivers/ide/BootHddKey.c": {
+      "sha256": "8e170432a96f2a8b38b0d5e85fddf49fac55432b7ec03ffb14b7b63320a01a11",
+      "bytes": 5462
+    },
+    "drivers/ide/BootIde.c": {
+      "sha256": "5d5029d2468f001cd71903baae785929c7f832db09fcae6ac6a913f49bdaf83e",
+      "bytes": 39954
+    },
+    "drivers/ide/BootIde.h": {
+      "sha256": "8670be4b13f48419fd413bdd36487d52e9530be21a74e90395f986a6ae76312f",
+      "bytes": 1565
+    },
+    "drivers/pci/BootInterrupts.c": {
+      "sha256": "b8a7e00bcf4c49b36479506705be4b4cd99b3829a0cdbc27ef85c0e4a596449c",
+      "bytes": 13337
+    },
+    "drivers/pci/i2c.h": {
+      "sha256": "110a81e4e1b1277a23472c4fe57f80e280a5e48123ca74d8d3267c6ee3ea837b",
+      "bytes": 571
+    },
+    "drivers/pci/i2cio.c": {
+      "sha256": "1bd2331de151bfe8453235e3469334b93f2d636dab94a3d5610594c4befe6b2e",
+      "bytes": 5612
+    },
+    "drivers/pci/pci.c": {
+      "sha256": "090a07eef7203cb72fafcc7a4e12635ce029355c1bd70a0dbde0fe66a986815e",
+      "bytes": 19663
+    },
+    "drivers/usb/core/buffer_simple.c": {
+      "sha256": "9ca85a775a83177230f4a4070ffd6b0eae2725c42d762d336f3b28c19958edcb",
+      "bytes": 1014
+    },
+    "drivers/usb/core/config.c": {
+      "sha256": "581b5dc70312344089295f876212d33570b555af34649b76afc2eb2498f3b5dc",
+      "bytes": 13075
+    },
+    "drivers/usb/core/hcd-pci.c": {
+      "sha256": "857df4212dcf78f0b414c9d24c456575cede59068a5a09dcc8916ff8225b1d13",
+      "bytes": 9623
+    },
+    "drivers/usb/core/hcd.c": {
+      "sha256": "1237c7ab7fbf9744a366f403dbcb183173acbc8ff9b3a0caf704c8047e685744",
+      "bytes": 44053
+    },
+    "drivers/usb/core/hcd.h": {
+      "sha256": "a1c663c351ff60b6997641378a41f058b96d1cd9fd5f15d4f7c7e84015569a67",
+      "bytes": 13935
+    },
+    "drivers/usb/core/hub.c": {
+      "sha256": "e0043e257190275c5cd6ddc8ac5e3ee7c58d2d062ef647c36734b5eaf734860f",
+      "bytes": 35712
+    },
+    "drivers/usb/core/hub.h": {
+      "sha256": "b459ce0cf9dc440374b63de0c1be9b9e48d5de8b4faa47c298bc8e02b32d936a",
+      "bytes": 5329
+    },
+    "drivers/usb/core/message.c": {
+      "sha256": "157238a067feb800e5746b1da162ba002b991a91bad544e92d1751844fce9955",
+      "bytes": 34069
+    },
+    "drivers/usb/core/urb.c": {
+      "sha256": "2ca06d496cb1ebc101af24e5e4f02858c4ee91d72c097542e1e4f8757e5d0bc5",
+      "bytes": 13909
+    },
+    "drivers/usb/core/usb-debug.c": {
+      "sha256": "dfb4c6bad7426ac7c820132857132d86bc8178a3c436b8a413d505f88e7cacb1",
+      "bytes": 6808
+    },
+    "drivers/usb/core/usb.c": {
+      "sha256": "116298b74417dd1fee00bfbc74b6c61adf772dab199cceb2b04e01163f51930a",
+      "bytes": 46491
+    },
+    "drivers/usb/core/usb.h": {
+      "sha256": "766c3922adb7110836dcb3675c62e8d50130fa4408fe98b36f994946df8b06ca",
+      "bytes": 186
+    },
+    "drivers/usb/host/ohci-dbg.c": {
+      "sha256": "be5d5dd3d2fe0bf29de21c938897e1cd11d67069e2b1d569a112fe4085035eeb",
+      "bytes": 17176
+    },
+    "drivers/usb/host/ohci-hcd.c": {
+      "sha256": "b3619200877db3df1a4def68db2828763470fe887fc1173a4ad2c1b1cc6b2417",
+      "bytes": 19927
+    },
+    "drivers/usb/host/ohci-hub.c": {
+      "sha256": "e0391cf9520f4b21dc647e066883ac2ddfa2207ea0aa46d12453cac5085ad6d9",
+      "bytes": 6792
+    },
+    "drivers/usb/host/ohci-mem.c": {
+      "sha256": "4bc7c3a86520a130a31edbd97a2352c2d2fba2f503c928173932dab2385bacfd",
+      "bytes": 3476
+    },
+    "drivers/usb/host/ohci-pci.c": {
+      "sha256": "9c5d9ae1f3d365b367e5b9b1865cf9436c24f87954b444169127b65a7cabd1ba",
+      "bytes": 10193
+    },
+    "drivers/usb/host/ohci-q.c": {
+      "sha256": "5febca5e91f5a924818925b1911ed4b26aeb523d108e4da04497b8a526994ad3",
+      "bytes": 28190
+    },
+    "drivers/usb/host/ohci.h": {
+      "sha256": "946ab3dfe4755233787dc2f499e01173b2b1c5dc0fcf24f8d1eb60a0ff2bf71c",
+      "bytes": 13493
+    },
+    "drivers/usb/host/ohci_config.h": {
+      "sha256": "1273117e54ecc55e8d8cc191cb32de4a40154f06d50c3bb82a2141c255cf374c",
+      "bytes": 47
+    },
+    "drivers/usb/sys/BootUSB.c": {
+      "sha256": "f410e9945b0e5ea57fe836fce8e0cee8cfa30e88e4577ec799092e2671cbf3e8",
+      "bytes": 1856
+    },
+    "drivers/usb/sys/linuxwrapper.c": {
+      "sha256": "4baf97211b4d81e4e52dc4d1c68207928735a1ba55fe23a24ab0e9a68d698c7f",
+      "bytes": 6544
+    },
+    "drivers/usb/sys/risefall.c": {
+      "sha256": "5fd15d3c4de8fc4a3b49eaffde1d70cbb56d177b36babf3ae42e9a51873a6eec",
+      "bytes": 3416
+    },
+    "drivers/usb/sys/usbkey.c": {
+      "sha256": "ccf93d14b7a107700ef4a88088c6cb05b466ef759bcdba63bf0a51bcb9dd1725",
+      "bytes": 2677
+    },
+    "drivers/usb/sys/usbkey.h": {
+      "sha256": "db890f1ef7457df2f775d2fa39ff2257653fb7439469153bef7d93d14500b2a3",
+      "bytes": 141
+    },
+    "drivers/usb/sys/usbwrapper.c": {
+      "sha256": "e2b7690eee5e1ddcb35bcadbbfe5fbdd3d0f91211c7ac59fcfebb483804bd64f",
+      "bytes": 1534
+    },
+    "drivers/usb/sys/xpad.c": {
+      "sha256": "f1add0a53f765e08d79c9bac11e77de452be8f56c70c9f2c63214575f2cb26c0",
+      "bytes": 6225
+    },
+    "drivers/usb/sys/xremote.c": {
+      "sha256": "85d0397d0243c5668db392ce7aa728e7950a34a39ebd69dff1b7f3faedbb606d",
+      "bytes": 3890
+    },
+    "drivers/usb/usb_module.c": {
+      "sha256": "c5326a241887f689ed0943a4d82fd358ab75fad52704d191d547567bc61e468a",
+      "bytes": 3396
+    },
+    "drivers/usb/usb_wrapper.h": {
+      "sha256": "d207ae0f0ae1da6756fc92a5bbdda241a1d5584a0231e0b548afa277c49b1a64",
+      "bytes": 107
+    },
+    "drivers/video/BootVgaInitialization.c": {
+      "sha256": "d7560d712686ba35f1e9722d5d1c8ebd341d654b4257c263d3755493b4d3a009",
+      "bytes": 16833
+    },
+    "drivers/video/BootVgaInitialization.h": {
+      "sha256": "41311fae124b3f60b95830947fa05b066567b88b75c25b5b20428291ef38f3e7",
+      "bytes": 5558
+    },
+    "drivers/video/BootVideo.h": {
+      "sha256": "68d768654286a8b69287d70b21fdbec53c913025d4d1532bbb86ed81d6573b7e",
+      "bytes": 1169
+    },
+    "drivers/video/BootVideoHelpers.c": {
+      "sha256": "790b5117dd98341130e48b97b2735d5cad82be53a59976d21502516a6f121512",
+      "bytes": 9594
+    },
+    "drivers/video/VideoInitialization.c": {
+      "sha256": "95087d026d543d9e0b07d972b129ef3029e87a4c9911632344abc6bec839a8db",
+      "bytes": 6260
+    },
+    "drivers/video/VideoInitialization.h": {
+      "sha256": "671027de48573c5abd34d280e913f1467b12ee1a4c4626110d9731f799ab8738",
+      "bytes": 1004
+    },
+    "drivers/video/conexant.c": {
+      "sha256": "2f4415e4fd0e3c50c72b6498aad97703ac457e32e730a54f6f9ae9e20e0edd17",
+      "bytes": 21505
+    },
+    "drivers/video/conexant.h": {
+      "sha256": "72f24e7f9f83d712082781668b0c8a7a14030415dbf2eccf893e5ddde7eaff80",
+      "bytes": 778
+    },
+    "drivers/video/encoder.h": {
+      "sha256": "c2a161895e74c000586e19ba3bae0029c5df0b2e1308caea693a2efd94b23740",
+      "bytes": 2932
+    },
+    "drivers/video/focus.c": {
+      "sha256": "b3bc00c3e0bafe79ba9f8882879ec940367e2969732a32975031ecc75b7dbf63",
+      "bytes": 11001
+    },
+    "drivers/video/focus.h": {
+      "sha256": "28b30ac5a9146d62ffb7b0c0c5dccb8b8b2cbcd29c5f4a8591d9c85b1ef2defe",
+      "bytes": 635
+    },
+    "drivers/video/xcalibur-regs.h": {
+      "sha256": "5510854a1d0bb413245686bfc2fc259e8e91631c415dfe0338871bbec1f93274",
+      "bytes": 5529
+    },
+    "drivers/video/xcalibur.c": {
+      "sha256": "55e5612fda982da9a9afbb0db8e58e87e78aa8ff6d66fa251af0da37b3d2f72f",
+      "bytes": 2146
+    },
+    "drivers/video/xcalibur.h": {
+      "sha256": "c7dbca7bb7afd943112a0b323f080447a54863e898ff08977457512f479e4ea3",
+      "bytes": 643
+    },
+    "etherboot/arch/i386/core/aout_loader.c": {
+      "sha256": "fc09da7955cb294f457bc95a90e8a9d928189e2c793e74b2ce5e23e0b29b8469",
+      "bytes": 3870
+    },
+    "etherboot/arch/i386/core/elf.c": {
+      "sha256": "8bdbd2b9c9f7475587bb32d6ac62cb9ab9b1dde4d1ba13f48ad683696d95f9f3",
+      "bytes": 3620
+    },
+    "etherboot/arch/i386/core/pic8259.c": {
+      "sha256": "55db9bde1c830d0918a5037716d933389a9ca3873f1fd076915b1599a7ca4673",
+      "bytes": 8223
+    },
+    "etherboot/arch/i386/core/tagged_loader.c": {
+      "sha256": "3eba7c48ec4cfbb73826f1b2375d43cc1aee388c613d12a5ba8afe7cab3e1944",
+      "bytes": 4544
+    },
+    "etherboot/arch/i386/core/xbox.c": {
+      "sha256": "49f0e1c3d9cb1adb53d04a14b67ac23bfa58e8f6b938024e25fa927287e1a3b6",
+      "bytes": 8066
+    },
+    "etherboot/arch/i386/include/bits/byteswap.h": {
+      "sha256": "ccad977dc52ab43cc04656716440b4c36b88b77b6b38f7f46449246bd1884b3c",
+      "bytes": 941
+    },
+    "etherboot/arch/i386/include/bits/cpu.h": {
+      "sha256": "70677177aedd450a78d58705ef9c5f0098f126cfe3afe74ec8654f97f445ae03",
+      "bytes": 7950
+    },
+    "etherboot/arch/i386/include/bits/elf.h": {
+      "sha256": "4a831f9a8fcfe0d63b92fd524732ba0261c2069c4e0713e40ff84bf3a67e23c5",
+      "bytes": 3165
+    },
+    "etherboot/arch/i386/include/bits/endian.h": {
+      "sha256": "eef7e2b197479d5fc7ec51585ac5547815d44da0a0f2bf0b451c8e1cf879329d",
+      "bytes": 140
+    },
+    "etherboot/arch/i386/include/bits/string.h": {
+      "sha256": "d1a9169230f0ab58c46ad58e5a200fae8711242dd22946bf2a0cd14cb1c5a2b7",
+      "bytes": 2689
+    },
+    "etherboot/arch/i386/include/hooks.h": {
+      "sha256": "2a7b7d7c36dd776979cfa949b90caf512a45cce571e63a3bef455bdab62b4abf",
+      "bytes": 183
+    },
+    "etherboot/arch/i386/include/io.h": {
+      "sha256": "fa0df7cea8e96b71ad414de5dda47380ce83a64532fe608b83540efd845675d3",
+      "bytes": 7132
+    },
+    "etherboot/arch/i386/include/latch.h": {
+      "sha256": "556f4d2eab490fc04e32419b2d9afa8661a73b5204b879091de4ba4152c0b8c1",
+      "bytes": 214
+    },
+    "etherboot/arch/i386/include/pic8259.h": {
+      "sha256": "6256098f1d2a0f30494a5daa5ddba40588d66b2feb1bcabcca9bf1eb44222598",
+      "bytes": 2981
+    },
+    "etherboot/arch/i386/include/setjmp.h": {
+      "sha256": "bfd8efeca2e6de5c568b5999f043c33d849b59010d8a8f81505632acc9d38e0d",
+      "bytes": 271
+    },
+    "etherboot/arch/i386/include/stdint.h": {
+      "sha256": "6ac1f9170f4765f89765e61ebd8edff17686a555c61cc39d4f3588f975e23380",
+      "bytes": 385
+    },
+    "etherboot/arch/i386/include/xbox.h": {
+      "sha256": "36a31be7a04c543ececacb90b8c8af8f51f8020ce2a01cd707351365b8366808",
+      "bytes": 657
+    },
+    "etherboot/core/elf_loader.c": {
+      "sha256": "5370f9025a45080c1d13c30bd1398d86f2c7c575b1b61f4fe4ecf8185a98fb64",
+      "bytes": 17920
+    },
+    "etherboot/core/etherboot_config.c": {
+      "sha256": "29508ec2dfbea0a68238feb6e5ac588ea99aaa01e96e494773b34c9525dcb950",
+      "bytes": 5014
+    },
+    "etherboot/core/exec_elf.c": {
+      "sha256": "c53411731b02a868c9157003fc6f52846a161949cebcb5967470fdd18079d033",
+      "bytes": 499
+    },
+    "etherboot/core/nfs.c": {
+      "sha256": "d95f24cda73718e2b13f8dd74369b8063833046b5f620f06c0fba16d4e42f07a",
+      "bytes": 19034
+    },
+    "etherboot/core/nic.c": {
+      "sha256": "0331e79166736df4f17eb82b0e40e82884e967686d9dda8dd68893924dc6abdb",
+      "bytes": 39277
+    },
+    "etherboot/core/osloader.c": {
+      "sha256": "c416c5795eeb52a9b9fa8632c03ea4d09345abaa0b95548b92617d3c590dd911",
+      "bytes": 13062
+    },
+    "etherboot/core/proto_tftm.c": {
+      "sha256": "923414258b1bc5f57a88577ad891eb822ba46256539f610cd069300e1782d4e2",
+      "bytes": 13418
+    },
+    "etherboot/core/timer.c": {
+      "sha256": "eca7e904ebb79d51fb5418a38fc21c7861b6203fb2bf7fc769b38587eee68729",
+      "bytes": 539
+    },
+    "etherboot/core/xbox_main.c": {
+      "sha256": "ea82b97f426a893fd8a051781f74e3ec2595db917c74f6d4e16bd51843ed48ea",
+      "bytes": 3590
+    },
+    "etherboot/core/xbox_misc.c": {
+      "sha256": "968899cb4dbc1c82100b54f373ddea4d93c00204b4d53f17bd28d44947a67cb7",
+      "bytes": 9402
+    },
+    "etherboot/core/xbox_pci.c": {
+      "sha256": "f4b2bd0279cca3b42bc1ac45b7e9df3ffad961beb6e0d33aa47d3a2f15c1236c",
+      "bytes": 8556
+    },
+    "etherboot/core/xbox_printf.c": {
+      "sha256": "03e6a397398b2a935d670c9f7bf6bb0aaa6269860700af1eadc51e27cc459896",
+      "bytes": 149
+    },
+    "etherboot/drivers/net/forcedeth.c": {
+      "sha256": "0b2bb67c8b436b7fa48bf2cdabaca0016f9a9808ddf0a8b7a6eb111d4ecc652a",
+      "bytes": 29659
+    },
+    "etherboot/include/bootp.h": {
+      "sha256": "100c68bbe4bea8bf5b51b9a2cb1c27c0cb4a10d3b1b88e7764a42c64b5a160e0",
+      "bytes": 3869
+    },
+    "etherboot/include/byteswap.h": {
+      "sha256": "5ed72f02afbc401c9debf42aaa94d9d5c3e176bedc29a6507f70855e56a2765e",
+      "bytes": 444
+    },
+    "etherboot/include/cpu.h": {
+      "sha256": "5d1e8b352445fc4358ee3a849bbb43bf31e1f4c8f4e23c0e2278207c72c93267",
+      "bytes": 71
+    },
+    "etherboot/include/dev.h": {
+      "sha256": "111e426804999ff49b2c645512b8a011e32edf16b14558857426b4851e887cf5",
+      "bytes": 2798
+    },
+    "etherboot/include/elf.h": {
+      "sha256": "a3cd71ae3d16c53072e4ef7989734373d0baaa54d107ea40aed4c437c3e8e1c2",
+      "bytes": 8569
+    },
+    "etherboot/include/elf_boot.h": {
+      "sha256": "54f4a285b3a3093667ab14967198b84841a7090ea67cccb73646e93f826a646c",
+      "bytes": 2632
+    },
+    "etherboot/include/endian.h": {
+      "sha256": "785eaa7dd6b7ce1341bcb5ac9f5302da08c1cfdc3704f83b714e5ce5b46d9533",
+      "bytes": 695
+    },
+    "etherboot/include/etherboot.h": {
+      "sha256": "a7b3a769bdad8d619647af9a623dc9b0cf354773e606288d49ca74921401bb07",
+      "bytes": 12195
+    },
+    "etherboot/include/etherboot_config.h": {
+      "sha256": "68e512cf82d686c50de0d8be3cf2c4463862cdb6949dfc5f6b427954a445c477",
+      "bytes": 254
+    },
+    "etherboot/include/if_arp.h": {
+      "sha256": "81b96685690faea669cfef7d2130f68409487ced07cf484528a46dce2c674eb7",
+      "bytes": 438
+    },
+    "etherboot/include/if_ether.h": {
+      "sha256": "4a9a206050474c2868197867a248774076ffbccb4da1bc684a55c11fcfdafb99",
+      "bytes": 752
+    },
+    "etherboot/include/igmp.h": {
+      "sha256": "8c845af0b99310dcf2d2c090fe84a25f519b7c84ee636c7ae9e97928c18666f0",
+      "bytes": 463
+    },
+    "etherboot/include/in.h": {
+      "sha256": "a1c18db7684f81fc4eb46975f46f49003c1c4a5fe1134f49feb101fba990db6c",
+      "bytes": 284
+    },
+    "etherboot/include/ip.h": {
+      "sha256": "3c4fdb0aa80c537e2d9d1fec1b7571248887993550643e2808f5a075035fd200",
+      "bytes": 238
+    },
+    "etherboot/include/isa.h": {
+      "sha256": "a3b4989f4b1cae0eeb9aa3bddaec4dc8d2cf0ceab2e9f2347713b451741ec659",
+      "bytes": 729
+    },
+    "etherboot/include/little_bswap.h": {
+      "sha256": "716c0cf03d59717ea690d1f3ec07bf9b45957e7b8bd799939eec045509a38f35",
+      "bytes": 489
+    },
+    "etherboot/include/nfs.h": {
+      "sha256": "40158c12da2a7cd6900d99a8a37f40eee986878c6dd93f15d6fb9e5d6c675ae5",
+      "bytes": 1209
+    },
+    "etherboot/include/nic.h": {
+      "sha256": "4f1e418f83a9150eec2302a5598b523451155f1bd7030250723192ec0acff5a1",
+      "bytes": 1128
+    },
+    "etherboot/include/osdep.h": {
+      "sha256": "17532487973de0f6547a283f1dc41025b782ae33364ed6e539626d2333c4c61e",
+      "bytes": 1027
+    },
+    "etherboot/include/pci.h": {
+      "sha256": "0eae04c9773e7f90cb0a7bd8f77b5c6ae94bdbaf363aaff1947be05157476c4a",
+      "bytes": 15205
+    },
+    "etherboot/include/pci_ids.h": {
+      "sha256": "180072da13884d4d2b354e565853c5c2e0f3330f7e64c1ee9de9ac8087ec3205",
+      "bytes": 65960
+    },
+    "etherboot/include/string.h": {
+      "sha256": "c1b583c00bd33f42a4bf6a1d87b95820bb9b2b14a05decd0e89a06bc5613a57e",
+      "bytes": 400
+    },
+    "etherboot/include/tftp.h": {
+      "sha256": "1e073cd287a8c8af088b9b6867e303acb1f69d527a86336a9020dfad14e04780",
+      "bytes": 1204
+    },
+    "etherboot/include/timer.h": {
+      "sha256": "f7cb9253cd6f9d89494ed61936d2dbf45e00ad1fe60793d502a2b0985bbdac74",
+      "bytes": 1347
+    },
+    "etherboot/include/udp.h": {
+      "sha256": "759712e62e2d83f0f4e9cb7b54502215983a39d1616324487e90ca5929a5d26b",
+      "bytes": 246
+    },
+    "fs/cdrom/iso9660.c": {
+      "sha256": "851062ded36e10c5377d1b73a7c5860552adcf2736c45e7b98139ac04abb0a95",
+      "bytes": 6477
+    },
+    "fs/cdrom/iso_fs.h": {
+      "sha256": "69e698a4a9dec0c51a922bd6bdb7cac5b83a516e0eabad7b1fc2a1bcf04bc568",
+      "bytes": 7209
+    },
+    "fs/fatx/BootFATX.c": {
+      "sha256": "3c7fd702a82a2895251335077986f4822814895c5b25465f7d01a8f1c5d3cd1a",
+      "bytes": 23256
+    },
+    "fs/fatx/BootFATX.h": {
+      "sha256": "31c3646217080aefd4f9ff40bb0cdb8f11006385eee5780b33eb864699e900c1",
+      "bytes": 3736
+    },
+    "fs/grub/char_io.c": {
+      "sha256": "312a9ea04857ad9c11c55584c7d5437432862a250996b04e38c9c7aab7524f65",
+      "bytes": 3436
+    },
+    "fs/grub/common.c": {
+      "sha256": "ae1d828e84bd352e176d360c4454ce438f35129c98a256330a0e8d456711361b",
+      "bytes": 3826
+    },
+    "fs/grub/config.h": {
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "bytes": 1
+    },
+    "fs/grub/disk_io.c": {
+      "sha256": "b2d4f907e1f85953508b2fcbdde6796edee7f1b07e8772a93b958a8bd33f9a8b",
+      "bytes": 39433
+    },
+    "fs/grub/fat.h": {
+      "sha256": "0c7ec99f99dc4e8dc75e7a29573e831f67deb16504f08d56699985ebe23e621c",
+      "bytes": 3391
+    },
+    "fs/grub/filesys.h": {
+      "sha256": "c73c6b293faf94ee09d8afd0f0a2e1da027a96333e258575289d100918a315d2",
+      "bytes": 4005
+    },
+    "fs/grub/freebsd.h": {
+      "sha256": "ae1d828e84bd352e176d360c4454ce438f35129c98a256330a0e8d456711361b",
+      "bytes": 3826
+    },
+    "fs/grub/fsys_ext2fs.c": {
+      "sha256": "a153695a6d351d5ac04aebc8044f839f1f69d26f6b655565930676e291b8b3aa",
+      "bytes": 22025
+    },
+    "fs/grub/fsys_fat.c": {
+      "sha256": "e6cade7543a4925a9ae8bfa74b93bf5995f9e1a419ae8b801f753f826cead942",
+      "bytes": 12102
+    },
+    "fs/grub/fsys_jfs.c": {
+      "sha256": "b634e33ebc22936177d3a785b4cf1ce92e6435cd8c36f165960db096bca85fc9",
+      "bytes": 9370
+    },
+    "fs/grub/fsys_reiserfs.c": {
+      "sha256": "9656d46fc89689f66522994f1c2c60f7ca957771c4af16790081ef6ad3a7bae1",
+      "bytes": 37496
+    },
+    "fs/grub/fsys_ufs2.c": {
+      "sha256": "e85abb62abaf7fccd6c09e9908d0451cee6ae16dc529f01e3921982f2b0d30b6",
+      "bytes": 8021
+    },
+    "fs/grub/fsys_xfs.c": {
+      "sha256": "fdcce8e3dbd671c77bf2c28b1bbbb6ee1b40dad8b480a9521386ab886ad234cd",
+      "bytes": 14077
+    },
+    "fs/grub/jfs.h": {
+      "sha256": "09cb0f0f95b37e4cb66bd75fbd44f5113b50e58eed4d078210f83308acc24755",
+      "bytes": 17170
+    },
+    "fs/grub/mb_header.h": {
+      "sha256": "8d07807ceacc23570fc05486cdb6deaf4d7d5d42a6f6dfc9297582748562f89f",
+      "bytes": 2737
+    },
+    "fs/grub/mb_info.h": {
+      "sha256": "4f74306f8e294a07db7f5ae42a7a852fea4930c11894cc223bd1cf07fed9892a",
+      "bytes": 5071
+    },
+    "fs/grub/pc_slice.h": {
+      "sha256": "33d8eed5596c65a70851fc6e1de1d88181c0a44d777807ed7fc2c2e9c446e188",
+      "bytes": 8224
+    },
+    "fs/grub/shared.h": {
+      "sha256": "e6d57b515b7c193cba01ef66487fe49396359677b4d1189d1034dcf3dd355b5c",
+      "bytes": 28276
+    },
+    "fs/grub/stage1.h": {
+      "sha256": "b2f54134ef81a4346c9d63041fc1a27f070d3a0e0507aa6c7c9974172327f87b",
+      "bytes": 2413
+    },
+    "fs/grub/ufs2.h": {
+      "sha256": "b03ca8de6935d154b0b26eb85fc3e7e54dba0caa4497ed640d720c2f18742ec6",
+      "bytes": 19104
+    },
+    "fs/grub/xfs.h": {
+      "sha256": "86c3dab33a63a1802d81b9545555dd0ce5882b77ba6e27eb7aa6594fcf2f4cf5",
+      "bytes": 17936
+    },
+    "include/asm/bitops.h": {
+      "sha256": "49c6a76c602436acfc6451d22143462b8a9bcf6b442bc6ed487e5108a35f9648",
+      "bytes": 9615
+    },
+    "include/asm/errno.h": {
+      "sha256": "b81f7b5a3502fd68cb0a9e4419afec23255e9bd63eb25e0f0a67320016583f34",
+      "bytes": 6167
+    },
+    "include/boot.h": {
+      "sha256": "5685c13a00f7008b97e8ad6073f45453ba0fbe845dc7e9d0649dd1365e4f43b6",
+      "bytes": 11518
+    },
+    "include/config.h": {
+      "sha256": "715738c6ece82286e1c212dd0a760c516f35e77613c4dfc6ac61d452495282c4",
+      "bytes": 1211
+    },
+    "include/consts.h": {
+      "sha256": "4495b08661ff811edcd08597b0216d0767f9943ab42ae4e915588d785ff09085",
+      "bytes": 1765
+    },
+    "include/cromwell_types.h": {
+      "sha256": "e2f2b9b743e50da07cf932e7de11fde5ab700aacfe94509db07fd77670064c6e",
+      "bytes": 558
+    },
+    "include/defutil.h": {
+      "sha256": "7bc747ed0f20abeb656d34bc2049c8a8d3fc99a67a10e988a66804e1fdfca1c1",
+      "bytes": 11956
+    },
+    "include/limits.h": {
+      "sha256": "fe3c15fd564b2b1413c9bb20f2eba12d853d2150881d8265b9f75276a77e447f",
+      "bytes": 50
+    },
+    "include/linux/bitops.h": {
+      "sha256": "36375b195108405c1a0bc11ea8d64bcd47d1474771eaa4b07a8783d9fcc6dd02",
+      "bytes": 1564
+    },
+    "include/linux/config.h": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "include/linux/pci_ids.h": {
+      "sha256": "7740649bbd499e36e034b54509a627448c60a549c264e3d584db091896a1cd86",
+      "bytes": 69520
+    },
+    "include/linux/usb.h": {
+      "sha256": "dd5b3168e1fc0dcf87d84c4e845e37685ee14e55a3ccced63e74d2cc084dfc78",
+      "bytes": 42130
+    },
+    "include/linux/usb_ch9.h": {
+      "sha256": "1126feb3d1029689ffdf0a2de18e1a2091d03669405c930afe62fdab30f1efad",
+      "bytes": 9040
+    },
+    "include/linux_wrapper.h": {
+      "sha256": "4ba37764a56f429d95c95e5041018ef97dcf00fb2c087f3fea3124327085a3e5",
+      "bytes": 21740
+    },
+    "include/list.h": {
+      "sha256": "5a86e3fdd5e785371955293e30cecaefadd9992989e5a58a643a9aec18d53994",
+      "bytes": 5881
+    },
+    "include/memory_layout.h": {
+      "sha256": "cb592bf3a802d5fbcc407a25dcb5dfd1685911b90cfb727abf15ee8febe818e1",
+      "bytes": 1914
+    },
+    "include/printk.h": {
+      "sha256": "68cfba942009cadb2a5cdd23de070b16467ba1034183e65dd92d81ada15a0e8b",
+      "bytes": 90
+    },
+    "include/stdarg.h": {
+      "sha256": "fca9006cec2b4593483540e626d41097eaac4c2e22a68a95a55188ff5fe8254a",
+      "bytes": 490
+    },
+    "include/stdint.h": {
+      "sha256": "1642953aa89141e8b01f65d248aa3fe8d4a24cc7bc979ff7c6669259ca0386eb",
+      "bytes": 471
+    },
+    "include/stdio.h": {
+      "sha256": "a1cb6338d95c3d8319da3202b2927fde2e7a4aff6583b23b78b9332228092ab4",
+      "bytes": 86
+    },
+    "include/stdlib.h": {
+      "sha256": "3d2b738fdfe8013c8e747fc6d246b6898a24bbf08c3ccee76b5e8124d3939481",
+      "bytes": 89
+    },
+    "include/string.h": {
+      "sha256": "e5e15b500a284d2c28253e58819a91f1d022abee0c57a7e03cc7d64c3d4e6efd",
+      "bytes": 50
+    },
+    "include/sys/types.h": {
+      "sha256": "3f9023497b7810c29861d2215e69c214ea661961d77530c1a6c561a300f95930",
+      "bytes": 205
+    },
+    "include/timer.h": {
+      "sha256": "9573aff38f5bd96a7419105f34b43faef2ac661eb70cb035ea5c2ae6da7a5477",
+      "bytes": 181
+    },
+    "include/video.h": {
+      "sha256": "29c92a7c33ceae83d9d988c3dd5afc8ace79cd5ce19d72a1be09cf28b860ad10",
+      "bytes": 971
+    },
+    "include/xbox.h": {
+      "sha256": "d21e3741b964c69d24e19b779d3f6b8d2e130a4e486865bcda209de9966c1893",
+      "bytes": 757
+    },
+    "include/xpad.h": {
+      "sha256": "c4d72ae2256e42944b925c5c38f50d1ea057a991055ac61a86deba89ba963407",
+      "bytes": 976
+    },
+    "include/xremote.h": {
+      "sha256": "28f477303c0edc688b96cb8690f7c54ecf1f7dec37a7e3b1fb379a1fbdfcbab1",
+      "bytes": 815
+    },
+    "include/zutil.h": {
+      "sha256": "a159ca1764f2f9bb0ab04e8a3f80fd43486cba2125c45599d78a96160aba0679",
+      "bytes": 3198
+    },
+    "lib/crypt/md5.c": {
+      "sha256": "15d524af28c2b1deec1d2f48cf5ab028606261f51c385235338c72809471a3c1",
+      "bytes": 9110
+    },
+    "lib/crypt/md5.h": {
+      "sha256": "d1a2173e17a1d31b91cdd86309c1f214a86b24b042a9a1448d6d78785f24a358",
+      "bytes": 845
+    },
+    "lib/crypt/rc4.c": {
+      "sha256": "1c16ff954d68de98ff0b144f95cf19f0ae185a27bbfcf5cfeb5408e017e2cf5b",
+      "bytes": 1166
+    },
+    "lib/crypt/rc4.h": {
+      "sha256": "09041745087feff785e0a39c2a9954fff49a2c170431d5fe16e3ae32d16b5598",
+      "bytes": 356
+    },
+    "lib/crypt/sha1.c": {
+      "sha256": "705658dfc5adda8c9bdc545c8e501cd44f5206916932083d32ae872bb1e56552",
+      "bytes": 10476
+    },
+    "lib/crypt/sha1.h": {
+      "sha256": "883a6f1cbd9d880732e85f5b679649a7cd52d237b64c487fdfbcd6bb75861a45",
+      "bytes": 1981
+    },
+    "lib/eeprom/BootEEPROM.c": {
+      "sha256": "379f629ec7fc10c58653e37f8086a2ac37dd1f3ad40fd89866d271c56c3e0fd7",
+      "bytes": 3045
+    },
+    "lib/eeprom/BootEEPROM.h": {
+      "sha256": "3a7352488e4884e14dfdb8d157528762811bc5519ba13e24a1f61a5b782fcd2a",
+      "bytes": 3872
+    },
+    "lib/font/font.c": {
+      "sha256": "a275ec0bb9e4ab9f616c3f07521341e6d4d80da1ba3ac6eb06ccc8076ff8f425",
+      "bytes": 1305
+    },
+    "lib/font/font.h": {
+      "sha256": "279e97a1f60ea862dab115367e5049a1e374a0ab246b1aa3d37054cbdb498a04",
+      "bytes": 190836
+    },
+    "lib/font/fontx16.h": {
+      "sha256": "f1814062e2ac78015c57e92060a9b4ee0e0a8f8528b13a16d5f5bb2a97567569",
+      "bytes": 32677
+    },
+    "lib/gzip/inflate.c": {
+      "sha256": "0e231d69a97cede38dd356310c63f2c72ce9196fdeaff936a7b51a7a8eed5430",
+      "bytes": 37152
+    },
+    "lib/gzip/misc.c": {
+      "sha256": "ee6af896bc6236432f5a95eb8e1bdcd8bd473fd8a9e831af6897075bca46199f",
+      "bytes": 4799
+    },
+    "lib/imagebld/imagebld.c": {
+      "sha256": "eb8989d2e2826b724ce4c10a8c3878d97d18fcdb3825ef629eff4f9ea306a802",
+      "bytes": 15636
+    },
+    "lib/imagebld/xbe-header.h": {
+      "sha256": "99f7a524c4ecdf6f1df58fff4da4031c734ab1d1e3e3930d0da8650897cae7bb",
+      "bytes": 6246
+    },
+    "lib/jpeg/decode-jpg.c": {
+      "sha256": "dc26d5c64053bda691b3281fa8eb36433e457384f75485cf7951e71e199dac67",
+      "bytes": 20700
+    },
+    "lib/jpeg/decode-jpg.h": {
+      "sha256": "6cf77828027d4928bc5d4cfe381f9831569b6e4462da8513618c2b5c5d2eacce",
+      "bytes": 881
+    },
+    "lib/misc/BootLibrary.c": {
+      "sha256": "9ee047b2a1cc68ae885c0ad5ee569648e12359bd7017d2a10bac878d29ff7312",
+      "bytes": 10278
+    },
+    "lib/misc/BootParser.c": {
+      "sha256": "d98164681f4a7e7ad7d1ea8436c47b645ed3897fb52ebf8ea6665784aab0e95c",
+      "bytes": 3152
+    },
+    "lib/misc/BootParser.h": {
+      "sha256": "5a2beff4b80afec50c80c6de551f597134dda006c3cf21289fba363ffdc070b0",
+      "bytes": 963
+    },
+    "lib/misc/LED.c": {
+      "sha256": "b6ef632e8a611ac5c592200882021d6ed146649b933219d641288081f98000da",
+      "bytes": 1454
+    },
+    "lib/misc/LED.h": {
+      "sha256": "fd6b7461b3f9ddf8f87509bd8bb7c59bbc53a6ac6398dfc4fa01faee0ce76f05",
+      "bytes": 104
+    },
+    "lib/misc/setup.c": {
+      "sha256": "c07af72568a87df6c599e62ad3a8afa95c3e6649b3c00f0dc467ef4124f4dcd8",
+      "bytes": 8042
+    },
+    "lib/misc/vsprintf.c": {
+      "sha256": "5ad1c8f3383db10adc812976f6f98b21a9218557b7b80fb1450d5de4325b75a6",
+      "bytes": 7120
+    },
+    "lib/readcd/boot.h": {
+      "sha256": "efbc267bff91474c0f8ce1248ef9c203ac8fb4b92f4acebc88bfd3e67d3bc027",
+      "bytes": 351
+    },
+    "lib/readcd/main.c": {
+      "sha256": "c09445eef8a5b062730a91284419f01a03d5ea0c731c7fc222079337effb3d3c",
+      "bytes": 685
+    },
+    "menu/actions/FlashMenuActions.c": {
+      "sha256": "3576b2aee5326ff47761d7d15f4dd515f39a3388bad88a48d1804890cd6b89c8",
+      "bytes": 769
+    },
+    "menu/actions/FlashMenuActions.h": {
+      "sha256": "6ef2cd7b30574519e13601bac2f03324ca61ead4be6e77671a8c6689a259fec7",
+      "bytes": 683
+    },
+    "menu/actions/HddMenuActions.c": {
+      "sha256": "1f16d1af57614e6c327e73cac8b4d91cd54de771a67ff30eb89f80950c6d4206",
+      "bytes": 3190
+    },
+    "menu/actions/HddMenuActions.h": {
+      "sha256": "28f592bf74b89b5d456070dc0639eaef6f7676616532ad4b451c0382e4429f36",
+      "bytes": 778
+    },
+    "menu/actions/MenuActions.c": {
+      "sha256": "fed39a8c5ed36cee0c9aaac25fa5875c3ea4a99e63bd85c6cd57c838a86e0ea9",
+      "bytes": 3417
+    },
+    "menu/actions/MenuActions.h": {
+      "sha256": "2ddac66f80e3e588a60fcfc8c71744d4d15df782132d4af43af237d1f0bb6d54",
+      "bytes": 1053
+    },
+    "menu/actions/PhyMenuActions.c": {
+      "sha256": "014351269eb84368dfc7e44e50604f33481170e7bcf950744430a28123270cf4",
+      "bytes": 2097
+    },
+    "menu/actions/PhyMenuActions.h": {
+      "sha256": "0c023710ac268b88fc192722dd55b188498203f53f92656f32d5111967b414ad",
+      "bytes": 855
+    },
+    "menu/actions/ResetMenuActions.c": {
+      "sha256": "e4dfcb06c0176eac83a3c04cef334bd58fa4f8e385a4b3e69892129a2c5de2a6",
+      "bytes": 834
+    },
+    "menu/actions/ResetMenuActions.h": {
+      "sha256": "a361b38f49a80e6e5617f2f78e966bf7543b1a945dae706980bac54f0a8ea0df",
+      "bytes": 758
+    },
+    "menu/actions/VideoMenuActions.c": {
+      "sha256": "c9efaef3e373f8b51da375abcb3684dc7b014ddb3bc038244d557189bce89fc3",
+      "bytes": 1702
+    },
+    "menu/actions/VideoMenuActions.h": {
+      "sha256": "ef27abf3bb2362ce4c49e4a25ab859fad7ef393cdf8d50b1d040c3457c037b6b",
+      "bytes": 743
+    },
+    "menu/iconmenu/IconMenu.c": {
+      "sha256": "a7f10c613ddfb134bfe337d3918d44bdc0e19ee7f4e38664a6a16d3a9b55cb3f",
+      "bytes": 7836
+    },
+    "menu/iconmenu/IconMenu.h": {
+      "sha256": "c7b1237ce133686336410fce78e867185a1ce8b0d96783062d59932bd26e539f",
+      "bytes": 1516
+    },
+    "menu/iconmenu/IconMenuInit.c": {
+      "sha256": "689f1cb4c5597d47312555de7871e8246e2e9196cbd0eddd89d56be8df6f8cd1",
+      "bytes": 4222
+    },
+    "menu/misc/Confirm.c": {
+      "sha256": "26457173545c08b6b0e757891eaed2a53f9d4590b1d8e1e27bf2b75bd1e68671",
+      "bytes": 1048
+    },
+    "menu/misc/Confirm.h": {
+      "sha256": "c9d2d3f7e9dab4c973ad6b2b938ba4c7820417ca4230b929cb2f73b1cff3aded",
+      "bytes": 126
+    },
+    "menu/textmenu/FlashMenuInit.c": {
+      "sha256": "0f0baebe4eb760db3c7d381a31bf43f5e9c9fd650b815cab576b47313ef82adf",
+      "bytes": 1429
+    },
+    "menu/textmenu/HddMenuInit.c": {
+      "sha256": "e63f43a4519b6805a1c64ad4a3803dd9065cbb99ae7dc1f9d98cdb2f97318c2e",
+      "bytes": 2292
+    },
+    "menu/textmenu/PhyMenuInit.c": {
+      "sha256": "8a226277697408d4651a2cb783fc3663756a8d1222992d6f2680c8a349563324",
+      "bytes": 1840
+    },
+    "menu/textmenu/ResetMenuInit.c": {
+      "sha256": "76580d962e4b7445d2bd6cb8d1ec9707a6b4598842ecd71201fd4e26f4934dc2",
+      "bytes": 1617
+    },
+    "menu/textmenu/TextMenu.c": {
+      "sha256": "da8b573afe3e27dfb34dd893308239e7d04f59d65d3efe3822ea43541c48bafe",
+      "bytes": 4390
+    },
+    "menu/textmenu/TextMenu.h": {
+      "sha256": "a5f490ed79ebf7a6f7f2eba3d0fb2d61f1f887ab0dd7be5933178510ea342219",
+      "bytes": 2038
+    },
+    "menu/textmenu/TextMenuInit.c": {
+      "sha256": "72645e7f42fff8ff4841cd0b7c81558b489f59944c02f8a84aded8601b96a2ef",
+      "bytes": 2327
+    },
+    "menu/textmenu/VideoMenuInit.c": {
+      "sha256": "77603dec1b285a3f880ef785e7fb94df58076f7a549c64cd3801afc8c5956126",
+      "bytes": 1878
+    },
+    "tools/xdecode.c": {
+      "sha256": "1930c96ffd8c9f74919a62bea1599c34f2b0a2f7b88dd747025551ebe37b226c",
+      "bytes": 5863
+    }
+  },
+  "consumer_source_leads": [
+    {
+      "path": "boot/BootResetAction.c",
+      "line": 93,
+      "text": "\tmemset((void *)FB_START,0x00,0x400000);"
+    },
+    {
+      "path": "boot/LoadLinux.c",
+      "line": 350,
+      "text": "\tBootStopUSB();"
+    },
+    {
+      "path": "boot/LoadLinux.c",
+      "line": 371,
+      "text": "\t(*(unsigned int*)0xFD600800) = (0xf0000000 | ((xbox_ram*0x100000) - FB_SIZE));"
+    },
+    {
+      "path": "boot/LoadLinux.c",
+      "line": 374,
+      "text": "\tasm volatile (\"cli\\n\");"
+    },
+    {
+      "path": "boot/LoadReactOS.c",
+      "line": 341,
+      "text": "\tBootStopUSB();"
+    },
+    {
+      "path": "boot/LoadReactOS.c",
+      "line": 361,
+      "text": "\t//(*(unsigned int *)0xFD600800) = (0xf0000000 | ((xbox_ram * 0x100000) - FB_SIZE));"
+    },
+    {
+      "path": "boot/LoadReactOS.c",
+      "line": 364,
+      "text": "\tasm volatile (\"cli\\n\");"
+    },
+    {
+      "path": "boot/LoadReactOS.c",
+      "line": 442,
+      "text": "\tmmap->length_low = (xbox_ram * 1024 * 1024) - FB_SIZE;"
+    },
+    {
+      "path": "boot/LoadReactOS.c",
+      "line": 448,
+      "text": "\t/* FIXME: Framebuffer is initialized statically with FB_START in BootVgaInitialization.c"
+    },
+    {
+      "path": "boot/LoadReactOS.c",
+      "line": 451,
+      "text": "\t\tmmap->base_addr_low = (64 * 1024 * 1024) - FB_SIZE;"
+    },
+    {
+      "path": "boot/LoadReactOS.c",
+      "line": 453,
+      "text": "\t\tmmap->base_addr_low = (xbox_ram * 1024 * 1024) - FB_SIZE;"
+    },
+    {
+      "path": "boot/LoadReactOS.c",
+      "line": 456,
+      "text": "\tmmap->length_low = FB_SIZE;"
+    },
+    {
+      "path": "boot_rom/2bBootStartBios.c",
+      "line": 120,
+      "text": "\t(*(unsigned int*)(0xFD000000 + 0x100200)) = 0x03070103 ;"
+    },
+    {
+      "path": "boot_rom/2bBootStartBios.c",
+      "line": 121,
+      "text": "\t(*(unsigned int*)(0xFD000000 + 0x100204)) = 0x11448000 ;"
+    },
+    {
+      "path": "boot_rom/Xcodes.h",
+      "line": 287,
+      "text": "\txcode_pciout(0x80010010, 0xfd000000);"
+    },
+    {
+      "path": "boot_xbe/xbeboot.S",
+      "line": 97,
+      "text": "PARAM_LFB_SIZE\t\t= PARAM+0x1c"
+    },
+    {
+      "path": "drivers/cpu/microcode.c",
+      "line": 65,
+      "text": "0xfd23b70b,\t0x885e72ed,\t0x41861524,\t0xeb7f77b2,"
+    },
+    {
+      "path": "drivers/flash/BootFlashUi.c",
+      "line": 51,
+      "text": "        u32 *fb=(u32*)FB_START;"
+    },
+    {
+      "path": "drivers/pci/pci.c",
+      "line": 291,
+      "text": "\t(*(unsigned int*)(0xFD000000 + 0x100200)) = 0x03070103 ;"
+    },
+    {
+      "path": "drivers/pci/pci.c",
+      "line": 292,
+      "text": "\t(*(unsigned int*)(0xFD000000 + 0x100204)) = 0x11448000 ;"
+    },
+    {
+      "path": "drivers/usb/sys/BootUSB.c",
+      "line": 73,
+      "text": "void BootStopUSB(void)"
+    },
+    {
+      "path": "drivers/video/BootVgaInitialization.c",
+      "line": 127,
+      "text": "\tpvmode->m_dwFrameBufferStart = FB_START;"
+    },
+    {
+      "path": "drivers/video/BootVgaInitialization.c",
+      "line": 129,
+      "text": "        (*(unsigned int*)0xFD600800) = (FB_START & 0x0fffffff);"
+    },
+    {
+      "path": "drivers/video/BootVgaInitialization.c",
+      "line": 136,
+      "text": "\tpvmode->m_pbBaseAddressVideo=(u8 *)0xfd000000;"
+    },
+    {
+      "path": "drivers/video/BootVgaInitialization.h",
+      "line": 117,
+      "text": "\tvolatile u8 *PFIFO;"
+    },
+    {
+      "path": "drivers/video/BootVgaInitialization.h",
+      "line": 118,
+      "text": "\tvolatile u8 *PGRAPH;"
+    },
+    {
+      "path": "drivers/video/BootVgaInitialization.h",
+      "line": 122,
+      "text": "\tvolatile u8 *PRAMIN;"
+    },
+    {
+      "path": "drivers/video/BootVideo.h",
+      "line": 19,
+      "text": "\tu8 * volatile m_pbBaseAddressVideo; // base address of video, usually 0xfd000000"
+    },
+    {
+      "path": "drivers/video/BootVideoHelpers.c",
+      "line": 239,
+      "text": "\t\t(u8 *)FB_START,"
+    },
+    {
+      "path": "drivers/video/BootVideoHelpers.c",
+      "line": 269,
+      "text": "\t\t\tvolatile u32 *pdw=((u32 *)FB_START)+vmode.width*nStartLine;"
+    },
+    {
+      "path": "drivers/video/BootVideoHelpers.c",
+      "line": 335,
+      "text": "\t\t\t\t(u32 *)((FB_START) + VIDEO_CURSOR_POSY * (vmode.width*4) + VIDEO_CURSOR_POSX),"
+    },
+    {
+      "path": "drivers/video/BootVideoHelpers.c",
+      "line": 347,
+      "text": "\t\t\t(u32 *)((FB_START) + VIDEO_CURSOR_POSY * (vmode.width*4) + VIDEO_CURSOR_POSX),"
+    },
+    {
+      "path": "drivers/video/xcalibur-regs.h",
+      "line": 16,
+      "text": "\t0xfd000c00, 0xe7013b00, 0xf1000000, 0xfb010300,"
+    },
+    {
+      "path": "drivers/video/xcalibur-regs.h",
+      "line": 57,
+      "text": "\t0xfd000900, 0xe101be00, 0x8000db01, 0x0e00fc00,"
+    },
+    {
+      "path": "etherboot/arch/i386/core/xbox.c",
+      "line": 22,
+      "text": "extern void BootStopUSB(void);"
+    },
+    {
+      "path": "etherboot/arch/i386/core/xbox.c",
+      "line": 137,
+      "text": "\tBootStopUSB();"
+    },
+    {
+      "path": "include/boot.h",
+      "line": 296,
+      "text": "void BootStopUSB(void);"
+    },
+    {
+      "path": "include/memory_layout.h",
+      "line": 46,
+      "text": "#define FB_SIZE 0x00400000"
+    },
+    {
+      "path": "include/memory_layout.h",
+      "line": 48,
+      "text": "#define FB_START (0xf0000000 | (RAMSIZE - FB_SIZE))"
+    },
+    {
+      "path": "include/memory_layout.h",
+      "line": 51,
+      "text": "#define RAMSIZE_USE (RAMSIZE - FB_SIZE)"
+    },
+    {
+      "path": "lib/crypt/md5.c",
+      "line": 171,
+      "text": "  FF (b, c, d, a, x[ 7], S14, 0xfd469501); /* 8 */"
+    },
+    {
+      "path": "lib/misc/setup.c",
+      "line": 105,
+      "text": "    kernel_setup->ext_mem_k = (((xbox_ram-1) * 1024) - FB_SIZE / 1024) & 0xffff ; /* now replaced by e820 map */"
+    },
+    {
+      "path": "lib/misc/setup.c",
+      "line": 137,
+      "text": "    kernel_setup->lfb_base =  (0xf0000000 | ((xbox_ram*0x100000) - FB_SIZE));"
+    },
+    {
+      "path": "lib/misc/setup.c",
+      "line": 139,
+      "text": "    kernel_setup->lfb_size = FB_SIZE / 0x10000;"
+    },
+    {
+      "path": "lib/misc/setup.c",
+      "line": 172,
+      "text": "    kernel_setup->e820_size3=(xbox_ram - 1) * 1024 * 1024 - FB_SIZE;"
+    },
+    {
+      "path": "lib/misc/setup.c",
+      "line": 174,
+      "text": "    kernel_setup->e820_addr4=(xbox_ram * 1024 * 1024) - FB_SIZE;"
+    },
+    {
+      "path": "lib/misc/setup.c",
+      "line": 175,
+      "text": "    kernel_setup->e820_size4=FB_SIZE;"
+    },
+    {
+      "path": "menu/iconmenu/IconMenu.c",
+      "line": 87,
+      "text": "\t\t\t(u8 *)(FB_START+((vmode.width * (nYOffset-74))+nXOffset+(140*(iconcount+1))) * 4),"
+    },
+    {
+      "path": "menu/iconmenu/IconMenu.c",
+      "line": 104,
+      "text": "\t\t\t(u8 *)(FB_START+((vmode.width * (nYOffset-74))+nXOffset+(50)) * 4),"
+    },
+    {
+      "path": "menu/iconmenu/IconMenu.c",
+      "line": 119,
+      "text": "\t\t\t(u8 *)(FB_START+((vmode.width * (nYOffset-74))+nXOffset+(510)) * 4),"
+    },
+    {
+      "path": "menu/iconmenu/IconMenu.c",
+      "line": 150,
+      "text": "\tvideosavepage = malloc(FB_SIZE);"
+    },
+    {
+      "path": "menu/iconmenu/IconMenu.c",
+      "line": 151,
+      "text": "\tmemcpy(videosavepage,(void*)FB_START,FB_SIZE);"
+    },
+    {
+      "path": "menu/iconmenu/IconMenu.c",
+      "line": 190,
+      "text": "\t\t\t\t\tmemcpy((void*)FB_START,videosavepage,FB_SIZE);"
+    },
+    {
+      "path": "menu/iconmenu/IconMenu.c",
+      "line": 192,
+      "text": "\t\t\t\tmemcpy((void*)FB_START,videosavepage,FB_SIZE);"
+    },
+    {
+      "path": "menu/iconmenu/IconMenu.c",
+      "line": 207,
+      "text": "\t\t\t\t\tmemcpy((void*)FB_START,videosavepage,FB_SIZE);"
+    },
+    {
+      "path": "menu/iconmenu/IconMenu.c",
+      "line": 222,
+      "text": "\t\t\tmemcpy((void*)FB_START,videosavepage,FB_SIZE);"
+    },
+    {
+      "path": "menu/iconmenu/IconMenu.c",
+      "line": 230,
+      "text": "\t\t\tmemcpy((void*)FB_START,videosavepage,FB_SIZE);"
+    }
+  ],
+  "exit_direct_call_closure": {
+    "startReactOS.part.0": [
+      "3a0c4ea:\te8 e7 8d 01 00       \tcall   3a252d6 <__x86.get_pc_thunk.bx>",
+      "3a0c501:\te8 8a 35 01 00       \tcall   3a1fa90 <BootStopUSB>",
+      "3a0c51b:\te8 b0 a3 ff ff       \tcall   3a068d0 <BootIdeSetTransferMode>",
+      "3a0c525:\te8 a6 a3 ff ff       \tcall   3a068d0 <BootIdeSetTransferMode>",
+      "3a0c52a:\te8 01 d3 ff ff       \tcall   3a09830 <resetLED>",
+      "3a0c53f:\te8 2c 1e 00 00       \tcall   3a0e370 <memset>"
+    ],
+    "memset": [],
+    "resetLED": [
+      "3a09831:\te8 a0 ba 01 00       \tcall   3a252d6 <__x86.get_pc_thunk.bx>",
+      "3a0983f:\te8 3c 74 ff ff       \tcall   3a00c80 <I2cResetFrontpanelLed>"
+    ],
+    "I2cResetFrontpanelLed": [
+      "3a00c8b:\te8 30 fc ff ff       \tcall   3a008c0 <WriteToSMBus>"
+    ],
+    "WriteToSMBus": [
+      "3a008c9:\te8 08 4a 02 00       \tcall   3a252d6 <__x86.get_pc_thunk.bx>",
+      "3a00990:\te8 2b e2 00 00       \tcall   3a0ebc0 <wait_us>"
+    ],
+    "wait_us": [
+      "3a0ebc3:\te8 0e 67 01 00       \tcall   3a252d6 <__x86.get_pc_thunk.bx>",
+      "3a0ec12:\te8 c9 f6 ff ff       \tcall   3a0e2e0 <GetTimerTicks>",
+      "3a0ec20:\te8 bb f6 ff ff       \tcall   3a0e2e0 <GetTimerTicks>"
+    ],
+    "GetTimerTicks": [],
+    "__x86.get_pc_thunk.bx": [],
+    "BootIdeSetTransferMode": [
+      "3a068d5:\te8 0c ea 01 00       \tcall   3a252e6 <__x86.get_pc_thunk.si>",
+      "3a06942:\te8 d9 de ff ff       \tcall   3a04820 <BootIdeWaitNotBusy>",
+      "3a06967:\te8 14 e0 ff ff       \tcall   3a04980 <BootIdeIssueAtaCommand>",
+      "3a06984:\te8 57 22 00 00       \tcall   3a08be0 <printk>"
+    ],
+    "printk": [
+      "3a08be2:\te8 ef c6 01 00       \tcall   3a252d6 <__x86.get_pc_thunk.bx>",
+      "3a08c08:\te8 83 05 00 00       \tcall   3a09190 <vsprintf>",
+      "3a08c33:\te8 e8 fb ff ff       \tcall   3a08820 <BootVideoChunkedPrint>"
+    ],
+    "BootVideoChunkedPrint": [
+      "3a08823:\te8 be ca 01 00       \tcall   3a252e6 <__x86.get_pc_thunk.si>",
+      "3a0889c:\te8 df fd ff ff       \tcall   3a08680 <BootVideoOverlayString>",
+      "3a0894d:\te8 3e fb ff ff       \tcall   3a08490 <BootVideoOverlayCharacter>"
+    ],
+    "BootVideoOverlayCharacter": [
+      "3a08491:\te8 44 ce 01 00       \tcall   3a252da <__x86.get_pc_thunk.ax>"
+    ],
+    "__x86.get_pc_thunk.ax": [],
+    "BootVideoOverlayString": [
+      "3a086c9:\te8 c2 fd ff ff       \tcall   3a08490 <BootVideoOverlayCharacter>"
+    ],
+    "__x86.get_pc_thunk.si": [],
+    "vsprintf": [
+      "3a09194:\te8 3d c1 01 00       \tcall   3a252d6 <__x86.get_pc_thunk.bx>"
+    ],
+    "BootIdeIssueAtaCommand": [
+      "3a04981:\te8 54 09 02 00       \tcall   3a252da <__x86.get_pc_thunk.ax>",
+      "3a049aa:\te8 71 fe ff ff       \tcall   3a04820 <BootIdeWaitNotBusy>",
+      "3a04a08:\te8 83 a1 00 00       \tcall   3a0eb90 <wait_smalldelay>",
+      "3a04a10:\te8 0b fe ff ff       \tcall   3a04820 <BootIdeWaitNotBusy>"
+    ],
+    "BootIdeWaitNotBusy": [
+      "3a04824:\te8 ad 0a 02 00       \tcall   3a252d6 <__x86.get_pc_thunk.bx>",
+      "3a0486c:\te8 cf a3 00 00       \tcall   3a0ec40 <wait_ms>",
+      "3a0489a:\te8 41 43 00 00       \tcall   3a08be0 <printk>"
+    ],
+    "wait_ms": [
+      "3a0ec43:\te8 8e 66 01 00       \tcall   3a252d6 <__x86.get_pc_thunk.bx>",
+      "3a0ec92:\te8 49 f6 ff ff       \tcall   3a0e2e0 <GetTimerTicks>",
+      "3a0eca0:\te8 3b f6 ff ff       \tcall   3a0e2e0 <GetTimerTicks>"
+    ],
+    "wait_smalldelay": [
+      "3a0eb92:\te8 3f 67 01 00       \tcall   3a252d6 <__x86.get_pc_thunk.bx>",
+      "3a0eb9e:\te8 3d f7 ff ff       \tcall   3a0e2e0 <GetTimerTicks>",
+      "3a0eba8:\te8 33 f7 ff ff       \tcall   3a0e2e0 <GetTimerTicks>"
+    ],
+    "BootStopUSB": [
+      "3a1fa97:\te8 3a 58 00 00       \tcall   3a252d6 <__x86.get_pc_thunk.bx>",
+      "3a1faa3:\te8 d8 08 00 00       \tcall   3a20380 <XPADRemove>",
+      "3a1faa8:\te8 b3 0a 00 00       \tcall   3a20560 <XRemoteRemove>",
+      "3a1faad:\te8 5e 0c 00 00       \tcall   3a20710 <UsbKeyBoardRemove>",
+      "3a1fabd:\te8 be 02 00 00       \tcall   3a1fd80 <inc_jiffies>",
+      "3a1fac2:\te8 d9 02 00 00       \tcall   3a1fda0 <do_all_timers>",
+      "3a1face:\tff 93 f0 4c 01 00    \tcall   *0x14cf0(%ebx)",
+      "3a1fadb:\te8 40 02 00 00       \tcall   3a1fd20 <handle_irqs>",
+      "3a1fae7:\te8 54 f1 fe ff       \tcall   3a0ec40 <wait_ms>",
+      "3a1faf2:\te8 89 fe ff ff       \tcall   3a1f980 <module_exit_usb_exit>",
+      "3a1fb01:\te8 9a 89 ff ff       \tcall   3a184a0 <usb_hcd_pci_remove>"
+    ],
+    "usb_hcd_pci_remove": [
+      "3a184a3:\te8 2e ce 00 00       \tcall   3a252d6 <__x86.get_pc_thunk.bx>",
+      "3a184d8:\te8 13 6b 00 00       \tcall   3a1eff0 <usb_disconnect>",
+      "3a184e3:\tff 50 18             \tcall   *0x18(%eax)",
+      "3a184e9:\te8 22 58 00 00       \tcall   3a1dd10 <hcd_buffer_destroy>",
+      "3a18509:\te8 e2 7b 00 00       \tcall   3a200f0 <my_free_irq>",
+      "3a18511:\te8 0a 06 00 00       \tcall   3a18b20 <usb_deregister_bus>",
+      "3a1851c:\tff 50 24             \tcall   *0x24(%eax)"
+    ],
+    "usb_deregister_bus": [
+      "3a18b21:\te8 b0 c7 00 00       \tcall   3a252d6 <__x86.get_pc_thunk.bx>",
+      "3a18b6c:\te8 bf 5d ff ff       \tcall   3a0e930 <free>"
+    ],
+    "free": [
+      "3a0e949:\te8 e2 fe ff ff       \tcall   3a0e830 <t_free>"
+    ],
+    "t_free": [
+      "3a0e831:\te8 a4 6a 01 00       \tcall   3a252da <__x86.get_pc_thunk.ax>"
+    ],
+    "my_free_irq": [],
+    "hcd_buffer_destroy": [],
+    "usb_disconnect": [
+      "3a1eff1:\te8 f8 62 00 00       \tcall   3a252ee <__x86.get_pc_thunk.bp>",
+      "3a1f04a:\te8 a1 ff ff ff       \tcall   3a1eff0 <usb_disconnect>",
+      "3a1f090:\te8 6b 0e 00 00       \tcall   3a1ff00 <my_device_unregister>",
+      "3a1f0bc:\tff d7                \tcall   *%edi",
+      "3a1f0c7:\tff d7                \tcall   *%edi",
+      "3a1f0ed:\te8 0e 0e 00 00       \tcall   3a1ff00 <my_device_unregister>"
+    ],
+    "my_device_unregister": [
+      "3a1ff1c:\tff d0                \tcall   *%eax"
+    ],
+    "__x86.get_pc_thunk.bp": [
+      "3a25317:\tff 92 04 00 00 00    \tcall   *0x4(%edx)",
+      "3a256df:\tff 16                \tcall   *(%esi)",
+      "3a2574f:\tff 17                \tcall   *(%edi)",
+      "3a2583b:\tff 53 00             \tcall   *0x0(%ebx)",
+      "3a2596b:\tff 14 00             \tcall   *(%eax,%eax,1)",
+      "3a260c7:\tff 91 00 00 00 00    \tcall   *0x0(%ecx)",
+      "3a26847:\tff d2                \tcall   *%edx",
+      "3a26cb8:\te8 04 48 0e ec       \tcall   efb0b4c1 <BSS_END+0xec0add19>",
+      "3a26d32:\te8 04 48 0e ec       \tcall   efb0b53b <BSS_END+0xec0add93>",
+      "3a26d6b:\te8 04 48 0e ec       \tcall   efb0b574 <BSS_END+0xec0addcc>",
+      "3a26db4:\te8 08 45 0e ec       \tcall   efb0b2c1 <BSS_END+0xec0adb19>",
+      "3a26dd0:\te8 08 45 0e ec       \tcall   efb0b2dd <BSS_END+0xec0adb35>",
+      "3a26de5:\te8 08 45 0e ec       \tcall   efb0b2f2 <BSS_END+0xec0adb4a>",
+      "3a26df5:\te8 08 45 0e ec       \tcall   efb0b302 <BSS_END+0xec0adb5a>",
+      "3a26e05:\te8 08 45 0e ec       \tcall   efb0b312 <BSS_END+0xec0adb6a>",
+      "3a26e1a:\te8 08 41 0e ec       \tcall   efb0af27 <BSS_END+0xec0ad77f>",
+      "3a26e5b:\te8 08 41 0e ec       \tcall   efb0af68 <BSS_END+0xec0ad7c0>",
+      "3a26e8b:\te8 08 47 0e ec       \tcall   efb0b598 <BSS_END+0xec0addf0>",
+      "3a26ec1:\te8 08 42 0e ec       \tcall   efb0b0ce <BSS_END+0xec0ad926>",
+      "3a26ed1:\te8 08 45 0e ec       \tcall   efb0b3de <BSS_END+0xec0adc36>",
+      "3a26ef1:\te8 08 47 0e ec       \tcall   efb0b5fe <BSS_END+0xec0ade56>",
+      "3a26f05:\te8 08 47 0e ec       \tcall   efb0b612 <BSS_END+0xec0ade6a>",
+      "3a26f25:\te8 08 47 0e ec       \tcall   efb0b632 <BSS_END+0xec0ade8a>",
+      "3a26f68:\te8 08 48 0e ec       \tcall   efb0b775 <BSS_END+0xec0adfcd>",
+      "3a26f7c:\te8 08 41 0e ec       \tcall   efb0b089 <BSS_END+0xec0ad8e1>",
+      "3a26f9c:\te8 08 41 0e ec       \tcall   efb0b0a9 <BSS_END+0xec0ad901>",
+      "3a26fb0:\te8 08 41 0e ec       \tcall   efb0b0bd <BSS_END+0xec0ad915>",
+      "3a26fd0:\te8 08 41 0e ec       \tcall   efb0b0dd <BSS_END+0xec0ad935>",
+      "3a26fe4:\te8 08 47 0e ec       \tcall   efb0b6f1 <BSS_END+0xec0adf49>",
+      "3a26ff8:\te8 08 47 0e ec       \tcall   efb0b705 <BSS_END+0xec0adf5d>",
+      "3a27288:\te8 f5 fd ff 58       \tcall   5ca27082 <BSS_END+0x58fc98da>",
+      "3a275bb:\tff 95 00 00 00 00    \tcall   *0x0(%ebp)",
+      "3a27657:\tff 17                \tcall   *(%edi)",
+      "3a27807:\tff 56 00             \tcall   *0x0(%esi)",
+      "3a27818:\te8 fb fd ff ec       \tcall   f0a27618 <BSS_END+0xecfc9e70>",
+      "3a2793b:\tff 51 00             \tcall   *0x0(%ecx)",
+      "3a27abf:\tff 15 00 00 00 00    \tcall   *0x0",
+      "3a28953:\tff 96 01 00 00 00    \tcall   *0x1(%esi)",
+      "3a28c57:\tff 51 00             \tcall   *0x0(%ecx)",
+      "3a293a7:\tff d3                \tcall   *%ebx",
+      "3a293c7:\te8 01 42 0e ec       \tcall   efb0d5cd <BSS_END+0xec0afe25>",
+      "3a293d7:\te8 01 42 0e ec       \tcall   efb0d5dd <BSS_END+0xec0afe35>",
+      "3a293e7:\te8 01 42 0e ec       \tcall   efb0d5ed <BSS_END+0xec0afe45>",
+      "3a293f7:\te8 01 48 0e ec       \tcall   efb0dbfd <BSS_END+0xec0b0455>",
+      "3a29407:\te8 01 48 0e ec       \tcall   efb0dc0d <BSS_END+0xec0b0465>",
+      "3a29417:\te8 01 48 0e ec       \tcall   efb0dc1d <BSS_END+0xec0b0475>",
+      "3a29427:\te8 01 41 0e ec       \tcall   efb0d52d <BSS_END+0xec0afd85>",
+      "3a29437:\te8 01 41 0e ec       \tcall   efb0d53d <BSS_END+0xec0afd95>",
+      "3a2944b:\te8 01 41 0e ec       \tcall   efb0d551 <BSS_END+0xec0afda9>",
+      "3a29773:\tff 13                \tcall   *(%ebx)",
+      "3a29f9b:\tff 50 00             \tcall   *0x0(%eax)",
+      "3a29fb7:\tff 96 00 00 00 00    \tcall   *0x0(%esi)",
+      "3a2a68b:\tff 13                \tcall   *(%ebx)",
+      "3a2a98f:\tff 13                \tcall   *(%ebx)",
+      "3a2a9ab:\tff 10                \tcall   *(%eax)",
+      "3a2a9d3:\tff 15 00 00 00 00    \tcall   *0x0",
+      "3a2ac23:\tff 50 01             \tcall   *0x1(%eax)",
+      "3a2ad08:\te8 03 00 00 f4       \tcall   f7a2ad10 <BSS_END+0xf3fcd568>",
+      "3a2addf:\tff 10                \tcall   *(%eax)",
+      "3a2b298:\te8 3f fe ff 3d       \tcall   41a2b0dc <BSS_END+0x3dfcd934>",
+      "3a2b5f4:\te8 06 00 00 38       \tcall   3ba2b5ff <BSS_END+0x37fcde57>",
+      "3a2b8f8:\te8 01 00 00 00       \tcall   3a2b8fe <__x86.get_pc_thunk.bp+0x6610>",
+      "3a2bc63:\tff d3                \tcall   *%ebx",
+      "3a2bda1:\te8 01 42 0e ec       \tcall   efb0ffa7 <BSS_END+0xec0b27ff>",
+      "3a2bdc3:\te8 01 4b 0e ec       \tcall   efb108c9 <BSS_END+0xec0b3121>",
+      "3a2bde5:\te8 01 41 0e ec       \tcall   efb0feeb <BSS_END+0xec0b2743>",
+      "3a2bdf9:\te8 01 47 0e ec       \tcall   efb104ff <BSS_END+0xec0b2d57>",
+      "3a2c118:\te8 5c fe ff 3e       \tcall   42a2bf79 <BSS_END+0x3efce7d1>",
+      "3a2c28f:\tff 14 00             \tcall   *(%eax,%eax,1)",
+      "3a2c403:\tff 13                \tcall   *(%ebx)",
+      "3a2c580:\te8 04 45 0e ec       \tcall   efb10a89 <BSS_END+0xec0b32e1>",
+      "3a2c5e0:\te8 04 47 0e ec       \tcall   efb10ce9 <BSS_END+0xec0b3541>",
+      "3a2c85f:\tff 94 00 00 00 00 41 \tcall   *0x41000000(%eax,%eax,1)",
+      "3a2cbb8:\te8 00 00 00 dc       \tcall   dfa2cbbd <BSS_END+0xdbfcf415>",
+      "3a2cfab:\tff 97 01 00 00 00    \tcall   *0x1(%edi)",
+      "3a2d5df:\tff d3                \tcall   *%ebx",
+      "3a2d854:\te8 04 45 0e ec       \tcall   efb11d5d <BSS_END+0xec0b45b5>",
+      "3a2e527:\tff 51 01             \tcall   *0x1(%ecx)",
+      "3a2e7ef:\tff 97 00 00 00 00    \tcall   *0x0(%edi)",
+      "3a2e837:\tff 90 00 00 00 00    \tcall   *0x0(%eax)",
+      "3a2e9d7:\tff 91 01 00 00 00    \tcall   *0x1(%ecx)",
+      "3a2f113:\tff 94 00 00 00 00 41 \tcall   *0x41000000(%eax,%eax,1)",
+      "3a2fd37:\tff 10                \tcall   *(%eax)",
+      "3a30183:\tff 56 00             \tcall   *0x0(%esi)",
+      "3a302a8:\te8 04 00 00 00       \tcall   3a302b1 <__x86.get_pc_thunk.bp+0xafc3>",
+      "3a303b7:\tff 96 00 00 00 00    \tcall   *0x0(%esi)",
+      "3a304b4:\te8 01 00 00 18       \tcall   1ba304ba <BSS_END+0x17fd2d12>",
+      "3a305a3:\tff 50 00             \tcall   *0x0(%eax)",
+      "3a305d1:\te8 fe ff a6 00       \tcall   44a05d4 <BSS_END+0xa42e2c>",
+      "3a306dd:\te8 fe ff 42 00       \tcall   3e606e0 <BSS_END+0x402f38>",
+      "3a30701:\te8 fe ff 0d 01       \tcall   4b10704 <BSS_END+0x10b2f5c>",
+      "3a30777:\tff 55 01             \tcall   *0x1(%ebp)",
+      "3a30a0f:\tff 53 00             \tcall   *0x0(%ebx)",
+      "3a30a87:\tff 11                \tcall   *(%ecx)",
+      "3a30d03:\tff d1                \tcall   *%ecx",
+      "3a30d17:\tff 51 00             \tcall   *0x0(%ecx)",
+      "3a30e6b:\tff 15 00 00 00 00    \tcall   *0x0",
+      "3a30f43:\tff 52 00             \tcall   *0x0(%edx)",
+      "3a311b7:\tff d5                \tcall   *%ebp",
+      "3a3131b:\tff d3                \tcall   *%ebx",
+      "3a3197b:\tff 55 00             \tcall   *0x0(%ebp)",
+      "3a31bc7:\tff d4                \tcall   *%esp",
+      "3a322f3:\tff 96 00 00 00 00    \tcall   *0x0(%esi)",
+      "3a323c7:\tff 12                \tcall   *(%edx)",
+      "3a32603:\tff 92 00 00 00 00    \tcall   *0x0(%edx)",
+      "3a32673:\tff 55 00             \tcall   *0x0(%ebp)",
+      "3a32864:\te8 00 00 00 48       \tcall   4ba32869 <BSS_END+0x47fd50c1>"
+    ],
+    "module_exit_usb_exit": [
+      "3a1f981:\te8 50 59 00 00       \tcall   3a252d6 <__x86.get_pc_thunk.bx>",
+      "3a1f999:\te8 72 ad ff ff       \tcall   3a1a710 <usb_hub_cleanup>"
+    ],
+    "usb_hub_cleanup": [
+      "3a1a711:\te8 c0 ab 00 00       \tcall   3a252d6 <__x86.get_pc_thunk.bx>",
+      "3a1a726:\te8 b5 58 00 00       \tcall   3a1ffe0 <my_wait_for_completion>",
+      "3a1a734:\te8 97 43 00 00       \tcall   3a1ead0 <usb_deregister>"
+    ],
+    "usb_deregister": [],
+    "my_wait_for_completion": [
+      "3a1ffe3:\te8 ee 52 00 00       \tcall   3a252d6 <__x86.get_pc_thunk.bx>",
+      "3a20004:\te8 97 fd ff ff       \tcall   3a1fda0 <do_all_timers>",
+      "3a2000e:\te8 0d fd ff ff       \tcall   3a1fd20 <handle_irqs>",
+      "3a2001a:\te8 21 ec fe ff       \tcall   3a0ec40 <wait_ms>"
+    ],
+    "handle_irqs": [
+      "3a1fd21:\te8 b4 55 00 00       \tcall   3a252da <__x86.get_pc_thunk.ax>",
+      "3a1fd64:\tff d0                \tcall   *%eax"
+    ],
+    "do_all_timers": [
+      "3a1fda1:\te8 34 55 00 00       \tcall   3a252da <__x86.get_pc_thunk.ax>",
+      "3a1fddf:\tff d2                \tcall   *%edx"
+    ],
+    "inc_jiffies": [
+      "3a1fd80:\te8 55 55 00 00       \tcall   3a252da <__x86.get_pc_thunk.ax>"
+    ],
+    "UsbKeyBoardRemove": [
+      "3a20711:\te8 c0 4b 00 00       \tcall   3a252d6 <__x86.get_pc_thunk.bx>",
+      "3a20726:\te8 a5 e3 ff ff       \tcall   3a1ead0 <usb_deregister>"
+    ],
+    "XRemoteRemove": [
+      "3a20561:\te8 70 4d 00 00       \tcall   3a252d6 <__x86.get_pc_thunk.bx>",
+      "3a20576:\te8 55 e5 ff ff       \tcall   3a1ead0 <usb_deregister>"
+    ],
+    "XPADRemove": [
+      "3a20381:\te8 50 4f 00 00       \tcall   3a252d6 <__x86.get_pc_thunk.bx>",
+      "3a20396:\te8 35 e7 ff ff       \tcall   3a1ead0 <usb_deregister>"
+    ]
+  },
+  "disassembly_sha256": "876eb2d4f58e8eaf9e79aa6e04b2814a05d84e9c819b572cd5656c2bd9fe8d37",
+  "tools": {
+    "objdump": "44f07f8da860b15bd4dec909f229dec536595fb170a616fe3ab29c7b21c9736f",
+    "nm": "f04262bf48192a7cbb78a17ca49ae03f8930b0372bd0115576f957b2e2a57a01"
+  },
+  "source_relationship": "Nine historical216 Cromwell source pins still match; remaining current source is a consumer lead. Linked ELF load sections match exact XBE bytes; not a clean rebuild or historical compiler-input claim.",
+  "limits": "CPU shutdown and memory reservation do not prove GPU idle, backend drain or ownership release. Indirect calls/source census are explicitly bounded and incomplete for firmware/kernel consumers."
+}
