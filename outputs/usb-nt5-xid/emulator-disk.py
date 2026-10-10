@@ -47,7 +47,8 @@ if mode=='stage':
             v,p=name.split('/',1);assert sha(rr[v].read(p))==digest,name
     scan(disk,k/case/'before/artifacts');a=read(k/case/'before/allocation.json')
     assert a['allocation_consistent'] and not a['errors'] and not a['orphan_cluster_count']
-    r=dict(physical_access=False,case=case,build=review['attempt'],build_files=review['files'],files=files,baseline_exact=True,allocation_passed=True)
+    with disk.open('rb') as stream:disk_sha=hashlib.file_digest(stream,'sha256').hexdigest()
+    r=dict(physical_access=False,case=case,build=review['attempt'],build_files=review['files'],files=files,baseline_exact=True,allocation_passed=True,staged_disk_sha256=disk_sha)
     (run/'stage.json').write_text(json.dumps(r,indent=2)+'\n');print('Staged emulator package, providers, baseline and allocation verified')
 elif mode=='audit':
     assert (run/'cleanup.json').exists() and not (k/(case+'-review.json')).exists()

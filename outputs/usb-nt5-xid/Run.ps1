@@ -3,7 +3,8 @@ $ErrorActionPreference='Stop'
 $repo=[IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
 $canon='C:/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility'
 $run="$repo/work/runs/nt5xid-$Case"
-if(Test-Path $run){throw 'Never reuse emulator attempt'}
+if(-not (Test-Path "$run/stage.json")){throw 'Prepare a fresh fixture first'}
+if((Test-Path "$run/instance.json") -or (Test-Path "$run/cleanup.json")){throw 'Never relaunch an emulator attempt'}
 if((Get-Content "$repo/.git/HEAD" -Raw).Trim() -ne 'ref: refs/heads/codex/xbox-native-usb'){throw 'Wrong branch'}
 if((Get-PSDrive C).Free -lt (20GB+64MB)){throw '20 GiB projected guard'}
 if(-not $env:XWN_EMULATOR_FTP_USER -or -not $env:XWN_EMULATOR_FTP_PASSWORD){throw 'Loopback credentials required in environment'}
@@ -17,13 +18,10 @@ foreach($port in @($monitor,$ftp)){$s=[Net.Sockets.TcpListener]::new([Net.IPAddr
 try {
  & C:/Users/Paul/Desktop/ogxbox-linux/scripts/with_xbox_resource.ps1 -Resource xemu -Action {
   & C:/Users/Paul/Desktop/ogxbox-linux/scripts/with_xbox_resource.ps1 -Resource xemu-ui -Action {
-   New-Item -ItemType Directory $run | Out-Null
-   $linuxRun=('/mnt/e'+$run.Substring(2)).Replace('\','/')
-   $linuxScript=('/mnt/e'+$PSScriptRoot.Substring(2)).Replace('\','/')+'/emulator-disk.py'
-   & wsl -d Ubuntu --cd $linuxRun -- qemu-img create -f qcow2 -F qcow2 -b ../../../outputs/usb-identification207/artifacts/emu001/seed.qcow2 hdd.qcow2
-   if($LASTEXITCODE){throw 'Overlay create failed'}
-   & wsl -d Ubuntu -- env PYTHONDONTWRITEBYTECODE=1 python3 $linuxScript stage $Case
-   if($LASTEXITCODE){throw 'Staging/audit failed; no launch'}
+   if((Test-Path "$run/instance.json") -or (Test-Path "$run/cleanup.json")){throw 'Attempt already used'}
+   $stage=Get-Content "$run/stage.json" -Raw | ConvertFrom-Json
+   if(-not $stage.baseline_exact -or -not $stage.allocation_passed){throw 'Unqualified fixture'}
+   if((Get-FileHash "$run/hdd.qcow2").Hash.ToLowerInvariant() -ne $stage.staged_disk_sha256){throw 'Staged overlay drift'}
    Copy-Item "$canon/work/runs/nt5-physical-f-high-allocation-r15/eeprom.bin" "$run/eeprom.bin"
    $bios='C:/Emulators/xemu/system/bios/Complex_4627.bin';$mcpx='C:/Emulators/xemu/system/mcpx/mcpx_1.0.bin'
    $iso="$canon/outputs/native-windows-extended-storage/artifacts/f-boot-length-004.iso"

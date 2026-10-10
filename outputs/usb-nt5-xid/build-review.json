@@ -1,0 +1,165 @@
+{
+  "passed": true,
+  "attempt": "build032",
+  "files": {
+    "xwnxid.sys": "6d5ffc5de55c6ca304713ade7b438675744ccb81d0510e0d2810c3ecbe2abeb2",
+    "probe.exe": "b833cfe764acd134a8748e8c90b3c6be858616b2df41b2a2cbd5fd31a77a2507"
+  },
+  "inputs": {
+    "driver.c": "ea49cba38495775f75a92828299ed7f3bc338c1a176a20fcd184b8e969e208b4",
+    "nt5hid.h": "c8534bd83064bda2435ce44131cdf185159f613277e8111e1fb9b3109671f61e",
+    "xid_hid.c": "c29cb823eb410c88fadb2ce16ea4107daf46ebd5de017f7debcefea94f896228",
+    "xid_hid.h": "05723fc2f04cb17aa27f95a5e5b5fc03a368ee3f5f950fa4cfeb013f7e41ccf5",
+    "probe.c": "061ee1759c4b76f218403e2e84e8c68fb87a2922ea8fc0c04c20e88cb7b8bfb6",
+    "xwnxid.inf": "cb138a96a7ca4f497b70cc0b56e1c6ac23a3cab31b32d402f45d68ef89880b7e",
+    "xid_wire.c": "6636d178f7616db5536ba43343a1ebe1d41daade53072c32c1935e079855420a",
+    "xid_wire.h": "b2fd70b125f06fd2ff1458c4c1cd3a23d3120b6a62e7b72fd6206c7bb487bd1a"
+  },
+  "imports": {
+    "xwnxid.sys": {
+      "HAL.dll": [
+        "KfAcquireSpinLock",
+        "KfReleaseSpinLock"
+      ],
+      "HIDCLASS.SYS": [
+        "HidRegisterMinidriver"
+      ],
+      "ntoskrnl.exe": [
+        "ExAllocatePoolWithTag",
+        "ExFreePool",
+        "IoAcquireRemoveLockEx",
+        "IoAllocateIrp",
+        "IoAllocateWorkItem",
+        "IoCancelIrp",
+        "IoFreeIrp",
+        "IoFreeWorkItem",
+        "IoInitializeRemoveLockEx",
+        "IoQueueWorkItem",
+        "IoReleaseRemoveLockAndWaitEx",
+        "IoReleaseRemoveLockEx",
+        "IofCallDriver",
+        "IofCompleteRequest",
+        "KeClearEvent",
+        "KeDelayExecutionThread",
+        "KeInitializeEvent",
+        "KeInitializeMutex",
+        "KeReadStateEvent",
+        "KeReleaseMutex",
+        "KeSetEvent",
+        "KeWaitForSingleObject",
+        "PoCallDriver",
+        "PoStartNextPowerIrp",
+        "PsCreateSystemThread",
+        "PsTerminateSystemThread",
+        "ZwClose",
+        "ZwWaitForSingleObject",
+        "memcpy",
+        "memset"
+      ],
+      "USBD.SYS": [
+        "_USBD_CreateConfigurationRequestEx@8"
+      ]
+    },
+    "probe.exe": {
+      "ADVAPI32.dll": [
+        "AdjustTokenPrivileges",
+        "LookupPrivilegeValueA",
+        "OpenProcessToken"
+      ],
+      "hid.dll": [
+        "HidD_FreePreparsedData",
+        "HidD_GetAttributes",
+        "HidD_GetHidGuid",
+        "HidD_GetPreparsedData",
+        "HidP_GetCaps",
+        "HidP_GetUsageValue"
+      ],
+      "KERNEL32.dll": [
+        "CancelIo",
+        "CloseHandle",
+        "CreateEventA",
+        "CreateFileA",
+        "ExitProcess",
+        "FlushFileBuffers",
+        "FreeLibrary",
+        "GetCurrentProcess",
+        "GetLastError",
+        "GetOverlappedResult",
+        "GetProcAddress",
+        "GetTickCount",
+        "LoadLibraryA",
+        "ReadFile",
+        "ResetEvent",
+        "SetLastError",
+        "Sleep",
+        "WaitForSingleObject",
+        "WriteFile",
+        "lstrlenA"
+      ],
+      "SETUPAPI.dll": [
+        "SetupDiDestroyDeviceInfoList",
+        "SetupDiEnumDeviceInterfaces",
+        "SetupDiGetClassDevsA",
+        "SetupDiGetDeviceInterfaceDetailA"
+      ],
+      "USER32.dll": [
+        "ExitWindowsEx",
+        "wsprintfA"
+      ]
+    }
+  },
+  "providers": {
+    "hal.dll": {
+      "path": "E:\\Codex-archive\\xbox-windows-native\\0.1.0\\physical-files\\E\\Applications\\XWNFBoot\\loader\\halxboxnt5.dll",
+      "sha256": "a3a84368d59936dfa6bbcdc6d5839d57b886342211142d305e9dde941e4d1648",
+      "fixture_path": "E/Applications/XWNFBoot/loader/halxboxnt5.dll"
+    },
+    "hidclass.sys": {
+      "path": "E:\\Codex-archive\\xbox-windows-native\\0.1.0\\physical-files\\F\\winnt\\system32\\drivers\\hidclass.sys",
+      "sha256": "3bc911b579b691a9447428c2b7791938406705c30497803df25db9cf71846697",
+      "fixture_path": "F/winnt/system32/drivers/hidclass.sys"
+    },
+    "ntoskrnl.exe": {
+      "path": "E:\\Codex-archive\\xbox-windows-native\\0.1.0\\physical-files\\F\\winnt\\system32\\ntoskrnl.exe",
+      "sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+      "fixture_path": "F/winnt/system32/ntoskrnl.exe"
+    },
+    "usbd.sys": {
+      "path": "E:\\Codex-archive\\xbox-windows-native\\0.1.0\\physical-files\\F\\winnt\\system32\\drivers\\usbd.sys",
+      "sha256": "45ee7c3d552e31bd21512e7c1d0190512492a8adc9ee67b4a84d4a5d8eeb8927",
+      "fixture_path": "F/winnt/system32/drivers/usbd.sys"
+    },
+    "advapi32.dll": {
+      "path": "E:\\Codex-archive\\xbox-windows-native\\0.1.0\\physical-files\\F\\winnt\\system32\\advapi32.dll",
+      "sha256": "d24493dbb2b1818f9cd605acd3b2008d63354c0975e9a090ccdd04bcc339cc59",
+      "fixture_path": "F/winnt/system32/advapi32.dll"
+    },
+    "hid.dll": {
+      "path": "E:\\Codex-archive\\xbox-windows-native\\0.1.0\\physical-files\\F\\winnt\\system32\\hid.dll",
+      "sha256": "272e2bea32a13887c6a03faf9deb2f3db3aa79682b33bd358d6d32a98e6a3428",
+      "fixture_path": "F/winnt/system32/hid.dll"
+    },
+    "kernel32.dll": {
+      "path": "E:\\Codex-archive\\xbox-windows-native\\0.1.0\\physical-files\\F\\winnt\\system32\\kernel32.dll",
+      "sha256": "6b05b0749b5dd86da94cc4acd062ca05472509f70216b56cd4a5b9809c602e73",
+      "fixture_path": "F/winnt/system32/kernel32.dll"
+    },
+    "setupapi.dll": {
+      "path": "E:\\Codex-archive\\xbox-windows-native\\0.1.0\\physical-files\\F\\winnt\\system32\\setupapi.dll",
+      "sha256": "1d0a6e9d062a51e71eaae93d776746823834f5c518096d340f2b332fc059a23d",
+      "fixture_path": "F/winnt/system32/setupapi.dll"
+    },
+    "user32.dll": {
+      "path": "E:\\Codex-archive\\xbox-windows-native\\0.1.0\\physical-files\\F\\winnt\\system32\\user32.dll",
+      "sha256": "291210cf381dc269f8847a86e59a7cf775e5dd4086f94ff1266714f34ff55063",
+      "fixture_path": "F/winnt/system32/user32.dll"
+    },
+    "newdev.dll": {
+      "path": "E:\\Codex-archive\\xbox-windows-native\\0.1.0\\physical-files\\F\\winnt\\system32\\newdev.dll",
+      "sha256": "02a7467e08ba9ec1d9f519969f0b6a2c1c014400be5e81e1558a808a01afb5c0",
+      "fixture_path": "F/winnt/system32/newdev.dll"
+    }
+  },
+  "physical_access": false,
+  "runtime_qualified": false
+}
