@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "C:\Users\Paul\Documents\Codex\2026-10-02\xbox-windows-feasibility\outputs\native-windows-nt5-kernel\..\native-windows-prebuild\monitor_capture.py", line 25, in acquire_monitor_lock
+    try:msvcrt.locking(lock.fileno(),msvcrt.LK_NBLCK,1);break
+        ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Paul\Documents\Codex\2026-10-02\xbox-windows-feasibility\outputs\native-windows-nt5-kernel\..\native-windows-prebuild\monitor_capture.py", line 50, in <module>
+    lock=acquire_monitor_lock(args.port)
+  File "C:\Users\Paul\Documents\Codex\2026-10-02\xbox-windows-feasibility\outputs\native-windows-nt5-kernel\..\native-windows-prebuild\monitor_capture.py", line 27, in acquire_monitor_lock
+    if time.monotonic()>=deadline:raise RuntimeError('Task monitor lock is busy')
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Task monitor lock is busy
+Exception: C:\Users\Paul\Documents\Codex\2026-10-02\xbox-windows-feasibility\outputs\video-boot-guard223\Invoke-223.ps1:114
+Line |
+ 114 |  . TEXITCODE -ne 0) { throw 'Could not enable the private guest link.' }
+     |                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | Could not enable the private guest link.
