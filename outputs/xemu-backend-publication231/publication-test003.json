@@ -1,0 +1,57 @@
+{
+  "passed": true,
+  "source_sha256": "7d10b93d832ed401d57ac8fd10bd5d9f7071f14c363d4085c32a95b4cd914c51",
+  "test_sha256": "6f5b4a492dc20b546cbfb8f6f744d2e9acfe8a9ab525f15ef3cc926edd4c82e3",
+  "actual_helper_sha256": "7db5377b7fc8ccb76e01174bd102f12c849dc9aa659a8dc044df41bb381b1d8d",
+  "atomic_headers": {
+    "include/qemu/atomic.h": "0a973eaf2fc9c203cb73b13f4f1ceb39949a671faa78c4d5c6466d8c7ec358c5",
+    "include/qemu/compiler.h": "5aa88bf494220555337d7504fa0de261c4ad55b3bbe43c0563a6d68debb5457e"
+  },
+  "runs": [
+    {
+      "command": [
+        "gcc",
+        "-std=gnu11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-O0",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-pthread",
+        "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xemu-backend-publication231/artifacts/publication-test003",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xemu-backend-publication231/artifacts/publication-test003/test-publication.c",
+        "-o",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xemu-backend-publication231/artifacts/publication-test003/publication-O0"
+      ],
+      "exit_code": 0,
+      "stdout": "checks=1558228 concurrent_pairs=100000 publication_pairs=10000 completed=87594 timed_out=12406 native_grants=0\n",
+      "stderr": "",
+      "executable_sha256": "e3e4534105b3c0688ca73d3cc4f5cd1342581416e4a420a0198b8d747fa66286"
+    },
+    {
+      "command": [
+        "gcc",
+        "-std=gnu11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-O2",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-pthread",
+        "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xemu-backend-publication231/artifacts/publication-test003",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xemu-backend-publication231/artifacts/publication-test003/test-publication.c",
+        "-o",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xemu-backend-publication231/artifacts/publication-test003/publication-O2"
+      ],
+      "exit_code": 0,
+      "stdout": "checks=1559839 concurrent_pairs=100000 publication_pairs=10000 completed=87057 timed_out=12943 native_grants=0\n",
+      "stderr": "",
+      "executable_sha256": "302f0ed1ea0689de1b8f4f191adb79cfd8372bf1bd83c4c480624435b23839fb"
+    }
+  ],
+  "scope": "Actual helper/report and actual QEMU atomic macros. Host scheduling, object/clock/string-format adapters; no GPU, cross-architecture or guest qualification."
+}

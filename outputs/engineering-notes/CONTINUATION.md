@@ -1,3 +1,40 @@
+# Current:231 CLOSED ordered telemetry; actual queued GET/PUT gap identified
+
+Read outputs/xemu-backend-publication231/REPORT.md, queue-review001.json and
+CONSUMPTION-NEXT.md. Fresh model/source/exe pins, actual QEMU atomic host tests
+and one stopped-dashboard request. State4/reason1, GET03fc49b0/PUT03fd4c70,
+66240-byte numerical gap; parser count/error0, FIFO accesses1, DMA suspended0.
+Request/gate words identical. No queue consumption, dirty readback, reference
+retirement or native grant.212992 before/after raw reserved bytes unchanged.
+Release/acquire terminal telemetry implemented; timeout mutable tuple withheld.
+Actual pinned QEMU atomic headers tested O0/O2: each100000 timeout races plus
+10000 publication pairs, ASan/UBSan clean. No stronger atomic mock.
+
+ONE launch20:56:01UTC, normal dashboard20:57:32, closed/audited20:57:54 Oct10.
+CPU65 allocations/releases/3194880bytes/four joined workers and refusal scope
+PASS. Cold320dirs6724files321clusters,0errors/orphans; five hives/protected/
+startup/history/device policy PASS. StrictFALSE soleFtdisk49/error3; backend/
+ordinary/physical/native FALSE. Preserved host author/test001/test002/decoder
+failures; frozen inputs unchanged. ALL root owned sessions CLOSED: build6739,
+host8075, prep26006, runtime6823; controller108756/runner114820/tracer112296/
+observer112808. Private fixture/run paths and executable pin in REPORT.
+20GiB guard retained, no physical FTP/deploy, no candidate merges/tag changes.
+
+Next NEW model: finite genuine parser/puller consumption with stopped vCPU,
+waiting flags and raw before/after telemetry. Budget jumps/packets/time and
+respect flip/context/nop stalls. No fake idle/error clearing or producer resume.
+Preservation and ended reference/census/private-context/alias gates remain.
+Never relaunch/recollect231 or previous closed230/229/228/227.
+
+Check-in: audio unchanged idle/5fbcc971, audibility unknown. PCI09430b6 reports
+HAL API/lifecycle/cold passes but audio setup blocks normal restart; SMBus and
+terminal takeover untested. USB reports repeat-boot storage failure; root fresh
+first-boot PASS does not resolve it. Authorized follow-ups sent for independent
+SMBus and matched no-XID second-boot control; preserve their strict failures
+and physical baseline, root leases free. See coordination001.json.
+
+--- Previous checkpoint retained byte-exact below ---
+
 # Current:230 CLOSED queue refusal; CPU/cold PASS; other-device check-in
 
 Read outputs/xemu-backend-dashboard230/REPORT.md and trace-observation-review001.json.

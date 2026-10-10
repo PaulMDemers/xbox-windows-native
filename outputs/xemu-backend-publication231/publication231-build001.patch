@@ -1,0 +1,135 @@
+--- a/hw/xbox/nv2a/nv2a.c
++++ b/hw/xbox/nv2a/nv2a.c
+@@ -346,13 +346,13 @@
+ static bool preserve227_get(Object *obj, Error **errp)
+ {
+     NV2AState *d = NV2A_DEVICE(obj);
+-    return qatomic_read(&d->preserve227.state) == 3;
++    return qatomic_load_acquire(&d->preserve227.state) == 3;
+ }
+ 
+ static void preserve227_set(Object *obj, bool value, Error **errp)
+ {
+     NV2AState *d = NV2A_DEVICE(obj);
+-    if (!value || qatomic_read(&d->preserve227.state) != 0 ||
++    if (!value || qatomic_load_acquire(&d->preserve227.state) != 0 ||
+         !(runstate_check(RUN_STATE_PAUSED) || runstate_check(RUN_STATE_DEBUG))) {
+         error_setg(errp, "preserve227 needs unused stopped-VM request");
+         return;
+@@ -375,7 +375,8 @@
+     d->preserve227.old_halt = qatomic_read(&d->pfifo.halt);
+     d->preserve227.deadline = now + 5000000000LL;
+     qatomic_set(&d->pfifo.halt, true);
+-    qatomic_set(&d->preserve227.state, 1);
++    nv2a_preserve231_snapshot(d, d->preserve227.request_fifo);
++    qatomic_store_release(&d->preserve227.state, 1);
+     pfifo_kick(d);
+     qemu_mutex_unlock(&d->pfifo.lock);
+ }
+@@ -383,25 +384,60 @@
+ static char *preserve227_report(Object *obj, Error **errp)
+ {
+     NV2AState *d = NV2A_DEVICE(obj);
+-    unsigned state = qatomic_read(&d->preserve227.state);
++    unsigned state = qatomic_load_acquire(&d->preserve227.state);
+     if ((state == 1 || state == 2) &&
+         qemu_clock_get_ns(QEMU_CLOCK_REALTIME) >= d->preserve227.deadline) {
+         qatomic_cmpxchg(&d->preserve227.state, state, 5);
+-        state = qatomic_read(&d->preserve227.state);
+-    }
+-    return g_strdup_printf("state=%u surfaces=%u dirty=%u downloaded=%u bytes=%" PRIu64
+-                           " error=%u reason=%u references_retired=0 native_grant=0",
+-        state, qatomic_read(&d->preserve227.surfaces),
+-        qatomic_read(&d->preserve227.dirty), qatomic_read(&d->preserve227.downloaded),
+-        qatomic_read(&d->preserve227.bytes), qatomic_read(&d->preserve227.error),
+-        qatomic_read(&d->preserve227.reason));
++        state = qatomic_load_acquire(&d->preserve227.state);
++    }
++    /* Only a worker-published terminal state orders its mutable tuple.
++     * Timeout5 can precede late worker stores; never expose that tuple. Request
++     * words are immutable before release1. There is no reuse/reset operation. */
++    bool published = state == 3 || state == 4 || state == 6;
++    GString *report = g_string_new(NULL);
++    g_string_append_printf(report,
++        "state=%u tuple_published=%u publication_version=231"
++        " surfaces=%u dirty=%u downloaded=%u bytes=%" PRIu64
++        " error=%u reason=%u references_retired=0 native_grant=0 old_halt=%u",
++        state, published,
++        published ? qatomic_read(&d->preserve227.surfaces) : 0,
++        published ? qatomic_read(&d->preserve227.dirty) : 0,
++        published ? qatomic_read(&d->preserve227.downloaded) : 0,
++        published ? qatomic_read(&d->preserve227.bytes) : 0,
++        published ? qatomic_read(&d->preserve227.error) : 0,
++        published ? qatomic_read(&d->preserve227.reason) : 0,
++        state ? d->preserve227.old_halt : 0);
++    for (unsigned i = 0; i < 10; i++) {
++        g_string_append_printf(report, " request%u=%u gate%u=%u", i,
++            state ? qatomic_read(&d->preserve227.request_fifo[i]) : 0, i,
++            published ? qatomic_read(&d->preserve227.gate_fifo[i]) : 0);
++    }
++    return g_string_free(report, false);
++}
++
++/*231 caller holds FIFO lock. Raw words, not a synthetic idle predicate.
++ * PGRAPH FIFO has its existing atomic-access contract. Snapshots do not retire
++ * references or write emulated registers. */
++void nv2a_preserve231_snapshot(NV2AState *d, uint32_t words[10])
++{
++    const hwaddr offsets[9] = {
++        NV_PFIFO_CACHE1_DMA_GET, NV_PFIFO_CACHE1_DMA_PUT,
++        NV_PFIFO_CACHE1_DMA_STATE, NV_PFIFO_CACHE1_PUSH0,
++        NV_PFIFO_CACHE1_PUSH1, NV_PFIFO_CACHE1_DMA_PUSH,
++        NV_PFIFO_CACHE1_PULL0, NV_PFIFO_CACHE1_STATUS,
++        NV_PFIFO_CACHE1_DMA_SUBROUTINE,
++    };
++    for (unsigned i = 0; i < 9; i++) {
++        qatomic_set(&words[i], d->pfifo.regs[offsets[i]]);
++    }
++    qatomic_set(&words[9], qatomic_read(&d->pgraph.regs_[NV_PGRAPH_FIFO]));
+ }
+ 
+ /*228 claim terminal publication before restoring admission. State7 is a
+  * nonblocking publication phase, never a new request or ownership permit. */
+ void nv2a_preserve227_finish(NV2AState *d, unsigned result)
+ {
+-    unsigned expected = qatomic_read(&d->preserve227.state);
++    unsigned expected = qatomic_load_acquire(&d->preserve227.state);
+     if (expected != 1 && expected != 2) { return; }
+     if (qemu_clock_get_ns(QEMU_CLOCK_REALTIME) >= d->preserve227.deadline) {
+         result = 5;
+@@ -412,7 +448,7 @@
+     if (result == 3 || result == 4) {
+         qatomic_set(&d->pfifo.halt, d->preserve227.old_halt);
+     }
+-    qatomic_set(&d->preserve227.state, result);
++    qatomic_store_release(&d->preserve227.state, result);
+ }
+ 
+ static void nv2a_realize(PCIDevice *dev, Error **errp)
+--- a/hw/xbox/nv2a/nv2a_int.h
++++ b/hw/xbox/nv2a/nv2a_int.h
+@@ -80,6 +80,7 @@
+     struct {
+         unsigned state, surfaces, dirty, downloaded, error, reason;
+         uint64_t bytes;
++        uint32_t request_fifo[10], gate_fifo[10];
+         int64_t deadline;
+         bool old_halt;
+     } preserve227;
+@@ -234,3 +235,4 @@
+ 
+ /*228 terminal publication helper; worker owns FIFO lock. */
+ void nv2a_preserve227_finish(NV2AState *d, unsigned result);
++void nv2a_preserve231_snapshot(NV2AState *d, uint32_t words[10]);
+--- a/hw/xbox/nv2a/pgraph/gl/renderer.c
++++ b/hw/xbox/nv2a/pgraph/gl/renderer.c
+@@ -123,7 +123,8 @@
+ 
+     /* Request is one-shot and producer admission was halted under FIFO lock.
+      * Frontend references are explicitly not retired by this diagnostic. */
+-    if (qatomic_read(&d->preserve227.state) == 1) {
++    if (qatomic_load_acquire(&d->preserve227.state) == 1) {
++        nv2a_preserve231_snapshot(d, d->preserve227.gate_fifo);
+         unsigned result = 4;
+         bool frontend_locked = !qemu_mutex_trylock(&pg->renderer_lock);
+         if (!frontend_locked) { qatomic_set(&d->preserve227.reason, 2); }
