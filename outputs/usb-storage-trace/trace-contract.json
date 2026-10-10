@@ -1,0 +1,36 @@
+{
+  "source_pins": {
+    "hw/ide/trace-events": {
+      "sha256": "f3739e8fa5c8de49ab3bde522e035170a278608c3412abc0f6813b8545bc4e24",
+      "matches_build": true
+    },
+    "block/trace-events": {
+      "sha256": "0d63e4fb37efc9a7315dfc8cde05c807901973915c61f1b0e96355dbe4985f2a",
+      "matches_build": true
+    },
+    "hw/ide/core.c": {
+      "sha256": "37063499faf9307f766ab08f7c8896609bfa0242cbdeb6fe14712dc6ce08fc7f",
+      "matches_build": true
+    },
+    "block/block-backend.c": {
+      "sha256": "f2abf4f9055688976e3dd5e378512e53a78b72ad76e5b4f3d3116e8591946859",
+      "matches_build": true
+    },
+    "block/io.c": {
+      "sha256": "8ae66cefe7f8231121c24836e0e01970e8704e98d7a0a2c05647b268cd1db92c",
+      "matches_build": true
+    }
+  },
+  "events": {
+    "hw/ide/trace-events": [
+      "ide_bus_exec_cmd(void *bus, void *state, uint32_t cmd) \"IDE exec cmd: bus %p; state %p; cmd 0x%02x\"",
+      "ide_sector_write(int64_t sector_num, int nsectors) \"sector=%\"PRId64\" nsectors=%d\"",
+      "ide_dma_cb(void *s, int64_t sector_num, int n, const char *dma) \"IDEState %p; sector_num=%\"PRId64\" n=%d cmd=%s\""
+    ],
+    "block/trace-events": [
+      "blk_co_pwritev(void *blk, void *bs, int64_t offset, int64_t bytes, int flags) \"blk %p bs %p offset %\"PRId64\" bytes %\" PRId64 \" flags 0x%x\"",
+      "bdrv_co_pwritev_part(void *bs, int64_t offset, int64_t bytes, unsigned int flags) \"bs %p offset %\" PRId64 \" bytes %\" PRId64 \" flags 0x%x\""
+    ]
+  },
+  "meaning": "IDE entries precede transfer submission; block entries precede validation and child write calls. None records completion or buffer contents."
+}
