@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "source_sha256": "63ac0bd344b565cec8414a26331d81e8fb9a08db215470e4cf4d3b18d174fecd",
+  "source_pins": {
+    "gpu_snapshot.c": "5503f73bc97a0294ecfe77400abb330bb1d15fd62c52fa29a147564f2e604bd1",
+    "registers.h": "b262d2b6cefbb11762345fad87b89bd38024d7f61f1e0bd2467214ada6df75d5",
+    "snapshot_trace.py": "eb636b8241683dc2f8e4bc4212ca2c67ec10ce75f1007520888eb3ea09eb8a3b",
+    "host-test002.c": "eb674f2b3c0c8ec97c225ae9489f3d5ad7e0e777081b082669c96b2e16df7fd4",
+    "host-shim/ntddk.h": "e5a52c01de87cf402df63180d3f0f5b509818b0c48f0c6e191447435179beea2",
+    "inventory-model.py": "eb96d37bfde3e1c60ad88c92f504856c2aa8b73614d079541d24693e84f1261c",
+    "review-build.py": "5df434087fbd6ff73af5a982ec0c77e40119df6b87f78f64792cd53e65226287",
+    "review-native-inputs.py": "6470c8fd6d83c2abda13ebfe8ecf19507c6f2a5d0325448300315d19719c5940",
+    "test-host002.py": "bf275b92e6197430d780af165a37bb0e1cc489ed4106d7a4d3166f380fca9504",
+    "test-parser002.py": "f16cd66d98702a9f9c95ab68d89c1ab43047352a66d97bd045e57e5729a157ee"
+  },
+  "approved_offsets": [
+    0,
+    256,
+    320,
+    8720,
+    8724,
+    8728,
+    8448,
+    8512,
+    12800,
+    12804,
+    12832,
+    12840,
+    12864,
+    12868,
+    12880,
+    4194560,
+    4194624,
+    4194632,
+    4196128,
+    6291712,
+    6291776,
+    6293504
+  ],
+  "native_import_delta": [
+    "ntoskrnl.exe!READ_REGISTER_ULONG"
+  ],
+  "new_gpu_writes": false,
+  "new_mmio_mapping": false,
+  "phase_hooks": [
+    "after retained-mode initialization before Ready",
+    "after first successful shared framebuffer mapping"
+  ],
+  "physical_access": false,
+  "guest_launch": false,
+  "gpu_ownership_proven": false,
+  "manual_review": [
+    "No GPU write/submission/reset/ack/index operation in the helper; existing baseline CRTC port writes unchanged.",
+    "Existing mapping caller lifetime retained; no address stored/exported.22 bounded reads per phase,CPU-only interlocked once gate.",
+    "Actual read handlers and PGRAPH regs_ helper reviewed. Raster/RDI excluded. Sequential state does not prove idle/exclusive ownership.",
+    "Kernel read ABI pins old actual implementation; modern documentation is not an assertion of extra hardware ordering.",
+    "Parser first failure is a harness expectation error; parser unchanged, all exact214 and strict event gates retained."
+  ],
+  "limits": "Human source review plus mechanical pins/guards, not exhaustive concurrency proof, physical read safety, queue/completion/drain or runtime."
+}

@@ -1,3 +1,39 @@
+# Current:214 GPU state diagnostic CLOSED; source/evidence review PASS
+
+Matched ordinary control001/candidate001 each launched ONCE and fully closed.
+Control accepted2026-10-10 01:35:20Z,closed01:39:42Z;candidate accepted01:41:04Z,
+closed01:44:54Z. Owned candidate controller PID94272,runner97240,observer103612
+CLOSED;control controller28486/runner104232/observer99516 CLOSED. Preparation
+11081/nativebuild/host tests CLOSED. ALL root-owned214 processes CLOSED. Never
+relaunch/recollect either case. See actual per-case host/launch/closure/audit.
+
+Actual candidate44 read-only MMIO reads/48 records,22 registers at each of two
+hooks,identical values. PFIFO push/pull disabled,channel1;PGRAPH FIFO enabled,
+contextchannel0;RAMHT03000100/RAMFC00890110;scanout03c00000. No ownership/idle or
+physical address authority inferred. No GPU writes,RAMIN/index/raster reads,
+new mappings,cache/mode/policy/reset or physical access. Actual xemu685f compiled
+read handlers and NT5 provider ABI pinned; sequential samples are observational.
+
+Both retained five GDI samples,200 movement/readbacks,65 text cases,exact119
+upload phases and identical byte totals. Fullcold325dirs6730files326clusters,
+0errors/orphans,5hives/protected/startup/typedpolicy PASS;normalshutdown1/dashboard,
+no application/measurementevents,trace missed0. StrictFALSE solely actualFt49
+HarddiskVolume6,never waived. OFF2markers,no new reads;ON44reads/48records.
+
+Native OFF39bf01a8/ON23b76c42 matched common object;actual read import only delta.
+Native240pins,closed341pins,frozen45inputs unchanged. Host002105OFF/352ON ASan/
+UBSan,5faults/32joinedcallers PASS;preserve001 check-counter source race after
+sanitizer success. Production unchanged. Parser002254checks PASS;001 wrong
+legacy-record count oracle preserved,parser unchanged. Actual002 provenance
+explicit.106 donor target build is not a complete clean source reconstruction.
+
+NEXT: outputs/video-gpu-state214/NEXT.md. Specify actual instance/context address,
+serialized resident submission/completion/drain/quarantine/crash contracts from
+pinned model/reference paths before guarded disjoint16x8 GPU transfer. No scanout/
+physical/speed/release qualification. Physical0101/video0093,0088rollback,0.1.0 and
+all failures unchanged. No device chat messages/merges. Keep20GiB guard;C had
+22101704704bytes free during214. Reports/repo checks and private push close214.
+
 # Current:212/213 transfer precursor CLOSED; reviewed source/evidence ready
 
 212 actual ABI/source/planner PASS;213 actual native buffer ON/OFF matched ordinary
