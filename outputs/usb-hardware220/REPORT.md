@@ -1,69 +1,45 @@
-# LIVE: USB owns hardware220; fresh read-only capture starting
+# USB220 live hardware status
 
-Audio restored-baseline closure verified and USB claim granted. No USB physical writes or launch yet. Prepared source commit bd3cb0c. Current records below will be updated after capture.
+USB holds the persistent hardware220 ticket. Windows launch was accepted once at
+2026-10-10T06:07:51.539346+00:00: 200 EXEC command succeeded..
+The bounded observer closed without dashboard return. An actual screen report and
+manual normal restart were requested once; no response has yet been recorded.
+Trial startup is enabled. Do not relaunch. Baseline is not yet restored; do not
+release the queue. No owned host process/session is currently running.
 
-# USB220 authorized physical trial
+Incoming capture: 55 files, including five valid hives, their journal/
+backup companions, startup, three event logs, SetupAPI and protected loader/HAL/
+FATX/video/network/USB/HID/audio files. The complete incoming rollback ZIP was
+readback-verified on the console before Windows launch. Collector build007 is
+unchanged: b79d517414d588947432705d9089348ac66711a3a4de44497139293552d9e5b1.
+No driver, INF, device binding, event suppression or GPU/SMBus/AC97 experiment
+was deployed. The only active one-shot startup calls the descriptor collector.
 
-Historical preparation: USB initially waited because audio had not closed its restored
-baseline. No USB physical access, writes or launch has occurred. No owned guest,
-FTP connection or background controller exists. Shared queue: canonical
-outputs/device-hardware220/state; order audio, USB, PCI.
+The prior read-only F allocation scan returned to the dashboard and passed:
+6193 directories, 122554 files, 6198 directory clusters,
+zero allocation errors and zero orphan clusters. Its E-only report path is
+/E/Applications/XWNU220ScanB. This is actual physical evidence, not emulator data.
 
-Preparation completed: unchanged build007/source pins verified; host scripts
-parsed; five offline fault checks passed for no socket before ownership, no
-socket after queue closure, no repeated uncertain launch, interrupted startup
-write restoration, and startup restoration before a failed result read.
-Frozen controller and dependency pins are in prepared.json. The shared
-state/usb-status.json links this report without claiming or releasing a ticket.
-The original preparation is preserved as prepared001.json. The current revision
-adds guards from audio's fresh, successful capture002 for the legacy ACI and
-supporting audio drivers; actual incoming bytes still require USB's own capture
-after audio's restored-baseline closure. No candidate audio bytes are adopted.
-
-The October 10 user authorization and new220 handoff supersede the historical
-coordinator-only restriction in USB207. This trial uses the unchanged reviewed
-USB207 build007 collector, commit5d86c99870e977f807d9a47ee75f6792e349cdbe.
-Binary SHA256 b79d517414d588947432705d9089348ac66711a3a4de44497139293552d9e5b1.
-This is standard device/configuration descriptor collection through the existing
-NT5 OHCI/hub stack. It does not install a driver, configure the XID child, read
-vendor XID descriptors, or capture unbound XID interrupt reports.
-
-Source/report root:
+Source/evidence root:
 E:/Codex-private-artifacts/xbox-windows-feasibility/device-workstreams207/usb/repo/outputs/usb-hardware220
 
-Unique planned remote trial directory: /F/xwnusb220a. Windows path: C:\xwnusb220a.
-Private snapshots and rollback: artifacts/physical001. Mutable trial record:
-physical001.json. Raw captured hives/logs remain private. Capture actual incoming
-startup, five registry hives, events, SetupAPI and all protected loader/HAL/FATX/
-video/network/USB/HID files before staging. Historical211 fixed hashes are guards,
-not substitutes for new incoming readback. Preserve0088 and immutable0.1.0.
+Current trial: physical001.json. Incoming hives: before-hive-audit.json.
+Incoming allocation: before-allocation.json and before-scan.json.
+Frozen inputs: prepared.json; prior revisions are preserved as prepared001..004.json.
+Private raw bytes: artifacts/physical001. Remote collector: /F/xwnusb220a.
+Rollback: /F/xwnusb220a/incoming-rollback.zip and normal-startup.cmd.
+The old USB207 package and evidence are unchanged. Prepared and initial physical
+source/report history is pushed through46b253d on codex/xbox-native-usb.
 
-Launch Windows at most once. Record intent before SITE EXEC; timeout never permits retry.
-Collector bounds match reviewed207. Normal restart is manual for this diagnostic;
-screen/restart method must come from the user and event/return evidence. Keyboard
-remains unplugged. No wizard actions, device disabling, event suppression, HAL,
-MMIO, interrupt ownership or GPU changes. No speculative AC97/SMBus operations.
+Next: once the dashboard returns, restore startup FIRST and collect usb.log,
+exit.txt, post-run hives/companions/events/SetupAPI/providers. Validate hives and
+run the separately recorded after allocation scan, preserving all failures.
+Restore exact incoming registry companions and primary hives, verify protected
+files and run the restored allocation scan. Only then close USB's queue ticket
+with this report. If a scan/restore fails, retain the ticket and evidence.
 
-At dashboard return restore startup FIRST, collect every available result and
-post-run hive/event state, walk the hives offline, then restore exact incoming
-registry snapshots and verify all protected files plus dashboard identity.
-Keep the queue ticket while restoration or user input is pending. Close only
-with an actual restored-baseline declaration and this report path.
-
-The existing validated read-only F allocation snapshot XBE is now included,
-with unique E-only launch/report directories XWNU220ScanB/A/R for before,
-after-Windows and restored-baseline captures. Each has its own single-launch
-record and bounded observer. It opens Partition6 read-only and has verified
-emulator evidence of no F writes. Before allocation must pass before Windows;
-after allocation must pass before registry restoration. The original preparations
-remain preserved. Current host failure checks include a sixth check for transient
-atomic-record replacement failure; all six passed. The collector binary is unchanged.
-
-Physical allocation integrity, repeated cold boots, controller input and
-driver installation are not yet established by this prepared trial. All earlier
-USB207 failures remain preserved. New failures will be retained in trial records.
-
-Preparation commit4680a5e5e48d07168a546c31c8b6332d04f1ba5c is pushed and remote-verified. The repository scan passed for19279 tracked files. Scan session11374 and commit/push session84317 are closed. No owned session remains.
-
-
-LIVE: incoming capture and all five hive walks passed. One E-only read-only allocation scan launch is recorded in before-scan.json. Windows has not been launched; F: startup and drivers remain incoming bytes. Owned observer is bounded and tracked in shared usb-status.json.
+The collector cannot issue vendor XID requests or read unbound XID interrupt
+reports through the standard hub API. Controller input/driver installation,
+repeated cold boots and physical descriptor results remain unqualified until
+actual evidence supports a narrower conclusion. Normal restart method must not
+be inferred from an offline FTP interval. Earlier failures remain preserved.
