@@ -1,3 +1,46 @@
+# Current checkpoint: consume232 CLOSED; actual guest-dependent wait
+
+ONE fresh opt-in actual consumer run CLOSED at 2026-10-10T22:19:53.529988+00:00. No physical
+access/device merge/tag change. Head before this turnc866915. All root owned
+sessions8773/2461/88498/18232 and PIDs114836/78228/69944/115420 CLOSED;
+cooperative leases released. Never rerun/recollect closed232 trace001.
+
+Build/test/review inputs byte-pinned; four model files changed, SIX borrowed
+files restored. 32768 iteration/word budgets and5sec real-time limit, real
+wait/error preservation, ordinary NULL budget. O0/O2 actual-parser ASan/UBSan
+46672 checks/10000packet cases each; actual publication ~1.69M checks/100000races/
+10000pairs each;72guards. Host adapters are explicit, not GPU execution.
+
+Runtime refused state4/reason20/stop4, raw NOP wait2->2, zero iterations/words;
+GET03fbe750/PUT03fcea10 unchanged backlog66240, parser count/error0.212992 actual
+reserved bytes unchanged; GDB mode restored, no guest breakpoint/memory writes.
+No dirty readback, reference retirement or native grant. CPU65 allocations/
+releases3194880bytes and four joined workers; normal restart/dashboard; cold
+320dirs6723files321clusters0errors/orphans,5hives/protected/policy passed.
+StrictFALSE sole inheritedFtdisk49; GPU/ordinary/physical/native unqualified.
+Existing211 wizard policy explicit, NO synthetic null device policy.
+
+Actual pinned pgraph.c static sites set NOP wait on nonzero NV097NO_OPERATION
+and clear it through guest NV_PGRAPH_INTR acknowledgement after ERROR absent.
+No runtime method/parameter/interrupt/acknowledgement captured. Next NEW bounded
+read-only producer/clearer/IRQ lifecycle observer before owned handoff; never
+clear waits or resume producers within an accepted preservation request.
+See outputs/xemu-backend-consume232/REPORT.md and WAIT-NEXT.md.
+
+Audio reported capability note complete, audibility unknown; PCI remaining
+STOP/cancel/SMBus/takeover gates continue. USB reported no-XID second-boot stale
+data/12orphans4a2f1f6, unresolved; preserve failed disks. Root first-boot cold
+checks DO NOT resolve repeated-boot storage. Authorized continuation/lease
+release messages sent. Peer report cursors in coordination001.json.
+
+Fresh private fixture E:/Codex-archive/xbox-windows-native/consume232/
+trace001-source.qcow2; private run E:/Codex-private-artifacts/
+xbox-windows-feasibility/consume232-runs/nt5-consume232-trace001. Preserve
+physicalFATX0101/video0093,0088rollback,immutable0.1.0,all old evidence.
+C24.45GB/E163.1GB free at22:20UTC;20GiB build guard unchanged.
+
+--- Previous continuation retained byte-exact below ---
+
 # Current:231 CLOSED ordered telemetry; actual queued GET/PUT gap identified
 
 Read outputs/xemu-backend-publication231/REPORT.md, queue-review001.json and

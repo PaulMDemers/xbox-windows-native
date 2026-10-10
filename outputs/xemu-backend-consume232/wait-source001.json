@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "source_sha256": "455cd3d1ac85b3bdd9cb30c307be2c7787a4f40d8b419b136d0350a479294446",
+  "compiled_source": "hw/xbox/nv2a/pgraph/pgraph.c",
+  "compiled_source_sha256": "d7261f812aa1f031c3d72b5f070d2a1f753f1b2d6bc4ddedfff396770184f945",
+  "artifact": "artifacts\\wait-source001\\pgraph.c",
+  "sites": [
+    {
+      "line": 98,
+      "text": "            pg->waiting_for_nop = false;"
+    },
+    {
+      "line": 850,
+      "text": "    pg->waiting_for_nop = true;"
+    }
+  ],
+  "static_producer": "Nonzero NV097 NO_OPERATION sets trapped method/data and ERROR interrupt, sets waiting_for_nop, then updates IRQ.",
+  "static_clearer": "Actual guest NV_PGRAPH_INTR write removes supplied pending bits and clears waiting_for_nop only once ERROR is absent, then kicks PFIFO.",
+  "runtime_proven": "consume232 observed waiting_for_nop before/after with zero parser iterations and zero committed words.",
+  "runtime_not_proven": "No trapped method/parameter, interrupt mask, guest acknowledgement write or complete wait lifecycle was captured in this case.",
+  "physical_access": false,
+  "qualification": false
+}

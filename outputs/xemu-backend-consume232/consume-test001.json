@@ -1,0 +1,50 @@
+{
+  "passed": true,
+  "source_sha256": "d9d30903195ab2cfb6820750f0e9ae33c993c3596323d83d23c0dc772a583a35",
+  "test_sha256": "8e5a3a0415b550ab5a54b92c264cbd8cb1cab11f38dcbc1a89fe969296ca7ba0",
+  "actual_parser_sha256": "f083aca4c9596efea40ed2dba10c85c8649f7eccfdffa100f57bb097b327e543",
+  "compiled_pfifo_sha256": "b510a853ba75b28d580ebb169c845585c042886c4a9195f4e5cfa667fac15e4a",
+  "runs": [
+    {
+      "command": [
+        "gcc",
+        "-std=gnu11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-O0",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xemu-backend-consume232/artifacts/consume-test001",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xemu-backend-consume232/artifacts/consume-test001/test-consume.c",
+        "-o",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xemu-backend-consume232/artifacts/consume-test001/consume-O0"
+      ],
+      "stdout": "checks=46672 packet_cases=10000 ordinary_comparisons=covered jump_budgets=covered native_grants=0\n",
+      "stderr": "",
+      "exit_code": 0,
+      "executable_sha256": "3f956059f35ca065b1833ac82da08936a97c887069d86b66518060139a463259"
+    },
+    {
+      "command": [
+        "gcc",
+        "-std=gnu11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-O2",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xemu-backend-consume232/artifacts/consume-test001",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xemu-backend-consume232/artifacts/consume-test001/test-consume.c",
+        "-o",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xemu-backend-consume232/artifacts/consume-test001/consume-O2"
+      ],
+      "stdout": "checks=46672 packet_cases=10000 ordinary_comparisons=covered jump_budgets=covered native_grants=0\n",
+      "stderr": "",
+      "exit_code": 0,
+      "executable_sha256": "8701f10a89fd4034669e99dd36237f3ab869233e3991195723f981c4739474b9"
+    }
+  ],
+  "scope": "Actual compiled DMA parser/masks/atomics and budget/wait wrapper; host-only PGRAPH, DMA-map and byte-load adapters. Does not qualify GPU execution or guest handoff."
+}
