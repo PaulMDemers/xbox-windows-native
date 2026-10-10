@@ -1,3 +1,34 @@
+# Current:230 CLOSED queue refusal; CPU/cold PASS; other-device check-in
+
+Read outputs/xemu-backend-dashboard230/REPORT.md and trace-observation-review001.json.
+Single corrected physical-mode query trace reported state4/reason1, no surfaces,
+no dirty/readback coverage,212992 raw bytes reserved unchanged. Exact GET/PUT/
+parser words not captured. Actual pinned PFIFO skips the pusher while halt=true:
+this diagnostic is a refusal gate, NOT a consuming backend drain. Next NEW kit
+needs release/acquire terminal telemetry plus actual queue/parser snapshots,
+then bounded genuine queue consumption with frozen producer admission. No fake
+idle/error clearing, native grant or reference retirement.230 retains exact228
+model, unchanged224/native payload, bootvid219 and explicit211 device policy.
+
+ONE launch20:17:15UTC, normal dashboard return20:18:36, closed/audited20:18:55.
+CPU65 allocations/releases/3194880bytes/four joined workers and refusal observations
+PASS. Full cold320dirs6724files321clusters/0errors/orphans, five hives/protected
+hashes/startup/history/policy PASS. StrictFALSE sole inherited Ftdisk49/error3;
+backend/preservation/ordinary/physical FALSE. All root processes CLOSED:
+230 preparation71166/runtime62917; controller89756/runner114100/tracer109380/
+observer113652. Earlier229 preparation40008/runtime24795 CLOSED, no GPU request
+or Windows launch due incorrect host query prefix; guard prevented launch,
+cleanup/cold integrity passed. Never replay either closed case or frozen sources.
+
+User-authorized coordination: audio confirmed physical install/runtime evidence
+5fbcc971, closed/restored, audible unknown/APU/digital unqualified/Ft49 strict.
+USB032 installed xwnxid/HID child,200 emulator reads; five hives passed, restart
+held by install queue and strict DCOM/Ftdisk/PerfDisk failures. PCI pinpointed
+resource-list validator mismatch, revised build checks pass; new HAL candidate
+host65894 tests, NOT yet booted. No candidates merged/deployed by root. See230
+coordination001.json. Physical0101/video0093,0088rollback and0.1.0 preserved.
+C: last~24.3GiB/E~166.5GiB;20GiB guard unchanged. Git HEAD/origin authoritative.
+
 # Current October10 20:04UTC:229 guard fixes, still unprepared
 
 User-authorized check-in: PCI lifecycle002 active emulator trial after import
