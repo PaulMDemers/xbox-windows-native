@@ -1,4 +1,39 @@
-# Current:218 probe calibrated on E; physical readiness pending
+# Current:218 physical query probe CLOSED; exact64-byte backing correspondence
+
+After user reboot report, one guarded physical launch at2026-10-10T04:21:26Z.
+Exact build005931e9896 XBE uploaded/readback verified to NEW
+/F/Applications/XWNInstance218; reports NEW /E/xwninst218d. Both paths absent
+before launch. Observed dashboard return, five exact captured reports. Stock
+kernel1.0.4034.1/64MiB, query83ff0000/padding10000 and ten page translations match.
+23 baseline files/five hives unchanged; ten hive snapshots structurally parsed.
+Selected hashes/hives only: NO full physical allocation/all-file-content audit.
+No Windows launch/driver/startup/menu/cache/allocator/GPU write changed.
+
+Original forward and reverse16 hypotheses remain FALSE2270/1550 mismatched words.
+NEW independent read-only post-hoc analysis: reverse64-byte block order preserving
+intra-block order matches ALL20480 bytes/5120 words, two stable passes,1611 nonzero
+words/343 distinct16-byte blocks.137 unique nonzero64-byte pairs. Host20706checks
+with16seeds, independent reconstruction, mutation/instability/zero rejection PASS.
+This is passive physical correlation, NOT causal alias/cache coherence/NT5 grant.
+Do not silently change original218 gate or assume emulator4627/kernel4034 parity.
+See physical001.json, physical-audit001.json, physical64-analysis.json, REPORT.md.
+
+Next NEW isolated boot-video writable layout, see218/LAYOUT-NEXT.md: preserve
+permanent4MiBUCmapping but protect03feb000..04000000; propose indexed buffer
+03f9dd00..03feb000/HiddenOffset39dd00. Moving it alone is insufficient: pinned
+VidResetDisplay clears entire4MiB. Capacity/clear/placement/publication need one
+reviewed contract and actual boot/reset/crash guards before context/copy work.
+No layout patch/build is implemented yet. Physical0101/video0093/0088rollback/
+immutable0.1.0 preserved. Other-device branches not merged.
+
+All owned processes CLOSED. Physical launch37740 closed0; observe/collect bounded
+commands closed0, read-only hive audit and offline64 analysis closed0. Never
+relaunch/recollect physical001 or emulator001..007. Retain remote app/logs and
+private before/after/raw captures; physical-plan.json is immutable prepared input,
+actual physical001.json overrides its historical undeployed state. C22909702144
+bytes free at check;20GiB build guard unchanged. No new guest/build/scan running.
+
+# Previous:218 probe calibrated on E; physical readiness pending
 
 User authorized continued GPU work and check-in with existing device chats.
 217/check-in pushed161921a. NEW video-instance-correlation218 REPORT/NEXT/review.

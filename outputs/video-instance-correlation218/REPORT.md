@@ -59,11 +59,57 @@ geometry-arithmetic006.json. Never boot or adopt the failed native006 disk.
 
 ## Physical boundary and closure
 
-The hardware-facing build005 payload is copied/readback verified under private
-artifacts/physical001. physical-plan.json specifies a NEW F: app folder and
-small E: reports, with absence guards for both. The physical Xbox FTP timed out
-on both readiness checks. No file was uploaded and no console app was launched.
-The readiness question remains pending; do not infer console screen state.
+The two original FTP readiness timeouts are preserved. After the user reported
+the console rebooted, physical001 deployed the exact build005 payload to NEW
+/F/Applications/XWNInstance218/default.xbe with upload/readback verification,
+then issued one SITE EXEC at2026-10-10T04:21:26Z. Dashboard FTP returned with NEW
+/E/xwninst218d reports. Both unique paths were absent at preflight. Windows
+drivers, startup and menu were unchanged. physical-plan.json retains its original
+prepared-only state as a frozen input; physical001.json records actual deployment.
+
+Hardware kernel1.0.4034.1, GPU revision163, MCPX178 and16384 physical pages passed
+the query/profile checks. All ten virtual pages translated as expected. Both
+20KiB CPU and PRAMIN passes were stable, with1611 nonzero CPU words and343 distinct
+16-byte blocks. The original forward and reversed16-byte hypotheses FAIL with
+2270 and1550 mismatching words. That original gate is unchanged.
+
+Read-only post-capture correspondence analysis found137 unique nonzero64-byte
+block pairs. Reversing the order of64-byte blocks, retaining intra-block order,
+matches ALL20480 bytes/5120 words in each stable pass exactly. Of the ten tested
+reversal sizes4..4096, only64 has zero mismatches. Within this observed window:
+
+```
+GPU address = 0xfd710000 + o, 0 <= o < 0x5000
+CPU physical = 0x03ff0000 - 64 - (o // 64) * 64 + (o % 64)
+```
+
+First GPU block corresponds to03feffc0; last to03feb000. This is post-hoc exact
+passive content correlation from one physical boot, not a causal write/cache
+coherence proof, full-aperture mapping or NT5 ownership grant. The emulator's
+separate RAMIN model remains insufficient to establish physical UMA behavior.
+analyze-physical64.py records20706 host checks over index bounds/involution,
+independent block reconstruction, mutations, wrong block sizes, unstable captures
+and zero-only rejection. No probe source or original result was changed.
+
+All23 baseline file pairs are byte-identical. Ten before/after hive snapshots
+structurally parse; all five pairs are unchanged. The probe XBE is unchanged,
+all five expected E reports are preserved/readback verified, and the stock
+restart request and dashboard return were observed. These are selected baseline
+hashes and hive checks, NOT full physical allocation or all-file-content audits.
+No Windows boot, cache flush, GPU store, allocator resize or context/copy occurred.
+Physical GPU acceleration remains unqualified. No owned process remains; never
+relaunch or recollect physical001. Preserve its remote app/reports as evidence.
+
+The next layout change must address both the indexed backbuffer overlap AND the
+pinned bootvid VidResetDisplay's full4MiB RtlZeroMemory. Moving BackBuffer alone
+would still clear the observed instance region. For the observed64MiB profile,
+exclude03feb000..04000000 (20KiB instance plus64KiB query padding) from boot-video
+writes; move the316160-byte indexed buffer below03feb000, publish its corrected
+HiddenOffset, and bound reset clearing by the same writable-end contract. Proposed
+indexed range03f9dd00..03feb000 must be checked against visible bytes and all
+consumers in a NEW isolated build. This is a proposed layout, not installed code
+or proof that firmware/GPU references are released. See LAYOUT-NEXT.md.
+
 Preserve physical FATX0101/video0093, original0088 rollback and immutable0.1.0.
 
 All seven emulator cases are closed, all debugger captures resumed without

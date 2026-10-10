@@ -1,0 +1,77 @@
+{
+  "scope": "Post-capture 64-byte ordering discriminator, not the original probe gate.",
+  "physical_result": true,
+  "physical_qualified": false,
+  "gpu_alias_proven": false,
+  "nt5_ownership_granted": false,
+  "post_hoc_discovery": true,
+  "original_gate_unchanged": true,
+  "actual": {
+    "cpu_stable": true,
+    "gpu_stable": true,
+    "nonzero_words": 1611,
+    "distinct16_blocks": 343,
+    "mismatched_bytes": 0,
+    "mismatched_words": 0,
+    "informative64_correlation": true
+  },
+  "host_tests": {
+    "passed": true,
+    "seeds": 16,
+    "checks": 20706
+  },
+  "tested_reversal_sizes": [
+    {
+      "block_bytes": 4,
+      "mismatched_words": 2138
+    },
+    {
+      "block_bytes": 8,
+      "mismatched_words": 2088
+    },
+    {
+      "block_bytes": 16,
+      "mismatched_words": 1550
+    },
+    {
+      "block_bytes": 32,
+      "mismatched_words": 1538
+    },
+    {
+      "block_bytes": 64,
+      "mismatched_words": 0
+    },
+    {
+      "block_bytes": 128,
+      "mismatched_words": 1468
+    },
+    {
+      "block_bytes": 256,
+      "mismatched_words": 1564
+    },
+    {
+      "block_bytes": 512,
+      "mismatched_words": 1720
+    },
+    {
+      "block_bytes": 1024,
+      "mismatched_words": 1888
+    },
+    {
+      "block_bytes": 4096,
+      "mismatched_words": 2518
+    }
+  ],
+  "formula": "For observed GPU byte offset o in [0,0x5000): CPU physical=0x03ff0000-64-(o//64)*64+(o%64). GPU address=0xfd710000+o.",
+  "first_gpu_block_cpu_physical": 67043264,
+  "last_gpu_block_cpu_physical": 67022848,
+  "bytes_compared_per_pass": 20480,
+  "cpu_snapshot_sha256": "025870410472b1e16ab13b1915f621a788a0f0aa44d123326e76645efcd89870",
+  "gpu_snapshot_sha256": "2288a2e26c1780ae867dc8c445863c829d4926cd0bf2bd688af16daab086d140",
+  "limits": "Exact passive content correlation in two stable captures from one stock-kernel4034 boot. Does not prove causal alias/cache coherence or generalize outside the observed window; no writes, allocator resize, NT5 ownership, context switch or GPU copy.",
+  "inputs": {
+    "outputs/video-instance-correlation218/analyze-physical64.py": "af00a1056da19a5cb3a4bb3e1db23942153aee5fe908e00a64a6cce319f6398d",
+    "outputs/video-instance-correlation218/physical001.json": "b82d5ba81fe4e6f774e3f50160de1f351796d5469bc7b476ffd58635d76db3e8",
+    "outputs/video-instance-correlation218/physical-audit001.json": "dbb36cb845889d0a2b7d4be2b29f3b069465befde3df10ce4df1723f3af12f85"
+  }
+}
