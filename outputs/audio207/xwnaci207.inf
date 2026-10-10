@@ -1,0 +1,55 @@
+; Experimental install configuration; genuine installation/runtime qualification pending.
+; Experimental original Xbox ACI, fixed stereo PCM. No APU or digital-output claim.
+[Version]
+Signature="$Windows NT$"
+Class=MEDIA
+ClassGUID={4d36e96c-e325-11ce-bfc1-08002be10318}
+Provider=%Provider%
+DriverVer=10/09/2026,0.0.4.207
+[Manufacturer]
+%Provider%=Xbox
+[Xbox]
+%Device%=Audio,PCI\VEN_10DE&DEV_01B1&SUBSYS_00000000&REV_B1
+[SourceDisksNames]
+1=%Disk%,,,
+[SourceDisksFiles]
+xwnaci207.sys=1
+[DestinationDirs]
+Audio.Copy=12
+[Audio.NT]
+Include=ks.inf,wdmaudio.inf
+Needs=KS.Registration,WDMAUDIO.Registration
+CopyFiles=Audio.Copy
+AddReg=Audio.Registry
+[Audio.Copy]
+xwnaci207.sys
+[Audio.Registry]
+HKR,,AssociatedFilters,,"wdmaud"
+HKR,,Driver,,xwnaci207.sys
+HKR,Drivers,SubClasses,,"wave,mixer"
+HKR,Drivers\wave\wdmaud.drv,Driver,,wdmaud.drv
+HKR,Drivers\wave\wdmaud.drv,Description,,%Device%
+HKR,Drivers\mixer\wdmaud.drv,Driver,,wdmaud.drv
+HKR,Drivers\mixer\wdmaud.drv,Description,,%Device%
+[Audio.NT.Services]
+AddService=xwnaci207,2,Audio.Service
+[Audio.Service]
+DisplayName=%Device%
+ServiceType=1
+StartType=3
+ErrorControl=1
+ServiceBinary=%12%\xwnaci207.sys
+[Audio.NT.Interfaces]
+AddInterface=%AudioCategory%,Wave,Audio.Interface
+AddInterface=%RenderCategory%,Wave,Audio.Interface
+[Audio.Interface]
+AddReg=Audio.InterfaceRegistry
+[Audio.InterfaceRegistry]
+HKR,,CLSID,,"{17CCA71B-ECD7-11D0-B908-00A0C9223196}"
+HKR,,FriendlyName,,%Device%
+[Strings]
+Provider="Xbox Native Windows experiment"
+Device="Xbox ACI stereo PCM (experimental)"
+Disk="XWN private ACI package 207"
+AudioCategory="{6994AD04-93EF-11D0-A3CC-00A0C9223196}"
+RenderCategory="{65E8773E-8F56-11D0-A3B9-00A0C9223196}"
