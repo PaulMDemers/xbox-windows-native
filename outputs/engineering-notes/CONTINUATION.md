@@ -1,3 +1,45 @@
+# Current:221 reset/crash guard pair CLOSED/PASS; hardware220 audio owns console
+
+Updated 2026-10-10T05:50:44.201396+00:00.
+See outputs/video-reset-guard221 REPORT.md/NEXT.md/pair-verification003.json.
+Corrected control002 and candidate002 CLOSED, runner/tracer/supervisor/audit0.
+Control launched05:31:29UTC, candidate05:45:02UTC; candidate closed05:47:59UTC.
+Actual IRQL31 crash SetMode FALSE: candidate preserves all86016 tail bytes at
+four captures; old control reset zeroes tail, final rendering leaves index4.
+Independent full raw review verifies688128 bytes/actual mapping/four return pairs
+per case/11 resident pins each. Full cold allocation320dirs6721files321clusters,
+zero errors/orphans,5hives and27 protected hashes each. Exact one-shot intent,
+breakpoints all removed/guest resumed. Intentional crash normalshutdown0; no
+ordinary/GPU/dump/hardware qualification. Strict events retain soleFtdisk49.
+
+Original control001 observer ABI failure CLOSED; candidate001 NEVER launched.
+Original frozen posthoc verify002 zero-assumption failure retained; separate003
+corrects control final/saved-row assumptions without changing exact candidate
+preservation gate. Frozen34/45 inputs unchanged. No source fix to guest221.
+No root-owned guest/controller/observer remains; sessions9245/8667/80042 CLOSED. Preserve
+all closed disks and artifacts at their E paths; never repeat launch/collection.
+
+Next: concrete loader-to-NT5 resident instance ownership and bounded software
+context acquire/service/drain/quarantine before GPU copy. Read212/215/216/218
+contracts, actual compiled provider/binary state and221 limitation: no actual
+SetMode TRUE early-boot guard yet. No firmware channel borrowing/global reset,
+mode/cache changes, accelerator claim or root physical deployment.
+
+User-authorized hardware220 queue is audio -> USB -> PCI. Root remains emulator
+only; exact private state files govern ownership. Audio installer/cold-integrity
+passed and playback logs show twelve successful cycles; audible output remains
+unconfirmed and post-playback integrity/restoration pending. Actual current
+stage post-playback-allocation, owned sessions [92291]. USB prepared, PCI holds
+physical staging for unreadable-log-tail diagnosis; neither owns console yet.
+No branch integration; only current owner contacts physical FTP/deploy/launch.
+Keep installed0101/video0093,0088 rollback and immutable0.1.0 separate.
+
+Verified closed standalone kernel032/035 offload freed about2.16GB, original
+paths retained via junctions; task-storage-offload manifest records exact hashes.
+20GiB guard unchanged; last C free24581300224bytes. Source/report review and
+repository/index checks PASS; checkpoint review records exact staged text. Commit/push
+this checkpoint to private main next.
+
 # Current:219 boot-video layout ordinary pair CLOSED; reset/crash guards next
 
 NEW outputs/video-boot-layout219 DESIGN/REPORT/NEXT. Isolated source keeps permanent
