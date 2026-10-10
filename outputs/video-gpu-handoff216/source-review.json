@@ -1,0 +1,58 @@
+{
+  "passed": true,
+  "source_sha256": "f226bdfbe7d71e8b5f2b5df455c7f1c63f19cf16e45a33d01e063378eeb4f39d",
+  "source_pins": {
+    "gpu_snapshot.c": "eb839d5683b45489e7743d7bc9f950d08f77a38c0cb8f2e15441291f8334401c",
+    "registers.h": "fd34daccf912a624f95dbc6f3af024aa1d3122d6b39f15b59bd8c4bcbabc4d29",
+    "snapshot_trace.py": "345146d1adc63a768d21b3e406b24dd0c2964f97b7655c2d289e87a64e36ab2b",
+    "host-test.c": "e05b7b102297dc99f39caf0ca2a573b52b3e59152c401d98d8b57b30a60c5acf",
+    "host-shim/ntddk.h": "b1c150d6b76fe893114f48c561fd15f91f33586a8788a2facbe96e43afe59a63",
+    "build001.py": "0582dd1cb1d6ca24cb5b99ffcd0f08f57eac9bf677bee804534400921d8a4895",
+    "inventory-model002.py": "fdab279733e5e79c9b6a47a6494d6ec00a70e5e04365ae57d91b22b9b0160ee6",
+    "inventory-handoff002.py": "7db8da6d416d413d48ecc415d5ecab45fd49163c9a71ebaa89d6f49f59845db5"
+  },
+  "approved_offsets": [
+    0,
+    256,
+    320,
+    8720,
+    8724,
+    8728,
+    8448,
+    8512,
+    12800,
+    12804,
+    12832,
+    12840,
+    12864,
+    12868,
+    12880,
+    1049088,
+    1049100,
+    4194560,
+    4194624,
+    4194632,
+    4196128,
+    4194444,
+    4194628,
+    6291712,
+    6291776,
+    6293504
+  ],
+  "native_import_delta": [
+    "ntoskrnl.exe!READ_REGISTER_ULONG"
+  ],
+  "new_gpu_writes": false,
+  "new_mmio_mapping": false,
+  "physical_access": false,
+  "guest_launch": false,
+  "gpu_ownership_proven": false,
+  "manual_review": [
+    "26 bounded reads at two retained hooks; additional CFG0/CSTATUS/DEBUG3/CTX_CONTROL use reviewed default or size read paths.",
+    "No indexed/raster/RAMIN read, IRQ acknowledgement, GPU reset, handler, context initialization or device-policy change.",
+    "Mock concurrent once gate is CPU-only; two sequential snapshots are not atomic/quiescence or GPU grants.",
+    "Exact actual NT5 read import body pinned; no newer barrier or physical read safety inferred.",
+    "Unchanged211 GDI and cold/event gates retained. Actual launcher/loader hashes match214; mutable historical loader source relationship explicit."
+  ],
+  "limits": "Source/import/host review only; runtime/context/backing/physical qualification still absent."
+}

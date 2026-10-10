@@ -1,3 +1,50 @@
+# Current:216 read-only GPU handoff diagnostic CLOSED
+
+NEW outputs/video-gpu-handoff216: REPORT.md/NEXT.md/state-observations.json.
+Actual26-register snapshots at both passive hooks show invalid PGRAPH context,
+FIFO channel1 versus PGRAPH channel0 and hardware switching disabled. Exact
+compiled-model branch requires software switching for a request; existing
+miniport has no HwInterrupt handler. No request submitted, no GPU ownership,
+idle,physical instance backing or completion proven; native adapter still needed.
+Actual launcher c7a2b9c8/FreeLoader c936b06e and historical object pinned;
+CPU CLI/IDT shutdown/top4MiB firmware reservation do not release GPU ownership.
+Historical loader source may have later edits; not clean reconstruction proof.
+
+OFF46dfc7f6/ON7dc3dbb7 builds and imports reviewed. Host109OFF/400ON ASanUBSan,
+294parser mutations,4096 context cases PASS. 49 launch inputs frozen;
+closed evidence127pins PASS. Inventory001 mistakes and source-review001 newline
+failure preserved/fixed before launch; Windows post-run import invocation failure
+recorded, unchanged comparison passed in WSL without recollecting guests.
+
+Both unique ordinary children CLOSED: control accepted2026-10-10 02:26:29UTC,
+dashboard02:30:42/closed02:31:01; candidate accepted02:32:13,
+dashboard02:35:54/closed02:36:13. OFF0 reads/2markers, ON52reads/56records,
+zero missed. Each5samples/200exact window readbacks/65textcases, matching upload
+phase totals. Cold325dirs6730files326directoryclusters0errors/orphans,5hives,
+protected hashes/startup/device state and normalshutdown/dashboard PASS.
+Scoped display/integrity PASS; strictFALSE sole inherited Ftdisk49Volume6.
+No GPU writes,newmapping,IRQ acknowledgement,cache/mode/policy change; no speed
+or physical qualification. Never relaunch/recollect212-216 closed cases.
+
+All owned sessions CLOSED: prepare2381; control71288/controller107844/
+runner90572/observer77196; candidate85249/controller102404/runner86504/
+observer107788; offload72068. Closure records and actual processes checked.
+Fresh standalone fixtures E:/Codex-archive/xbox-windows-native/gstate216;
+runs E:/Codex-private-artifacts/xbox-windows-feasibility/gstate216-runs.
+Original physical0101/video0093,0088rollback,immutable0.1.0/all failures unchanged.
+No other-device chat messages/integration. This turn emulator-only.
+
+C dipped below20GiB duringcontrol; closed standalonehardware-probe005 verified
+copy/readback onE, originalpathjunction retained. Manifest:
+outputs/task-storage-offload/manifest-hardware005-20261010.json.
+No backingchain moved; guard unchanged. C22267056128bytes atclosure review.
+
+Next NEW work: pin owned stockXboxkernel instance-allocation implementation and
+actual backing/reservation contract; do not treat its API as NT5export/grant.
+Then bounded native context acquire/service/drain and one guarded16x8 transfer,
+only after concrete review. LinuxNV04/end-VRAM and envytools are pinned research
+leads, not physicalNV2A mapping proof. Inspect capacity before builds.
+
 # Current:215 CPU transfer protocol CLOSED; no GPU submission
 
 NEW outputs/video-transfer-protocol215 implements pure CPU27word/108byte

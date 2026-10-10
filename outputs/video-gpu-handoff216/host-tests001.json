@@ -1,0 +1,63 @@
+{
+  "passed": true,
+  "source_pins": {
+    "test-host.py": "16bdf185ecbd8e1fcbbf28bbb89550a6dc53285cb47e20e04ba92b91a8b9c55f",
+    "host-test.c": "e05b7b102297dc99f39caf0ca2a573b52b3e59152c401d98d8b57b30a60c5acf",
+    "host-shim/ntddk.h": "b1c150d6b76fe893114f48c561fd15f91f33586a8788a2facbe96e43afe59a63",
+    "gpu_snapshot.c": "eb839d5683b45489e7743d7bc9f950d08f77a38c0cb8f2e15441291f8334401c",
+    "registers.h": "fd34daccf912a624f95dbc6f3af024aa1d3122d6b39f15b59bd8c4bcbabc4d29"
+  },
+  "runs": [
+    {
+      "mode": 0,
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-O2",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pthread",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-DXWN_GPU_SNAPSHOT=0",
+        "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-gpu-handoff216/host-shim",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-gpu-handoff216/host-test.c",
+        "-o",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-gpu-handoff216/artifacts/host001/test0"
+      ],
+      "binary_sha256": "c6454f973c0a062dfbb13654fa2f8f1f6428a39cee3b6f75495782267fcf3505",
+      "stdout": "checks=109 mode=0 exact_phases=2 fault_cases=5 concurrent_callers=32\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "mode": 1,
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-O2",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pthread",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-DXWN_GPU_SNAPSHOT=1",
+        "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-gpu-handoff216/host-shim",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-gpu-handoff216/host-test.c",
+        "-o",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-gpu-handoff216/artifacts/host001/test1"
+      ],
+      "binary_sha256": "d1bd27f07ad3f32ec298a02fe7e80cb72f01046c84210d57e4c6649d733d9600",
+      "stdout": "checks=400 mode=1 exact_phases=2 fault_cases=5 concurrent_callers=32\n",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ],
+  "physical_access": false,
+  "guest_launch": false,
+  "limits": "Mock reads/IRQL and CPU atomic once gate. Exact approved addresses, values/order, five faults,32 same-phase callers,unchanged source words. No hardware read semantics,ownership,atomic GPU state or runtime proof."
+}

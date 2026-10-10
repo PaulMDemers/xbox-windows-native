@@ -1,0 +1,28 @@
+{
+  "physical_access": false,
+  "guest_relaunch": false,
+  "cold_recollection": false,
+  "failures": [
+    {
+      "command": "Windows Python compare-pair.py",
+      "error": "ModuleNotFoundError: No module named fatx_stage_boot",
+      "output_created": false,
+      "reason": "Wrong host environment; common imports WSL-owned cold dependencies."
+    },
+    {
+      "command": "Windows Python review-closed.py before successful comparison",
+      "error": "FileNotFoundError: emulator-pair-review.json",
+      "output_created": false,
+      "reason": "Dependent report absent after prior import failure."
+    }
+  ],
+  "recovery": {
+    "compare": "Unchanged compare-pair.py executed successfully under WSL Ubuntu with existing cold dependency environment.",
+    "closed_review": "Unchanged review-closed.py passed after pair report existed.",
+    "source_changed": false
+  },
+  "pins": {
+    "compare-pair.py": "854e5eba1c99f475eb9bb510395d420e00555bc41f5de6d2c64edacf0549d8b8",
+    "review-closed.py": "a81f0a344ed2eb59a8d846123adacc66570eb089c80d808e27ff696388b76dad"
+  }
+}
