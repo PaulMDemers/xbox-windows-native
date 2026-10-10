@@ -26,10 +26,9 @@ SetMode TRUE early-boot guard yet. No firmware channel borrowing/global reset,
 mode/cache changes, accelerator claim or root physical deployment.
 
 User-authorized hardware220 queue is audio -> USB -> PCI. Root remains emulator
-only; exact private state files govern ownership. Audio installer/cold-integrity
-passed and playback logs show twelve successful cycles; audible output remains
-unconfirmed and post-playback integrity/restoration pending. Actual current
-stage post-playback-allocation, owned sessions [92291]. USB prepared, PCI holds
+only; exact private state files govern ownership. Audio installation and twelve playback/reset cycles passed their physical and
+cold-integrity scope, normal shutdown and persisted binding included. Audible
+output remains unconfirmed; captured baseline restoration is underway. USB prepared, PCI holds
 physical staging for unreadable-log-tail diagnosis; neither owns console yet.
 No branch integration; only current owner contacts physical FTP/deploy/launch.
 Keep installed0101/video0093,0088 rollback and immutable0.1.0 separate.
@@ -37,8 +36,9 @@ Keep installed0101/video0093,0088 rollback and immutable0.1.0 separate.
 Verified closed standalone kernel032/035 offload freed about2.16GB, original
 paths retained via junctions; task-storage-offload manifest records exact hashes.
 20GiB guard unchanged; last C free24581300224bytes. Source/report review and
-repository/index checks PASS; checkpoint review records exact staged text. Commit/push
-this checkpoint to private main next.
+repository/index checks PASS; checkpoint review records exact staged text.
+Checkpoint b39ecba12e32ee2882263b7532abf200a7f41332 pushed to private main.
+No root-owned guest/controller/observer remains.
 
 # Current:219 boot-video layout ordinary pair CLOSED; reset/crash guards next
 
