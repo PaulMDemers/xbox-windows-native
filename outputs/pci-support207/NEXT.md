@@ -1,5 +1,20 @@
 # Next actions
 
+Current continuation: HAL-LIFECYCLE-REPORT.md and lifecycle004/REPORT.md.
+Code10 resource encoding and ANSI removal API compatibility failures are fixed.
+The resource-only driver passes live install/start, DICS_PROPCHANGE, six D3/D0
+transitions and safe removal/re-enumeration. Normal restart remains held by genuine
+pending installation258; new SetupAPI history names audio01B0. No cancellation or
+disable was used. All four new guests/cold readers/builds are closed, with scoped
+cold integrity passing. No physical access; hardware220 ticket stays closed.
+The shared HAL candidate compiles and passes65894 model cases/static review, but
+is unbooted; telemetry stays disabled. Next gates are supported pending-setup
+completion, a fresh normal restart/persistence test, query-stop/cancel coverage,
+and controlled baseline/candidate HAL boot plus coordinated client integration.
+Inherited Ftdisk49 remains a strict failure. Do not relaunch closed fixtures.
+
+Historical ownership001 continuation follows; its uninstalled status is superseded.
+
 Current continuation: ownership001/REPORT.md. Physical220 completed and its
 restored-baseline ticket closed; commit2d51147 preserves the evidence. The new
 offline ownership review found the unconstrained C200 alternative and confirms

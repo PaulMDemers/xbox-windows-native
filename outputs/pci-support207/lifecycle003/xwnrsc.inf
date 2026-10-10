@@ -1,0 +1,38 @@
+; SPDX-License-Identifier: MIT
+; Experimental NT5 x86 package, no hardware qualification.
+[Version]
+Signature="$Windows NT$"
+Class=System
+ClassGUID={4D36E97D-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+DriverVer=10/09/2026,0.1.0.223
+[Manufacturer]
+%Provider%=Xbox
+[Xbox]
+%Device%=Resources,PCI\VEN_10DE&DEV_01B4&SUBSYS_00000000&REV_B1
+[DestinationDirs]
+DriverFiles=12
+[SourceDisksNames]
+1=%Media%,,,
+[SourceDisksFiles]
+xwnrsc.sys=1
+[Resources]
+CopyFiles=DriverFiles
+[Resources.HW]
+AddReg=Security
+[Security]
+HKR,,Security,,"D:P(A;;GA;;;SY)(A;;GA;;;BA)"
+[Resources.Services]
+AddService=xwnrsc,0x00000002,Service
+[Service]
+DisplayName=%Device%
+ServiceType=1
+StartType=3
+ErrorControl=1
+ServiceBinary=%12%\xwnrsc.sys
+[DriverFiles]
+xwnrsc.sys
+[Strings]
+Provider="Xbox Windows Native Project"
+Device="Xbox MCPX SMBus resource-only diagnostics (experimental)"
+Media="Xbox NT5 SMBus resource-only diagnostics package"
