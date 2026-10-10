@@ -1,9 +1,11 @@
-# PCI hardware220 — inventory rehearsal passed; console queue not granted
+# PCI hardware220 â€” physical inventory complete; baseline restored
 
 The October10 hardware220 handoff supersedes the historical coordinator-only
 restriction. PCI is third, after restored-baseline audio and USB closures.
-Initial `queue.py claim pci` returned WAIT for audio. Audio subsequently claimed.
-No console connection, deployment, launch or physical observation has occurred.
+PCI claimed after both predecessor closures, launched one read-only inventory,
+collected it after the user reported normal Restart and dashboard return, and
+restored the original startup before collection. The reviewed physical diagnostic
+passed; no functional SMBus/modem/AC97 qualification is claimed.
 
 Current trial scope is live present-PCI identification and OS-assigned/boot resource
 inventory only. The broader passive188 observer was removed from this trial after
@@ -46,12 +48,12 @@ The closed runtime is retained and will never be relaunched.
 
 Sixteen typed registry keys differ across both control sets (diagnosis.json).
 Differences include physical-seeded versus emulator PCI resource vectors/BAR sizes,
-IDE class01018A→010180 and IDE device checksum/timing data. These are real changes,
+IDE class01018Aâ†’010180 and IDE device checksum/timing data. These are real changes,
 not an unchanged-binding PASS. No Service/Driver installation was performed by
 the query-only helper. The inherited Ftdisk49 error remains a strict failure.
 
 The complete NT5 inventory has12 present PCI devices. SMBus01B4 at0:1.1 has no
-service/driver, problem1, no allocated log configuration and boot IO C000–C01F.
+service/driver, problem1, no allocated log configuration and boot IO C000â€“C01F.
 AC9701B1 at0:6.0 has the seed's ac97xnt5 binding;01C1 modem remains absent in xemu.
 One NV2A descriptor reports type0/size0: its payload is explicitly unavailable,
 not silently treated as success. Parser001 accepts the complete evidence while
@@ -63,7 +65,7 @@ additional time; it cannot erase emulator001 or establish physical behavior.
 It launched once at05:38:14UTC and closed at05:44:15UTC. Its runtime is closed,
 source unchanged, and xemu lease released. Cold allocation/hive/header/history
 checks passed again, but the observer has the same first nontext byte270337
-(file length285047); only samples0–3 have completion records. Six minutes did not
+(file length285047); only samples0â€“3 have completion records. Six minutes did not
 resolve the tail failure. Both combined trials remain diagnostic_usable=false.
 Underlying cause is unproven; no normal guest shutdown occurred in either run.
 
@@ -86,10 +88,10 @@ clusters with no orphan or allocation error. Both failed combined trials remain
 unchanged. No active PCI guest or lease remains.
 
 Binding_state_unchanged is deliberately false. The exact typed delta matches the
-reviewed/pinned emulator001 physical-seed→emulator transition; that narrow match
+reviewed/pinned emulator001 physical-seedâ†’emulator transition; that narrow match
 is sufficient for query-helper rehearsal only. No broad metadata exclusion or
-physical-baseline waiver is used. Physical returned-state checks still require
-unchanged configuration. The inherited Ftdisk49 and absent normal shutdown keep
+physical-baseline waiver is used. Physical returned-state checks compare all selected configuration and hold
+any differences for explicit review, as documented below. The inherited Ftdisk49 and absent normal shutdown keep
 whole-boot/hardware/persistence qualification false.
 
 The physical harness requires this successful emulator004 audit, fresh incoming
@@ -97,8 +99,15 @@ physical preflight and the serialized console ticket. Protocol003 repeats all
 eight launch/rollback simulations for the inventory-only harness. Previous
 protocol source bytes and results remain separately pinned.
 
-No physical claim is held. The queue's private pci-status.json links this report;
-predecessor state is untouched.
+PCI claimed the queue after both restored predecessor closures. Physical001
+captured the actual incoming startup, five hives, event/SetupAPI/trace files and
+17 protected boot/driver/provider files. Protected hashes and all hive checks
+passed preflight. One inventory-only launch was accepted at2026-10-10T15:45:23.634370+00:00.
+The user was asked to use normal Windows Restart after the command window closes.
+Dashboard return was collected at15:48:02UTC. Startup was restored and read back
+first at15:47:58UTC; the temporary inventory startup is no longer enabled.
+No functional SMBus/AC97/GPU writes or driver installation occurred.
+The queue's private pci-status.json links this report; predecessor state is untouched.
 
 Physical offline preflight validates all five captured hives and protected
 incoming payloads before staging. Returned-state audit compares complete typed
@@ -113,3 +122,65 @@ Primary API references:
 - https://learn.microsoft.com/en-us/windows/win32/api/cfgmgr32/nf-cfgmgr32-cm_get_first_log_conf
 - https://learn.microsoft.com/en-us/windows/win32/api/cfgmgr32/nf-cfgmgr32-cm_get_next_res_des
 - https://learn.microsoft.com/en-us/windows/win32/api/cfgmgr32/nf-cfgmgr32-cm_free_log_conf_handle
+
+## Physical001 result and restoration review
+
+The complete inventory enumerated **14 present PCI devices** with `INVENTORY_EXIT 0`.
+The user explicitly reported: "Restart completed; Xbox dashboard is visible".
+A new EventLog6006 record333 corroborates the normal restart observation. This was
+one launch, accepted at15:45:23UTC; no retry or forced reset occurred. An initial
+refused collection connection is preserved in physical001-collection-attempt001.json.
+
+| Physical device | Location | Live Windows result |
+| --- | --- | --- |
+| SMBus10DE:01B4 revB1 |0:1.1| Problem1; no service/driver or allocated configuration. Boot I/O C000â€“C00F and C200â€“C21F. |
+| Modem10DE:01C1 revB1 |0:6.1| Present; problem1; no service/driver, allocated or boot configuration. |
+| AC9710DE:01B1 revB1 |0:6.0| Existing ac97xnt5 binding; problem10; no allocated or boot configuration. |
+
+These are live SetupAPI/Configuration Manager observations, not direct BAR or
+codec transactions. Missing Windows resources do not establish missing hardware
+BARs. The modem's presence and SMBus resource ranges differ from xemu: its rehearsal
+had12 present devices, no01C1, and one SMBus boot range C000â€“C01F. Functional modem
+support and safe SMBus ownership remain unresolved. NV2A also returned one type0,
+size0 resource descriptor; its payload remains explicitly unavailable.
+
+The original startup and all17 protected boot/driver/provider files are byte exact.
+All five before/after hives parse and have valid headers/checksums/sequences.
+SetupAPI and both event histories are preserved. The initial strict full selected
+configuration comparison deliberately remains **false** in physical001-audit.json.
+Its collected manifest remains byte exact in physical001-collected.json, matching
+the original audit's record hash.
+
+The separate reproducible review (review-physical001-restoration.py and
+physical001-restoration-review.json) accepts only20 changed runtime values across
+8 exact keys in ControlSet001/002: four lease times in each of two network paths,
+one binary DHCP cache, and one LanmanServer Guid per control set. Lease times all
+advance70255 seconds, keeping the86400-second lease and T1/T2 intervals unchanged.
+Only10 explicit expiry DWORD offsets change in each cache; every other cache byte
+and network setting is exact. Both server identities are v4 UUIDs. The independently
+captured USB220 before/after SYSTEM hives show the same old server identity becoming
+a different v4 identity during that earlier boot, without this PCI helper. This
+supports the boot-runtime interpretation; it is not a claim about NT5 internals.
+No broad service-subtree exclusion was applied, and no registry value was rewritten.
+All other selected Enum, Services, Class, DeviceClasses, Video, CrashControl and
+Select values are unchanged. Baseline restoration is accepted within that explicit
+scope, not as byte equality of the complete hives.
+
+A new inherited Ftdisk49 error remains in system event328, HarddiskVolume6.
+SetupAPI appended3222 bytes, including no-compatible-driver0xe0000228 results for
+APU01B0, SMBus01B4, modem01C1 and USB Vid_ffff/Pid_ffff. The helper installed no
+driver, changed no device configuration and acted on no dialog. These results
+remain failures for general hardware/whole-boot qualification; they do not invalidate
+the completed identification log. No complete physical allocation scan or repeated
+boot durability test was performed. Failed observer rehearsals remain preserved.
+
+The unique /F/xwnpci220a helper/backup/log directory remains as evidence. Normal
+startup is restored. The next engineering question is supported driver ownership
+and hardware resource handling; this trial authorizes no functional register writes.
+
+PCI ticket closed through queue.py at2026-10-10T15:53:37.950079+00:00 after
+verified restoration and dashboard return. No PCI process, guest or lease remains.
+
+Validation: the offline restoration review and evidence-hash chain passed;
+`git diff --cached --check` passed; tools/check-repository.py passed binary/media/
+credential-pattern checks for19423 tracked files.
