@@ -6,9 +6,9 @@ records ACI PCI00:06.0, 10DE:01B1, BARs D001/D201/FEC00000, IRQ6. This is distin
 from APU00:05.0, 10DE:01B0, FE800000, IRQ5. The later NT5 registry pins are in
 inventory001.json. Do not infer the physical codec's ID from xemu's codec.
 
-The first lifecycle patch deliberately preserves the old emulator codec path so
-the new descriptor lifetime changes can be compared without changing capabilities.
-Physical support additionally needs:
+Build004 implements the following preparation for a physical trial. Ordinary
+xemu installation and two subsequent playback boots pass, but actual physical
+codec behavior still requires coordinator-controlled validation:
 
 1. Accept the real ACI translated resource shape (two I/O ranges plus MMIO and
    one IRQ), while accessing only the validated MMIO aperture. Keep exact01B1 INF.
@@ -27,4 +27,7 @@ Physical support additionally needs:
 
 The user's output-connection preference was requested asynchronously. Initial
 work continues on analog stereo PCM; digital-output behavior is not established
-by the retained evidence. No physical driver package is ready yet.
+by the retained evidence. The experimental package is ready for coordinator review, with no physical
+qualification claim. Its final WaveCyclic filter has two pins and one actual DAC
+node, and no separate topology filter. This avoids the node-less graph associated
+with the retained SysAudio crash in build003.

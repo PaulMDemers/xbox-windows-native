@@ -38,6 +38,8 @@ licenses={'Microsoft-AC97-MIT.txt':source/'drivers/wdm/audio/drivers/ac97/licens
 for n in ['COPYING','COPYING.LIB','COPYING3','COPYING3.LIB']:licenses[n+'.txt']=source/n
 for n,p in licenses.items():copy(p,payload/'licenses'/n)
 archive=k/'artifacts/corresponding-source001/reactos0016.tar.gz';assert archive.is_file()
+assert sha(archive)=='0855bd035eda24d9c41fe020a7a129edfea8380cc8f4c94ba2f0972e63a1f8d4'
+assert json.loads((k/'source-archive-review001.json').read_text())['passed']
 copy(archive,sources/archive.name)
 for n in ['0210-waveonly-cumulative.patch','SOURCE-REBUILD.md','source-build004.json','toolchain-observed001.json','Build-Install.ps1','Build-State.ps1','Build-HardwareRunners001.ps1','build-driver.sh']:
     copy(k/n,sources/n)

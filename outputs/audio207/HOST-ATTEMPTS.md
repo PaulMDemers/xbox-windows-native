@@ -82,3 +82,19 @@ compilation. Physical-mode runners compiled separately; source comparison proves
 only the known-wizard mode differs from their emulator counterparts. No physical
 execution occurred. Installation001 has returned normally; its audit is waiting
 for a shared build lease at this report update. No repeated launch was issued.
+
+
+## Completed package milestone
+
+The genuine installation audit and both subsequent installed001/installed002
+playback audits passed scoped device, stereo, restart and cold integrity checks.
+All guests are closed; Ftdisk49 remains strict whole-boot failure. Source archive
+attempt001 exhausted20 lease attempts before producing any output. Separately
+logged attempt002 acquired the lease and completed. Full archive reading and final
+patch replay matched all33 compiled driver source files. Package001 ran under the
+global build lease, tested both ZIPs and readback-verified the delivered copies.
+
+Initial Git push was interrupted while transferring with no visible progress;
+the separately logged second attempt used progress output and continued slowly.
+No authentication failure is inferred from the slow transfer. Publication is
+confirmed only by a subsequent exact remote branch check.
