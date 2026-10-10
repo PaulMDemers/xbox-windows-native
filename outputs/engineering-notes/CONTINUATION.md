@@ -1,5 +1,9 @@
 # Current:216 read-only GPU handoff diagnostic CLOSED
 
+Implementation/evidence d44ff8a pushed to private main; final source/repository
+checks PASS. All49 frozen inputs remain exact: 47 committed tracked pins and
+2 retained private pins verified separately in commit-validation.json.
+
 NEW outputs/video-gpu-handoff216: REPORT.md/NEXT.md/state-observations.json.
 Actual26-register snapshots at both passive hooks show invalid PGRAPH context,
 FIFO channel1 versus PGRAPH channel0 and hardware switching disabled. Exact
