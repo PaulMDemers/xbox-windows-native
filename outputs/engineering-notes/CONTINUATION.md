@@ -33,7 +33,9 @@ NEXT: bounded read-only GPU-state/instance ownership diagnostic, then genuine
 resident addressing,serialized context,completion/drain/quarantine/crash contract
 before guarded disjoint16x8 GPU transfer.213 is CPU allocation/copy/free precursor
 only. No new deployment,modes,other-device integration or performance promotion.
-Keep20GiB C guard and owned leases; source/reports committed/pushed after checks.
+Keep20GiB C guard and owned leases. Implementation/evidence pushed d2d7ead;
+repository19769files,45Python/6PowerShell AST,162 committed exactbytes/whitespace
+checks PASS. final-checks.json records closure. C23053283328bytes free.
 Other device chats remain separate, no messages/merges sent from this turn.
 
 # Current:211 upload accounting pair CLOSED; physical baseline restored
