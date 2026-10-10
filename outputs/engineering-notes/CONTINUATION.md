@@ -1,4 +1,4 @@
-# Current:227/228 preservation diagnostics CLOSED;229 preparation waiting on lease
+# Current:227/228 CLOSED and pushed;229 queued/unprepared, all root sessions CLOSED
 
 Read outputs/xemu-backend-preserve227/REPORT.md and
 outputs/xemu-backend-reason228/REPORT.md.227 single trace001 REFUSED state4;
@@ -20,7 +20,7 @@ owned-dashboard pre-SITE-EXEC phase. No new native/model patch, predicate waiver
 null-device policy or physical access. Credential preflight precedes instance.
 GDB physical-read mode will be restored before resume. Reference retirement and
 native ownership remain unqualified. Author/phase source exists, NOT frozen or
-launched. Wait-Prepare.ps1 session1382 currently ACTIVE with bounded10-minute
+launched. Wait-Prepare.ps1 session1382 CLOSED1 after41 refusals and bounded10-minute
 cooperative build lease wait. Inspect preparation-resource.json and fixture
 records; do NOT duplicate preparation or break PCI thread's build lease. Previous
 Finish228-Prepare229 session14411 CLOSED1 after successful cold collection then
@@ -31,7 +31,15 @@ junctions; frozen pins intact, no disk backing chain moved.20GiB guard unchanged
 Next require actual dirty cache/readback coverage at earlier phase, then ended
 references, full inherited allocator/backing census and genuine private context
 service before accelerated16x8copy. Preserve all failed evidence and strict gates.
-Git HEAD/origin/main authoritative; reviewed227/228 checkpoint publication follows.
+Reviewed227/228 checkpoint64e3470 pushed to private main.229 source-only queued; see REPORT.md/NEXT.md/closure.json. No229 fixture, freeze or launch; all root sessions CLOSED. Acquire normal lease only after inspecting ownership and absent attempt artifacts. No physical deployment or positive backend qualification. Git HEAD/origin/main authoritative.
+229 queued draft was accidentally emptied by a host formatting command after
+its lease wait closed. Restored from exact pinned228 parent before any freeze or
+guest; draft-restoration.json preserves the incident and before/after byte pins.
+Draft Python/PowerShell syntax, source guards and repository checks passed.
+Publication contract explicitly unqualified: actual QEMU read/set are relaxed,
+while host C11 adapters were stronger. NEW release/acquire model build/tests
+required before positive count/data/backend qualification. See229 review notes.
+No root owned process remains. Latest C free25459068928/E187866808320 bytes.
 # Current:226 serialized ownership reducer and source-consumer review CLOSED
 
 Read outputs/video-owner-transition226/DESIGN.md, REPORT.md, NEXT.md,
