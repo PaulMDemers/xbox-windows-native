@@ -1,5 +1,11 @@
 # PCI SMBus follow-up — 2026-10-10
 
+Later native-boot result: [halboot001/REPORT.md](halboot001/REPORT.md). The rebuilt
+control and candidate now both pass native emulator boot, the resource lifecycle
+and cold integrity. The candidate's invalid-only ABI path passes four calls.
+Normal restart, functional transactions and terminal takeover remain unqualified.
+The text below retains the earlier pre-native milestone and its evidence.
+
 The resource-only driver now installs and starts correctly in NT5. A fresh
 emulator run passed device restart, six real D3/D0 power transitions, safe removal
 and re-enumeration. Normal Windows restart is still held by pending setup258;

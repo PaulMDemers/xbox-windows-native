@@ -1,5 +1,20 @@
 # Next actions
 
+Current continuation: halboot001/REPORT.md. Rebuilt control and ownership HAL
+candidate both booted NT5 in fresh emulator fixtures and passed resource-only
+lifecycle. Four native probes found the export absent in control and present in
+candidate; the candidate returned INVALID for fixed FF/FF with zero polls/status/
+data, including after removal/re-enumeration. Complete E and F allocation, payload,
+hive and log-history checks passed. Preparation001's no-growth rejection occurred
+before launch; its partial fixture is closed. Fresh002 used audited E growth.
+Both runs are CLOSED and held normal restart on pending setup258 (new SetupAPI
+names audio01B0). No physical access or functional telemetry. Next gates: supported
+pending-setup resolution and ordinary restart/persistence, STOP/cancel coverage,
+then coordinated functional-client and terminal validation. Inherited Ftdisk49
+remains a strict failure. No PCI build/xemu/cold-reader lease remains active.
+
+Historical pre-native-HAL continuation follows; its unbooted status is superseded.
+
 Current continuation: HAL-LIFECYCLE-REPORT.md and lifecycle004/REPORT.md.
 Code10 resource encoding and ANSI removal API compatibility failures are fixed.
 The resource-only driver passes live install/start, DICS_PROPCHANGE, six D3/D0
