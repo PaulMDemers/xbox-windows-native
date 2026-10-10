@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "source_sha256": "5b22cef61acc1ead1376424ab4c85f978dd19dc5912e7a73bbc6caacd4987cd6",
+  "build_record_sha256": "e36de732c15d74e4a6575d61ac396485bd190cf722d25ae5ce3dcefa2ece7c78",
+  "source_manifest_sha256": "db75df9a0b59ca0e3cc646c0b7548f1553a0739b7e7f50b9697072edb3f8ecb9",
+  "xemu_sha256": "685f24e317322469cac8710286bf928f7b2accbde5062f3cf8c86a9b21e97890",
+  "source_revision": "e72e76bd1f12ce45c6c63b4196c6918ea2cc705d",
+  "nv2a_sha256": "e1628d94d4afd20abdf832af4932bdd3fe7c47212d8fa5261213476386482f4e",
+  "original_source_sha256": "5dd9dbc9d77c217f8d9ad78030c2de3c73fe211ebd1808b86248fa0394a3dabe",
+  "resource_patch_sha256": "d82eb50cebf46256e39273734427aa977d5033cc7426c31c69fb00efc83aacdb",
+  "initialization_start_line": 208,
+  "initialization": "static void nv2a_init_memory(NV2AState *d, MemoryRegion *ram)\n{\n    /* xbox is UMA - vram *is* ram */\n    d->vram = ram;\n\n     /* PCI exposed vram */\n    memory_region_init_alias(&d->vram_pci, OBJECT(d), \"nv2a-vram-pci\", d->vram,\n                             0, getenv(\"XWN_NV2A_RESOURCE_MODEL\") ? 0x08000000 : memory_region_size(d->vram));\n    pci_register_bar(PCI_DEVICE(d), 1, PCI_BASE_ADDRESS_MEM_PREFETCH, &d->vram_pci);\n\n\n    /* RAMIN - should be in vram somewhere, but not quite sure where atm */\n    memory_region_init_ram(&d->ramin, OBJECT(d), \"nv2a-ramin\", 0x100000, &error_fatal);\n    /* memory_region_init_alias(&d->ramin, \"nv2a-ramin\", &d->vram,\n                         memory_region_size(d->vram) - 0x100000,\n                         0x100000); */\n\n    memory_region_add_subregion(&d->mmio, 0x700000, &d->ramin);\n    /* Resource-allocation experiment only, not a complete hardware model.\n     * \"128-only\" isolates BAR1 size; \"128-plus-extra\" also exposes the\n     * physical registry's 512 KiB prefetchable BAR2 requirement. */\n    if (getenv(\"XWN_NV2A_RESOURCE_MODEL\") &&\n        !strcmp(getenv(\"XWN_NV2A_RESOURCE_MODEL\"), \"128-plus-extra\")) {\n        memory_region_init_alias(&d->resource_test_bar2, OBJECT(d),\n                                 \"nv2a-resource-test-bar2\", &d->ramin, 0, 0x80000);\n        pci_register_bar(PCI_DEVICE(d), 2, PCI_BASE_ADDRESS_MEM_PREFETCH,\n                         &d->resource_test_bar2);\n    }\n\n\n\n    d->vram_ptr = memory_region_get_ram_ptr(d->vram);\n    d->ramin_ptr = memory_region_get_ram_ptr(&d->ramin);\n\n    memory_region_set_log(d->vram, true, DIRTY_MEMORY_NV2A);\n    memory_region_set_log(d->vram, true, DIRTY_MEMORY_NV2A_TEX);\n    memory_region_set_dirty(d->vram, 0, memory_region_size(d->vram));\n\n    pgraph_init(d);\n\n    /* fire up pfifo */\n    qemu_thread_create(&d->pfifo.thread, \"nv2a.pfifo_thread\",\n                       pfifo_thread, d, QEMU_THREAD_JOINABLE);\n}",
+  "separate_ramin_region": true,
+  "compiled_source_alias_to_vram": false,
+  "physical_alias_proven": false,
+  "guest_launch": false,
+  "physical_access": false,
+  "limits": "Matched source manifest/build record/binary identity. The source uses separate RAMIN RAM; commented VRAM alias is not executed. This emulator model cannot itself establish physical RAMIN ownership or boot-buffer non-overlap. No model or driver changed."
+}

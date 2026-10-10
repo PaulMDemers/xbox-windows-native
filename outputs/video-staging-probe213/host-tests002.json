@@ -1,0 +1,64 @@
+{
+  "passed": false,
+  "physical_access": false,
+  "guest_launch": false,
+  "gpu_transfer_qualified": false,
+  "runs": [
+    {
+      "mode": 0,
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-O2",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-DXWN_STAGING_PROBE=0",
+        "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-staging-probe213/host-shim",
+        "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-gpu-transfer-contract212",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-staging-probe213/host-test.c",
+        "-o",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-staging-probe213/artifacts/host002/test0"
+      ],
+      "binary_sha256": "51ceb37db288b1182fb35cd1da0fdfacc376dd65efb722bdb75f272331f766b0",
+      "stdout": "checks=27 mode=0 fault_cases=9\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "mode": 1,
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-O2",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-DXWN_STAGING_PROBE=1",
+        "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-staging-probe213/host-shim",
+        "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-gpu-transfer-contract212",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-staging-probe213/host-test.c",
+        "-o",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-staging-probe213/artifacts/host002/test1"
+      ],
+      "binary_sha256": "36878c5b48719df1ca5c7635a74761872934224752d0372f02eba7293b740f48",
+      "stdout": "",
+      "stderr": "observed checks=15365 tiles=4 queries=6 copies=26\n53: records[2][1]==15365 && records[2][2]==4 && queries==6 && copies==8\n",
+      "exit_code": 1
+    }
+  ],
+  "source_pins": {
+    "test-host002.py": "0271ed8cf81cdc29553cb4a44dbc6c590d97192fc298153e0953d535f8608044",
+    "host-test.c": "2ee3a52d1354866b6a7e6bbf51f9a839e55f40acf490d50b1828bc8b1b001c9b",
+    "host-shim/ntddk.h": "bbe302e78933981f58abb9189afba12b28d373bca70dea2df733535a74e47210",
+    "staging_probe.c": "da323537283e1c2108d7c6092f52d32384da71f066274ca043c55bd8cc59af44"
+  },
+  "planner_sha256": "7b3dc8c56aa97019ef5a9711d2ea7f62ccdfb2df0198464970ca638685ae50b8",
+  "limits": "Host fault-injection coverage of the exact helper. Providers are mocks: no proof of NT5 allocation, ABI, physical contiguity, cache, DMA or crash behavior."
+}

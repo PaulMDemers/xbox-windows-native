@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "guest_launch": false,
+  "physical_access": false,
+  "gpu_transfer_qualified": false,
+  "source_pins": {
+    "test-host.py": "890e8101499f5d6ed00cbd798c481a7d1e768a0b9ebe77d1cb694b9a13f43d3f",
+    "transfer_plan.h": "7b3dc8c56aa97019ef5a9711d2ea7f62ccdfb2df0198464970ca638685ae50b8",
+    "host-test.c": "c97d6c5d3c15b941ba4c0941777fe597dfeb496538fc6e891eba9e35e2c81e79"
+  },
+  "runs": [
+    {
+      "command": [
+        "gcc",
+        "-std=c99",
+        "-O0",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-gpu-transfer-contract212/host-test.c",
+        "-o",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-gpu-transfer-contract212/artifacts/host001/planner-O0"
+      ],
+      "binary_sha256": "038888c76548f7a25afd5cd241b52384bc857086afe79e56d491052b943c1ace",
+      "exit_code": 0,
+      "stdout": "checks=8923567 exact_pixel_cases=324 strips=1306 malformed_plans=100000\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "gcc",
+        "-std=c99",
+        "-O2",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-gpu-transfer-contract212/host-test.c",
+        "-o",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-gpu-transfer-contract212/artifacts/host001/planner-O2"
+      ],
+      "binary_sha256": "f75775d54d28f888ca0fb7be41c931652cef2347b3fb76cc71d6b438a5a3cca4",
+      "exit_code": 0,
+      "stdout": "checks=8923567 exact_pixel_cases=324 strips=1306 malformed_plans=100000\n",
+      "stderr": ""
+    }
+  ],
+  "limits": "Host-only independent bitmap/guard/extent oracle for the actual planner. No allocation, ABI invocation, cache visibility, DMA submission, completion or timing evidence."
+}

@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "source_sha256": "86fa79bf75f977f247b086b80797f7b42f41d8c755df0f2339260f72fda09d14",
+  "source_pins": {
+    "drivers/base/bootvid/precomp.h": "7514d23160840341d34da90051669267f8de1de3fabe1060c4823d003dccbb5c",
+    "sdk/include/reactos/drivers/bootvid/display.h": "1ec6d7a6dcbcea75405c0ff360e10b6939a19dedaaa44701cf8afaa62d5d7547",
+    "drivers/base/bootvid/i386/xbox/bootvid.c": "1e034e0cc705dce436c026458e9f432ae70025e5fce3b43b666c7a347c0dd7d7",
+    "drivers/base/bootvid/xwn_fb.c": "31921665536ce9954018be4cd7c629895c48f4753d0aef42e64265e21ae065e6"
+  },
+  "pbkit_sha256": "da9835f0d9e9da4a7e5c185b7913752aab5614bfc170ebc572cc12cc3af0da92",
+  "reservations": [
+    {
+      "framebuffer_base": 62914560,
+      "indexed_backbuffer_start": 66792704,
+      "indexed_backbuffer_end": 67108864,
+      "indexed_backbuffer_bytes": 316160
+    },
+    {
+      "framebuffer_base": 130023424,
+      "indexed_backbuffer_start": 133901568,
+      "indexed_backbuffer_end": 134217728,
+      "indexed_backbuffer_bytes": 316160
+    }
+  ],
+  "hypothesis": {
+    "start": 67022848,
+    "end": 67043328,
+    "overlap_bytes": 20480,
+    "basis": "Commented pb_GpuInstMem pointer after subtraction. That pointer has no further uses in this pinned pbkit source; actual PRAMIN backing/claim result is not established."
+  },
+  "actual_pramin_alias_proven": false,
+  "guest_launch": false,
+  "physical_access": false,
+  "gpu_register_access": false,
+  "limits": "Static boot reservation arithmetic and a counterfactual source-comment placement only. Does not identify actual running firmware/GPU instance storage or a physical collision. Do not choose/overwrite a context location from this calculation."
+}

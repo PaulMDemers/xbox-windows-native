@@ -1,0 +1,40 @@
+{
+  "passed": false,
+  "physical_access": false,
+  "guest_launch": false,
+  "gpu_transfer_qualified": false,
+  "runs": [
+    {
+      "mode": 0,
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-O2",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-DXWN_STAGING_PROBE=0",
+        "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-staging-probe213/host-shim",
+        "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-gpu-transfer-contract212",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-staging-probe213/host-test.c",
+        "-o",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-staging-probe213/artifacts/host001/test0"
+      ],
+      "binary_sha256": "e825eec7311396a3958814fbb1640a632795d354ebe2f233b4779f5de6e17b40",
+      "stdout": "checks=27 mode=0 fault_cases=9\n",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ],
+  "source_pins": {
+    "test-host.py": "9db300014b428ce4738cef4df719594315548e84adec1f8a9819e96dbc10f25a",
+    "host-test.c": "b73883ffb0b68666594d8236c5b7a61c496afd486a9f1b6be8384c226912c249",
+    "host-shim/ntddk.h": "bbe302e78933981f58abb9189afba12b28d373bca70dea2df733535a74e47210",
+    "staging_probe.c": "da323537283e1c2108d7c6092f52d32384da71f066274ca043c55bd8cc59af44"
+  },
+  "planner_sha256": "7b3dc8c56aa97019ef5a9711d2ea7f62ccdfb2df0198464970ca638685ae50b8",
+  "limits": "Host fault-injection coverage of the exact helper. Providers are mocks: no proof of NT5 allocation, ABI, physical contiguity, cache, DMA or crash behavior."
+}

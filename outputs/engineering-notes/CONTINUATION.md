@@ -1,3 +1,41 @@
+# Current:212/213 transfer precursor CLOSED; reviewed source/evidence ready
+
+212 actual ABI/source/planner PASS;213 actual native buffer ON/OFF matched ordinary
+emulator pair PASS scoped. Candidate accepted01:10:28Z Oct10, closed01:14:27Z:
+16KiB UC allocation at0018f000,15365checks/4strips,matching free returned,missed0.
+Control accepted01:02:27Z,normaldashboard01:06:43Z. Each retained five GDI samples,
+200 move/readbacks,65 text cases,exact119 phase coverage; phase byte totals equal.
+Fullcold325dirs6730files326clusters0errors/orphans,5hives/protected/typedpolicies,
+normalshutdown/dashboard and no app/measurementevents PASS. StrictFALSE solely
+actual inheritedFt49(HarddiskVolume6). No suppression/waiver/speed/GPU qualification.
+
+Control host controller3257 CLOSED preserved_failure due missing boundary parser
+before cold access. Original frozen auditor/controller unchanged. Exact211 parser
+added; new audit-emulator002 performed first actual cold audit once,session89808
+CLOSED PASS. Original failure preserved, no guest/scan repeated. Candidate controller
+42956 CLOSED cold_audited_closed through original auditor. Preparation71277/all
+build/host sessions CLOSED. No root-owned212/213 process remains. Never relaunch or
+recollect either case. See audit-repair001 and per-case host/closure/audit records.
+
+Native build003 dependency/copy/materialized-thin-library/source overlay/common
+object review244pins PASS; closed evidence98pins PASS. Host exacthelper27OFF/96ON
+faultchecks,45parser checks;212 planner324pixelguards/100000malformed descriptors,
+8923567 checks each O0/O2 ASanUBSan PASS. All failed inventory/build/host/provider/
+wait/post-review attempts retained. Keep original106 object donor explicit; small
+native target build is not complete clean-source reconstruction.
+
+Actual compiled685f24e3 xemu source has separate RAMIN RAM. Conditional pbkit
+comment placement overlaps20KiB of indexedbootbackbuffer; actual physical PRAMIN
+alias/collision not proven. No GPU/model/register/cache change or physical access.
+Physical0101/video0093,0088rollback,immutable0.1.0 remain intact.
+
+NEXT: bounded read-only GPU-state/instance ownership diagnostic, then genuine
+resident addressing,serialized context,completion/drain/quarantine/crash contract
+before guarded disjoint16x8 GPU transfer.213 is CPU allocation/copy/free precursor
+only. No new deployment,modes,other-device integration or performance promotion.
+Keep20GiB C guard and owned leases; source/reports committed/pushed after checks.
+Other device chats remain separate, no messages/merges sent from this turn.
+
 # Current:211 upload accounting pair CLOSED; physical baseline restored
 
 Ordinary control58987/candidate81630 and physical control96890/candidate92423
