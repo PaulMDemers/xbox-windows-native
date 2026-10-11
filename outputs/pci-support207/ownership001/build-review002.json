@@ -1,0 +1,398 @@
+{
+  "scope": "Inspect pinned physical owners and new resource-only binaries without executing them.",
+  "physical_access": false,
+  "mode": "build",
+  "binaries": {
+    "resource-tests.exe": {
+      "sha256": "c9764c8f1c1dcf947472bf37bdfc2770b1cb16715e788f1ea2909838598b9e14",
+      "imports": {
+        "KERNEL32.dll": [
+          "CloseHandle",
+          "CreateFileA",
+          "ExitProcess",
+          "FlushFileBuffers",
+          "WriteFile"
+        ]
+      },
+      "port_instructions": [],
+      "controller_constants": [
+        {
+          "address": "0x401196",
+          "instruction": "cmp ecx, 0xc000"
+        },
+        {
+          "address": "0x4011ae",
+          "instruction": "cmp ecx, 0xc200"
+        },
+        {
+          "address": "0x401467",
+          "instruction": "mov dword ptr [ebp - 0x28], 0xc000"
+        },
+        {
+          "address": "0x4015ea",
+          "instruction": "mov dword ptr [ebp - 0x28], 0xc200"
+        },
+        {
+          "address": "0x4018a9",
+          "instruction": "cmp eax, 0xc000"
+        },
+        {
+          "address": "0x4018e8",
+          "instruction": "mov edx, 0xc000"
+        },
+        {
+          "address": "0x401d53",
+          "instruction": "cmp eax, 0xc000"
+        },
+        {
+          "address": "0x401d7c",
+          "instruction": "cmp eax, 0xc200"
+        },
+        {
+          "address": "0x402088",
+          "instruction": "mov edx, 0xc008"
+        }
+      ],
+      "machine": 332,
+      "subsystem": 3,
+      "subsystem_version": [
+        5,
+        0
+      ],
+      "resolved_imports": [
+        {
+          "dll": "KERNEL32.dll",
+          "name": "CloseHandle",
+          "provider_sha256": "6b05b0749b5dd86da94cc4acd062ca05472509f70216b56cd4a5b9809c602e73"
+        },
+        {
+          "dll": "KERNEL32.dll",
+          "name": "CreateFileA",
+          "provider_sha256": "6b05b0749b5dd86da94cc4acd062ca05472509f70216b56cd4a5b9809c602e73"
+        },
+        {
+          "dll": "KERNEL32.dll",
+          "name": "ExitProcess",
+          "provider_sha256": "6b05b0749b5dd86da94cc4acd062ca05472509f70216b56cd4a5b9809c602e73"
+        },
+        {
+          "dll": "KERNEL32.dll",
+          "name": "FlushFileBuffers",
+          "provider_sha256": "6b05b0749b5dd86da94cc4acd062ca05472509f70216b56cd4a5b9809c602e73"
+        },
+        {
+          "dll": "KERNEL32.dll",
+          "name": "WriteFile",
+          "provider_sha256": "6b05b0749b5dd86da94cc4acd062ca05472509f70216b56cd4a5b9809c602e73"
+        }
+      ]
+    },
+    "xwnsmb-resource.sys": {
+      "sha256": "789a0024aaaf1c34f84a00d94facf1484472a9ae95b9ca9ea97bb8ee09a32a91",
+      "imports": {
+        "HAL.dll": [
+          "ExAcquireFastMutex",
+          "ExReleaseFastMutex",
+          "KeGetCurrentIrql"
+        ],
+        "ntoskrnl.exe": [
+          "ExAllocatePoolWithTag",
+          "ExFreePool",
+          "IoAcquireRemoveLockEx",
+          "IoAllocateWorkItem",
+          "IoAttachDeviceToDeviceStack",
+          "IoCreateDevice",
+          "IoDeleteDevice",
+          "IoDetachDevice",
+          "IoFreeWorkItem",
+          "IoGetDeviceProperty",
+          "IoInitializeRemoveLockEx",
+          "IoQueueWorkItem",
+          "IoRegisterDeviceInterface",
+          "IoRegisterShutdownNotification",
+          "IoReleaseRemoveLockAndWaitEx",
+          "IoReleaseRemoveLockEx",
+          "IoSetDeviceInterfaceState",
+          "IoUnregisterShutdownNotification",
+          "IofCallDriver",
+          "IofCompleteRequest",
+          "KeInitializeEvent",
+          "KeSetEvent",
+          "KeWaitForSingleObject",
+          "PoCallDriver",
+          "PoSetPowerState",
+          "PoStartNextPowerIrp",
+          "RtlEqualUnicodeString",
+          "RtlFreeUnicodeString",
+          "RtlInitUnicodeString",
+          "memcpy",
+          "memset"
+        ]
+      },
+      "port_instructions": [],
+      "controller_constants": [
+        {
+          "address": "0x11012",
+          "instruction": "mov esi, 0xc0000182"
+        },
+        {
+          "address": "0x1111a",
+          "instruction": "cmp ecx, 0xc000"
+        },
+        {
+          "address": "0x1112f",
+          "instruction": "cmp ecx, 0xc200"
+        },
+        {
+          "address": "0x111a8",
+          "instruction": "mov esi, 0xc0000182"
+        },
+        {
+          "address": "0x111bf",
+          "instruction": "mov dword ptr [eax], 0xc000"
+        },
+        {
+          "address": "0x111c7",
+          "instruction": "mov esi, 0xc0000182"
+        },
+        {
+          "address": "0x11392",
+          "instruction": "mov eax, 0xc000000e"
+        },
+        {
+          "address": "0x115a7",
+          "instruction": "mov eax, 0xc0000016"
+        },
+        {
+          "address": "0x117e5",
+          "instruction": "mov dword ptr [ebx + 0x18], 0xc000009a"
+        },
+        {
+          "address": "0x11800",
+          "instruction": "mov eax, 0xc000009a"
+        },
+        {
+          "address": "0x118eb",
+          "instruction": "mov edi, 0xc0000184"
+        },
+        {
+          "address": "0x1192b",
+          "instruction": "mov edi, 0xc00000a3"
+        },
+        {
+          "address": "0x11957",
+          "instruction": "mov edx, 0xc0000034"
+        },
+        {
+          "address": "0x11968",
+          "instruction": "mov edi, 0xc0000010"
+        },
+        {
+          "address": "0x11973",
+          "instruction": "mov edi, 0xc0000023"
+        },
+        {
+          "address": "0x1198e",
+          "instruction": "mov edi, 0xc00000a3"
+        },
+        {
+          "address": "0x11abb",
+          "instruction": "mov edi, 0xc0000182"
+        },
+        {
+          "address": "0x11f7c",
+          "instruction": "mov dword ptr [ebp - 0x38], 0xc000"
+        },
+        {
+          "address": "0x11f8b",
+          "instruction": "mov dword ptr [ebp - 0x38], 0xc200"
+        }
+      ],
+      "machine": 332,
+      "subsystem": 1,
+      "subsystem_version": [
+        5,
+        0
+      ],
+      "resolved_imports": [
+        {
+          "dll": "HAL.dll",
+          "name": "ExAcquireFastMutex",
+          "provider_sha256": "a3a84368d59936dfa6bbcdc6d5839d57b886342211142d305e9dde941e4d1648"
+        },
+        {
+          "dll": "HAL.dll",
+          "name": "ExReleaseFastMutex",
+          "provider_sha256": "a3a84368d59936dfa6bbcdc6d5839d57b886342211142d305e9dde941e4d1648"
+        },
+        {
+          "dll": "HAL.dll",
+          "name": "KeGetCurrentIrql",
+          "provider_sha256": "a3a84368d59936dfa6bbcdc6d5839d57b886342211142d305e9dde941e4d1648"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "ExAllocatePoolWithTag",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "ExFreePool",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoAcquireRemoveLockEx",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoAllocateWorkItem",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoAttachDeviceToDeviceStack",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoCreateDevice",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoDeleteDevice",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoDetachDevice",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoFreeWorkItem",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoGetDeviceProperty",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoInitializeRemoveLockEx",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoQueueWorkItem",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoRegisterDeviceInterface",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoRegisterShutdownNotification",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoReleaseRemoveLockAndWaitEx",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoReleaseRemoveLockEx",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoSetDeviceInterfaceState",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IoUnregisterShutdownNotification",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IofCallDriver",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "IofCompleteRequest",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "KeInitializeEvent",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "KeSetEvent",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "KeWaitForSingleObject",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "PoCallDriver",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "PoSetPowerState",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "PoStartNextPowerIrp",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "RtlEqualUnicodeString",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "RtlFreeUnicodeString",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "RtlInitUnicodeString",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "memcpy",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        },
+        {
+          "dll": "ntoskrnl.exe",
+          "name": "memset",
+          "provider_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+        }
+      ]
+    }
+  },
+  "passed": true,
+  "tests": {
+    "cases": 5432,
+    "failure_line": 0,
+    "passed": true
+  },
+  "limits": "Compile/static resource-policy validation; kernel derivative has no telemetry I/O and is not installed. No PnP allocator, lifecycle or hardware functionality claim."
+}

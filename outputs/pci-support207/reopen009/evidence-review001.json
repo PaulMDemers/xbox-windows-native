@@ -1,0 +1,262 @@
+{
+  "scope": "Verify actual HID rejection branch, contemporaneous owner, payload and cold results.",
+  "review_passed": true,
+  "physical_access": false,
+  "immediate_HID_rejection_and_owner_proven": true,
+  "higher_level_reopen_reason_proven": false,
+  "functional_input_qualified": false,
+  "ordinary_boot_qualified": false,
+  "normal_restart_qualified": false,
+  "pending_install": true,
+  "failed_paths": [
+    {
+      "class_driver": "mouclass.sys",
+      "call_id": 7,
+      "failed_irp": 4290001960,
+      "new_request_context": {
+        "thread": 4268157088,
+        "process": 4268228640,
+        "pid": 8,
+        "image": "System"
+      },
+      "new_access": "0x100003",
+      "new_share": 3,
+      "counters": {
+        "opens": 1,
+        "readers": 1,
+        "writers": 0,
+        "deny_read": 1,
+        "deny_write": 0,
+        "deny_all": 0
+      },
+      "branch_rva": "0xad8",
+      "branch_target_rva": "0xaf9",
+      "branch_eflags": "0x202",
+      "status_assignment_rva": "0xb03",
+      "completion_status": "0xc0000043",
+      "held_context": {
+        "address": 4266439848,
+        "list_entry": 4266439872,
+        "file": 4266440904,
+        "file_info": {
+          "address": 4266440904,
+          "type": 5,
+          "size": 112,
+          "DeviceObject": 4267634128,
+          "FsContext": 4266439848,
+          "FsContext2": 4176819428,
+          "RelatedFileObject": 0,
+          "Flags": 393216,
+          "ReadAccess": 0,
+          "WriteAccess": 0,
+          "DeleteAccess": 0,
+          "SharedRead": 0,
+          "SharedWrite": 0,
+          "SharedDelete": 0,
+          "FileName": ""
+        },
+        "desired_access": 1048577,
+        "share_access": 2,
+        "raw": "01000000fc105ffe609e65fe609e65feb8b44cfeb8b44cfe1c005ffe1c005ffe000000000000000000000000000000000000000008000000c8b84cfe0000000001001000020000010000000000000000010000000000000000000000000000000000000000000000"
+      },
+      "contemporaneous_owner": {
+        "process": 4266511584,
+        "pid": 160,
+        "image": "csrss.exe",
+        "table": 4266518312,
+        "reported_count": 285,
+        "observed_count": 285,
+        "count_matches": true,
+        "matches": [
+          {
+            "handle": 188,
+            "entry": 3785394552,
+            "entry_words": [
+              2118957232,
+              1048577
+            ],
+            "file": 4266440904,
+            "header": 4266440880,
+            "header_raw": "0200000001000000408069fe00080042e050488200000000",
+            "pointer_count": 2,
+            "handle_count": 1,
+            "granted_access": 1048577
+          }
+        ]
+      },
+      "earlier_successful_call_id": 5,
+      "observed_site_order": [
+        "hid_share_gate",
+        "hid_read_denied_branch",
+        "hid_reject_taken",
+        "hid_sharing_status",
+        "hid_complete"
+      ]
+    },
+    {
+      "class_driver": "kbdclass.sys",
+      "call_id": 8,
+      "failed_irp": 4288292840,
+      "new_request_context": {
+        "thread": 4268157088,
+        "process": 4268228640,
+        "pid": 8,
+        "image": "System"
+      },
+      "new_access": "0x100003",
+      "new_share": 3,
+      "counters": {
+        "opens": 1,
+        "readers": 1,
+        "writers": 0,
+        "deny_read": 1,
+        "deny_write": 0,
+        "deny_all": 0
+      },
+      "branch_rva": "0xad8",
+      "branch_target_rva": "0xaf9",
+      "branch_eflags": "0x202",
+      "status_assignment_rva": "0xb03",
+      "completion_status": "0xc0000043",
+      "held_context": {
+        "address": 4266439272,
+        "list_entry": 4266439296,
+        "file": 4266439432,
+        "file_info": {
+          "address": 4266439432,
+          "type": 5,
+          "size": 112,
+          "DeviceObject": 4267642224,
+          "FsContext": 4266439272,
+          "FsContext2": 4176722692,
+          "RelatedFileObject": 0,
+          "Flags": 393216,
+          "ReadAccess": 0,
+          "WriteAccess": 0,
+          "DeleteAccess": 0,
+          "SharedRead": 0,
+          "SharedWrite": 0,
+          "SharedDelete": 0,
+          "FileName": ""
+        },
+        "desired_access": 1048577,
+        "share_access": 2,
+        "raw": "010000003c245ffea04a5ffea04a5ffe78b24cfe78b24cfe1c195ffe1c195ffe00000000000000000000000000000000000000000800000008b34cfe0000000001001000020000010000000000000000010000000000000000000000000000000000000000000000"
+      },
+      "contemporaneous_owner": {
+        "process": 4266511584,
+        "pid": 160,
+        "image": "csrss.exe",
+        "table": 4266518312,
+        "reported_count": 285,
+        "observed_count": 285,
+        "count_matches": true,
+        "matches": [
+          {
+            "handle": 184,
+            "entry": 3785394544,
+            "entry_words": [
+              2118955760,
+              1048577
+            ],
+            "file": 4266439432,
+            "header": 4266439408,
+            "header_raw": "0200000001000000408069fe00080042e050488200000000",
+            "pointer_count": 2,
+            "handle_count": 1,
+            "granted_access": 1048577
+          }
+        ]
+      },
+      "earlier_successful_call_id": 6,
+      "observed_site_order": [
+        "hid_share_gate",
+        "hid_read_denied_branch",
+        "hid_reject_taken",
+        "hid_sharing_status",
+        "hid_complete"
+      ]
+    }
+  ],
+  "trace_counts": {
+    "open_enter": 150,
+    "open_after_zw": 150,
+    "open_end": 150,
+    "kbd_enable_enter": 4,
+    "call_driver": 486,
+    "hid_share_gate": 6,
+    "hid_read_denied_branch": 6,
+    "hid_complete": 6,
+    "kbd_enable_end": 4,
+    "mou_enable_enter": 4,
+    "mou_enable_end": 4,
+    "hid_reject_taken": 2,
+    "hid_sharing_status": 2
+  },
+  "pnp_minors": {
+    "24": 3,
+    "13": 3,
+    "0": 3,
+    "9": 3,
+    "20": 5,
+    "7": 8,
+    "1": 3,
+    "2": 2,
+    "8": 2,
+    "5": 1,
+    "6": 1,
+    "3": 1
+  },
+  "trace_load_lengths": [
+    13,
+    24,
+    12
+  ],
+  "cold_integrity_passed": true,
+  "unchanged_guest_payload": true,
+  "events": [
+    {
+      "source": "Ftdisk",
+      "event_id": 49,
+      "record": 204
+    },
+    {
+      "source": "Mouclass",
+      "event_id": 9,
+      "record": 208,
+      "major": 0,
+      "status": "0xc0000043"
+    },
+    {
+      "source": "Kbdclass",
+      "event_id": 9,
+      "record": 209,
+      "major": 0,
+      "status": "0xc0000043"
+    }
+  ],
+  "closed_utc": "2026-10-11T03:53:18.643715+00:00",
+  "source_sha256": "fb72b5cfecfbbf1ecd0d9daa26dd7761dd2ed4bf263b9e04a6afbdfa0e1c60ec",
+  "control_comparison_sha256": "9447f7ecf33e0306905e564e63601105384247e9db3112ba74037e2b98a6fe68",
+  "evidence_sha256": {
+    "veto001\\fixture.json": "03d0b628be042b077ef471404bada33377456849efae62a8386563d4bcb207cb",
+    "veto001\\run.json": "3d1e3389ff8a5e2723d079171039a125f1e37f60e382e19b27450358656ce15c",
+    "veto001\\trace.json": "541633eb97f55d61f089e2c24af32b6f8bc261702da119dd22ef6d71dd07a45f",
+    "veto001\\input002-before.json": "eda54a667fe1cdad9d108e05c3e56d8b6154dd868eae359e098c63338f945fa3",
+    "veto001\\ui-lease001.json": "d02ec812118e8f28b060170d7622eb01e99de0c6eb00cb73867a4166a279d1c2",
+    "veto001\\input003-keyboard.json": "44b233c7287bf8b2b29c0788cf687c1f2f13eac66cfbd5be6e21a4dcf09bf9e0",
+    "veto001\\input003-restore.json": "d1ea10a4b99c4c1802cb3fc32940dec6306fc5c4845afe94c8f27997516476cc",
+    "veto001\\ui-lease001-closed.json": "ea61bc1cc66fd96b970366d7a1eeb200b29eb0545d62968d30b4531b324c0ba6",
+    "veto001\\input004-mouse.json": "13cee55b2689312abca32ae1d11cadf2f2b6bdd11480a67c6388c4c7acf3ea32",
+    "veto001\\ui-lease002-closed.json": "a08b5e0f02e81c86d5bc4a0b1936006298d79b85594c6861305ee2463086bf4a",
+    "veto001\\before-system-events.json": "ab8d4d473dee826b6c46c1f98604e1dfe8560b7b67cad7b633da836e522e1432",
+    "veto001\\after-system-events.json": "fa8caef435d13032959a25a431cc4743fbca4f508a3d3e7a1d47fdadf83cb894",
+    "veto001\\before-application-events.json": "92db067ba67bef745f543748ddf7741aad24d486965209360b7ef5afc9d71dc3",
+    "veto001\\after-application-events.json": "92db067ba67bef745f543748ddf7741aad24d486965209360b7ef5afc9d71dc3",
+    "veto001\\audit.json": "4bea80ab39df1ec42ff3cd467e6b560699561b0fc465f8048b1dc9adb6f610f5",
+    "veto001\\resource-trace.json": "b3daf9387a313826493ff825b3916c77df7aa6ee75c6fc5b9a7f95d827609dd5",
+    "veto001\\pnp-review.json": "023960f162b0e6cd9035be6bef15c311462089757fae4b01170e900596982b19",
+    "preflight001.json": "05901d2a35823a52c93627e765d6493065765be2f41fdf856217ac204a7a2eac"
+  },
+  "limits": "Debugger timing is unqualified. Exact HID sharing denial and contemporaneous CSRSS ownership are established for this fixture, not the purpose/correctness of the System reopen or functional input impact. No code/policy/handle change, normal shutdown, repeated-boot, SMBus transaction or physical qualification."
+}

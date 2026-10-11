@@ -1,0 +1,2055 @@
+{
+  "passed": true,
+  "scope": "Pin a read-only debugger plan against actual NT5 images and historical PDB layouts.",
+  "physical_access": false,
+  "ordinary_qualified": false,
+  "kernel_base_expected": 2185240576,
+  "module_list_rva": 529856,
+  "thread_owner_offset": 556,
+  "providers": {
+    "ntoskrnl.exe": {
+      "path": "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\pci-support207\\artifacts\\providers001\\ntoskrnl.exe",
+      "sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+      "timestamp": 1266293717,
+      "image_size": 1691648,
+      "preferred_base": 4194304
+    },
+    "kbdclass.sys": {
+      "path": "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\pci-support207\\rebalance002\\artifacts\\providers001\\kbdclass.sys",
+      "sha256": "477d54c98c12e53ab0b43ede5cf3e8699f35efe256af3f1e825ed9439abaeb14",
+      "timestamp": 1069269743,
+      "image_size": 23296,
+      "preferred_base": 65536
+    },
+    "mouclass.sys": {
+      "path": "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\pci-support207\\rebalance002\\artifacts\\providers001\\mouclass.sys",
+      "sha256": "9c7917f95e1ddc615a4bd3781a65dcec94b65f729a7d882c15040d9ca92ec404",
+      "timestamp": 1045759065,
+      "image_size": 21504,
+      "preferred_base": 65536
+    },
+    "hidclass.sys": {
+      "path": "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\pci-support207\\hidreject007\\artifacts\\providers001\\hidclass.sys",
+      "sha256": "3bc911b579b691a9447428c2b7791938406705c30497803df25db9cf71846697",
+      "timestamp": 1042659926,
+      "image_size": 24480,
+      "preferred_base": 65536
+    },
+    "kbdhid.sys": {
+      "path": "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\pci-support207\\hidreject007\\artifacts\\providers001\\kbdhid.sys",
+      "sha256": "7fd8ab5db97f64d827100684ef6ae184ee3176f0836534cbf02c064a6417a325",
+      "timestamp": 939078259,
+      "image_size": 13472,
+      "preferred_base": 65536
+    },
+    "mouhid.sys": {
+      "path": "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\pci-support207\\hidreject007\\artifacts\\providers001\\mouhid.sys",
+      "sha256": "d363482d1a3e310d44f288da2e7e5be66496469ed631e2ad052cf8c883becb0d",
+      "timestamp": 1042659819,
+      "image_size": 11360,
+      "preferred_base": 65536
+    },
+    "hidusb.sys": {
+      "path": "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\pci-support207\\hidreject007\\artifacts\\providers001\\hidusb.sys",
+      "sha256": "1ec308068b86b529adcdd454d05c4abc84ac4d61a69eaf9696a141849f2dfc5c",
+      "timestamp": 939078210,
+      "image_size": 13632,
+      "preferred_base": 65536
+    }
+  },
+  "sites": {
+    "open_enter": 655480,
+    "open_after_zw": 655538,
+    "open_end": 655598,
+    "share_enter": 651312,
+    "share_failure": 651509,
+    "share_end": 651575,
+    "call_driver": 122356
+  },
+  "class_sites": {
+    "kbd_enable_enter": 4176711494,
+    "kbd_enable_end": 4176711949,
+    "mou_enable_enter": 4176809582,
+    "mou_enable_end": 4176809935
+  },
+  "hid_sites": {
+    "hid_share_gate": 4176546491,
+    "hid_read_denied_branch": 4176546520,
+    "hid_reject_taken": 4176546553,
+    "hid_sharing_status": 4176546563,
+    "hid_complete": 4176546936
+  },
+  "active_process_head_rva": 536648,
+  "layouts": {
+    "_IRP": {
+      "type_index": 5733,
+      "size": 112,
+      "field_count": 21,
+      "field_list": 5732,
+      "fields": {
+        "Type": {
+          "offset": 0,
+          "type_index": 17
+        },
+        "Size": {
+          "offset": 2,
+          "type_index": 33
+        },
+        "MdlAddress": {
+          "offset": 4,
+          "type_index": 4232
+        },
+        "Flags": {
+          "offset": 8,
+          "type_index": 34
+        },
+        "AssociatedIrp": {
+          "offset": 12,
+          "type_index": 5719
+        },
+        "ThreadListEntry": {
+          "offset": 16,
+          "type_index": 4167
+        },
+        "IoStatus": {
+          "offset": 24,
+          "type_index": 4254
+        },
+        "RequestorMode": {
+          "offset": 32,
+          "type_index": 112
+        },
+        "PendingReturned": {
+          "offset": 33,
+          "type_index": 32
+        },
+        "StackCount": {
+          "offset": 34,
+          "type_index": 112
+        },
+        "CurrentLocation": {
+          "offset": 35,
+          "type_index": 112
+        },
+        "Cancel": {
+          "offset": 36,
+          "type_index": 32
+        },
+        "CancelIrql": {
+          "offset": 37,
+          "type_index": 32
+        },
+        "ApcEnvironment": {
+          "offset": 38,
+          "type_index": 112
+        },
+        "AllocationFlags": {
+          "offset": 39,
+          "type_index": 32
+        },
+        "UserIosb": {
+          "offset": 40,
+          "type_index": 4255
+        },
+        "UserEvent": {
+          "offset": 44,
+          "type_index": 4186
+        },
+        "Overlay": {
+          "offset": 48,
+          "type_index": 5726
+        },
+        "CancelRoutine": {
+          "offset": 56,
+          "type_index": 4607
+        },
+        "UserBuffer": {
+          "offset": 60,
+          "type_index": 1027
+        },
+        "Tail": {
+          "offset": 64,
+          "type_index": 5731
+        }
+      }
+    },
+    "_IO_STACK_LOCATION": {
+      "type_index": 6234,
+      "size": 36,
+      "field_count": 9,
+      "field_list": 6233,
+      "fields": {
+        "MajorFunction": {
+          "offset": 0,
+          "type_index": 32
+        },
+        "MinorFunction": {
+          "offset": 1,
+          "type_index": 32
+        },
+        "Flags": {
+          "offset": 2,
+          "type_index": 32
+        },
+        "Control": {
+          "offset": 3,
+          "type_index": 32
+        },
+        "Parameters": {
+          "offset": 4,
+          "type_index": 6232
+        },
+        "DeviceObject": {
+          "offset": 20,
+          "type_index": 4234
+        },
+        "FileObject": {
+          "offset": 24,
+          "type_index": 4181
+        },
+        "CompletionRoutine": {
+          "offset": 28,
+          "type_index": 5689
+        },
+        "Context": {
+          "offset": 32,
+          "type_index": 1027
+        }
+      }
+    },
+    "_IO_STATUS_BLOCK": {
+      "type_index": 4282,
+      "size": 8,
+      "field_count": 3,
+      "field_list": 4281,
+      "fields": {
+        "Status": {
+          "offset": 0,
+          "type_index": 18
+        },
+        "Pointer": {
+          "offset": 0,
+          "type_index": 1027
+        },
+        "Information": {
+          "offset": 4,
+          "type_index": 34
+        }
+      }
+    },
+    "_LDR_DATA_TABLE_ENTRY": {
+      "type_index": 5199,
+      "size": 72,
+      "field_count": 16,
+      "field_list": 5198,
+      "fields": {
+        "InLoadOrderLinks": {
+          "offset": 0,
+          "type_index": 4167
+        },
+        "InMemoryOrderLinks": {
+          "offset": 8,
+          "type_index": 4167
+        },
+        "InInitializationOrderLinks": {
+          "offset": 16,
+          "type_index": 4167
+        },
+        "DllBase": {
+          "offset": 24,
+          "type_index": 1027
+        },
+        "EntryPoint": {
+          "offset": 28,
+          "type_index": 1027
+        },
+        "SizeOfImage": {
+          "offset": 32,
+          "type_index": 34
+        },
+        "FullDllName": {
+          "offset": 36,
+          "type_index": 4348
+        },
+        "BaseDllName": {
+          "offset": 44,
+          "type_index": 4348
+        },
+        "Flags": {
+          "offset": 52,
+          "type_index": 34
+        },
+        "LoadCount": {
+          "offset": 56,
+          "type_index": 33
+        },
+        "TlsIndex": {
+          "offset": 58,
+          "type_index": 33
+        },
+        "HashLinks": {
+          "offset": 60,
+          "type_index": 4167
+        },
+        "SectionPointer": {
+          "offset": 60,
+          "type_index": 1027
+        },
+        "CheckSum": {
+          "offset": 64,
+          "type_index": 34
+        },
+        "TimeDateStamp": {
+          "offset": 68,
+          "type_index": 34
+        },
+        "LoadedImports": {
+          "offset": 68,
+          "type_index": 1027
+        }
+      }
+    },
+    "_DEVICE_OBJECT": {
+      "type_index": 5377,
+      "size": 184,
+      "field_count": 25,
+      "field_list": 5376,
+      "fields": {
+        "Type": {
+          "offset": 0,
+          "type_index": 17
+        },
+        "Size": {
+          "offset": 2,
+          "type_index": 33
+        },
+        "ReferenceCount": {
+          "offset": 4,
+          "type_index": 18
+        },
+        "DriverObject": {
+          "offset": 8,
+          "type_index": 4401
+        },
+        "NextDevice": {
+          "offset": 12,
+          "type_index": 4234
+        },
+        "AttachedDevice": {
+          "offset": 16,
+          "type_index": 4234
+        },
+        "CurrentIrp": {
+          "offset": 20,
+          "type_index": 4247
+        },
+        "Timer": {
+          "offset": 24,
+          "type_index": 5367
+        },
+        "Flags": {
+          "offset": 28,
+          "type_index": 34
+        },
+        "Characteristics": {
+          "offset": 32,
+          "type_index": 34
+        },
+        "Vpb": {
+          "offset": 36,
+          "type_index": 5369
+        },
+        "DeviceExtension": {
+          "offset": 40,
+          "type_index": 1027
+        },
+        "DeviceType": {
+          "offset": 44,
+          "type_index": 34
+        },
+        "StackSize": {
+          "offset": 48,
+          "type_index": 112
+        },
+        "Queue": {
+          "offset": 52,
+          "type_index": 5372
+        },
+        "AlignmentRequirement": {
+          "offset": 92,
+          "type_index": 34
+        },
+        "DeviceQueue": {
+          "offset": 96,
+          "type_index": 5373
+        },
+        "Dpc": {
+          "offset": 116,
+          "type_index": 5098
+        },
+        "ActiveThreadCount": {
+          "offset": 148,
+          "type_index": 34
+        },
+        "SecurityDescriptor": {
+          "offset": 152,
+          "type_index": 1027
+        },
+        "DeviceLock": {
+          "offset": 156,
+          "type_index": 4185
+        },
+        "SectorSize": {
+          "offset": 172,
+          "type_index": 33
+        },
+        "Spare1": {
+          "offset": 174,
+          "type_index": 33
+        },
+        "DeviceObjectExtension": {
+          "offset": 176,
+          "type_index": 5375
+        },
+        "Reserved": {
+          "offset": 180,
+          "type_index": 1027
+        }
+      }
+    },
+    "_DRIVER_OBJECT": {
+      "type_index": 5190,
+      "size": 168,
+      "field_count": 15,
+      "field_list": 5189,
+      "fields": {
+        "Type": {
+          "offset": 0,
+          "type_index": 17
+        },
+        "Size": {
+          "offset": 2,
+          "type_index": 17
+        },
+        "DeviceObject": {
+          "offset": 4,
+          "type_index": 4234
+        },
+        "Flags": {
+          "offset": 8,
+          "type_index": 34
+        },
+        "DriverStart": {
+          "offset": 12,
+          "type_index": 1027
+        },
+        "DriverSize": {
+          "offset": 16,
+          "type_index": 34
+        },
+        "DriverSection": {
+          "offset": 20,
+          "type_index": 1027
+        },
+        "DriverExtension": {
+          "offset": 24,
+          "type_index": 5182
+        },
+        "DriverName": {
+          "offset": 28,
+          "type_index": 4348
+        },
+        "HardwareDatabase": {
+          "offset": 36,
+          "type_index": 4349
+        },
+        "FastIoDispatch": {
+          "offset": 40,
+          "type_index": 5184
+        },
+        "DriverInit": {
+          "offset": 44,
+          "type_index": 5187
+        },
+        "DriverStartIo": {
+          "offset": 48,
+          "type_index": 4607
+        },
+        "DriverUnload": {
+          "offset": 52,
+          "type_index": 5135
+        },
+        "MajorFunction": {
+          "offset": 56,
+          "type_index": 5188
+        }
+      }
+    },
+    "_EPROCESS": {
+      "type_index": 4442,
+      "size": 656,
+      "field_count": 94,
+      "field_list": 4441,
+      "fields": {
+        "Pcb": {
+          "offset": 0,
+          "type_index": 4422
+        },
+        "ExitStatus": {
+          "offset": 108,
+          "type_index": 18
+        },
+        "LockEvent": {
+          "offset": 112,
+          "type_index": 4185
+        },
+        "LockCount": {
+          "offset": 128,
+          "type_index": 34
+        },
+        "CreateTime": {
+          "offset": 136,
+          "type_index": 4110
+        },
+        "ExitTime": {
+          "offset": 144,
+          "type_index": 4110
+        },
+        "LockOwner": {
+          "offset": 152,
+          "type_index": 4147
+        },
+        "UniqueProcessId": {
+          "offset": 156,
+          "type_index": 1027
+        },
+        "ActiveProcessLinks": {
+          "offset": 160,
+          "type_index": 4167
+        },
+        "QuotaPeakPoolUsage": {
+          "offset": 168,
+          "type_index": 4153
+        },
+        "QuotaPoolUsage": {
+          "offset": 176,
+          "type_index": 4153
+        },
+        "PagefileUsage": {
+          "offset": 184,
+          "type_index": 34
+        },
+        "CommitCharge": {
+          "offset": 188,
+          "type_index": 34
+        },
+        "PeakPagefileUsage": {
+          "offset": 192,
+          "type_index": 34
+        },
+        "PeakVirtualSize": {
+          "offset": 196,
+          "type_index": 34
+        },
+        "VirtualSize": {
+          "offset": 200,
+          "type_index": 34
+        },
+        "Vm": {
+          "offset": 208,
+          "type_index": 4423
+        },
+        "SessionProcessLinks": {
+          "offset": 280,
+          "type_index": 4167
+        },
+        "DebugPort": {
+          "offset": 288,
+          "type_index": 1027
+        },
+        "ExceptionPort": {
+          "offset": 292,
+          "type_index": 1027
+        },
+        "ObjectTable": {
+          "offset": 296,
+          "type_index": 4425
+        },
+        "Token": {
+          "offset": 300,
+          "type_index": 1027
+        },
+        "WorkingSetLock": {
+          "offset": 304,
+          "type_index": 4372
+        },
+        "WorkingSetPage": {
+          "offset": 336,
+          "type_index": 34
+        },
+        "ProcessOutswapEnabled": {
+          "offset": 340,
+          "type_index": 32
+        },
+        "ProcessOutswapped": {
+          "offset": 341,
+          "type_index": 32
+        },
+        "AddressSpaceInitialized": {
+          "offset": 342,
+          "type_index": 32
+        },
+        "AddressSpaceDeleted": {
+          "offset": 343,
+          "type_index": 32
+        },
+        "AddressCreationLock": {
+          "offset": 344,
+          "type_index": 4372
+        },
+        "HyperSpaceLock": {
+          "offset": 376,
+          "type_index": 34
+        },
+        "ForkInProgress": {
+          "offset": 380,
+          "type_index": 4427
+        },
+        "VmOperation": {
+          "offset": 384,
+          "type_index": 33
+        },
+        "ForkWasSuccessful": {
+          "offset": 386,
+          "type_index": 32
+        },
+        "MmAgressiveWsTrimMask": {
+          "offset": 387,
+          "type_index": 32
+        },
+        "VmOperationEvent": {
+          "offset": 388,
+          "type_index": 4186
+        },
+        "PaeTop": {
+          "offset": 392,
+          "type_index": 1027
+        },
+        "LastFaultCount": {
+          "offset": 396,
+          "type_index": 34
+        },
+        "ModifiedPageCount": {
+          "offset": 400,
+          "type_index": 34
+        },
+        "VadRoot": {
+          "offset": 404,
+          "type_index": 1027
+        },
+        "VadHint": {
+          "offset": 408,
+          "type_index": 1027
+        },
+        "CloneRoot": {
+          "offset": 412,
+          "type_index": 1027
+        },
+        "NumberOfPrivatePages": {
+          "offset": 416,
+          "type_index": 34
+        },
+        "NumberOfLockedPages": {
+          "offset": 420,
+          "type_index": 34
+        },
+        "NextPageColor": {
+          "offset": 424,
+          "type_index": 33
+        },
+        "ExitProcessCalled": {
+          "offset": 426,
+          "type_index": 32
+        },
+        "CreateProcessReported": {
+          "offset": 427,
+          "type_index": 32
+        },
+        "SectionHandle": {
+          "offset": 428,
+          "type_index": 1027
+        },
+        "Peb": {
+          "offset": 432,
+          "type_index": 4429
+        },
+        "SectionBaseAddress": {
+          "offset": 436,
+          "type_index": 1027
+        },
+        "QuotaBlock": {
+          "offset": 440,
+          "type_index": 4431
+        },
+        "LastThreadExitStatus": {
+          "offset": 444,
+          "type_index": 18
+        },
+        "WorkingSetWatch": {
+          "offset": 448,
+          "type_index": 4433
+        },
+        "Win32WindowStation": {
+          "offset": 452,
+          "type_index": 1027
+        },
+        "InheritedFromUniqueProcessId": {
+          "offset": 456,
+          "type_index": 1027
+        },
+        "GrantedAccess": {
+          "offset": 460,
+          "type_index": 34
+        },
+        "DefaultHardErrorProcessing": {
+          "offset": 464,
+          "type_index": 34
+        },
+        "LdtInformation": {
+          "offset": 468,
+          "type_index": 1027
+        },
+        "VadFreeHint": {
+          "offset": 472,
+          "type_index": 1027
+        },
+        "VdmObjects": {
+          "offset": 476,
+          "type_index": 1027
+        },
+        "DeviceMap": {
+          "offset": 480,
+          "type_index": 1027
+        },
+        "SessionId": {
+          "offset": 484,
+          "type_index": 34
+        },
+        "PhysicalVadList": {
+          "offset": 488,
+          "type_index": 4167
+        },
+        "PageDirectoryPte": {
+          "offset": 496,
+          "type_index": 4122
+        },
+        "Filler": {
+          "offset": 496,
+          "type_index": 35
+        },
+        "PaePageDirectoryPage": {
+          "offset": 504,
+          "type_index": 34
+        },
+        "ImageFileName": {
+          "offset": 508,
+          "type_index": 4434
+        },
+        "VmTrimFaultValue": {
+          "offset": 524,
+          "type_index": 34
+        },
+        "SetTimerResolution": {
+          "offset": 528,
+          "type_index": 32
+        },
+        "PriorityClass": {
+          "offset": 529,
+          "type_index": 32
+        },
+        "SubSystemMinorVersion": {
+          "offset": 530,
+          "type_index": 32
+        },
+        "SubSystemMajorVersion": {
+          "offset": 531,
+          "type_index": 32
+        },
+        "SubSystemVersion": {
+          "offset": 530,
+          "type_index": 33
+        },
+        "Win32Process": {
+          "offset": 532,
+          "type_index": 1027
+        },
+        "Job": {
+          "offset": 536,
+          "type_index": 4436
+        },
+        "JobStatus": {
+          "offset": 540,
+          "type_index": 34
+        },
+        "JobLinks": {
+          "offset": 544,
+          "type_index": 4167
+        },
+        "LockedPagesList": {
+          "offset": 552,
+          "type_index": 1027
+        },
+        "SecurityPort": {
+          "offset": 556,
+          "type_index": 1027
+        },
+        "Wow64Process": {
+          "offset": 560,
+          "type_index": 4438
+        },
+        "ReadOperationCount": {
+          "offset": 568,
+          "type_index": 4110
+        },
+        "WriteOperationCount": {
+          "offset": 576,
+          "type_index": 4110
+        },
+        "OtherOperationCount": {
+          "offset": 584,
+          "type_index": 4110
+        },
+        "ReadTransferCount": {
+          "offset": 592,
+          "type_index": 4110
+        },
+        "WriteTransferCount": {
+          "offset": 600,
+          "type_index": 4110
+        },
+        "OtherTransferCount": {
+          "offset": 608,
+          "type_index": 4110
+        },
+        "CommitChargeLimit": {
+          "offset": 616,
+          "type_index": 34
+        },
+        "CommitChargePeak": {
+          "offset": 620,
+          "type_index": 34
+        },
+        "ThreadListHead": {
+          "offset": 624,
+          "type_index": 4167
+        },
+        "VadPhysicalPagesBitMap": {
+          "offset": 632,
+          "type_index": 4440
+        },
+        "VadPhysicalPages": {
+          "offset": 636,
+          "type_index": 34
+        },
+        "AweLock": {
+          "offset": 640,
+          "type_index": 34
+        },
+        "pImageFileName": {
+          "offset": 644,
+          "type_index": 4349
+        },
+        "Session": {
+          "offset": 648,
+          "type_index": 1027
+        },
+        "Flags": {
+          "offset": 652,
+          "type_index": 34
+        }
+      }
+    },
+    "_FILE_OBJECT": {
+      "type_index": 5485,
+      "size": 112,
+      "field_count": 27,
+      "field_list": 5484,
+      "fields": {
+        "Type": {
+          "offset": 0,
+          "type_index": 17
+        },
+        "Size": {
+          "offset": 2,
+          "type_index": 17
+        },
+        "DeviceObject": {
+          "offset": 4,
+          "type_index": 4234
+        },
+        "Vpb": {
+          "offset": 8,
+          "type_index": 5369
+        },
+        "FsContext": {
+          "offset": 12,
+          "type_index": 1027
+        },
+        "FsContext2": {
+          "offset": 16,
+          "type_index": 1027
+        },
+        "SectionObjectPointer": {
+          "offset": 20,
+          "type_index": 5481
+        },
+        "PrivateCacheMap": {
+          "offset": 24,
+          "type_index": 1027
+        },
+        "FinalStatus": {
+          "offset": 28,
+          "type_index": 18
+        },
+        "RelatedFileObject": {
+          "offset": 32,
+          "type_index": 4181
+        },
+        "LockOperation": {
+          "offset": 36,
+          "type_index": 32
+        },
+        "DeletePending": {
+          "offset": 37,
+          "type_index": 32
+        },
+        "ReadAccess": {
+          "offset": 38,
+          "type_index": 32
+        },
+        "WriteAccess": {
+          "offset": 39,
+          "type_index": 32
+        },
+        "DeleteAccess": {
+          "offset": 40,
+          "type_index": 32
+        },
+        "SharedRead": {
+          "offset": 41,
+          "type_index": 32
+        },
+        "SharedWrite": {
+          "offset": 42,
+          "type_index": 32
+        },
+        "SharedDelete": {
+          "offset": 43,
+          "type_index": 32
+        },
+        "Flags": {
+          "offset": 44,
+          "type_index": 34
+        },
+        "FileName": {
+          "offset": 48,
+          "type_index": 4348
+        },
+        "CurrentByteOffset": {
+          "offset": 56,
+          "type_index": 4110
+        },
+        "Waiters": {
+          "offset": 64,
+          "type_index": 34
+        },
+        "Busy": {
+          "offset": 68,
+          "type_index": 34
+        },
+        "LastLock": {
+          "offset": 72,
+          "type_index": 1027
+        },
+        "Lock": {
+          "offset": 76,
+          "type_index": 4185
+        },
+        "Event": {
+          "offset": 92,
+          "type_index": 4185
+        },
+        "CompletionContext": {
+          "offset": 108,
+          "type_index": 5483
+        }
+      }
+    },
+    "_VPB": {
+      "type_index": 5989,
+      "size": 88,
+      "field_count": 9,
+      "field_list": 5988,
+      "fields": {
+        "Type": {
+          "offset": 0,
+          "type_index": 17
+        },
+        "Size": {
+          "offset": 2,
+          "type_index": 17
+        },
+        "Flags": {
+          "offset": 4,
+          "type_index": 33
+        },
+        "VolumeLabelLength": {
+          "offset": 6,
+          "type_index": 33
+        },
+        "DeviceObject": {
+          "offset": 8,
+          "type_index": 4234
+        },
+        "RealDevice": {
+          "offset": 12,
+          "type_index": 4234
+        },
+        "SerialNumber": {
+          "offset": 16,
+          "type_index": 34
+        },
+        "ReferenceCount": {
+          "offset": 20,
+          "type_index": 34
+        },
+        "VolumeLabel": {
+          "offset": 24,
+          "type_index": 5987
+        }
+      }
+    },
+    "_MDL": {
+      "type_index": 5396,
+      "size": 28,
+      "field_count": 8,
+      "field_list": 5395,
+      "fields": {
+        "Next": {
+          "offset": 0,
+          "type_index": 4232
+        },
+        "Size": {
+          "offset": 4,
+          "type_index": 17
+        },
+        "MdlFlags": {
+          "offset": 6,
+          "type_index": 17
+        },
+        "Process": {
+          "offset": 8,
+          "type_index": 4580
+        },
+        "MappedSystemVa": {
+          "offset": 12,
+          "type_index": 1027
+        },
+        "StartVa": {
+          "offset": 16,
+          "type_index": 1027
+        },
+        "ByteCount": {
+          "offset": 20,
+          "type_index": 34
+        },
+        "ByteOffset": {
+          "offset": 24,
+          "type_index": 34
+        }
+      }
+    },
+    "_FAST_IO_DISPATCH": {
+      "type_index": 5905,
+      "size": 112,
+      "field_count": 28,
+      "field_list": 5904,
+      "fields": {
+        "SizeOfFastIoDispatch": {
+          "offset": 0,
+          "type_index": 34
+        },
+        "FastIoCheckIfPossible": {
+          "offset": 4,
+          "type_index": 5896
+        },
+        "FastIoRead": {
+          "offset": 8,
+          "type_index": 5631
+        },
+        "FastIoWrite": {
+          "offset": 12,
+          "type_index": 5631
+        },
+        "FastIoQueryBasicInfo": {
+          "offset": 16,
+          "type_index": 4277
+        },
+        "FastIoQueryStandardInfo": {
+          "offset": 20,
+          "type_index": 4755
+        },
+        "FastIoLock": {
+          "offset": 24,
+          "type_index": 4583
+        },
+        "FastIoUnlockSingle": {
+          "offset": 28,
+          "type_index": 5785
+        },
+        "FastIoUnlockAll": {
+          "offset": 32,
+          "type_index": 5068
+        },
+        "FastIoUnlockAllByKey": {
+          "offset": 36,
+          "type_index": 4258
+        },
+        "FastIoDeviceControl": {
+          "offset": 40,
+          "type_index": 5798
+        },
+        "AcquireFileForNtCreateSection": {
+          "offset": 44,
+          "type_index": 4292
+        },
+        "ReleaseFileForNtCreateSection": {
+          "offset": 48,
+          "type_index": 4292
+        },
+        "FastIoDetachDevice": {
+          "offset": 52,
+          "type_index": 5516
+        },
+        "FastIoQueryNetworkOpenInfo": {
+          "offset": 56,
+          "type_index": 5259
+        },
+        "AcquireForModWrite": {
+          "offset": 60,
+          "type_index": 5900
+        },
+        "MdlRead": {
+          "offset": 64,
+          "type_index": 4750
+        },
+        "MdlReadComplete": {
+          "offset": 68,
+          "type_index": 4237
+        },
+        "PrepareMdlWrite": {
+          "offset": 72,
+          "type_index": 4750
+        },
+        "MdlWriteComplete": {
+          "offset": 76,
+          "type_index": 5402
+        },
+        "FastIoReadCompressed": {
+          "offset": 80,
+          "type_index": 4630
+        },
+        "FastIoWriteCompressed": {
+          "offset": 84,
+          "type_index": 4630
+        },
+        "MdlReadCompleteCompressed": {
+          "offset": 88,
+          "type_index": 4237
+        },
+        "MdlWriteCompleteCompressed": {
+          "offset": 92,
+          "type_index": 5402
+        },
+        "FastIoQueryOpen": {
+          "offset": 96,
+          "type_index": 5903
+        },
+        "ReleaseForModWrite": {
+          "offset": 100,
+          "type_index": 4242
+        },
+        "AcquireForCcFlush": {
+          "offset": 104,
+          "type_index": 4579
+        },
+        "ReleaseForCcFlush": {
+          "offset": 108,
+          "type_index": 4579
+        }
+      }
+    },
+    "_NPAGED_LOOKASIDE_LIST": {
+      "type_index": 4143,
+      "size": 80,
+      "field_count": 2,
+      "field_list": 4142,
+      "fields": {
+        "L": {
+          "offset": 0,
+          "type_index": 4141
+        },
+        "Lock": {
+          "offset": 72,
+          "type_index": 34
+        }
+      }
+    },
+    "_GENERAL_LOOKASIDE": {
+      "type_index": 4670,
+      "size": 72,
+      "field_count": 19,
+      "field_list": 4669,
+      "fields": {
+        "ListHead": {
+          "offset": 0,
+          "type_index": 4665
+        },
+        "Depth": {
+          "offset": 8,
+          "type_index": 33
+        },
+        "MaximumDepth": {
+          "offset": 10,
+          "type_index": 33
+        },
+        "TotalAllocates": {
+          "offset": 12,
+          "type_index": 34
+        },
+        "AllocateMisses": {
+          "offset": 16,
+          "type_index": 34
+        },
+        "AllocateHits": {
+          "offset": 16,
+          "type_index": 34
+        },
+        "TotalFrees": {
+          "offset": 20,
+          "type_index": 34
+        },
+        "FreeMisses": {
+          "offset": 24,
+          "type_index": 34
+        },
+        "FreeHits": {
+          "offset": 24,
+          "type_index": 34
+        },
+        "Type": {
+          "offset": 28,
+          "type_index": 116
+        },
+        "Tag": {
+          "offset": 32,
+          "type_index": 34
+        },
+        "Size": {
+          "offset": 36,
+          "type_index": 34
+        },
+        "Allocate": {
+          "offset": 40,
+          "type_index": 4668
+        },
+        "Free": {
+          "offset": 44,
+          "type_index": 4649
+        },
+        "ListEntry": {
+          "offset": 48,
+          "type_index": 4167
+        },
+        "LastTotalAllocates": {
+          "offset": 56,
+          "type_index": 34
+        },
+        "LastAllocateMisses": {
+          "offset": 60,
+          "type_index": 34
+        },
+        "LastAllocateHits": {
+          "offset": 60,
+          "type_index": 34
+        },
+        "Future": {
+          "offset": 64,
+          "type_index": 4153
+        }
+      }
+    },
+    "_ERESOURCE": {
+      "type_index": 5334,
+      "size": 56,
+      "field_count": 13,
+      "field_list": 5333,
+      "fields": {
+        "SystemResourcesList": {
+          "offset": 0,
+          "type_index": 4167
+        },
+        "OwnerTable": {
+          "offset": 8,
+          "type_index": 5330
+        },
+        "ActiveCount": {
+          "offset": 12,
+          "type_index": 17
+        },
+        "Flag": {
+          "offset": 14,
+          "type_index": 33
+        },
+        "SharedWaiters": {
+          "offset": 16,
+          "type_index": 5331
+        },
+        "ExclusiveWaiters": {
+          "offset": 20,
+          "type_index": 4186
+        },
+        "OwnerThreads": {
+          "offset": 24,
+          "type_index": 5332
+        },
+        "ContentionCount": {
+          "offset": 40,
+          "type_index": 34
+        },
+        "NumberOfSharedWaiters": {
+          "offset": 44,
+          "type_index": 33
+        },
+        "NumberOfExclusiveWaiters": {
+          "offset": 46,
+          "type_index": 33
+        },
+        "Address": {
+          "offset": 48,
+          "type_index": 1027
+        },
+        "CreatorBackTraceIndex": {
+          "offset": 48,
+          "type_index": 34
+        },
+        "SpinLock": {
+          "offset": 52,
+          "type_index": 34
+        }
+      }
+    },
+    "_FAST_MUTEX": {
+      "type_index": 5404,
+      "size": 32,
+      "field_count": 5,
+      "field_list": 5403,
+      "fields": {
+        "Count": {
+          "offset": 0,
+          "type_index": 18
+        },
+        "Owner": {
+          "offset": 4,
+          "type_index": 4147
+        },
+        "Contention": {
+          "offset": 8,
+          "type_index": 34
+        },
+        "Event": {
+          "offset": 12,
+          "type_index": 4185
+        },
+        "OldIrql": {
+          "offset": 28,
+          "type_index": 34
+        }
+      }
+    },
+    "_KEVENT": {
+      "type_index": 4873,
+      "size": 16,
+      "field_count": 1,
+      "field_list": 4872,
+      "fields": {
+        "Header": {
+          "offset": 0,
+          "type_index": 4559
+        }
+      }
+    },
+    "_CACHE_MANAGER_CALLBACKS": {
+      "type_index": 5503,
+      "size": 16,
+      "field_count": 4,
+      "field_list": 5502,
+      "fields": {
+        "AcquireForLazyWrite": {
+          "offset": 0,
+          "type_index": 5493
+        },
+        "ReleaseFromLazyWrite": {
+          "offset": 4,
+          "type_index": 4649
+        },
+        "AcquireForReadAhead": {
+          "offset": 8,
+          "type_index": 5493
+        },
+        "ReleaseFromReadAhead": {
+          "offset": 12,
+          "type_index": 4649
+        }
+      }
+    },
+    "_SECTION_OBJECT_POINTERS": {
+      "type_index": 5887,
+      "size": 12,
+      "field_count": 3,
+      "field_list": 5886,
+      "fields": {
+        "DataSectionObject": {
+          "offset": 0,
+          "type_index": 1027
+        },
+        "SharedCacheMap": {
+          "offset": 4,
+          "type_index": 1027
+        },
+        "ImageSectionObject": {
+          "offset": 8,
+          "type_index": 1027
+        }
+      }
+    },
+    "_HANDLE_TABLE": {
+      "type_index": 5560,
+      "size": 108,
+      "field_count": 10,
+      "field_list": 5559,
+      "fields": {
+        "Flags": {
+          "offset": 0,
+          "type_index": 34
+        },
+        "HandleCount": {
+          "offset": 4,
+          "type_index": 18
+        },
+        "Table": {
+          "offset": 8,
+          "type_index": 5558
+        },
+        "QuotaProcess": {
+          "offset": 12,
+          "type_index": 4580
+        },
+        "UniqueProcessId": {
+          "offset": 16,
+          "type_index": 1027
+        },
+        "FirstFreeTableEntry": {
+          "offset": 20,
+          "type_index": 18
+        },
+        "NextIndexNeedingPool": {
+          "offset": 24,
+          "type_index": 18
+        },
+        "HandleTableLock": {
+          "offset": 28,
+          "type_index": 4238
+        },
+        "HandleTableList": {
+          "offset": 84,
+          "type_index": 4167
+        },
+        "HandleContentionEvent": {
+          "offset": 92,
+          "type_index": 4185
+        }
+      }
+    },
+    "_HANDLE_TABLE_ENTRY": {
+      "type_index": 5735,
+      "size": 8,
+      "field_count": 6,
+      "field_list": 5734,
+      "fields": {
+        "Object": {
+          "offset": 0,
+          "type_index": 1027
+        },
+        "ObAttributes": {
+          "offset": 0,
+          "type_index": 34
+        },
+        "GrantedAccess": {
+          "offset": 4,
+          "type_index": 34
+        },
+        "GrantedAccessIndex": {
+          "offset": 4,
+          "type_index": 33
+        },
+        "CreatorBackTraceIndex": {
+          "offset": 6,
+          "type_index": 33
+        },
+        "NextFreeTableEntry": {
+          "offset": 4,
+          "type_index": 18
+        }
+      }
+    },
+    "_OBJECT_HEADER": {
+      "type_index": 5465,
+      "size": 32,
+      "field_count": 12,
+      "field_list": 5464,
+      "fields": {
+        "PointerCount": {
+          "offset": 0,
+          "type_index": 18
+        },
+        "HandleCount": {
+          "offset": 4,
+          "type_index": 18
+        },
+        "SEntry": {
+          "offset": 4,
+          "type_index": 5458
+        },
+        "Type": {
+          "offset": 8,
+          "type_index": 5460
+        },
+        "NameInfoOffset": {
+          "offset": 12,
+          "type_index": 32
+        },
+        "HandleInfoOffset": {
+          "offset": 13,
+          "type_index": 32
+        },
+        "QuotaInfoOffset": {
+          "offset": 14,
+          "type_index": 32
+        },
+        "Flags": {
+          "offset": 15,
+          "type_index": 32
+        },
+        "ObjectCreateInfo": {
+          "offset": 16,
+          "type_index": 5462
+        },
+        "QuotaBlockCharged": {
+          "offset": 16,
+          "type_index": 1027
+        },
+        "SecurityDescriptor": {
+          "offset": 20,
+          "type_index": 1027
+        },
+        "Body": {
+          "offset": 24,
+          "type_index": 5463
+        }
+      }
+    },
+    "_KTHREAD": {
+      "type_index": 4573,
+      "size": 432,
+      "field_count": 69,
+      "field_list": 4572,
+      "fields": {
+        "Header": {
+          "offset": 0,
+          "type_index": 4559
+        },
+        "MutantListHead": {
+          "offset": 16,
+          "type_index": 4167
+        },
+        "InitialStack": {
+          "offset": 24,
+          "type_index": 1027
+        },
+        "StackLimit": {
+          "offset": 28,
+          "type_index": 1027
+        },
+        "Teb": {
+          "offset": 32,
+          "type_index": 1027
+        },
+        "TlsArray": {
+          "offset": 36,
+          "type_index": 1027
+        },
+        "KernelStack": {
+          "offset": 40,
+          "type_index": 1027
+        },
+        "DebugActive": {
+          "offset": 44,
+          "type_index": 32
+        },
+        "State": {
+          "offset": 45,
+          "type_index": 32
+        },
+        "Alerted": {
+          "offset": 46,
+          "type_index": 4451
+        },
+        "Iopl": {
+          "offset": 48,
+          "type_index": 32
+        },
+        "NpxState": {
+          "offset": 49,
+          "type_index": 32
+        },
+        "Saturation": {
+          "offset": 50,
+          "type_index": 112
+        },
+        "Priority": {
+          "offset": 51,
+          "type_index": 112
+        },
+        "ApcState": {
+          "offset": 52,
+          "type_index": 4560
+        },
+        "ContextSwitches": {
+          "offset": 76,
+          "type_index": 34
+        },
+        "WaitStatus": {
+          "offset": 80,
+          "type_index": 18
+        },
+        "WaitIrql": {
+          "offset": 84,
+          "type_index": 32
+        },
+        "WaitMode": {
+          "offset": 85,
+          "type_index": 112
+        },
+        "WaitNext": {
+          "offset": 86,
+          "type_index": 32
+        },
+        "WaitReason": {
+          "offset": 87,
+          "type_index": 32
+        },
+        "WaitBlockList": {
+          "offset": 88,
+          "type_index": 4562
+        },
+        "WaitListEntry": {
+          "offset": 92,
+          "type_index": 4167
+        },
+        "WaitTime": {
+          "offset": 100,
+          "type_index": 34
+        },
+        "BasePriority": {
+          "offset": 104,
+          "type_index": 112
+        },
+        "DecrementCount": {
+          "offset": 105,
+          "type_index": 32
+        },
+        "PriorityDecrement": {
+          "offset": 106,
+          "type_index": 112
+        },
+        "Quantum": {
+          "offset": 107,
+          "type_index": 112
+        },
+        "WaitBlock": {
+          "offset": 108,
+          "type_index": 4563
+        },
+        "LegoData": {
+          "offset": 204,
+          "type_index": 1027
+        },
+        "KernelApcDisable": {
+          "offset": 208,
+          "type_index": 34
+        },
+        "UserAffinity": {
+          "offset": 212,
+          "type_index": 34
+        },
+        "SystemAffinityActive": {
+          "offset": 216,
+          "type_index": 32
+        },
+        "PowerState": {
+          "offset": 217,
+          "type_index": 32
+        },
+        "NpxIrql": {
+          "offset": 218,
+          "type_index": 32
+        },
+        "VdmSafe": {
+          "offset": 219,
+          "type_index": 32
+        },
+        "ServiceTable": {
+          "offset": 220,
+          "type_index": 1027
+        },
+        "Queue": {
+          "offset": 224,
+          "type_index": 4565
+        },
+        "ApcQueueLock": {
+          "offset": 228,
+          "type_index": 34
+        },
+        "Timer": {
+          "offset": 232,
+          "type_index": 4566
+        },
+        "QueueListEntry": {
+          "offset": 272,
+          "type_index": 4167
+        },
+        "Affinity": {
+          "offset": 280,
+          "type_index": 34
+        },
+        "Preempted": {
+          "offset": 284,
+          "type_index": 32
+        },
+        "ProcessReadyQueue": {
+          "offset": 285,
+          "type_index": 32
+        },
+        "KernelStackResident": {
+          "offset": 286,
+          "type_index": 32
+        },
+        "NextProcessor": {
+          "offset": 287,
+          "type_index": 32
+        },
+        "CallbackStack": {
+          "offset": 288,
+          "type_index": 1027
+        },
+        "Win32Thread": {
+          "offset": 292,
+          "type_index": 1027
+        },
+        "TrapFrame": {
+          "offset": 296,
+          "type_index": 4568
+        },
+        "ApcStatePointer": {
+          "offset": 300,
+          "type_index": 4570
+        },
+        "PreviousMode": {
+          "offset": 308,
+          "type_index": 112
+        },
+        "EnableStackSwap": {
+          "offset": 309,
+          "type_index": 32
+        },
+        "LargeStack": {
+          "offset": 310,
+          "type_index": 32
+        },
+        "ResourceIndex": {
+          "offset": 311,
+          "type_index": 32
+        },
+        "KernelTime": {
+          "offset": 312,
+          "type_index": 34
+        },
+        "UserTime": {
+          "offset": 316,
+          "type_index": 34
+        },
+        "SavedApcState": {
+          "offset": 320,
+          "type_index": 4560
+        },
+        "Alertable": {
+          "offset": 344,
+          "type_index": 32
+        },
+        "ApcStateIndex": {
+          "offset": 345,
+          "type_index": 32
+        },
+        "ApcQueueable": {
+          "offset": 346,
+          "type_index": 32
+        },
+        "AutoAlignment": {
+          "offset": 347,
+          "type_index": 32
+        },
+        "StackBase": {
+          "offset": 348,
+          "type_index": 1027
+        },
+        "SuspendApc": {
+          "offset": 352,
+          "type_index": 4335
+        },
+        "SuspendSemaphore": {
+          "offset": 400,
+          "type_index": 4571
+        },
+        "ThreadListEntry": {
+          "offset": 420,
+          "type_index": 4167
+        },
+        "FreezeCount": {
+          "offset": 428,
+          "type_index": 112
+        },
+        "SuspendCount": {
+          "offset": 429,
+          "type_index": 112
+        },
+        "IdealProcessor": {
+          "offset": 430,
+          "type_index": 32
+        },
+        "DisableBoost": {
+          "offset": 431,
+          "type_index": 32
+        }
+      }
+    },
+    "_ETHREAD": {
+      "type_index": 4647,
+      "size": 584,
+      "field_count": 39,
+      "field_list": 4646,
+      "fields": {
+        "Tcb": {
+          "offset": 0,
+          "type_index": 4146
+        },
+        "CreateTime": {
+          "offset": 432,
+          "type_index": 4110
+        },
+        "NestedFaultCount": {
+          "offset": 432,
+          "type_index": 4641
+        },
+        "ApcNeeded": {
+          "offset": 432,
+          "type_index": 4642
+        },
+        "ExitTime": {
+          "offset": 440,
+          "type_index": 4110
+        },
+        "LpcReplyChain": {
+          "offset": 440,
+          "type_index": 4167
+        },
+        "ExitStatus": {
+          "offset": 448,
+          "type_index": 18
+        },
+        "OfsChain": {
+          "offset": 448,
+          "type_index": 1027
+        },
+        "PostBlockList": {
+          "offset": 452,
+          "type_index": 4167
+        },
+        "TerminationPortList": {
+          "offset": 460,
+          "type_index": 4167
+        },
+        "ActiveTimerListLock": {
+          "offset": 468,
+          "type_index": 34
+        },
+        "ActiveTimerListHead": {
+          "offset": 472,
+          "type_index": 4167
+        },
+        "Cid": {
+          "offset": 480,
+          "type_index": 4643
+        },
+        "LpcReplySemaphore": {
+          "offset": 488,
+          "type_index": 4571
+        },
+        "LpcReplyMessage": {
+          "offset": 508,
+          "type_index": 1027
+        },
+        "LpcWaitingOnPort": {
+          "offset": 508,
+          "type_index": 1027
+        },
+        "LpcReplyMessageId": {
+          "offset": 512,
+          "type_index": 34
+        },
+        "PerformanceCountLow": {
+          "offset": 516,
+          "type_index": 34
+        },
+        "ImpersonationInfo": {
+          "offset": 520,
+          "type_index": 4645
+        },
+        "IrpList": {
+          "offset": 524,
+          "type_index": 4167
+        },
+        "TopLevelIrp": {
+          "offset": 532,
+          "type_index": 34
+        },
+        "DeviceToVerify": {
+          "offset": 536,
+          "type_index": 4234
+        },
+        "ReadClusterSize": {
+          "offset": 540,
+          "type_index": 34
+        },
+        "ForwardClusterOnly": {
+          "offset": 544,
+          "type_index": 32
+        },
+        "DisablePageFaultClustering": {
+          "offset": 545,
+          "type_index": 32
+        },
+        "DeadThread": {
+          "offset": 546,
+          "type_index": 32
+        },
+        "HideFromDebugger": {
+          "offset": 547,
+          "type_index": 32
+        },
+        "HasTerminated": {
+          "offset": 548,
+          "type_index": 34
+        },
+        "GrantedAccess": {
+          "offset": 552,
+          "type_index": 34
+        },
+        "ThreadsProcess": {
+          "offset": 556,
+          "type_index": 4580
+        },
+        "StartAddress": {
+          "offset": 560,
+          "type_index": 1027
+        },
+        "Win32StartAddress": {
+          "offset": 564,
+          "type_index": 1027
+        },
+        "LpcReceivedMessageId": {
+          "offset": 564,
+          "type_index": 34
+        },
+        "LpcExitThreadCalled": {
+          "offset": 568,
+          "type_index": 32
+        },
+        "HardErrorsAreDisabled": {
+          "offset": 569,
+          "type_index": 32
+        },
+        "LpcReceivedMsgIdValid": {
+          "offset": 570,
+          "type_index": 32
+        },
+        "ActiveImpersonationInfo": {
+          "offset": 571,
+          "type_index": 32
+        },
+        "PerformanceCountHigh": {
+          "offset": 572,
+          "type_index": 18
+        },
+        "ThreadListEntry": {
+          "offset": 576,
+          "type_index": 4167
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\pci-support207\\reopen008\\stack-layouts001.json": "af74f991dde509e01b38dc4e1a6b2ab5784b78785022ebc812be5ebc22d0278f",
+    "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\pci-support207\\hidreject007\\providers001.json": "4b6ed16ba9db9d96a043883431d866d4ce755cfd0d920870a51e93ec21c7344e",
+    "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\pci-support207\\inputtrace006\\owner-layouts001.json": "3575faa17f3d5392bc1b238d7df30463a8615e223f7ea947217410a08193dfab",
+    "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\pci-support207\\inputtrace006\\veto001\\trace.json": "eae232eefd9814b7073481a5bb6f94d3b3fab731a52b58fc17a0ee28949468e6",
+    "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\pci-support207\\inputtrace006\\owner-review001.json": "8a4b6b36d8d4839f993d4f216991a2bfdc62486827bff4f049bd3b35cf596778",
+    "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\pci-support207\\inputtrace004\\veto001\\reference-correction001.json": "a87c0582cf63cc385116a6d549d707f96260d62084c69d266fee9c08e0effe33",
+    "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\pci-support207\\inputtrace004\\veto001\\module-observation001.json": "9725baef421b448782382cb65313ef7f2076846678452174d987ec9cb21726c6",
+    "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\pci-support207\\inputtrace004\\veto001\\run.json": "f577b46694130587fe1ec780db36d2cf6c59ea5ce42d93c4601400fcc719ccd9",
+    "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\pci-support207\\inputtrace004\\veto001\\trace.json": "ec2457a34841da0f1abbd89fcf5e86094e3de7f2af2e0704d8c2d22f7103f1df",
+    "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\pci-support207\\inputtrace004\\veto001\\pnp-review.json": "df357e2fbc8fd14db09cad6ac015d71836b369962f4865056be79dca8a1d476a",
+    "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\pci-support207\\inputtrace003\\veto001\\address-check002.json": "c0d4b6429760d83056454d3131f28356f66b1bf4597250349234a2fc67d2d0ff",
+    "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\native-windows-nt5-kernel\\kernel-publics.json": "71850aa8c03d744509f3da3c388f77bfca2772f2bb17f1cfd8b8302379a8a680",
+    "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\video-transfer-observed\\layouts.json": "5e4c932fe320734d7495a42f7a138d1ca3f49d7cdd766b875b550e6336c8e236",
+    "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\native-windows-fatx-runtime\\fatx-native-layouts.json": "a9a8fef642f233a350211b3857d34e30283e55f965eb7c1d2ea7decc7a12e043",
+    "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\shutdown-popup-workload\\site-review.json": "b0f106d8691774244a5f7e022d99f6db9492924e8b1ac2e205da5a032f9c3105",
+    "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\pci-support207\\rebalance002\\veto001\\fixture.json": "5a82458830f82d0dc73d6977c2ac73bdbd098370fc355a8ceeca62220c420603",
+    "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\pci-support207\\rebalance002\\build001.json": "534f9afc003f41b396b1f9cf58df9d891dedb7abeea64d82d7f98791cc9774f6"
+  },
+  "sources": {
+    "audit-emulator002.py": "b0727deb282dc714356a9228b5b4156e192de9bdf111a41f1a962588a6543552",
+    "Continue-001.ps1": "ace35e95cb93946b4d3920f6a8b74d3173e6809280fdcfdd28626702059e8e40",
+    "e_allocation.py": "027f3ca59445e7af720c19735aed19a0f570390bffa2561561b577e37fb03fcb",
+    "hid-observe.py": "49f936726426875f6f5b6aa9c47172bef10a76bea1284e9516a0d92263a530d7",
+    "preflight.py": "c33810311204c56d8793965aa4ddea71e50d5bf54db1332a67bb8b01b8d94722",
+    "prepare.py": "94a8db1ae9c71cba9198c321db2dcacd27d6f46df8fd3e549819cd54510b2e22",
+    "review-pnp002.py": "ea8c0415e07a8d3e5f43a01e3b283135ce1e3beb556dc653daf1ad1a41ef48fe",
+    "run.py": "660f322a3cc35d316fb0140764eadab191ca5b760b81a98ee6e5eb60def1a14e",
+    "trace.py": "b669dcbff03f61b1de32be9484136e1c936e4192b12988e61411837e8a7252ec",
+    "xwnrsc.inf": "d8b50e1f6e49c7a3d1a0aea3a4fee0219351c9be8b7f8121ab02ab47d8c53e83",
+    "read-stack-layouts001.py": "c61b4dd4b8588d4f2ceb18a4c1f120cc451ef47e014fe81b1d47241b6415a41d",
+    "stack-observe.py": "3d36be55d76dfb17b5d041e56584e6ebf164918617b5f234f77d3ab1858790f5"
+  },
+  "limits": "Expected kernel base is an arm address, not evidence. Every interpreted hit requires loaded headers and relocated site-byte verification. Read-only observations, bounded 240s/4096 stops; no code/data/register mutation. Owner attribution requires actual retained references, not names alone."
+}

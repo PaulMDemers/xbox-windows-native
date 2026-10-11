@@ -1,0 +1,157 @@
+{
+  "scope": "Narrow, offline review of physical001 runtime registry differences; never writes hives.",
+  "initial_audit_sha256": "75ecfc2c5e79aa6953902e9eec1e54053cd480aa775b91f2b4cfbe2791a1af72",
+  "source_sha256": "1d25b6e9acebf65cc91142917dec0f74e6c41a542dc6285d75014eef2e546f02",
+  "initial_configuration_unchanged": false,
+  "initial_baseline_gate": false,
+  "reviewed_keys": [
+    {
+      "path": "\\ControlSet001\\Services\\Dhcp\\Parameters",
+      "changed_values": [
+        "{A9C365A2-852B-45F4-ABE6-3954C2DD03AC}"
+      ],
+      "lease_expiry_cache_offsets": [
+        16,
+        40,
+        72,
+        96,
+        120,
+        144,
+        168,
+        192,
+        216,
+        240
+      ]
+    },
+    {
+      "path": "\\ControlSet001\\Services\\Tcpip\\Parameters\\Interfaces\\{A9C365A2-852B-45F4-ABE6-3954C2DD03AC}",
+      "changed_values": [
+        "LeaseObtainedTime",
+        "LeaseTerminatesTime",
+        "T1",
+        "T2"
+      ]
+    },
+    {
+      "path": "\\ControlSet001\\Services\\lanmanserver\\parameters",
+      "changed_values": [
+        "Guid"
+      ]
+    },
+    {
+      "path": "\\ControlSet001\\Services\\{A9C365A2-852B-45F4-ABE6-3954C2DD03AC}\\Parameters\\Tcpip",
+      "changed_values": [
+        "LeaseObtainedTime",
+        "LeaseTerminatesTime",
+        "T1",
+        "T2"
+      ]
+    },
+    {
+      "path": "\\ControlSet002\\Services\\Dhcp\\Parameters",
+      "changed_values": [
+        "{A9C365A2-852B-45F4-ABE6-3954C2DD03AC}"
+      ],
+      "lease_expiry_cache_offsets": [
+        16,
+        40,
+        72,
+        96,
+        120,
+        144,
+        168,
+        192,
+        216,
+        240
+      ]
+    },
+    {
+      "path": "\\ControlSet002\\Services\\Tcpip\\Parameters\\Interfaces\\{A9C365A2-852B-45F4-ABE6-3954C2DD03AC}",
+      "changed_values": [
+        "LeaseObtainedTime",
+        "LeaseTerminatesTime",
+        "T1",
+        "T2"
+      ]
+    },
+    {
+      "path": "\\ControlSet002\\Services\\lanmanserver\\parameters",
+      "changed_values": [
+        "Guid"
+      ]
+    },
+    {
+      "path": "\\ControlSet002\\Services\\{A9C365A2-852B-45F4-ABE6-3954C2DD03AC}\\Parameters\\Tcpip",
+      "changed_values": [
+        "LeaseObtainedTime",
+        "LeaseTerminatesTime",
+        "T1",
+        "T2"
+      ]
+    }
+  ],
+  "changed_key_count": 8,
+  "changed_value_count": 20,
+  "independent_usb_control": {
+    "manifest_sha256": "2c02c736335beaab326be96e8f35954f035ec6b89060bfcaf80d70d29daf09ec",
+    "phases": {
+      "before": {
+        "system": {
+          "file": "artifacts/physical001/before/system",
+          "bytes": 2449408,
+          "sha256": "1576930744c3fe60ef9b23a81a1d6bf842bbced28ac132fe758c84c56a9944f4"
+        },
+        "server_guid": {
+          "ControlSet001": {
+            "type": 3,
+            "hex": "f4806ef6e9f4b745be723ba029a3ca97"
+          },
+          "ControlSet002": {
+            "type": 3,
+            "hex": "f4806ef6e9f4b745be723ba029a3ca97"
+          }
+        }
+      },
+      "after": {
+        "system": {
+          "file": "artifacts/physical001/after/system",
+          "bytes": 2449408,
+          "sha256": "37d1bd0883957f618714237f87899a7ffb283f640fc96e1871aa96f8a0b820fc"
+        },
+        "server_guid": {
+          "ControlSet001": {
+            "type": 3,
+            "hex": "24339fa19b99de45bb6baef651f3a89d"
+          },
+          "ControlSet002": {
+            "type": 3,
+            "hex": "24339fa19b99de45bb6baef651f3a89d"
+          }
+        }
+      }
+    }
+  },
+  "interpretation": "Exact lease timestamps/cache renewal and a new v4 server identity; the independent USB boot also changed this identity. Boot runtime interpretation, not an NT5 implementation proof.",
+  "other_selected_configuration_unchanged": true,
+  "baseline_restored": true,
+  "diagnostic_usable": true,
+  "baseline_scope": "Original startup and protected files exact; all selected driver/device/service configuration unchanged except the 20 explicitly reviewed runtime values. Full hive byte equality is not claimed.",
+  "verified_gates": {
+    "hives_valid": true,
+    "incoming_protected_exact": true,
+    "helper_review_valid": true,
+    "startup_restored": true,
+    "protected_exact": true,
+    "inventory_complete": true,
+    "helpers_exit_zero": true,
+    "setupapi_history_preserved": true,
+    "event_history_preserved": true,
+    "dashboard_return_recorded": true
+  },
+  "user_observation_sha256": "75c4d2eab620f50879f8d65075cf12e00dd83fb363f2e0ff7d4a11da12f7482b",
+  "normal_restart_reported_and_event_correlated": true,
+  "physical_function_qualified": false,
+  "ordinary_qualified": false,
+  "full_allocation_audited": false,
+  "limits": "One read-only identification run. Inherited Ftdisk49 remains a strict error. No SMBus/codec functionality, full storage durability or repeated-boot qualification."
+}

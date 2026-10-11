@@ -1,0 +1,155 @@
+{
+  "scope": "Fresh pinned HAL baseline, shared owner patch and bounded terminal candidate.",
+  "physical_access": false,
+  "started_utc": "2026-10-10T19:36:08.080097+00:00",
+  "status": "compiled",
+  "commands": [
+    [
+      "gcc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=address,undefined",
+      "-g",
+      "-o",
+      "/mnt/e/Codex-private-artifacts/xbox-windows-feasibility/device-workstreams207/pci/repo/outputs/pci-support207/handoff001/artifacts/build001/test-broker",
+      "/mnt/e/Codex-private-artifacts/xbox-windows-feasibility/device-workstreams207/pci/repo/outputs/pci-support207/handoff001/test-broker.c"
+    ],
+    [
+      "/mnt/e/Codex-private-artifacts/xbox-windows-feasibility/device-workstreams207/pci/repo/outputs/pci-support207/handoff001/artifacts/build001/test-broker"
+    ],
+    [
+      "/usr/bin/python3",
+      "/mnt/e/Codex-private-artifacts/xbox-windows-feasibility/device-workstreams207/pci/repo/tools/rebuild-native.py",
+      "--source-cache",
+      "/home/paul/xbox-windows-native/sources/reactos",
+      "--rosbe",
+      "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1",
+      "--output",
+      "/mnt/e/Codex-private-artifacts/xbox-windows-feasibility/device-workstreams207/pci/repo/outputs/pci-support207/handoff001/artifacts/build001/native",
+      "--profile",
+      "boot",
+      "--jobs",
+      "4"
+    ],
+    [
+      "git",
+      "-C",
+      "/mnt/e/Codex-private-artifacts/xbox-windows-feasibility/device-workstreams207/pci/repo/outputs/pci-support207/handoff001/artifacts/build001/native/source",
+      "add",
+      "hal/halx86/xbox",
+      "hal/halx86/xboxnt5/halnt5.spec"
+    ],
+    [
+      "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/RosBE.sh",
+      "/mnt/e/Codex-private-artifacts/xbox-windows-feasibility/device-workstreams207/pci/repo/outputs/pci-support207/handoff001/artifacts/build001/native/source",
+      "0",
+      "i386"
+    ]
+  ],
+  "sources": {
+    "broker.h": "14c04116730f82232478da8390088913520e7e3db42b7e1a1732aecc7a3f671a",
+    "hal-broker.inc": "3ad6ac1f2abe0f62b63f4a1cab0872cd5d020d9b41287c967aa0d16ca5a4d230",
+    "test-broker.c": "184f92d01f9ff009a8d87d6daf9fc22c797e04a0d6d1884d051f512ca8e5ed0e",
+    "build.py": "96f48ee1630fe47a09a43f2a4b351c0035a108ab41242a4872731e3d4cc75ffe",
+    "Build-001.ps1": "7e821c58fd3b26b835fb83f813c34a1d5597ff497ff31115b1cd8e7110b3ee89",
+    ".gitattributes": "730a35ae3d558080083c3103d9ac8100c3f6561678092abe341701dfa331eb1d",
+    "review-build.py": "3b124901ba2447d4d813b6539099260279fb49c29dd2f27b20e0e42267f59fbf"
+  },
+  "baseline": {
+    "status": "compiled",
+    "started_utc": "2026-10-10T19:36:10.462627+00:00",
+    "profile": "boot",
+    "space_preflight": {
+      "minimum_free_gib": 20,
+      "checks": [
+        {
+          "kind": "output filesystem",
+          "path": "/mnt/e/Codex-private-artifacts/xbox-windows-feasibility/device-workstreams207/pci/repo/outputs/pci-support207/handoff001/artifacts/build001",
+          "free_bytes": 192878870528
+        },
+        {
+          "free_bytes": 25518387200,
+          "path": "C:\\",
+          "kind": "WSL backing volume"
+        }
+      ],
+      "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+    },
+    "source_base": "afc0127e8f937ab68503d715d948844973756aa1",
+    "source_tree": "adf9b3d166ef84630a48d7393fcc9fe3ce78f104",
+    "inputs_sha256": "fa60c7da9f579243ad8bb02de48a14e54d8f46d4ed3ab5f72e35621ca8d91447",
+    "tool_sha256": {
+      "RosBE.sh": "1d04daf7393952441c62691bb7735042d236b0196778f1632f0a4383476143b7",
+      "bin/cmake": "049737b62e2803fd657041cf65b6bb6de7756db377c92c686c63eec373604e75",
+      "bin/ninja": "371e855768aa214225d4b17f49902cdd2b2daa8764514134524b07282c9e9e07",
+      "i386/bin/i686-w64-mingw32-gcc": "83015512671faaa0dbe6f043a0107f79c049f4268a67e39955388a8d9a0182e5"
+    },
+    "commands": [
+      [
+        "git",
+        "init",
+        "-q",
+        "/mnt/e/Codex-private-artifacts/xbox-windows-feasibility/device-workstreams207/pci/repo/outputs/pci-support207/handoff001/artifacts/build001/native/source"
+      ],
+      [
+        "git",
+        "-C",
+        "/mnt/e/Codex-private-artifacts/xbox-windows-feasibility/device-workstreams207/pci/repo/outputs/pci-support207/handoff001/artifacts/build001/native/source",
+        "fetch",
+        "--depth=1",
+        "/home/paul/xbox-windows-native/sources/reactos",
+        "afc0127e8f937ab68503d715d948844973756aa1"
+      ],
+      [
+        "git",
+        "-C",
+        "/mnt/e/Codex-private-artifacts/xbox-windows-feasibility/device-workstreams207/pci/repo/outputs/pci-support207/handoff001/artifacts/build001/native/source",
+        "checkout",
+        "--detach",
+        "FETCH_HEAD"
+      ],
+      [
+        "/usr/bin/python3",
+        "/mnt/e/Codex-private-artifacts/xbox-windows-feasibility/device-workstreams207/pci/repo/tools/apply-series.py",
+        "--source",
+        "/mnt/e/Codex-private-artifacts/xbox-windows-feasibility/device-workstreams207/pci/repo/outputs/pci-support207/handoff001/artifacts/build001/native/source",
+        "--manifest",
+        "/mnt/e/Codex-private-artifacts/xbox-windows-feasibility/device-workstreams207/pci/repo/outputs/native-windows-fatx-forensics/patch-check-0088.json"
+      ],
+      [
+        "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/RosBE.sh",
+        "/mnt/e/Codex-private-artifacts/xbox-windows-feasibility/device-workstreams207/pci/repo/outputs/pci-support207/handoff001/artifacts/build001/native/source",
+        "0",
+        "i386"
+      ]
+    ],
+    "artifacts": [
+      {
+        "name": "freeldr.sys",
+        "bytes": 170496,
+        "sha256": "728213654762c8da4077429b6e5b453b97a57739d104a9d6d650e400c481064b",
+        "profile": "boot"
+      },
+      {
+        "name": "rosload.exe",
+        "bytes": 263826,
+        "sha256": "b63fcf51404758f2b3dec01b90da60c2051f3c6e2893db40e6d93721f2773417",
+        "profile": "boot"
+      },
+      {
+        "name": "halxboxnt5.dll",
+        "bytes": 2426841,
+        "sha256": "77333f86600d320687baf61a562ab718c7974ef24d3d614211b87bd971890ade",
+        "profile": "boot"
+      }
+    ],
+    "scope": "fresh source and compilation only; no runtime qualification",
+    "verified_source_tree": "adf9b3d166ef84630a48d7393fcc9fe3ce78f104",
+    "finished_utc": "2026-10-10T19:55:37.120104+00:00"
+  },
+  "candidate_tree": "24cea3bc33dd7f6fb34f2ff50d7ebdec2f9ff1fb",
+  "patch_sha256": "6f3e49da7f014e775cdb61b1ebe24971d603f4dbb572ace3de7a2dd0bd7a1795",
+  "candidate_sha256": "234b1714debe84ede144b9b1717cf46d2639f3c31b63669c120d7c777a2a6255",
+  "finished_utc": "2026-10-10T19:55:49.626703+00:00"
+}

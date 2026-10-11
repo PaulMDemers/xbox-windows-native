@@ -1,0 +1,170 @@
+--- a/hal/halx86/xbox/reboot.c
++++ b/hal/halx86/xbox/reboot.c
+@@ -14,6 +14,10 @@
+ /* INCLUDES ******************************************************************/
+ 
+ #include "halxbox.h"
++
++#if defined(XBOX_NT5_HAL) && !defined(_MINIHAL_)
++#include "xwn-smbus-hal.inc"
++#else
+ 
+ /* PRIVATE FUNCTIONS *********************************************************/
+ 
+@@ -62,6 +66,8 @@
+     }
+ }
+ 
++#endif
++
+ static DECLSPEC_NORETURN
+ VOID
+ HalpXboxPowerAction(
+@@ -71,11 +77,14 @@
+     _disable();
+ 
+     /* Send the command */
++#if defined(XBOX_NT5_HAL) && !defined(_MINIHAL_)
++    HalpSmbusTerminalResult = xb_terminal(&HalpSmbusIo, Action);
++#else
+     SMBusWriteByte(SMB_DEVICE_SMC_PIC16LC, SMC_REG_POWER, Action);
++#endif
+ 
+     /* Halt the CPU */
+-    __halt();
+-    UNREACHABLE;
++    for (;;) __halt();
+ }
+ 
+ DECLSPEC_NORETURN
+--- a/hal/halx86/xboxnt5/halnt5.spec
++++ b/hal/halx86/xboxnt5/halnt5.spec
+@@ -120,3 +120,5 @@
+ 
+ @ stdcall XwnConfigureEntryProbe(ptr long)
+ @ stdcall XwnConfigureMapProbe(ptr long)
++
++@ stdcall XwnSmbusReadV1(long long ptr)
+--- /dev/null
++++ b/hal/halx86/xbox/xwn-smbus-broker.h
+@@ -0,0 +1,78 @@
++/* SPDX-License-Identifier: MIT
++ * UP-only shared HAL owner. Terminal entry requires interrupts disabled and
++ * MUST NOT return to the interrupted client. No lock waits or abort strobes.
++ */
++#ifndef XWN_HAL_BROKER_H
++#define XWN_HAL_BROKER_H
++enum { XB_FREE, XB_ACTIVE, XB_QUARANTINED, XB_TERMINAL };
++enum { XB_OK, XB_INVALID, XB_BUSY, XB_CLOSED, XB_PROTOCOL, XB_COLLISION, XB_TIMEOUT };
++#define XB_POLLS 10000U
++typedef struct xb_io {
++    void *context;
++    unsigned (*read)(void *,unsigned);
++    void (*write)(void *,unsigned,unsigned);
++    void (*delay)(void *);
++    long (*cas)(void *,long,long);
++    long (*exchange)(void *,long);
++} xb_io;
++typedef struct xb_reply { unsigned result,status,polls,data; } xb_reply;
++static unsigned xb_wait(const xb_io *io,xb_reply *r,unsigned completion)
++{
++    unsigned n;
++    for(n=0;n<XB_POLLS;++n){
++        r->status=io->read(io->context,0);++r->polls;
++        if(!(r->status&0x808) && (!completion || (r->status&0x37)))return 1;
++        io->delay(io->context);
++    }
++    return 0;
++}
++static unsigned xb_decode(unsigned status)
++{
++    if(status&0x20)return XB_TIMEOUT;
++    if(status&0x05)return XB_PROTOCOL;
++    if(status&0x02)return XB_COLLISION;
++    return (status&0x10)?XB_OK:XB_PROTOCOL;
++}
++static xb_reply xb_read(const xb_io *io,unsigned address,unsigned command)
++{
++    xb_reply r={XB_INVALID,0,0,0};long owner;
++    if(!((address==0x10 && command==4)||(address==0x4c && command<2)))return r;
++    owner=io->cas(io->context,XB_ACTIVE,XB_FREE);
++    if(owner!=XB_FREE){r.result=owner==XB_ACTIVE?XB_BUSY:XB_CLOSED;return r;}
++    r.status=io->read(io->context,0);++r.polls;
++    if(r.status&0x808){r.result=XB_BUSY;goto release;}
++    io->write(io->context,0,0x37);
++    io->write(io->context,4,(address<<1)|1);
++    io->write(io->context,8,command);
++    io->write(io->context,2,0x0a);
++    if(!xb_wait(io,&r,1)){
++        r.result=XB_TIMEOUT;
++        /* Do not abort unknown physical controller behavior. Retain quarantine. */
++        io->cas(io->context,XB_QUARANTINED,XB_ACTIVE);return r;
++    }
++    r.result=xb_decode(r.status);
++    if(r.result==XB_OK)r.data=io->read(io->context,6)&255;
++    io->write(io->context,0,0x37);
++release:
++    /* Never reopen a terminal gate, even in a defensive unexpected return. */
++    io->cas(io->context,XB_FREE,XB_ACTIVE);return r;
++}
++static xb_reply xb_terminal(const xb_io *io,unsigned action)
++{
++    xb_reply r={XB_INVALID,0,0,0};
++    /* The platform wrapper has disabled interrupts on this UP machine. An
++     * interrupted transfer cannot resume. No owner mutex/spinlock is acquired.
++     * Reentrant terminal entry must not issue a second command. */
++    if(io->exchange(io->context,XB_TERMINAL)==XB_TERMINAL){r.result=XB_CLOSED;return r;}
++    if(action!=1 && action!=0x40 && action!=0x80)return r;
++    if(!xb_wait(io,&r,0)){r.result=XB_BUSY;return r;}
++    io->write(io->context,0,0x37);
++    io->write(io->context,4,0x20);
++    io->write(io->context,8,2);
++    io->write(io->context,6,action);
++    io->write(io->context,2,0x1a);
++    if(!xb_wait(io,&r,1)){r.result=XB_TIMEOUT;return r;}
++    r.result=xb_decode(r.status);
++    return r; /* Only to the noreturn wrapper, which halts regardless. */
++}
++#endif
+--- /dev/null
++++ b/hal/halx86/xbox/xwn-smbus-hal.inc
+@@ -0,0 +1,39 @@
++/* SPDX-License-Identifier: MIT
++ * Included only by the native NT5 free UP HAL reboot translation unit.
++ */
++#include "xwn-smbus-broker.h"
++#if defined(CONFIG_SMP) || defined(_SMP_)
++#error The terminal takeover contract is single-processor only
++#endif
++static volatile LONG HalpSmbusOwner;
++static volatile xb_reply HalpSmbusTerminalResult;
++static unsigned HalpSmbusRead(void *Context,unsigned Offset)
++{
++    UNREFERENCED_PARAMETER(Context);
++    if(Offset==0)return READ_PORT_USHORT((PUSHORT)SMB_GLOBAL_STATUS);
++    return READ_PORT_UCHAR((PUCHAR)(SMB_IO_BASE+Offset));
++}
++static void HalpSmbusWrite(void *Context,unsigned Offset,unsigned Value)
++{
++    UNREFERENCED_PARAMETER(Context);
++    WRITE_PORT_UCHAR((PUCHAR)(SMB_IO_BASE+Offset),(UCHAR)Value);
++}
++static void HalpSmbusDelay(void *Context)
++{ UNREFERENCED_PARAMETER(Context);KeStallExecutionProcessor(10); }
++static long HalpSmbusCas(void *Context,long New,long Old)
++{ UNREFERENCED_PARAMETER(Context);return InterlockedCompareExchange(&HalpSmbusOwner,New,Old); }
++static long HalpSmbusExchange(void *Context,long New)
++{ UNREFERENCED_PARAMETER(Context);return InterlockedExchange(&HalpSmbusOwner,New); }
++static const xb_io HalpSmbusIo={NULL,HalpSmbusRead,HalpSmbusWrite,HalpSmbusDelay,HalpSmbusCas,HalpSmbusExchange};
++/* Versioned kernel-only ABI; caller supplies writable nonpaged four-ULONG reply.
++ * No pointer is retained. No direct client port access is part of this ABI.
++ * Callers must be ordinary kernel threads, never interrupt/NMI callbacks.
++ * The IRQL check rejects DISPATCH/high-IRQL callers; it does not detect NMI. */
++NTSTATUS NTAPI XwnSmbusReadV1(ULONG Address,ULONG Command,PULONG Reply)
++{
++    xb_reply Result;
++    if(!Reply || KeGetCurrentIrql()>APC_LEVEL)return STATUS_INVALID_PARAMETER;
++    Result=xb_read(&HalpSmbusIo,Address,Command);
++    Reply[0]=Result.result;Reply[1]=Result.status;Reply[2]=Result.polls;Reply[3]=Result.data;
++    return STATUS_SUCCESS;
++}
