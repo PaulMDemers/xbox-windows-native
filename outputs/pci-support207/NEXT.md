@@ -1,3 +1,26 @@
+# Current continuation: inputtrace006
+
+Read inputtrace006/REPORT.md, evidence-review001.json and owner-review001.json.
+Bounded trace captured Kbdclass/Mouclass forwarding CREATE via kbdhid/mouhid to
+HidUsb devices with HIDCLASS dispatchRVA88C; class helper and IRP returned
+C0000043 in System context. No class IoGetDeviceObjectPointer or IoCheckShareAccess
+path was observed. Post-failure memory proves CSRSS PID160 retained handlesB8/BC
+to the prior keyboard/mouse files, each handlecount1/pointercount2. This does not
+prove the exact HID rejection condition or causal ownership at failure time.
+Next: pin HID provider images and locate that rejection/open-state boundary.
+No speculative handle closure, device-policy fix or other-owner integration.
+
+All attempts and leases CLOSED. Preserve003 wrong-base trace,004 incomplete
+coverage/host-INF-reference mismatch with pinned correction,005 no-launch
+preflight rejection, and006 successful path/owner evidence. Same guest payload;
+cold E/F, protected files, five hives and log history pass. Veto QUERY_STOP1,
+CANCEL_STOP1, STOP0; lifecycle and invalid-only HAL probes pass. Input9 pair and
+Ftdisk49 remain; DHCP1005 did not recur. Pending install258/APU01B0 still holds
+normal restart. Functional input/network/SMBus, terminal takeover, repeated-boot,
+normal restart and physical gates remain open. No physical access this followup.
+
+Historical continuation follows unchanged.
+
 # Current continuation: rebalance002
 
 Read rebalance002/REPORT.md and comparison002.json. Three fresh same-binary
