@@ -1,3 +1,50 @@
+#268 CLOSED — narrow unit release tested on host; actual guest reuse still unproved
+
+Read outputs/unit-release268/REPORT.md, DESIGN.md, NEXT.md, final-review.json and
+host-test003.json. No xemu build, native build or guest was prepared/launched in268.
+No shared renderer sources or physical drivers changed. All owned subprocesses
+closed; no hardware test queued. Proposed release remains host-only source.
+
+Host003 ASan/UBSan passed32 original bind/rebind cases and28 pre-mutation refusal
+cases. Exact pinned binder, counted destruction and cache functions plus actual
+QEMU LRU/queue code; GL/register/upload/hash/dirty-memory boundaries are explicit
+models. All212 model uploads deleted/freed exactly once. Four unit references can
+be decremented while retaining four cache owners; clean rebind reuses identities,
+changed texture/palette data and cache eviction follow original replacement paths.
+This is not actual GL, guest reuse, pixel preservation, speedup or GPU ownership.
+
+Host001 compile failure (missing model constant/warning) and002 bad control-refcount
+expectation remain intact. Original clean unit may legitimately hold a unit-only
+reference after cache eviction.003 uses actual cache-plus-unit edge counts. The
+proposed release and extracted original functions are BYTE-IDENTICAL002/003.
+Private capsules E:/Codex-archive/xbox-windows-native/unit-release268-host001..003.
+No post-mutation GL error injection was covered; a real such failure must quarantine,
+never fabricate a rollback. The helper requires a future actual coherent ledger.
+
+Next NEW observation-only control on EXACT267 renderer, without release installed:
+watch actual four unit identities using stable generations and bounded normal
+bind/cache replacement/destruction events. Capture bounded raw texture/palette
+source bytes and canonical GL readbacks at the attested checkpoint, preserving
+private bytes for independent host comparison. Restore all pack/PBO/selection
+state; unsupported format/capacity or missing owner/context acknowledgment refuses.
+Normal guest restart may reuse original cached objects, but source possibility is
+not coverage. Require actual guest-driven bind, same live generation/key/shape/data,
+byte-exact source and readback. Deleted/replaced identities or desktop/FTP/unchanged
+CPU arena do not satisfy reuse. If coverage fails, preserve failure and choose an
+owned guest graphics workload; never repeat until lucky or inject firmware commands.
+Only then build a separate matched narrow release candidate with full before/after
+graphs and retained cache owners. No whole finalizer/reset/switch or fabricated idle.
+
+267 remains closed scoped observation PASS, strictFALSE soleFtdisk49; pending work
+unknown and shader work-return is not thread exit. Its all54 return records/context
+and attachment observations, normal restart/orderly exit0 and full clean cold audit
+remain separate. Never relaunch/recollect prior cases. All failures preserved.
+Physical audio004/softwarevideo118/shared158/FATX0101, demo251 ticket, recovery256,
+immutable0.1.0/0088 and peers unchanged. No acceleration/1080i promotion.
+Continue until October12 04:00UTC, checking actual time first; at cutoff close/report/
+pause. C last21,984,505,856bytes; retain20GiB build/projected-launch guard. No backing
+chains moved. Review/check/commit/push and update automation after this milestone.
+
 #267 CLOSED — shader work acknowledged, actual context references captured
 
 Read outputs/backend-actors267/REPORT.md, DESIGN.md, NEXT.md, source-review.json,

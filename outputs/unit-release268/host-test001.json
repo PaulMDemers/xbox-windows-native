@@ -1,0 +1,49 @@
+{
+  "scope": "Host original bind/cache/counting paths; modeled GL/register/VRAM interfaces, no renderer/guest integration",
+  "exact_function_sha256": {
+    "texture_binding_destroy": "bca4f8bf6a5a9e7691bee3fb089ea95a0f5f1a71d7bf5c18c47cdc117021353e",
+    "texture_cache_entry_init": "1b6120c9cd7b7e2efc8e485719f195b0fee38d867fbf513de04064d95e60cbce",
+    "texture_cache_entry_post_evict": "45ccfaf55b11dd9b083491b6317cc5a231054861fb4be920ed6a4d78bf58e991",
+    "texture_cache_entry_compare": "3d7369e89840a1508c29e26d5c061c5fd7dd8e539c99f79bdd6666e01b8f085b",
+    "pgraph_gl_bind_textures": "318f2f2a5cd43e5c4509ffdc9eac4bc212e423b574015d662d5e9416af7e76f6"
+  },
+  "texture_source_sha256": "946c5ac6bc83ad7328185d70a1941f2c18996b9ffd28e03864a145fbb7158188",
+  "production_patch_applied": false,
+  "guest_executed": false,
+  "physical_access": false,
+  "real_gl": false,
+  "command": [
+    "wsl",
+    "-d",
+    "Ubuntu",
+    "-u",
+    "root",
+    "--",
+    "gcc",
+    "-std=gnu11",
+    "-O1",
+    "-g",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-Wno-unused-parameter",
+    "-fsanitize=address,undefined",
+    "-fno-omit-frame-pointer",
+    "-I/mnt/e/Codex-archive/xbox-windows-native/unit-release268-host001",
+    "/mnt/e/Codex-archive/xbox-windows-native/unit-release268-host001/test-rebind.c",
+    "-o",
+    "/mnt/e/Codex-archive/xbox-windows-native/unit-release268-host001/test"
+  ],
+  "compile_exit": 1,
+  "compile_output": "In file included from /mnt/e/Codex-archive/xbox-windows-native/unit-release268-host001/test-rebind.c:82:\n/mnt/e/Codex-archive/xbox-windows-native/unit-release268-host001/actual-functions.h: In function \u2018pgraph_gl_bind_textures\u2019:\n/mnt/e/Codex-archive/xbox-windows-native/unit-release268-host001/actual-functions.h:91:22: error: \u2018NV_PGRAPH_TEXFILTER0_BSIGNED\u2019 undeclared (first use in this function); did you mean \u2018NV_PGRAPH_TEXFILTER0_GSIGNED\u2019?\n   91 |         if (filter & NV_PGRAPH_TEXFILTER0_BSIGNED) NV2A_UNIMPLEMENTED(\"NV_PGRAPH_TEXFILTER0_BSIGNED\");\n      |                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~\n      |                      NV_PGRAPH_TEXFILTER0_GSIGNED\n/mnt/e/Codex-archive/xbox-windows-native/unit-release268-host001/actual-functions.h:91:22: note: each undeclared identifier is reported only once for each function it appears in\n/mnt/e/Codex-archive/xbox-windows-native/unit-release268-host001/test-rebind.c: In function \u2018refusals\u2019:\n/mnt/e/Codex-archive/xbox-windows-native/unit-release268-host001/test-rebind.c:157:9: error: this \u2018for\u2019 clause does not guard... [-Werror=misleading-indentation]\n  157 |         for(unsigned i=0;i<4;i++)assert(r->texture_binding[i]->refcnt==2);negative++;\n      |         ^~~\n/mnt/e/Codex-archive/xbox-windows-native/unit-release268-host001/test-rebind.c:157:75: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the \u2018for\u2019\n  157 |         for(unsigned i=0;i<4;i++)assert(r->texture_binding[i]->refcnt==2);negative++;\n      |                                                                           ^~~~~~~~\ncc1: all warnings being treated as errors\n",
+  "passed": false,
+  "files": {
+    "actual-functions.h": "5e77d23169e22581b5f22c323082083334d1991233b42ee87708fd1a2bdbb299",
+    "test-rebind.c": "804b1a27957789d0ba16f1ed286a5301c0243620f3971b7178461c02209258a1",
+    "release-core.h": "8e5524ebedc6dff29355663937f35026c3e4d9572f695cc8438fe49aac59e65b",
+    "proposed-release.c": "2f4fc3e23454253752d81dfd022f9f0f3ee3ecc9b728769560b1b8d5277982f3",
+    "test-host.py": "c566115239e759f6f02dc363e3beaaa2333b3da2e1daa2fc3d16ddf702622ef0",
+    "qemu\\lru.h": "e80addc485365e961ed5f214671949271e45587053e9c4ac0c6cbad2718e91f4",
+    "qemu\\queue.h": "7e9b631e83757ac14f0bc251860eeba82540ac1ac72d2d959681a00a50248f67"
+  }
+}

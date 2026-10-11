@@ -1,0 +1,20 @@
+{
+  "source": "E:\\Codex-archive\\xbox-windows-native\\actors267-build001\\source\\hw\\xbox\\nv2a\\pgraph\\gl\\surface.c",
+  "sha256": "4ad894c66cf84bfce0806d6d6ce7c7e111b8dc1881eced84499a48f29f021f58",
+  "reviewed": [
+    "pgraph_gl_surface_invalidate",
+    "pgraph_gl_unbind_surface",
+    "pgraph_gl_surface_update",
+    "flush_surfaces",
+    "pgraph_gl_surface_flush",
+    "pgraph_gl_reload_surface_scale_factor"
+  ],
+  "findings": [
+    "Surface invalidation unregisters its CPU callback and deletes its surface GL buffer; it does not call texture-binding destruction.",
+    "Surface flush unbinds color/zeta, invalidates surface list, reloads scale configuration and conditionally updates surfaces.",
+    "No texture_cache or texture_binding_destroy access appears in this surface source.",
+    "This direct source review is not runtime evidence that a watched texture survives all normal restart paths. Generation-aware actual observation remains required."
+  ],
+  "runtime_executed": false,
+  "inputs_unchanged": true
+}
