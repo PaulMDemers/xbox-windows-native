@@ -1,3 +1,38 @@
+#251/252 ACTIVE — end-of-day combined audio/video demo integration
+
+October11 18:14UTC. User authorized integration of peer work and physical tests.
+Root owns device-hardware220/state/demo251-claimed.json; no peers may launch.
+Merged audio8d926eb, PCI20bed8e, USBeb64acc histories locally; HEAD6b22f71,
+not yet pushed. No PCI/USB functional prototype promoted. Preserve0.1.0/0088.
+
+251 combined ordinary emulator CLOSED: genuine xwnaci207 build004 plus tested
+video118/shared158, two joined audio children and five exact206 drawing samples.
+Scoped combined PASS in emu001/combined-review.json (authoritative supplemental
+pre-audio through post-video event interval); PCI read-only review found no defect.
+Strict whole-boot FALSE sole inherited Ftdisk49; no release/physical claim.
+Audio six phases/PCM captured; full cold allocation327dirs6763files328dirclusters,
+zeroerrors/orphans,5hives/protected/policy/history PASS; orderly host exit0.
+No emulator processes remain. Do not replay/recollect251 emu001.
+
+252 is physical AUDIO INSTALL FIRST, using reviewed peer package, video untouched.
+1223 incoming files double-read/preserved in E-backed artifacts/before002; providers
+and5hives PASS; frozen001 pins scripts/payload/inputs. Baseline scan launched ONCE
+18:10:20UTC and collected/analyzed:6199dirs122595files6204dirclusters,0errors/orphans.
+All baseline actors closed. Next single trial002.py install001 launch/observe,
+collect normal startup FIRST, postinstall read-only scan, cold audit. Do not
+relaunch any recorded request. Trial guards consume251 combined-review.json.
+
+Physical rollback includes boot/config companions/INF/audio; incoming FATX0101,
+video0093,legacyACI remain preserved. NEW stage must capture post-install SYSTEM
+before applying exactly two tested video service/class token changes; never reuse
+pre-audio hive. Combined physical runtime and new recovery bundle still pending.
+Private251 staging zip readback verified; not deployed/release-qualified.
+Known PCI/USB gamepad support absent,1080i/GPU ownership not promoted; standard
+keyboard/mouse retained. Current C~20.23GiB: preserve20GiB build guard; use E for
+new physical artifacts, never relocate backing chains casually.
+
+# Earlier record preserved
+
 #249/250 CLOSED — workload/UI/worker scope PASS; installer hold not reproduced
 
 All owned sessions closed, no guest or hardware test queued.249 failed missing
