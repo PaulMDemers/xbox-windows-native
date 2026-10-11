@@ -2,7 +2,8 @@
 
 Single257 launch19:14:38->19:16:04UTC October11; all owned sessions CLOSED,
 including15867 controller and83644 resumed first cold audit. No physical launch
-queued. Latest prior pushed0522c8c; commit current257/256 recovery evidence next.
+queued. Evidence commit2ed5427 is pushed to private origin/main. Repository checks
+passed25743 tracked files; only intentionally private raw event/offload files untracked.
 
 Read outputs/surface-invalidation257/REPORT.md, NEXT.md and final-review.json.
 49 complete untruncated scalar groups:20 age removals (15dirty at caller),3 CPU
@@ -26,7 +27,9 @@ verified, hashes rechecked in capture-closure.json. Not diskimage/restoretested.
 Physical audio004/softwarevideo118/shared158/FATX0101 unchanged. Root demo251
 ticket retained, Xbox available at dashboard, no physical work queued. Immutable
 0.1.0/0088 rollbacks and all failures preserved. Heartbeat endOct11 remains active;
-update its prompt to this closed state.20GiB guard unchanged, C space thin.
+prompt updated to this closed state.20GiB guard unchanged; C free21540167680bytes
+at19:23UTC is only about65MiB above it. Recover verified closed-artifact capacity
+before another build; do not relocate active/backing chains casually.
 
 # Earlier record preserved
 
