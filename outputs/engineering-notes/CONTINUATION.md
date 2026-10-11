@@ -1,3 +1,43 @@
+#259 COMPILED COMPONENTS — runtime bridge still to implement
+
+All owned sessions CLOSED, including renderer build44179. No guest prepared,
+launched or collected259; no physical access. Read outputs/surface-renderer259/
+REPORT.md, DESIGN.md, NEXT.md and final-review.json. New probe001 native38fa464d...
+has five actual exported checkpoints, four full readbacks and one CPU write on
+unchanged258 held driver.65536 independent expected bytes and10 negative controls
+pass. This probe deliberately FAILS without renderer intervention; don't launch
+it as an ordinary baseline. Actual runtime base/owner/pages remain unattested.
+
+Admission002 ASan/UBSan89 checks/2048reference capacity pass. Original001 inputs
+and83-check result preserved in prior-admission001; reviewed002 adds bounded
+totals before age-array reads plus pointer/boolean checks. No runtime ownership
+or GL claim follows from synthetic flags/records.
+
+Renderer001 compiled20:02:05UTC October11, sha b44ef95e...191523156bytes at
+E:/Codex-archive/xbox-windows-native/renderer259-build001/xemu-renderer259.exe.
+Only exact257 renderer.h/surface.c appended; all borrowed sources restored,
+78 inherited warning instances/0 new messages. Internal stage routine implements
+private-FBO age eviction, actual callback registration, dirty GPU updates and
+CPU-store verification; bindings restored/reread. It has NO QOM/PFIFO CALLER yet.
+No guest/GL/callback/pixel-preservation/ordinary/speedup qualification259.
+
+NEXT: implement coherent live owner/reference collector and NEW bounded sequenced
+CPU/renderer bridge, then unique fresh child from pre-execution258. Existing247/
+246 actors are one-shot: do not reset them. Exact16-file source closure proves
+CPU queue emptiness is NOT completion (work item removed before execution).
+Use acknowledged CPU-exclusive inventory and actual insertion/removal/free,
+all seven reference families, actual process/code/driver/owner/gen/four-page pins.
+Don't debugger-read a dirty arena before its intended guest access. Release
+worker park before the actual blocked CPU read/store. Quarantine uncertain
+teardown; never free258 arena/reuse old closed runs. Retain Ft49 strict failure.
+
+Physical demo audio004/video118/shared158/FATX0101 and complete256 private recovery
+unchanged; no physical test queued. Root demo251 ticket retained/peers idle.
+20GiB buildguard unchanged; last C free about21.8GB decimal, inspect before builds.
+Continue autonomous work through October12 04:00UTC; no new experiment at cutoff.
+
+# Earlier record preserved
+
 #258 CLOSED — ordinary CPU arena and independent host pixel oracle
 
 All owned sessions38634/36361/30874/87485 CLOSED. No physical work queued.

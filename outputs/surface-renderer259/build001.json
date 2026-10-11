@@ -1,0 +1,72 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "guest_launch": false,
+  "gl_executed": false,
+  "started_utc": "2026-10-11T19:53:07.708529+00:00",
+  "space": {
+    "minimum_free_gib": 20,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/surface-renderer259",
+        "free_bytes": 21863354368
+      },
+      {
+        "free_bytes": 21863288832,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "input_pins": {
+    "probe.c": "0741d94948a7b9f6d4c666e6f2c10749f6fd693162960eb929870f444f1d19f5",
+    "expected.h": "ea0a93df9bcd1518dca785bfc467c1fc506a526d694eeccf63dad1027b8834b3",
+    "emit-expected.c": "1de0e73bdf18a4c3e45cf9b26a805d8b0b39982314f61d3942fa62e74339d198",
+    "build001.py": "23099923e4eb7b7c253b462a304c751e78597107426915f16aebe6c6d648974c"
+  },
+  "driver_sha256": "eba5d954d9075700a1a94b8196377626862bf74767b0bfbfe5c104d528a457a1",
+  "inherited_arena_header_sha256": "e3516f5e5e0ded9bda35ce97062bbbf6e26e753e1a69fdd2a0c79c1b2fd82388",
+  "compiler_sha256": "83015512671faaa0dbe6f043a0107f79c049f4268a67e39955388a8d9a0182e5",
+  "commands": [
+    [
+      "gcc",
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=address,undefined",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/surface-renderer259/emit-expected.c",
+      "-o",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/surface-renderer259/artifacts/build001/emit"
+    ],
+    [
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/surface-renderer259/artifacts/build001/emit"
+    ],
+    [
+      "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc",
+      "-Os",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-nostdlib",
+      "-fno-stack-protector",
+      "-fno-builtin",
+      "-Wl,--entry,_mainCRTStartup@0",
+      "-Wl,--subsystem,console:5.0",
+      "-Wl,--image-base,0x16000000",
+      "-o",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/surface-renderer259/artifacts/build001/probe.exe",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/surface-renderer259/probe.c",
+      "-lkernel32",
+      "-ladvapi32",
+      "-luser32"
+    ]
+  ],
+  "native_sha256": "38fa464d92acddc277a90f3080444dea7c6932ddaf1ae63435d747a6a9f1a284",
+  "native_bytes": 11039,
+  "expected_sha256": "35e84afd0368fbc591221e2d79181201bed2ee75275670ce38a052028d033b16",
+  "finished_utc": "2026-10-11T19:53:09.676924+00:00"
+}
