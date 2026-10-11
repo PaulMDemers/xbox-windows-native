@@ -1,3 +1,60 @@
+# Current:246 CLOSED; real UI loans closed/reopened, shared contexts retained
+
+Read outputs/frontend-close246/DESIGN.md/REPORT.md/NEXT.md/review001.json and
+actual preserve001/frontend/trace/audit/matrix/process-closure records. ALL owned
+246 processes CLOSED; build session45619 and matrix11204 CLOSED0. No guest queued.
+Never relaunch or recollect old cases. Emulator only; hardware/peer/native policy
+unchanged. Preservephysical0101/video0093,0088rollback,immutable0.1.0/all failures.
+
+Actual build001 changes only four emulator source files relative244/build005;
+all borrowed sources restored. One QOM request closes UI frame admission; real
+UI actor acknowledges loan0/BQL0 and GL_CONDITION_SATISFIED in its own context.
+Raw evidence:298488700ns closed interval,zero new loans,acknowledged reopen and
+resumed real loans. Context65537/thread32308,last fallbacktexture26 already
+deleted(live0),program9/arraybuffer5/elementbuffer6/VAO3 still bound. No bindings
+cleared, cache/object/context disposal or native GPU ownership permit.
+
+16989 lifecycleevents,23 completecallbackchains,3/3 targethooks retired while
+CPU RUNNING,1 complete naturalflush,2162 completeframes(1908accelerated/254fallback),
+zero sync-null returns. Actual sameboot Xromwell/FreeLoader residentpins,three
+dirty surfaces/3072000bytes prior same-path readback,fullGDBteardown/mode0/resume.
+Latest dirty data at natural invalidation remains unobserved; prior preservation
+does not prove a later draw survives disabled-download flush.
+
+Normalrestart/dashboard/orderlyexit0,65allocations/releases/refusals,3194880CPU
+verifiedbytes/fourjoins,full clean6724files/320dirs/321dirclusters,5structuralhives,
+28selectedprotected/staged/startup/policy/SetupAPI/event-history PASS. SoleFtdisk49
+type1 remains strictFALSE. Ordinary/physical/fullsharedretirement/nativeFALSE.
+No all-file-content,power-loss or repeat-boot durability claim. Host actualhelper
+O0/O2 ASan/UBSan each2304freshlifecycles/256joinedactorraces passed;1140pins exact.
+Preliminary missingtestassertmacro compilefailure and missingGDBcapsule setup
+retained; no product/binary change to make tests pass. Old244/245 untouched.
+
+Next NEW bounded protocol: worker-owned renderer/display admission barrier,
+actual context/binding/per-object completion; capture latest dirty data before
+any disposal. No actor wait under BQL/FIFO/PG/renderer-required locks and no
+native grant from UI silence. Savehandles are not thread-liveness evidence.
+Closed246 portable copied/readback-verified to E, original junction retained;
+no disk backing chain moved. Keep20GiB guard and explicit capacity projection.
+
+# Current:246 ACTIVE; one-shot frontend close/reopen diagnostic
+
+Read outputs/frontend-close246/DESIGN.md and actual preserve001 host/trace/matrix
+records before taking any action. Fresh nt5-phase246-preserve001, immutable239
+seed; actual candidate build001. No native driver/policy/physical/peer changes.
+One close/reopen request is allowed, never restart a recorded guest or collect
+a completed stage again. Old244 failure and245 records remain unchanged.
+Owned matrix exec session11204; case controller117816,
+runner111716, tracer119216, observer116480.
+Use actual records/process identity, not stale numeric PIDs, when resuming.
+Only UI admission closes; renderer/display/shared references remain retained.
+Host tests/refusals/atomic races passed. Actual GL completion/loan silence still
+pending. Require reopen acknowledgement, full GDB teardown/mode0/resume, normal
+restart/dashboard/orderly exit, complete existing cold audit and raw causal
+analysis. Strict Ftdisk49 gate remains unchanged; no native ownership permit.
+Preserve0101/video0093,0088rollback,immutable0.1.0 and all failed evidence.
+Emulator only; no physical FTP/deploy/test.20GiB guard unchanged.
+
 # Current:245 CLOSED; actual hooks retired, final frontend loan still active
 
 Read outputs/gpu-lifecycle245/REPORT.md/DESIGN.md/NEXT.md/review001.json and
