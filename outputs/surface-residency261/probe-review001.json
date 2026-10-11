@@ -1,0 +1,97 @@
+{
+  "passed": true,
+  "guest_launch": false,
+  "gl_executed": false,
+  "pixel_preservation_proved": false,
+  "physical_access": false,
+  "source_sha256": "6c93deedf58428c8904a4be1b80c2ddf34e3ece89fd031f4bc6397ca802277e3",
+  "build_sha256": "6e354652d39278cea30ad1a6d981c863102160cfa4eac2c1e35f3b30942ead78",
+  "native_sha256": "d7d5075a2b819e3d27d3ff06a5b7bf629f03a2dbb67123894d8becbfa880bc56",
+  "imports": {
+    "advapi32.dll": [
+      "CloseServiceHandle",
+      "CreateServiceA",
+      "OpenSCManagerA",
+      "StartServiceA"
+    ],
+    "kernel32.dll": [
+      "CloseHandle",
+      "CreateFileA",
+      "DeviceIoControl",
+      "ExitProcess",
+      "FlushFileBuffers",
+      "GetLastError",
+      "GetModuleHandleA",
+      "VirtualLock",
+      "WriteFile"
+    ],
+    "user32.dll": [
+      "wsprintfA"
+    ]
+  },
+  "preferred_image_base": 369098752,
+  "checkpoint_rva": 4837,
+  "checkpoint_instructions": [
+    {
+      "address": 369103589,
+      "bytes": "55",
+      "mnemonic": "push",
+      "operands": "ebp"
+    },
+    {
+      "address": 369103590,
+      "bytes": "89e5",
+      "mnemonic": "mov",
+      "operands": "ebp, esp"
+    },
+    {
+      "address": 369103592,
+      "bytes": "8b4508",
+      "mnemonic": "mov",
+      "operands": "eax, dword ptr [ebp + 8]"
+    },
+    {
+      "address": 369103595,
+      "bytes": "870500300016",
+      "mnemonic": "xchg",
+      "operands": "dword ptr [0x16003000], eax"
+    },
+    {
+      "address": 369103601,
+      "bytes": "5d",
+      "mnemonic": "pop",
+      "operands": "ebp"
+    },
+    {
+      "address": 369103602,
+      "bytes": "c3",
+      "mnemonic": "ret",
+      "operands": ""
+    }
+  ],
+  "checkpoint_abi": "cdecl: stage, Reply pointer, File HANDLE at stopped entry; verify actual process and resident code",
+  "symbols_rva": {
+    "_Reply": 12320,
+    "_Checkpoint": 12288
+  },
+  "exact_independent_bytes": 65536,
+  "expected_sha256": [
+    "a98f985fc393c115f94260bf412657b147a60d39a827005f11f5dea7ba74549e",
+    "809eea59a3f357b444c3b46e0b217610b5de3cbfe2d97a6b3b77c205b373f7c4",
+    "558243063734d21491216e13d47933531c5982995d28cb586b51e35fce8e53f8",
+    "40604dede048ff5d3d770e3acc9d47bded4865b44c98c6308128e7fd1079ab73"
+  ],
+  "negative_controls": {
+    "no_renderer_injection": true,
+    "stale_gpu_after_cpu_store": true,
+    "old_texture_at_read": true,
+    "prefix": true,
+    "row_padding": true,
+    "suffix": true,
+    "pixel": true,
+    "flipped_rows": true,
+    "wrong_pitch": true,
+    "red_blue_swap": true
+  },
+  "limits": "Compiled probe/host oracle only. No renderer hook, runtime ownership attestation or GL execution yet."
+}

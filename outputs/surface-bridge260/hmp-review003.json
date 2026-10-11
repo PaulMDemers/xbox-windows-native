@@ -1,0 +1,19 @@
+{
+  "recorded_utc": "2026-10-11T20:49:08.259078+00:00",
+  "source_base": "e72e76bd1f12ce45c6c63b4196c6918ea2cc705d",
+  "files": {
+    "cutils.c": "775d83846b6914e5a206c111c045d60c6c2900f6a1b5af3eec74138a83934312",
+    "hmp-commands.hx": "1aaaa6233eb351e2fe33a85f888ae5cb126a30ba2d576c90f5d0102e29bc645a",
+    "qom-hmp-cmds.c": "e680b14354c01dcbb566225087bc753fbf3a7dfd299e2891410a2c94e2fdc9dc",
+    "string-input-visitor.c": "81a04ea6af4253791a2a86a95f057cfdcc99a30edf1735aec39738b6887ef4c1"
+  },
+  "finding": "HMP qom-set defaults to object_property_parse with raw value:S. String visitor g_strdup retains JSON quotes. -j takes qobject_from_json then qmp_qom_set, passing the decoded string. The compiled bridge rejects the quoted first integer before allocating a stage.",
+  "runtime_controls": "Fresh004 deliberately compares both spellings while UI is open; both must refuse before stage allocation, for distinct reasons.",
+  "source_base_scope": "Renderer recorded base; inspected working build-source snapshot has no usable Git metadata. No clean-git claim for HMP files. Live parser controls in004 independently test the actual executable.",
+  "repository_verification": {
+    "revision": "e72e76bd1f12ce45c6c63b4196c6918ea2cc705d",
+    "paths_clean": true,
+    "method": "git -c safe.directory=<exact owned root> diff --exit-code -- four HMP/visitor/cutils source paths",
+    "supersedes": "Earlier command without safe.directory did not establish repository state; it did not prove metadata absent."
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "guest_launch": false,
+  "gl_executed": false,
+  "started_utc": "2026-10-11T20:57:21.681304+00:00",
+  "space": {
+    "minimum_free_gib": 20,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/surface-residency261",
+        "free_bytes": 21906329600
+      },
+      {
+        "free_bytes": 21906329600,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "input_pins": {
+    "probe.c": "0293958382041a629f5b946318d2fa96f2a4ab16ece8477b27fcc12c36abd361",
+    "expected.h": "3e220607a332416b781dbf5eacae66320d7bb716cc3593aa384f4fe2e27158c6",
+    "emit-expected.c": "438da094cad2ee62098003edc9992b6c5c39579e060692517f0c02791b29ee5b",
+    "build001.py": "8df832415fbef3163dfe337a24c30ca465f6b7a473126c017563dccb52f97be5"
+  },
+  "driver_sha256": "eba5d954d9075700a1a94b8196377626862bf74767b0bfbfe5c104d528a457a1",
+  "inherited_arena_header_sha256": "e3516f5e5e0ded9bda35ce97062bbbf6e26e753e1a69fdd2a0c79c1b2fd82388",
+  "compiler_sha256": "83015512671faaa0dbe6f043a0107f79c049f4268a67e39955388a8d9a0182e5",
+  "commands": [
+    [
+      "gcc",
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=address,undefined",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/surface-residency261/emit-expected.c",
+      "-o",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/surface-residency261/artifacts/build001/emit"
+    ],
+    [
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/surface-residency261/artifacts/build001/emit"
+    ],
+    [
+      "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc",
+      "-Os",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-nostdlib",
+      "-fno-stack-protector",
+      "-fno-builtin",
+      "-Wl,--entry,_mainCRTStartup@0",
+      "-Wl,--subsystem,console:5.0",
+      "-Wl,--image-base,0x16000000",
+      "-o",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/surface-residency261/artifacts/build001/probe.exe",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/surface-residency261/probe.c",
+      "-lkernel32",
+      "-ladvapi32",
+      "-luser32"
+    ]
+  ],
+  "native_sha256": "d7d5075a2b819e3d27d3ff06a5b7bf629f03a2dbb67123894d8becbfa880bc56",
+  "native_bytes": 11957,
+  "expected_sha256": "35e84afd0368fbc591221e2d79181201bed2ee75275670ce38a052028d033b16",
+  "finished_utc": "2026-10-11T20:57:23.361350+00:00"
+}

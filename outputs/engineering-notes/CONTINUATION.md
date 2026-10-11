@@ -1,3 +1,47 @@
+#261 CLOSED — all guest pixel checks pass; full qualification still FALSE
+
+Read outputs/surface-residency261/REPORT.md, DESIGN.md, NEXT.md, final-review.json
+and actual emu001 records. ALL owned sessions CLOSED (261prepare96178/run91734;
+260runs62948/30148/36586/91657).261 probe locks its own4KiB image header, keeping
+all identity gates; compiled260renderer/258helddriver unchanged. Fresh launch
+21:01:51UTC completed5actual native attestations/4renderer stages, real age,
+dirty-read, blocked-store/eviction and second stale-read checks. Four exact16KiB
+reads=65536cold bytes, CPU4reads1write. All before/after CPU-exclusive inventories,
+GL-restoration returns, breakpoint teardown and frontend reopen completed.
+224workload64leases65alloc/releases/refusals3194880bytes128preflight4joinedworkers.
+Windows normalshutdown/dashboard; cold322dirs6728files323clusters0errors/orphans,
+5hives/protectedhashes. CLOSED21:04:30. Physical demo/recovery unchanged.
+
+Full qualification FALSE: site11scalarCPUread telemetry capped256; independent
+preservation-proof.json fails, supplemental uncapped actual callback insertion/
+unlink/free bothlifetimes observed. Invoke.ps1 omitted close-host.py (also260):
+after normal guest restart, host fallback-killed xemu exit-1. Ft49 retained. No full
+preservation/ordinary/performance/nativeGPUownership/physical promotion claimed.
+Actual write eviction/common flags8=upload_pending; original parser's all-zero
+predicate was inappropriate for this path. Preserve original failure; source-led
+new qualifier must require dirty/download/evict bits clear and full bytes, allowing
+explicit retained upload intent only with independently verified latestCPUdata.
+
+Next NEW telemetry-only renderer child: site11bounded4096 (other256), keep overflow
+marker/saturating bounds; exactdelta/tests/source-restoration. New parser capacity
+and negative controls; no truncated run passes. Include/pin/test actual close-host
+helper and preflight all locally invoked dependencies BEFORE any new guest. Reuse
+only fresh copy of never-executed261seed; no old runtime disk. Fullcold/normalguest/
+orderlyhost/untruncatedcallbacks/pixels required. See261NEXT exact protocol.
+
+All260emu001..007 CLOSED.003actual kernel82403000/owner/fourpage attestation;005real
+age stage then host JSON PermissionError;006prelaunch20GiBguard;007nonresident probe
+header. Preserve allocation failures and partialscopeproof. Shared review003 summary
+was accidentally overwritten by cloned004-007writers; five exact historical JSONs
+reconstructed to original frozenSHA256 in review-history003; recovery manifest
+explicit, all other inputs unchanged.261unique/exclusive review fixes this.
+261initial preflight LF/CRLF rawSHA failure preserved; equivalent source/oracle
+recorded.2611850frozeninputs remain unchanged. Closed260portable hashverified toE
+with original junction (portable-260d); no backing disk moved.20GiBguard unchanged.
+Physical audio004/softwarevideo118/shared158/FATX0101, immutable0.1.0/0088/recovery256
+unchanged; no hardware test queued. Continue until Oct12 04:00UTC, then cleanup/
+report/pause. Coordinate existing peers only as authorized; no new task needed.
+
 #260 CLOSED — compiled live bridge; first guest refused before renderer work
 
 Read outputs/surface-bridge260/REPORT.md, DESIGN.md, NEXT.md, final-review.json
