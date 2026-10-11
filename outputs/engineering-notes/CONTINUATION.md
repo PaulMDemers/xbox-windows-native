@@ -1,3 +1,45 @@
+# Current: phase237 CLOSED; actual loader entries have no PGRAPH pending/waits
+
+Read outputs/loader-phase-snapshot237/REPORT.md, DESIGN.md, NEXT.md, review001.json,
+directory-delta001.json and actual dashboard001/xbe001/freeldr001 records.
+Git parent3d5f7c4. Preparation56551/matrix40120 CLOSED0; matrix closed
+2026-10-11T01:18:59.847148+00:00. All16 root recorded PIDs absent; root leases
+released; no root guest queued. Never replay/recollect these cases or235/236.
+
+Three independent fresh writable instances from one new immutable seed,
+unchanged234 exe7d953556.../native224/219/211 captured-core policy/no nullbindings.
+Dashboard arbitrary CPUstop146677: PG pending100000/waits2NOP, journal17640/256/
+overw17384. ExecutingXBE11100: PG pending0/waits0, journal22717/256/22461.
+ExecutingFreeLoader200a20: PG pending0/waits0, journal19522/256/19266, magic2badb002/
+IF0. Both entry32byte cold pins match in every case. ONE234publication each,
+immutable rereads, full teardown/mode0/no writes/resumed. Separate boots, not
+single-boot timeline. PG-only currentFIFO-invalid; compiledmask1FIFOdisabled/
+2NOP/4flip/8context. No persistent PGwait diagnosed at sampled transfer;
+currentFIFO/producer admission/dirty reference retirement/ownership unresolved.
+
+Each CPU65 allocations/releases/refusals,3194880bytes/fourworkers PASS;8MMIO
+rounds128reads still refuse UNMODELED_BUSY/NO_OWNERSHIP. Normal6006=1/dashboard
+allthree. Cold320dirs321clusters each,files6725/6724/6724,0errors/orphans,
+5hives/protected/startup/history/policy PASS. Path difference only additional
+WMI wmiadap.log on dashboard run; no missing baseline paths, not payload proof.
+CPU/observation/trace TRUE; strictFALSE soleFtdisk49, no application events.
+Ordinary/physicalGPU qualificationFALSE. Inherited vm.Kill still recovered-image/
+selected-content scope; no full cacheflush/all-content/repeatedboot guarantee.
+USB cda0476 orderly-vs-forced closure evidence separate, no silent substitution.
+
+Hostsampler/parser57,guards72,connection12,captureparser5,PS/prelaunch/review PASS;
+470 frozen unchanged. Kind1/emptyroot parser mistakes and report encoding failure
+preserved. Twenty PRE-instance XBE lease refusals, no duplicate guest launch.
+Next NEW finite currentFIFO/context/surface reference discriminator at pinned
+entries; separately review bounded orderly host closure before durability claims.
+No force-clear/speculative patch/ownership grant/event waiver. Preserve physical
+0101/video0093,0088rollback,immutable0.1.0/all failures. No root physical IO or
+peer merge/tag changes. Audio8d926eb8 rolled back/pushed, speaker mapping not
+verified; PCI corrected observer and USB setup/restart remain separate work.
+USB was notified root matrix closed and may continue with cooperative leases.
+
+--- Previous continuation retained byte-exact below ---
+
 # Current: guest236 CLOSED; dashboard IRQ and actual loader entries pinned
 
 Read outputs/guest-gpu-handoff236/REPORT.md, DESIGN.md, NEXT.md, review001.json
