@@ -22,7 +22,8 @@ a disk image or restore-tested release. See demo-audio-level256/capture-summary.
 
 Remaining demo gaps: exact left/right speaker routing, known unsupported APU/PCI/USB
 wizards, crash-dump configuration warning; preserve these limits. Next improvement
-is controlled pixel preservation after257 identified20 age and3 CPU-write removals; no GPU acceleration,1080i or
+is controlled pixel preservation after257 identified20 age and3 CPU-write removals.
+258 now has an ordinary-tested reboot-held buffer for that diagnostic; no GPU acceleration,1080i or
 additional mode is claimed. Software text upload reductions are already bounded-
 physical-tested. Full reconstruction/public-release licensing and xemu upstream
 work remain separate unfinished goals.

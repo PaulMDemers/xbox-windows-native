@@ -1,0 +1,170 @@
+{
+  "started_utc": "2026-10-11T19:33:40.325450+00:00",
+  "space": {
+    "minimum_free_gib": 20,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/surface-pattern258/artifacts",
+        "free_bytes": 22463258624
+      },
+      {
+        "free_bytes": 22463258624,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "input_pins": {
+    "arena.c": "04437e5e9f7cfef731cd9a08ad2025122131376cf0b8b2a184fccd90c9fb422d",
+    "arena.h": "e3516f5e5e0ded9bda35ce97062bbbf6e26e753e1a69fdd2a0c79c1b2fd82388",
+    "build001.json": "670d68634f67394d0513d43713b67920c818ab34dbac3a8ed624477ac16402d6",
+    "Build001.ps1": "1a2e1f885287f9bd9de1d3c9591584797ebbf04dc208cad2453920309fe5f168",
+    "build001.py": "23adde2e2db40f1c42e7a9ace0be5c7cde903b4bcb522089a8821f18af02727c",
+    "Build002.ps1": "f12893c86245e6210acc781acc1e0a7c3bd63304afddb9caf23ca9463326e5c9",
+    "build002.py": "95010efaf044d1e15e65835bbd8031391f081e1a49f0a766e4553fe93d3a4dd7",
+    "DESIGN.md": "09378b603d4d36146c0102858bcd1927a5c07ece317ab2a0bb8b67639b871f23",
+    "driver.c": "4bf5f849137959a7bc46916198c19fd7e85b7a20c5a094bc6e1a0b353e652746",
+    "probe.c": "c9d1c5b60e8165db7e6d7b147bab0824101947a8990d6235bef1780184dcf4f7",
+    "test-arena.c": "18c205efb40a628047efd1e8244a9f7a1328bdd9eaa8e711eb6b1cbc9da2f397",
+    "test-bridge.c": "41fbcea05be7ce208d79fe7d085fb7b3afc2df4a1610b41f9f0a389b43d9b5b9",
+    "prior-build001/arena.c": "04437e5e9f7cfef731cd9a08ad2025122131376cf0b8b2a184fccd90c9fb422d",
+    "prior-build001/arena.h": "e3516f5e5e0ded9bda35ce97062bbbf6e26e753e1a69fdd2a0c79c1b2fd82388",
+    "prior-build001/Build001.ps1": "1a2e1f885287f9bd9de1d3c9591584797ebbf04dc208cad2453920309fe5f168",
+    "prior-build001/build001.py": "23adde2e2db40f1c42e7a9ace0be5c7cde903b4bcb522089a8821f18af02727c",
+    "prior-build001/DESIGN.md": "09378b603d4d36146c0102858bcd1927a5c07ece317ab2a0bb8b67639b871f23",
+    "prior-build001/driver.c": "4bf5f849137959a7bc46916198c19fd7e85b7a20c5a094bc6e1a0b353e652746",
+    "prior-build001/probe.c": "7ef414435451e09c072503add6e5071c515ae618b34a7e991c36ed2f75fbe8a4",
+    "prior-build001/test-arena.c": "18c205efb40a628047efd1e8244a9f7a1328bdd9eaa8e711eb6b1cbc9da2f397",
+    "prior-build001/test-bridge.c": "41fbcea05be7ce208d79fe7d085fb7b3afc2df4a1610b41f9f0a389b43d9b5b9"
+  },
+  "host_header_sha256": "a2bc25efbac12b58c863d5d1618b0f6a15f73b6e0a22eaa5ebf1f9cbf691590e",
+  "compiler_sha256": "83015512671faaa0dbe6f043a0107f79c049f4268a67e39955388a8d9a0182e5",
+  "kernel_archive_sha256": "7ddceef5d09b6d754f7003d92df45890dfbf56f2230361c0546b8f162812e940",
+  "hal_archive_sha256": "aae2bf7d86d733ec9f6fc3983624a90badf73f629f13e17e6feb1fcf1bc191d8",
+  "commands": [
+    [
+      "gcc",
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=address,undefined",
+      "-fno-omit-frame-pointer",
+      "-pthread",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/surface-pattern258/arena.c",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/surface-pattern258/test-arena.c",
+      "-o",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/surface-pattern258/artifacts/build002/core"
+    ],
+    [
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/surface-pattern258/artifacts/build002/core"
+    ],
+    [
+      "gcc",
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=address,undefined",
+      "-fno-omit-frame-pointer",
+      "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-fifo-retirement224/host-include",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/surface-pattern258/arena.c",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/surface-pattern258/test-bridge.c",
+      "-o",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/surface-pattern258/artifacts/build002/bridge"
+    ],
+    [
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/surface-pattern258/artifacts/build002/bridge"
+    ],
+    [
+      "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc",
+      "-Os",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-nostdlib",
+      "-fno-stack-protector",
+      "-fno-builtin",
+      "-c",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/surface-pattern258/arena.c",
+      "-o",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/surface-pattern258/artifacts/build002/arena.o"
+    ],
+    [
+      "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc",
+      "-Os",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-nostdlib",
+      "-fno-stack-protector",
+      "-fno-builtin",
+      "-I/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/i386/i686-w64-mingw32/include/ddk",
+      "-D_WIN32_WINNT=0x0500",
+      "-DNTDDI_VERSION=0x05000000",
+      "-shared",
+      "-Wl,--entry,_DriverEntry@8",
+      "-Wl,--subsystem,native:5.0",
+      "-Wl,--image-base,0x10000",
+      "-Wl,--file-alignment,512",
+      "-Wl,--section-alignment,4096",
+      "-o",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/surface-pattern258/artifacts/build002/pattern.sys",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/surface-pattern258/artifacts/build002/arena.o",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/surface-pattern258/driver.c",
+      "/home/paul/xbox-windows-native/build/fatx-dump-map-001/build-fatx/ntoskrnl/CMakeFiles/libntoskrnl.dir/libntoskrnl.a",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-staging-probe213/artifacts/build003/inputs/hal/halx86/CMakeFiles/libhal.dir/libhal.a"
+    ],
+    [
+      "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc",
+      "-Os",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-nostdlib",
+      "-fno-stack-protector",
+      "-fno-builtin",
+      "-Wl,--entry,_mainCRTStartup@0",
+      "-Wl,--subsystem,console:5.0",
+      "-Wl,--image-base,0x15000000",
+      "-o",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/surface-pattern258/artifacts/build002/probe.exe",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/surface-pattern258/probe.c",
+      "-lkernel32",
+      "-ladvapi32",
+      "-luser32"
+    ]
+  ],
+  "host_runs": [
+    {
+      "kind": "core",
+      "log_sha256": "9ac87204cfef9fca3ada35676d48c386d21038784769f7bbb5046481ce54cfa9"
+    },
+    {
+      "kind": "bridge",
+      "log_sha256": "2eaaa2c66842423149157ad8f8dc4a2e71672406b8664bc6e7680a037e0086b6"
+    }
+  ],
+  "native": {
+    "pattern.sys": {
+      "sha256": "eba5d954d9075700a1a94b8196377626862bf74767b0bfbfe5c104d528a457a1",
+      "bytes": 11893
+    },
+    "probe.exe": {
+      "sha256": "6919e19a5ec4d1feb37e75e6a928a9abc8f342d8b23838bf230625e49694b677",
+      "bytes": 10527
+    }
+  },
+  "physical_access": false,
+  "guest_launch": false,
+  "gpu_writes": false,
+  "passed": true,
+  "shared_objects": {
+    "arena.o": "c92320f6afa1dd7042cf3d2859cd311b1691051d96b5e7c6be752be74692eecb"
+  },
+  "finished_utc": "2026-10-11T19:33:44.164343+00:00"
+}

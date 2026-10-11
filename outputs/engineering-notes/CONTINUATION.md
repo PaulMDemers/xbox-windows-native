@@ -1,3 +1,67 @@
+#258 CLOSED — ordinary CPU arena and independent host pixel oracle
+
+All owned sessions38634/36361/30874/87485 CLOSED. No physical work queued.
+Read outputs/surface-pattern258/REPORT.md, NEXT.md, lineage-review.json and actual
+emu001 records. Single ordinary launch19:39:56->19:41:28UTC October11; cold audit
+closed19:42:09. One16KiB allocation at20008960 for THIS run only,3 reads/2 writes,
+49152 exact bytes, closed arena rejects reads and holds memory/FileObject until
+reboot. This fixes a TEST-INTERFACE lifetime assumption, not a video driver defect.
+Do not attach renderer references to the old222/224 free-on-close CPU lease.
+
+Existing224 workload64leases65allocations/releases/refusals3194880bytes4joined
+workers and128read preflight pass, normal shutdown/dashboard. Cold321dirs6728files
+322clusters0errors/orphans,5hives30protected; new demand service exact/start3/type1.
+Selected policies unchanged,30 natural PnP metadata deltas retained. Scoped ordinary
+CPU arena PASS; strictFALSE soleFt49. No GL/nativeGPU ownership/pixel preservation
+or speedup claim. Historical250 parent; original inherited descriptive fields
+corrected separately in lineage-review, frozen manifest unchanged.
+
+Host ASan/UBSan core+actualbridge tests256races2048contenders37748736bytes pass.
+Build002/nativeNT5 import+resident/export review pass, driver eba5d954...,probe
+6919e19a...; build001 probe indentation warning failure preserved, never launched.
+All1729 frozeninputs still exact. Host-only oracle13x11BGRA8/pitch64 atarena+4096,
+572pixelbytes15812guard/paddingbytes;9negativecontrols pass. Not GL execution.
+Next NEW kit: renderer half on reviewed257 worker admission using fresh258 seed,
+independent expected contents, actual CPU read/write callbacks and full retirement;
+NEXT details range/reference refusal, no global frame-time mutation, stale-store
+negative control, bounded failure quarantine. Never replay closed258/257.
+
+Closed227/231/232/233/257 portable offload hashverified/original-pathjunctions:
+outputs/task-storage-offload/portable-258.json; about980MB recovered, no disks moved.
+20GiB buildguard unchanged. Physical audio004/video118/shared158/FATX0101 and256
+verified recovery untouched; original0088/immutable0.1.0 preserved. Commit/push258
+source/reports next; heartbeat remains authorized through endOctober11.
+
+# Earlier record preserved
+
+#258 PREPARED — dedicated reboot-held CPU arena baseline
+
+New uncommitted outputs/surface-pattern258. Read DESIGN.md and current records.
+Existing222/224 free-on-close CPU lease cannot safely acquire renderer references.
+258 dedicated demand driver holds one16KiB allocation/FileObject until reboot,
+no release/unload/MMIO/GPUgrant. Core/actual-bridge ASan/UBSan tests PASS:256 races,
+2048 contenders,37748736 exact bytes, close/wait/IRQL retention, bounds, eight-access
+caps. Native NT5 build002/import/residency review PASS; build001 probe warning
+failure retained with all original sources. Probe has exported checkpoint but no
+renderer half yet. No physical deployment and no pixel-preservation claim.
+
+Fresh emu001 fixture changes only two new diagnostic files/startup before the
+unchanged224 workload. Historical250 seed, no hive/policy edits. Fresh standalone
+qcow compare identical, full allocation321dirs6721files322clusters0errors/orphans,
+5hives exact;1729 inputs frozen. preparation session36361 CLOSED. Next launch
+outputs/surface-pattern258/run.py exactly once; inspect emu001/host-state.json and
+E:/Codex-private-artifacts/xbox-windows-feasibility/pattern258/runs/nt5-pattern258-emu001.
+Controller owns one ordinary runner/observer and first cold audit. No duplicate.
+
+Verified closed227/231/232/233/257 portable copies moved to E with original-path
+junctions; outputs/task-storage-offload/portable-258.json. No disk backing files
+moved. Recovered about980MB;20GiB guard unchanged. Physical combined baseline and
+256 recovery remain unchanged; no physical work queued. Continue after closure
+with exact CPU result, service/startup policy, full cold audit and existing Ft49
+failure retained. Only then design opt-in renderer half with safe range admission.
+
+# Earlier record preserved
+
 #257 CLOSED — actual age/CPU-write removals; recovery complete
 
 Single257 launch19:14:38->19:16:04UTC October11; all owned sessions CLOSED,

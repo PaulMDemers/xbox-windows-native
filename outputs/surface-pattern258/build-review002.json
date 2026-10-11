@@ -1,0 +1,164 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "guest_launch": false,
+  "gpu_writes": false,
+  "gpu_ownership_qualified": false,
+  "source_sha256": "a78a8b19ba4cc6ee588cdf8bec04d6299ad04fa5e2464159e5d3b661944a495b",
+  "build_sha256": "f0fa4489ad0c4b819e6786623bd11e5bb46c8252350aa750c1cb45bb01012691",
+  "providers": {
+    "ntoskrnl.exe": {
+      "path": "outputs\\video-upload-runtime211\\artifacts\\F\\winnt\\system32\\ntoskrnl.exe",
+      "sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152"
+    },
+    "hal.dll": {
+      "path": "outputs\\video-upload-runtime211\\artifacts\\E\\Applications\\XWNFBoot\\loader\\halxboxnt5.dll",
+      "sha256": "a3a84368d59936dfa6bbcdc6d5839d57b886342211142d305e9dde941e4d1648"
+    },
+    "kernel32.dll": {
+      "path": "outputs\\video-upload-runtime211\\artifacts\\F\\winnt\\system32\\kernel32.dll",
+      "sha256": "6b05b0749b5dd86da94cc4acd062ca05472509f70216b56cd4a5b9809c602e73"
+    },
+    "advapi32.dll": {
+      "path": "outputs\\video-upload-runtime211\\artifacts\\F\\winnt\\system32\\advapi32.dll",
+      "sha256": "d24493dbb2b1818f9cd605acd3b2008d63354c0975e9a090ccdd04bcc339cc59"
+    },
+    "user32.dll": {
+      "path": "outputs\\video-upload-runtime211\\artifacts\\F\\winnt\\system32\\user32.dll",
+      "sha256": "291210cf381dc269f8847a86e59a7cf775e5dd4086f94ff1266714f34ff55063"
+    },
+    "setupapi.dll": {
+      "path": "outputs\\video-upload-runtime211\\artifacts\\F\\winnt\\system32\\setupapi.dll",
+      "sha256": "1d0a6e9d062a51e71eaae93d776746823834f5c518096d340f2b332fc059a23d"
+    }
+  },
+  "binaries": {
+    "pattern.sys": {
+      "sha256": "eba5d954d9075700a1a94b8196377626862bf74767b0bfbfe5c104d528a457a1",
+      "bytes": 11893,
+      "imports": {
+        "ntoskrnl.exe": [
+          "IoCreateDevice",
+          "IoCreateSymbolicLink",
+          "IoDeleteDevice",
+          "IofCompleteRequest",
+          "KeInitializeMutex",
+          "KeReleaseMutex",
+          "KeWaitForSingleObject",
+          "MmAllocateContiguousMemorySpecifyCache",
+          "MmFreeContiguousMemorySpecifyCache",
+          "MmGetPhysicalAddress",
+          "ObfReferenceObject",
+          "RtlInitUnicodeString"
+        ],
+        "hal.dll": [
+          "KeGetCurrentIrql"
+        ]
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "flags": 1613758496,
+          "rva": 4096,
+          "bytes": 1608
+        },
+        {
+          "name": ".rdata",
+          "flags": 1080033344,
+          "rva": 8192,
+          "bytes": 176
+        },
+        {
+          "name": ".bss",
+          "flags": 3227517056,
+          "rva": 12288,
+          "bytes": 64
+        },
+        {
+          "name": ".edata",
+          "flags": 1076887616,
+          "rva": 16384,
+          "bytes": 121
+        },
+        {
+          "name": ".idata",
+          "flags": 3224371264,
+          "rva": 20480,
+          "bytes": 572
+        },
+        {
+          "name": ".reloc",
+          "flags": 1110442048,
+          "rva": 24576,
+          "bytes": 80
+        }
+      ],
+      "entry_rva": 5463
+    },
+    "probe.exe": {
+      "sha256": "6919e19a5ec4d1feb37e75e6a928a9abc8f342d8b23838bf230625e49694b677",
+      "bytes": 10527,
+      "imports": {
+        "advapi32.dll": [
+          "CloseServiceHandle",
+          "CreateServiceA",
+          "OpenSCManagerA",
+          "StartServiceA"
+        ],
+        "kernel32.dll": [
+          "CloseHandle",
+          "CreateFileA",
+          "DeviceIoControl",
+          "ExitProcess",
+          "FlushFileBuffers",
+          "GetLastError",
+          "WriteFile"
+        ],
+        "user32.dll": [
+          "wsprintfA"
+        ]
+      },
+      "sections": [
+        {
+          "name": ".text",
+          "flags": 1613758496,
+          "rva": 4096,
+          "bytes": 1428
+        },
+        {
+          "name": ".rdata",
+          "flags": 1076887616,
+          "rva": 8192,
+          "bytes": 304
+        },
+        {
+          "name": ".bss",
+          "flags": 3227517056,
+          "rva": 12288,
+          "bytes": 16448
+        },
+        {
+          "name": ".edata",
+          "flags": 1076887616,
+          "rva": 32768,
+          "bytes": 75
+        },
+        {
+          "name": ".idata",
+          "flags": 3224371264,
+          "rva": 36864,
+          "bytes": 488
+        },
+        {
+          "name": ".reloc",
+          "flags": 1110442048,
+          "rva": 40960,
+          "bytes": 104
+        }
+      ],
+      "entry_rva": 4598
+    }
+  },
+  "checkpoint_rva": 4584,
+  "limits": "Provider exports and resident section flags only; no executed ABI/guest callbacks or renderer qualification."
+}
