@@ -1,3 +1,48 @@
+#269 CLOSED — observation saturated; unchanged four-texture reuse not proved
+
+Read outputs/unit-reuse269/REPORT.md, DESIGN.md, NEXT.md, final-review.json and
+emu001/watch-analysis-failure.json. All owned processes CLOSED: controller53201,
+runner76656/tracer98628, builds50828/90595/69134/40817. One launch sent23:08:47UTC;
+normal guest restart/dashboard, orderly host exit0, cold-audited23:11:06UTC.
+Never relaunch/recollect/parent269emu001. No268 release or physical change.
+
+Two native attestations, four initial private source/palette/GL snapshots, one
+actual normal unit0 bind. Same original generation/key, but draw_time563423->568792,
+422328 source bytes and549253 RGBA bytes changed. This is ordinary rendered-texture
+updating with no release installed, not a preservation bug. Other three later
+lifetimes UNKNOWN after saturation.129events=arm1/bind1/decrements126/overflow1;
+one-way seal acknowledged, terminal error3, original watch parser rejected.
+Complete observation/reuse qualification FALSE. No truncation waiver or speedup.
+
+Ledger scope PASS separately:54 original shader work functions returned (not OS
+thread exit/join),218ledger/8UIpages,37actual graph mutations/19synthetic negatives.
+32768 exact CPU bytes2reads0writes and224 workload complete. Cold322dirs6728files
+323dirclusters0errors/orphans5hives31protected.2094frozen inputs108host dependencies
+exact. StrictFALSE soleFt49. No full disk-content/post-resume CPU ABA guarantee.
+
+Build001 ambiguous anchor failed precompile;002 lacked seal;003 two-variable seal
+FAILED exact host001 race.004 corrected one-word active/closed gate but preflight
+refused printf type warning.005 changes only the thread-ID cast;4096 exact gate
+races pass. None of002..004 launched. All failures/capsules retained; borrowed
+sources restored.005 SHA489c9af75c8734c47ce8b67231bedb7b10d15dc98617902350514252e5fcc295
+at E:/Codex-archive/xbox-windows-native/reuse269-build005/xemu-reuse269.exe.
+
+NEXT: inspect existing owned guest graphics fixtures for deterministic owned
+texture memory/commands and actual disable/re-enable draws with independent
+expected contents. Do not repeat the Windows-return workload until lucky. New
+observer must retain first-bind/final-free generation evidence separately from
+exact bounded repeated-nonfinal counters/run-length records. Reproduce actual269
+prefix; test saturation/address reuse/seal. Only unchanged actual control coverage
+permits a matched narrow release candidate. No borrowed firmware commands, host
+fake draws, whole finalizer/reset/switch, fabricated idle or native GPU grant.
+PTE/cache aliases/native deferred release remain separate. No263 pixel repeat.
+
+Closed267/269 portables hash-verified offloaded to E with original junctions;
+manifest portable-269.json. No backing chains moved; C free 22001147904 bytes.
+Physical audio004/video118/shared158/FATX0101, demo251/peers, recovery256/0.1.0/0088
+unchanged; no physical test queued. Continue until October12 04:00UTC, time first,
+20GiB guard unchanged. Review/check/commit/push private repo and update automation.
+
 #268 CLOSED — narrow unit release tested on host; actual guest reuse still unproved
 
 Read outputs/unit-release268/REPORT.md, DESIGN.md, NEXT.md, final-review.json and
