@@ -1,0 +1,16 @@
+struct Input { float4 pos : POSITION; float4 uv : TEXCOORD0; };
+struct Output {
+    float4 pos : POSITION;
+    float4 color : COLOR;
+    float4 uv0 : TEXCOORD0;
+    float4 uv1 : TEXCOORD1;
+    float4 uv2 : TEXCOORD2;
+    float4 uv3 : TEXCOORD3;
+};
+Output main(Input i) {
+    Output o;
+    o.pos=i.pos;
+    o.color=float4(1,1,1,1);
+    o.uv0=i.uv; o.uv1=i.uv; o.uv2=i.uv; o.uv3=i.uv;
+    return o;
+}

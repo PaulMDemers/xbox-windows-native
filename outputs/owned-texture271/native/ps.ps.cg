@@ -1,0 +1,10 @@
+struct Input {
+    float2 uv0 : TEXCOORD0;
+    float2 uv1 : TEXCOORD1;
+    float2 uv2 : TEXCOORD2;
+    float2 uv3 : TEXCOORD3;
+};
+float4 main(Input i, uniform sampler2D a, uniform sampler2D b,
+            uniform sampler2D c, uniform sampler2D d) : COLOR {
+    return tex2D(a,i.uv0)+tex2D(b,i.uv1)+tex2D(c,i.uv2)+tex2D(d,i.uv3);
+}

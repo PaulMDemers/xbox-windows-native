@@ -1,0 +1,117 @@
+{
+  "binary_review_passed": true,
+  "guest_executed": false,
+  "live_attestation": false,
+  "release_installed": false,
+  "xbe_sha256": "4ada3d6c337360d14f67b6fe88ee8d42640a22849f6b2d310d884ef04a41dec1",
+  "exe_sha256": "287ac0f0378025b4a5fe80199b6e7bafb6d22d5845b33b46703e40e85b9007c1",
+  "iso_sha256": "2d2e19cc59db8ffa023407475fdb0ec38f9ac7b5f657e0720d2bf958bd90c714",
+  "checkpoint": {
+    "va": 69632,
+    "bytes": "8b44240c8b4c24048b542408894a0c894214c3",
+    "sha256": "86aebc7c51d813604a12dbcdf0e13cf2f350366128fc8aef65e68d2c04b9dd8d",
+    "abi": "cdecl phase at ESP+4, record at ESP+8, cookie at ESP+12; stores phase/cookie then returns"
+  },
+  "callsites": [
+    {
+      "va": 69965,
+      "bytes": "e8aefeffff",
+      "preceding32": "0002000000eb0ac705202e03000100000068dec0710268102e030068ff000000",
+      "instruction": "1114d: e8 ae fe ff ff               \tcall\t0x11000 <.text>"
+    },
+    {
+      "va": 70652,
+      "bytes": "e8fffbffff",
+      "preceding32": "0000b901000000e84808000084c00f84b500000068dec0710268102e03006a0b",
+      "instruction": "113fc: e8 ff fb ff ff               \tcall\t0x11000 <.text>"
+    },
+    {
+      "va": 70759,
+      "bytes": "e894fbffff",
+      "preceding32": "b901000000e85f080000b901000000e8f509000068dec0710268102e03006a16",
+      "instruction": "11467: e8 94 fb ff ff               \tcall\t0x11000 <.text>"
+    },
+    {
+      "va": 70896,
+      "bytes": "e80bfbffff",
+      "preceding32": "890d202e030085c9b821000000b9ff0000000f44c868dec0710268102e030051",
+      "instruction": "114f0: e8 0b fb ff ff               \tcall\t0x11000 <.text>"
+    }
+  ],
+  "symbols": {
+    "_checkpoint271": 69632,
+    "_record271": 208400,
+    "_main": 69664,
+    "_stop": 70864,
+    "_idle": 72752,
+    "_capture": 72880,
+    "_setup_draw": 71168,
+    "_program": 71968,
+    "_draw": 72640,
+    "_enable": 72560,
+    "_sources": 73296,
+    "_pb_Head": 211100,
+    "_pb_Tail": 211260,
+    "_pb_Size": 206036,
+    "_pb_Put": 211016,
+    "_pb_DmaUserAddr": 211012,
+    "_pb_FifoChannelID": 211000,
+    "_pb_FifoHTAddr": 210996,
+    "_pb_GrCtxID": 211280,
+    "_pb_GrCtxInst": 211304,
+    "_pb_GrCtxTableInst": 211276
+  },
+  "record_bytes": 1612,
+  "sections": [
+    {
+      "name": ".text",
+      "flags": 6,
+      "va": 69632,
+      "virtual_size": 118784,
+      "raw": 4096,
+      "raw_size": 116224,
+      "sha256": "eb89f39956cb9b597f3d3f1a342cea43a877a82545ab36caf1fd512a46f0c1e4"
+    },
+    {
+      "name": ".rdata",
+      "flags": 2,
+      "va": 188416,
+      "virtual_size": 16384,
+      "raw": 122880,
+      "raw_size": 14844,
+      "sha256": "05b85f8baaa230ad9d304c0353d3ed3c97b32cdc5420e6df746ff6cf91eb1b0e"
+    },
+    {
+      "name": ".data",
+      "flags": 3,
+      "va": 204800,
+      "virtual_size": 12288,
+      "raw": 139264,
+      "raw_size": 3600,
+      "sha256": "98e075eede641fb55b4900f5d7bec3960269f8233d339ec8db4009a180fb9072"
+    },
+    {
+      "name": ".tls",
+      "flags": 3,
+      "va": 217088,
+      "virtual_size": 276,
+      "raw": 143360,
+      "raw_size": 4,
+      "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119"
+    }
+  ],
+  "sdk_header_count": 49,
+  "sdk_pins_count": 49,
+  "tools": {
+    "objdump_sha256": "942b411296a6633caa75a74f9741b3c52fc981916c961710c58c02a235056a4d",
+    "xbe_layout_header_sha256": "9f4ae3e504511faff572db29487b2d4107350566eb76cc25fdde7a5cf6d42668"
+  },
+  "shader_review": [
+    "All four projective texture stages emitted; incoming TEX0 supplied at hardware9 with explicit z0/w1.",
+    "Generated vertex constant c0=1 is explicitly uploaded at hardware96.",
+    "Flat fragment program has no texture program; native code explicitly zeros previous texture program and stage dependencies.",
+    "Three additive combiner stages produce RGB channel sums; all selected input channel sums are below255. Runtime pixel comparison remains required."
+  ],
+  "disassembly_sha256": "9c31a06955c5dba8f1b27d56a403551ec1cce5299fcfba628bc4c87ce298499b",
+  "limits": "Static compiled bytes and ABI only. Runtime must prove loaded XBE/kernel/address translations and actual application object/texture ownership; no host address is a live fact yet."
+}

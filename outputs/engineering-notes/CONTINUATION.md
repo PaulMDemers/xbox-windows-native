@@ -1,3 +1,50 @@
+#271 CLOSED — owned four-texture native control compiled; never launched
+
+Read outputs/owned-texture271/REPORT.md, DESIGN.md, NEXT.md, build005.json,
+binary-review005.json, oracle-tests003.json and final-review.json. ALL owned
+processes CLOSED. No guest preparation/launch, renderer change or physical access.
+Reviewed standalone nxdk XBE E:/xwn271/build005/bin/default.xbe SHA
+4ada3d6c337360d14f67b6fe88ee8d42640a22849f6b2d310d884ef04a41dec1.
+
+Four disjoint4096-byte allocations,16x8 linear textures at+256/pitch64, distinct
+RGB planes+guards; real textured draw, disable+flat draw, checkpoint11, re-enable
+unchanged draw, checkpoint22, terminal33/error255. State1612bytes; stable extra
+framebuffer with180pixels/720bytes captured twice. Explicit nearest/filter/state,
+projective z0/w1 and generated c0=1 upload. No texture writes/reset/release between
+checkpoints.10second guest idle polls; SDK calls require outer watchdog. After
+terminal waits15sec then HalHaltRoutine, NEVER reboot/dashboard. Runtime unproved.
+
+49 actual SDK headers frozen before/after,49 source/library/tool pins unchanged;
+pinned nxdk58427c... with prebuilt libs, not full SDK rebuild. Binary checker pins
+19-byte checkpoint0x11000, state0x32e10 and FOUR callers1114d/113fc/11467/114f0;
+these are static leads, never assume live mappings. Four explicit vp20 TEX0->9
+mapping warnings reviewed; SDK edata merge warning reviewed with PE export0/0.
+Oracle003 ASan/UBSan exact guest helpers match16384independent source/guard bytes;
+1456synthetic framebuffer/metadata mutations rejected. No actualGL/pixels/reuse.
+
+Preserve launcher policy refusal;001 C compilefailure;002 compile-success but
+warning-review failure;003 superseded incomplete flat-stage/projective setup;
+004 corrected source;005 same native source with full prebuild closure. Never
+launch predecessors. First binary checker incorrectly expected3calls; failure
+and original script retained. Oracle002 stale path recompiled original001 test;
+all001 contents remain byte-exact including rewritten binary; failure explicit.
+Only fresh oracle003 qualifies current host checker. All artifacts preserved.
+
+Next NEW bounded standalone runtime attestor/controller, owned disposable child/
+EEPROM/ports/lease, no release or observer operation initially. Prove loaded XBE/
+checkpoint/state, kernel translations and actual application allocations/objects;
+read predefined pixel oracle, no adapting to screenshots. Pin pushbuffer/channel/
+object ranges using compiled pbkit leads plus actual state. Existing Windows258
+process/driver attestation cannot be skipped/pretended. Capture errors/terminal,
+removebreakpoints, orderlyhostquit and full appropriate cold audit. Separate NEW
+270 integration needs complete parser/serializer/gate checks and four unchanged
+actual lifetimes before268 release. Native Windows ownership still unproved.
+
+Physical audio004/softwarevideo118/shared158/FATX0101,recovery256,immutable0.1.0,
+0088 and every old failure unchanged; no hardware queued. DeadlineOct12 04:00UTC,
+20GiB guard remains. No backing disks moved. Historical emulator policy remains
+separate. Older270/269 records below remain authoritative.
+
 #270 CLOSED — host lifecycle accounting and owned-workload review
 
 Read outputs/lifetime-accounting270/REPORT.md, DESIGN.md, WORKLOAD.md, NEXT.md,
