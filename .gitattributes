@@ -739,3 +739,26 @@ outputs/video-mode-trace3/*.patch whitespace=cr-at-eol,-blank-at-eol,-space-befo
 # Channel helper and physical follow-up preserve reviewed source/evidence bytes.
 /outputs/audio-channel001/** -text whitespace=cr-at-eol
 /outputs/audio-channel-physical001/** -text whitespace=cr-at-eol
+
+/outputs/usb-nt5-xid/** -text whitespace=cr-at-eol
+/outputs/usb-nt5-restart/** -text whitespace=cr-at-eol
+/outputs/usb-no-xid-control/** -text whitespace=cr-at-eol
+# Preserve the exact guest shell echo, including its trailing space.
+/outputs/usb-no-xid-control/emu001/exit1.txt whitespace=cr-at-eol,-blank-at-eol
+/outputs/usb-storage-trace/** -text whitespace=cr-at-eol
+# Preserve exact trace-help stdout/stderr bytes, including emitted trailing spaces.
+/outputs/usb-storage-trace/trace-help.*.txt whitespace=cr-at-eol,-blank-at-eol
+/outputs/usb-storage-trace/emu001/source/trace-help.*.txt whitespace=cr-at-eol,-blank-at-eol
+/outputs/usb-storage-buffers/** -text whitespace=cr-at-eol
+/outputs/usb-storage-transfer/** -text whitespace=cr-at-eol
+/outputs/usb-storage-transfer/emu002/exit2.txt whitespace=cr-at-eol,-blank-at-eol
+# Preserve unified patch context prefixes in exact reconstruction evidence.
+/outputs/usb-storage-transfer/transfer.patch whitespace=cr-at-eol,-blank-at-eol
+/outputs/usb-storage-transfer/emu001/source/transfer.patch whitespace=cr-at-eol,-blank-at-eol
+/outputs/usb-storage-transfer/emu002/source/transfer.patch whitespace=cr-at-eol,-blank-at-eol
+/outputs/usb-setup-restart/** -text whitespace=cr-at-eol
+/outputs/usb-setup-restart/emu001/exit2.txt whitespace=cr-at-eol,-blank-at-eol
+/outputs/usb-setup-restart/control.patch whitespace=cr-at-eol,-blank-at-eol
+/outputs/usb-setup-restart/emu001/source/control.patch whitespace=cr-at-eol,-blank-at-eol
+# Preserve counted empty-window-text fields, including the required delimiter.
+/outputs/usb-setup-restart/emu001/observer.log.txt whitespace=cr-at-eol,-blank-at-eol

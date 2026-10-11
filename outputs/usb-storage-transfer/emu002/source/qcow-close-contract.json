@@ -1,0 +1,45 @@
+{
+  "source_pins": {
+    "block/qcow2.h": {
+      "sha256": "ee30e4b9aafbd2e0d2d2617140b9a167b2febedcab0b731defedaad3927dfd59",
+      "matches_compiled_source": true
+    },
+    "block/qcow2.c": {
+      "sha256": "40fc909185b451d34de016587cac8a39cac93bccf7f586c2b9965ff9ad0cea78",
+      "matches_compiled_source": true
+    },
+    "block/qcow2-cluster.c": {
+      "sha256": "c716d18c896dd6af7dfe2918f8a3cf86c43d085272d3e1af4bb9d40824a2ecad",
+      "matches_compiled_source": true
+    },
+    "block.c": {
+      "sha256": "e26b82e17bfb8a001b148707a2f6d38fed2bfcb17e538d69fb5432ee7787745c",
+      "matches_compiled_source": true
+    },
+    "monitor/hmp-cmds.c": {
+      "sha256": "17d7af754dc0486ae442a8672c6d36ab075fe96f343e96c857eb2800aea24656",
+      "matches_compiled_source": true
+    },
+    "monitor/qmp-cmds.c": {
+      "sha256": "cc9b8965b9d8aa1bed7b20be75c10bd4ef008d0cbdc38c1b6885f4f7d3a0c2a4",
+      "matches_compiled_source": true
+    },
+    "system/runstate.c": {
+      "sha256": "7480fdd63268377ca93db057ca8f2c8b2cd1ef75fe73775d1dcdb0dfab9c95b1",
+      "matches_compiled_source": true
+    },
+    "system/cpus.c": {
+      "sha256": "5ab1280941c43414d61219002bacb763146cb77b94dd4e84ee516887020e804f",
+      "matches_compiled_source": true
+    }
+  },
+  "observations": [
+    "L1E_OFFSET_MASK and L2E_OFFSET_MASK are 0x00fffffffffffe00 in the pinned source.",
+    "qcow2_alloc_cluster_link_l2 marks the L2 cache entry dirty when linking newly allocated clusters.",
+    "qcow2_co_flush_to_os calls qcow2_write_caches.",
+    "bdrv_close drains requests, flushes, drains again, then calls the driver close.",
+    "qcow2_do_close calls qcow2_inactivate; that flushes L2 and refcount caches.",
+    "HMP quit calls qmp_quit, which requests host shutdown; system cleanup closes block devices."
+  ],
+  "limits": "Source semantics motivate a fresh host-exit control; they do not by themselves establish which cached entry was lost in a prior process kill."
+}

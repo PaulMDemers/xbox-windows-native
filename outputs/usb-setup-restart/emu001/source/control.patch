@@ -1,0 +1,48 @@
+--- a/control.c
++++ b/control.c
+@@ -1,5 +1,5 @@
+ /* SPDX-License-Identifier: MIT
+- * Storage-only two-boot control. Never installs, loads or calls an XID driver.
++ * Setup-observed phase-two storage/restart control. Never installs, loads or calls an XID driver.
+  */
+ #define WIN32_LEAN_AND_MEAN
+ #define _WIN32_WINNT 0x0500
+@@ -21,15 +21,27 @@
+ static int restart(void *c) {(void)c;return ExitWindowsEx(EWX_REBOOT,0)!=0;}
+ static void known_setup(void) {
+     STARTUPINFOA si={0};PROCESS_INFORMATION pi={0};DWORD result;
+-    char command[]="C:\\xwnctl\\wizard.exe /cancel-emulator";si.cb=sizeof(si);
++    char command[]="C:\\xwnsetup\\wizard.exe /cancel-emulator";si.cb=sizeof(si);
+     line("KNOWN_WIZARD_HELPER_BEGIN",0);
+-    if(!CreateProcessA("C:\\xwnctl\\wizard.exe",command,NULL,NULL,FALSE,CREATE_NO_WINDOW,NULL,"C:\\xwnctl",&si,&pi))fail("FAIL_HELPER_CREATE");
++    if(!CreateProcessA("C:\\xwnsetup\\wizard.exe",command,NULL,NULL,FALSE,CREATE_NO_WINDOW,NULL,"C:\\xwnsetup",&si,&pi))fail("FAIL_HELPER_CREATE");
+     CloseHandle(pi.hThread);line("HELPER_PID",pi.dwProcessId);
+     result=WaitForSingleObject(pi.hProcess,150000);line("HELPER_JOIN",result);
+     if(result!=WAIT_OBJECT_0){CloseHandle(pi.hProcess);CloseHandle(Log);ExitProcess(3);}
+     if(!GetExitCodeProcess(pi.hProcess,&result))fail("FAIL_HELPER_EXIT_QUERY");
+     CloseHandle(pi.hProcess);line("HELPER_EXIT",result);
+     if(result){CloseHandle(Log);ExitProcess(4);}
++}
++static void observe_setup(void) {
++    STARTUPINFOA si={0};PROCESS_INFORMATION pi={0};DWORD result;
++    char command[]="C:\\xwnsetup\\observer.exe";si.cb=sizeof(si);
++    line("OBSERVER_BEGIN",0);
++    if(!CreateProcessA("C:\\xwnsetup\\observer.exe",command,NULL,NULL,FALSE,CREATE_NO_WINDOW,NULL,"C:\\xwnsetup",&si,&pi))fail("FAIL_OBSERVER_CREATE");
++    CloseHandle(pi.hThread);line("OBSERVER_PID",pi.dwProcessId);
++    result=WaitForSingleObject(pi.hProcess,150000);line("OBSERVER_JOIN",result);
++    if(result!=WAIT_OBJECT_0){CloseHandle(pi.hProcess);CloseHandle(Log);ExitProcess(7);}
++    if(!GetExitCodeProcess(pi.hProcess,&result))fail("FAIL_OBSERVER_EXIT_QUERY");
++    CloseHandle(pi.hProcess);line("OBSERVER_EXIT",result);
++    if(result){CloseHandle(Log);ExitProcess(8);}
+ }
+ static BYTE pattern(DWORD offset,DWORD phase) {return (BYTE)(33+(offset*17+phase*11)%90);}
+ void WINAPI mainCRTStartup(void) {
+@@ -63,7 +75,7 @@
+     CloseHandle(payload);line("PAYLOAD_GUEST_READBACK_PASS",2226);
+     module=LoadLibraryA("setupapi.dll");WaitInstall=module?(WAIT_INSTALL)GetProcAddress(module,"CMP_WaitNoPendingInstallEvents"):NULL;
+     if(!WaitInstall)fail("FAIL_PENDING_API");
+-    if(phase==1)known_setup();
++    observe_setup();known_setup();
+     result=xwn_wait_setup_idle(NULL,query,clock_now,pause_poll,record,30000,5000,250);
+     if(result){line("RESTART_HELD_SETUP_GUARD",result);CloseHandle(Log);ExitProcess(5);}
+     if(!OpenProcessToken(GetCurrentProcess(),TOKEN_ADJUST_PRIVILEGES|TOKEN_QUERY,&token))fail("FAIL_TOKEN");
