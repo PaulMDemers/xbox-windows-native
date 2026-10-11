@@ -1,0 +1,44 @@
+{
+  "scope": "host reference accounting only; stub GL; no patch applied",
+  "exact_functions": {
+    "texture_binding_destroy": "bca4f8bf6a5a9e7691bee3fb089ea95a0f5f1a71d7bf5c18c47cdc117021353e",
+    "texture_cache_entry_post_evict": "45ccfaf55b11dd9b083491b6317cc5a231054861fb4be920ed6a4d78bf58e991",
+    "pgraph_gl_finalize_textures": "48769b2eae71327da3d933788af9fd563a8cf3b9695f8f49ceee1b82f37797fb"
+  },
+  "queue_sha256": "7e9b631e83757ac14f0bc251860eeba82540ac1ac72d2d959681a00a50248f67",
+  "texture_source_sha256": "946c5ac6bc83ad7328185d70a1941f2c18996b9ffd28e03864a145fbb7158188",
+  "command": [
+    "wsl",
+    "-d",
+    "Ubuntu",
+    "-u",
+    "root",
+    "--",
+    "gcc",
+    "-std=gnu11",
+    "-O1",
+    "-g",
+    "-fsanitize=address,undefined",
+    "-fno-omit-frame-pointer",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-Wno-unused-parameter",
+    "-I/mnt/e/Codex-archive/xbox-windows-native/retirement264-host001",
+    "/mnt/e/Codex-archive/xbox-windows-native/retirement264-host001/test.c",
+    "-o",
+    "/mnt/e/Codex-archive/xbox-windows-native/retirement264-host001/test"
+  ],
+  "compile_exit": 0,
+  "compile_output": "",
+  "test_exit": 0,
+  "test_output": "case units=0 shared=0 uncached=0 release_first=0 retained_by_original=0\ncase units=0 shared=0 uncached=0 release_first=1 retained_by_original=0\ncase units=0 shared=1 uncached=0 release_first=0 retained_by_original=0\ncase units=0 shared=1 uncached=0 release_first=1 retained_by_original=0\ncase units=1 shared=0 uncached=0 release_first=0 retained_by_original=1\ncase units=1 shared=0 uncached=0 release_first=1 retained_by_original=0\ncase units=1 shared=1 uncached=0 release_first=0 retained_by_original=1\ncase units=1 shared=1 uncached=0 release_first=1 retained_by_original=0\ncase units=2 shared=0 uncached=0 release_first=0 retained_by_original=2\ncase units=2 shared=0 uncached=0 release_first=1 retained_by_original=0\ncase units=2 shared=1 uncached=0 release_first=0 retained_by_original=1\ncase units=2 shared=1 uncached=0 release_first=1 retained_by_original=0\ncase units=3 shared=0 uncached=0 release_first=0 retained_by_original=3\ncase units=3 shared=0 uncached=0 release_first=1 retained_by_original=0\ncase units=3 shared=1 uncached=0 release_first=0 retained_by_original=1\ncase units=3 shared=1 uncached=0 release_first=1 retained_by_original=0\ncase units=4 shared=0 uncached=0 release_first=0 retained_by_original=4\ncase units=4 shared=0 uncached=0 release_first=1 retained_by_original=0\ncase units=4 shared=1 uncached=0 release_first=0 retained_by_original=1\ncase units=4 shared=1 uncached=0 release_first=1 retained_by_original=0\ncase units=1 shared=1 uncached=1 release_first=0 retained_by_original=1\ncase units=1 shared=1 uncached=1 release_first=1 retained_by_original=0\ncase units=2 shared=1 uncached=1 release_first=0 retained_by_original=1\ncase units=2 shared=1 uncached=1 release_first=1 retained_by_original=0\ncase units=3 shared=1 uncached=1 release_first=0 retained_by_original=1\ncase units=3 shared=1 uncached=1 release_first=1 retained_by_original=0\ncase units=4 shared=1 uncached=1 release_first=0 retained_by_original=1\ncase units=4 shared=1 uncached=1 release_first=1 retained_by_original=0\nPASS 28 host lifetime cases; GL calls are counted stubs, no guest test\n",
+  "passed": true,
+  "files": {
+    "actual-functions.h": "6d21432f378e97381438e1d6838d20ebfc6b03f7889022984e0488314a2b24e5",
+    "test.c": "2fe90b2bba6b8e28b2a992c00a55907c0a881dff9b1576b9cb1cab0e0c074dfb",
+    "test": "d3eba08ea86bc76c621feb742fece00e0b6e7c1e3a8a955f88ece81527282fd7",
+    "qemu\\queue.h": "7e9b631e83757ac14f0bc251860eeba82540ac1ac72d2d959681a00a50248f67",
+    "qemu\\lru.h": "e80addc485365e961ed5f214671949271e45587053e9c4ac0c6cbad2718e91f4"
+  }
+}

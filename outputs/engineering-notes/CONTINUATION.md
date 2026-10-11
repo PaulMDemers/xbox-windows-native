@@ -1,3 +1,43 @@
+#264 CLOSED — source-led backend retirement design; no guest launch
+
+Read outputs/backend-retirement264/REPORT.md, DESIGN.md, NEXT.md,
+inventory-review.json, texture-lifetime-test001.json and final-review.json.
+All host subprocesses CLOSED. No guest prepared/launched, no physical access,
+no renderer/native-driver change.26 reviewed files match exact263 source pins;
+additional actual QEMU queue header pinned for host test. Private snapshots:
+E:/Codex-archive/xbox-windows-native/retirement264-source001 and source002;
+host harness/executable: retirement264-host001. Nothing borrowed or moved.
+New derived analysis of CLOSED263 shows the SAME118 identities/ranges at all4
+stages:24textures,93cachedvertices,1conservative scanout tail.40actual report
+mutations rejected. Seven families are not a whole GL-object/actor inventory.
+
+Concrete source gaps: ordinary flush/finalize skips dirty downloads; texture
+finalizer NULLs unit pointers without counted release before cache eviction;
+UI HUD/snapshot keep texture IDs after framebuffer loan returns.28host cases
+execute exact texture destroy/cache-evict/finalize functions and real LRU/queue
+under ASan/UBSan with counted GL/free stubs. Original retains unit refs; host-only
+release-before-finalize balances all. This is not actual GL or guest-leak proof:
+263 did not capture unit-binding/refcount edges. Dirty flush, reports, shader
+jobs, three context roles and continuing scanout reservation need separate care.
+Read the phase/lock/failure design; no existing whole-finalizer shortcut is safe.
+
+Next NEW kit: bounded READ-ONLY complete ownership ledger on exact263. Capture
+cache/unit/binding/refcount edges (including unit-only objects), all allocated
+buffer/VAO/FBO/program/query names, report/shader actors, actual UI HUD/snapshot
+holders and context bindings. No disposal, join, flush, settings change or GPU
+grant. Fresh observation-only native checkpoint mode: do NOT reuse261probe as
+ordinary since it expects renderer pattern intervention. Pin/preflight every
+dependency, freeze unique fresh fixture, actor epochs/capacities and full cold
+audit; don't reset old246/247 one-shot state. Then evidence-led narrow disposal.
+No repeat of solved age/CPU-alias pixel discriminator. No speculative driver patch.
+
+263 preservation PASS and strictFALSE soleFt49 unchanged; all closed old attempts
+remain closed.262reason7 producer still unknown. Physical audio004/softwarevideo118/
+shared158/FATX0101 unchanged; no hardware queued.256 recovery complete/private,
+not restore-tested, never duplicate;0.1.0/0088/rollbacks/failures preserved.
+C last21,979,856,896B: preserve20GiB guard; no backing-chain moves. Continue until
+Oct12 04:00UTC then stop experiments, preserve/cleanup/report/pause automation.
+
 #263 CLOSED — scoped preservation PASS, strict Ft49 retained
 
 Read outputs/surface-pending263/REPORT.md, DESIGN.md, NEXT.md, final-review.json
