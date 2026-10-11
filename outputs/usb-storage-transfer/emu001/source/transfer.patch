@@ -1,0 +1,96 @@
+--- a/system/dma-helpers.c
++++ b/system/dma-helpers.c
+@@ -8,6 +8,8 @@
+  */
+ 
+ #include "qemu/osdep.h"
++#define XWN_TRANSFER_COMPONENT "dma"
++#include "qemu/xwn-transfer.h"
+ #include "system/block-backend.h"
+ #include "system/dma.h"
+ #include "trace.h"
+@@ -69,6 +71,7 @@
+     dma_addr_t sg_cur_byte;
+     QEMUIOVector iov;
+     QEMUBH *bh;
++    uint64_t xwn_id;
+     DMAIOFunc *io_func;
+     void *io_func_opaque;
+ } DMAAIOCB;
+@@ -100,6 +103,7 @@
+ static void dma_complete(DMAAIOCB *dbs, int ret)
+ {
+     trace_dma_complete(dbs, ret, dbs->common.cb);
++    if (dbs->xwn_id) { xwn_transfer(dbs->xwn_id, 3, dbs->offset, 0, NULL, 0, dbs, ret, 0); }
+ 
+     assert(!dbs->acb && !dbs->bh);
+     dma_blk_unmap(dbs);
+@@ -122,6 +126,10 @@
+     /* DMAAIOCB is not thread-safe and must be accessed only from dbs->ctx */
+     assert(ctx == qemu_get_current_aio_context());
+ 
++    if (dbs->xwn_id && dbs->iov.size) {
++        xwn_transfer(dbs->xwn_id, 2, dbs->offset, dbs->iov.size,
++                     &dbs->iov, 0, dbs, ret, 0);
++    }
+     dbs->acb = NULL;
+     dbs->offset += dbs->iov.size;
+ 
+@@ -178,6 +186,10 @@
+                                 QEMU_ALIGN_DOWN(dbs->iov.size, dbs->align));
+     }
+ 
++    if (dbs->xwn_id) {
++        xwn_transfer(dbs->xwn_id, 1, dbs->offset, dbs->iov.size,
++                     &dbs->iov, 0, dbs, 0, 0);
++    }
+     dbs->acb = dbs->io_func(dbs->offset, &dbs->iov,
+                             dma_blk_cb, dbs, dbs->io_func_opaque);
+     assert(dbs->acb);
+@@ -232,6 +244,14 @@
+     dbs->io_func = io_func;
+     dbs->io_func_opaque = io_func_opaque;
+     dbs->bh = NULL;
++    dbs->xwn_id = dir == DMA_DIRECTION_TO_DEVICE ?
++        xwn_transfer(0, 0, offset, sg->size, NULL, 0, dbs, 0, sg->nsg) : 0;
++    if (dbs->xwn_id) {
++        for (int xwn_i = 0; xwn_i < sg->nsg; ++xwn_i) {
++            xwn_transfer(dbs->xwn_id, 11, sg->sg[xwn_i].base,
++                         sg->sg[xwn_i].len, NULL, 0, dbs, 0, xwn_i);
++        }
++    }
+     qemu_iovec_init(&dbs->iov, sg->nsg);
+     dma_blk_cb(dbs, 0);
+     return &dbs->common;
+--- a/block/block-backend.c
++++ b/block/block-backend.c
+@@ -11,6 +11,8 @@
+  */
+ 
+ #include "qemu/osdep.h"
++#define XWN_TRANSFER_COMPONENT "backend"
++#include "qemu/xwn-transfer.h"
+ #include "system/block-backend.h"
+ #include "block/block_int.h"
+ #include "block/blockjob.h"
+@@ -1407,6 +1409,7 @@
+                        BdrvRequestFlags flags)
+ {
+     int ret;
++    uint64_t xwn_id;
+     BlockDriverState *bs;
+     IO_CODE();
+ 
+@@ -1433,8 +1436,12 @@
+         flags |= BDRV_REQ_FUA;
+     }
+ 
++    xwn_id = xwn_transfer(0, 4, offset, bytes, qiov, qiov_offset, blk, 0, flags);
+     ret = bdrv_co_pwritev_part(blk->root, offset, bytes, qiov, qiov_offset,
+                                flags);
++    if (xwn_id) {
++        xwn_transfer(xwn_id, 5, offset, bytes, qiov, qiov_offset, blk, ret, flags);
++    }
+     bdrv_dec_in_flight(bs);
+     return ret;
+ }
