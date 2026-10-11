@@ -1,0 +1,294 @@
+--- a/hw/xbox/nv2a/nv2a.c
++++ b/hw/xbox/nv2a/nv2a.c
+@@ -460,47 +460,62 @@
+     qatomic_store_release(&d->preserve227.state, result);
+ }
+ 
+-/*234 ONE request: 0 unused,1 requested,2 worker copying,7 publication
++/*238 ONE request: 0 unused,1 requested,2 worker copying,7 publication
+  * claimed,3 immutable terminal,5 timeout. No reset/reuse or guest-state write.
+  * Deadline initialized before request release; reader only expires 1/2. */
+-static unsigned snapshot234_expire(NV2AState *d)
+-{
+-    unsigned state = qatomic_load_acquire(&d->snapshot234.state);
++static unsigned snapshot238_expire(NV2AState *d)
++{
++    unsigned state = qatomic_load_acquire(&d->snapshot238.state);
+     if ((state == 1 || state == 2) &&
+-        qemu_clock_get_ns(QEMU_CLOCK_REALTIME) >= d->snapshot234.deadline) {
+-        qatomic_cmpxchg(&d->snapshot234.state, state, 5);
+-        state = qatomic_load_acquire(&d->snapshot234.state);
++        qemu_clock_get_ns(QEMU_CLOCK_REALTIME) >= d->snapshot238.deadline) {
++        qatomic_cmpxchg(&d->snapshot238.state, state, 5);
++        state = qatomic_load_acquire(&d->snapshot238.state);
+     }
+     return state;
+ }
+ 
+-bool nv2a_snapshot234_claim(NV2AState *d)
+-{
+-    return snapshot234_expire(d) == 1 &&
+-        qatomic_cmpxchg(&d->snapshot234.state, 1, 2) == 1;
++bool nv2a_snapshot238_claim(NV2AState *d)
++{
++    return snapshot238_expire(d) == 1 &&
++        qatomic_cmpxchg(&d->snapshot238.state, 1, 2) == 1;
++}
++
++/* Actual FIFO lock is already owned; PG is NOT acquired here. */
++void nv2a_snapshot238_fifo(NV2AState *d)
++{
++    uint32_t words[10];
++    nv2a_preserve231_snapshot(d, words);
++    d->snapshot238.fifo_when = qemu_clock_get_ns(QEMU_CLOCK_REALTIME);
++    d->snapshot238.fifo[0] = d->pfifo.halt;
++    d->snapshot238.fifo[1] = d->pfifo.fifo_kick;
++    d->snapshot238.fifo[2] = d->pfifo.pending_interrupts;
++    d->snapshot238.fifo[3] = d->pfifo.enabled_interrupts;
++    for (unsigned i = 0; i < 10; i++) {
++        d->snapshot238.fifo[4+i] = words[i];
++    }
+ }
+ 
+ /* Caller holds actual PG lock, FIFO has been released. No FIFO reads. */
+-void nv2a_snapshot234_copy(NV2AState *d)
+-{
+-    d->snapshot234.total = d->wait233.total;
+-    d->snapshot234.count = d->wait233.count;
+-    nv2a_wait233_fill(d, &d->snapshot234.current, 9, 0, false);
++void nv2a_snapshot238_copy(NV2AState *d)
++{
++    d->snapshot238.total = d->wait233.total;
++    d->snapshot238.count = d->wait233.count;
++    nv2a_wait233_fill(d, &d->snapshot238.current, 9, 0, false);
+     unsigned start = (d->wait233.next + NV2A_WAIT233_CAPACITY -
+                       d->wait233.count) % NV2A_WAIT233_CAPACITY;
+     for (unsigned i = 0; i < d->wait233.count; i++) {
+-        d->snapshot234.rows[i] =
++        d->snapshot238.rows[i] =
+             d->wait233.rows[(start + i) % NV2A_WAIT233_CAPACITY];
+     }
+ }
+ 
+ /* All copied bytes precede release3. Timeout's CAS wins over late completion;
+  * unpublished late storage stays invisible and can never be requested again. */
+-void nv2a_snapshot234_publish(NV2AState *d)
+-{
+-    if (snapshot234_expire(d) != 2) { return; }
+-    if (qatomic_cmpxchg(&d->snapshot234.state, 2, 7) != 2) { return; }
+-    qatomic_store_release(&d->snapshot234.state, 3);
++void nv2a_snapshot238_publish(NV2AState *d)
++{
++    if (snapshot238_expire(d) != 2) { return; }
++    if (qatomic_cmpxchg(&d->snapshot238.state, 2, 7) != 2) { return; }
++    qatomic_store_release(&d->snapshot238.state, 3);
+ }
+ 
+ static void wait233_format(GString *s, const NV2AWaitRow233 *row)
+@@ -512,43 +527,60 @@
+     for (unsigned i = 0; i < 10; i++) { g_string_append_printf(s, ",%u", row->fifo[i]); }
+ }
+ 
+-static void snapshot234_request(Object *obj, bool value, Error **errp)
++static void snapshot238_request(Object *obj, bool value, Error **errp)
+ {
+     NV2AState *d = NV2A_DEVICE(obj);
+-    if (!value || qatomic_load_acquire(&d->snapshot234.state) != 0) {
+-        error_setg(errp, "snapshot234 requires ONE true request"); return;
++    if (!value || qatomic_load_acquire(&d->snapshot238.state) != 0) {
++        error_setg(errp, "snapshot238 requires ONE true request"); return;
+     }
+     /* Monitor owns BQL. Never block it waiting for FIFO or PG. */
+     if (qemu_mutex_trylock(&d->pfifo.lock)) {
+-        error_setg(errp, "snapshot234 FIFO busy; request NOT accepted"); return;
+-    }
+-    d->snapshot234.deadline = qemu_clock_get_ns(QEMU_CLOCK_REALTIME) +
++        error_setg(errp, "snapshot238 FIFO busy; request NOT accepted"); return;
++    }
++    d->snapshot238.deadline = qemu_clock_get_ns(QEMU_CLOCK_REALTIME) +
+                               INT64_C(5000000000);
+-    qatomic_store_release(&d->snapshot234.state, 1);
++    qatomic_store_release(&d->snapshot238.state, 1);
+     pfifo_kick(d);
+     qemu_mutex_unlock(&d->pfifo.lock);
+ }
+ 
+-static bool snapshot234_requested(Object *obj, Error **errp)
++static bool snapshot238_requested(Object *obj, Error **errp)
+ {
+     NV2AState *d = NV2A_DEVICE(obj);
+-    return qatomic_load_acquire(&d->snapshot234.state) != 0;
+-}
+-
+-static char *snapshot234_report(Object *obj, Error **errp)
++    return qatomic_load_acquire(&d->snapshot238.state) != 0;
++}
++
++static char *snapshot238_report(Object *obj, Error **errp)
+ {
+     NV2AState *d = NV2A_DEVICE(obj);
+-    unsigned state = snapshot234_expire(d);
++    unsigned state = snapshot238_expire(d);
+     bool published = state == 3;
+     GString *report = g_string_new(NULL);
+-    g_string_append_printf(report, "version=234 state=%u tuple_published=%u total=%" PRIu64 " count=%u capacity=256 overwritten=%" PRIu64,
+-        state, published, published ? d->snapshot234.total : 0,
+-        published ? d->snapshot234.count : 0,
+-        published ? d->snapshot234.total - d->snapshot234.count : 0);
++    g_string_append_printf(report, "version=238 state=%u tuple_published=%u total=%" PRIu64 " count=%u capacity=256 overwritten=%" PRIu64,
++        state, published, published ? d->snapshot238.total : 0,
++        published ? d->snapshot238.count : 0,
++        published ? d->snapshot238.total - d->snapshot238.count : 0);
+     if (published) {
+-        wait233_format(report, &d->snapshot234.current);
+-        for (unsigned i = 0; i < d->snapshot234.count; i++) {
+-            wait233_format(report, &d->snapshot234.rows[i]);
++        NV2AWaitSnapshot238 *v = &d->snapshot238;
++        g_string_append_printf(report, " fifo_when=%" PRIu64
++            " renderer_valid=%u surface_count=%u surface_truncated=%u fifo=",
++            v->fifo_when, v->renderer_valid, v->surface_count, v->surface_truncated);
++        for (unsigned i = 0; i < 14; i++) {
++            g_string_append_printf(report, "%s%" PRIu64, i ? "," : "", v->fifo[i]);
++        }
++        g_string_append_printf(report, " context=");
++        for (unsigned i = 0; i < 20; i++) {
++            g_string_append_printf(report, "%s%" PRIu64, i ? "," : "", v->context[i]);
++        }
++        for (unsigned n = 0; n < v->surface_count; n++) {
++            g_string_append_printf(report, " surface=");
++            for (unsigned i = 0; i < 12; i++) {
++                g_string_append_printf(report, "%s%" PRIu64, i ? "," : "", v->surfaces[n][i]);
++            }
++        }
++        wait233_format(report, &d->snapshot238.current);
++        for (unsigned i = 0; i < d->snapshot238.count; i++) {
++            wait233_format(report, &d->snapshot238.rows[i]);
+         }
+     }
+     return g_string_free(report, false);
+@@ -581,9 +613,9 @@
+     qemu_cond_init(&d->pfifo.fifo_idle_cond);
+     object_property_add_bool(OBJECT(d), "xwn-preserve227", preserve227_get,
+                              preserve227_set);
+-    object_property_add_bool(OBJECT(d), "xwn-snapshot234",
+-                             snapshot234_requested, snapshot234_request);
+-    object_property_add_str(OBJECT(d), "xwn-snapshot234-report", snapshot234_report, NULL);
++    object_property_add_bool(OBJECT(d), "xwn-snapshot238",
++                             snapshot238_requested, snapshot238_request);
++    object_property_add_str(OBJECT(d), "xwn-snapshot238-report", snapshot238_report, NULL);
+     object_property_add_str(OBJECT(d), "xwn-preserve227-report",
+                             preserve227_report, NULL);
+ }
+--- a/hw/xbox/nv2a/nv2a_int.h
++++ b/hw/xbox/nv2a/nv2a_int.h
+@@ -75,14 +75,18 @@
+     uint32_t fifo_valid, fifo[10];
+ } NV2AWaitRow233;
+ 
+-/*234 resident copied tuple; monitor never reads the mutable journal. */
+-typedef struct NV2AWaitSnapshot234 {
++/*238 resident copied tuple; monitor never reads the mutable journal. */
++typedef struct NV2AWaitSnapshot238 {
+     unsigned state;
+     int64_t deadline;
+     uint64_t total;
+     unsigned count;
+     NV2AWaitRow233 current, rows[NV2A_WAIT233_CAPACITY];
+-} NV2AWaitSnapshot234;
++    /* FIFO sample precedes PG sample; publication is atomic, sampling is not. */
++    uint64_t fifo_when, fifo[14], context[20], surfaces[128][12];
++    unsigned renderer_valid, surface_count, surface_truncated;
++
++} NV2AWaitSnapshot238;
+ 
+ typedef struct NV2AState {
+     /*< private >*/
+@@ -99,7 +103,7 @@
+         unsigned count, next;
+         NV2AWaitRow233 rows[NV2A_WAIT233_CAPACITY];
+     } wait233;
+-    NV2AWaitSnapshot234 snapshot234;
++    NV2AWaitSnapshot238 snapshot238;
+     struct {
+         unsigned state, surfaces, dirty, downloaded, error, reason;
+         unsigned consume_stop, consume_steps, consume_words, wait_before, wait_after;
+@@ -255,9 +259,10 @@
+ hwaddr nv_clip_gpu_tile_blit(NV2AState *d, hwaddr blit_base_address,
+                              hwaddr len);
+ 
+-bool nv2a_snapshot234_claim(NV2AState *d);
+-void nv2a_snapshot234_copy(NV2AState *d);
+-void nv2a_snapshot234_publish(NV2AState *d);
++bool nv2a_snapshot238_claim(NV2AState *d);
++void nv2a_snapshot238_copy(NV2AState *d);
++void nv2a_snapshot238_fifo(NV2AState *d);
++void nv2a_snapshot238_publish(NV2AState *d);
+ void nv2a_wait233_fill(NV2AState *d, NV2AWaitRow233 *row,
+                        unsigned kind, uint32_t value, bool fifo_valid);
+ void nv2a_wait233_record(NV2AState *d, unsigned kind, uint32_t value,
+--- a/hw/xbox/nv2a/pgraph/gl/renderer.c
++++ b/hw/xbox/nv2a/pgraph/gl/renderer.c
+@@ -121,15 +121,57 @@
+     PGRAPHState *pg = &d->pgraph;
+     PGRAPHGLState *r = pg->gl_renderer_state;
+ 
+-    /*234 worker enters with FIFO owned; claim once, then release FIFO BEFORE
+-     * PG acquisition. Copy only PG data, release PG before reacquiring FIFO.
+-     * Snapshot admission does not halt the producer or acquire BQL. */
+-    if (nv2a_snapshot234_claim(d)) {
++    /*238 FIFO-owned sample first. Renderer lock is TRY only, then FIFO is
++     * released BEFORE PG acquisition. Never block FIFO/BQL on renderer lock.
++     * This is not a producer halt, reference release, fence or readback. */
++    if (nv2a_snapshot238_claim(d)) {
++        nv2a_snapshot238_fifo(d);
++        bool renderer_locked = !qemu_mutex_trylock(&pg->renderer_lock);
+         qemu_mutex_unlock(&d->pfifo.lock);
+         qemu_mutex_lock(&pg->lock);
+-        nv2a_snapshot234_copy(d);
++        nv2a_snapshot238_copy(d);
++        NV2AWaitSnapshot238 *v = &d->snapshot238;
++        uint64_t context[20] = {
++            pg->primitive_mode, pg->draw_arrays_length, pg->inline_array_length,
++            pg->inline_elements_length, pg->inline_buffer_length,
++            renderer_locked ? pg->framebuffer_in_use : 0,
++            qatomic_read(&pg->flush_pending), qatomic_read(&pg->sync_pending),
++            pgraph_reg_r(pg, NV_PGRAPH_CTX_USER), pgraph_reg_r(pg, NV_PGRAPH_SURFACE),
++            pg->dma_color, pg->dma_zeta,
++            pg->context_surfaces_2d.object_instance,
++            pg->context_surfaces_2d.dma_image_source,
++            pg->context_surfaces_2d.dma_image_dest, pg->image_blit.context_surfaces,
++            r != NULL, pg->renderer->type,
++            renderer_locked && r ? r->color_binding != NULL : 0,
++            renderer_locked && r ? r->zeta_binding != NULL : 0,
++        };
++        memcpy(v->context, context, sizeof(context));
++        v->renderer_valid = renderer_locked && r != NULL;
++        if (v->renderer_valid) {
++            SurfaceBinding *surface;
++            QTAILQ_FOREACH(surface, &r->surfaces, entry) {
++                if (v->surface_count == 128) {
++                    v->surface_truncated = 1; break;
++                }
++                uint64_t fields[12] = {
++                    surface->vram_addr, surface->size, surface->pitch,
++                    surface->width, surface->height,
++                    (surface->draw_dirty ? 1 : 0) |
++                    (surface->download_pending ? 2 : 0) |
++                    (surface->cpu_write_evict_pending ? 4 : 0) |
++                    (surface->upload_pending ? 8 : 0) |
++                    (surface->cleared ? 16 : 0) |
++                    (surface->color ? 32 : 0) | (surface->swizzle ? 64 : 0),
++                    surface->access_cb != NULL, surface == r->color_binding,
++                    surface == r->zeta_binding, surface->gl_buffer,
++                    surface->dma_addr, surface->dma_len,
++                };
++                memcpy(v->surfaces[v->surface_count++], fields, sizeof(fields));
++            }
++        }
+         qemu_mutex_unlock(&pg->lock);
+-        nv2a_snapshot234_publish(d);
++        if (renderer_locked) { qemu_mutex_unlock(&pg->renderer_lock); }
++        nv2a_snapshot238_publish(d);
+         qemu_mutex_lock(&d->pfifo.lock);
+     }
+ 

@@ -1,0 +1,31 @@
+#238 Xromwell retains dirty surfaces; FreeLoader has pending sync
+
+Three fresh emulator runs completed the scoped CPU workload and cold integrity checks. The actual Xromwell and FreeLoader entry samples have empty FIFO queue/parser state and no PGRAPH waits. Xromwell retains three dirty surfaces and three memory-access callbacks. FreeLoader has no surface bindings or callbacks in the bounded list, but has sync_pending1. This supports a new bounded preservation experiment; it does not grant native GPU ownership. The physical Xbox, drivers, peer branches and0.1.0 were unchanged.
+
+| Sample | DMA GET / PUT | PGRAPH waits | Frontend framebuffer in use | Dirty surfaces / bytes | Retained callbacks |
+| --- | --- | --- | --- | --- | --- |
+| dashboard001 | 0x3fa6d9c / 0x3fa7204 | ['NOP'] | 1 | 3 / 3,072,000 | 3 |
+| xbe001 | 0x0 / 0x0 | none | 0 | 3 / 3,072,000 | 3 |
+| freeldr001 | 0x0 / 0x0 | none | 0 | 0 / 0 | 0 |
+
+The FIFO and PG samples were taken under different locks at different times while the guest CPU was stopped. The worker could still progress. All renderer try-locks succeeded; none of the surface lists was truncated. All captured ranges fit the configured64MiB shared RAM and have no overlap. This is range/model analysis, not a runtime RAM-size read or GPU pixel comparison. Both executing loader entries matched their owned cold32-byte windows in every guest; FreeLoader also presented the expected multiboot magic with interrupts disabled. Each guest made one accepted snapshot request, reread the same immutable publication, removed both breakpoints and resumed without debugger register/memory writes.
+
+At both loader entries, framebuffer-in-use, primitive/batch lengths and wait bits were zero in their respective observations. Xromwell also had no flush/sync pending; FreeLoader had sync_pending1. These are independent fresh boots, not a before/after transition trace. The compiled flush_surfaces path can invalidate cached surfaces without downloading dirty contents, but238 does not prove that path caused the observed difference or that any hardware data was lost. Producer halt remained false. The captured2D/DMA context values remain nonzero at both entries. Xromwell surface callbacks were retained, while FreeLoader list removal alone does not prove safe retirement or preserved pixels; texture, shader and display-context references are outside this finite inventory. Zero queue/parser state alone cannot prove closed admission, completed host GPU commands or ownership. See SCHEMA.md, reference-analysis001.json and exact raw traces.
+
+Each run completed65 CPU allocations/releases and refused all native GPU exposure requests, verified3,194,880 bytes and joined all four workers. The unchanged eight retirement rounds retained UNMODELED_BUSY/NO_OWNERSHIP. Every guest requested a normal restart, returned to the dashboard and logged one normal-shutdown event. Protected/staged hashes, startup, selected device policy, prior event/SetupAPI history, five structurally parsed hives and full allocation checks passed. Application deltas were empty. Strict event qualification is FALSE in every case: the sole new error is Ftdisk49. No error was suppressed or waived. Ordinary GPU, physical and backend-preservation qualification remain FALSE.
+
+| Cold image | Directories / files / directory clusters | Orphans / errors | Host exit |
+| --- | --- | --- | --- |
+| dashboard001 | 320 / 6724 / 321 | 0 / 0 | orderly, exit0, no Kill |
+| xbe001 | 320 / 6724 / 321 | 0 / 0 | orderly, exit0, no Kill |
+| freeldr001 | 320 / 6725 / 321 | 0 / 0 | orderly, exit0, no Kill |
+
+All three fresh host closures used acknowledged HMP stop followed by quit, then waited for the exact owned process to exit0. The expected monitor connection reset was allowed only after quit and is preserved separately. No fallback kill occurred. This adopts the reviewed USB closure procedure in fresh root runs; older forced-close evidence remains unchanged. Orderly host closure plus selected cold content/full allocation checks is not power-loss or all-file-content durability qualification.
+
+The new emulator is 6fbc96315b3f4dd7ee5bd159f0a059ed2983920025dfe1c4a48537c5d928b52c. The pinned source/toolchain build changed only nv2a.c, nv2a_int.h and GL renderer.c relative to234; every borrowed source was restored. Native224/build002,219 boot display and211 captured physical-core policy remain unchanged, with no synthetic null binding. There is no GL readback/fence, guest GPU command write, producer halt or reference disposal in238.
+
+Actual compiled snapshot/FIFO/worker blocks passed O0 and O2 ASan/UBSan checks using real QEMU atomics and explicit clock/register/mutex/list adapters:20,000 timeout races and2,000 publication races per optimization level, list0..129 boundaries and renderer-lock refusal. Actual sampler65, guard72, sole-FTP-connection12, bounded closure25 and post-analysis classification180 checks passed. All502 prelaunch source/binary/input pins remain exact. Host adapters do not qualify real GPU scheduling.
+
+Three preliminary host setup failures are preserved: copied build-wrapper path prevented entry to build.py; an inherited header regex also matched surface_count and refused the synthetic protocol; the guard test ran before its source capsule was copied. They occurred before guest launch and were corrected. The frozen review generator retains a stale generic PG-only/current-FIFO limit from237; its actual current-FIFO=true fields and raw data are correct. This report and SCHEMA.md provide the corrected scope without modifying frozen source or runtime records.
+
+Next use NEW matched control/preservation attempts at the pinned Xromwell entry: independently verify queue/parser/wait/framebuffer preconditions, genuinely close producer admission, fence and preserve each of the three observed non-overlapping dirty ranges with bounded exact readback verification. Capture later surface download/invalidation/sync behavior if needed to localize actual disposal; do not infer it from the independent phase samples. Keep callbacks and other references explicitly retained until a separately reviewed retirement contract exists. Do not clear waits, discard aliases, retry a refused/expired accepted request or grant native ownership. No238 case may be replayed or recollected.

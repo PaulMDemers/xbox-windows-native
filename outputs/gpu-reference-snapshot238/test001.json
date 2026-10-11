@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "source_sha256": "12923614be339fd1ce7cb794977be62c5f56926edf66eda63c86a2b00a4ad8a1",
+  "test_sha256": "54a078e0d44ae150e13ac2b6fabdac10307c32354007d63c7c6d253e2df0b07a",
+  "actual_helpers": {
+    "row-actual.inc": "534a76a2bcf0a0274227ae9c0c1645382c2d874a279266a2cab638b624915fdf",
+    "snapshot-actual.inc": "11853f091d52785b250509053b86eb6b14ec34157f2ca1eb06f6e1a444b26aec",
+    "wait-actual.inc": "48935e1f296a1f1c916fc7b7dbd173d2b26790d45bb53b63efbec698617bdfc4",
+    "worker-actual.inc": "86b252b72ef26a38acea51f6a923879777b9602df9d7cc2fde418e89bddafdd6"
+  },
+  "runs": [
+    {
+      "command": [
+        "gcc",
+        "-std=gnu11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-O0",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-pthread",
+        "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/gpu-reference-snapshot238/artifacts/test001",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/gpu-reference-snapshot238/artifacts/test001/test-snapshot.c",
+        "-o",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/gpu-reference-snapshot238/artifacts/test001/snapshot-O0"
+      ],
+      "exit_code": 0,
+      "stdout": "checks=25031896 race_pairs=20000 publication_pairs=2000 wrapped_records=100000 completion_winners=5933 timeout_winners=14067 immutable=covered late_completion=hidden fifo_validity=covered\n",
+      "stderr": "",
+      "executable_sha256": "fdc12c4b02acc41821df1bfc80a4f87c51bcfd14d1af1a16cbbf5df29a87a710"
+    },
+    {
+      "command": [
+        "gcc",
+        "-std=gnu11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-O2",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-pthread",
+        "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/gpu-reference-snapshot238/artifacts/test001",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/gpu-reference-snapshot238/artifacts/test001/test-snapshot.c",
+        "-o",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/gpu-reference-snapshot238/artifacts/test001/snapshot-O2"
+      ],
+      "exit_code": 0,
+      "stdout": "checks=24283006 race_pairs=20000 publication_pairs=2000 wrapped_records=100000 completion_winners=5668 timeout_winners=14332 immutable=covered late_completion=hidden fifo_validity=covered\n",
+      "stderr": "",
+      "executable_sha256": "406e2dc2eb11dddb039f54fc58c9f89b7a2bc42b9eb835de90014d1249069eb9"
+    }
+  ],
+  "physical_access": false,
+  "guest_launch": false,
+  "scope": "Compiled copy/request/report/publication and ring with real QEMU atomics; explicit host clock/register/FIFO/mutex/object/string adapters, not QEMU scheduling or GPU ownership."
+}
