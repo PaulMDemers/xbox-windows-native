@@ -16,12 +16,13 @@ continuation for its cold-audit/capture state.
 
 Private254 overlay reproduced identical SHA8000eb0e12de3688fb3b922f9f7763eb9198295ffef4579421f447da689b6b39,
 15 entries497820bytes, all entries readback verified. This is packaging repeatability,
-not a full source rebuild or complete system recovery. New full recovery capture
-pending. Repository remains private. Existing Windows root menu verified.
+not a full source rebuild or complete system recovery. New private file-level recovery capture completed:6638files879661149bytes
+in330directories, both system/boot-dashboard ZIPs allentries verified. It is not
+a disk image or restore-tested release. See demo-audio-level256/capture-summary.json. Repository remains private. Existing Windows root menu verified.
 
 Remaining demo gaps: exact left/right speaker routing, known unsupported APU/PCI/USB
 wizards, crash-dump configuration warning; preserve these limits. Next improvement
-is native GPU invalidation/drain evidence per250; no GPU acceleration,1080i or
+is controlled pixel preservation after257 identified20 age and3 CPU-write removals; no GPU acceleration,1080i or
 additional mode is claimed. Software text upload reductions are already bounded-
 physical-tested. Full reconstruction/public-release licensing and xemu upstream
 work remain separate unfinished goals.

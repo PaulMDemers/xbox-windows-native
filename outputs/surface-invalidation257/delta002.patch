@@ -1,0 +1,93 @@
+--- a/hw/xbox/nv2a/pgraph/gl/surface.c
++++ b/hw/xbox/nv2a/pgraph/gl/surface.c
+@@ -413,6 +413,34 @@
+     return false;
+ }
+ 
++/*257 Bounded scalar observation only; caller's existing PGRAPH discipline.
++ * No GL calls, pixel writes, resource ownership, downloads or disposal changes. */
++static unsigned surface257_count[13];
++static uint64_t surface257_sequence;
++static void trace_surface257(NV2AState *d, const SurfaceBinding *s, unsigned site)
++{
++    PGRAPHState *pg=&d->pgraph;
++    PGRAPHGLState *r=pg->gl_renderer_state;
++    if (site>=13 || qatomic_read(&surface257_count[site])>=257) return;
++    unsigned index=qatomic_fetch_inc(&surface257_count[site]);
++    if(index>=256) {
++        if(index==256) trace_nv2a_lifecycle244(99,qemu_clock_get_ns(QEMU_CLOCK_REALTIME),qemu_get_thread_id(),site,index,0);
++        return;
++    }
++    uint64_t seq=qatomic_fetch_inc(&surface257_sequence)+1;
++    int64_t when=qemu_clock_get_ns(QEMU_CLOCK_REALTIME);
++    uint64_t thread=qemu_get_thread_id();
++    unsigned flags=(s->draw_dirty?1:0)|(s->download_pending?2:0)|
++        (s->cpu_write_evict_pending?4:0)|(s->upload_pending?8:0);
++    trace_nv2a_lifecycle244(100,when,thread,seq,site,flags);
++    trace_nv2a_lifecycle244(101,when,thread,seq,(uintptr_t)s,(uintptr_t)s->access_cb);
++    trace_nv2a_lifecycle244(102,when,thread,seq,s->vram_addr,s->size);
++    trace_nv2a_lifecycle244(103,when,thread,seq,s->gl_buffer,(s==r->color_binding?1:0)|(s==r->zeta_binding?2:0));
++    trace_nv2a_lifecycle244(104,when,thread,seq,pg->primitive_mode,pg->draw_arrays_length);
++    trace_nv2a_lifecycle244(105,when,thread,seq,pg->inline_array_length,pg->inline_elements_length);
++    trace_nv2a_lifecycle244(106,when,thread,seq,pg->inline_buffer_length,pg->framebuffer_in_use);
++}
++
+ static bool check_surface_overlaps_range(const SurfaceBinding *surface,
+                                          hwaddr range_start, hwaddr range_len)
+ {
+@@ -436,6 +464,7 @@
+             continue;
+         }
+ 
++        trace_surface257(d, surface, write ? 12 : 11);
+         hwaddr offset = addr - surface->vram_addr;
+ 
+         if (write) {
+@@ -513,6 +542,7 @@
+             trace_nv2a_pgraph_surface_evict_overlapping(
+                 other_surface->vram_addr, other_surface->width, other_surface->height,
+                 other_surface->pitch);
++            trace_surface257(d, other_surface, 1);
+             pgraph_gl_surface_download_if_dirty(d, other_surface);
+             pgraph_gl_surface_invalidate(d, other_surface);
+         }
+@@ -576,6 +606,7 @@
+     PGRAPHState *pg = &d->pgraph;
+     PGRAPHGLState *r = pg->gl_renderer_state;
+ 
++    trace_surface257(d, surface, 6);
+     /*244 Scalar observation survives the existing disposal, not a new owner. */
+     uint64_t cb244 = (uintptr_t)surface->access_cb;
+     uint64_t addr244 = surface->vram_addr, size244 = surface->size;
+@@ -612,6 +643,7 @@
+         int last_used = d->pgraph.frame_time - s->frame_time;
+         if (last_used >= surface_age_limit) {
+             trace_nv2a_pgraph_surface_evict_reason("old", s->vram_addr);
++            trace_surface257(d, s, 2);
+             pgraph_gl_surface_download_if_dirty(d, s);
+             pgraph_gl_surface_invalidate(d, s);
+         }
+@@ -907,6 +939,7 @@
+             /* A queued GPU operation may have dirtied it after the request.
+              * Finish that download while holding the renderer's PGRAPH lock.
+              * The CPU store is still blocked in surface_access_callback. */
++            trace_surface257(d, surface, 3);
+             pgraph_gl_surface_download_if_dirty(d, surface);
+             assert(!surface->draw_dirty);
+             if (surface == r->color_binding) {
+@@ -1335,6 +1368,7 @@
+                 trace_nv2a_pgraph_surface_evict_reason(
+                     "incompatible", found->vram_addr);
+                 compare_surfaces(found, &entry);
++                trace_surface257(d, found, 4);
+                 pgraph_gl_surface_download_if_dirty(d, found);
+                 pgraph_gl_surface_invalidate(d, found);
+             }
+@@ -1570,6 +1604,7 @@
+ 
+     SurfaceBinding *s, *next;
+     QTAILQ_FOREACH_SAFE(s, &r->surfaces, entry, next) {
++        trace_surface257(d, s, 5);
+         /*247 Observation only: actual latest flags BEFORE natural invalidation.
+          * No inferred bytes, dirty clear or new disposal policy. */
+         trace_nv2a_lifecycle244(82,qemu_clock_get_ns(QEMU_CLOCK_REALTIME),qemu_get_thread_id(),(uint64_t)(uintptr_t)s,s->vram_addr,s->size);

@@ -1,3 +1,63 @@
+#257 CLOSED — actual age/CPU-write removals; recovery complete
+
+Single257 launch19:14:38->19:16:04UTC October11; all owned sessions CLOSED,
+including15867 controller and83644 resumed first cold audit. No physical launch
+queued. Latest prior pushed0522c8c; commit current257/256 recovery evidence next.
+
+Read outputs/surface-invalidation257/REPORT.md, NEXT.md and final-review.json.
+49 complete untruncated scalar groups:20 age removals (15dirty at caller),3 CPU
+write evictions (upload_pending);23 common entries clean,23 pairs,0unpaired.
+3 CPU-write callbacks,0 CPU-read; no overlap/incompatible/flush removal coverage.
+Flags are not latest-pixel correctness. Worker/UI/callback checks PASS separately;
+original parser unknown-phase100 FAIL retained, new explicit257 grammar reviewed
+with4negative tests. 23 callbacks retired,1859 frontend loans,249465000ns park.
+CPU64leases65alloc/releases/refusals3194880bytes4joined workers, normal shutdown.
+Cold320dirs6724files321dirclusters0errors/orphans,5hives28protected passed.
+StrictFALSE retains Ft49 and unqualified preservation/nativeownership; no GPUwrites.
+
+Initial cold import failure preserved before collection; exact frozen250 diagnostic
+via PYTHONPATH completed first cold audit with no guest replay. All1614 frozen
+inputs still exact. Build001 failed first write; build002 compiled and restored
+borrowed sources. New controlled-pixel test must safely isolate an independent
+pattern and real CPU read/write alias path; see NEXT, no speculative download fix.
+
+256 recovery complete6638files879661149bytes330dirs; two private ZIPs entry/readback
+verified, hashes rechecked in capture-closure.json. Not diskimage/restoretested.
+Physical audio004/softwarevideo118/shared158/FATX0101 unchanged. Root demo251
+ticket retained, Xbox available at dashboard, no physical work queued. Immutable
+0.1.0/0088 rollbacks and all failures preserved. Heartbeat endOct11 remains active;
+update its prompt to this closed state.20GiB guard unchanged, C space thin.
+
+# Earlier record preserved
+
+#257 ACTIVE — surface caller tracing; physical snapshot complete
+
+256 snapshot CLOSED session72945 exit0, completed19:04:03UTC October11.6638files,
+879661149bytes,330directories; both private ZIPs allentries readbackverified,
+manifest and ZIPsha rechecked. capture-summary.json/capture-closure.json record
+exact artifacts. User informed Xbox available. No physical launch queued.
+Root demo251 ticket retained; selected physical audio004/video118/shared158/0101
+unchanged. Preserve diagnostic mapper-ID failure/Ft49 and original0.1.0/0088.
+
+New257 emulator run starting: outputs/surface-invalidation257/preserve001/
+host-state.json owns controllers. Unique nt5-phase257-preserve001; neverduplicate.
+Exact unchanged250 fixture/guest; new xemu only scalar instrumentation at five
+invalidation callers, common entry, CPU read/write callback. Bounded256groups/site,
+complete grouped records; no GL/data/disposal/ownership changes. Inverse source,
+immutable seed, parser negative tests and1614 frozen inputs PASS. Binary785c53bf
+71a7a289361de5859ece8503130b3e58682b482eb55dfb486e6a4311. Build002passed/root-owned
+historicalbuildconvention. Build001 failed first write under defaultWSLuser; all13
+borrowed source originals verified unchanged; failure retained, no permission changes.
+
+On owned controller completion inspect hoststate,trace,cleanup,coldaudit; never
+recollect. Run analyze-sites.py only once afterclosed, then analyze-worker.py if
+its preconditions hold. Missingcoverage/truncation not proof of preservation.
+Next controlled-content test must target actualobserved caller/dirty/CPUalias,
+not blind repeat or speculative unconditional downloads.20GiB guard retained.
+Heartbeat active through end October11; latestpushed0522c8c before this work.
+
+# Earlier record preserved
+
 #256 CLOSED — audible louder tones; recovery snapshot ACTIVE
 
 Single256 run18:48:15->18:50:38UTC October11 CLOSED. All runner/collector/scan/audit
