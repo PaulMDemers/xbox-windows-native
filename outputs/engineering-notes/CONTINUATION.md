@@ -1,3 +1,42 @@
+#265/266 CLOSED — actual owner ledger PASS, retirement still refused
+
+Read outputs/backend-ledger266/REPORT.md, DESIGN.md, NEXT.md, final-review.json
+and emu001/ledger-analysis.json, actual-controls002.json. All owned sessions CLOSED:
+266controller61357 (runner103728/tracer118396),265controller86523,prepare98584,
+native97211,renderer4382 and priorfailed builds. No physicalchanges/queuedtests.
+266accepted22:16:02UTC->normalrestart/orderlyhostexit0->coldclosed22:18:17UTC.
+Two actualnativeattestations,one read-only ledger55028rows/215pages,UI1807/8pages,
+bothCPUexclusive inventories0callbacks acknowledged,contextqueryrestoration,
+frontendreopen and allbreakpoints/physicalmode teardown.32768exactCPUbytes/2reads/
+0writes;22464leases65alloc/releases/refusals3194880bytes128preflight4joinedworkers.
+Cold322dirs6729files323clusters0orphans/errors,5hives31protected. Scopedobservation
+PASS; strictFALSE soleFt49.2013frozeninputs108hostdeps exact;20actualnegative
+mutations+19syntheticcontrols. No ordinary/performance/disposal/nativeGPUgrant.
+
+Actual24texturebindings/24cacheedges+4disabledunitrefs eachrefcount2; unit-only0.
+51200buffer names/93live,53shaderbindings53modules,54actorcompletionUNKNOWN.
+UIHUD/snapshot/last26 is fallback1/live0 (ordinaryVGApathalreadydeletedtexture),
+NOT rendererdisplay10. Originalpost-analysis equalityassumptionFAILED preserved
+actual-controls.py/failure001; corrected002separate,norawdata/gatechanges.
+Rendererrolelabels not independently actualnativecontexthandles; indexedbindings/
+containerattachments incomplete. NextNEWdiagnostic close shaderactorack/context/
+container/VGAowner gaps on exact265; onlythennarrowfour-unitrelease experiment.
+No wholefinalizer/switch/reset/pendingclear or speculativephysicalpatch.
+
+265emu001 FAILED: one nativeattestation/UI8pages then Windows text-mode CRLF
+reread mismatch. NO rendererledgerrequest. Closedinterrupted disk13orphans/four
+WBEMerrors;neverrepair/reboot/recollect/parent.266samecompiledrenderer/probe/driver,
+onlybyte-exacthostpagewrites/rereads;6transporttests reproduceoldfailure+reject
+5changedbytes. Freshchild uses never-executed265standalone,notfaileddisk.
+Renderer003 E:/Codex-archive/xbox-windows-native/ledger265-build003/xemu-ledger265.exe
+SHA b52c671e6f5ea643eaac1e1a8970cf5454fa776fdb763debfba5030b43b41624;191652402B.
+Native35205e9a.../unchanged258helddriver.195138hostASan/UBSanchecks;78inherited
+warnings/no new. Failed001prototype/002anchor and preflight001capsulelookup kept.
+Borrowed15sourcesrestored.263portableoffloadedhashverified/originaljunction
+portable-265.json; no backingmoved. C22.33GBdecimal;20GiBguard unchanged.
+Physicalaudio004/video118/shared158/FATX0101/recovery256/0.1.0/0088unchanged.
+ContinueauthorizedworkuntilOct12 04:00UTC thenpreserve/cleanup/report/pause.
+
 #264 CLOSED — source-led backend retirement design; no guest launch
 
 Read outputs/backend-retirement264/REPORT.md, DESIGN.md, NEXT.md,

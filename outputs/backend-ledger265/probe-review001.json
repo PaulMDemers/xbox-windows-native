@@ -1,0 +1,76 @@
+{
+  "passed": true,
+  "guest_launch": false,
+  "gl_executed": false,
+  "physical_access": false,
+  "source_sha256": "d748b6288e74a25295b98505202a56af37158039336091c65ef391fb224c29f3",
+  "build_sha256": "9c22a822dc7ffdeb2345f0bc9537d178696ba02a06d925a321ec917f7700e358",
+  "native_sha256": "35205e9ac65af98ccc04ca7ea39c98cb91451b2c2e32f2f694107e5bc414cb0d",
+  "imports": {
+    "advapi32.dll": [
+      "CloseServiceHandle",
+      "CreateServiceA",
+      "OpenSCManagerA",
+      "StartServiceA"
+    ],
+    "kernel32.dll": [
+      "CloseHandle",
+      "CreateFileA",
+      "DeviceIoControl",
+      "ExitProcess",
+      "FlushFileBuffers",
+      "GetLastError",
+      "GetModuleHandleA",
+      "VirtualLock",
+      "WriteFile"
+    ],
+    "user32.dll": [
+      "wsprintfA"
+    ]
+  },
+  "preferred_image_base": 369098752,
+  "checkpoint_rva": 4583,
+  "checkpoint_instructions": [
+    {
+      "address": 369103335,
+      "bytes": "55",
+      "mnemonic": "push",
+      "operands": "ebp"
+    },
+    {
+      "address": 369103336,
+      "bytes": "89e5",
+      "mnemonic": "mov",
+      "operands": "ebp, esp"
+    },
+    {
+      "address": 369103338,
+      "bytes": "8b4508",
+      "mnemonic": "mov",
+      "operands": "eax, dword ptr [ebp + 8]"
+    },
+    {
+      "address": 369103341,
+      "bytes": "870500300016",
+      "mnemonic": "xchg",
+      "operands": "dword ptr [0x16003000], eax"
+    },
+    {
+      "address": 369103347,
+      "bytes": "5d",
+      "mnemonic": "pop",
+      "operands": "ebp"
+    },
+    {
+      "address": 369103348,
+      "bytes": "c3",
+      "mnemonic": "ret",
+      "operands": ""
+    }
+  ],
+  "symbols_rva": {
+    "_Reply": 12320,
+    "_Checkpoint": 12288
+  },
+  "limits": "Static observation-only probe: two CPU seed0 reads, no renderer injection. Runtime identities remain required."
+}

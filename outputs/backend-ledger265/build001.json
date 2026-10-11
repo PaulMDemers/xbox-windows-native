@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "guest_launch": false,
+  "gl_executed": false,
+  "started_utc": "2026-10-11T22:04:02.164135+00:00",
+  "space": {
+    "minimum_free_gib": 20,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/backend-ledger265",
+        "free_bytes": 21869441024
+      },
+      {
+        "free_bytes": 21869436928,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "input_pins": {
+    "probe.c": "4c11173cdbd933ab45af602e025df5e2923f6eda7f1fbf8734327938d0bf97c1",
+    "build001.py": "f832a0748a934874476b692e016569adcd4495a36df38bd3601be8607a3d0aab"
+  },
+  "driver_sha256": "eba5d954d9075700a1a94b8196377626862bf74767b0bfbfe5c104d528a457a1",
+  "inherited_arena_header_sha256": "e3516f5e5e0ded9bda35ce97062bbbf6e26e753e1a69fdd2a0c79c1b2fd82388",
+  "compiler_sha256": "83015512671faaa0dbe6f043a0107f79c049f4268a67e39955388a8d9a0182e5",
+  "commands": [
+    [
+      "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc",
+      "-Os",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-nostdlib",
+      "-fno-stack-protector",
+      "-fno-builtin",
+      "-Wl,--entry,_mainCRTStartup@0",
+      "-Wl,--subsystem,console:5.0",
+      "-Wl,--image-base,0x16000000",
+      "-o",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/backend-ledger265/artifacts/build001/probe.exe",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/backend-ledger265/probe.c",
+      "-lkernel32",
+      "-ladvapi32",
+      "-luser32"
+    ]
+  ],
+  "native_sha256": "35205e9ac65af98ccc04ca7ea39c98cb91451b2c2e32f2f694107e5bc414cb0d",
+  "native_bytes": 11483,
+  "finished_utc": "2026-10-11T22:04:03.800597+00:00"
+}

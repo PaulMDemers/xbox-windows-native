@@ -1,0 +1,39 @@
+{
+  "guest_executed": false,
+  "physical_access": false,
+  "inputs": {
+    "host-tests.py": "fc76f93fb96a78e3cfd3c3bfa0b3f61df5ea2d8f217c64b235f8ba3565c221ca",
+    "ledger-core.h": "b3c22c59e904c6a371f08c5d6fc80d344c5245d8bcc3e78fd575c43768560290",
+    "test-core.c": "698734053b50aad32557733b9dead7ce4171714ff876880dfaf4ff619127de1d"
+  },
+  "command": [
+    "wsl",
+    "-d",
+    "Ubuntu",
+    "-u",
+    "root",
+    "--",
+    "gcc",
+    "-std=c11",
+    "-O1",
+    "-g",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-fsanitize=address,undefined",
+    "-fno-omit-frame-pointer",
+    "/mnt/e/Codex-archive/xbox-windows-native/ledger265-host001/test-core.c",
+    "-o",
+    "/mnt/e/Codex-archive/xbox-windows-native/ledger265-host001/test"
+  ],
+  "compile_exit": 0,
+  "compile_output": "",
+  "test_exit": 0,
+  "test_output": "PASS 195138 pure ledger checks; no renderer or native ownership exercised\n",
+  "passed": true,
+  "files": {
+    "ledger-core.h": "b3c22c59e904c6a371f08c5d6fc80d344c5245d8bcc3e78fd575c43768560290",
+    "test-core.c": "698734053b50aad32557733b9dead7ce4171714ff876880dfaf4ff619127de1d",
+    "test": "83065e6a0345ea20cc0f1316f636cd6682afbd5d435312180822b39d78d38fae"
+  }
+}
