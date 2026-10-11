@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "source_sha256": "3197c6d959ff91ced8d4ae39e8855b0c5c939a78f7da25a3f75910e86c069d13",
+  "actual_inputs": {
+    "callback-actual.inc": "d9b899215a04bc4e00e80cb1dae2ca7a7ee20eb533272dcaf25021210e5afe48",
+    "callback-struct.inc": "fe0069f8d6b2865ec94ca37ef0386ff5bb8fb8520227205538580a522c37cd87",
+    "marker-actual.inc": "1a42aaba9881e5344dc42af76a0df8cca720171a3967d90e1f7ef99ad10922a7",
+    "test-callback.c": "a69c66b1fb44c74a9d1dab6375c4c23b8b634a0ca0a97b992a04c38bbd594c04",
+    "qemu/atomic.h": "0a973eaf2fc9c203cb73b13f4f1ceb39949a671faa78c4d5c6466d8c7ec358c5",
+    "qemu/compiler.h": "5aa88bf494220555337d7504fa0de261c4ad55b3bbe43c0563a6d68debb5457e",
+    "qemu/queue.h": "7e9b631e83757ac14f0bc251860eeba82540ac1ac72d2d959681a00a50248f67"
+  },
+  "runs": [
+    {
+      "command": [
+        "gcc",
+        "-std=gnu11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-O0",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-isystem",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/gpu-lifecycle245/artifacts/callback-test002",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/gpu-lifecycle245/artifacts/callback-test002/test-callback.c",
+        "-o",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/gpu-lifecycle245/artifacts/callback-test002/callback-O0"
+      ],
+      "exit_code": 0,
+      "stdout": "4096 callback cycles; 102405 checks; bounded markers; no adapter leaks\n",
+      "stderr": "",
+      "executable_sha256": "0c65609dd814ab0c21348c9e6eee6190c97f38f6eb73e2ee16752d621df88081"
+    },
+    {
+      "command": [
+        "gcc",
+        "-std=gnu11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-O2",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-isystem",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/gpu-lifecycle245/artifacts/callback-test002",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/gpu-lifecycle245/artifacts/callback-test002/test-callback.c",
+        "-o",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/gpu-lifecycle245/artifacts/callback-test002/callback-O2"
+      ],
+      "exit_code": 0,
+      "stdout": "4096 callback cycles; 102405 checks; bounded markers; no adapter leaks\n",
+      "stderr": "",
+      "executable_sha256": "f077539c70430e0d4b9f1b11a1dec76cc9202d3bf2ee68908e617153fbd19e86"
+    }
+  ],
+  "physical_access": false,
+  "guest_launch": false,
+  "scope": "Exact compiled callback/marker bodies with real QEMU queues/atomics and explicit work/clock/log adapters; not actual CPU thread or frontend runtime qualification"
+}

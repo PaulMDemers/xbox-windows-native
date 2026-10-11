@@ -1,0 +1,225 @@
+--- a/hw/xbox/nv2a/nv2a.c
++++ b/hw/xbox/nv2a/nv2a.c
+@@ -349,6 +349,18 @@
+ {
+     NV2AState *d = NV2A_DEVICE(obj);
+     return qatomic_load_acquire(&d->preserve227.state) == 3;
++}
++
++static void lifecycle244_mark_set(Object *obj, bool value, Error **errp)
++{
++    NV2AState *d = NV2A_DEVICE(obj);
++    if (!value || d->lifecycle244_marks >= 2) {
++        error_setg(errp, "244 only two true markers, never reset/replay");
++        return;
++    }
++    ++d->lifecycle244_marks;
++    trace_nv2a_lifecycle244(40 + d->lifecycle244_marks,
++        qemu_clock_get_ns(QEMU_CLOCK_REALTIME), qemu_get_thread_id(), 0, 0, 0);
+ }
+ 
+ static void preserve227_set(Object *obj, bool value, Error **errp)
+@@ -662,6 +674,7 @@
+     object_property_add_str(OBJECT(d), "xwn-inventory242-report", inventory242_report, NULL);
+     object_property_add_bool(OBJECT(d), "xwn-preserve227", preserve227_get,
+                              preserve227_set);
++    object_property_add_bool(OBJECT(d), "xwn-lifecycle244-mark", NULL, lifecycle244_mark_set);
+     object_property_add_bool(OBJECT(d), "xwn-snapshot238",
+                              snapshot238_requested, snapshot238_request);
+     object_property_add_str(OBJECT(d), "xwn-snapshot238-report", snapshot238_report, NULL);
+--- a/hw/xbox/nv2a/nv2a_int.h
++++ b/hw/xbox/nv2a/nv2a_int.h
+@@ -98,6 +98,7 @@
+ } NV2AInventorySlot242;
+ 
+ typedef struct NV2AState {
++    unsigned lifecycle244_marks;
+     /*< private >*/
+     PCIDevice parent_obj;
+     /*< public >*/
+--- a/hw/xbox/nv2a/pgraph/gl/surface.c
++++ b/hw/xbox/nv2a/pgraph/gl/surface.c
+@@ -480,6 +480,7 @@
+             surface->access_cb = mem_access_callback_insert(
+                 qemu_get_cpu(0), d->vram, surface->vram_addr, surface->size,
+                 &surface_access_callback, d);
++            trace_nv2a_lifecycle244(1, qemu_clock_get_ns(QEMU_CLOCK_REALTIME), qemu_get_thread_id(), (uint64_t)(uintptr_t)(surface->access_cb), surface->vram_addr, surface->size);
+         } else {
+             surface->access_cb = NULL;
+         }
+@@ -575,6 +576,10 @@
+     PGRAPHState *pg = &d->pgraph;
+     PGRAPHGLState *r = pg->gl_renderer_state;
+ 
++    /*244 Scalar observation survives the existing disposal, not a new owner. */
++    uint64_t cb244 = (uintptr_t)surface->access_cb;
++    uint64_t addr244 = surface->vram_addr, size244 = surface->size;
++    trace_nv2a_lifecycle244(2, qemu_clock_get_ns(QEMU_CLOCK_REALTIME), qemu_get_thread_id(), (uint64_t)(uintptr_t)(cb244), addr244, size244);
+     trace_nv2a_pgraph_surface_invalidated(surface->vram_addr);
+ 
+     if (surface == r->color_binding) {
+@@ -592,6 +597,7 @@
+ 
+     QTAILQ_REMOVE(&r->surfaces, surface, entry);
+     g_free(surface);
++    trace_nv2a_lifecycle244(3, qemu_clock_get_ns(QEMU_CLOCK_REALTIME), qemu_get_thread_id(), (uint64_t)(uintptr_t)(cb244), addr244, size244);
+ }
+ 
+ static void surface_evict_old(NV2AState *d)
+@@ -1554,6 +1560,7 @@
+     PGRAPHState *pg = &d->pgraph;
+     PGRAPHGLState *r = pg->gl_renderer_state;
+ 
++    trace_nv2a_lifecycle244(4, qemu_clock_get_ns(QEMU_CLOCK_REALTIME), qemu_get_thread_id(), (uint64_t)(uintptr_t)(0), 0, 0);
+     /* Clear last surface shape to force recreation of buffers at next draw */
+     pg->surface_color.draw_dirty = false;
+     pg->surface_zeta.draw_dirty = false;
+@@ -1568,6 +1575,7 @@
+         // pgraph_gl_surface_download_if_dirty(d, s);
+         pgraph_gl_surface_invalidate(d, s);
+     }
++    trace_nv2a_lifecycle244(5, qemu_clock_get_ns(QEMU_CLOCK_REALTIME), qemu_get_thread_id(), (uint64_t)(uintptr_t)(0), 0, 0);
+ }
+ 
+ void pgraph_gl_finalize_surfaces(PGRAPHState *pg)
+--- a/hw/xbox/nv2a/pgraph/pgraph.c
++++ b/hw/xbox/nv2a/pgraph/pgraph.c
+@@ -398,11 +398,13 @@
+     qemu_mutex_lock(&pg->renderer_lock);
+     assert(!pg->framebuffer_in_use);
+     pg->framebuffer_in_use = true;
++    trace_nv2a_lifecycle244(10, qemu_clock_get_ns(QEMU_CLOCK_REALTIME), qemu_get_thread_id(), (uint64_t)(uintptr_t)(0), 0, 0);
+     if (pg->renderer->ops.get_framebuffer_surface) {
+         s = pg->renderer->ops.get_framebuffer_surface(d);
+     }
+     qemu_mutex_unlock(&pg->renderer_lock);
+ 
++    trace_nv2a_lifecycle244(11, qemu_clock_get_ns(QEMU_CLOCK_REALTIME), qemu_get_thread_id(), (uint64_t)(uintptr_t)(s), 0, 0);
+     return s;
+ }
+ 
+@@ -412,6 +414,7 @@
+     PGRAPHState *pg = &d->pgraph;
+     qemu_mutex_lock(&pg->renderer_lock);
+     pg->framebuffer_in_use = false;
++    trace_nv2a_lifecycle244(12, qemu_clock_get_ns(QEMU_CLOCK_REALTIME), qemu_get_thread_id(), (uint64_t)(uintptr_t)(0), 0, 0);
+     qemu_cond_broadcast(&pg->framebuffer_released);
+     qemu_mutex_unlock(&pg->renderer_lock);
+ }
+--- a/system/physmem.c
++++ b/system/physmem.c
+@@ -872,6 +872,7 @@
+ {
+     MemAccessCallback *cb = (MemAccessCallback *)data.host_ptr;
+     QTAILQ_INSERT_TAIL(&cpu->mem_access_callbacks, cb, entry);
++    trace_xwn_mem_callback244(2, qemu_clock_get_ns(QEMU_CLOCK_REALTIME), qemu_get_thread_id(), (uint64_t)(uintptr_t)(cb), cb->addr, cb->len, cpu->stopped);
+ }
+ 
+ MemAccessCallback *mem_access_callback_insert(CPUState *cpu, MemoryRegion *mr,
+@@ -888,6 +889,7 @@
+     cb->func = func;
+     cb->opaque = opaque;
+ 
++    trace_xwn_mem_callback244(1, qemu_clock_get_ns(QEMU_CLOCK_REALTIME), qemu_get_thread_id(), (uint64_t)(uintptr_t)(cb), cb->addr, cb->len, cpu->stopped);
+     async_safe_run_on_cpu(cpu, do_mem_access_callback_insert,
+                           RUN_ON_CPU_HOST_PTR(cb));
+ 
+@@ -901,8 +903,12 @@
+                                                  run_on_cpu_data data)
+ {
+     MemAccessCallback *cb = (MemAccessCallback *)data.host_ptr;
++    /*244 Copy scalar identity before actual unlink/free; never dereference later. */
++    uint64_t identity = (uintptr_t)cb;
++    uint64_t addr = cb->addr, len = cb->len;
+     QTAILQ_REMOVE(&cpu->mem_access_callbacks, cb, entry);
+     g_free(cb);
++    trace_xwn_mem_callback244(4, qemu_clock_get_ns(QEMU_CLOCK_REALTIME), qemu_get_thread_id(), (uint64_t)(uintptr_t)(identity), addr, len, cpu->stopped);
+ }
+ 
+ void mem_access_callback_remove_by_ref(CPUState *cpu, MemAccessCallback *cb)
+@@ -911,6 +917,7 @@
+         return;
+     }
+ 
++    trace_xwn_mem_callback244(3, qemu_clock_get_ns(QEMU_CLOCK_REALTIME), qemu_get_thread_id(), (uint64_t)(uintptr_t)(cb), cb->addr, cb->len, cpu->stopped);
+     async_safe_run_on_cpu(cpu, do_mem_access_callback_remove_by_ref,
+                           RUN_ON_CPU_HOST_PTR(cb));
+ 
+--- a/system/trace-events
++++ b/system/trace-events
+@@ -1,4 +1,6 @@
+ # See docs/devel/tracing.rst for syntax documentation.
++
++xwn_mem_callback244(int phase, uint64_t when, uint64_t thread, uint64_t ref, uint64_t addr, uint64_t len, int stopped) "phase=%d when=%"PRIu64" thread=%"PRIu64" ref=%"PRIu64" addr=%"PRIu64" len=%"PRIu64" stopped=%d"
+ 
+ # balloon.c
+ # Since requests are raised via monitor, not many tracepoints are needed.
+--- a/hw/xbox/nv2a/trace-events
++++ b/hw/xbox/nv2a/trace-events
+@@ -1,4 +1,6 @@
+ # See docs/devel/tracing.rst for syntax documentation.
++
++nv2a_lifecycle244(int phase, uint64_t when, uint64_t thread, uint64_t ref, uint64_t a, uint64_t b) "phase=%d when=%"PRIu64" thread=%"PRIu64" ref=%"PRIu64" a=%"PRIu64" b=%"PRIu64
+ 
+ # nv2a.c
+ nv2a_reg_read(const char *block, uint32_t addr, unsigned int size, uint64_t val) "%s addr 0x%"PRIx32" size %d val 0x%"PRIx64
+--- a/hw/xbox/nv2a/pgraph/gl/display.c
++++ b/hw/xbox/nv2a/pgraph/gl/display.c
+@@ -374,12 +374,14 @@
+ 
+ void pgraph_gl_sync(NV2AState *d)
+ {
++    trace_nv2a_lifecycle244(20, qemu_clock_get_ns(QEMU_CLOCK_REALTIME), qemu_get_thread_id(), (uint64_t)(uintptr_t)(0), d->pcrtc.start, qatomic_read(&d->pgraph.sync_pending));
+     VGADisplayParams vga_display_params;
+     d->vga.get_params(&d->vga, &vga_display_params);
+ 
+     SurfaceBinding *surface = pgraph_gl_surface_get_within(d, d->pcrtc.start + vga_display_params.line_offset);
+     if (surface == NULL || !surface->color || !surface->width || !surface->height) {
+         qemu_event_set(&d->pgraph.sync_complete);
++        trace_nv2a_lifecycle244(21, qemu_clock_get_ns(QEMU_CLOCK_REALTIME), qemu_get_thread_id(), (uint64_t)(uintptr_t)(0), 0, qatomic_read(&d->pgraph.sync_pending));
+         return;
+     }
+ 
+@@ -399,6 +401,7 @@
+     /* Switch back to original context */
+     glo_set_current(g_nv2a_context_render);
+ 
++    trace_nv2a_lifecycle244(22, qemu_clock_get_ns(QEMU_CLOCK_REALTIME), qemu_get_thread_id(), (uint64_t)(uintptr_t)(surface->gl_buffer), 0, 0);
+     qatomic_set(&d->pgraph.sync_pending, false);
+     qemu_event_set(&d->pgraph.sync_complete);
+ }
+--- a/ui/xemu.c
++++ b/ui/xemu.c
+@@ -53,6 +53,8 @@
+ 
+ #include "hw/xbox/smbus.h" // For eject, drive tray
+ #include "hw/xbox/nv2a/nv2a.h"
++#include "hw/xbox/nv2a/trace.h"
++#include "qemu/timer.h"
+ #include "ui/xemu-notifications.h"
+ 
+ #include <stb_image.h>
+@@ -836,6 +838,7 @@
+         xemu_main_loop_unlock();
+     }
+ 
++    trace_nv2a_lifecycle244(30, qemu_clock_get_ns(QEMU_CLOCK_REALTIME), qemu_get_thread_id(), (uint64_t)(uintptr_t)(tex), release_surface_texture, 0);
+     glClearColor(0, 0, 0, 0);
+     glClear(GL_COLOR_BUFFER_BIT);
+     xemu_snapshots_set_framebuffer_texture(tex, flip_required);
+@@ -852,6 +855,7 @@
+ 
+     xemu_hud_render();
+     glFinish();
++    trace_nv2a_lifecycle244(31, qemu_clock_get_ns(QEMU_CLOCK_REALTIME), qemu_get_thread_id(), (uint64_t)(uintptr_t)(tex), release_surface_texture, 0);
+ 
+     if (release_surface_texture) {
+         xemu_main_loop_lock();
+@@ -860,6 +864,7 @@
+     }
+ 
+     nv2a_release_framebuffer_surface();
++    trace_nv2a_lifecycle244(32, qemu_clock_get_ns(QEMU_CLOCK_REALTIME), qemu_get_thread_id(), (uint64_t)(uintptr_t)(tex), release_surface_texture, 0);
+     SDL_GL_SwapWindow(scon->real_window);
+     assert(glGetError() == GL_NO_ERROR);
+ 
