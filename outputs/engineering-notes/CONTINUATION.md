@@ -29,8 +29,9 @@ negative control, bounded failure quarantine. Never replay closed258/257.
 Closed227/231/232/233/257 portable offload hashverified/original-pathjunctions:
 outputs/task-storage-offload/portable-258.json; about980MB recovered, no disks moved.
 20GiB buildguard unchanged. Physical audio004/video118/shared158/FATX0101 and256
-verified recovery untouched; original0088/immutable0.1.0 preserved. Commit/push258
-source/reports next; heartbeat remains authorized through endOctober11.
+verified recovery untouched; original0088/immutable0.1.0 preserved. Evidencefa760b8
+pushed to private origin/main; repository checks25804files PASS. Heartbeat prompt
+updated to this closed state, active through endOctober11.
 
 # Earlier record preserved
 
