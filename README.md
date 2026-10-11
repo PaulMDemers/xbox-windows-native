@@ -8,24 +8,30 @@ host-side test harness.
 
 For post-release installed state and remaining work, see the
 [current overall status](outputs/engineering-notes/STATUS.md) and
-[continuation note](outputs/engineering-notes/CONTINUATION.md). FATX0101/video0093
-is installed; the immutable0.1.0 artifacts below retain0088. The earlier0098
-physical soak passed its workload/integrity checks but failed its strict event
-gate, so it is not a newly qualified release.
+[continuation note](outputs/engineering-notes/CONTINUATION.md). The October11
+physical preview combines FATX0101 with tested RAM-backed software video118/
+shared158 and genuinely installed ACI207 audio build004. Immutable0.1.0 remains
+unchanged with0088. See [combined physical results](outputs/demo-physical253/REPORT.md)
+and [unchanged-driver repeat](outputs/demo-audition255/REPORT.md).
 
-The latest [executing loader trace225](outputs/video-loader-handoff225/REPORT.md)
-pins five actual shutdown/transfer boundaries. All captured GPU state crosses
-the handoff unchanged, including22 valid inherited channel0 object entries.
-Normal restart and cold checks pass; GPU ownership and backend drain remain
-unqualified. The [native FIFO preflight224](outputs/video-fifo-retirement224/REPORT.md)
-passes matched read-disabled/read-enabled emulator runs under the native CPU
-ownership bridge. It retains 128 raw register reads and explicitly refuses GPU
-ownership: quiet pointers cannot prove producer or backend retirement. The
-[crash guard221](outputs/video-reset-guard221/REPORT.md) and
-[forced TRUE guard223](outputs/video-boot-guard223/REPORT.md) preserve the reserved
-boot-video tail in their bounded debugger tests. The inherited Ftdisk49 event
-remains a strict failure. Genuine GPU ownership and context service are next;
-no new hardware deployment, GPU acceleration or speed gain is claimed.
+The six audio API phases and five GDI samples passed bounded physical checks.
+The first combined boot changed six inactive ACI registry values; its original
+binding-equality failure is preserved with a narrow raw-hive review. The next
+boot passed exact binding equality. Both retained clean allocation and protected
+file/hive checks. The user heard the login sound and subsequently confirmed the louder left/right/both
+tone sequence in diagnostic256. The quiet sequence was unheard; exact speaker
+routing remains unconfirmed. Ftdisk49 remains a strict
+whole-boot failure, so this preview is not a newly qualified release.
+
+A [private overlay package](outputs/demo-package254/README.md) assembles twice to
+identical hashes with readback verification. It is not a complete Windows installer
+or a full source rebuild. No speculative PCI/USB prototype is installed. The
+UnleashX root Windows entry is present. Known unsupported-device wizards remain.
+
+Software video reduces redundant text uploads in the measured cases; this is
+not GPU acceleration or a desktop-frame-rate claim. Native GPU work continues
+at [the next invalidation discriminator](outputs/installer-focus250/INVALIDATION-NEXT.md).
+1080i and other new video modes remain unqualified.
 
 The native physical desktop now passes bounded storage soaks and two actual
 Paint saves/reopens, with independent post-reboot bitmap, allocation, binary

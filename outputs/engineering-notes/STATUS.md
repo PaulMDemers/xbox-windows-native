@@ -1,3 +1,33 @@
+# October11 combined demo preview
+
+Current installed physical: FATX0101, exact tested display118/shared158, genuine
+ACI207 audio004. No speculative PCI/USB prototype. Original0088 and immutable
+0.1.0 remain preserved. Root owns the demo251 hardware ticket.
+
+Combined253 six audio API phases plus five GDI workloads completed and returned
+normally. Its original binding-equality failure is preserved; separate narrow
+raw-hive review proves six inactive ACI values matched preexisting active values.
+Repeat255 passed original equality unchanged, full allocation, five hives and
+protected hashes. Strict FALSE remains the inherited Ftdisk49 error. User heard
+login sound and confirmed the louder trio in256; the quiet trio was unheard.
+Exact speaker routing is not confirmed.256 returned normally; its physical-output
+ID query instead returned the mapper, retaining the diagnostic failure. Consult
+continuation for its cold-audit/capture state.
+
+Private254 overlay reproduced identical SHA8000eb0e12de3688fb3b922f9f7763eb9198295ffef4579421f447da689b6b39,
+15 entries497820bytes, all entries readback verified. This is packaging repeatability,
+not a full source rebuild or complete system recovery. New full recovery capture
+pending. Repository remains private. Existing Windows root menu verified.
+
+Remaining demo gaps: exact left/right speaker routing, known unsupported APU/PCI/USB
+wizards, crash-dump configuration warning; preserve these limits. Next improvement
+is native GPU invalidation/drain evidence per250; no GPU acceleration,1080i or
+additional mode is claimed. Software text upload reductions are already bounded-
+physical-tested. Full reconstruction/public-release licensing and xemu upstream
+work remain separate unfinished goals.
+
+# Earlier status preserved chronologically
+
 # Actual loader handoff traced — October10,2026
 
 One fresh debugger child pins five executing Cromwell/FreeLdr boundaries and

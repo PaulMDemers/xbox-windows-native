@@ -1,3 +1,112 @@
+#256 CLOSED — audible louder tones; recovery snapshot ACTIVE
+
+Single256 run18:48:15->18:50:38UTC October11 CLOSED. All runner/collector/scan/audit
+actors64456/96546/90009/4537 closed. No Windows launch queued. User confirms later
+x4 trio audible; quiet trio not heard; exact speaker routing unconfirmed.
+Six lifecycle/gain buffers complete; physical-ID diagnostic FAILED GetID returns
+FFFFFFFF mapper instead of assumed0. Original audit/scoped/strict FALSE preserved;
+observation-review.json separates completed playback/user report from unmet ID.
+Cold fullallocation6208dirs122639files6213clusters0errors/orphans,5hives/protected,
+zero binding delta/policies/history pass; normal shutdown/dashboard, startup restored.
+
+Root demo251 ticket retained. Physical combined audio004/video118/shared158 remains
+installed, storage0101 unchanged. Next reviewed capture-recovery-review.py reads
+private file snapshot only, current hives/events/startup must match256 collection;
+resume verifies remote hashes/inventories, stale entries rejected. Preserve Ft49
+strict failure and no restore/whole-disk/release qualification. Snapshot active session72945; read-only FTP, user told leave console at dashboard.
+Fresh capture72945 uses immutable first script; it has NOT resumed. Peer found
+Dashboard missing-local resume edge only; fixed in capture-recovery-resume.py,
+use that version ONLY after current session closes if resume is needed. Both
+versions/source hashes retained in capture-review.json.
+Inspect E:/Codex-archive/xbox-windows-native/demo256-audio004-video118-20261011/
+capture-manifest.json and resume owned process, do not duplicate. Final capture
+source6ac010523f772fb6c677b74b55aa58ab8851996c08c4a815ca54f3060408f0a5; actual
+nested file-function tests reject same-size remote changes for cached/missing-local
+resume while preserving old hashes. Peer review fixed both resume edges.254 private overlay twice identical hash8000eb0e12de3688fb3b922f9f7763eb9198295ffef4579421f447da689b6b39.
+
+Latest pushed8738d00; new evidence/docs staged, commit pending. No owned emulator.
+After snapshot, continue250 INVALIDATION-NEXT concrete runtime evidence, not blind
+GPU ownership or speculative patches. Physical peers idle/no hardware ownership.
+Original0.1.0/0088 and all failure evidence preserved.20GiB build guard maintained.
+
+# Earlier record preserved
+
+#256 ACTIVE — controlled listening comparison
+
+Single launch18:48:15UTC October11. Owned observer64456; inspect return/trial
+records and resume, never duplicate. Root demo251 physical ticket retained.
+Unchanged installed audio004/video118/shared158. New probe finalbuild003 SHA
+0ae764c5310cc6d673c1c907487750246c5c02acbcd76a2f27487b7048428260: actual
+device/volume/caps queries, visible labels,15sec lead-in, gains111444. No volume
+setter. Audio peer reviewed; actual NT5 imports and sanitized waveform passed.
+Build001 pre-review and build002 host metadata-path failure preserved, no guest
+launches. Source/payloads frozen. User listening question pending.
+
+255 CLOSED: six APIs completed, normal shutdown, full allocation6207dirs122631
+files6212clusters0errors/orphans,5hives/protected/exact binding equality PASS.
+Strict FALSE soleFt49. User heard login but no tones; no audible qualification.
+accept-state readback PASS; all255 actors closed, normal startup restored before
+current256 staging. New256 uses exact255 collection and rechecks actual hives.
+
+On return256 trial.py playback001 collect restores startup FIRST, then unique
+scan launch/observe/collect, analyze.py, WSL audit001.py playback001. Preserve user
+audibility independently. New recovery capture not yet run;254 overlay prepared.
+Latest pushed8738d00; new reports/evidence uncommitted. C20GiB guard maintained via
+closed235/236 portable copy/hashverify offload, original junctions preserved;
+initial wrong closure-path offload failed before copying, retained. No images moved.
+
+# Earlier record preserved
+
+#255 collection ACTIVE — user heard login but no tones
+
+October11: audition255 launched ONCE18:36:28UTC, dashboard18:38:42.
+Observer4639 CLOSED. Collector75882 ACTIVE; normal startup already restored.
+Do not relaunch. Six API phases complete (3000ms/144000 samples each), normal
+restart requested, user heard login sound but no tones. Audibility NOT qualified.
+Root demo251 hardware ticket retained. Next complete collection, unique255 read-
+only allocation scan, original binding-equality/cold audit; investigate actual
+probe levels and audio route with audio chat. No driver change in255.
+
+253 CLOSED: original audit binding equality FALSE. Separate raw-hive review
+proved exactly six inactive ControlSet002 ACI values became equal to already
+installed active001 values. Original failure preserved; narrow supplemental
+scoped combined PASS, strict FALSE soleFt49. accepted-state.json readback PASS.
+Exact tested118/shared158 plus audio004 remain installed. No PCI/USB prototype.
+252 genuine installation and251 emulator closed. All emulator sessions closed.
+Latest pushed8738d00; subsequent253/255 evidence and254 package uncommitted.
+255 tests exact binding equality again, with no253 exception. Capture/release
+claims pending. Immutable0.1.0 and original rollback preserved.
+
+# Earlier record preserved
+
+#253 ACTIVE — combined physical audio/video boot
+
+One launch accepted18:24:32UTC October11; owned observer session97737 PID114220,
+bounded600seconds. Inspect demo-physical253/combined001 records; never relaunch.
+Root demo251 hardware ticket retained.252 physical genuine ACI install CLOSED/
+scoped PASS/audio retained: normal restart,6200dirs122606files6205clusters,
+0errors/orphans,5hives/policy/protected PASS. SoleFt49 keeps strictFALSE.
+Peer histories and251/252 checkpoint pushed8738d00. All251 emulator actors closed.
+
+253 fresh1226-file double-read post-audio capture,11providers,5hives PASS. Exactly
+two video tokens changed on this fresh SYSTEM, semantics checked. Exact previously
+tested118/shared158 files plus unchanged251 joined runner: six audio phases then
+five GDI samples, one restart owner. Source/binary/proposal/dependency pins frozen.
+Peer review fixed rollback.py for fresh SYSTEM/companions/video-only restoration
+and equality gate on Enum/class binding metadata; no additional defect found.
+
+On return physical.py collect restores normal startup FIRST. Then scan001.py
+combined001 launch/observe/collect ONCE, analyze allocation, WSL audit.py combined001.
+Only scoped PASS permits accept-state.py and NEW private capture-recovery.py demo
+preview snapshot. No strict waiver/release claim. Failure preserves evidence then
+reviewed rollback and restored allocation. Never edit frozen scripts/old results.
+User optional audio left/right/both observation pending, not an automated blocker.
+Original252rollback,physical0101/video0093,0088 and immutable0.1.0 preserved.
+Uncommitted demo-package254 deterministic assembler requires actual physical PASS.
+C~20.1GiB;20GiBguard unchanged. Future GPU work250 INVALIDATION-NEXT remains open.
+
+# Earlier record preserved
+
 #251/252 ACTIVE — end-of-day combined audio/video demo integration
 
 October11 18:14UTC. User authorized integration of peer work and physical tests.
