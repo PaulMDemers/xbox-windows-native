@@ -1,3 +1,47 @@
+# Current: snapshot234 CLOSED; live journal protocol works, ownership still refused
+
+Read outputs/xemu-wait-snapshot234/REPORT.md, DESIGN.md, NEXT.md and actual records.
+Head before turn1624710. CLOSED 2026-10-10T23:59:58.917659+00:00; root sessions44346(build),
+66302(host),69170(failed prep),95848(corrected prep),81528(runtime) CLOSED.
+PIDs112984/116228/113124/113988 CLOSED;
+leases released. Never relaunch/recollect trace002 or failed preparation001.
+No physical IO/device integration/tag changes. Physical0101/video0093,0088rollback,
+immutable0.1.0/all failures preserved;20GiB build guard unchanged.
+
+ONE worker request state3, immutable live snapshot stayed identical after CPU
+stop and separate232 request. total16765/256/overwritten16509,
+51 producer pairs/51 clear ack pairs/
+50 complete lifecycles; last open producer/lost
+prefix remain unknown. Current PG-only/FIFO-invalid waits2; no
+guest ISR/producer-close pin. Stopped preservation state4/reason20/
+stop4, NOP2->2, zero words/steps,
+backlog66160 unchanged. Reserved212992bytes unchanged, GDB
+mode restored/no writes/breakpoints; resumed after refusal, not inside request.
+No readback/reference retirement/native grant. CPUTrue/observation
+True, normal6006=1/dashboard
+True; cold320dirs/6724files/
+321clusters,0errors/orphans,5hives/protected/policy intact.
+StrictFalse; events[{'source': 'Ftdisk', 'event_id': 49, 'type': 1}]; all warning/errors retained.
+
+O0/O2 actual helpers/QEMU atomic headers ASan/UBSan each20000 races/2000 publication
+pairs/100000 wrapped records, terminal timeout/late-hide/immutability/FIFO-validity;
+72guards/PS syntax/lock-source review PASS. Exe7d953556b2bd4155f43779250fb2240e5d8f7f656525e9c33fdbad6ccf1a976e.
+Preparation001 path failure preserved; NEW prepare002 selected224 build002,
+unique fixture/case trace002, no failed guest launch. Frozen388 unchanged.
+Private fixture snapshot234/trace002-source.qcow2; private run snapshot234-runs/
+nt5-snapshot234-trace002. All root processes closed, no new experiment running.
+
+Next actual guest IRQ/producer-close source pin, bounded fresh handoff; never
+force-clear/borrow firmware state/waive retirement/alias/allocator gates.
+Peer audio now reports user-observed analog login sound, dedicated tone/channel
+unknown/Ftdisk49 failure. PCI a7203a1 STOP/START+CANCEL_STOP and integrity passed,
+normal restart still audio-install blocked; new input/DHCP events retained.
+USB ccd210f correct payload but stale exit marker/two hives parsing failed; trace
+disk-transfer/completion next, no speculative driver change. Root one-boot cold
+PASS does not settle peer repeated-boot failure. No peer integrated.
+
+--- Previous continuation retained byte-exact below ---
+
 # Current: wait233 CLOSED partial journal; observer protocol FAILED
 
 Head before this turn7cf4188. One dashboard-only run CLOSED 2026-10-10T22:55:40.376671+00:00.

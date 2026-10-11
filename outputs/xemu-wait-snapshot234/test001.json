@@ -1,0 +1,59 @@
+{
+  "passed": true,
+  "source_sha256": "68e79dcdb020c0c200b248ef46c2bca88fab37df8dcd647c3ac44a0e1858c212",
+  "test_sha256": "6a973e84e2da98a25b82814fd414773fa39b453417ae462fdba5da09e5ad8f2d",
+  "actual_helpers": {
+    "row-actual.inc": "d447874c5ccf3868367b8f566a8f70d77c337a0ef2e3208821b9d9de713a891f",
+    "snapshot-actual.inc": "0a08eb8373d5a813017c6f44e9a6f2b18d4900c2160ec7df0820d3a01b4909e3",
+    "wait-actual.inc": "48935e1f296a1f1c916fc7b7dbd173d2b26790d45bb53b63efbec698617bdfc4"
+  },
+  "runs": [
+    {
+      "command": [
+        "gcc",
+        "-std=gnu11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-O0",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-pthread",
+        "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xemu-wait-snapshot234/artifacts/test001",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xemu-wait-snapshot234/artifacts/test001/test-snapshot.c",
+        "-o",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xemu-wait-snapshot234/artifacts/test001/snapshot-O0"
+      ],
+      "exit_code": 0,
+      "stdout": "checks=26873006 race_pairs=20000 publication_pairs=2000 wrapped_records=100000 completion_winners=6585 timeout_winners=13415 immutable=covered late_completion=hidden fifo_validity=covered\n",
+      "stderr": "",
+      "executable_sha256": "9179f2ffeb47fa31fcf7953b48daa9e5c8edf81a9748fffd4f0197fc4771823d"
+    },
+    {
+      "command": [
+        "gcc",
+        "-std=gnu11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-O2",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-pthread",
+        "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xemu-wait-snapshot234/artifacts/test001",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xemu-wait-snapshot234/artifacts/test001/test-snapshot.c",
+        "-o",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xemu-wait-snapshot234/artifacts/test001/snapshot-O2"
+      ],
+      "exit_code": 0,
+      "stdout": "checks=28865336 race_pairs=20000 publication_pairs=2000 wrapped_records=100000 completion_winners=7290 timeout_winners=12710 immutable=covered late_completion=hidden fifo_validity=covered\n",
+      "stderr": "",
+      "executable_sha256": "65c51fceec3851bb01b32ea5c0f8449d274824016250fdba05dd5b4ed0c5747f"
+    }
+  ],
+  "physical_access": false,
+  "guest_launch": false,
+  "scope": "Compiled copy/request/report/publication and ring with real QEMU atomics; explicit host clock/register/FIFO/mutex/object/string adapters, not QEMU scheduling or GPU ownership."
+}

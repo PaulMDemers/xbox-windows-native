@@ -1,0 +1,182 @@
+--- a/hw/xbox/nv2a/nv2a.c
++++ b/hw/xbox/nv2a/nv2a.c
+@@ -460,8 +460,49 @@
+     qatomic_store_release(&d->preserve227.state, result);
+ }
+ 
+-/*233 read-only property, all row reads ordered by existing PG lock.
+- * Try-lock FIFO->PGRAPH avoids blocking BQL on a worker that needs BQL. */
++/*234 ONE request: 0 unused,1 requested,2 worker copying,7 publication
++ * claimed,3 immutable terminal,5 timeout. No reset/reuse or guest-state write.
++ * Deadline initialized before request release; reader only expires 1/2. */
++static unsigned snapshot234_expire(NV2AState *d)
++{
++    unsigned state = qatomic_load_acquire(&d->snapshot234.state);
++    if ((state == 1 || state == 2) &&
++        qemu_clock_get_ns(QEMU_CLOCK_REALTIME) >= d->snapshot234.deadline) {
++        qatomic_cmpxchg(&d->snapshot234.state, state, 5);
++        state = qatomic_load_acquire(&d->snapshot234.state);
++    }
++    return state;
++}
++
++bool nv2a_snapshot234_claim(NV2AState *d)
++{
++    return snapshot234_expire(d) == 1 &&
++        qatomic_cmpxchg(&d->snapshot234.state, 1, 2) == 1;
++}
++
++/* Caller holds actual PG lock, FIFO has been released. No FIFO reads. */
++void nv2a_snapshot234_copy(NV2AState *d)
++{
++    d->snapshot234.total = d->wait233.total;
++    d->snapshot234.count = d->wait233.count;
++    nv2a_wait233_fill(d, &d->snapshot234.current, 9, 0, false);
++    unsigned start = (d->wait233.next + NV2A_WAIT233_CAPACITY -
++                      d->wait233.count) % NV2A_WAIT233_CAPACITY;
++    for (unsigned i = 0; i < d->wait233.count; i++) {
++        d->snapshot234.rows[i] =
++            d->wait233.rows[(start + i) % NV2A_WAIT233_CAPACITY];
++    }
++}
++
++/* All copied bytes precede release3. Timeout's CAS wins over late completion;
++ * unpublished late storage stays invisible and can never be requested again. */
++void nv2a_snapshot234_publish(NV2AState *d)
++{
++    if (snapshot234_expire(d) != 2) { return; }
++    if (qatomic_cmpxchg(&d->snapshot234.state, 2, 7) != 2) { return; }
++    qatomic_store_release(&d->snapshot234.state, 3);
++}
++
+ static void wait233_format(GString *s, const NV2AWaitRow233 *row)
+ {
+     g_string_append_printf(s, " row=%" PRIu64 ",%" PRIu64 ",%u,%u,%u,%u,%u,%u,%u,%u,%u",
+@@ -471,23 +512,45 @@
+     for (unsigned i = 0; i < 10; i++) { g_string_append_printf(s, ",%u", row->fifo[i]); }
+ }
+ 
+-static char *wait233_report(Object *obj, Error **errp)
++static void snapshot234_request(Object *obj, bool value, Error **errp)
+ {
+     NV2AState *d = NV2A_DEVICE(obj);
+-    if (qemu_mutex_trylock(&d->pfifo.lock)) { return g_strdup("version=233 busy=1 lock=1"); }
+-    if (qemu_mutex_trylock(&d->pgraph.lock)) {
+-        qemu_mutex_unlock(&d->pfifo.lock);return g_strdup("version=233 busy=1 lock=2");
+-    }
++    if (!value || qatomic_load_acquire(&d->snapshot234.state) != 0) {
++        error_setg(errp, "snapshot234 requires ONE true request"); return;
++    }
++    /* Monitor owns BQL. Never block it waiting for FIFO or PG. */
++    if (qemu_mutex_trylock(&d->pfifo.lock)) {
++        error_setg(errp, "snapshot234 FIFO busy; request NOT accepted"); return;
++    }
++    d->snapshot234.deadline = qemu_clock_get_ns(QEMU_CLOCK_REALTIME) +
++                              INT64_C(5000000000);
++    qatomic_store_release(&d->snapshot234.state, 1);
++    pfifo_kick(d);
++    qemu_mutex_unlock(&d->pfifo.lock);
++}
++
++static bool snapshot234_requested(Object *obj, Error **errp)
++{
++    NV2AState *d = NV2A_DEVICE(obj);
++    return qatomic_load_acquire(&d->snapshot234.state) != 0;
++}
++
++static char *snapshot234_report(Object *obj, Error **errp)
++{
++    NV2AState *d = NV2A_DEVICE(obj);
++    unsigned state = snapshot234_expire(d);
++    bool published = state == 3;
+     GString *report = g_string_new(NULL);
+-    g_string_append_printf(report, "version=233 busy=0 total=%" PRIu64 " count=%u capacity=256 overwritten=%" PRIu64,
+-        d->wait233.total, d->wait233.count, d->wait233.total - d->wait233.count);
+-    NV2AWaitRow233 current;
+-    nv2a_wait233_fill(d, &current, 9, 0, true);wait233_format(report, &current);
+-    unsigned start = (d->wait233.next + NV2A_WAIT233_CAPACITY - d->wait233.count) % NV2A_WAIT233_CAPACITY;
+-    for (unsigned i = 0; i < d->wait233.count; i++) {
+-        wait233_format(report, &d->wait233.rows[(start + i) % NV2A_WAIT233_CAPACITY]);
+-    }
+-    qemu_mutex_unlock(&d->pgraph.lock);qemu_mutex_unlock(&d->pfifo.lock);
++    g_string_append_printf(report, "version=234 state=%u tuple_published=%u total=%" PRIu64 " count=%u capacity=256 overwritten=%" PRIu64,
++        state, published, published ? d->snapshot234.total : 0,
++        published ? d->snapshot234.count : 0,
++        published ? d->snapshot234.total - d->snapshot234.count : 0);
++    if (published) {
++        wait233_format(report, &d->snapshot234.current);
++        for (unsigned i = 0; i < d->snapshot234.count; i++) {
++            wait233_format(report, &d->snapshot234.rows[i]);
++        }
++    }
+     return g_string_free(report, false);
+ }
+ 
+@@ -518,7 +581,9 @@
+     qemu_cond_init(&d->pfifo.fifo_idle_cond);
+     object_property_add_bool(OBJECT(d), "xwn-preserve227", preserve227_get,
+                              preserve227_set);
+-    object_property_add_str(OBJECT(d), "xwn-wait233-report", wait233_report, NULL);
++    object_property_add_bool(OBJECT(d), "xwn-snapshot234",
++                             snapshot234_requested, snapshot234_request);
++    object_property_add_str(OBJECT(d), "xwn-snapshot234-report", snapshot234_report, NULL);
+     object_property_add_str(OBJECT(d), "xwn-preserve227-report",
+                             preserve227_report, NULL);
+ }
+--- a/hw/xbox/nv2a/nv2a_int.h
++++ b/hw/xbox/nv2a/nv2a_int.h
+@@ -75,6 +75,15 @@
+     uint32_t fifo_valid, fifo[10];
+ } NV2AWaitRow233;
+ 
++/*234 resident copied tuple; monitor never reads the mutable journal. */
++typedef struct NV2AWaitSnapshot234 {
++    unsigned state;
++    int64_t deadline;
++    uint64_t total;
++    unsigned count;
++    NV2AWaitRow233 current, rows[NV2A_WAIT233_CAPACITY];
++} NV2AWaitSnapshot234;
++
+ typedef struct NV2AState {
+     /*< private >*/
+     PCIDevice parent_obj;
+@@ -90,6 +99,7 @@
+         unsigned count, next;
+         NV2AWaitRow233 rows[NV2A_WAIT233_CAPACITY];
+     } wait233;
++    NV2AWaitSnapshot234 snapshot234;
+     struct {
+         unsigned state, surfaces, dirty, downloaded, error, reason;
+         unsigned consume_stop, consume_steps, consume_words, wait_before, wait_after;
+@@ -245,6 +255,9 @@
+ hwaddr nv_clip_gpu_tile_blit(NV2AState *d, hwaddr blit_base_address,
+                              hwaddr len);
+ 
++bool nv2a_snapshot234_claim(NV2AState *d);
++void nv2a_snapshot234_copy(NV2AState *d);
++void nv2a_snapshot234_publish(NV2AState *d);
+ void nv2a_wait233_fill(NV2AState *d, NV2AWaitRow233 *row,
+                        unsigned kind, uint32_t value, bool fifo_valid);
+ void nv2a_wait233_record(NV2AState *d, unsigned kind, uint32_t value,
+--- a/hw/xbox/nv2a/pgraph/gl/renderer.c
++++ b/hw/xbox/nv2a/pgraph/gl/renderer.c
+@@ -120,6 +120,18 @@
+ {
+     PGRAPHState *pg = &d->pgraph;
+     PGRAPHGLState *r = pg->gl_renderer_state;
++
++    /*234 worker enters with FIFO owned; claim once, then release FIFO BEFORE
++     * PG acquisition. Copy only PG data, release PG before reacquiring FIFO.
++     * Snapshot admission does not halt the producer or acquire BQL. */
++    if (nv2a_snapshot234_claim(d)) {
++        qemu_mutex_unlock(&d->pfifo.lock);
++        qemu_mutex_lock(&pg->lock);
++        nv2a_snapshot234_copy(d);
++        qemu_mutex_unlock(&pg->lock);
++        nv2a_snapshot234_publish(d);
++        qemu_mutex_lock(&d->pfifo.lock);
++    }
+ 
+     /* Request is one-shot and producer admission was halted under FIFO lock.
+      * Frontend references are explicitly not retired by this diagnostic. */
