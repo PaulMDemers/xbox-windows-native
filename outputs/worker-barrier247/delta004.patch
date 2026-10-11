@@ -1,0 +1,266 @@
+--- a/hw/xbox/nv2a/nv2a.c
++++ b/hw/xbox/nv2a/nv2a.c
+@@ -349,6 +349,55 @@
+ {
+     NV2AState *d = NV2A_DEVICE(obj);
+     return qatomic_load_acquire(&d->preserve227.state) == 3;
++}
++
++static void worker247_set(Object *obj, bool value, Error **errp)
++{
++    NV2AState *d=NV2A_DEVICE(obj);
++    if (!value) {
++        unsigned state=qatomic_load_acquire(&d->worker247.state);
++        if (state<1 || state>3 ||
++            qatomic_cmpxchg(&d->worker247.release,false,true)) {
++            error_setg(errp,"247 one release only");return;
++        }
++        pfifo_kick(d);return;
++    }
++    if (runstate_is_running() || !xwn_frontend246_closed() ||
++        d->pgraph.renderer->type!=CONFIG_DISPLAY_RENDERER_OPENGL ||
++        qatomic_load_acquire(&d->worker247.state)!=0) {
++        error_setg(errp,"247 needs unused stopped CPU and acknowledged UI gate");return;
++    }
++    if (qemu_mutex_trylock(&d->pfifo.lock)) {
++        error_setg(errp,"247 FIFO busy; not accepted");return;
++    }
++    d->worker247.old_halt=qatomic_read(&d->pfifo.halt);
++    d->worker247.deadline=qemu_clock_get_ns(QEMU_CLOCK_REALTIME)+5000000000LL;
++    qatomic_set(&d->pfifo.halt,true);
++    qatomic_store_release(&d->worker247.state,1);
++    trace_nv2a_lifecycle244(70,qemu_clock_get_ns(QEMU_CLOCK_REALTIME),qemu_get_thread_id(),0,1,0);
++    qemu_cond_broadcast(&d->pfifo.fifo_cond);
++    qemu_mutex_unlock(&d->pfifo.lock);
++}
++
++static char *worker247_report(Object *obj, Error **errp)
++{
++    NV2AState *d=NV2A_DEVICE(obj);
++    unsigned state=qatomic_load_acquire(&d->worker247.state);
++    if (!qatomic_load_acquire(&d->worker247.ready)) {
++        return g_strdup_printf("version=247 state=%u ready=0",state);
++    }
++    GString *s=g_string_new(NULL);
++    g_string_append_printf(s,"version=247 state=%u ready=1 reason=%u count=%u dirty=%u error=%u when=%"PRIu64" thread=%"PRIu64,
++        state,d->worker247.reason,d->worker247.count,d->worker247.dirty,
++        d->worker247.error,d->worker247.when,d->worker247.thread);
++    for (unsigned n=0;n<2;n++) {
++        g_string_append_printf(s," context%u=%"PRIu64" fence%u=%u",n,d->worker247.context[n],n,d->worker247.fence[n]);
++        for (unsigned i=0;i<7;i++) {g_string_append_printf(s," binding%u=%d",n*7+i,d->worker247.bindings[n][i]);}
++    }
++    for (unsigned n=0;n<d->worker247.count;n++) {
++        for (unsigned i=0;i<6;i++) {g_string_append_printf(s," surface%u_%u=%"PRIu64,n,i,d->worker247.surfaces[n][i]);}
++    }
++    return g_string_free(s,false);
+ }
+ 
+ static void frontend246_set(Object *obj, bool value, Error **errp)
+@@ -686,6 +735,8 @@
+     object_property_add_str(OBJECT(d), "xwn-inventory242-report", inventory242_report, NULL);
+     object_property_add_bool(OBJECT(d), "xwn-preserve227", preserve227_get,
+                              preserve227_set);
++    object_property_add_bool(OBJECT(d),"xwn-worker247-close",NULL,worker247_set);
++    object_property_add_str(OBJECT(d),"xwn-worker247-report",worker247_report,NULL);
+     object_property_add_bool(OBJECT(d), "xwn-frontend246-close", NULL, frontend246_set);
+     object_property_add_str(OBJECT(d), "xwn-frontend246-report", frontend246_report_get, NULL);
+     object_property_add_bool(OBJECT(d), "xwn-lifecycle244-mark", NULL, lifecycle244_mark_set);
+--- a/hw/xbox/nv2a/nv2a_int.h
++++ b/hw/xbox/nv2a/nv2a_int.h
+@@ -104,6 +104,14 @@
+ 
+     qemu_irq irq;
+     bool exiting;
++    struct {
++        unsigned state, reason, count, dirty, error;
++        bool release, ready, old_halt;
++        int64_t deadline;
++        uint64_t when, thread, context[2], surfaces[128][6];
++        int bindings[2][7];
++        unsigned fence[2];
++    } worker247;
+     unsigned lifecycle244_marks;
+     /*227 opt-in host diagnostic, deliberately not migrated or guest-visible.
+      *0 unused,1 queued,2 working,3 preserved,4 refused,5 timeout,6 failed.
+@@ -271,6 +279,7 @@
+ hwaddr nv_clip_gpu_tile_blit(NV2AState *d, hwaddr blit_base_address,
+                              hwaddr len);
+ 
++bool pgraph_gl_worker247(NV2AState *d);
+ bool nv2a_snapshot238_claim(NV2AState *d);
+ void nv2a_snapshot238_copy(NV2AState *d);
+ void nv2a_snapshot238_fifo(NV2AState *d);
+--- a/hw/xbox/nv2a/nv2a.h
++++ b/hw/xbox/nv2a/nv2a.h
+@@ -31,6 +31,7 @@
+ int nv2a_get_screen_off(void);
+ 
+ /*246 Diagnostic implemented by the actual UI frame actor. */
++bool xwn_frontend246_closed(void);
+ bool xwn_frontend246_request(bool close);
+ char *xwn_frontend246_report(void);
+ int nv2a_frontend246_loan(void);
+--- a/hw/xbox/nv2a/pgraph/gl/renderer.c
++++ b/hw/xbox/nv2a/pgraph/gl/renderer.c
+@@ -272,6 +272,121 @@
+     v->fifo[2] = d->pfifo.pending_interrupts;
+     v->fifo[3] = d->pfifo.enabled_interrupts;
+     for (unsigned i = 0; i < 10; i++) { v->fifo[4+i] = words[i]; }
++}
++
++/*247 One-shot worker checkpoint. Entry/exit own FIFO; all fence waits own NONE
++ * of BQL/FIFO/PG/renderer locks. The stopped CPU and acknowledged UI gate are
++ * mandatory. No delete, cache flush, dirty clear, callback retirement or permit.
++ * State0 unused,1 requested,2 capturing,3 parked,5 released,6 refused/expired.
++ * ready publishes an immutable scalar/object record once, independently state.
++ */
++static void worker247_trace(unsigned phase, uint64_t key, uint64_t a, uint64_t b)
++{
++    trace_nv2a_lifecycle244(phase, qemu_clock_get_ns(QEMU_CLOCK_REALTIME),
++                          qemu_get_thread_id(), key, a, b);
++}
++
++static bool worker247_alive(NV2AState *d)
++{
++    return !qatomic_load_acquire(&d->worker247.release) &&
++        qemu_clock_get_ns(QEMU_CLOCK_REALTIME) < d->worker247.deadline &&
++        xwn_frontend246_closed();
++}
++
++static bool worker247_context(NV2AState *d, unsigned index, GloContext *context)
++{
++    if (!context || !worker247_alive(d) || bql_locked()) { return false; }
++    glo_set_current(context);
++    d->worker247.context[index] = (uint64_t)(uintptr_t)context;
++    const GLenum fields[7] = { GL_TEXTURE_BINDING_2D, GL_CURRENT_PROGRAM,
++        GL_ARRAY_BUFFER_BINDING, GL_ELEMENT_ARRAY_BUFFER_BINDING,
++        GL_DRAW_FRAMEBUFFER_BINDING, GL_VERTEX_ARRAY_BINDING, GL_ACTIVE_TEXTURE };
++    for (unsigned i=0;i<7;i++) {
++        glGetIntegerv(fields[i], &d->worker247.bindings[index][i]);
++        worker247_trace(73, index*7+i, d->worker247.bindings[index][i],
++                        d->worker247.context[index]);
++    }
++    GLenum error=glGetError();
++    if (error) { d->worker247.error=error; return false; }
++    GLsync fence=glFenceSync(GL_SYNC_GPU_COMMANDS_COMPLETE,0);
++    if (!fence) { return false; }
++    worker247_trace(74,index,100000000,0);
++    GLenum result=glClientWaitSync(fence,GL_SYNC_FLUSH_COMMANDS_BIT,100000000);
++    glDeleteSync(fence); /* Only the newly-created diagnostic fence. */
++    d->worker247.fence[index]=result;
++    error=glGetError();d->worker247.error=error;
++    worker247_trace(75,index,result,error);
++    return !error && (result==GL_ALREADY_SIGNALED ||
++                     result==GL_CONDITION_SATISFIED) && worker247_alive(d);
++}
++
++/* Called solely by PFIFO worker with FIFO lock, before pending/pusher/reports. */
++bool pgraph_gl_worker247(NV2AState *d)
++{
++    if (qatomic_load_acquire(&d->worker247.state)!=1) { return false; }
++    if (qatomic_cmpxchg(&d->worker247.state,1,2)!=1) { return false; }
++    PGRAPHState *pg=&d->pgraph;PGRAPHGLState *r=pg->gl_renderer_state;
++    unsigned reason=0;
++    d->worker247.thread=qemu_get_thread_id();
++    d->worker247.when=qemu_clock_get_ns(QEMU_CLOCK_REALTIME);
++    worker247_trace(71,0,2,0);
++    bool renderer=!qemu_mutex_trylock(&pg->renderer_lock);
++    bool graph=renderer && !qemu_mutex_trylock(&pg->lock);
++    if (!renderer || !graph) { reason=1; }
++    else if (!worker247_alive(d) || !r || bql_locked() ||
++             !d->pfifo.halt || pg->framebuffer_in_use) { reason=2; }
++    else if (d->pfifo.regs[NV_PFIFO_CACHE1_DMA_GET]!=
++             d->pfifo.regs[NV_PFIFO_CACHE1_DMA_PUT] ||
++             (d->pfifo.regs[NV_PFIFO_CACHE1_DMA_STATE] &
++              (NV_PFIFO_CACHE1_DMA_STATE_METHOD_COUNT|NV_PFIFO_CACHE1_DMA_STATE_ERROR)) ||
++             pg->primitive_mode!=PRIM_TYPE_INVALID || pg->draw_arrays_length ||
++             pg->inline_array_length || pg->inline_elements_length ||
++             pg->inline_buffer_length || pg->waiting_for_nop ||
++             pg->waiting_for_flip || pg->waiting_for_context_switch ||
++             pg->renderer_switch_phase!=PGRAPH_RENDERER_SWITCH_PHASE_IDLE ||
++             qatomic_read(&pg->flush_pending) || qatomic_read(&pg->sync_pending) ||
++             qatomic_read(&r->downloads_pending) ||
++             qatomic_read(&r->download_dirty_surfaces_pending) ||
++             qatomic_read(&r->shader_cache_writeback_pending)) { reason=3; }
++    if (graph && r) {
++        SurfaceBinding *s;
++        QTAILQ_FOREACH(s,&r->surfaces,entry) {
++            if (d->worker247.count==128) { reason=4;break; }
++            unsigned n=d->worker247.count++;
++            uint64_t flags=(s->draw_dirty?1:0)|(s->download_pending?2:0)|
++                (s->cpu_write_evict_pending?4:0)|(s->upload_pending?8:0);
++            uint64_t values[6]={(uint64_t)(uintptr_t)s,s->vram_addr,s->size,
++                               s->gl_buffer,flags,s->access_cb!=NULL};
++            memcpy(d->worker247.surfaces[n],values,sizeof(values));
++            worker247_trace(76,values[0],values[1],values[2]);
++            worker247_trace(77,values[0],values[3],flags);
++            if (flags) { d->worker247.dirty++;if (!reason) {reason=5;} }
++        }
++    }
++    if (graph) {qemu_mutex_unlock(&pg->lock);}
++    if (renderer) {qemu_mutex_unlock(&pg->renderer_lock);}
++    qemu_mutex_unlock(&d->pfifo.lock);
++    /* No renderer/PG/FIFO/BQL ownership spans either finite GL fence wait. */
++    if (!reason && !worker247_context(d,0,g_nv2a_context_render)) { reason=6; }
++    if (!reason && !worker247_context(d,1,g_nv2a_context_display)) { reason=7; }
++    glo_set_current(g_nv2a_context_render);
++    qemu_mutex_lock(&d->pfifo.lock);
++    d->worker247.reason=reason;
++    qatomic_store_release(&d->worker247.ready,true);
++    if (!reason && worker247_alive(d)) {
++        qatomic_store_release(&d->worker247.state,3);
++        worker247_trace(78,0,3,0);
++        while (worker247_alive(d)) {
++            /* Releases FIFO throughout the bounded park; no other locks held. */
++            qemu_cond_timedwait(&d->pfifo.fifo_cond,&d->pfifo.lock,20);
++        }
++    }
++    bool explicit_release=qatomic_load_acquire(&d->worker247.release);
++    qatomic_set(&d->pfifo.halt,d->worker247.old_halt);
++    qatomic_store_release(&d->worker247.state,
++                         !reason && explicit_release ? 5 : 6);
++    worker247_trace(80,0,qatomic_read(&d->worker247.state),reason);
++    return true; /* Skip pending/pusher/reports for this iteration, even refusal. */
+ }
+ 
+ static void pgraph_gl_process_pending(NV2AState *d)
+--- a/hw/xbox/nv2a/pgraph/gl/surface.c
++++ b/hw/xbox/nv2a/pgraph/gl/surface.c
+@@ -1570,6 +1570,10 @@
+ 
+     SurfaceBinding *s, *next;
+     QTAILQ_FOREACH_SAFE(s, &r->surfaces, entry, next) {
++        /*247 Observation only: actual latest flags BEFORE natural invalidation.
++         * No inferred bytes, dirty clear or new disposal policy. */
++        trace_nv2a_lifecycle244(82,qemu_clock_get_ns(QEMU_CLOCK_REALTIME),qemu_get_thread_id(),(uint64_t)(uintptr_t)s,s->vram_addr,s->size);
++        trace_nv2a_lifecycle244(83,qemu_clock_get_ns(QEMU_CLOCK_REALTIME),qemu_get_thread_id(),(uint64_t)(uintptr_t)s,s->gl_buffer,(s->draw_dirty?1:0)|(s->download_pending?2:0)|(s->cpu_write_evict_pending?4:0)|(s->upload_pending?8:0));
+         // FIXME: We should download all surfaces to ram, but need to
+         //        investigate corruption issue
+         // pgraph_gl_surface_download_if_dirty(d, s);
+--- a/hw/xbox/nv2a/pfifo.c
++++ b/hw/xbox/nv2a/pfifo.c
+@@ -552,6 +552,10 @@
+     while (true) {
+         d->pfifo.fifo_kick = false;
+ 
++        if (pgraph_gl_worker247(d)) {
++            d->pfifo.fifo_kick=true;
++            continue;
++        }
+         pgraph_process_pending(d);
+ 
+         if (!d->pfifo.halt) {
+--- a/ui/xemu.c
++++ b/ui/xemu.c
+@@ -822,6 +822,11 @@
+ {
+     trace_nv2a_lifecycle244(phase, qemu_clock_get_ns(QEMU_CLOCK_REALTIME),
+                           qemu_get_thread_id(), 0, a, b);
++}
++
++bool xwn_frontend246_closed(void)
++{
++    return qatomic_load_acquire(&frontend246_state)==2;
+ }
+ 
+ bool xwn_frontend246_request(bool close)

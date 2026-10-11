@@ -1,3 +1,92 @@
+#247/248 CLOSED — worker/UI barrier scope PASS,248 workload FAIL
+
+Compiled247/build004 SHA6bd9f6d6b1f8ea3453ba7366b81399e3c7f06c2948241f341d446a81a94fcdce,
+same exact binary in both new children. All owned actors CLOSED; no guest queued.
+247 failed a host UI/worker report comparison; complete lifecycle marker missing.
+Preserved failed overall outcome and separate bounded partial worker proof.
+248 fixed host comparison, two real loader pins, full breakpoint teardown/resume.
+Never replay/recollect either child, old builds or previous closed cases.
+
+248 actual worker120160 parked250234300ns, twoGL_CONDITION_SATISFIED fences,
+zero current surface-list entries,14 context bindings; UI closure/reopening PASS.
+14339 lifecycle events,23 complete callback chains,3 target retirements before
+final marker,0CPU-stopped frees,1828 complete UI loans1574 accelerated254 fallback,
+one complete empty natural flush,0null sync returns. All shared resources remain
+retained; no deletion/native permit. Natural flush flags had0rows; other natural
+invalidation paths remain uninstrumented. Latest dirty GPU bytes at later
+invalidation are NOT preserved by this checkpoint or earlier227 readback.
+
+248 overallFAIL: inherited wizard201 pending-install wait258 timed out120210ms.
+No result.log/retirement.log; CPU workload never started, no6006/dashboardreturn.
+Single live runtime snapshot shell_running/no bugcheck; eight-minute owned host
+bound then orderly HMPstop/quit exit0. Cold allocation6722files320dirs321clusters,
+0orphans/errors;5 structural hives/28 selected protected files/policy/history
+passed. SoleFtdisk49 type1 remains strictFAIL. No blanket file-content/durability
+or causal link from worker gate to install timeout is claimed.247 separately had
+normal restart/cold integrity but stays failed for host assertion/missing marker.
+
+Implementation/adapters reviewed: O0/O2ASanUBSan each3072actual-helper paths,
+23296checks; locks dropped for fences, FIFO released during finite park.13source
+borrows restored. Failed permission/preflight/enum-build/adapters and raw logs
+preserved.248 diagnostic-review001.json is scoped barrier review, not ordinary
+qualification. Legacy audit labels242/244 are inherited descriptive text; actual
+new inputs/results are pinned247/248 records. No physical/peer changes.
+
+Next: investigate the specific inherited pending-install timeout before another
+end-to-end qualification, using bounded installer/window lifecycle evidence and
+unchanged device policy. Do not force cancel/disable devices to obtainPASS.
+Instrument ALL natural surface invalidations for latest flags/data; conflicting
+CPU/GPU aliases must refuse. Require latest preservation before any new disposal,
+actor-owned unbinding, individual retained identities and bounded save-thread
+completion. Worker/UI fences do not retire callbacks or shared caches/contexts.
+NativeGPU permit remains refused. Preserve0101/video0093,0088rollback,immutable0.1.0.
+Emulator only; next hardware deployment requires separately qualified candidate.
+Maintain20GiBguard/backing chains; closed portable offload is separately recorded.
+
+#248 host-corrected worker barrier — NEW child prepared
+
+247/preserve001 CLOSED FAILED: actual worker park/two fences completed, but host
+compared saved UI report against reused worker reply and asserted. Bounded abort
+released worker/reopened UI/resumed guest. Normal6006/dashboard/host exit and full
+cold integrity passed; strict Ftdisk49 remains. Missing final marker prevents full
+lifecycle qualification; worker-partial002.json separately records limited span.
+Never relaunch/recollect247. Build001 permission/002 preparation/003 enum failure,
+host adapter001/002 and proof001 mistakes retained. Compiled004 remains exact.
+
+248 uses SAME compiled247004 emulator, new child and fixed host UI comparison.
+Frozen1353 pins, actual source/fresh fixture/capacity review PASS. New host tests
+pair54/guards72/close25/connection12/UI19/lifecycle20/worker-proof14 PASS. Actual
+worker ASan/UBSan adapters from247 each3072 paths remain unchanged. No new build.
+
+Inspect outputs/worker-barrier248/matrix001.json and preserve001/host-state.json
+for actual actors. Sole new case nt5-phase248-preserve001, private E:/Codex-private-
+artifacts/xbox-windows-feasibility/phase248-runs. Never duplicate launch/audit.
+On close analyze-worker.py once, source/raw review/cold audit, final notes/commit.
+Both gates retain shared resources and native permit remains refused. Latest
+dirty flags at natural invalidation are observations; dirty GPU bytes there
+are not preserved yet. Physical/peer baselines unchanged; emulator only.
+
+#247 worker barrier — prepared, one new emulator child authorized
+
+Compiled004 extends exact246 UI gate, native224/219/211 unchanged. Finite worker
+checkpoint and two100ms context fences occur with no actor-required locks held.
+Current surface flags explicitly refuse dirty/pending work; no new disposal.
+Natural flush records latest flags before its existing invalidation. Latest
+dirty GPU bytes at that disposal are NOT yet preserved; no native permit.
+
+ASan/UBSan O0/O2 actual-worker adapters each3072 paths PASS; parser14 guards PASS,
+existing host guards72/pair54/close25/connection12/UI19/lifecycle20 PASS.
+Earlier permission/preflight/enum-build and adapter failures preserved under247.
+All13 borrowed sources restored. Frozen1262 pins/prelaunch reviewed. C guard20GiB.
+
+Next sole fresh case: outputs/worker-barrier247/preserve001, private
+E:/Codex-private-artifacts/xbox-windows-feasibility/phase247-runs/nt5-phase247-preserve001.
+Inspect matrix001.json/host-state.json for actual actors; never duplicate launch
+or audit. On close analyze-worker.py once, raw review, cold audit, notes/commit.
+Emulator only, no peer merge or hardware FTP/deploy/test. Physical0101/video0093,
+0088rollback/immutable0.1.0 and all prior evidence retained. Strict Ftdisk49 gate
+unchanged. This is not full shared-reference retirement/native ownership.
+
 # Current:246 CLOSED; real UI loans closed/reopened, shared contexts retained
 
 Read outputs/frontend-close246/DESIGN.md/REPORT.md/NEXT.md/review001.json and
