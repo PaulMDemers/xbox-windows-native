@@ -1,0 +1,109 @@
+{
+  "sdk": "C:\\nxdk",
+  "head": "58427c078b4ccb0121f359b6b6c536b3b2914976",
+  "pins": {
+    "Makefile": {
+      "bytes": 4460,
+      "sha256": "3d1db29fe9f34b1cdc668400f03c8aa3a55e87970b8e6a330b1c9f303a2e9a2b"
+    },
+    "bin/nxdk-cc": {
+      "bytes": 592,
+      "sha256": "85d255e469eacd308baa0aaf9f0dbed3075c0a973f481e6413191c1c6cbaaf44"
+    },
+    "bin/nxdk-link": {
+      "bytes": 239,
+      "sha256": "7ef2f2dd2739f32ebb65d13ad1edd469ecf005fbc0eb4a4a107d5261a188c84a"
+    },
+    "lib/pbkit/pbkit.c": {
+      "bytes": 117369,
+      "sha256": "da9835f0d9e9da4a7e5c185b7913752aab5614bfc170ebc572cc12cc3af0da92"
+    },
+    "lib/pbkit/pbkit.h": {
+      "bytes": 2888,
+      "sha256": "769411036b1e50eb24c72f9aacd8dc3c0a9d718560dbf03c718770d8bca6c03e"
+    },
+    "lib/pbkit/pbkit_dma.c": {
+      "bytes": 2204,
+      "sha256": "bac2d0090e9cba4c80f6f38e1ec7175a1d8d95d236e0250d163c84d4eebac0c1"
+    },
+    "lib/pbkit/pbkit_dma.h": {
+      "bytes": 2305,
+      "sha256": "7017175896283a6c9634bd6ab9efbec316c66fb03b73f8d9987181ae321070db"
+    },
+    "lib/pbkit/pbkit_pushbuffer.c": {
+      "bytes": 6149,
+      "sha256": "30521f499ff9683058b8bf9433faf2e5098bf54557a7fd0b9844a5a18a74766b"
+    },
+    "lib/pbkit/nv_regs.h": {
+      "bytes": 56690,
+      "sha256": "7fba05a849a6d96430d1fa3df79f7085b83c3209171189ef217e890d68aead18"
+    },
+    "lib/libpbkit.lib": {
+      "bytes": 79698,
+      "sha256": "4bab909e2b6f6e127260a43fbaf0620f40141c0157e923f0f397178dd3ea957d"
+    },
+    "samples/mesh/main.c": {
+      "bytes": 13146,
+      "sha256": "7f9bfda3706e31f97fbce7afb3ab9e2554bf7e94a5635d48ed0b689481e34d5a"
+    },
+    "samples/mesh/Makefile": {
+      "bytes": 191,
+      "sha256": "264d3d7ba8edad6fec90a39d2a1c83ddd2ba3294b6079d760918a9b3028ebcd7"
+    },
+    "samples/mesh/vs.vs.cg": {
+      "bytes": 1457,
+      "sha256": "198417a70a29b2fe41b3b95c514dfc24e0081a5391edb88ee39f78c3d825d211"
+    },
+    "samples/mesh/ps.ps.cg": {
+      "bytes": 241,
+      "sha256": "14e40b9092113ee80d34bdcb4cc7c082fb78c11a26396770b455d5db7cd0e6d7"
+    },
+    "samples/triangle/main.c": {
+      "bytes": 7757,
+      "sha256": "626e860951df6028c15184f512ffe828d29748a6aa007369e6c940747943f6a8"
+    },
+    "samples/triangle/vs.vs.cg": {
+      "bytes": 406,
+      "sha256": "afb4f20edd33d7e4a4ba09ecf30e1cd74944b8370ee1244072aa80f124954eae"
+    },
+    "samples/triangle/ps.ps.cg": {
+      "bytes": 90,
+      "sha256": "402bd546b1642ca2030015ac1fcea40f02c01bfcd72c40cd4549c5fa5df9a47c"
+    },
+    "samples/hello/main.c": {
+      "bytes": 232,
+      "sha256": "e1bf100a97e1c70d22609d435f987dcb5db7a5b62734eb91ca67ad8a3d7952f6"
+    }
+  },
+  "normal_texture_source": "E:\\Codex-archive\\xbox-windows-native\\retirement264-source001\\hw\\xbox\\nv2a\\pgraph\\gl\\texture.c",
+  "normal_texture_sha256": "946c5ac6bc83ad7328185d70a1941f2c18996b9ffd28e03864a145fbb7158188",
+  "sdk_modified": false,
+  "guest_prepared": false,
+  "guest_launched": false,
+  "physical_access": false,
+  "candidates": [
+    {
+      "path": "C:/nxdk/samples/mesh",
+      "use": "Actual contiguous texture allocation, normal texture register setup, shader and indexed draws",
+      "insufficiency": "Animated single-texture workload with unbounded loop; no four-unit immutable control/checkpoints/oracle"
+    },
+    {
+      "path": "C:/nxdk/samples/triangle",
+      "use": "Simpler vertex program and direct draw setup",
+      "insufficiency": "No textured draw or lifetime discriminator"
+    },
+    {
+      "path": "C:/Users/Paul/Desktop/ogxbox-linux/run-xemu-nxdk-color-bars.ps1",
+      "use": "Existing launcher reference only",
+      "insufficiency": "Referenced run/xemu-nxdk-color-bars.toml is absent; not a ready fixture. No launcher executed"
+    }
+  ],
+  "source_findings": [
+    "pb_init claims instance memory and creates/binds its DMA and graphics contexts; this is standalone Xbox application initialization, NOT a safe Windows renderer retirement operation.",
+    "pb_busy compares FIFO GET/PUT and PGRAPH_STATUS; it does not attest host GL/context/shader/callback ownership.",
+    "pb_finished submits ASK_FOR_IDLE/NOP/interrupt then changes back-buffer index; it is not a stable framebuffer identity or full retirement acknowledgment.",
+    "pb_agp_access provides linear AGP alias; any future readback must identify exact allocation/pitch/tiling and maintain framebuffer ownership.",
+    "Normal xemu disabled texture path unbinds four GL targets but retains unit reference; an actual draw invoking normal binder is needed after disabling, not merely writing enable registers.",
+    "Normal re-enable can take fast or slow path, dirty memory may replace cache object; independent generation/key/source/GL and final framebuffer comparisons remain required."
+  ]
+}

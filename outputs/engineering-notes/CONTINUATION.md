@@ -1,3 +1,38 @@
+#270 CLOSED — host lifecycle accounting and owned-workload review
+
+Read outputs/lifetime-accounting270/REPORT.md, DESIGN.md, WORKLOAD.md, NEXT.md,
+host-tests001.json, fixture-review.json and final-review.json. No renderer/native
+build, guest preparation or launch; no physical/SDK/production driver change.
+All owned processes CLOSED, including read-only SDK status session6005.
+
+Proposed lifetime.h reserves four first-bind/final-free generation records and
+uses128 bounded exact run records plus saturating64-bit counters. Actual269's127
+captured callbacks reconstruct exactly from7runs+1first-bind; all129 source event
+hashes verified. Historical overflow is still an external-incomplete failure;
+never relaunch/recollect/parent269 or rehabilitate its unknown tail.
+Host ASan/UBSan1,000,730checks pass, including1,000,000 repeated decrements,
+reconstruction, tombstones/reused addresses, saturation followed by reserved
+lifecycle capture. Exact269 one-word gate with new state passed4096 publication
+races and busy/foreign/closed refusals. Private capsule lifetime270-host001 onE.
+No actualGL/callback/guest/ordinary/performance/nativeGPU qualification.
+
+Pinned installed nxdk58427c078b4ccb0121f359b6b6c536b3b2914976;18 source/library
+files reviewed. Mesh/triangle can seed NEW standalone four-texture control but
+lack required checkpoints/oracle. Old color-bars launcher config absent, not run.
+pb_init establishes standalone application objects and is NOT Windows ownership;
+pb_busy does not attest host completion, pb_finished changes buffer identity.
+Next implement controlled owned allocations/draws/disable+nontextured draw/idle/
+compiled checkpoints/re-enable with independent pixels. Integrate new observer
+accounting separately, with complete parser negatives and NEW homebrew attestation;
+do not skip/pretend the Windows258 process/driver attestation. No268release until
+an actual unchanged control qualifies. WORKLOAD.md has sequence and exact scope.
+
+Physical audio004/softwarevideo118/shared158/FATX0101, recovery256,immutable0.1.0,
+0088 and all failures unchanged. No hardware queued. Deadline October12 04:00UTC;
+retain20GiB projected build/launch guard. C latest21,786,664,960bytes free; no new
+offload or backing-chain move. Historical emulator policy remains distinct from
+physical audio-integrated demo. Old269 result below remains authoritative.
+
 #269 CLOSED — observation saturated; unchanged four-texture reuse not proved
 
 Read outputs/unit-reuse269/REPORT.md, DESIGN.md, NEXT.md, final-review.json and
