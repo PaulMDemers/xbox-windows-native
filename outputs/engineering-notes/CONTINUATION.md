@@ -1,3 +1,70 @@
+#249/250 CLOSED — workload/UI/worker scope PASS; installer hold not reproduced
+
+All owned sessions closed, no guest or hardware test queued.249 failed missing
+inventory before Windows launch; resumed/teardown and full cold audit retained.
+250 NEW corrected kit supplied/static-preflighted exact inventory, same compiled
+247004 emulator and249 wait-only helper. One launch16:42:51UTC, dashboard16:44:11,
+cold-audited closure16:44:49 October11. Never replay/recollect either closed case.
+
+Only F/xwnret224/wizard.exe gained every-five-second read-only refused-action
+foreground/GUI/title/class/process-creation telemetry. Original006 eligibility,
+input/revalidation/idle/timeout and policy exact inverse reviewed; drivers,
+settings, startup/device policy unchanged. No new focus/dialog/physical actions.
+250 three real target1/2/5 closures and5100ms idle, completed23430ms. ZERO refused
+wait snapshots: original248 foreground owner/conjunct/producer remains unresolved,
+not fixed. Host malformed grammar/projection tests passed; wait branch runtime
+unexercised. Keep telemetry for next justified experiment; no blind repeat boots.
+
+250 raw scoped proofPASS: worker92948 two fences,266230100ns park; UI gate closure/
+reopen,14993events23complete callbacks0CPU-stopped frees,1910UIloans1655accelerated
+255fallback,one empty completeflush. CPU64leases65alloc/releases/refusals,
+3194880verifiedbytes/fourjoined workers; eight retirement snapshots128reads still
+refuse NO_OWNERSHIP/UNMODELED_BUSY. Normal6006/dashboardreturn. Cold6724files,
+320dirs321dirclusters0errors/orphans,5hives28protected/history/policyPASS. Sole
+Ftdisk49 strictFAIL; debugger never ordinary/physical/release/nativeGPUqualified.
+
+Next common invalidation/latest-content discriminator:
+outputs/installer-focus250/INVALIDATION-NEXT.md. Current247 flush-only82/83 records
+no entries and misses other paths; earlier227 checkpoint may be stale. Observe
+latest flags/controlled contents and actual dirty/clean CPU/GPU alias ordering,
+refuse conflicts before any disposal change. Shared references/context bindings/
+shader actor joins remain prerequisites. No graphics code changed this turn.
+
+Closed portable249/250 caches hash/readback offloaded to E with original junctions;
+no backing chains moved.20GiBguard unchanged; inspect actual capacity. Physical
+0101/video0093,0088rollback,immutable0.1.0,peer devices and all failures preserved.
+Unified preparation7638 and controllers55871/92551 closed; process-closure001
+checks actual identities, never old-PID kills. Source/reports reviewed and pushed.
+
+# Earlier record preserved
+
+#250 ACTIVE — fresh foreground diagnostic;249 CLOSED prelaunch failure
+
+249 is fully closed/cold audited, no Windows launch (missing static inventory).
+Never replay/recollect it. New250 static dependency check supplies/pins inventory
+before resource acquisition; same exact compiled247004 emulator and249 wait-only
+helper/immutable seed. One emulator launch, no hardware/policy/driver/settings
+change or new focus/dialog actions. Runtime unverified; inspect250 actual records
+rather than duplicate any launch. Runner480s bound; debugger teardown/resume,
+full cold audit/diagnostic grammar review. Known failed host tests remain preserved.
+
+# Earlier record preserved
+
+#249 ACTIVE — installer foreground observation only
+
+New installer-focus249/preserve001 prepared for ONE emulator launch. Same exact
+247004 emulator and248 worker/UI trace; NEW standalone239 child changes only
+F/xwnret224/wizard.exe refused-action telemetry. Original006 eligibility,
+cancellation/idle/timeout and policy retained by exact inverse source proof.
+No physical access, focus activation, device/service changes or native GPU permit.
+Inspect actual host-state/trace/launch/cleanup records; never duplicate launches.
+Owned runner480s bound, full breakpoint teardown then cold allocation/hive/hash
+and diagnostic raw grammar audits. Failed host test import and synthetic length
+fixture preserved; corrected003 projection guards passed. Runtime unverified.
+Next discriminate actual foreground owner/GUI state; do not waive pending install.
+
+# Earlier record preserved
+
 #247/248 CLOSED — worker/UI barrier scope PASS,248 workload FAIL
 
 Compiled247/build004 SHA6bd9f6d6b1f8ea3453ba7366b81399e3c7f06c2948241f341d446a81a94fcdce,

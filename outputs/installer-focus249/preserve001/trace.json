@@ -1,0 +1,59 @@
+{
+  "case": "preserve001",
+  "phase": "xbe",
+  "scope": "ONE independent immutable GPU snapshot at a selected CPU-stopped loader phase.",
+  "debugger": true,
+  "physical_access": false,
+  "gpu_ownership_qualified": false,
+  "ordinary_qualified": false,
+  "debugger_memory_writes": false,
+  "debugger_register_writes": false,
+  "passed": false,
+  "dirty_surface_coverage": false,
+  "host_vram_preservation": true,
+  "reference_observation": true,
+  "started_utc": "2026-10-11T16:39:14.232141+00:00",
+  "monitor": [
+    {
+      "utc": "2026-10-11T16:39:40.967596+00:00",
+      "command": "stop",
+      "reply": "s\u001b[K\u001b[Dst\u001b[K\u001b[D\u001b[Dsto\u001b[K\u001b[D\u001b[D\u001b[Dstop\u001b[K\r\n(qemu) "
+    }
+  ],
+  "events": [],
+  "gdb_requests": [
+    {
+      "command": "qSupported",
+      "reply": "PacketSize=20020;qXfer:features:read+;vContSupported+;multiprocess+"
+    },
+    {
+      "command": "?",
+      "reply": "T05thread:01;"
+    },
+    {
+      "command": "qqemu.PhyMemMode",
+      "reply": "0"
+    },
+    {
+      "command": "qqemu.PhyMemMode",
+      "reply": "0"
+    }
+  ],
+  "dashboard_barrier": {
+    "utc": "2026-10-11T16:39:40.913903+00:00",
+    "reply": "200 OK.",
+    "attempts": 30,
+    "physical_access": false
+  },
+  "features": "PacketSize=20020;qXfer:features:read+;vContSupported+;multiprocess+",
+  "initial_stop": "T05thread:01;",
+  "prior_physical_mode": "0",
+  "physical_mode_restored": true,
+  "status": "preserved_guest_trace_failure",
+  "error": "FileNotFoundError(2, 'No such file or directory')",
+  "host_traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\outputs\\installer-focus249\\trace.py\", line 147, in <module>\n    inventory=read(k/'inventory001.json');r['inventory_sha256']=sha(k/'inventory001.json');r['capstone_version']=capstone.__version__\n  File \"C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\outputs\\installer-focus249\\trace.py\", line 14, in <lambda>\n    read=lambda p:json.loads(p.read_text());sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();utc=lambda:datetime.datetime.now(datetime.timezone.utc).isoformat()\n                             ~~~~~~~~~~~^^\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 787, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python314\\Lib\\pathlib\\__init__.py\", line 771, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\Paul\\\\Documents\\\\Codex\\\\2026-10-02\\\\xbox-windows-feasibility\\\\outputs\\\\installer-focus249\\\\inventory001.json'\n",
+  "guest_resumed": true,
+  "remaining_breakpoints": [],
+  "closed": true,
+  "closed_utc": "2026-10-11T16:39:41.018508+00:00"
+}
