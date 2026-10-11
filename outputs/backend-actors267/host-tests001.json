@@ -1,0 +1,40 @@
+{
+  "guest_executed": false,
+  "physical_access": false,
+  "inputs": {
+    "host-tests.py": "ec7aeb81b5d919665e12f80748bcae31dd0bef3fc146c763be613ce47417fcbd",
+    "actor-core.h": "0972fdb7c7dc9e79f62e7289de843d1b732b11fe305e0a29b4037d97edfa7498",
+    "test-actors.c": "2bd5caae9add2c7421fc69494452bfa52b7c54a4d1e7638dde2c2e46d3048c1c"
+  },
+  "command": [
+    "wsl",
+    "-d",
+    "Ubuntu",
+    "-u",
+    "root",
+    "--",
+    "gcc",
+    "-std=c11",
+    "-O1",
+    "-g",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-fsanitize=address,undefined",
+    "-fno-omit-frame-pointer",
+    "-pthread",
+    "/mnt/e/Codex-archive/xbox-windows-native/actors267-host001/test-actors.c",
+    "-o",
+    "/mnt/e/Codex-archive/xbox-windows-native/actors267-host001/test"
+  ],
+  "compile_exit": 0,
+  "compile_output": "",
+  "test_exit": 0,
+  "test_output": "4096 concurrently published records;8192 contenders;10000 saturated refusals;pending/null/zero-capacity states PASS\n",
+  "passed": true,
+  "files": {
+    "actor-core.h": "0972fdb7c7dc9e79f62e7289de843d1b732b11fe305e0a29b4037d97edfa7498",
+    "test-actors.c": "2bd5caae9add2c7421fc69494452bfa52b7c54a4d1e7638dde2c2e46d3048c1c",
+    "test": "a69797fe589554b688dc3d4ba18bf5681dff510a3faf0bcc812c2190e6b0d2c0"
+  }
+}

@@ -1,0 +1,477 @@
+--- a/hw/xbox/nv2a/pgraph/gl/renderer.c
++++ b/hw/xbox/nv2a/pgraph/gl/renderer.c
+@@ -1064,6 +1064,128 @@
+     unsigned shader_jobs_unknown;
+ } X265State;
+ 
++/*267 Bounded query of indexed references and known context-local containers.
++ * Uninstantiated reserved names are recorded, never bound into existence.
++ * All selection changes are restored and recorded, including failure paths.
++ */
++static bool x267_indexed(X265Rows *out,unsigned role,int64_t deadline)
++{
++    const GLenum limits[]={GL_MAX_UNIFORM_BUFFER_BINDINGS,GL_MAX_TRANSFORM_FEEDBACK_BUFFERS};
++    const GLenum bindings[]={GL_UNIFORM_BUFFER_BINDING,GL_TRANSFORM_FEEDBACK_BUFFER_BINDING};
++    const GLenum starts[]={GL_UNIFORM_BUFFER_START,GL_TRANSFORM_FEEDBACK_BUFFER_START};
++    const GLenum sizes[]={GL_UNIFORM_BUFFER_SIZE,GL_TRANSFORM_FEEDBACK_BUFFER_SIZE};
++    for(unsigned family=0;family<2;family++) {
++        GLint count=0;glGetIntegerv(limits[family],&count);
++        if(count<1 || count>1024) return false;
++        if(!x265_add(out,52,role,family,count,0,0,0,0)) return false;
++        for(unsigned i=0;i<(unsigned)count;i++) {
++            if(qemu_clock_get_ns(QEMU_CLOCK_REALTIME)>=deadline) return false;
++            GLint name=0;GLint64 start=0,size=0;
++            glGetIntegeri_v(bindings[family],i,&name);
++            glGetInteger64i_v(starts[family],i,&start);
++            glGetInteger64i_v(sizes[family],i,&size);
++            if(start<0 || size<0 || !x265_add(out,53,role,family,i,(unsigned)name,start,size,0)) return false;
++        }
++    }
++    /* Scope is the GL4.0 interfaces used by this pinned backend. No assertion
++     * that future SSBO/atomic-counter/image/extension references are absent. */
++    return glGetError()==GL_NO_ERROR;
++}
++static bool x267_fbo(X265Rows *out,unsigned role,GLuint name,int64_t deadline)
++{
++    bool live=name && glIsFramebuffer(name);
++    if(!x265_add(out,54,role,name,live,0,0,0,0)) return false;
++    if(!live) return glGetError()==GL_NO_ERROR;
++    GLint old_draw=0,old_read=0,count=0;
++    glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING,&old_draw);
++    glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING,&old_read);
++    glGetIntegerv(GL_MAX_COLOR_ATTACHMENTS,&count);
++    if(count<1 || count>64) return false;
++    glBindFramebuffer(GL_FRAMEBUFFER,name);
++    bool okay=true;
++    for(unsigned i=0;i<(unsigned)count+2;i++) {
++        if(qemu_clock_get_ns(QEMU_CLOCK_REALTIME)>=deadline) {okay=false;break;}
++        GLenum attachment=i<(unsigned)count?GL_COLOR_ATTACHMENT0+i:
++                          i==(unsigned)count?GL_DEPTH_ATTACHMENT:GL_STENCIL_ATTACHMENT;
++        GLint type=0,object=0,level=0,layer=0;
++        glGetFramebufferAttachmentParameteriv(GL_FRAMEBUFFER,attachment,GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE,&type);
++        if(type!=GL_NONE) glGetFramebufferAttachmentParameteriv(GL_FRAMEBUFFER,attachment,GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME,&object);
++        if(type==GL_TEXTURE) {
++            glGetFramebufferAttachmentParameteriv(GL_FRAMEBUFFER,attachment,GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL,&level);
++            glGetFramebufferAttachmentParameteriv(GL_FRAMEBUFFER,attachment,GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_LAYER,&layer);
++        }
++        if(!x265_add(out,55,role,name,attachment,type,(unsigned)object,(unsigned)level,(unsigned)layer)) {okay=false;break;}
++    }
++    glBindFramebuffer(GL_DRAW_FRAMEBUFFER,old_draw);glBindFramebuffer(GL_READ_FRAMEBUFFER,old_read);
++    GLint draw=0,read=0;glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING,&draw);glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING,&read);
++    okay &= x265_add(out,56,role,name,(unsigned)old_draw,(unsigned)draw,(unsigned)old_read,(unsigned)read,count);
++    return okay && draw==old_draw && read==old_read && glGetError()==GL_NO_ERROR;
++}
++static bool x267_vao(X265Rows *out,unsigned role,GLuint name,int64_t deadline)
++{
++    bool live=name && glIsVertexArray(name);
++    if(!x265_add(out,57,role,name,live,0,0,0,0)) return false;
++    if(!live) return glGetError()==GL_NO_ERROR;
++    GLint old=0,count=0,element=0;
++    glGetIntegerv(GL_VERTEX_ARRAY_BINDING,&old);glGetIntegerv(GL_MAX_VERTEX_ATTRIBS,&count);
++    if(count<1 || count>64) return false;
++    glBindVertexArray(name);glGetIntegerv(GL_ELEMENT_ARRAY_BUFFER_BINDING,&element);
++    bool okay=x265_add(out,58,role,name,(unsigned)element,count,0,0,0);
++    for(unsigned i=0;okay && i<(unsigned)count;i++) {
++        if(qemu_clock_get_ns(QEMU_CLOCK_REALTIME)>=deadline) {okay=false;break;}
++        GLint enabled=0,buffer=0,divisor=0;void *pointer=NULL;
++        glGetVertexAttribiv(i,GL_VERTEX_ATTRIB_ARRAY_ENABLED,&enabled);
++        glGetVertexAttribiv(i,GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING,&buffer);
++        glGetVertexAttribiv(i,GL_VERTEX_ATTRIB_ARRAY_DIVISOR,&divisor);
++        glGetVertexAttribPointerv(i,GL_VERTEX_ATTRIB_ARRAY_POINTER,&pointer);
++        okay=x265_add(out,59,role,name,i,enabled,(unsigned)buffer,(unsigned)divisor,(uintptr_t)pointer);
++    }
++    glBindVertexArray(old);GLint restored=0;glGetIntegerv(GL_VERTEX_ARRAY_BINDING,&restored);
++    okay &= x265_add(out,60,role,name,(unsigned)old,(unsigned)restored,0,0,0);
++    return okay && restored==old && glGetError()==GL_NO_ERROR;
++}
++static bool x267_program(X265Rows *out,unsigned role,GLuint name)
++{
++    bool live=name && glIsProgram(name);
++    if(!x265_add(out,61,role,name,live,0,0,0,0)) return false;
++    if(!live) return glGetError()==GL_NO_ERROR;
++    GLint count=0;glGetProgramiv(name,GL_ATTACHED_SHADERS,&count);
++    if(count<0 || count>64) return false;
++    GLuint names[64];GLsizei actual=0;glGetAttachedShaders(name,64,&actual,names);
++    if(actual!=count || !x265_add(out,62,role,name,count,0,0,0,0)) return false;
++    for(unsigned i=0;i<(unsigned)count;i++)
++        if(!x265_add(out,63,role,name,i,names[i],0,0,0)) return false;
++    return glGetError()==GL_NO_ERROR;
++}
++
++
++static bool x267_actor(X265State *s,uintptr_t owner,X267Actor *a,unsigned kind)
++{
++    unsigned state=x267_state(a);
++    /* acquire>=2 publishes thread; state1 has immutable identity but no thread. */
++    if(!a || a->owner!=owner || a->kind!=kind || !a->epoch || state<1 || state>3) return false;
++    if(state!=3) s->shader_jobs_unknown++;
++    return x265_add(&s->ledger,50,owner,(uintptr_t)a,a->epoch,state,
++                    state>=2?a->thread:0,kind,(uintptr_t)a->function);
++}
++static bool x267_context(X265Rows *out,PGRAPHGLState *r,unsigned role,int64_t deadline)
++{
++    uintptr_t ids[4];GloContext *ctx=role==1?g_nv2a_context_render:g_nv2a_context_display;
++    bool match=glo_context_observe267(ctx,ids);
++    if(!x265_add(out,51,role,(uintptr_t)ctx,ids[0],ids[1],ids[2],ids[3],match) || !match) return false;
++    if(!x267_indexed(out,role,deadline)) return false;
++    if(role==1) {
++        return x267_fbo(out,role,r->gl_framebuffer,deadline) &&
++               x267_fbo(out,role,r->s2t_rndr.fbo,deadline) &&
++               x267_vao(out,role,r->gl_vertex_array,deadline) &&
++               x267_vao(out,role,r->s2t_rndr.vao,deadline) &&
++               x267_program(out,role,r->s2t_rndr.prog);
++    }
++    return x267_fbo(out,role,r->disp_rndr.fbo,deadline) &&
++           x267_vao(out,role,r->disp_rndr.vao,deadline) &&
++           x267_program(out,role,r->disp_rndr.prog);
++}
++
+ static bool x265_binding(X265State *s,TextureBinding *binding,bool unit)
+ {
+     if (!binding) return false;
+@@ -1144,7 +1266,8 @@
+         if (++walked>51200 || !x260_alive(d,&s->boundary)) {okay=false;break;}
+         if (!lru_is_node_in_use(&r->shader_cache,node)) continue;
+         used++; ShaderBinding *b=container_of(node,ShaderBinding,node);
+-        if (b->save_thread) s->shader_jobs_unknown++;
++        if (b->save_thread && !x267_actor(s,(uintptr_t)b,b->actor267,1)) {okay=false;break;}
++        if (b->initialized && !x267_program(out,1,b->gl_program)) {okay=false;break;}
+         if (!x265_add(out,9,(uintptr_t)b,b->initialized,
+                 b->initialized?b->gl_program:0,
+                 b->save_thread?0:(uintptr_t)b->program,
+@@ -1154,8 +1277,7 @@
+     okay &= r->shader_cache.num_used>=0 && used==(unsigned)r->shader_cache.num_used;
+     if (!x265_add(out,10,(uintptr_t)r->shader_binding,
+             (uintptr_t)&r->shader_disk_thread,1,0,0,0,0)) okay=false;
+-    /* Loader completion is not instrumented in this read-only diagnostic. */
+-    s->shader_jobs_unknown++;
++    if (!x267_actor(s,(uintptr_t)pg,r->loader267,2) || pgraph_gl_actor267_overflow()) okay=false;
+     qemu_mutex_unlock(&r->shader_cache_lock);
+     if (!okay) return false;
+     walked=used=0;
+@@ -1219,9 +1341,9 @@
+         qatomic_read(&r->shader_cache_writeback_pending));
+     if (v->pending_mask) {reason=6;goto finish;}
+     if (!x265_collect(d,s)) {reason=7;goto finish;}
+-    if (!x265_context(&s->ledger,1,v->deadline)) {reason=8;goto finish;}
++    if (!x265_context(&s->ledger,1,v->deadline) || !x267_context(&s->ledger,r,1,v->deadline)) {reason=8;goto finish;}
+     glo_set_current(g_nv2a_context_display);
+-    bool context_ok=x265_context(&s->ledger,2,v->deadline);
++    bool context_ok=x265_context(&s->ledger,2,v->deadline) && x267_context(&s->ledger,r,2,v->deadline);
+     glo_set_current(g_nv2a_context_render);
+     if (!context_ok) {reason=9;goto finish;}
+     qemu_mutex_unlock(&pg->lock);qemu_mutex_unlock(&pg->renderer_lock);locked=false;
+--- a/hw/xbox/nv2a/pgraph/gl/renderer.h
++++ b/hw/xbox/nv2a/pgraph/gl/renderer.h
+@@ -108,6 +108,51 @@
+     GLuint gl_shader;
+ } ShaderModuleCacheEntry;
+ 
++/* SPDX-License-Identifier: GPL-2.0-or-later
++ * Retained diagnostic records. State3 acknowledges original work-function return,
++ * not OS-thread exit or join. No owner dereference follows that publication.
++ */
++#ifndef X267_ACTOR_CORE_H
++#define X267_ACTOR_CORE_H
++#include <stdint.h>
++#define X267_ACTORS 65536u
++typedef struct X267Actor {
++    unsigned state, kind;
++    uint64_t epoch, thread;
++    uintptr_t owner;
++    void *(*function)(void *);
++    void *argument;
++} X267Actor;
++static inline unsigned x267_reserve(unsigned *next, unsigned *overflow,
++                                    unsigned capacity)
++{
++    unsigned n=__atomic_load_n(next,__ATOMIC_RELAXED);
++    for (;;) {
++        if (n>=capacity) {
++            __atomic_store_n(overflow,1,__ATOMIC_RELEASE);
++            return capacity;
++        }
++        if (__atomic_compare_exchange_n(next,&n,n+1,0,__ATOMIC_RELAXED,
++                                        __ATOMIC_RELAXED)) return n;
++    }
++}
++static inline void x267_start(X267Actor *a,uint64_t thread)
++{
++    a->thread=thread;
++    __atomic_store_n(&a->state,2,__ATOMIC_RELEASE);
++}
++static inline void x267_finish(X267Actor *a)
++{
++    __atomic_store_n(&a->state,3,__ATOMIC_RELEASE);
++}
++static inline unsigned x267_state(const X267Actor *a)
++{
++    return a?__atomic_load_n(&a->state,__ATOMIC_ACQUIRE):0;
++}
++#endif
++
++unsigned pgraph_gl_actor267_overflow(void);
++
+ typedef struct ShaderBinding {
+     LruNode node;
+     bool initialized;
+@@ -118,6 +163,7 @@
+     GLenum program_format;
+     ShaderState state;
+     QemuThread *save_thread;
++    X267Actor *actor267;
+ 
+     GLuint gl_program;
+     GLenum gl_primitive_mode;
+@@ -200,6 +246,7 @@
+     ShaderBinding *shader_binding;
+     QemuMutex shader_cache_lock;
+     QemuThread shader_disk_thread;
++    X267Actor *loader267;
+ 
+     Lru shader_module_cache;
+     ShaderModuleCacheEntry *shader_module_cache_entries;
+--- a/ui/xemu.c
++++ b/ui/xemu.c
+@@ -954,7 +954,101 @@
+ static unsigned ui265_error;
+ char *xwn_ui265_report(void);
+ char *xwn_ui265_data(unsigned page);
+-static void x265_ui_capture(void)
++/*267 Bounded query of indexed references and known context-local containers.
++ * Uninstantiated reserved names are recorded, never bound into existence.
++ * All selection changes are restored and recorded, including failure paths.
++ */
++static bool x267_indexed(X265Rows *out,unsigned role,int64_t deadline)
++{
++    const GLenum limits[]={GL_MAX_UNIFORM_BUFFER_BINDINGS,GL_MAX_TRANSFORM_FEEDBACK_BUFFERS};
++    const GLenum bindings[]={GL_UNIFORM_BUFFER_BINDING,GL_TRANSFORM_FEEDBACK_BUFFER_BINDING};
++    const GLenum starts[]={GL_UNIFORM_BUFFER_START,GL_TRANSFORM_FEEDBACK_BUFFER_START};
++    const GLenum sizes[]={GL_UNIFORM_BUFFER_SIZE,GL_TRANSFORM_FEEDBACK_BUFFER_SIZE};
++    for(unsigned family=0;family<2;family++) {
++        GLint count=0;glGetIntegerv(limits[family],&count);
++        if(count<1 || count>1024) return false;
++        if(!x265_add(out,52,role,family,count,0,0,0,0)) return false;
++        for(unsigned i=0;i<(unsigned)count;i++) {
++            if(qemu_clock_get_ns(QEMU_CLOCK_REALTIME)>=deadline) return false;
++            GLint name=0;GLint64 start=0,size=0;
++            glGetIntegeri_v(bindings[family],i,&name);
++            glGetInteger64i_v(starts[family],i,&start);
++            glGetInteger64i_v(sizes[family],i,&size);
++            if(start<0 || size<0 || !x265_add(out,53,role,family,i,(unsigned)name,start,size,0)) return false;
++        }
++    }
++    /* Scope is the GL4.0 interfaces used by this pinned backend. No assertion
++     * that future SSBO/atomic-counter/image/extension references are absent. */
++    return glGetError()==GL_NO_ERROR;
++}
++static bool x267_fbo(X265Rows *out,unsigned role,GLuint name,int64_t deadline)
++{
++    bool live=name && glIsFramebuffer(name);
++    if(!x265_add(out,54,role,name,live,0,0,0,0)) return false;
++    if(!live) return glGetError()==GL_NO_ERROR;
++    GLint old_draw=0,old_read=0,count=0;
++    glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING,&old_draw);
++    glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING,&old_read);
++    glGetIntegerv(GL_MAX_COLOR_ATTACHMENTS,&count);
++    if(count<1 || count>64) return false;
++    glBindFramebuffer(GL_FRAMEBUFFER,name);
++    bool okay=true;
++    for(unsigned i=0;i<(unsigned)count+2;i++) {
++        if(qemu_clock_get_ns(QEMU_CLOCK_REALTIME)>=deadline) {okay=false;break;}
++        GLenum attachment=i<(unsigned)count?GL_COLOR_ATTACHMENT0+i:
++                          i==(unsigned)count?GL_DEPTH_ATTACHMENT:GL_STENCIL_ATTACHMENT;
++        GLint type=0,object=0,level=0,layer=0;
++        glGetFramebufferAttachmentParameteriv(GL_FRAMEBUFFER,attachment,GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE,&type);
++        if(type!=GL_NONE) glGetFramebufferAttachmentParameteriv(GL_FRAMEBUFFER,attachment,GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME,&object);
++        if(type==GL_TEXTURE) {
++            glGetFramebufferAttachmentParameteriv(GL_FRAMEBUFFER,attachment,GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL,&level);
++            glGetFramebufferAttachmentParameteriv(GL_FRAMEBUFFER,attachment,GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_LAYER,&layer);
++        }
++        if(!x265_add(out,55,role,name,attachment,type,(unsigned)object,(unsigned)level,(unsigned)layer)) {okay=false;break;}
++    }
++    glBindFramebuffer(GL_DRAW_FRAMEBUFFER,old_draw);glBindFramebuffer(GL_READ_FRAMEBUFFER,old_read);
++    GLint draw=0,read=0;glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING,&draw);glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING,&read);
++    okay &= x265_add(out,56,role,name,(unsigned)old_draw,(unsigned)draw,(unsigned)old_read,(unsigned)read,count);
++    return okay && draw==old_draw && read==old_read && glGetError()==GL_NO_ERROR;
++}
++static bool x267_vao(X265Rows *out,unsigned role,GLuint name,int64_t deadline)
++{
++    bool live=name && glIsVertexArray(name);
++    if(!x265_add(out,57,role,name,live,0,0,0,0)) return false;
++    if(!live) return glGetError()==GL_NO_ERROR;
++    GLint old=0,count=0,element=0;
++    glGetIntegerv(GL_VERTEX_ARRAY_BINDING,&old);glGetIntegerv(GL_MAX_VERTEX_ATTRIBS,&count);
++    if(count<1 || count>64) return false;
++    glBindVertexArray(name);glGetIntegerv(GL_ELEMENT_ARRAY_BUFFER_BINDING,&element);
++    bool okay=x265_add(out,58,role,name,(unsigned)element,count,0,0,0);
++    for(unsigned i=0;okay && i<(unsigned)count;i++) {
++        if(qemu_clock_get_ns(QEMU_CLOCK_REALTIME)>=deadline) {okay=false;break;}
++        GLint enabled=0,buffer=0,divisor=0;void *pointer=NULL;
++        glGetVertexAttribiv(i,GL_VERTEX_ATTRIB_ARRAY_ENABLED,&enabled);
++        glGetVertexAttribiv(i,GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING,&buffer);
++        glGetVertexAttribiv(i,GL_VERTEX_ATTRIB_ARRAY_DIVISOR,&divisor);
++        glGetVertexAttribPointerv(i,GL_VERTEX_ATTRIB_ARRAY_POINTER,&pointer);
++        okay=x265_add(out,59,role,name,i,enabled,(unsigned)buffer,(unsigned)divisor,(uintptr_t)pointer);
++    }
++    glBindVertexArray(old);GLint restored=0;glGetIntegerv(GL_VERTEX_ARRAY_BINDING,&restored);
++    okay &= x265_add(out,60,role,name,(unsigned)old,(unsigned)restored,0,0,0);
++    return okay && restored==old && glGetError()==GL_NO_ERROR;
++}
++static bool x267_program(X265Rows *out,unsigned role,GLuint name)
++{
++    bool live=name && glIsProgram(name);
++    if(!x265_add(out,61,role,name,live,0,0,0,0)) return false;
++    if(!live) return glGetError()==GL_NO_ERROR;
++    GLint count=0;glGetProgramiv(name,GL_ATTACHED_SHADERS,&count);
++    if(count<0 || count>64) return false;
++    GLuint names[64];GLsizei actual=0;glGetAttachedShaders(name,64,&actual,names);
++    if(actual!=count || !x265_add(out,62,role,name,count,0,0,0,0)) return false;
++    for(unsigned i=0;i<(unsigned)count;i++)
++        if(!x265_add(out,63,role,name,i,names[i],0,0,0)) return false;
++    return glGetError()==GL_NO_ERROR;
++}
++
++static void x265_ui_capture(struct xemu_console *scon)
+ {
+     if (ui265_rows.rows) {ui265_error=1;return;}
+     ui265_rows.rows=g_malloc0_n(X265_UI_ROWS,sizeof(*ui265_rows.rows));
+@@ -963,7 +1057,23 @@
+     x265_add(&ui265_rows,40,qemu_get_thread_id(),(uintptr_t)SDL_GL_GetCurrentContext(),
+         xwn_hud265_texture(),xwn_thumbnail265_texture(),
+         frontend246_last_texture,frontend246_last_fallback,0);
+-    if (!x265_context(&ui265_rows,3,deadline)) ui265_error=2;
++    /* VGA surface metadata is read under its ordinary BQL owner lock. */
++    xemu_main_loop_lock();
++    DisplaySurface *surface=scon->surface;
++    bool owner=x265_add(&ui265_rows,64,(uintptr_t)scon,(uintptr_t)surface,
++        surface?surface->texture:0,surface?surface_width(surface):0,
++        surface?surface_height(surface):0,(uintptr_t)scon->winctx,(uintptr_t)scon->real_window);
++    xemu_main_loop_unlock();
++    owner &= x265_add(&ui265_rows,65,(uintptr_t)SDL_GL_GetCurrentContext(),
++        (uintptr_t)SDL_GL_GetCurrentWindow(),(uintptr_t)scon->winctx,
++        (uintptr_t)scon->real_window,0,0,0);
++    GLint fbo=0,read=0,vao=0,program=0;
++    glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING,&fbo);glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING,&read);
++    glGetIntegerv(GL_VERTEX_ARRAY_BINDING,&vao);glGetIntegerv(GL_CURRENT_PROGRAM,&program);
++    if (!owner || !x265_context(&ui265_rows,3,deadline) ||
++        !x267_indexed(&ui265_rows,3,deadline) || !x267_fbo(&ui265_rows,3,fbo,deadline) ||
++        (read!=fbo && !x267_fbo(&ui265_rows,3,read,deadline)) ||
++        !x267_vao(&ui265_rows,3,vao,deadline) || !x267_program(&ui265_rows,3,program)) ui265_error=2;
+ }
+ char *xwn_ui265_report(void)
+ {
+@@ -1078,7 +1188,7 @@
+                 frontend246_trace(65, i, frontend246_record.bindings[i]);
+             }
+             frontend246_record.texture_live = glIsTexture(frontend246_record.texture);
+-            x265_ui_capture();
++            x265_ui_capture(scon);
+             if (ui265_error) frontend246_record.error=7;
+             if (glGetError() != GL_NO_ERROR) { frontend246_record.error = 6; }
+         }
+--- a/hw/xbox/nv2a/pgraph/gl/shaders.c
++++ b/hw/xbox/nv2a/pgraph/gl/shaders.c
+@@ -474,6 +474,40 @@
+     g_free(cached_gl_vendor);
+ }
+ 
++/*267 Append-only process-lifetime records: never recycle a generation. */
++static X267Actor x267_actors[X267_ACTORS];
++static unsigned x267_next, x267_overflow;
++unsigned pgraph_gl_actor267_overflow(void)
++{
++    return __atomic_load_n(&x267_overflow,__ATOMIC_ACQUIRE);
++}
++static void *x267_run(void *argument)
++{
++    X267Actor *a=argument;
++    x267_start(a,qemu_get_thread_id());
++    void *result=a->function(a->argument);
++    x267_finish(a);
++    return result;
++}
++static void x267_create(QemuThread *thread,const char *name,
++                        void *(*function)(void *),void *argument,
++                        unsigned kind,X267Actor **owner_slot)
++{
++    unsigned slot=x267_reserve(&x267_next,&x267_overflow,X267_ACTORS);
++    if (slot==X267_ACTORS) {
++        *owner_slot=NULL;
++        /* Preserve ordinary work if instrumentation saturates; ledger refuses. */
++        qemu_thread_create(thread,name,function,argument,QEMU_THREAD_JOINABLE);
++        return;
++    }
++    X267Actor *a=&x267_actors[slot];
++    a->epoch=(uint64_t)slot+1;a->kind=kind;a->owner=(uintptr_t)argument;
++    a->function=function;a->argument=argument;
++    __atomic_store_n(&a->state,1,__ATOMIC_RELEASE);
++    *owner_slot=a;
++    qemu_thread_create(thread,name,x267_run,a,QEMU_THREAD_JOINABLE);
++}
++
+ static void *shader_reload_lru_from_disk(void *arg)
+ {
+     if (!g_config.perf.cache_shaders) {
+@@ -505,6 +539,7 @@
+     binding->cached = false;
+     binding->program = NULL;
+     binding->save_thread = NULL;
++    binding->actor267 = NULL;
+ }
+ 
+ static void shader_cache_entry_post_evict(Lru *lru, LruNode *node)
+@@ -559,8 +594,8 @@
+     r->shader_cache.compare_nodes = shader_cache_entry_compare;
+     r->shader_cache.post_node_evict = shader_cache_entry_post_evict;
+ 
+-    qemu_thread_create(&r->shader_disk_thread, "pgraph.renderer_state->shader_cache",
+-                       shader_reload_lru_from_disk, pg, QEMU_THREAD_JOINABLE);
++    x267_create(&r->shader_disk_thread,"pgraph.renderer_state->shader_cache",
++                shader_reload_lru_from_disk,pg,2,&r->loader267);
+ 
+     /* FIXME: Make this configurable */
+     const size_t shader_module_cache_size = 50*1024;
+@@ -690,7 +725,7 @@
+     char name[24];
+     snprintf(name, sizeof(name), "scache-%llx", (unsigned long long) binding->node.hash);
+     binding->save_thread = g_malloc0(sizeof(QemuThread));
+-    qemu_thread_create(binding->save_thread, name, shader_write_to_disk, binding, QEMU_THREAD_JOINABLE);
++    x267_create(binding->save_thread,name,shader_write_to_disk,binding,1,&binding->actor267);
+ }
+ 
+ static void apply_uniform_updates(const UniformInfo *info, int *locs,
+--- a/hw/xbox/nv2a/pgraph/thirdparty/gloffscreen/gloffscreen.h
++++ b/hw/xbox/nv2a/pgraph/thirdparty/gloffscreen/gloffscreen.h
+@@ -30,6 +30,7 @@
+ #define GLOFFSCREEN_H_
+ 
+ #include <stdbool.h>
++#include <stdint.h>
+ #include <epoxy/gl.h>
+ 
+ /* Used to hold data for the OpenGL context */
+@@ -38,6 +39,7 @@
+ 
+ /* Change current context */
+ void glo_set_current(GloContext *context);
++bool glo_context_observe267(GloContext *context,uintptr_t out[4]);
+ 
+ /* Check GL Extensions */
+ bool glo_check_extension(const char* ext_name);
+--- a/hw/xbox/nv2a/pgraph/thirdparty/gloffscreen/sdl.c
++++ b/hw/xbox/nv2a/pgraph/thirdparty/gloffscreen/sdl.c
+@@ -97,3 +97,13 @@
+     glo_set_current(NULL);
+     free(context);
+ }
++
++/*267 Actual native identities, queried on the owning current-context thread. */
++bool glo_context_observe267(GloContext *context,uintptr_t out[4])
++{
++    out[0]=(uintptr_t)(context?context->gl_context:NULL);
++    out[1]=(uintptr_t)SDL_GL_GetCurrentContext();
++    out[2]=(uintptr_t)(context?context->window:NULL);
++    out[3]=(uintptr_t)SDL_GL_GetCurrentWindow();
++    return out[0] && out[0]==out[1] && out[2] && out[2]==out[3];
++}

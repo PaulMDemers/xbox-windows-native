@@ -1,3 +1,52 @@
+#267 CLOSED — shader work acknowledged, actual context references captured
+
+Read outputs/backend-actors267/REPORT.md, DESIGN.md, NEXT.md, source-review.json,
+final-review.json and emu001/ledger-analysis.json, release-evidence.json.
+All owned sessions CLOSED: build61099, controller52503 (runner3700/tracer100908).
+One new launch accepted22:35:01UTC, normal restart/orderly host exit0, cold audit
+closed22:37:27UTC. No physical access or changed physical drivers. Never relaunch
+or recollect267emu001,265/266 or earlier closed cases.
+
+All54 shader original work functions returned with unique release/acquire records;
+this does NOT prove OS-thread exit/join. Exact original shader source reconstructed
+after undoing only instrumentation; work bodies, ordinary joins/disposal unchanged.
+Actual native render/display/UI contexts independently65538/65539/65537 (this run
+only).264 indexed binding rows (all zero names),323 FBO/VAO/program attachment rows.
+Scope is pinned GL4.0 uniform/transform-feedback plus known renderer/current UI
+containers, not every extension/unknown object. Actual VGA DisplaySurface texture0;
+retained UI HUD/snapshot26 are deleted fallback names, not renderer display10.
+
+Four disabled texture units each refs2/cache1/unit1. Only texture38 remains bound
+to actual render context unit0;34/35/36 have no observed context/FBO edge. No release
+or disposal performed. Next NEW narrow release design must inspect actual normal
+rebind paths, retain cache owners, unbind exact context targets, prove before/after
+graphs AND actual resumed guest texture reuse/content. Do not use whole finalizer,
+reset/switch, join actors or manufacture native GPU ownership. No263 pixel repeat.
+
+Two native attestations; ledger55678rows/218pages, UI1939/8. Both CPU-exclusive
+boundaries zero callbacks, selections restored, frontend reopened, all breakpoints/
+physical mode cleaned.32768 exact CPU bytes/two reads/zero writes;224 workload64
+leases65alloc/releases/refusals3194880bytes128preflight4joinedworkers. Full cold
+322dirs6728files323clusters0errors/orphans,5hives31protected. Scoped observation
+PASS; strictFALSE sole inheritedFtdisk49.2049 frozen inputs/108host deps exact.
+36 synthetic and37 actual mutations rejected; pending work stays unknown. No
+ordinary, performance, disposal, native GPU or physical promotion.
+
+Renderer001 SHA75494d6eecfc579d2d7bc77fadb89584d78ed191436ee23d06237fa518b98e38,
+191717221B at E:/Codex-archive/xbox-windows-native/actors267-build001. All borrowed
+sources restored;79 inherited warning instances/no new messages. Host ASan/UBSan
+4096 concurrent records8192contenders10000 saturation refusals passed. Same265probe/
+258helddriver from never-executed265 standalone preparation; no runtime disk parent.
+Timing limitation: UI VGA owner read uses existing main-loop/BQL blocking lock;
+one-second query budget does not time that acquisition, outer watchdog bounds it.
+No stall observed; review exact lock order/bounds before extending the transaction.
+
+Physical audio004/softwarevideo118/shared158/FATX0101 unchanged; no hardware queued.
+demo251 ticket/peers unchanged; recovery256/0.1.0/0088/all failures preserved.
+Continue authorized work until October12 04:00UTC; check time first. Maintain20GiB
+guard and never casually move backing chains. Update commit/push and automation
+with exact next step after review.
+
 #265/266 CLOSED — actual owner ledger PASS, retirement still refused
 
 Read outputs/backend-ledger266/REPORT.md, DESIGN.md, NEXT.md, final-review.json
