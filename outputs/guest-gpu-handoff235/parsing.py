@@ -1,0 +1,80 @@
+"""Bounded owned XBE mapping and after-write instruction discrimination."""
+import re,struct
+
+def journal_ack(reply,value):
+ """Corroborate the final guest acknowledgement while the CPU remains stopped."""
+ fields={a:int(b) for a,b in re.findall(r'(version|state|tuple_published|total|count|capacity|overwritten)=(\d+)',reply)}
+ assert fields['version']==234 and fields['state']==3 and fields['tuple_published']==1
+ assert fields['capacity']==256 and 0<fields['count']<=256
+ assert fields['total']>=fields['count'] and fields['overwritten']==fields['total']-fields['count']
+ raw=re.findall(r'row=([0-9,]+)',reply);assert len(raw)==fields['count']+1
+ rows=[[int(v) for v in item.split(',')] for item in raw]
+ assert all(len(r)==21 and r[0]<2**64 and r[1]<2**63 and all(v<2**32 for v in r[2:]) for r in rows)
+ assert rows[0][0]==0 and rows[0][2]==9 and rows[0][10]==0
+ events=rows[1:];assert [r[0] for r in events]==list(range(fields['total']-fields['count']+1,fields['total']+1))
+ acks=[(i,r) for i,r in enumerate(events) if r[2] in [4,5]]
+ assert len(acks)>=2
+ (i,before),(j,after)=acks[-2:]
+ assert j==i+1 and before[2]==4 and after[2]==5
+ assert before[3]==after[3]==value and before[10]==after[10]==1
+ assert before[4]&0x100000 and value&0x100000
+ assert after[4]==before[4]&~value and not after[4]&0x100000
+ assert before[9]&2 and not after[9]&2
+ return dict(header=fields,ack_before=before,ack_after=after,current_pg_only=rows[0],
+             limits='Last guest acknowledgement matches completed write; worker may advance after CPU stop. No producer-close or ownership proof.')
+def xbe(data):
+ assert len(data)>=0x178 and data[:4]==b'XBEH'
+ base,headers,image=struct.unpack_from('<III',data,0x104)
+ count,table=struct.unpack_from('<II',data,0x11c);encoded=struct.unpack_from('<I',data,0x128)[0]
+ assert base==0x10000 and 0x178<=headers<=len(data) and 0<count<=32 and base<=table and table-base+count*56<=headers
+ sections=[]
+ for i in range(count):
+  flags,va,size,offset,raw=struct.unpack_from('<5I',data,table-base+i*56)
+  assert base<=va<2**32 and 0<size<=16*1024**2 and va+size<=base+image<=2**32
+  assert offset+raw<=len(data) and raw<=size
+  sections.append(dict(flags=flags,address=va,bytes=size,file_offset=offset,file_bytes=raw))
+ candidates=[encoded^key for key in [0xa8fc57ab,0x94859d4b]]
+ entries=[e for e in candidates if any(s['flags']&4 and s['address']<=e<s['address']+s['file_bytes'] for s in sections)]
+ assert len(entries)==1
+ return dict(base=base,header_bytes=headers,image_bytes=image,entry=entries[0],sections=sections)
+
+def span(data,layout,address,n):
+ assert 0<n<=4096 and 0<=address<=2**32-n
+ found=[s for s in layout['sections'] if s['address']<=address and address+n<=s['address']+s['file_bytes']]
+ assert len(found)==1,'Resident window outside exactly one file-backed section'
+ s=found[0];offset=s['file_offset']+address-s['address'];return data[offset:offset+n]
+
+def after_write_instruction(code,start,eip,registers,capstone):
+ """Try bounded x86 decodes ending at post-write EIP; require exact effective address."""
+ from capstone.x86_const import X86_OP_MEM,X86_OP_REG,X86_OP_IMM
+ decoder=capstone.Cs(capstone.CS_ARCH_X86,capstone.CS_MODE_32);decoder.detail=True
+ names=['eax','ecx','edx','ebx','esp','ebp','esi','edi']
+ regs=dict(zip(names,registers[:8]));result=[]
+ for length in range(1,16):
+  pc=eip-length;offset=pc-start
+  if offset<0 or offset+length>len(code):continue
+  prefixes={0xf0,0xf2,0xf3,0x26,0x2e,0x36,0x3e,0x64,0x65,0x66,0x67}
+  # Refuse a suffix of an overridden instruction. This intentionally rejects
+  # even a possible preceding instruction's prefix-valued final byte: without
+  # a known forward boundary, false refusal is safer than false ownership.
+  if code[offset] in prefixes or (offset and code[offset-1] in prefixes):continue
+  items=list(decoder.disasm(code[offset:offset+length],pc));
+  if len(items)!=1:continue
+  insn=items[0]
+  if insn.size!=length or insn.mnemonic!='mov' or len(insn.operands)!=2:continue
+  dest,src=insn.operands
+  if dest.type!=X86_OP_MEM or dest.size!=4 or dest.mem.segment:continue
+  base_name=insn.reg_name(dest.mem.base) if dest.mem.base else None
+  index_name=insn.reg_name(dest.mem.index) if dest.mem.index else None
+  if (base_name and base_name not in regs) or (index_name and index_name not in regs):continue
+  base=regs[base_name] if base_name else 0
+  index=regs[index_name] if index_name else 0
+  if (base+index*dest.mem.scale+dest.mem.disp)&0xffffffff!=0xfd400100:continue
+  if src.type==X86_OP_REG:
+   name=insn.reg_name(src.reg)
+   if name not in regs:continue
+   value=regs[name]
+  elif src.type==X86_OP_IMM:value=src.imm&0xffffffff
+  else:continue
+  result.append(dict(address=pc,bytes=insn.size,hex=insn.bytes.hex(),mnemonic=insn.mnemonic,operands=insn.op_str,effective_address=0xfd400100,value=value))
+ return result
