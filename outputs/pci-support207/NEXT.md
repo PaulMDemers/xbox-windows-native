@@ -1,3 +1,27 @@
+# Current continuation: hidreject007
+
+Read hidreject007/REPORT.md, evidence-review001.json and static-review002.json.
+Exact HIDCLASS read-sharing denial and contemporaneous owner are proved for
+both inputs: new System access100003/share3 meets one CSRSS access100001/share2
+open. Extension+38 deny-read count1 leads AD8 JNE (ZF0) to AF9/B03 C0000043;
+completion/IRP/class status agree. At B03, live CSRSS PID160 handlesB8/BC map to
+the existing HID contexts/files, each handlecount1/pointercount2; table285 entries
+matches its count. This advances006's post-failure ownership to rejection-time
+causality. No IoGetDeviceObjectPointer/IoCheckShareAccess path, code/handle/policy
+change, or physical/other-owner integration. Higher-level reopen purpose and
+functional input impact remain unknown. Next trace the kernel/PnP caller and
+assess input before proposing a fix; do not disable valid sharing enforcement.
+
+One unchanged veto fixture CLOSED at2026-10-11T03:24:30.395752Z by host stop.
+Cold E/F/protected/five-hive/history and target lifecycle/invalid-only HAL probes
+pass. QUERY_STOP1/CANCEL_STOP1/STOP0/START3; sequences13/24/12. Input9 pair and
+Ftdisk49 remain; DHCP1005 did not recur. Pending setup258 still holds restart.
+All owned sessions and leases closed. Control and prior failures preserved.
+Functional input/network/SMBus, terminal, normal restart/repeated-boot and
+physical qualification remain open.
+
+Historical continuation follows unchanged.
+
 # Current continuation: inputtrace006
 
 Read inputtrace006/REPORT.md, evidence-review001.json and owner-review001.json.
