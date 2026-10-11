@@ -1,0 +1,157 @@
+"""Single bounded five-checkpoint renderer diagnostic; never a physical/ordinary run."""
+import ast,datetime,ftplib,hashlib,json,os,re,socket,struct,sys,time,traceback
+from pathlib import Path
+from attest import Attestor
+k=Path(__file__).resolve().parent;ws=k.parents[1];out=k/'emu002'
+run=Path('E:/Codex-private-artifacts/xbox-windows-feasibility/bridge260/runs/nt5-bridge260-emu002')
+assert (run/'instance.json').exists() and not (out/'trace.json').exists()
+sys.path.insert(0,str(ws/'work/python-packages'));import pefile
+sys.path.insert(0,str(k.parent/'native-windows-prebuild'));from monitor_capture import command,acquire_monitor_lock
+sys.path.insert(0,str(k.parent/'gpu-reset-banner152'));from ftp_deadline import DeadlineFTP
+code=(k.parent/'native-windows-nt5-kernel/trace-entry.py').read_text();ns={};exec(code[code.index('class Remote:'):code.index('p=argparse.ArgumentParser()')],dict(socket=socket),ns);Remote=ns['Remote']
+sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();utc=lambda:datetime.datetime.now(datetime.timezone.utc).isoformat()
+plan=json.loads((k/'attestation-inputs001.json').read_text());pes={}
+for name,m in plan['modules'].items():
+ p=ws/m['path'];assert sha(p)==m['sha256'];pes[name]=pefile.PE(str(p))
+tree=ast.parse((k.parent/'native-windows-prebuild/launch_unleashx.py').read_text())
+login=next(n for n in ast.walk(tree) if isinstance(n,ast.Call) and isinstance(n.func,ast.Attribute) and n.func.attr=='login')
+for name,arg in zip(['XWN_EMULATOR_FTP_USER','XWN_EMULATOR_FTP_PASSWORD'],login.args):os.environ.setdefault(name,ast.literal_eval(arg))
+r=dict(passed=False,debugger=True,physical_access=False,ordinary_qualified=False,native_gpu_ownership=False,
+ started_utc=utc(),monitor=[],checkpoints=[],points=[],physical_reads=[],guest_memory_writes=False,guest_register_writes=False)
+g=None;lock=None;stopped=False;point=False;frontend=False;reopened=False;path=None;physical_mode=False
+checkpoint=plan['modules']['probe.exe']['preferred_base']+plan['checkpoint_rva']
+def save():
+ p=out/'trace.tmp';p.write_text(json.dumps(r,indent=2)+'\n');p.replace(out/'trace.json')
+def cmd(text):
+ reply=command(4594,text);r['monitor'].append(dict(utc=utc(),command=text,reply=reply));save();return reply
+def getnum(reply,key):
+ m=re.search(r'(?<![\w])'+re.escape(key)+r'=(\d+)',reply);assert m,(key,reply[:1000]);return int(m[1])
+def qpath(tree):
+ stack=[];found=[]
+ for line in tree.splitlines():
+  m=re.match(r'^(\s*)/([^ ]*) \(([^)]+)\)',line)
+  if not m:continue
+  level=len(m[1]);name=m[2]
+  while stack and stack[-1][0]>=level:stack.pop()
+  if name:stack.append((level,name))
+  if m[3]=='nv2a':found.append('/'+'/'.join(n for _,n in stack))
+ assert len(found)==1;return found[0]
+def physical_read(a,n):
+ global physical_mode
+ assert stopped and n==4 and 0<=a<0x4000000
+ # Attestor checks that these are page-table addresses disjoint from the arena.
+ assert g.ask('Qqemu.PhyMemMode:1')=='OK';physical_mode=True
+ try:
+  data=g.read(a,n);r['physical_reads'].append(dict(address=a,bytes=n,hex=data.hex(),purpose='page-table word'));return data
+ finally:
+  assert g.ask('Qqemu.PhyMemMode:0')=='OK' and g.ask('qqemu.PhyMemMode')=='0';physical_mode=False
+def bp(add):
+ global point
+ assert stopped
+ if add:point=True
+ text=f'{"Z" if add else "z"}1,{checkpoint:x},1';reply=g.ask(text);r['points'].append(dict(command=text,reply=reply));save();assert reply=='OK'
+ if not add:point=False
+def wait_stop(seconds,step=False):
+ global stopped
+ assert stopped;g.s.settimeout(seconds);g.send('s' if step else 'c');stopped=False
+ try:reply=g.recv();stopped=True;return reply
+ except socket.timeout:g.s.settimeout(5);g.interrupt();stopped=True;raise AssertionError('Bounded checkpoint not reached')
+ finally:g.s.settimeout(5)
+def ftp(deadline):
+ f=DeadlineFTP(min(deadline,time.monotonic()+5))
+ try:f.connect('127.0.0.1',4596,timeout=f.budget());f.login(os.environ['XWN_EMULATOR_FTP_USER'],os.environ['XWN_EMULATOR_FTP_PASSWORD']);return f
+ except Exception:f.close();raise
+try:
+ deadline=time.monotonic()+60
+ while True:
+  assert time.monotonic()<deadline and not (run/'cleanup.json').exists()
+  try:f=ftp(deadline);f.close();break
+  except ftplib.all_errors:time.sleep(.2)
+ lock=acquire_monitor_lock(4594);cmd('stop');stopped=True;g=Remote(4595)
+ r['features']=g.ask('qSupported');r['initial_stop']=g.ask('?');assert g.ask('qqemu.PhyMemMode')=='0'
+ path=qpath(cmd('info qom-tree'));r['nv2a_path']=path
+ assert getnum(cmd('qom-get '+path+' xwn-pattern260-report'),'current')==0
+ assert getnum(cmd('qom-get '+path+' xwn-worker247-report'),'state')==0
+ bp(True)
+ launch=dict(command=r'SITE EXEC E:\Applications\XWNFBoot\default.xbe',requested_utc=utc(),status='requesting')
+ r['launch']=launch;save();g.send('c');stopped=False
+ with ftp(time.monotonic()+6) as f:launch.update(reply=f.sendcmd(launch['command']),status='accepted')
+ save();g.s.settimeout(100)
+ try:stop=g.recv();stopped=True
+ except socket.timeout:g.s.settimeout(5);g.interrupt();stopped=True;raise AssertionError('Initial native checkpoint timeout')
+ finally:g.s.settimeout(5)
+ for stage in range(1,6):
+  bp(False)
+  text=cmd('info registers');registers={n.lower():int(v,16) for n,v in re.findall(r'\b(EIP|ESP|CR3|CR4)=([0-9a-fA-F]+)',text)}
+  raw=g.ask('g');assert struct.unpack_from('<I',bytes.fromhex(raw),32)[0]==registers['eip']
+  att=Attestor(plan,pes,g.read,physical_read).checkpoint(stage,registers,registers['cr3'],registers['cr4'])
+  row=dict(stage=stage,stop=stop,utc=utc(),attestation=att);r['checkpoints'].append(row);save()
+  if stage==1:
+   frontend=True;r['frontend_close_requested']=True;save()
+   assert 'Error' not in cmd('qom-set '+path+' xwn-frontend246-close true')
+   deadline=time.monotonic()+8
+   while True:
+    report=cmd('qom-get '+path+' xwn-frontend246-report');state=getnum(report,'state')
+    if state in [2,3]:break
+    assert time.monotonic()<deadline;time.sleep(.03)
+   assert state==2 and all(getnum(report,n)==0 for n in ['loan','bql','error'])
+   r['frontend_closed_report']=report
+   for event in ['xwn_mem_callback244','nv2a_lifecycle244']:assert 'Error' not in cmd('trace-event '+event+' on')
+  else:
+   first=r['checkpoints'][0]['attestation']
+   for name in ['thread','process','pid','probe_base','file_object','device_object','driver_object','physical','virtual','generation','pages']:
+    assert att[name]==first[name],('Lifetime changed',name)
+  if stage<=4:
+   request=','.join(str(v) for v in [stage,att['physical'],att['file_object'],att['virtual'],*att['pages']])
+   row['request_may_be_accepted']=True;save()
+   response=cmd('qom-set '+path+' xwn-pattern260 '+json.dumps(request));row['request_reply']=response;save();assert 'Error' not in response
+   deadline=time.monotonic()+8
+   while True:
+    report=cmd('qom-get '+path+' xwn-pattern260-report');state=getnum(report,f'slot{stage}_state')
+    if state in [5,6]:break
+    assert time.monotonic()<deadline;time.sleep(.03)
+   row['renderer_report']=report;row['state']=state;save()
+   assert state==5 and all(getnum(report,f'slot{stage}_'+n)==0 for n in ['reason','result','callback_result','unknown_vertex'])
+   for side in [0,1]:
+    assert getnum(report,f'slot{stage}_cpu{side}_done')==1 and getnum(report,f'slot{stage}_cpu{side}_reason')==0
+   repeat=cmd('qom-get '+path+' xwn-pattern260-report');assert repeat==report
+   row['immutable_reread']=True;save()
+  if stage<5:
+   row['step_reply']=wait_stop(5,True);bp(True);stop=wait_stop(30)
+ r['final_report']=cmd('qom-get '+path+' xwn-pattern260-report')
+ for event in ['xwn_mem_callback244','nv2a_lifecycle244']:assert 'Error' not in cmd('trace-event '+event+' off')
+ assert 'Error' not in cmd('qom-set '+path+' xwn-frontend246-close false')
+ deadline=time.monotonic()+8
+ while True:
+  report=cmd('qom-get '+path+' xwn-frontend246-report')
+  if getnum(report,'state')==5:break
+  assert time.monotonic()<deadline;time.sleep(.03)
+ reopened=True;r.update(frontend_reopened_report=report,passed=True,status='five_attested_stages_completed');save()
+except BaseException as e:r.update(error=repr(e),host_traceback=traceback.format_exc(),status='preserved_diagnostic_failure');save()
+finally:
+ if g:
+  if not stopped:
+   try:g.s.settimeout(5);g.interrupt();stopped=True
+   except Exception as e:r['interrupt_error']=repr(e)
+  if stopped and point:
+   try:bp(False)
+   except Exception as e:r['point_cleanup_error']=repr(e)
+  if stopped:
+   try:
+    if physical_mode:assert g.ask('Qqemu.PhyMemMode:0')=='OK'
+    r['physical_mode_restored']=g.ask('qqemu.PhyMemMode')=='0'
+   except Exception as e:r['physical_mode_error']=repr(e)
+  if frontend and not reopened:
+   try:
+    r['frontend_cleanup_reply']=cmd('qom-set '+path+' xwn-frontend246-close false')
+   except Exception as e:r['frontend_cleanup_error']=repr(e)
+  if r['passed'] and not point and r.get('physical_mode_restored'):
+   g.send('c');stopped=False;r['guest_resumed']=True
+  else:
+   r['guest_resumed']=False;r['quarantined_until_owned_exit']=True
+   try:cmd('quit')
+   except Exception as e:r['quit_reply_error']=repr(e)
+  g.s.close()
+ if lock:lock.close()
+ r.update(closed=True,remaining_breakpoints=int(point),closed_utc=utc());save();(out/'trace-finished.signal').touch(exist_ok=False)
+print(json.dumps({n:r[n] for n in ['passed','status','error','guest_resumed'] if n in r}),flush=True)

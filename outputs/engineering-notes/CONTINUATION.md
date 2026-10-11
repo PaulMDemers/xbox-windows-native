@@ -1,3 +1,48 @@
+#260 CLOSED — compiled live bridge; first guest refused before renderer work
+
+Read outputs/surface-bridge260/REPORT.md, DESIGN.md, NEXT.md, final-review.json
+and actual emu001/002 records. ALL owned sessions CLOSED63709/8634/48075/5809.
+Renderer0016bf95a63...191574604bytes built on exact259, five-file delta, all borrowed
+sources restored. QOM/PFIFO now calls bounded four-slot worker with acknowledged
+CPU-exclusive before/after callback inventories, seven reference families, finite
+GL fences and failure quarantine. Actual tuple code4622ASan/UBSan checks pass;
+26complete synthetic native/handle/page attestations pass. No nativeGPU grant.
+
+emu001 refused projected C20GiB reserve BEFORE xemu/runner-start; never relaunch.
+emu002 Windows launch accepted20:33:54.204885UTC, reached EIP160012e5/CPL3 at
+20:34:54.227221, but kernel header at historicallead823df000 returned GDB E14.
+Complete native/process attestation did NOT finish; actual kernel base unresolved.
+NO frontend-close/stage request/GL test/callback coverage/pixel proof occurred.
+Breakpoint removed, physicalmode0 verified, process quit, cold audit closed
+20:35:32.572329.322dirs6726files323clusters,13orphans/fourWBEMchain errors, no normal
+shutdown/result.log. Preserve interrupted-disk integrity failure; do not repair,
+reboot/recollect or use as parent. No new renderer operation caused by260 was run.
+
+Next NEW fresh attempt: derive kernel base from actual stopped IDTR828cb400/07ff
+and two independent vector0/14 entries + exact owned KiTrap00/0E RVAs, then pin PE
+and resident trap/handle code. kernel-discovery.py10synthetic checks PASS, never
+used live. Add bounded partial read/error/pin recording before assertions. Do not
+guess a base. If virtual reads fail, establish page translation. Then actual
+owner/handle/FileObject/generation/four-page attestations at all5 stops, no dirty
+arena reads, same258 held driver/259 probe and compiled260renderer. Unknown vertex
+ranges REFUSE. No legacy247/227 reset. Frozen0021778inputs exact; never edit them.
+
+Preserved host issues: attestor initially demanded FILE_READ_DATA although probe
+uses GENERIC_WRITE; prior-attestation001 and corrected002 retained. First002
+manifest writer referenced nonexistent parent name after successful review;
+complete-freeze002 finishes missing manifest without altering prior source/result.
+Closed258 and228-230 portable executables/shaders offloaded hashverified to E with
+original junctions (portable-260/260c manifests); no backing disk moved.260b refused
+already-junction246 before copy/removal; failure retained.20GiB guard unchanged.
+
+Physical audio004/softwarevideo118/shared158/FATX0101 +256verifiedprivate recovery,
+0088/immutable0.1.0 unchanged. No physicaltestqueued; rootdemo251ticketretained,
+peersidle. Historical250/258 synthetic null/unsupported-device policy remains
+explicit; not current audio-integrated physicaldemo. Keep strictFt49 failure;
+no waiver of interrupted-run integrity failure. Continue through Oct12 04:00UTC.
+
+# Earlier record preserved
+
 #259 COMPILED COMPONENTS — runtime bridge still to implement
 
 All owned sessions CLOSED, including renderer build44179. No guest prepared,
