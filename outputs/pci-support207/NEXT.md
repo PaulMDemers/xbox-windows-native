@@ -1,3 +1,25 @@
+# Current continuation: rebalance002
+
+Read rebalance002/REPORT.md and comparison002.json. Three fresh same-binary
+skip/allow/veto cases are CLOSED. No-rebalance control has no input/DHCP errors;
+both rebalance arms reproduce one Kbdclass9/Mouclass9 pair with CREATE and
+STATUS_SHARING_VIOLATION. The veto target never stopped. Input errors occur
+about2.2/2.3 seconds after request, before later removal. DHCP1005 did not recur;
+its earlier IP-conflict report remains unexplained. Target lifecycle and cold
+E/F, five-hive and log-history checks pass in all arms. Normal restart remains
+held258/APU01B0 and Ftdisk49 remains strict failure. All PCI leases closed.
+
+Corrected comparison002 retains the original clock interpretation mistake:
+FILETIME and event epochs agree; both guest clocks are4h ahead of host. Raw
+relative guest timing is used; absolute clock accuracy remains unqualified.
+Next: bounded read-only trace of the actual input-port open/owner and owned-NIC
+packet capture if DHCP reproduces. No speculative device merge or suppression.
+Functional SMBus, terminal takeover, normal restart/repeated-boot persistence
+and physical gates remain open. Baseline and root fixtures unchanged.
+
+Historical continuation follows; stop001/REPORT.md supplies the intervening
+successful native STOP/START and CANCEL_STOP diagnostic before this comparison.
+
 # Next actions
 
 Current continuation: cancel001/REPORT.md. One fresh NT5 emulator boot passed an
