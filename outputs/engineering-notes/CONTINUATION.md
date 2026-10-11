@@ -1,3 +1,39 @@
+# Current:241 CLOSED; all3 dirty surfaces preserved at Xromwell entry
+
+Read outputs/gpu-preserve-empty241/REPORT.md/DESIGN.md/RETIREMENT.md/NEXT.md,
+review001.json/process-closure001.json and actual stage records. Matrix51665
+CLOSED0 at2026-10-11T02:41:04.878090+00:00. Build24380 CLOSED0,
+borrowed sources restored; only pfifo.c changed. Candidate SHAf1dc067d2edd1c1536bcd35d1a15be344709d6169c8e7a4f6cbb05395a9e1e7f.
+All239/240/241 root process identities closed, no root guest queued.
+
+Actual241 terminal3:3 dirty/3 downloaded/3072000 full bytes compared by actual
+GL worker with fences, no errors, no FIFO steps/words consumed. Exact actual
+Xromwell11100/FreeLoader200a20 pins; full teardown/mode0/resumed. Post-success
+RAM buffers privately retained/hashes in REPORT. No before/control RAM capture:
+pmemsave invokes GPU read callbacks, not passive observation. Finish restores
+old producer admission; references retained, retirement/native ownership NOT
+proved. Next NEW bounded post-preservation inventory within SAME intervention
+and admission still closed; account for asynchronous CPU callback removal and
+texture/shader/display refs before any native grant/accelerated allocator.
+
+Matched CLOSED239/control001 exact SAME immutable239 seed/native224/219/211
+captured-core policy/no null bindings. Both65 allocations/releases/refusals,
+3194880 bytes/four joins, normal6006=1/dashboard/orderly hostexit0/no Kill,
+clean full allocation/five hives/protected/startup/policy/history. Paths match.
+Sole Ftdisk49 type1 remains strict FALSE; no application events. Debugger
+preservation scope TRUE, ordinary/physical/native ownership FALSE.
+
+661 frozen pins; compiled O0/O2 ASan/UBSan18432 cases110593 checks each,
+host62/guards72/connection12/closure25 PASS. Preserve239 pre-VM space refusal
+and240 safe state4/reason21/stop5 inactive pusher refusal with zero readback;
+never replay/recollect any cases. Diagnostic correction skips only live,
+unexpired/no-wait empty completed parser under actual FIFO/halted admission;
+all other bounded worker/fence/byte-comparison/refusal gates unchanged.
+No physical IO/peer integration. Preserve0101/video0093,0088rollback,
+immutable0.1.0/all failures. E compiled241 and closed build/portable offloads
+readback/hash verified with original paths; no disk backing chains moved.
+C near20GiB guard again: inspect/project capacity before more work.
+
 # Current:238 CLOSED; Xromwell dirty ranges observable, FreeLoader sync pending
 
 Read outputs/gpu-reference-snapshot238/REPORT.md/DESIGN.md/SCHEMA.md/NEXT.md,
