@@ -1,0 +1,47 @@
+{
+  "review_passed": true,
+  "basic_emulated_keyboard_response_observed": true,
+  "basic_emulated_mouse_response_observed": true,
+  "full_input_qualified": false,
+  "physical_access": false,
+  "ordinary_boot_qualified": false,
+  "window_id": 148243502,
+  "guest_pid": 102884,
+  "capture_method": "Computer Use sky.get_window_state on uniquely selected xemu window; host Get-Process MainWindowHandle matched owned PID",
+  "baseline_image": "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\pci-support207\\reopen009\\veto001\\artifacts\\runtime\\input003-before.png",
+  "baseline_sha256": "c27a15877f58b2f212cfab76cd4d770f8c7c2516d9c7887421a9be2b4ae5c8b0",
+  "observations": [
+    {
+      "command_journal": "input003-keyboard.json",
+      "command": "sendkey ctrl-esc",
+      "utc": "2026-10-11T03:51:50.997870+00:00",
+      "image": "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\pci-support207\\reopen009\\veto001\\artifacts\\runtime\\input003-keyboard.png",
+      "sha256": "8e4014441bf4a159982b746257bacb6e5be0f350b1f9036908de98a0587a6680",
+      "visual_assessment": "Guest Start menu visibly opened after both sharing failures."
+    },
+    {
+      "command_journal": "input003-restore.json",
+      "command": "sendkey esc",
+      "utc": "2026-10-11T03:52:07.893339+00:00",
+      "image": "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\pci-support207\\reopen009\\veto001\\artifacts\\runtime\\input003-restore.png",
+      "sha256": "0767cef173b0ab989d7af677efed1986df782f347fa99b170fe013581c609416",
+      "visual_assessment": "Start menu closed; Found New Hardware Wizard and Getting Started windows remained."
+    },
+    {
+      "command_journal": "input004-mouse.json",
+      "command": "mouse_move 80 60",
+      "utc": "2026-10-11T03:52:38.851279+00:00",
+      "image": "E:\\Codex-private-artifacts\\xbox-windows-feasibility\\device-workstreams207\\pci\\repo\\outputs\\pci-support207\\reopen009\\veto001\\artifacts\\runtime\\input004-mouse.png",
+      "sha256": "94180acd62ad28a2a584cce3eb95f87baee841a160ec783505bc25be23c039ed",
+      "visual_assessment": "Guest arrow visibly moved from approximately window (642,518) to (843,662); no click was sent."
+    }
+  ],
+  "visual_assessment_method": "Assistant inspected each displayed native-window screenshot; hashes and command ordering checked by this script. This is not an automated pixel oracle.",
+  "preserved_capture_failures": [
+    "input-check.py before: HMP screendump did not create the PPM; no input sent and response was not retained by that script.",
+    "input-check002.py before: linear guest-memory interpretation unreadable; no input sent. Do not infer a guest display failure from this image.",
+    "input003 mouse command: lease-expiry assertion prevented sending; input003-mouse.png is an unused unchanged-pointer snapshot. A new lease was acquired for the sole actual mouse_move recorded in input004-mouse.json."
+  ],
+  "script_sha256": "4463a215b14ffd21441089730c032375cd7eb5f35eeadc95d95407e51604e2e2",
+  "limits": "One Ctrl+Esc/Escape pair and one relative mouse movement after debugger cleanup. No text-entry, clicks, long-duration input, power-button/wake, normal restart, repeated boot or physical-console qualification. No setup dialog dismissed."
+}

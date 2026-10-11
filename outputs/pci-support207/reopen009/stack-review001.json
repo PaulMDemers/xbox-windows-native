@@ -1,0 +1,4867 @@
+{
+  "scope": "Resolve captured return addresses against pinned images, instructions and kernel publics.",
+  "review_passed": true,
+  "calls": [
+    {
+      "id": 1,
+      "class_driver": "kbdclass.sys",
+      "identity": {
+        "thread": 4268156448,
+        "process": 4268228640,
+        "pid": 8,
+        "image": "System"
+      },
+      "enable": 1,
+      "status": "0x0",
+      "immediate_return": {
+        "address": 4176709753,
+        "module": "kbdclass.sys",
+        "base": 4176707584,
+        "rva": 2169,
+        "window_start": 4176709737,
+        "window": "04755b8d43185056576a01e8cd0600008bf085f68975f8743c6a30ff7508ff15",
+        "runtime_call_neighborhood_pinned": true,
+        "ending_call_candidates": [
+          {
+            "rva": 2164,
+            "bytes": "e8cd060000",
+            "operands": "0xf46"
+          }
+        ]
+      },
+      "frames": [
+        {
+          "frame": 4177770248,
+          "previous": 4177770668,
+          "return_address": {
+            "address": 2185362929,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 122353,
+            "window_start": 2185362913,
+            "window": "8946608978148b4f080fb600ff5481385f5ec3ff25705a4782558bec5151803d",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 122349,
+                "bytes": "ff548138",
+                "operands": "dword ptr [ecx + eax*4 + 0x38]"
+              }
+            ],
+            "nearest_public": "@IopfCallDriver@8",
+            "public_rva": 122300,
+            "public_offset": 53,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 122332,
+                "bytes": "56",
+                "mnemonic": "push",
+                "operands": "esi"
+              },
+              {
+                "rva": 122333,
+                "bytes": "83e824",
+                "mnemonic": "sub",
+                "operands": "eax, 0x24"
+              },
+              {
+                "rva": 122336,
+                "bytes": "57",
+                "mnemonic": "push",
+                "operands": "edi"
+              },
+              {
+                "rva": 122337,
+                "bytes": "894660",
+                "mnemonic": "mov",
+                "operands": "dword ptr [esi + 0x60], eax"
+              },
+              {
+                "rva": 122340,
+                "bytes": "897814",
+                "mnemonic": "mov",
+                "operands": "dword ptr [eax + 0x14], edi"
+              },
+              {
+                "rva": 122343,
+                "bytes": "8b4f08",
+                "mnemonic": "mov",
+                "operands": "ecx, dword ptr [edi + 8]"
+              },
+              {
+                "rva": 122346,
+                "bytes": "0fb600",
+                "mnemonic": "movzx",
+                "operands": "eax, byte ptr [eax]"
+              },
+              {
+                "rva": 122349,
+                "bytes": "ff548138",
+                "mnemonic": "call",
+                "operands": "dword ptr [ecx + eax*4 + 0x38]"
+              }
+            ]
+          },
+          "words": "acb803f9f1fd418270fb5efe48ad5efe58ad5efe48ad5efe6e1b4c82e0454882b0104c8220ba03f94cf54182284e5ffe"
+        },
+        {
+          "frame": 4177770668,
+          "previous": 4177770788,
+          "return_address": {
+            "address": 2185570483,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 329907,
+            "window_start": 2185570467,
+            "window": "53ff7510ff75e8ff7528ff751450ffd63d040100008945fcbe1801000074083b",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 329905,
+                "bytes": "ffd6",
+                "operands": "esi"
+              }
+            ],
+            "nearest_public": "_ObpLookupObjectName@44",
+            "public_rva": 328652,
+            "public_offset": 1255,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 329890,
+                "bytes": "51",
+                "mnemonic": "push",
+                "operands": "ecx"
+              },
+              {
+                "rva": 329891,
+                "bytes": "53",
+                "mnemonic": "push",
+                "operands": "ebx"
+              },
+              {
+                "rva": 329892,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 329895,
+                "bytes": "ff75e8",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x18]"
+              },
+              {
+                "rva": 329898,
+                "bytes": "ff7528",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x28]"
+              },
+              {
+                "rva": 329901,
+                "bytes": "ff7514",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x14]"
+              },
+              {
+                "rva": 329904,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 329905,
+                "bytes": "ffd6",
+                "mnemonic": "call",
+                "operands": "esi"
+              }
+            ]
+          },
+          "words": "24b903f9b3284582700d5ffe0000000064b903f9000000004002000020ba03f9f0b803f99cba03f9000000001cb903f9"
+        },
+        {
+          "frame": 4177770788,
+          "previous": 4177771060,
+          "return_address": {
+            "address": 2186115972,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 875396,
+            "window_start": 2186115956,
+            "window": "ff751056ff75bc50ff75c0e848a8f7ff3bc38945fc0f8ca10000008b4508f640",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 875391,
+                "bytes": "e848a8f7ff",
+                "operands": "0x503cc"
+              }
+            ],
+            "nearest_public": "_ObOpenObjectByName@28",
+            "public_rva": 875196,
+            "public_offset": 200,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 875374,
+                "bytes": "ff75dc",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x24]"
+              },
+              {
+                "rva": 875377,
+                "bytes": "ff751c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x1c]"
+              },
+              {
+                "rva": 875380,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 875383,
+                "bytes": "56",
+                "mnemonic": "push",
+                "operands": "esi"
+              },
+              {
+                "rva": 875384,
+                "bytes": "ff75bc",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x44]"
+              },
+              {
+                "rva": 875387,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 875388,
+                "bytes": "ff75c0",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x40]"
+              },
+              {
+                "rva": 875391,
+                "bytes": "e848a8f7ff",
+                "mnemonic": "call",
+                "operands": "0x503cc"
+              }
+            ]
+          },
+          "words": "34ba03f9847b4d820000000000fd66fe400200000000000000ff28e19cba03f9000000000000000064b903f92cba03f9"
+        },
+        {
+          "frame": 4177771060,
+          "previous": 4177771280,
+          "return_address": {
+            "address": 2185894691,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 654115,
+            "window_start": 2185894675,
+            "window": "57ffb578ffffff57ff7510e8995f03008bf0397db47408ff75b4e8f2affcff33",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 654110,
+                "bytes": "e8995f0300",
+                "operands": "0xd5abc"
+              }
+            ],
+            "nearest_public": "_IopCreateFile@64",
+            "public_rva": 653084,
+            "public_offset": 1031,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 654092,
+                "bytes": "8d458c",
+                "mnemonic": "lea",
+                "operands": "eax, [ebp - 0x74]"
+              },
+              {
+                "rva": 654095,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 654096,
+                "bytes": "ff750c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0xc]"
+              },
+              {
+                "rva": 654099,
+                "bytes": "57",
+                "mnemonic": "push",
+                "operands": "edi"
+              },
+              {
+                "rva": 654100,
+                "bytes": "ffb578ffffff",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x88]"
+              },
+              {
+                "rva": 654106,
+                "bytes": "57",
+                "mnemonic": "push",
+                "operands": "edi"
+              },
+              {
+                "rva": 654107,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 654110,
+                "bytes": "e8995f0300",
+                "mnemonic": "call",
+                "operands": "0xd5abc"
+              }
+            ]
+          },
+          "words": "10bb03f9231b4a82000000000000000000ff28e164b903f9030010009cba03f998ba03f9b8bb03f948bc03f956a44a82"
+        },
+        {
+          "frame": 4177771280,
+          "previous": 4177771352,
+          "return_address": {
+            "address": 2185893576,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 653000,
+            "window_start": 2185893560,
+            "window": "7514ff7510ff750cff7508e8540000005dc23800558bec33c9394d4074036a01",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 652995,
+                "bytes": "e854000000",
+                "operands": "0x9f71c"
+              }
+            ],
+            "nearest_public": "_IoCreateFile@56",
+            "public_rva": 652946,
+            "public_offset": 54,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 652974,
+                "bytes": "ff7520",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x20]"
+              },
+              {
+                "rva": 652977,
+                "bytes": "ff751c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x1c]"
+              },
+              {
+                "rva": 652980,
+                "bytes": "ff7518",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x18]"
+              },
+              {
+                "rva": 652983,
+                "bytes": "ff7514",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x14]"
+              },
+              {
+                "rva": 652986,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 652989,
+                "bytes": "ff750c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0xc]"
+              },
+              {
+                "rva": 652992,
+                "bytes": "ff7508",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 8]"
+              },
+              {
+                "rva": 652995,
+                "bytes": "e854000000",
+                "mnemonic": "call",
+                "operands": "0x9f71c"
+              }
+            ]
+          },
+          "words": "58bb03f9c8164a8284bc03f90300100054bc03f96cbc03f9000000000000000003000000010000001000000000000000"
+        },
+        {
+          "frame": 4177771352,
+          "previous": 4177771416,
+          "return_address": {
+            "address": 2185929851,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 689275,
+            "window_start": 2185929835,
+            "window": "7514ff7510ff750cff7508e81772ffff5dc21800cc558bec6aff68c036408268",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 689270,
+                "bytes": "e81772ffff",
+                "operands": "0x9f692"
+              }
+            ],
+            "nearest_public": "_NtOpenFile@24",
+            "public_rva": 689238,
+            "public_offset": 37,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 689253,
+                "bytes": "ff7518",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x18]"
+              },
+              {
+                "rva": 689256,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 689257,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 689258,
+                "bytes": "ff7514",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x14]"
+              },
+              {
+                "rva": 689261,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 689264,
+                "bytes": "ff750c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0xc]"
+              },
+              {
+                "rva": 689267,
+                "bytes": "ff7508",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 8]"
+              },
+              {
+                "rva": 689270,
+                "bytes": "e81772ffff",
+                "mnemonic": "call",
+                "operands": "0x9f692"
+              }
+            ]
+          },
+          "words": "98bb03f97ba44a8284bc03f90300100054bc03f96cbc03f9000000000000000003000000010000001000000000000000"
+        },
+        {
+          "frame": 4177771416,
+          "previous": 4177771448,
+          "return_address": {
+            "address": 2185654324,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 413748,
+            "window_start": 2185654308,
+            "window": "3b355c3b48820f83ac010000f3a5ffd38be58b0d24f1dfff8b553c8991280100",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 413746,
+                "bytes": "ffd3",
+                "operands": "ebx"
+              }
+            ],
+            "nearest_public": "_KiSystemService",
+            "public_rva": 413552,
+            "public_offset": 196,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 413722,
+                "bytes": "8b1c87",
+                "mnemonic": "mov",
+                "operands": "ebx, dword ptr [edi + eax*4]"
+              },
+              {
+                "rva": 413725,
+                "bytes": "2be1",
+                "mnemonic": "sub",
+                "operands": "esp, ecx"
+              },
+              {
+                "rva": 413727,
+                "bytes": "c1e902",
+                "mnemonic": "shr",
+                "operands": "ecx, 2"
+              },
+              {
+                "rva": 413730,
+                "bytes": "8bfc",
+                "mnemonic": "mov",
+                "operands": "edi, esp"
+              },
+              {
+                "rva": 413732,
+                "bytes": "3b355c1b4800",
+                "mnemonic": "cmp",
+                "operands": "esi, dword ptr [0x481b5c]"
+              },
+              {
+                "rva": 413738,
+                "bytes": "0f83ac010000",
+                "mnemonic": "jae",
+                "operands": "0x651dc"
+              },
+              {
+                "rva": 413744,
+                "bytes": "f3a5",
+                "mnemonic": "rep movsd",
+                "operands": "dword ptr es:[edi], dword ptr [esi]"
+              },
+              {
+                "rva": 413746,
+                "bytes": "ffd3",
+                "mnemonic": "call",
+                "operands": "ebx"
+              }
+            ]
+          },
+          "words": "b8bb03f93470468284bc03f90300100054bc03f96cbc03f903000000100000000000000000000000481e32e140bc03f9"
+        },
+        {
+          "frame": 4177771448,
+          "previous": 0,
+          "return_address": {
+            "address": 0,
+            "module": null
+          },
+          "words": "0000000000000000481e32e140bc03f900000000fb19438208000000860200005d3542823c0000805c003f003f005c00"
+        }
+      ],
+      "termination": "nonascending_frame"
+    },
+    {
+      "id": 2,
+      "class_driver": "kbdclass.sys",
+      "identity": {
+        "thread": 4268156448,
+        "process": 4268228640,
+        "pid": 8,
+        "image": "System"
+      },
+      "enable": 0,
+      "status": "0x0",
+      "immediate_return": {
+        "address": 4176710281,
+        "module": "kbdclass.sys",
+        "base": 4176707584,
+        "rva": 2697,
+        "window_start": 4176710265,
+        "window": "75598d4718505633f65356e8bd0400008be83bee743b6a30ff742424ff151c9f",
+        "runtime_call_neighborhood_pinned": true,
+        "ending_call_candidates": [
+          {
+            "rva": 2692,
+            "bytes": "e8bd040000",
+            "operands": "0xf46"
+          }
+        ]
+      },
+      "frames": [],
+      "termination": "frame_outside_stack_or_unaligned"
+    },
+    {
+      "id": 3,
+      "class_driver": "mouclass.sys",
+      "identity": {
+        "thread": 4268156448,
+        "process": 4268228640,
+        "pid": 8,
+        "image": "System"
+      },
+      "enable": 1,
+      "status": "0x0",
+      "immediate_return": {
+        "address": 4176807828,
+        "module": "mouclass.sys",
+        "base": 4176805888,
+        "rva": 1940,
+        "window_start": 4176807812,
+        "window": "8b5dec8d43185056576a01e8da0600008bf085f68975f8743c6a30ff7508ff15",
+        "runtime_call_neighborhood_pinned": true,
+        "ending_call_candidates": [
+          {
+            "rva": 1935,
+            "bytes": "e8da060000",
+            "operands": "0xe6e"
+          }
+        ]
+      },
+      "frames": [
+        {
+          "frame": 4177770248,
+          "previous": 4177770668,
+          "return_address": {
+            "address": 2185362929,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 122353,
+            "window_start": 2185362913,
+            "window": "8946608978148b4f080fb600ff5481385f5ec3ff25705a4782558bec5151803d",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 122349,
+                "bytes": "ff548138",
+                "operands": "dword ptr [ecx + eax*4 + 0x38]"
+              }
+            ],
+            "nearest_public": "@IopfCallDriver@8",
+            "public_rva": 122300,
+            "public_offset": 53,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 122332,
+                "bytes": "56",
+                "mnemonic": "push",
+                "operands": "esi"
+              },
+              {
+                "rva": 122333,
+                "bytes": "83e824",
+                "mnemonic": "sub",
+                "operands": "eax, 0x24"
+              },
+              {
+                "rva": 122336,
+                "bytes": "57",
+                "mnemonic": "push",
+                "operands": "edi"
+              },
+              {
+                "rva": 122337,
+                "bytes": "894660",
+                "mnemonic": "mov",
+                "operands": "dword ptr [esi + 0x60], eax"
+              },
+              {
+                "rva": 122340,
+                "bytes": "897814",
+                "mnemonic": "mov",
+                "operands": "dword ptr [eax + 0x14], edi"
+              },
+              {
+                "rva": 122343,
+                "bytes": "8b4f08",
+                "mnemonic": "mov",
+                "operands": "ecx, dword ptr [edi + 8]"
+              },
+              {
+                "rva": 122346,
+                "bytes": "0fb600",
+                "mnemonic": "movzx",
+                "operands": "eax, byte ptr [eax]"
+              },
+              {
+                "rva": 122349,
+                "bytes": "ff548138",
+                "mnemonic": "call",
+                "operands": "dword ptr [ecx + eax*4 + 0x38]"
+              }
+            ]
+          },
+          "words": "acb803f9f1fd4182d0da5efec85459fed85459fec85459fe6e1b4c82e0454882b0104c8220ba03f94cf54182284e5ffe"
+        },
+        {
+          "frame": 4177770668,
+          "previous": 4177770788,
+          "return_address": {
+            "address": 2185570483,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 329907,
+            "window_start": 2185570467,
+            "window": "53ff7510ff75e8ff7528ff751450ffd63d040100008945fcbe1801000074083b",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 329905,
+                "bytes": "ffd6",
+                "operands": "esi"
+              }
+            ],
+            "nearest_public": "_ObpLookupObjectName@44",
+            "public_rva": 328652,
+            "public_offset": 1255,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 329890,
+                "bytes": "51",
+                "mnemonic": "push",
+                "operands": "ecx"
+              },
+              {
+                "rva": 329891,
+                "bytes": "53",
+                "mnemonic": "push",
+                "operands": "ebx"
+              },
+              {
+                "rva": 329892,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 329895,
+                "bytes": "ff75e8",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x18]"
+              },
+              {
+                "rva": 329898,
+                "bytes": "ff7528",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x28]"
+              },
+              {
+                "rva": 329901,
+                "bytes": "ff7514",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x14]"
+              },
+              {
+                "rva": 329904,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 329905,
+                "bytes": "ffd6",
+                "mnemonic": "call",
+                "operands": "esi"
+              }
+            ]
+          },
+          "words": "24b903f9b3284582d0ed5efe0000000064b903f9000000004002000020ba03f9f0b803f99cba03f9000000001cb903f9"
+        },
+        {
+          "frame": 4177770788,
+          "previous": 4177771060,
+          "return_address": {
+            "address": 2186115972,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 875396,
+            "window_start": 2186115956,
+            "window": "ff751056ff75bc50ff75c0e848a8f7ff3bc38945fc0f8ca10000008b4508f640",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 875391,
+                "bytes": "e848a8f7ff",
+                "operands": "0x503cc"
+              }
+            ],
+            "nearest_public": "_ObOpenObjectByName@28",
+            "public_rva": 875196,
+            "public_offset": 200,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 875374,
+                "bytes": "ff75dc",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x24]"
+              },
+              {
+                "rva": 875377,
+                "bytes": "ff751c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x1c]"
+              },
+              {
+                "rva": 875380,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 875383,
+                "bytes": "56",
+                "mnemonic": "push",
+                "operands": "esi"
+              },
+              {
+                "rva": 875384,
+                "bytes": "ff75bc",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x44]"
+              },
+              {
+                "rva": 875387,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 875388,
+                "bytes": "ff75c0",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x40]"
+              },
+              {
+                "rva": 875391,
+                "bytes": "e848a8f7ff",
+                "mnemonic": "call",
+                "operands": "0x503cc"
+              }
+            ]
+          },
+          "words": "34ba03f9847b4d820000000000fd66fe4002000000000000000000009cba03f9000000000000000064b903f92cba03f9"
+        },
+        {
+          "frame": 4177771060,
+          "previous": 4177771280,
+          "return_address": {
+            "address": 2185894691,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 654115,
+            "window_start": 2185894675,
+            "window": "57ffb578ffffff57ff7510e8995f03008bf0397db47408ff75b4e8f2affcff33",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 654110,
+                "bytes": "e8995f0300",
+                "operands": "0xd5abc"
+              }
+            ],
+            "nearest_public": "_IopCreateFile@64",
+            "public_rva": 653084,
+            "public_offset": 1031,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 654092,
+                "bytes": "8d458c",
+                "mnemonic": "lea",
+                "operands": "eax, [ebp - 0x74]"
+              },
+              {
+                "rva": 654095,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 654096,
+                "bytes": "ff750c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0xc]"
+              },
+              {
+                "rva": 654099,
+                "bytes": "57",
+                "mnemonic": "push",
+                "operands": "edi"
+              },
+              {
+                "rva": 654100,
+                "bytes": "ffb578ffffff",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x88]"
+              },
+              {
+                "rva": 654106,
+                "bytes": "57",
+                "mnemonic": "push",
+                "operands": "edi"
+              },
+              {
+                "rva": 654107,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 654110,
+                "bytes": "e8995f0300",
+                "mnemonic": "call",
+                "operands": "0xd5abc"
+              }
+            ]
+          },
+          "words": "10bb03f9231b4a8200000000000000000000000064b903f9030010009cba03f998ba03f9b8bb03f948bc03f956a44a82"
+        },
+        {
+          "frame": 4177771280,
+          "previous": 4177771352,
+          "return_address": {
+            "address": 2185893576,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 653000,
+            "window_start": 2185893560,
+            "window": "7514ff7510ff750cff7508e8540000005dc23800558bec33c9394d4074036a01",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 652995,
+                "bytes": "e854000000",
+                "operands": "0x9f71c"
+              }
+            ],
+            "nearest_public": "_IoCreateFile@56",
+            "public_rva": 652946,
+            "public_offset": 54,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 652974,
+                "bytes": "ff7520",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x20]"
+              },
+              {
+                "rva": 652977,
+                "bytes": "ff751c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x1c]"
+              },
+              {
+                "rva": 652980,
+                "bytes": "ff7518",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x18]"
+              },
+              {
+                "rva": 652983,
+                "bytes": "ff7514",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x14]"
+              },
+              {
+                "rva": 652986,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 652989,
+                "bytes": "ff750c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0xc]"
+              },
+              {
+                "rva": 652992,
+                "bytes": "ff7508",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 8]"
+              },
+              {
+                "rva": 652995,
+                "bytes": "e854000000",
+                "mnemonic": "call",
+                "operands": "0x9f71c"
+              }
+            ]
+          },
+          "words": "58bb03f9c8164a8284bc03f90300100054bc03f96cbc03f9000000000000000003000000010000001000000000000000"
+        },
+        {
+          "frame": 4177771352,
+          "previous": 4177771416,
+          "return_address": {
+            "address": 2185929851,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 689275,
+            "window_start": 2185929835,
+            "window": "7514ff7510ff750cff7508e81772ffff5dc21800cc558bec6aff68c036408268",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 689270,
+                "bytes": "e81772ffff",
+                "operands": "0x9f692"
+              }
+            ],
+            "nearest_public": "_NtOpenFile@24",
+            "public_rva": 689238,
+            "public_offset": 37,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 689253,
+                "bytes": "ff7518",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x18]"
+              },
+              {
+                "rva": 689256,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 689257,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 689258,
+                "bytes": "ff7514",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x14]"
+              },
+              {
+                "rva": 689261,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 689264,
+                "bytes": "ff750c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0xc]"
+              },
+              {
+                "rva": 689267,
+                "bytes": "ff7508",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 8]"
+              },
+              {
+                "rva": 689270,
+                "bytes": "e81772ffff",
+                "mnemonic": "call",
+                "operands": "0x9f692"
+              }
+            ]
+          },
+          "words": "98bb03f97ba44a8284bc03f90300100054bc03f96cbc03f9000000000000000003000000010000001000000000000000"
+        },
+        {
+          "frame": 4177771416,
+          "previous": 4177771448,
+          "return_address": {
+            "address": 2185654324,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 413748,
+            "window_start": 2185654308,
+            "window": "3b355c3b48820f83ac010000f3a5ffd38be58b0d24f1dfff8b553c8991280100",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 413746,
+                "bytes": "ffd3",
+                "operands": "ebx"
+              }
+            ],
+            "nearest_public": "_KiSystemService",
+            "public_rva": 413552,
+            "public_offset": 196,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 413722,
+                "bytes": "8b1c87",
+                "mnemonic": "mov",
+                "operands": "ebx, dword ptr [edi + eax*4]"
+              },
+              {
+                "rva": 413725,
+                "bytes": "2be1",
+                "mnemonic": "sub",
+                "operands": "esp, ecx"
+              },
+              {
+                "rva": 413727,
+                "bytes": "c1e902",
+                "mnemonic": "shr",
+                "operands": "ecx, 2"
+              },
+              {
+                "rva": 413730,
+                "bytes": "8bfc",
+                "mnemonic": "mov",
+                "operands": "edi, esp"
+              },
+              {
+                "rva": 413732,
+                "bytes": "3b355c1b4800",
+                "mnemonic": "cmp",
+                "operands": "esi, dword ptr [0x481b5c]"
+              },
+              {
+                "rva": 413738,
+                "bytes": "0f83ac010000",
+                "mnemonic": "jae",
+                "operands": "0x651dc"
+              },
+              {
+                "rva": 413744,
+                "bytes": "f3a5",
+                "mnemonic": "rep movsd",
+                "operands": "dword ptr es:[edi], dword ptr [esi]"
+              },
+              {
+                "rva": 413746,
+                "bytes": "ffd3",
+                "mnemonic": "call",
+                "operands": "ebx"
+              }
+            ]
+          },
+          "words": "b8bb03f93470468284bc03f90300100054bc03f96cbc03f90300000010000000607e4082ffffffffccbb03f934704682"
+        },
+        {
+          "frame": 4177771448,
+          "previous": 2185264736,
+          "return_address": {
+            "address": 4294967295,
+            "module": null
+          },
+          "words": "607e4082ffffffffccbb03f93470468240000000c8596afe2cbc03f9000000004cf541820000000070fb5efe00000000"
+        }
+      ],
+      "termination": "nonascending_frame"
+    },
+    {
+      "id": 4,
+      "class_driver": "mouclass.sys",
+      "identity": {
+        "thread": 4268156448,
+        "process": 4268228640,
+        "pid": 8,
+        "image": "System"
+      },
+      "enable": 0,
+      "status": "0x0",
+      "immediate_return": {
+        "address": 4176808357,
+        "module": "mouclass.sys",
+        "base": 4176805888,
+        "rva": 2469,
+        "window_start": 4176808341,
+        "window": "75598d4718505633f65356e8c90400008be83bee743b6a30ff742424ff15581c",
+        "runtime_call_neighborhood_pinned": true,
+        "ending_call_candidates": [
+          {
+            "rva": 2464,
+            "bytes": "e8c9040000",
+            "operands": "0xe6e"
+          }
+        ]
+      },
+      "frames": [],
+      "termination": "frame_outside_stack_or_unaligned"
+    },
+    {
+      "id": 5,
+      "class_driver": "mouclass.sys",
+      "identity": {
+        "thread": 4266443488,
+        "process": 4266511584,
+        "pid": 160,
+        "image": "csrss.exe"
+      },
+      "enable": 1,
+      "status": "0x0",
+      "immediate_return": {
+        "address": 4176807828,
+        "module": "mouclass.sys",
+        "base": 4176805888,
+        "rva": 1940,
+        "window_start": 4176807812,
+        "window": "8b5dec8d43185056576a01e8da0600008bf085f68975f8743c6a30ff7508ff15",
+        "runtime_call_neighborhood_pinned": true,
+        "ending_call_candidates": [
+          {
+            "rva": 1935,
+            "bytes": "e8da060000",
+            "operands": "0xe6e"
+          }
+        ]
+      },
+      "frames": [
+        {
+          "frame": 4241413916,
+          "previous": 4241414336,
+          "return_address": {
+            "address": 2185362929,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 122353,
+            "window_start": 2185362913,
+            "window": "8946608978148b4f080fb600ff5481385f5ec3ff25705a4782558bec5151803d",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 122349,
+                "bytes": "ff548138",
+                "operands": "dword ptr [ecx + eax*4 + 0x38]"
+              }
+            ],
+            "nearest_public": "@IopfCallDriver@8",
+            "public_rva": 122300,
+            "public_offset": 53,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 122332,
+                "bytes": "56",
+                "mnemonic": "push",
+                "operands": "esi"
+              },
+              {
+                "rva": 122333,
+                "bytes": "83e824",
+                "mnemonic": "sub",
+                "operands": "eax, 0x24"
+              },
+              {
+                "rva": 122336,
+                "bytes": "57",
+                "mnemonic": "push",
+                "operands": "edi"
+              },
+              {
+                "rva": 122337,
+                "bytes": "894660",
+                "mnemonic": "mov",
+                "operands": "dword ptr [esi + 0x60], eax"
+              },
+              {
+                "rva": 122340,
+                "bytes": "897814",
+                "mnemonic": "mov",
+                "operands": "dword ptr [eax + 0x14], edi"
+              },
+              {
+                "rva": 122343,
+                "bytes": "8b4f08",
+                "mnemonic": "mov",
+                "operands": "ecx, dword ptr [edi + 8]"
+              },
+              {
+                "rva": 122346,
+                "bytes": "0fb600",
+                "mnemonic": "movzx",
+                "operands": "eax, byte ptr [eax]"
+              },
+              {
+                "rva": 122349,
+                "bytes": "ff548138",
+                "mnemonic": "call",
+                "operands": "dword ptr [ecx + eax*4 + 0x38]"
+              }
+            ]
+          },
+          "words": "c0d8cefcf1fd4182d0da5efec85459fed85459fec85459fe6e1b4c82e0454882b0104c8234dacefc0000000000000000"
+        },
+        {
+          "frame": 4241414336,
+          "previous": 4241414456,
+          "return_address": {
+            "address": 2185570483,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 329907,
+            "window_start": 2185570467,
+            "window": "53ff7510ff75e8ff7528ff751450ffd63d040100008945fcbe1801000074083b",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 329905,
+                "bytes": "ffd6",
+                "operands": "esi"
+              }
+            ],
+            "nearest_public": "_ObpLookupObjectName@44",
+            "public_rva": 328652,
+            "public_offset": 1255,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 329890,
+                "bytes": "51",
+                "mnemonic": "push",
+                "operands": "ecx"
+              },
+              {
+                "rva": 329891,
+                "bytes": "53",
+                "mnemonic": "push",
+                "operands": "ebx"
+              },
+              {
+                "rva": 329892,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 329895,
+                "bytes": "ff75e8",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x18]"
+              },
+              {
+                "rva": 329898,
+                "bytes": "ff7528",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x28]"
+              },
+              {
+                "rva": 329901,
+                "bytes": "ff7514",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x14]"
+              },
+              {
+                "rva": 329904,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 329905,
+                "bytes": "ffd6",
+                "mnemonic": "call",
+                "operands": "esi"
+              }
+            ]
+          },
+          "words": "38d9cefcb3284582d0ed5efe0000000078d9cefc000000000000000034dacefc04d9cefcb0dacefc0000000030d9cefc"
+        },
+        {
+          "frame": 4241414456,
+          "previous": 4241414728,
+          "return_address": {
+            "address": 2186115972,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 875396,
+            "window_start": 2186115956,
+            "window": "ff751056ff75bc50ff75c0e848a8f7ff3bc38945fc0f8ca10000008b4508f640",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 875391,
+                "bytes": "e848a8f7ff",
+                "operands": "0x503cc"
+              }
+            ],
+            "nearest_public": "_ObOpenObjectByName@28",
+            "public_rva": 875196,
+            "public_offset": 200,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 875374,
+                "bytes": "ff75dc",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x24]"
+              },
+              {
+                "rva": 875377,
+                "bytes": "ff751c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x1c]"
+              },
+              {
+                "rva": 875380,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 875383,
+                "bytes": "56",
+                "mnemonic": "push",
+                "operands": "esi"
+              },
+              {
+                "rva": 875384,
+                "bytes": "ff75bc",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x44]"
+              },
+              {
+                "rva": 875387,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 875388,
+                "bytes": "ff75c0",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x40]"
+              },
+              {
+                "rva": 875391,
+                "bytes": "e848a8f7ff",
+                "mnemonic": "call",
+                "operands": "0x503cc"
+              }
+            ]
+          },
+          "words": "48dacefc847b4d820000000000fd66fe000000000000000000dccefcb0dacefc000000000000000078d9cefc40dacefc"
+        },
+        {
+          "frame": 4241414728,
+          "previous": 4241414948,
+          "return_address": {
+            "address": 2185894691,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 654115,
+            "window_start": 2185894675,
+            "window": "57ffb578ffffff57ff7510e8995f03008bf0397db47408ff75b4e8f2affcff33",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 654110,
+                "bytes": "e8995f0300",
+                "operands": "0xd5abc"
+              }
+            ],
+            "nearest_public": "_IopCreateFile@64",
+            "public_rva": 653084,
+            "public_offset": 1031,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 654092,
+                "bytes": "8d458c",
+                "mnemonic": "lea",
+                "operands": "eax, [ebp - 0x74]"
+              },
+              {
+                "rva": 654095,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 654096,
+                "bytes": "ff750c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0xc]"
+              },
+              {
+                "rva": 654099,
+                "bytes": "57",
+                "mnemonic": "push",
+                "operands": "edi"
+              },
+              {
+                "rva": 654100,
+                "bytes": "ffb578ffffff",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x88]"
+              },
+              {
+                "rva": 654106,
+                "bytes": "57",
+                "mnemonic": "push",
+                "operands": "edi"
+              },
+              {
+                "rva": 654107,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 654110,
+                "bytes": "e8995f0300",
+                "mnemonic": "call",
+                "operands": "0xd5abc"
+              }
+            ]
+          },
+          "words": "24dbcefc231b4a82000000000000000000dccefc78d9cefc01001000b0dacefcacdacefce0dbcefc84dccefcb2914a82"
+        },
+        {
+          "frame": 4241414948,
+          "previous": 4241415020,
+          "return_address": {
+            "address": 2185893576,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 653000,
+            "window_start": 2185893560,
+            "window": "7514ff7510ff750cff7508e8540000005dc23800558bec33c9394d4074036a01",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 652995,
+                "bytes": "e854000000",
+                "operands": "0x9f71c"
+              }
+            ],
+            "nearest_public": "_IoCreateFile@56",
+            "public_rva": 652946,
+            "public_offset": 54,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 652974,
+                "bytes": "ff7520",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x20]"
+              },
+              {
+                "rva": 652977,
+                "bytes": "ff751c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x1c]"
+              },
+              {
+                "rva": 652980,
+                "bytes": "ff7518",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x18]"
+              },
+              {
+                "rva": 652983,
+                "bytes": "ff7514",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x14]"
+              },
+              {
+                "rva": 652986,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 652989,
+                "bytes": "ff750c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0xc]"
+              },
+              {
+                "rva": 652992,
+                "bytes": "ff7508",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 8]"
+              },
+              {
+                "rva": 652995,
+                "bytes": "e854000000",
+                "mnemonic": "call",
+                "operands": "0x9f71c"
+              }
+            ]
+          },
+          "words": "6cdbcefcc8164a825c18a6e1010010008cdccefc6818a6e1000000000000000002000000030000000000000000000000"
+        },
+        {
+          "frame": 4241415020,
+          "previous": 4241415084,
+          "return_address": {
+            "address": 2185925088,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 684512,
+            "window_start": 2185925072,
+            "window": "7514ff7510ff750cff7508e8b284ffff5dc22c00558bec6aff680036408268a0",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 684507,
+                "bytes": "e8b284ffff",
+                "operands": "0x9f692"
+              }
+            ],
+            "nearest_public": "_NtCreateFile@44",
+            "public_rva": 684466,
+            "public_offset": 46,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 684486,
+                "bytes": "ff7520",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x20]"
+              },
+              {
+                "rva": 684489,
+                "bytes": "ff751c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x1c]"
+              },
+              {
+                "rva": 684492,
+                "bytes": "ff7518",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x18]"
+              },
+              {
+                "rva": 684495,
+                "bytes": "ff7514",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x14]"
+              },
+              {
+                "rva": 684498,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 684501,
+                "bytes": "ff750c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0xc]"
+              },
+              {
+                "rva": 684504,
+                "bytes": "ff7508",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 8]"
+              },
+              {
+                "rva": 684507,
+                "bytes": "e8b284ffff",
+                "mnemonic": "call",
+                "operands": "0x9f692"
+              }
+            ]
+          },
+          "words": "acdbcefce0914a825c18a6e1010010008cdccefc6818a6e1000000000000000002000000030000000000000000000000"
+        },
+        {
+          "frame": 4241415084,
+          "previous": 4241415136,
+          "return_address": {
+            "address": 2185654324,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 413748,
+            "window_start": 2185654308,
+            "window": "3b355c3b48820f83ac010000f3a5ffd38be58b0d24f1dfff8b553c8991280100",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 413746,
+                "bytes": "ffd3",
+                "operands": "ebx"
+              }
+            ],
+            "nearest_public": "_KiSystemService",
+            "public_rva": 413552,
+            "public_offset": 196,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 413722,
+                "bytes": "8b1c87",
+                "mnemonic": "mov",
+                "operands": "ebx, dword ptr [edi + eax*4]"
+              },
+              {
+                "rva": 413725,
+                "bytes": "2be1",
+                "mnemonic": "sub",
+                "operands": "esp, ecx"
+              },
+              {
+                "rva": 413727,
+                "bytes": "c1e902",
+                "mnemonic": "shr",
+                "operands": "ecx, 2"
+              },
+              {
+                "rva": 413730,
+                "bytes": "8bfc",
+                "mnemonic": "mov",
+                "operands": "edi, esp"
+              },
+              {
+                "rva": 413732,
+                "bytes": "3b355c1b4800",
+                "mnemonic": "cmp",
+                "operands": "esi, dword ptr [0x481b5c]"
+              },
+              {
+                "rva": 413738,
+                "bytes": "0f83ac010000",
+                "mnemonic": "jae",
+                "operands": "0x651dc"
+              },
+              {
+                "rva": 413744,
+                "bytes": "f3a5",
+                "mnemonic": "rep movsd",
+                "operands": "dword ptr es:[edi], dword ptr [esi]"
+              },
+              {
+                "rva": 413746,
+                "bytes": "ffd3",
+                "mnemonic": "call",
+                "operands": "ebx"
+              }
+            ]
+          },
+          "words": "e0dbcefc347046825c18a6e1010010008cdccefc6818a6e1000000000000000002000000030000000000000000000000"
+        },
+        {
+          "frame": 4241415136,
+          "previous": 2684659314,
+          "return_address": {
+            "address": 50397238,
+            "module": null
+          },
+          "words": "72a604a0360001030100000000000000aaaa14053004e7a77aa6c30228b54cfea0394382c0b4b3ffffffffff70338405"
+        }
+      ],
+      "termination": "nonascending_frame"
+    },
+    {
+      "id": 6,
+      "class_driver": "kbdclass.sys",
+      "identity": {
+        "thread": 4266445440,
+        "process": 4266511584,
+        "pid": 160,
+        "image": "csrss.exe"
+      },
+      "enable": 1,
+      "status": "0x0",
+      "immediate_return": {
+        "address": 4176709753,
+        "module": "kbdclass.sys",
+        "base": 4176707584,
+        "rva": 2169,
+        "window_start": 4176709737,
+        "window": "04755b8d43185056576a01e8cd0600008bf085f68975f8743c6a30ff7508ff15",
+        "runtime_call_neighborhood_pinned": true,
+        "ending_call_candidates": [
+          {
+            "rva": 2164,
+            "bytes": "e8cd060000",
+            "operands": "0xf46"
+          }
+        ]
+      },
+      "frames": [
+        {
+          "frame": 4242765220,
+          "previous": 4242765640,
+          "return_address": {
+            "address": 2185362929,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 122353,
+            "window_start": 2185362913,
+            "window": "8946608978148b4f080fb600ff5481385f5ec3ff25705a4782558bec5151803d",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 122349,
+                "bytes": "ff548138",
+                "operands": "dword ptr [ecx + eax*4 + 0x38]"
+              }
+            ],
+            "nearest_public": "@IopfCallDriver@8",
+            "public_rva": 122300,
+            "public_offset": 53,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 122332,
+                "bytes": "56",
+                "mnemonic": "push",
+                "operands": "esi"
+              },
+              {
+                "rva": 122333,
+                "bytes": "83e824",
+                "mnemonic": "sub",
+                "operands": "eax, 0x24"
+              },
+              {
+                "rva": 122336,
+                "bytes": "57",
+                "mnemonic": "push",
+                "operands": "edi"
+              },
+              {
+                "rva": 122337,
+                "bytes": "894660",
+                "mnemonic": "mov",
+                "operands": "dword ptr [esi + 0x60], eax"
+              },
+              {
+                "rva": 122340,
+                "bytes": "897814",
+                "mnemonic": "mov",
+                "operands": "dword ptr [eax + 0x14], edi"
+              },
+              {
+                "rva": 122343,
+                "bytes": "8b4f08",
+                "mnemonic": "mov",
+                "operands": "ecx, dword ptr [edi + 8]"
+              },
+              {
+                "rva": 122346,
+                "bytes": "0fb600",
+                "mnemonic": "movzx",
+                "operands": "eax, byte ptr [eax]"
+              },
+              {
+                "rva": 122349,
+                "bytes": "ff548138",
+                "mnemonic": "call",
+                "operands": "dword ptr [ecx + eax*4 + 0x38]"
+              }
+            ]
+          },
+          "words": "4877e3fcf1fd418270fb5efe48ad5efe58ad5efe48ad5efe6e1b4c82e0454882b0104c82bc78e3fce8e065fe0076e3fc"
+        },
+        {
+          "frame": 4242765640,
+          "previous": 4242765760,
+          "return_address": {
+            "address": 2185570483,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 329907,
+            "window_start": 2185570467,
+            "window": "53ff7510ff75e8ff7528ff751450ffd63d040100008945fcbe1801000074083b",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 329905,
+                "bytes": "ffd6",
+                "operands": "esi"
+              }
+            ],
+            "nearest_public": "_ObpLookupObjectName@44",
+            "public_rva": 328652,
+            "public_offset": 1255,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 329890,
+                "bytes": "51",
+                "mnemonic": "push",
+                "operands": "ecx"
+              },
+              {
+                "rva": 329891,
+                "bytes": "53",
+                "mnemonic": "push",
+                "operands": "ebx"
+              },
+              {
+                "rva": 329892,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 329895,
+                "bytes": "ff75e8",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x18]"
+              },
+              {
+                "rva": 329898,
+                "bytes": "ff7528",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x28]"
+              },
+              {
+                "rva": 329901,
+                "bytes": "ff7514",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x14]"
+              },
+              {
+                "rva": 329904,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 329905,
+                "bytes": "ffd6",
+                "mnemonic": "call",
+                "operands": "esi"
+              }
+            ]
+          },
+          "words": "c077e3fcb3284582700d5ffe000000000078e3fc0000000000000000bc78e3fc8c77e3fc3879e3fc00000000b877e3fc"
+        },
+        {
+          "frame": 4242765760,
+          "previous": 4242766032,
+          "return_address": {
+            "address": 2186115972,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 875396,
+            "window_start": 2186115956,
+            "window": "ff751056ff75bc50ff75c0e848a8f7ff3bc38945fc0f8ca10000008b4508f640",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 875391,
+                "bytes": "e848a8f7ff",
+                "operands": "0x503cc"
+              }
+            ],
+            "nearest_public": "_ObOpenObjectByName@28",
+            "public_rva": 875196,
+            "public_offset": 200,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 875374,
+                "bytes": "ff75dc",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x24]"
+              },
+              {
+                "rva": 875377,
+                "bytes": "ff751c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x1c]"
+              },
+              {
+                "rva": 875380,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 875383,
+                "bytes": "56",
+                "mnemonic": "push",
+                "operands": "esi"
+              },
+              {
+                "rva": 875384,
+                "bytes": "ff75bc",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x44]"
+              },
+              {
+                "rva": 875387,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 875388,
+                "bytes": "ff75c0",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x40]"
+              },
+              {
+                "rva": 875391,
+                "bytes": "e848a8f7ff",
+                "mnemonic": "call",
+                "operands": "0x503cc"
+              }
+            ]
+          },
+          "words": "d078e3fc847b4d820000000000fd66fe000000000000000000b3abe13879e3fc00000000000000000078e3fcc878e3fc"
+        },
+        {
+          "frame": 4242766032,
+          "previous": 4242766252,
+          "return_address": {
+            "address": 2185894691,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 654115,
+            "window_start": 2185894675,
+            "window": "57ffb578ffffff57ff7510e8995f03008bf0397db47408ff75b4e8f2affcff33",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 654110,
+                "bytes": "e8995f0300",
+                "operands": "0xd5abc"
+              }
+            ],
+            "nearest_public": "_IopCreateFile@64",
+            "public_rva": 653084,
+            "public_offset": 1031,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 654092,
+                "bytes": "8d458c",
+                "mnemonic": "lea",
+                "operands": "eax, [ebp - 0x74]"
+              },
+              {
+                "rva": 654095,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 654096,
+                "bytes": "ff750c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0xc]"
+              },
+              {
+                "rva": 654099,
+                "bytes": "57",
+                "mnemonic": "push",
+                "operands": "edi"
+              },
+              {
+                "rva": 654100,
+                "bytes": "ffb578ffffff",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x88]"
+              },
+              {
+                "rva": 654106,
+                "bytes": "57",
+                "mnemonic": "push",
+                "operands": "edi"
+              },
+              {
+                "rva": 654107,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 654110,
+                "bytes": "e8995f0300",
+                "mnemonic": "call",
+                "operands": "0xd5abc"
+              }
+            ]
+          },
+          "words": "ac79e3fc231b4a82000000000000000000b3abe10078e3fc010010003879e3fc3479e3fc687ae3fc0c7be3fcb2914a82"
+        },
+        {
+          "frame": 4242766252,
+          "previous": 4242766324,
+          "return_address": {
+            "address": 2185893576,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 653000,
+            "window_start": 2185893560,
+            "window": "7514ff7510ff750cff7508e8540000005dc23800558bec33c9394d4074036a01",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 652995,
+                "bytes": "e854000000",
+                "operands": "0x9f71c"
+              }
+            ],
+            "nearest_public": "_IoCreateFile@56",
+            "public_rva": 652946,
+            "public_offset": 54,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 652974,
+                "bytes": "ff7520",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x20]"
+              },
+              {
+                "rva": 652977,
+                "bytes": "ff751c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x1c]"
+              },
+              {
+                "rva": 652980,
+                "bytes": "ff7518",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x18]"
+              },
+              {
+                "rva": 652983,
+                "bytes": "ff7514",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x14]"
+              },
+              {
+                "rva": 652986,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 652989,
+                "bytes": "ff750c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0xc]"
+              },
+              {
+                "rva": 652992,
+                "bytes": "ff7508",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 8]"
+              },
+              {
+                "rva": 652995,
+                "bytes": "e854000000",
+                "mnemonic": "call",
+                "operands": "0x9f71c"
+              }
+            ]
+          },
+          "words": "f479e3fcc8164a823c3fa6e101001000147be3fc483fa6e1000000000000000002000000030000000000000000000000"
+        },
+        {
+          "frame": 4242766324,
+          "previous": 4242766388,
+          "return_address": {
+            "address": 2185925088,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 684512,
+            "window_start": 2185925072,
+            "window": "7514ff7510ff750cff7508e8b284ffff5dc22c00558bec6aff680036408268a0",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 684507,
+                "bytes": "e8b284ffff",
+                "operands": "0x9f692"
+              }
+            ],
+            "nearest_public": "_NtCreateFile@44",
+            "public_rva": 684466,
+            "public_offset": 46,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 684486,
+                "bytes": "ff7520",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x20]"
+              },
+              {
+                "rva": 684489,
+                "bytes": "ff751c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x1c]"
+              },
+              {
+                "rva": 684492,
+                "bytes": "ff7518",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x18]"
+              },
+              {
+                "rva": 684495,
+                "bytes": "ff7514",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x14]"
+              },
+              {
+                "rva": 684498,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 684501,
+                "bytes": "ff750c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0xc]"
+              },
+              {
+                "rva": 684504,
+                "bytes": "ff7508",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 8]"
+              },
+              {
+                "rva": 684507,
+                "bytes": "e8b284ffff",
+                "mnemonic": "call",
+                "operands": "0x9f692"
+              }
+            ]
+          },
+          "words": "347ae3fce0914a823c3fa6e101001000147be3fc483fa6e1000000000000000002000000030000000000000000000000"
+        },
+        {
+          "frame": 4242766388,
+          "previous": 4242766440,
+          "return_address": {
+            "address": 2185654324,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 413748,
+            "window_start": 2185654308,
+            "window": "3b355c3b48820f83ac010000f3a5ffd38be58b0d24f1dfff8b553c8991280100",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 413746,
+                "bytes": "ffd3",
+                "operands": "ebx"
+              }
+            ],
+            "nearest_public": "_KiSystemService",
+            "public_rva": 413552,
+            "public_offset": 196,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 413722,
+                "bytes": "8b1c87",
+                "mnemonic": "mov",
+                "operands": "ebx, dword ptr [edi + eax*4]"
+              },
+              {
+                "rva": 413725,
+                "bytes": "2be1",
+                "mnemonic": "sub",
+                "operands": "esp, ecx"
+              },
+              {
+                "rva": 413727,
+                "bytes": "c1e902",
+                "mnemonic": "shr",
+                "operands": "ecx, 2"
+              },
+              {
+                "rva": 413730,
+                "bytes": "8bfc",
+                "mnemonic": "mov",
+                "operands": "edi, esp"
+              },
+              {
+                "rva": 413732,
+                "bytes": "3b355c1b4800",
+                "mnemonic": "cmp",
+                "operands": "esi, dword ptr [0x481b5c]"
+              },
+              {
+                "rva": 413738,
+                "bytes": "0f83ac010000",
+                "mnemonic": "jae",
+                "operands": "0x651dc"
+              },
+              {
+                "rva": 413744,
+                "bytes": "f3a5",
+                "mnemonic": "rep movsd",
+                "operands": "dword ptr es:[edi], dword ptr [esi]"
+              },
+              {
+                "rva": 413746,
+                "bytes": "ffd3",
+                "mnemonic": "call",
+                "operands": "ebx"
+              }
+            ]
+          },
+          "words": "687ae3fc347046823c3fa6e101001000147be3fc483fa6e1000000000000000002000000030000000000000000000000"
+        },
+        {
+          "frame": 4242766440,
+          "previous": 2185632928,
+          "return_address": {
+            "address": 2185264736,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 24160,
+            "window_start": 2185264720,
+            "window": "ffffffff000000009d07458200000000ffffffff00000000fc0d458200000000",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [],
+            "nearest_public": "??_C@_0BG@KMIE@Locked?5pages?5tracking?$AA@",
+            "public_rva": 23536,
+            "public_offset": 624,
+            "linear_decode_reaches_return": false,
+            "last_instructions": [
+              {
+                "rva": 23541,
+                "bytes": "64207061",
+                "mnemonic": "and",
+                "operands": "byte ptr fs:[eax + 0x61], dh"
+              },
+              {
+                "rva": 23545,
+                "bytes": "67657320",
+                "mnemonic": "jae",
+                "operands": "0x5c1d"
+              },
+              {
+                "rva": 23549,
+                "bytes": "7472",
+                "mnemonic": "je",
+                "operands": "0x5c71"
+              },
+              {
+                "rva": 23551,
+                "bytes": "61",
+                "mnemonic": "popal",
+                "operands": ""
+              },
+              {
+                "rva": 23552,
+                "bytes": "636b69",
+                "mnemonic": "arpl",
+                "operands": "word ptr [ebx + 0x69], bp"
+              },
+              {
+                "rva": 23555,
+                "bytes": "6e",
+                "mnemonic": "outsb",
+                "operands": "dx, byte ptr [esi]"
+              },
+              {
+                "rva": 23556,
+                "bytes": "670000",
+                "mnemonic": "add",
+                "operands": "byte ptr [bx + si], al"
+              },
+              {
+                "rva": 23559,
+                "bytes": "00ff",
+                "mnemonic": "add",
+                "operands": "bh, bh"
+              }
+            ]
+          },
+          "words": "a01c4682607e4082ffffffff807ae3fc34704682b8000000947ae3fc57d742826855a6e1283da6e140200000cc7ae3fc"
+        }
+      ],
+      "termination": "nonascending_frame"
+    },
+    {
+      "id": 7,
+      "class_driver": "mouclass.sys",
+      "identity": {
+        "thread": 4268157088,
+        "process": 4268228640,
+        "pid": 8,
+        "image": "System"
+      },
+      "enable": 1,
+      "status": "0xc0000043",
+      "immediate_return": {
+        "address": 4176807828,
+        "module": "mouclass.sys",
+        "base": 4176805888,
+        "rva": 1940,
+        "window_start": 4176807812,
+        "window": "8b5dec8d43185056576a01e8da0600008bf085f68975f8743c6a30ff7508ff15",
+        "runtime_call_neighborhood_pinned": true,
+        "ending_call_candidates": [
+          {
+            "rva": 1935,
+            "bytes": "e8da060000",
+            "operands": "0xe6e"
+          }
+        ]
+      },
+      "frames": [
+        {
+          "frame": 4177753864,
+          "previous": 4177754284,
+          "return_address": {
+            "address": 2185362929,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 122353,
+            "window_start": 2185362913,
+            "window": "8946608978148b4f080fb600ff5481385f5ec3ff25705a4782558bec5151803d",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 122349,
+                "bytes": "ff548138",
+                "operands": "dword ptr [ecx + eax*4 + 0x38]"
+              }
+            ],
+            "nearest_public": "@IopfCallDriver@8",
+            "public_rva": 122300,
+            "public_offset": 53,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 122332,
+                "bytes": "56",
+                "mnemonic": "push",
+                "operands": "esi"
+              },
+              {
+                "rva": 122333,
+                "bytes": "83e824",
+                "mnemonic": "sub",
+                "operands": "eax, 0x24"
+              },
+              {
+                "rva": 122336,
+                "bytes": "57",
+                "mnemonic": "push",
+                "operands": "edi"
+              },
+              {
+                "rva": 122337,
+                "bytes": "894660",
+                "mnemonic": "mov",
+                "operands": "dword ptr [esi + 0x60], eax"
+              },
+              {
+                "rva": 122340,
+                "bytes": "897814",
+                "mnemonic": "mov",
+                "operands": "dword ptr [eax + 0x14], edi"
+              },
+              {
+                "rva": 122343,
+                "bytes": "8b4f08",
+                "mnemonic": "mov",
+                "operands": "ecx, dword ptr [edi + 8]"
+              },
+              {
+                "rva": 122346,
+                "bytes": "0fb600",
+                "mnemonic": "movzx",
+                "operands": "eax, byte ptr [eax]"
+              },
+              {
+                "rva": 122349,
+                "bytes": "ff548138",
+                "mnemonic": "call",
+                "operands": "dword ptr [ecx + eax*4 + 0x38]"
+              }
+            ]
+          },
+          "words": "ac7803f9f1fd4182d0da5efe283cb4ff383cb4ff283cb4ff6e1b4c82e0454882b0104c82207a03f94c7703f9010f4582"
+        },
+        {
+          "frame": 4177754284,
+          "previous": 4177754404,
+          "return_address": {
+            "address": 2185570483,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 329907,
+            "window_start": 2185570467,
+            "window": "53ff7510ff75e8ff7528ff751450ffd63d040100008945fcbe1801000074083b",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 329905,
+                "bytes": "ffd6",
+                "operands": "esi"
+              }
+            ],
+            "nearest_public": "_ObpLookupObjectName@44",
+            "public_rva": 328652,
+            "public_offset": 1255,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 329890,
+                "bytes": "51",
+                "mnemonic": "push",
+                "operands": "ecx"
+              },
+              {
+                "rva": 329891,
+                "bytes": "53",
+                "mnemonic": "push",
+                "operands": "ebx"
+              },
+              {
+                "rva": 329892,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 329895,
+                "bytes": "ff75e8",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x18]"
+              },
+              {
+                "rva": 329898,
+                "bytes": "ff7528",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x28]"
+              },
+              {
+                "rva": 329901,
+                "bytes": "ff7514",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x14]"
+              },
+              {
+                "rva": 329904,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 329905,
+                "bytes": "ffd6",
+                "mnemonic": "call",
+                "operands": "esi"
+              }
+            ]
+          },
+          "words": "247903f9b3284582d0ed5efe00000000647903f90000000040020000207a03f9f07803f99c7a03f9000000001c7903f9"
+        },
+        {
+          "frame": 4177754404,
+          "previous": 4177754676,
+          "return_address": {
+            "address": 2186115972,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 875396,
+            "window_start": 2186115956,
+            "window": "ff751056ff75bc50ff75c0e848a8f7ff3bc38945fc0f8ca10000008b4508f640",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 875391,
+                "bytes": "e848a8f7ff",
+                "operands": "0x503cc"
+              }
+            ],
+            "nearest_public": "_ObOpenObjectByName@28",
+            "public_rva": 875196,
+            "public_offset": 200,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 875374,
+                "bytes": "ff75dc",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x24]"
+              },
+              {
+                "rva": 875377,
+                "bytes": "ff751c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x1c]"
+              },
+              {
+                "rva": 875380,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 875383,
+                "bytes": "56",
+                "mnemonic": "push",
+                "operands": "esi"
+              },
+              {
+                "rva": 875384,
+                "bytes": "ff75bc",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x44]"
+              },
+              {
+                "rva": 875387,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 875388,
+                "bytes": "ff75c0",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x40]"
+              },
+              {
+                "rva": 875391,
+                "bytes": "e848a8f7ff",
+                "mnemonic": "call",
+                "operands": "0x503cc"
+              }
+            ]
+          },
+          "words": "347a03f9847b4d820000000000fd66fe4002000000000000003cb4ff9c7a03f90000000000000000647903f92c7a03f9"
+        },
+        {
+          "frame": 4177754676,
+          "previous": 4177754896,
+          "return_address": {
+            "address": 2185894691,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 654115,
+            "window_start": 2185894675,
+            "window": "57ffb578ffffff57ff7510e8995f03008bf0397db47408ff75b4e8f2affcff33",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 654110,
+                "bytes": "e8995f0300",
+                "operands": "0xd5abc"
+              }
+            ],
+            "nearest_public": "_IopCreateFile@64",
+            "public_rva": 653084,
+            "public_offset": 1031,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 654092,
+                "bytes": "8d458c",
+                "mnemonic": "lea",
+                "operands": "eax, [ebp - 0x74]"
+              },
+              {
+                "rva": 654095,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 654096,
+                "bytes": "ff750c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0xc]"
+              },
+              {
+                "rva": 654099,
+                "bytes": "57",
+                "mnemonic": "push",
+                "operands": "edi"
+              },
+              {
+                "rva": 654100,
+                "bytes": "ffb578ffffff",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x88]"
+              },
+              {
+                "rva": 654106,
+                "bytes": "57",
+                "mnemonic": "push",
+                "operands": "edi"
+              },
+              {
+                "rva": 654107,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 654110,
+                "bytes": "e8995f0300",
+                "mnemonic": "call",
+                "operands": "0xd5abc"
+              }
+            ]
+          },
+          "words": "107b03f9231b4a820000000000000000003cb4ff647903f9030010009c7a03f9987a03f9b87b03f9487c03f956a44a82"
+        },
+        {
+          "frame": 4177754896,
+          "previous": 4177754968,
+          "return_address": {
+            "address": 2185893576,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 653000,
+            "window_start": 2185893560,
+            "window": "7514ff7510ff750cff7508e8540000005dc23800558bec33c9394d4074036a01",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 652995,
+                "bytes": "e854000000",
+                "operands": "0x9f71c"
+              }
+            ],
+            "nearest_public": "_IoCreateFile@56",
+            "public_rva": 652946,
+            "public_offset": 54,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 652974,
+                "bytes": "ff7520",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x20]"
+              },
+              {
+                "rva": 652977,
+                "bytes": "ff751c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x1c]"
+              },
+              {
+                "rva": 652980,
+                "bytes": "ff7518",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x18]"
+              },
+              {
+                "rva": 652983,
+                "bytes": "ff7514",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x14]"
+              },
+              {
+                "rva": 652986,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 652989,
+                "bytes": "ff750c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0xc]"
+              },
+              {
+                "rva": 652992,
+                "bytes": "ff7508",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 8]"
+              },
+              {
+                "rva": 652995,
+                "bytes": "e854000000",
+                "mnemonic": "call",
+                "operands": "0x9f71c"
+              }
+            ]
+          },
+          "words": "587b03f9c8164a82847c03f903001000547c03f96c7c03f9000000000000000003000000010000001000000000000000"
+        },
+        {
+          "frame": 4177754968,
+          "previous": 4177755032,
+          "return_address": {
+            "address": 2185929851,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 689275,
+            "window_start": 2185929835,
+            "window": "7514ff7510ff750cff7508e81772ffff5dc21800cc558bec6aff68c036408268",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 689270,
+                "bytes": "e81772ffff",
+                "operands": "0x9f692"
+              }
+            ],
+            "nearest_public": "_NtOpenFile@24",
+            "public_rva": 689238,
+            "public_offset": 37,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 689253,
+                "bytes": "ff7518",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x18]"
+              },
+              {
+                "rva": 689256,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 689257,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 689258,
+                "bytes": "ff7514",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x14]"
+              },
+              {
+                "rva": 689261,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 689264,
+                "bytes": "ff750c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0xc]"
+              },
+              {
+                "rva": 689267,
+                "bytes": "ff7508",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 8]"
+              },
+              {
+                "rva": 689270,
+                "bytes": "e81772ffff",
+                "mnemonic": "call",
+                "operands": "0x9f692"
+              }
+            ]
+          },
+          "words": "987b03f97ba44a82847c03f903001000547c03f96c7c03f9000000000000000003000000010000001000000000000000"
+        },
+        {
+          "frame": 4177755032,
+          "previous": 4177755064,
+          "return_address": {
+            "address": 2185654324,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 413748,
+            "window_start": 2185654308,
+            "window": "3b355c3b48820f83ac010000f3a5ffd38be58b0d24f1dfff8b553c8991280100",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 413746,
+                "bytes": "ffd3",
+                "operands": "ebx"
+              }
+            ],
+            "nearest_public": "_KiSystemService",
+            "public_rva": 413552,
+            "public_offset": 196,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 413722,
+                "bytes": "8b1c87",
+                "mnemonic": "mov",
+                "operands": "ebx, dword ptr [edi + eax*4]"
+              },
+              {
+                "rva": 413725,
+                "bytes": "2be1",
+                "mnemonic": "sub",
+                "operands": "esp, ecx"
+              },
+              {
+                "rva": 413727,
+                "bytes": "c1e902",
+                "mnemonic": "shr",
+                "operands": "ecx, 2"
+              },
+              {
+                "rva": 413730,
+                "bytes": "8bfc",
+                "mnemonic": "mov",
+                "operands": "edi, esp"
+              },
+              {
+                "rva": 413732,
+                "bytes": "3b355c1b4800",
+                "mnemonic": "cmp",
+                "operands": "esi, dword ptr [0x481b5c]"
+              },
+              {
+                "rva": 413738,
+                "bytes": "0f83ac010000",
+                "mnemonic": "jae",
+                "operands": "0x651dc"
+              },
+              {
+                "rva": 413744,
+                "bytes": "f3a5",
+                "mnemonic": "rep movsd",
+                "operands": "dword ptr es:[edi], dword ptr [esi]"
+              },
+              {
+                "rva": 413746,
+                "bytes": "ffd3",
+                "mnemonic": "call",
+                "operands": "ebx"
+              }
+            ]
+          },
+          "words": "b87b03f934704682847c03f903001000547c03f96c7c03f9030000001000000001000000287c03f90593f3f838fc5efe"
+        },
+        {
+          "frame": 4177755064,
+          "previous": 1,
+          "return_address": {
+            "address": 4177755176,
+            "module": null
+          },
+          "words": "01000000287c03f90593f3f838fc5efe283cb4ff3cfc5efe70fb5efe283cb4ff283cb4ff400001008013000002000000"
+        }
+      ],
+      "termination": "nonascending_frame",
+      "rejection_frames": [
+        {
+          "frame": 4177753628,
+          "previous": 4177753704,
+          "return_address": {
+            "address": 4176546005,
+            "module": "hidclass.sys",
+            "base": 4176543744,
+            "rva": 2261,
+            "window_start": 4176545989,
+            "window": "5150e848000000eb435150e84d010000eb3a5150e8b4030000eb3183fa0f7425",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 2256,
+                "bytes": "e84d010000",
+                "operands": "0xa22"
+              }
+            ]
+          },
+          "words": "687603f9d508f1f888ee5efe283cb4fff1fd4182d0ed5efe283cb4ff443db4ff683db4fff08d0cf9a0dc5efe283cb4ff"
+        },
+        {
+          "frame": 4177753704,
+          "previous": 4177753756,
+          "return_address": {
+            "address": 2185362929,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 122353,
+            "window_start": 2185362913,
+            "window": "8946608978148b4f080fb600ff5481385f5ec3ff25705a4782558bec5151803d",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 122349,
+                "bytes": "ff548138",
+                "operands": "dword ptr [ecx + eax*4 + 0x38]"
+              }
+            ],
+            "nearest_public": "@IopfCallDriver@8",
+            "public_rva": 122300,
+            "public_offset": 53,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 122332,
+                "bytes": "56",
+                "mnemonic": "push",
+                "operands": "esi"
+              },
+              {
+                "rva": 122333,
+                "bytes": "83e824",
+                "mnemonic": "sub",
+                "operands": "eax, 0x24"
+              },
+              {
+                "rva": 122336,
+                "bytes": "57",
+                "mnemonic": "push",
+                "operands": "edi"
+              },
+              {
+                "rva": 122337,
+                "bytes": "894660",
+                "mnemonic": "mov",
+                "operands": "dword ptr [esi + 0x60], eax"
+              },
+              {
+                "rva": 122340,
+                "bytes": "897814",
+                "mnemonic": "mov",
+                "operands": "dword ptr [eax + 0x14], edi"
+              },
+              {
+                "rva": 122343,
+                "bytes": "8b4f08",
+                "mnemonic": "mov",
+                "operands": "ecx, dword ptr [edi + 8]"
+              },
+              {
+                "rva": 122346,
+                "bytes": "0fb600",
+                "mnemonic": "movzx",
+                "operands": "eax, byte ptr [eax]"
+              },
+              {
+                "rva": 122349,
+                "bytes": "ff548138",
+                "mnemonic": "call",
+                "operands": "dword ptr [ecx + eax*4 + 0x38]"
+              }
+            ]
+          },
+          "words": "9c7603f9f1fd4182acdd5efe283cb4ff683db4ff000000003d27f5f88c3db4ff88db5efe011704e100000000947603f9"
+        },
+        {
+          "frame": 4177753756,
+          "previous": 4177753804,
+          "return_address": {
+            "address": 4176809751,
+            "module": "mouclass.sys",
+            "base": 4176805888,
+            "rva": 3863,
+            "window_start": 4176809735,
+            "window": "0f89480c52ff750cff7308e8cf170000e9a1000000807d08000f849b0000008d",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 3858,
+                "bytes": "e8cf170000",
+                "operands": "0x26e6"
+              }
+            ]
+          },
+          "words": "cc7603f9170ff5f8a0dc5efe283cb4ff00000000283cb4ff88db5efe703db4ff00000000000000000000000000000000"
+        },
+        {
+          "frame": 4177753804,
+          "previous": 4177753864,
+          "return_address": {
+            "address": 4176807828,
+            "module": "mouclass.sys",
+            "base": 4176805888,
+            "rva": 1940,
+            "window_start": 4176807812,
+            "window": "8b5dec8d43185056576a01e8da0600008bf085f68975f8743c6a30ff7508ff15",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 1935,
+                "bytes": "e8da060000",
+                "operands": "0xe6e"
+              }
+            ]
+          },
+          "words": "087703f99407f5f801000000283cb4ff88db5efe883db4ffd0da5efe283cb4ff9c7a03f998db5efe703db4ffac7803f9"
+        },
+        {
+          "frame": 4177753864,
+          "previous": 4177754284,
+          "return_address": {
+            "address": 2185362929,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 122353,
+            "window_start": 2185362913,
+            "window": "8946608978148b4f080fb600ff5481385f5ec3ff25705a4782558bec5151803d",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 122349,
+                "bytes": "ff548138",
+                "operands": "dword ptr [ecx + eax*4 + 0x38]"
+              }
+            ],
+            "nearest_public": "@IopfCallDriver@8",
+            "public_rva": 122300,
+            "public_offset": 53,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 122332,
+                "bytes": "56",
+                "mnemonic": "push",
+                "operands": "esi"
+              },
+              {
+                "rva": 122333,
+                "bytes": "83e824",
+                "mnemonic": "sub",
+                "operands": "eax, 0x24"
+              },
+              {
+                "rva": 122336,
+                "bytes": "57",
+                "mnemonic": "push",
+                "operands": "edi"
+              },
+              {
+                "rva": 122337,
+                "bytes": "894660",
+                "mnemonic": "mov",
+                "operands": "dword ptr [esi + 0x60], eax"
+              },
+              {
+                "rva": 122340,
+                "bytes": "897814",
+                "mnemonic": "mov",
+                "operands": "dword ptr [eax + 0x14], edi"
+              },
+              {
+                "rva": 122343,
+                "bytes": "8b4f08",
+                "mnemonic": "mov",
+                "operands": "ecx, dword ptr [edi + 8]"
+              },
+              {
+                "rva": 122346,
+                "bytes": "0fb600",
+                "mnemonic": "movzx",
+                "operands": "eax, byte ptr [eax]"
+              },
+              {
+                "rva": 122349,
+                "bytes": "ff548138",
+                "mnemonic": "call",
+                "operands": "dword ptr [ecx + eax*4 + 0x38]"
+              }
+            ]
+          },
+          "words": "ac7803f9f1fd4182d0da5efe283cb4ff383cb4ff283cb4ff6e1b4c82e0454882b0104c82207a03f94c7703f9010f4582"
+        },
+        {
+          "frame": 4177754284,
+          "previous": 4177754404,
+          "return_address": {
+            "address": 2185570483,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 329907,
+            "window_start": 2185570467,
+            "window": "53ff7510ff75e8ff7528ff751450ffd63d040100008945fcbe1801000074083b",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 329905,
+                "bytes": "ffd6",
+                "operands": "esi"
+              }
+            ],
+            "nearest_public": "_ObpLookupObjectName@44",
+            "public_rva": 328652,
+            "public_offset": 1255,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 329890,
+                "bytes": "51",
+                "mnemonic": "push",
+                "operands": "ecx"
+              },
+              {
+                "rva": 329891,
+                "bytes": "53",
+                "mnemonic": "push",
+                "operands": "ebx"
+              },
+              {
+                "rva": 329892,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 329895,
+                "bytes": "ff75e8",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x18]"
+              },
+              {
+                "rva": 329898,
+                "bytes": "ff7528",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x28]"
+              },
+              {
+                "rva": 329901,
+                "bytes": "ff7514",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x14]"
+              },
+              {
+                "rva": 329904,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 329905,
+                "bytes": "ffd6",
+                "mnemonic": "call",
+                "operands": "esi"
+              }
+            ]
+          },
+          "words": "247903f9b3284582d0ed5efe00000000647903f90000000040020000207a03f9f07803f99c7a03f9000000001c7903f9"
+        },
+        {
+          "frame": 4177754404,
+          "previous": 4177754676,
+          "return_address": {
+            "address": 2186115972,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 875396,
+            "window_start": 2186115956,
+            "window": "ff751056ff75bc50ff75c0e848a8f7ff3bc38945fc0f8ca10000008b4508f640",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 875391,
+                "bytes": "e848a8f7ff",
+                "operands": "0x503cc"
+              }
+            ],
+            "nearest_public": "_ObOpenObjectByName@28",
+            "public_rva": 875196,
+            "public_offset": 200,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 875374,
+                "bytes": "ff75dc",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x24]"
+              },
+              {
+                "rva": 875377,
+                "bytes": "ff751c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x1c]"
+              },
+              {
+                "rva": 875380,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 875383,
+                "bytes": "56",
+                "mnemonic": "push",
+                "operands": "esi"
+              },
+              {
+                "rva": 875384,
+                "bytes": "ff75bc",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x44]"
+              },
+              {
+                "rva": 875387,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 875388,
+                "bytes": "ff75c0",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x40]"
+              },
+              {
+                "rva": 875391,
+                "bytes": "e848a8f7ff",
+                "mnemonic": "call",
+                "operands": "0x503cc"
+              }
+            ]
+          },
+          "words": "347a03f9847b4d820000000000fd66fe4002000000000000003cb4ff9c7a03f90000000000000000647903f92c7a03f9"
+        },
+        {
+          "frame": 4177754676,
+          "previous": 4177754896,
+          "return_address": {
+            "address": 2185894691,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 654115,
+            "window_start": 2185894675,
+            "window": "57ffb578ffffff57ff7510e8995f03008bf0397db47408ff75b4e8f2affcff33",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 654110,
+                "bytes": "e8995f0300",
+                "operands": "0xd5abc"
+              }
+            ],
+            "nearest_public": "_IopCreateFile@64",
+            "public_rva": 653084,
+            "public_offset": 1031,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 654092,
+                "bytes": "8d458c",
+                "mnemonic": "lea",
+                "operands": "eax, [ebp - 0x74]"
+              },
+              {
+                "rva": 654095,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 654096,
+                "bytes": "ff750c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0xc]"
+              },
+              {
+                "rva": 654099,
+                "bytes": "57",
+                "mnemonic": "push",
+                "operands": "edi"
+              },
+              {
+                "rva": 654100,
+                "bytes": "ffb578ffffff",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x88]"
+              },
+              {
+                "rva": 654106,
+                "bytes": "57",
+                "mnemonic": "push",
+                "operands": "edi"
+              },
+              {
+                "rva": 654107,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 654110,
+                "bytes": "e8995f0300",
+                "mnemonic": "call",
+                "operands": "0xd5abc"
+              }
+            ]
+          },
+          "words": "107b03f9231b4a820000000000000000003cb4ff647903f9030010009c7a03f9987a03f9b87b03f9487c03f956a44a82"
+        },
+        {
+          "frame": 4177754896,
+          "previous": 4177754968,
+          "return_address": {
+            "address": 2185893576,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 653000,
+            "window_start": 2185893560,
+            "window": "7514ff7510ff750cff7508e8540000005dc23800558bec33c9394d4074036a01",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 652995,
+                "bytes": "e854000000",
+                "operands": "0x9f71c"
+              }
+            ],
+            "nearest_public": "_IoCreateFile@56",
+            "public_rva": 652946,
+            "public_offset": 54,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 652974,
+                "bytes": "ff7520",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x20]"
+              },
+              {
+                "rva": 652977,
+                "bytes": "ff751c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x1c]"
+              },
+              {
+                "rva": 652980,
+                "bytes": "ff7518",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x18]"
+              },
+              {
+                "rva": 652983,
+                "bytes": "ff7514",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x14]"
+              },
+              {
+                "rva": 652986,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 652989,
+                "bytes": "ff750c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0xc]"
+              },
+              {
+                "rva": 652992,
+                "bytes": "ff7508",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 8]"
+              },
+              {
+                "rva": 652995,
+                "bytes": "e854000000",
+                "mnemonic": "call",
+                "operands": "0x9f71c"
+              }
+            ]
+          },
+          "words": "587b03f9c8164a82847c03f903001000547c03f96c7c03f9000000000000000003000000010000001000000000000000"
+        },
+        {
+          "frame": 4177754968,
+          "previous": 4177755032,
+          "return_address": {
+            "address": 2185929851,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 689275,
+            "window_start": 2185929835,
+            "window": "7514ff7510ff750cff7508e81772ffff5dc21800cc558bec6aff68c036408268",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 689270,
+                "bytes": "e81772ffff",
+                "operands": "0x9f692"
+              }
+            ],
+            "nearest_public": "_NtOpenFile@24",
+            "public_rva": 689238,
+            "public_offset": 37,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 689253,
+                "bytes": "ff7518",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x18]"
+              },
+              {
+                "rva": 689256,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 689257,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 689258,
+                "bytes": "ff7514",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x14]"
+              },
+              {
+                "rva": 689261,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 689264,
+                "bytes": "ff750c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0xc]"
+              },
+              {
+                "rva": 689267,
+                "bytes": "ff7508",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 8]"
+              },
+              {
+                "rva": 689270,
+                "bytes": "e81772ffff",
+                "mnemonic": "call",
+                "operands": "0x9f692"
+              }
+            ]
+          },
+          "words": "987b03f97ba44a82847c03f903001000547c03f96c7c03f9000000000000000003000000010000001000000000000000"
+        },
+        {
+          "frame": 4177755032,
+          "previous": 4177755064,
+          "return_address": {
+            "address": 2185654324,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 413748,
+            "window_start": 2185654308,
+            "window": "3b355c3b48820f83ac010000f3a5ffd38be58b0d24f1dfff8b553c8991280100",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 413746,
+                "bytes": "ffd3",
+                "operands": "ebx"
+              }
+            ],
+            "nearest_public": "_KiSystemService",
+            "public_rva": 413552,
+            "public_offset": 196,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 413722,
+                "bytes": "8b1c87",
+                "mnemonic": "mov",
+                "operands": "ebx, dword ptr [edi + eax*4]"
+              },
+              {
+                "rva": 413725,
+                "bytes": "2be1",
+                "mnemonic": "sub",
+                "operands": "esp, ecx"
+              },
+              {
+                "rva": 413727,
+                "bytes": "c1e902",
+                "mnemonic": "shr",
+                "operands": "ecx, 2"
+              },
+              {
+                "rva": 413730,
+                "bytes": "8bfc",
+                "mnemonic": "mov",
+                "operands": "edi, esp"
+              },
+              {
+                "rva": 413732,
+                "bytes": "3b355c1b4800",
+                "mnemonic": "cmp",
+                "operands": "esi, dword ptr [0x481b5c]"
+              },
+              {
+                "rva": 413738,
+                "bytes": "0f83ac010000",
+                "mnemonic": "jae",
+                "operands": "0x651dc"
+              },
+              {
+                "rva": 413744,
+                "bytes": "f3a5",
+                "mnemonic": "rep movsd",
+                "operands": "dword ptr es:[edi], dword ptr [esi]"
+              },
+              {
+                "rva": 413746,
+                "bytes": "ffd3",
+                "mnemonic": "call",
+                "operands": "ebx"
+              }
+            ]
+          },
+          "words": "b87b03f934704682847c03f903001000547c03f96c7c03f9030000001000000001000000287c03f90593f3f838fc5efe"
+        },
+        {
+          "frame": 4177755064,
+          "previous": 1,
+          "return_address": {
+            "address": 4177755176,
+            "module": null
+          },
+          "words": "01000000287c03f90593f3f838fc5efe283cb4ff3cfc5efe70fb5efe283cb4ff283cb4ff400001008013000002000000"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "class_driver": "kbdclass.sys",
+      "identity": {
+        "thread": 4268157088,
+        "process": 4268228640,
+        "pid": 8,
+        "image": "System"
+      },
+      "enable": 1,
+      "status": "0xc0000043",
+      "immediate_return": {
+        "address": 4176709753,
+        "module": "kbdclass.sys",
+        "base": 4176707584,
+        "rva": 2169,
+        "window_start": 4176709737,
+        "window": "04755b8d43185056576a01e8cd0600008bf085f68975f8743c6a30ff7508ff15",
+        "runtime_call_neighborhood_pinned": true,
+        "ending_call_candidates": [
+          {
+            "rva": 2164,
+            "bytes": "e8cd060000",
+            "operands": "0xf46"
+          }
+        ]
+      },
+      "frames": [
+        {
+          "frame": 4177753864,
+          "previous": 4177754284,
+          "return_address": {
+            "address": 2185362929,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 122353,
+            "window_start": 2185362913,
+            "window": "8946608978148b4f080fb600ff5481385f5ec3ff25705a4782558bec5151803d",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 122349,
+                "bytes": "ff548138",
+                "operands": "dword ptr [ecx + eax*4 + 0x38]"
+              }
+            ],
+            "nearest_public": "@IopfCallDriver@8",
+            "public_rva": 122300,
+            "public_offset": 53,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 122332,
+                "bytes": "56",
+                "mnemonic": "push",
+                "operands": "esi"
+              },
+              {
+                "rva": 122333,
+                "bytes": "83e824",
+                "mnemonic": "sub",
+                "operands": "eax, 0x24"
+              },
+              {
+                "rva": 122336,
+                "bytes": "57",
+                "mnemonic": "push",
+                "operands": "edi"
+              },
+              {
+                "rva": 122337,
+                "bytes": "894660",
+                "mnemonic": "mov",
+                "operands": "dword ptr [esi + 0x60], eax"
+              },
+              {
+                "rva": 122340,
+                "bytes": "897814",
+                "mnemonic": "mov",
+                "operands": "dword ptr [eax + 0x14], edi"
+              },
+              {
+                "rva": 122343,
+                "bytes": "8b4f08",
+                "mnemonic": "mov",
+                "operands": "ecx, dword ptr [edi + 8]"
+              },
+              {
+                "rva": 122346,
+                "bytes": "0fb600",
+                "mnemonic": "movzx",
+                "operands": "eax, byte ptr [eax]"
+              },
+              {
+                "rva": 122349,
+                "bytes": "ff548138",
+                "mnemonic": "call",
+                "operands": "dword ptr [ecx + eax*4 + 0x38]"
+              }
+            ]
+          },
+          "words": "ac7803f9f1fd418270fb5efee8279afff8279affe8279aff6e1b4c82e0454882b0104c82207a03f94c7703f9010f4582"
+        },
+        {
+          "frame": 4177754284,
+          "previous": 4177754404,
+          "return_address": {
+            "address": 2185570483,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 329907,
+            "window_start": 2185570467,
+            "window": "53ff7510ff75e8ff7528ff751450ffd63d040100008945fcbe1801000074083b",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 329905,
+                "bytes": "ffd6",
+                "operands": "esi"
+              }
+            ],
+            "nearest_public": "_ObpLookupObjectName@44",
+            "public_rva": 328652,
+            "public_offset": 1255,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 329890,
+                "bytes": "51",
+                "mnemonic": "push",
+                "operands": "ecx"
+              },
+              {
+                "rva": 329891,
+                "bytes": "53",
+                "mnemonic": "push",
+                "operands": "ebx"
+              },
+              {
+                "rva": 329892,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 329895,
+                "bytes": "ff75e8",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x18]"
+              },
+              {
+                "rva": 329898,
+                "bytes": "ff7528",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x28]"
+              },
+              {
+                "rva": 329901,
+                "bytes": "ff7514",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x14]"
+              },
+              {
+                "rva": 329904,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 329905,
+                "bytes": "ffd6",
+                "mnemonic": "call",
+                "operands": "esi"
+              }
+            ]
+          },
+          "words": "247903f9b3284582700d5ffe00000000647903f90000000040020000207a03f9f07803f99c7a03f9000000001c7903f9"
+        },
+        {
+          "frame": 4177754404,
+          "previous": 4177754676,
+          "return_address": {
+            "address": 2186115972,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 875396,
+            "window_start": 2186115956,
+            "window": "ff751056ff75bc50ff75c0e848a8f7ff3bc38945fc0f8ca10000008b4508f640",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 875391,
+                "bytes": "e848a8f7ff",
+                "operands": "0x503cc"
+              }
+            ],
+            "nearest_public": "_ObOpenObjectByName@28",
+            "public_rva": 875196,
+            "public_offset": 200,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 875374,
+                "bytes": "ff75dc",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x24]"
+              },
+              {
+                "rva": 875377,
+                "bytes": "ff751c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x1c]"
+              },
+              {
+                "rva": 875380,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 875383,
+                "bytes": "56",
+                "mnemonic": "push",
+                "operands": "esi"
+              },
+              {
+                "rva": 875384,
+                "bytes": "ff75bc",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x44]"
+              },
+              {
+                "rva": 875387,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 875388,
+                "bytes": "ff75c0",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x40]"
+              },
+              {
+                "rva": 875391,
+                "bytes": "e848a8f7ff",
+                "mnemonic": "call",
+                "operands": "0x503cc"
+              }
+            ]
+          },
+          "words": "347a03f9847b4d820000000000fd66fe4002000000000000003cb4ff9c7a03f90000000000000000647903f92c7a03f9"
+        },
+        {
+          "frame": 4177754676,
+          "previous": 4177754896,
+          "return_address": {
+            "address": 2185894691,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 654115,
+            "window_start": 2185894675,
+            "window": "57ffb578ffffff57ff7510e8995f03008bf0397db47408ff75b4e8f2affcff33",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 654110,
+                "bytes": "e8995f0300",
+                "operands": "0xd5abc"
+              }
+            ],
+            "nearest_public": "_IopCreateFile@64",
+            "public_rva": 653084,
+            "public_offset": 1031,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 654092,
+                "bytes": "8d458c",
+                "mnemonic": "lea",
+                "operands": "eax, [ebp - 0x74]"
+              },
+              {
+                "rva": 654095,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 654096,
+                "bytes": "ff750c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0xc]"
+              },
+              {
+                "rva": 654099,
+                "bytes": "57",
+                "mnemonic": "push",
+                "operands": "edi"
+              },
+              {
+                "rva": 654100,
+                "bytes": "ffb578ffffff",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x88]"
+              },
+              {
+                "rva": 654106,
+                "bytes": "57",
+                "mnemonic": "push",
+                "operands": "edi"
+              },
+              {
+                "rva": 654107,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 654110,
+                "bytes": "e8995f0300",
+                "mnemonic": "call",
+                "operands": "0xd5abc"
+              }
+            ]
+          },
+          "words": "107b03f9231b4a820000000000000000003cb4ff647903f9030010009c7a03f9987a03f9b87b03f9487c03f956a44a82"
+        },
+        {
+          "frame": 4177754896,
+          "previous": 4177754968,
+          "return_address": {
+            "address": 2185893576,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 653000,
+            "window_start": 2185893560,
+            "window": "7514ff7510ff750cff7508e8540000005dc23800558bec33c9394d4074036a01",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 652995,
+                "bytes": "e854000000",
+                "operands": "0x9f71c"
+              }
+            ],
+            "nearest_public": "_IoCreateFile@56",
+            "public_rva": 652946,
+            "public_offset": 54,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 652974,
+                "bytes": "ff7520",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x20]"
+              },
+              {
+                "rva": 652977,
+                "bytes": "ff751c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x1c]"
+              },
+              {
+                "rva": 652980,
+                "bytes": "ff7518",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x18]"
+              },
+              {
+                "rva": 652983,
+                "bytes": "ff7514",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x14]"
+              },
+              {
+                "rva": 652986,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 652989,
+                "bytes": "ff750c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0xc]"
+              },
+              {
+                "rva": 652992,
+                "bytes": "ff7508",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 8]"
+              },
+              {
+                "rva": 652995,
+                "bytes": "e854000000",
+                "mnemonic": "call",
+                "operands": "0x9f71c"
+              }
+            ]
+          },
+          "words": "587b03f9c8164a82847c03f903001000547c03f96c7c03f9000000000000000003000000010000001000000000000000"
+        },
+        {
+          "frame": 4177754968,
+          "previous": 4177755032,
+          "return_address": {
+            "address": 2185929851,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 689275,
+            "window_start": 2185929835,
+            "window": "7514ff7510ff750cff7508e81772ffff5dc21800cc558bec6aff68c036408268",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 689270,
+                "bytes": "e81772ffff",
+                "operands": "0x9f692"
+              }
+            ],
+            "nearest_public": "_NtOpenFile@24",
+            "public_rva": 689238,
+            "public_offset": 37,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 689253,
+                "bytes": "ff7518",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x18]"
+              },
+              {
+                "rva": 689256,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 689257,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 689258,
+                "bytes": "ff7514",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x14]"
+              },
+              {
+                "rva": 689261,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 689264,
+                "bytes": "ff750c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0xc]"
+              },
+              {
+                "rva": 689267,
+                "bytes": "ff7508",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 8]"
+              },
+              {
+                "rva": 689270,
+                "bytes": "e81772ffff",
+                "mnemonic": "call",
+                "operands": "0x9f692"
+              }
+            ]
+          },
+          "words": "987b03f97ba44a82847c03f903001000547c03f96c7c03f9000000000000000003000000010000001000000000000000"
+        },
+        {
+          "frame": 4177755032,
+          "previous": 4177755064,
+          "return_address": {
+            "address": 2185654324,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 413748,
+            "window_start": 2185654308,
+            "window": "3b355c3b48820f83ac010000f3a5ffd38be58b0d24f1dfff8b553c8991280100",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 413746,
+                "bytes": "ffd3",
+                "operands": "ebx"
+              }
+            ],
+            "nearest_public": "_KiSystemService",
+            "public_rva": 413552,
+            "public_offset": 196,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 413722,
+                "bytes": "8b1c87",
+                "mnemonic": "mov",
+                "operands": "ebx, dword ptr [edi + eax*4]"
+              },
+              {
+                "rva": 413725,
+                "bytes": "2be1",
+                "mnemonic": "sub",
+                "operands": "esp, ecx"
+              },
+              {
+                "rva": 413727,
+                "bytes": "c1e902",
+                "mnemonic": "shr",
+                "operands": "ecx, 2"
+              },
+              {
+                "rva": 413730,
+                "bytes": "8bfc",
+                "mnemonic": "mov",
+                "operands": "edi, esp"
+              },
+              {
+                "rva": 413732,
+                "bytes": "3b355c1b4800",
+                "mnemonic": "cmp",
+                "operands": "esi, dword ptr [0x481b5c]"
+              },
+              {
+                "rva": 413738,
+                "bytes": "0f83ac010000",
+                "mnemonic": "jae",
+                "operands": "0x651dc"
+              },
+              {
+                "rva": 413744,
+                "bytes": "f3a5",
+                "mnemonic": "rep movsd",
+                "operands": "dword ptr es:[edi], dword ptr [esi]"
+              },
+              {
+                "rva": 413746,
+                "bytes": "ffd3",
+                "mnemonic": "call",
+                "operands": "ebx"
+              }
+            ]
+          },
+          "words": "b87b03f934704682847c03f903001000547c03f96c7c03f9030000001000000001000000287c03f90593f3f838fc5efe"
+        },
+        {
+          "frame": 4177755064,
+          "previous": 1,
+          "return_address": {
+            "address": 4177755176,
+            "module": null
+          },
+          "words": "01000000287c03f90593f3f838fc5efe283cb4ff3cfc5efe70fb5efe283cb4ff283cb4ff400001008013000002000000"
+        }
+      ],
+      "termination": "nonascending_frame",
+      "rejection_frames": [
+        {
+          "frame": 4177753632,
+          "previous": 4177753708,
+          "return_address": {
+            "address": 4176546005,
+            "module": "hidclass.sys",
+            "base": 4176543744,
+            "rva": 2261,
+            "window_start": 4176545989,
+            "window": "5150e848000000eb435150e84d010000eb3a5150e8b4030000eb3183fa0f7425",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 2256,
+                "bytes": "e84d010000",
+                "operands": "0xa22"
+              }
+            ]
+          },
+          "words": "6c7603f9d508f1f8280e5ffee8279afff1fd4182700d5ffee8279aff04299aff28299aff02120cf960fd5efee8279aff"
+        },
+        {
+          "frame": 4177753708,
+          "previous": 4177753760,
+          "return_address": {
+            "address": 2185362929,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 122353,
+            "window_start": 2185362913,
+            "window": "8946608978148b4f080fb600ff5481385f5ec3ff25705a4782558bec5151803d",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 122349,
+                "bytes": "ff548138",
+                "operands": "dword ptr [ecx + eax*4 + 0x38]"
+              }
+            ],
+            "nearest_public": "@IopfCallDriver@8",
+            "public_rva": 122300,
+            "public_offset": 53,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 122332,
+                "bytes": "56",
+                "mnemonic": "push",
+                "operands": "esi"
+              },
+              {
+                "rva": 122333,
+                "bytes": "83e824",
+                "mnemonic": "sub",
+                "operands": "eax, 0x24"
+              },
+              {
+                "rva": 122336,
+                "bytes": "57",
+                "mnemonic": "push",
+                "operands": "edi"
+              },
+              {
+                "rva": 122337,
+                "bytes": "894660",
+                "mnemonic": "mov",
+                "operands": "dword ptr [esi + 0x60], eax"
+              },
+              {
+                "rva": 122340,
+                "bytes": "897814",
+                "mnemonic": "mov",
+                "operands": "dword ptr [eax + 0x14], edi"
+              },
+              {
+                "rva": 122343,
+                "bytes": "8b4f08",
+                "mnemonic": "mov",
+                "operands": "ecx, dword ptr [edi + 8]"
+              },
+              {
+                "rva": 122346,
+                "bytes": "0fb600",
+                "mnemonic": "movzx",
+                "operands": "eax, byte ptr [eax]"
+              },
+              {
+                "rva": 122349,
+                "bytes": "ff548138",
+                "mnemonic": "call",
+                "operands": "dword ptr [ecx + eax*4 + 0x38]"
+              }
+            ]
+          },
+          "words": "a07603f9f1fd41826cfe5efee8279aff28299aff000000001dadf3f84c299aff28fc5efe011704e100000000987603f9"
+        },
+        {
+          "frame": 4177753760,
+          "previous": 4177753808,
+          "return_address": {
+            "address": 4176711663,
+            "module": "kbdclass.sys",
+            "base": 4176707584,
+            "rva": 4079,
+            "window_start": 4176711647,
+            "window": "0f89480c52ff750cff7308e8d71c0000e907010000807d08000f84010100008d",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 4074,
+                "bytes": "e8d71c0000",
+                "operands": "0x2cc6"
+              }
+            ]
+          },
+          "words": "d07603f9ef8ff3f860fd5efee8279aff00000000e8279aff28fc5efe30299aff00000000000000000000000000000000"
+        },
+        {
+          "frame": 4177753808,
+          "previous": 4177753864,
+          "return_address": {
+            "address": 4176709753,
+            "module": "kbdclass.sys",
+            "base": 4176707584,
+            "rva": 2169,
+            "window_start": 4176709737,
+            "window": "04755b8d43185056576a01e8cd0600008bf085f68975f8743c6a30ff7508ff15",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 2164,
+                "bytes": "e8cd060000",
+                "operands": "0xf46"
+              }
+            ]
+          },
+          "words": "087703f97988f3f801000000e8279aff28fc5efe48299aff70fb5efee8279aff9c7a03f938fc5efeac7803f9e6174c82"
+        },
+        {
+          "frame": 4177753864,
+          "previous": 4177754284,
+          "return_address": {
+            "address": 2185362929,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 122353,
+            "window_start": 2185362913,
+            "window": "8946608978148b4f080fb600ff5481385f5ec3ff25705a4782558bec5151803d",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 122349,
+                "bytes": "ff548138",
+                "operands": "dword ptr [ecx + eax*4 + 0x38]"
+              }
+            ],
+            "nearest_public": "@IopfCallDriver@8",
+            "public_rva": 122300,
+            "public_offset": 53,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 122332,
+                "bytes": "56",
+                "mnemonic": "push",
+                "operands": "esi"
+              },
+              {
+                "rva": 122333,
+                "bytes": "83e824",
+                "mnemonic": "sub",
+                "operands": "eax, 0x24"
+              },
+              {
+                "rva": 122336,
+                "bytes": "57",
+                "mnemonic": "push",
+                "operands": "edi"
+              },
+              {
+                "rva": 122337,
+                "bytes": "894660",
+                "mnemonic": "mov",
+                "operands": "dword ptr [esi + 0x60], eax"
+              },
+              {
+                "rva": 122340,
+                "bytes": "897814",
+                "mnemonic": "mov",
+                "operands": "dword ptr [eax + 0x14], edi"
+              },
+              {
+                "rva": 122343,
+                "bytes": "8b4f08",
+                "mnemonic": "mov",
+                "operands": "ecx, dword ptr [edi + 8]"
+              },
+              {
+                "rva": 122346,
+                "bytes": "0fb600",
+                "mnemonic": "movzx",
+                "operands": "eax, byte ptr [eax]"
+              },
+              {
+                "rva": 122349,
+                "bytes": "ff548138",
+                "mnemonic": "call",
+                "operands": "dword ptr [ecx + eax*4 + 0x38]"
+              }
+            ]
+          },
+          "words": "ac7803f9f1fd418270fb5efee8279afff8279affe8279aff6e1b4c82e0454882b0104c82207a03f94c7703f9010f4582"
+        },
+        {
+          "frame": 4177754284,
+          "previous": 4177754404,
+          "return_address": {
+            "address": 2185570483,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 329907,
+            "window_start": 2185570467,
+            "window": "53ff7510ff75e8ff7528ff751450ffd63d040100008945fcbe1801000074083b",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 329905,
+                "bytes": "ffd6",
+                "operands": "esi"
+              }
+            ],
+            "nearest_public": "_ObpLookupObjectName@44",
+            "public_rva": 328652,
+            "public_offset": 1255,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 329890,
+                "bytes": "51",
+                "mnemonic": "push",
+                "operands": "ecx"
+              },
+              {
+                "rva": 329891,
+                "bytes": "53",
+                "mnemonic": "push",
+                "operands": "ebx"
+              },
+              {
+                "rva": 329892,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 329895,
+                "bytes": "ff75e8",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x18]"
+              },
+              {
+                "rva": 329898,
+                "bytes": "ff7528",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x28]"
+              },
+              {
+                "rva": 329901,
+                "bytes": "ff7514",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x14]"
+              },
+              {
+                "rva": 329904,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 329905,
+                "bytes": "ffd6",
+                "mnemonic": "call",
+                "operands": "esi"
+              }
+            ]
+          },
+          "words": "247903f9b3284582700d5ffe00000000647903f90000000040020000207a03f9f07803f99c7a03f9000000001c7903f9"
+        },
+        {
+          "frame": 4177754404,
+          "previous": 4177754676,
+          "return_address": {
+            "address": 2186115972,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 875396,
+            "window_start": 2186115956,
+            "window": "ff751056ff75bc50ff75c0e848a8f7ff3bc38945fc0f8ca10000008b4508f640",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 875391,
+                "bytes": "e848a8f7ff",
+                "operands": "0x503cc"
+              }
+            ],
+            "nearest_public": "_ObOpenObjectByName@28",
+            "public_rva": 875196,
+            "public_offset": 200,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 875374,
+                "bytes": "ff75dc",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x24]"
+              },
+              {
+                "rva": 875377,
+                "bytes": "ff751c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x1c]"
+              },
+              {
+                "rva": 875380,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 875383,
+                "bytes": "56",
+                "mnemonic": "push",
+                "operands": "esi"
+              },
+              {
+                "rva": 875384,
+                "bytes": "ff75bc",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x44]"
+              },
+              {
+                "rva": 875387,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 875388,
+                "bytes": "ff75c0",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x40]"
+              },
+              {
+                "rva": 875391,
+                "bytes": "e848a8f7ff",
+                "mnemonic": "call",
+                "operands": "0x503cc"
+              }
+            ]
+          },
+          "words": "347a03f9847b4d820000000000fd66fe4002000000000000003cb4ff9c7a03f90000000000000000647903f92c7a03f9"
+        },
+        {
+          "frame": 4177754676,
+          "previous": 4177754896,
+          "return_address": {
+            "address": 2185894691,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 654115,
+            "window_start": 2185894675,
+            "window": "57ffb578ffffff57ff7510e8995f03008bf0397db47408ff75b4e8f2affcff33",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 654110,
+                "bytes": "e8995f0300",
+                "operands": "0xd5abc"
+              }
+            ],
+            "nearest_public": "_IopCreateFile@64",
+            "public_rva": 653084,
+            "public_offset": 1031,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 654092,
+                "bytes": "8d458c",
+                "mnemonic": "lea",
+                "operands": "eax, [ebp - 0x74]"
+              },
+              {
+                "rva": 654095,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 654096,
+                "bytes": "ff750c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0xc]"
+              },
+              {
+                "rva": 654099,
+                "bytes": "57",
+                "mnemonic": "push",
+                "operands": "edi"
+              },
+              {
+                "rva": 654100,
+                "bytes": "ffb578ffffff",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp - 0x88]"
+              },
+              {
+                "rva": 654106,
+                "bytes": "57",
+                "mnemonic": "push",
+                "operands": "edi"
+              },
+              {
+                "rva": 654107,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 654110,
+                "bytes": "e8995f0300",
+                "mnemonic": "call",
+                "operands": "0xd5abc"
+              }
+            ]
+          },
+          "words": "107b03f9231b4a820000000000000000003cb4ff647903f9030010009c7a03f9987a03f9b87b03f9487c03f956a44a82"
+        },
+        {
+          "frame": 4177754896,
+          "previous": 4177754968,
+          "return_address": {
+            "address": 2185893576,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 653000,
+            "window_start": 2185893560,
+            "window": "7514ff7510ff750cff7508e8540000005dc23800558bec33c9394d4074036a01",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 652995,
+                "bytes": "e854000000",
+                "operands": "0x9f71c"
+              }
+            ],
+            "nearest_public": "_IoCreateFile@56",
+            "public_rva": 652946,
+            "public_offset": 54,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 652974,
+                "bytes": "ff7520",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x20]"
+              },
+              {
+                "rva": 652977,
+                "bytes": "ff751c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x1c]"
+              },
+              {
+                "rva": 652980,
+                "bytes": "ff7518",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x18]"
+              },
+              {
+                "rva": 652983,
+                "bytes": "ff7514",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x14]"
+              },
+              {
+                "rva": 652986,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 652989,
+                "bytes": "ff750c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0xc]"
+              },
+              {
+                "rva": 652992,
+                "bytes": "ff7508",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 8]"
+              },
+              {
+                "rva": 652995,
+                "bytes": "e854000000",
+                "mnemonic": "call",
+                "operands": "0x9f71c"
+              }
+            ]
+          },
+          "words": "587b03f9c8164a82847c03f903001000547c03f96c7c03f9000000000000000003000000010000001000000000000000"
+        },
+        {
+          "frame": 4177754968,
+          "previous": 4177755032,
+          "return_address": {
+            "address": 2185929851,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 689275,
+            "window_start": 2185929835,
+            "window": "7514ff7510ff750cff7508e81772ffff5dc21800cc558bec6aff68c036408268",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 689270,
+                "bytes": "e81772ffff",
+                "operands": "0x9f692"
+              }
+            ],
+            "nearest_public": "_NtOpenFile@24",
+            "public_rva": 689238,
+            "public_offset": 37,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 689253,
+                "bytes": "ff7518",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x18]"
+              },
+              {
+                "rva": 689256,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 689257,
+                "bytes": "50",
+                "mnemonic": "push",
+                "operands": "eax"
+              },
+              {
+                "rva": 689258,
+                "bytes": "ff7514",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x14]"
+              },
+              {
+                "rva": 689261,
+                "bytes": "ff7510",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0x10]"
+              },
+              {
+                "rva": 689264,
+                "bytes": "ff750c",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 0xc]"
+              },
+              {
+                "rva": 689267,
+                "bytes": "ff7508",
+                "mnemonic": "push",
+                "operands": "dword ptr [ebp + 8]"
+              },
+              {
+                "rva": 689270,
+                "bytes": "e81772ffff",
+                "mnemonic": "call",
+                "operands": "0x9f692"
+              }
+            ]
+          },
+          "words": "987b03f97ba44a82847c03f903001000547c03f96c7c03f9000000000000000003000000010000001000000000000000"
+        },
+        {
+          "frame": 4177755032,
+          "previous": 4177755064,
+          "return_address": {
+            "address": 2185654324,
+            "module": "ntoskrnl.exe",
+            "base": 2185240576,
+            "rva": 413748,
+            "window_start": 2185654308,
+            "window": "3b355c3b48820f83ac010000f3a5ffd38be58b0d24f1dfff8b553c8991280100",
+            "runtime_call_neighborhood_pinned": true,
+            "ending_call_candidates": [
+              {
+                "rva": 413746,
+                "bytes": "ffd3",
+                "operands": "ebx"
+              }
+            ],
+            "nearest_public": "_KiSystemService",
+            "public_rva": 413552,
+            "public_offset": 196,
+            "linear_decode_reaches_return": true,
+            "last_instructions": [
+              {
+                "rva": 413722,
+                "bytes": "8b1c87",
+                "mnemonic": "mov",
+                "operands": "ebx, dword ptr [edi + eax*4]"
+              },
+              {
+                "rva": 413725,
+                "bytes": "2be1",
+                "mnemonic": "sub",
+                "operands": "esp, ecx"
+              },
+              {
+                "rva": 413727,
+                "bytes": "c1e902",
+                "mnemonic": "shr",
+                "operands": "ecx, 2"
+              },
+              {
+                "rva": 413730,
+                "bytes": "8bfc",
+                "mnemonic": "mov",
+                "operands": "edi, esp"
+              },
+              {
+                "rva": 413732,
+                "bytes": "3b355c1b4800",
+                "mnemonic": "cmp",
+                "operands": "esi, dword ptr [0x481b5c]"
+              },
+              {
+                "rva": 413738,
+                "bytes": "0f83ac010000",
+                "mnemonic": "jae",
+                "operands": "0x651dc"
+              },
+              {
+                "rva": 413744,
+                "bytes": "f3a5",
+                "mnemonic": "rep movsd",
+                "operands": "dword ptr es:[edi], dword ptr [esi]"
+              },
+              {
+                "rva": 413746,
+                "bytes": "ffd3",
+                "mnemonic": "call",
+                "operands": "ebx"
+              }
+            ]
+          },
+          "words": "b87b03f934704682847c03f903001000547c03f96c7c03f9030000001000000001000000287c03f90593f3f838fc5efe"
+        },
+        {
+          "frame": 4177755064,
+          "previous": 1,
+          "return_address": {
+            "address": 4177755176,
+            "module": null
+          },
+          "words": "01000000287c03f90593f3f838fc5efe283cb4ff3cfc5efe70fb5efe283cb4ff283cb4ff400001008013000002000000"
+        }
+      ]
+    }
+  ],
+  "trace_sha256": "541633eb97f55d61f089e2c24af32b6f8bc261702da119dd22ef6d71dd07a45f",
+  "script_sha256": "552964aff2ba3b6502e15368213d1ecb90fed109c84682241f1f0a9f820a6936",
+  "limits": "Frame links and call-site pins are evidence; nearest-public names alone and raw stack words are not a complete unwind. FPO may omit intermediate routines. Functional input needs separate observation."
+}

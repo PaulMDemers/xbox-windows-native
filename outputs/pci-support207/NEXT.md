@@ -1,3 +1,38 @@
+# Current continuation: reopen009
+
+Read reopen009/REPORT.md, caller-review002.json, input-review001.json and
+evidence-review001.json. System reopens are power-policy interface-arrival
+connections: IopNotifyDeviceClassChange -> MmDispatchWin32Callout ->
+IopPnPHydraCallback -> PopNotifyPolicyDevice -> PopConnectToPolicyDevice(type0)
+-> ZwOpenFile. Captured kernel syscall trap, saved EBP, callback stack layout
+and exact six open arguments bridge the call chain. Type0 success continuation
+selects PopSystemButtonHandler/PopSwitches; it was not executed after the
+sharing failure. Upper sites are exact-image reconstruction, not separately
+live breakpoint-pinned. Interface arrival GUID and class GUID captured; name
+string, registration history and power-button behavior remain unknown.
+
+HID deny-read conflict and contemporaneous CSRSS B8/BC owners reproduced.
+After trace cleanup, Ctrl+Esc opened Start, Escape closed only Start, and one
+mouse movement moved the pointer. Basic input response observed; full input,
+power-button/wake and ordinary timing remain unqualified. Setup dialogs intact.
+No sharing bypass, handle closure, guest-policy change or physical access.
+
+Corrected fixture CLOSED2026-10-11T03:53:18.643715Z by bounded host stop; all
+owned sessions/leases closed. Cold E/F/protected/five-hive/history and target
+resource/HAL/lifecycle/cancel-remove gates pass; QUERY_STOP1/CANCEL_STOP1/STOP0/
+START3 and loads13/24/12. Input event pair, Ftdisk49 and pending258 remain.
+No normal restart/dashboard return. Preserve failed reopen008 (host dispatch
+NameError, zero class calls, cleanup/cold audit pass) and all used fixtures.
+Capture-only failures and expired-lease mouse guard are retained in009.
+
+Next if pursuing the event: inspect power-policy interface registration and
+reannouncement/system-button capability, with a fresh focused diagnostic.
+Do not treat this as evidence for disabling valid sharing enforcement or
+closing CSRSS input handles. Network/SMBus, terminal, normal restart/repeated
+boot and physical gates remain open; no other-owner integration.
+
+Historical continuation follows unchanged.
+
 # Current continuation: hidreject007
 
 Read hidreject007/REPORT.md, evidence-review001.json and static-review002.json.
