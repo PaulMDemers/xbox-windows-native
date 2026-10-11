@@ -24,7 +24,10 @@ source6ac010523f772fb6c677b74b55aa58ab8851996c08c4a815ca54f3060408f0a5; actual
 nested file-function tests reject same-size remote changes for cached/missing-local
 resume while preserving old hashes. Peer review fixed both resume edges.254 private overlay twice identical hash8000eb0e12de3688fb3b922f9f7763eb9198295ffef4579421f447da689b6b39.
 
-Latest pushed8738d00; new evidence/docs staged, commit pending. No owned emulator.
+Latest pushedb59bca1; combined evidence/docs committed and private push verified.
+Existing xbox-emulator-development-until-10am heartbeat updated ACTIVE with new
+demo/video scope every10minutes until end October11 NY (October12 04:00UTC).
+Old October7 prompts superseded; do not reactivate old experimental instructions. No owned emulator.
 After snapshot, continue250 INVALIDATION-NEXT concrete runtime evidence, not blind
 GPU ownership or speculative patches. Physical peers idle/no hardware ownership.
 Original0.1.0/0088 and all failure evidence preserved.20GiB build guard maintained.
