@@ -1,3 +1,52 @@
+#263 CLOSED — scoped preservation PASS, strict Ft49 retained
+
+Read outputs/surface-pending263/REPORT.md, DESIGN.md, NEXT.md, final-review.json
+and actual emu001 records. ALL owned sessions CLOSED:263run68410/build68171,
+262run81010/17698/build87470/prepare68510, offload73066 and check11361.
+263launch accepted21:30:00UTC, closed21:32:38UTC. Five actual kernel/process/driver/
+handle/four-page attestations;4real renderer stages with both CPU-exclusive audits,
+GL restoration/frontend reopen/breakpoint/physicalmode teardown. Four exact16KiB
+reads=65536cold bytes,4reads1write,572pixel+15812guard bytes/read. Both actual
+callback insertion/unlink/free lifetimes complete.709untruncated scalar groups:
+1dirtyage,704CPUreads(1dirty),1dirtyCPUwrite,1writeeviction,2commonentries.
+14actual evidence mutations+55synthetic controls rejected. Write/commonflags8
+means onlyupload_pending; independent latestCPUbytes required. Full scoped
+preservation TRUE. StrictFALSE soleFt49; no ordinary/physical/speedup/nativegrant.
+224workload64leases65alloc/releases/refusals3194880bytes128reads4joinedworkers.
+Normal Windows shutdown/dashboard, actual orderly host stop/quit exit0 nofallback.
+Cold322dirs6728files323clusters0errors/orphans,5hives31protected.1944frozen inputs
+and108host dependencies verified unchanged. Renderer833106cf... adds only nine
+pending predicate mask to exact262. All4actual masks0; prior262reason7 still
+unresolved, never infer its producer from this success.1024mask tests pass.
+
+Never relaunch/recollect263emu001,262emu001/002/003 or261emu001.262 failures:
+001 FTP launch reply deadline expired before checkpoint (receipt unconfirmed,
+clean cold),00220GiB projected guard beforexemu,003 accepted21:24:26UTC and first
+native attestation passed, then reason7 refused before surface creation.003disk
+2orphans/2WBEMchain errors retained, no repair/reboot/parenting.262 telemetrybuild
+3ca0bc6e... raises only site11to4096/other256, bounded saturation/singleoverflow;
+76098tests/2097152concurrent calls. Pinned closehelper included and5fake transport
+cases tested. New launch reply deadline20sec independent of5sec login; no retry
+of sent SITE. Old raw262unifiedpatch remains private unchanged (context-space
+trailingwhitespace); normalized review JSON tracked, originalSHA frozen.
+
+Next: stop repeating the now-proved age/CPUalias content discriminator. Review
+actual current263 seven-family inventory and exact source for a bounded complete
+old-owner/backend retirement contract before new implementation. Test callbacks
+are not all firmware refs; textures/palettes/vertex/scanout/overlay, real context
+service, wholebackend retirement, guest PTE/cache alias and native deferredrelease
+remain distinct. See263NEXT. No globalreset/borrowedfirmware/modelidle/fakegrant.
+No speculative functional driver patch or automatic promotion.
+
+Closed224/222/225/262/219/223 non-backing portables hashverified toE, originalpaths
+junction-preserved; portable-262/262b/262c/263 manifests. Partial262 moved224 then
+refused222 missing summaryfield beforemutation; explicit recoveredmanifest.
+20GiB guard unchanged; no backingdisks moved. Physical audio004/softwarevideo118/
+shared158/FATX0101, immutable0.1.0/0088 and private recovery256 unchanged. No
+physicaltest queued; rootdemo251ticket retained, peers idle. Historical test
+fixture is not audio-integrated physicaldemo. Work until Oct12 04:00UTC then
+no newexperiment, preserve/cleanup/report/pause. All running sessions closed.
+
 #261 CLOSED — all guest pixel checks pass; full qualification still FALSE
 
 Read outputs/surface-residency261/REPORT.md, DESIGN.md, NEXT.md, final-review.json

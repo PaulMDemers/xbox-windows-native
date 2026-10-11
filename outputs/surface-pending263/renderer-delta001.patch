@@ -1,0 +1,47 @@
+--- a/hw/xbox/nv2a/pgraph/gl/renderer.c
++++ b/hw/xbox/nv2a/pgraph/gl/renderer.c
+@@ -643,8 +643,18 @@
+     unsigned done,reason,count;
+     uint64_t epoch,thread,when,rows[X260_CALLBACKS][4];
+ } X260CPU;
++/*263 Observation of the unchanged pending-work refusal, under existing locks. */
++static unsigned x263_pending_mask(unsigned nop,unsigned flip,unsigned context,
++                                 unsigned switching,unsigned flush,unsigned sync,
++                                 unsigned downloads,unsigned dirty,unsigned shader)
++{
++    return (!!nop<<0)|(!!flip<<1)|(!!context<<2)|(!!switching<<3)|
++           (!!flush<<4)|(!!sync<<5)|(!!downloads<<6)|(!!dirty<<7)|(!!shader<<8);
++}
++
+ typedef struct X260Slot {
+     unsigned state,stage,reason,stage_result,ref_count,age_count;
++    unsigned pending_mask; /*263 immutable after terminal release publication */
+     bool old_halt;
+     int64_t deadline;
+     uint64_t started,finished,worker_thread;
+@@ -832,12 +842,11 @@
+     if(qemu_mutex_trylock(&pg->renderer_lock)){reason=5;goto finish;}
+     if(qemu_mutex_trylock(&pg->lock)){qemu_mutex_unlock(&pg->renderer_lock);reason=6;goto finish;}
+     locked=true;
+-    if(pg->waiting_for_nop||pg->waiting_for_flip||pg->waiting_for_context_switch||
+-       pg->renderer_switch_phase!=PGRAPH_RENDERER_SWITCH_PHASE_IDLE||qatomic_read(&pg->flush_pending)||
+-       qatomic_read(&pg->sync_pending)||qatomic_read(&r->downloads_pending)||
+-       qatomic_read(&r->download_dirty_surfaces_pending)||qatomic_read(&r->shader_cache_writeback_pending)){
+-        reason=7;goto finish;
+-    }
++    v->pending_mask=x263_pending_mask(pg->waiting_for_nop,pg->waiting_for_flip,
++       pg->waiting_for_context_switch,pg->renderer_switch_phase!=PGRAPH_RENDERER_SWITCH_PHASE_IDLE,
++       qatomic_read(&pg->flush_pending),qatomic_read(&pg->sync_pending),qatomic_read(&r->downloads_pending),
++       qatomic_read(&r->download_dirty_surfaces_pending),qatomic_read(&r->shader_cache_writeback_pending));
++    if(v->pending_mask){reason=7;goto finish;}
+     if(!x260_collect(d,c,v)){reason=8;goto finish;}
+     v->stage_result=x259_admit(&v->admission,v->refs,v->ages,v->age_count);
+     if(v->stage_result){reason=9;goto finish;}
+@@ -898,6 +907,7 @@
+             n+1,v->stage_result,n+1,v->reason,n+1,v->ref_count,n+1,v->unknown_vertex,n+1,v->worker_thread,n+1,v->surface,n+1,v->callback);
+         g_string_append_printf(out," slot%u_callback_result=%u slot%u_started=%"PRIu64" slot%u_finished=%"PRIu64,
+             n+1,v->callback_result,n+1,v->started,n+1,v->finished);
++        g_string_append_printf(out," slot%u_pending_mask=%u",n+1,v->pending_mask);
+         /* CPU copies may finish after timeout. Publish them only after acquire
+          * observes done; no mutable partial arrays escape through QOM. */
+         for(unsigned i=0;i<2;i++){
