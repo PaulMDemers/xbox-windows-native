@@ -1,0 +1,12 @@
+{
+  "kind": "host verdict matcher defect, not a failed guest operation",
+  "case": "install001",
+  "original_audit_sha256": "e6e77eda93baefead108c37afb769c2ea09b9621e3e65d2d4f646c80193f0879",
+  "original_source_sha256": "531f5b76f288a2bb6ca4b00782608d868b366b69863ae9e770a1d32f6caa2593",
+  "cause": "The installer enumerates and logs EXACT_TARGET_COUNT 1 both before and after UpdateDriver. The new physical audit incorrectly required this line exactly once.",
+  "correction": "Require exactly two successful target enumerations and identical before/after TARGET_INSTANCE entries; retain all original guest and cold-integrity gates.",
+  "no_new_launch": true,
+  "no_recollection": true,
+  "corrected_source": "audit002.py",
+  "corrected_verdict": "install001/audit002.json"
+}

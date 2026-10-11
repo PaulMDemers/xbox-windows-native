@@ -1,0 +1,26 @@
+{
+  "diagnostic_only": true,
+  "ordinary_qualified": false,
+  "bugcheck": [
+    "0x1e",
+    "0xc0000005",
+    "0xfc06d4b5",
+    "0x0",
+    "0x4"
+  ],
+  "fault_module": "sysaudio.sys",
+  "module_base": "0xfc066000",
+  "fault_rva": "0x74b5",
+  "fault_instruction": "mov ecx, dword ptr [ebx+4]",
+  "validated_trap": "0xf903bbbc",
+  "fault_ebx": "0x0",
+  "caller_return": "sysaudio.sys+0x7682",
+  "notes": [
+    "Second trap candidate matches page-fault error zero, EBX zero, EIP and expected caller stack. First candidate is overlapping data and is not accepted as a trap.",
+    "Build003 driver loaded; ordinary candidate002/003 had no diagnostics and cannot inherit this exact bugcheck as a directly observed fact.",
+    "Node-less inter-filter topology is a working cause hypothesis, not established solely by disassembly.",
+    "Exact Microsoft symbol fetch returned404 for both DBG forms; no substituted symbols used.",
+    "Display capture used explicit640x480 pitch2560 and is visibly malformed; not used as readable text evidence."
+  ],
+  "next": "Fresh ordinary wave-only render experiment with an actual DAC and external speaker endpoint; no fabricated mixer controls."
+}

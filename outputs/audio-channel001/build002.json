@@ -1,0 +1,287 @@
+{
+  "passed": true,
+  "compiler": "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc",
+  "compiler_version": "i686-w64-mingw32-gcc (RosBE-Unix) 8.4.0",
+  "flags": [
+    "-Os",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-Wno-misleading-indentation",
+    "-nostdlib",
+    "-fno-stack-protector",
+    "-fno-builtin",
+    "-Wl,--entry,_mainCRTStartup@0",
+    "-Wl,--subsystem,console:5.0"
+  ],
+  "driver_changed": false,
+  "probe_sha256": "5ddf733be56e5bbffbcf1ad69f69a6fe31584d4635683a37dd18a0b5c912db77",
+  "source_sha256": {
+    "probe.c": "1ed7edb8fe70918d05b9d7b2941afbe25c5c3faf68052ff1c236b02f91ec2b95",
+    "waveform.h": "61b5c42bb1e394c722ec733bd5d17b15f2c2cf9f2680a0e4a5978f86e6c5fd36",
+    "test-waveform.c": "9b2a9983ffdba9744547c1c26fea34ffd514518cc171202be3c7e5877e7c54da",
+    "analyze-capture.py": "3e6a78d0a1f657e29e1cd7a9ab3fd31d56730803816a5671f60b7c22a506b2a2",
+    "build.py": "0fa822e5532240d4f6c9dd306b1abc2f5dce542a6f2e0214df9c7a94314263b1"
+  },
+  "sanitizers": "ASan and UBSan",
+  "waveform_sample_values_checked": 1728000,
+  "capture_cases": [
+    {
+      "name": "correct",
+      "expected": true,
+      "result": {
+        "passed": true,
+        "sha256": "b01fb8ec38af0983bcecfc5f691bec0de3806ce5a2029113d020bbf74aa5ca9f",
+        "frames": 864000,
+        "segments": [
+          {
+            "mask": 1,
+            "start": 0.02,
+            "duration": 1.96
+          },
+          {
+            "mask": 2,
+            "start": 3.02,
+            "duration": 1.96
+          },
+          {
+            "mask": 3,
+            "start": 6.02,
+            "duration": 1.96
+          },
+          {
+            "mask": 1,
+            "start": 9.02,
+            "duration": 1.96
+          },
+          {
+            "mask": 2,
+            "start": 12.02,
+            "duration": 1.96
+          },
+          {
+            "mask": 3,
+            "start": 15.02,
+            "duration": 1.96
+          }
+        ],
+        "sequence": [
+          1,
+          2,
+          3,
+          1,
+          2,
+          3
+        ],
+        "durations_valid": true,
+        "gaps": [
+          {
+            "seconds": 1.04,
+            "silence_verified": true
+          },
+          {
+            "seconds": 1.04,
+            "silence_verified": true
+          },
+          {
+            "seconds": 1.04,
+            "silence_verified": true
+          },
+          {
+            "seconds": 1.04,
+            "silence_verified": true
+          },
+          {
+            "seconds": 1.04,
+            "silence_verified": true
+          }
+        ],
+        "physical_audibility": false,
+        "scope": "Independently classify captured channels, sequence, duration and silence gaps."
+      }
+    },
+    {
+      "name": "swapped",
+      "expected": false,
+      "result": {
+        "passed": false,
+        "sha256": "b66a121aaac00d98132e77dafd531a3b7db1f1281f6272c7bfdcb33e3b627fd0",
+        "frames": 864000,
+        "segments": [],
+        "sequence": [],
+        "durations_valid": true,
+        "gaps": [],
+        "physical_audibility": false,
+        "scope": "Independently classify captured channels, sequence, duration and silence gaps."
+      }
+    },
+    {
+      "name": "duplicated-left",
+      "expected": false,
+      "result": {
+        "passed": false,
+        "sha256": "2c9fd1e67c342da808238540cfc21411b3df82c7ae6dcd039ba4ffaa36c8f9ca",
+        "frames": 864000,
+        "segments": [],
+        "sequence": [],
+        "durations_valid": true,
+        "gaps": [],
+        "physical_audibility": false,
+        "scope": "Independently classify captured channels, sequence, duration and silence gaps."
+      }
+    },
+    {
+      "name": "silent",
+      "expected": false,
+      "result": {
+        "passed": false,
+        "sha256": "0bd983c495d5e1a9276fef8af8549980b9877937d1438cb487ca08aff409f858",
+        "frames": 864000,
+        "segments": [],
+        "sequence": [],
+        "durations_valid": true,
+        "gaps": [],
+        "physical_audibility": false,
+        "scope": "Independently classify captured channels, sequence, duration and silence gaps."
+      }
+    },
+    {
+      "name": "missing-phase",
+      "expected": false,
+      "result": {
+        "passed": false,
+        "sha256": "d9ba9afb7e8e3690901c3775ad6c4fda2328323ea9f1fb7bd120ec8a6ce33aa7",
+        "frames": 720000,
+        "segments": [
+          {
+            "mask": 1,
+            "start": 0.02,
+            "duration": 1.96
+          },
+          {
+            "mask": 2,
+            "start": 3.02,
+            "duration": 1.96
+          },
+          {
+            "mask": 3,
+            "start": 6.02,
+            "duration": 1.96
+          },
+          {
+            "mask": 1,
+            "start": 9.02,
+            "duration": 1.96
+          },
+          {
+            "mask": 2,
+            "start": 12.02,
+            "duration": 1.96
+          }
+        ],
+        "sequence": [
+          1,
+          2,
+          3,
+          1,
+          2
+        ],
+        "durations_valid": true,
+        "gaps": [
+          {
+            "seconds": 1.04,
+            "silence_verified": true
+          },
+          {
+            "seconds": 1.04,
+            "silence_verified": true
+          },
+          {
+            "seconds": 1.04,
+            "silence_verified": true
+          },
+          {
+            "seconds": 1.04,
+            "silence_verified": true
+          }
+        ],
+        "physical_audibility": false,
+        "scope": "Independently classify captured channels, sequence, duration and silence gaps."
+      }
+    },
+    {
+      "name": "missing-gaps",
+      "expected": false,
+      "result": {
+        "passed": false,
+        "sha256": "8dc9c72309a576634f480e9f371cf122a7270a9c75b9b36602a2505ebc43013b",
+        "frames": 576000,
+        "segments": [
+          {
+            "mask": 1,
+            "start": 0.02,
+            "duration": 1.96
+          },
+          {
+            "mask": 2,
+            "start": 2.02,
+            "duration": 1.96
+          },
+          {
+            "mask": 3,
+            "start": 4.02,
+            "duration": 1.96
+          },
+          {
+            "mask": 1,
+            "start": 6.02,
+            "duration": 1.96
+          },
+          {
+            "mask": 2,
+            "start": 8.02,
+            "duration": 1.96
+          },
+          {
+            "mask": 3,
+            "start": 10.02,
+            "duration": 1.96
+          }
+        ],
+        "sequence": [
+          1,
+          2,
+          3,
+          1,
+          2,
+          3
+        ],
+        "durations_valid": true,
+        "gaps": [
+          {
+            "seconds": 0.04,
+            "silence_verified": false
+          },
+          {
+            "seconds": 0.04,
+            "silence_verified": false
+          },
+          {
+            "seconds": 0.04,
+            "silence_verified": false
+          },
+          {
+            "seconds": 0.04,
+            "silence_verified": false
+          },
+          {
+            "seconds": 0.04,
+            "silence_verified": false
+          }
+        ],
+        "physical_audibility": false,
+        "scope": "Independently classify captured channels, sequence, duration and silence gaps."
+      }
+    }
+  ]
+}

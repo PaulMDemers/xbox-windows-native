@@ -1,0 +1,254 @@
+diff --git a/drivers/wdm/audio/drivers/ac97/miniport.h b/drivers/wdm/audio/drivers/ac97/miniport.h
+index 4a83995a..00ab3806 100644
+--- a/drivers/wdm/audio/drivers/ac97/miniport.h
++++ b/drivers/wdm/audio/drivers/ac97/miniport.h
+@@ -30,6 +30,7 @@ public:
+     PPORT_              Port;           // Port driver object.
+     PADAPTERCOMMON      AdapterCommon;  // Adapter common object.
+     PINTERRUPTSYNC      InterruptSync;  // Interrupt Sync.
++    BOOLEAN             Audio207Fault; // zero-initialized by PortCls pool new
+     PDMACHANNEL         DmaChannel;     // Bus master support.
+     DEVICE_POWER_STATE  m_PowerState;   // advanced power control.
+     DWORD               m_dwChannelMask; // Channel config for speaker positions.
+diff --git a/drivers/wdm/audio/drivers/ac97/stream.cpp b/drivers/wdm/audio/drivers/ac97/stream.cpp
+index 6cec604c..5e4d6042 100644
+--- a/drivers/wdm/audio/drivers/ac97/stream.cpp
++++ b/drivers/wdm/audio/drivers/ac97/stream.cpp
+@@ -152,7 +152,14 @@ NTSTATUS CMiniportStream::Init
+     //
+     // Reset the DMA and set the BD list pointer.
+     //
++#ifdef XBOX_NT5_AC97_MMIO
++    Audio207Touched = TRUE;
++#endif
+     ResetDMA ();
++#ifdef XBOX_NT5_AC97_MMIO
++    if (Miniport->Audio207Fault)
++        return STATUS_IO_DEVICE_ERROR;
++#endif
+ 
+     //
+     // Now set the requested sample rate. In case of a failure, the object
+@@ -205,7 +212,11 @@ CMiniportStream::~CMiniportStream()
+         //
+         // Disable interrupts and stop DMA just in case.
+         //
+-        if (Miniport->AdapterCommon)
++        if (Miniport->AdapterCommon
++#ifdef XBOX_NT5_AC97_MMIO
++            && Audio207Touched
++#endif
++            )
+         {
+             WriteReg8 (X_CR, (UCHAR)0);
+ 
+@@ -523,14 +534,29 @@ int CMiniportStream::GetBuffPos
+     // Repeat this until we get the same reading twice.  This will prevent
+     // jumps when we are near the end of the buffer.
+     //
++#ifdef XBOX_NT5_AC97_MMIO
++    for (ULONG attempt = 0; attempt < 8; ++attempt)
++    {
++        nCurrentIndex = ReadReg8(X_CIV);
++        RegisterX_PICB = ReadReg16(X_PICB);
++        if (nCurrentIndex != (int)ReadReg8(X_CIV))
++            continue;
++        if (!BDList || nCurrentIndex >= MAX_BDL_ENTRIES ||
++            RegisterX_PICB > BDList[nCurrentIndex].wLength)
++            break;
++        *buffPos = (BDList[nCurrentIndex].wLength - RegisterX_PICB) * 2;
++        return nCurrentIndex;
++    }
++    *buffPos = 0;
++    return -1; // unstable or invalid device data is not a fabricated position
++#else
+     do
+     {
+         nCurrentIndex = ReadReg8(X_CIV);
+-
+         RegisterX_PICB = ReadReg16 (X_PICB);
+     } while (nCurrentIndex != (int)ReadReg8(X_CIV));
+-
+     *buffPos = (BDList[nCurrentIndex].wLength - RegisterX_PICB) * 2;
++#endif
+     return nCurrentIndex;
+ }
+ 
+@@ -575,6 +601,11 @@ void CMiniportStream::ResetDMA (void)
+     if (bTimedOut)
+     {
+         DOUT (DBG_ERROR, ("ResetDMA TIMEOUT!!"));
++#ifdef XBOX_NT5_AC97_MMIO
++        Miniport->Audio207Fault = TRUE;
++        WriteReg8(X_CR, 0);
++        return;
++#endif
+     }
+ 
+     //
+@@ -632,3 +663,36 @@ USHORT CMiniportStream::ReadReg16(ULONG addr) { return Miniport->AdapterCommon->
+     ReadBMControlRegister16 (m_ulBDAddr + addr); }
+ ULONG CMiniportStream::ReadReg32(ULONG addr) { return Miniport->AdapterCommon->
+     ReadBMControlRegister32 (m_ulBDAddr + addr); }
++
++#ifdef XBOX_NT5_AC97_MMIO
++NTSTATUS NTAPI CMiniportStream::Quiesce207(PINTERRUPTSYNC Sync, PVOID Context)
++{
++    UNREFERENCED_PARAMETER(Sync);
++    CMiniportStream *stream = (CMiniportStream *)Context;
++    CMiniport *miniport = stream->Miniport;
++    stream->WriteReg8(X_CR, 0);
++    stream->DMAEngineState = DMA_ENGINE_OFF;
++    if (miniport->Streams[stream->Pin / 2] == stream)
++        miniport->Streams[stream->Pin / 2] = NULL;
++    for (ULONG attempt = 0; attempt < 100; ++attempt)
++    {
++        if (stream->ReadReg16(X_SR) & 1) // DCH: DMA controller halted
++        {
++            stream->WriteReg16(X_SR, 0x1c); // acknowledge only W1C status
++            stream->WriteReg32(0, 0);
++            return STATUS_SUCCESS;
++        }
++        KeStallExecutionProcessor(1);
++    }
++    miniport->Audio207Fault = TRUE;
++    return STATUS_IO_DEVICE_ERROR;
++}
++
++BOOLEAN CMiniportStream::Quiesce207()
++{
++    if (!Audio207Touched || !Miniport || !Miniport->AdapterCommon)
++        return TRUE;
++    return NT_SUCCESS(Miniport->InterruptSync->CallSynchronizedRoutine(
++        CMiniportStream::Quiesce207, this));
++}
++#endif
+diff --git a/drivers/wdm/audio/drivers/ac97/stream.h b/drivers/wdm/audio/drivers/ac97/stream.h
+index 060651bc..14dfe369 100644
+--- a/drivers/wdm/audio/drivers/ac97/stream.h
++++ b/drivers/wdm/audio/drivers/ac97/stream.h
+@@ -69,6 +69,11 @@ public:
+     // DMA start/stop/pause/reset routines.
+     //
+     void ResetDMA (void);
++#ifdef XBOX_NT5_AC97_MMIO
++    BOOLEAN Audio207Touched;
++    static NTSTATUS NTAPI Quiesce207(PINTERRUPTSYNC Sync, PVOID Context);
++    BOOLEAN Quiesce207();
++#endif
+     void PauseDMA (void);
+     void ResumeDMA (ULONG state = DMA_ENGINE_ON);
+ 
+diff --git a/drivers/wdm/audio/drivers/ac97/stream2.cpp b/drivers/wdm/audio/drivers/ac97/stream2.cpp
+index 5f90a9d8..d8f79f05 100644
+--- a/drivers/wdm/audio/drivers/ac97/stream2.cpp
++++ b/drivers/wdm/audio/drivers/ac97/stream2.cpp
+@@ -19,6 +19,14 @@ PVOID CMiniportStream::BDList_Alloc()
+          AllocateCommonBuffer (AdapterObject,
+                                MAX_BDL_ENTRIES * sizeof (tBDEntry),
+                                &BDList_PhysAddr, FALSE);
++#ifdef XBOX_NT5_AC97_MMIO
++    if (BDList && (BDList_PhysAddr.HighPart || (BDList_PhysAddr.LowPart & 7) ||
++        BDList_PhysAddr.LowPart > 0xffffffffUL - MAX_BDL_ENTRIES * sizeof(tBDEntry)))
++    {
++        BDList_Free();
++        return NULL;
++    }
++#endif
+     return BDList;
+ }
+ 
+@@ -33,7 +41,7 @@ void CMiniportStream::BDList_Free()
+         // free DBList
+         AdapterObject->DmaOperations->
+            FreeCommonBuffer (AdapterObject,
+-                             PAGE_SIZE,
++                             MAX_BDL_ENTRIES * sizeof(tBDEntry),
+                              BDList_PhysAddr,
+                              (PVOID)BDList,
+                              FALSE);
+@@ -86,11 +94,19 @@ NTSTATUS CMiniportStream::SetState
+     //
+     // Start or stop the DMA engine dependent of the state.
+     //
++#ifdef XBOX_NT5_AC97_MMIO
++    if (Miniport->Audio207Fault)
++        return STATUS_IO_DEVICE_ERROR;
++#endif
+     switch (State)
+     {
+         case KSSTATE_STOP:
+             // We reset the DMA engine which will also reset the position pointers.
+             ResetDMA ();
++#ifdef XBOX_NT5_AC97_MMIO
++            if (Miniport->Audio207Fault)
++                return STATUS_IO_DEVICE_ERROR;
++#endif
+             break;
+ 
+         case KSSTATE_ACQUIRE:
+diff --git a/drivers/wdm/audio/drivers/ac97/wavecyclicminiport.cpp b/drivers/wdm/audio/drivers/ac97/wavecyclicminiport.cpp
+index c76cf6ae..d7220e81 100644
+--- a/drivers/wdm/audio/drivers/ac97/wavecyclicminiport.cpp
++++ b/drivers/wdm/audio/drivers/ac97/wavecyclicminiport.cpp
+@@ -127,7 +127,7 @@ STDMETHODIMP CMiniportWaveCyclic::NewStream
+ 
+     DOUT (DBG_PRINT, ("[CMiniportWaveCyclic::NewStream]"));
+ #ifdef XBOX_NT5_AC97_MMIO
+-    if (Capture)
++    if (Capture || Audio207Fault)
+     {
+         *Stream = NULL;
+         *DmaChannel_ = NULL;
+diff --git a/drivers/wdm/audio/drivers/ac97/wavecyclicstream.cpp b/drivers/wdm/audio/drivers/ac97/wavecyclicstream.cpp
+index 8e833ea5..3d4538d7 100644
+--- a/drivers/wdm/audio/drivers/ac97/wavecyclicstream.cpp
++++ b/drivers/wdm/audio/drivers/ac97/wavecyclicstream.cpp
+@@ -78,7 +78,16 @@ CMiniportWaveCyclicStream::~CMiniportWaveCyclicStream ()
+ 
+     DOUT (DBG_PRINT, ("[CMiniportWaveCyclicStream::~CMiniportWaveCyclicStream]"));
+ 
+-    // Release the scatter/gather table.
++#ifdef XBOX_NT5_AC97_MMIO
++    if (!Quiesce207())
++    {
++        // Keep the miniport/DMA channel and descriptor allocation alive after
++        // a hardware fault. ISR was detached; new streams are rejected.
++        Miniport = NULL;
++        return;
++    }
++#endif
++    // Release only after hardware halt and synchronized ISR detachment.
+     BDList_Free();
+ }
+ 
+@@ -144,7 +153,13 @@ NTSTATUS CMiniportWaveCyclicStream::ResizeBuffer(void)
+     DmaChannel->SetBufferSize(totalSize);
+ 
+     // initialize bdList
+-    DWORD addr = DmaChannel->PhysicalAddress().LowPart;
++    PHYSICAL_ADDRESS physical = DmaChannel->PhysicalAddress();
++    DWORD addr = physical.LowPart;
++#ifdef XBOX_NT5_AC97_MMIO
++    if (physical.HighPart || addr > 0xffffffffUL - totalSize ||
++        bufferSize == 0 || bufferSize / 2 > 0xffff || (addr & 3))
++        return STATUS_DEVICE_CONFIGURATION_ERROR;
++#endif
+     for (UINT loop = 0; loop < MAX_BDL_ENTRIES; loop++)
+     {
+         BDList[loop].dwPtrToPhyAddress = addr + bufferSize * (loop % NBUFFERS);
+@@ -205,11 +220,13 @@ STDMETHODIMP_(NTSTATUS) CMiniportWaveCyclicStream::GetPosition
+     _Out_ PULONG Position
+ )
+ {
+-    UCHAR   nCurrentIndex ;
++    int     nCurrentIndex;
+ 
+     ASSERT (Position);
+ 
+     nCurrentIndex = GetBuffPos((DWORD*)Position);
++    if (nCurrentIndex < 0)
++        return STATUS_IO_DEVICE_ERROR;
+     nCurrentIndex %= NBUFFERS;
+     *Position += nCurrentIndex * m_bufferSize;
+ 
