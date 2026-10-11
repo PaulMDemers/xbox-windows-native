@@ -1,0 +1,276 @@
+--- a/hw/xbox/nv2a/nv2a.c
++++ b/hw/xbox/nv2a/nv2a.c
+@@ -381,6 +381,54 @@
+     qatomic_store_release(&d->preserve227.state, 1);
+     pfifo_kick(d);
+     qemu_mutex_unlock(&d->pfifo.lock);
++}
++
++/*242 No monitor dereference of live renderer objects. Only worker-published
++ * 3/4/6 orders slot writes; report never times out/read-copies mutable slots. */
++static char *inventory242_report(Object *obj, Error **errp)
++{
++    NV2AState *d = NV2A_DEVICE(obj);
++    unsigned state = qatomic_load_acquire(&d->preserve227.state);
++    bool published = state == 3 || state == 4 || state == 6;
++    GString *out = g_string_new(NULL);
++    g_string_append_printf(out, "version=242 state=%u published=%u"
++        " cpu_callbacks_observed=0 gl_bindings_observed=0 retired=0 native_grant=0",
++        state, published);
++    if (published) {
++        for (unsigned j = 0; j < 2; j++) {
++            NV2AInventorySlot242 *v = &d->inventory242.slots[j];
++            g_string_append_printf(out, " slot%u_valid=%u", j, v->valid);
++            if (!v->valid) { continue; }
++            g_string_append_printf(out, " slot%u_when=%" PRIu64
++                " slot%u_fifo_when=%" PRIu64 " slot%u_surfaces=%u slot%u_textures=%u",
++                j, v->when, j, v->fifo_when, j, v->surface_count, j, v->texture_count);
++            for (unsigned i = 0; i < 14; i++) {
++                g_string_append_printf(out, " f%u_%u=%" PRIu64, j, i, v->fifo[i]);
++            }
++            for (unsigned i = 0; i < 20; i++) {
++                g_string_append_printf(out, " c%u_%u=%" PRIu64, j, i, v->context[i]);
++            }
++            for (unsigned i = 0; i < 48; i++) {
++                g_string_append_printf(out, " r%u_%u=%" PRIu64, j, i, v->stats[i]);
++            }
++            for (unsigned i = 0; i < v->surface_count; i++) {
++                for (unsigned x = 0; x < 12; x++) {
++                    g_string_append_printf(out, " s%u_%u_%u=%" PRIu64, j, i, x, v->surfaces[i][x]);
++                }
++            }
++            for (unsigned i = 0; i < v->texture_count; i++) {
++                for (unsigned x = 0; x < 10; x++) {
++                    g_string_append_printf(out, " t%u_%u_%u=%" PRIu64, j, i, x, v->textures[i][x]);
++                }
++            }
++            for (unsigned i = 0; i < 4; i++) {
++                for (unsigned x = 0; x < 4; x++) {
++                    g_string_append_printf(out, " b%u_%u_%u=%" PRIu64, j, i, x, v->bindings[i][x]);
++                }
++            }
++        }
++    }
++    return g_string_free(out, false);
+ }
+ 
+ static char *preserve227_report(Object *obj, Error **errp)
+@@ -611,6 +659,7 @@
+     qemu_mutex_init(&d->pfifo.lock);
+     qemu_cond_init(&d->pfifo.fifo_cond);
+     qemu_cond_init(&d->pfifo.fifo_idle_cond);
++    object_property_add_str(OBJECT(d), "xwn-inventory242-report", inventory242_report, NULL);
+     object_property_add_bool(OBJECT(d), "xwn-preserve227", preserve227_get,
+                              preserve227_set);
+     object_property_add_bool(OBJECT(d), "xwn-snapshot238",
+--- a/hw/xbox/nv2a/nv2a_int.h
++++ b/hw/xbox/nv2a/nv2a_int.h
+@@ -88,6 +88,15 @@
+ 
+ } NV2AWaitSnapshot238;
+ 
++/*242 Separate finite before/after slots; no reuse of238 observer. Owned by
++ * the sole227 worker and published by its release-terminal state. Timeout5
++ * hides these slots even if a late worker still writes them. */
++typedef struct NV2AInventorySlot242 {
++    unsigned valid, surface_count, texture_count;
++    uint64_t when, fifo_when, fifo[14], context[20], stats[48];
++    uint64_t surfaces[128][12], textures[512][10], bindings[4][4];
++} NV2AInventorySlot242;
++
+ typedef struct NV2AState {
+     /*< private >*/
+     PCIDevice parent_obj;
+@@ -104,6 +113,7 @@
+         NV2AWaitRow233 rows[NV2A_WAIT233_CAPACITY];
+     } wait233;
+     NV2AWaitSnapshot238 snapshot238;
++    struct { NV2AInventorySlot242 slots[2]; } inventory242;
+     struct {
+         unsigned state, surfaces, dirty, downloaded, error, reason;
+         unsigned consume_stop, consume_steps, consume_words, wait_before, wait_after;
+--- a/hw/xbox/nv2a/pgraph/gl/renderer.c
++++ b/hw/xbox/nv2a/pgraph/gl/renderer.c
+@@ -114,6 +114,160 @@
+ 
+     qatomic_set(&d->pgraph.flush_pending, false);
+     qemu_event_set(&d->pgraph.flush_complete);
++}
++
++/*242 Read-only paired inventory. Caller owns renderer and PG locks, FIFO
++ * admission already closed. Shader lock is TRY only. This does not query GL
++ * bindings, retire references, join workers or inspect CPU callback queues. */
++static bool inventory242_alive(NV2AState *d)
++{
++    return qatomic_load_acquire(&d->preserve227.state) == 2 &&
++        qemu_clock_get_ns(QEMU_CLOCK_REALTIME) < d->preserve227.deadline;
++}
++
++static bool inventory242_copy(NV2AState *d, unsigned slot)
++{
++    if (slot >= 2 || !inventory242_alive(d)) { return false; }
++    PGRAPHState *pg = &d->pgraph;
++    PGRAPHGLState *r = pg->gl_renderer_state;
++    NV2AInventorySlot242 *v = &d->inventory242.slots[slot];
++    if (!r || v->valid || qemu_mutex_trylock(&r->shader_cache_lock)) {
++        return false;
++    }
++    v->when = qemu_clock_get_ns(QEMU_CLOCK_REALTIME);
++    NV2AWaitRow233 row;
++    nv2a_wait233_fill(d, &row, 9, 0, false);
++    uint64_t context[20] = {
++        pg->primitive_mode, pg->draw_arrays_length, pg->inline_array_length,
++        pg->inline_elements_length, pg->inline_buffer_length,
++        pg->framebuffer_in_use, qatomic_read(&pg->flush_pending),
++        qatomic_read(&pg->sync_pending), pgraph_reg_r(pg, NV_PGRAPH_CTX_USER),
++        pgraph_reg_r(pg, NV_PGRAPH_SURFACE), pg->dma_color, pg->dma_zeta,
++        pg->context_surfaces_2d.object_instance,
++        pg->context_surfaces_2d.dma_image_source,
++        pg->context_surfaces_2d.dma_image_dest, pg->image_blit.context_surfaces,
++        r != NULL, pg->renderer->type, r->color_binding != NULL,
++        r->zeta_binding != NULL,
++    };
++    memcpy(v->context, context, sizeof(context));
++    uint64_t stats[48] = {
++        qatomic_read(&d->pfifo.halt), row.waits, row.pending, row.enabled,
++        qatomic_read(&r->downloads_pending),
++        qatomic_read(&r->download_dirty_surfaces_pending),
++        qatomic_read(&r->shader_cache_writeback_pending),
++        r->gl_framebuffer, r->gl_display_buffer,
++        r->gl_display_buffer_width, r->gl_display_buffer_height,
++        g_nv2a_context_render != NULL, g_nv2a_context_display != NULL,
++        r->texture_cache.num_used, r->texture_cache.num_free,
++        r->shader_cache.num_used, r->shader_cache.num_free,
++        r->shader_module_cache.num_used, r->shader_module_cache.num_free,
++        r->element_cache.num_used, r->element_cache.num_free,
++        r->shader_binding != NULL,
++        r->shader_binding && r->shader_binding->initialized ?
++            r->shader_binding->gl_program : 0,
++        r->gl_inline_array_buffer, r->gl_memory_buffer, r->gl_vertex_array,
++        r->disp_rndr.fbo, r->disp_rndr.vao, r->disp_rndr.vbo,
++        r->disp_rndr.prog, r->disp_rndr.pvideo_tex,
++        r->s2t_rndr.fbo, r->s2t_rndr.vao, r->s2t_rndr.vbo, r->s2t_rndr.prog,
++        r->gl_zpass_pixel_count_query_count,
++    };
++    memcpy(v->stats, stats, sizeof(stats));
++    for (unsigned i = 0; i < NV2A_VERTEXSHADER_ATTRIBUTES; i++) {
++        v->stats[36] += r->gl_inline_buffer[i] != 0;
++    }
++    for (unsigned i = 0; i < NV2A_MAX_TEXTURES; i++) {
++        TextureBinding *b = r->texture_binding[i];
++        v->bindings[i][0] = b != NULL;
++        if (b) {
++            v->bindings[i][1] = b->gl_texture;
++            v->bindings[i][2] = b->refcnt;
++            v->bindings[i][3] = b->gl_target;
++        }
++    }
++    bool ok = true;
++    SurfaceBinding *s;
++    QTAILQ_FOREACH(s, &r->surfaces, entry) {
++        if (v->surface_count == 128 || !inventory242_alive(d)) {
++            ok = false; break;
++        }
++        uint64_t fields[12] = {
++            s->vram_addr, s->size, s->pitch, s->width, s->height,
++            (s->draw_dirty ? 1 : 0) | (s->download_pending ? 2 : 0) |
++            (s->cpu_write_evict_pending ? 4 : 0) | (s->upload_pending ? 8 : 0) |
++            (s->cleared ? 16 : 0) | (s->color ? 32 : 0) | (s->swizzle ? 64 : 0),
++            s->access_cb != NULL, s == r->color_binding,
++            s == r->zeta_binding, s->gl_buffer, s->dma_addr, s->dma_len,
++        };
++        memcpy(v->surfaces[v->surface_count++], fields, sizeof(fields));
++    }
++    LruNode *node;
++    unsigned walked = 0;
++    QTAILQ_FOREACH(node, &r->texture_cache.global, next_global) {
++        if (walked == 512 || !inventory242_alive(d)) { ok = false; break; }
++        walked++;
++        if (!lru_is_node_in_use(&r->texture_cache, node)) { continue; }
++        TextureLruNode *t = container_of(node, TextureLruNode, node);
++        TextureBinding *b = t->binding;
++        uint64_t fields[10] = {
++            t->key.texture_vram_offset, t->key.texture_length,
++            t->key.palette_vram_offset, t->key.palette_length,
++            b != NULL, b ? b->gl_texture : 0, b ? b->refcnt : 0,
++            t->possibly_dirty, b ? b->gl_target : 0, node->hash,
++        };
++        memcpy(v->textures[v->texture_count++], fields, sizeof(fields));
++    }
++    v->stats[37] = walked;
++    ok &= v->texture_count == r->texture_cache.num_used;
++    walked = 0;
++    QTAILQ_FOREACH(node, &r->shader_cache.global, next_global) {
++        if (walked == 51200 || !inventory242_alive(d)) { ok = false; break; }
++        walked++;
++        if (!lru_is_node_in_use(&r->shader_cache, node)) { continue; }
++        ShaderBinding *b = container_of(node, ShaderBinding, node);
++        v->stats[38]++;
++        v->stats[39] += b->initialized;
++        v->stats[40] += b->program != NULL;
++        /* A non-null save handle does NOT say the thread is still running. */
++        v->stats[41] += b->save_thread != NULL;
++    }
++    v->stats[42] = walked;
++    ok &= v->stats[38] == r->shader_cache.num_used;
++    walked = 0;
++    QTAILQ_FOREACH(node, &r->shader_module_cache.global, next_global) {
++        if (walked == 51200 || !inventory242_alive(d)) { ok = false; break; }
++        walked++;
++        if (lru_is_node_in_use(&r->shader_module_cache, node)) { v->stats[43]++; }
++    }
++    v->stats[44] = walked;
++    ok &= v->stats[43] == r->shader_module_cache.num_used;
++    walked = 0;
++    QTAILQ_FOREACH(node, &r->element_cache.global, next_global) {
++        if (walked == 51200 || !inventory242_alive(d)) { ok = false; break; }
++        walked++;
++        if (!lru_is_node_in_use(&r->element_cache, node)) { continue; }
++        VertexLruNode *b = container_of(node, VertexLruNode, node);
++        v->stats[45]++;
++        v->stats[46] += b->initialized;
++    }
++    v->stats[47] = walked;
++    ok &= v->stats[45] == r->element_cache.num_used;
++    qemu_mutex_unlock(&r->shader_cache_lock);
++    v->valid = ok && inventory242_alive(d);
++    return v->valid;
++}
++
++/* Caller owns actual FIFO lock; samples bracket the separate PG interval. */
++static void inventory242_fifo(NV2AState *d, unsigned slot)
++{
++    NV2AInventorySlot242 *v = &d->inventory242.slots[slot];
++    uint32_t words[10];
++    nv2a_preserve231_snapshot(d, words);
++    v->fifo_when = qemu_clock_get_ns(QEMU_CLOCK_REALTIME);
++    v->fifo[0] = qatomic_read(&d->pfifo.halt);
++    v->fifo[1] = d->pfifo.fifo_kick;
++    v->fifo[2] = d->pfifo.pending_interrupts;
++    v->fifo[3] = d->pfifo.enabled_interrupts;
++    for (unsigned i = 0; i < 10; i++) { v->fifo[4+i] = words[i]; }
+ }
+ 
+ static void pgraph_gl_process_pending(NV2AState *d)
+@@ -197,11 +351,20 @@
+             if (!queue_empty) { qatomic_set(&d->preserve227.reason, 1); }
+             if (queue_empty &&
+                 qatomic_cmpxchg(&d->preserve227.state, 1, 2) == 1) {
++                inventory242_fifo(d, 0);
+                 qemu_mutex_unlock(&d->pfifo.lock);
+                 qemu_mutex_lock(&pg->lock);
+-                result = pgraph_gl_preserve227(d);
++                if (inventory242_copy(d, 0)) {
++                    result = pgraph_gl_preserve227(d);
++                    if (result == 3 && !inventory242_copy(d, 1)) {
++                        qatomic_set(&d->preserve227.reason, 43); result = 6;
++                    }
++                } else {
++                    qatomic_set(&d->preserve227.reason, 42);
++                }
+                 qemu_mutex_unlock(&pg->lock);
+                 qemu_mutex_lock(&d->pfifo.lock);
++                inventory242_fifo(d, 1);
+             }
+         }
+         if (frontend_locked) { qemu_mutex_unlock(&pg->renderer_lock); }

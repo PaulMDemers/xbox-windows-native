@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "source_sha256": "846aff803a2a2929005e21737cd7365cb4ccfa3ee5f540c82121311a22eb98c2",
+  "actual_inputs": {
+    "inventory-actual.inc": "e6e2ecb3eaacf07b82d4f5486dd2fc4204835e6d3950aca00442931a5595604e",
+    "slot-actual.inc": "4093f406b2635a1bb24637a5711646a1ebcf17b6d39889c41bcffe11f9fafd84",
+    "test-inventory.c": "9ffad37b8e91a58d39a2e8966c418f9cc2bd31d60f0e520015c937bdb939ee9c",
+    "qemu/atomic.h": "0a973eaf2fc9c203cb73b13f4f1ceb39949a671faa78c4d5c6466d8c7ec358c5",
+    "qemu/compiler.h": "5aa88bf494220555337d7504fa0de261c4ad55b3bbe43c0563a6d68debb5457e",
+    "qemu/lru.h": "e80addc485365e961ed5f214671949271e45587053e9c4ac0c6cbad2718e91f4",
+    "qemu/queue.h": "7e9b631e83757ac14f0bc251860eeba82540ac1ac72d2d959681a00a50248f67"
+  },
+  "runs": [
+    {
+      "command": [
+        "gcc",
+        "-std=gnu11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-O0",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-isystem",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/gpu-reference-pair242/artifacts/inventory-test005",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/gpu-reference-pair242/artifacts/inventory-test005/test-inventory.c",
+        "-o",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/gpu-reference-pair242/artifacts/inventory-test005/inventory-O0"
+      ],
+      "exit_code": 0,
+      "stdout": "cases=23 checks=98 actual-helper=242\n",
+      "stderr": "",
+      "executable_sha256": "b3176567c81916a180886a7c46913f255d56adf16114b6f326118f8bb2197b66"
+    },
+    {
+      "command": [
+        "gcc",
+        "-std=gnu11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-O2",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-isystem",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/gpu-reference-pair242/artifacts/inventory-test005",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/gpu-reference-pair242/artifacts/inventory-test005/test-inventory.c",
+        "-o",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/gpu-reference-pair242/artifacts/inventory-test005/inventory-O2"
+      ],
+      "exit_code": 0,
+      "stdout": "cases=23 checks=98 actual-helper=242\n",
+      "stderr": "",
+      "executable_sha256": "37c98e0571e29e32ad669b8ad63cd248de02d621f61ebae21f80c5d1252368c5"
+    }
+  ],
+  "scope": "Exact compiled read-only inventory with model/clock/lock adapters and real QEMU LRU/queue/atomics; not GPU or callback completion proof",
+  "physical_access": false,
+  "guest_launch": false
+}

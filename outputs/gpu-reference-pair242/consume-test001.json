@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "compiled_pfifo_sha256": "08cbf4c8a18f154b8a667b082d46b006a07f336c83f89573aeb957b4bf561de2",
+  "actual_helpers": {
+    "budget-actual.inc": "384a9cf0e4870997b52a50f3b7b274df88c39b1c3b433d6258c10939bfdf3b2c",
+    "consume-actual.inc": "f66b0e4a1e8576aa5606d48bbfc5f9fc787267502897b2f8d4aca778e1240e47",
+    "wait-actual.inc": "aaf985630ab10ffeacd4f85b2cd72a566512021828fb2f3e6558cc2c48b07edb"
+  },
+  "runs": [
+    {
+      "command": [
+        "gcc",
+        "-std=gnu11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-O0",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/gpu-reference-pair242/artifacts/consume-test001",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/gpu-reference-pair242/artifacts/consume-test001/test-consume.c",
+        "-o",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/gpu-reference-pair242/artifacts/consume-test001/consume-O0"
+      ],
+      "exit_code": 0,
+      "stdout": "checks=110593 cases=18432 empty_shortcuts=12 delegated=36\n",
+      "stderr": "",
+      "executable_sha256": "b2e48f000ba01f3e06b3f3ee2a1a9ea5b7591819fd56ae5fcfd95c352b18c950"
+    },
+    {
+      "command": [
+        "gcc",
+        "-std=gnu11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-O2",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/gpu-reference-pair242/artifacts/consume-test001",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/gpu-reference-pair242/artifacts/consume-test001/test-consume.c",
+        "-o",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/gpu-reference-pair242/artifacts/consume-test001/consume-O2"
+      ],
+      "exit_code": 0,
+      "stdout": "checks=110593 cases=18432 empty_shortcuts=12 delegated=36\n",
+      "stderr": "",
+      "executable_sha256": "da4c4de96268bef7c26320706811abe74ad35cf0bed20f925f9a741ad8d102cd"
+    }
+  ],
+  "scope": "Actual compiled consume/wait functions and real QEMU atomics under clock/FIFO/pusher adapters; not GL behavior, scheduling or ownership",
+  "physical_access": false,
+  "guest_launch": false
+}
