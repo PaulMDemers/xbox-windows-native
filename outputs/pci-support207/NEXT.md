@@ -1,3 +1,34 @@
+# Current continuation: policy010
+
+Read policy010/REPORT.md, policy-review002.json and evidence-review002.json.
+Live kernel pins establish HID power-policy registration (flags0/type0), initial
+successful opens, two successful SYS_BUTTON_CAPS queries with zero masks, and
+cleanup before rebalance. No SYS_BUTTON_EVENT request. HID enable/disable/enable
+transitions and arrival/removal/arrival notifications precede conflicting reopens.
+Class interfaces remain enabled (second enable40000000). HID sharing branch and
+live CSRSS ownership reproduced. No PCI/HID-sharing change justified.
+
+Trace capture_deadline retained: one unrelated wdmaud registration has no observed
+return; all relevant connects and class calls finished. Four optional HID enable
+caller pins failed at4209; static leading relocation overlap identified, corrected
+resident bytes not obtained before closure. Do not claim those pins passed.
+One keyboard removal notification invoked callback twice. Preserve failed offline
+review-policy001 and corrected002; no new guest launched for that correction.
+
+Fresh owned fixture CLOSED2026-10-11T04:13:05.480101Z by bounded host stop.
+Cold integrity/resource/HAL/lifecycle/cancel-remove gates pass; minor counts
+QUERY_STOP1/CANCEL_STOP1/STOP0/START3 and segments13/24/12. All owned leases closed.
+Input9 pair, Ftdisk49 and pending258 remain. No normal-restart or physical claim.
+No UI input injected this run; reopen009 basic-input evidence stays separate.
+
+Actual button testing needs a fresh capability-bearing System Control fixture
+and before/after event-delivery test, or separately scoped physical evidence.
+No capability-bearing device exists in this trial. Network/SMBus, terminal,
+normal restart/repeated boot and physical gates remain open. Preserve all used
+fixtures and closed/restored hardware220 baseline. No other-owner integration.
+
+Historical continuation follows unchanged.
+
 # Current continuation: reopen009
 
 Read reopen009/REPORT.md, caller-review002.json, input-review001.json and
