@@ -1,3 +1,51 @@
+#279 HOST-ONLY — unbound release proposal; reserved byte matches counter field
+
+Read outputs/unbound-release279/REPORT.md, DESIGN.md, NEXT.md, actual-edges.json,
+host003.json, sector-analysis.json and final-review.json. All owned processes
+CLOSED including review29324/48591/49437 and host commands. No renderer build,
+guest preparation/launch, shared source/SDK/physical change or installed release.
+Never rerun consumed host001..003, failed reviews or old closed guest cases.
+
+Independent actual278 eligibility review passes315 actual graph/context/container
+mutations. Four disabled selected owners eachrefs2/cache1/unit1 have no observed
+render/display/UI binding, knownFBOedge, UIholder or VGAtexture use. Scope remains
+pinnedGL4.0 andknowncontainers, notallunknownextensions. No historicalnamesused
+ascurrentownership. ExtraUIcontainer checks tie header sets to contextinteger
+bindings. priorreview001 omitted278scalarvalidator;002 lacked UIheaderclosure;
+bothfailurespreserved,correctedreviewseparate, no278evidencechanged.
+
+Proposed279 helper is UNBOUND-ONLY: full277observation stillchecksactualnonzero
+callbacks/clocks/4096guarddisjointness andrefusesitsreleaseflag. Separate279
+operation/graph/owner/context/lockcontract; nofakezero/oldgaterelaxation. Rechecks
+livecachekeys/edges/counts/disabledunits andactualrenderbindingsbeforemutation.
+Actualcounteddestroy,clearunit,settexture_dirty;cacheownersretained. PartialGL/
+observererror returnsQUARANTINE+exactmask,neverfabricatedrollback/resumePASS.
+Host003 exact278binder/destructor/cache plusrealQEMUqueue/LRU,explicitGL/register/
+observer/CPU-contextmodels:12cases31premutationrefusals8partialquarantines,
+112balancedmodelobjects,ASan/UBSanPASS. ActualworkersequencingNOTyettested.
+Host001manifestWindowsseparator failurebeforecompile;002modelGLnamescollided
+withhistoricalfixture surface names;003explicitdisjointmodelnamespace. Helper,
+277core andactualoriginalfunctions BYTE-IDENTICAL002/003. PrivatecapsulesonE.
+
+Read-onlyknownsectoranalysis: absolute1540 changed0->1;BRFRheader andoffset4
+matchpinnednxdk XBOX_REFURB_INFO PowerCycleCount. Bootcounterupdate is INFERENCE;
+actualwriter/pathNOTcaptured. Original278strictdiskgate remainsFALSE. Noaudits
+rerun/overwritten. nxdkheadersourceSHA andsectorhashes recorded.
+
+NEXT NEWexact278releaseworkeradapter withpreallocatedimmutablepre-release,
+post-release,post-resumegraphs andexplicitfreshCPUepochprotocol. Preserveactual
+owner/context/lock/FIFO/pending/fencechecks. Deriveunboundgraphinputs,armobserver
+afterpreproof,mutateonce;freshpost-releaseCPUacks+refs1/cache1/unit0 graph BEFORE
+guestresume. Neverfabricaterefs2/epochs tofitoldX277 validator. Testactualworker
+locks/publication/poststatefailure/transport beforebuild; separatefreshmatched
+control/candidate ifnewprotocolrequirescontrolcoverage. Noold278relaunch or
+pixel-onlyrepeat. Keepdirtysurfaces/callbacksuntouched;two unboundnativeprovenance
+unknownoutside narrowoperation. No fullbackend/nativeGPUclaim. WindowPTE/cache
+aliases/deferredrelease remainseparatebefore16x8copy. Physicaldemo/recovery and
+rollbacksunchanged. Check20GiBcapacity andOct12 04:00UTCcutoffbeforeexperiments.
+
+--- Previous continuation (preserved) ---
+
 #278 CLOSED — actual unchanged four-texture control passed; no release installed
 
 Read outputs/texture-boundary278/REPORT.md, DESIGN.md, NEXT.md, final-review.json,
