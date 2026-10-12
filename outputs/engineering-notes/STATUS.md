@@ -1,3 +1,16 @@
+# Standalone HD mode milestone completed, Windows integration pending
+
+290 verified720p,1920x1080 API mode and return to640x480 in the emulator, with
+13,209,600 exact independent framebuffer bytes and orderly cleanup. This is not
+physical1080i or Windows HD qualification. The known one-byte reserved-sector
+strict disk failure remains recorded. The new work does not alter the physical
+Windows/audio installation. Read ../hd-output290/REPORT.md and NEXT.md.
+
+Next: a coordinated Windows boot framebuffer layout and encoder/timing handoff.
+The existing reservation is too small; enlarging it overlaps launcher code/stack.
+Physical tests will need a component/HDTV-capable adapter and1080i display.
+0.2.0 stays deferred until stable. No new automation or release tag.
+
 # October12: 1080i preparation, release deferred
 
 The authorized video inventory288 confirmed Conexant and64MiB. The current HDMI

@@ -1,3 +1,42 @@
+# 290 standalone HD diagnostic closed; Windows HD handoff next
+
+Latest288 evidence pushed e257071c; this update records289/290 and verified storage
+recovery. All owned processes CLOSED. Read outputs/hd-output290/REPORT.md, NEXT.md,
+final-review.json and timing-capture.json. User-directed1080i work continues;
+expired overnight automation remains PAUSED.0.2.0 remains untagged.
+
+290 actual720p/1080i API/fallback640x480 control passed scoped gates: phases11/22/
+33/44,13,209,600 exact independent framebuffer bytes, all framebuffer page
+translations from actualCR3/CR4, actual loaded XBE/text/checkpoint/callers. Physical
+scanout equals allocation for all3 stages. HVALID719 for fallback640x480 is an
+important pitch-vs-timing distinction. Same289build001 native binary, private
+HD-enabled EEPROM; no physical mode/EEPROM change, Windows launch or SDK change.
+Breakpoints removed, physicalmode0,12sec resume, orderlyhostexit0/no fallback.
+Firmware reboot entry NOT traced. StrictdiskFALSE one reserved-sector byte,
+full8GiBmap/65536overlay comparison filesystem inherited unchanged; QCOWclean,
+EEPROMsame, all frozen dependencies/private captures rehashed. Not physical
+interlacing or WindowsHD qualification. Never relaunch/recollect/parent this case.
+
+289emu001 failed controller progression after an exact720p capture: repeated
+hardware breakpoint without step-over. Original source/binary/failedtrace and
+cold audit preserved. Separate290 controller fixes only progression, uses fresh
+unused blank child.289host001 compiler failure,002 Windows stdout CRLF expansion
+preserved;003 actual helper/independent oracle13,209,600bytes/12negative controls
+passed.289 preparation continued after failed hostcompile; launch was held until
+separate passing prelaunch review. No historical result was rewritten.
+
+Current physical288 findings: Conexant,64MiB, standard AV HDMI adapter; HD flags
+saved but only640x480/720x480 exposed. Protected Windows baseline/startup/fivehives
+unchanged; console atUnleashX after single inventory. User informed component/HDTV
+adapter and1080i-capable display needed for later physical test. Windows still
+needs coordinated launcher/live-memory layout/bootvid/provider/miniport work;
+8MiB is insufficient with bootvid backing, top-RAM growth hits launcher code/stack.
+
+Private289/290 runtime/build files E:/xwn289,E:/xwn290. Closed194/196 non-backing
+portables hash-readback/offloaded preserving original junctions; manifests
+outputs/task-storage-offload/portable-289.json and portable-289b.json. No backing
+chains moved.20GiBguard unchanged; recheck actualcapacity before nextbuild/launch.
+
 # Active user-directed 1080i work before 0.2.0 - 288 completed
 
 The user authorized a new interactive work period after the prior cutoff and
