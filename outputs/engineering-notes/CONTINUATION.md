@@ -1,3 +1,11 @@
+# 311 compiled;312 CLOSED720p desktop but UI gate failed
+
+Read hd-loader311 REPORT/DESIGN/binary-review001/final-review and hd-boot312 REPORT/NEXT/final-review and actual records.311 build75024 CLOSED: control executable text BYTE-IDENTICAL300; candidate explicit bounded720p profile,16 matched warnings,117775 host002 ASan/UBSan assertions. Private D:/xwn311/build001. Candidate c2bd899182caf0f076f8999feac1f48457fc4e6ad201ec358c06781f5740945f. Originalhost001 preserved; no physical deployment or1080i enablement. Parent/shared source unchanged.
+
+312 ALL sessions CLOSED:preparations92760/33637,control25859/53891/audit30669,candidate84748/31906/audit25063. Neverrelaunch/recollect/parent. Unused304candidate seed, onlydefault.xbe differs, same303/300/audio004/FATX0101.191frozeninputs6hostpins. Control combinedscopePASS, normalrestart, clean327dirs6763files328clusters5hives58protected;strictFALSEsoleFt49. Candidate accepted21:21:10UTC;1280x720desktop/mode registers observed, but helperTIMEOUT201 1 0 120090 andCANCEL_ACTIVE_WAIT, zeroactions,runnerexit15 blocksallmeasurements. LateforegroundWelcome observed; exactearlierfailedsubpredicateunknown. Originalcombinedchecker rejectedmissingcheckpoints, preservedfailure. Nine-minuteownedbound orderlyexit0/nofallback; noWindowsshutdown. Candidateclean322dirs6754files323clusters5hives58protected, scopedFALSE/strictFALSEFt49. No fullcontentclaim.
+
+SupplementalHMPregisterqueries andonepaused/resumedframebuffer captureafterfailure-to-return, noordinaryqualification. OldloaderRAMreused/notinterpreted; guestkernel-rangeEIP. UnsupportedHMPscreendump queryretained. Private D:/xwn312;nohardwareaccess. NEXT newboundedidentity-revalidated foreground/known-Welcome handling, retaining201Cancel/owner/page/idle/unknownwindowgates; actualbefore/afterGUIproof, thenNEWfresh unchanged311720p workload. Neverbootuntil lucky orwaivegate. No1080ienablement/physicalpromotionyet. AutomationPAUSED;physicalbaselineunchanged,0.2.0untagged.
+
 # 309 hardware matrix passed;310 profiles implemented, not integrated
 
 Read outputs/hd-matrix309 REPORT/NEXT/final-review/source-review and outputs/hd-profile310 REPORT/DESIGN/NEXT/review001/final-review. All owned processes are CLOSED:309 build/preparation, runner49375, physical collection60433 and310 host test. No hardware test is queued. Automation stays PAUSED.

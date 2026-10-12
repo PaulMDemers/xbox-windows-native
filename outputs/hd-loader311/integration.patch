@@ -1,0 +1,54 @@
+diff --git aa/Makefile bb/Makefile
+index 7d4e958e..02e9edba 100644
+--- aa/Makefile
++++ bb/Makefile
+@@ -89,6 +89,7 @@ OBJECTS-CROM += $(TOPDIR)/obj/i2cio.o
+ OBJECTS-CROM += $(TOPDIR)/obj/pci.o
+ OBJECTS-CROM += $(TOPDIR)/obj/BootVgaInitialization.o
+ OBJECTS-CROM += $(TOPDIR)/obj/VideoInitialization.o
++OBJECTS-CROM += $(TOPDIR)/obj/xwn_hd_profile.o $(TOPDIR)/obj/xwn_hd_adapter.o $(TOPDIR)/obj/xwn_hd_native.o
+ OBJECTS-CROM += $(TOPDIR)/obj/conexant.o
+ OBJECTS-CROM += $(TOPDIR)/obj/focus.o
+ OBJECTS-CROM += $(TOPDIR)/obj/xcalibur.o
+diff --git aa/drivers/video/Makefile bb/drivers/video/Makefile
+index 6ca281d4..e23b88b1 100644
+--- aa/drivers/video/Makefile
++++ bb/drivers/video/Makefile
+@@ -1,5 +1,5 @@
+ EXTRA_CFLAGS := -I$(TOPDIR)/lib/font -I$(TOPDIR)/lib/jpeg
+ 
+-O_TARGET := conexant.o focus.o xcalibur.o BootVgaInitialization.o BootVideoHelpers.o VideoInitialization.o
++O_TARGET := xwn_hd_profile.o xwn_hd_adapter.o xwn_hd_native.o conexant.o focus.o xcalibur.o BootVgaInitialization.o BootVideoHelpers.o VideoInitialization.o
+ 
+ include $(TOPDIR)/Rules.make
+diff --git aa/drivers/video/BootVgaInitialization.c bb/drivers/video/BootVgaInitialization.c
+index 75a66e49..9140b0f1 100644
+--- aa/drivers/video/BootVgaInitialization.c
++++ bb/drivers/video/BootVgaInitialization.c
+@@ -30,6 +30,10 @@
+ #include "xcalibur.h"
+ #include "drivers/pci/i2c.h"
+ 
++#ifdef XWN_HD_TIMING_720P
++extern int XwnHdTry720(CURRENT_VIDEO_MODE_DETAILS *,unsigned,unsigned,unsigned);
++#endif
++
+ unsigned int video_encoder;
+ u8 VIDEO_AV_MODE;
+ 
+@@ -153,6 +157,15 @@ void BootVgaInitializationKernelNG(CURRENT_VIDEO_MODE_DETAILS * pvmode) {
+ 	pvmode->hoc /= 100.0;
+ 	pvmode->voc /= 100.0;
+ 
++#ifdef XWN_HD_TIMING_720P
++	if (XwnHdTry720(pvmode,video_encoder,av_type,((u8 *)&eeprom)[0x96])) {
++		mapNvMem(&riva,pvmode->m_pbBaseAddressVideo);
++		NVVertIntrEnabled(&riva,0);
++		NVSetFBStart(&riva,0,pvmode->m_dwFrameBufferStart);
++		return;
++	}
++#endif
++
+ 	mapNvMem(&riva,pvmode->m_pbBaseAddressVideo);
+ 	unlockCrtNv(&riva,0);
+ 

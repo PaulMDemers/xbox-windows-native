@@ -1,3 +1,19 @@
+# 720p desktop reached; unattended setup gate needs handling
+
+The new explicit720p Cromwell path compiles and reaches a1280x720 Windows desktop
+in the emulator. Actual emulated mode registers agree. Its test did not qualify:
+the known-wizard helper waited for foreground/active status, timed out with zero
+actions, and correctly blocked measurement. A late capture shows Welcome in front.
+The exact failing earlierGUI predicate was not logged. No normal shutdown; owned
+host closure was orderly and allocation/hive/protected checks are clean.
+
+Matched control passed drawing/audio/normalrestart/coldintegrity; knownFtdisk49
+remains strictFALSE. Next address explicit, identity-checked foreground handling
+in the test helper while retaining device/setup gates, then revalidate unchanged
+720p driver in a fresh fixture. Hardware and1080i remain unqualified;0.2.0untagged.
+Physical baseline and recovery are unchanged. Read ../hd-loader311/REPORT.md and
+../hd-boot312/REPORT.md. All owned sessions closed at this checkpoint.
+
 # Mapping and software HD bounds validated; timing integration remains
 
 The9MiB framebuffer is outside Windows-managed memory and mapped uncached across
