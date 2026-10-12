@@ -1,3 +1,56 @@
+#274 CLOSED — new terminal owner actor compiled; no guest preparation or launch
+
+Read outputs/owner-boundary274/REPORT.md, DESIGN.md, NEXT.md, final-review.json
+and actual records. ALL owned processes CLOSED including builds26501/52041 and
+repository check5977 (27386 tracked files passed).
+No274 guest exists. No268 release, native/SDK/physical change. Never rerun
+consumed builds001/002, host001/002 or any old closed guest.
+
+Reviewed exact273 child build002:
+E:/Codex-archive/xbox-windows-native/boundary274-build002/xemu-boundary274.exe
+SHA3c3c61fff0615a2e2781b90a3f4ed9a6b119e343222e5defdcad4f0ea4cd806e,
+191771501bytes. New finish274 one-shot actor stores a SECOND immutable ownership
+graph without resetting initial265/246/247. Actual PFIFO worker checks original
+owner, GET/PUT/method/error/pending/primitives/reports, finite render/display
+fences, both CPU-exclusive inventories and matching native context identities,
+then seals273 accounting on original worker outside FIFO/graphics locks. Failure
+quarantines; no disposal, join, release, forced completion or nativeGPU grant.
+
+Initial epoch1 graph remains accessible; page prefix end274,N selects epoch2.
+Report automatically selects end actor once published; preserve initial report
+before finish274. CPU actual thread/epoch/time/count fields remain visible even
+with zero callbacks. Epochs1/2 initial,3/4 final. Keep frontend closed between
+captures and reopen once. Zero-callback gate retained, not silently waived.
+Old monitor seal269 refused after end publication; use finish274 for control.
+
+Host ASan/UBSan262938 actual admission/context cases and24 actual worker paths
+pass with explicit CPU/GL/graph/lock models. Checks cover lock balance, initial
+graph immutability, quarantine, no rearm/repeat. No real queued job/fence/guest
+coverage. Build001 compiled but omitted acknowledgment identities at count0;
+preserved never launched. Build002 changes ONLY report formatter, all tested
+transaction functions identical.19 borrowed files restored;79 inherited warning
+instances/no new messages each build;42private source files/6buildinputs/12host
+files rehashed. Exact273 observer/normal binder/destructor unchanged except
+read-only ready predicate. Initial inline PowerShell generator and exact-anchor
+patch failed before mutation; no consumed build/guest evidence overwritten.
+
+Next NEW standalone controller from272 explicit homebrew attestation plus same
+271build005 and reviewed274 renderer. Complete actual15RAMHT object descriptor/
+class/channel/range evidence; big context alone excludes earlier DMA/later graphics
+objects. Static pbkit handle12 special interrupt-trigger limit0x10000000 is NOT
+256MiB ordinary RAM ownership; needs actual descriptor/command validation.
+Independent paired-graph/CPUepochs/context/terminal273/snapshot source+RGBA oracle
+and mutation tests precede one fresh unusedblank8GiB child/privateEEPROM/ports/
+lease. Actual four same-generation guest binds and unchanged pixels required.
+No268 release until qualifying unchanged control; nativeWindows aliases/deferred
+release remain separate. Do not repeat272pixelonly/263solvedage discriminator.
+
+Physical audio004/softwarevideo118/shared158/FATX0101 and recovery256/0.1.0/0088
+unchanged. Preserve272reserved-sector disk failure,269overflow/changed firmware
+texture evidence and every historical failure. C last21656317952bytes and
+E40972451840bytes after build002; recheck20GiB guard, no backing moves.
+DeadlineOct12 04:00UTC unchanged.
+
 #273 CLOSED — bounded lifetime observer compiled; no guest preparation or launch
 
 Read outputs/owned-lifetime273/REPORT.md, DESIGN.md, NEXT.md, source-review.json,
