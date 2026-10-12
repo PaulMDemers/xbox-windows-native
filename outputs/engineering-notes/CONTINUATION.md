@@ -1,3 +1,25 @@
+#283 HOST-ONLY cache disposal proposal;282 latest actual result
+
+Read outputs/cache-disposal283/REPORT.md, DESIGN.md, NEXT.md, final-review.json,
+actual-edges.json and host001..003. No renderer/native build, guest preparation,
+launch, installed disposal, SDK/physical change. All owned sessions CLOSED.
+Host003 ASan/UBSan passes4actual-original-LRU/destructor/replacement cases,
+34premutationrefusals,12exactpartialquarantines,99balancedMODELEDobjects. Original
+281 normal functions/QEMU LRU/queue pinned; helper/core byteidentical002/003.
+GL/pixels/registers/observer/CPU/context/graph provider explicitlymodeled.
+001manifestseparator precompilefailure and002harnessindentationcompilefailure
+preserved. ActualCLOSED282postunitgraph has4refs1/cache1/unit0 owners with no
+knownselectedGL/FBO/UI/VGAedges;331mutations rejected, notliveauthorization.
+
+NEXT generation-aware observer core/actualadapter design: old4tombstones separate
+from real replacementcreation and normalbind, address/GLname reuse notoldrevival.
+Exact281source has1normalbinder generate_texture call and1TextureBinding allocation
+in thatfunction (staticlead only). Original273same-live-generation schema cannot
+qualifydeletion/replacement; neverrelaxitsdecoder. Neednewfour-boundary worker
+preunit/postunit/postdisposal-before-resume/postreplacement, actualfullproof and
+finalfree/GLdeletion/pixel evidence. No actualdisposalinstalled yet. Keepallother
+resources/dirtycallbacks unchanged. Deadline04UTC, nohardwarequeued.
+
 #282 actual matched unit-reference release/reuse scoped PASS; strict FALSE
 
 Current282 milestone (predecessor bda40b5f; verify Git HEAD). Read
