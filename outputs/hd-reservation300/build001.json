@@ -1,0 +1,205 @@
+{
+  "status": "compiled",
+  "started_utc": "2026-10-12T18:34:42.659747+00:00",
+  "space": {
+    "minimum_free_gib": 20,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/home/paul/xbox-windows-native/build/hd-reservation300-build001",
+        "free_bytes": 929323360256
+      },
+      {
+        "free_bytes": 23038554112,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "tool_sha256": {
+    "RosBE.sh": "1d04daf7393952441c62691bb7735042d236b0196778f1632f0a4383476143b7",
+    "bin/cmake": "049737b62e2803fd657041cf65b6bb6de7756db377c92c686c63eec373604e75",
+    "bin/ninja": "371e855768aa214225d4b17f49902cdd2b2daa8764514134524b07282c9e9e07",
+    "i386/bin/i686-w64-mingw32-gcc": "83015512671faaa0dbe6f043a0107f79c049f4268a67e39955388a8d9a0182e5"
+  },
+  "gcc12_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "source_review_sha256": "f35d6dace3e7f7a01ec1443b15067ca8bb6e90f8f3d63c40b37c2c819c5cb722",
+  "commands": [
+    [
+      "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/RosBE.sh",
+      "/home/paul/xbox-windows-native/build/hd-reservation300-build001/source",
+      "0",
+      "i386"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/hd-reservation300-build001/cromwell",
+      "checkout-index",
+      "--all",
+      "--prefix=/home/paul/xbox-windows-native/build/hd-reservation300-build001/cromwell-control001/"
+    ],
+    [
+      "make",
+      "all",
+      "CC=/usr/bin/x86_64-linux-gnu-gcc-12",
+      "GITREV=9fc54d0-xwn-fboot",
+      "EXTRA_CROM_CFLAGS=-DXWN_PHYSICAL_PREFLIGHT",
+      "LDFLAGS-ROM=-s -S -T /home/paul/xbox-windows-native/build/hd-reservation300-build001/cromwell-control001/scripts/ldscript-crom.ld -Map=/mnt/e/xwn300/build001/control001/image-crom.map"
+    ],
+    [
+      "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/RosBE.sh",
+      "/home/paul/xbox-windows-native/build/hd-reservation300-build001/source",
+      "0",
+      "i386"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/hd-reservation300-build001/cromwell",
+      "checkout-index",
+      "--all",
+      "--prefix=/home/paul/xbox-windows-native/build/hd-reservation300-build001/cromwell-candidate001/"
+    ],
+    [
+      "make",
+      "all",
+      "CC=/usr/bin/x86_64-linux-gnu-gcc-12",
+      "GITREV=9fc54d0-xwn-fboot",
+      "EXTRA_CROM_CFLAGS=-DXWN_PHYSICAL_PREFLIGHT -DXWN_HD_RESERVATION=1",
+      "LDFLAGS-ROM=-s -S -T /home/paul/xbox-windows-native/build/hd-reservation300-build001/cromwell-candidate001/scripts/ldscript-crom.ld -Map=/mnt/e/xwn300/build001/candidate001/image-crom.map"
+    ]
+  ],
+  "cases": {
+    "control001": {
+      "definitions": {
+        "ARCH": "i386",
+        "SARCH": "xbox",
+        "OARCH": "pentium",
+        "CMAKE_BUILD_TYPE": "Release",
+        "DBG": "OFF",
+        "KDBG": "OFF",
+        "PCH": "OFF",
+        "ENABLE_CCACHE": "OFF",
+        "XBOX_NT5_HAL": "ON",
+        "XBOX_NATIVE_PREFLIGHT": "OFF",
+        "XBOX_NATIVE_IO_PREFLIGHT": "ON",
+        "XBOX_NATIVE_EXTENDED_READ_PREFLIGHT": "OFF",
+        "XBOX_NATIVE_EXTENDED_NT5_BOOT": "ON",
+        "XBOX_NATIVE_FATX_F_BOOT": "ON",
+        "XBOX_NATIVE_VOLUME_PREFLIGHT": "OFF",
+        "XBOX_NATIVE_NT5_HANDOFF": "ON",
+        "XBOX_NATIVE_NT5_ENTER": "ON",
+        "XBOX_NATIVE_NT5_AUTORUN": "ON",
+        "XBOX_NT5_VIDEO_ADAPTER_DIAGNOSTIC": "OFF",
+        "XBOX_NT5_VIDEO_TRACE": "ON",
+        "XBOX_NT5_VIDEO_PNP_DIAGNOSTIC": "ON",
+        "XBOX_NT5_VIDEO_DIAGNOSTIC": "ON",
+        "XBOX_NT5_VIDEO_ENTRY_DIAGNOSTIC": "OFF",
+        "XBOX_NT5_FRAMEBUFFER_ONLY_PCI": "ON",
+        "XBOX_NT5_VIDEO_TRACE_REUSE": "ON",
+        "XBOX_NT5_SHARED_FRAMEBUFFER": "ON",
+        "XBOX_NT5_HD_RESERVATION": "OFF"
+      },
+      "files": {
+        "freeldr.sys": {
+          "sha256": "7df0d175ad07c8da60e88a4ef32db69fadc49e603354921862e44a644b3f7916",
+          "bytes": 169984
+        },
+        "rosload.exe": {
+          "sha256": "6d2216cb297a50c0d35256e6e60f6d63cc03980b3c87e598678c09991d1fdba7",
+          "bytes": 263826
+        },
+        "xboxvnt5.sys": {
+          "sha256": "a9f08887f4bf4d837828299fcbe1fa01a5689dcde9d63ef613a151aa65463f77",
+          "bytes": 41881
+        },
+        "xboxbvid.dll": {
+          "sha256": "88d93eb3100eaf8e90d0c87ad7810dfa7e96e3db7f9b014579a669215579d0df",
+          "bytes": 45240
+        },
+        "default.xbe": {
+          "sha256": "9b338acf7b79ab71b1af17d5284b7597398b56c60fdb0c1168304eeee53e097f",
+          "bytes": 294384
+        },
+        "image-crom.elf": {
+          "sha256": "963c5f1290465a9f7b8ef36255f06f6cbfbfd4d750fb3e559eee9dad1092cae6",
+          "bytes": 317112
+        },
+        "xbeboot.elf": {
+          "sha256": "4493d8a5ae57da973892c1c81256d1c921c031f4a57af21ce799c863efffb38c",
+          "bytes": 19820
+        }
+      },
+      "status": "compiled"
+    },
+    "candidate001": {
+      "definitions": {
+        "ARCH": "i386",
+        "SARCH": "xbox",
+        "OARCH": "pentium",
+        "CMAKE_BUILD_TYPE": "Release",
+        "DBG": "OFF",
+        "KDBG": "OFF",
+        "PCH": "OFF",
+        "ENABLE_CCACHE": "OFF",
+        "XBOX_NT5_HAL": "ON",
+        "XBOX_NATIVE_PREFLIGHT": "OFF",
+        "XBOX_NATIVE_IO_PREFLIGHT": "ON",
+        "XBOX_NATIVE_EXTENDED_READ_PREFLIGHT": "OFF",
+        "XBOX_NATIVE_EXTENDED_NT5_BOOT": "ON",
+        "XBOX_NATIVE_FATX_F_BOOT": "ON",
+        "XBOX_NATIVE_VOLUME_PREFLIGHT": "OFF",
+        "XBOX_NATIVE_NT5_HANDOFF": "ON",
+        "XBOX_NATIVE_NT5_ENTER": "ON",
+        "XBOX_NATIVE_NT5_AUTORUN": "ON",
+        "XBOX_NT5_VIDEO_ADAPTER_DIAGNOSTIC": "OFF",
+        "XBOX_NT5_VIDEO_TRACE": "ON",
+        "XBOX_NT5_VIDEO_PNP_DIAGNOSTIC": "ON",
+        "XBOX_NT5_VIDEO_DIAGNOSTIC": "ON",
+        "XBOX_NT5_VIDEO_ENTRY_DIAGNOSTIC": "OFF",
+        "XBOX_NT5_FRAMEBUFFER_ONLY_PCI": "ON",
+        "XBOX_NT5_VIDEO_TRACE_REUSE": "ON",
+        "XBOX_NT5_SHARED_FRAMEBUFFER": "ON",
+        "XBOX_NT5_HD_RESERVATION": "ON"
+      },
+      "files": {
+        "freeldr.sys": {
+          "sha256": "cd1b1b34d97b645bf0cee1588034a0d39dbe2c28ba5aa9589bd032209370b3bf",
+          "bytes": 171008
+        },
+        "rosload.exe": {
+          "sha256": "2611e8e04956d42394efee1fc56c2476eaa1c937d5334d9006c1411a6f9765c4",
+          "bytes": 263826
+        },
+        "xboxvnt5.sys": {
+          "sha256": "74ccdc9fc7b26fe76919941fe978822b1fb538c7814343b0f0755d99e661c1dd",
+          "bytes": 41881
+        },
+        "xboxbvid.dll": {
+          "sha256": "0c8f5d494016a72e098134072d340aa83252fada2739b538b9be5a633d20623f",
+          "bytes": 45240
+        },
+        "default.xbe": {
+          "sha256": "c4c6a1e903760f019f841c000df137015a96ab1715a9264a825019fb55696306",
+          "bytes": 294544
+        },
+        "image-crom.elf": {
+          "sha256": "28c913db2ecb5f2dcba3dbf32c21095cad3227275ecc825404ed773dd3d03e3b",
+          "bytes": 317280
+        },
+        "xbeboot.elf": {
+          "sha256": "4493d8a5ae57da973892c1c81256d1c921c031f4a57af21ce799c863efffb38c",
+          "bytes": 19820
+        }
+      },
+      "status": "compiled"
+    }
+  },
+  "finished_utc": "2026-10-12T18:35:32.158337+00:00",
+  "logs": {
+    "control001.log": "16d1bacd8730584eb647bfca357af047dc684cc940043b1eb1f24fdd0e002152",
+    "candidate001.log": "2670ce7151a0a8cd46547b8df33ac0a969fa77814368f93fcab98d15c1526b2e"
+  }
+}

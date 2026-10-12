@@ -1,0 +1,9 @@
+# Reservation verification before HD timing
+
+Use the completed301 records for ordinary HDTV-path Windows behavior. Never rerun a closed case or use its runtime disk as a parent. The300 source/build/host evidence alone does not qualify a live mapping or a physical deployment.
+
+Before physical promotion, capture the actual loader memory descriptors and current provider descriptor in one new bounded, read-only diagnostic on the exact candidate. Pin the loaded FreeLdr/bootvid/miniport code and actual module bases rather than reusing old addresses. Verify the55..64MiB reservation, all2304 framebuffer PFNs excluded from allocatable RAM, the9MiB shared view and316160-byte hidden tail. Inspect actual page translations and cache attributes for the shared mapping and known aliases. Preserve evidence when any page is unavailable; do not substitute host-model booleans or edit guest data/registers. Complete breakpoint teardown, normal workload/restart, orderly host closure and cold audit separately from ordinary qualification.
+
+The software display driver still rejects visible images above4MiB. Its exact qualified surface.c has an explicit0x400000/ScreenDelta guard. This is harmless for the current720x480 test, but must receive its own bounded geometry/shadow-allocation review and tests before1080i. Bootvid and miniport also need drawable geometry and actual field timing, not merely a resolution enum.
+
+Then finish the complete Conexant timing reference described in engineering-notes/HD-INTEGRATION-PLAN.md, implement720p followed by1080i, and run distinct hardware trials with preserved low-resolution rollback. Physical standalone stock-kernel patterns292/297/298 do not qualify a Windows handoff. No0.2.0 tag until the selected Windows HD configuration is stable and packaged with verified recovery instructions.

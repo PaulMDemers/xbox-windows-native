@@ -1,3 +1,47 @@
+# 300/301 nine-MiB reservation compiled and ordinary HDTV Windows pair closed
+
+All owned sessions CLOSED:300 native build46953;301 preparations25652/78900,
+control runner72423/supervisor79202/audit29321, candidate55690/81898/audit44517,
+trace95278 original marker-check failure (no capture); corrected002 completed.
+No xemu process remained at closeout. Read hd-reservation300 and301 REPORT/DESIGN/
+NEXT/final-review plus301 trace-review. Never relaunch/recollect/parent closed cases.
+
+Opt-in300 reserves55..64MiB, shared ABI v2/9MiB, exact retail64 map guards;
+Cromwell code38/stack40 unchanged, initrd ceiling55. No timing/cache policy/GPU
+ownership change. Fresh source trees32705ddc ReactOS/a2942021 Cromwell; matched
+RosBE/GCC builds same33 warnings, no new. Actual provider/layout host ASan/UBSan
+37311 checks+40000 concurrent attempts pass (NT locks/IRQL modeled).21 private
+build/log/host files rehashed. Preserve ambiguous-anchor source001, separate
+finish002/private prior source, and prebuild capacity refusal before build001.
+
+301 both ordinary emulator cases use HDTV/HD EEPROM, independent unused251
+preparations, five coordinated file overrides. Windows720x480x32@60/stride2880,
+five drawing samples/six audio phases, normal shutdown/dashboard/orderlyhostexit0.
+Each cold327dirs6763files328clusters0errors/orphans,5hives58protected hashes,
+policies/bindings unchanged; combined interval clean. StrictFALSE sole inherited
+Ftdisk49, no waiver.165 frozen inputs+6 host deps/32 private artifacts each exact.
+Existing trace44records/no drops/saturation; successful acquire control60MiB,
+candidate55MiB. No release events; permanent map retained. NOT actual full view/
+PFN/cache/alias proof, physical/1080i/performance qualification. Trace checker001
+wrong extra NUL failure preserved;002 only marker expectation corrected. Inherited
+fixture payload lists are provenance; replacement_files/files give current pins.
+
+NEXT new bounded read-only live reservation/shared-view/PFN/cache diagnostic on
+fresh candidate preparation, then software surface.c explicit4MiB visible-image
+limit and complete Conexant timing reference,720p then1080i. No physical access
+this turn, no0.2.0 tag. Physical audio004/software118/shared158/FATX0101 and all
+rollback/private256/immutable0.1.0 unchanged. User TV is connected; no renewed
+permission/move question. Overnight automation staysPAUSED.
+
+299/299c verified closed non-backing portable offloads19 roots/3721386436bytes
+with fullhash readback/original junctions.299b refused resolved wizard201 path
+before mutation; new299c excludes it. No backing chains moved. D is an available
+healthy fixed exFAT volume; NEW301 private fixtures/runs/portable/scratch onD.
+C22312005632,D494708850688,E22569418752 bytes last measured. Keep20GiB projected
+build/launch guard; exact old frozen inputs remain unchanged. Patch whitespace
+exceptions only preserve original unified-diff bytes. Source/reports staged with
+-text and exact-byte verification; retain historical untracked event JSON.
+
 # 296 Windows relocation pair and 297/298 physical HD repeats closed
 
 Closeout capacity: C20,947,542,016/E26,486,112,256 bytes. C is

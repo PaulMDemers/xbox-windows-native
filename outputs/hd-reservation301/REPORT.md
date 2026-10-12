@@ -1,0 +1,13 @@
+# Nine-MiB Windows reservation passed the ordinary HDTV-path workload
+
+The matched control and candidate each completed five drawing samples, six audio phases, normal Windows shutdown and dashboard return. Both used the HDTV connector profile and the same HD-enabled private EEPROM; Windows reported720x480x32 at60Hz with2880-byte stride. The candidate changes the loader/bootvid/miniport reservation to9MiB at55MiB while retaining low-resolution timings. This is not a1080i desktop result.
+
+Each cold audit found327 directories,6763 files,328 directory clusters, zero allocation errors/orphans, five structurally valid hives and58 matching protected hashes. Startup and selected device policies/bindings stayed unchanged. Independent audio analysis verified left/right/both sequences and silent gaps. The combined audio/video interval had no warning or error. The existing whole-boot Ftdisk49 event remains the sole strict failure in both cases; neither is release-qualified.
+
+The retained miniport traces each contain44 records without dropped/saturated output. Both report successful shared acquisition: control physical0x03c00000, candidate0x03700000. Returned virtual addresses are actual per-run observations, not reusable constants. No release events were present, consistent with the retained permanent mapping lifecycle; this does not independently prove full descriptor contents, PFN ownership or PTE cache/alias state. Those remain required before physical promotion.
+
+Control launched once at18:46:47UTC and returned18:51:09; candidate launched once18:52:47 and returned18:56:58 on October12. Both had orderly stop/quit exit0 and no fallback kill. No debugger was attached. All165 frozen inputs and six host dependencies were rehashed, along with32 private cold artifacts per case. Neither runtime disk may be a future fixture parent. Current fixture overrides are in replacement_files and files; the inherited payload list describes older preparation provenance.
+
+The supplemental trace checker initially expected an erroneous extra NUL after the full16-byte marker. It failed before capturing or changing evidence. Its original source/failure record is preserved; trace-review002 corrects only that marker expectation and successfully extracts the closed disks. Neither guest nor completed audit was repeated. Patch whitespace exceptions preserve exact frozen unified-diff bytes; they do not suppress compiler or runtime failures.
+
+Physical audio004/softwarevideo118/shared158/FATX0101 and all release/rollback bundles are unchanged. No hardware launch was performed.0.2.0 remains untagged.

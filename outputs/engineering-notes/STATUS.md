@@ -1,3 +1,16 @@
+# Nine-MiB reservation passed its Windows workload; HD timings remain next
+
+The coordinated loader/bootvid/miniport candidate now boots Windows through the
+HDTV path with a9MiB framebuffer reservation. Both matched emulator runs passed
+five drawing samples, six audio phases, normal restart and full cold integrity
+checks at720x480. The driver recorded successful acquisition at the new55MiB base.
+The existing Ftdisk49 remains a strict failure; no physical driver changed.
+
+Next verify the live reserved pages/shared mapping, lift the software display
+image-size guard, then integrate720p/1080i timings. The physical standalone HD
+patterns already worked, but Windows1080i and release0.2.0 remain unqualified.
+Read ../hd-reservation301/REPORT.md and ../hd-reservation300/NEXT.md.
+
 # Full Windows relocation check passed its scope; repeated HD pattern completed
 
 The relocated bootloader completed the existing Windows audio/drawing workload

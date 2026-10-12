@@ -1,0 +1,52 @@
+--- a/boot/BootResetAction.c
++++ b/boot/BootResetAction.c
+@@ -90,7 +90,7 @@
+ 
+         // Load and Init the Background image
+         // clear the Video Ram
+-	memset((void *)FB_START,0x00,0x400000);
++	memset((void *)FB_START,0x00,FB_SIZE);
+ 
+ 	BootVgaInitializationKernelNG((CURRENT_VIDEO_MODE_DETAILS *)&vmode);
+ 
+--- a/boot/LoadReactOS.c
++++ b/boot/LoadReactOS.c
+@@ -329,6 +329,12 @@
+ 
+ 	if (mbHeader == NULL)
+ 		return;
++#ifdef XWN_HD_RESERVATION
++	if (xbox_ram != 64) {
++		printk("HD reservation requires a 64 MB console.\n");
++		return;
++	}
++#endif
+ 
+ 	/* Save needed values into static variables, as the stack pointer
+ 	 * will be modified by inline assembly below */
+--- a/include/memory_layout.h
++++ b/include/memory_layout.h
+@@ -24,7 +24,11 @@
+  * live USB allocations cannot overwrite it while FATX files are loading.
+  */
+ #define INITRD_START       0x02800000
++#ifdef XWN_HD_RESERVATION
++#define MAX_INITRD_END     0x03700000
++#else
+ #define MAX_INITRD_END     0x03800000
++#endif
+ 
+ #define MAX_KERNEL_SIZE    (KERNEL_PM_CODE_END - KERNEL_PM_CODE)
+ #define MAX_INITRD_SIZE    (MAX_INITRD_END - INITRD_START)
+@@ -43,7 +47,11 @@
+ #define STACK_TOP 0x02800000
+ 
+ /* the size of the framebuffer (defaults to 4 MB) */
++#ifdef XWN_HD_RESERVATION
++#define FB_SIZE 0x00900000
++#else
+ #define FB_SIZE 0x00400000
++#endif
+ /* the start of the framebuffer */
+ #define FB_START (0xf0000000 | (RAMSIZE - FB_SIZE))
+ 

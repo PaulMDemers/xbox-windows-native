@@ -1,0 +1,13 @@
+# Reservation-only retail64 display contract
+
+This candidate moves the reserved framebuffer from60..64MiB to55..64MiB without changing encoder, CRTC, PLL, resolution or interlace programming. Both sides use the previously reviewed38MiB Cromwell code /40MiB stack relocation. The new range contains a1920x1080x32 image plus316160bytes of boot-video backing; that sum exceeds8MiB. This is memory preparation, not an HD mode implementation.
+
+The opt-in XBOX_NT5_HD_RESERVATION profile uses a version2,44byte shared view. Provider and miniport must agree on the9MiB size and55MiB physical start. Old version1 descriptors, wrong sizes,128MiB starts, overlapping/incorrect hidden storage and bad geometry are rejected. The provider retains its permanent noncached mapping and existing ownership/refcount operations; no cache transition, MMIO operation, renderer retirement or native GPU grant is added. The miniport requests the new reservation explicitly.
+
+Cromwell clears FB_SIZE rather than a hardcoded4MiB, reports the corresponding multiboot reservation, and reduces the Linux initrd ceiling from56MiB to55MiB. The NT handoff explicitly refuses a console other than64MiB. Linux execution, ROM/ETH/VML launch and128MiB are not qualified. FreeLdr's opt-in guard requires an exact two-entry retail64 map and the actual scanout/range/geometry. Bootvid checks address/size/backing geometry before mapping. This cannot establish that an unrelated loader really reserved the pages: only the matched chain may be staged.
+
+The old paging diagnostic has a hardcoded60MiB lookup count and single display page table. It is excluded from ordinary Windows entry by existing compile-time conditions. The new profile rejects enabling that diagnostic; it does not silently change its gates. Old HAL mapprobe addresses likewise are historical diagnostics, not a newly qualified HD path.
+
+The software display driver remains unchanged for the low-resolution test. Its explicit visible-image4MiB bound must be revised and independently tested before1080i. The current memory phase does not advertise HD or promise a larger desktop. Its bootvid message still calls55MiB non-standard relative to the old diagnostic address list; the explicit new validator governs acceptance. No event gate is suppressed.
+
+Sources are reconstructed from the pinned shared-framebuffer tree53e9aedc and relocated Cromwell treed8de181f in a new private directory. The preparation001 ambiguous-anchor failure is preserved with private byte-exact source snapshots; finish-source002 completes only the remaining guard and records final trees. Matched builds use RosBE2.2.1 and pinned GCC12 for Cromwell. Host ASan/UBSan uses actual provider/layout code with modeled NT locks/IRQL, not guest evidence.

@@ -1,0 +1,115 @@
+{
+  "space": {
+    "minimum_free_gib": 20,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/home/paul/xbox-windows-native/build",
+        "free_bytes": 929961385984
+      },
+      {
+        "free_bytes": 23146770432,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "status": "failed",
+  "changes": {},
+  "commands": [
+    [
+      "git",
+      "init",
+      "-q",
+      "/home/paul/xbox-windows-native/build/hd-reservation300-build001/source"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/hd-reservation300-build001/source",
+      "fetch",
+      "--depth=1",
+      "/home/paul/xbox-windows-native/build/video-reuse-001/source",
+      "afc0127e8f937ab68503d715d948844973756aa1"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/hd-reservation300-build001/source",
+      "checkout",
+      "--detach",
+      "FETCH_HEAD"
+    ],
+    [
+      "/usr/bin/python3",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/tools/apply-series.py",
+      "--source",
+      "/home/paul/xbox-windows-native/build/hd-reservation300-build001/source",
+      "--manifest",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-trace-reuse/manifest.json"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/hd-reservation300-build001/source",
+      "apply",
+      "--index",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/video-shared-framebuffer/0106-shared-uc-framebuffer.patch"
+    ],
+    [
+      "git",
+      "init",
+      "-q",
+      "/home/paul/xbox-windows-native/build/hd-reservation300-build001/cromwell"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/hd-reservation300-build001/cromwell",
+      "fetch",
+      "--depth=1",
+      "/home/paul/xbox-windows-native/sources/cromwell",
+      "9fc54d0c7cbed7bc3c70373642d833684853011f"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/hd-reservation300-build001/cromwell",
+      "checkout",
+      "--detach",
+      "FETCH_HEAD"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/hd-reservation300-build001/cromwell",
+      "apply",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-windows-physical-loader/cromwell-base.patch"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/hd-reservation300-build001/cromwell",
+      "apply",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-windows-physical-f/cromwell-f-launcher.patch"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/hd-reservation300-build001/cromwell",
+      "apply",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/launcher-relocation293/relocation.patch"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/build/hd-reservation300-build001/cromwell",
+      "add",
+      "-u"
+    ]
+  ],
+  "reactos_parent_tree": "53e9aedc58152d03116c00579185000483379837",
+  "cromwell_parent_tree": "d8de181fb893f0360e8e8e947b5768b25101e678",
+  "error": "AssertionError(('boot/LoadReactOS.c', '\\tif (mbHeader == NULL)\\n\\t\\treturn;'))"
+}

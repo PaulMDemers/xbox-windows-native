@@ -1,0 +1,276 @@
+{
+  "passed": true,
+  "scope": "Static binary/ABI/layout review only",
+  "cases": {
+    "control001": {
+      "bss_end": 40228776,
+      "stack_headroom": 1714264,
+      "physical": 62914560,
+      "reserved": 4194304,
+      "files": {
+        "freeldr.sys": {
+          "sha256": "7df0d175ad07c8da60e88a4ef32db69fadc49e603354921862e44a644b3f7916",
+          "bytes": 169984
+        },
+        "rosload.exe": {
+          "sha256": "6d2216cb297a50c0d35256e6e60f6d63cc03980b3c87e598678c09991d1fdba7",
+          "bytes": 263826
+        },
+        "xboxvnt5.sys": {
+          "sha256": "a9f08887f4bf4d837828299fcbe1fa01a5689dcde9d63ef613a151aa65463f77",
+          "bytes": 41881
+        },
+        "xboxbvid.dll": {
+          "sha256": "88d93eb3100eaf8e90d0c87ad7810dfa7e96e3db7f9b014579a669215579d0df",
+          "bytes": 45240
+        },
+        "default.xbe": {
+          "sha256": "9b338acf7b79ab71b1af17d5284b7597398b56c60fdb0c1168304eeee53e097f",
+          "bytes": 294384
+        },
+        "image-crom.elf": {
+          "sha256": "963c5f1290465a9f7b8ef36255f06f6cbfbfd4d750fb3e559eee9dad1092cae6",
+          "bytes": 317112
+        },
+        "xbeboot.elf": {
+          "sha256": "4493d8a5ae57da973892c1c81256d1c921c031f4a57af21ce799c863efffb38c",
+          "bytes": 19820
+        }
+      },
+      "provider_exports": {
+        "VidBitBlt": 1,
+        "VidBufferToScreenBlt": 2,
+        "VidCleanUp": 3,
+        "VidDisplayString": 4,
+        "VidDisplayStringXY": 5,
+        "VidInitialize": 6,
+        "VidResetDisplay": 7,
+        "VidScreenToBufferBlt": 8,
+        "VidSetScrollRegion": 9,
+        "VidSetTextColor": 10,
+        "VidSolidColorFill": 11,
+        "XwnFbAcquire": 12,
+        "XwnFbRelease": 13,
+        "XwnFbReleaseOwner": 14
+      },
+      "imports": {
+        "xboxvnt5.sys": {
+          "bootvid.dll": [
+            "XwnFbAcquire",
+            "XwnFbRelease",
+            "XwnFbReleaseOwner"
+          ],
+          "hal.dll": [
+            "HalGetBusDataByOffset",
+            "KeGetCurrentIrql"
+          ],
+          "ntoskrnl.exe": [
+            "KeBugCheckEx",
+            "RtlInitUnicodeString",
+            "ZwClose",
+            "ZwCreateFile",
+            "ZwQueryInformationFile",
+            "ZwReadFile",
+            "ZwWriteFile"
+          ],
+          "videoprt.sys": [
+            "VideoPortFreeDeviceBase",
+            "VideoPortGetAccessRanges",
+            "VideoPortGetDeviceBase",
+            "VideoPortInitialize",
+            "VideoPortZeroMemory"
+          ]
+        },
+        "xboxbvid.dll": {
+          "hal.dll": [
+            "KeGetCurrentIrql",
+            "KfAcquireSpinLock",
+            "KfReleaseSpinLock"
+          ],
+          "ntoskrnl.exe": [
+            "DbgPrint",
+            "HalPrivateDispatchTable",
+            "InbvCheckDisplayOwnership",
+            "MmMapIoSpace",
+            "MmUnmapIoSpace",
+            "READ_REGISTER_UCHAR",
+            "READ_REGISTER_ULONG",
+            "WRITE_REGISTER_UCHAR",
+            "memmove",
+            "memset"
+          ]
+        }
+      },
+      "warning_count": 33,
+      "definitions": {
+        "ARCH": "i386",
+        "SARCH": "xbox",
+        "OARCH": "pentium",
+        "CMAKE_BUILD_TYPE": "Release",
+        "DBG": "OFF",
+        "KDBG": "OFF",
+        "PCH": "OFF",
+        "ENABLE_CCACHE": "OFF",
+        "XBOX_NT5_HAL": "ON",
+        "XBOX_NATIVE_PREFLIGHT": "OFF",
+        "XBOX_NATIVE_IO_PREFLIGHT": "ON",
+        "XBOX_NATIVE_EXTENDED_READ_PREFLIGHT": "OFF",
+        "XBOX_NATIVE_EXTENDED_NT5_BOOT": "ON",
+        "XBOX_NATIVE_FATX_F_BOOT": "ON",
+        "XBOX_NATIVE_VOLUME_PREFLIGHT": "OFF",
+        "XBOX_NATIVE_NT5_HANDOFF": "ON",
+        "XBOX_NATIVE_NT5_ENTER": "ON",
+        "XBOX_NATIVE_NT5_AUTORUN": "ON",
+        "XBOX_NT5_VIDEO_ADAPTER_DIAGNOSTIC": "OFF",
+        "XBOX_NT5_VIDEO_TRACE": "ON",
+        "XBOX_NT5_VIDEO_PNP_DIAGNOSTIC": "ON",
+        "XBOX_NT5_VIDEO_DIAGNOSTIC": "ON",
+        "XBOX_NT5_VIDEO_ENTRY_DIAGNOSTIC": "OFF",
+        "XBOX_NT5_FRAMEBUFFER_ONLY_PCI": "ON",
+        "XBOX_NT5_VIDEO_TRACE_REUSE": "ON",
+        "XBOX_NT5_SHARED_FRAMEBUFFER": "ON",
+        "XBOX_NT5_HD_RESERVATION": "OFF"
+      }
+    },
+    "candidate001": {
+      "bss_end": 40228936,
+      "stack_headroom": 1714104,
+      "physical": 57671680,
+      "reserved": 9437184,
+      "files": {
+        "freeldr.sys": {
+          "sha256": "cd1b1b34d97b645bf0cee1588034a0d39dbe2c28ba5aa9589bd032209370b3bf",
+          "bytes": 171008
+        },
+        "rosload.exe": {
+          "sha256": "2611e8e04956d42394efee1fc56c2476eaa1c937d5334d9006c1411a6f9765c4",
+          "bytes": 263826
+        },
+        "xboxvnt5.sys": {
+          "sha256": "74ccdc9fc7b26fe76919941fe978822b1fb538c7814343b0f0755d99e661c1dd",
+          "bytes": 41881
+        },
+        "xboxbvid.dll": {
+          "sha256": "0c8f5d494016a72e098134072d340aa83252fada2739b538b9be5a633d20623f",
+          "bytes": 45240
+        },
+        "default.xbe": {
+          "sha256": "c4c6a1e903760f019f841c000df137015a96ab1715a9264a825019fb55696306",
+          "bytes": 294544
+        },
+        "image-crom.elf": {
+          "sha256": "28c913db2ecb5f2dcba3dbf32c21095cad3227275ecc825404ed773dd3d03e3b",
+          "bytes": 317280
+        },
+        "xbeboot.elf": {
+          "sha256": "4493d8a5ae57da973892c1c81256d1c921c031f4a57af21ce799c863efffb38c",
+          "bytes": 19820
+        }
+      },
+      "provider_exports": {
+        "VidBitBlt": 1,
+        "VidBufferToScreenBlt": 2,
+        "VidCleanUp": 3,
+        "VidDisplayString": 4,
+        "VidDisplayStringXY": 5,
+        "VidInitialize": 6,
+        "VidResetDisplay": 7,
+        "VidScreenToBufferBlt": 8,
+        "VidSetScrollRegion": 9,
+        "VidSetTextColor": 10,
+        "VidSolidColorFill": 11,
+        "XwnFbAcquire": 12,
+        "XwnFbRelease": 13,
+        "XwnFbReleaseOwner": 14
+      },
+      "imports": {
+        "xboxvnt5.sys": {
+          "bootvid.dll": [
+            "XwnFbAcquire",
+            "XwnFbRelease",
+            "XwnFbReleaseOwner"
+          ],
+          "hal.dll": [
+            "HalGetBusDataByOffset",
+            "KeGetCurrentIrql"
+          ],
+          "ntoskrnl.exe": [
+            "KeBugCheckEx",
+            "RtlInitUnicodeString",
+            "ZwClose",
+            "ZwCreateFile",
+            "ZwQueryInformationFile",
+            "ZwReadFile",
+            "ZwWriteFile"
+          ],
+          "videoprt.sys": [
+            "VideoPortFreeDeviceBase",
+            "VideoPortGetAccessRanges",
+            "VideoPortGetDeviceBase",
+            "VideoPortInitialize",
+            "VideoPortZeroMemory"
+          ]
+        },
+        "xboxbvid.dll": {
+          "hal.dll": [
+            "KeGetCurrentIrql",
+            "KfAcquireSpinLock",
+            "KfReleaseSpinLock"
+          ],
+          "ntoskrnl.exe": [
+            "DbgPrint",
+            "HalPrivateDispatchTable",
+            "InbvCheckDisplayOwnership",
+            "MmMapIoSpace",
+            "MmUnmapIoSpace",
+            "READ_REGISTER_UCHAR",
+            "READ_REGISTER_ULONG",
+            "WRITE_REGISTER_UCHAR",
+            "memmove",
+            "memset"
+          ]
+        }
+      },
+      "warning_count": 33,
+      "definitions": {
+        "ARCH": "i386",
+        "SARCH": "xbox",
+        "OARCH": "pentium",
+        "CMAKE_BUILD_TYPE": "Release",
+        "DBG": "OFF",
+        "KDBG": "OFF",
+        "PCH": "OFF",
+        "ENABLE_CCACHE": "OFF",
+        "XBOX_NT5_HAL": "ON",
+        "XBOX_NATIVE_PREFLIGHT": "OFF",
+        "XBOX_NATIVE_IO_PREFLIGHT": "ON",
+        "XBOX_NATIVE_EXTENDED_READ_PREFLIGHT": "OFF",
+        "XBOX_NATIVE_EXTENDED_NT5_BOOT": "ON",
+        "XBOX_NATIVE_FATX_F_BOOT": "ON",
+        "XBOX_NATIVE_VOLUME_PREFLIGHT": "OFF",
+        "XBOX_NATIVE_NT5_HANDOFF": "ON",
+        "XBOX_NATIVE_NT5_ENTER": "ON",
+        "XBOX_NATIVE_NT5_AUTORUN": "ON",
+        "XBOX_NT5_VIDEO_ADAPTER_DIAGNOSTIC": "OFF",
+        "XBOX_NT5_VIDEO_TRACE": "ON",
+        "XBOX_NT5_VIDEO_PNP_DIAGNOSTIC": "ON",
+        "XBOX_NT5_VIDEO_DIAGNOSTIC": "ON",
+        "XBOX_NT5_VIDEO_ENTRY_DIAGNOSTIC": "OFF",
+        "XBOX_NT5_FRAMEBUFFER_ONLY_PCI": "ON",
+        "XBOX_NT5_VIDEO_TRACE_REUSE": "ON",
+        "XBOX_NT5_SHARED_FRAMEBUFFER": "ON",
+        "XBOX_NT5_HD_RESERVATION": "ON"
+      }
+    }
+  },
+  "matched_warning_messages": true,
+  "new_warning_messages": [],
+  "native_shared_abi_size": 44,
+  "candidate_abi_version": 2,
+  "control_abi_version": 1,
+  "bootvid_tail_bytes": 316160,
+  "geometry_timing_changed": false,
+  "hardware_deployed": false,
+  "guest_qualified": false,
+  "limits": "Immediate/layout/export checks do not prove runtime reservations or aliases. Software display remains limited to visible images <=4MiB; this phase keeps low-resolution timing."
+}

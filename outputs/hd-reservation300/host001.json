@@ -1,0 +1,42 @@
+{
+  "inputs": {
+    "xwn_fb.c": "90bc4cbec52e91993240f01ada3f36d4f8e0548498350e61957fe0855f85a8f0",
+    "xwn_fb.h": "8c9f9dfefd52cd18585bcdcd8c757dfc815e17560f1d38d31755f8ad38581e9b",
+    "drivers/xbox/xwn_hd_layout.h": "f4e635d36dcafd0962132732fc20f1106ff82aaeb569221607cac20a959db455",
+    "ntddk.h": "edbd5106bc26cf306418bb0d4ff001d386daeab0fe82c961ff0beb494cc3f3ae",
+    "test.c": "8535eecc8e308180e4d15a35554b0ed559cf351d49855b2dcf3e3d2ed3d406c5"
+  },
+  "compiler": "/usr/bin/x86_64-linux-gnu-gcc-15",
+  "compiler_sha256": "b5f1b773a7c733738352000c92a077dc5852a1a2fc6d836b1e411be1e9ec5f88",
+  "command": [
+    "/usr/bin/x86_64-linux-gnu-gcc-15",
+    "-std=c11",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-g",
+    "-O1",
+    "-fsanitize=address,undefined",
+    "-fno-omit-frame-pointer",
+    "-pthread",
+    "-DXBOX_NT5_HD_RESERVATION=1",
+    "-DSOURCE_PROVIDER=\"xwn_fb.c\"",
+    "-I",
+    "/mnt/e/xwn300/host001",
+    "/mnt/e/xwn300/host001/test.c",
+    "-o",
+    "/mnt/e/xwn300/host001/test"
+  ],
+  "passed": true,
+  "compile": {
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "test": {
+    "returncode": 0,
+    "stdout": "checks=37311 concurrent_pairs=40000\n",
+    "stderr": ""
+  },
+  "limits": "NT locks and IRQL are host models. No native mapping, emulator boot, timing or physical qualification."
+}

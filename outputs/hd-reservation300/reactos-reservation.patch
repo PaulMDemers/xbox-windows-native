@@ -1,0 +1,241 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -15,6 +15,16 @@
+ endif()
+ 
+ project(REACTOS)
++option(XBOX_NT5_HD_RESERVATION "Opt-in retail64 nine-MiB framebuffer contract" OFF)
++if(XBOX_NT5_HD_RESERVATION)
++    if(NOT SARCH STREQUAL "xbox" OR NOT XBOX_NT5_HAL OR NOT XBOX_NT5_SHARED_FRAMEBUFFER)
++        message(FATAL_ERROR "HD reservation requires Xbox NT5 shared framebuffer")
++    endif()
++    if(XBOX_NATIVE_FATX_PAGING_PREFLIGHT)
++        message(FATAL_ERROR "Legacy paging diagnostic is not HD-reservation aware")
++    endif()
++    add_definitions(-DXBOX_NT5_HD_RESERVATION=1)
++endif()
+ 
+ set(CMAKE_INCLUDE_CURRENT_DIR ON)
+ set(CMAKE_INCLUDE_DIRECTORIES_PROJECT_BEFORE ON)
+--- a/boot/freeldr/freeldr/arch/i386/xbox/xboxmem.c
++++ b/boot/freeldr/freeldr/arch/i386/xbox/xboxmem.c
+@@ -233,6 +233,14 @@
+     TRACE("XboxMemGetMemoryMap()\n");
+ 
+     MbMap = XboxGetMultibootMemoryMap(&Count);
++#ifdef XBOX_NT5_HD_RESERVATION
++    if (!MbMap || Count != 2 || InstalledMemoryMb != 64)
++        FrLdrBugCheckWithMessage(0, __FILE__, __LINE__, "HD reservation requires exact retail64 map");
++    for (i = 0; i < Count; ++i)
++        if (!XwnHdMapEntryValid(i, MbMap[i].base_addr_low, MbMap[i].base_addr_high,
++                               MbMap[i].length_low, MbMap[i].length_high, MbMap[i].type))
++            FrLdrBugCheckWithMessage(0, __FILE__, __LINE__, "HD reservation map entry mismatch");
++#endif
+     if (MbMap)
+     {
+         /* Obtain memory map via multiboot spec */
+--- a/boot/freeldr/freeldr/arch/i386/xbox/xboxvideo.c
++++ b/boot/freeldr/freeldr/arch/i386/xbox/xboxvideo.c
+@@ -113,9 +113,17 @@
+         WARN("Could not detect framebuffer memory size, fallback to 4 MB\n");
+     }
+ 
++#ifdef XBOX_NT5_HD_RESERVATION
++    if ((FrameBuffer & 0x0FFFFFFF) != XWN_HD_FB_PHYSICAL || FrameBufferSize != XWN_HD_FB_BYTES)
++        FrLdrBugCheckWithMessage(0, __FILE__, __LINE__, "HD framebuffer map mismatch");
++#endif
+     ScreenWidth = READ_REGISTER_ULONG(NvBase + NV2A_RAMDAC_FP_HVALID_END) + 1;
+     ScreenHeight = READ_REGISTER_ULONG(NvBase + NV2A_RAMDAC_FP_VVALID_END) + 1;
+ 
++#ifdef XBOX_NT5_HD_RESERVATION
++    if (ScreenWidth < 640 || ScreenWidth > 1920 || ScreenHeight < 480 || ScreenHeight > 1080)
++        FrLdrBugCheckWithMessage(0, __FILE__, __LINE__, "HD framebuffer geometry mismatch");
++#endif
+     /* Get BPP directly from NV2A CRTC (magic constants are from Cromwell) */
+     BytesPerPixel = 8 * (((NvGetCrtc(0x19) & 0xE0) << 3) | (NvGetCrtc(0x13) & 0xFF)) / ScreenWidth;
+     if (BytesPerPixel == 4)
+@@ -123,6 +131,12 @@
+     else
+         ASSERT((NvGetCrtc(0x28) & 0xF) == BytesPerPixel);
+ 
++#ifdef XBOX_NT5_HD_RESERVATION
++    if (BytesPerPixel != 4 ||
++        !XwnHdLayoutValid(FrameBuffer & 0x0FFFFFFF, FrameBufferSize, ScreenWidth, ScreenHeight,
++                          8 * (((NvGetCrtc(0x19) & 0xE0) << 3) | NvGetCrtc(0x13)), XWN_HD_HIDDEN_OFFSET))
++        FrLdrBugCheckWithMessage(0, __FILE__, __LINE__, "HD framebuffer pitch mismatch");
++#endif
+     /* Verify screen resolution */
+     ASSERT(ScreenWidth > 1);
+     ASSERT(ScreenHeight > 1);
+--- a/drivers/base/bootvid/i386/xbox/bootvid.c
++++ b/drivers/base/bootvid/i386/xbox/bootvid.c
+@@ -145,6 +145,10 @@
+     FrameBufferHeight = READ_REGISTER_ULONG((PULONG)(ControlStart + NV2A_RAMDAC_FP_VVALID_END)) + 1;
+ 
+     FrameBuffer &= 0x0FFFFFFF;
++#ifdef XBOX_NT5_HD_RESERVATION
++    if (FrameBuffer != XWN_HD_FB_PHYSICAL || FrameBufferWidth > 1920 || FrameBufferHeight > 1080)
++        goto cleanup;
++#endif
+     if (FrameBuffer != 0x3C00000 && FrameBuffer != 0x7C00000)
+     {
+         /* Check framebuffer address (high 4 MB of either 64 or 128 MB RAM) */
+@@ -195,6 +199,12 @@
+         goto cleanup;
+     }
+ 
++#ifdef XBOX_NT5_HD_RESERVATION
++    if (BackBufferSize != XWN_HD_BOOT_BACK_BYTES ||
++        !XwnHdLayoutValid(FrameBuffer, NV2A_VIDEO_MEMORY_SIZE, FrameBufferWidth,
++                          FrameBufferHeight, FrameBufferWidth * BytesPerPixel,
++                          NV2A_VIDEO_MEMORY_SIZE - BackBufferSize)) goto cleanup;
++#endif
+     /* Return the address back to GPU memory mapped I/O */
+ #ifdef XBOX_NT5_BOOTVID
+     /* The loader reserves these RAM pages from NT's allocator. The PCI
+--- a/drivers/base/bootvid/xwn_fb.c
++++ b/drivers/base/bootvid/xwn_fb.c
+@@ -19,13 +19,21 @@
+      * Reinitialization must not replace a pointer already lent to a consumer. */
+     if (!View || Ready || View->Size != sizeof(*View) || View->Version != XWN_FB_VERSION ||
+         !View->Address || (View->Address & 4095) || View->Address > MAXULONG - XWN_FB_BYTES ||
++#ifdef XBOX_NT5_HD_RESERVATION
++        View->Physical != XWN_HD_FB_PHYSICAL ||
++#else
+         (View->Physical != 0x03c00000 && View->Physical != 0x07c00000) ||
++#endif
+         View->ReservedBytes != XWN_FB_BYTES || View->CacheType != MmNonCached ||
+         View->Width < 640 || View->Width > 1920 || View->Height < 480 || View->Height > 1080 ||
+         View->Stride != View->Width * 4 || View->Height > XWN_FB_BYTES / View->Stride ||
+         View->VisibleBytes != View->Height * View->Stride ||
+         View->HiddenOffset < View->VisibleBytes || View->HiddenOffset >= XWN_FB_BYTES)
+         return FALSE;
++#ifdef XBOX_NT5_HD_RESERVATION
++    if (!XwnHdLayoutValid(View->Physical, View->ReservedBytes, View->Width,
++                          View->Height, View->Stride, View->HiddenOffset)) return FALSE;
++#endif
+     if (InterlockedCompareExchange(&Ready, -1, 0) != 0) return FALSE;
+     KeInitializeSpinLock(&Lock);
+     Published = *View;
+@@ -40,6 +48,9 @@
+     if (KeGetCurrentIrql() != PASSIVE_LEVEL || !Device || !View ||
+         View->Size != sizeof(*View) || View->Version != XWN_FB_VERSION)
+         return Status;
++#ifdef XBOX_NT5_HD_RESERVATION
++    if (View->ReservedBytes != XWN_FB_BYTES) return Status;
++#endif
+     if (InterlockedCompareExchange(&Ready, 1, 1) != 1) return STATUS_DEVICE_NOT_READY;
+     /* A precondition, not proof of quiescence: no pointer is replaced/freed. */
+     if (InbvCheckDisplayOwnership()) return STATUS_DEVICE_BUSY;
+--- a/drivers/base/bootvid/xwn_fb.h
++++ b/drivers/base/bootvid/xwn_fb.h
+@@ -1,7 +1,13 @@
+ /* SPDX-License-Identifier: GPL-2.0-or-later */
+ #pragma once
++#ifdef XBOX_NT5_HD_RESERVATION
++#include <drivers/xbox/xwn_hd_layout.h>
++#define XWN_FB_VERSION 2
++#define XWN_FB_BYTES XWN_HD_FB_BYTES
++#else
+ #define XWN_FB_VERSION 1
+ #define XWN_FB_BYTES 0x00400000
++#endif
+ #define XWN_FB_MAX_REFS 0x7fffffff
+ typedef struct _XWN_FB_VIEW {
+     ULONG Size, Version, Address, Physical, ReservedBytes, VisibleBytes;
+--- a/sdk/include/reactos/drivers/xbox/xgpu.h
++++ b/sdk/include/reactos/drivers/xbox/xgpu.h
+@@ -13,7 +13,12 @@
+ /*
+  * Registers and definitions
+  */
++#ifdef XBOX_NT5_HD_RESERVATION
++#include <drivers/xbox/xwn_hd_layout.h>
++#define NV2A_VIDEO_MEMORY_SIZE XWN_HD_FB_BYTES
++#else
+ #define NV2A_VIDEO_MEMORY_SIZE  (4 * 1024 * 1024) /* FIXME: obtain fb size from firmware somehow (Cromwell reserves high 4 MB of RAM) */
++#endif
+ 
+ #define NV2A_FB_OFFSET                 0x100000
+ #define   NV2A_FB_CFG0                   (0x200 + NV2A_FB_OFFSET)
+--- /dev/null
++++ b/sdk/include/reactos/drivers/xbox/xwn_hd_layout.h
+@@ -0,0 +1,36 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++#ifndef XWN_HD_LAYOUT_H
++#define XWN_HD_LAYOUT_H
++
++/* Opt-in retail64 reservation. No timing, cache policy or GPU ownership change. */
++#define XWN_HD_RAM_BYTES 0x04000000u
++#define XWN_HD_FB_BYTES 0x00900000u
++#define XWN_HD_FB_PHYSICAL 0x03700000u
++#define XWN_HD_BOOT_BACK_BYTES (640u * (480u + 13u + 1u))
++#define XWN_HD_HIDDEN_OFFSET (XWN_HD_FB_BYTES - XWN_HD_BOOT_BACK_BYTES)
++
++static inline int
++XwnHdLayoutValid(unsigned int Physical, unsigned int Reserved,
++                 unsigned int Width, unsigned int Height,
++                 unsigned int Stride, unsigned int Hidden)
++{
++    if (Physical != XWN_HD_FB_PHYSICAL || Reserved != XWN_HD_FB_BYTES ||
++        Width < 640u || Width > 1920u || Height < 480u || Height > 1080u ||
++        Stride != Width * 4u || Hidden != XWN_HD_HIDDEN_OFFSET)
++        return 0;
++    /* Bounded dimensions above prevent overflow; division retains the tail. */
++    return Height <= Hidden / Stride;
++}
++
++static inline int
++XwnHdMapEntryValid(unsigned int Slot, unsigned int Base, unsigned int BaseHigh,
++                  unsigned int Length, unsigned int LengthHigh, unsigned int Type)
++{
++    if (BaseHigh || LengthHigh) return 0;
++    if (Slot == 0u)
++        return Base == 0u && Length == XWN_HD_FB_PHYSICAL && Type == 1u;
++    if (Slot == 1u)
++        return Base == XWN_HD_FB_PHYSICAL && Length == XWN_HD_FB_BYTES && Type == 0u;
++    return 0;
++}
++#endif
+--- a/win32ss/drivers/miniport/xboxvmp/nt5/video_shared.c
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/video_shared.c
+@@ -11,6 +11,9 @@
+     NTSTATUS Status;
+     if (!Address || *Address) return ERROR_INVALID_PARAMETER;
+     View.Size = sizeof(View); View.Version = XWN_FB_VERSION;
++#ifdef XBOX_NT5_HD_RESERVATION
++    View.ReservedBytes = XWN_FB_BYTES;
++#endif
+     View.Physical = Ram; View.Width = Width; View.Height = Height; View.Stride = Stride;
+     Status = XwnFbAcquire(Device, &View);
+     XwnVideoTrace(0x30, Status, View.Address, View.Physical);
+--- a/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c
+@@ -89,7 +89,11 @@
+        framebuffer must stay inside Cromwell's reserved top-four-MiB area. */
+     if (Width < 320 || Width > 1920 || Height < 200 || Height > 1080 || Bytes != 4 ||
+         Pitch < Width * Bytes || Pitch > 8192 || Height > NV2A_VIDEO_MEMORY_SIZE / Pitch ||
++#ifdef XBOX_NT5_HD_RESERVATION
++        !XwnHdLayoutValid(V->Offset, NV2A_VIDEO_MEMORY_SIZE, Width, Height, Pitch, XWN_HD_HIDDEN_OFFSET) ||
++#else
+         (V->Offset != 0x03c00000 && V->Offset != 0x07c00000) ||
++#endif
+         V->Offset > V->ApertureLength - NV2A_VIDEO_MEMORY_SIZE)
+     {
+         if (Width < 320 || Width > 1920 || Height < 200 || Height > 1080 || Bytes != 4 ||
+--- a/win32ss/drivers/miniport/xboxvmp/nt5/xwn_fb.h
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/xwn_fb.h
+@@ -1,7 +1,13 @@
+ /* SPDX-License-Identifier: GPL-2.0-or-later */
+ #pragma once
++#ifdef XBOX_NT5_HD_RESERVATION
++#include <drivers/xbox/xwn_hd_layout.h>
++#define XWN_FB_VERSION 2
++#define XWN_FB_BYTES XWN_HD_FB_BYTES
++#else
+ #define XWN_FB_VERSION 1
+ #define XWN_FB_BYTES 0x00400000
++#endif
+ #define XWN_FB_MAX_REFS 0x7fffffff
+ typedef struct _XWN_FB_VIEW {
+     ULONG Size, Version, Address, Physical, ReservedBytes, VisibleBytes;
