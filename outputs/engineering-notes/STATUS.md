@@ -1,3 +1,11 @@
+# 0.2.0 private HD release assembled; tagging next
+
+The user reported: "The video output had looked normal at 1080". This new observation is separately recorded in outputs/release-0.2.0/user-observation.json; original324 machine verdicts/pending observation and staging325 remain unchanged. Physical315720p and3241080i scoped workloads/integrity passed; strictFALSE Ftdisk49 retained. No new hardware access, deployment or experiment. Baseline audio004/software118/shared158/FATX0101 remains restored. Automation PAUSED; no owned processes/test queued.
+
+Private final overlay and combined demo/recovery bundle are complete and every entry readback-verified at D:/Codex-archive/xbox-windows-native/0.2.0. Overlay1242000bytes SHA474957aa6d2eb4cd8c3818a26ad0568e4b9c104b8159891c065b1491c8f6930d; combined334214426bytes SHA8136a98edda6cd239fb41ffd7ce59f44ab53e0f794cabacc212dca9de8026065. Existing256 recovery ZIPs/manifest rehashed unchanged, included as historical recovery, not a new snapshot or restore-tested whole disk. Read release-0.2.0/README.md and USAGE.md. Packaging is not a full compiler rebuild, public publication or permanent install. Stereo/repeated boots/other encoders/GPU acceleration remain unqualified. Preserve0.1.0/0088/all failures.
+
+Next closeout: repository and exact stage checks, commit/tag v0.2.0 once, private push, source/evidence archive and Git bundle pinned to actual tag; then record receipt without moving tag. Later project work: repeatable deployment/recovery and repeated HD validation, measured video performance, device integration, sanitized source/build recipes and xemu upstream review. No new experiment launched by this plan.
+
 # Physical1080i workload passed; visual confirmation pending
 
 Five1920x1080 drawing samples, six audio test phases, normal restart and cold allocation/hive/protected checks passed in324. Full F scan found zero errors/orphans. Original startup and all six baseline files are restored/readback. No test is queued. The TV/Windows picture report is still pending; Ftdisk49 remains a strict failure.0.2.0 is untagged.
