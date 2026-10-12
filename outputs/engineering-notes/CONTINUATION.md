@@ -1,3 +1,56 @@
+#282 actual matched unit-reference release/reuse scoped PASS; strict FALSE
+
+Current282 milestone (predecessor bda40b5f; verify Git HEAD). Read
+release-runtime281 and release-pair282 REPORT/DESIGN/NEXT/final-review, schema-note
+and actual records before any action. ALL build/runtime/host sessions CLOSED.
+Repository check81286 passed29737files;1416new staged evidence files byte-exact.
+Renderer281build001 session9288
+CLOSED, all borrowed19files restored. Exact278 child1e42e331...191910805bytes,
+79 inherited warnings/no new. Actual unbound/UI provider, counted release wrapper,
+one-shot stage2 snapshots and three-slot QOM interface compiled/reviewed. Host
+11231 edge checks,89 interface checks,29 wrapper checks; explicit host models.
+Preserve interface001 missing harness constant and review001 CRLF reconstruction
+failures. Review002 independently reconstructs byte-exact Linux output.
+
+282control001 launched02:56:02UTC and CLOSED; never relaunch/recollect/parent.
+New full three-boundary scoped control PASS, all native phases11/22/33, actual
+CPUepochs1..6, four original guest binds and12 source/RGBA snapshots. No release.
+Normal native terminal/haltwindow then orderly hostexit0, full cleanup. StrictFALSE
+sole one-byte reservedsector1536 delta, full8GiB map/65536overlay comparison proves
+filesystem inheritedunchanged; EEPROM/QCOW/all79frozen dependencies pass.
+1464 private captures rehashed. Actual HALhalt entry not traced, no Windows shutdown.
+
+282candidate001 ran02:58:50->03:00:06UTC and CLOSED, scoped release/reuse PASS.
+Never relaunch/recollect/parent either282 case. Same exact281binary/271XBE/oracle
+and79hostdependencies. Candidate actual units4->0->4 and refs2->1->2, retaining
+all21cache-owned bindings; controlunits4->4->4. Four real refs2 release decrements
+precede all4normal guest binds. Three55663row/218page graphs each, CPUepochs1..6,
+4callbacks/clock40 throughout,48originalshaderworkfunctions returned(notOSjoin).
+Each12snapshots12288source/RGBA bytes,49152native source/guard bytes,1440framebuffer
+bytes, actual15RAMHT descriptors. Terminal8events4runsmask15allerrors0, frontend
+reopenedonce, breakpoints/physicalmodecleanup, nativehaltwindow18sec/orderlyexit0.
+Each1464privatecaptures rehashed, fullcoldQCOW/EEPROM/pins pass. StrictFALSE same
+one-byte reservedsector1536 delta; filesystem inheritedunchanged, writerunattributed.
+Actual-control analysis24874mutations rejected with originalhashes intact.
+final-review field stage_rows is mislabeled PAGE count218; actualrows55663,
+explicit schema-note.json preserves original output and qualification unchanged.
+
+NEXT stop repeating solved unit release/reuse. Review exact281 normalLRU/cache
+eviction and destruction paths for a NEW narrow four-cache-owner disposal contract
+with absent unit/context/UI edges, actual finalfree/GLdeletion, generation-safe
+tombstones and real guest replacement/pixels. No wholeflush/finalizer/reset/switch,
+hostbinder or saved-pointer dereference. Host-test actual paths/worker first.
+No actual GLobject deletion, wholebackend retirement or nativeGPU claim yet.
+Controller preflight0024624 negatives PASS;001 invalid timing mutation assumption
+failed and remains preserved. New controller files are frozen; do not edit them.
+
+Current physical audio004/softwarevideo118/shared158/FATX0101 unchanged. No hardware
+test queued, no GPU grant/acceleration/1080i promotion, original recovery256 and
+immutable0.1.0/0088 preserved. Native Windows aliases/deferred release remain separate.
+Closed188/190/191/192 non-backing portables offloaded with hashreadback and original
+junctions, manifests portable-281/281b/281c/281d. No backing chains moved. C last
+~21.99GB decimal,E~37.26GB, retain20GiB projectedguard. Deadline04:00UTC.
+
 #280 HOST-ONLY — three-boundary worker sequencing and transport tested
 
 Read outputs/release-worker280/REPORT.md, DESIGN.md, NEXT.md, source-review.json,

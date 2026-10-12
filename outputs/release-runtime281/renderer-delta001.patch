@@ -1,0 +1,951 @@
+--- a/hw/xbox/nv2a/pgraph/gl/renderer.c
++++ b/hw/xbox/nv2a/pgraph/gl/renderer.c
+@@ -1171,6 +1171,7 @@
+ }
+ #endif
+ 
++typedef struct X280Transaction X280Transaction;
+ typedef struct X265State {
+     X260Slot boundary;
+     X265Rows ledger;
+@@ -1183,7 +1184,19 @@
+     bool observe276; /* Never arms texture lifetime observation. */
+     bool textures278;uint64_t allocations278[4];
+     X277Proof proof278;unsigned admission278;
++    X280Transaction *transaction280;
+ } X265State;
++/* New one-shot transaction; allocated fully before initial publication. */
++typedef struct X280Transaction {
++    X265State *pre,*post,*end;
++    X279Proof release;
++    unsigned state,candidate,old_halt,reason,armed,mutated_mask,post_captured,sealed;
++    unsigned page_stage; /* Monitor cursor only, not worker state. */
++    uint64_t finished;
++    unsigned published[2];
++    uint64_t records[2][16];
++} X280Transaction;
++
+ 
+ /*267 Bounded query of indexed references and known context-local containers.
+  * Uninstantiated reserved names are recorded, never bound into existence.
+@@ -1691,10 +1704,554 @@
+     qatomic_store_release(&v->state,reason?6:5);return true;
+ }
+ 
++
++bool xwn_ui281_unbound(const uint64_t names[4],uint64_t *context);
++/*280 New actual-stage validation, derived exactly from277 except explicit stage/ref rules.*/
++static inline unsigned x280_validate(const X277Proof *p,unsigned candidate)
++{
++    if((candidate>1 || p->stage<1 || p->stage>3) || !p->worker || !p->device || !p->region ||
++       !p->function || !p->ram_bytes || p->ram_bytes>UINT64_MAX-p->ram_base ||
++       p->release_requested) return X277_SCOPE;
++    if(p->cpu_stopped!=1 || p->frontend_closed!=1 || p->pfifo_halted!=1 ||
++       p->render_fenced!=1 || p->display_fenced!=1 || p->get_equals_put!=1 ||
++       !p->render_context || !p->display_context || p->render_context==p->display_context ||
++       p->pending || p->method_error || p->unknown_owners ||
++       p->started>p->finished || p->finished>=p->deadline) return X277_BOUNDARY;
++    for(unsigned phase=0;phase<2;phase++) {
++        const X277CPU *c=&p->cpu[phase];const X277Graph *g=&p->graph[phase];
++        if(c->done!=1 || c->error || c->clock_error || !c->thread || c->thread==p->worker ||
++           c->epoch!=p->stage*2-1+phase || c->when<p->started || c->when>p->finished ||
++           g->complete!=1 || g->error) return X277_BOUNDARY;
++        if(!c->count || c->count>X277_MAX || g->count!=c->count) return X277_CAPACITY;
++        if(!c->clock || c->clock==UINT64_MAX) return X277_LIFETIME;
++        for(unsigned i=0;i<c->count;i++) {
++            const X277Callback *b=&c->callbacks[i];unsigned matches=0;
++            if(!b->identity || b->opaque!=p->device || b->function!=p->function ||
++               b->region!=p->region || !x277_range(b->begin,b->bytes,p->ram_bytes) ||
++               b->absolute!=p->ram_base+b->begin) return X277_CALLBACK;
++            for(unsigned j=0;j<i;j++)
++                if(b->identity==c->callbacks[j].identity) return X277_CALLBACK;
++            for(unsigned j=0;j<g->count;j++) {
++                const X277Surface *s=&g->surfaces[j];
++                if(!s->identity || !s->callback || !s->name ||
++                   !x277_range(s->begin,s->bytes,p->ram_bytes) ||
++                   (s->flags&~UINT64_C(1)) || (s->roles&~UINT64_C(3))) return X277_SURFACE;
++                for(unsigned k=0;k<j;k++) {
++                    const X277Surface *o=&g->surfaces[k];
++                    if(s->identity==o->identity || s->callback==o->callback || s->name==o->name ||
++                       (s->roles&o->roles) ||
++                       x277_overlap(s->begin,s->bytes,o->begin,o->bytes)) return X277_SURFACE;
++                }
++                if(s->callback==b->identity) {
++                    if(s->begin!=b->begin || s->bytes!=b->bytes) return X277_BIJECTION;
++                    matches++;
++                }
++            }
++            if(matches!=1) return X277_BIJECTION;
++        }
++    }
++    const X277CPU *a=&p->cpu[0],*b=&p->cpu[1];
++    if(a->thread!=b->thread || a->when>b->when || a->clock!=b->clock || a->count!=b->count ||
++       memcmp(a->callbacks,b->callbacks,a->count*sizeof(a->callbacks[0])) ||
++       memcmp(p->graph[0].surfaces,p->graph[1].surfaces,p->graph[0].count*sizeof(X277Surface)))
++        return X277_LIFETIME;
++    for(unsigned i=0;i<4;i++) {
++        const X277Texture *t=&p->textures[i];
++        if(!t->identity || !t->name || t->refs!=(unsigned)(1+!(candidate && p->stage==2)) || t->cache_edges!=1 || t->unit_edges!=(unsigned)!(candidate && p->stage==2) ||
++           t->allocation_bytes!=4096 || (t->allocation&4095) ||
++           !x277_range(t->allocation,t->allocation_bytes,p->ram_bytes) ||
++           t->source!=t->allocation+256 || t->source_bytes!=512 || t->palette || t->palette_bytes)
++            return X277_TEXTURE;
++        for(unsigned j=0;j<i;j++) {
++            const X277Texture *o=&p->textures[j];
++            if(t->identity==o->identity || t->name==o->name ||
++               x277_overlap(t->allocation,t->allocation_bytes,o->allocation,o->allocation_bytes))
++                return X277_TEXTURE;
++        }
++        for(unsigned j=0;j<p->graph[0].count;j++) {
++            const X277Surface *s=&p->graph[0].surfaces[j];
++            if(t->name==s->name || x277_overlap(t->allocation,t->allocation_bytes,s->begin,s->bytes))
++                return X277_OVERLAP;
++        }
++    }
++    return X277_OK;
++}
++
++/* Compare actual pre/post state without rewriting fields to satisfy old277. */
++static bool x280_link(const X277Proof *a,const X277Proof *b,unsigned candidate)
++{
++    if(x280_validate(a,candidate) || x280_validate(b,candidate) || a->stage!=1 || b->stage!=2 ||
++       a->worker!=b->worker || a->device!=b->device || a->region!=b->region || a->function!=b->function ||
++       a->ram_base!=b->ram_base || a->ram_bytes!=b->ram_bytes ||
++       a->render_context!=b->render_context || a->display_context!=b->display_context ||
++       b->started<a->finished || a->cpu[1].thread!=b->cpu[0].thread ||
++       a->cpu[1].clock!=b->cpu[0].clock || a->cpu[1].count!=b->cpu[0].count ||
++       memcmp(a->cpu[1].callbacks,b->cpu[0].callbacks,a->cpu[1].count*sizeof(X277Callback)) ||
++       memcmp(a->graph[1].surfaces,b->graph[0].surfaces,a->graph[1].count*sizeof(X277Surface)))return false;
++    for(unsigned i=0;i<4;i++)
++        if(memcmp(&a->textures[i],&b->textures[i],8*sizeof(uint64_t)))return false;
++    return true;
++}
++
++/* Across actual guest work clocks may change; owner and selected textures may not. */
++static bool x280_resume(const X277Proof *a,const X277Proof *b,unsigned candidate)
++{
++    if(x280_validate(a,candidate) || x280_validate(b,candidate) || a->stage!=1 || b->stage!=3 ||
++       a->worker!=b->worker || a->device!=b->device || a->region!=b->region || a->function!=b->function ||
++       a->ram_base!=b->ram_base || a->ram_bytes!=b->ram_bytes ||
++       a->render_context!=b->render_context || a->display_context!=b->display_context ||
++       b->started<a->finished || a->cpu[1].thread!=b->cpu[0].thread)return false;
++    for(unsigned i=0;i<4;i++)
++        if(memcmp(&a->textures[i],&b->textures[i],sizeof(X277Texture)))return false;
++    return true;
++}
++
++/* Pinned GL4.0 texture references and known FBO closure. Read-only scalar rows. */
++static bool x281_selected(uint64_t name,const uint64_t names[4])
++{for(unsigned i=0;i<4;i++)if(name==names[i])return true;return false;}
++static int x281_index(uint64_t value,const uint32_t *values,unsigned count)
++{for(unsigned i=0;i<count;i++)if(value==values[i])return i;return -1;}
++static bool x281_edges(const uint64_t (*rows)[8],unsigned count,unsigned roles,const uint64_t names[4])
++{
++    const uint32_t integers[]={0x85b5,0x8894,0x8895,0x88ed,0x88ef,0x8a28,0x8b8d,0x8c8f,0x8ca6,0x8ca7,0x8caa,0x8f36,0x8f37};
++    const uint32_t targets[]={0x8068,0x8069,0x806a,0x84f6,0x8514,0x8c1c,0x8c1d,0x8c2c,0x900a,0x9104,0x9105};
++    if(!rows || !count || count>(roles==8?8192u:180000u) || (roles!=6&&roles!=8))return false;
++    for(unsigned i=0;i<4;i++) {
++        if(!names[i] || names[i]>UINT32_MAX)return false;
++        for(unsigned j=0;j<i;j++)if(names[i]==names[j])return false;
++    }
++    unsigned context_mask=0;
++    for(unsigned h=0;h<count;h++)if(rows[h][0]==30) {
++        const uint64_t *header=rows[h];if(header[1]<1 || header[1]>3)return false;
++        unsigned role=header[1];
++        if(role<1||role>3 || !(roles&(1u<<role)) || (context_mask&(1u<<role)) ||
++           !header[2] || header[4]<1 || header[4]>256 || header[5]<1 || header[5]>64)return false;
++        context_mask|=1u<<role;
++        uint16_t texture_seen[256]={0};unsigned integer_seen=0;uint64_t attrib_seen=0;
++        uint64_t draw=UINT64_MAX,read=UINT64_MAX,vao=UINT64_MAX,program=UINT64_MAX;
++        for(unsigned n=0;n<count;n++) {
++            const uint64_t *r=rows[n];if(r[1]!=role)continue;
++            if(r[0]==31) {
++                int bit=x281_index(r[2],integers,13);
++                if(bit<0 || (integer_seen&(1u<<bit)))return false;
++                integer_seen|=1u<<bit;
++                if(r[2]==0x8ca6)draw=r[3];
++                if(r[2]==0x8caa)read=r[3];
++                if(r[2]==0x85b5)vao=r[3];
++                if(r[2]==0x8b8d)program=r[3];
++            } else if(r[0]==32) {
++                int bit=x281_index(r[3],targets,11);
++                if(bit<0 || r[2]>=header[4] || (texture_seen[r[2]]&(1u<<bit)) || x281_selected(r[4],names))return false;
++                texture_seen[r[2]]|=1u<<bit;
++            } else if(r[0]==33) {
++                if(r[2]>=header[5] || (attrib_seen&(UINT64_C(1)<<r[2])))return false;
++                attrib_seen|=UINT64_C(1)<<r[2];
++            }
++        }
++        if(integer_seen!=8191 || attrib_seen!=(header[5]==64?UINT64_MAX:(UINT64_C(1)<<header[5])-1))return false;
++        for(unsigned i=0;i<header[4];i++)if(texture_seen[i]!=2047)return false;
++        unsigned bound_draw=(!draw && roles!=8),bound_read=(!read && roles!=8);
++        for(unsigned n=0;n<count;n++)if(rows[n][0]==54&&rows[n][1]==role) {
++            const uint64_t *f=rows[n];unsigned attachments=0,restores=0;uint64_t slots=0,limit=0;unsigned ds=0;
++            if(f[3]>1)return false;
++            bound_draw|=f[2]==draw;bound_read|=f[2]==read;
++            for(unsigned j=0;j<n;j++)if(rows[j][0]==54&&rows[j][1]==role&&rows[j][2]==f[2])return false;
++            for(unsigned j=0;j<count;j++)if(rows[j][1]==role&&rows[j][2]==f[2]) {
++                const uint64_t *r=rows[j];
++                if(r[0]==56) {
++                    if(++restores>1 || !f[3] || r[3]!=r[4] || r[5]!=r[6] || r[7]<1 || r[7]>64)return false;
++                    limit=r[7];
++                } else if(r[0]==55) {
++                    if(!f[3] || (r[4]!=0&&r[4]!=0x1702&&r[4]!=0x8d41) || (!r[4]&&r[5]) ||
++                       (r[4]==0x1702&&x281_selected(r[5],names)))return false;
++                    attachments++;
++                    if(r[3]==0x8d00 || r[3]==0x8d20) {
++                        unsigned bit=r[3]==0x8d00?1:2;if(ds&bit)return false;ds|=bit;
++                    } else {
++                        if(r[3]<0x8ce0 || r[3]>=0x8ce0+64 || (slots&(UINT64_C(1)<<(r[3]-0x8ce0))))return false;
++                        slots|=UINT64_C(1)<<(r[3]-0x8ce0);
++                    }
++                }
++            }
++            if(f[3] && (restores!=1 || attachments!=limit+2 || ds!=3 || slots!=(limit==64?UINT64_MAX:(UINT64_C(1)<<limit)-1)))return false;
++            if(!f[3] && (restores||attachments))return false;
++        }
++        if(!bound_draw||!bound_read)return false;
++        unsigned bound_vao=(!vao && roles!=8),bound_program=(!program && roles!=8);
++        for(unsigned n=0;n<count;n++)if(rows[n][1]==role) {
++            if(rows[n][0]==57 && rows[n][2]==vao)bound_vao++;
++            if(rows[n][0]==61 && rows[n][2]==program)bound_program++;
++        }
++        if(!bound_vao || !bound_program || (roles==8 && (bound_vao!=1 || bound_program!=1)))return false;
++    }
++    if(context_mask!=roles)return false;
++    for(unsigned n=0;n<count;n++) {
++        const uint64_t *r=rows[n];
++        if((r[0]>=30&&r[0]<=33)||(r[0]>=52&&r[0]<=63)) {if(r[1]<1||r[1]>3||!(roles&(1u<<r[1])))return false;}
++        if(r[0]==55 || r[0]==56) {
++            unsigned parent=0;for(unsigned j=0;j<count;j++)parent+=rows[j][0]==54&&rows[j][1]==r[1]&&rows[j][2]==r[2];
++            if(parent!=1)return false;
++        }
++        if(roles==8 && ((r[0]==40&&(x281_selected(r[3],names)||x281_selected(r[4],names)||x281_selected(r[5],names))) ||
++                       (r[0]==64&&x281_selected(r[3],names))))return false;
++    }
++    return true;
++}
++
++/* Called only with renderer/PG locks retained by successful x280_capture. */
++static bool x280_unbound(NV2AState *d,X265State *s,X279Proof *out)
++{
++    X277Proof *p=&s->proof278;PGRAPHGLState *r=d->pgraph.gl_renderer_state;
++    if(!r || qatomic_load_acquire(&s->boundary.state)!=5 || s->ledger.overflow ||
++       s->accounting_error || s->shader_jobs_unknown || x277_validate(p) ||
++       p->stage!=1 || p->device!=(uintptr_t)d || p->region!=(uintptr_t)d->vram || p->worker!=qemu_get_thread_id() || !xwn_frontend246_closed())return false;
++    uint64_t names[4];for(unsigned i=0;i<4;i++)names[i]=p->textures[i].name;
++    uintptr_t context[4];uint64_t ui_context=0;
++    if(!glo_context_observe267(g_nv2a_context_render,context) || context[0]!=p->render_context ||
++       !x281_edges((const uint64_t (*)[8])s->ledger.rows,s->ledger.count,6,names) ||
++       !xwn_ui281_unbound(names,&ui_context) || !ui_context || ui_context==p->render_context || ui_context==p->display_context)return false;
++    unsigned cache=0,units=0;X279Proof result={0};
++    for(unsigned j=0;j<s->ledger.count;j++) {
++        const uint64_t *row=s->ledger.rows[j];
++        if(row[0]==2)cache++;
++        if(row[0]!=3)continue;
++        if(row[1]>=4)return false;
++        unsigned i=row[1];
++        if(i>=4 || (units&(1u<<i)) || row[2]!=p->textures[i].identity || row[3])return false;
++        TextureBinding *b=r->texture_binding[i];
++        if(!b || (uintptr_t)b!=row[2] || b->gl_texture!=names[i] || b->gl_target!=GL_TEXTURE_2D ||
++           b->refcnt!=2 || pgraph_is_texture_enabled(&d->pgraph,i))return false;
++        units|=1u<<i;result.target[i]=b->gl_target;
++    }
++    if(units!=15 || cache<4 || cache>512 || r->texture_cache.num_used!=(int)cache)return false;
++    result.observation=*p;result.operation=X279_RELEASE;result.complete_graph=1;
++    result.locks_held=1; /* Private call path retains both locks from capture. */
++    result.owner_current=1;result.contexts_current=1;result.cache_count=cache;
++    /* observer_armed remains0 until the actual arm returns success. */
++    *out=result;return true;
++}
++
++static bool x280_graph(NV2AState *d,X280Transaction *tx,X265State *s,unsigned phase)
++{
++    X277Proof *p=&s->proof278;X277Graph *g=&p->graph[phase];
++    PGRAPHState *pg=&d->pgraph;PGRAPHGLState *r=pg->gl_renderer_state;
++    if(g->complete || g->count) return false;
++    SurfaceBinding *surface;
++    QTAILQ_FOREACH(surface,&r->surfaces,entry) {
++        if(g->count==X277_MAX){g->error=1;return false;}
++        g->surfaces[g->count++]=(X277Surface){(uintptr_t)surface,(uintptr_t)surface->access_cb,
++            surface->vram_addr,surface->size,surface->gl_buffer,
++            (surface->draw_dirty?1:0)|(surface->download_pending?2:0)|(surface->cpu_write_evict_pending?4:0)|(surface->upload_pending?8:0),
++            (surface==r->color_binding?1:0)|(surface==r->zeta_binding?2:0)};
++    }
++    for(unsigned i=0;i<4;i++) {
++        TextureBinding *b=r->texture_binding[i];
++        bool released=tx->candidate && s->boundary.stage==2;
++        uint64_t identity=s->boundary.stage==1?(uint64_t)(uintptr_t)b:tx->pre->proof278.textures[i].identity;
++        if(!identity || (released?b!=NULL:(!b || (uint64_t)(uintptr_t)b!=identity)))return false;
++        TextureLruNode *found=NULL;unsigned walked=0,edges=0;LruNode *node;
++        QTAILQ_FOREACH(node,&r->texture_cache.global,next_global) {
++            if(++walked>512)return false;
++            if(!lru_is_node_in_use(&r->texture_cache,node))continue;
++            TextureLruNode *t=container_of(node,TextureLruNode,node);
++            if((uint64_t)(uintptr_t)t->binding==identity){found=t;edges++;}
++        }
++        if(edges!=1 || !found || !found->binding)return false;
++        b=found->binding; /* Follow only a current live cache edge, never a saved owner pointer. */
++        if(b->gl_target!=GL_TEXTURE_2D)return false;
++        unsigned units=0;
++        for(unsigned j=0;j<4;j++)units+=r->texture_binding[j]==b;
++        X277Texture t={(uintptr_t)b,b->gl_texture,s->allocations278[i],4096,
++            found->key.texture_vram_offset,found->key.texture_length,
++            found->key.palette_vram_offset,found->key.palette_length,b->refcnt,edges,units};
++        if(phase && memcmp(&t,&p->textures[i],sizeof(t)))return false;
++        if(!phase)p->textures[i]=t;
++    }
++    g->complete=1;return true;
++}
++
++static bool x280_validate_actual(NV2AState *d,X280Transaction *tx,X265State *s)
++{
++    X277Proof *p=&s->proof278;X260Slot *v=&s->boundary;
++    p->stage=v->stage;p->worker=v->worker_thread;p->device=(uintptr_t)d;p->region=(uintptr_t)d->vram;
++    p->function=p->cpu[0].count?p->cpu[0].callbacks[0].function:0;
++    p->ram_base=memory_region_get_ram_addr(d->vram);p->ram_bytes=memory_region_size(d->vram);
++    p->started=v->started;p->finished=qemu_clock_get_ns(QEMU_CLOCK_REALTIME);p->deadline=v->deadline;
++    p->cpu_stopped=qatomic_read(&qemu_get_cpu(0)->stopped);p->frontend_closed=xwn_frontend246_closed();
++    p->pfifo_halted=qatomic_read(&d->pfifo.halt);p->render_fenced=v->admission.render_fenced;
++    p->display_fenced=v->admission.display_fenced;p->pending=x274_pending(d);
++    p->get_equals_put=d->pfifo.regs[NV_PFIFO_CACHE1_DMA_GET]==d->pfifo.regs[NV_PFIFO_CACHE1_DMA_PUT];
++    p->method_error=d->pfifo.regs[NV_PFIFO_CACHE1_DMA_STATE]&
++        (NV_PFIFO_CACHE1_DMA_STATE_METHOD_COUNT|NV_PFIFO_CACHE1_DMA_STATE_ERROR);
++    p->unknown_owners=s->accounting_error || s->shader_jobs_unknown;
++    unsigned contexts=0;
++    for(unsigned i=0;i<s->ledger.count;i++) {
++        uint64_t *row=s->ledger.rows[i];if(row[0]!=51)continue;
++        if(row[1]<1 || row[1]>2 || !row[7] || row[3]!=row[4] || row[5]!=row[6] ||
++           (contexts&(1u<<row[1])))return false;
++        contexts|=1u<<row[1];
++        if(row[1]==1)p->render_context=row[3];else p->display_context=row[3];
++    }
++    if(contexts!=6)return false;
++    s->admission278=x280_validate(p,tx->candidate);return s->admission278==X277_OK;
++}
++
++/* Complete captured known graph, with only the declared unit/ref changes. */
++static bool x280_retained(X265State *a,X265State *b,unsigned candidate)
++{
++    if(a->ledger.overflow || b->ledger.overflow)return false;
++    unsigned ia=0,ib=0;
++    while(ia<a->ledger.count || ib<b->ledger.count) {
++        while(ia<a->ledger.count && (a->ledger.rows[ia][0]==17 || a->ledger.rows[ia][0]>=64))ia++;
++        while(ib<b->ledger.count && (b->ledger.rows[ib][0]==17 || b->ledger.rows[ib][0]>=64))ib++;
++        if(ia==a->ledger.count || ib==b->ledger.count)return ia==a->ledger.count&&ib==b->ledger.count;
++        uint64_t expected[8];memcpy(expected,a->ledger.rows[ia++],sizeof(expected));
++        if(candidate) {
++            if(expected[0]==3) {
++                if(expected[1]>=4 || expected[2]!=a->proof278.textures[expected[1]].identity || expected[3])return false;
++                expected[2]=0;expected[4]=1;
++            } else if(expected[0]==4 || expected[0]==5) {
++                for(unsigned i=0;i<4;i++)if(expected[1]==a->proof278.textures[i].identity) {
++                    if(expected[2]!=2)return false;
++                    expected[2]=1;
++                    if(expected[0]==5){if(expected[3]!=1 || expected[4]!=1)return false;expected[4]=0;}
++                }
++            }
++        }
++        if(memcmp(expected,b->ledger.rows[ib++],sizeof(expected)))return false;
++    }
++    return true;
++}
++
++/* Fixed immutable records. Getters must acquire transaction state before reading.
++ * All fields are scalar copies; no pointer is transported as dereference authority. */
++static bool x280_publish(X280Transaction *t,X265State *last,unsigned prior)
++{
++    if(prior!=1 && prior!=4)return false;
++    unsigned index=prior==4;
++    if(t->published[index])return false;
++    uint64_t row[16]={280,prior,t->candidate,t->reason?6:(prior==1?3:5),
++        t->reason,t->armed,t->mutated_mask,t->post_captured,t->sealed,
++        last?last->boundary.stage:0,last?last->boundary.worker_thread:0,
++        last?last->boundary.cpu[0].epoch:0,last?last->boundary.cpu[1].epoch:0,
++        t->finished,last?last->boundary.started:0,last?last->boundary.finished:0};
++    memcpy(t->records[index],row,sizeof(row));
++    t->published[index]=1;return true;
++}
++
++/* Explicit fresh CPU acknowledgment times/identities, including nonzero counts. */
++static bool x280_scalar_publish(X265State *s,unsigned reason)
++{
++    bool ok=x278_publish(s);X277Proof *p=&s->proof278;
++    ok &= x265_add(&s->ledger,71,s->boundary.stage,s->boundary.worker_thread,
++        s->boundary.started,p->finished,s->boundary.deadline,s->admission278,reason);
++    for(unsigned phase=0;phase<2;phase++) {
++        X277CPU *c=&p->cpu[phase];
++        ok &= x265_add(&s->ledger,72,phase,c->epoch,c->thread,c->when,c->done,c->error,c->clock_error);
++    }
++    return ok;
++}
++
++/*280 Actual capture path derived from278; three real stages, no slot reuse. */
++static bool x280_capture(NV2AState *d,X280Transaction *tx,X265State *s,unsigned stage)
++{
++    X265State *initial=tx->pre;X260Slot *v=&s->boundary;bool ending=stage>1;
++    if(stage<1 || stage>3 || qatomic_cmpxchg(&v->state,0,2)!=0)return false;
++    v->stage=stage;v->started=qemu_clock_get_ns(QEMU_CLOCK_REALTIME);v->deadline=v->started+10000000000LL;
++    PGRAPHState *pg=&d->pgraph;PGRAPHGLState *r=pg->gl_renderer_state;
++    unsigned reason=0;bool locked=false,published=false;s->admission278=UINT_MAX;
++    v->worker_thread=qemu_get_thread_id();
++    if(!r || !x260_alive(d,v) || bql_locked() || pg->framebuffer_in_use){reason=1;goto finish;}
++    if(!x260_cpu_boundary(d,v,0)){reason=2;goto finish;}
++    x278_cpu_copy(s,0);
++    qemu_mutex_unlock(&d->pfifo.lock);
++    bool render=x260_context_fence(d,v,g_nv2a_context_render);
++    bool display=render && x260_context_fence(d,v,g_nv2a_context_display);
++    glo_set_current(g_nv2a_context_render);qemu_mutex_lock(&d->pfifo.lock);
++    if(!render || !display){reason=3;goto finish;}
++    v->admission.render_fenced=render;v->admission.display_fenced=display;
++    if(qemu_mutex_trylock(&pg->renderer_lock)){reason=4;goto finish;}
++    if(qemu_mutex_trylock(&pg->lock)){qemu_mutex_unlock(&pg->renderer_lock);reason=5;goto finish;}
++    locked=true;v->pending_mask=x274_pending(d);
++    if(!x278_quiescent(d,initial,s,ending)){reason=6;goto finish;}
++    if(!x265_collect(d,s) || !x280_graph(d,tx,s,0)){reason=7;goto finish;}
++    if(s->accounting_error || s->shader_jobs_unknown){reason=14;goto finish;}
++    if(!x265_context(&s->ledger,1,v->deadline) || !x267_context(&s->ledger,r,1,v->deadline)){reason=8;goto finish;}
++    glo_set_current(g_nv2a_context_display);
++    bool context_ok=x265_context(&s->ledger,2,v->deadline) && x267_context(&s->ledger,r,2,v->deadline);
++    glo_set_current(g_nv2a_context_render);
++    if(!context_ok){reason=9;goto finish;}
++    qemu_mutex_unlock(&pg->lock);qemu_mutex_unlock(&pg->renderer_lock);locked=false;
++    if(!x260_cpu_boundary(d,v,1)){reason=10;goto finish;}
++    x278_cpu_copy(s,1);
++    if(qemu_mutex_trylock(&pg->renderer_lock)){reason=22;goto finish;}
++    if(qemu_mutex_trylock(&pg->lock)){qemu_mutex_unlock(&pg->renderer_lock);reason=23;goto finish;}
++    locked=true;
++    if(!x278_quiescent(d,initial,s,ending) || !x280_graph(d,tx,s,1)){reason=28;goto finish;}
++    if(!x280_validate_actual(d,tx,s)){reason=29;goto finish;}
++    uintptr_t actual[4];
++    if(!glo_context_observe267(g_nv2a_context_render,actual) || actual[0]!=s->proof278.render_context){reason=25;goto finish;}
++    if(ending && !x274_context_match(initial,s)){reason=21;goto finish;}
++    published=true;
++    if(!x280_scalar_publish(s,reason)){reason=12;goto finish;}
++    if(!x260_alive(d,v)){reason=13;goto finish;}
++    v->reason=0;v->finished=qemu_clock_get_ns(QEMU_CLOCK_REALTIME);
++    qatomic_store_release(&v->state,5);return true; /* Caller still owns renderer/PG locks. */
++finish:
++    if(locked){qemu_mutex_unlock(&pg->lock);qemu_mutex_unlock(&pg->renderer_lock);}
++    if(!published)x280_scalar_publish(s,reason);
++    v->reason=reason;v->finished=qemu_clock_get_ns(QEMU_CLOCK_REALTIME);
++    qatomic_store_release(&v->state,6);return false;
++}
++
++/*280 Actual worker orchestration. All three state/ledger buffers are allocated
++ * before publication. Called by the owned PFIFO worker with its lock held.
++ * Capture returns with renderer/PG locks held on success, unlocked on failure.
++ * State:1 ready,2 initial running,3 guest may resume,4 end ready,5 complete,6 refusal.
++ */
++static void x280_unlock(NV2AState *d)
++{qemu_mutex_unlock(&d->pgraph.lock);qemu_mutex_unlock(&d->pgraph.renderer_lock);}
++static bool x280_worker(NV2AState *d)
++{
++    X265State *initial=qatomic_load_acquire(&d->ledger265);
++    X280Transaction *t=initial?initial->transaction280:NULL;
++    if(!t)return false;
++    unsigned state=qatomic_load_acquire(&t->state);
++    if((state!=1&&state!=4) || qatomic_cmpxchg(&t->state,state,2)!=state)return false;
++    unsigned reason=0;X265State *last=t->pre;bool locked=false;
++    if(t->candidate>1 || !t->pre || !t->post || !t->end || t->pre==t->post || t->post==t->end || t->pre==t->end){reason=1;goto finish;}
++    if(state==1) {
++        if(!x280_capture(d,t,t->pre,1)){reason=2;goto finish;}locked=true;
++        if(!x280_unbound(d,t->pre,&t->release)){reason=3;goto finish;}
++        if(!pgraph_gl_reuse269_arm(d)){reason=4;goto finish;}t->armed=1;t->release.observer_armed=1;
++        if(!x260_alive(d,&t->pre->boundary) || !x278_quiescent(d,t->pre,t->pre,false)){reason=15;goto finish;}
++        if(t->candidate) {
++            X279Result result=pgraph_gl_release280(d,&t->release);
++            t->mutated_mask=result.mutated_mask;
++            if(result.status!=X279_OK || result.mutated_mask!=15){reason=5;goto finish;}
++        }
++        x280_unlock(d);locked=false;last=t->post;
++        if(!x280_capture(d,t,t->post,2)){reason=6;goto finish;}locked=true;
++        if(!x280_link(&t->pre->proof278,&t->post->proof278,t->candidate) ||
++           !x280_retained(t->pre,t->post,t->candidate)){reason=7;goto finish;}
++        if(!pgraph_gl_reuse280_post(d)){reason=8;goto finish;}t->post_captured=1;
++        x280_unlock(d);locked=false;
++    } else {
++        last=t->end;
++        if(!t->armed || !t->post_captured || !pgraph_gl_reuse274_ready(t->pre->boundary.worker_thread)){reason=9;goto finish;}
++        if(!x280_capture(d,t,t->end,3)){reason=10;goto finish;}locked=true;
++        if(!x274_context_match(t->pre,t->end) || !x280_resume(&t->pre->proof278,&t->end->proof278,t->candidate)){reason=11;goto finish;}
++        x280_unlock(d);locked=false;
++        qemu_mutex_unlock(&d->pfifo.lock);t->sealed=pgraph_gl_reuse269_seal();qemu_mutex_lock(&d->pfifo.lock);
++        if(!t->sealed || pgraph_gl_reuse269_error()){reason=12;goto finish;}
++    }
++finish:
++    if(locked)x280_unlock(d);
++    t->reason=reason;t->finished=qemu_clock_get_ns(QEMU_CLOCK_REALTIME);
++    if(!t->reason && (!last || !x260_alive(d,&last->boundary)))t->reason=14;
++    if(!x280_publish(t,last,state) && !t->reason)t->reason=13;
++    if(!t->reason)qatomic_set(&d->pfifo.halt,t->old_halt);
++    qatomic_store_release(&t->state,t->reason?6:(state==1?3:5));return true;
++}
++
++static bool x281_request(NV2AState *d,const char *value,Error **errp)
++{
++    X265State *initial=qatomic_load_acquire(&d->ledger265);
++    X280Transaction *t=initial?initial->transaction280:NULL;
++    bool control=!strncmp(value,"control281,",11),candidate=!strncmp(value,"candidate281,",13);
++    bool finish=!strcmp(value,"finish281");
++    if(!control&&!candidate&&!finish&&!t)return false;
++    if(runstate_is_running() || !xwn_frontend246_closed() || qatomic_read(&d->exiting) ||
++       !d->pgraph.renderer || d->pgraph.renderer->type!=CONFIG_DISPLAY_RENDERER_OPENGL) {
++        error_setg(errp,"281 requires stopped guest and acknowledged closed frontend");return true;
++    }
++    if(finish) {
++        if(!t || qatomic_load_acquire(&t->state)!=3 || !pgraph_gl_reuse274_ready(t->pre->boundary.worker_thread) ||
++           qemu_mutex_trylock(&d->pfifo.lock)) {error_setg(errp,"281 end unavailable or FIFO busy");return true;}
++        if(qatomic_load_acquire(&t->state)!=3 || qatomic_read(&d->pfifo.halt)!=t->old_halt) {
++            qemu_mutex_unlock(&d->pfifo.lock);error_setg(errp,"281 stale end state");return true;
++        }
++        qatomic_set(&d->pfifo.halt,true);qatomic_store_release(&t->state,4);
++        qemu_cond_broadcast(&d->pfifo.fifo_cond);qemu_mutex_unlock(&d->pfifo.lock);return true;
++    }
++    if(t || initial || (!control&&!candidate) || qatomic_load_acquire(&d->pattern260) ||
++       qatomic_load_acquire(&d->worker247.state) || qatomic_load_acquire(&d->preserve227.state)) {
++        error_setg(errp,"281 refuses reused actors and legacy actions on its transaction");return true;
++    }
++    char parsed[128];uint64_t allocations[4];
++    if(strlen(value)>100){error_setg(errp,"281 request too long");return true;}
++    snprintf(parsed,sizeof(parsed),"textures278,%s",value+(candidate?13:11));
++    if(!x278_parse(parsed,allocations)){error_setg(errp,"281 invalid four allocation request");return true;}
++    t=g_new0(X280Transaction,1);X265State *slots[3];
++    for(unsigned i=0;i<3;i++) {
++        slots[i]=g_new0(X265State,1);slots[i]->textures278=true;
++        memcpy(slots[i]->allocations278,allocations,sizeof(allocations));
++        slots[i]->ledger.rows=g_malloc0_n(X265_ROWS,sizeof(*slots[i]->ledger.rows));slots[i]->ledger.capacity=X265_ROWS;
++    }
++    t->pre=slots[0];t->post=slots[1];t->end=slots[2];t->candidate=candidate;t->page_stage=1;
++    slots[0]->transaction280=t;
++    if(qemu_mutex_trylock(&d->pfifo.lock)) {
++        for(unsigned i=0;i<3;i++){g_free(slots[i]->ledger.rows);g_free(slots[i]);}g_free(t);
++        error_setg(errp,"281 FIFO busy, request not accepted");return true;
++    }
++    if(qatomic_load_acquire(&d->ledger265)) {
++        qemu_mutex_unlock(&d->pfifo.lock);
++        for(unsigned i=0;i<3;i++){g_free(slots[i]->ledger.rows);g_free(slots[i]);}g_free(t);
++        error_setg(errp,"281 initial actor appeared");return true;
++    }
++    t->old_halt=qatomic_read(&d->pfifo.halt);qatomic_set(&d->pfifo.halt,true);
++    qatomic_store_release(&t->state,1);qatomic_store_release(&d->ledger265,slots[0]);
++    qemu_cond_broadcast(&d->pfifo.fifo_cond);qemu_mutex_unlock(&d->pfifo.lock);return true;
++}
++static X265State *x281_slot(X280Transaction *t,unsigned stage)
++{return stage==1?t->pre:stage==2?t->post:stage==3?t->end:NULL;}
++static bool x281_page(NV2AState *d,const char *value,Error **errp)
++{
++    X265State *initial=qatomic_load_acquire(&d->ledger265);X280Transaction *t=initial?initial->transaction280:NULL;
++    if(!t)return false;
++    unsigned state=qatomic_load_acquire(&t->state);uint64_t stage=0,page=0;const char *end=NULL;
++    if((state!=3&&state!=5&&state!=6) || strncmp(value,"stage281,",9) ||
++       qemu_strtou64(value+9,&end,10,&stage) || !end || *end!=',' || stage<1 || stage>3) {
++        error_setg(errp,"281 immutable stage page unavailable");return true;
++    }
++    const char *p=end+1;end=NULL;X265State *s=x281_slot(t,stage);
++    if(qemu_strtou64(p,&end,10,&page) || !end || *end || !s ||
++       (state==3&&stage==3) || (s->boundary.state!=5&&s->boundary.state!=6) ||
++       page>=x265_page_count(s->ledger.count)) {error_setg(errp,"281 invalid stage/page");return true;}
++    t->page_stage=stage;s->page=page;return true;
++}
++static char *x281_report(X280Transaction *t)
++{
++    unsigned state=qatomic_load_acquire(&t->state);
++    if(state!=3&&state!=5&&state!=6)return g_strdup_printf("version=281 state=%u",state);
++    GString *o=g_string_new(NULL);
++    g_string_append_printf(o,"version=281 state=%u reason=%u candidate=%u mask=%u armed=%u post=%u sealed=%u native_grant=0",state,t->reason,t->candidate,t->mutated_mask,t->armed,t->post_captured,t->sealed);
++    for(unsigned i=0;i<2;i++) {
++        g_string_append_printf(o," record%u_present=%u",i,t->published[i]);
++        if(t->published[i])for(unsigned j=0;j<16;j++)g_string_append_printf(o," record%u_%u=%"PRIu64,i,j,t->records[i][j]);
++    }
++    for(unsigned stage=1;stage<=3;stage++) {
++        X265State *s=x281_slot(t,stage);unsigned ready=s->boundary.state;
++        g_string_append_printf(o," s%u_state=%u",stage,ready);
++        if(ready!=5&&ready!=6)continue;
++        g_string_append_printf(o," s%u_reason=%u s%u_rows=%u s%u_pages=%u s%u_overflow=%u s%u_accounting=%u s%u_shader_unknown=%u",stage,s->boundary.reason,stage,s->ledger.count,stage,x265_page_count(s->ledger.count),stage,s->ledger.overflow,stage,s->accounting_error,stage,s->shader_jobs_unknown);
++    }
++    return g_string_free(o,false);
++}
++static char *x281_data(X280Transaction *t)
++{
++    unsigned state=qatomic_load_acquire(&t->state);
++    if(state!=3&&state!=5&&state!=6)return g_strdup("version=281 unavailable=1");
++    unsigned stage=t->page_stage;X265State *s=x281_slot(t,stage);
++    if(!s || (state==3&&stage==3) || (s->boundary.state!=5&&s->boundary.state!=6))return g_strdup("version=281 unavailable=1");
++    return x265_rows_page(&s->ledger,s->page,stage);
++}
++
+ bool pgraph_gl_ledger265_worker(NV2AState *d)
+ {
+     X265State *initial=qatomic_load_acquire(&d->ledger265);
+     if (!initial) return false;
++    if(initial->transaction280)return x280_worker(d);
+     if(initial->textures278)return x278_worker(d);
+     X265State *end=qatomic_load_acquire(&initial->end274);
+     bool ending=end!=NULL;X265State *s=ending?end:initial;
+@@ -1770,6 +2327,7 @@
+ 
+ void pgraph_gl_ledger265_request(NV2AState *d,const char *value,Error **errp)
+ {
++    if(x281_request(d,value,errp))return;
+     if (!strcmp(value,"finish274")) {
+         X265State *initial=qatomic_load_acquire(&d->ledger265);
+         if (runstate_is_running() || !xwn_frontend246_closed() || !initial ||
+@@ -1817,6 +2375,7 @@
+ }
+ void pgraph_gl_ledger265_page(NV2AState *d,const char *value,Error **errp)
+ {
++    if(x281_page(d,value,errp))return;
+     X265State *initial=qatomic_load_acquire(&d->ledger265);
+     bool terminal=!strncmp(value,"end274,",7);if(terminal)value+=7;
+     X265State *s=initial?(terminal?qatomic_load_acquire(&initial->end274):initial):NULL;
+@@ -1829,6 +2388,7 @@
+ char *pgraph_gl_ledger265_report(NV2AState *d)
+ {
+     X265State *initial=qatomic_load_acquire(&d->ledger265);if (!initial) return g_strdup("version=265 epoch=1 state=0");
++    if(initial->transaction280)return x281_report(initial->transaction280);
+     X265State *end=qatomic_load_acquire(&initial->end274);X265State *s=end?end:initial;
+     unsigned epoch=end?2:1,state=qatomic_load_acquire(&s->boundary.state);
+     if (state!=5 && state!=6) return g_strdup_printf("version=265 epoch=%u state=%u",epoch,state);
+@@ -1848,6 +2408,7 @@
+ char *pgraph_gl_ledger265_data(NV2AState *d)
+ {
+     X265State *initial=qatomic_load_acquire(&d->ledger265);
++    if(initial && initial->transaction280)return x281_data(initial->transaction280);
+     bool terminal=initial && initial->end_page274;
+     X265State *s=initial?(terminal?qatomic_load_acquire(&initial->end274):initial):NULL;
+     unsigned state=s?qatomic_load_acquire(&s->boundary.state):0;
+--- a/hw/xbox/nv2a/pgraph/gl/renderer.h
++++ b/hw/xbox/nv2a/pgraph/gl/renderer.h
+@@ -387,3 +387,142 @@
+ 
+ /*274 Admission of an already armed observation on its original owner. */
+ bool pgraph_gl_reuse274_ready(uint64_t owner);
++
++#ifndef XWN_RELEASE281_SHARED
++#define XWN_RELEASE281_SHARED
++/*277 Proposed texture-only observation contract. No disposal or GPU grant.
++ * Every argument is an immutable scalar copy, never a saved pointer to follow.
++ * The runtime adapter must establish actual CPU/context/lock acknowledgments. */
++#ifndef XWN_TEXTURE_ADMISSION277_H
++#define XWN_TEXTURE_ADMISSION277_H
++#include <stdint.h>
++#include <string.h>
++#define X277_MAX 128u
++typedef struct { uint64_t identity,begin,bytes,opaque,function,region,absolute; } X277Callback;
++typedef struct { uint64_t identity,callback,begin,bytes,name,flags,roles; } X277Surface;
++typedef struct {
++    uint64_t identity,name,allocation,allocation_bytes,source,source_bytes,palette,palette_bytes;
++    uint64_t refs,cache_edges,unit_edges;
++} X277Texture;
++typedef struct {
++    uint64_t epoch,thread,when,clock;
++    unsigned done,error,clock_error,count;
++    X277Callback callbacks[X277_MAX];
++} X277CPU;
++typedef struct {
++    unsigned complete,error,count;
++    X277Surface surfaces[X277_MAX];
++} X277Graph;
++typedef struct {
++    uint64_t stage,worker,device,region,function,ram_base,ram_bytes,started,finished,deadline;
++    uint64_t render_context,display_context;
++    unsigned cpu_stopped,frontend_closed,pfifo_halted,render_fenced,display_fenced;
++    unsigned pending,method_error,get_equals_put,unknown_owners,release_requested;
++    X277Texture textures[4];
++    X277CPU cpu[2];
++    X277Graph graph[2];
++} X277Proof;
++enum { X277_OK, X277_SCOPE, X277_BOUNDARY, X277_CAPACITY, X277_LIFETIME,
++       X277_CALLBACK, X277_SURFACE, X277_BIJECTION, X277_TEXTURE, X277_OVERLAP };
++static inline int x277_range(uint64_t a,uint64_t n,uint64_t size)
++{ return n && a<size && n<=size-a; }
++static inline int x277_overlap(uint64_t a,uint64_t n,uint64_t b,uint64_t m)
++{ return a<b+m && b<a+n; } /* Only after both ranges have been bounded. */
++static inline unsigned x277_validate(const X277Proof *p)
++{
++    if((p->stage!=1 && p->stage!=2) || !p->worker || !p->device || !p->region ||
++       !p->function || !p->ram_bytes || p->ram_bytes>UINT64_MAX-p->ram_base ||
++       p->release_requested) return X277_SCOPE;
++    if(p->cpu_stopped!=1 || p->frontend_closed!=1 || p->pfifo_halted!=1 ||
++       p->render_fenced!=1 || p->display_fenced!=1 || p->get_equals_put!=1 ||
++       !p->render_context || !p->display_context || p->render_context==p->display_context ||
++       p->pending || p->method_error || p->unknown_owners ||
++       p->started>p->finished || p->finished>=p->deadline) return X277_BOUNDARY;
++    for(unsigned phase=0;phase<2;phase++) {
++        const X277CPU *c=&p->cpu[phase];const X277Graph *g=&p->graph[phase];
++        if(c->done!=1 || c->error || c->clock_error || !c->thread || c->thread==p->worker ||
++           c->epoch!=p->stage*2-1+phase || c->when<p->started || c->when>p->finished ||
++           g->complete!=1 || g->error) return X277_BOUNDARY;
++        if(!c->count || c->count>X277_MAX || g->count!=c->count) return X277_CAPACITY;
++        if(!c->clock || c->clock==UINT64_MAX) return X277_LIFETIME;
++        for(unsigned i=0;i<c->count;i++) {
++            const X277Callback *b=&c->callbacks[i];unsigned matches=0;
++            if(!b->identity || b->opaque!=p->device || b->function!=p->function ||
++               b->region!=p->region || !x277_range(b->begin,b->bytes,p->ram_bytes) ||
++               b->absolute!=p->ram_base+b->begin) return X277_CALLBACK;
++            for(unsigned j=0;j<i;j++)
++                if(b->identity==c->callbacks[j].identity) return X277_CALLBACK;
++            for(unsigned j=0;j<g->count;j++) {
++                const X277Surface *s=&g->surfaces[j];
++                if(!s->identity || !s->callback || !s->name ||
++                   !x277_range(s->begin,s->bytes,p->ram_bytes) ||
++                   (s->flags&~UINT64_C(1)) || (s->roles&~UINT64_C(3))) return X277_SURFACE;
++                for(unsigned k=0;k<j;k++) {
++                    const X277Surface *o=&g->surfaces[k];
++                    if(s->identity==o->identity || s->callback==o->callback || s->name==o->name ||
++                       (s->roles&o->roles) ||
++                       x277_overlap(s->begin,s->bytes,o->begin,o->bytes)) return X277_SURFACE;
++                }
++                if(s->callback==b->identity) {
++                    if(s->begin!=b->begin || s->bytes!=b->bytes) return X277_BIJECTION;
++                    matches++;
++                }
++            }
++            if(matches!=1) return X277_BIJECTION;
++        }
++    }
++    const X277CPU *a=&p->cpu[0],*b=&p->cpu[1];
++    if(a->thread!=b->thread || a->when>b->when || a->clock!=b->clock || a->count!=b->count ||
++       memcmp(a->callbacks,b->callbacks,a->count*sizeof(a->callbacks[0])) ||
++       memcmp(p->graph[0].surfaces,p->graph[1].surfaces,p->graph[0].count*sizeof(X277Surface)))
++        return X277_LIFETIME;
++    for(unsigned i=0;i<4;i++) {
++        const X277Texture *t=&p->textures[i];
++        if(!t->identity || !t->name || t->refs!=2 || t->cache_edges!=1 || t->unit_edges!=1 ||
++           t->allocation_bytes!=4096 || (t->allocation&4095) ||
++           !x277_range(t->allocation,t->allocation_bytes,p->ram_bytes) ||
++           t->source!=t->allocation+256 || t->source_bytes!=512 || t->palette || t->palette_bytes)
++            return X277_TEXTURE;
++        for(unsigned j=0;j<i;j++) {
++            const X277Texture *o=&p->textures[j];
++            if(t->identity==o->identity || t->name==o->name ||
++               x277_overlap(t->allocation,t->allocation_bytes,o->allocation,o->allocation_bytes))
++                return X277_TEXTURE;
++        }
++        for(unsigned j=0;j<p->graph[0].count;j++) {
++            const X277Surface *s=&p->graph[0].surfaces[j];
++            if(t->name==s->name || x277_overlap(t->allocation,t->allocation_bytes,s->begin,s->bytes))
++                return X277_OVERLAP;
++        }
++    }
++    return X277_OK;
++}
++#endif
++
++/*279 HOST-ONLY proposal. Caller must independently establish a current complete
++ * pinned-GL4.0 owner graph under actual locks/CPU/context acknowledgments.
++ * Not installed; no native GPU grant. The original277 contract is unchanged. */
++
++typedef struct {
++    X277Proof observation;
++    unsigned operation,complete_graph,unknown_edges,selected_gl_edges,selected_ui_edges;
++    unsigned locks_held,owner_current,contexts_current,observer_armed,cache_count;
++    unsigned enabled[4],target[4];
++} X279Proof;
++enum {X279_RELEASE=279, X279_OK=0, X279_REFUSED=1, X279_QUARANTINE=2};
++typedef struct {unsigned status,mutated_mask;} X279Result;
++static inline unsigned x279_admit(const X279Proof *p)
++{
++    if(!p || p->operation!=X279_RELEASE || x277_validate(&p->observation) ||
++       p->observation.stage!=1 || p->complete_graph!=1 || p->unknown_edges ||
++       p->selected_gl_edges || p->selected_ui_edges || p->locks_held!=1 ||
++       p->owner_current!=1 || p->contexts_current!=1 || p->observer_armed!=1 ||
++       p->cache_count<4 || p->cache_count>512) return X279_REFUSED;
++    for(unsigned i=0;i<4;i++)
++        if(p->enabled[i] || p->target[i]!=0x0de1) return X279_REFUSED;
++    return X279_OK;
++}
++
++bool pgraph_gl_reuse280_post(NV2AState *d);
++X279Result pgraph_gl_release280(NV2AState *d,const X279Proof *proof);
++#endif
+--- a/ui/xemu.c
++++ b/ui/xemu.c
+@@ -1823,3 +1823,117 @@
+ 
+     xbox_smc_update_tray_state();
+ }
++
++/* Pinned GL4.0 texture references and known FBO closure. Read-only scalar rows. */
++static bool x281_selected(uint64_t name,const uint64_t names[4])
++{for(unsigned i=0;i<4;i++)if(name==names[i])return true;return false;}
++static int x281_index(uint64_t value,const uint32_t *values,unsigned count)
++{for(unsigned i=0;i<count;i++)if(value==values[i])return i;return -1;}
++static bool x281_edges(const uint64_t (*rows)[8],unsigned count,unsigned roles,const uint64_t names[4])
++{
++    const uint32_t integers[]={0x85b5,0x8894,0x8895,0x88ed,0x88ef,0x8a28,0x8b8d,0x8c8f,0x8ca6,0x8ca7,0x8caa,0x8f36,0x8f37};
++    const uint32_t targets[]={0x8068,0x8069,0x806a,0x84f6,0x8514,0x8c1c,0x8c1d,0x8c2c,0x900a,0x9104,0x9105};
++    if(!rows || !count || count>(roles==8?8192u:180000u) || (roles!=6&&roles!=8))return false;
++    for(unsigned i=0;i<4;i++) {
++        if(!names[i] || names[i]>UINT32_MAX)return false;
++        for(unsigned j=0;j<i;j++)if(names[i]==names[j])return false;
++    }
++    unsigned context_mask=0;
++    for(unsigned h=0;h<count;h++)if(rows[h][0]==30) {
++        const uint64_t *header=rows[h];if(header[1]<1 || header[1]>3)return false;
++        unsigned role=header[1];
++        if(role<1||role>3 || !(roles&(1u<<role)) || (context_mask&(1u<<role)) ||
++           !header[2] || header[4]<1 || header[4]>256 || header[5]<1 || header[5]>64)return false;
++        context_mask|=1u<<role;
++        uint16_t texture_seen[256]={0};unsigned integer_seen=0;uint64_t attrib_seen=0;
++        uint64_t draw=UINT64_MAX,read=UINT64_MAX,vao=UINT64_MAX,program=UINT64_MAX;
++        for(unsigned n=0;n<count;n++) {
++            const uint64_t *r=rows[n];if(r[1]!=role)continue;
++            if(r[0]==31) {
++                int bit=x281_index(r[2],integers,13);
++                if(bit<0 || (integer_seen&(1u<<bit)))return false;
++                integer_seen|=1u<<bit;
++                if(r[2]==0x8ca6)draw=r[3];
++                if(r[2]==0x8caa)read=r[3];
++                if(r[2]==0x85b5)vao=r[3];
++                if(r[2]==0x8b8d)program=r[3];
++            } else if(r[0]==32) {
++                int bit=x281_index(r[3],targets,11);
++                if(bit<0 || r[2]>=header[4] || (texture_seen[r[2]]&(1u<<bit)) || x281_selected(r[4],names))return false;
++                texture_seen[r[2]]|=1u<<bit;
++            } else if(r[0]==33) {
++                if(r[2]>=header[5] || (attrib_seen&(UINT64_C(1)<<r[2])))return false;
++                attrib_seen|=UINT64_C(1)<<r[2];
++            }
++        }
++        if(integer_seen!=8191 || attrib_seen!=(header[5]==64?UINT64_MAX:(UINT64_C(1)<<header[5])-1))return false;
++        for(unsigned i=0;i<header[4];i++)if(texture_seen[i]!=2047)return false;
++        unsigned bound_draw=(!draw && roles!=8),bound_read=(!read && roles!=8);
++        for(unsigned n=0;n<count;n++)if(rows[n][0]==54&&rows[n][1]==role) {
++            const uint64_t *f=rows[n];unsigned attachments=0,restores=0;uint64_t slots=0,limit=0;unsigned ds=0;
++            if(f[3]>1)return false;
++            bound_draw|=f[2]==draw;bound_read|=f[2]==read;
++            for(unsigned j=0;j<n;j++)if(rows[j][0]==54&&rows[j][1]==role&&rows[j][2]==f[2])return false;
++            for(unsigned j=0;j<count;j++)if(rows[j][1]==role&&rows[j][2]==f[2]) {
++                const uint64_t *r=rows[j];
++                if(r[0]==56) {
++                    if(++restores>1 || !f[3] || r[3]!=r[4] || r[5]!=r[6] || r[7]<1 || r[7]>64)return false;
++                    limit=r[7];
++                } else if(r[0]==55) {
++                    if(!f[3] || (r[4]!=0&&r[4]!=0x1702&&r[4]!=0x8d41) || (!r[4]&&r[5]) ||
++                       (r[4]==0x1702&&x281_selected(r[5],names)))return false;
++                    attachments++;
++                    if(r[3]==0x8d00 || r[3]==0x8d20) {
++                        unsigned bit=r[3]==0x8d00?1:2;if(ds&bit)return false;ds|=bit;
++                    } else {
++                        if(r[3]<0x8ce0 || r[3]>=0x8ce0+64 || (slots&(UINT64_C(1)<<(r[3]-0x8ce0))))return false;
++                        slots|=UINT64_C(1)<<(r[3]-0x8ce0);
++                    }
++                }
++            }
++            if(f[3] && (restores!=1 || attachments!=limit+2 || ds!=3 || slots!=(limit==64?UINT64_MAX:(UINT64_C(1)<<limit)-1)))return false;
++            if(!f[3] && (restores||attachments))return false;
++        }
++        if(!bound_draw||!bound_read)return false;
++        unsigned bound_vao=(!vao && roles!=8),bound_program=(!program && roles!=8);
++        for(unsigned n=0;n<count;n++)if(rows[n][1]==role) {
++            if(rows[n][0]==57 && rows[n][2]==vao)bound_vao++;
++            if(rows[n][0]==61 && rows[n][2]==program)bound_program++;
++        }
++        if(!bound_vao || !bound_program || (roles==8 && (bound_vao!=1 || bound_program!=1)))return false;
++    }
++    if(context_mask!=roles)return false;
++    for(unsigned n=0;n<count;n++) {
++        const uint64_t *r=rows[n];
++        if((r[0]>=30&&r[0]<=33)||(r[0]>=52&&r[0]<=63)) {if(r[1]<1||r[1]>3||!(roles&(1u<<r[1])))return false;}
++        if(r[0]==55 || r[0]==56) {
++            unsigned parent=0;for(unsigned j=0;j<count;j++)parent+=rows[j][0]==54&&rows[j][1]==r[1]&&rows[j][2]==r[2];
++            if(parent!=1)return false;
++        }
++        if(roles==8 && ((r[0]==40&&(x281_selected(r[3],names)||x281_selected(r[4],names)||x281_selected(r[5],names))) ||
++                       (r[0]==64&&x281_selected(r[3],names))))return false;
++    }
++    return true;
++}
++
++bool xwn_ui281_unbound(const uint64_t names[4],uint64_t *context);
++/* Acquire published UI capture; no UI lock/job or mutation is introduced. */
++bool xwn_ui281_unbound(const uint64_t names[4],uint64_t *context)
++{
++    if(!qatomic_load_acquire(&frontend246_ready) || qatomic_load_acquire(&frontend246_state)!=2 ||
++       ui265_error || ui265_rows.overflow || !ui265_rows.rows)return false;
++    if(!x281_edges((const uint64_t (*)[8])ui265_rows.rows,ui265_rows.count,8,names))return false;
++    unsigned holders=0,surfaces=0,native=0;uint64_t handle=0,window=0;
++    for(unsigned i=0;i<ui265_rows.count;i++) {
++        const uint64_t *r=ui265_rows.rows[i];
++        if(r[0]==40){if(++holders!=1 || !r[1] || !r[2])return false;}
++        if(r[0]==64){if(++surfaces!=1 || !r[1] || !r[2] || !r[4] || !r[5] || !r[6] || !r[7])return false;handle=r[6];window=r[7];}
++    }
++    for(unsigned i=0;i<ui265_rows.count;i++) {
++        const uint64_t *r=ui265_rows.rows[i];
++        if(r[0]==65){if(++native!=1 || r[1]!=handle || r[3]!=handle || r[2]!=window || r[4]!=window)return false;}
++        if(r[0]==40 && r[2]!=handle)return false;
++    }
++    if(holders!=1 || surfaces!=1 || native!=1)return false;
++    *context=handle;return true;
++}
+--- a/hw/xbox/nv2a/pgraph/gl/texture.c
++++ b/hw/xbox/nv2a/pgraph/gl/texture.c
+@@ -1171,3 +1171,66 @@
+ 
+     r->texture_cache_entries = NULL;
+ }
++
++/*279 Unbound-only unit-reference release. HOST TEST PROPOSAL, not integrated.
++ * All callbacks, dirty surfaces, cache entries and source bytes remain owned.
++ * Return QUARANTINE after any mutation failure; never fabricate rollback. */
++static X279Result x279_release(NV2AState *d,const X279Proof *p)
++{
++    X279Result result={X279_REFUSED,0};
++    if(x279_admit(p))return result;
++    PGRAPHState *pg=&d->pgraph;PGRAPHGLState *r=pg->gl_renderer_state;
++    for(unsigned i=0;i<4;i++) {
++        const X277Texture *t=&p->observation.textures[i];TextureBinding *b=r->texture_binding[i];
++        if(!b || (uintptr_t)b!=t->identity || b->refcnt!=2 || b->gl_texture!=t->name ||
++           b->gl_target!=GL_TEXTURE_2D || pgraph_is_texture_enabled(pg,i))return result;
++        unsigned edges=0,walked=0,live=0;LruNode *n;
++        QTAILQ_FOREACH(n,&r->texture_cache.global,next_global) {
++            if(++walked>512)return result;
++            if(!lru_is_node_in_use(&r->texture_cache,n))continue;
++            live++;TextureLruNode *entry=container_of(n,TextureLruNode,node);
++            if(entry->binding==b) {
++                edges++;
++                if(entry->key.texture_vram_offset!=t->source || entry->key.texture_length!=t->source_bytes ||
++                   entry->key.palette_vram_offset!=t->palette || entry->key.palette_length!=t->palette_bytes)return result;
++            }
++        }
++        if(edges!=1 || live!=p->cache_count || r->texture_cache.num_used!=(int)live)return result;
++    }
++    GLint active=0;glGetIntegerv(GL_ACTIVE_TEXTURE,&active);bool valid=true;
++    for(unsigned i=0;i<4;i++) {
++        GLint bound=0;glActiveTexture(GL_TEXTURE0+i);glGetIntegerv(GL_TEXTURE_BINDING_2D,&bound);
++        if(bound)valid=false; /* This candidate intentionally refuses all bindings. */
++    }
++    glActiveTexture(active);
++    if(!valid || glGetError()!=GL_NO_ERROR || pgraph_gl_reuse269_error())return result;
++    for(unsigned i=0;i<4;i++) {
++        TextureBinding *b=r->texture_binding[i];
++        texture_binding_destroy(b); /* Actual original counted release + observer. */
++        r->texture_binding[i]=NULL;pg->texture_dirty[i]=true;
++        result.mutated_mask|=1u<<i;
++        /* Cache retains the only remaining ref. No object deletion is expected. */
++        if(b->refcnt!=1 || glGetError()!=GL_NO_ERROR || pgraph_gl_reuse269_error()) {
++            result.status=X279_QUARANTINE;return result;
++        }
++    }
++    result.status=X279_OK;return result;
++}
++
++/* One-shot post-release snapshots. Never fabricate a normal guest bind. */
++static unsigned x281_post_attempted;
++bool pgraph_gl_reuse280_post(NV2AState *d)
++{
++    if(qatomic_cmpxchg(&x281_post_attempted,0u,1u)!=0)return false;
++    if(!x269_enter())return false;
++    bool okay=true;
++    for(unsigned i=0;i<4;i++) {
++        /* Original snapshot function rechecks live cache owner and restores GL. */
++        if(!x269_snapshot(d,i,2)){okay=false;break;}
++    }
++    if(!okay)qatomic_fetch_or(&x269.transport_error,4u);
++    qatomic_fetch_and(&x269.busy,~1u);
++    return okay && !pgraph_gl_reuse269_error();
++}
++X279Result pgraph_gl_release280(NV2AState *d,const X279Proof *proof)
++{return x279_release(d,proof);}
