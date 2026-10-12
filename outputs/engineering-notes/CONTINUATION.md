@@ -1,3 +1,48 @@
+#273 CLOSED — bounded lifetime observer compiled; no guest preparation or launch
+
+Read outputs/owned-lifetime273/REPORT.md, DESIGN.md, NEXT.md, source-review.json,
+final-review.json and actual records. ALL owned processes CLOSED including
+build71621. No release installed, no native/SDK/physical change. No273 guest
+exists; never rerun consumed host/build IDs or earlier closed guests.
+
+Exact269 child renderer001 onE under lifetime273-build001 is191760677bytes,
+SHAbe818c61fd5b8641335472d32f680a215a8b8197ed706dd3e31b326f0a976102.
+Onlytexture.c diagnostic block changed; original texture source reconstructed
+exactly. All19 borrowed sources restored;79 inherited warning messages/no new.
+Core270 byte-identical, four reserved first-bind/final-free generations and128
+exact64-bit runs. Explicit little-endian terminal273.bin768..8960bytes carries
+gate/core/transport union, closed/disabled/sealed state and capture mask. No
+reset, dead-pointer dereference or generation revival; saturation stillFAILS.
+
+Actual extracted adapter ASan/UBSan host002:1million repeated decrements,
+four modeled bind snapshots,4096publication/seal races; independent decoder
+reconstructs1000006events/two runs and rejects115 mutations. Host004:128-run
+saturation, reserved4first/4final records survive,8960 short capacities refuse
+without output mutation; independent parser rejects failed overflow terminal.
+GL/file-open interfaces modeled; no actualGL/guest/content/performance result.
+Host001 indentation compilefailure and003 renamed-main return compilefailure
+remain preserved in private capsules. Rehashed15 hostfiles/21renderer sources/
+five buildinputs and executable. All closed; no guest execution.
+
+Next NEW terminal owner actor on exact273 BEFORE full standalone reuse control.
+Inherited seal269 closes observation on monitor thread but provides no fresh
+PFIFO/context/CPU acknowledgment after guest reuse. Initial265 capture does.
+Review precise lock order/lifetime in DESIGN; never reset265/246/247. Require
+actual owner, finite render/display fences, before/after CPU-exclusive jobs,
+GET/PUT/method/pending validation, stable native context IDs and sealed error
+union. No queue-empty or pb_busy shortcut. Independently decode owned271 source/
+RGBA and complete actual15RAMHT descriptors with explicit homebrew attestation;
+then one fresh unique control from unused blank media, full teardown/cold audit.
+No268 release until complete unchanged four-generation actual reuse. Native
+Windows aliases/deferred release remain separate; no physicalGPU promotion.
+
+Closed265/266 non-backing portables hashverified/offloaded with original-path
+junctions: outputs/task-storage-offload/portable-273.json. No backing disks moved.
+C last21958541312bytes; recheck20GiB build/projectedlaunch guard. Preserve272
+reserved-sector disk failure,269 overflow/changed firmware textures, all older
+failures and frozeninputs. Physical audio004/softwarevideo118/shared158/FATX0101,
+private256 recovery/0.1.0/0088 unchanged. DeadlineOct12 04:00UTC remains.
+
 #272 CLOSED — actual owned texture pixel control PASS; strict disk equality FALSE
 
 Read outputs/owned-runtime272/REPORT.md, DESIGN.md, NEXT.md, final-review.json

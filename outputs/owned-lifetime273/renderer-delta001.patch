@@ -1,0 +1,315 @@
+--- a/hw/xbox/nv2a/pgraph/gl/texture.c
++++ b/hw/xbox/nv2a/pgraph/gl/texture.c
+@@ -27,39 +27,189 @@
+ #include "debug.h"
+ #include "renderer.h"
+ 
+-/*269 Observation only. One worker-owned generation per original unit object.
++/*273 Observation only; bounded270 accounting. One worker-owned generation per original unit object.
+  * No release, GL object creation/deletion, guest command or guest memory write.
+  * Binary observations stay in a unique private host directory. File/GL calls
+  * have the outer owned-run watchdog; there is no claim of per-call cancellation.
+  */
+ #include <glib/gstdio.h>
+ #define X269_LIMIT (2u*1024u*1024u)
++/* Explicit little-endian terminal format; no C padding or pointer dereference. */
++#ifndef XWN_WIRE273_H
++#define XWN_WIRE273_H
++/* Bounded observation accounting only. No renderer integration or ownership grant.
++ * The single acknowledged owner calls these functions under the one-word gate.
++ * Opaque identities are NEVER dereferenced here. Four registrations are immutable.
++ */
++#ifndef XWN_LIFETIME270_H
++#define XWN_LIFETIME270_H
++#include <stdbool.h>
++#include <stdint.h>
++#include <string.h>
++#define L270_WATCHES 4u
++#define L270_RUNS 128u
++enum { L270_BIND=2, L270_DEC=3, L270_FREE=4 };
++enum { L270_BAD=1u, L270_OVERFLOW=2u, L270_SEQUENCE=4u, L270_EXTERNAL=8u };
++typedef struct {
++    uint64_t seq, identity, generation;
++    uint32_t kind, slot, code;
++} L270Event;
++typedef struct {
++    L270Event first;
++    uint64_t last_seq, count;
++} L270Run;
++typedef struct {
++    uint64_t identity, generation, binds, decrements;
++    bool live, has_bind, has_free;
++    L270Event first_bind, final_free;
++} L270Watch;
++typedef struct {
++    uint64_t sequence;
++    uint32_t error, run_count;
++    bool armed;
++    L270Watch watch[L270_WATCHES];
++    L270Run runs[L270_RUNS];
++} L270;
++
++static inline bool l270_arm(L270 *s, const uint64_t id[4], const uint64_t gen[4])
++{
++    if (s->armed || s->error || s->sequence || s->run_count) {s->error |= L270_BAD; return false;}
++    for (unsigned i=0;i<4;i++) {
++        if (!id[i] || !gen[i]) {s->error |= L270_BAD; return false;}
++        for (unsigned j=0;j<i;j++) if (id[i]==id[j] || gen[i]==gen[j]) {s->error |= L270_BAD; return false;}
++    }
++    for (unsigned i=0;i<4;i++) s->watch[i]=(L270Watch){.identity=id[i],.generation=gen[i],.live=true};
++    s->armed=true;
++    return true;
++}
++static inline void l270_count(L270 *s, uint64_t *counter)
++{
++    if (*counter==UINT64_MAX) s->error |= L270_OVERFLOW;
++    else ++*counter;
++}
++static inline void l270_run(L270 *s, L270Event e)
++{
++    L270Run *r=s->run_count?&s->runs[s->run_count-1]:NULL;
++    if (r && r->first.kind==e.kind && r->first.slot==e.slot && r->first.code==e.code &&
++        r->first.identity==e.identity && r->first.generation==e.generation &&
++        r->last_seq!=UINT64_MAX && r->last_seq+1==e.seq) {
++        if (r->count==UINT64_MAX) {s->error |= L270_OVERFLOW; return;}
++        ++r->count; r->last_seq=e.seq; return;
++    }
++    if (s->run_count==L270_RUNS) {s->error |= L270_OVERFLOW; return;}
++    s->runs[s->run_count++]=(L270Run){.first=e,.last_seq=e.seq,.count=1};
++}
++/* code is pre-decrement refcount for DEC, or (actual unit << 8)|path for BIND.
++ * A final-free record is emitted BEFORE the actual final decrement/free.
++ * Caller must never manufacture generation on address reuse or reset a tombstone.
++ */
++static inline bool l270_observe(L270 *s, unsigned slot, uint64_t id, uint64_t gen,
++                                unsigned kind, unsigned code)
++{
++    if (!s->armed || slot>=4) {s->error |= L270_BAD; return false;}
++    L270Watch *w=&s->watch[slot];
++    if (!w->live || w->identity!=id || w->generation!=gen ||
++        (kind!=L270_BIND && kind!=L270_DEC) ||
++        (kind==L270_DEC && !code) ||
++        (kind==L270_BIND && ((code>>8)>=4 || ((code&255)!=1 && (code&255)!=2)))) {
++        s->error |= L270_BAD; return false;
++    }
++    uint64_t seq=0;
++    if (s->sequence==UINT64_MAX) s->error |= L270_SEQUENCE;
++    else seq=++s->sequence;
++    L270Event e={seq,id,gen,kind,slot,code};
++    if (kind==L270_BIND) {
++        l270_count(s,&w->binds);
++        if (!w->has_bind) {w->first_bind=e; w->has_bind=true;}
++        else if (seq) l270_run(s,e);
++    } else {
++        l270_count(s,&w->decrements);
++        if (code==1) {
++            e.kind=L270_FREE; w->final_free=e; w->has_free=true; w->live=false;
++        } else if (seq) l270_run(s,e);
++    }
++    /* Even after run overflow, reserved first-bind/final-free slots survive.
++     * They aid diagnosis ONLY: error remains sticky and complete is false. */
++    return !s->error;
++}
++static inline bool l270_complete(const L270 *s)
++{
++    return s->armed && !s->error;
++}
++#endif
++
++#define X273_MAGIC UINT64_C(0x3337324e5758)
++#define X273_CAPACITY (128u+4u*160u+L270_RUNS*64u)
++typedef struct {
++    uint64_t gate_error,transport_error,worker,gate,enabled,sealed,captures;
++} X273Meta;
++static inline void x273_word(uint8_t **p,uint64_t n)
++{
++    for (unsigned i=0;i<8;i++) *(*p)++=(uint8_t)(n>>(8*i));
++}
++static inline void x273_event(uint8_t **p,const L270Event *e)
++{
++    x273_word(p,e->seq);x273_word(p,e->identity);x273_word(p,e->generation);
++    x273_word(p,e->kind);x273_word(p,e->slot);x273_word(p,e->code);
++}
++static inline unsigned x273_encode(const L270 *s,const X273Meta *m,uint8_t *out,unsigned capacity)
++{
++    if (!s || !m || !out || s->run_count>L270_RUNS) return 0;
++    unsigned bytes=128+4*160+s->run_count*64;
++    if (capacity<bytes) return 0;
++    uint8_t *p=out;
++    uint64_t h[16]={X273_MAGIC,273,bytes,4,s->run_count,s->sequence,s->error,
++        m->gate_error,m->transport_error,m->worker,m->gate,m->enabled,m->sealed,
++        m->captures,s->armed,0};
++    for (unsigned i=0;i<16;i++) x273_word(&p,h[i]);
++    for (unsigned i=0;i<4;i++) {
++        const L270Watch *w=&s->watch[i];
++        uint64_t row[8]={w->identity,w->generation,w->binds,w->decrements,
++            w->live,w->has_bind,w->has_free,i};
++        for (unsigned j=0;j<8;j++) x273_word(&p,row[j]);
++        x273_event(&p,&w->first_bind);x273_event(&p,&w->final_free);
++    }
++    for (unsigned i=0;i<s->run_count;i++) {
++        x273_event(&p,&s->runs[i].first);
++        x273_word(&p,s->runs[i].last_seq);x273_word(&p,s->runs[i].count);
++    }
++    return (unsigned)(p-out);
++}
++#endif
++
+ typedef struct {
+     TextureBinding *identity;
+     uint64_t generation;
+     unsigned name,live,captured;
+ } X269Watch;
+ static struct {
+-    unsigned busy,enabled,error,events;
++    unsigned busy,enabled,error,core_error,transport_error,terminal;
++    L270 accounting;
+     uint64_t thread;
+     char *dir;
+     X269Watch watches[4];
+ } x269;
+-unsigned pgraph_gl_reuse269_error(void) {return qatomic_read(&x269.error);}
++static FILE *x269_file(const char *leaf);
++static bool x273_terminal(void);
++unsigned pgraph_gl_reuse269_error(void) {
++    return qatomic_read(&x269.error) | (qatomic_read(&x269.core_error)<<8) |
++        (qatomic_read(&x269.transport_error)<<16);
++}
+ bool pgraph_gl_reuse269_seal(void)
+ {
+     qatomic_store_release(&x269.enabled,0);
+     /* Closed and active share one atomic word: no cross-variable stale load. */
+-    return !(qatomic_fetch_or(&x269.busy,2u)&1u);
++    if (qatomic_fetch_or(&x269.busy,2u)&1u) return false;
++    return x273_terminal();
+ }
+ 
+ static bool x269_enter(void)
+ {
+     if (!qatomic_load_acquire(&x269.enabled)) return false;
+     unsigned gate=qatomic_cmpxchg(&x269.busy,0u,1u);
+-    if (gate) {if (!(gate&2u)) qatomic_set(&x269.error,1);return false;}
++    if (gate) {if (!(gate&2u)) qatomic_fetch_or(&x269.error,1u);return false;}
+     if (qemu_get_thread_id()!=x269.thread) {
+-        qatomic_set(&x269.error,2);qatomic_fetch_and(&x269.busy,~1u);return false;
++        qatomic_fetch_or(&x269.error,2u);qatomic_fetch_and(&x269.busy,~1u);return false;
+     }
+     return true;
+ }
+@@ -70,19 +220,30 @@
+     if (fd<0) return NULL;
+     FILE *f=fdopen(fd,"wb");if (!f) close(fd);return f;
+ }
+-static bool x269_event(unsigned kind,unsigned unit,TextureBinding *b,unsigned code)
+-{
+-    /* One overflow marker, never a truncated observation labelled complete. */
+-    if (x269.events>128) return false;
+-    unsigned seq=x269.events++;
+-    if (seq==128) {kind=9;code=1;qatomic_set(&x269.error,3);}
+-    char leaf[64];snprintf(leaf,sizeof(leaf),"event-%03u.txt",seq);
+-    FILE *f=x269_file(leaf);if (!f) {qatomic_set(&x269.error,4);return false;}
+-    int n=fprintf(f,"seq=%u kind=%u unit=%u identity=%"PRIu64" code=%u thread=%"PRIu64"\n",
+-        seq,kind,unit,(uint64_t)(uintptr_t)b,code,(uint64_t)qemu_get_thread_id());
+-    bool okay=n>0;okay &= fclose(f)==0;
+-    if (!okay) qatomic_set(&x269.error,4);
+-    return okay && seq<128;
++static bool x273_terminal(void)
++{
++    unsigned terminal=qatomic_cmpxchg(&x269.terminal,0u,1u);
++    if (terminal) return terminal==2;
++    if (qatomic_load_acquire(&x269.busy)!=2 || qatomic_load_acquire(&x269.enabled)) {
++        qatomic_fetch_or(&x269.error,8u);qatomic_store_release(&x269.terminal,3u);return false;
++    }
++    uint64_t captures=0;
++    for (unsigned i=0;i<4;i++) if (x269.watches[i].captured==1) captures|=UINT64_C(1)<<i;
++    X273Meta m={qatomic_read(&x269.error),qatomic_read(&x269.transport_error),x269.thread,
++        qatomic_load_acquire(&x269.busy),qatomic_load_acquire(&x269.enabled),1,captures};
++    uint8_t bytes[X273_CAPACITY];unsigned n=x273_encode(&x269.accounting,&m,bytes,sizeof(bytes));
++    FILE *f=n?x269_file("terminal273.bin"):NULL;bool okay=f!=NULL;
++    if (f) {okay=fwrite(bytes,n,1,f)==1;okay &= fclose(f)==0;}
++    if (!okay) qatomic_fetch_or(&x269.transport_error,1u);
++    qatomic_store_release(&x269.terminal,okay?2u:3u);
++    return okay;
++}
++static void x273_record(unsigned slot,TextureBinding *b,unsigned kind,unsigned code)
++{
++    /* Called only under the single-owner gate, before any actual final free. */
++    l270_observe(&x269.accounting,slot,(uint64_t)(uintptr_t)b,
++        x269.watches[slot].generation,kind,code);
++    qatomic_store_release(&x269.core_error,x269.accounting.error);
+ }
+ static TextureLruNode *x269_cache(PGRAPHGLState *r,TextureBinding *b)
+ {
+@@ -139,7 +300,7 @@
+     /* Double sampling detects observed changes, not arbitrary CPU ABA races. */
+     bool stable=!memcmp(source,d->vram_ptr+a,n) && (!pn || !memcmp(palette,d->vram_ptr+pa,pn));
+     if (okay) {
+-        uint64_t header[24]={0x3936324e5758ULL,269,stage,index,w->generation,
++        uint64_t header[24]={0x3337324e5758ULL,273,stage,index,w->generation,
+             (uintptr_t)b,b->gl_texture,b->refcnt,b->data_hash,(uint64_t)b->draw_time,
+             a,n,pa,pn,width,height,format,bytes,sizeof(key),stable,0,
+             qemu_get_thread_id(),context[0],1};
+@@ -156,7 +317,7 @@
+ }
+ bool pgraph_gl_reuse269_arm(NV2AState *d)
+ {
+-    if (qatomic_read(&x269.enabled)) return false;
++    if (qatomic_read(&x269.enabled) || qatomic_read(&x269.busy) || x269.dir || x269.accounting.armed) return false;
+     const char *dir=getenv("XWN_REUSE269_DIR");if (!dir || !*dir) return false;
+     x269.dir=g_strdup(dir);x269.thread=qemu_get_thread_id();
+     PGRAPHGLState *r=d->pgraph.gl_renderer_state;
+@@ -167,31 +328,37 @@
+         x269.watches[i]=(X269Watch){b,i+1,b->gl_texture,1,0};
+         if (!x269_snapshot(d,i,0)) return false;
+     }
+-    if (!x269_event(1,0,NULL,0)) return false;
++    uint64_t ids[4],generations[4];
++    for (unsigned i=0;i<4;i++) {ids[i]=(uint64_t)(uintptr_t)x269.watches[i].identity;generations[i]=x269.watches[i].generation;}
++    if (!l270_arm(&x269.accounting,ids,generations)) {
++        qatomic_store_release(&x269.core_error,x269.accounting.error);return false;
++    }
+     qatomic_store_release(&x269.enabled,1);return true;
+ }
+ static void x269_bound(NV2AState *d,unsigned unit,TextureBinding *b,unsigned path)
+-{
+-    if (!x269_enter()) return;
+-    for (unsigned i=0;i<4;i++) {
+-        X269Watch *w=&x269.watches[i];
+-        if (!w->live || w->identity!=b || w->captured) continue;
+-        /* First ACTUAL normal bind, independent of the unit it now occupies. */
+-        bool okay=!qatomic_read(&x269.error) && x269_event(2,i,b,(unit<<8)|path);
+-        okay = okay && x269_snapshot(d,i,1);w->captured=1;
+-        if (!okay) {qatomic_set(&x269.error,5);x269_event(8,i,b,5);}
+-    }
+-    qatomic_fetch_and(&x269.busy,~1u);
+-}
+-static void x269_destroying(TextureBinding *b)
+ {
+     if (!x269_enter()) return;
+     for (unsigned i=0;i<4;i++) {
+         X269Watch *w=&x269.watches[i];
+         if (!w->live || w->identity!=b) continue;
+-        x269_event(3,i,b,b->refcnt);
+-        /* Invalidate generation BEFORE the actual final decrement/free. */
+-        if (b->refcnt==1) {w->live=0;x269_event(4,i,b,0);}
++        x273_record(i,b,L270_BIND,(unit<<8)|path);
++        if (!w->captured) {
++            /* First actual normal bind only; never invoke the binder here. */
++            if (x269_snapshot(d,i,1)) w->captured=1;
++            else {w->captured=2;qatomic_fetch_or(&x269.transport_error,2u);}
++        }
++    }
++    qatomic_fetch_and(&x269.busy,~1u);
++}
++static void x269_destroying(TextureBinding *b)
++{
++    if (!x269_enter()) return;
++    for (unsigned i=0;i<4;i++) {
++        X269Watch *w=&x269.watches[i];
++        if (!w->live || w->identity!=b) continue;
++        x273_record(i,b,L270_DEC,b->refcnt);
++        /* Tombstone before original destruction; never inspect a dead identity. */
++        if (b->refcnt==1) w->live=0;
+     }
+     qatomic_fetch_and(&x269.busy,~1u);
+ }
