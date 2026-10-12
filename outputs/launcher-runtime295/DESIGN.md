@@ -1,0 +1,3 @@
+# Bounded checkpoint comparison
+
+Use the exact matched293 control004/candidate004 XBE and ELF, a fresh blank8GiB fixture, private HD-enabled EEPROM and exact269 renderer. Hardware breakpoints stop at actual symbol addresses; no guest data/register changes. Pin complete resident text excluding only mutable image header bytes0..63; capture current control registers and stack at both stops. Entry permits ESP equal to stack top because startup jumps into C. A 300-second owned watchdog bounds the entire controller; each breakpoint wait is90seconds. Stop before loading an OS, remove all breakpoints and quit orderly. Cold compare the complete disk mapping and frozen artifacts.

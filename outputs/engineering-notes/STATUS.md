@@ -1,3 +1,11 @@
+# Launcher relocation passed its isolated startup check
+
+The prerequisite for a larger framebuffer now compiles and reaches both emulator
+startup checkpoints with its code and stack relocated safely below40MiB. The
+original physical launcher is unchanged. Windows handoff and1080i timing integration
+remain next; standalone physicalHD buffer checks passed, TV report still pending.
+0.2.0 remains untagged. Read ../launcher-runtime295/REPORT.md.
+
 # Physical HD mode path verified; Windows integration remains
 
 The new connection exposes HDTV modes. A single standalone test selected720p,

@@ -1,0 +1,9 @@
+# 293 relocated Cromwell candidate compiled
+
+Fresh matched control004 and candidate004 compile from the pinned base and physical-F patches using the same GCC12 and flags. Candidate changes 11 files: every code-location/config-copy/jump reference from 58 MiB to 38 MiB, startup/handoff stacks from 60 MiB to 40 MiB, and a linker assertion reserving at least 256 KiB stack headroom. Framebuffer reservation remains 4 MiB; no encoder or display-mode implementation changed.
+
+Actual candidate ELF BSS ends at 0x0265d7a8, leaving 1,714,264 bytes below stack top 0x02800000. Original sections retain their sizes. Actual XBE relocation copy and far-jump immediates target 0x02600000; startup ESP immediate is 0x02800000. The heap still ends at 38 MiB and initrd starts at 40 MiB. Sixteen compiler/linker warning messages match between builds; neither final build has clock-skew warnings. This is not a stack worst-case proof or full Windows boot qualification.
+
+Failures retained: control001 cannot create a Unix compiler symlink on DrvFS, before source checkout; control002 git apply --index reports a working/index mismatch despite a clean diff; a projected-space preflight refused control003 before output creation. Reviewed closed non-backing portable204/206 offloads recovered capacity. Fresh003 pair compiled on E but both report object timestamps in the future; neither was launched. Fresh004 uses owned ext4 source checkouts, with output/temp on E, and a shell compiler wrapper. Git worktree patch bytes and exact tree hashes remain verified. No shared SDK or prior source checkout was modified. Never reuse consumed identities.
+
+Original and candidate source/ELF/XBE artifacts remain private at E:/xwn293 and /home/paul/xbox-windows-native/build/relocation293-{control,candidate}004. The actual paired startup test is recorded separately in ../launcher-runtime295. No hardware deployment.

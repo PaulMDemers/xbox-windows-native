@@ -1,3 +1,32 @@
+# 293/295 relocated launcher initialization passed; Windows handoff still next
+
+Latest hardware evidence291/292 pushed7527ae3f. New293/294/295 are emulator-only;
+ALL owned processes CLOSED. Read launcher-relocation293 and launcher-runtime295
+REPORT/NEXT/final-review. Matched fresh control004/candidate004 compile; candidate
+moves code58->38MiB and stack60->40MiB, keeping4MiB framebuffer/mode unchanged.
+BSS ends0265d7a8;1,714,264B stack headroom,16 matched warnings/no clock skew.
+295 control001/candidate001 each reach entry and BootFromDevice with exact live
+text, actual relocated stack, identical64Bvideo state/scanout. No FreeLdr/Windows
+payload present; stop before loader lookup, orderlyexit0/fullcleanup. Both original
+strictdiskFALSE one reserved byte; fullmapping filesysteminheritedunchanged,
+QCOW/EEPROM/pins exact. Never relaunch/recollect/parent these cases.
+
+Preserve293 control001 DrvFS symlink failure,002 index mismatch, projectedguard
+refusal before003 creation,003 pair compiled clock-skew failures (neverlaunched).
+004 uses fresh ext4 source checkouts/outputE.294control001 failed overlystrict
+ESP<top check at entry (actualstartup JMP has ESP==top); closed/audited. Its old
+analysis case-name assertion failed before output; separate closed-case analyzer
+records full delta.295 fixes only hostattestor in fresh fixtures.
+
+Next: matched Windows fixture verifies relocated launcher through FreeLdr/kernel
+and normal restart; then coordinated9MiB map/provider/bootvid/miniport and complete
+interlace/PLL/encoder timing contract. No physical launcher change or0.2.0tag.
+292 physicalTV observation still pending; no need to rerun standalonepixeltest.
+Closed204/206 nonbacking portables hashverified/offloaded retainingjunctions:
+portable-293/293b; no backing moved. C21,806,940,160/E31,858,753,536B last measured.
+Retain20GiB projectedguard. Physicalaudio004/softwarevideo118/shared158/FATX0101,
+rollbacks/private256recovery/immutable0.1.0 unchanged; automation remains PAUSED.
+
 # 291/292 physical HD connection and standalone mode test completed
 
 All owned processes CLOSED. Read outputs/hd-connection291/REPORT.md and

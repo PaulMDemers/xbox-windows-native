@@ -1,0 +1,5 @@
+# 294 failed control attestor, closed
+
+The single control001 boot reached BootResetAction at the expected 58 MiB code location, ESP exactly 60 MiB. The host incorrectly required ESP strictly below the configured stack top. Pinned BootStartup.S uses a jump, not a call, so no return address had yet been pushed. The test stopped before resident text capture or later progress. Original inputs/trace are preserved; no guest or driver fault is inferred.
+
+Full breakpoint/physical-mode cleanup and orderly host exit0 completed. The cold audit preserves strict FALSE for one reserved-sector byte; all filesystem bytes remain inherited, QCOW/EEPROM and frozen inputs match. Original disk-delta helper rejected the new case name before creating output; separate analyze-closed-control001.py performed that read-only analysis. No collection or launch repeated. New295 uses a fresh fixture and corrected inclusive stack boundary, capturing below stack top when it is empty. No executed runtime parenting.

@@ -1,0 +1,169 @@
+--- a/boot_eth/eth_Startup.S
++++ b/boot_eth/eth_Startup.S
+@@ -8,7 +8,7 @@
+ 	xor	%edx, %edx
+ 	cld
+ 
+-	mov 	$0x03A00000, %edi    	// Destiation
++	mov 	$0x02600000, %edi    	// Destiation
+ 	mov 	$0x00100100, %esi	// Source
+ 	mov 	$0x200000, %ecx		// 2MB
+ 	rep movsb
+@@ -57,6 +57,6 @@
+ */
+ 
+ 	cld
+-	ljmp 	$0x10, $0x03A00000
++	ljmp 	$0x10, $0x02600000
+ 
+ .org 0x0100	// append crom image here
+--- a/boot_eth/eth_start.ld
++++ b/boot_eth/eth_start.ld
+@@ -7,7 +7,7 @@
+ MEMORY
+ {
+ 	ram (rwx) : ORIGIN = 0, LENGTH = 64M
+-	rom (rx)  : ORIGIN = 0x03A00000, LENGTH = 2M
++	rom (rx)  : ORIGIN = 0x02600000, LENGTH = 2M
+ }
+ 
+ 
+--- a/boot_rom/2bBootStartBios.c
++++ b/boot_rom/2bBootStartBios.c
+@@ -73,7 +73,7 @@
+ 
+ 	// do not change this, this is linked to many many scipts
+ 	unsigned int PROGRAMM_Memory_2bl 	= 0x00100000;
+-	unsigned int CROMWELL_Memory_pos 	= 0x03A00000;
++	unsigned int CROMWELL_Memory_pos 	= 0x02600000;
+ 	unsigned int CROMWELL_compress_temploc 	= 0x02000000;
+ 
+ 	unsigned int Buildinflash_Flash[4]	= { 0xfff00000,0xfff40000,0xfff80000,0xfffc0000};
+@@ -191,11 +191,11 @@
+ 		setLED("oooo");
+ 
+ 		// We now jump to the cromwell, Good bye 2bl loader
+-		// This means: jmp CROMWELL_Memory_pos == 0x03A00000
++		// This means: jmp CROMWELL_Memory_pos == 0x02600000
+ 		__asm __volatile__ (
+ 		"wbinvd\n"
+ 		"cld\n"
+-		"ljmp $0x10, $0x03A00000\n"
++		"ljmp $0x10, $0x02600000\n"
+ 		);
+ 		// We are not Longer here
+ 	}
+--- a/scripts/ldscript-crom.ld
++++ b/scripts/ldscript-crom.ld
+@@ -7,12 +7,12 @@
+ MEMORY
+ {
+ 	ram (rwx) : ORIGIN = 0, LENGTH = 64M
+-	rom (rx)  : ORIGIN = 0x03A00000, LENGTH = 2M
++	rom (rx)  : ORIGIN = 0x02600000, LENGTH = 2M
+ }
+ 
+ /* this should be changed depending the actual size of the rom */
+ ROM_SIZE = 256K;
+-LOW_ROM = 0x03A00000; /* 58MB */
++LOW_ROM = 0x02600000; /* 38MB */
+ 
+ SECTIONS {
+ 	/DISCARD/ : { *(.note.gnu.property) }
+@@ -75,3 +75,6 @@
+ BSS_SIZE = BSS_END - BSS_BASE;
+ BSS_SIZE_L = BSS_SIZE / 4;
+ 
++
++/* Relocation293: reserve a full 256 KiB downward-growing stack. */
++ASSERT(BSS_END <= 0x027C0000, "Cromwell overlaps relocated stack reserve");
+--- a/boot/BootResetAction.c
++++ b/boot/BootResetAction.c
+@@ -51,10 +51,10 @@
+ 	int nTempCursorX, nTempCursorY;
+ 	int n, nx;
+ 
+-        memcpy(&cromwell_config,(void*)(0x03A00000+0x20),4);
+-        memcpy(&cromwell_retryload,(void*)(0x03A00000+0x24),4);
+-	memcpy(&cromwell_loadbank,(void*)(0x03A00000+0x28),4);
+-        memcpy(&cromwell_Biostype,(void*)(0x03A00000+0x2C),4);
++        memcpy(&cromwell_config,(void*)(0x02600000+0x20),4);
++        memcpy(&cromwell_retryload,(void*)(0x02600000+0x24),4);
++	memcpy(&cromwell_loadbank,(void*)(0x02600000+0x28),4);
++        memcpy(&cromwell_Biostype,(void*)(0x02600000+0x2C),4);
+ 
+ 	VIDEO_CURSOR_POSX=40;
+ 	VIDEO_CURSOR_POSY=140;
+--- a/boot_vml/vml_Startup.S
++++ b/boot_vml/vml_Startup.S
+@@ -13,13 +13,13 @@
+ 	xor	%edx, %edx
+ 	cld
+ 
+-	mov 	$0x03A00000, %edi    	// Destiation
++	mov 	$0x02600000, %edi    	// Destiation
+ 	mov 	$0x00100100, %esi	// Source
+ 	mov 	$0x200000, %ecx		// 2MB
+ 	rep movsb
+ 	wbinvd
+ 	cld
+-	ljmp 	$0x10, $0x03A00000
++	ljmp 	$0x10, $0x02600000
+ 
+ .org 0x1700	// Here, we append the thing we want to load
+ 
+--- a/boot_vml/vml_start.ld
++++ b/boot_vml/vml_start.ld
+@@ -7,7 +7,7 @@
+ MEMORY
+ {
+ 	ram (rwx) : ORIGIN = 0, LENGTH = 64M
+-	rom (rx)  : ORIGIN = 0x03A00000, LENGTH = 2M
++	rom (rx)  : ORIGIN = 0x02600000, LENGTH = 2M
+ }
+ 
+ 
+--- a/boot_xbe/xbeboot.S
++++ b/boot_xbe/xbeboot.S
+@@ -32,7 +32,7 @@
+ // Memory reserved to the kernel (1 MB at the moment)
+ #define KERNEL_MAX_SIZE			0x00100000 // 1MB maximum Kernel for Cromwell
+ // Location of kernel in RAM
+-#define KERNEL_RAM_ADDRESS		0x03A00000
++#define KERNEL_RAM_ADDRESS		0x02600000
+ // Size of memory on a retail XBOX unit
+ #define RETAIL_RAM_SIZE			0x04000000
+ // Reserve pages in address space
+--- a/include/memory_layout.h
++++ b/include/memory_layout.h
+@@ -40,7 +40,7 @@
+ #define MEMORYMANAGEREND   0x02600000
+ #define MEMORYMANAGERSIZE  (MEMORYMANAGEREND - MEMORYMANAGERSTART)
+ 
+-#define STACK_TOP 0x03C00000
++#define STACK_TOP 0x02800000
+ 
+ /* the size of the framebuffer (defaults to 4 MB) */
+ #define FB_SIZE 0x00400000
+--- a/boot/LoadReactOS.c
++++ b/boot/LoadReactOS.c
+@@ -407,7 +407,7 @@
+ 	"mov %eax, %gs \n"
+ 
+ 	/* Set the stack pointer to give us a valid stack */
+-	"movl $0x03BFFFFC, %esp \n"
++	"movl $0x027FFFFC, %esp \n"
+ 	);
+ 
+ 	/* Ok, preparations are complete. Now move the image.
+--- a/boot/LoadLinux.c
++++ b/boot/LoadLinux.c
+@@ -424,7 +424,7 @@
+ 	"mov %eax, %gs \n"
+ 
+ 	// Set the stack pointer to give us a valid stack
+-	"movl $0x03BFFFFC, %esp \n"
++	"movl $0x027FFFFC, %esp \n"
+ 
+ 	"xor 	%eax, %eax \n"
+ 	"xor 	%ecx, %ecx \n"

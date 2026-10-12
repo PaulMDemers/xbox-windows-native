@@ -1,0 +1,5 @@
+# Relocation before framebuffer expansion
+
+Current code at 58-60 MiB and stack top 60 MiB overlap a proposed 9 MiB top-of-64-MiB framebuffer. Move code into 38-40 MiB, immediately above the existing heap, with the stack growing downward from 40 MiB. Keep every framebuffer/mode constant unchanged for this candidate. Update all actual XBE, ROM, VML and Ethernet entry/config references consistently, plus Linux and ReactOS transfer stacks. A linker assertion rejects BSS above 0x027c0000. ROM/ETH/VML products are compilation evidence only; do not flash them.
+
+The XBE temporary payload and trampoline allocations remain below 32 MiB. The destination image copy is one MiB; BSS/stack fit below 40 MiB. Actual ELF and machine instructions are reviewed independently. Runtime must pin resident text and actual ESP at entry and after hardware initialization. This does not establish FreeLdr/NT memory-map safety or HD timings. Linux initrd maximum and the 128 MiB path require later explicit review before larger reservations.
