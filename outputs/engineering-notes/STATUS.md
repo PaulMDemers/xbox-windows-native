@@ -1,3 +1,12 @@
+# Physical HD mode path verified; Windows integration remains
+
+The new connection exposes HDTV modes. A single standalone test selected720p,
+1920x1080 and fallback, verified13.2MB of framebuffer CRCs, and returned to
+UnleashX. TV visual confirmation is pending. The Windows/audio baseline is unchanged.
+Next is relocating the bootloader away from HD framebuffer memory, then a shared
+boot/display reservation and timing implementation.0.2.0 remains deferred.
+Read ../hd-physical292/REPORT.md and NEXT.md for scope and preserved failures.
+
 # Standalone HD mode milestone completed, Windows integration pending
 
 290 verified720p,1920x1080 API mode and return to640x480 in the emulator, with

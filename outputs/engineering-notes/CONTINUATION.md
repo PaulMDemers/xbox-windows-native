@@ -1,3 +1,23 @@
+# 291/292 physical HD connection and standalone mode test completed
+
+All owned processes CLOSED. Read outputs/hd-connection291/REPORT.md and
+outputs/hd-physical292/REPORT.md, NEXT.md, final-review.json. Single291 inventory
+now detects HDTV AV pack4, Conexant,64MiB,720p/1080 modes and inherited1080 timing.
+Single292 physical launch17:33:44 UTC returned17:35:17;720p/1080/fallback CRCs
+match13,209,600 bytes with zero native mismatches. TV visual confirmation pending.
+Protected Windows files/startup/fivehives unchanged. No WindowsHD qualification.
+292emu001 scopePASS/strictdiskFALSE one reserved byte; complete filesystem mapping
+unchanged, EEPROM/QCOWclean, full cleanup/orderlyexit. Preserve build001 syntax and
+002 clock-skew warning failures. Never relaunch/recollect/parent closed cases.
+
+Next relocation-only Cromwell layout work before coordinated9MiB HD framebuffer
+and actual timing implementation. Existing code58..60MiB/stack60MiB conflicts.
+No new Windows build/driver/launcher yet.0.2.0 untagged; automation remains PAUSED.
+Closed197/199/202 non-backing portables offloaded with complete hash readback and
+original junctions: portable-292/292b/292c manifests. No backing disks moved.
+C last21,600,907,264 bytes; retain20GiB projected build guard. Physical baseline
+FATX0101/softwarevideo118/shared158/audio004 and all rollbacks remain unchanged.
+
 # 290 standalone HD diagnostic closed; Windows HD handoff next
 
 Latest288 evidence pushed e257071c; this update records289/290 and verified storage
