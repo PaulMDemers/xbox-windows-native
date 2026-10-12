@@ -1,0 +1,13 @@
+# Bounded HD software surfaces
+
+The matched native119 bounds builds compiled and passed static review. Candidate accepts a1920x1080x32 software shadow only when the actual miniport-returned framebuffer and RAM lengths cover it, with a9MiB maximum. Control retains the exact old4MiB-visible-image restriction. Drawing, upload and ownership routines are unchanged; timing is unchanged.
+
+Host001 compiles the actual DrvEnableSurface/DisableSurface/AssertMode code against explicitly modeled Eng and miniport interfaces. Control passed48 lifecycle cases, candidate55, and each passed3969 independent geometry cases under ASan/UBSan with leak detection. Cases cover720x480,1024x576,1280x720 and1920x1080, exact allocation bytes, guard bytes, short responses/lengths, invalid geometry and injected allocation/bitmap/association/locking/registration failures. Host memory copies do not prove real NT5 drawing or hardware performance.
+
+Build003 uses RosBE2.2.1 and the exact qualified118 parent tree4e335dc7a23b4fc058db597a1dded0c098af3cb1. Only XWN_HD_SURFACE_BOUNDS differs between compiled control/candidate. Imports are unchanged and resolve against the owned Windows2000 win32k; exports and PE checksums pass. Both have29 identical warning instances. Tree-only Git reconstruction causes matching CMake version-discovery messages about absent HEAD; both actual compilations complete successfully.
+
+Build001 stopped before compilation because git archive excluded two tracked lwIP metadata files. Before completing that reconstruction, build002 saved its exact failed source/index as a private hashed tar archive and restored only those two files from the parent Git objects. The parent tree then matched exactly. Build002 subsequently refused the CRLF patch against LF native sources before compilation. Original patch, source files, reports and host inputs remain preserved. Build003 uses a separate LF patch/source review; only CRLF-to-LF normalization differs. Neither failed build launched a guest.
+
+Binary/source hashes and flags are in build003.json and binary-review003.json. This is not yet Windows1080i qualification:303 changes the bounds check, not Conexant timings.304 performs a fresh ordinary low-resolution compatibility pair with the300 reservation chain before HD mode implementation. No physical driver or release tag changed.
+
+The separate control-code-review.json confirms all17172 virtual .text bytes of the new control match the qualified118 binary exactly. Candidate .text is17188 bytes. This establishes unchanged control executable code, not whole-file identity or a candidate performance claim.

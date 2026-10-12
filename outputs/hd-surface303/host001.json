@@ -1,0 +1,69 @@
+{
+  "passed": true,
+  "inputs": {
+    "host.c": "1236ab8ce2c91c6926f130e018a8a9700d3a869b9f985182f791c094bbd8f3f6",
+    "surface.c": "992ff1abc4fc001a2c599a51882f8356f88b2e9db827e2f53d61a3e8c4067e4b",
+    "surface_bounds.h": "ff25bc631ea2f5ff355c7b77d1dfe3200efeb960b9b34cd9562df6024271f1e5",
+    "framebuf.h": "490fcc8f2911b208445ed858d691e5617d461d54f1988433fc3de842fa127de4"
+  },
+  "compiler_sha256": "b5f1b773a7c733738352000c92a077dc5852a1a2fc6d836b1e411be1e9ec5f88",
+  "cases": {
+    "0": {
+      "command": [
+        "/usr/bin/x86_64-linux-gnu-gcc-15",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-DXWN_HD_SURFACE_BOUNDS=0",
+        "/mnt/d/xwn303/host001/host.c",
+        "-o",
+        "/mnt/d/xwn303/host001/test0"
+      ],
+      "compile": {
+        "returncode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "test": {
+        "returncode": 0,
+        "stdout": "cases=48 geometry_checks=3969 profile=0\n",
+        "stderr": ""
+      },
+      "binary_sha256": "6c125d5c78e5a2fe313d8cb188b04251a345966cd896a0f3fa73215fad737a92"
+    },
+    "1": {
+      "command": [
+        "/usr/bin/x86_64-linux-gnu-gcc-15",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-DXWN_HD_SURFACE_BOUNDS=1",
+        "/mnt/d/xwn303/host001/host.c",
+        "-o",
+        "/mnt/d/xwn303/host001/test1"
+      ],
+      "compile": {
+        "returncode": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "test": {
+        "returncode": 0,
+        "stdout": "cases=55 geometry_checks=3969 profile=1\n",
+        "stderr": ""
+      },
+      "binary_sha256": "1e5bbfe9bf7f7e720c0c25c856f56b0db9317a0618326ba51b675cf61e58ee8c"
+    }
+  },
+  "limits": "Actual DrvEnableSurface/DisableSurface/AssertMode; modeled Eng allocations, upload, device mapping and registry. Not guest drawing, NT5 allocation or physical qualification."
+}

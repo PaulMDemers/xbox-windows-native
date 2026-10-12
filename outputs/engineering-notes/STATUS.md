@@ -1,3 +1,19 @@
+# Mapping and software HD bounds validated; timing integration remains
+
+The9MiB framebuffer is outside Windows-managed memory and mapped uncached across
+all19 observed process roots. The software driver now has a reviewed opt-in bounds
+check covering1920x1080 when returned memory lengths permit it.
+
+Its matched ordinary720x480 emulator pair passed drawing, audio, normal restart
+and cold integrity checks. KnownFtdisk49 remains a strict failure. No physical
+driver changed, and Windows1080i is not yet qualified.
+
+Next: complete the Conexant timing/readback reference, implement720p/1080i in the
+native handoff, then test on the connected TV.0.2.0 remains untagged. Read
+../hd-mapping302/REPORT.md, ../hd-surface303/REPORT.md,
+../hd-regression304/REPORT.md and ../hd-timing-reference305/DESIGN.md.
+C is below20GiB buildguard; recover verifiedclosed artifacts before next build.
+
 # Nine-MiB reservation passed its Windows workload; HD timings remain next
 
 The coordinated loader/bootvid/miniport candidate now boots Windows through the

@@ -1,3 +1,55 @@
+# 302 mapping and303/304 software HD bounds closed
+
+All owned sessions CLOSED:302 snapshot7980/runner48550/supervisor56830/audit77262;
+303 failedbuild97285/45434 and compiled66210;304 prepare41101 failed after
+conversion, read-only finish96109, candidateprepare33387;control24880/80288/audit2771,
+candidate39625/82544/audit41513. Final reviews complete; no xemu process remained.
+Never relaunch/recollect/parent these closed runtimes. Automation staysPAUSED.
+
+302 actual stopped-RAM diagnostic PASS: actual IDT/kernel/trap and memory-run
+code plus complete resident bootvid/miniport text,5pins. ABI2/physical55MiB/9MiB,
+hidden316160.2304pages excluded from actual runs/above PFNhigh-water14078;
+ZERO in-rangePFN entries, not2304decodedPFN structs.19active roots exact9MiB
+PCD/PWT1 PAT0/no conflicting presentaliases. PrivateRAM/aliases D:/xwn302/capture001.
+4616hostwalkerchecks,172frozen+6hostpins exact. Normalworkload/restart/orderlyexit0;
+cold327dirs6763files328clusters0errors/orphans,5hives58protected. Diagnostic scoped
+PASS/ordinaryFALSE/strictFALSE soleFt49. NoTLB/MSR/futurealias/GPU/physicalHDclaim.
+
+303 compiled003 uses exact118parent4e335dc7 and opt-in returned-length bounds
+up to1920x1080x32/9MiB. Control17172textbytes BYTE-IDENTICAL118;candidate17188,
+unchangedimports/exports/checksums,29matchedwarnings. Actual lifecycle hostASan/
+UBSan48control/55candidatecases plus3969geometry each;Eng/miniport/upload MODELED.
+001archive omitted2export-ignore lwIPmetadata files; exactfailedsource/index tar
+preserved D before002 completed parent fromGitobjects.002CRLFpatch refused;
+003 separateLFpatch/source review compiled. CMake absentHEAD diagnostics matched;
+no secondfreshrebuild/byte-reproducibility claim.16privatefiles rehashed. Read
+303REBUILD.md; binaries D:/xwn303/build003. Never rerun consumedbuild/host IDs.
+
+304ordinarypair scopedPASS: onlyxwnown.dll differs, same3009MiBchain/audio004/
+FATX0101/HDTV720x480.5drawing/6audio phases, normalrestart/orderlyexit0 each.
+Cold327/6763/328 zeroerrors/orphans,5hives58protected, policies/bindings unchanged.
+Cleancombinedinterval;strictFALSE soleFt49.173frozen+6hostpins exact. Initial
+controlprep missedLD_LIBRARY_PATH/buildlease; nootherbuild/guestactive; conversion/
+compare completed. Separateleasedread-onlyfinish, no repeatedconversion/launch.
+All failures and originals retained; see304DESIGN/preparation-failure001.
+
+NEXT305 SOURCE REVIEW ONLY, no build/prep/guest/physical attempt. ActualCromwell
+HDTVbranch hardcodes480p;720p/1080i selection commented. Complete boundedCRTC/
+pitch/overflow/interlace39,FP,clocks andConexantreadback beforeWindows timing.
+Primarydatasheet100381B confirms6cbit6 selectsstandardindexedreads, otherwise
+legacy status. SuccessfulSMBus alone cannot qualify bytes, including6c itself.
+Establishactualstockreadmode; no blind46write. Pinned sources/primaryURL in305.
+Then720p followed1080i anddistincthardwaretrials. UserTVconnected/keyboardunplugged/
+standingauthorization; no new permission question. Physicalaudio004/software118/
+shared158/FATX0101 unchanged; no0.2.0tag. Preserve0.1.0/0088/private256/allrollbacks.
+
+Five303closednonbackingportables offloaded983024889bytes toD withfullhashreadback/
+originaljunctions;no backing moved. Initialstage normalized3offloadfiles; working
+bytesunchanged; explicit-text/renormalize restoredbyteexactstage beforecommit.
+C last21278515200bytes BELOW20GiB: recoververifiedclosednonbackingartifacts BEFORE
+ANYnewbuild/launch. D485304565760/E22569418752bytes. Newfixtures/portable/scratch
+onD supportedroots. No backing-chainmoves/guardwaiver. Historicaluntrackedleft.
+
 # 300/301 nine-MiB reservation compiled and ordinary HDTV Windows pair closed
 
 All owned sessions CLOSED:300 native build46953;301 preparations25652/78900,

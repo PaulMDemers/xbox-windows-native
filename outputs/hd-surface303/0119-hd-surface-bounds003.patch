@@ -1,0 +1,63 @@
+--- a/win32ss/drivers/displays/framebuf/surface.c
++++ b/win32ss/drivers/displays/framebuf/surface.c
+@@ -19,6 +19,7 @@
+  */
+ 
+ #include "framebuf.h"
++#include "surface_bounds.h"
+ 
+ /*
+  * DrvEnableSurface
+@@ -73,11 +74,18 @@
+    ppdev->ScreenPtr = VideoMemoryInfo.VideoRamBase;
+    if (ulTemp < sizeof(VideoMemoryInfo) || !ppdev->ScreenPtr ||
+        VideoMemoryInfo.FrameBufferBase != ppdev->ScreenPtr ||
++#if XWN_HD_SURFACE_BOUNDS
++       !XwnSurfaceBytes(ppdev->ScreenWidth, ppdev->ScreenHeight, ppdev->ScreenDelta,
++                        ppdev->BitsPerPixel, VideoMemoryInfo.FrameBufferLength,
++                        VideoMemoryInfo.VideoRamLength)
++#else
+        ppdev->BitsPerPixel != 32 || !ppdev->ScreenWidth ||
+        ppdev->ScreenWidth > 1920 || !ppdev->ScreenHeight ||
+        ppdev->ScreenHeight > 1080 || ppdev->ScreenDelta != ppdev->ScreenWidth * 4 ||
+        ppdev->ScreenHeight > 0x400000 / ppdev->ScreenDelta ||
+-       VideoMemoryInfo.FrameBufferLength < ppdev->ScreenHeight * ppdev->ScreenDelta)
++       VideoMemoryInfo.FrameBufferLength < ppdev->ScreenHeight * ppdev->ScreenDelta
++#endif
++       )
+       goto FailMapping;
+ 
+    switch (ppdev->BitsPerPixel)
+--- a/win32ss/drivers/displays/framebuf/CMakeLists.txt
++++ b/win32ss/drivers/displays/framebuf/CMakeLists.txt
+@@ -43,3 +43,10 @@
+ else()
+  target_compile_definitions(xwnown PRIVATE XWN_TEXT_BOUNDS=0)
+ endif()
++
++option(XWN_HD_SURFACE_BOUNDS "Use bounded reported lengths for HD shadow surfaces" OFF)
++if(XWN_HD_SURFACE_BOUNDS)
++ target_compile_definitions(xwnown PRIVATE XWN_HD_SURFACE_BOUNDS=1)
++else()
++ target_compile_definitions(xwnown PRIVATE XWN_HD_SURFACE_BOUNDS=0)
++endif()
+--- /dev/null
++++ b/win32ss/drivers/displays/framebuf/surface_bounds.h
+@@ -0,0 +1,17 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++#ifndef XWN_SURFACE_BOUNDS_H
++#define XWN_SURFACE_BOUNDS_H
++/* Returned lengths must cover the image; bounded geometry prevents overflow. */
++static inline unsigned int
++XwnSurfaceBytes(unsigned int Width, unsigned int Height, unsigned int Stride,
++                unsigned int Bits, unsigned int FrameBytes, unsigned int RamBytes)
++{
++    unsigned int Bytes;
++    if (!Width || Width > 1920u || !Height || Height > 1080u || Bits != 32u ||
++        Stride != Width * 4u || !RamBytes || RamBytes > 0x00900000u ||
++        FrameBytes > RamBytes)
++        return 0;
++    Bytes = Height * Stride;
++    return Bytes <= FrameBytes ? Bytes : 0;
++}
++#endif
