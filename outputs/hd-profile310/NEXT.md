@@ -1,0 +1,9 @@
+# Integrate the selected profile, starting720p
+
+Use300 source tree a2942021cdd24fb2d60bc1be3b54efd7b01a76c6 for Cromwell and303 qualified software-bounds DLL.310 is pure data; do not call it a ready bootloader. Create a new isolated source/build ID and retain original low-resolution path.
+
+Inspect existing SetGPURegister, BootVgaInitialization, conexant_calc_hdtv_mode, I2C completion/status helpers and NVInitGrSeq/Attr before writing an adapter. Implement explicit opt-in Conexant/HDTV64MiB720p selection; unsupported cases must preserve existing behavior. Match input-format/DAC controls680630/68084c/6808c4 and final680880; avoid later helper overwrite. Review blanking, reset46/c6, encoder programming/EN_OUT, timing protection/masks, clock selection, finite polling and recovery ordering. Never use physical6c0 as programming input. Do not derive1080 field timing from720progressive heuristics.34 static CRTC fields plus dynamic pitch/pixel format have explicit values; measured low/high readback differences must not become write values. PCRTC_CONFIG3 and VPLL0003c20d are observations, not automatically authorized new writes.
+
+Host-test actual adapter write ordering, context guards and partial-failure behavior using modeled hardware I/O. Review source/binary pins, then fresh emulator validation and distinct hardware launcher before normal WindowsHD tests. One configuration at a time:720p before1080i. Verify memory descriptor/mapping and visible dimensions/stride; actualbootvid provider contract and hidden tail remain mandatory. Repeated physical drawing/audio/save/restart/cold integrity and user TV observations precede0.2.0.
+
+All309/308/307 runtimes closed; never rerun/recollect/parent. No test queued. Automation paused. Physical baseline unchanged. Preserve original strict failures and immutable0.1.0/0088/rollbacks.
