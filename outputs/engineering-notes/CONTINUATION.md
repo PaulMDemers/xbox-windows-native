@@ -1,3 +1,35 @@
+# 296 Windows relocation pair and 297/298 physical HD repeats closed
+
+Closeout capacity: C20,947,542,016/E26,486,112,256 bytes. C is
+BELOW20GiB. Do not start another build/launch until verified closed non-backing
+artifacts recover capacity; preserve the guard and all fixture backing chains.
+
+All owned sessions CLOSED, including296 runs22861/3667, supervisors42908/21018,
+cold audits98674/52709 and preparation84621/22106/23715. Read296REPORT/DESIGN/NEXT/
+final-review and297/298REPORT/final-review. Matched full Windows control/candidate
+both scoped audio/drawing/restart/integrity PASS, strictFALSE sole inheritedFt49.
+Each5drawing samples/6audio phases, independent channel/silence capture, normal
+Windows shutdown/dashboard and orderlyhostexit0. Cold327dirs6763files328clusters,
+0errors/orphans,5hives/protectedhashes/policies/bindings good.161frozeninputs+5host
+helpers exact. Only prepared launcher differs;4MiB remains, actual1024x576x32@60.
+Composite AV fixture does NOT qualify current physical HDTV path or WindowsHD.
+Preserve firstcontrol preparation missinglibhivex failure: conversion/filechecks
+had finished; separate read-only completion verified existing image. No rerun.
+
+297/298 physical standalone292 binary each ran ONCE, returnedUnleashX,13209600
+CRC bytes/zero mismatches; protected Windowsfiles/startup/5hives unchanged. User
+said297 "So far looks good, run it again";298 performed, specific visual feedback
+pending. No physical Windows launcher/driver deployed, no WindowsHD claim. Never
+relaunch/recollect/parent anyclosed runtime. Rootdemo251ticket retained.
+
+Next review HDTV branch before unique relocation-only Windows hardware boot;
+296 usedcomposite. Then coordinated9MiB reservation-only map/provider/bootvid/
+miniport with lowres timing, and complete ConexantCRTC/interlace/PLL reference
+before720p/1080i. See HD-INTEGRATION-PLAN.md. No queued physicaltest.0.2.0 untagged;
+expired overnight automation staysPAUSED. Physicalaudio004/softwarevideo118/
+shared158/FATX0101,0088/private256recovery/immutable0.1.0 unchanged. New296
+portables/scratch onE; retain20GiB projectedguard; no backingchains moved.
+
 # 293/295 relocated launcher initialization passed; Windows handoff still next
 
 Latest hardware evidence291/292 pushed7527ae3f. New293/294/295 are emulator-only;

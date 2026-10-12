@@ -1,3 +1,16 @@
+# Full Windows relocation check passed its scope; repeated HD pattern completed
+
+The relocated bootloader completed the existing Windows audio/drawing workload
+and normal restart in a matched emulator pair. Both cold integrity audits passed;
+the known Ftdisk49 remains a strict failure. This pair used the composite profile,
+not the physical HDTV cable path, and retained the4MiB framebuffer.
+
+The user reported the physical HD pattern looked good. The requested repeat also
+completed its720p/1080/fallback buffer checks and returned to UnleashX. Windows
+and its installed drivers remain unchanged. Next: HDTV-path relocation boot,
+coordinated9MiB framebuffer reservation, then actual Windows HD timing support.
+0.2.0 remains untagged. Read ../launcher-windows296/REPORT.md and NEXT.md.
+
 # Launcher relocation passed its isolated startup check
 
 The prerequisite for a larger framebuffer now compiles and reaches both emulator
