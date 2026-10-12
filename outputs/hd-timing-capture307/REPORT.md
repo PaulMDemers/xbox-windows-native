@@ -1,0 +1,13 @@
+#307 physical timing capture completed
+
+The new stock-API diagnostic completed720p,1080i and640x480 recovery in emulator and on the Conexant/HDTV64MiB console. Physical launch20:21:20UTC; dashboard return collected once. All three independent CRCs match; all69 CRTC and9 config/PLL/general-control values captured. Selector and interrupt flags restored at each stage. No encoder I/O or Windows installation changes. Protected binaries, startup and five hives unchanged. No new user visual observation inferred.
+
+Hardware PCRTC_CONFIG is3 in each mode; emulator reports0. Interlace CRTC39 is10hex at1080i andff for720p/recovery. The physical stock VPLL coefficient is0003c20d. These are actual run observations, not a complete Windows programming recipe.
+
+Actual4034 kernel capture623712bytes has47 resident pages and106 explicit unavailable/zero-filled pages. Resident text and the mode function/table are fully available. Private capture plus reconstructed executable/disassembly stay onD; no proprietary bytes committed. Actual AvSetDisplayMode export3 at8003130c,1181resident bytes CRCb812777b. Static analysis finds6c writes46/c6 and HD table entries46, followed by bit7-setting RMW. Thus stock code intends standard indexed encoder readback; it does not check every write status, so actual readback remains next. This is static code-path evidence, not a hardware SMBus trace.
+
+Native build001 used pinned prebuilt nxdk libraries, no shared change, one inherited reviewed linker warning. The actual interrupt-disabled interval has23+3 bounded reads,24 selector writes, no calls, and exact saved flags/selector restoration.175 independent synthetic transport negatives rejected. Emulator actual XBE/text/caller/kernel header/exports/physical translations andfull framebuffer captures are recorded individually; final-review gives the exact rehashed capture count. No Windows shutdown claim. Orderly host exit0 with breakpoint/physical-mode cleanup.
+
+Strict emulator whole-disk equality remainsFALSE: one byte in reserved sector1536, filesystem data inherited unchanged, QCOW and EEPROM checks pass. Original failure is retained. Initial physical collection probe timed out before reading any file; later single successful collection preserved log and private kernel. No launch retry.
+
+Related offload306 recovered589833782bytes from three verified closed non-backing copies, preserving original paths through junctions. Initial plan generation refused the audio root because some run records resolved outside the workspace; no mutation from that failed plan. Selected evict roots fully verified. No backing disk moved.

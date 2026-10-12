@@ -1,3 +1,9 @@
+#307 timing capture and306 storage closeout
+
+307emu001 andphysical001 CLOSED, do not rerun. See outputs/hd-timing-capture307/{REPORT,NEXT,final-review,encoder-path-review001}. Native build53619/prepare86114/emulator11325 CLOSED, physical launch/collection CLOSED. Actual hardware stock720p/1080i/recovery CRCs pass;69CRTC+9MMIO values, selector/IF restored. Baseline/protected files/startup5hives unchanged. Actual4034 resident kernel private D:/xwn307/physical001:623712bytes,47valid/106missing pages; missing bytes explicitzeros. Full resident AvSetDisplayMode1181bytes hash0f8da8f4... CRCb812777b; static sixC writes46/c6 and table46 establish intended standard indexed reads, actual encoder readback NEXT. No SMBus read/write by new diagnostic; no WindowsHD qualification. Emulator strictFALSE sole reservedsector1536onebyte; disk map provesfilesystem inheritedunchanged, QCOW/EEPROMsame. Source/dependency pins and captures rehashed; normal guest recovery/dashboard, orderly hostexit0. Allownedprocessesclosed.
+
+306 offloaded three closed non-backing evict portables589833782bytes toD with readbackhashes/originaljunctions. Initial plan refused audio paths resolving outsideworkspace; no mutation. manifest outputs/task-storage-offload/portable-306.json. No backing moved. C~21.8GB decimal, recheck20GiB guard. Automation staysPAUSED.
+
 # 302 mapping and303/304 software HD bounds closed
 
 All owned sessions CLOSED:302 snapshot7980/runner48550/supervisor56830/audit77262;
