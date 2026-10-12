@@ -1,3 +1,35 @@
+# Active user-directed 1080i work before 0.2.0 - 288 completed
+
+The user authorized a new interactive work period after the prior cutoff and
+explicitly requested a hardware inventory. Automation remains PAUSED. Defer the
+287 backend-disposal queue and release tagging until the 1080i milestone is stable.
+Read outputs/video-capabilities288/REPORT.md, NEXT.md and final-review.json.
+
+288 build001 / emu001 / physical001 are CLOSED; never relaunch/recollect/parent.
+Single physical launch 2026-10-12 16:49:33 UTC returned to UnleashX, collected
+16:50:36. Conexant read succeeded, 64 MiB, kernel 1.0.4034.1. Settings004f0101
+mean NTSC-M with saved HD flags but STANDARD AV pack1; only640x480/720x480.
+Current HDMI adapter does not expose component/HDTV modes. User informed that
+physical1080i needs both a capable cable/adapter and1080i display. No EEPROM or
+mode change, Windows boot, autostart/menu change. Protected baseline, startup
+and five hives exact before/after. App/log only E:/Applications/XWNVideo288.
+Original emulator strict disk equality remains FALSE (one reserved-sector byte),
+filesystem inherited unchanged; scope-only inventory pass remains distinct.
+Private build/emulator evidence E:/xwn288. All owned processes CLOSED.
+External atomic writer's missing prelaunch dependency pin is disclosed in final
+review; no retroactive full closure claim. Preserved initial equivalent-code
+static-check failure and early FTP return check; only one launch/collection.
+
+Next NEW emulator-only HD pattern/timing diagnostic, then coordinated launcher,
+FreeLdr, bootvid/shared provider, miniport and display memory/timing contract.
+Full1080x1920x4 plus existing bootvid back area exceeds8MiB. Growing top-RAM
+reservation overlaps Cromwell code58MiB and stack60MiB; no naive size-only patch.
+Do not force HDTV on current connection or deploy HD modes yet. Physical
+FATX0101/display118/shared158/audio004 unchanged. No0.2.0 tag. Preserve all prior
+failures, immutable0.1.0/0088 and private256 recovery; no duplicate capture.
+
+## Historical closeout (superseded only by new interactive authorization)
+
 # TIME WINDOW CLOSED - automation PAUSED
 
 Authorized cutoff 2026-10-12 04:00 UTC reached. Verified at 04:04:52 UTC; no new

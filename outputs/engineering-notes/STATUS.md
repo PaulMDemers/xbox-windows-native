@@ -1,3 +1,17 @@
+# October12: 1080i preparation, release deferred
+
+The authorized video inventory288 confirmed Conexant and64MiB. The current HDMI
+adapter presents standard AV; only640x480 and720x480 are exposed. Saved HD flags
+do not override the cable detection. Physical1080i testing needs a component/HDTV
+capable adapter/cable and1080i-capable display. Current Windows/audio drivers,
+startup and five hives are unchanged. The console returned to UnleashX.
+
+Next is emulator-only HD mode/timing validation and a coordinated Windows boot
+framebuffer layout. 0.2.0 is not tagged; prior overnight automation stays paused.
+Read ../video-capabilities288/REPORT.md and NEXT.md. GPU retirement is deferred.
+
+## Preserved combined demo status
+
 # October11 combined demo preview
 
 Current installed physical: FATX0101, exact tested display118/shared158, genuine
