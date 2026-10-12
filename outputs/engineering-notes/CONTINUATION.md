@@ -1,3 +1,60 @@
+#276 CLOSED — four refused callbacks matched; no release/admission promotion
+
+Read outputs/callback-inventory276/REPORT.md, DESIGN.md, NEXT.md,
+source-review.json, final-review.json and emu001/inventory-analysis.json.
+All owned processes CLOSED: builds59297/93288/39349, runtime40686. Never
+relaunch/recollect/parent276emu001 or old closed cases. Physical unchanged.
+
+Actual observation PASS, admission/strictFALSE. Launch01:00:01->closed01:00:30UTC.
+CPU-exclusive epoch1 identified4 callbacks, each bijective with surface graph
+identity/range; common actual function/region/device, original classifierPASS.
+All four draw_dirty1. Offsets/bytes:54329344/2457600 and53100544/1228800 unbound
+with native provenance unresolved;60276736/1228800 currentdepth and
+59047936/1228800 currentextra color target exact native matches. None overlaps
+four owned texture allocations. Addresses apply ONLY this run. Complete55624
+rows/218pages plus8UIpages;48shader workfunctions returned (notthreadjoin),
+264indexed rows305known attachments.12actualowner/range mutations rejected.
+Native phase11 exact720pixels16384source/guard384vertices and15descriptors.
+34native captures/private rawHMP replies rehashed,82frozen dependencies exact.
+
+No observer arm, second CPU acknowledgment, guestreuse or lifetime/retirement
+proof. Explicit observe276 preserves reason14 and returns27 for unexpected
+zero count BEFORE arm. New getter copies acknowledged immutableCPUmetadata;
+saved pointers never dereferenced. Full originalrenderer source reconstructed.
+Host17688checks1024publication races30wire mutations;4128actual no-arm cases.
+RealWindows sharing transient/permanent tests pass; runtime fullpage collection
+works. One status-reader sharing denial did not affect controller. Frontend
+reopened, breakpoint/physicalmode teardown, quarantinedguest, orderlyexit0.
+ColdQCOW/EEPROMclean,strict8GiB equalityFALSE reservedsector1536onebyte;fullmap/
+65536overlay provesfilesystem inheritedunchanged,writerunattributed/no waiver.
+
+Reviewed renderer003 E:/Codex-archive/xbox-windows-native/callback276-build003/
+xemu-callback276.exe SHA7a19d5c3c3125b522cd7ca8699b1b6a78356f6b6976732a2c00de01be40de502,
+191777779bytes.79inheritedwarnings/no new,19borrowedfilesrestored.001failed
+missingpublicdeclaration;002compiled butnewformatwarning reviewFAILED;003adds
+gnu_printf annotation and exactgetterretested.001/002 neverlaunched. Host002
+branchtest succeeded thenwarningreviewfailed;freshhost004 review passed.
+
+NEXT review NEW narrow transaction contract, not a count4 exception. Complete
+CPU callback<->locked SurfaceBinding bijection with identity/range/function/
+region/opaque, rejectunknown/duplicate/missing/overflow/overlap with four owned
+textures, two acknowledged CPU boundaries pertransaction, stable tuples and
+actual owner/context/fences. Keep every dirty surface/callback registered and
+unchanged. No downloads/removal/release/joins/pendingclearing or globalreset.
+Resolve whether two unbound surfaces can remain outside narrow unit transaction;
+if guest allocation ownership needed, NEW capture actual pb framebuffer/extra
+allocation globals, not address guesses or firmware labels. No repeatedboot
+forluck. Only reviewed/tested explicit contract supports NEW no-release four-
+generation actual unchanged source/RGBA/framebuffer control; only qualifying
+control supports later separate268release. No whole-backend/nativeGPUgrant.
+
+Closed185non-backing portable hashverified/offloadedE with originaljunction;
+outputs/task-storage-offload/portable-276.json. No backingchains moved.
+C last21635239936bytes,E39481114624bytes; retain20GiB projectedguard.
+All physicaldemo/recovery/strict limitations below remain unchanged.
+
+--- Previous continuation (preserved) ---
+
 #275 CLOSED — initial four-callback refusal, plus host recorder failure
 
 Read outputs/owned-reuse275/REPORT.md, DESIGN.md, NEXT.md, final-review.json,

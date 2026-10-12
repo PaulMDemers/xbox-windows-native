@@ -1,0 +1,126 @@
+--- a/hw/xbox/nv2a/nv2a.c
++++ b/hw/xbox/nv2a/nv2a.c
+@@ -356,6 +356,8 @@
+ { pgraph_gl_ledger265_request(NV2A_DEVICE(obj),value,errp); }
+ static void ledger265_page_set(Object *obj,const char *value,Error **errp)
+ { pgraph_gl_ledger265_page(NV2A_DEVICE(obj),value,errp); }
++static char *callbacks276_report(Object *obj,Error **errp)
++{ return pgraph_gl_callbacks276_report(NV2A_DEVICE(obj)); }
+ static char *ledger265_report(Object *obj,Error **errp)
+ { return pgraph_gl_ledger265_report(NV2A_DEVICE(obj)); }
+ static char *ledger265_data(Object *obj,Error **errp)
+@@ -769,6 +771,7 @@
+     object_property_add_str(OBJECT(d),"xwn-ledger265",NULL,ledger265_set);
+     object_property_add_str(OBJECT(d),"xwn-ledger265-page",ledger265_data,ledger265_page_set);
+     object_property_add_str(OBJECT(d),"xwn-ledger265-report",ledger265_report,NULL);
++    object_property_add_str(OBJECT(d),"xwn-callbacks276",callbacks276_report,NULL);
+     object_property_add_str(OBJECT(d),"xwn-ui265-page",ui265_data,ui265_page_set);
+     object_property_add_str(OBJECT(d),"xwn-ui265-report",ui265_report,NULL);
+     object_property_add_str(OBJECT(d),"xwn-pattern260",NULL,pattern260_set);
+--- a/hw/xbox/nv2a/nv2a_int.h
++++ b/hw/xbox/nv2a/nv2a_int.h
+@@ -287,6 +287,7 @@
+ void pgraph_gl_ledger265_request(NV2AState *d,const char *value,Error **errp);
+ void pgraph_gl_ledger265_page(NV2AState *d,const char *value,Error **errp);
+ char *pgraph_gl_ledger265_report(NV2AState *d);
++char *pgraph_gl_callbacks276_report(NV2AState *d);
+ char *pgraph_gl_ledger265_data(NV2AState *d);
+ char *xwn_ui265_report(void);
+ char *xwn_ui265_data(unsigned page);
+--- a/hw/xbox/nv2a/pgraph/gl/renderer.c
++++ b/hw/xbox/nv2a/pgraph/gl/renderer.c
+@@ -642,6 +642,7 @@
+     NV2AState *d;
+     unsigned done,reason,count;
+     uint64_t epoch,thread,when,rows[X260_CALLBACKS][4];
++    uint64_t detail276[X260_CALLBACKS][3]; /* CPU-owned function,region,absolute RAM address */
+ } X260CPU;
+ /*263 Observation of the unchanged pending-work refusal, under existing locks. */
+ static unsigned x263_pending_mask(unsigned nop,unsigned flip,unsigned context,
+@@ -690,6 +691,8 @@
+         if(!pgraph_gl_pattern260_callback_owned(d,cb)){a->reason=5;break;}
+         ram_addr_t base=memory_region_get_ram_addr(d->vram);
+         if(base==RAM_ADDR_INVALID||cb->addr<base){a->reason=6;break;}
++        uint64_t *detail=a->detail276[a->count];
++        detail[0]=(uintptr_t)cb->func;detail[1]=(uintptr_t)cb->mr;detail[2]=cb->addr;
+         uint64_t *row=a->rows[a->count++];
+         row[0]=(uintptr_t)cb;row[1]=cb->addr-base;row[2]=cb->len;row[3]=(uintptr_t)cb->opaque;
+     }
+@@ -1065,6 +1068,7 @@
+     /*274 Separate never-reset end capture. Published once under FIFO lock. */
+     struct X265State *end274;
+     unsigned end_page274,contexts274,seal274;
++    bool observe276; /* Never arms texture lifetime observation. */
+ } X265State;
+ 
+ /*267 Bounded query of indexed references and known context-local containers.
+@@ -1425,6 +1429,7 @@
+     if (!context_ok) {reason=9;goto finish;}
+     /*269 Watch only after the immutable graph and context observations. */
+     if (s->accounting_error || s->shader_jobs_unknown || v->cpu[0].count) {reason=14;goto finish;}
++    if (s->observe276) {reason=27;goto finish;} /* no arm even if count unexpectedly zero */
+     if (ending) {
+         s->contexts274=x274_context_match(initial,s);
+         if (!s->contexts274) {reason=21;goto finish;}
+@@ -1491,7 +1496,8 @@
+             qatomic_load_acquire(&s->end274) || !pgraph_gl_reuse269_seal()) error_setg(errp,"269 seal requires stopped CPU and completed observer entry");
+         return;
+     }
+-    if (strcmp(value,"capture,1") || runstate_is_running() || !xwn_frontend246_closed() ||
++    bool observe276=!strcmp(value,"observe276");
++    if ((!observe276 && strcmp(value,"capture,1")) || runstate_is_running() || !xwn_frontend246_closed() ||
+         !d->pgraph.renderer || d->pgraph.renderer->type!=CONFIG_DISPLAY_RENDERER_OPENGL ||
+         qatomic_load_acquire(&d->ledger265) || qatomic_load_acquire(&d->pattern260) ||
+         qatomic_load_acquire(&d->worker247.state) || qatomic_load_acquire(&d->preserve227.state)) {
+@@ -1499,6 +1505,7 @@
+     }
+     if (qemu_mutex_trylock(&d->pfifo.lock)) {error_setg(errp,"265 FIFO busy; not accepted");return;}
+     X265State *s=g_new0(X265State,1);X260Slot *v=&s->boundary;
++    s->observe276=observe276;
+     s->ledger.rows=g_malloc0_n(X265_ROWS,sizeof(*s->ledger.rows));s->ledger.capacity=X265_ROWS;
+     v->stage=1;v->started=qemu_clock_get_ns(QEMU_CLOCK_REALTIME);v->deadline=v->started+10000000000LL;
+     v->old_halt=qatomic_read(&d->pfifo.halt);qatomic_set(&d->pfifo.halt,true);
+@@ -1544,3 +1551,43 @@
+     if (state!=5 && state!=6) return g_strdup("version=265 unavailable=1");
+     return x265_rows_page(&s->ledger,s->page,terminal?2:1);
+ }
++
++/*276 Read-only terminal-refusal view. CPU-owned records are never dereferenced
++ * through their saved callback pointers. No job, gate or lifetime mutation. */
++static char *x276_unavailable(unsigned state,unsigned done,unsigned error)
++{
++    return g_strdup_printf("version=276 available=0 state=%u done=%u error=%u",state,done,error);
++}
++static bool x276_append(char *buffer,size_t *used,const char *format,...)
++{
++    va_list args;va_start(args,format);
++    int n=vsnprintf(buffer+*used,65536-*used,format,args);va_end(args);
++    if(n<0 || (size_t)n>=65536-*used)return false;
++    *used+=(size_t)n;return true;
++}
++char *pgraph_gl_callbacks276_report(NV2AState *d)
++{
++    X265State *s=qatomic_load_acquire(&d->ledger265);
++    if(!s)return x276_unavailable(0,0,1);
++    X260Slot *v=&s->boundary;unsigned state=qatomic_load_acquire(&v->state);
++    if(state!=6)return x276_unavailable(state,0,2);
++    X260CPU *a=&v->cpu[0];unsigned done=qatomic_load_acquire(&a->done);
++    if(done!=1)return x276_unavailable(state,done,3);
++    /* Once acknowledged, this CPU job never writes its metadata again. The
++     * actor and CPU metadata remain allocated even after a failed boundary. */
++    if(v->stage!=1 || v->reason!=14 || a->reason || a->count>X260_CALLBACKS ||
++       !v->worker_thread || !a->thread || a->thread==v->worker_thread ||
++       a->epoch!=1 || a->when<v->started || a->when>v->finished ||
++       v->finished>=(uint64_t)v->deadline)return x276_unavailable(state,done,4);
++    char *buffer=g_malloc(65536);size_t used=0;
++    bool okay=x276_append(buffer,&used,"version=276 available=1 state=%u done=%u error=0 stage=%u phase=0 reason=%u cpu_reason=%u count=%u capacity=%u epoch=%"PRIu64" thread=%"PRIu64" worker=%"PRIu64" when=%"PRIu64" started=%"PRIu64" finished=%"PRIu64" deadline=%"PRIu64" device=%"PRIu64" native_grant=0",
++        state,done,v->stage,v->reason,a->reason,a->count,X260_CALLBACKS,a->epoch,
++        a->thread,v->worker_thread,a->when,v->started,v->finished,(uint64_t)v->deadline,(uint64_t)(uintptr_t)d);
++    for(unsigned i=0;okay && i<a->count;i++) {
++        const uint64_t *r=a->rows[i],*e=a->detail276[i];
++        okay=x276_append(buffer,&used," c%u=%"PRIu64":%"PRIu64":%"PRIu64":%"PRIu64":%"PRIu64":%"PRIu64":%"PRIu64,
++            i,r[0],r[1],r[2],r[3],e[0],e[1],e[2]);
++    }
++    if(!okay){g_free(buffer);return x276_unavailable(state,done,5);}
++    return buffer;
++}
