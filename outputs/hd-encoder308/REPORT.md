@@ -1,0 +1,11 @@
+#308 preserves a physical readback refusal
+
+The new encoder capture passed in xemu4627 but FAILED its declared hardware gate. Physical launch20:30:46UTC reached720p, then error35 because register6c returned0 with success status in both passes. The program restored640x480, repeated the same readback result and returned to UnleashX.1080i was deliberately not attempted after refusal. No crash or signal loss inferred. Protected binaries/startup/five hives and payload hashes are unchanged.
+
+The original collector downloaded log/kernel and checked baseline, then its strict three-mode parser correctly rejected the incomplete run. close-refusal.py preserves that failure and closes the trial from existing local captures plus a fresh read-only baseline check; no relaunch or log re-download. The native gate and original decoder remain unchanged.
+
+Independent partial-comparison001: the other13 addressed values match the actual captured stock kernel programming data for720p and recovery in both passes.6c alone differs; it cannot be used as a trustworthy readback latch yet. Primary Conexant100381B2.4 labels6c read/write and bit6 standard-read enable; there is no discovered primary-source exception explaining this hardware result. Prior address8a ID read was also0, so exact physical encoder revision is not proved by the address response. User asked whether an internal HDMI/video mod exists; answer optional, no repeated test authorized merely to reproduce this.
+
+Actual4034 entire1181byte mode function CRCb812777b matched before each read, and new private kernel bytes match the earlier resident routine exactly. Emulator4627 identity uses only its separately captured256byte prefixCRC88a3dd49, explicitly weaker/different evidence. New code performs finite28read calls per stage, no encoder writes. All345 synthetic transport negatives rejected. Build001 prebuilt SDK unchanged; inherited linker merge warning only.
+
+Emulator completes720p/1080i/recovery,84read statuses0, bothpasses identical;6c readsC6 in its model. Actual full framebuffer oracle/translated mappings and native text/callers pass. Host exits0 with breakpoint/physicalmode cleanup. Strict disk equalityFALSE is the retained one-byte reserved-sector1536 difference; filesystem bytes inherited unchanged,QCOW/EEPROM checks pass. Never parent/relaunch/recollect closed attempts.
