@@ -1,3 +1,9 @@
+# Physical1080i workload passed; visual confirmation pending
+
+Five1920x1080 drawing samples, six audio test phases, normal restart and cold allocation/hive/protected checks passed in324. Full F scan found zero errors/orphans. Original startup and all six baseline files are restored/readback. No test is queued. The TV/Windows picture report is still pending; Ftdisk49 remains a strict failure.0.2.0 is untagged.
+
+A private staging bundle with720p/1080i overlays, baseline recovery and usage instructions is readback-verified under D:/Codex-archive/xbox-windows-native/hd-staging325. It is an upgrade for the current demo, not a full installer or release. Read ../hd-physical324/REPORT.md and ../release-staging325/USAGE.md. Existing256 recovery and immutable0.1.0 remain unchanged.
+
 # Physical 720p workload passed on watched retry315
 
 Five drawing tests at1280x720x32, six audio phases, normal restart and cold allocation/hive/protected checks passed. The user saw a correct-looking picture. Original baseline restored and read back; no hardware test is queued. Strict qualification remains false solely for Ftdisk49. Earlier314 boot failure remains unexplained; Windows1080i and0.2.0 remain pending. Read ../hd-observed315/REPORT.md.

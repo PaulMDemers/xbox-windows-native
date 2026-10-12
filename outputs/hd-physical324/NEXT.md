@@ -1,0 +1,3 @@
+Record the user's actual1080i Windows/TV observation without borrowing315's720p report. If the picture is stable, finalize the declared experimental0.2.0 scope, bundle notes and tag while explicitly retaining Ftdisk49 and other known limits; do not claim strict qualification passed. If the user reports a display problem, preserve this workload PASS and investigate that specific issue before promotion. No automatic unchanged rerun is queued.
+
+The existing normal baseline is restored. The staged325 overlay is private and not automatically installed. Existing256 full recovery archives remain readback-verified but not restore-tested; no duplicate full capture was made.
