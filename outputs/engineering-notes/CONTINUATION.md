@@ -6,7 +6,7 @@ User TV/Windows1080i observation requested once asynchronously; NO reply yet. us
 
 325 private stagingZIP complete/readbackverified21entries/1238002bytes, SHA cf7ba2efce93aa210ca8f0feea7fee8d3841b67e4fea50b74925f781a60dddf7 at D:/Codex-archive/xbox-windows-native/hd-staging325/xwn-hd-staging325.zip. Contains720p/1080i matchedsixfileoverlays, sixbaselinefiles,USAGE/manifest/qualification. No testautorun/registryedits/physicalwrites/tag. Existing256system/bootZIPshashes reverified, no recapture/fullrestoreclaim. Read release-staging325/USAGE.md/REPORT.md/bundle.json. Await actualvisualreport, thenfinalizeexperimental0.2scope/tag while retainingknownstrict failures; ifvisualproblem,investigatespecificissue beforepromotion, neverauto-repeatclosedruns.
 
-LatestPUSHED5b0a2daf includes316..324preflight/323results/322fix. Final324hardwareclosure and325bundle source/reports arebeingcommitted next. Repositorycheck17548/5289 passed30938files beforefinalrecords. Newexactstagecheck/protection required. No xemu processes oncloseout. C20GiBguardretained;316portable and322/324closed-executable offloads hashverifiedwithoriginaljunctions,no backingmedia moved.
+Source/evidence commits5b0a2daf andac5db4a2 PUSHED; latter closes324hardware and325bundle. Final repositorycheck30958filesPASS and19newsource/evidencefilesBYTE-EXACT inindex. Finalcheck/commit/push session44888CLOSED. AllownedsessionsCLOSED,trackedtreeclean beforethisnotes-only update. No xemu processes oncloseout. C20GiBguardretained;316portable and322/324closed-executable offloads hashverifiedwithoriginaljunctions,no backingmedia moved.
 
 #324 physical Windows1080i IN FLIGHT (single accepted launch)
 
