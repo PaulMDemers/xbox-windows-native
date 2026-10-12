@@ -1,3 +1,35 @@
+#324 physical Windows1080i IN FLIGHT (single accepted launch)
+
+Accepted23:34:53UTC October12. Observer81260 ACTIVE after one launch; no repeat. outputs/hd-physical324/physical001/trial.json andreturn.json are authority. User asked for TV/Windows observation asynchronously, reply pending. Physical package exact3161080i loader plus300/303fivechain, original201physicalhelper; actualbeforecapture1212files/fivehives, rollback10modeledcases, preflightPASS,1303frozenpins. Keyboard authorization persists. Startupcurrentlytest; sixbaselinefiles temporarily replaced. On dashboard return collect ONCE to restore startupFIRST, preserve stagedbytes, restore sixbaselinefiles andreadback; then audit, uniqueXWNHD324scan launch/observe/collect, finalpostscanreadback closeout. NEVERrelaunchWindows. Ifnotreturned,inspect actualscreen/observer,do notinfercrash.
+
+323bothruns CLOSED. Candidateaccepted23:26:18->dashboard23:30:39UTC: five1920x1080x32/pitch7680drawing samples/sixaudio phases/normalshutdown1/hostexit0, scopedcombinedPASS. StrictFALSEsoleFt49 outsidecombinedinterval; nointervalwarnings. Cold327dirs6763files328clusters0errors/orphans5hives58protected,30captures,205frozeninputs. ControlfailedbeforeWindows, clean322/6752/323, noevents/workload. Sources/settings/guestseedidentical;onlymatched322emu differs. See323REPORT for two incomplete cold-scaffold failures and laterhostquery refusedafterclose. All323sessions15738/80298/59035etcCLOSED.
+
+322host819228checks, exact11340sourceparent, four changedemulatorfiles;control.textBYTE-IDENTICALold. Candidateea3473314e6c0ea068de4202cde46b1405da7553240cadea738c29c16d74c7a3; allborrowed6sourcesrestored. No physicalemulatorbinary deployed.318 remainsneverexecuted sourceplan with duplicatekeywordfailurepreserved;324corrects/workloadversusvisualqualificationseparate. AutomationPAUSED,0.2.0untagged,0088/0.1.0/recovery256preserved.
+
+Storage324closedoldbuild002executables offloadedhashverified/originaljunction, no backingmedia. Sources/reports316..324 beingreviewed/staged; priorpushedf89b733a. Repositorycheck17548running. Afterclosure commit/push exactevidence, no releaseclaimwithoutphysicalvisualobservation.
+
+#323 matched ordinary1080i candidate ACTIVE
+
+322 build003 and source/host review PASSED: exact11340-file parent, four changed files, control.text BYTE-IDENTICAL old qualified emulator; candidateea3473314e6c0ea068de4202cde46b1405da7553240cadea738c29c16d74c7a3. Allborrowed6sourcesrestored, matchedbuild session23087CLOSED. Original316guestgate unchanged; host819228checks. Host001unusedlogargument andbuild002rootlessPodmanfailures preserved.
+
+323control001 singlelaunch23:24:05->23:24:29UTC earlyreturn, noWindowsworkload/normalshutdown; fullcoldclean322dirs6752files323clusters0errors/orphans5hives58protected, hostexit0. Runner43536/supervisor94493 CLOSED. Cold audit had2 host scaffold failures (missingartifacts thenbefore-hives), recorded; unchanged source resumed incomplete audit after restoring exact original317 preparedbeforehives, completed once. Audits74011/59374failed,76503CLOSEDsuccess. No guest rerun.
+
+323candidate001 accepted23:26:18UTC, sameunused317seed andguestbytes, only322emulator candidate differs. Runner15738/supervisor80298 ACTIVE; inspect actual records, never duplicate. D:/xwn323/runs/nt5-hd323-candidate001, ports5094/5095/5096. After cleanup run audit.py candidate001 once, review-combined.py ifcomplete logs, final-review.py candidate001. Bothcases205frozeninputs, samehostpins.324 physical source prepared only, no package/capture/deploy; package strictly requires323candidate qualification. 318neverexecutedduplicatecloseoutkeyword corrected onlyin324, fullcompilationpreflight; preserves318originalfailure. Physicalaudio004/software118/shared158/FATX0101 unchanged; nohardwarequeued.0.2.0untagged/automationPAUSED.
+
+#321 localized emulator timing readback failure;322 matched build closeout
+
+315 watched physical720p workload passed; original baseline restored. No physical access this turn.316 compiled1080i launcher fails317 ordinary emulator boot.319 transport failed before Windows launch and is cold-closed.320 captured error25/stage4 but its combined2-byte CRTC read is not a valid data-byte observation; REPORT preserves correction.321 exact conditional stops prove CRTC39=16 passes and PRAMDAC680804 returns0 versus1124, error25. Full resident text pinned,14 actual mutations rejected,27 captures rehashed.321 runner62698/tracer16687/supervisor18108/audit98692 CLOSED; clean322dirs6752files323clusters0errors/orphans5hives58protected; hostexit0, no Windows workload/normalshutdown.
+
+322 exact-qualified11340-source reconstruction adds ordinary VTOTAL/VSYNC_START/HTOTAL latches with reset and version4 migration fields; no guest gate change or scanout timing claim. Host002 control/candidate each409614 ASan/UBSan checks. Build001 stub logging unusedparameter failure preserved;002 rootlessPodman precompilefailure preserved. All borrowed sources restored after failures. Build003 root toolchain matchedcontrol/candidate session23087; inspect build003.json. PrivateD:/xwn322. New323 ordinary matched harness SOURCE ONLY, not frozen/launched yet; same immutable unused317 seed/guest bytes, only rebuilt emulator differs. Run only after qualified322 build/source review. No318 physical package/deployment.
+
+Storage316 portable offload and322 closed-executable offload hashverified with original junctions, no backingmedia moved. Latest pushedf89b733a;316..323 work UNCOMMITTED. AutomationPAUSED,0.2.0untagged. Preserve all consumed IDs/failures.
+
+#316 compiled1080i;317 ordinary emulator trial starting
+
+316 exact311control text-identical; new1080i candidate selects310profile with extra validated readback and volatile failure_stage. Host002238446ASan/UBSan assertions; review002PASS, review001native-header normalization failure preserved. Build74219CLOSED, twohostrevisionspreserved. D:/xwn316/build001. No physical deployment;315baseline staysrestored.
+
+317 fresh unused313preparation replacesONLY default.xbe; samehelpers/drivers/EEPROM. Preparation73075CLOSED.205frozeninputs plushostpins; actualhostgeometryguard8cases. Newmanual1920x1080/pitch7680 guard under9MiB-hidden, automaticcaptures remain4MiB; no framebufferread scheduled. Correctedclosehost5054 pin beforelaunch. Runner23833STARTING; run D:/xwn317/runs/nt5-hd317-candidate001. Start one supervisor afterinstanceexists; neverduplicate. All oldcasesclosed. AutomationPAUSED/0.2.0untagged.
+
 #315 observed physical720p workload PASS; baseline restored
 
 User explicitly requested an unchanged watched rerun. One SITE accepted22:40:30UTC, dashboard22:45:33UTC. User saw correct-looking Windows/tests running. Five1280x720x32/pitch5120 drawing samples and sixaudio phases passed, normalshutdown1. Scopedcombined/integrityPASS; strictFALSE sole inheritedFtdisk49, no applicationevents. No314 failure-cause inference.

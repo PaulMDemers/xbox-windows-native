@@ -1,0 +1,1 @@
+Review and host-test322 exact-parent emulator timing storage, then a new ordinary316 loader run. Require full workload, normal shutdown and cold integrity before physical promotion. Do not patch guest expected values or repeat the closed diagnostic.

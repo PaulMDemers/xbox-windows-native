@@ -1,0 +1,1 @@
+Use317 fresh preparation/run; never consume316host/build/review IDs again. Require actual1920x1080x32/pitch7680, complete drawing/audio, normal restart and full cold audit before protected hardware trial. Preserve314 failure and physical315720p success separately.

@@ -1,0 +1,100 @@
+--- a/hw/xbox/nv2a/nv2a.c
++++ b/hw/xbox/nv2a/nv2a.c
+@@ -313,6 +313,9 @@
+     memset(d->pvideo.regs, 0, sizeof(d->pvideo.regs));
+ 
+     d->pcrtc.start = 0;
++    d->pramdac.fp_vtotal = 0;
++    d->pramdac.fp_vsync_start = 0;
++    d->pramdac.fp_htotal = 0;
+     d->pramdac.core_clock_coeff = 0x00011C01; /* 189MHz...? */
+     d->pramdac.core_clock_freq = 233333324;
+     d->pramdac.memory_clock_coeff = 0;
+@@ -432,6 +435,10 @@
+ {
+     NV2AState *d = opaque;
+     nv2a_lock_fifo(d);
++    /* Versions before 4 did not retain these timing registers. */
++    d->pramdac.fp_vtotal = 0;
++    d->pramdac.fp_vsync_start = 0;
++    d->pramdac.fp_htotal = 0;
+     return 0;
+ }
+ 
+@@ -455,7 +462,7 @@
+ 
+ static const VMStateDescription vmstate_nv2a = {
+     .name = "nv2a",
+-    .version_id = 3,
++    .version_id = 4,
+     .minimum_version_id = 1,
+     .post_save = nv2a_post_save,
+     .post_load = nv2a_post_load,
+@@ -575,6 +582,9 @@
+         VMSTATE_BOOL(pgraph.waiting_for_nop, NV2AState),
+         VMSTATE_UNUSED(1),
+         VMSTATE_BOOL(pgraph.waiting_for_context_switch, NV2AState),
++        VMSTATE_UINT32_V(pramdac.fp_vtotal, NV2AState, 4),
++        VMSTATE_UINT32_V(pramdac.fp_vsync_start, NV2AState, 4),
++        VMSTATE_UINT32_V(pramdac.fp_htotal, NV2AState, 4),
+         VMSTATE_END_OF_LIST()
+     },
+ };
+--- a/hw/xbox/nv2a/nv2a_int.h
++++ b/hw/xbox/nv2a/nv2a_int.h
+@@ -137,6 +137,9 @@
+         uint32_t memory_clock_coeff;
+         uint32_t video_clock_coeff;
+         uint32_t general_control;
++        uint32_t fp_vtotal;
++        uint32_t fp_vsync_start;
++        uint32_t fp_htotal;
+         uint32_t fp_vdisplay_end;
+         uint32_t fp_vcrtc;
+         uint32_t fp_vsync_end;
+--- a/hw/xbox/nv2a/pramdac.c
++++ b/hw/xbox/nv2a/pramdac.c
+@@ -45,6 +45,15 @@
+         break;
+     case NV_PRAMDAC_GENERAL_CONTROL:
+         r = d->pramdac.general_control;
++        break;
++    case NV_PRAMDAC_FP_VTOTAL:
++        r = d->pramdac.fp_vtotal;
++        break;
++    case NV_PRAMDAC_FP_VSYNC_START:
++        r = d->pramdac.fp_vsync_start;
++        break;
++    case NV_PRAMDAC_FP_HTOTAL:
++        r = d->pramdac.fp_htotal;
+         break;
+     case NV_PRAMDAC_FP_VDISPLAY_END:
+         r = d->pramdac.fp_vdisplay_end;
+@@ -110,6 +119,15 @@
+     case NV_PRAMDAC_GENERAL_CONTROL:
+         d->pramdac.general_control = val;
+         break;
++    case NV_PRAMDAC_FP_VTOTAL:
++        d->pramdac.fp_vtotal = val;
++        break;
++    case NV_PRAMDAC_FP_VSYNC_START:
++        d->pramdac.fp_vsync_start = val;
++        break;
++    case NV_PRAMDAC_FP_HTOTAL:
++        d->pramdac.fp_htotal = val;
++        break;
+     case NV_PRAMDAC_FP_VDISPLAY_END:
+         d->pramdac.fp_vdisplay_end = val;
+         break;
+--- a/hw/xbox/nv2a/nv2a_regs.h
++++ b/hw/xbox/nv2a/nv2a_regs.h
+@@ -754,6 +754,9 @@
+ #   define NV_PRAMDAC_PLL_TEST_COUNTER_VPLL_LOCK               (1 << 31)
+ #define NV_PRAMDAC_GENERAL_CONTROL                       0x00000600
+ #   define NV_PRAMDAC_GENERAL_CONTROL_ALT_MODE_SEL             (1 << 12)
++#define NV_PRAMDAC_FP_VTOTAL 0x00000804
++#define NV_PRAMDAC_FP_VSYNC_START 0x0000080C
++#define NV_PRAMDAC_FP_HTOTAL 0x00000824
+ #define NV_PRAMDAC_FP_VDISPLAY_END                       0x00000800
+ #define NV_PRAMDAC_FP_VCRTC                              0x00000808
+ #define NV_PRAMDAC_FP_VSYNC_END                          0x00000810

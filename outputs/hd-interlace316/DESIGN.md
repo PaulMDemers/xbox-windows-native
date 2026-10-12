@@ -1,0 +1,7 @@
+# Explicit1080i loader candidate
+
+This is a new isolated child of the compiled311 source. Control remains exact311720p; candidate selects the unchanged3101920x1080 interlaced profile,7680-byte pitch,8294400 visible bytes inside the existing nine-MiB reservation. Admission requires the independently pinned nxdk1080i capability bit0x40000 (byte0x96 mask0x04 (bit2)), Conexant, HDTV cable and the exact ABI2 layout. No native code or BIOS/EEPROM settings are changed on the console during preparation.
+
+The adapter preserves311 write order, bounded waits, clocks and reset containment. New read-only checks validate CRTC2d bit0, CRTC39, vertical total/valid/sync and horizontal total against the already captured309 hardware masks/values. Upper2d bits remain unknown and are not compared. Failure retains the preceding stage in volatile state before existing blank/reset/halt behavior. This is debugger-visible state only, not a persistent hardware failure log;314 remains unexplained. No timing delay or unknown6c readback is changed.
+
+Host models test both profiles, every encoder failure, timeouts, geometry/pitch/field corruption and crossed capability flags. Real builds use the original311control and a separate candidate source. Source reconstruction, binary bounds and inherited warnings must pass before a fresh emulator fixture. Actual field output and stability still require a distinct hardware trial. No0.2.0 tag or installed-baseline promotion follows compilation.

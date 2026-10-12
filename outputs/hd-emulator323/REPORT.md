@@ -1,0 +1,9 @@
+#323 ordinary1080i workload passes with emulator timing storage
+
+Control accepted23:24:05UTC and returned23:24:29UTC without any Windows workload or new event records. Candidate accepted23:26:18UTC and returned23:30:39UTC after completing five1920x1080x32/pitch7680 drawing samples and six exact captured audio phases. Windows normal shutdown count1; host orderly exit0 with no fallback. Guest files, fixture and configuration are identical between cases; only matched322 emulator differs.
+
+Candidate scoped combined drawing/audio and cold integrity PASS. Strict result remains FALSE for the sole inherited Ftdisk49 HarddiskVolume6 event, outside the measured interval. No warning/error within the combined interval. Cold327 directories,6763 files,328 directory clusters, zero allocation errors/orphans; five hives,58 protected files, policy/device bindings and startup checked. Control cold322/6752/323 is also clean.205 frozen inputs and six host dependencies exact for both cases. Thirty candidate private captures rehashed.
+
+Host scaffold failures are retained: control audit initially lacked its output directory, then its private before-hives. Both failures occurred before a completed audit/closure. Exact prepared317 before-hives were restored after hash verification and the incomplete read-only audit resumed with unchanged source/disk. The dependent early final-review failure is recorded too. No guest was rerun. A later read-only HMP connection attempt was refused after the candidate had already returned and exited; no query, pause or guest mutation occurred.
+
+Actual physical1080i field quality remains unproved. This permits the distinct324 protected hardware workload, not a release tag.313 helper foreground-activation coverage remains independently unproved; the current mode workload does not claim to resolve that older failure.

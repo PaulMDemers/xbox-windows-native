@@ -1,0 +1,142 @@
+diff --git aa/drivers/video/xwn_hd_profile.c bb/drivers/video/xwn_hd_profile.c
+index 526e4672..e0e1faae 100644
+--- aa/drivers/video/xwn_hd_profile.c
++++ bb/drivers/video/xwn_hd_profile.c
+@@ -1,4 +1,4 @@
+-#ifdef XWN_HD_TIMING_720P
++#ifdef XWN_HD_TIMING_1080I
+ #include "xwn_hd_profile.h"
+ const uint8_t xwn_hd_crtc_indices[35]={0x0,0x1,0x2,0x3,0x4,0x5,0x6,0x7,0x8,0x9,0xa,0xb,0xc,0xd,0xe,0xf,0x10,0x11,0x12,0x13,0x14,0x15,0x16,0x17,0x18,0x19,0x1a,0x1b,0x20,0x25,0x2d,0x33,0x39,0x41,0x28};
+ const uint32_t xwn_hd_mmio_offsets[28]={0x680898,0x68089c,0x6808c0,0x6808c4,0x68084c,0x680630,0x680800,0x680804,0x680808,0x68080c,0x680810,0x680814,0x680818,0x680820,0x680824,0x680828,0x68082c,0x680830,0x680834,0x680838,0x680848,0x680680,0x680684,0x680688,0x68068c,0x680690,0x680880,0x680600};
+diff --git aa/drivers/video/xwn_hd_adapter.c bb/drivers/video/xwn_hd_adapter.c
+index c7b827a9..d05d19d7 100644
+--- aa/drivers/video/xwn_hd_adapter.c
++++ bb/drivers/video/xwn_hd_adapter.c
+@@ -1,6 +1,6 @@
+-#ifdef XWN_HD_TIMING_720P
++#ifdef XWN_HD_TIMING_1080I
+ /* SPDX-License-Identifier: GPL-2.0-or-later
+- * Explicit 720p transaction. Hardware access is supplied by the native wrapper;
++ * Explicit 720p/1080i transaction. Hardware access is supplied by the native wrapper;
+  * the same orchestration is exercised with modeled I/O in host tests.
+  */
+ #include "xwn_hd_adapter.h"
+@@ -51,7 +51,8 @@ int xwn_hd_apply(const struct xwn_hd_io *io,const struct xwn_hd_request *r,volat
+  *s=(struct xwn_hd_state){0};
+  if(!io || !r || !io->r32 || !io->w32 || !io->r8 || !io->w8 ||
+     !io->in16 || !io->in8 || !io->out16 || !io->out8 || !io->delay)return 0;
+- if(r->mode!=XWN_HD_720P || r->encoder!=0 || r->cable!=3 || !(r->video_flags&2) ||
++ if((r->mode!=XWN_HD_720P && r->mode!=XWN_HD_1080I) || r->encoder!=0 || r->cable!=3 ||
++    !(r->video_flags & (r->mode==XWN_HD_720P?2u:4u)) ||
+     !xwn_hd_layout_valid(r->mode,r->ram,r->fb,r->reserved,r->hidden) ||
+     !xwn_hd_get_profile(r->mode,&p))return 0;
+  s->stage=1;s->vpll=io->r32(O,0x680508);s->pcrtc=io->r32(O,0x600804);
+@@ -99,9 +100,16 @@ int xwn_hd_apply(const struct xwn_hd_io *io,const struct xwn_hd_request *r,volat
+  if((io->r8(O,0x6013d5)&0xe0)!=(p.crtc[25]&0xe0)){s->error=24;goto fail;}
+  io->w8(O,0x6013d4,0x28);
+  if(io->r8(O,0x6013d5)!=p.crtc[34]){s->error=24;goto fail;}
++ /* Field/overflow/totals readback uses only physically validated masks. */
++ io->w8(O,0x6013d4,0x2d);
++ if((io->r8(O,0x6013d5)&1)!=(p.crtc[30]&1)){s->error=25;goto fail;}
++ io->w8(O,0x6013d4,0x39);
++ if(io->r8(O,0x6013d5)!=p.crtc[32]){s->error=25;goto fail;}
++ for(i=7;i<=10;i++)if(io->r32(O,xwn_hd_mmio_offsets[i])!=p.mmio[i]){s->error=25;goto fail;}
++ if(io->r32(O,0x680824)!=p.mmio[14]){s->error=25;goto fail;}
+  io->out8(O,0x80d3,4);s->stage=5;return 1;
+ fail:
+- io->out8(O,0x80d3,5);s->stage=255;return -1;
++ s->failure_stage=s->stage;io->out8(O,0x80d3,5);s->stage=255;return -1;
+ }
+ 
+ #endif
+diff --git aa/drivers/video/xwn_hd_adapter.h bb/drivers/video/xwn_hd_adapter.h
+index 335f4098..3a877f19 100644
+--- aa/drivers/video/xwn_hd_adapter.h
++++ bb/drivers/video/xwn_hd_adapter.h
+@@ -1,6 +1,6 @@
+ /* SPDX-License-Identifier: GPL-2.0-or-later */
+-#ifndef XWN_HD_ADAPTER311_H
+-#define XWN_HD_ADAPTER311_H
++#ifndef XWN_HD_ADAPTER316_H
++#define XWN_HD_ADAPTER316_H
+ #include "xwn_hd_profile.h"
+ struct xwn_hd_io {
+  void *opaque;
+@@ -15,7 +15,7 @@ struct xwn_hd_io {
+  void (*delay)(void *,unsigned);
+ };
+ struct xwn_hd_request {uint32_t mode,ram,fb,reserved,hidden,encoder,cable,video_flags;};
+-struct xwn_hd_state {uint32_t stage,error,mutated,smb_attempts,smb_completed,sync_polls,vblank_polls,vpll,pcrtc;};
++struct xwn_hd_state {uint32_t stage,error,mutated,smb_attempts,smb_completed,sync_polls,vblank_polls,vpll,pcrtc,failure_stage;};
+ /* 1 success; 0 unsupported BEFORE adapter writes; -1 partial failure, no resume. */
+ int xwn_hd_apply(const struct xwn_hd_io *,const struct xwn_hd_request *,volatile struct xwn_hd_state *);
+ /* One bounded write, no retry after a potentially accepted transaction. */
+diff --git aa/drivers/video/xwn_hd_native.c bb/drivers/video/xwn_hd_native.c
+index 7d6ad02f..5aa59d3d 100644
+--- aa/drivers/video/xwn_hd_native.c
++++ bb/drivers/video/xwn_hd_native.c
+@@ -1,5 +1,5 @@
+ /* SPDX-License-Identifier: GPL-2.0-or-later */
+-#ifdef XWN_HD_TIMING_720P
++#ifdef XWN_HD_TIMING_1080I
+ #ifndef XWN_HD_RESERVATION
+ #error HD timing requires the reviewed nine-MiB reservation
+ #endif
+@@ -7,7 +7,7 @@
+ #include "memory_layout.h"
+ #include "timer.h"
+ #include "xwn_hd_adapter.h"
+-volatile struct xwn_hd_state XwnHdState311;
++volatile struct xwn_hd_state XwnHdState316;
+ static uint32_t hd_r32(void *o,uint32_t a){(void)o;return *(volatile uint32_t*)(0xfd000000u+a);}
+ static void hd_w32(void *o,uint32_t a,uint32_t v){(void)o;*(volatile uint32_t*)(0xfd000000u+a)=v;}
+ static uint8_t hd_r8(void *o,uint32_t a){(void)o;return *(volatile uint8_t*)(0xfd000000u+a);}
+@@ -17,10 +17,10 @@ static uint8_t hd_in8(void *o,uint16_t p){(void)o;return IoInputByte(p);}
+ static void hd_out16(void *o,uint16_t p,uint16_t v){(void)o;IoOutputWord(p,v);}
+ static void hd_out8(void *o,uint16_t p,uint8_t v){(void)o;IoOutputByte(p,v);}
+ static void hd_delay(void *o,unsigned us){(void)o;wait_us(us);}
+-int XwnHdTry720(CURRENT_VIDEO_MODE_DETAILS *mode,unsigned encoder,unsigned cable,unsigned flags){
++int XwnHdTry1080(CURRENT_VIDEO_MODE_DETAILS *mode,unsigned encoder,unsigned cable,unsigned flags){
+  const struct xwn_hd_io io={0,hd_r32,hd_w32,hd_r8,hd_w8,hd_in16,hd_in8,hd_out16,hd_out8,hd_delay};
+- const struct xwn_hd_request r={1,(uint32_t)xbox_ram*1024u*1024u,FB_START&0x0fffffffu,FB_SIZE,316160u,encoder,cable,flags};
+- int result=xwn_hd_apply(&io,&r,&XwnHdState311);
++ const struct xwn_hd_request r={2,(uint32_t)xbox_ram*1024u*1024u,FB_START&0x0fffffffu,FB_SIZE,316160u,encoder,cable,flags};
++ int result=xwn_hd_apply(&io,&r,&XwnHdState316);
+  if(result<0){
+   /* Partial display setup cannot fall through into Windows or legacy setup.
+    * Request the same quick reset as the existing SMC helper, with a bounded
+@@ -29,7 +29,7 @@ int XwnHdTry720(CURRENT_VIDEO_MODE_DETAILS *mode,unsigned encoder,unsigned cable
+   __asm__ __volatile__("cli" ::: "memory");
+   for(;;)__asm__ __volatile__("hlt");
+  }
+- if(result==1){mode->width=1280;mode->height=720;mode->xmargin=0;mode->ymargin=0;}
++ if(result==1){mode->width=1920;mode->height=1080;mode->xmargin=0;mode->ymargin=0;}
+  return result;
+ }
+ #endif
+diff --git aa/drivers/video/BootVgaInitialization.c bb/drivers/video/BootVgaInitialization.c
+index 9140b0f1..b665e777 100644
+--- aa/drivers/video/BootVgaInitialization.c
++++ bb/drivers/video/BootVgaInitialization.c
+@@ -30,8 +30,8 @@
+ #include "xcalibur.h"
+ #include "drivers/pci/i2c.h"
+ 
+-#ifdef XWN_HD_TIMING_720P
+-extern int XwnHdTry720(CURRENT_VIDEO_MODE_DETAILS *,unsigned,unsigned,unsigned);
++#ifdef XWN_HD_TIMING_1080I
++extern int XwnHdTry1080(CURRENT_VIDEO_MODE_DETAILS *,unsigned,unsigned,unsigned);
+ #endif
+ 
+ unsigned int video_encoder;
+@@ -157,8 +157,8 @@ void BootVgaInitializationKernelNG(CURRENT_VIDEO_MODE_DETAILS * pvmode) {
+ 	pvmode->hoc /= 100.0;
+ 	pvmode->voc /= 100.0;
+ 
+-#ifdef XWN_HD_TIMING_720P
+-	if (XwnHdTry720(pvmode,video_encoder,av_type,((u8 *)&eeprom)[0x96])) {
++#ifdef XWN_HD_TIMING_1080I
++	if (XwnHdTry1080(pvmode,video_encoder,av_type,((u8 *)&eeprom)[0x96])) {
+ 		mapNvMem(&riva,pvmode->m_pbBaseAddressVideo);
+ 		NVVertIntrEnabled(&riva,0);
+ 		NVSetFBStart(&riva,0,pvmode->m_dwFrameBufferStart);

@@ -1,0 +1,62 @@
+{
+  "passed": true,
+  "scope": "Actual aligned32-bit register functions; modeled NV2A container and log calls; no scanout or migration runtime claim",
+  "cases": [
+    {
+      "case": "control",
+      "checks": 409614,
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-DCANDIDATE=0",
+        "/mnt/d/xwn322/host002/control/host.c",
+        "-o",
+        "/mnt/d/xwn322/host002/control/host"
+      ]
+    },
+    {
+      "case": "candidate",
+      "checks": 409614,
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-DCANDIDATE=1",
+        "/mnt/d/xwn322/host002/candidate/host.c",
+        "-o",
+        "/mnt/d/xwn322/host002/candidate/host"
+      ]
+    }
+  ],
+  "files": {
+    "/mnt/d/xwn322/host002/control/nv2a_int.h": "dbb3230d323d76445ff4f02bf208116f0b25ffcfb6042d4cb6b87bed385b2c64",
+    "/mnt/d/xwn322/host002/control/regs.h": "b6bf453495c7076c1d814e10e45f0a2c49fa1e793da48981d1db5888eae8bea2",
+    "/mnt/d/xwn322/host002/control/pramdac.c": "1109e7c76293fb0943c1806c18719a8b38f172a89047796b02243fd45688dd32",
+    "/mnt/d/xwn322/host002/control/host.c": "6ced6b69c82a030296678521ed518e00127c3dfb7f1db4c3b791a8225e283b1a",
+    "/mnt/d/xwn322/host002/control/host": "bb55c361dd12404eafc54a4fa41c356065db462823b150b73a8e79c84f79dc39",
+    "/mnt/d/xwn322/host002/control/compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/mnt/d/xwn322/host002/control/result.txt": "bfbdfdb84cdbe56946d641c336fd836104b7874a90843cfc7d50e541d253457a",
+    "/mnt/d/xwn322/host002/control/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/mnt/d/xwn322/host002/candidate/nv2a_int.h": "416947cdd96a34f90ddb9f98e869083046ab9381505fc4b88a24c7fe163a9324",
+    "/mnt/d/xwn322/host002/candidate/regs.h": "302189973db9b0458da051bd362e197ae22d7fdd1f9de046e382439b00dd751a",
+    "/mnt/d/xwn322/host002/candidate/pramdac.c": "d93f4257a354e80e9411d28b417a5cb656b5e3168021b65153bf58efdd5a447a",
+    "/mnt/d/xwn322/host002/candidate/host.c": "6ced6b69c82a030296678521ed518e00127c3dfb7f1db4c3b791a8225e283b1a",
+    "/mnt/d/xwn322/host002/candidate/host": "b96c04c708a72efde9a420ae5b8ca111ed0d3aedd336422802b4745eeaba2a06",
+    "/mnt/d/xwn322/host002/candidate/compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/mnt/d/xwn322/host002/candidate/result.txt": "bfbdfdb84cdbe56946d641c336fd836104b7874a90843cfc7d50e541d253457a",
+    "/mnt/d/xwn322/host002/candidate/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}
