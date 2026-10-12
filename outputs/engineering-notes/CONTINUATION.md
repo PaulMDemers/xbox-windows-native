@@ -1,3 +1,40 @@
+#277 HOST-ONLY — lifetime-aware narrow texture observation contract
+
+Read outputs/texture-admission277/REPORT.md, DESIGN.md, NEXT.md,
+admission.h, clock.c, host002.json, source-review.json and final-review.json.
+All subprocesses CLOSED. No277 renderer build, guest launch or shared-source,
+native, SDK or physical change. No release helper installed. host001/002 closed.
+
+Host002 passes20771 ASan/UBSan checks,4096 exact actual CPU insert/unlink/free
+pairs and1024 pthread publication races. Original callback bodies reconstruct
+exactly after removing metadata calls; real QEMU queue macros pinned. New pure
+contract requires complete callback/surface bijection, stable two CPU epochs,
+full4096-byte allocation disjointness, matching functions/region/device/ranges,
+actual context/pending/owner gates supplied by future adapter. Proposed global
+saturating mutation clock catches remove/reinsert ABA even with identical final
+pointers; foreign/nonexclusive CPU and overflow are sticky errors. No reset API.
+Context/jobs are MODEL ONLY; actual276 data seed includes explicitly synthetic
+missing clocks/second acknowledgment. Old276 still REFUSES, never requalified.
+
+Two unbound dirty surfaces' native provenance stays unresolved. They can remain
+untouched outside ONLY this texture observation, not backend/nativeGPU handoff.
+No surface download/removal/flag clear/refcount assignment. release_requested
+explicitly rejects. Need actual adapter BEFORE any new guest: delay opt-in arm
+until both CPU acknowledgments and final locked graph recheck; retain old zero
+count gates; end actor explicitly validates complete clock/graph proof, never
+pretends counts zero. Add bounded immutable evidence transport and independent
+negative parser/actual worker failure tests. Then one fresh no-release standalone
+control with271build005 and exact276 parent, complete unchanged four-generation
+actual guest reuse/source/GL/framebuffer proof. No repeat old closed cases.
+
+Private capsules admission277-host001/002 and admission277-source001 onE.
+host00120762 checks passed and preserved;002 adds strict booleans and duplicate
+binding-role rejection. No failure was suppressed. C~21.57GB decimal: inspect
+20GiB guard before any build; only verified closed non-backing offload permitted.
+Physicaldemo/recovery and all prior failures/strict limitations below unchanged.
+
+--- Previous continuation (preserved) ---
+
 #276 CLOSED — four refused callbacks matched; no release/admission promotion
 
 Read outputs/callback-inventory276/REPORT.md, DESIGN.md, NEXT.md,
