@@ -1,3 +1,24 @@
+#287 HOST-ONLY four-boundary contract;282 latest actual renderer result
+
+Read outputs/disposal-boundary287/REPORT.md, DESIGN.md, NEXT.md, final-review.json
+andhost001..003. All owned processes CLOSED. No actualcollector/provider/worker,
+renderer/nativebuild, guestprep/launch, sharedsource/SDK/physicalchange or disposal
+installed. Host003 ASan/UBSan596checks: explicitinitial/cache-only/ABSENToldowner/
+replacement states; historicalanchors notcurrentobjects. CPUepochs1..8 and exact
+280commoncallback/surface checks exceptnewstagebound/signature. Originalvalidators
+unchanged. Wholeguards remainprotected whenobjectsabsent; newgenerations required
+evenifpointer/GLname reused. First3boundaryclocks/tuples stable; resumeclock may
+increasebutneverdecrease.001initial594checksPASS;002newbackwardclocknegativeFAILED;
+003correctsmonotonicclock,GLnamewidth,selfcontainedboolinclude.21privatefiles
+rehashed. AllCPU/GL/completegraph/namespacefactsexplicitHOSTMODELS,notauthority.
+
+NEXT actuallivegraphcollector/provider joining286completed-hooks/285publication/
+284generation/283disposal to287absence/replacement schema, then actual4boundary
+worker/capture/independenttransport. Mustreview/testactualsequencing/failures
+beforebuildandfreshmatchedguest. No repeat282 orparentclosedruntime.04UTCcutoff:
+startnoexperiment,preserve/closeownedprocesses,finalreport,pauseautomation.
+Physicalaudio004/softwarevideo118/shared158/FATX0101 unchanged,nohardwarequeued.
+
 #286/285 HOST-ONLY completed-operation hooks and publication
 
 Read outputs/completed-hooks286 and owner-publication285 REPORT/DESIGN/NEXT and
