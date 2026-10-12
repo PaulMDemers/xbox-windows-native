@@ -1,3 +1,40 @@
+#272 CLOSED — actual owned texture pixel control PASS; strict disk equality FALSE
+
+Read outputs/owned-runtime272/REPORT.md, DESIGN.md, NEXT.md, final-review.json
+and actual emu004 records. ALL owned processes CLOSED: runners28173/42764/85891,
+initial launch001 and cold audits/analysis. No physical/SDK/renderer change.
+Never relaunch/recollect/parent272 emu001..004 or older closed cases.
+
+Same271 build005 XBE4ada3d6c... and269 renderer005489c9af7...; no observer/release
+operation. Actual checkpoints11/22/33, two720-byte exact framebuffer captures,
+49152 source/guard read bytes and384 exact vertices at eachstop. Actual XBE text/
+headers/callers, runtime kernel import/export173/base80010000, all texture/target/
+vertex/pushbuffer translations, channel/context/RAMHT captured. Fifteen stable
+RAMHT edges; full object descriptors/host ledger/four binding generations still
+UNPROVED. No normal Windows restart, performance/acceleration/nativeGPU claim.
+Guest error0; terminal33, full breakpoint/physicalmode teardown,18second native
+halt window, orderly host stop/quit exit0 with no fallback. Actual HAL entry not
+traced.54 private captures rehashed,13 frozen dependencies exact.
+
+StrictFALSE: one byte changed in reserved sector at1536 on all3 booted attempts.
+Full8GiB map and65536 overlay-byte comparison prove all filesystem bytes inherited
+unchanged; QCOW checks clean, EEPROM unchanged. No writer attribution/gate waiver.
+Earlier Windows Ft49 remains separate; this standalone fixture has no Windows
+hive/event qualification. Preserve001 Linux-absolute backing-path launch failure,
+002 mutable XBE section-refcount equality failure,003 kernel scan below containing
+PE into unmapped page. Original sources prior001..003 hash-exact. Corrected actual
+header checker224negative mutations, model734synthetic checks. New relative
+backing path works on Windows/WSL. Private artifacts E:/xwn272; no backing moved.
+
+Next NEW270-accounting observer integration from exact269 plus271 owned workload,
+explicit homebrew attestation/complete object descriptors and actual CPU/context
+acknowledgments. Require four disabled refs2/cache1/unit1, actual guest-driven
+same-generation unchanged bind and independent source/GL/framebuffer contents,
+complete sealed error-union parser. Do not repeat pixel-only272 or solved263.
+No268 release until unchanged complete control; native aliases/deferred release
+still separate. Preserve physical audio004/softwarevideo118/shared158/FATX0101,
+private256 recovery/0.1.0/0088 and all failures. Deadline Oct12 04:00UTC unchanged.
+
 #271 CLOSED — owned four-texture native control compiled; never launched
 
 Read outputs/owned-texture271/REPORT.md, DESIGN.md, NEXT.md, build005.json,
