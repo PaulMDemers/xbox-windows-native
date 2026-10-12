@@ -30,7 +30,9 @@ UnleashX root Windows entry is present. Known unsupported-device wizards remain.
 
 Software video reduces redundant text uploads in the measured cases; this is
 not GPU acceleration or a desktop-frame-rate claim. Native GPU work continues
-at [the next invalidation discriminator](outputs/installer-focus250/INVALIDATION-NEXT.md).
+through [matched emulator texture release/reuse](outputs/release-pair282/REPORT.md)
+and the [next cache-disposal integration](outputs/disposal-boundary287/NEXT.md). These
+owned emulator experiments do not grant native Windows GPU ownership.
 1080i and other new video modes remain unqualified.
 
 The native physical desktop now passes bounded storage soaks and two actual

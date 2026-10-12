@@ -11,8 +11,10 @@ Repeat255 passed original equality unchanged, full allocation, five hives and
 protected hashes. Strict FALSE remains the inherited Ftdisk49 error. User heard
 login sound and confirmed the louder trio in256; the quiet trio was unheard.
 Exact speaker routing is not confirmed.256 returned normally; its physical-output
-ID query instead returned the mapper, retaining the diagnostic failure. Consult
-continuation for its cold-audit/capture state.
+ID query instead returned the mapper, retaining the diagnostic failure. Full
+allocation, five hives, protected hashes, exact bindings and normal
+restart passed in256; the original mapper-ID and Ftdisk49 failures remain. See
+[256 observations and cold results](../demo-audio-level256/REPORT.md).
 
 Private254 overlay reproduced identical SHA8000eb0e12de3688fb3b922f9f7763eb9198295ffef4579421f447da689b6b39,
 15 entries497820bytes, all entries readback verified. This is packaging repeatability,
@@ -21,12 +23,35 @@ in330directories, both system/boot-dashboard ZIPs allentries verified. It is not
 a disk image or restore-tested release. See demo-audio-level256/capture-summary.json. Repository remains private. Existing Windows root menu verified.
 
 Remaining demo gaps: exact left/right speaker routing, known unsupported APU/PCI/USB
-wizards, crash-dump configuration warning; preserve these limits. Next improvement
-is controlled pixel preservation after257 identified20 age and3 CPU-write removals.
-258 now has an ordinary-tested reboot-held buffer for that diagnostic; no GPU acceleration,1080i or
-additional mode is claimed. Software text upload reductions are already bounded-
-physical-tested. Full reconstruction/public-release licensing and xemu upstream
-work remain separate unfinished goals.
+wizards, crash-dump configuration warning; preserve these limits. Software text
+upload reductions are already bounded-physical-tested; no GPU
+acceleration,1080i or additional mode is claimed. Full reconstruction/public-release
+licensing and xemu upstream work remain separate unfinished goals.
+
+The latest actual emulator milestone is the [matched282 unit-reference release
+and guest reuse](../release-pair282/REPORT.md). Four selected texture units were
+released while their cache owners remained, then the real guest rebound the same
+objects with exact source/RGBA/framebuffer checks. CPU/context and full known
+owner graphs were captured before, after release and after guest work. Both
+attempts closed orderly. This proves that narrow transition, not complete backend
+retirement or a native Windows GPU handoff. The standalone fixture's strict disk
+comparison still fails one reserved-sector byte; filesystem bytes stayed inherited
+unchanged, but the writer is unattributed and the gate is not waived. This is
+separate from the Windows Ftdisk49 warning and the physical demo.
+
+The next step is actual cache-owner disposal and replacement. [283 through287](../disposal-boundary287/NEXT.md)
+provide host-tested disposal, generation accounting, publication, completed-free
+hooks and an explicit four-boundary contract. No new xemu binary, guest run or
+physical deployment has installed those pieces. The actual graph provider,
+four-boundary worker and independent runtime transport still need integration.
+Known failed negative tests and all predecessor results remain preserved.
+
+A read-only check of the audio, PCI and USB chats near03:50UTC October12 found
+all three inactive/completed, with no new hardware test dispatched. Their selected
+demo recommendations remain: audio004, current keyboard/mouse support, no USB
+XID prototype or speculative PCI package. The louder tones are user-confirmed;
+the output mapper query does not identify a physical output device. No peer
+was asked to start more work during this closeout.
 
 # Earlier status preserved chronologically
 
