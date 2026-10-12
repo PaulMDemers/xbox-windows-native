@@ -1,0 +1,12 @@
+313 changes only the active emulator wizard helper on the never-executed312720p candidate seed.311 loader/video/storage/audio are unchanged; physical console untouched.
+
+Build001 completed without compiler warnings. Exact adapter host tests passed111 assertions, including10000 denied-activation polls producing one call and changed-identity refusal after durable logging. All Win32/process/log interfaces are modeled in that test. Independent synthetic activation decoder rejected31 mutations. Actual owned NT5 export/import providers and compiler are pinned. Original201 Cancel body reconstructs exactly; policy.h is byte-identical. Physical and observation modes cannot activate.
+
+New helper SHA25608ed7ce595d317ea3e0de50daa4740031ac25ac3ffc32f53afcb44722c308512. Private buildD:/xwn313/build001. Private unused fixtureD:/xwn313/fixtures/candidate001/source.qcow2. Source preparation readback and full allocation scan passed. Historical inherited payload descriptions were retained under an explicitly non-current field; files/protected contain actual readback hashes and helpers reflects the new wizard.
+
+The single candidate001 runtime is closed; detailed scoped results and the missing activation coverage are below.
+The single candidate001 launch was accepted21:51:31UTC and returned21:55:47UTC, with normal Windows restart and orderly host exit0/no fallback. All sessions are CLOSED:runner49358/supervisor41366/audit1517/preparation12201. Never relaunch/recollect/parent this runtime.
+
+Actual Windows caps and all five identity records confirm1280x720x32/pitch5120/3686400visible bytes. Five drawing and six exact captured audio phases pass; clean combined event interval. Full allocation327directories6763files328directoryclusters/zero errors or orphans, five valid hives,58protected files, unchanged startup/device policy/bindings and preserved histories.206frozen inputs/sixhost dependencies/30private artifacts verified.
+
+IMPORTANT: there were ZERO activation attempts. All three known wizard owners were already foreground; original Cancel/idle behavior completed. The independent activation decoder correctly rejects missing coverage. Therefore313 overall scoped_passed and strict_passed remainFALSE; the720p drawing/audio scope passes independently. This run does NOT demonstrate that the intermittent312 foreground failure is fixed. No blind rerun to seek coverage. Ftdisk49 also remains strict failure. No physical/1080i/release qualification.

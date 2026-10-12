@@ -1,3 +1,7 @@
+# 720p Windows workload passed in emulator
+
+Actual1280x720x32/pitch5120, five drawing phases, six captured audio phases, normal restart and clean allocation/hive/protected checks passed in313. Ftdisk49 remains a strict failure. The new foreground activation code was never called because the three wizards were already in front; its missing coverage remains a failure, not a proven fix for312. Physical baseline unchanged;720p hardware and1080i Windows testing remain,0.2.0untagged. All owned313 processes closed. Read ../hd-ui313/REPORT.md and NEXT.md.
+
 # 720p desktop reached; unattended setup gate needs handling
 
 The new explicit720p Cromwell path compiles and reaches a1280x720 Windows desktop
