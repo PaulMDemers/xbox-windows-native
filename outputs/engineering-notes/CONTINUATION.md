@@ -1,3 +1,48 @@
+#280 HOST-ONLY — three-boundary worker sequencing and transport tested
+
+Read outputs/release-worker280/REPORT.md, DESIGN.md, NEXT.md, source-review.json,
+final-review.json and actual host records. All subprocesses CLOSED. No renderer
+build, guest preparation/launch, release installation, shared source/SDK/physical
+change. Never rerun worker001..004, graph001, publication001 or transport001;
+never relaunch/recollect/parent any closed guest.
+
+Proposed worker004 ASan/UBSan passes186 orchestration/capture paths,27366assertions.
+Three preallocated never-reset slots: pre-release CPUepochs1/2, post-release3/4,
+post-resume5/6. Fresh post-release proof and snapshots BEFORE permitting resume.
+Candidate actual refs1/cache1/unit0 state is validated explicitly; control refs2.
+Original277 and279helper BYTE-IDENTICAL. No fake counts/epochs/refcount assignment.
+Post-arm deadline/quiescence recheck; partial mutation mask + quarantine. Failed
+scalar publication never retried; immutable initial record across final stage.
+CPU/GL/livegraph/authorization/release/snapshot APIs are EXPLICIT HOST MODELS.
+The proposed orchestration/validation/capture/comparison bodies are actual code,
+but no runtime adapter is integrated or built. Do not mistake host PASS for GL.
+
+Graph001385checks: current live cache edge before following scalar identity,
+three stages/both modes, duplicate/missing/changed/capacity refusals. QEMUobjects
+modeled. Publication001 actual recordwriter512pthread release/acquire races,
+1024competingwriters; caller/getter modeled. Independent transport0012138negative
+mutations rejects truncation/unknown/missing/changed rows; actual host-output bytes,
+not guest evidence. Complete realQOM/UI/273seal/pixel validation remains separate.
+104private capsule files rehashed, exact original278 helper reconstruction and
+only explicit stage/ref-rule delta from277 verified. GCC15.2.0 identity recorded.
+worker001compilefailed2indentationwarnings;002184/26103PASSbeforetimingrows;
+003184/27186PASSwithtiming;004postarmdeadlineadds2paths. All frozen/predecessors kept.
+
+NEXT NEW exact278 child must implement actual complete unbound graph/UI provider,
+texture.c counted-release and stage2snapshot wrappers, and one-shot QOM request/
+getters with all3preallocatedledgers. Derive live authorization, never copy model
+booleans. Arm only after proof; actual snapshot errors join273 union withoutfake
+binds/capturemask. Reject legacy actions consuming newstate. Acquire overallstate,
+not completedslot, before reading/resuming. Test actual providers and fulltransport
+beforebuild. Then freshmatched no-release control/newcandidate with same271oracle,
+fullnative/CPU/context/graph/realgeneration/sourceRGBAframebuffer/seal/coldaudit.
+No wholefinalizer/reset/switch/joins/callbackchanges/dirtydownloads/GPUgrant.
+DeadlineOct12 04:00UTC; inspect20GiB guard (C last21561249792bytes, tight). No
+physicaltestqueued. Physicaldemo/recovery256/0.1.0/0088 untouched.278 scopedcontrol
+PASS/strictdiskFALSE and279counterfieldinference remain unchanged.
+
+--- Previous continuation (preserved) ---
+
 #279 HOST-ONLY — unbound release proposal; reserved byte matches counter field
 
 Read outputs/unbound-release279/REPORT.md, DESIGN.md, NEXT.md, actual-edges.json,
