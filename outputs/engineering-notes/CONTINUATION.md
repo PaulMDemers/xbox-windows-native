@@ -1,3 +1,58 @@
+#278 CLOSED — actual unchanged four-texture control passed; no release installed
+
+Read outputs/texture-boundary278/REPORT.md, DESIGN.md, NEXT.md, final-review.json,
+emu001/reuse-proof.json, final-review.json and actual-controls.json. All owned
+processes CLOSED, including build22528/99503, runtime97797 and analysis44758.
+Never relaunch/recollect/parent278emu001 or any earlier closed runtime.
+
+Scoped complete no-release reuse PASS. Three actual native phases11/22/33;
+49152 source/guard bytes,384 vertices/stop,2x720 independent framebuffer bytes,
+XBE/text/caller/kernel-export/15RAMHT descriptor checks. Both owner transactions
+completed:55660rows/218pages each plus8UIpages,CPUepochs1/2 then3/4,4callbacks
+at each ack,mutationclock40 throughout,complete locked graphs/context fences.
+Four original live generations each actually rebound once via normal guest
+binder;8snapshots/8192source+RGBAbytes exact,key/identity/name unchanged. Terminal
+273 sealed on originalworker with8events/4runs/capturemask15/allerrors0.48original
+shader workfunctions returned,notOSthreadexit/join. Old base parser unknown
+summary remains separately visible; actor extension supplies this specific proof.
+Frontendreopenedonce/breakpointsremoved/physicalmode0,18secondhaltwindow,orderly
+hostexit0/no fallback. ActualHALhaltentrynottraced;noWindows shutdown claim.
+
+StrictFALSE:onechangedbyte reservedsector1536. Complete8GiBmap+65536overlaybytes
+provesfilesysteminheritedunchanged;QCOW/EEPROMclean. Writerunattributed,nowaiver.
+83frozendependencies/1022privatecapturesexact. Postrun278actualgraph mutations
+and8192actualpixel-byte mutations rejected,originalsunchanged. Poorly named
+actual-controls strict_disk_gate_unchanged:false means strictresultFALSE,not
+a changed gate. No release/disposal/ordinary/performance/nativeGPU/physicalclaim.
+
+Exact276child renderer002 onE boundary278-build002/xemu-boundary278.exe:
+dcc08133f6627f387da3a584ba9eed2bdbac73e3cb3fcb19d1edb78c05e1ac93,
+191818097bytes,79inheritedwarnings/no new. Onlyrenderer.c/physmem.c changed;
+19borrowedfilesrestored,277core/clockbyteidentical,legacyzero gatesunchanged.
+Hostactualworker57paths4788assertions,collector/request78checks,independent
+308scalar+68graph+4nativeallocationmutations. CPU/GLobjects modeled inhosttests.
+Build001compiled butshadowwarningFAIL/NEVERlaunched;002onlyiteratorrename.
+Controller001CRLFanchor failure andpreflight001atomicwriternewline mismatch
+preserved BEFORE preparation;qualifiedwriterbyteexactrestoredbeforefreeze.
+
+NEXT reviewactual278selectedowner/context/containeredges BEFORE separateNEW
+268narrowreleasecandidate. Needbefore/after-release/after-resume immutablegraphs,
+cacheownersretained,context-specificunbind,normaldirty/rebindstate,actualcounted
+release only,postmutationGLfailure quarantine tests.277coreexplicitlyrejects
+release;newreviewedcontract required,notfakezero/removedgate. Keepdirtysurfaces
+andcallbacksuntouched. Two unboundsurfaces' provenance remains unresolved and
+outsideonlythisnarrowoperation. No fullbackend/nativeGPUhandoff. Investigate
+reservedwritefromclosed evidence/pinnedsourcefirst;strictfailurestaysrecorded.
+No wholefinalizer/reset/switch/joins/hostbinder/borrowedfirmwarecommands. Native
+WindowsPTE/cachealiases/deferredrelease remainseparatebefore16x8copy.
+
+Closed186non-backingportablehashverified/offloadedwithoriginaljunction:
+outputs/task-storage-offload/portable-278.json. No backingmoved. C~21.7GBdecimal,
+20GiBguardunchanged;newportables/scratchonE. Physicaldemo/recovery/rollbacks
+unchanged asbelow. CheckOct12 04:00UTC cutoffbefore newexperiment.
+
+--- Previous continuation (preserved) ---
+
 #277 HOST-ONLY — lifetime-aware narrow texture observation contract
 
 Read outputs/texture-admission277/REPORT.md, DESIGN.md, NEXT.md,

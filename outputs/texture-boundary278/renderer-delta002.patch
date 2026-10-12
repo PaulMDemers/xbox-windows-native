@@ -1,0 +1,445 @@
+--- a/hw/xbox/nv2a/pgraph/gl/renderer.c
++++ b/hw/xbox/nv2a/pgraph/gl/renderer.c
+@@ -638,9 +638,11 @@
+  * Each slot is published only after actual CPU-exclusive before/after audits.
+  */
+ #include "qemu/cutils.h"
++void mem_access_callback_clock277(CPUState *cpu,uint64_t *value,unsigned *error);
+ typedef struct X260CPU {
+     NV2AState *d;
+     unsigned done,reason,count;
++    uint64_t clock278;unsigned clock_error278;
+     uint64_t epoch,thread,when,rows[X260_CALLBACKS][4];
+     uint64_t detail276[X260_CALLBACKS][3]; /* CPU-owned function,region,absolute RAM address */
+ } X260CPU;
+@@ -697,6 +699,7 @@
+         row[0]=(uintptr_t)cb;row[1]=cb->addr-base;row[2]=cb->len;row[3]=(uintptr_t)cb->opaque;
+     }
+ done:
++    if(!a->reason)mem_access_callback_clock277(cpu,&a->clock278,&a->clock_error278);
+     qatomic_store_release(&a->done,1);
+ }
+ static bool x260_alive(NV2AState *d,X260Slot *v)
+@@ -1059,6 +1062,115 @@
+ /*265 One immutable observation request. Reuses the proven CPU-exclusive audit
+  * mechanism but never starts a260 renderer-pattern slot or disposes an object.
+  */
++/*277 Proposed texture-only observation contract. No disposal or GPU grant.
++ * Every argument is an immutable scalar copy, never a saved pointer to follow.
++ * The runtime adapter must establish actual CPU/context/lock acknowledgments. */
++#ifndef XWN_TEXTURE_ADMISSION277_H
++#define XWN_TEXTURE_ADMISSION277_H
++#include <stdint.h>
++#include <string.h>
++#define X277_MAX 128u
++typedef struct { uint64_t identity,begin,bytes,opaque,function,region,absolute; } X277Callback;
++typedef struct { uint64_t identity,callback,begin,bytes,name,flags,roles; } X277Surface;
++typedef struct {
++    uint64_t identity,name,allocation,allocation_bytes,source,source_bytes,palette,palette_bytes;
++    uint64_t refs,cache_edges,unit_edges;
++} X277Texture;
++typedef struct {
++    uint64_t epoch,thread,when,clock;
++    unsigned done,error,clock_error,count;
++    X277Callback callbacks[X277_MAX];
++} X277CPU;
++typedef struct {
++    unsigned complete,error,count;
++    X277Surface surfaces[X277_MAX];
++} X277Graph;
++typedef struct {
++    uint64_t stage,worker,device,region,function,ram_base,ram_bytes,started,finished,deadline;
++    uint64_t render_context,display_context;
++    unsigned cpu_stopped,frontend_closed,pfifo_halted,render_fenced,display_fenced;
++    unsigned pending,method_error,get_equals_put,unknown_owners,release_requested;
++    X277Texture textures[4];
++    X277CPU cpu[2];
++    X277Graph graph[2];
++} X277Proof;
++enum { X277_OK, X277_SCOPE, X277_BOUNDARY, X277_CAPACITY, X277_LIFETIME,
++       X277_CALLBACK, X277_SURFACE, X277_BIJECTION, X277_TEXTURE, X277_OVERLAP };
++static inline int x277_range(uint64_t a,uint64_t n,uint64_t size)
++{ return n && a<size && n<=size-a; }
++static inline int x277_overlap(uint64_t a,uint64_t n,uint64_t b,uint64_t m)
++{ return a<b+m && b<a+n; } /* Only after both ranges have been bounded. */
++static inline unsigned x277_validate(const X277Proof *p)
++{
++    if((p->stage!=1 && p->stage!=2) || !p->worker || !p->device || !p->region ||
++       !p->function || !p->ram_bytes || p->ram_bytes>UINT64_MAX-p->ram_base ||
++       p->release_requested) return X277_SCOPE;
++    if(p->cpu_stopped!=1 || p->frontend_closed!=1 || p->pfifo_halted!=1 ||
++       p->render_fenced!=1 || p->display_fenced!=1 || p->get_equals_put!=1 ||
++       !p->render_context || !p->display_context || p->render_context==p->display_context ||
++       p->pending || p->method_error || p->unknown_owners ||
++       p->started>p->finished || p->finished>=p->deadline) return X277_BOUNDARY;
++    for(unsigned phase=0;phase<2;phase++) {
++        const X277CPU *c=&p->cpu[phase];const X277Graph *g=&p->graph[phase];
++        if(c->done!=1 || c->error || c->clock_error || !c->thread || c->thread==p->worker ||
++           c->epoch!=p->stage*2-1+phase || c->when<p->started || c->when>p->finished ||
++           g->complete!=1 || g->error) return X277_BOUNDARY;
++        if(!c->count || c->count>X277_MAX || g->count!=c->count) return X277_CAPACITY;
++        if(!c->clock || c->clock==UINT64_MAX) return X277_LIFETIME;
++        for(unsigned i=0;i<c->count;i++) {
++            const X277Callback *b=&c->callbacks[i];unsigned matches=0;
++            if(!b->identity || b->opaque!=p->device || b->function!=p->function ||
++               b->region!=p->region || !x277_range(b->begin,b->bytes,p->ram_bytes) ||
++               b->absolute!=p->ram_base+b->begin) return X277_CALLBACK;
++            for(unsigned j=0;j<i;j++)
++                if(b->identity==c->callbacks[j].identity) return X277_CALLBACK;
++            for(unsigned j=0;j<g->count;j++) {
++                const X277Surface *s=&g->surfaces[j];
++                if(!s->identity || !s->callback || !s->name ||
++                   !x277_range(s->begin,s->bytes,p->ram_bytes) ||
++                   (s->flags&~UINT64_C(1)) || (s->roles&~UINT64_C(3))) return X277_SURFACE;
++                for(unsigned k=0;k<j;k++) {
++                    const X277Surface *o=&g->surfaces[k];
++                    if(s->identity==o->identity || s->callback==o->callback || s->name==o->name ||
++                       (s->roles&o->roles) ||
++                       x277_overlap(s->begin,s->bytes,o->begin,o->bytes)) return X277_SURFACE;
++                }
++                if(s->callback==b->identity) {
++                    if(s->begin!=b->begin || s->bytes!=b->bytes) return X277_BIJECTION;
++                    matches++;
++                }
++            }
++            if(matches!=1) return X277_BIJECTION;
++        }
++    }
++    const X277CPU *a=&p->cpu[0],*b=&p->cpu[1];
++    if(a->thread!=b->thread || a->when>b->when || a->clock!=b->clock || a->count!=b->count ||
++       memcmp(a->callbacks,b->callbacks,a->count*sizeof(a->callbacks[0])) ||
++       memcmp(p->graph[0].surfaces,p->graph[1].surfaces,p->graph[0].count*sizeof(X277Surface)))
++        return X277_LIFETIME;
++    for(unsigned i=0;i<4;i++) {
++        const X277Texture *t=&p->textures[i];
++        if(!t->identity || !t->name || t->refs!=2 || t->cache_edges!=1 || t->unit_edges!=1 ||
++           t->allocation_bytes!=4096 || (t->allocation&4095) ||
++           !x277_range(t->allocation,t->allocation_bytes,p->ram_bytes) ||
++           t->source!=t->allocation+256 || t->source_bytes!=512 || t->palette || t->palette_bytes)
++            return X277_TEXTURE;
++        for(unsigned j=0;j<i;j++) {
++            const X277Texture *o=&p->textures[j];
++            if(t->identity==o->identity || t->name==o->name ||
++               x277_overlap(t->allocation,t->allocation_bytes,o->allocation,o->allocation_bytes))
++                return X277_TEXTURE;
++        }
++        for(unsigned j=0;j<p->graph[0].count;j++) {
++            const X277Surface *s=&p->graph[0].surfaces[j];
++            if(t->name==s->name || x277_overlap(t->allocation,t->allocation_bytes,s->begin,s->bytes))
++                return X277_OVERLAP;
++        }
++    }
++    return X277_OK;
++}
++#endif
++
+ typedef struct X265State {
+     X260Slot boundary;
+     X265Rows ledger;
+@@ -1069,6 +1181,8 @@
+     struct X265State *end274;
+     unsigned end_page274,contexts274,seal274;
+     bool observe276; /* Never arms texture lifetime observation. */
++    bool textures278;uint64_t allocations278[4];
++    X277Proof proof278;unsigned admission278;
+ } X265State;
+ 
+ /*267 Bounded query of indexed references and known context-local containers.
+@@ -1391,10 +1505,197 @@
+     return true;
+ }
+ 
++/*278 Opt-in adapter. Called only by the actual PFIFO worker under renderer/PG
++ * locks. It follows current live objects, never acknowledged callback pointers. */
++static bool x278_parse(const char *text,uint64_t allocations[4])
++{
++    if(strncmp(text,"textures278,",12) || strlen(text)>100) return false;
++    const char *p=text+12;
++    for(unsigned i=0;i<4;i++) {
++        const char *end=NULL;
++        if(*p<'0' || *p>'9' || (*p=='0' && p[1]>='0' && p[1]<='9') ||
++           qemu_strtou64(p,&end,10,&allocations[i]) || !end ||
++           (i==3?*end!=0:*end!=',')) return false;
++        if((allocations[i]&4095) || allocations[i]>UINT64_C(67108864)-4096) return false;
++        for(unsigned j=0;j<i;j++) if(allocations[j]==allocations[i]) return false;
++        p=end+(i!=3);
++    }
++    return true;
++}
++static void x278_cpu_copy(X265State *s,unsigned phase)
++{
++    X260CPU *a=&s->boundary.cpu[phase];X277CPU *c=&s->proof278.cpu[phase];
++    if(!qatomic_load_acquire(&a->done)) return;
++    c->done=a->done;c->error=a->reason;c->epoch=a->epoch;c->thread=a->thread;c->when=a->when;
++    c->clock=a->clock278;c->clock_error=a->clock_error278;c->count=a->count;
++    for(unsigned i=0;i<a->count && i<X277_MAX;i++) {
++        uint64_t *r=a->rows[i],*e=a->detail276[i];
++        c->callbacks[i]=(X277Callback){r[0],r[1],r[2],r[3],e[0],e[1],e[2]};
++    }
++}
++static bool x278_graph(NV2AState *d,X265State *s,unsigned phase)
++{
++    X277Proof *p=&s->proof278;X277Graph *g=&p->graph[phase];
++    PGRAPHState *pg=&d->pgraph;PGRAPHGLState *r=pg->gl_renderer_state;
++    if(g->complete || g->count) return false;
++    SurfaceBinding *surface;
++    QTAILQ_FOREACH(surface,&r->surfaces,entry) {
++        if(g->count==X277_MAX){g->error=1;return false;}
++        g->surfaces[g->count++]=(X277Surface){(uintptr_t)surface,(uintptr_t)surface->access_cb,
++            surface->vram_addr,surface->size,surface->gl_buffer,
++            (surface->draw_dirty?1:0)|(surface->download_pending?2:0)|(surface->cpu_write_evict_pending?4:0)|(surface->upload_pending?8:0),
++            (surface==r->color_binding?1:0)|(surface==r->zeta_binding?2:0)};
++    }
++    for(unsigned i=0;i<4;i++) {
++        TextureBinding *b=r->texture_binding[i];if(!b)return false;
++        TextureLruNode *found=NULL;unsigned walked=0,edges=0;LruNode *node;
++        QTAILQ_FOREACH(node,&r->texture_cache.global,next_global) {
++            if(++walked>512)return false;
++            if(!lru_is_node_in_use(&r->texture_cache,node))continue;
++            TextureLruNode *t=container_of(node,TextureLruNode,node);
++            if(t->binding==b){found=t;edges++;}
++        }
++        if(edges!=1 || !found || b->gl_target!=GL_TEXTURE_2D)return false;
++        unsigned units=0;
++        for(unsigned j=0;j<4;j++)units+=r->texture_binding[j]==b;
++        X277Texture t={(uintptr_t)b,b->gl_texture,s->allocations278[i],4096,
++            found->key.texture_vram_offset,found->key.texture_length,
++            found->key.palette_vram_offset,found->key.palette_length,b->refcnt,edges,units};
++        if(phase && memcmp(&t,&p->textures[i],sizeof(t)))return false;
++        if(!phase)p->textures[i]=t;
++    }
++    g->complete=1;return true;
++}
++static bool x278_quiescent(NV2AState *d,X265State *initial,X265State *s,bool ending)
++{
++    PGRAPHState *pg=&d->pgraph;PGRAPHGLState *r=pg->gl_renderer_state;
++    X260Slot *v=&s->boundary;
++    if(!x260_alive(d,v) || !qatomic_read(&d->pfifo.halt) || pg->framebuffer_in_use ||
++       d->pfifo.regs[NV_PFIFO_CACHE1_DMA_GET]!=d->pfifo.regs[NV_PFIFO_CACHE1_DMA_PUT] ||
++       (d->pfifo.regs[NV_PFIFO_CACHE1_DMA_STATE]&
++       (NV_PFIFO_CACHE1_DMA_STATE_METHOD_COUNT|NV_PFIFO_CACHE1_DMA_STATE_ERROR)) ||
++       x274_pending(d) || pg->primitive_mode!=PRIM_TYPE_INVALID || pg->draw_arrays_length ||
++       pg->inline_array_length || pg->inline_elements_length || pg->inline_buffer_length ||
++       !QSIMPLEQ_EMPTY(&r->report_queue) || r->gl_zpass_pixel_count_query_count) return false;
++    if(ending && (initial->boundary.worker_thread!=v->worker_thread ||
++       !pgraph_gl_reuse274_ready(initial->boundary.worker_thread))) return false;
++    return true;
++}
++static bool x278_validate(NV2AState *d,X265State *s)
++{
++    X277Proof *p=&s->proof278;X260Slot *v=&s->boundary;
++    p->stage=v->stage;p->worker=v->worker_thread;p->device=(uintptr_t)d;p->region=(uintptr_t)d->vram;
++    p->function=p->cpu[0].count?p->cpu[0].callbacks[0].function:0;
++    p->ram_base=memory_region_get_ram_addr(d->vram);p->ram_bytes=memory_region_size(d->vram);
++    p->started=v->started;p->finished=qemu_clock_get_ns(QEMU_CLOCK_REALTIME);p->deadline=v->deadline;
++    p->cpu_stopped=qatomic_read(&qemu_get_cpu(0)->stopped);p->frontend_closed=xwn_frontend246_closed();
++    p->pfifo_halted=qatomic_read(&d->pfifo.halt);p->render_fenced=v->admission.render_fenced;
++    p->display_fenced=v->admission.display_fenced;p->pending=x274_pending(d);
++    p->get_equals_put=d->pfifo.regs[NV_PFIFO_CACHE1_DMA_GET]==d->pfifo.regs[NV_PFIFO_CACHE1_DMA_PUT];
++    p->method_error=d->pfifo.regs[NV_PFIFO_CACHE1_DMA_STATE]&
++        (NV_PFIFO_CACHE1_DMA_STATE_METHOD_COUNT|NV_PFIFO_CACHE1_DMA_STATE_ERROR);
++    p->unknown_owners=s->accounting_error || s->shader_jobs_unknown;
++    unsigned contexts=0;
++    for(unsigned i=0;i<s->ledger.count;i++) {
++        uint64_t *row=s->ledger.rows[i];if(row[0]!=51)continue;
++        if(row[1]<1 || row[1]>2 || !row[7] || row[3]!=row[4] || row[5]!=row[6] ||
++           (contexts&(1u<<row[1])))return false;
++        contexts|=1u<<row[1];
++        if(row[1]==1)p->render_context=row[3];else p->display_context=row[3];
++    }
++    if(contexts!=6)return false;
++    s->admission278=x277_validate(p);return s->admission278==X277_OK;
++}
++/* Bounded immutable transport; rows carry actual tuples even on refusal. */
++static bool x278_publish(X265State *s)
++{
++    X277Proof *p=&s->proof278;X265Rows *o=&s->ledger;
++    x278_cpu_copy(s,0);x278_cpu_copy(s,1);
++    bool ok=x265_add(o,64,s->boundary.stage,s->admission278,p->cpu[0].clock,p->cpu[1].clock,
++        p->cpu[0].clock_error,p->cpu[1].clock_error,1);
++    ok &= x265_add(o,69,p->stage,p->ram_base,p->ram_bytes,p->device,p->region,p->function,s->admission278);
++    for(unsigned phase=0;phase<2;phase++) {
++        X277CPU *c=&p->cpu[phase];X277Graph *g=&p->graph[phase];
++        ok &= x265_add(o,70,phase,c->done,c->error,c->count,g->complete,g->error,g->count);
++        for(unsigned i=0;i<c->count && i<X277_MAX;i++) {
++            X277Callback *b=&c->callbacks[i];
++            ok &= x265_add(o,17,phase,b->identity,b->begin,b->bytes,b->opaque,c->thread,c->epoch);
++            ok &= x265_add(o,65,phase,b->identity,b->function,b->region,b->absolute,0,0);
++        }
++        for(unsigned i=0;i<g->count && i<X277_MAX;i++) {
++            X277Surface *b=&g->surfaces[i];
++            ok &= x265_add(o,66,phase,b->identity,b->callback,b->begin,b->bytes,b->name,b->flags|(b->roles<<8));
++        }
++    }
++    for(unsigned i=0;i<4;i++) {
++        X277Texture *t=&p->textures[i];
++        ok &= x265_add(o,67,i,t->identity,t->name,t->allocation,t->allocation_bytes,t->source,t->source_bytes);
++        ok &= x265_add(o,68,i,t->palette,t->palette_bytes,t->refs,t->cache_edges,t->unit_edges,0);
++    }
++    return ok;
++}
++static bool x278_worker(NV2AState *d)
++{
++    X265State *initial=qatomic_load_acquire(&d->ledger265);
++    X265State *end=qatomic_load_acquire(&initial->end274);
++    bool ending=end!=NULL;X265State *s=ending?end:initial;X260Slot *v=&s->boundary;
++    if(qatomic_cmpxchg(&v->state,1,2)!=1)return false;
++    PGRAPHState *pg=&d->pgraph;PGRAPHGLState *r=pg->gl_renderer_state;
++    unsigned reason=0;bool locked=false;s->admission278=UINT_MAX;
++    v->worker_thread=qemu_get_thread_id();
++    if(!r || !s->textures278 || !x260_alive(d,v) || bql_locked() || pg->framebuffer_in_use){reason=1;goto finish;}
++    if(!x260_cpu_boundary(d,v,0)){reason=2;goto finish;}
++    x278_cpu_copy(s,0);
++    qemu_mutex_unlock(&d->pfifo.lock);
++    bool render=x260_context_fence(d,v,g_nv2a_context_render);
++    bool display=render && x260_context_fence(d,v,g_nv2a_context_display);
++    glo_set_current(g_nv2a_context_render);qemu_mutex_lock(&d->pfifo.lock);
++    if(!render || !display){reason=3;goto finish;}
++    v->admission.render_fenced=render;v->admission.display_fenced=display;
++    if(qemu_mutex_trylock(&pg->renderer_lock)){reason=4;goto finish;}
++    if(qemu_mutex_trylock(&pg->lock)){qemu_mutex_unlock(&pg->renderer_lock);reason=5;goto finish;}
++    locked=true;v->pending_mask=x274_pending(d);
++    if(!x278_quiescent(d,initial,s,ending)){reason=6;goto finish;}
++    if(!x265_collect(d,s) || !x278_graph(d,s,0)){reason=7;goto finish;}
++    if(s->accounting_error || s->shader_jobs_unknown){reason=14;goto finish;}
++    if(!x265_context(&s->ledger,1,v->deadline) || !x267_context(&s->ledger,r,1,v->deadline)){reason=8;goto finish;}
++    glo_set_current(g_nv2a_context_display);
++    bool context_ok=x265_context(&s->ledger,2,v->deadline) && x267_context(&s->ledger,r,2,v->deadline);
++    glo_set_current(g_nv2a_context_render);
++    if(!context_ok){reason=9;goto finish;}
++    qemu_mutex_unlock(&pg->lock);qemu_mutex_unlock(&pg->renderer_lock);locked=false;
++    if(!x260_cpu_boundary(d,v,1)){reason=10;goto finish;}
++    x278_cpu_copy(s,1);
++    if(qemu_mutex_trylock(&pg->renderer_lock)){reason=22;goto finish;}
++    if(qemu_mutex_trylock(&pg->lock)){qemu_mutex_unlock(&pg->renderer_lock);reason=23;goto finish;}
++    locked=true;
++    if(!x278_quiescent(d,initial,s,ending) || !x278_graph(d,s,1)){reason=28;goto finish;}
++    if(!x278_validate(d,s)){reason=29;goto finish;}
++    uintptr_t actual[4];
++    if(!glo_context_observe267(g_nv2a_context_render,actual) || actual[0]!=s->proof278.render_context){reason=25;goto finish;}
++    if(ending) {
++        s->contexts274=x274_context_match(initial,s);
++        if(!s->contexts274){reason=21;goto finish;}
++    } else if(!pgraph_gl_reuse269_arm(d)){reason=30;goto finish;}
++    qemu_mutex_unlock(&pg->lock);qemu_mutex_unlock(&pg->renderer_lock);locked=false;
++    if(ending) {
++        qemu_mutex_unlock(&d->pfifo.lock);s->seal274=pgraph_gl_reuse269_seal();qemu_mutex_lock(&d->pfifo.lock);
++        if(!s->seal274 || pgraph_gl_reuse269_error())reason=26;
++    }
++finish:
++    if(locked){qemu_mutex_unlock(&pg->lock);qemu_mutex_unlock(&pg->renderer_lock);}
++    if(!x278_publish(s) && !reason)reason=12;
++    if(!x260_alive(d,v) && !reason)reason=13;
++    v->reason=reason;v->finished=qemu_clock_get_ns(QEMU_CLOCK_REALTIME);
++    if(!reason)qatomic_set(&d->pfifo.halt,v->old_halt);
++    qatomic_store_release(&v->state,reason?6:5);return true;
++}
++
+ bool pgraph_gl_ledger265_worker(NV2AState *d)
+ {
+     X265State *initial=qatomic_load_acquire(&d->ledger265);
+     if (!initial) return false;
++    if(initial->textures278)return x278_worker(d);
+     X265State *end=qatomic_load_acquire(&initial->end274);
+     bool ending=end!=NULL;X265State *s=ending?end:initial;
+     if (qatomic_cmpxchg(&s->boundary.state,1,2)!=1) return false;
+@@ -1480,6 +1781,7 @@
+         /* Allocate before locking. Once published, this state and CPU job
+          * metadata remain alive even on timeout, until owned process teardown. */
+         X265State *end=g_new0(X265State,1);X260Slot *v=&end->boundary;
++        end->textures278=initial->textures278;memcpy(end->allocations278,initial->allocations278,sizeof(end->allocations278));
+         end->ledger.rows=g_malloc0_n(X265_ROWS,sizeof(*end->ledger.rows));end->ledger.capacity=X265_ROWS;
+         if (qemu_mutex_trylock(&d->pfifo.lock)) {
+             g_free(end->ledger.rows);g_free(end);error_setg(errp,"274 FIFO busy; not accepted");return;
+@@ -1496,8 +1798,9 @@
+             qatomic_load_acquire(&s->end274) || !pgraph_gl_reuse269_seal()) error_setg(errp,"269 seal requires stopped CPU and completed observer entry");
+         return;
+     }
++    uint64_t allocations278[4]={0};bool textures278=x278_parse(value,allocations278);
+     bool observe276=!strcmp(value,"observe276");
+-    if ((!observe276 && strcmp(value,"capture,1")) || runstate_is_running() || !xwn_frontend246_closed() ||
++    if ((!textures278 && !observe276 && strcmp(value,"capture,1")) || runstate_is_running() || !xwn_frontend246_closed() ||
+         !d->pgraph.renderer || d->pgraph.renderer->type!=CONFIG_DISPLAY_RENDERER_OPENGL ||
+         qatomic_load_acquire(&d->ledger265) || qatomic_load_acquire(&d->pattern260) ||
+         qatomic_load_acquire(&d->worker247.state) || qatomic_load_acquire(&d->preserve227.state)) {
+@@ -1505,7 +1808,7 @@
+     }
+     if (qemu_mutex_trylock(&d->pfifo.lock)) {error_setg(errp,"265 FIFO busy; not accepted");return;}
+     X265State *s=g_new0(X265State,1);X260Slot *v=&s->boundary;
+-    s->observe276=observe276;
++    s->observe276=observe276;s->textures278=textures278;memcpy(s->allocations278,allocations278,sizeof(allocations278));
+     s->ledger.rows=g_malloc0_n(X265_ROWS,sizeof(*s->ledger.rows));s->ledger.capacity=X265_ROWS;
+     v->stage=1;v->started=qemu_clock_get_ns(QEMU_CLOCK_REALTIME);v->deadline=v->started+10000000000LL;
+     v->old_halt=qatomic_read(&d->pfifo.halt);qatomic_set(&d->pfifo.halt,true);
+@@ -1532,7 +1835,7 @@
+     X260Slot *v=&s->boundary;
+     unsigned cpu0=qatomic_load_acquire(&v->cpu[0].done);
+     unsigned cpu1=qatomic_load_acquire(&v->cpu[1].done);
+-    return g_strdup_printf("version=265 epoch=%u sealed=%u context_match=%u render_fenced=%u display_fenced=%u cpu0_count=%u cpu1_count=%u cpu0_thread=%"PRIu64" cpu1_thread=%"PRIu64" cpu0_epoch=%"PRIu64" cpu1_epoch=%"PRIu64" cpu0_when=%"PRIu64" cpu1_when=%"PRIu64" deadline=%"PRIu64" state=%u reason=%u rows=%u overflow=%u pages=%u bindings=%u accounting=%u shader_jobs_unknown=%u worker=%"PRIu64" started=%"PRIu64" finished=%"PRIu64" cpu0_done=%u cpu0_reason=%u cpu1_done=%u cpu1_reason=%u pending=%u native_grant=0 retirement=0 reuse269_error=%u",
++    return g_strdup_printf("version=265 epoch=%u sealed=%u context_match=%u render_fenced=%u display_fenced=%u cpu0_count=%u cpu1_count=%u cpu0_thread=%"PRIu64" cpu1_thread=%"PRIu64" cpu0_epoch=%"PRIu64" cpu1_epoch=%"PRIu64" cpu0_when=%"PRIu64" cpu1_when=%"PRIu64" deadline=%"PRIu64" state=%u reason=%u rows=%u overflow=%u pages=%u bindings=%u accounting=%u shader_jobs_unknown=%u worker=%"PRIu64" started=%"PRIu64" finished=%"PRIu64" cpu0_done=%u cpu0_reason=%u cpu1_done=%u cpu1_reason=%u pending=%u native_grant=0 retirement=0 reuse269_error=%u texture278=%u admission278=%u",
+         epoch,s->seal274,s->contexts274,v->admission.render_fenced,v->admission.display_fenced,
+         cpu0?v->cpu[0].count:UINT_MAX,cpu1?v->cpu[1].count:UINT_MAX,
+         cpu0?v->cpu[0].thread:0,cpu1?v->cpu[1].thread:0,cpu0?v->cpu[0].epoch:0,cpu1?v->cpu[1].epoch:0,
+@@ -1540,7 +1843,7 @@
+         state,v->reason,s->ledger.count,s->ledger.overflow,x265_page_count(s->ledger.count),
+         s->binding_count,s->accounting_error,s->shader_jobs_unknown,v->worker_thread,
+         v->started,v->finished,cpu0,cpu0?v->cpu[0].reason:UINT_MAX,
+-        cpu1,cpu1?v->cpu[1].reason:UINT_MAX,v->pending_mask,pgraph_gl_reuse269_error());
++        cpu1,cpu1?v->cpu[1].reason:UINT_MAX,v->pending_mask,pgraph_gl_reuse269_error(),s->textures278,s->admission278);
+ }
+ char *pgraph_gl_ledger265_data(NV2AState *d)
+ {
+--- a/system/physmem.c
++++ b/system/physmem.c
+@@ -867,11 +867,43 @@
+     return ret;
+ }
+ 
++/*277 Proposed instrumentation at completed actual CPU insert/unlink sites.
++ * Metadata only: never gates, skips, waits for, or changes the original work.
++ * Global scope deliberately refuses any foreign CPU rather than merging owners.
++ * Readers are the acknowledged exclusive job on that same CPU, not the monitor.
++ * Static lifetime is the owned process; there is no reset/rearm API. */
++void mem_access_callback_clock277(CPUState *cpu,uint64_t *value,unsigned *error);
++static CPUState *x277_clock_owner;
++static uint64_t x277_clock_value;
++static unsigned x277_clock_error;
++static void x277_clock_advance(CPUState *cpu)
++{
++    CPUState *old=qatomic_cmpxchg(&x277_clock_owner,NULL,cpu);
++    if((old && old!=cpu) || !qemu_cpu_is_self(cpu) || !cpu_in_exclusive_context(cpu))
++        qatomic_fetch_or(&x277_clock_error,1u);
++    uint64_t before=qatomic_read(&x277_clock_value);
++    for(;;) {
++        if(before==UINT64_MAX) {qatomic_fetch_or(&x277_clock_error,2u);return;}
++        uint64_t seen=qatomic_cmpxchg(&x277_clock_value,before,before+1);
++        if(seen==before) return;
++        before=seen;
++    }
++}
++void mem_access_callback_clock277(CPUState *cpu,uint64_t *value,unsigned *error)
++{
++    /* No callback pointer is followed and no CPU work is queued by this read. */
++    unsigned e=qatomic_read(&x277_clock_error);
++    if(qatomic_read(&x277_clock_owner)!=cpu || !qemu_cpu_is_self(cpu) ||
++       !cpu_in_exclusive_context(cpu)) e|=4u;
++    *value=qatomic_read(&x277_clock_value);*error=e;
++}
++
+ static void do_mem_access_callback_insert(CPUState *cpu, run_on_cpu_data data)
+ 
+ {
+     MemAccessCallback *cb = (MemAccessCallback *)data.host_ptr;
+     QTAILQ_INSERT_TAIL(&cpu->mem_access_callbacks, cb, entry);
++    x277_clock_advance(cpu);
+     trace_xwn_mem_callback244(2, qemu_clock_get_ns(QEMU_CLOCK_REALTIME), qemu_get_thread_id(), (uint64_t)(uintptr_t)(cb), cb->addr, cb->len, qatomic_read(&cpu->stopped));
+ }
+ 
+@@ -907,6 +939,7 @@
+     uint64_t identity = (uintptr_t)cb;
+     uint64_t addr = cb->addr, len = cb->len;
+     QTAILQ_REMOVE(&cpu->mem_access_callbacks, cb, entry);
++    x277_clock_advance(cpu);
+     trace_xwn_mem_callback244(4, qemu_clock_get_ns(QEMU_CLOCK_REALTIME), qemu_get_thread_id(), (uint64_t)(uintptr_t)(identity), addr, len, qatomic_read(&cpu->stopped));
+     g_free(cb);
+     trace_xwn_mem_callback244(5, qemu_clock_get_ns(QEMU_CLOCK_REALTIME), qemu_get_thread_id(), (uint64_t)(uintptr_t)(identity), addr, len, qatomic_read(&cpu->stopped));
