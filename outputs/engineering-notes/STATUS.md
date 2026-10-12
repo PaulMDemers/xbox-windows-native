@@ -1,3 +1,7 @@
+# Hardware720p returned early; working baseline restored
+
+313 completed the720p emulator drawing/audio/restart/cold checks.314 hardware returned after21seconds with no test logs and unchanged Windows event/hive/trace bytes. Its boot-stage cause is unresolved; screen observation requested. All original boot/video files and startup were restored/readback. Full allocation, hive and protected checks are clean. No further hardware run queued. Next expose actual loader stage/result before reset;1080i and0.2.0 remain pending. Read ../hd-physical314/REPORT.md and NEXT.md.
+
 # 720p Windows workload passed in emulator
 
 Actual1280x720x32/pitch5120, five drawing phases, six captured audio phases, normal restart and clean allocation/hive/protected checks passed in313. Ftdisk49 remains a strict failure. The new foreground activation code was never called because the three wizards were already in front; its missing coverage remains a failure, not a proven fix for312. Physical baseline unchanged;720p hardware and1080i Windows testing remain,0.2.0untagged. All owned313 processes closed. Read ../hd-ui313/REPORT.md and NEXT.md.
