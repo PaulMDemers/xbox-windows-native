@@ -1,3 +1,14 @@
+# TIME WINDOW CLOSED - automation PAUSED
+
+Authorized cutoff 2026-10-12 04:00 UTC reached. Verified at 04:04:52 UTC; no new
+experiments, builds, guest runs or physical access. Automation pause CONFIRMED.
+Read CLOSEOUT-2026-10-12.md and STATUS.md. All owned subprocesses CLOSED; a fresh
+read-only host query found zero xemu executables. Tracked Git was clean at pushed
+d7ef523d before this documentation-only closeout. Historical untracked files,
+all failures, fixtures/backing chains, physical demo and recovery are unchanged.
+The implementation next steps below are preserved for a future authorized work
+window, not an instruction to continue past this cutoff.
+
 #287 HOST-ONLY four-boundary contract;282 latest actual renderer result
 
 Read outputs/disposal-boundary287/REPORT.md, DESIGN.md, NEXT.md, final-review.json
