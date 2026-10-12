@@ -1,3 +1,7 @@
+# Physical 720p workload passed on watched retry315
+
+Five drawing tests at1280x720x32, six audio phases, normal restart and cold allocation/hive/protected checks passed. The user saw a correct-looking picture. Original baseline restored and read back; no hardware test is queued. Strict qualification remains false solely for Ftdisk49. Earlier314 boot failure remains unexplained; Windows1080i and0.2.0 remain pending. Read ../hd-observed315/REPORT.md.
+
 # Hardware720p returned early; working baseline restored
 
 313 completed the720p emulator drawing/audio/restart/cold checks.314 hardware returned after21seconds with no test logs and unchanged Windows event/hive/trace bytes. Its boot-stage cause is unresolved; screen observation requested. All original boot/video files and startup were restored/readback. Full allocation, hive and protected checks are clean. No further hardware run queued. Next expose actual loader stage/result before reset;1080i and0.2.0 remain pending. Read ../hd-physical314/REPORT.md and NEXT.md.

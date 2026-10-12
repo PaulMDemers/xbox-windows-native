@@ -1,3 +1,11 @@
+#315 observed physical720p workload PASS; baseline restored
+
+User explicitly requested an unchanged watched rerun. One SITE accepted22:40:30UTC, dashboard22:45:33UTC. User saw correct-looking Windows/tests running. Five1280x720x32/pitch5120 drawing samples and sixaudio phases passed, normalshutdown1. Scopedcombined/integrityPASS; strictFALSE sole inheritedFtdisk49, no applicationevents. No314 failure-cause inference.
+
+Read outputs/hd-observed315 REPORT/NEXT/final-review/actualrecords. Startup restoredFIRST; sixstagedbytes preserved then allsixincomingbaselinefiles restored/readback. Unique315allocation scan CLOSED6215dirs122660files6220clusters0errors/orphans; fivehives/protected/policies/bindings clean. Finalpostscanbaseline/startupreadbackPASS.1294frozeninputs exact. Original201physicalhelper, no313activationcode. No registryrollback.
+
+All owned sessions CLOSED:capture39399/preflight95219/launch-observer44818/collection31476/scan70826/audit-closeout92998. No new Windowsrunqueued. Physicalaudio004/software118/shared158/FATX0101 restored; automationPAUSED,0.2.0untagged. Preserve314earlyreturn and allrollbacks. Next bounded boot-stage evidence for unexplained314, then distinct1080i Windows implementation/trial. Do not infer repeatboot stability or release from this one success.
+
 # 314 hardware720p early return CLOSED; baseline restored
 
 Latest priorcommit c1233586 is313. Read outputs/hd-physical314 REPORT/DESIGN/NEXT/final-review and actual records. Single accepted hardware launch22:05:39UTC->dashboard22:06:00UTC. NO11workloadlogs; fivehives/twoevents/SetupAPI/videotrace BYTE-IDENTICAL, zeronewevents/normalshutdown. Return does NOT identify crash/failedregister/Windowsentry. Await alreadyrequestedTVobservation; no secondWindowslaunch.
