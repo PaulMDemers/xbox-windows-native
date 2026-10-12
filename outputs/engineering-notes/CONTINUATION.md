@@ -1,3 +1,21 @@
+#286/285 HOST-ONLY completed-operation hooks and publication
+
+Read outputs/completed-hooks286 and owner-publication285 REPORT/DESIGN/NEXT and
+final-review. All owned processes CLOSED. No renderer/native build, guest launch,
+shared-source/SDK/physical change or installed cache disposal.282 latest actual.
+285host0022048publication/2048inflight-quarantine/4096foreign-seal/4096entry-seal
+cases,20000closedrefusals,11008undersizedreads,169decoder mutations passASan/UBSan.
+24private files verified. Owner/callbacks are MODELS, not actual QEMU authority.
+286host002 exact281 normal binder/LRU/destructor executes4lifecycle+6negative
+cases,82balanced host allocations/modelGLnames. Five source replacement sites
+restore entire original source byte-exact. Record completion AFTER originalfree
+using savedscalars; actualGLabsence remains separate.29privatefiles verified.
+286001 callsite whitespace matcher failed precompile, preserved; never rerun.
+Actual active-observer provider, new four-boundary fullgraph/CPU/context/worker,
+snapshots and error-union transport still unimplemented. No old273 gate relaxed,
+no disposal installed. Next explicitly validate absent cache owners at stage3 and
+new generations at stage4 before implementing actual worker/provider.04UTCcutoff.
+
 #284 HOST-ONLY generation accounting;282 latest actual result
 
 Read outputs/replacement-life284/REPORT.md, DESIGN.md, NEXT.md, final-review.json
