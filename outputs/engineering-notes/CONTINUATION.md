@@ -1,3 +1,20 @@
+#284 HOST-ONLY generation accounting;282 latest actual result
+
+Read outputs/replacement-life284/REPORT.md, DESIGN.md, NEXT.md, final-review.json
+and host001..003. All owned processes CLOSED. No renderer/native build, guest
+preparation/launch, shared-source/SDK/physical change or disposal installed.
+Host003 ASan/UBSan6150 generation/address/GL-name reuse scenarios,18 refusal groups,
+29734439 checks; independent decoder17081 mutations.29 private files rehashed.
+Host001 original PASS preserved;002 added early-birth test FAILED;003 requires ALL
+four old objects freed before any replacement birth. Never rerun consumed IDs.
+Serialized core has no actual runtime hooks/publication adapter. Next new kit must
+prove owner/seal publication and actual completed-free/creation/normal-bind hooks.
+Existing x269_destroying is BEFORE decrement/free, insufficient for completed-free.
+Save scalars while live and publish AFTER original operation, never dereference
+freed binding. Separate new generation/schema, no273 decoder relaxation. Full
+provider/four-boundary worker and actual replacement/pixels remain unimplemented.
+No actual disposal or GPU/acceleration claim. Deadline04UTC; physical unchanged.
+
 #283 HOST-ONLY cache disposal proposal;282 latest actual result
 
 Read outputs/cache-disposal283/REPORT.md, DESIGN.md, NEXT.md, final-review.json,
