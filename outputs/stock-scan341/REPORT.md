@@ -1,0 +1,7 @@
+The new scanner opens native Partition1 read-only and requires the measured stock E start/length and16KiB geometry. All report files are created beside the XBE, which is constrained by the controller to a unique F app directory. This avoids changing the E allocation table while it is being captured. The original F scanner is unchanged; no raw write/repair/format/ATA command was introduced.
+
+Native build001 succeeded using the pinned installed nxdk prebuilt libraries. Shared SDK headers/libraries/tools are unchanged; only the previously reviewed edata linker warning occurred. XBE SHA25666e58932a1c3cd647d8ffd7bec825835f4d92a8b337e40fffd7d7acea2249967.
+
+Host002 compiled the actual directory function with ASan/UBSan and modeled native read/record adapters over an owned raw fixture. Its594400 record bytes for344 directory clusters/7085 entries are byte-identical to an independent cold QCOW reader; FAT metadata also matches. One statement was line-wrapped only, with non-whitespace identity asserted. Host001's GCC misleading-indentation compile refusal and the unavailable-Clang/shell-generator alternative are preserved. This proves the walker against those real bytes, not native kernel I/O or a physical filesystem result.
+
+The direct physical read-only diagnostic is the next native I/O check. Windows must not launch until its full E allocation result is clean. Before/after scans use distinct directories and single launch records. No scan is currently claimed complete; inspect phase receipts.

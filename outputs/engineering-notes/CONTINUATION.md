@@ -1,3 +1,27 @@
+#340 physical E upload ACTIVE;339 repeat boot closed PASS;341/342 prepared only
+
+340 session94070 ACTIVE, E:/xwn340/stage001/journal.jsonl and outputs/stock-stage340/physical001.json are authoritative. Started05:35:01UTC,2400sec bound. Create-only E Windows3roots plusApplications/XWNEBoot, allfiles individuallyreadback, default.xbe LAST. Never rerun stage.py or boot beforecomplete. ExistingF Windows/loader andC untouched. At05:52UTC2518files/~200MB verified; no errors. Sourcepackage337 complete6566files704025709bytes/sevenchanges/fourMountedDevicesaliases,normalstartup. Readonlycapture6566files704005869bytes,all26baseline/fivehivesverified. Efree2.94GB measured333;projectedallocated768884736B, no cleanup.
+
+339CLOSED scopedcombined/repeatPASS,strictFALSEFt49:5drawingsamples/6audio phases,normalshutdown1/dashboard05:31:40/orderlyexit0,clean340dirs6804files357clusters/fivehives/protected,persistedEbinding/alloldtestfiles.338activationdecoderFAILmissingcoverage:zeroactualactivationcalls; no fixclaim/physicalpromotion.336failedwizardtimeout retained,cleanallocation/no normalshutdown. All339processes closed.
+
+341 new read-only nativeE16KiB scanner compiled66e58932...,reportsMUSTonF uniqueApp directory. Host002actualCwalker produces594400byteEXACT independent335coldrecords,ASan/UBSan;host001GCCstylefailurepreserved. NOphysicalscanlaunched. After340complete run341physical.py before launch/observe/collect ONCE then341analyze.py --capture E:/xwn341/physical-before --output outputs/stock-scan341/before/allocation.json. NO Windowsboot unlessallocationclean.
+
+342 physicalEbootcheck prepared locally E:/xwn342/payload, originalphysical201helper (NOT338),samefive-sample smallreplay as339/audio251. Nativefiles/driver installedby340remainHD; testchangesonlynewE/xwnstock342 andtemporaryEstartup. After340+341beforePASS run342physical.py launch ONCE thenobserve. Onreturn collectFIRST restoresnormalEstartup, captures Eevents/hives/logs/INF/protected andverifiesFrollback. Then341physical.py after launch/observe/collect ONCE andanalyze to342physical001/allocation.json; run342audit.py physical001 viaWSLLDlib. AllgatesincludingSrv/Ft49retained;F rollbackexists, noCaccess. No342hardwarelaunchqueuedyet. Frozenhost/payloadpins ready.
+
+Current336-342 workUNCOMMITTED;333-335pushedc7070d5e. AutomationPAUSED;rootdemo251ticketactive,peerclaimsclosed. Seeactualrecords beforeresume,neverduplicate.
+
+#339 repeat boot ACTIVE;336 closed FAIL;337 local package ACTIVE
+
+339 single launch owned runner27607/observer40987. Actual unique run E:/xwn336/runs/nt5-stock339-emu001, ports5126/5127/5128. Inherited Invoke root differs expected339; controller001 refused before SITE, supervise002 uses actual path without relaunch/frozen edits. Inspect launch/cleanup. Audit002 and verify-repeat002 use actual path. Fresh successful335 parent, same persisted hives/trace; new338 helper only. Require actual inactive-target activation decoder plus unchanged setup/audio/drawing/shutdown/fullcold gates. Never parent336failed disk.
+
+336 CLOSED scopedFALSE: known wizard hwndActive0 blocked313 activation, helpertimeout15, no measurement/shutdown. Orderly hostexit0; clean335dirs6795files352clusters/all5hives/protected, savedfirstbootfiles/Ebinding exact. Original frozen path auditfailure plus separator-only002 retained. 338 host117ASan/UBSan assertions/34parsermutations/staticimports PASS, runtime unproved.
+
+337 read-only physicalcapture COMPLETE6566files704005869bytes,26baseline checks/5hives pass; XboxC neveraccessed, no physicalwrites. Localpackage session52247 ACTIVE at E:/xwn337/package001; inspect package001.json, never duplicate. No physicalEdeployment or test queued. ExistingFinstallation and allapps unchanged; no cleanup needed.333-335 pushedc7070d5e;336-339 uncommitted. AutomationPAUSED, rootdemo251ticketretained.
+
+#336 repeat boot ACTIVE;337 read-only capture ACTIVE;333-335 pushed c7070d5e
+
+336 single accepted05:09:28UTC runner11025/observer5327, private E:/xwn336/runs/nt5-stock336-emu001. No relaunch. Second boot reached1080desktop with hardware wizard; workload completion unproved, wait owned600sec bound then cold audit/verify-repeat. Read-only top480 monitor capture retained; guest memory/registers unchanged. Never deploy on assumed success.337 capture session75836 private E:/xwn337/capture001 reads currentF threeWindowsroots and existingE XWNFBoot only; no physical writes/Caccess. Capture report controls completion. E has enoughspace; no deletion. Existing physicalF installation unchanged, automationPAUSED.
+
 #335 CLOSED: stock E1080 boot/audio/drawing/integrity scopes PASS; strictFt49 remains
 
 Single launch04:56:25->dashboard05:00:38UTC Oct13. Runner50228/observer42494/audit10297 andinventory74582 CLOSED. WindowsC:\WINNT successfully on stockE10GB private disk/noFfilesystem.5drawing samples,6capturedtonephases,joinedchildren,setupidle,actualACIbinding,normalshutdown1/orderlyhostexit0. FullcoldE334dirs6788files351dirclusters0errors/orphans,5hives/protected/policies pass. StrictFALSE soleFt49HarddiskVolume1; no physical/performance/releasequalification. Read335REPORT/audit/closure. Neverrelaunch/recollect335emu001. NEXT dedicated336repeatboot fromthisSUCCESSFULpersistedstate, notfailedparent: retainhives andoldoutput, stagefreshownednamespace/startup only, requireold/newfiles anddrivebinding/shutdown. No secondbootpreparedyet. All333/334/335source/reports currentlyUNCOMMITTED; review/stagebyteexact/check/commitpush beforeend.
