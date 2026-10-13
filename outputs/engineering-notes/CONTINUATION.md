@@ -1,3 +1,7 @@
+# User partition constraint: Xbox C: untouched; E: stock-drive target, F: expanded storage
+
+Read outputs/partition-policy332/README.md and dashboard001.json. User explicitly says leave dashboard C: alone; no writes/deletes/moves there (native Windows F:, the331 Srv2013 warning target). E:/Games deletion is authorized ONLY if E needs space, preserve Apps/Applications. Read-only inventory found E:/Applications and no E:/Games; F:/Games exists and was NOT deleted. No console changes/C access/free-space claim. Target future stock10GB compatibility on dashboardE; expandedF usable. Current Windows maps dashboardE->WindowsD and dashboardF->WindowsC; stock-layout relocation/boot/registry behavior remains unvalidated. C warning retained without suppression/gate waiver. Current baseline and releases unchanged.
+
 #331 CLOSED: drawing/audio/integrity PASS, combined event gate FAIL; baseline restored
 
 Single physical1080i launch accepted03:51:48.621670UTC October13; dashboard04:00:01. All5samples x15large cases, independent pixels/guards, legacydrawing/audio/setup/bindings, normalshutdown1 passed. Srv2013 WindowsF: occurred INSIDE combined interval; scopedFALSE and strictFALSE, plus inheritedFt49. No application events/popup. Read outputs/hd-large-physical331/{REPORT,NEXT}.md and final-review.json/failure-review.json/physical001/audit.json. Pass-gated summarize.py NOT executed; no qualified measurement-summary. Diagnostic960x540 medians: fill31.875ms, RAMupload/WM_PAINT41.667ms, overlap40.263ms. Oneboot/fivesamples; notFPS/speedup/causalbottleneck.
