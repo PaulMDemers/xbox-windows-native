@@ -1,0 +1,161 @@
+{
+  "passed": true,
+  "actual_source_root": "/home/paul/xbox-windows-native/build/hd-surface303-build001/source/win32ss/drivers/displays/framebuf",
+  "source_tree": "e48e031228a0d6d483c7ac8273c40a34b75644e7",
+  "files": {
+    "surface.c": "1c965940b19b6c0314ec8cf3a3e3a22053688cc4f4d30ad8e5e2f5e5bd706ae4",
+    "CMakeLists.txt": "34c36ae060fc129654812aad39f8100fd751b622c65284ebe593b0b5ebcb9ff5",
+    "surface_bounds.h": "ff25bc631ea2f5ff355c7b77d1dfe3200efeb960b9b34cd9562df6024271f1e5"
+  },
+  "definitions": {
+    "ARCH": "i386",
+    "SARCH": "xbox",
+    "OARCH": "pentium",
+    "CMAKE_BUILD_TYPE": "Release",
+    "DBG": "OFF",
+    "KDBG": "OFF",
+    "PCH": "OFF",
+    "ENABLE_CCACHE": "OFF",
+    "XBOX_NT5_HAL": "ON",
+    "XBOX_NATIVE_PREFLIGHT": "OFF",
+    "XBOX_NATIVE_IO_PREFLIGHT": "ON",
+    "XBOX_NATIVE_EXTENDED_READ_PREFLIGHT": "OFF",
+    "XBOX_NATIVE_EXTENDED_NT5_BOOT": "ON",
+    "XBOX_NATIVE_FATX_F_BOOT": "ON",
+    "XBOX_NATIVE_VOLUME_PREFLIGHT": "OFF",
+    "XBOX_NATIVE_NT5_HANDOFF": "ON",
+    "XBOX_NATIVE_NT5_ENTER": "ON",
+    "XBOX_NATIVE_NT5_AUTORUN": "ON",
+    "XBOX_NT5_VIDEO_ADAPTER_DIAGNOSTIC": "OFF",
+    "XBOX_NT5_VIDEO_TRACE": "ON",
+    "XBOX_NT5_VIDEO_PNP_DIAGNOSTIC": "ON",
+    "XBOX_NT5_VIDEO_DIAGNOSTIC": "ON",
+    "XBOX_NT5_VIDEO_ENTRY_DIAGNOSTIC": "OFF",
+    "XBOX_NT5_FRAMEBUFFER_ONLY_PCI": "ON",
+    "XBOX_NT5_VIDEO_TRACE_REUSE": "ON",
+    "XBOX_NT5_SHARED_FRAMEBUFFER": "ON",
+    "XWN_UC_STORES": "OFF",
+    "XWN_BODY_PROFILE": "OFF",
+    "XWN_TEXT_BOUNDS": "ON",
+    "XWN_HD_SURFACE_BOUNDS": "ON"
+  },
+  "findings": [
+    {
+      "file": "CMakeLists.txt",
+      "line": 33,
+      "text": "option(XWN_BODY_PROFILE \"Diagnostic elapsed engine/upload bodies\" OFF)"
+    },
+    {
+      "file": "CMakeLists.txt",
+      "line": 34,
+      "text": "if(XWN_BODY_PROFILE)"
+    },
+    {
+      "file": "CMakeLists.txt",
+      "line": 35,
+      "text": " target_compile_definitions(xwnown PRIVATE XWN_BODY_PROFILE=1)"
+    },
+    {
+      "file": "CMakeLists.txt",
+      "line": 37,
+      "text": " target_compile_definitions(xwnown PRIVATE XWN_BODY_PROFILE=0)"
+    },
+    {
+      "file": "framebuf.h",
+      "line": 216,
+      "text": "LONGLONG XwnProfileStart(VOID);"
+    },
+    {
+      "file": "framebuf.h",
+      "line": 217,
+      "text": "VOID XwnProfileEnd(PPDEV,ULONG,LONGLONG);"
+    },
+    {
+      "file": "ownership.c",
+      "line": 132,
+      "text": "    p->Profile.Enabled=XWN_BODY_PROFILE;"
+    },
+    {
+      "file": "ownership.c",
+      "line": 137,
+      "text": "        a=b=-1;EngQueryPerformanceCounter(&a);EngQueryPerformanceCounter(&b);"
+    },
+    {
+      "file": "ownership.c",
+      "line": 141,
+      "text": "LONGLONG XwnProfileStart(VOID)"
+    },
+    {
+      "file": "ownership.c",
+      "line": 143,
+      "text": "#if XWN_BODY_PROFILE"
+    },
+    {
+      "file": "ownership.c",
+      "line": 144,
+      "text": "    LONGLONG tick=-1;EngQueryPerformanceCounter(&tick);return tick;"
+    },
+    {
+      "file": "ownership.c",
+      "line": 149,
+      "text": "VOID XwnProfileEnd(PPDEV p, ULONG kind, LONGLONG begin)"
+    },
+    {
+      "file": "ownership.c",
+      "line": 151,
+      "text": "    LONGLONG end=XwnProfileStart();"
+    },
+    {
+      "file": "shadow.c",
+      "line": 21,
+      "text": " begin=XwnProfileStart();"
+    },
+    {
+      "file": "shadow.c",
+      "line": 27,
+      "text": " XwnProfileEnd(p,2,begin);"
+    },
+    {
+      "file": "shadow.c",
+      "line": 71,
+      "text": " LONGLONG begin=XwnProfileStart();"
+    },
+    {
+      "file": "shadow.c",
+      "line": 73,
+      "text": " XwnProfileEnd(p,3,begin);"
+    },
+    {
+      "file": "shadow.c",
+      "line": 90,
+      "text": " begin=XwnProfileStart();"
+    },
+    {
+      "file": "shadow.c",
+      "line": 92,
+      "text": " XwnProfileEnd(p,0,begin);"
+    },
+    {
+      "file": "shadow.c",
+      "line": 104,
+      "text": " begin=XwnProfileStart();"
+    },
+    {
+      "file": "shadow.c",
+      "line": 106,
+      "text": " XwnProfileEnd(p,1,begin);"
+    },
+    {
+      "file": "shadow.c",
+      "line": 132,
+      "text": "  begin=XwnProfileStart();"
+    },
+    {
+      "file": "shadow.c",
+      "line": 134,
+      "text": "  XwnProfileEnd(p,3,begin);"
+    }
+  ],
+  "driver_changed": false,
+  "limits": "Read-only exact303 HD source identity. New344 helper compiled, no matched profiling driver pair built or launched."
+}

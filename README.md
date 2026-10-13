@@ -32,6 +32,12 @@ restored, the original F installation remains the rollback, and dashboard C
 was left untouched. The event gates still fail on the dashboard-C capacity
 warning and Ftdisk49. This preview does not change the immutable 0.2.0 release.
 
+The [private E migration bundle and instructions](outputs/stock-installer343/USAGE.md)
+now reproduce that tested payload byte-for-byte. The new create-only installer
+refuses the occupied console; its corrected capacity probe and full install flow
+still require disposable-fixture runtime qualification. This is owned-console
+migration tooling, not generic fresh-console provisioning.
+
 ## Historical 0.1.0 milestone and subsequent development
 
 For post-release installed state and remaining work, see the

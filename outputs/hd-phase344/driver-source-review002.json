@@ -1,0 +1,191 @@
+{
+  "passed": true,
+  "source_tree": "e48e031228a0d6d483c7ac8273c40a34b75644e7",
+  "files": {
+    "win32ss/drivers/displays/framebuf/CMakeLists.txt": {
+      "git_blob": "1f8ced97de02780e435a3e549c76b84f8265a206",
+      "sha256": "34c36ae060fc129654812aad39f8100fd751b622c65284ebe593b0b5ebcb9ff5"
+    },
+    "win32ss/drivers/displays/framebuf/dd.c": {
+      "git_blob": "c27b87432cc67c572e962d557a92a0c7c81bfb33",
+      "sha256": "b025faf695caba749eb07b44f13bedc9bdb19150531426fe391828c32d3e1478"
+    },
+    "win32ss/drivers/displays/framebuf/ddenable.c": {
+      "git_blob": "a1dcfdbd396fafabb2bf457f9f9f2e175b2ee305",
+      "sha256": "3424634f4fbd5b5ae06ac8a261e0f7e48baba97883f9499bb8e92d6a82b25bde"
+    },
+    "win32ss/drivers/displays/framebuf/enable.c": {
+      "git_blob": "aedcf521cbecd48d6e1345fded374899457e10b0",
+      "sha256": "8d951de34bef374481d71b2bc6d526ff75332280930fd9ea5f0601370ec046b1"
+    },
+    "win32ss/drivers/displays/framebuf/framebuf.h": {
+      "git_blob": "38891083ed7960c35f46fefa60b46176f132604a",
+      "sha256": "9596cb66a831379e623393b772fdb73ec5d285ee68a7034e967993bf31d43c68"
+    },
+    "win32ss/drivers/displays/framebuf/framebuf.rc": {
+      "git_blob": "c886056976604d3147233324baf214cb4b97dcdd",
+      "sha256": "100beecb1537cb02ec3bc03ea36f9c767fabec28f670a0ed32fe795317474087"
+    },
+    "win32ss/drivers/displays/framebuf/ownership.c": {
+      "git_blob": "1bc0c710416a5d871c31f39d53fe483fd672865a",
+      "sha256": "72b83f7e475a941acc2396396c0441586583f66272b4daa1cd577c004c24e5fc"
+    },
+    "win32ss/drivers/displays/framebuf/palette.c": {
+      "git_blob": "ed10d10a28c0f936b9d55d75f197e55feab92185",
+      "sha256": "453ff3678a2faee0b9cfd8fb4842e0c3f8af37487c41725eb1df916b17f574f1"
+    },
+    "win32ss/drivers/displays/framebuf/pointer.c": {
+      "git_blob": "f4ff377c9cf2fc11033450c4149eeddbd51219e5",
+      "sha256": "4c24e31dd50dc43d513d2b407349af3b3cc662c5178772f43252c9be512ee032"
+    },
+    "win32ss/drivers/displays/framebuf/profile_math.h": {
+      "git_blob": "0b041473a749b9b1b4cc063d683777705b7966b2",
+      "sha256": "73d3dfd2fc1f231583d140e2d9a3d195cbce6d66a12a21c1a284df3abada2c3c"
+    },
+    "win32ss/drivers/displays/framebuf/row_store.h": {
+      "git_blob": "2cdea3c3b7d4306ebf1473d8d8804e09157e98c0",
+      "sha256": "1ba9464b78104a9176a59b34caede9fde072e2ec05d264d183532af1eee0a3d0"
+    },
+    "win32ss/drivers/displays/framebuf/screen.c": {
+      "git_blob": "62e567ca536eb92680d565eb422a34d39fc39433",
+      "sha256": "c70d3f970e9c0b82f8b77ff8a52ee3dfa471eb5f4176cf5f4f0584d9a1b9cba3"
+    },
+    "win32ss/drivers/displays/framebuf/shadow.c": {
+      "git_blob": "fb19f8ef77adf0e7331aa04a5502d1066f5cb3a6",
+      "sha256": "47f3979bcfd08830c2ba7738487469815365a84a55a13df668f20df24ac847c0"
+    },
+    "win32ss/drivers/displays/framebuf/surface.c": {
+      "git_blob": "03d9614ae51b3acde9d49febb4476df7149f464c",
+      "sha256": "1c965940b19b6c0314ec8cf3a3e3a22053688cc4f4d30ad8e5e2f5e5bd706ae4"
+    },
+    "win32ss/drivers/displays/framebuf/surface_bounds.h": {
+      "git_blob": "298344071f38b436ec91ee64325e11a761022860",
+      "sha256": "ff25bc631ea2f5ff355c7b77d1dfe3200efeb960b9b34cd9562df6024271f1e5"
+    },
+    "win32ss/drivers/displays/framebuf/text_bounds.h": {
+      "git_blob": "d7d51595be6c34ea37f1bd45756ba8052a937048",
+      "sha256": "20445165c5922ec82c45054fa01a73802d1c6876776e374543d188aeef72664e"
+    }
+  },
+  "findings": [
+    {
+      "file": "win32ss/drivers/displays/framebuf/CMakeLists.txt",
+      "line": 33,
+      "text": "option(XWN_BODY_PROFILE \"Diagnostic elapsed engine/upload bodies\" OFF)"
+    },
+    {
+      "file": "win32ss/drivers/displays/framebuf/CMakeLists.txt",
+      "line": 34,
+      "text": "if(XWN_BODY_PROFILE)"
+    },
+    {
+      "file": "win32ss/drivers/displays/framebuf/CMakeLists.txt",
+      "line": 35,
+      "text": " target_compile_definitions(xwnown PRIVATE XWN_BODY_PROFILE=1)"
+    },
+    {
+      "file": "win32ss/drivers/displays/framebuf/CMakeLists.txt",
+      "line": 37,
+      "text": " target_compile_definitions(xwnown PRIVATE XWN_BODY_PROFILE=0)"
+    },
+    {
+      "file": "win32ss/drivers/displays/framebuf/framebuf.h",
+      "line": 216,
+      "text": "LONGLONG XwnProfileStart(VOID);"
+    },
+    {
+      "file": "win32ss/drivers/displays/framebuf/framebuf.h",
+      "line": 217,
+      "text": "VOID XwnProfileEnd(PPDEV,ULONG,LONGLONG);"
+    },
+    {
+      "file": "win32ss/drivers/displays/framebuf/ownership.c",
+      "line": 132,
+      "text": "    p->Profile.Enabled=XWN_BODY_PROFILE;"
+    },
+    {
+      "file": "win32ss/drivers/displays/framebuf/ownership.c",
+      "line": 137,
+      "text": "        a=b=-1;EngQueryPerformanceCounter(&a);EngQueryPerformanceCounter(&b);"
+    },
+    {
+      "file": "win32ss/drivers/displays/framebuf/ownership.c",
+      "line": 141,
+      "text": "LONGLONG XwnProfileStart(VOID)"
+    },
+    {
+      "file": "win32ss/drivers/displays/framebuf/ownership.c",
+      "line": 143,
+      "text": "#if XWN_BODY_PROFILE"
+    },
+    {
+      "file": "win32ss/drivers/displays/framebuf/ownership.c",
+      "line": 144,
+      "text": "    LONGLONG tick=-1;EngQueryPerformanceCounter(&tick);return tick;"
+    },
+    {
+      "file": "win32ss/drivers/displays/framebuf/ownership.c",
+      "line": 149,
+      "text": "VOID XwnProfileEnd(PPDEV p, ULONG kind, LONGLONG begin)"
+    },
+    {
+      "file": "win32ss/drivers/displays/framebuf/ownership.c",
+      "line": 151,
+      "text": "    LONGLONG end=XwnProfileStart();"
+    },
+    {
+      "file": "win32ss/drivers/displays/framebuf/shadow.c",
+      "line": 21,
+      "text": " begin=XwnProfileStart();"
+    },
+    {
+      "file": "win32ss/drivers/displays/framebuf/shadow.c",
+      "line": 27,
+      "text": " XwnProfileEnd(p,2,begin);"
+    },
+    {
+      "file": "win32ss/drivers/displays/framebuf/shadow.c",
+      "line": 71,
+      "text": " LONGLONG begin=XwnProfileStart();"
+    },
+    {
+      "file": "win32ss/drivers/displays/framebuf/shadow.c",
+      "line": 73,
+      "text": " XwnProfileEnd(p,3,begin);"
+    },
+    {
+      "file": "win32ss/drivers/displays/framebuf/shadow.c",
+      "line": 90,
+      "text": " begin=XwnProfileStart();"
+    },
+    {
+      "file": "win32ss/drivers/displays/framebuf/shadow.c",
+      "line": 92,
+      "text": " XwnProfileEnd(p,0,begin);"
+    },
+    {
+      "file": "win32ss/drivers/displays/framebuf/shadow.c",
+      "line": 104,
+      "text": " begin=XwnProfileStart();"
+    },
+    {
+      "file": "win32ss/drivers/displays/framebuf/shadow.c",
+      "line": 106,
+      "text": " XwnProfileEnd(p,1,begin);"
+    },
+    {
+      "file": "win32ss/drivers/displays/framebuf/shadow.c",
+      "line": 132,
+      "text": "  begin=XwnProfileStart();"
+    },
+    {
+      "file": "win32ss/drivers/displays/framebuf/shadow.c",
+      "line": 134,
+      "text": "  XwnProfileEnd(p,3,begin);"
+    }
+  ],
+  "actual_source_root": "/home/paul/xbox-windows-native/build/hd-surface303-build001/source",
+  "driver_changed": false,
+  "production_body_profile": "OFF",
+  "limits": "Full tracked framebuf source identity only. No new matched profiling driver build or runtime; private source and original definitions unchanged."
+}

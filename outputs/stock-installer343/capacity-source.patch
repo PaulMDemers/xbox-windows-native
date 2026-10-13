@@ -1,0 +1,21 @@
+--- 333-capacity002.c
++++ 343-capacity.c
+@@ -7,6 +7,7 @@
+ #include <xboxkrnl/xboxkrnl.h>
+ #include <stdio.h>
+ #include <string.h>
++#include "report-path.h"
+ 
+ static int query(const char *path, unsigned id, char *text, size_t bytes) {
+     ANSI_STRING name; OBJECT_ATTRIBUTES attrs; IO_STATUS_BLOCK io={0};
+@@ -46,7 +47,9 @@
+     memcpy(text+used,end,sizeof(end)-1);used+=sizeof(end)-1;
+     ANSI_STRING reportName; OBJECT_ATTRIBUTES reportAttrs; IO_STATUS_BLOCK createIo={0};
+     HANDLE f=NULL;
+-    RtlInitAnsiString(&reportName,"\\Device\\Harddisk0\\Partition1\\Applications\\XWNCapacity333\\capacity.txt");
++    char reportPath[256];
++    if(!xwn343_report_path(XeImageFileName->Buffer,XeImageFileName->Length,reportPath,sizeof(reportPath))){debugPrint("Launch namespace refused\n");Sleep(3000);XReboot();return 1;}
++    RtlInitAnsiString(&reportName,reportPath);
+     InitializeObjectAttributes(&reportAttrs,&reportName,OBJ_CASE_INSENSITIVE,NULL,NULL);
+     NTSTATUS createStatus=NtCreateFile(&f,GENERIC_WRITE|SYNCHRONIZE,&reportAttrs,&createIo,NULL,
+         FILE_ATTRIBUTE_NORMAL,0,FILE_CREATE,FILE_NON_DIRECTORY_FILE|FILE_SYNCHRONOUS_IO_NONALERT);

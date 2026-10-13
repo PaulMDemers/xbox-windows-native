@@ -1,0 +1,5 @@
+All343 build/assembly/test commands CLOSED. Do not rerun consumed IDs or the occupied-target attempt. Corrected bundle002 is byte-verified; bundle001 rejected fixed-path prototype retained. Current E Windows install is healthy and must not be removed to exercise installer tooling. No physical write/boot this turn.
+
+Before claiming new installer end-to-end readiness, test the corrected343 unique-path native probe and actual prepare/install controller in a NEW owned disposable emulator fixture with an explicit matching F migration baseline/ownership contract, then full cold allocation/hive/payload audit. A stock-no-F guest requires separate provisioning logic; current tool intentionally refuses without the owned F baseline. Preserve original340/342 physical results rather than crediting them to this installer.
+
+Continue video work from ../hd-phase344/NEXT.md. Keep original tags, C restriction, F rollback and event failures intact. No current hardware test queued, automation remains paused.

@@ -1,3 +1,9 @@
+# Private E bundle assembled; performance attribution prepared
+
+The E payload now reconstructs byte-for-byte twice and has a verified private bundle plus usage/rollback guide in stock-installer343. The new installer correctly refuses the current occupied E target; it is migration tooling for the owned console, not generic provisioning. Its corrected capacity probe and full new install flow still need disposable-fixture runtime validation. The first incompatible fixed-path bundle remains rejected evidence.
+
+Large-area phase probe344 compiles cleanly and passes2008 synthetic parser negatives. It measures driver engine/copy-body/wrapper counters for the existing15large operations; no matched profiling driver run or speed improvement yet. Next qualify a fresh OFF/ON pair in the emulator before hardware timing. Xbox remains unchanged at UnleashX, normal E startup/F rollback/C restriction preserved. All sessions closed, no test queued, immutable releases unchanged. Physical342 event failures still stand.
+
 # Physical E boot complete; normal startup restored
 
 New E installation booted at1920x1080 and passed five drawing samples, six audio API phases, normal shutdown, persisted drive binding and integrity checks. After-scan:616dirs7565files633clusters, zero errors/orphans. E has2,073,346,048 free bytes. Original F rollback and all E/F protected/hive checks pass; Xbox C untouched by tools. No active process or queued hardware test remains.
