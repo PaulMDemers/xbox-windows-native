@@ -1,3 +1,33 @@
+#359/360 CLOSED: physical shadowWB and scanoutUC observed; original baseline restored
+
+Read memory-physical359 REPORT/NEXT/final-review/candidate001audit and memory-analysis360 REPORT/DESIGN/tests002/analysis001/final-review. SINGLEphysical359launch19:41:54->19:50:06UTC Oct13, normalshutdown1, collectSTARTUPFIRST/originalDLL restored, afterEscan/finalstate CLOSED. Allownedprocessesclosed including90928,37382; read-onlyhostcheck noxemu. NormalEstartup/originaldisplayb23b94ac12c9f507e3d905d9de905dcff9a8fd53c2fba4336fb830e97666101d/Frollback verified. No physicaltestqueued; rootdemo251retained,automationpaused,keyboardalwaysunplugged.
+
+Allgraphics/source/pixels/guards/scanout/1080mode/audioAPI/identity/joins/hive/protected/policy/history checksPASS. E640dirs7629files657clusters->646dirs7665files663clusters, bothfullscans0errors/orphans.1340captures/356frozeninputs rehashed. Original359memory/combined/strictFALSE: hostdecoder rejected inactivefixedMTRRtype0x07; actualDEF_TYPE0x800 hasFEclear. Srv2013WindowsF:insideinterval+Ft49HarddiskVolume1 stillfailures. ConsoletoolaccessE/Fonly,Cprohibited/untouchedbytools; warningdriveletterisnotauthorizationtoqueryC. Noaudibility/throughput/releasepromotion.
+
+360HOST-ONLY corrects exactlyfixedtypeinterpretationguard torequireFEenabled, perIntel253668-02110.11.2.1/10.11.4.1. Paireddecoderbyteidentical357, original20packets/audit/finalreviewunchanged. Tests002716pass;001invalidtestexpectationownerpointerwithoutpairedcomparisonpreserved. ALL10pairs(coldandpostreadcomplete) actual2025shadowWB/PAT0+2025scanoutUC/PAT3, exact0x03700000/8294400visibleallocation, allshadowmanagedbelow55MiB. CPU0x68a/CR08001003b/CR4691/MTRRCAP508/DEF800. Stablecapturedregs/PTEs/fullreadzeroerrors, notatomic/TLB/allalias/permanentresidency/causalbandwidthproof. No newboot/driver/cache/hardwarewritein360. Old359failureimmutable; scopednewinterpretationPASS separate.
+
+NEXT boundedownedRAM-copy/existingscanout-store throughputdiscriminator withcalibratedtiming/sourceguardoutputoracle; no speculativecache/SIMDpatch. Actual300sharedmappingcontract isUC-only/permanent acrossboot-error-shutdown/desktop, includeshidden9MiBreservationbackbuffer; needkernel-support/alias-consumer/ordering review beforeanylaterWCexperiment. Donotrepeat353coverage/359memoryboot.355failed/356unlaunched/358001failedprep andallotherfailuresretained. Immutable0.1.0/0.2.0/0088/Frollbackpreserved. Source/emulatorpushed0a5587a6; thisphysical/360closeoutpendingpublication. C~67GB/E24.7GB,20GiBguardretained,nobackingmoves.
+
+# Historical continuation below
+#359 returned; original startup/display restored, collection/after-scan ACTIVE
+
+Singlephysical359candidate00119:41:54->dashboard19:50:06UTC. Observer90928 CLOSED. Collection37382pipelineACTIVE, latestcollection recordsstartup_restoredTRUE/driver_restoredTRUE/tested_driver_verifiedTRUE. NormalEstartup/originalb23b94ac... readbackrestoredbeforeevidence. PipelinewilllaunchuniqueAFTEREscanonlyaftercollectioncompleted; inspectactualstageJSON,neverduplicate. Onpipelineclose runWSLhivexaudit.py candidate001, thenfinal-state/closeout;alloriginaleventgates preserved. Raw20memorypackettransport/currentpolicy NOTyetqualified. No newWindowslaunch. AllCconsoleaccessprohibited,E/Fonly; originalFrollback/tags preserved. Publishedsource/emulator0a5587a6,physicalevidencependingreview/commit.
+
+# Historical continuation below
+#359 physical Windows ACTIVE; restore startup/driver on return
+
+BeforeEscan29256 CLOSED clean640dirs7629files657clusters0errors/orphans. SINGLE359candidate001 launchaccepted19:41:54UTC Oct13. Temporary357DLL0e2b92213edf39709fa27e6a8e4c0d1a153ca9cf2cb80bda9d6a0257b2a259d1+teststartup installed/readbackverified; originalb23b94ac.../normalstartup backedup under359artifacts/candidate001-before. Observer90928 ACTIVE, bounded20min; dashboardofflineobserved. No duplicate launch.
+
+Onreturn physical.py candidate001 collect FIRST (normalstartup thenpreserve357DLL/restoreoriginal), then scan.py candidate001 after launch/observe/collect ONCE; WSLhivex audit.py candidate001; final-state.py/closeout.py. Require20packettransport/fullwarmproof plusalloriginalpixel/audioAPI/hives/allocation/eventgates. InheritedSrv2013/Ftdisk49remainfailures. AllconsoletoolpathsE/Fonly,Cprohibited. Frollback/0088/immutabletags untouched; rootdemo251ticketexclusive,keyboardalwaysunplugged,automationpaused. Published0a5587a6,physicalevidenceuncommitted. Allxemubuildsessionsclosed; no newbuild/functionalcachechange/GPUgrant.
+
+# Historical continuation below
+#359 physical preflight ACTIVE; source/emulator evidence pushed0a5587a6
+
+354-359 source/emulator evidence reviewed,32228trackedfiles/exact212stagedfiles/frozenclosures passed, pushed0a5587a6. 358 scopedcombinedPASS/strictFt49, all20complete emulator packets shadowWB/scanoutUC, ALLemulatorsclosed. No cachewrite/throughputclaim.
+
+Physical359 freshcandidate001 capture completed19:40:41UTC Oct13; normalEstartup/originalDLLb23b94ac.../Frollback verified. BEFORE Eallocation scanner launchedONCE19:40:42UTC at/F/Applications/XWNMemory359candidate001before. Owned29256 pipeline observe/collect ACTIVE. Windows359NOTlaunchedyet. InspectstageJSON; donotduplicate. AftercleanbeforeEscan runphysical.py candidate001 launch ONCE thenobserve, onreturncollectFIRST(normalstartup thenoriginalDLL), afterEscan/audit/finalstate/closeout. AllconsoletoolpathsE/Fonly,Cuntouched. rootdemo251exclusive,keyboardalwaysunplugged,automationpaused. Hardwarepayload357temporaryonly; allnormaldrivers/settings/cacheattributes remainunchangedsofar.
+
+# Historical continuation below
 #357/358 CLOSED scoped PASS; physical359 frozen, not launched
 
 Read memory-runtime358 REPORT/final-review/candidate002 audit, memory-warm357 DESIGN/build001/binary-review001. Single358 launch19:32:19->19:38:14UTC Oct13, all20 cold/warm snapshots complete4050rows each:2025shadowWB/2025scanoutUC. Originalgraphics/audioAPI/capture/joins, normalshutdown1/orderlyhostexit0, cold341dirs6829files358clusters0errors/orphans5hives/protected/policy/history passed. ScopedcombinedPASS/strictFALSEsoleFt49.285frozeninputs rehashed.355 remainsfailed,356unlaunched.358001capacitypreparationfailure/oldsource preserved;002freshseed+onecluster/readback qualified. ALLownedemulator/buildsessionsCLOSED.
