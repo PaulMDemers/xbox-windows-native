@@ -1,3 +1,13 @@
+#340 continuation002 ACTIVE after FTP refusal; no Windows launch
+
+Original340 session94070 CLOSED at06:14:30UTC with PASV502 after4859 verified files. Its receipt/journal remain immutable. Fresh read-only failure-inspection001 found the last intended wextract.exe ABSENT, launcher ABSENT, no partial file. No deadline exception occurred. Never rerun stage.py or the unused deadline-only resume001.py.
+
+One continuation resume002.py/session35831 ACTIVE since06:16:06UTC, two-hour bound. Private E:/xwn340/resume002, receipt outputs/stock-stage340/resume002.json. It inventories all owned roots, rereads ALL existing files, refuses foreign/missing/changed content, then creates only absent files with full readback and launcher LAST.12 actual-engine modeled cases passed. Original F protected26/fivehives checked before/after; no Xbox C access or deletion. Never duplicate this continuation.
+
+After successful continuation, use NEW stock-scan341/physical002.py before launch/observe/collect, then existing analyze.py. NEW stock-boot342/physical002.py launch/observe/collect consumes completion002.py's full journal/package/source/count proof. Original physical.py/frozen.json remain unchanged. New frozen002 manifests retain every original pin plus the continuation gate and preserved failure. No scan or Windows launch yet. Normal E startup remains. Original F rollback remains.
+
+Commit d19b22f6 containing336-342 preparation is confirmed on origin/main. New continuation/controllers/results are uncommitted. Automation PAUSED, root demo251 ticket retained. Current process records supersede older active-state paragraphs below.
+
 #340 physical E upload ACTIVE;339 repeat boot closed PASS;341/342 prepared only
 
 340 session94070 ACTIVE, E:/xwn340/stage001/journal.jsonl and outputs/stock-stage340/physical001.json are authoritative. Started05:35:01UTC,2400sec bound. Create-only E Windows3roots plusApplications/XWNEBoot, allfiles individuallyreadback, default.xbe LAST. Never rerun stage.py or boot beforecomplete. ExistingF Windows/loader andC untouched. At05:52UTC2518files/~200MB verified; no errors. Sourcepackage337 complete6566files704025709bytes/sevenchanges/fourMountedDevicesaliases,normalstartup. Readonlycapture6566files704005869bytes,all26baseline/fivehivesverified. Efree2.94GB measured333;projectedallocated768884736B, no cleanup.

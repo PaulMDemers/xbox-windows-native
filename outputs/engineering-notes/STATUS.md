@@ -1,3 +1,9 @@
+# E installation continuation active; Windows test not launched
+
+Original340 upload closed after4859 verified files with an FTP PASV502 refusal. Its last intended file and launcher were absent on fresh inspection. One owned resume002/session35831 rereads existing files before creating the remainder; no overwrite/delete or Xbox C access. F rollback unchanged. Normal E startup remains.
+
+Next: complete journal/readback gate,341 physical002 before allocation scan,342 physical002 one1080i/audio/drawing/shutdown test, restore normal E startup FIRST on return, distinct341 after-scan and342 cold audit. Original failure retained; no duplicate launch. d19b22f6 pushed; continuation work not yet committed. See CONTINUATION for exact process/artifact paths.
+
 #340 physical E upload ACTIVE;339 repeat boot closed PASS;341/342 prepared only
 
 340 session94070 ACTIVE, E:/xwn340/stage001/journal.jsonl and outputs/stock-stage340/physical001.json are authoritative. Started05:35:01UTC,2400sec bound. Create-only E Windows3roots plusApplications/XWNEBoot, allfiles individuallyreadback, default.xbe LAST. Never rerun stage.py or boot beforecomplete. ExistingF Windows/loader andC untouched. At05:52UTC2518files/~200MB verified; no errors. Sourcepackage337 complete6566files704025709bytes/sevenchanges/fourMountedDevicesaliases,normalstartup. Readonlycapture6566files704005869bytes,all26baseline/fivehivesverified. Efree2.94GB measured333;projectedallocated768884736B, no cleanup.
