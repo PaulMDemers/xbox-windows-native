@@ -1,0 +1,83 @@
+{
+  "status": "passed",
+  "scope": "Actual adapter/planner; modeled SURFOBJ/PDEV membership and host libc memmove, not NT5 or device execution",
+  "inputs": {
+    "primary_copy.c": "368defa4931977b9bbbda8895a04e3253d2a7e05851898c4a9bf0d6292925674",
+    "primary_plan.h": "b5423e2d0ed4012f5b72919072e1f09068d99db79b8577a4a53d14f7da873976",
+    "host002.c": "228878507bdbe7015aaa7754f4e1091f96288d70ef435f4659f659fb601cce0d",
+    "host002.py": "bf4d169aa9f257a8a49ba08b60c9bfe16e7f47bda0fbaabeb14c507475a6ba8e",
+    "framebuf.h": "674d35501cd467af0ff9e8dd845e78f7831d28177806f83c410fba1d86eec830"
+  },
+  "cases": {
+    "0": {
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-DXWN_PRIMARY_COPY=0",
+        "/mnt/e/xwn348/host002/host002.c",
+        "-o",
+        "/mnt/e/xwn348/host002/host-0"
+      ],
+      "sha256": "a06f011a92d628677a7d989a37edacbc6eb6951846dac4e11459f4577c734fa3",
+      "result": {
+        "enabled": 0,
+        "checks": 53291,
+        "pixel_cases": 13299,
+        "downward": 3494,
+        "upward": 3169,
+        "same_row": 1884,
+        "empty": 4752,
+        "refusals": 35
+      }
+    },
+    "1": {
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-DXWN_PRIMARY_COPY=1",
+        "/mnt/e/xwn348/host002/host002.c",
+        "-o",
+        "/mnt/e/xwn348/host002/host-1"
+      ],
+      "sha256": "fdb9ce0c8caa2d86078b1e217355d5ddda72834c394a6d0f3963c1bfc8557ac4",
+      "result": {
+        "enabled": 1,
+        "checks": 53291,
+        "pixel_cases": 13299,
+        "downward": 3494,
+        "upward": 3169,
+        "same_row": 1884,
+        "empty": 4752,
+        "refusals": 35
+      }
+    }
+  },
+  "compiler": "gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+  "files": {
+    "primary_copy.c": "368defa4931977b9bbbda8895a04e3253d2a7e05851898c4a9bf0d6292925674",
+    "primary_plan.h": "b5423e2d0ed4012f5b72919072e1f09068d99db79b8577a4a53d14f7da873976",
+    "host002.c": "228878507bdbe7015aaa7754f4e1091f96288d70ef435f4659f659fb601cce0d",
+    "host002.py": "bf4d169aa9f257a8a49ba08b60c9bfe16e7f47bda0fbaabeb14c507475a6ba8e",
+    "framebuf.h": "674d35501cd467af0ff9e8dd845e78f7831d28177806f83c410fba1d86eec830",
+    "host-0": "a06f011a92d628677a7d989a37edacbc6eb6951846dac4e11459f4577c734fa3",
+    "compile-0.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "run-0.log": "817ab3a3bed5c1b44678a4b2f9fb23697b05c738a8ed0bf49fc5b87a6b9c137a",
+    "host-1": "fdb9ce0c8caa2d86078b1e217355d5ddda72834c394a6d0f3963c1bfc8557ac4",
+    "compile-1.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "run-1.log": "46808ef365022abd9e8e66f2d268d9a882cbae456751dc331638ac9057105748"
+  }
+}

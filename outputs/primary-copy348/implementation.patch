@@ -1,0 +1,228 @@
+diff --git a/win32ss/drivers/displays/framebuf/CMakeLists.txt b/win32ss/drivers/displays/framebuf/CMakeLists.txt
+index 1f8ced9..9de11f2 100644
+--- a/win32ss/drivers/displays/framebuf/CMakeLists.txt
++++ b/win32ss/drivers/displays/framebuf/CMakeLists.txt
+@@ -6,6 +6,7 @@ list(APPEND SOURCE
+     screen.c
+     surface.c
+     shadow.c
++    primary_copy.c
+     ownership.c
+     profile_math.h
+     text_bounds.h
+@@ -50,3 +51,10 @@ if(XWN_HD_SURFACE_BOUNDS)
+ else()
+  target_compile_definitions(xwnown PRIVATE XWN_HD_SURFACE_BOUNDS=0)
+ endif()
++
++option(XWN_PRIMARY_COPY "Bounded same-primary RAM overlap copy" OFF)
++if(XWN_PRIMARY_COPY)
++ target_compile_definitions(xwnown PRIVATE XWN_PRIMARY_COPY=1)
++else()
++ target_compile_definitions(xwnown PRIVATE XWN_PRIMARY_COPY=0)
++endif()
+diff --git a/win32ss/drivers/displays/framebuf/enable.c b/win32ss/drivers/displays/framebuf/enable.c
+index aedcf52..0ad0462 100644
+--- a/win32ss/drivers/displays/framebuf/enable.c
++++ b/win32ss/drivers/displays/framebuf/enable.c
+@@ -31,6 +31,10 @@ XwnDirectEscape(SURFOBJ *Surface, ULONG Escape, ULONG InBytes, PVOID In,
+    p = XwnOwner(Surface);
+    if (!p) return 0;
+    if (!p->ScreenPtr || !p->hSurfEng || !p->ShadowObject || !p->ShadowActive) return 0;
++   if (Escape == 0x58574438 && OutBytes == sizeof(Data))
++   {
++      XwnPrimarySnapshot(p,Data);memcpy(Out,Data,sizeof(Data));return 1;
++   }
+    if (Escape == 0x58574437 && OutBytes == 160)
+    {
+       ULONG Extended[40];XwnTextExtended(p,Extended);memcpy(Out,Extended,160);return 1;
+diff --git a/win32ss/drivers/displays/framebuf/framebuf.h b/win32ss/drivers/displays/framebuf/framebuf.h
+index 3889108..232fcd8 100644
+--- a/win32ss/drivers/displays/framebuf/framebuf.h
++++ b/win32ss/drivers/displays/framebuf/framebuf.h
+@@ -48,6 +48,7 @@ typedef struct _PDEV
+    XWT_STATS TextStats;
+    RECTL TextInputClip;
+    ULONG TextHasClip,TextComplexity;
++   ULONG PrimaryStats[12];
+    ULONG ShadowUploads;
+    ULONGLONG ShadowBytes;
+    ULONG ModeIndex;
+@@ -219,4 +220,7 @@ VOID XwnProfileSnapshot(PPDEV,ULONG *);
+ VOID XwnTextRecord(PPDEV,ULONG,ULONG,const XWT_RECT *,const XWT_COPY *,const RECTL *,ULONG);
+ VOID XwnTextExtended(PPDEV,ULONG *);
+ VOID XwnTextSnapshot(PPDEV,ULONG *);
++int XwnTryPrimaryCopy(PPDEV,SURFOBJ *,SURFOBJ *,CLIPOBJ *,XLATEOBJ *,RECTL *,POINTL *,ULONGLONG *);
++VOID XwnPrimaryRecord(PPDEV,int,ULONGLONG);
++VOID XwnPrimarySnapshot(PPDEV,ULONG *);
+ #endif /* _FRAMEBUF_PCH_ */
+diff --git a/win32ss/drivers/displays/framebuf/ownership.c b/win32ss/drivers/displays/framebuf/ownership.c
+index 1bc0c71..a01fb16 100644
+--- a/win32ss/drivers/displays/framebuf/ownership.c
++++ b/win32ss/drivers/displays/framebuf/ownership.c
+@@ -215,3 +215,35 @@ VOID XwnTextExtended(PPDEV p,ULONG *out)
+  out[36]=p->TextComplexity;out[37]=p->TextHasClip;
+  EngReleaseSemaphore(XwnOwnerLock);
+ }
++
++/* Separate348 accounting outside the selected CopyBits body. */
++static VOID XwnPrimaryIncrement(PPDEV p,ULONG index)
++{
++ if(p->PrimaryStats[index]==0xffffffff)p->PrimaryStats[7]=1;
++ else ++p->PrimaryStats[index];
++}
++VOID XwnPrimaryRecord(PPDEV p,int result,ULONGLONG bytes)
++{
++ ULONGLONG old;
++ EngAcquireSemaphore(XwnOwnerLock);
++ XwnPrimaryIncrement(p,0);
++ if(result!=-1)XwnPrimaryIncrement(p,1);
++ if(result==1)XwnPrimaryIncrement(p,2);
++ if(result==0)XwnPrimaryIncrement(p,3);
++ if(result<0)XwnPrimaryIncrement(p,4);
++ if(result==1) {
++  old=((ULONGLONG)p->PrimaryStats[6]<<32)|p->PrimaryStats[5];
++  if(~(ULONGLONG)0-old<bytes){old=~(ULONGLONG)0;p->PrimaryStats[7]=1;}
++  else old+=bytes;
++  p->PrimaryStats[5]=(ULONG)old;p->PrimaryStats[6]=(ULONG)(old>>32);
++ }
++ EngReleaseSemaphore(XwnOwnerLock);
++}
++VOID XwnPrimarySnapshot(PPDEV p,ULONG *out)
++{
++ ULONG i;RtlZeroMemory(out,128);
++ EngAcquireSemaphore(XwnOwnerLock);
++ out[0]=0x50435758;out[1]=348;out[2]=128;out[3]=XWN_PRIMARY_COPY;
++ for(i=0;i<8;i++)out[4+i]=p->PrimaryStats[i];
++ EngReleaseSemaphore(XwnOwnerLock);
++}
+diff --git a/win32ss/drivers/displays/framebuf/primary_copy.c b/win32ss/drivers/displays/framebuf/primary_copy.c
+new file mode 100644
+index 0000000..8b366ab
+--- /dev/null
++++ b/win32ss/drivers/displays/framebuf/primary_copy.c
+@@ -0,0 +1,37 @@
++/* Owned primary-to-primary copies only. SPDX-License-Identifier: GPL-2.0-or-later */
++#include "framebuf.h"
++#include "primary_plan.h"
++
++int XwnTryPrimaryCopy(PPDEV p,SURFOBJ *dst,SURFOBJ *src,CLIPOBJ *clip,
++                      XLATEOBJ *xlate,RECTL *rect,POINTL *point,ULONGLONG *bytes)
++{
++    SURFOBJ *s; XP_RECT r,c; XP_PLAN plan; int result;
++    *bytes=0;
++    if(!p || !p->ShadowActive || !dst || !src || !rect || !point ||
++       XwnOwner(dst)!=p || XwnOwner(src)!=p || p->BitsPerPixel!=32 ||
++       dst->iBitmapFormat!=BMF_32BPP || src->iBitmapFormat!=BMF_32BPP ||
++       dst->sizlBitmap.cx!=(LONG)p->ScreenWidth || src->sizlBitmap.cx!=(LONG)p->ScreenWidth ||
++       dst->sizlBitmap.cy!=(LONG)p->ScreenHeight || src->sizlBitmap.cy!=(LONG)p->ScreenHeight ||
++       (xlate && xlate->flXlate!=XO_TRIVIAL) ||
++       (clip && clip->iDComplexity!=DC_TRIVIAL && clip->iDComplexity!=DC_RECT))return -1;
++    s=p->ShadowObject;
++    if(!s || s->iType!=STYPE_BITMAP || s->iBitmapFormat!=BMF_32BPP ||
++       (s->fjBitmap&BMF_NOTSYSMEM) || s->pvBits!=p->ShadowBits || s->pvScan0!=p->ShadowBits ||
++       s->hsurf!=p->ShadowSurface || s->hdev!=p->hDevEng ||
++       s->sizlBitmap.cx!=(LONG)p->ScreenWidth || s->sizlBitmap.cy!=(LONG)p->ScreenHeight ||
++       s->lDelta!=(LONG)p->ScreenDelta || s->cjBits!=p->ScreenDelta*p->ScreenHeight)return -1;
++    r.left=rect->left;r.top=rect->top;r.right=rect->right;r.bottom=rect->bottom;
++    if(clip && clip->iDComplexity==DC_RECT) {
++        c.left=clip->rclBounds.left;c.top=clip->rclBounds.top;
++        c.right=clip->rclBounds.right;c.bottom=clip->rclBounds.bottom;
++    }
++    result=XpPlan((XP_PTR)p->ShadowBits,s->cjBits,p->ScreenWidth,p->ScreenHeight,
++                  p->ScreenDelta,&r,point->x,point->y,
++                  clip && clip->iDComplexity==DC_RECT?&c:NULL,&plan);
++    if(!result)return -1;
++    *bytes=(ULONGLONG)plan.bytes*plan.rows;
++    if(!XWN_PRIMARY_COPY)return -2; /* Eligible but OFF: call original engine. */
++    if(result==1)return 0;
++    XpExecute((unsigned char*)p->ShadowBits,&plan);
++    return 1;
++}
+diff --git a/win32ss/drivers/displays/framebuf/primary_plan.h b/win32ss/drivers/displays/framebuf/primary_plan.h
+new file mode 100644
+index 0000000..4592564
+--- /dev/null
++++ b/win32ss/drivers/displays/framebuf/primary_plan.h
+@@ -0,0 +1,57 @@
++/* Bounded same-allocation 32-bit primary copy. SPDX-License-Identifier: GPL-2.0-or-later */
++#ifndef XWN_PRIMARY_PLAN_H
++#define XWN_PRIMARY_PLAN_H
++typedef unsigned int XP_U32;
++typedef int XP_I32;
++typedef unsigned long long XP_U64;
++typedef __UINTPTR_TYPE__ XP_PTR;
++typedef char XP_WIDTHS[(sizeof(XP_U32)==4 && sizeof(XP_I32)==4)?1:-1];
++typedef struct { XP_I32 left,top,right,bottom; } XP_RECT;
++typedef struct { XP_U32 dst,src,bytes,rows,pitch,backward; } XP_PLAN;
++/* 0 refuses without modifying the plan; 1 empty; 2 a bounded nonempty copy.
++ * The entire original source and destination rectangles must fit before clip.
++ * Caller owns the allocation/lifetime and maps only absent/rectangular clips. */
++static __inline int XpPlan(XP_PTR base,XP_U32 length,XP_U32 width,XP_U32 height,
++                         XP_U32 pitch,const XP_RECT *r,XP_I32 sx,XP_I32 sy,
++                         const XP_RECT *clip,XP_PLAN *out)
++{
++    XP_RECT c; XP_PLAN p; XP_U32 w,h,x,y;
++    if(!out || !r || !base || (base&3) || !width || width>1920 || !height ||
++       height>1080 || pitch!=width*4 || length!=pitch*height ||
++       base>(XP_PTR)-1-length || r->left<0 || r->top<0 ||
++       r->right<=r->left || r->bottom<=r->top ||
++       (XP_U32)r->right>width || (XP_U32)r->bottom>height || sx<0 || sy<0)
++        return 0;
++    w=(XP_U32)(r->right-r->left);h=(XP_U32)(r->bottom-r->top);
++    if((XP_U32)sx>width-w || (XP_U32)sy>height-h) return 0;
++    c=*r;
++    if(clip) {
++        if(clip->left>clip->right || clip->top>clip->bottom) return 0;
++        if(c.left<clip->left)c.left=clip->left;
++        if(c.top<clip->top)c.top=clip->top;
++        if(c.right>clip->right)c.right=clip->right;
++        if(c.bottom>clip->bottom)c.bottom=clip->bottom;
++    }
++    p.dst=p.src=p.bytes=p.rows=p.backward=0;p.pitch=pitch;
++    if(c.left>=c.right || c.top>=c.bottom){*out=p;return 1;}
++    x=(XP_U32)sx+(XP_U32)(c.left-r->left);
++    y=(XP_U32)sy+(XP_U32)(c.top-r->top);
++    p.dst=(XP_U32)c.top*pitch+(XP_U32)c.left*4;
++    p.src=y*pitch+x*4;p.bytes=(XP_U32)(c.right-c.left)*4;
++    p.rows=(XP_U32)(c.bottom-c.top);p.backward=(XP_U32)c.top>y;
++    /* Explicit final-span bounds, independent of earlier rectangle admission. */
++    if((XP_U64)p.dst+(XP_U64)(p.rows-1)*pitch+p.bytes>length ||
++       (XP_U64)p.src+(XP_U64)(p.rows-1)*pitch+p.bytes>length)return 0;
++    *out=p;return 2;
++}
++/* Private plans only, produced immediately by XpPlan. Horizontal aliasing is
++ * delegated to memmove; bottom-up rows preserve downward vertical overlap. */
++static __inline void XpExecute(unsigned char *base,const XP_PLAN *p)
++{
++    XP_U32 i,row;
++    for(i=0;i<p->rows;i++) {
++        row=p->backward?p->rows-1-i:i;
++        memmove(base+p->dst+row*p->pitch,base+p->src+row*p->pitch,p->bytes);
++    }
++}
++#endif
+diff --git a/win32ss/drivers/displays/framebuf/shadow.c b/win32ss/drivers/displays/framebuf/shadow.c
+index fb19f8e..5f2273d 100644
+--- a/win32ss/drivers/displays/framebuf/shadow.c
++++ b/win32ss/drivers/displays/framebuf/shadow.c
+@@ -96,14 +96,18 @@ BOOL APIENTRY XwnBitBlt(SURFOBJ *psoTrg, SURFOBJ *psoSrc, SURFOBJ *psoMask, CLIP
+ 
+ BOOL APIENTRY XwnCopyBits(SURFOBJ *psoDest, SURFOBJ *psoSrc, CLIPOBJ *pco, XLATEOBJ *pxlo, RECTL *prclDest, POINTL *pptlSrc)
+ {
+- PPDEV p=NULL; BOOL ok; LONGLONG begin;
++ PPDEV p=NULL; BOOL ok; LONGLONG begin; int fast; ULONGLONG bytes;
+  if ((TRUE) && !XwnSelectOwner(&p, psoDest)) return FALSE;
+  if ((TRUE) && !XwnSelectOwner(&p, psoSrc)) return FALSE;
+  if (!p || !p->ShadowActive) return FALSE;
+  if (p->ShadowCalls[1] != 0xffffffff) ++p->ShadowCalls[1];
+  begin=XwnProfileStart();
++ fast=XwnTryPrimaryCopy(p,psoDest,psoSrc,pco,pxlo,prclDest,pptlSrc,&bytes);
++ if(fast>=0)ok=TRUE;
++ else
+  ok=EngCopyBits((TRUE ? XwnSub(p, psoDest) : NULL), (TRUE ? XwnSub(p, psoSrc) : NULL), pco, pxlo, prclDest, pptlSrc);
+  XwnProfileEnd(p,1,begin);
++ XwnPrimaryRecord(p,fast,bytes);
+  if (XwnOwner(psoDest)) XwnUpload(p, prclDest, pco);
+  return ok;
+ }

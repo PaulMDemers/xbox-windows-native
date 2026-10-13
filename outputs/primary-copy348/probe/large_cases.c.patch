@@ -1,0 +1,50 @@
+--- 344/large_cases.c
++++ 348/probe/large_cases.c
+@@ -34,6 +34,18 @@
+     DWORD i;record("PHASE344_PACKET",id,phase,1);
+     for(i=0;i<32;i++)record(phase?"PHASE344_AFTER":"PHASE344_BEFORE",id,i,data[i]);
+ }
++/* New348 coverage packets are outside the timed interval. */
++static BOOL pc_capture(DWORD data[32]) {
++ DWORD i;zero(data,128);
++ if(ExtEscape(Screen,0x58574438,0,NULL,128,(LPSTR)data)!=1 ||
++    data[0]!=0x50435758 || data[1]!=348 || data[2]!=128 || data[3]>1 || data[11])return FALSE;
++ for(i=12;i<32;i++)if(data[i])return FALSE;
++ return TRUE;
++}
++static void pc_emit(DWORD id,DWORD phase,const DWORD data[32]) {
++ DWORD i;record("PRIMARY348_PACKET",id,phase,1);
++ for(i=0;i<32;i++)record(phase?"PRIMARY348_AFTER":"PRIMARY348_BEFORE",id,i,data[i]);
++}
+ static BOOL lg_pixels(DWORD id,DWORD kind,DWORD count,DWORD cw,DWORD ch,DWORD *source,DWORD *actual) {
+     DWORD x,y,wanted,i;BOOL ok=TRUE;
+     for(y=0;y<ch&&ok;y++)for(x=0;x<cw;x++) {
+@@ -61,7 +73,7 @@
+ }
+ static BOOL lg_size(DWORD size,DWORD w,DWORD h) {
+     uint32_t cw,ch,bytes;DWORD x,y,kind,id,count,start,elapsed,before[32],after[32];
+-    DWORD phases[2][32];DWORD *source=NULL,*actual=NULL;RECT outer={0,0,0,0};BITMAPINFO bi;
++    DWORD phases[2][32],primary[2][32];DWORD *source=NULL,*actual=NULL;RECT outer={0,0,0,0};BITMAPINFO bi;
+     HDC readback=NULL;HBITMAP input=NULL,output=NULL;HGDIOBJ oldin=NULL,oldout=NULL;
+     BOOL ok=FALSE;ULONGLONG b,a,minimum;
+     if(!lg_layout(w,h,&cw,&ch,&bytes))return FALSE;
+@@ -91,7 +103,7 @@
+         /* Full source/guard oracle BEFORE timing. */
+         if(!BitBlt(readback,0,0,cw,ch,Screen,0,0,SRCCOPY)||!GdiFlush()||
+            !lg_pixels(id,kind,0,cw,ch,source,actual))goto done;
+-        if(!lg_stats(id,0,before)||!lg_phase(phases[0]))goto done;
++        if(!lg_stats(id,0,before)||!lg_phase(phases[0])||!pc_capture(primary[0]))goto done;
+         LargePaintFailed=FALSE;LargePaintCount=0;LargePaint=(kind==4);
+         count=0;start=GetTickCount();
+         do {
+@@ -99,8 +111,9 @@
+             ++count;elapsed=GetTickCount()-start;
+         }while(count<20000&&elapsed<750);
+         elapsed=GetTickCount()-start;LargePaint=FALSE;
+-        if(!lg_phase(phases[1]))goto done;
++        if(!lg_phase(phases[1])||!pc_capture(primary[1]))goto done;
+         lg_phase_emit(id,0,phases[0]);lg_phase_emit(id,1,phases[1]);
++        pc_emit(id,0,primary[0]);pc_emit(id,1,primary[1]);
+         record("LARGE_TIMING",id,count,elapsed);
+         record("LARGE_PAINTS",id,LargePaintCount,LargePaintFailed);
+         if(!count||elapsed<750||elapsed>30000||LargePaintFailed||

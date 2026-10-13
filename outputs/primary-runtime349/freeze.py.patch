@@ -1,0 +1,12 @@
+--- 346/freeze.py
++++ 349/freeze.py
+@@ -5,7 +5,8 @@
+ assert json.loads((out/'preparation.json').read_text())['prepared']
+ old=json.loads((K.parent/'stock-repeat339/emulator-frozen.json').read_text());paths=[W/n for n in old if not n.startswith('outputs/stock-repeat339/')]
+ paths+=list(K.glob('*.py'))+list(K.glob('*.ps1'))+[out/'fixture.json',out/'preparation.json',out/'before-allocation/allocation.json']
+-paths+=list((K.parent/'hd-phase344').glob('*.py'))+[K.parent/'hd-phase344/build-review001.json',K.parent/'hd-phase344/parser001.json',K.parent/'hd-profile345/build001.json',K.parent/'hd-profile345/binary-review001.json',K/'host-contract002.json']
++paths+=list((K.parent/'hd-phase344').glob('*.py'))+[K.parent/'hd-phase344/build-review001.json',K.parent/'hd-phase344/parser001.json',K.parent/'primary-copy348/build001.json',K.parent/'primary-copy348/binary-review001.json',K/'host-contract002.json']
++paths+=list((K.parent/'primary-copy348').glob('*.py'))+[K.parent/'primary-copy348/host002.json',K.parent/'primary-copy348/probe/build-review001.json',K.parent/'primary-copy348/probe/build001.json',K/'parser001.json']
+ pins={}
+ for p in paths:
+     data=p.read_bytes()

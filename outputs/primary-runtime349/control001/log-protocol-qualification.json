@@ -1,0 +1,2174 @@
+{
+  "case": "control001",
+  "original_audit_sha256": "6bc12726f18d8b1dc0c39f77b8c58b0059621ca2c2d2a1b779cc4061035e77be",
+  "original_raw_parser_failed": true,
+  "original_audit_unchanged": true,
+  "correction": "Actual new contiguous348 packet precedes LARGE_TIMING; validate that complete extension then use unchanged344 decoder on projection. No event/integrity/workload gate waiver.",
+  "gate_source": "r['display_workload_passed'] = r['caps_consistent'] and all((v['probe_passed'] and v['copy_checks_passed'] and v['loop_coverage'] and v['counters_passed'] for v in r['samples'])) and all((v['passed'] for group in ['dib_samples', 'phase_samples', 'window_samples', 'text_samples'] for v in r[group]))\nr['display_workload_passed'] &= all((v['passed'] for v in r['large_phase_samples']))\nr['display_workload_passed'] &= all((v['passed'] for v in r['primary_samples']))\nr['scoped_display_passed'] = r['setup_gate_passed'] and r['display_workload_passed'] and r['integrity_passed'] and r['measurement_events_passed'] and (r['normal_shutdown_count'] == 1) and r['dashboard_return'] and (not r['new_events']['application']) and (not any((v['source'] == 'Application Popup' for v in r['new_events']['system'])))\nr['strict_qualification_passed'] = r['scoped_display_passed'] and r['strict_events_passed']\nr['scoped_combined_passed'] = r['scoped_display_passed'] and r['audio_children_joined'] and r['audio_probe_passed'] and r['audio_state_passed'] and r['installed_audio_binding']['passed'] and r['audio_capture']['passed'] and r['orderly_host_exit']\nr['strict_qualification_passed'] = r['scoped_combined_passed'] and r['strict_events_passed']\nr['ordinary_qualified'] = r['strict_qualification_passed']",
+  "gate_source_sha256": "c01ffef7bd45f29e642cb532d4c469e7771110f8c49f4ac379b2d51ffcc07cf3",
+  "audit_source_sha256": "b2eaa0db50e33f5dc4e7db238f30b778c7e758ded225f544294c0bd54d08d9d5",
+  "corrected_phase_samples": [
+    {
+      "passed": true,
+      "physical_qualified": false,
+      "mode": 1,
+      "frequency": 1125000,
+      "intervals": [
+        {
+          "id": 0,
+          "kind": "fill",
+          "size": [
+            256,
+            128
+          ],
+          "operations": 4806,
+          "calls": [
+            4806,
+            0,
+            4806,
+            4806
+          ],
+          "ticks": [
+            323772,
+            0,
+            423384,
+            440457
+          ],
+          "elapsed_ms": [
+            287.7973333333333,
+            0.0,
+            376.34133333333335,
+            391.51733333333334
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 1,
+          "kind": "ram_upload",
+          "size": [
+            256,
+            128
+          ],
+          "operations": 3714,
+          "calls": [
+            0,
+            3714,
+            3714,
+            3714
+          ],
+          "ticks": [
+            0,
+            380499,
+            360664,
+            375874
+          ],
+          "elapsed_ms": [
+            0.0,
+            338.22133333333335,
+            320.5902222222222,
+            334.1102222222222
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 2,
+          "kind": "overlap_down_right",
+          "size": [
+            256,
+            128
+          ],
+          "operations": 4083,
+          "calls": [
+            0,
+            4083,
+            4083,
+            4083
+          ],
+          "ticks": [
+            0,
+            377373,
+            368307,
+            384613
+          ],
+          "elapsed_ms": [
+            0.0,
+            335.44266666666664,
+            327.384,
+            341.87822222222223
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 3,
+          "kind": "overlap_up_left",
+          "size": [
+            256,
+            128
+          ],
+          "operations": 4052,
+          "calls": [
+            0,
+            4052,
+            4052,
+            4052
+          ],
+          "ticks": [
+            0,
+            381816,
+            367033,
+            381974
+          ],
+          "elapsed_ms": [
+            0.0,
+            339.392,
+            326.25155555555557,
+            339.5324444444444
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 4,
+          "kind": "wm_paint",
+          "size": [
+            256,
+            128
+          ],
+          "operations": 3176,
+          "calls": [
+            0,
+            3176,
+            3176,
+            3176
+          ],
+          "ticks": [
+            0,
+            329701,
+            309166,
+            321926
+          ],
+          "elapsed_ms": [
+            0.0,
+            293.06755555555554,
+            274.8142222222222,
+            286.15644444444445
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 5,
+          "kind": "fill",
+          "size": [
+            640,
+            360
+          ],
+          "operations": 920,
+          "calls": [
+            920,
+            0,
+            920,
+            920
+          ],
+          "ticks": [
+            305858,
+            0,
+            499539,
+            504174
+          ],
+          "elapsed_ms": [
+            271.8737777777778,
+            0.0,
+            444.0346666666667,
+            448.1546666666667
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 6,
+          "kind": "ram_upload",
+          "size": [
+            640,
+            360
+          ],
+          "operations": 694,
+          "calls": [
+            0,
+            694,
+            694,
+            694
+          ],
+          "ticks": [
+            0,
+            368782,
+            438775,
+            443014
+          ],
+          "elapsed_ms": [
+            0.0,
+            327.80622222222223,
+            390.02222222222224,
+            393.7902222222222
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 7,
+          "kind": "overlap_down_right",
+          "size": [
+            640,
+            360
+          ],
+          "operations": 778,
+          "calls": [
+            0,
+            778,
+            778,
+            778
+          ],
+          "ticks": [
+            0,
+            375259,
+            441752,
+            446143
+          ],
+          "elapsed_ms": [
+            0.0,
+            333.5635555555556,
+            392.66844444444445,
+            396.57155555555556
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 8,
+          "kind": "overlap_up_left",
+          "size": [
+            640,
+            360
+          ],
+          "operations": 749,
+          "calls": [
+            0,
+            749,
+            749,
+            749
+          ],
+          "ticks": [
+            0,
+            362051,
+            455154,
+            459547
+          ],
+          "elapsed_ms": [
+            0.0,
+            321.82311111111113,
+            404.58133333333336,
+            408.48622222222224
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 9,
+          "kind": "wm_paint",
+          "size": [
+            640,
+            360
+          ],
+          "operations": 689,
+          "calls": [
+            0,
+            689,
+            689,
+            689
+          ],
+          "ticks": [
+            0,
+            357061,
+            421772,
+            425548
+          ],
+          "elapsed_ms": [
+            0.0,
+            317.38755555555554,
+            374.90844444444446,
+            378.2648888888889
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 10,
+          "kind": "fill",
+          "size": [
+            960,
+            540
+          ],
+          "operations": 377,
+          "calls": [
+            377,
+            377,
+            1885,
+            754
+          ],
+          "ticks": [
+            293035,
+            2654,
+            498978,
+            505554
+          ],
+          "elapsed_ms": [
+            260.47555555555556,
+            2.359111111111111,
+            443.536,
+            449.3813333333333
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 11,
+          "kind": "ram_upload",
+          "size": [
+            960,
+            540
+          ],
+          "operations": 278,
+          "calls": [
+            0,
+            556,
+            1390,
+            556
+          ],
+          "ticks": [
+            0,
+            392144,
+            406797,
+            412627
+          ],
+          "elapsed_ms": [
+            0.0,
+            348.57244444444444,
+            361.5973333333333,
+            366.77955555555553
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 12,
+          "kind": "overlap_down_right",
+          "size": [
+            960,
+            540
+          ],
+          "operations": 311,
+          "calls": [
+            0,
+            4043,
+            3421,
+            3421
+          ],
+          "ticks": [
+            0,
+            365449,
+            413730,
+            423682
+          ],
+          "elapsed_ms": [
+            0.0,
+            324.84355555555555,
+            367.76,
+            376.60622222222224
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 13,
+          "kind": "overlap_up_left",
+          "size": [
+            960,
+            540
+          ],
+          "operations": 310,
+          "calls": [
+            0,
+            4030,
+            3410,
+            3410
+          ],
+          "ticks": [
+            0,
+            363243,
+            426866,
+            437306
+          ],
+          "elapsed_ms": [
+            0.0,
+            322.8826666666667,
+            379.4364444444444,
+            388.71644444444445
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 14,
+          "kind": "wm_paint",
+          "size": [
+            960,
+            540
+          ],
+          "operations": 267,
+          "calls": [
+            0,
+            534,
+            1335,
+            534
+          ],
+          "ticks": [
+            0,
+            371446,
+            399713,
+            405625
+          ],
+          "elapsed_ms": [
+            0.0,
+            330.1742222222222,
+            355.30044444444445,
+            360.55555555555554
+          ],
+          "wall_ms": 750
+        }
+      ],
+      "limits": "Validated348 packets between contiguous344 packet and timing. Unchanged344 decoder receives projection ONLY after348 schema/placement/coverage checks. Both drivers profilingON; category1 is selected CopyBits body. Global/preemption/nested timing limitations remain."
+    },
+    {
+      "passed": true,
+      "physical_qualified": false,
+      "mode": 1,
+      "frequency": 1125000,
+      "intervals": [
+        {
+          "id": 0,
+          "kind": "fill",
+          "size": [
+            256,
+            128
+          ],
+          "operations": 4756,
+          "calls": [
+            4756,
+            0,
+            4756,
+            4756
+          ],
+          "ticks": [
+            330528,
+            0,
+            426199,
+            444274
+          ],
+          "elapsed_ms": [
+            293.80266666666665,
+            0.0,
+            378.84355555555555,
+            394.9102222222222
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 1,
+          "kind": "ram_upload",
+          "size": [
+            256,
+            128
+          ],
+          "operations": 4332,
+          "calls": [
+            0,
+            4332,
+            4332,
+            4332
+          ],
+          "ticks": [
+            0,
+            379082,
+            351355,
+            367489
+          ],
+          "elapsed_ms": [
+            0.0,
+            336.9617777777778,
+            312.31555555555553,
+            326.6568888888889
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 2,
+          "kind": "overlap_down_right",
+          "size": [
+            256,
+            128
+          ],
+          "operations": 4028,
+          "calls": [
+            0,
+            4028,
+            4028,
+            4028
+          ],
+          "ticks": [
+            0,
+            374155,
+            363611,
+            381514
+          ],
+          "elapsed_ms": [
+            0.0,
+            332.58222222222224,
+            323.2097777777778,
+            339.1235555555556
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 3,
+          "kind": "overlap_up_left",
+          "size": [
+            256,
+            128
+          ],
+          "operations": 4064,
+          "calls": [
+            0,
+            4064,
+            4064,
+            4064
+          ],
+          "ticks": [
+            0,
+            382465,
+            366203,
+            382444
+          ],
+          "elapsed_ms": [
+            0.0,
+            339.9688888888889,
+            325.51377777777776,
+            339.95022222222224
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 4,
+          "kind": "wm_paint",
+          "size": [
+            256,
+            128
+          ],
+          "operations": 3246,
+          "calls": [
+            0,
+            3246,
+            3246,
+            3246
+          ],
+          "ticks": [
+            0,
+            320461,
+            300493,
+            313645
+          ],
+          "elapsed_ms": [
+            0.0,
+            284.85422222222223,
+            267.10488888888887,
+            278.79555555555555
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 5,
+          "kind": "fill",
+          "size": [
+            640,
+            360
+          ],
+          "operations": 878,
+          "calls": [
+            878,
+            0,
+            878,
+            878
+          ],
+          "ticks": [
+            300567,
+            0,
+            512058,
+            517377
+          ],
+          "elapsed_ms": [
+            267.17066666666665,
+            0.0,
+            455.16266666666667,
+            459.8906666666667
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 6,
+          "kind": "ram_upload",
+          "size": [
+            640,
+            360
+          ],
+          "operations": 718,
+          "calls": [
+            0,
+            718,
+            718,
+            718
+          ],
+          "ticks": [
+            0,
+            369683,
+            432800,
+            436932
+          ],
+          "elapsed_ms": [
+            0.0,
+            328.6071111111111,
+            384.7111111111111,
+            388.384
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 7,
+          "kind": "overlap_down_right",
+          "size": [
+            640,
+            360
+          ],
+          "operations": 759,
+          "calls": [
+            0,
+            759,
+            759,
+            759
+          ],
+          "ticks": [
+            0,
+            364015,
+            446495,
+            451067
+          ],
+          "elapsed_ms": [
+            0.0,
+            323.56888888888886,
+            396.88444444444445,
+            400.9484444444444
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 8,
+          "kind": "overlap_up_left",
+          "size": [
+            640,
+            360
+          ],
+          "operations": 755,
+          "calls": [
+            0,
+            755,
+            755,
+            755
+          ],
+          "ticks": [
+            0,
+            366218,
+            446079,
+            450940
+          ],
+          "elapsed_ms": [
+            0.0,
+            325.52711111111114,
+            396.51466666666664,
+            400.8355555555556
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 9,
+          "kind": "wm_paint",
+          "size": [
+            640,
+            360
+          ],
+          "operations": 686,
+          "calls": [
+            0,
+            686,
+            686,
+            686
+          ],
+          "ticks": [
+            0,
+            355605,
+            419367,
+            423431
+          ],
+          "elapsed_ms": [
+            0.0,
+            316.0933333333333,
+            372.77066666666667,
+            376.38311111111113
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 10,
+          "kind": "fill",
+          "size": [
+            960,
+            540
+          ],
+          "operations": 396,
+          "calls": [
+            396,
+            396,
+            1980,
+            792
+          ],
+          "ticks": [
+            300228,
+            2507,
+            494521,
+            501530
+          ],
+          "elapsed_ms": [
+            266.8693333333333,
+            2.2284444444444444,
+            439.5742222222222,
+            445.80444444444447
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 11,
+          "kind": "ram_upload",
+          "size": [
+            960,
+            540
+          ],
+          "operations": 249,
+          "calls": [
+            0,
+            498,
+            1245,
+            498
+          ],
+          "ticks": [
+            0,
+            389551,
+            410433,
+            415100
+          ],
+          "elapsed_ms": [
+            0.0,
+            346.26755555555553,
+            364.82933333333335,
+            368.97777777777776
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 12,
+          "kind": "overlap_down_right",
+          "size": [
+            960,
+            540
+          ],
+          "operations": 281,
+          "calls": [
+            0,
+            3653,
+            3091,
+            3091
+          ],
+          "ticks": [
+            0,
+            350405,
+            440024,
+            448682
+          ],
+          "elapsed_ms": [
+            0.0,
+            311.4711111111111,
+            391.13244444444445,
+            398.8284444444445
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 13,
+          "kind": "overlap_up_left",
+          "size": [
+            960,
+            540
+          ],
+          "operations": 262,
+          "calls": [
+            0,
+            3406,
+            2882,
+            2882
+          ],
+          "ticks": [
+            0,
+            334163,
+            445910,
+            455384
+          ],
+          "elapsed_ms": [
+            0.0,
+            297.0337777777778,
+            396.3644444444444,
+            404.78577777777775
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 14,
+          "kind": "wm_paint",
+          "size": [
+            960,
+            540
+          ],
+          "operations": 193,
+          "calls": [
+            0,
+            386,
+            965,
+            386
+          ],
+          "ticks": [
+            0,
+            373414,
+            404976,
+            408966
+          ],
+          "elapsed_ms": [
+            0.0,
+            331.92355555555554,
+            359.97866666666664,
+            363.5253333333333
+          ],
+          "wall_ms": 750
+        }
+      ],
+      "limits": "Validated348 packets between contiguous344 packet and timing. Unchanged344 decoder receives projection ONLY after348 schema/placement/coverage checks. Both drivers profilingON; category1 is selected CopyBits body. Global/preemption/nested timing limitations remain."
+    },
+    {
+      "passed": true,
+      "physical_qualified": false,
+      "mode": 1,
+      "frequency": 1125000,
+      "intervals": [
+        {
+          "id": 0,
+          "kind": "fill",
+          "size": [
+            256,
+            128
+          ],
+          "operations": 4824,
+          "calls": [
+            4824,
+            0,
+            4824,
+            4824
+          ],
+          "ticks": [
+            325405,
+            0,
+            421382,
+            438825
+          ],
+          "elapsed_ms": [
+            289.24888888888887,
+            0.0,
+            374.56177777777776,
+            390.06666666666666
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 1,
+          "kind": "ram_upload",
+          "size": [
+            256,
+            128
+          ],
+          "operations": 3751,
+          "calls": [
+            0,
+            3751,
+            3751,
+            3751
+          ],
+          "ticks": [
+            0,
+            381049,
+            368431,
+            382742
+          ],
+          "elapsed_ms": [
+            0.0,
+            338.7102222222222,
+            327.4942222222222,
+            340.2151111111111
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 2,
+          "kind": "overlap_down_right",
+          "size": [
+            256,
+            128
+          ],
+          "operations": 4024,
+          "calls": [
+            0,
+            4024,
+            4024,
+            4024
+          ],
+          "ticks": [
+            0,
+            378756,
+            370577,
+            385720
+          ],
+          "elapsed_ms": [
+            0.0,
+            336.672,
+            329.4017777777778,
+            342.8622222222222
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 3,
+          "kind": "overlap_up_left",
+          "size": [
+            256,
+            128
+          ],
+          "operations": 4054,
+          "calls": [
+            0,
+            4054,
+            4054,
+            4054
+          ],
+          "ticks": [
+            0,
+            385271,
+            370647,
+            386428
+          ],
+          "elapsed_ms": [
+            0.0,
+            342.4631111111111,
+            329.464,
+            343.4915555555556
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 4,
+          "kind": "wm_paint",
+          "size": [
+            256,
+            128
+          ],
+          "operations": 3475,
+          "calls": [
+            0,
+            3475,
+            3475,
+            3475
+          ],
+          "ticks": [
+            0,
+            316956,
+            292924,
+            305892
+          ],
+          "elapsed_ms": [
+            0.0,
+            281.7386666666667,
+            260.3768888888889,
+            271.904
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 5,
+          "kind": "fill",
+          "size": [
+            640,
+            360
+          ],
+          "operations": 852,
+          "calls": [
+            852,
+            0,
+            852,
+            852
+          ],
+          "ticks": [
+            291893,
+            0,
+            506783,
+            513050
+          ],
+          "elapsed_ms": [
+            259.4604444444444,
+            0.0,
+            450.4737777777778,
+            456.0444444444444
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 6,
+          "kind": "ram_upload",
+          "size": [
+            640,
+            360
+          ],
+          "operations": 758,
+          "calls": [
+            0,
+            758,
+            758,
+            758
+          ],
+          "ticks": [
+            0,
+            378415,
+            434294,
+            438671
+          ],
+          "elapsed_ms": [
+            0.0,
+            336.3688888888889,
+            386.0391111111111,
+            389.92977777777776
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 7,
+          "kind": "overlap_down_right",
+          "size": [
+            640,
+            360
+          ],
+          "operations": 714,
+          "calls": [
+            0,
+            714,
+            714,
+            714
+          ],
+          "ticks": [
+            0,
+            355072,
+            458429,
+            462690
+          ],
+          "elapsed_ms": [
+            0.0,
+            315.61955555555556,
+            407.49244444444446,
+            411.28
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 8,
+          "kind": "overlap_up_left",
+          "size": [
+            640,
+            360
+          ],
+          "operations": 736,
+          "calls": [
+            0,
+            736,
+            736,
+            736
+          ],
+          "ticks": [
+            0,
+            362155,
+            447900,
+            452083
+          ],
+          "elapsed_ms": [
+            0.0,
+            321.91555555555556,
+            398.1333333333333,
+            401.85155555555554
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 9,
+          "kind": "wm_paint",
+          "size": [
+            640,
+            360
+          ],
+          "operations": 553,
+          "calls": [
+            0,
+            553,
+            553,
+            553
+          ],
+          "ticks": [
+            0,
+            351539,
+            421657,
+            426037
+          ],
+          "elapsed_ms": [
+            0.0,
+            312.47911111111114,
+            374.80622222222223,
+            378.69955555555555
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 10,
+          "kind": "fill",
+          "size": [
+            960,
+            540
+          ],
+          "operations": 370,
+          "calls": [
+            370,
+            370,
+            1850,
+            740
+          ],
+          "ticks": [
+            289758,
+            2390,
+            498543,
+            506352
+          ],
+          "elapsed_ms": [
+            257.56266666666664,
+            2.1244444444444444,
+            443.14933333333335,
+            450.09066666666666
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 11,
+          "kind": "ram_upload",
+          "size": [
+            960,
+            540
+          ],
+          "operations": 289,
+          "calls": [
+            0,
+            578,
+            1445,
+            578
+          ],
+          "ticks": [
+            0,
+            391146,
+            406959,
+            411593
+          ],
+          "elapsed_ms": [
+            0.0,
+            347.68533333333335,
+            361.74133333333333,
+            365.86044444444445
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 12,
+          "kind": "overlap_down_right",
+          "size": [
+            960,
+            540
+          ],
+          "operations": 312,
+          "calls": [
+            0,
+            4056,
+            3432,
+            3432
+          ],
+          "ticks": [
+            0,
+            369997,
+            415991,
+            426000
+          ],
+          "elapsed_ms": [
+            0.0,
+            328.8862222222222,
+            369.7697777777778,
+            378.6666666666667
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 13,
+          "kind": "overlap_up_left",
+          "size": [
+            960,
+            540
+          ],
+          "operations": 302,
+          "calls": [
+            0,
+            3926,
+            3322,
+            3322
+          ],
+          "ticks": [
+            0,
+            360095,
+            425412,
+            434929
+          ],
+          "elapsed_ms": [
+            0.0,
+            320.08444444444444,
+            378.144,
+            386.60355555555554
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 14,
+          "kind": "wm_paint",
+          "size": [
+            960,
+            540
+          ],
+          "operations": 277,
+          "calls": [
+            0,
+            554,
+            1385,
+            554
+          ],
+          "ticks": [
+            0,
+            370194,
+            395996,
+            400787
+          ],
+          "elapsed_ms": [
+            0.0,
+            329.0613333333333,
+            351.9964444444444,
+            356.2551111111111
+          ],
+          "wall_ms": 750
+        }
+      ],
+      "limits": "Validated348 packets between contiguous344 packet and timing. Unchanged344 decoder receives projection ONLY after348 schema/placement/coverage checks. Both drivers profilingON; category1 is selected CopyBits body. Global/preemption/nested timing limitations remain."
+    },
+    {
+      "passed": true,
+      "physical_qualified": false,
+      "mode": 1,
+      "frequency": 1125000,
+      "intervals": [
+        {
+          "id": 0,
+          "kind": "fill",
+          "size": [
+            256,
+            128
+          ],
+          "operations": 4616,
+          "calls": [
+            4616,
+            0,
+            4616,
+            4616
+          ],
+          "ticks": [
+            328629,
+            0,
+            425282,
+            443721
+          ],
+          "elapsed_ms": [
+            292.11466666666666,
+            0.0,
+            378.02844444444446,
+            394.41866666666664
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 1,
+          "kind": "ram_upload",
+          "size": [
+            256,
+            128
+          ],
+          "operations": 3797,
+          "calls": [
+            0,
+            3797,
+            3797,
+            3797
+          ],
+          "ticks": [
+            0,
+            385882,
+            361967,
+            378221
+          ],
+          "elapsed_ms": [
+            0.0,
+            343.0062222222222,
+            321.74844444444443,
+            336.19644444444447
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 2,
+          "kind": "overlap_down_right",
+          "size": [
+            256,
+            128
+          ],
+          "operations": 3880,
+          "calls": [
+            0,
+            3880,
+            3880,
+            3880
+          ],
+          "ticks": [
+            0,
+            377287,
+            364163,
+            379547
+          ],
+          "elapsed_ms": [
+            0.0,
+            335.36622222222223,
+            323.70044444444443,
+            337.3751111111111
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 3,
+          "kind": "overlap_up_left",
+          "size": [
+            256,
+            128
+          ],
+          "operations": 4132,
+          "calls": [
+            0,
+            4132,
+            4132,
+            4132
+          ],
+          "ticks": [
+            0,
+            380705,
+            363460,
+            379057
+          ],
+          "elapsed_ms": [
+            0.0,
+            338.40444444444444,
+            323.0755555555556,
+            336.93955555555556
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 4,
+          "kind": "wm_paint",
+          "size": [
+            256,
+            128
+          ],
+          "operations": 3376,
+          "calls": [
+            0,
+            3376,
+            3376,
+            3376
+          ],
+          "ticks": [
+            0,
+            318913,
+            297839,
+            311043
+          ],
+          "elapsed_ms": [
+            0.0,
+            283.4782222222222,
+            264.7457777777778,
+            276.48266666666666
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 5,
+          "kind": "fill",
+          "size": [
+            640,
+            360
+          ],
+          "operations": 848,
+          "calls": [
+            848,
+            0,
+            848,
+            848
+          ],
+          "ticks": [
+            290308,
+            0,
+            514913,
+            520585
+          ],
+          "elapsed_ms": [
+            258.0515555555556,
+            0.0,
+            457.70044444444443,
+            462.7422222222222
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 6,
+          "kind": "ram_upload",
+          "size": [
+            640,
+            360
+          ],
+          "operations": 696,
+          "calls": [
+            0,
+            696,
+            696,
+            696
+          ],
+          "ticks": [
+            0,
+            365125,
+            439682,
+            444574
+          ],
+          "elapsed_ms": [
+            0.0,
+            324.55555555555554,
+            390.8284444444445,
+            395.17688888888887
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 7,
+          "kind": "overlap_down_right",
+          "size": [
+            640,
+            360
+          ],
+          "operations": 724,
+          "calls": [
+            0,
+            724,
+            724,
+            724
+          ],
+          "ticks": [
+            0,
+            358201,
+            458189,
+            462269
+          ],
+          "elapsed_ms": [
+            0.0,
+            318.4008888888889,
+            407.2791111111111,
+            410.90577777777776
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 8,
+          "kind": "overlap_up_left",
+          "size": [
+            640,
+            360
+          ],
+          "operations": 758,
+          "calls": [
+            0,
+            758,
+            758,
+            758
+          ],
+          "ticks": [
+            0,
+            368195,
+            441945,
+            446530
+          ],
+          "elapsed_ms": [
+            0.0,
+            327.28444444444443,
+            392.84,
+            396.91555555555556
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 9,
+          "kind": "wm_paint",
+          "size": [
+            640,
+            360
+          ],
+          "operations": 643,
+          "calls": [
+            0,
+            643,
+            643,
+            643
+          ],
+          "ticks": [
+            0,
+            351553,
+            418758,
+            422528
+          ],
+          "elapsed_ms": [
+            0.0,
+            312.4915555555556,
+            372.22933333333333,
+            375.5804444444444
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 10,
+          "kind": "fill",
+          "size": [
+            960,
+            540
+          ],
+          "operations": 359,
+          "calls": [
+            359,
+            359,
+            1795,
+            718
+          ],
+          "ticks": [
+            285011,
+            2145,
+            505743,
+            512071
+          ],
+          "elapsed_ms": [
+            253.3431111111111,
+            1.9066666666666667,
+            449.5493333333333,
+            455.1742222222222
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 11,
+          "kind": "ram_upload",
+          "size": [
+            960,
+            540
+          ],
+          "operations": 286,
+          "calls": [
+            0,
+            572,
+            1430,
+            572
+          ],
+          "ticks": [
+            0,
+            396699,
+            397360,
+            401827
+          ],
+          "elapsed_ms": [
+            0.0,
+            352.6213333333333,
+            353.2088888888889,
+            357.17955555555557
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 12,
+          "kind": "overlap_down_right",
+          "size": [
+            960,
+            540
+          ],
+          "operations": 290,
+          "calls": [
+            0,
+            3770,
+            3190,
+            3190
+          ],
+          "ticks": [
+            0,
+            356246,
+            430123,
+            441655
+          ],
+          "elapsed_ms": [
+            0.0,
+            316.6631111111111,
+            382.33155555555555,
+            392.58222222222224
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 13,
+          "kind": "overlap_up_left",
+          "size": [
+            960,
+            540
+          ],
+          "operations": 269,
+          "calls": [
+            0,
+            3497,
+            2959,
+            2959
+          ],
+          "ticks": [
+            0,
+            339075,
+            456369,
+            465473
+          ],
+          "elapsed_ms": [
+            0.0,
+            301.4,
+            405.66133333333335,
+            413.75377777777777
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 14,
+          "kind": "wm_paint",
+          "size": [
+            960,
+            540
+          ],
+          "operations": 246,
+          "calls": [
+            0,
+            492,
+            1230,
+            492
+          ],
+          "ticks": [
+            0,
+            380497,
+            391325,
+            396797
+          ],
+          "elapsed_ms": [
+            0.0,
+            338.21955555555553,
+            347.84444444444443,
+            352.70844444444447
+          ],
+          "wall_ms": 750
+        }
+      ],
+      "limits": "Validated348 packets between contiguous344 packet and timing. Unchanged344 decoder receives projection ONLY after348 schema/placement/coverage checks. Both drivers profilingON; category1 is selected CopyBits body. Global/preemption/nested timing limitations remain."
+    },
+    {
+      "passed": true,
+      "physical_qualified": false,
+      "mode": 1,
+      "frequency": 1125000,
+      "intervals": [
+        {
+          "id": 0,
+          "kind": "fill",
+          "size": [
+            256,
+            128
+          ],
+          "operations": 4975,
+          "calls": [
+            4975,
+            0,
+            4975,
+            4975
+          ],
+          "ticks": [
+            319202,
+            0,
+            421123,
+            441277
+          ],
+          "elapsed_ms": [
+            283.7351111111111,
+            0.0,
+            374.33155555555555,
+            392.24622222222223
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 1,
+          "kind": "ram_upload",
+          "size": [
+            256,
+            128
+          ],
+          "operations": 3869,
+          "calls": [
+            0,
+            3869,
+            3869,
+            3869
+          ],
+          "ticks": [
+            0,
+            388307,
+            362898,
+            377275
+          ],
+          "elapsed_ms": [
+            0.0,
+            345.1617777777778,
+            322.576,
+            335.35555555555555
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 2,
+          "kind": "overlap_down_right",
+          "size": [
+            256,
+            128
+          ],
+          "operations": 4008,
+          "calls": [
+            0,
+            4008,
+            4008,
+            4008
+          ],
+          "ticks": [
+            0,
+            377880,
+            364219,
+            379537
+          ],
+          "elapsed_ms": [
+            0.0,
+            335.8933333333333,
+            323.75022222222225,
+            337.36622222222223
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 3,
+          "kind": "overlap_up_left",
+          "size": [
+            256,
+            128
+          ],
+          "operations": 4090,
+          "calls": [
+            0,
+            4090,
+            4090,
+            4090
+          ],
+          "ticks": [
+            0,
+            381979,
+            366305,
+            381831
+          ],
+          "elapsed_ms": [
+            0.0,
+            339.5368888888889,
+            325.6044444444444,
+            339.4053333333333
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 4,
+          "kind": "wm_paint",
+          "size": [
+            256,
+            128
+          ],
+          "operations": 3204,
+          "calls": [
+            0,
+            3204,
+            3204,
+            3204
+          ],
+          "ticks": [
+            0,
+            327020,
+            308982,
+            321904
+          ],
+          "elapsed_ms": [
+            0.0,
+            290.68444444444447,
+            274.65066666666667,
+            286.1368888888889
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 5,
+          "kind": "fill",
+          "size": [
+            640,
+            360
+          ],
+          "operations": 890,
+          "calls": [
+            890,
+            0,
+            890,
+            890
+          ],
+          "ticks": [
+            298196,
+            0,
+            517190,
+            522855
+          ],
+          "elapsed_ms": [
+            265.0631111111111,
+            0.0,
+            459.72444444444443,
+            464.76
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 6,
+          "kind": "ram_upload",
+          "size": [
+            640,
+            360
+          ],
+          "operations": 695,
+          "calls": [
+            0,
+            695,
+            695,
+            695
+          ],
+          "ticks": [
+            0,
+            369957,
+            427867,
+            432901
+          ],
+          "elapsed_ms": [
+            0.0,
+            328.85066666666665,
+            380.3262222222222,
+            384.8008888888889
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 7,
+          "kind": "overlap_down_right",
+          "size": [
+            640,
+            360
+          ],
+          "operations": 769,
+          "calls": [
+            0,
+            769,
+            769,
+            769
+          ],
+          "ticks": [
+            0,
+            371577,
+            445336,
+            451274
+          ],
+          "elapsed_ms": [
+            0.0,
+            330.29066666666665,
+            395.85422222222223,
+            401.13244444444445
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 8,
+          "kind": "overlap_up_left",
+          "size": [
+            640,
+            360
+          ],
+          "operations": 764,
+          "calls": [
+            0,
+            764,
+            764,
+            764
+          ],
+          "ticks": [
+            0,
+            368507,
+            440758,
+            445409
+          ],
+          "elapsed_ms": [
+            0.0,
+            327.56177777777776,
+            391.7848888888889,
+            395.91911111111114
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 9,
+          "kind": "wm_paint",
+          "size": [
+            640,
+            360
+          ],
+          "operations": 672,
+          "calls": [
+            0,
+            672,
+            672,
+            672
+          ],
+          "ticks": [
+            0,
+            361783,
+            410628,
+            414548
+          ],
+          "elapsed_ms": [
+            0.0,
+            321.5848888888889,
+            365.00266666666664,
+            368.4871111111111
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 10,
+          "kind": "fill",
+          "size": [
+            960,
+            540
+          ],
+          "operations": 347,
+          "calls": [
+            347,
+            347,
+            1735,
+            694
+          ],
+          "ticks": [
+            283182,
+            2346,
+            513429,
+            519726
+          ],
+          "elapsed_ms": [
+            251.71733333333333,
+            2.0853333333333333,
+            456.3813333333333,
+            461.97866666666664
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 11,
+          "kind": "ram_upload",
+          "size": [
+            960,
+            540
+          ],
+          "operations": 270,
+          "calls": [
+            0,
+            540,
+            1350,
+            540
+          ],
+          "ticks": [
+            0,
+            391863,
+            403338,
+            408636
+          ],
+          "elapsed_ms": [
+            0.0,
+            348.3226666666667,
+            358.5226666666667,
+            363.232
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 12,
+          "kind": "overlap_down_right",
+          "size": [
+            960,
+            540
+          ],
+          "operations": 286,
+          "calls": [
+            0,
+            3718,
+            3146,
+            3146
+          ],
+          "ticks": [
+            0,
+            355074,
+            426148,
+            435759
+          ],
+          "elapsed_ms": [
+            0.0,
+            315.6213333333333,
+            378.79822222222225,
+            387.34133333333335
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 13,
+          "kind": "overlap_up_left",
+          "size": [
+            960,
+            540
+          ],
+          "operations": 292,
+          "calls": [
+            0,
+            3796,
+            3212,
+            3212
+          ],
+          "ticks": [
+            0,
+            355932,
+            434260,
+            444380
+          ],
+          "elapsed_ms": [
+            0.0,
+            316.384,
+            386.00888888888886,
+            395.00444444444446
+          ],
+          "wall_ms": 750
+        },
+        {
+          "id": 14,
+          "kind": "wm_paint",
+          "size": [
+            960,
+            540
+          ],
+          "operations": 229,
+          "calls": [
+            0,
+            458,
+            1145,
+            458
+          ],
+          "ticks": [
+            0,
+            380062,
+            399269,
+            403807
+          ],
+          "elapsed_ms": [
+            0.0,
+            337.8328888888889,
+            354.90577777777776,
+            358.93955555555556
+          ],
+          "wall_ms": 750
+        }
+      ],
+      "limits": "Validated348 packets between contiguous344 packet and timing. Unchanged344 decoder receives projection ONLY after348 schema/placement/coverage checks. Both drivers profilingON; category1 is selected CopyBits body. Global/preemption/nested timing limitations remain."
+    }
+  ],
+  "qualified_fields": {
+    "display_workload_passed": true,
+    "scoped_display_passed": true,
+    "strict_qualification_passed": false,
+    "scoped_combined_passed": true,
+    "ordinary_qualified": false
+  },
+  "gate_negative_controls": {
+    "integrity_passed": true,
+    "setup_gate_passed": true,
+    "measurement_events_passed": true,
+    "orderly_host_exit": true,
+    "audio_probe_passed": true
+  },
+  "parser_sha256": "1772949d3237c54c1b64d48dee6a9fd643ef26775505b630f46feb28fd2a54fd",
+  "physical_access": false,
+  "performance_qualified": false
+}

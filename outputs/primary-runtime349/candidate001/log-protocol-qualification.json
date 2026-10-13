@@ -1,0 +1,54 @@
+{
+  "case": "candidate001",
+  "original_audit_sha256": "5c6e812927db1253fdea5d0c3b75e9e426e0fa03da982e847f2f5948a66ff521",
+  "original_raw_parser_failed": true,
+  "original_audit_unchanged": true,
+  "correction": "Actual new contiguous348 packet precedes LARGE_TIMING; validate that complete extension then use unchanged344 decoder on projection. No event/integrity/workload gate waiver.",
+  "gate_source": "r['display_workload_passed'] = r['caps_consistent'] and all((v['probe_passed'] and v['copy_checks_passed'] and v['loop_coverage'] and v['counters_passed'] for v in r['samples'])) and all((v['passed'] for group in ['dib_samples', 'phase_samples', 'window_samples', 'text_samples'] for v in r[group]))\nr['display_workload_passed'] &= all((v['passed'] for v in r['large_phase_samples']))\nr['display_workload_passed'] &= all((v['passed'] for v in r['primary_samples']))\nr['scoped_display_passed'] = r['setup_gate_passed'] and r['display_workload_passed'] and r['integrity_passed'] and r['measurement_events_passed'] and (r['normal_shutdown_count'] == 1) and r['dashboard_return'] and (not r['new_events']['application']) and (not any((v['source'] == 'Application Popup' for v in r['new_events']['system'])))\nr['strict_qualification_passed'] = r['scoped_display_passed'] and r['strict_events_passed']\nr['scoped_combined_passed'] = r['scoped_display_passed'] and r['audio_children_joined'] and r['audio_probe_passed'] and r['audio_state_passed'] and r['installed_audio_binding']['passed'] and r['audio_capture']['passed'] and r['orderly_host_exit']\nr['strict_qualification_passed'] = r['scoped_combined_passed'] and r['strict_events_passed']\nr['ordinary_qualified'] = r['strict_qualification_passed']",
+  "gate_source_sha256": "c01ffef7bd45f29e642cb532d4c469e7771110f8c49f4ac379b2d51ffcc07cf3",
+  "audit_source_sha256": "b2eaa0db50e33f5dc4e7db238f30b778c7e758ded225f544294c0bd54d08d9d5",
+  "corrected_phase_samples": [
+    {
+      "passed": false,
+      "error": "AssertionError",
+      "physical_qualified": false
+    },
+    {
+      "passed": false,
+      "error": "AssertionError",
+      "physical_qualified": false
+    },
+    {
+      "passed": false,
+      "error": "AssertionError",
+      "physical_qualified": false
+    },
+    {
+      "passed": false,
+      "error": "AssertionError",
+      "physical_qualified": false
+    },
+    {
+      "passed": false,
+      "error": "AssertionError",
+      "physical_qualified": false
+    }
+  ],
+  "qualified_fields": {
+    "display_workload_passed": false,
+    "scoped_display_passed": false,
+    "strict_qualification_passed": false,
+    "scoped_combined_passed": false,
+    "ordinary_qualified": false
+  },
+  "gate_negative_controls": {
+    "integrity_passed": true,
+    "setup_gate_passed": true,
+    "measurement_events_passed": true,
+    "orderly_host_exit": true,
+    "audio_probe_passed": true
+  },
+  "parser_sha256": "1772949d3237c54c1b64d48dee6a9fd643ef26775505b630f46feb28fd2a54fd",
+  "physical_access": false,
+  "performance_qualified": false
+}
