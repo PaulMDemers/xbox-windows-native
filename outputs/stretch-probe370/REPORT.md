@@ -1,0 +1,9 @@
+# Native stretch regression probe
+
+Build001 extends the unchanged344 copy/text/window/large-area suite with12 stretch cases,16 actual screen calls each. Cases cover four destination orientations and no/rectangular/complex clipping. Each records actual driver stretch counters, uploaded bytes, elapsed milliseconds and full32768-pixel reference/readback comparisons, unchanged source pixels and scanout equality. Three positive-orientation cases additionally compare the reference against an independent geometric constant-color oracle. Mirrored cases use a separately rendered GDI DIB reference, independent of this display driver but not an independent rasterizer. No screenshot-derived expected pixels.
+
+The executable compiled with pinned GCC8.4.0 without warnings and all imported functions were checked against owned NT5 DLL exports. Source pins and executable hash are in build001.json and build-review001.json. Runtime callback coverage remains mandatory; successful API return alone cannot qualify the changed driver path.
+
+Independent analysis002 passed one synthetic complete report and1646 negative cases, including missing/duplicate rows, counter saturation/regression, missing coverage, mismatched byte totals and scanout errors. Analysis001 had1644 checks before adding the two counter controls; its exact files are retained under prior-analysis001. Neither result is guest evidence. The inherited parser001/phase_analysis files apply only to the unchanged344 phase suite; the added analysis.py governs stretch cases separately.
+
+371 matched runs each completed five samples/960 actual StretchBltROP callbacks with all checks passing. Constant-color source and mirrored GDI-reference limits remain explicit; the other StretchBlt hook was not observed. Both scoped results retain strict Ftdisk49 failure. No upload reduction or physical speed benefit. Runtime missing-import failure/completion is preserved separately in371.

@@ -1,3 +1,28 @@
+# Stretch371 CLOSED: no upload reduction; do not deploy369
+
+Read stretch-runtime371 REPORT/NEXT/pair-review/final-review/AUDIT-DEPENDENCY. Control21:20:15->21:26:06UTC, candidate21:33:09->21:38:48UTC October13. Both five samples/960 actualStretchBltROP calls, exact pixels/source/scanout/priorgraphics/audio, normalshutdown1/orderlyexit0, cold341dirs6809files358clusters0errors/orphans5hives/protected/policy/history PASS. BothstrictFALSE soleFt49. All12cases/all5samples already minimumbytes:131072/73728/49152per16calls byclip, sameOFF/ON. No real byte savings or physicalspeedgain.369candidateNOTpromoted; nohardwaretestqueued. PhysicalnormalE/original303/Frollback/Cprohibition/tags unchanged; automationpaused.
+
+ALL owned sessionsCLOSED including native80636, preparations50811/23440, control4165/61125/audit93788, candidate56195/39645/audit87870, preliminaryrepositorycheck25377. Neverrelaunch/recollect/parent either371run. Control firstauditmissinglarge_analysis failure retained; additivecompletion supplies pinned344module and preserves everyprioroutputbyte, originalauditor/freeze unchanged. Candidate178frozeninputs vscontrol176 plusexplicitdependencyclosure. Finalreview rehashed captures/binaries/fixtures/inputs. ActualStretchBlt wrapper unobserved, host-only; mirroredreferenceGDI/constantcolorsource limits retained.
+
+369/370/371 source/evidence reviewed in this closeout commit. Repository32616files PASS/session50576 CLOSED;95kitfiles staged byte-exact in stage-byte-review001. No xemu processes on final read-only host query. Publish to existing private remote with boundedHTTP1.1. NEXT: no more clipping/copy variants without measured redundantwork. Physical353copyfastpathno gain,368RAM/displaycost and shared300UC/crashcontract remain evidence. Resume concrete287actualGPUownership collector/four-boundary runtime composition if selecting GPU path; not nativeWindowsGPUownership yet. No unsafeWCflag/newalias/SIMD/cachepatch. No physicaltest needed for failedperformancecandidate369.
+
+# Historical continuation below
+# Stretch371 candidate ACTIVE; control audited
+
+Control001 CLOSED: all five370stretch samples (960 actual StretchBltROP calls) and prior graphics/audio/normalshutdown/cold integrity PASS. StrictFALSE sole Ft49. Original audit failed missing large_analysis import; audit-complete.py supplied pinned344dependency, original audit/freeze unchanged and partial outputs byte-identical. Full scan341dirs6809files358clusters0errors/orphans. Control already uploads geometric minimum in all12cases; benefit not demonstrated.
+
+Fresh371candidate001 SINGLElaunch21:33:09UTC October13 accepted; runner56195/supervisor39645 ACTIVE.178frozeninputs, freshnever-executed339parent at C:/xwn371. Neverduplicate. Onclosedrun audit-complete.py candidate001 ONCE, then review-pair.py and closeout.py. New369/370/371 UNCOMMITTED; source/evidence review/check/exactstage/commit/push still required. All build/prep/controlaudit sessions closed. Physical normalE/original303/Frollback/consoleCprohibition unchanged. No hardwaretestqueued; automationpaused. Notes update first failed cp1252 decoding before any write; byte-preserving prepend used.
+
+# Historical continuation below
+# Stretch369 compiled; emulator371 control ACTIVE
+
+New exact303 candidate bounds successful StretchBlt/ROP uploads to normalized saved destination, preserves engine arguments and old full-clip fallback on failure/null/degenerate. Mapping/cache/copy loops unchanged.369host001 ASan/UBSan1162cases976407checks; matchedOFF/ON native builds/imports/residency/source closurePASS. New370probe12cases192calls with realcallback gates, fullpixels/source/scanout,3independentpositive-oracle cases plus mirrored GDI-DIB reference; compiled/revieweddd51ac09..., analysis0021646negativecases. Allbuild/host/prep sessionsCLOSED80636/50811. Newsource/evidenceUNCOMMITTED; prior368PUSHEDe4f20b69.
+
+371control001 SINGLElaunch accepted21:20:15UTC October13. Ownedrunner4165/supervisor61125 ACTIVE, C:/xwn371/runs/nt5-stretch371-control001, ports5246/47/48.176frozeninputs. Freshnever-executed339parent; preparedraw/QCOWvirtualequality andallocation336dirs6798files353clusters0errors/orphans. Use actualrecords/resume; neverduplicate. Onclosed run WSLhivex371audit.py control001 ONCE. Only successful newprobe/normalshutdown/coldscope allows freshcandidate001 preparation/freeze/Run/supervise thenaudit. Bothprofilemode1, stretchmode0/1. NewCprivate roots preserve20GiBguard; noEbackingmoved. Ftdisk/Srv eventgatesunchanged. No physicalaccess; original303/normalEstartup/Frollback/Cprohibition unchanged. Automationpaused.
+
+Read369/370REPORT,369DESIGN/source-review/build001/binary-review and371DESIGN. Historicalcache-handoff trace002 shows bootWCreadiness0/desktop1 onoldfixture; notcurrentaliasownership. Chosenstretchoptimizationreduces redundantwriteswithoutsharedmappingchange; doesnotpromiseordinarywindowdragbenefit. Need actualnativecoverage andbytes/pixels beforephysicalpromotion. Preserve allolderfailed/closedcases/tags.
+
+# Historical continuation below
 # Physical368 CLOSED: RAM6.372ms, display10.864444ms per900KiB
 
 Read outputs/bandwidth-physical368 REPORT/NEXT, candidate001 audit/timing-review/final-state, final-review. SINGLElaunch20:51:48UTC ->dashboard21:00:07UTC October13. Normalshutdown1, normalEstartup FIRST then original303DLL restored/readback; finalstate21:02:56/FrollbackPASS. AllownedprocessesCLOSED:30342observer,59541collection/scans,75715audit. No queuedhardwaretest, automationPAUSED, keyboardalwaysunplugged/rootdemo251exclusive. DashboardC prohibitedALLaccess; toolsE/Fonly.

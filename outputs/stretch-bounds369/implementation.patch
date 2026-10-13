@@ -1,0 +1,90 @@
+diff --git a/win32ss/drivers/displays/framebuf/CMakeLists.txt b/win32ss/drivers/displays/framebuf/CMakeLists.txt
+index 1f8ced9..32dacad 100644
+--- a/win32ss/drivers/displays/framebuf/CMakeLists.txt
++++ b/win32ss/drivers/displays/framebuf/CMakeLists.txt
+@@ -50,3 +50,10 @@ if(XWN_HD_SURFACE_BOUNDS)
+ else()
+  target_compile_definitions(xwnown PRIVATE XWN_HD_SURFACE_BOUNDS=0)
+ endif()
++
++option(XWN_STRETCH_BOUNDS "Bound successful stretch uploads to destination" OFF)
++if(XWN_STRETCH_BOUNDS)
++ target_compile_definitions(xwnown PRIVATE XWN_STRETCH_BOUNDS=1)
++else()
++ target_compile_definitions(xwnown PRIVATE XWN_STRETCH_BOUNDS=0)
++endif()
+diff --git a/win32ss/drivers/displays/framebuf/shadow.c b/win32ss/drivers/displays/framebuf/shadow.c
+index fb19f8e..f01ee94 100644
+--- a/win32ss/drivers/displays/framebuf/shadow.c
++++ b/win32ss/drivers/displays/framebuf/shadow.c
+@@ -1,6 +1,7 @@
+ /* RAM-primary prototype. GPL-2.0-or-later, as the containing framebuf driver. */
+ #include "framebuf.h"
+ #include "row_store.h"
++#include "stretch_bounds.h"
+ static BOOL XwnRopUsesSource(ROP4 rop)
+ {
+  return ((rop ^ (rop >> 2)) & 0x3333) != 0;
+@@ -198,27 +199,33 @@ BOOL APIENTRY XwnPaint(SURFOBJ *pso, CLIPOBJ *pco, BRUSHOBJ *pbo, POINTL *pptlBr
+ 
+ BOOL APIENTRY XwnStretchBlt(SURFOBJ *psoDest, SURFOBJ *psoSrc, SURFOBJ *psoMask, CLIPOBJ *pco, XLATEOBJ *pxlo, COLORADJUSTMENT *pca, POINTL *pptlHTOrg, RECTL *prclDest, RECTL *prclSrc, POINTL *pptlMask, ULONG iMode)
+ {
+- PPDEV p=NULL; BOOL ok;
++ PPDEV p=NULL; BOOL ok; RECTL saved,damage;
++ BOOL have = prclDest != NULL;
++ if (have) saved = *prclDest;
+  if ((TRUE) && !XwnSelectOwner(&p, psoDest)) return FALSE;
+  if ((TRUE) && !XwnSelectOwner(&p, psoSrc)) return FALSE;
+  if ((TRUE) && !XwnSelectOwner(&p, psoMask)) return FALSE;
+  if (!p || !p->ShadowActive) return FALSE;
+  if (p->ShadowCalls[8] != 0xffffffff) ++p->ShadowCalls[8];
+  ok=EngStretchBlt((TRUE ? XwnSub(p, psoDest) : NULL), (TRUE ? XwnSub(p, psoSrc) : NULL), (TRUE ? XwnSub(p, psoMask) : NULL), pco, pxlo, pca, pptlHTOrg, prclDest, prclSrc, pptlMask, iMode);
+- if (XwnOwner(psoDest)) XwnUpload(p, NULL, pco);
++ if (XwnOwner(psoDest)) XwnUpload(p, XWN_STRETCH_BOUNDS ?
++     XwnStretchDamage(ok, have ? &saved : NULL, &damage) : NULL, pco);
+  return ok;
+ }
+ 
+ BOOL APIENTRY XwnStretchBltROP(SURFOBJ *psoDest, SURFOBJ *psoSrc, SURFOBJ *psoMask, CLIPOBJ *pco, XLATEOBJ *pxlo, COLORADJUSTMENT *pca, POINTL *pptlHTOrg, RECTL *prclDest, RECTL *prclSrc, POINTL *pptlMask, ULONG iMode, BRUSHOBJ *pbo, DWORD rop4)
+ {
+- PPDEV p=NULL; BOOL ok;
++ PPDEV p=NULL; BOOL ok; RECTL saved,damage;
++ BOOL have = prclDest != NULL;
++ if (have) saved = *prclDest;
+  if ((TRUE) && !XwnSelectOwner(&p, psoDest)) return FALSE;
+  if ((XwnRopUsesSource(rop4)) && !XwnSelectOwner(&p, psoSrc)) return FALSE;
+  if ((XwnRopUsesMask(rop4)) && !XwnSelectOwner(&p, psoMask)) return FALSE;
+  if (!p || !p->ShadowActive) return FALSE;
+  if (p->ShadowCalls[9] != 0xffffffff) ++p->ShadowCalls[9];
+  ok=EngStretchBltROP((TRUE ? XwnSub(p, psoDest) : NULL), (XwnRopUsesSource(rop4) ? XwnSub(p, psoSrc) : NULL), (XwnRopUsesMask(rop4) ? XwnSub(p, psoMask) : NULL), pco, pxlo, pca, pptlHTOrg, prclDest, prclSrc, pptlMask, iMode, pbo, rop4);
+- if (XwnOwner(psoDest)) XwnUpload(p, NULL, pco);
++ if (XwnOwner(psoDest)) XwnUpload(p, XWN_STRETCH_BOUNDS ?
++     XwnStretchDamage(ok, have ? &saved : NULL, &damage) : NULL, pco);
+  return ok;
+ }
+ 
+diff --git a/win32ss/drivers/displays/framebuf/stretch_bounds.h b/win32ss/drivers/displays/framebuf/stretch_bounds.h
+new file mode 100644
+index 0000000..d168056
+--- /dev/null
++++ b/win32ss/drivers/displays/framebuf/stretch_bounds.h
+@@ -0,0 +1,19 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++#ifndef XWN_STRETCH_BOUNDS_H
++#define XWN_STRETCH_BOUNDS_H
++/* Called after Eng, using a value snapshot made before Eng. Only constrain a
++ * successful nonempty destination. NULL means the original full-clip fallback.
++ * Normalize by comparison only: LONG_MIN/MAX never undergo negation/subtraction.
++ * This does not change the mirrored rectangle passed to the software engine. */
++static __inline const RECTL *XwnStretchDamage(BOOL ok, const RECTL *saved,
++                                            RECTL *ordered)
++{
++    if (!ok || !saved || saved->left == saved->right || saved->top == saved->bottom)
++        return NULL;
++    ordered->left = saved->left < saved->right ? saved->left : saved->right;
++    ordered->right = saved->left < saved->right ? saved->right : saved->left;
++    ordered->top = saved->top < saved->bottom ? saved->top : saved->bottom;
++    ordered->bottom = saved->top < saved->bottom ? saved->bottom : saved->top;
++    return ordered;
++}
++#endif

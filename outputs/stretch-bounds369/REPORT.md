@@ -1,0 +1,13 @@
+# Compiled stretch-upload candidate
+
+Exact installed303 source tree e48e031228a0d6d483c7ac8273c40a34b75644e7 has two stretch wrappers that call XwnUpload with a NULL destination bound. The new candidate snapshots the destination coordinates before Eng, retains the original engine arguments, and bounds the subsequent upload after successful drawing. Reversed coordinates are normalized only for uploading. Failed, absent and empty destinations keep the original fallback. This is a source-supported reduction in potentially redundant writes, not a cache or renderer ownership change.
+
+Host001 compiled the actual transformed wrappers and unchanged upload/enumeration/row-copy code with ASan/UBSan:1162 cases and976407 checks passed. Coverage includes both wrappers, four orientations, clipped/offscreen/extreme coordinates, degenerate or NULL inputs, engine failure, deliberate engine argument mutation, complex clipping and three enumeration failures. GDI rendering, clip service, PDEV ownership, clocks and RAM scanout are explicit host models. The small modeled example uploaded400 instead of3072 bytes with identical pixels; it is not a hardware timing result.
+
+Build001 compiled matched control001/candidate001 using pinned RosBE GCC8.4.0. Both enable the same existing body profiling; only XWN_STRETCH_BOUNDS differs. Provider import checks, executable checksum, resident function sites and equal inherited warning sets passed. Source review confirms exactly three changed files:shadow.c, stretch_bounds.h and CMakeLists.txt. The two wrappers tested on the host exactly match those built into the native candidate. Original upload/enumerator/row code, other drawing hooks, mapping and lifetime remain unchanged.
+
+No351 fast-copy path,354 memory collector or364 paired-copy instrumentation is inherited. No physical driver has changed. Runtime371 must qualify real dispatch, pixels, clip/mirror behavior, uploaded-byte deltas, normal shutdown and cold integrity before hardware promotion. This does not promise ordinary window-drag improvement; stretch drawing is the specific selected operation.
+
+## Matched runtime outcome
+
+371 control001/candidate001 are CLOSED: scoped graphics/audio/cold integrity PASS, strictFALSE sole Ftdisk49. Both recorded960 real StretchBltROP calls and identical minimum upload bytes in every interval. No runtime write reduction was observed. The separate StretchBlt wrapper remains host-only coverage. This candidate is retained as experimental evidence and will not be deployed as a performance improvement; original physical303 remains unchanged. See ../stretch-runtime371/REPORT.md.

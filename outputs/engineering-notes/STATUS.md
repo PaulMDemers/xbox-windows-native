@@ -1,3 +1,10 @@
+# Stretch optimization tested: no benefit, baseline unchanged
+
+October13 matched emulator371 runs passed scoped graphics/audio/shutdown/integrity checks but uploaded identical minimum pixel bytes across960 actual stretch callbacks per build. Do not deploy369 as an improvement. StrictFtdisk49 remains, no event waiver. Both runs and all owned processes are closed; original physical303/normalEstartup/Frollback remain, Xbox C untouched. See stretch-runtime371/REPORT.md and NEXT.md.
+
+The prior physical measurements still place most remaining cost in display uploads. Same-primary fast copying and this clipping candidate produced no material benefit. Meaningful further gains require a separately validated mapping/ownership or GPU architecture change; neither is hardware-ready. Existing bundles/tags are unchanged. No additional hardware test is queued.
+
+# Historical status below
 # Physical1080 copy measurement complete; baseline restored
 
 October13 physical368 completed normally. Four real900KiB copies measured median6.372ms into ordinary RAM and10.864444ms into the display buffer, a median paired ratio1.709. Exact pixels/guards and sampled WB/UC mappings passed. This identifies a substantial display-copy cost; it is not a speedup or proof that cache policy alone explains it. See bandwidth-physical368/REPORT.md and NEXT.md.
