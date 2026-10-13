@@ -1,3 +1,13 @@
+#330 large-area emulator run ACTIVE;329 recovery COMPLETE on E:
+
+Exact322 emulator and311/316/303 binaries recovered from retained WSL build outputs, all original full hashes.0.2.0 overlay and source ZIPs reassembled BYTE-IDENTICAL; combined private demo all entries exact with new outer ZIP hash; complete Git history verified, tags unchanged. Package E:/Codex-archive/xbox-windows-native/0.2.0-recovered329, current START-HERE.md. No D: needed. Read outputs/artifact-recovery329/REPORT,USAGE,final-review. No physical access.
+
+313 helper recompiled pinned source/compiler; initial mismatch only COFF timestamp/checksum, bounded reconstruction found EXACT original full hash. Preserve helper001 mismatch and helper-metadata001 success. New329 never-executed seed from retained251 has distinct container hash9cfc49c2...; all6795 files/339entries compared, ONLY seven exact replacements, namespace/entrymetadata unchanged,322dirs6752files323clusters zeroerrors/orphans,5hives. Original317 disk not claimed identical. First read-only verifier followed valid emptydirectorycluster0 and refused; original retained,002 corrected/pass.
+
+330 prepared new child replacing ONLY327 replay. Single launch accepted03:39:29UTC per host receipt; actual user-facing date follows client context. Runner83443/PID22052 and observer2513 ACTIVE; inspect records, NEVER duplicate. Newports5104/5105/5106, E:/xwn330, full build/xemu leases, recovered322 executable.1200secondhost/1260observer, unchanged180sec guest per replay.238source+11host pins exact beforelaunch. Physicalbaseline unchanged; automationPAUSED.
+
+After owned normalreturn or bound, collect once via330audit under WSL/offlinedisk library path; require all five327large verdicts PLUS unchanged setup/audio/fullcold/event/normalrestart gates. Run review-combined then final-review; preserve failure if incomplete, no hardwaremeasurement until actualcorrectness. All330frozen inputs immutable. metadata-clarification.json records inherited329 historical-pin/beforeartifacts descriptions as parent-only; actual current maps and local hives are authoritative. Don't edit frozenfixture or waivegates.
+
 #328 storage cleanup COMPLETE; use C: and E:, not historical D: assumptions
 
 User clarified C:/E: only, E:scratch, and authorized heavy cleanup. Saved D: paths do NOT prove a drive disappeared. Do not repeat the pending reconnect request. Current inventory filename/size searches did not locate historical0.2.0 packages or322 executable; discrepancy predates cleanup. Future327 work must resolve/reconstruct exact inputs onC:/E: and verify before any launch; no alternative old emulator or fixture may be silently substituted. Immutabletags unchanged.
