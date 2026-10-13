@@ -1,0 +1,7 @@
+# Stock E boot chain334
+
+New isolated XWNEBoot profile compiled from exact300 NT loader tree32705ddc77b3d3370eea8bdf62806b3dec9d2332 and3161080i Cromwell tree18ae8ef9452f81d953d287beff6939235c35cca1. Four source files changed: mutually exclusive E option, isolated loader directory, retained filesystem DeviceId references for E, and Cromwell launcher path. Existing bootmgr partition1 default is selected with EXTENDED_NT5_BOOT OFF. No driver, shared SDK or physical installation changed.
+
+Pinned RosBE/GCC builds produced freeldr.sys8723fc175cc490f0c3cd1650e9c91ab97e9ed04108734ad6202e6f0653804697; rosload.exe62f3620183cb2c7b1aa575d9908df3e54e043cd5bf62c1c8a291954e9876f4b1; default.xbeede6b4f2639b9979a76e5fdec2e9a1d5dd319ef5abf71fc9e09437b2d6ca4034. Private outputs E:/xwn334/build001. Ten actual CMake option checks accept the intended profile and reject nine incompatible profiles. Binary review003 validates actual loader imports against provider exports, checksum, relocated layout/stack headroom and E path. Warning messages are inherited; no new warning suppressed. Original checker001 wrongly expected no imports,002 compared an embedded build-path warning literally; failures and corrected003 retained.
+
+Compiled/static reviewed only. Runtime stock compatibility, repeated boot, physical deployment and release promotion remain unqualified. Immutable v0.1.0/v0.2.0 unchanged. See stock-runtime335 for fresh no-F10GB fixture work.

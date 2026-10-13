@@ -1,0 +1,55 @@
+--- a/boot/freeldr/freeldr/pcat.cmake
++++ b/boot/freeldr/freeldr/pcat.cmake
+@@ -458,3 +458,17 @@
+     target_compile_definitions(freeldr_pe PRIVATE XBOX_NATIVE_FATX_F_BOOT=1)
+     target_compile_definitions(freeldr_common PRIVATE XBOX_NATIVE_FATX_F_BOOT=1)
+ endif()
++
++
++option(XBOX_NATIVE_FATX_E_BOOT "Load isolated E XWNEBoot launcher and native E Windows root" OFF)
++if(XBOX_NATIVE_FATX_E_BOOT)
++    if(NOT SARCH STREQUAL "xbox" OR NOT XBOX_NATIVE_IO_PREFLIGHT OR
++       XBOX_NATIVE_FATX_F_BOOT OR XBOX_NATIVE_EXTENDED_NT5_BOOT OR
++       NOT XBOX_NATIVE_NT5_HANDOFF OR NOT XBOX_NATIVE_NT5_ENTER OR
++       NOT XBOX_NATIVE_NT5_AUTORUN OR XBOX_NATIVE_FATX_IO_PREFLIGHT OR
++       XBOX_NATIVE_FATX_NT5_PREFLIGHT)
++        message(FATAL_ERROR "FATX E boot requires ordinary Xbox partition-1 native autorun without F boot")
++    endif()
++    target_compile_definitions(freeldr_pe PRIVATE XBOX_NATIVE_FATX_E_BOOT=1)
++    target_compile_definitions(freeldr_common PRIVATE XBOX_NATIVE_FATX_E_BOOT=1)
++endif()
+--- a/boot/freeldr/freeldr/freeldr.c
++++ b/boot/freeldr/freeldr/freeldr.c
+@@ -177,6 +177,12 @@
+         !NT_SUCCESS(RtlStringCbCatA(FrLdrBootPath, sizeof(FrLdrBootPath),
+                                    "\\Applications\\XWNFBoot")))
+         XwnStop("XWNFAIL: unexpected FATX F-boot launcher device");
++#elif defined(XBOX_NATIVE_FATX_E_BOOT)
++    /* Independent launcher and Windows root both live on stock partition 1. */
++    if (strcmp(FrLdrBootPath, "multi(0)disk(0)rdisk(0)partition(1)") != 0 ||
++        !NT_SUCCESS(RtlStringCbCatA(FrLdrBootPath, sizeof(FrLdrBootPath),
++                                   "\\Applications\\XWNEBoot")))
++        XwnStop("XWNFAIL: unexpected FATX E-boot launcher device");
+ #elif defined(XBOX_NATIVE_FATX_IO_PREFLIGHT) || defined(XBOX_NATIVE_FATX_NT5_PREFLIGHT)
+     /* The Xromwell launcher passes the FATX device, not the image directory. */
+     if (strcmp(FrLdrBootPath, "multi(0)disk(0)rdisk(0)partition(1)") != 0 ||
+--- a/boot/freeldr/freeldr/lib/fs/fs.c
++++ b/boot/freeldr/freeldr/lib/fs/fs.c
+@@ -338,7 +338,7 @@
+             pDevice->FileFuncTable = FileSystems[fs](DeviceId);
+             if (pDevice->FileFuncTable)
+             {
+-#ifdef XBOX_NATIVE_FATX_F_BOOT
++#if defined(XBOX_NATIVE_FATX_F_BOOT) || defined(XBOX_NATIVE_FATX_E_BOOT)
+                 /* Filesystems keep mounted state indexed by DeviceId, while
+                  * DEVICE caches FileFuncTable across file opens. Keep the
+                  * backing slot alive for that mount's lifetime: reusing it
+@@ -577,7 +577,7 @@
+             pDevice->FileFuncTable = FileSystems[fs](DeviceId);
+             if (pDevice->FileFuncTable)
+             {
+-#ifdef XBOX_NATIVE_FATX_F_BOOT
++#if defined(XBOX_NATIVE_FATX_F_BOOT) || defined(XBOX_NATIVE_FATX_E_BOOT)
+                 /* Filesystems keep mounted state indexed by DeviceId, while
+                  * DEVICE caches FileFuncTable across file opens. Keep the
+                  * backing slot alive for that mount's lifetime: reusing it

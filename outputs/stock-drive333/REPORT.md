@@ -1,0 +1,11 @@
+# E/F capacity and stock-drive feasibility333
+
+Physical probe completed one launch at 2026-10-13 04:43:54 UTC and returned to UnleashX at04:44:22. E reports2,944,663,552 free bytes of5,118,754,816 filesystem bytes; F reports100,121,837,568 free bytes. Only the new E:/Applications/XWNCapacity333 application and its report were written. No physical C access, Windows modification or deletion. Applications remain intact; E had no Games folder. F:/Games was not touched.
+
+Read-only E inventory:980 files,287 directories,2,159,446,403 logical bytes. Existing verified recovery payload is under1GB before pagefile/reserve. Capacity supports preparing an E installation without cleanup; it does not qualify stock-drive boot or resolve the dashboard C low-space warning.
+
+Probe build002 uses an explicit native Partition1 FILE_CREATE report path; exact SHA fa1c94d37add7cb101bf12f5a830fcef76b953ab575643d223ac3ea4c7ccba3e. Shared nxdk headers/libraries unchanged. Emulator003 completed the report, dashboard return and orderly host exit. Independent cold E count matches all reported fields using standard5633024/10000048 sector geometry. Original combined E/F geometry audit remains FALSE: old host E length was oversized by12,754,944 bytes (same rounded FAT size), and this legacy emulator BIOS reports F ending at the LBA28 limit while the fixture is expanded. Physical F geometry differs and is recorded directly; no emulator F result was applied to the console.
+
+Preserved failures:001 never sent SITE (FTP passive data path blocked, later421 connections); missing close helper caused fallback kill and one QCOW leaked cluster.002 launched but report absent; DOS E mapping was not guaranteed by nxdk.003 explicit path succeeds. Original allocation checks incorrectly consumed an iterator, then counted inherited bad-marked clusters as orphans; both checks and errata retained. Corrected003 allocation checks find E/F ownership consistent, while001 QCOW failure remains. FTP malformed HELP/default-host preflight failures are retained. No failed run reparented or relaunched.
+
+Next: separate stock E loader334 and private10GB fixture335. Xbox C remains untouched and working F remains the rollback installation. No release/tag change.

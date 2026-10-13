@@ -1,0 +1,11 @@
+# Stock10GB E boot335
+
+One ordinary emulator launch accepted2026-10-13 04:56:25UTC, dashboard return05:00:38, orderly host exit0. Windows booted C:\WINNT from standard dashboard E on a10,000,000,000byte disk with no extended PARTINFO/F filesystem. No debugger edits; two top480-line captures are read-only observations.
+
+Scoped combined audio/display and integrity PASS: five drawing samples with existing pixel/copy/window/text predicates, joined audio children and six independently measured stereo tone/silence phases, actual supported ACI binding, setup idle, one normal EventLog shutdown and dashboard return. Full cold E audit334directories6788files351directory clusters, zero errors/orphans; five hives and protected hashes pass, selected policy unchanged/no unrelated binding changes. Actual1080 geometry is in audit caps. Strict qualification FALSE: sole Ftdisk49 on HarddiskVolume1, retained. No physical deployment, performance claim or release promotion.
+
+Source seed003:6759 files836,555,593bytes all read back,4,213,866,496free E bytes. Four MountedDevices identities swapped; all other hive semantics unchanged. Private dashboard partition copied byte-exact from never-executed329 source; physical Xbox C was never accessed. Original seed reused no failed runtime.
+
+Failures retained: missing hivex library preflight001; prepare002 invalidated handles while mutating values (003 snapshots tuples); initial allocation analyzer falsely rejected official blank TDATA/UDATA EOF FFFFFFF8 (corrected002 accepts exactly driver-defined EOF range,11actualmetadata controls); Run object-JSON parser refused case-distinct alias keys before launch (Run002 uses hashtable). No disk repaired to mask a checker failure. Original reports and frozen inputs remain unchanged.
+
+Next: dedicated repeat-boot child of this SUCCESSFUL scoped ordinary run, retaining the persisted SYSTEM/other hives and all old workload output. Change only owned test startup/new namespace to avoid one-shot test reuse. This intentionally tests the same installed state across boots; do not use any failed runtime as a parent. Recheck old output hashes, new workload/event/shutdown/integrity and actual drive binding. Physical E deployment remains later; working F and physical C untouched.
