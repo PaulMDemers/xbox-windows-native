@@ -4,7 +4,28 @@ Experimental native Windows 2000 bootloader/HAL and driver development for a
 64 MiB original Xbox. Windows runs directly on the Xbox CPU; xemu is the
 host-side test harness.
 
-## Current milestone: 0.1.0
+## Current milestone: private experimental 0.2.0
+
+The immutable 0.2.0 release adds boot-selected 720p and 1080i software video
+for the tested Conexant console. The recovered package and current deployment
+instructions are documented in [the recovery guide](outputs/artifact-recovery329/USAGE.md).
+The package is on `E:/Codex-archive/xbox-windows-native/0.2.0-recovered329`;
+no D: drive is required. Its HD overlay and source/evidence ZIPs match the
+original release hashes. The combined recovery archive preserves every
+uncompressed entry, with a new outer ZIP hash.
+
+Use the guarded deployment tool described in that guide to capture rollback
+files, install a matching profile, or restore the captured baseline. This is a
+private experimental upgrade, not a full Windows installer. GPU acceleration,
+dynamic Windows mode switching, broad hardware compatibility and complete
+system restore testing remain unfinished. The known Ftdisk49 event and
+unsupported-device prompts remain documented limitations.
+
+See [current status](outputs/engineering-notes/STATUS.md) for the actual installed
+console state and ongoing performance measurements. Release availability does
+not imply that an HD profile is currently installed on the console.
+
+## Historical 0.1.0 milestone and subsequent development
 
 For post-release installed state and remaining work, see the
 [current overall status](outputs/engineering-notes/STATUS.md) and
