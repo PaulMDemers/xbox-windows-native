@@ -1,3 +1,10 @@
+# Physical1080 copy measurement complete; baseline restored
+
+October13 physical368 completed normally. Four real900KiB copies measured median6.372ms into ordinary RAM and10.864444ms into the display buffer, a median paired ratio1.709. Exact pixels/guards and sampled WB/UC mappings passed. This identifies a substantial display-copy cost; it is not a speedup or proof that cache policy alone explains it. See bandwidth-physical368/REPORT.md and NEXT.md.
+
+Normal E startup and original303 display driver are restored; original F rollback retained. Both complete E allocation scans, five hives and protected/device checks pass. All processes closed; no test queued; no dashboard C access. Strict qualification still fails Ftdisk49 and Srv2013, neither waived. Existing private bundles/tags remain unchanged. Next is a reviewed shared-mapping/display-write optimization design, followed by matched emulator qualification before another hardware candidate.
+
+# Historical status below
 # Private E bundle assembled; performance attribution prepared
 
 The E payload now reconstructs byte-for-byte twice and has a verified private bundle plus usage/rollback guide in stock-installer343. The new installer correctly refuses the current occupied E target; it is migration tooling for the owned console, not generic provisioning. Its corrected capacity probe and full new install flow still need disposable-fixture runtime validation. The first incompatible fixed-path bundle remains rejected evidence.

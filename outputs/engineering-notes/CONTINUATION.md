@@ -1,3 +1,19 @@
+# Physical368 CLOSED: RAM6.372ms, display10.864444ms per900KiB
+
+Read outputs/bandwidth-physical368 REPORT/NEXT, candidate001 audit/timing-review/final-state, final-review. SINGLElaunch20:51:48UTC ->dashboard21:00:07UTC October13. Normalshutdown1, normalEstartup FIRST then original303DLL restored/readback; finalstate21:02:56/FrollbackPASS. AllownedprocessesCLOSED:30342observer,59541collection/scans,75715audit. No queuedhardwaretest, automationPAUSED, keyboardalwaysunplugged/rootdemo251exclusive. DashboardC prohibitedALLaccess; toolsE/Fonly.
+
+Four actual640x360/921600bytecalls, same4records across5packetreads. MedianRAM6.372ms/display10.864444ms, medianpairedratio1.709005. Timerpairs3.556..4.444us; no subtraction. Source/output/guards/unusedtail, privateWB/displayUC/two1014rowcaps, joinedfullshadowidentity allPASS;16actualidentitymutationsreject. Full10memorypairs367policycomparisonPASS, original365failureunchanged. Actual1080mode/graphics/audioAPI/children/settings/devicebindings/5hives/history/protectedPASS. Eallocation646dirs7665files663clusters ->652/7706/669,0errors/orphansboth.1345captures438frozeninputs rehashed. DiagnosticcompletedTRUE; combined/strictFALSE Srv2013WindowsF: ininterval plusFt49HarddiskVolume1. Neverwaive/queryconsoleC. Noaudibility/speedup/releaseclaim.
+
+NEXT source-level display-write optimization review; no more same diagnosticboot. Exactinstalled300/303 permanentUC mapping sharedbyboot/error/shutdown includeshiddenbackbuffer; noisolatedmappingflagchange/conflictingalias/livePTE-MTRRwrite. Require actualNT5support/consumer-alias/ordering/fallbackcontract beforecachecandidate; inspectexistingdirtyregioncounts foravoidableuploads. Freshmatchedemulatorneededbeforephysical. NativeGPUseparate. Notes/evidencependingreview/commit/push; source/prerequisitesfb47bb7d.
+
+# Historical continuation below
+# Physical368 ACTIVE: paired RAM/display-copy measurement
+
+Single launch accepted 2026-10-13 20:51:48 UTC. Owned observer session30342; inspect candidate001/trial.json and return.json before any action. Never repeat the launch. Preflight session88189 CLOSED: rollback captured and unique before E scan collected,646 directories/7665 files/663 directory clusters, zero errors/orphans. Source and prerequisite interpretation published fb47bb7d. Temporary364 DLL ed23ec8ba9cc78805bcb09f50b6abdac3122748c291d28ae11c8f8f23d7567e0 is installed for this run only. All tool paths E/F; dashboard C prohibited.
+
+On dashboard return run368 physical.py candidate001 collect ONCE (normal startup FIRST, preserve tested DLL, original303 DLL restore), then unique after E scan launch/observe/collect, WSL audit.py, final-state.py and closeout.py. Review four actual640x360/921600-byte timings, exact pixels/guards, effective policy and joined allocation identities. Preserve all event failures and original365 failed audit;367 supplemental policy equivalence is explicit, not a rewritten historical result. No performance/release claim before actual evidence. Original F rollback and tags preserved. Automation remains paused; no other owned build/emulator process active.
+
+# Historical continuation below
 #365/367 CLOSED; physical368 frozen, NOT launched
 
 Read bandwidth-runtime365REPORT/final-review/candidate001audit/joined-review andcache-context367REPORT/DESIGN/tests001/analysis001. ALLownedemu/buildprocessesclosed:365runner91358/super32480/audit98926,367tests47365.365bandwidthPASS fouractual640x360pairs/921600bytes, source/scanout/guards/unusedtail/two1014rowpolicycaps, fourrecordsidentical5probes;16actualidentitymutationsreject. Original365scopedFALSE firstcoldpartial2rowsCR00x80010031->0x8001003b, warmcomplete4050. Originalaudit/finalneveredited. Othergraphics/audio/fullcold341dirs6834files358clusters0errors/5hives/normalshutdown1/orderlyexit0PASS; strictFt49.
