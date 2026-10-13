@@ -1,0 +1,9 @@
+# 0.2.0 release closeout
+
+Annotated tag `v0.2.0` identifies commit `25b41b7ea47850cab21c649d9661ffd18497348e` and tag object `7dccac7060ed682cf4647ed955599c422528dd6f`. The final HD overlay and combined private demo/recovery bundle are readback-verified. The source archive contains 30965 files, each compared with its actual tagged Git blob; the Git bundle verifies complete ancestry for both release tags. Exact sizes and SHA256 hashes are in bundle.json and source-evidence-bundles.json. Existing v0.1.0 is unchanged.
+
+The user's exact1080 observation is recorded separately. This is a scoped experimental release: original strictFALSE/Ftdisk49 and all closed verdicts remain unchanged. The console was not contacted or deployed during packaging; the last verified state is the restored baseline. The existing system/boot recovery ZIPs were copied unchanged, not recaptured or restore-tested. No new hardware or emulator test is queued, and the automation remains paused.
+
+Archive helper001 failed before writing an archive because the selected Git executable did not preserve the brace revision expression. Helper002 used another Git installation and refused its differing historical line-ending status, also before archive creation. No working historical files or tag changed. Separate helper003 uses the established project Git environment and rev-list commit resolution; it completed both archives and verification. Failed helpers and records are preserved. The tag retains the original helper; this post-tag closeout provides the corrected helper as a separate sidecar rather than moving the tag. The private overlay and demo packages were already complete and were unaffected.
+
+No public release or public-history sanitation is claimed. Future work is described in README.md; none is automatically launched by this closeout.

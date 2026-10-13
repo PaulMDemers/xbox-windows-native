@@ -1,3 +1,9 @@
+# 0.2.0 private experimental HD release tagged and archived
+
+v0.2.0 is immutable at25b41b7ea47850cab21c649d9661ffd18497348e (tag object7dccac7060ed682cf4647ed955599c422528dd6f). User confirmed normal-looking1080 output; observation is separately recorded without editing324/325 frozen verdicts. Private overlay and combined recovery/demo archives are complete and readback-verified. Tagged source archive30965blobs exact; complete-history Git bundle verified for0.2.0/0.1.0. See outputs/release-0.2.0/README.md,USAGE.md,bundle.json,source-evidence-bundles.json,REPORT.md andcloseout.json. Artifacts atD:/Codex-archive/xbox-windows-native/0.2.0. Archive helpers001/002 failed before archive creation;003 completed, all originals preserved, tag never moved. Push is a separate final closeout step.
+
+No physical access/new experiment/new capture this turn. Console last verified restored audio004/software118/shared158/FATX0101, no hardware test queued, automationPAUSED. Scoped release accepted; strictFALSEFt49, WAVE_MAPPER diagnostic limitation, exactstereo/repeatboots/otherencoders/GPU/fullrestore limitations retained. Immutable0.1.0/0088 and historical256recovery unchanged. Next plan: repeatable install/recovery and repeated HD validation, measured video performance, device integration, sanitized public source/build recipes and supportedxemu upstream changes. Do not rerun consumed trials or package IDs.
+
 # 0.2.0 private HD release assembled; tagging next
 
 The user reported: "The video output had looked normal at 1080". This new observation is separately recorded in outputs/release-0.2.0/user-observation.json; original324 machine verdicts/pending observation and staging325 remain unchanged. Physical315720p and3241080i scoped workloads/integrity passed; strictFALSE Ftdisk49 retained. No new hardware access, deployment or experiment. Baseline audio004/software118/shared158/FATX0101 remains restored. Automation PAUSED; no owned processes/test queued.
