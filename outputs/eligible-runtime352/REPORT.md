@@ -15,7 +15,7 @@ bitmap fallbacks remain separate. These new results do not rewrite349/350.
 Six captured audio phases, API/device identity and joined helpers passed.
 Each case had one normal shutdown and clean341-directory/6809-file/
 358-directory-cluster allocation, zero errors/orphans, five structural hives,
-protected binaries, normal startup and event/setup history intact.185/186
+protected binaries, unchanged prepared startup and event/setup history intact.185/186
 frozen inputs and30 private captures per case rehashed at final closeout.
 
 Scoped combined pair PASS; strict pair FALSE for the same inherited

@@ -1,3 +1,35 @@
+#351/352/353 CLOSED: exact eligible coverage PASS, no material physical speed gain
+
+Read eligible-copy351 REPORT/DESIGN/build001/source-review001/binary-review001, eligible-runtime352 REPORT/final-review, eligible-physical353 REPORT/NEXT/pair-results/final-review and actual records. 351/352 source/evidence and353prepared controllers pushed35d1429a; thiscloseoutpendingcommit. ALLownedsessionsCLOSED, including35360031/60803,37016,36680,46442,49054,43800,13482; no Windows test queued. Neverrepeat either353launch/four scans or352closedemulators.
+
+Physical353 candidate18:38:50->18:46:56UTC Oct13, thennormalSTARTUPFIRST/originaldriverrestore, finalEscan/audit/baselinerecheck allCLOSED. Bothphysicalcases passed exact351eligible-byte/call coverage, allpixel/source/guard/scanout/copy/DIB/text/window, audioAPI/identity/joins,1920x1080mode,normalshutdown1 andintegrity. FinalE640dirs7629files657clusters0errors/orphans; all4scansclean,5hives/protectedE/F/bindings/historypassed. 1320capturefiles/case,scannerfiles,210frozeninputsrehashed. Actualphysicalaudibilitynotnewlyobserved.
+
+NO MATERIAL SPEEDUP:960x540wallmedian40.263ms/op BOTHmodes/bothdirections;640x360wall17.045/17.857 unchanged. Largestselectedbody15.653->15.547ms down/right,16.109->15.891up/left; upload~24.2-24.3ms. Five sequential samples/globalelapsedtimers arediagnostic,notFPS/causalperformancequalification. Fullcandidatefast==eligible coverageconfirms pathwasused; no morecoverageboot needed. Combined/strictFALSE SAME Srv2013WindowsF:insideinterval+Ft49HarddiskVolume1; nogatewaiver/no promotion. Historical349/350failedcoverageunchanged.
+
+ConsoleUnleashX, normalEstartup/originaldisplayb23b94ac12c9f507e3d905d9de905dcff9a8fd53c2fba4336fb830e97666101d verifiedafterfinalscan. AlltoolaccessE/Fonly, Cconsoleuntouched; originalFrollback/0088/immutabletags preserved. Rootdemo251ticketretained,automationPAUSED. C~73GB/E~26.7GB,20GiBguard,nooffload/backingmoves.
+
+NEXT353NEXT:reviewactualmapping/ownershipchain andsupportedCPU/kernelinterfaces forboundedREAD-ONLY memory-type/throughput discriminator. Source351ShadowBits=EngAllocMem(FL_ZERO_MEMORY), alignedREP MOVSDlocalmemmove; neitherAPI nor~16msRAMcopy/~24msupload proves effectivePTE/PDE/MTRR/PAT/cachetype. Do not assumeuncachedshadowRAM orchangeCR0/cachebits/aliases/SIMD/GPUgrant speculatively. Do notrepeatfailedscalarunroll209 orsolvedprimarycoveragepair. Need actual allocations/translations/cache-state and independentownedbytechecks withproperbounds/restoration beforefunctionalpatch.
+
+# Historical continuation below
+#353 physical candidate Windows ACTIVE; control CLOSED with event failures
+
+Control353launch18:26:07->dashboard18:34:21UTC, collect46442 restorednormalSTARTUPFIRST/originalDLLb23b94ac...,afterEscan/audit/finalstate49054 CLOSED18:36:46. Allfunctional351eligible/phase/pixel/audioAPI/identity/joins/shutdown/integrity gatesPASS, combined/strictFALSE Srv2013F: ininterval+Ft49HarddiskVolume1. Originaleventgatesretained. Before628dirs7597files645clusters -> after634dirs7613files651clusters,0errors/orphans. ProtectedE/F/hives/binding/history intact. Sample0largestCopyBitsbody15.66/16.18ms,upload24.25/24.54ms,wall40.26ms/op; global/sequential diagnostic observations only.
+
+Candidatecapture/beforeEscan37016 CLOSED, same634dirs7613files651clusters clean. SINGLEcandidateWindowslaunch accepted18:38:50UTC; observer60031 ACTIVE. TemporarycandidateDLLcf445fbaa4efee43bbb600a901f14d4572ee6702d30831f9d8506de2d56e039d/startupenabled; originals under353artifacts/candidate001-before. OnreturncollectcandidateFIRST torestorenormalstartup/originalDLL,thenafterEscan,audit/finalstate,review-pair/closeout. Neverrepeatlaunch orcompletedscans. AllCconsoleaccessprohibited, Fbaseline/tags unchanged. No xemu/buildsessions active. Source351/352/353published35d1429a; physicalresults/notesuncommitted. Automationpaused/rootdemo251ticketvalid. C73GB/E26.7GB,20GiBguard,nooffloadneeded.
+
+# Historical continuation below
+#353 physical control Windows ACTIVE; restore startup/driver on return
+
+Fresh control beforeEscan13482 CLOSED clean628dirs7597files645clusters0errors/orphans. Control353Windowslaunch acceptedONCE18:26:07UTC Oct13, observer36680 active. Actualtrial/currenttemporaryDLLd988d57c... andstartupenabled; originalb23b94ac.../normalstartup backedup under353artifacts/control001-before. On dashboardreturn collectcontrolFIRST (restoresstartupthenoriginaldriver),thenafterEscan,audit/finalstate. Neverrepeatlaunch. AllphysicalactionsE/Fonly;Cconsoleuntouched. Candidate353notcaptured/staged/launched. Actualemulator352pairpass andsourcepublished35d1429a; automationstillpaused.
+
+# Historical continuation below
+#353 physical control preflight ACTIVE;351/352 published35d1429a
+
+351/352 scoped ordinary pair evidence and353prepared controller committed/pushed35d1429a; repository31984files and136exactstagedkitfiles passed; all frozenpins unchanged. Fresh physicalcontrolcapture43800 CLOSED: originalEstartup/driver/Fprotectedbaseline verified. Read-only E beforeallocation scan launchedONCE by13482 (observe/collect pipeline active), /F/Applications/XWNEligible353control001before, privateE:/xwn353. No Windows353launch yet. Inspectactualcontrol001/before-scan/trial/return beforeaction; neverduplicate.
+
+Allhardwaretools remainE/F only; XboxC neitherlisted/read/written. Rootdemo251exclusive ticketvalid, keyboardstandingunplugged. No emulatorprocessleft. Oncebeforescan clean, onecontrolWindowslaunch,observe,collect restoringSTARTUPFIRST/originalDLL,afterEscan,audit/finalstate. Then distinctcandidate iff diagnosticcontrolcompleted; preserveSrv2013/Ft49failures. OriginalF/0088/tags unchanged. Report normal emulator startup wording clarified to unchangedpreparedstartup, notbaselineWindowsstartup; runtimeevidenceunchanged.
+
+# Historical continuation below
 #351/352 CLOSED scoped pair PASS;353 prepared for fresh physical pair
 
 352 control18:07:18->18:12:50UTC and candidate18:15:42->18:21:31UTC Oct13 completed scopedcombinedPASS/strictFALSE soleFt49HarddiskVolume1. ExactONfastbytes==eligibleplanbytes,fast+empty==eligiblecalls all75intervals/case;OFFfastzero/eligiblepositive. Fullpixel/copy/DIB/text/window/audio/capture/identity/joins,normalshutdown1,orderlyhostexit0,clean341dirs6809files358clusters0errors/orphans,5hives/protected/startup/history.185/186frozeninputs,30captures/case rehashed. ALLemulator/buildsessionsCLOSED98342/89742/41349/72333/91701/12628/74257/78774/80952. Neverrelaunch/recollect/parentcases. Historical349/350 failures unchanged.
