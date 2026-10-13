@@ -1,0 +1,30 @@
+--- 349/audit.py
++++ 352/audit.py
+@@ -16,7 +16,7 @@
+ 
+ case=sys.argv[1];mode=1;assert case in ['control001','candidate001'];out=k/case;art=out/'artifacts'
+ dest=out/'audit.json';assert not dest.exists()
+-run=Path('/mnt/e/xwn349/runs/nt5-primary349-'+case);assert (run/'cleanup.json').exists()
++run=Path('/mnt/e/xwn352/runs/nt5-eligible352-'+case);assert (run/'cleanup.json').exists()
+ f=read(out/'fixture.json');base=Path(f['fixture_path_linux']);disk=run/'hdd.qcow2'
+ assert sha(base)==f['fixture_sha256'] and sha(Path(f['parent']))==f['parent_sha256']
+ for name,digest in read(out/'emulator-frozen.json').items():assert sha(ws/name.replace(chr(92), chr(47)))==digest,name
+@@ -69,8 +69,8 @@
+ r['caps_consistent']=all(v['actual_caps']==r['actual_caps'] and v['actual_modes']==r['actual_modes'] for v in r['samples'])
+ r['display_workload_passed']=r['caps_consistent'] and all(v['probe_passed'] and v['copy_checks_passed'] and v['loop_coverage'] and v['counters_passed'] for v in r['samples']) and all(v['passed'] for group in ['dib_samples','phase_samples','window_samples','text_samples'] for v in r[group])
+ sys.path.insert(0,str(k.parent/'hd-phase344'))
+-from phase_analysis import analyze as large_phase
+-r['large_phase_samples']=[large_phase(v,mode) for v in texts]
++from phase352_analysis import analyze as large_phase
++r['large_phase_samples']=[large_phase(v,int(case=='candidate001')) for v in texts]
+ r['display_workload_passed'] &= all(v['passed'] for v in r['large_phase_samples'])
+ from primary_analysis import analyze as primary_analysis
+ r['primary_samples']=[primary_analysis(v,int(case=='candidate001')) for v in texts]
+@@ -109,6 +109,6 @@
+ r['scoped_combined_passed']=r['scoped_display_passed'] and r['audio_children_joined'] and r['audio_probe_passed'] and r['audio_state_passed'] and r['installed_audio_binding']['passed'] and r['audio_capture']['passed'] and r['orderly_host_exit']
+ r['strict_qualification_passed']=r['scoped_combined_passed'] and r['strict_events_passed']
+ r['ordinary_qualified']=r['strict_qualification_passed']
+-r['limits']='New348 primary-copy body: clock category1 measures selected fast/Eng body. New coverage required; original strict warnings retained, no physical speed or release qualification.'
++r['limits']='New351 eligible-plan accounting; unchanged348 primary-copy body: clock category1 measures selected fast/Eng body. New coverage required; original strict warnings retained, no physical speed or release qualification.'
+ save(dest,r);save(out/'closure.json' ,dict(closed=True,never_relaunch_or_recollect=True,audit_sha256=sha(dest),cleanup_sha256=sha(run/'cleanup.json'),scoped_display_passed=r['scoped_display_passed'],scoped_combined_passed=r['scoped_combined_passed'],strict_qualification_passed=r['strict_qualification_passed'],physical_access=False))
+ print(json.dumps({n:r[n] for n in ['scoped_display_passed','display_workload_passed','integrity_passed','normal_shutdown_count','warnings_errors']},indent=2))

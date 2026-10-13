@@ -1,3 +1,33 @@
+#351/352 CLOSED scoped pair PASS;353 prepared for fresh physical pair
+
+352 control18:07:18->18:12:50UTC and candidate18:15:42->18:21:31UTC Oct13 completed scopedcombinedPASS/strictFALSE soleFt49HarddiskVolume1. ExactONfastbytes==eligibleplanbytes,fast+empty==eligiblecalls all75intervals/case;OFFfastzero/eligiblepositive. Fullpixel/copy/DIB/text/window/audio/capture/identity/joins,normalshutdown1,orderlyhostexit0,clean341dirs6809files358clusters0errors/orphans,5hives/protected/startup/history.185/186frozeninputs,30captures/case rehashed. ALLemulator/buildsessionsCLOSED98342/89742/41349/72333/91701/12628/74257/78774/80952. Neverrelaunch/recollect/parentcases. Historical349/350 failures unchanged.
+
+New351tree527cb5bff9e17ee1bfb052ac78e46a7addea5b19; old348source/escape preserved, newread-onlyeligible counter only.980014sanitizerchecks,2048packet/994transport controls. Sameactualplanner/admission/copy/upload/cache/lifetime.352final-review PASS evidence/scopedpair,notstrict/performance/release.
+
+353 PRIVATEPACKAGE/FROZEN210inputs ready; nophysicalaccess yet atthisnote. Match physicalE351OFF/ON, original201physicalhelpers/newprobe, bothprofilingON.23path/restorechecks; launch requiresactual352scopedpair. Fresh capture/beforeEscan/ONEWindowslaunch/startupFIRST+originalDLLrestore/afterEscan/audit/finalstate eachcase. Userhardwareauthorization/keyboardunpluggedstanding; rootdemo251ticketretained. Do not accessconsoleC; originalFrollback/tags preserved. KeepSrv2013/Ft49 strict andintervalgates. No performanceclaim fromemulator. Review/check/publish thismilestone beforehardware; source currentlyuncommitted, priorHEADd988e7b5.
+
+# Historical continuation below
+#352 ordinary candidate ACTIVE; control scoped PASS/strict Ft49
+
+Control352 CLOSED: launch18:07:18->dashboard18:12:50UTC, runner41349/supervisor72333/audit91701 allclosed. ScopedcombinedTRUE, neweligible/phase/pixel/audio/shutdown/integrity gatesPASS, strictFALSE soleFt49HarddiskVolume1. Cold341dirs6809files358clusters0errors/orphans,5hives/protected/history/startup unchanged. FullOFFeligible counterspositive/fastzero; largest perop2067564eligiblebytes. No historical349/350 requalification.
+
+Candidate preparation12628 CLOSED clean same339parent;186frozeninputs. Runner74257/supervisor78774 ACTIVE, inspect actual candidate001/launch.json forsinglelaunch and return; neverduplicate. After orderlyhostclose run352audit.py candidate001 ONCE, thenfinal-review.py. No physicalaccess yet;353preparedonly.351drivers/probe unchanged. Final352source andreport review/commit remains pending.
+
+# Historical continuation below
+#352 ordinary control ACTIVE;353 hardware package PREPARED ONLY
+
+Control preparation89742 CLOSED clean336dirs6798files353clusters0errors/orphans. Runner41349/supervisor72333 active; single Windowslaunch18:07:18UTC, E:/xwn352/runs/nt5-eligible352-control001,185frozeninputs. Candidate not prepared/launched. Inspect actual records, never duplicate launch/collection. On normal return/orderlyhostclose run352audit.py control001 once with WSLhivex path. Then freshcandidate preparation/freeze/run/audit. Final-review.py verifies both and reports exacteligible coverage. Controls2048packet+994transport, actualcounter980014checks; source identity and native binaries/probe reviewed.
+
+353 package/preflight ready locally only, zero physical access. Fresh347-derived E-only controller with actual352scopedpair launch prerequisite, same physical201 helpers/new351probe/drivers.23path/restore checks. Must freeze353 after352final-review; use freshcapture+before E scan+oneWindowslaunch+startupFIRST/originaldriverrestore+afterEscan+audit+finalstate for eachcase. Srv2013/Ft49 remain originalgates; no Cconsole access or runtimeparenting. PhysicalEbaseline/Frollback/tags unchanged. All351/352/353 current work uncommitted.
+
+# Historical continuation below
+#351/352 ACTIVE: new eligible-plan byte contract, hardware unchanged
+
+Read eligible-copy351 DESIGN/build001/source-review001/binary-review001/host001 and eligible-runtime352 DESIGN/parser001/protocol001/actual case records. Exact348 child changes accounting only; old348 packet preserved. Same planner/admission/copy/upload/mapping/lifetime. New351 packet counts eligible bytes OFF/ON; exact fast==eligible bytes in ON, no requested-area/percentage substitute. Historical349/350 failures unchanged. Host980014 sanitizer checks,2048 packet and994 transport controls PASS; these are not guest evidence.
+
+Build98342 CLOSED. Control preparation89742 active at this note; inspect records before any action. Candidate not prepared/launched. Ports5196/5197/5198, E:/xwn352 roots, never-executed339 parent. No physical access/C-console access. PhysicalE original b23b94ac.../normal startup,F rollback,tags,paused automation unchanged. Keyboard/hardware authorization standing. Keep20GiB guard; no cleanup/backing moves. New351/352 source uncommitted; prior HEADd988e7b5. On completion update exact sessions/results, review/check/commit/push.
+
+# Historical continuation below
 #350 CLOSED:6036-byte deficit explained by actual bitmap fallbacks
 
 Read primary-trace350 REPORT/NEXT/final-review/candidate001 trace-verification002,functional-scope001,audit/closure. One launch17:44:49->17:50:30UTC Oct13, existing348candidate f5329b0f.../probe60aa2545... unchanged, freshNEVER-executed339 seed. Two actual960x540 operations captured: each8primary fastcalls2067564bytes +3bitmap-to-primary6036bytes +2primary-to-bitmap2688bytes. Actualownerreturns0 onnonprimaryside, two31x27 bottom-up memorybitmaps,stride-124. Eightfast+threeengineoutput rectangles tilewhole960x540 exactly/nooverlap. CursorpurposeNOTproved/NOTrequired; legitimateineligibility proved.171residentpins/actualkernelIDT/process/module/pairedthread-frame evidence;549actualmutationsreject. Nohelperpatch orhardwareaccess.

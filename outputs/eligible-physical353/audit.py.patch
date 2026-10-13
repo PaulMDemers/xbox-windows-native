@@ -1,0 +1,32 @@
+--- 347/audit.py
++++ 353/audit.py
+@@ -4,11 +4,11 @@
+ sys.path.insert(0,'/home/paul/xbox-windows-native/toolchains/offline-disk/root/usr/lib/python3/dist-packages')
+ import hivex
+ k=pathlib.Path(__file__).resolve().parent;repo=k.parents[1];case=sys.argv[1];assert case in ['control001','candidate001']
+-mode=int(case=='candidate001');out=k/case;art=k/'artifacts'/case;dest=out/'audit.json';assert not dest.exists()
++mode=1;out=k/case;art=k/'artifacts'/case;dest=out/'audit.json';assert not dest.exists()
+ read=lambda p:json.loads(p.read_text());sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+ collection=read(out/'collection.json');assert collection['completed']
+ prior=k/'artifacts'/(case+'-before')
+-remote='xwnphase347'+case
++remote='xwneligible353'+case
+ r=dict(case=case,physical_result=True,audibility_observed=False,physical_audio_qualified=False,hives=[],logs={},new_events={},offline_registry_edits='Four MountedDevices values only in new E copy, before this run; normal startup temporarily replaced')
+ for path,row in collection['files'].items():
+     if row is not None:assert sha(art/path.lstrip('/'))==row['sha256'],'Collected bytes changed: '+path
+@@ -72,9 +72,13 @@
+ r['caps_consistent']=all(v['actual_caps']==r['actual_caps'] and v['actual_modes']==r['actual_modes'] for v in r['samples'])
+ r['display_workload_passed']=r['caps_consistent'] and all(v['probe_passed'] and v['copy_checks_passed'] and v['loop_coverage'] and v['counters_passed'] for v in r['samples']) and all(v['passed'] for group in ['dib_samples','phase_samples','window_samples','text_samples'] for v in r[group])
+ sys.path.insert(0,str(repo/'outputs/hd-phase344'))
+-from phase_analysis import analyze as large_phase
+-r['large_phase_samples']=[large_phase(v,mode) for v in texts]
++sys.path.insert(0,str(repo/'outputs/eligible-runtime352'))
++from phase352_analysis import analyze as large_phase
++from primary_analysis import analyze as primary_analysis
++r['large_phase_samples']=[large_phase(v,int(case=='candidate001')) for v in texts]
+ r['display_workload_passed'] &= all(v['passed'] for v in r['large_phase_samples'])
++r['primary_samples']=[primary_analysis(v,int(case=='candidate001')) for v in texts]
++r['display_workload_passed'] &= all(v['passed'] for v in r['primary_samples'])
+ r['tested_driver_verified']=collection['tested_driver_verified'] and collection['driver_restored']
+ r['checkpoint_history_preserved']=all(v is not None and v.startswith((prior/'E/winnt/setupapi.log').read_bytes()) and (art/'E/winnt/setupapi.log').read_bytes().startswith(v) for v in snapshots)
+ r['warnings_errors']=[v for group in r['new_events'].values() for v in group if v['type'] in [1,2]]

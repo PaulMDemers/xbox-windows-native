@@ -1,0 +1,11 @@
+--- 349/close-host.py
++++ 352/close-host.py
+@@ -22,7 +22,7 @@
+     return data.decode('utf-8','replace')
+ 
+ def close(run,port):
+-    assert port==5176 and (run/'instance.json').exists() and not (run/'host-close.json').exists()
++    assert port==5196 and (run/'instance.json').exists() and not (run/'host-close.json').exists()
+     dest=run/'host-close.json';r=dict(physical_access=False,method='HMP stop then quit',actions=[],quit_sent=False)
+     def save():
+         tmp=dest.with_suffix('.tmp');tmp.write_text(json.dumps(r,indent=2)+'\n',encoding='utf-8');tmp.replace(dest)

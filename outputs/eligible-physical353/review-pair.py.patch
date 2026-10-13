@@ -1,0 +1,18 @@
+--- 347/review-pair.py
++++ 353/review-pair.py
+@@ -12,7 +12,7 @@
+     if not a['display_workload_passed']:continue
+     assert len(a['large_phase_samples'])==5
+     for sample in a['large_phase_samples']:
+-        assert sample['passed'] and sample['mode']==mode and len(sample['intervals'])==15
++        assert sample['passed'] and sample['mode']==1 and len(sample['intervals'])==15
+         for v in sample['intervals']:intervals.setdefault((v['id'],v['kind'],tuple(v['size'])),{}).setdefault(case,[]).append(v)
+ complete=all(v['diagnostic_workload_completed'] for v in cases.values());summary=[]
+ if complete:
+@@ -23,5 +23,5 @@
+             assert len(values)==5;wall=[v['wall_ms']/v['operations'] for v in values]
+             row['cases'][case]=dict(operations=[v['operations'] for v in values],wall_ms_per_operation_median=statistics.median(wall),wall_ms_per_operation_range=[min(wall),max(wall)],phase_ms_per_operation_medians=[statistics.median(v['elapsed_ms'][i]/v['operations'] for v in values) for i in range(4)])
+         summary.append(row)
+-r=dict(diagnostic_pair_completed=complete,scoped_combined_passed=all(v['scoped_combined_passed'] for v in cases.values()),strict_qualification_passed=all(v['strict_qualification_passed'] for v in cases.values()),performance_qualified=False,release_qualified=False,cases=cases,intervals=summary,phase_labels=['EngBitBlt','EngCopyBits','upload_copy_body','complete_upload_wrapper'],limits='Physical sequential boots with five samples each. Global elapsed counters include background/preemption; wrapper contains copy-body and profiler overhead. Do not sum overlapping categories or infer FPS/speedup. Event failures remain failures; diagnostic completion only permits reporting these observations. Original startup/driver restored each case, Xbox C outside tools, F system retained.')
++r=dict(diagnostic_pair_completed=complete,scoped_combined_passed=all(v['scoped_combined_passed'] for v in cases.values()),strict_qualification_passed=all(v['strict_qualification_passed'] for v in cases.values()),performance_qualified=False,release_qualified=False,cases=cases,intervals=summary,phase_labels=['EngBitBlt','selected_CopyBits_body','upload_copy_body','complete_upload_wrapper'],limits='Physical sequential boots with five samples each. Global elapsed counters include background/preemption; wrapper contains copy-body and profiler overhead. Do not sum overlapping categories or infer FPS/speedup. Event failures remain failures; diagnostic completion only permits reporting these observations. Original startup/driver restored each case, Xbox C outside tools, F system retained.')
+ dest.write_text(json.dumps(r,indent=2)+'\n');print(json.dumps({n:r[n] for n in ['diagnostic_pair_completed','scoped_combined_passed','strict_qualification_passed','performance_qualified']}))

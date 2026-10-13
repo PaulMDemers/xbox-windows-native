@@ -1,0 +1,16 @@
+--- 349/Run.ps1
++++ 352/Run.ps1
+@@ -13,11 +13,11 @@
+ & C:/Users/Paul/Desktop/ogxbox-linux/scripts/with_xbox_resource.ps1 -Resource build -Action {
+  & C:/Users/Paul/Desktop/ogxbox-linux/scripts/with_xbox_resource.ps1 -Resource xemu -Action {
+   @{utc=[DateTime]::UtcNow.ToString('o');physical_access=$false;debugger=$false} | ConvertTo-Json | Set-Content (Join-Path $out runner-start.json)
+-  & (Join-Path $PSScriptRoot Invoke.ps1) -RunId ("nt5-primary349-"+$Case) -InstanceTask ("windows-native-primary349-"+$Case) `
++  & (Join-Path $PSScriptRoot Invoke.ps1) -RunId ("nt5-eligible352-"+$Case) -InstanceTask ("windows-native-eligible352-"+$Case) `
+    -Bios C:/Emulators/xemu/system/bios/Complex_4627.bin `
+    -Iso (Join-Path $ws outputs/native-windows-extended-storage/artifacts/f-boot-length-004.iso) `
+    -HddSource $f.fixture_path_windows -EepromSource E:/xwn289/fixture001/hd.bin `
+    -EmulatorPath E:/xwn329/retained-builds001/xemu-hd322.exe -EmulatorSha256 ea3473314e6c0ea068de4202cde46b1405da7553240cadea738c29c16d74c7a3 `
+-   -FtpPort 5178 -MonitorPort 5176 -GdbPort 5177 -CompactTrace -UsbMouse -ManualCapture -RetainDisk -AllowGuestReboot -StopOnCaptureComplete -CaptureAudio -Seconds 1200
++   -FtpPort 5198 -MonitorPort 5196 -GdbPort 5197 -CompactTrace -UsbMouse -ManualCapture -RetainDisk -AllowGuestReboot -StopOnCaptureComplete -CaptureAudio -Seconds 1200
+  }
+ }

@@ -1,0 +1,20 @@
+--- 347/scan.py
++++ 353/scan.py
+@@ -3,7 +3,7 @@
+ from pathlib import Path
+ from physical import K,read,connect,get,put,names,sha,utc,write_json,pins
+ case,phase,action=sys.argv[1:];assert case in ['control001','candidate001'] and phase in ['before','after'] and action in ['launch','observe','collect']
+-out=K/case/(phase+'-scan');record=out/'trial.json';remote='/F/Applications/XWNPhase347'+case+phase
++out=K/case/(phase+'-scan');record=out/'trial.json';remote='/F/Applications/XWNEligible353'+case+phase
+ payload=Path('E:/xwn341/build001/bin/default.xbe').read_bytes();assert sha(payload)==read(K.parent/'stock-scan341/build001.json')['outputs']['default.xbe']['sha256']
+ def launch():
+     pins();assert read(K/case/'before.json')['completed']
+@@ -30,7 +30,7 @@
+         time.sleep(3)
+     r['closed']=True;write_json(out/'return.json',r);print('Read-only E scan returned',r['returned'],flush=True)
+ def collect():
+-    r=read(record);assert r['launch_requested'] and not r.get('collected');folder=Path('E:/xwn347')/(case+'-'+phase+'-scan');assert not folder.exists();folder.mkdir()
++    r=read(record);assert r['launch_requested'] and not r.get('collected');folder=Path('E:/xwn353')/(case+'-'+phase+'-scan');assert not folder.exists();folder.mkdir()
+     with connect() as f:
+         assert get(f,remote+'/default.xbe')==payload;r['files']={}
+         for name in ['snapshot.txt','fat-metadata.bin','directories.bin']:

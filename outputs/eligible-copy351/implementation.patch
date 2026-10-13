@@ -1,0 +1,81 @@
+diff --git a/win32ss/drivers/displays/framebuf/eligible.h b/win32ss/drivers/displays/framebuf/eligible.h
+new file mode 100644
+index 0000000..b9b8d07
+--- /dev/null
++++ b/win32ss/drivers/displays/framebuf/eligible.h
+@@ -0,0 +1,17 @@
++/*351 read-only eligible-plan accounting. Caller holds existing owner semaphore.
++ * Original348 words0..7 and escape remain unchanged. Words8/9 are bytes;
++ * word10 is a separate sticky351 error (1 overflow,2 invalid result/bytes).
++ * No reset, functional admission, copy or fallback operation occurs here. */
++static VOID XwnEligibleRecord(ULONG *stats,int result,ULONGLONG bytes)
++{
++ ULONGLONG old;
++ if(result < -2 || result > 1 || (result == -1 && bytes) ||
++    (result == 0 && bytes) || (result == 1 && !bytes)) {
++  stats[10] |= 2; return;
++ }
++ if(result == -1) return;
++ old=((ULONGLONG)stats[9]<<32)|stats[8];
++ if(~(ULONGLONG)0-old < bytes) {old=~(ULONGLONG)0;stats[10]|=1;}
++ else old+=bytes;
++ stats[8]=(ULONG)old;stats[9]=(ULONG)(old>>32);
++}
+diff --git a/win32ss/drivers/displays/framebuf/enable.c b/win32ss/drivers/displays/framebuf/enable.c
+index 0ad0462..d37a1bf 100644
+--- a/win32ss/drivers/displays/framebuf/enable.c
++++ b/win32ss/drivers/displays/framebuf/enable.c
+@@ -31,6 +31,10 @@ XwnDirectEscape(SURFOBJ *Surface, ULONG Escape, ULONG InBytes, PVOID In,
+    p = XwnOwner(Surface);
+    if (!p) return 0;
+    if (!p->ScreenPtr || !p->hSurfEng || !p->ShadowObject || !p->ShadowActive) return 0;
++   if (Escape == 0x58574439 && OutBytes == sizeof(Data))
++   {
++      XwnEligibleSnapshot(p,Data);memcpy(Out,Data,sizeof(Data));return 1;
++   }
+    if (Escape == 0x58574438 && OutBytes == sizeof(Data))
+    {
+       XwnPrimarySnapshot(p,Data);memcpy(Out,Data,sizeof(Data));return 1;
+diff --git a/win32ss/drivers/displays/framebuf/framebuf.h b/win32ss/drivers/displays/framebuf/framebuf.h
+index 232fcd8..cb2797f 100644
+--- a/win32ss/drivers/displays/framebuf/framebuf.h
++++ b/win32ss/drivers/displays/framebuf/framebuf.h
+@@ -223,4 +223,5 @@ VOID XwnTextSnapshot(PPDEV,ULONG *);
+ int XwnTryPrimaryCopy(PPDEV,SURFOBJ *,SURFOBJ *,CLIPOBJ *,XLATEOBJ *,RECTL *,POINTL *,ULONGLONG *);
+ VOID XwnPrimaryRecord(PPDEV,int,ULONGLONG);
+ VOID XwnPrimarySnapshot(PPDEV,ULONG *);
++VOID XwnEligibleSnapshot(PPDEV,ULONG *);
+ #endif /* _FRAMEBUF_PCH_ */
+diff --git a/win32ss/drivers/displays/framebuf/ownership.c b/win32ss/drivers/displays/framebuf/ownership.c
+index a01fb16..0eb8beb 100644
+--- a/win32ss/drivers/displays/framebuf/ownership.c
++++ b/win32ss/drivers/displays/framebuf/ownership.c
+@@ -216,6 +216,7 @@ VOID XwnTextExtended(PPDEV p,ULONG *out)
+  EngReleaseSemaphore(XwnOwnerLock);
+ }
+ 
++#include "eligible.h"
+ /* Separate348 accounting outside the selected CopyBits body. */
+ static VOID XwnPrimaryIncrement(PPDEV p,ULONG index)
+ {
+@@ -226,6 +227,7 @@ VOID XwnPrimaryRecord(PPDEV p,int result,ULONGLONG bytes)
+ {
+  ULONGLONG old;
+  EngAcquireSemaphore(XwnOwnerLock);
++ XwnEligibleRecord(p->PrimaryStats,result,bytes);
+  XwnPrimaryIncrement(p,0);
+  if(result!=-1)XwnPrimaryIncrement(p,1);
+  if(result==1)XwnPrimaryIncrement(p,2);
+@@ -247,3 +249,12 @@ VOID XwnPrimarySnapshot(PPDEV p,ULONG *out)
+  for(i=0;i<8;i++)out[4+i]=p->PrimaryStats[i];
+  EngReleaseSemaphore(XwnOwnerLock);
+ }
++
++VOID XwnEligibleSnapshot(PPDEV p,ULONG *out)
++{
++ ULONG i;RtlZeroMemory(out,128);
++ EngAcquireSemaphore(XwnOwnerLock);
++ out[0]=0x50435758;out[1]=351;out[2]=128;out[3]=XWN_PRIMARY_COPY;
++ for(i=0;i<11;i++)out[4+i]=p->PrimaryStats[i];
++ EngReleaseSemaphore(XwnOwnerLock);
++}

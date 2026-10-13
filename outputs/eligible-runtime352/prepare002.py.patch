@@ -1,0 +1,59 @@
+--- 349/prepare002.py
++++ 352/prepare002.py
+@@ -6,7 +6,7 @@
+ 
+ K=Path(__file__).resolve().parent;W=K.parents[1];case=sys.argv[1];assert case in ['control001','candidate001'] and os.environ.get('XWN_BUILD_LEASE')=='held'
+ 
+-out=K/case;P=Path('/mnt/e/xwn349')/case;assert not out.exists() and not P.exists()
++out=K/case;P=Path('/mnt/e/xwn352')/case;assert not out.exists() and not P.exists()
+ 
+ sys.path.insert(0,str(K.parent/'video-text-oracle206'));from common import ColdIO,m,sha,STARTUP
+ 
+@@ -16,7 +16,7 @@
+ 
+ assert json.loads((K.parent/'stock-repeat339/emu001/audit.json').read_text())['scoped_combined_passed']
+ 
+-assert json.loads((K.parent/'primary-copy348/binary-review001.json').read_text())['passed']
++assert json.loads((K.parent/'eligible-copy351/binary-review001.json').read_text())['passed']
+ 
+ image=json.loads(subprocess.check_output(['qemu-img','info','--output=json',str(parent)]));assert image['virtual-size']==10000000000 and 'backing-filename' not in image
+ 
+@@ -28,7 +28,7 @@
+ 
+ assert shutil.disk_usage('/mnt/e').free-reserve>=20*1024**3,'Projected allocated extents plus512MiB metadata/new payload reserve'
+ 
+-rawroot=Path('/home/paul/xbox-windows-native/build/primary349-staging002-'+case)
++rawroot=Path('/home/paul/xbox-windows-native/build/eligible352-staging002-'+case)
+ 
+ assert not rawroot.exists()
+ 
+@@ -38,7 +38,7 @@
+ 
+ rawroot.mkdir(parents=True)
+ 
+-out.mkdir();(out/'artifacts').mkdir();P.mkdir(parents=True);raw=rawroot/'staging.raw';target=P/'source.qcow2';ns='xwnprimary349'
++out.mkdir();(out/'artifacts').mkdir();P.mkdir(parents=True);raw=rawroot/'staging.raw';target=P/'source.qcow2';ns='xwneligible352'
+ 
+ r=dict(prepared=False,physical_access=False,parent=str(parent),parent_sha256=sha(parent),registry_edited=False,trace_reseeded=False,changes=[],same_never_executed_parent=True,projected_reserve_bytes=reserve,parent_data_bytes=data_bytes,raw_staging_space=rawspace,raw_staging_root=str(rawroot))
+ 
+@@ -60,17 +60,17 @@
+ 
+             if name=='replay.exe':
+ 
+-                data=Path('/mnt/e/xwn348/probe/build001/replay.exe').read_bytes();assert m.sha(data)==json.loads((K.parent/'primary-copy348/probe/build-review001.json').read_text())['binary_sha256']
++                data=Path('/mnt/e/xwn351/probe/build001/replay.exe').read_bytes();assert m.sha(data)==json.loads((K.parent/'eligible-copy351/probe/build-review001.json').read_text())['binary_sha256']
+ 
+             r['changes'].append(wr.write(ns+'/'+name,data))
+ 
+-        dll=Path('/mnt/e/xwn348/build001')/case/'xwnown.dll';data=dll.read_bytes();assert m.sha(data)==json.loads((K.parent/'primary-copy348/build001.json').read_text())['cases'][case]['sha256']
++        dll=Path('/mnt/e/xwn351/build001')/case/'xwnown.dll';data=dll.read_bytes();assert m.sha(data)==json.loads((K.parent/'eligible-copy351/build001.json').read_text())['cases'][case]['sha256']
+ 
+         before=wr.read('winnt/system32/xwnown.dll');m.replace(wr,'winnt/system32/xwnown.dll',data);r['driver']=dict(path='winnt/system32/xwnown.dll',before_sha256=m.sha(before),sha256=m.sha(data))
+ 
+         before=wr.read(STARTUP);assert before==b'@echo off\r\nC:\\xwnstock339\\runner.exe /emulator\r\nexit\r\n'
+ 
+-        after=b'@echo off\r\nC:\\xwnprimary349\\runner.exe /emulator\r\nexit\r\n';m.replace(wr,STARTUP,after);wr.flush();fp.flush()
++        after=b'@echo off\r\nC:\\xwneligible352\\runner.exe /emulator\r\nexit\r\n';m.replace(wr,STARTUP,after);wr.flush();fp.flush()
+ 
+         r['startup']=dict(before_sha256=m.sha(before),after_sha256=m.sha(after))
+ 
