@@ -1,3 +1,11 @@
+#326 guarded HD deployment/restoration PASSED; baseline restored
+
+New tools/deploy-hd.py + hd_overlay.py provide prepare/apply/restore for immutable0.2.0 overlays with26-file prerequisites, frozen inputs, exclusive ticket/tool lock, local exact rollback copies and per-write/readback journal. No boot API. Host00142 modeled-transfer cases and sharing001 two actual Windows handle cases PASS. Physical001 prepare00:47:03->00:47:13UTC, apply00:47:49->00:47:57, restore00:48:02->00:48:11 October13:6HD writes/6restores, all26files exact after, startup/HAL unchanged. NO Windows launch, allocation scan, registry edits or full-system restore. Baseline audio004/software118/shared158/FATX0101 restored. All sessions CLOSED, exclusive lock released; demo251 ticket retained, automation PAUSED. Never rerun consumed326 IDs. Unknown/partial bytes refuse automatic restore and are preserved privately; power-loss recovery remains unqualified.
+
+Read outputs/hd-deployment326/REPORT.md,USAGE.md,NEXT.md,final-review.json and physical001 receipts; privatepreimagesD:/xwn326/physical001. All42host cases used exactreleasebytes/actualcore but modeledFTP. Windows transient/permanent journal sharing tested independently. v0.2.0tag and bothbinary/sourcearchives unchanged.
+
+Read-only performance-review rehashed ten closed315/324 logs. Same256x128probe binary: medianRAMupload370/374ops/s; window40-roundoracle420ms both. Stats snapshots195/435ms lie outside timing. These are within-boot microbenchmarks, NOT FPS or independentreplications. NEXT specificdiscriminator: new bounded large-window probe on unchanged0.2.0driver with separate timing/oracle and actual copied-byte/clip counters, emulator correctness first then new physicalcontrol. No speculativecache/GPUchange or hardwarelaunch queued. KnownFt49 andallpriorfailures preserved.
+
 # 0.2.0 private release push confirmed
 
 Private remote main d8086050 and annotated v0.2.0 were verified after atomic push; tag resolves to25b41b7e. Source/history and both binary packages are complete, hashes/readback verified. Repository check30972files passed;14releasefiles exact inindex. See release-0.2.0/push-receipt.json and USAGE.md. All build/test sessions closed; no physical access or deployment; baseline restored, automation paused. Packaging/tagging work is complete. Future work is a plan, not an active test.

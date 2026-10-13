@@ -1,0 +1,17 @@
+# Guarded deployment and restoration passed on hardware
+
+The new prepare/apply/restore workflow installed the exact0.2.0 six-file1080i profile at the dashboard and restored all six incoming baseline files. Each upload was read back; the complete26-file inventory matched after installation and after restoration. The local rollback copies were independently rehashed. Normal startup, shared HAL, audio/storage/system dependencies and the root Windows launch entry were not edited. Windows was never launched during this check.
+
+Physical326 preparation completed at2026-10-13T00:47:13UTC; installation at00:47:57; restoration at00:48:11. Exact console ownership and the existing demo251 ticket were checked. The exclusive tool lock is released and all owned sessions are closed. The console is back on the original baseline. See the three invocation receipts, physical001-transaction.json and final-review.json. Private preimages are atD:/xwn326/physical001.
+
+The actual deployment core passed42 host cases against the release's exact files with modeled FTP: all nine profile transitions, interruption at each of six writes, resumable known-state restores, and refusal of partial/foreign content, changed prerequisites, tampered backups and a changed archive. Separately, actual Windows handles reproduced transient and permanent journal sharing violations: transient release published correctly; the permanent case refused after about two seconds and preserved the old journal plus new temporary data. Host results do not qualify power-loss recovery on the console.
+
+The tool recognizes only three complete profiles. It records intent before every write, installs the launcher last and never boots automatically. Restoration accepts only verified original/intended contents for recorded writes. Unknown or partial files are saved privately and refused without further writes. There is no claim of multi-file atomicity, arbitrary partial-transfer repair, a full system restore, new allocation audit or new Windows workload qualification. Ftdisk49 and the other release limits remain unchanged. The immutable0.2.0 tag and packages were not modified; the new tooling is a subsequent source change.
+
+## Existing performance evidence
+
+Read-only analysis rehashed all ten captured logs from watched315720p and3241080i against their original collection records. Both used the same replay executable. The timed rectangles were256×128, not full-screen repaints. Median RAM-to-screen rates were370 and374 operations/second; overlapping copies were496/435 and497/441 operations/second respectively. These are five samples within each single boot, not independent boot repetitions or a matched optimization comparison. They do not establish display FPS or a resolution-driven speedup.
+
+Statistics snapshot latency was195ms at720p and435ms at1080i, but those snapshots lie outside the timed drawing loops. The40-round window correctness exercise took420ms at both resolutions and includes its readback oracle. Do not use either number as user-visible frame rate or declare a bottleneck from it.
+
+The next useful performance discriminator is a bounded large-window repaint/copy benchmark on the unchanged release driver, with separately timed rendering and correctness readback. Measure actual copied bytes and dirty rectangles at several sizes before proposing a rendering or cache-policy change. See NEXT.md and performance-review.json.

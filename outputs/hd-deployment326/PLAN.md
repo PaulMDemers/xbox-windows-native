@@ -1,0 +1,13 @@
+# Repeatable HD deployment and six-file restoration
+
+This follows the user's instruction to proceed after the private0.2.0 release. It does not move the tag or change its packages. The new tool wraps the exact release overlay with a26-file baseline policy covering the shared HAL, storage/audio/system dependencies and normal startup as well as the six replaceable files.
+
+`prepare` only reads the console and makes an exclusive local attempt directory. It recognizes a complete baseline,720p or1080i profile, captures and readback-verifies all26 originals, and repeats the remote reads before admitting deployment. `apply` is one-shot, rechecks frozen tool/archive/policy/adapter inputs and all originals, journals each intended write before sending it, reads back every transfer, and places the loader last. The final complete inventory must match. No command launches Windows, changes the registry, enables a diagnostic or edits startup.
+
+`restore` uses only that attempt's verified originals. A file may match its original or the intended payload if a write was recorded. Unknown/partial bytes are captured privately and refused, with no further writes. The tool does not promise automatic recovery from arbitrary power loss or interrupted partial FTP writes. All six changes are not atomic as a group. It never assigns a successful state after a failed journal publication.
+
+The existing demo251 physical ticket and console ownership marker remain mandatory. A separate exclusive local lock serializes this tool; it never automatically reclaims a stale lock. FTP credentials are environment-only and never placed in receipts. Invocations and attempt IDs are unique; restoration can resume an incomplete known transaction without repeating a guest launch.
+
+Host001 runs the actual core against exact release files with explicitly modeled FTP. It covers all nine profile transitions, interruption before/after/partway through each of six transfers, restore interruptions, tampered archive/backup, changed HAL/startup, mixed profiles, foreign content and journal failures. This is not physical qualification.
+
+After those tests pass, the bounded physical check is one prepare/apply1080i/restore transaction at the dashboard with NO Windows launch between stages. Its purpose is actual deployment and readback restoration coverage, not another graphics test or a full system restore. If dashboard FTP or the ownership/baseline check refuses, preserve that outcome and do not infer a crash or start Windows. The intended ending state is the exact incoming profile and unchanged protected/startup files.
