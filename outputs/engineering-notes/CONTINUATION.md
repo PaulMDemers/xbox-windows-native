@@ -1,3 +1,23 @@
+#364 compiled;365 emulator ACTIVE;362 closed failed coverage;366 prepared only
+
+Read bandwidth361/364REPORT/DESIGN/source-review/builds, bandwidth-runtime362REPORT/final-review.362 CLOSED20:28:41UTC: graphics/audio/memory/fullcold341dirs6834files358clusters0errors/5hives/normalshutdown1/orderlyexit0passed, NEWbandwidthFAILED allfivepacketsissued0/published0 because960x540logical requestsfragmented. Neverrerun/recollect/parent362; strictFt49retained.363preparedONLY,neverfrozen/accessedconsole.
+
+364 exact361child selects actual640x360 single upload evidenced362phasecounts.921600copiedbytes; privateallocation/maprange2073600unchanged, unusedtailzero checkadded. Newescape3d/version364, sameunchangedactualupload. Host0012428checks138allocs/frees/111transportcontrols. Build001failedGitobjects alternatesdepthBEFOREcompile, retained. Build002flattenedonlyNEWcheckout Git alternates, allparentsunchanged; native/probe/import/residency/source reviewPASS. No cache/scanoutwrite/SIMD/GPUchanges.
+
+Fresh365candidate001 prepared55719CLOSED,340frozeninputs. Ownedrunner91358/supervisor32480 ACTIVE, ports5236/5237/5238, E:/xwn365/runs/nt5-bandwidth365-candidate001. Inspectlaunchrecord,neverduplicate. Onclose run365audit.py ONCE WSLhivex, joined_review.py, final-review.py. Onlyscoped+joinedPASS allowsphysical366 freeze/publish/capture/beforeEscan/onelaunch/collectSTARTUPFIRST+originalDLL/afterEscan/audit/finalstate/closeout.366localpayload+23pathchecks ONLY, nohardwareaccess. Actualderivedsource/fullshadow/privatephysicaldisjointnessproofrequired; do notbypass failedpacketcoverage.
+
+ALL361/364build/hostsessionsCLOSED,362runner11863/super67432/audit4996CLOSED. Sharedsource/SDKuntouched. Originalphysical303b23b94ac.../normalEstartup/Frollback/tags remainunchanged; CconsoleALLaccessprohibited, E/Fonly. Keyboardalwaysunplugged/rootdemo251exclusive/automationpaused. HEAD06c19262, NEW361-366UNCOMMITTED/stagedpartially. Needbyteexactstage/repositorychecks andcommit/pushreviewedsource/reports. C/E20GiBguardunchanged,nobackingmoves. Latestactualcapacity before365~C65GB/E23.8GBdecimal.
+
+# Historical continuation below
+#361 compiled;362 emulator ACTIVE;363 prepared only
+
+Read bandwidth361 REPORT/DESIGN/build001/binary-review001/source-review/host002/transport001. Fresh362candidate001 accepted20:23:00UTC Oct13. Owned runner11863/supervisor67432 ACTIVE, ports5226/5227/5228, E:/xwn362/runs/nt5-bandwidth362-candidate001.290frozeninputs, fresh339never-executedseed, nohardwareaccess. Do not duplicate launch. Onclosed run362audit.py ONCE withWSLhivex, thenjoined_review.py additionalrawsource/privateallocationidentity proof andfinal-review.py. No physical363untilscoped362+joinedPASS andsourcepublication.
+
+361 measuresfirst4actual960x540uploadboxes: privateRAMrowcopy vsUNCHANGEDrealUCupload, alternatesorder,32QPCcalibrations,twoactualprivate/scanoutPTEregistercaptures,fullsource/outputbytecomparison/guards. No newscanoutwrites/cachechanges. Host0022425checks137balancedallocations,transport111negatives. Originaluploadreconstructedexactly. Nativecompiled; host001indentfailure/source-review001parentCRLFfailurepreserved. Allbuild/prepareprocessesCLOSED44415/78152/83987.
+
+363payload+23path/restorehost004checks preparedONLY, nofrozen/hardwareaccess. Newidentityjoin addedafter362freeze;362 originalaudit/decoderremainunchanged, additionalproofseparate. Nextafter362pass freeze363,publishreviewedsource/reports, capturebaseline/beforeEscan/oneWindowslaunch/collectSTARTUPFIRST+originalDLL/afterEscan/audit/identity/finalstate. AllconsoletoolpathsE/Fonly,Cprohibited; keyboardalwaysunplugged, rootdemo251exclusive,automationpaused. Installed303originalb23b94ac.../normalstartup/Frollback/tags unchanged. Prior359/360closed evidence neverrerun. C66.9GB/E24.3GBdecimal,20GiBguardretained,nobackingmoves.
+
+# Historical continuation below
 #359/360 CLOSED: physical shadowWB and scanoutUC observed; original baseline restored
 
 Read memory-physical359 REPORT/NEXT/final-review/candidate001audit and memory-analysis360 REPORT/DESIGN/tests002/analysis001/final-review. SINGLEphysical359launch19:41:54->19:50:06UTC Oct13, normalshutdown1, collectSTARTUPFIRST/originalDLL restored, afterEscan/finalstate CLOSED. Allownedprocessesclosed including90928,37382; read-onlyhostcheck noxemu. NormalEstartup/originaldisplayb23b94ac12c9f507e3d905d9de905dcff9a8fd53c2fba4336fb830e97666101d/Frollback verified. No physicaltestqueued; rootdemo251retained,automationpaused,keyboardalwaysunplugged.

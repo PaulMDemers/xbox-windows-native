@@ -1,0 +1,276 @@
+diff --git a/win32ss/drivers/displays/framebuf/CMakeLists.txt b/win32ss/drivers/displays/framebuf/CMakeLists.txt
+index 977297c..b6ee397 100644
+--- a/win32ss/drivers/displays/framebuf/CMakeLists.txt
++++ b/win32ss/drivers/displays/framebuf/CMakeLists.txt
+@@ -10,6 +10,7 @@ list(APPEND SOURCE
+     ownership.c
+     memory_state.c
+     memory_warm.c
++    bandwidth.c
+     profile_math.h
+     text_bounds.h
+     row_store.h
+diff --git a/win32ss/drivers/displays/framebuf/bandwidth.c b/win32ss/drivers/displays/framebuf/bandwidth.c
+new file mode 100644
+index 0000000..6c8f6d3
+--- /dev/null
++++ b/win32ss/drivers/displays/framebuf/bandwidth.c
+@@ -0,0 +1,104 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++#include "framebuf.h"
++#include <pseh/pseh2.h>
++#include "capture.h"
++static int m354_reg(void *ctx,unsigned n,uint32_t *v)
++{
++ unsigned short cs;(void)ctx;
++ switch(n){
++ case 0:__asm__ __volatile__("mov %%cr0,%0":"=r"(*v));break;
++ case 1:__asm__ __volatile__("mov %%cr3,%0":"=r"(*v));break;
++ case 2:__asm__ __volatile__("mov %%cr4,%0":"=r"(*v));break;
++ case 3:__asm__ __volatile__("mov %%cs,%0":"=r"(cs));*v=cs;break;
++ default:return 0;
++ }return 1;
++}
++static int m354_cpuid(void *ctx,uint32_t leaf,uint32_t *o)
++{
++ (void)ctx;__asm__ __volatile__("cpuid":"=a"(o[0]),"=b"(o[1]),"=c"(o[2]),"=d"(o[3]):"a"(leaf),"c"(0):"memory");return 1;
++}
++static int m354_msr(void *ctx,uint32_t index,uint32_t *o)
++{
++ (void)ctx;__asm__ __volatile__("rdmsr":"=a"(o[0]),"=d"(o[1]):"c"(index):"memory");return 1;
++}
++static int m354_read(void *ctx,uint32_t address,uint32_t *o)
++{
++ (void)ctx;*o=*(volatile uint32_t *)(ULONG_PTR)address;return 1;
++}
++
++#include "bandwidth.h"
++static void b361_ram(B361_CONTEXT *c)
++{
++ unsigned y;LONGLONG a=-1,b=-1;ULONGLONG ticks;
++ EngQueryPerformanceCounter(&a);
++ for(y=0;y<B361_ROWS;y++)memmove(c->scratch+y*B361_ROW,
++  (void*)(c->shadow+c->offset+y*c->pitch),B361_ROW);
++ EngQueryPerformanceCounter(&b);
++ b361_q(c->record+16,a);b361_q(c->record+18,b);
++ if(!b361_ticks(a,b,&ticks))c->record[2]|=4;
++}
++static void b361_map(PPDEV p,B361_CONTEXT*c,unsigned after)
++{
++ M354_VIEW v;M354_IO io={m354_reg,m354_cpuid,m354_msr,m354_read,NULL};
++ v.owner=(ULONG_PTR)p;v.surface=(ULONG_PTR)p->hSurfEng;
++ v.object=(ULONG_PTR)p->ShadowObject;v.shadow=(ULONG_PTR)c->scratch;
++ v.screen=(ULONG_PTR)p->ScreenPtr;v.width=960;v.height=540;v.pitch=3840;v.bpp=32;
++ m354_capture(&v,&io,c->record+B361_META+after*M354_WORDS);
++ if(c->record[B361_META+after*M354_WORDS+3])c->record[2]|=8;
++}
++VOID XwnBandwidthBegin(PPDEV p,const RECTL*r,B361_CONTEXT*c)
++{
++ unsigned i;LONGLONG a=-1,b=-1,f=-1;ULONGLONG ticks,lo=~(ULONGLONG)0,hi=0;
++ RtlZeroMemory(c,sizeof(*c));
++ if(p->ScreenWidth!=1920||p->ScreenHeight!=1080||p->ScreenDelta!=7680||
++    p->BitsPerPixel!=32||!p->ShadowActive||!p->ShadowObject||
++    r->left<0||r->top<0||r->right>1920||r->bottom>1080||
++    r->right-r->left!=960||r->bottom-r->top!=540)return;
++ if(!XwnBandwidthReserve(p,c))return;
++ c->record[0]=361;c->record[1]=c->slot;c->record[3]=c->slot&1;
++ c->shadow=(ULONG_PTR)p->ShadowBits;c->screen=(ULONG_PTR)p->ScreenPtr;
++ c->pitch=p->ScreenDelta;c->offset=r->top*c->pitch+r->left*4;
++ c->record[4]=(ULONG_PTR)p;c->record[5]=c->shadow;c->record[6]=c->screen;
++ c->record[7]=c->offset;c->record[8]=c->pitch;
++ c->record[9]=B361_ROW;c->record[10]=B361_ROWS;c->record[11]=B361_LENGTH;
++ _SEH2_TRY {
++  c->allocation=EngAllocMem(FL_ZERO_MEMORY,B361_LENGTH+2*B361_GUARD,ALLOC_TAG);
++  if(!c->allocation)c->record[2]|=1;
++  else {
++   c->scratch=c->allocation+B361_GUARD;c->record[12]=(ULONG_PTR)c->scratch;
++   for(i=0;i<B361_GUARD;i++) {c->allocation[i]=(BYTE)(i^0xa5);
++    c->allocation[B361_GUARD+B361_LENGTH+i]=(BYTE)(i^0x5a);}
++   EngQueryPerformanceFrequency(&f);b361_q(c->record+14,f);
++   if(f<=0)c->record[2]|=4;
++   for(i=0;i<32;i++) {
++    EngQueryPerformanceCounter(&a);EngQueryPerformanceCounter(&b);
++    if(!b361_ticks(a,b,&ticks))c->record[2]|=4;
++    else{if(ticks<lo)lo=ticks;if(ticks>hi)hi=ticks;}
++   }
++   c->record[24]=32;b361_q(c->record+25,lo);b361_q(c->record+27,hi);
++   b361_map(p,c,0);
++   if(!c->record[2]&&!(c->slot&1))b361_ram(c);
++  }
++ } _SEH2_EXCEPT(1) {c->record[2]|=2;c->record[13]=_SEH2_GetExceptionCode();} _SEH2_END;
++}
++VOID XwnBandwidthEnd(PPDEV p,B361_CONTEXT*c,LONGLONG uploadBegin,LONGLONG uploadEnd)
++{
++ ULONGLONG ticks;
++ if(!c->active)return;
++ b361_q(c->record+20,uploadBegin);b361_q(c->record+22,uploadEnd);
++ if(!b361_ticks(uploadBegin,uploadEnd,&ticks))c->record[2]|=4;
++ _SEH2_TRY {
++  if(!c->record[2]) {
++   if(c->slot&1)b361_ram(c);
++   c->record[29]=b361_compare(c->scratch,(void*)(c->shadow+c->offset),B361_ROW,B361_ROWS,c->pitch);
++   c->record[30]=b361_compare(c->scratch,(void*)(c->screen+c->offset),B361_ROW,B361_ROWS,c->pitch);
++   c->record[31]=b361_guards(c->allocation);
++   if(c->record[29]||c->record[30]||c->record[31])c->record[2]|=16;
++   b361_map(p,c,1);
++  }
++ } _SEH2_EXCEPT(1) {c->record[2]|=2;c->record[13]=_SEH2_GetExceptionCode();} _SEH2_END;
++ if((ULONG_PTR)p->ShadowBits!=c->shadow||(ULONG_PTR)p->ScreenPtr!=c->screen||
++    p->ScreenDelta!=c->pitch||!p->ShadowActive)c->record[2]|=32;
++ if(c->allocation)EngFreeMem(c->allocation);
++ c->record[32]=1;XwnBandwidthPublish(p,c);
++}
+diff --git a/win32ss/drivers/displays/framebuf/bandwidth.h b/win32ss/drivers/displays/framebuf/bandwidth.h
+new file mode 100644
+index 0000000..7abb601
+--- /dev/null
++++ b/win32ss/drivers/displays/framebuf/bandwidth.h
+@@ -0,0 +1,39 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++#ifndef XWN_BANDWIDTH361_H
++#define XWN_BANDWIDTH361_H
++#include <stdint.h>
++#define B361_SLOTS 4u
++#define B361_ROW 3840u
++#define B361_ROWS 540u
++#define B361_LENGTH (B361_ROW*B361_ROWS)
++#define B361_GUARD 64u
++#define B361_META 64u
++#define B361_PACKET (B361_META+2*16640u)
++#define B361_WORDS (16u+B361_SLOTS*B361_PACKET)
++#define B361_BYTES (4u*B361_WORDS)
++typedef struct {uint32_t issued,published;uint32_t words[B361_SLOTS][B361_PACKET];} B361_STATE;
++typedef struct {
++ unsigned slot,active;unsigned char *allocation,*scratch;
++ uint32_t *record;uintptr_t shadow,screen;unsigned pitch,offset;
++} B361_CONTEXT;
++static __inline void b361_q(uint32_t *p,uint64_t n){p[0]=(uint32_t)n;p[1]=(uint32_t)(n>>32);}
++static __inline unsigned b361_compare(const unsigned char *a,const volatile unsigned char *b,
++ unsigned bytes,unsigned rows,unsigned stride)
++{
++ unsigned x,y,bad=0;for(y=0;y<rows;y++)for(x=0;x<bytes;x++)
++  if(a[y*bytes+x]!=b[y*stride+x])++bad;
++ return bad;
++}
++static __inline unsigned b361_guards(const unsigned char *p)
++{
++ unsigned i,bad=0;for(i=0;i<B361_GUARD;i++) {
++  if(p[i]!=(unsigned char)(i^0xa5))++bad;
++  if(p[B361_GUARD+B361_LENGTH+i]!=(unsigned char)(i^0x5a))++bad;
++ }return bad;
++}
++static __inline int b361_ticks(int64_t a,int64_t b,uint64_t *n)
++{
++ if(a<0||b<a)return 0;
++ *n=(uint64_t)b-(uint64_t)a;return 1;
++}
++#endif
+diff --git a/win32ss/drivers/displays/framebuf/enable.c b/win32ss/drivers/displays/framebuf/enable.c
+index ee9f6ab..a56f7eb 100644
+--- a/win32ss/drivers/displays/framebuf/enable.c
++++ b/win32ss/drivers/displays/framebuf/enable.c
+@@ -31,6 +31,7 @@ XwnDirectEscape(SURFOBJ *Surface, ULONG Escape, ULONG InBytes, PVOID In,
+    p = XwnOwner(Surface);
+    if (!p) return 0;
+    if (!p->ScreenPtr || !p->hSurfEng || !p->ShadowObject || !p->ShadowActive) return 0;
++   if (Escape == 0x5857443c && OutBytes == B361_BYTES) {XwnBandwidthSnapshot(p,Out);return 1;}
+    if (Escape == 0x5857443b) return XwnMemoryState357(Surface,OutBytes,Out);
+    if (Escape == 0x5857443a) return XwnMemoryState354(Surface,OutBytes,Out);
+    if (Escape == 0x58574439 && OutBytes == sizeof(Data))
+diff --git a/win32ss/drivers/displays/framebuf/framebuf.h b/win32ss/drivers/displays/framebuf/framebuf.h
+index 180b1f7..0f393ac 100644
+--- a/win32ss/drivers/displays/framebuf/framebuf.h
++++ b/win32ss/drivers/displays/framebuf/framebuf.h
+@@ -32,6 +32,7 @@
+ 
+ #include "profile_math.h"
+ #include "text_bounds.h"
++#include "bandwidth.h"
+ typedef struct _PDEV
+ {
+    HANDLE hDriver;
+@@ -81,6 +82,7 @@ typedef struct _PDEV
+    VIDEOMEMORY* pvmList;
+    BOOL bDDInitialized;
+    DDPIXELFORMAT ddpfDisplay;
++    B361_STATE Bandwidth;
+ } PDEV, *PPDEV;
+ 
+ #define DEVICE_NAME	L"xwnram"
+@@ -227,3 +229,9 @@ VOID XwnEligibleSnapshot(PPDEV,ULONG *);
+ ULONG XwnMemoryState354(SURFOBJ *,ULONG,PVOID);
+ ULONG XwnMemoryState357(SURFOBJ *,ULONG,PVOID);
+ #endif /* _FRAMEBUF_PCH_ */
++
++BOOL XwnBandwidthReserve(PPDEV,B361_CONTEXT*);
++VOID XwnBandwidthPublish(PPDEV,B361_CONTEXT*);
++VOID XwnBandwidthSnapshot(PPDEV,ULONG*);
++VOID XwnBandwidthBegin(PPDEV,const RECTL*,B361_CONTEXT*);
++VOID XwnBandwidthEnd(PPDEV,B361_CONTEXT*,LONGLONG,LONGLONG);
+diff --git a/win32ss/drivers/displays/framebuf/ownership.c b/win32ss/drivers/displays/framebuf/ownership.c
+index 0eb8beb..3ffff47 100644
+--- a/win32ss/drivers/displays/framebuf/ownership.c
++++ b/win32ss/drivers/displays/framebuf/ownership.c
+@@ -258,3 +258,25 @@ VOID XwnEligibleSnapshot(PPDEV p,ULONG *out)
+  for(i=0;i<11;i++)out[4+i]=p->PrimaryStats[i];
+  EngReleaseSemaphore(XwnOwnerLock);
+ }
++
++BOOL XwnBandwidthReserve(PPDEV p,B361_CONTEXT*c)
++{
++ BOOL ok=FALSE;EngAcquireSemaphore(XwnOwnerLock);
++ if(p->Bandwidth.issued<B361_SLOTS){c->slot=p->Bandwidth.issued++;
++  c->record=p->Bandwidth.words[c->slot];c->active=1;ok=TRUE;}
++ EngReleaseSemaphore(XwnOwnerLock);return ok;
++}
++VOID XwnBandwidthPublish(PPDEV p,B361_CONTEXT*c)
++{
++ EngAcquireSemaphore(XwnOwnerLock);p->Bandwidth.published|=1u<<c->slot;
++ EngReleaseSemaphore(XwnOwnerLock);
++}
++VOID XwnBandwidthSnapshot(PPDEV p,ULONG*out)
++{
++ ULONG i;RtlZeroMemory(out,B361_BYTES);EngAcquireSemaphore(XwnOwnerLock);
++ out[0]=0x42575758;out[1]=361;out[2]=B361_BYTES;
++ out[3]=p->Bandwidth.issued;out[4]=p->Bandwidth.published;
++ for(i=0;i<B361_SLOTS;i++)if(p->Bandwidth.published&(1u<<i))
++  memcpy(out+16+i*B361_PACKET,p->Bandwidth.words[i],4*B361_PACKET);
++ EngReleaseSemaphore(XwnOwnerLock);
++}
+diff --git a/win32ss/drivers/displays/framebuf/shadow.c b/win32ss/drivers/displays/framebuf/shadow.c
+index 5f2273d..ca24c6c 100644
+--- a/win32ss/drivers/displays/framebuf/shadow.c
++++ b/win32ss/drivers/displays/framebuf/shadow.c
+@@ -1,6 +1,7 @@
+ /* RAM-primary prototype. GPL-2.0-or-later, as the containing framebuf driver. */
+ #include "framebuf.h"
+ #include "row_store.h"
++#include <pseh/pseh2.h>
+ static BOOL XwnRopUsesSource(ROP4 rop)
+ {
+  return ((rop ^ (rop >> 2)) & 0x3333) != 0;
+@@ -15,16 +16,22 @@ static SURFOBJ *XwnSub(PPDEV p, SURFOBJ *s)
+ }
+ static VOID XwnUploadBox(PPDEV p, const RECTL *r, XWT_COPY *account)
+ {
+- LONG y; ULONG bytes,fast=0,slow=0; LONGLONG begin;
++ LONG y; ULONG bytes,fast=0,slow=0; LONGLONG begin,finish; B361_CONTEXT bandwidth;
+  if (r->left>=r->right || r->top>=r->bottom) return;
+  bytes=(r->right-r->left)*4;
+- begin=XwnProfileStart();
++ XwnBandwidthBegin(p,r,&bandwidth);
++ begin=XwnProfileStart();finish=-1;
++ _SEH2_TRY {
+  for(y=r->top;y<r->bottom;y++) {
+   if(XwCopyRow((BYTE*)p->ScreenPtr+y*p->ScreenDelta+r->left*4,
+                (BYTE*)p->ShadowBits+y*p->ScreenDelta+r->left*4,bytes,XWN_UC_STORES))++fast;
+   else ++slow;
+  }
++ finish=XwnProfileStart();
++ } _SEH2_FINALLY {
+  XwnProfileEnd(p,2,begin);
++ XwnBandwidthEnd(p,&bandwidth,begin,finish);
++ } _SEH2_END;
+  XwnRowRecord(p,fast,slow,bytes);
+  if(p->ShadowUploads!=0xffffffff) ++p->ShadowUploads;
+  p->ShadowBytes+=(ULONGLONG)bytes*(r->bottom-r->top);

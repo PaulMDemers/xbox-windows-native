@@ -1,0 +1,3 @@
+#364 revised trigger, same measurement contract
+
+Exact361 child. Closed362 observed zero qualifying960x540 boxes despite completed logical operations. New version364 escape0x5857443d selects actual640x360 boxes; raw361 records remain failed. Actual copied bytes921600, row2560,360 rows. Private allocation/policy view stays2073600 bytes for unchanged354 collection geometry; unused scratch tail is required zero in addition to both64-byte guards. No new scanout writes. Four records, alternating order, independent clock/policy/source/guard checks unchanged. Same original workload/oracle; fresh365fixture required, no runtimeparent. All version/header/geometry gates explicitly revised for this new protocol only.

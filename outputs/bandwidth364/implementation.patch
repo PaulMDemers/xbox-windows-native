@@ -1,0 +1,76 @@
+diff --git a/win32ss/drivers/displays/framebuf/bandwidth.c b/win32ss/drivers/displays/framebuf/bandwidth.c
+index 6c8f6d3..9c216e3 100644
+--- a/win32ss/drivers/displays/framebuf/bandwidth.c
++++ b/win32ss/drivers/displays/framebuf/bandwidth.c
+@@ -53,14 +53,14 @@ VOID XwnBandwidthBegin(PPDEV p,const RECTL*r,B361_CONTEXT*c)
+  if(p->ScreenWidth!=1920||p->ScreenHeight!=1080||p->ScreenDelta!=7680||
+     p->BitsPerPixel!=32||!p->ShadowActive||!p->ShadowObject||
+     r->left<0||r->top<0||r->right>1920||r->bottom>1080||
+-    r->right-r->left!=960||r->bottom-r->top!=540)return;
++    r->right-r->left!=640||r->bottom-r->top!=360)return;
+  if(!XwnBandwidthReserve(p,c))return;
+- c->record[0]=361;c->record[1]=c->slot;c->record[3]=c->slot&1;
++ c->record[0]=364;c->record[1]=c->slot;c->record[3]=c->slot&1;
+  c->shadow=(ULONG_PTR)p->ShadowBits;c->screen=(ULONG_PTR)p->ScreenPtr;
+  c->pitch=p->ScreenDelta;c->offset=r->top*c->pitch+r->left*4;
+  c->record[4]=(ULONG_PTR)p;c->record[5]=c->shadow;c->record[6]=c->screen;
+  c->record[7]=c->offset;c->record[8]=c->pitch;
+- c->record[9]=B361_ROW;c->record[10]=B361_ROWS;c->record[11]=B361_LENGTH;
++ c->record[9]=B361_ROW;c->record[10]=B361_ROWS;c->record[11]=B361_ROW*B361_ROWS;
+  _SEH2_TRY {
+   c->allocation=EngAllocMem(FL_ZERO_MEMORY,B361_LENGTH+2*B361_GUARD,ALLOC_TAG);
+   if(!c->allocation)c->record[2]|=1;
+diff --git a/win32ss/drivers/displays/framebuf/bandwidth.h b/win32ss/drivers/displays/framebuf/bandwidth.h
+index 7abb601..b586c4b 100644
+--- a/win32ss/drivers/displays/framebuf/bandwidth.h
++++ b/win32ss/drivers/displays/framebuf/bandwidth.h
+@@ -3,9 +3,9 @@
+ #define XWN_BANDWIDTH361_H
+ #include <stdint.h>
+ #define B361_SLOTS 4u
+-#define B361_ROW 3840u
+-#define B361_ROWS 540u
+-#define B361_LENGTH (B361_ROW*B361_ROWS)
++#define B361_ROW 2560u
++#define B361_ROWS 360u
++#define B361_LENGTH 2073600u
+ #define B361_GUARD 64u
+ #define B361_META 64u
+ #define B361_PACKET (B361_META+2*16640u)
+@@ -26,7 +26,9 @@ static __inline unsigned b361_compare(const unsigned char *a,const volatile unsi
+ }
+ static __inline unsigned b361_guards(const unsigned char *p)
+ {
+- unsigned i,bad=0;for(i=0;i<B361_GUARD;i++) {
++ unsigned i,bad=0;
++ for(i=B361_ROW*B361_ROWS;i<B361_LENGTH;i++)if(p[B361_GUARD+i])++bad;
++ for(i=0;i<B361_GUARD;i++) {
+   if(p[i]!=(unsigned char)(i^0xa5))++bad;
+   if(p[B361_GUARD+B361_LENGTH+i]!=(unsigned char)(i^0x5a))++bad;
+  }return bad;
+diff --git a/win32ss/drivers/displays/framebuf/enable.c b/win32ss/drivers/displays/framebuf/enable.c
+index a56f7eb..a4d1e25 100644
+--- a/win32ss/drivers/displays/framebuf/enable.c
++++ b/win32ss/drivers/displays/framebuf/enable.c
+@@ -31,7 +31,7 @@ XwnDirectEscape(SURFOBJ *Surface, ULONG Escape, ULONG InBytes, PVOID In,
+    p = XwnOwner(Surface);
+    if (!p) return 0;
+    if (!p->ScreenPtr || !p->hSurfEng || !p->ShadowObject || !p->ShadowActive) return 0;
+-   if (Escape == 0x5857443c && OutBytes == B361_BYTES) {XwnBandwidthSnapshot(p,Out);return 1;}
++   if (Escape == 0x5857443d && OutBytes == B361_BYTES) {XwnBandwidthSnapshot(p,Out);return 1;}
+    if (Escape == 0x5857443b) return XwnMemoryState357(Surface,OutBytes,Out);
+    if (Escape == 0x5857443a) return XwnMemoryState354(Surface,OutBytes,Out);
+    if (Escape == 0x58574439 && OutBytes == sizeof(Data))
+diff --git a/win32ss/drivers/displays/framebuf/ownership.c b/win32ss/drivers/displays/framebuf/ownership.c
+index 3ffff47..2bac706 100644
+--- a/win32ss/drivers/displays/framebuf/ownership.c
++++ b/win32ss/drivers/displays/framebuf/ownership.c
+@@ -274,7 +274,7 @@ VOID XwnBandwidthPublish(PPDEV p,B361_CONTEXT*c)
+ VOID XwnBandwidthSnapshot(PPDEV p,ULONG*out)
+ {
+  ULONG i;RtlZeroMemory(out,B361_BYTES);EngAcquireSemaphore(XwnOwnerLock);
+- out[0]=0x42575758;out[1]=361;out[2]=B361_BYTES;
++ out[0]=0x42575758;out[1]=364;out[2]=B361_BYTES;
+  out[3]=p->Bandwidth.issued;out[4]=p->Bandwidth.published;
+  for(i=0;i<B361_SLOTS;i++)if(p->Bandwidth.published&(1u<<i))
+   memcpy(out+16+i*B361_PACKET,p->Bandwidth.words[i],4*B361_PACKET);

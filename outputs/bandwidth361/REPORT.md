@@ -1,0 +1,9 @@
+#361 diagnostic built and reviewed
+
+Exact357 parent -> tree 073e0990bd71a6fb55d17c4ed60831721490b5af. New DLL 6404b2e55388b5d75d1500f024981f2e3e4f69b7d8e106cbb599b696df60eb39; probe774e9fe36e37c8585c5185dd21d52e5659083021a84a908dc9af2011c6c575f3. The first four actual960x540 upload boxes receive paired diagnostic timings: private RAM row copy and the unchanged real scanout copy, alternating order. Two private-buffer/scanout policy captures per record,32 timer calibration pairs, bytewise source/output comparison and64-byte end guards. Diagnostic source never writes scanout. Native SEH finally releases scratch if the original upload unwinds.
+
+Host002 ASan/UBSan passed 2425 checks, 137 allocations/frees, including all128 guard-byte corruptions, changed source/output, allocation/map/timer refusal and backwards/large timestamps. Actual adapter/copy/verification code compiled; GDI/CPU/PTE/clock/SEH and publication are modeled. Transport001 rejected111 synthetic envelope/mapping mutations. These are not guest bandwidth measurements.
+
+Native import providers/forwarded RtlUnwind, resident sites and no cache-register writes reviewed; inherited warning messages only. Reversing only the hooks reproduces the original upload source and unchanged copy helpers. Private clone canonicalized inherited memory_warm.c CRLF to LF; strict source-review001 failed, its checker/result are preserved, and source-review.json records explicit byte hashes and newline-only equality. Host001 precompile indentation warning is also preserved. No shared build/SDK source modified.
+
+Runtime results belong separately to362; physical results only to a subsequently qualified363. Instrumentation adds memory allocation, copying, reads and cache warming: no ordinary desktop FPS or speedup claim. No cache policy, GPU ownership, SIMD or alias changes. No relaxation of existing event/integrity gates.

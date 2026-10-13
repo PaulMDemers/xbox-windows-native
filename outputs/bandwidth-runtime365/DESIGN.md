@@ -1,0 +1,1 @@
+Fresh365 no-debugger emulator validation, actual640x360 paired-copy records. Never executed339 seed, exact reviewed364build002, original drawing/audio/persistence gates unchanged. Prior362 zero-coverage failure retained. Ports5236/5237/5238, new owned fixture, no hardware access. Complete four records and independent paired full-shadow identity join required beforephysical366.
