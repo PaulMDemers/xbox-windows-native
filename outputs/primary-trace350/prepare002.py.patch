@@ -1,0 +1,41 @@
+--- 349/prepare002.py
++++ 350/prepare002.py
+@@ -4,9 +4,9 @@
+ 
+ from pathlib import Path
+ 
+-K=Path(__file__).resolve().parent;W=K.parents[1];case=sys.argv[1];assert case in ['control001','candidate001'] and os.environ.get('XWN_BUILD_LEASE')=='held'
++K=Path(__file__).resolve().parent;W=K.parents[1];case=sys.argv[1];assert case=='candidate001' and os.environ.get('XWN_BUILD_LEASE')=='held'
+ 
+-out=K/case;P=Path('/mnt/e/xwn349')/case;assert not out.exists() and not P.exists()
++out=K/case;P=Path('/mnt/e/xwn350')/case;assert not out.exists() and not P.exists()
+ 
+ sys.path.insert(0,str(K.parent/'video-text-oracle206'));from common import ColdIO,m,sha,STARTUP
+ 
+@@ -28,7 +28,7 @@
+ 
+ assert shutil.disk_usage('/mnt/e').free-reserve>=20*1024**3,'Projected allocated extents plus512MiB metadata/new payload reserve'
+ 
+-rawroot=Path('/home/paul/xbox-windows-native/build/primary349-staging002-'+case)
++rawroot=Path('/home/paul/xbox-windows-native/build/primary350-staging002-'+case)
+ 
+ assert not rawroot.exists()
+ 
+@@ -38,7 +38,7 @@
+ 
+ rawroot.mkdir(parents=True)
+ 
+-out.mkdir();(out/'artifacts').mkdir();P.mkdir(parents=True);raw=rawroot/'staging.raw';target=P/'source.qcow2';ns='xwnprimary349'
++out.mkdir();(out/'artifacts').mkdir();P.mkdir(parents=True);raw=rawroot/'staging.raw';target=P/'source.qcow2';ns='xwnprimary350'
+ 
+ r=dict(prepared=False,physical_access=False,parent=str(parent),parent_sha256=sha(parent),registry_edited=False,trace_reseeded=False,changes=[],same_never_executed_parent=True,projected_reserve_bytes=reserve,parent_data_bytes=data_bytes,raw_staging_space=rawspace,raw_staging_root=str(rawroot))
+ 
+@@ -70,7 +70,7 @@
+ 
+         before=wr.read(STARTUP);assert before==b'@echo off\r\nC:\\xwnstock339\\runner.exe /emulator\r\nexit\r\n'
+ 
+-        after=b'@echo off\r\nC:\\xwnprimary349\\runner.exe /emulator\r\nexit\r\n';m.replace(wr,STARTUP,after);wr.flush();fp.flush()
++        after=b'@echo off\r\nC:\\xwnprimary350\\runner.exe /emulator\r\nexit\r\n';m.replace(wr,STARTUP,after);wr.flush();fp.flush()
+ 
+         r['startup']=dict(before_sha256=m.sha(before),after_sha256=m.sha(after))
+ 

@@ -1,0 +1,20 @@
+--- 349/Invoke.ps1
++++ 350/Invoke.ps1
+@@ -50,7 +50,7 @@
+ if ($LaunchXromwell -and -not $FtpPort) { throw 'LaunchXromwell needs the private FTP forward.' }
+ $workspace = Split-Path -Parent (Split-Path -Parent $DiagnosticRoot)
+ if ($workspace -ne [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))) { throw 'Workspace root mismatch' }
+-$run = Join-Path "E:/xwn349/runs" $RunId
++$run = Join-Path "E:/xwn350/runs" $RunId
+ $captureComplete = Join-Path $run 'capture-complete.signal'
+ if (Test-Path -LiteralPath $run) { throw 'Choose an unused run id.' }
+ $integration = 'C:\Users\Paul\Desktop\ogxbox-linux\scripts'
+@@ -108,7 +108,7 @@
+         if ($TraceDiskWrites) { $vmArguments += @('-trace','enable=ide_sector_write','-trace','enable=blk_co_pwritev') }
+         if ($FtpPort) { $vmArguments += @('-nic',"user,id=xemu-netdev,model=nvnet,restrict=on,hostfwd=tcp:127.0.0.1:${FtpPort}-:21") }
+         if ($TracePackets) { $vmArguments += @('-object',"filter-dump,id=xwn-pcap,netdev=xemu-netdev,file=$(Join-Path $run 'nvnet.pcap')") }
+-        $vm = & (Join-Path $integration 'start_xemu_instance.ps1') -TaskId $InstanceTask -XemuPath $xemu -ConfigPath $config -RunDirectory $run -InstanceRoot 'E:/xwn349/instances' -ScratchRoot 'E:/xwn349/scratch' -ArgumentList $vmArguments
++        $vm = & (Join-Path $integration 'start_xemu_instance.ps1') -TaskId $InstanceTask -XemuPath $xemu -ConfigPath $config -RunDirectory $run -InstanceRoot 'E:/xwn350/instances' -ScratchRoot 'E:/xwn350/scratch' -ArgumentList $vmArguments
+         if ($CaptureAudio) {
+             $captureFile = (Join-Path $run 'ac97-output.wav').Replace('\','/')
+             & python (Join-Path (Join-Path $DiagnosticRoot ../native-windows-prebuild) 'monitor_capture.py') --port $MonitorPort --command "wavcapture `"$captureFile`" `"#default`" 48000 16 2"
