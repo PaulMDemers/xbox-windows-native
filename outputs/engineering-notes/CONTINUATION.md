@@ -1,3 +1,36 @@
+# Demo378 active for user; host experiments closed
+
+Read demo-bundle379/REPORT.md, demo-physical378/REPORT.md, demo-runtime377/REPORT.md,
+resolution-e374/REPORT.md and docs/DEMO.md. Single physical launch accepted
+2026-10-13T22:23:18.637673Z. NO timed shutdown/observer. User visual outline answer
+pending. Do not relaunch. On normal return use378 collect.py ONCE (NOT old
+physical.py collect, which incorrectly includes old startup in protected check).
+After cold collection inspect private E:/xwn378/physical001/after-ntuser.dat for
+DragFullWindows; user may intentionally switch full, report actual state.
+58 baseline files captured, addon/startup readback verified, current1080i drivers
+unchanged. DashboardC remains prohibitedALLaccess; E/F only, originalFrollback
+preserved, rootdemo251 exclusive, keyboardalwaysunplugged throughboot.
+
+373failedsettings parser CLOSED: trailingcmdwhitespace printedusage, no workload;
+manualnormalrestart, cleanintegrity, strictFALSE. Neverrelaunch/recollect/parent.
+376fix parser12ASan/UBSan tests andNT5importsPASS, SHA7ff648f3...; namespace372stable.
+377singlefresh720p+settings launch22:16:23->22:21:52 automaticreturn, combinedscoped
+PASS,1280x720x32@60,5GDI samples/sixaudio phases,HKCU REG_SZ0,normalshutdown1,
+orderlyexit0;341dirs6813files358clusters0errors/orphans5hives/protected. StrictFt49
+retained.191frozeninputs unchanged. Nophysical720p/speedupclaim. Runner77679,
+supervisor51671,audit28788 CLOSED.373runner58565/supervisor4189/audit83238 CLOSED.
+374newE720 Cromwellonlypathpatch compiled/staticPASS6240a801..., sourcesisolated.
+Selector10hosttests/read-onlyphysical1080 inspectionPASS, noresolutionwrite.
+379archives private/readbackverified; system001 is343reconstruction+addon, notfresh
+capture/restoretest. Historyscan22951blobs preservesprivate; no public/tagchange.
+
+User authorized separate driver tasks: GPU01a13744-3818-71d3-9833-8e874ef544c0,
+framebuffer01a13744-3f9e-7463-a179-7a54df12395f. Initialhandoffscompleted, nohardware
+access/merge. See379driver-threads.json; source roots outside main checkout.
+Oldaudio/PCI/USBprototypes remainunpromoted. Automationpaused. No goal created.
+
+# Historical continuation below
+
 # Stretch371 CLOSED: no upload reduction; do not deploy369
 
 Read stretch-runtime371 REPORT/NEXT/pair-review/final-review/AUDIT-DEPENDENCY. Control21:20:15->21:26:06UTC, candidate21:33:09->21:38:48UTC October13. Both five samples/960 actualStretchBltROP calls, exact pixels/source/scanout/priorgraphics/audio, normalshutdown1/orderlyexit0, cold341dirs6809files358clusters0errors/orphans5hives/protected/policy/history PASS. BothstrictFALSE soleFt49. All12cases/all5samples already minimumbytes:131072/73728/49152per16calls byclip, sameOFF/ON. No real byte savings or physicalspeedgain.369candidateNOTpromoted; nohardwaretestqueued. PhysicalnormalE/original303/Frollback/Cprohibition/tags unchanged; automationpaused.

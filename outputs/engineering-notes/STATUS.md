@@ -1,3 +1,24 @@
+# Integrated demo ready; physical outline observation pending
+
+October13 demo378 launched once at22:23:18 UTC and stays at the Windows desktop.
+Current physical E1080i/display303/audio004/FATX0101 unchanged. One-time outline
+preference and reversible controls are in C:\xwndemo372. User feedback and normal
+restart/readback are pending; no automatic observer or repeated launch.
+
+New377 emulator scoped PASS: corrected settings persist REG_SZ0; actual720p,
+combined graphics/audio, normal shutdown and clean cold allocation/hives/protected
+files. StrictFALSE soleFt49. Initial373 parser failure retained. E720p physical
+qualification remains pending. E-specific inspect/apply/restore selector ready;
+oldF selector must not targetE.
+
+Private379 preview and reconstructed E-system bundles readback-verified; see
+REPORT.md/package001.json/system001.json. No new tag/public upload. Docs now cover
+demo, display, recovery, builds and public-export gates. Source/license/full-build
+and disposable installer qualification remain before public release. Other driver
+approaches are isolated threads; no unqualified prototype merged.
+
+# Historical status below
+
 # Stretch optimization tested: no benefit, baseline unchanged
 
 October13 matched emulator371 runs passed scoped graphics/audio/shutdown/integrity checks but uploaded identical minimum pixel bytes across960 actual stretch callbacks per build. Do not deploy369 as an improvement. StrictFtdisk49 remains, no event waiver. Both runs and all owned processes are closed; original physical303/normalEstartup/Frollback remain, Xbox C untouched. See stretch-runtime371/REPORT.md and NEXT.md.

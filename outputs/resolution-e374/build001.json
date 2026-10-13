@@ -1,0 +1,58 @@
+{
+  "status": "compiled",
+  "parent": "/home/paul/xbox-windows-native/build/hd-loader311-build001/source",
+  "parent_tree": "0c91ebed7809d186f328c0b8cc30f612df0cfc7d",
+  "tree": "0a1b542e92c8697422892c9cfaed633a5aed0de7",
+  "change": "Only two XWNFBoot strings become XWNEBoot",
+  "space": {
+    "minimum_free_gib": 20,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/home/paul/xbox-windows-native/build",
+        "free_bytes": 920540098560
+      },
+      {
+        "free_bytes": 62521581568,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "flags": "-DXWN_PHYSICAL_PREFLIGHT -DXWN_HD_RESERVATION=1 -DXWN_HD_TIMING_720P=1",
+  "command": [
+    "make",
+    "all",
+    "CC=/usr/bin/x86_64-linux-gnu-gcc-12",
+    "GITREV=9fc54d0-xwn-eboot",
+    "EXTRA_CROM_CFLAGS=-DXWN_PHYSICAL_PREFLIGHT -DXWN_HD_RESERVATION=1 -DXWN_HD_TIMING_720P=1",
+    "LDFLAGS-ROM=-s -S -T /home/paul/xbox-windows-native/build/resolution-e374-build001/source/scripts/ldscript-crom.ld -Map=/mnt/e/xwn374/build001/image-crom.map"
+  ],
+  "gcc12_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "physical_access": false,
+  "guest_launch": false,
+  "started_utc": "2026-10-13T22:12:47.356871+00:00",
+  "outputs": {
+    "cromwell.log": {
+      "bytes": 249959,
+      "sha256": "52c256c17db8c1ef9f735bbd7fd79fb7aa408b4f2cdb14bddb2ad604471b6f58"
+    },
+    "image-crom.map": {
+      "bytes": 256258,
+      "sha256": "fcf5aec3505d0177f0725931d85e6108c716b355eee7eb0a69bf6941b9eb41f2"
+    },
+    "default.xbe": {
+      "bytes": 300624,
+      "sha256": "6240a801d97c4894e56d516a934059da056446fb77cf895b5364bdd6cd24be9a"
+    },
+    "image-crom.elf": {
+      "bytes": 324052,
+      "sha256": "f64c05c1c07797945244b4a8db7fe79256db3a8f0fefac48cc8508b966cc2f0d"
+    },
+    "image-crom.bin": {
+      "bytes": 288316,
+      "sha256": "49f1332526c4155bd16bc2d16d138d7cb67f8498c80bc19ad0b64cd4ab671301"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+--- a/boot/BootResetAction.c
++++ b/boot/BootResetAction.c
+@@ -225,8 +225,8 @@
+         entry.bootType = BOOT_FATX;
+         entry.bootSystem = SYS_REACTOS;
+         strcpy(entry.title, "XWN loader diagnostic");
+-        strcpy(entry.szPath, "/Applications/XWNFBoot/freeldr.sys");
+-        printk("XWN: loading isolated E:/Applications/XWNFBoot/freeldr.sys\n");
++        strcpy(entry.szPath, "/Applications/XWNEBoot/freeldr.sys");
++        printk("XWN: loading isolated E:/Applications/XWNEBoot/freeldr.sys\n");
+         BootFromDevice(&entry);
+         printk("XWN: loader failed. No fallback boot. Reboot to dashboard.\n");
+         __asm__ __volatile__("cli");
