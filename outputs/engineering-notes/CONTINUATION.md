@@ -1,3 +1,7 @@
+# 0.2.0 private release push confirmed
+
+Private remote main d8086050 and annotated v0.2.0 were verified after atomic push; tag resolves to25b41b7e. Source/history and both binary packages are complete, hashes/readback verified. Repository check30972files passed;14releasefiles exact inindex. See release-0.2.0/push-receipt.json and USAGE.md. All build/test sessions closed; no physical access or deployment; baseline restored, automation paused. Packaging/tagging work is complete. Future work is a plan, not an active test.
+
 # 0.2.0 private experimental HD release tagged and archived
 
 v0.2.0 is immutable at25b41b7ea47850cab21c649d9661ffd18497348e (tag object7dccac7060ed682cf4647ed955599c422528dd6f). User confirmed normal-looking1080 output; observation is separately recorded without editing324/325 frozen verdicts. Private overlay and combined recovery/demo archives are complete and readback-verified. Tagged source archive30965blobs exact; complete-history Git bundle verified for0.2.0/0.1.0. See outputs/release-0.2.0/README.md,USAGE.md,bundle.json,source-evidence-bundles.json,REPORT.md andcloseout.json. Artifacts atD:/Codex-archive/xbox-windows-native/0.2.0. Archive helpers001/002 failed before archive creation;003 completed, all originals preserved, tag never moved. Push is a separate final closeout step.
