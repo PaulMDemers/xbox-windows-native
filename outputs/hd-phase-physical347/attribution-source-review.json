@@ -1,0 +1,17 @@
+{
+  "read_only_review": true,
+  "driver_source_changed": false,
+  "source_tree": "e48e031228a0d6d483c7ac8273c40a34b75644e7",
+  "findings": [
+    "shadow.c lines16-31 count and time each nonempty upload rectangle and perform one row copy per row.",
+    "shadow.c lines33-68 intersect operation/clip/screen bounds; complex clips enumerate rectangles; fallback copies a complete bounded rectangle.",
+    "shadow.c lines69-73 wrapper timing contains those row-copy bodies. EngBitBlt and EngCopyBits timing ends before XwnUpload.",
+    "row_store.h disabled path calls the original memmove. Prior physical209 scalar unroll showed no speed benefit; UC stores remain OFF.",
+    "Historical211 movement accounting had explicit bounded uploads and no fallback; it did not prove a remaining bounds defect."
+  ],
+  "limits": "Source structure and older results, not a new bottleneck or optimization claim. Await actual347 enabled timings; no new driver patch or cache/GPU change.",
+  "historical_sources": {
+    "outputs/video-scalar-runtime209/REPORT.md": "11627dd80ade131521a5f0fb868bf6bfb68dc5e2b795d588d6f1c015f40f9fa6",
+    "outputs/video-upload-runtime211/REPORT.md": "cb6e10fc3a597eb60f78c678cf6e203a2655d549d9e72eb4a94604ad82ec9ac2"
+  }
+}

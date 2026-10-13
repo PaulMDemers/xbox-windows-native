@@ -1,0 +1,50 @@
+--- 342/audit.py
++++ 347/audit.py
+@@ -3,12 +3,12 @@
+ sys.dont_write_bytecode=True
+ sys.path.insert(0,'/home/paul/xbox-windows-native/toolchains/offline-disk/root/usr/lib/python3/dist-packages')
+ import hivex
+-k=pathlib.Path(__file__).resolve().parent;repo=k.parents[1];case=sys.argv[1];assert case in ['physical001']
+-out=k/case;art=k/'artifacts'/case;dest=out/'audit.json';assert not dest.exists()
++k=pathlib.Path(__file__).resolve().parent;repo=k.parents[1];case=sys.argv[1];assert case in ['control001','candidate001']
++mode=int(case=='candidate001');out=k/case;art=k/'artifacts'/case;dest=out/'audit.json';assert not dest.exists()
+ read=lambda p:json.loads(p.read_text());sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+ collection=read(out/'collection.json');assert collection['completed']
+-prior=k/'artifacts'/'before001'
+-remote='xwnstock342'
++prior=k/'artifacts'/(case+'-before')
++remote='xwnphase347'+case
+ r=dict(case=case,physical_result=True,audibility_observed=False,physical_audio_qualified=False,hives=[],logs={},new_events={},offline_registry_edits='Four MountedDevices values only in new E copy, before this run; normal startup temporarily replaced')
+ for path,row in collection['files'].items():
+     if row is not None:assert sha(art/path.lstrip('/'))==row['sha256'],'Collected bytes changed: '+path
+@@ -67,10 +67,15 @@
+ r['setup_gate_passed']=r['boundary_analysis']['idle_branch_passed']
+ texts=[None if blob('sample%d/gdi-baseline.txt'%i) is None else blob('sample%d/gdi-baseline.txt'%i).decode('ascii') for i in range(5)]
+ r['samples']=[analyze(v) for v in texts];r['dib_samples']=[dib(v,0) for v in texts]
+-r['phase_samples']=[timing(v,0) for v in texts];r['window_samples']=[window(v,0) for v in texts];r['text_samples']=[text_analysis(v,1) for v in texts]
++r['phase_samples']=[timing(v,mode) for v in texts];r['window_samples']=[window(v,mode) for v in texts];r['text_samples']=[text_analysis(v,1) for v in texts]
+ r['actual_caps']=r['samples'][0]['actual_caps'];r['actual_modes']=r['samples'][0]['actual_modes']
+ r['caps_consistent']=all(v['actual_caps']==r['actual_caps'] and v['actual_modes']==r['actual_modes'] for v in r['samples'])
+ r['display_workload_passed']=r['caps_consistent'] and all(v['probe_passed'] and v['copy_checks_passed'] and v['loop_coverage'] and v['counters_passed'] for v in r['samples']) and all(v['passed'] for group in ['dib_samples','phase_samples','window_samples','text_samples'] for v in r[group])
++sys.path.insert(0,str(repo/'outputs/hd-phase344'))
++from phase_analysis import analyze as large_phase
++r['large_phase_samples']=[large_phase(v,mode) for v in texts]
++r['display_workload_passed'] &= all(v['passed'] for v in r['large_phase_samples'])
++r['tested_driver_verified']=collection['tested_driver_verified'] and collection['driver_restored']
+ r['checkpoint_history_preserved']=all(v is not None and v.startswith((prior/'E/winnt/setupapi.log').read_bytes()) and (art/'E/winnt/setupapi.log').read_bytes().startswith(v) for v in snapshots)
+ r['warnings_errors']=[v for group in r['new_events'].values() for v in group if v['type'] in [1,2]]
+ r['strict_events_passed']=not r['warnings_errors'] and not r['new_events']['application']
+@@ -110,10 +115,12 @@
+ r['shared_acquire_success']=bool(acquires) and dropped==0 and all(v[1]==0 and v[2]>=0x80000000 and v[2]%4096==0 and v[3]>0 for v in acquires) and all(v[1]==0 for v in r['shared_events'])
+ fields=['audio_probe_passed','audio_state_passed','audio_children_joined','setup_gate_passed','display_workload_passed','checkpoint_history_preserved','combined_interval_passed','integrity_passed','dashboard_return','shared_acquire_success','installed_binary_matches','installed_inf_matches']
+ r['mode1080i_passed']=all(v.get('identity',[None]*7)[2:7]==[1920,1080,7680,32,8294400] for v in r['samples'])
+-fields+=['mode1080i_passed']
++fields+=['mode1080i_passed','tested_driver_verified']
+ r['scoped_combined_passed']=all(r[n] for n in fields) and r['installed_binding']['passed'] and r['normal_shutdown_count']==1 and not r['new_events']['application'] and not any(v['source']=='Application Popup' for v in r['new_events']['system'])
+ r['strict_qualification_passed']=r['scoped_combined_passed'] and r['strict_events_passed']
+ r['release_qualified']=False
++r['diagnostic_workload_completed']=all(r[n] for n in fields if n!='combined_interval_passed') and r['installed_binding']['passed'] and r['normal_shutdown_count']==1 and not r['new_events']['application'] and not any(v['source']=='Application Popup' for v in r['new_events']['system'])
++r['performance_qualified']=False
+ r['limits']='Physical combined workload and cold integrity scope; no inferred audibility, stereo routing, desktop FPS, GPU acceleration, 1080i or strict release claim. Whole-boot Ftdisk49 remains failure. Normal startup restored first. Installed E HD chain retained for diagnosis; original F Windows and loader untouched. Trace may be historical; this is not full disk-content or crash-dump qualification.'
+ dest.write_text(json.dumps(r,indent=2)+'\n')
+ print(json.dumps({n:r[n] for n in ['scoped_combined_passed','strict_qualification_passed',*fields]},indent=2))

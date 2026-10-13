@@ -1,0 +1,13 @@
+--- 342/typed-state001.py
++++ 347/typed-state001.py
+@@ -4,8 +4,8 @@
+ sys.path.insert(0,'/home/paul/xbox-windows-native/toolchains/offline-disk/root/usr/lib/python3/dist-packages');import hivex
+ k=Path(__file__).resolve().parent;ws=k.parents[1]
+ read=lambda p:json.loads(p.read_text());sha=lambda b:hashlib.sha256(b).hexdigest()
+-case=sys.argv[1];assert case in ['physical001'];out=k/case;dest=out/'device-state.json';assert not dest.exists()
+-roots={'before':k/'artifacts'/'before001','after':k/'artifacts'/case}
++case=sys.argv[1];assert case in ['control001','candidate001'];out=k/case;dest=out/'device-state.json';assert not dest.exists()
++roots={'before':k/'artifacts'/(case+'-before'),'after':k/'artifacts'/case}
+ p={phase:{'system':dict(path=str((root/'E/winnt/system32/config/system').relative_to(ws)),sha256=sha((root/'E/winnt/system32/config/system').read_bytes()))} for phase,root in roots.items()}
+ 
+ def snapshot(row):
