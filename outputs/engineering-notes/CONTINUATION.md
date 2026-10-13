@@ -1,3 +1,14 @@
+#365/367 CLOSED; physical368 frozen, NOT launched
+
+Read bandwidth-runtime365REPORT/final-review/candidate001audit/joined-review andcache-context367REPORT/DESIGN/tests001/analysis001. ALLownedemu/buildprocessesclosed:365runner91358/super32480/audit98926,367tests47365.365bandwidthPASS fouractual640x360pairs/921600bytes, source/scanout/guards/unusedtail/two1014rowpolicycaps, fourrecordsidentical5probes;16actualidentitymutationsreject. Original365scopedFALSE firstcoldpartial2rowsCR00x80010031->0x8001003b, warmcomplete4050. Originalaudit/finalneveredited. Othergraphics/audio/fullcold341dirs6834files358clusters0errors/5hives/normalshutdown1/orderlyexit0PASS; strictFt49.
+
+367HOSTONLY explicitcrosscapture memory-policycomparison excludesONLYCR0MP/TS mask0xA, documentedIntel253668-021section2.5. Allotherbits/CPUfields andfullwithincaptureequality/errorgates unchanged. Rawcoldresidency staysincomplete; writer/schedulerpathnotattributed.5positive2596negativecontrols, all10pairssupplementalPASS, original365FALSE, strictFt49FALSE. No cache/driver/hardwarewrite inanalysis. No physicalperformanceinference.
+
+368freshphysicalsame364build002 (version364escape3d) andprobe, original201helper;438frozeninputs+23pathtests. Nevercaptured/scanned/launchedyet.363/366preparedbutNEVERhardwareaccess;preserve. Needpublishnew365/367/368evidence first then368capture/beforeEread-onlyscan/ONCElaunch/observe/collectSTARTUPFIRST+originalDLL/afterEscan/audit/finalstate/closeout. New prerequisite explicitly367supplemental plusoriginal365audit/hash/closure andidentity proof, nohistoricalgate rewrite. CurrentnormalEstartup/original303DLLb23b94ac.../Frollback/tags unchanged. ConsoleCprohibitedALLaccess,E/Fonly;keyboardalwaysunplugged/rootdemo251exclusive/automationpaused.
+
+Publishedcfb82c28 source/362failedcoverage; new365/367/368pendingcommit/push.362/365closedruntimesneverrelaunch/recollect/parent;364build001Gitdepthfailure/002flattenedNEWcheckoutonly retained. No newfunctionalcopy/cache/SIMD/GPUchange.20GiBguardunchanged, nobackingmoves.
+
+# Historical continuation below
 #364 compiled;365 emulator ACTIVE;362 closed failed coverage;366 prepared only
 
 Read bandwidth361/364REPORT/DESIGN/source-review/builds, bandwidth-runtime362REPORT/final-review.362 CLOSED20:28:41UTC: graphics/audio/memory/fullcold341dirs6834files358clusters0errors/5hives/normalshutdown1/orderlyexit0passed, NEWbandwidthFAILED allfivepacketsissued0/published0 because960x540logical requestsfragmented. Neverrerun/recollect/parent362; strictFt49retained.363preparedONLY,neverfrozen/accessedconsole.

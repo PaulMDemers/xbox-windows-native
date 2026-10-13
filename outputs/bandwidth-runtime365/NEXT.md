@@ -1,0 +1,1 @@
+365closed. Originalfailedmemorygate unchanged; separate367analysis provides documented scopedmemorypolicy proof. Physical368same364binary queued onlyafterfreeze/publication, preserve366unlaunched. No emulator timing hardware inference.
