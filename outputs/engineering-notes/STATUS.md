@@ -1,3 +1,13 @@
+# Physical E boot complete; normal startup restored
+
+New E installation booted at1920x1080 and passed five drawing samples, six audio API phases, normal shutdown, persisted drive binding and integrity checks. After-scan:616dirs7565files633clusters, zero errors/orphans. E has2,073,346,048 free bytes. Original F rollback and all E/F protected/hive checks pass; Xbox C untouched by tools. No active process or queued hardware test remains.
+
+Overall combined/strict results remainFALSE: the existing Srv2013 warning still refers to dashboard C (Windows F), plus Ftdisk49. No gate or event was suppressed. Read stock-boot342/USAGE.md for E launcher versus unchanged root-menu F rollback. Next: repeatable E-target packaging and continued1080 software drawing work; no release retag or speedup claim.
+
+# E installation verified; physical Windows test active
+
+340 completed all6566 files with readback, zero overwritten files and unchanged F rollback hashes/hives.341 before allocation scan passed610dirs7548files627clusters with zero errors/orphans. One3421080i/audio/drawing Windows boot accepted06:38UTC; observer56264 active. Test Startup is temporary: restore normal E startup first on return, then collect and run the distinct after-scan/audit. No Xbox C access or deletion. See CONTINUATION and actual records; never relaunch this test.
+
 # E installation continuation active; Windows test not launched
 
 Original340 upload closed after4859 verified files with an FTP PASV502 refusal. Its last intended file and launcher were absent on fresh inspection. One owned resume002/session35831 rereads existing files before creating the remainder; no overwrite/delete or Xbox C access. F rollback unchanged. Normal E startup remains.

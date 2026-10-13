@@ -25,6 +25,13 @@ See [current status](outputs/engineering-notes/STATUS.md) for the actual install
 console state and ongoing performance measurements. Release availability does
 not imply that an HD profile is currently installed on the console.
 
+The separate [standard-E installation preview](outputs/stock-boot342/USAGE.md)
+now has a physical 1080i boot, drawing/audio and integrity result, plus separate
+stock10GB/no-F emulator first/repeat-boot evidence. Its normal startup is
+restored, the original F installation remains the rollback, and dashboard C
+was left untouched. The event gates still fail on the dashboard-C capacity
+warning and Ftdisk49. This preview does not change the immutable 0.2.0 release.
+
 ## Historical 0.1.0 milestone and subsequent development
 
 For post-release installed state and remaining work, see the

@@ -1,0 +1,50 @@
+{
+  "physical_access": false,
+  "scoped_passed": false,
+  "strict_passed": false,
+  "interval_event": {
+    "offset": 66432,
+    "record": 400,
+    "generated_unix": 1791888211,
+    "written_unix": 1791888211,
+    "event_id_hex": "800007dd",
+    "event_id": 2013,
+    "type": 2,
+    "source": "Srv",
+    "computer": "XWN-PC",
+    "strings": [
+      "\\Device\\LanmanServer",
+      "F:"
+    ],
+    "data_hex": "000000000200480000000000dd070080000000000000000000000000000000000000000000000000"
+  },
+  "current_and_before_F_mapping": [
+    {
+      "phase": "before001",
+      "system_sha256": "1fd47f2de4ca1aa8c9a285321ce81e285c4a417aff5de136c9812c8359b12a44",
+      "value": "55aa00000000a88c00000000",
+      "partition_byte_offset": 2359820288
+    },
+    {
+      "phase": "physical001",
+      "system_sha256": "c212d3f28384b0d5a40b4220ef7b721af1259f032737a090ca6d8955590058d9",
+      "value": "55aa00000000a88c00000000",
+      "partition_byte_offset": 2359820288
+    }
+  ],
+  "historical_message_resource": {
+    "scope": "Resolve one observed Srv event using the owned NT5 message resource.",
+    "file_sha256": "4ac66e425fc76fa7e3602055d51c148e945d2cfb835fb861475608c057f55587",
+    "event_id_hex": "800007dd",
+    "messages": [
+      {
+        "language": 1033,
+        "flags": 1,
+        "message": "The %2 disk is at or near capacity.  You may need to delete some files.\r\n"
+      }
+    ],
+    "limits": "Message meaning only; does not establish actual physical free space or a cause. No alert suppression or threshold change."
+  },
+  "mapping_interpretation": "Windows F: remains dashboard C: at byte offset2359820288. New Windows C: is dashboard E, Windows D: is dashboard F.",
+  "limits": "No dashboard C access, capacity query, cleanup, policy change or event suppression. The message is a low-space warning; current C free space and its cause remain unmeasured. Ftdisk49 on new HarddiskVolume1 also remains a strict failure. Moving Windows to E did not resolve the warning. No gate changed."
+}
