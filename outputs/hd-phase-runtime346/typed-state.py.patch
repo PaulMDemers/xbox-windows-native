@@ -1,0 +1,11 @@
+--- 339/typed-state.py
++++ 346/typed-state.py
+@@ -4,7 +4,7 @@
+ sys.path.insert(0,'/home/paul/xbox-windows-native/toolchains/offline-disk/root/usr/lib/python3/dist-packages');import hivex
+ k=Path(__file__).resolve().parent;ws=k.parents[1]
+ read=lambda p:json.loads(p.read_text());sha=lambda b:hashlib.sha256(b).hexdigest()
+-case=sys.argv[1];assert case in ['emu001'];out=k/case;dest=out/'device-state.json';assert not dest.exists()
++case=sys.argv[1];assert case in ['control001','candidate001'];out=k/case;dest=out/'device-state.json';assert not dest.exists()
+ p={phase:{'system':dict(path=str((out/'artifacts'/(phase+'-system')).relative_to(ws)),sha256=sha((out/'artifacts'/(phase+'-system')).read_bytes()))} for phase in ['before','after']}
+ def snapshot(row):
+     path=ws/row['path'];data=path.read_bytes();assert sha(data)==row['sha256']

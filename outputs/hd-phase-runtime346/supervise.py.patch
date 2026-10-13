@@ -1,0 +1,34 @@
+--- 339/supervise002.py
++++ 346/supervise.py
+@@ -1,11 +1,11 @@
+ """One ordinary launch; dashboard return or bounded owned host closure, no relaunch."""
+ import datetime,ftplib,json,os,subprocess,sys,time
+ from pathlib import Path
+-k=Path(__file__).resolve().parent;ws=k.parents[1];case=sys.argv[1];assert case in ['emu001'];out=k/case;run=Path('E:/xwn336/runs/nt5-stock339-'+case)
++k=Path(__file__).resolve().parent;ws=k.parents[1];case=sys.argv[1];assert case in ['control001','candidate001'];out=k/case;run=Path('E:/xwn346/runs/nt5-phase346-'+case)
+ sys.path.insert(0,str(k.parent/'gpu-reset-banner152'));from ftp_deadline import DeadlineFTP
+ sys.path.insert(0,str(k.parent/'surface-bridge260'));from atomic_json import write_json
+ dest=out/'launch.json';assert not dest.exists() and (run/'instance.json').exists() and not (run/'cleanup.json').exists()
+-r=dict(run=run.name,host='127.0.0.1',port=5128,debugger=False,physical_access=False,cycles=[])
++r=dict(run=run.name,host='127.0.0.1',port=5168,debugger=False,physical_access=False,cycles=[])
+ # Recover only the documented local fixture defaults; never read console config.
+ import ast
+ tree=ast.parse((k.parent/'native-windows-prebuild/launch_unleashx.py').read_text())
+@@ -17,7 +17,7 @@
+     write_json(dest,r)
+ def connect(deadline):
+     f=DeadlineFTP(min(deadline,time.monotonic()+6))
+-    try:f.connect('127.0.0.1',5128,timeout=f.budget());f.login(os.environ['XWN_EMULATOR_FTP_USER'],os.environ['XWN_EMULATOR_FTP_PASSWORD']);return f
++    try:f.connect('127.0.0.1',5168,timeout=f.budget());f.login(os.environ['XWN_EMULATOR_FTP_USER'],os.environ['XWN_EMULATOR_FTP_PASSWORD']);return f
+     except Exception:f.close();raise
+ deadline=time.monotonic()+60
+ while True:
+@@ -34,7 +34,7 @@
+     save()
+ finally:f.close()
+ print('One joined-helper audio207 launch; never relaunch',flush=True)
+-deadline=time.monotonic()+660;offline=False
++deadline=time.monotonic()+1260;offline=False
+ while time.monotonic()<deadline:
+     if (run/'cleanup.json').exists():
+         row.update(offline_observed=offline,dashboard_return=False,owned_closure_observed_utc=utc())

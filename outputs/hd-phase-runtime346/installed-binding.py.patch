@@ -1,0 +1,11 @@
+--- 339/installed-binding.py
++++ 346/installed-binding.py
+@@ -2,7 +2,7 @@
+ import hashlib,json,pathlib,struct,sys
+ sys.path.insert(0,'/home/paul/xbox-windows-native/toolchains/offline-disk/root/usr/lib/python3/dist-packages')
+ import hivex
+-k=pathlib.Path(__file__).resolve().parent;case=sys.argv[1];assert case in ['emu001']
++k=pathlib.Path(__file__).resolve().parent;case=sys.argv[1];assert case in ['control001','candidate001']
+ out=k/case;dest=out/'installed-binding.json';assert not dest.exists()
+ h=hivex.Hivex(str(out/'artifacts/after-system'))
+ def node(path):

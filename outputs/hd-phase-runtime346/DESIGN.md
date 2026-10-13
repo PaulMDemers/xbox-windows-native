@@ -1,0 +1,11 @@
+# Matched E emulator phase attribution
+
+Each unique case is a fresh child of the SAME never-executed339 prepared E seed, whose intended repeat-boot workload passed separately. No completed/failed346 disk is reused. The10GB stock-E geometry has no F filesystem; immutable parent is rehashed. Hives, device policy, trace, audio drivers,338 wizard helper, shared framebuffer and all boot binaries remain unchanged. Keep inherited emulator fixture policy distinct from the physical console.
+
+Changes are the new xwnphase346 owned workload directory, its startup path and matched345 display DLL. The344 replay is identical both cases. Only the driver profiling flag differs. Private staging raw is removed ONLY after virtual-image comparison and clean complete allocation audit; compressed seed and original parent are retained. Standard20GiB projected guard includes full raw output plus compressed parent and reserve. No physical FTP/C access.
+
+One loopback FTP launch per unique run, private EEPROM/config/disk/ports5166/5167/5168, build+xemu resource leases,1200-second owned runner and1260-second observer. Startup namespace is new, old output/hives/trace retained. Stop/quit/exit/cleanup are explicit. No automatic duplicate launch or reset. A failed case remains evidence; any resumed work inspects its recorded launch and existing sessions.
+
+The cold audit retains all339 event, installer-idle, audio, pixel, copy, window, text, allocation, five-hive and protected-file gates. Clock mode is explicitly0/1 by case. New344 parser is an ADDITIONAL required display gate across all five samples: complete15 intervals, actual mode/frequency/calibration, no reset/error/overflow, coherent query accounting and sufficient engine/body/wrapper coverage. Both combined and strict results retain all original failures. Native Windows C must remain mapped to E; no E/F inference from labels alone. No emulator timing establishes hardware speed or FPS; counters are global, categories overlap and profiling adds overhead.
+
+Prelaunch host contract001 failed only a malformed regex in the host checker. No guest launch. Source retained; corrected002 uses literal escaping and validates real PowerShell AST/path/port/one-launch contracts. No runtime gate changed.

@@ -1,0 +1,33 @@
+--- 339/audit002.py
++++ 346/audit.py
+@@ -14,9 +14,9 @@
+ from text_analysis import analyze as text_analysis
+ from interval_policy import measurement_events
+ 
+-case=sys.argv[1];assert case=='emu001';out=k/case;art=out/'artifacts'
++case=sys.argv[1];mode=int(case=='candidate001');assert case in ['control001','candidate001'];out=k/case;art=out/'artifacts'
+ dest=out/'audit.json';assert not dest.exists()
+-run=Path('/mnt/e/xwn336/runs/nt5-stock339-'+case);assert (run/'cleanup.json').exists()
++run=Path('/mnt/e/xwn346/runs/nt5-phase346-'+case);assert (run/'cleanup.json').exists()
+ f=read(out/'fixture.json');base=Path(f['fixture_path_linux']);disk=run/'hdd.qcow2'
+ assert sha(base)==f['fixture_sha256'] and sha(Path(f['parent']))==f['parent_sha256']
+ for name,digest in read(k/'emulator-frozen.json').items():assert sha(ws/name.replace(chr(92), chr(47)))==digest,name
+@@ -62,12 +62,16 @@
+ r['setup_gate_passed']=r['boundary_analysis']['idle_branch_passed']
+ texts=[None if logs['sample%d/gdi-baseline.txt'%i] is None else logs['sample%d/gdi-baseline.txt'%i].decode('ascii',errors='backslashreplace') for i in range(5)]
+ r['samples']=[analyze(v) for v in texts];r['dib_samples']=[dib(v,0) for v in texts]
+-r['phase_samples']=[timing(v,0) for v in texts]
+-r['window_samples']=[window(v,0) for v in texts]
++r['phase_samples']=[timing(v,mode) for v in texts]
++r['window_samples']=[window(v,mode) for v in texts]
+ r['text_samples']=[text_analysis(v,1) for v in texts]
+ r['actual_caps']=r['samples'][0]['actual_caps'];r['actual_modes']=r['samples'][0]['actual_modes']
+ r['caps_consistent']=all(v['actual_caps']==r['actual_caps'] and v['actual_modes']==r['actual_modes'] for v in r['samples'])
+ r['display_workload_passed']=r['caps_consistent'] and all(v['probe_passed'] and v['copy_checks_passed'] and v['loop_coverage'] and v['counters_passed'] for v in r['samples']) and all(v['passed'] for group in ['dib_samples','phase_samples','window_samples','text_samples'] for v in r[group])
++sys.path.insert(0,str(k.parent/'hd-phase344'))
++from phase_analysis import analyze as large_phase
++r['large_phase_samples']=[large_phase(v,mode) for v in texts]
++r['display_workload_passed'] &= all(v['passed'] for v in r['large_phase_samples'])
+ subprocess.run([sys.executable,str(k/'typed-state.py'),case],check=True);r['typed_state']=read(out/'device-state.json')
+ scan(disk,art);a=read(out/'allocation.json');r['allocation_passed']=a['allocation_consistent'] and not a['errors'] and not a['orphan_cluster_count']
+ r['integrity_passed']=r['allocation_passed'] and all(v['parsed'] for v in r['hives']) and all(v['matched'] for v in r['files']) and r['startup_unchanged'] and r['event_history_preserved'] and r['setupapi_history_preserved'] and all(r['typed_state'][n] for n in ['hive_headers_valid','selected_policy_unchanged','no_new_device_disabling'])
