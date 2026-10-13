@@ -1,0 +1,7 @@
+# Paired cold and post-read memory observations
+
+Exact354 core and old escape remain unchanged. New escape0x5857443b returns two66560-byte packets. The first preserves untouched residency. Only a complete first capture or a valid nonpresent final PTE permits the existing XwnCheckScanout full-buffer comparison. That read can fault pages in and change cache contents. It performs no stores to the source or scanout. A second core capture records post-read translations and registers, the exact2073600 compared DWORD count and zero mismatches. Errors, exceptions or owner changes refuse qualification. No retry, alias creation, CR/MSR/PTE writes or interrupt masking.
+
+The independent decoder fixes opaque HSURF handling and reserved MTRRCAP bit9. A partial first packet is validated as an incomplete prefix; no nonpresent PFN/cache decoding or complete-cold PASS. Warm policy is not untouched residency, atomic/TLB/ABA/complete-alias proof, throughput measurement or hardware extrapolation. Actual paired controller gates preserve all original graphics/audio/integrity/events.
+
+Source review: only new memory_warm.c plus CMake, enable and declaration changes relative to354. Existing collector, drawing/upload, membership and pixel-check bodies retain exact source hashes. GDI owns the supplied surface lifetime; no membership lock spans faultable reads. New probe changes only dual escape transport and preserves both output files.

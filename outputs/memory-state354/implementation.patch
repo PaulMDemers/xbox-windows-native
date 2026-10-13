@@ -1,0 +1,216 @@
+diff --git a/win32ss/drivers/displays/framebuf/CMakeLists.txt b/win32ss/drivers/displays/framebuf/CMakeLists.txt
+index 9de11f2..9e7489c 100644
+--- a/win32ss/drivers/displays/framebuf/CMakeLists.txt
++++ b/win32ss/drivers/displays/framebuf/CMakeLists.txt
+@@ -8,6 +8,7 @@ list(APPEND SOURCE
+     shadow.c
+     primary_copy.c
+     ownership.c
++    memory_state.c
+     profile_math.h
+     text_bounds.h
+     row_store.h
+@@ -19,8 +20,8 @@ add_library(xwnown MODULE
+ 
+ set_module_type(xwnown kerneldll ENTRYPOINT DrvEnableDriver 12)
+ add_pch(xwnown framebuf.h SOURCE)
+-target_link_libraries(xwnown libcntpr)
+-add_importlibs(xwnown win32k)
++target_link_libraries(xwnown libcntpr pseh)
++add_importlibs(xwnown win32k ntoskrnl)
+ add_dependencies(xwnown psdk)
+ add_cd_file(TARGET xwnown DESTINATION reactos/system32 FOR all)
+ 
+diff --git a/win32ss/drivers/displays/framebuf/capture.h b/win32ss/drivers/displays/framebuf/capture.h
+new file mode 100644
+index 0000000..650af07
+--- /dev/null
++++ b/win32ss/drivers/displays/framebuf/capture.h
+@@ -0,0 +1,109 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later
++ * Read-only non-PAE NT5 observation. All privileged access is supplied by the
++ * adapter. A failed/partial record is never a cache-policy authorization.
++ */
++#ifndef XWN_MEMORY354_CAPTURE_H
++#define XWN_MEMORY354_CAPTURE_H
++#include <stdint.h>
++#define M354_ROWS 4096u
++#define M354_HEAD 256u
++#define M354_WORDS (M354_HEAD + M354_ROWS * 4u)
++#define M354_BYTES (M354_WORDS * 4u)
++enum { M354_INPUT=1, M354_CPU=2, M354_READ=4, M354_SELF=8,
++       M354_PAGE=16, M354_CAPACITY=32, M354_CHANGED=64, M354_OWNER=128 };
++typedef struct {
++ uint32_t owner,surface,object,shadow,screen,width,height,pitch,bpp;
++} M354_VIEW;
++typedef struct {
++ int (*reg)(void *,unsigned,uint32_t *);
++ int (*cpuid)(void *,uint32_t,uint32_t *);
++ int (*msr)(void *,uint32_t,uint32_t *);
++ int (*read)(void *,uint32_t,uint32_t *);
++ void *ctx;
++} M354_IO;
++static int m354_cpu(M354_IO *io,uint32_t *o)
++{
++ uint32_t c[4],i; static const uint32_t fixed[11]={0x250,0x258,0x259,
++  0x268,0x269,0x26a,0x26b,0x26c,0x26d,0x26e,0x26f};
++ for(i=0;i<4;i++)if(!io->reg(io->ctx,i,o+i))return 0;
++ if((o[3]&3)||!(o[0]&0x80000000u)||(o[2]&0x20))return 0;
++ if(!io->cpuid(io->ctx,0,c))return 0;
++ o[4]=c[0];o[5]=c[1];o[6]=c[3];o[7]=c[2];
++ if(o[4]<1||o[5]!=0x756e6547||o[6]!=0x49656e69||o[7]!=0x6c65746e)return 0;
++ if(!io->cpuid(io->ctx,1,c))return 0;
++ o[8]=c[0];o[9]=c[3];o[10]=c[2];
++ /* Owned Pentium III family only; unsupported CPUs remain explicit failures. */
++ if(((o[8]>>8)&15)!=6||((o[8]>>4)&15)!=8||(o[8]&0x0fff0000u)||
++    (o[9]&0x11020u)!=0x11020u||(o[9]&0x10000000u))return 0;
++ if(!io->msr(io->ctx,0x277,o+12)||!io->msr(io->ctx,0xfe,o+14)||
++    !io->msr(io->ctx,0x2ff,o+16))return 0;
++ o[11]=o[14]&255;if(!o[11]||o[11]>8)return 0;
++ if(!io->cpuid(io->ctx,0x80000000u,c))return 0;
++ o[18]=c[0];o[20]=36; /* P6 fallback per Intel MTRR physical-address width. */
++ if(c[0]>=0x80000008u){
++  if(!io->cpuid(io->ctx,0x80000008u,c))return 0;
++  o[19]=1;o[20]=c[0]&255;
++ }
++ if(o[20]<32||o[20]>36)return 0;
++ for(i=0;i<o[11];i++){
++  if(!io->msr(io->ctx,0x200+2*i,o+24+4*i)||
++     !io->msr(io->ctx,0x201+2*i,o+26+4*i))return 0;
++ }
++ if(o[14]&256)for(i=0;i<11;i++)if(!io->msr(io->ctx,fixed[i],o+56+2*i))return 0;
++ return 1;
++}
++static void m354_capture(const M354_VIEW *v,M354_IO *io,uint32_t *o)
++{
++ uint32_t i,role,base,last,va,pde,pte,self,at,length=0,reg;
++ for(i=0;i<M354_WORDS;i++)o[i]=0;
++ o[0]=0x4d57584e;o[1]=354;o[2]=M354_BYTES;o[15]=M354_ROWS;
++ o[4]=v->owner;o[5]=v->surface;o[6]=v->object;o[7]=v->shadow;o[8]=v->screen;
++ o[9]=v->width;o[10]=v->height;o[11]=v->pitch;o[12]=v->bpp;
++ if(!v->owner||!v->surface||!v->object||v->width<640||v->width>1920||
++    v->height<480||v->height>1080||v->bpp!=32||v->pitch!=v->width*4){o[3]|=M354_INPUT;return;}
++ length=v->pitch*v->height;o[13]=length;
++ if(v->shadow<0x80000000u||v->screen<0x80000000u||
++    v->shadow>0xffffffffu-length||v->screen>0xffffffffu-length||
++    (v->shadow<v->screen+length&&v->screen<v->shadow+length)){
++  o[3]|=M354_INPUT;return;
++ }
++ if(!m354_cpu(io,o+16)){o[3]|=M354_CPU;return;}
++ if(!io->read(io->ctx,0xc0300c00u,&self)){o[3]|=M354_READ;return;}
++ o[176]=self;
++ if(!(self&1)||(self&0x80)||((self^o[17])&0xfffff000u)){
++  o[3]|=M354_SELF;return;
++ }
++ for(role=0;role<2;role++){
++  base=role?v->screen:v->shadow;last=(base+length-1)&0xfffff000u;
++  for(va=base&0xfffff000u;;va+=4096){
++   if(o[14]>=M354_ROWS){o[3]|=M354_CAPACITY;return;}
++   at=M354_HEAD+4*o[14]++;o[at]=role;o[at+1]=va;
++   if(!io->read(io->ctx,0xc0300000u+(va>>22)*4,&pde)){o[3]|=M354_READ;return;}
++   o[at+2]=pde;
++   /* No speculative dereference through an absent/large/user page table. */
++   if(!(pde&1)||(pde&0x84)){o[3]|=M354_PAGE;return;}
++   if(!io->read(io->ctx,0xc0000000u+(va>>12)*4,&pte)){o[3]|=M354_READ;return;}
++   o[at+3]=pte;
++   if((pte&7)!=3){o[3]|=M354_PAGE;return;}
++   if(va==last)break;
++  }
++ }
++ /* Re-read every translation; A/D bits are hardware-mutated, not cache policy.
++  * Equal endpoints do NOT exclude transient ABA/TLB aliases between reads. */
++ for(i=0;i<o[14];i++){
++  at=M354_HEAD+4*i;va=o[at+1];
++  if(!io->read(io->ctx,0xc0300000u+(va>>22)*4,&pde)){
++   o[3]|=M354_READ;return;
++  }
++  if((pde^o[at+2])&~0x60u){o[3]|=M354_CHANGED;return;}
++  if(!io->read(io->ctx,0xc0000000u+(va>>12)*4,&pte)){
++   o[3]|=M354_READ;return;
++  }
++  if((pte^o[at+3])&~0x60u){o[3]|=M354_CHANGED;return;}
++ }
++ if(!m354_cpu(io,o+96)){o[3]|=M354_CPU;return;}
++ for(i=0;i<80;i++)if(o[16+i]!=o[96+i])o[3]|=M354_CHANGED;
++ if(!io->read(io->ctx,0xc0300c00u,&reg)){o[3]|=M354_READ;return;}
++ o[177]=reg;if((reg^self)&~0x60u)o[3]|=M354_CHANGED;
++}
++#endif
+diff --git a/win32ss/drivers/displays/framebuf/enable.c b/win32ss/drivers/displays/framebuf/enable.c
+index d37a1bf..0c57d3c 100644
+--- a/win32ss/drivers/displays/framebuf/enable.c
++++ b/win32ss/drivers/displays/framebuf/enable.c
+@@ -31,6 +31,7 @@ XwnDirectEscape(SURFOBJ *Surface, ULONG Escape, ULONG InBytes, PVOID In,
+    p = XwnOwner(Surface);
+    if (!p) return 0;
+    if (!p->ScreenPtr || !p->hSurfEng || !p->ShadowObject || !p->ShadowActive) return 0;
++   if (Escape == 0x5857443a) return XwnMemoryState354(Surface,OutBytes,Out);
+    if (Escape == 0x58574439 && OutBytes == sizeof(Data))
+    {
+       XwnEligibleSnapshot(p,Data);memcpy(Out,Data,sizeof(Data));return 1;
+diff --git a/win32ss/drivers/displays/framebuf/framebuf.h b/win32ss/drivers/displays/framebuf/framebuf.h
+index cb2797f..060f3c7 100644
+--- a/win32ss/drivers/displays/framebuf/framebuf.h
++++ b/win32ss/drivers/displays/framebuf/framebuf.h
+@@ -224,4 +224,5 @@ int XwnTryPrimaryCopy(PPDEV,SURFOBJ *,SURFOBJ *,CLIPOBJ *,XLATEOBJ *,RECTL *,POI
+ VOID XwnPrimaryRecord(PPDEV,int,ULONGLONG);
+ VOID XwnPrimarySnapshot(PPDEV,ULONG *);
+ VOID XwnEligibleSnapshot(PPDEV,ULONG *);
++ULONG XwnMemoryState354(SURFOBJ *,ULONG,PVOID);
+ #endif /* _FRAMEBUF_PCH_ */
+diff --git a/win32ss/drivers/displays/framebuf/memory_state.c b/win32ss/drivers/displays/framebuf/memory_state.c
+new file mode 100644
+index 0000000..569ea7e
+--- /dev/null
++++ b/win32ss/drivers/displays/framebuf/memory_state.c
+@@ -0,0 +1,50 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++#include "framebuf.h"
++#include <pseh/pseh2.h>
++#include "capture.h"
++static int m354_reg(void *ctx,unsigned n,uint32_t *v)
++{
++ unsigned short cs;(void)ctx;
++ switch(n){
++ case 0:__asm__ __volatile__("mov %%cr0,%0":"=r"(*v));break;
++ case 1:__asm__ __volatile__("mov %%cr3,%0":"=r"(*v));break;
++ case 2:__asm__ __volatile__("mov %%cr4,%0":"=r"(*v));break;
++ case 3:__asm__ __volatile__("mov %%cs,%0":"=r"(cs));*v=cs;break;
++ default:return 0;
++ }return 1;
++}
++static int m354_cpuid(void *ctx,uint32_t leaf,uint32_t *o)
++{
++ (void)ctx;__asm__ __volatile__("cpuid":"=a"(o[0]),"=b"(o[1]),"=c"(o[2]),"=d"(o[3]):"a"(leaf),"c"(0):"memory");return 1;
++}
++static int m354_msr(void *ctx,uint32_t index,uint32_t *o)
++{
++ (void)ctx;__asm__ __volatile__("rdmsr":"=a"(o[0]),"=d"(o[1]):"c"(index):"memory");return 1;
++}
++static int m354_read(void *ctx,uint32_t address,uint32_t *o)
++{
++ (void)ctx;*o=*(volatile uint32_t *)(ULONG_PTR)address;return 1;
++}
++ULONG XwnMemoryState354(SURFOBJ *s,ULONG bytes,PVOID out)
++{
++ M354_VIEW v;M354_IO io={m354_reg,m354_cpuid,m354_msr,m354_read,NULL};
++ PPDEV p;uint32_t *packet;
++ if(bytes!=M354_BYTES||!out)return 0;
++ p=XwnOwner(s);if(!p||!p->ShadowActive||!p->ShadowObject)return 0;
++ packet=EngAllocMem(FL_ZERO_MEMORY,M354_BYTES,ALLOC_TAG);if(!packet)return 0;
++ v.owner=(ULONG_PTR)p;v.surface=(ULONG_PTR)p->hSurfEng;
++ v.object=(ULONG_PTR)p->ShadowObject;v.shadow=(ULONG_PTR)p->ShadowBits;
++ v.screen=(ULONG_PTR)p->ScreenPtr;v.width=p->ScreenWidth;
++ v.height=p->ScreenHeight;v.pitch=p->ScreenDelta;v.bpp=p->BitsPerPixel;
++ _SEH2_TRY { m354_capture(&v,&io,packet); }
++ _SEH2_EXCEPT(1) { packet[3]|=M354_READ;packet[178]=_SEH2_GetExceptionCode(); }
++ _SEH2_END;
++ /* GDI retains the submitted surface/PDEV for the DDI call. Membership is not
++  * an MM/TLB lock; no lock is held across faultable reads or CPU instructions. */
++ if(XwnOwner(s)!=p||!p->ShadowActive||(ULONG_PTR)p->ShadowBits!=v.shadow||
++    (ULONG_PTR)p->ScreenPtr!=v.screen||(ULONG_PTR)p->ShadowObject!=v.object||
++    (ULONG_PTR)p->hSurfEng!=v.surface||p->ScreenWidth!=v.width||
++    p->ScreenHeight!=v.height||p->ScreenDelta!=v.pitch||p->BitsPerPixel!=v.bpp)
++  packet[3]|=M354_OWNER;
++ memcpy(out,packet,M354_BYTES);EngFreeMem(packet);return 1;
++}

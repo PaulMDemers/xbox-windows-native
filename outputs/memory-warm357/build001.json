@@ -1,0 +1,158 @@
+{
+  "status": "compiled",
+  "started_utc": "2026-10-13T19:23:34.733623+00:00",
+  "parent_tree": "02e7733b317bce0c439efac76562c8e5d3f183f8",
+  "space": {
+    "minimum_free_gib": 20,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/home/paul/xbox-windows-native/build",
+        "free_bytes": 924093845504
+      },
+      {
+        "free_bytes": 69440413696,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "tool_sha256": {
+    "RosBE.sh": "1d04daf7393952441c62691bb7735042d236b0196778f1632f0a4383476143b7",
+    "bin/cmake": "049737b62e2803fd657041cf65b6bb6de7756db377c92c686c63eec373604e75",
+    "bin/ninja": "371e855768aa214225d4b17f49902cdd2b2daa8764514134524b07282c9e9e07",
+    "i386/bin/i686-w64-mingw32-gcc": "83015512671faaa0dbe6f043a0107f79c049f4268a67e39955388a8d9a0182e5"
+  },
+  "inputs": {
+    "build.py": "f1d3143473a107667e3ede370bb2e27f7c42f4cab706d826802db208ed05c850",
+    "integrate.py": "fce67075ee72783551cc15cd289a33d8330f0d3c1d276ded315f685088d7f0c5",
+    "capture.h": "6a9c845c3f1b74327c5cced1190ad9c38c104875c9565828e6a94eb5fdd02dcc",
+    "memory_warm.c": "44e02be60245deeaa293f9b099469078fcb9742df76dac266e866fa17f9f935f",
+    "host001.json": "a98aab764148c49a672fa8e050f7eb3d2df512195b9e328ccff4301a521de821"
+  },
+  "cases": {
+    "diagnostic001": {
+      "definitions": {
+        "ARCH": "i386",
+        "SARCH": "xbox",
+        "OARCH": "pentium",
+        "CMAKE_BUILD_TYPE": "Release",
+        "DBG": "OFF",
+        "KDBG": "OFF",
+        "PCH": "OFF",
+        "ENABLE_CCACHE": "OFF",
+        "XBOX_NT5_HAL": "ON",
+        "XBOX_NATIVE_PREFLIGHT": "OFF",
+        "XBOX_NATIVE_IO_PREFLIGHT": "ON",
+        "XBOX_NATIVE_EXTENDED_READ_PREFLIGHT": "OFF",
+        "XBOX_NATIVE_EXTENDED_NT5_BOOT": "ON",
+        "XBOX_NATIVE_FATX_F_BOOT": "ON",
+        "XBOX_NATIVE_VOLUME_PREFLIGHT": "OFF",
+        "XBOX_NATIVE_NT5_HANDOFF": "ON",
+        "XBOX_NATIVE_NT5_ENTER": "ON",
+        "XBOX_NATIVE_NT5_AUTORUN": "ON",
+        "XBOX_NT5_VIDEO_ADAPTER_DIAGNOSTIC": "OFF",
+        "XBOX_NT5_VIDEO_TRACE": "ON",
+        "XBOX_NT5_VIDEO_PNP_DIAGNOSTIC": "ON",
+        "XBOX_NT5_VIDEO_DIAGNOSTIC": "ON",
+        "XBOX_NT5_VIDEO_ENTRY_DIAGNOSTIC": "OFF",
+        "XBOX_NT5_FRAMEBUFFER_ONLY_PCI": "ON",
+        "XBOX_NT5_VIDEO_TRACE_REUSE": "ON",
+        "XBOX_NT5_SHARED_FRAMEBUFFER": "ON",
+        "XWN_UC_STORES": "OFF",
+        "XWN_BODY_PROFILE": "ON",
+        "XWN_TEXT_BOUNDS": "ON",
+        "XWN_HD_SURFACE_BOUNDS": "ON",
+        "XWN_PRIMARY_COPY": "ON"
+      },
+      "sha256": "0e2b92213edf39709fa27e6a8e4c0d1a153ca9cf2cb80bda9d6a0257b2a259d1",
+      "bytes": 116053,
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/home/paul/xbox-windows-native/build/memory-warm357-build001/source",
+          "-B",
+          "/home/paul/xbox-windows-native/build/memory-warm357-build001/diagnostic001",
+          "-G",
+          "Ninja",
+          "-DCMAKE_TOOLCHAIN_FILE=/home/paul/xbox-windows-native/build/memory-warm357-build001/source/toolchain-gcc.cmake",
+          "-DARCH=i386",
+          "-DSARCH=xbox",
+          "-DOARCH=pentium",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DDBG=OFF",
+          "-DKDBG=OFF",
+          "-DPCH=OFF",
+          "-DENABLE_CCACHE=OFF",
+          "-DXBOX_NT5_HAL=ON",
+          "-DXBOX_NATIVE_PREFLIGHT=OFF",
+          "-DXBOX_NATIVE_IO_PREFLIGHT=ON",
+          "-DXBOX_NATIVE_EXTENDED_READ_PREFLIGHT=OFF",
+          "-DXBOX_NATIVE_EXTENDED_NT5_BOOT=ON",
+          "-DXBOX_NATIVE_FATX_F_BOOT=ON",
+          "-DXBOX_NATIVE_VOLUME_PREFLIGHT=OFF",
+          "-DXBOX_NATIVE_NT5_HANDOFF=ON",
+          "-DXBOX_NATIVE_NT5_ENTER=ON",
+          "-DXBOX_NATIVE_NT5_AUTORUN=ON",
+          "-DXBOX_NT5_VIDEO_ADAPTER_DIAGNOSTIC=OFF",
+          "-DXBOX_NT5_VIDEO_TRACE=ON",
+          "-DXBOX_NT5_VIDEO_PNP_DIAGNOSTIC=ON",
+          "-DXBOX_NT5_VIDEO_DIAGNOSTIC=ON",
+          "-DXBOX_NT5_VIDEO_ENTRY_DIAGNOSTIC=OFF",
+          "-DXBOX_NT5_FRAMEBUFFER_ONLY_PCI=ON",
+          "-DXBOX_NT5_VIDEO_TRACE_REUSE=ON",
+          "-DXBOX_NT5_SHARED_FRAMEBUFFER=ON",
+          "-DXWN_UC_STORES=OFF",
+          "-DXWN_BODY_PROFILE=ON",
+          "-DXWN_TEXT_BOUNDS=ON",
+          "-DXWN_HD_SURFACE_BOUNDS=ON",
+          "-DXWN_PRIMARY_COPY=ON"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/home/paul/xbox-windows-native/build/memory-warm357-build001/diagnostic001",
+          "--target",
+          "xwnown",
+          "--",
+          "-j4"
+        ]
+      ],
+      "status": "compiled"
+    }
+  },
+  "physical_access": false,
+  "guest_launch": false,
+  "source_tree": "ff5354eba07b1a902d97eac0eb51fb1f584ae225",
+  "source_files": {
+    "win32ss/drivers/displays/framebuf/pointer.c": "4c24e31dd50dc43d513d2b407349af3b3cc662c5178772f43252c9be512ee032",
+    "win32ss/drivers/displays/framebuf/shadow.c": "25928fa78a0e20dfbf4f5b36386a616f5404d468177e215c402ffdb9058e23f0",
+    "win32ss/drivers/displays/framebuf/framebuf.rc": "100beecb1537cb02ec3bc03ea36f9c767fabec28f670a0ed32fe795317474087",
+    "win32ss/drivers/displays/framebuf/enable.c": "9d81c404eeac008660f52225d4026ad4528c8c539ef5ca6a3beecdac68851eea",
+    "win32ss/drivers/displays/framebuf/surface_bounds.h": "ff25bc631ea2f5ff355c7b77d1dfe3200efeb960b9b34cd9562df6024271f1e5",
+    "win32ss/drivers/displays/framebuf/text_bounds.h": "20445165c5922ec82c45054fa01a73802d1c6876776e374543d188aeef72664e",
+    "win32ss/drivers/displays/framebuf/primary_copy.c": "368defa4931977b9bbbda8895a04e3253d2a7e05851898c4a9bf0d6292925674",
+    "win32ss/drivers/displays/framebuf/row_store.h": "1ba9464b78104a9176a59b34caede9fde072e2ec05d264d183532af1eee0a3d0",
+    "win32ss/drivers/displays/framebuf/palette.c": "453ff3678a2faee0b9cfd8fb4842e0c3f8af37487c41725eb1df916b17f574f1",
+    "win32ss/drivers/displays/framebuf/CMakeLists.txt": "231883818edbf9538e002bc800122772fd25da199a7d6d7b2affb2d49bf29348",
+    "win32ss/drivers/displays/framebuf/profile_math.h": "73d3dfd2fc1f231583d140e2d9a3d195cbce6d66a12a21c1a284df3abada2c3c",
+    "win32ss/drivers/displays/framebuf/ddenable.c": "3424634f4fbd5b5ae06ac8a261e0f7e48baba97883f9499bb8e92d6a82b25bde",
+    "win32ss/drivers/displays/framebuf/memory_warm.c": "44e02be60245deeaa293f9b099469078fcb9742df76dac266e866fa17f9f935f",
+    "win32ss/drivers/displays/framebuf/dd.c": "b025faf695caba749eb07b44f13bedc9bdb19150531426fe391828c32d3e1478",
+    "win32ss/drivers/displays/framebuf/capture.h": "6a9c845c3f1b74327c5cced1190ad9c38c104875c9565828e6a94eb5fdd02dcc",
+    "win32ss/drivers/displays/framebuf/screen.c": "c70d3f970e9c0b82f8b77ff8a52ee3dfa471eb5f4176cf5f4f0584d9a1b9cba3",
+    "win32ss/drivers/displays/framebuf/framebuf.h": "766fd4e38bb3fea2b2180c04bdb35c581ca34b22dcaf7d504e6512a2c38561b8",
+    "win32ss/drivers/displays/framebuf/surface.c": "1c965940b19b6c0314ec8cf3a3e3a22053688cc4f4d30ad8e5e2f5e5bd706ae4",
+    "win32ss/drivers/displays/framebuf/primary_plan.h": "b5423e2d0ed4012f5b72919072e1f09068d99db79b8577a4a53d14f7da873976",
+    "win32ss/drivers/displays/framebuf/ownership.c": "910c556d3bcc29e061475d1c0559d9d80c4857a95dc6e417856f7d3628da70a6",
+    "win32ss/drivers/displays/framebuf/eligible.h": "db65c4aab2df309f4f0766bc44565ea6b8dc27bf0ebe280d8390089e9feb6d4e",
+    "win32ss/drivers/displays/framebuf/memory_state.c": "60ba4bfb43d68473eac68d0bc4c27f37995a71c6ad6d5ab2963cb3baa23b03a7"
+  },
+  "finished_utc": "2026-10-13T19:24:04.039083+00:00",
+  "logs": {
+    "source.log": "e250f32f802fce6dc47ba317609abe12d42255c810c2e0f2e2a7eb27930a3521",
+    "diagnostic001.log": "8a4990530402ddd24c06598e74baa7def57242df68ee65fb0304f29935e597db"
+  }
+}

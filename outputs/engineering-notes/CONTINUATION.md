@@ -1,3 +1,26 @@
+#357/358 CLOSED scoped PASS; physical359 frozen, not launched
+
+Read memory-runtime358 REPORT/final-review/candidate002 audit, memory-warm357 DESIGN/build001/binary-review001. Single358 launch19:32:19->19:38:14UTC Oct13, all20 cold/warm snapshots complete4050rows each:2025shadowWB/2025scanoutUC. Originalgraphics/audioAPI/capture/joins, normalshutdown1/orderlyhostexit0, cold341dirs6829files358clusters0errors/orphans5hives/protected/policy/history passed. ScopedcombinedPASS/strictFALSEsoleFt49.285frozeninputs rehashed.355 remainsfailed,356unlaunched.358001capacitypreparationfailure/oldsource preserved;002freshseed+onecluster/readback qualified. ALLownedemulator/buildsessionsCLOSED.
+
+359package/host00323pathchecks,356frozeninputs ready; NEVERconsolecaptured/scanned/launched atthisnote. Exact357DLL0e2b92213edf39709fa27e6a8e4c0d1a153ca9cf2cb80bda9d6a0257b2a259d1/probef527bad9...; read-only pairedpolicy, no cacheprogramming/aliases/throughputclaim. Next publish thenphysicalcandidate001 capture/beforeEscan/launchONCE/observe/collectSTARTUPFIRST+originalDLL/afterEscan/audit/finalstate/closeout. AllE/Fonly,consoleCprohibited; originalFrollback/tags preserved. Originaldisplayb23b94ac.../normalEstartup remaininstalled. Rootdemo251exclusive,automationpaused. HEADbdc3533c pendingpublication.
+
+# Historical continuation below
+#357/358 paired memory diagnostic ACTIVE; physical359 prepared only
+
+354 compiled,355 CLOSED FAILED memory qualification: first shadow PTE nonpresent; nine full captures rejected by original opaque-HSURF decoder mistake. Graphics/audio/cold integrity passed, strictFt49. Separate357 corrected analysis resolves nine emulator samples shadowWB/scanoutUC, no historical requalification or physical inference.356 NEVERfrozen/launched.
+
+357 exact354 child preserves original coldpacket, existing fullbuffer read/equality check then warm fullpacket. DLL0e2b92213edf39709fa27e6a8e4c0d1a153ca9cf2cb80bda9d6a0257b2a259d1/probef527bad9c04d4eb25678346ea7c84214260485f1a348864009a3e6a47c568cd7 compiled/reviewed; host2524+23checks, decoder100, paired2550; allbuild/hostsessionsclosed. Warm ispostreadpolicy,notuntouchedresidency/throughput. No cachewrites/aliases/GPUgrant.
+
+358candidate001 prepfailed DLLcapacity beforeguest; rawretained/sourceprior001/no retry. Freshcandidate002 prep40498 CLOSED clean336dirs6798files353clusters/1extradrivercluster/readback;285frozeninputs. SINGLElaunch19:32:19UTC Oct13 accepted. Ownedrunner68169/supervisor59533ACTIVE, E:/xwn358/runs/nt5-memory358-candidate002, ports5216/5217/5218. OncloseauditONCE/finalreview,neverduplicate. Freshunexecuted339parent.359privatepayload/preflight23passed,NOTfrozen/consoleaccess;requires358scopedPASS, publishbeforedelivery. NormalEstartup/originalDLL/Frollback/tags preserved, consoleCuntouched. HEADbdc3533c;all354-359UNCOMMITTED. Automationpaused/rootdemo251ticketretained.
+
+# Historical continuation below
+#354/355 memory diagnostic ACTIVE;356 prepared only
+
+Read memory-state354 DESIGN/build001/binary-review003/source-review001/host001/decoder001. New exact351 child DLLbac76922bbebe6b5fcbd2d82100b063e0654d8b58409e08ed388c774842fe98e; probecc1a928c9c9c3d69ba394f50b4dcdb9feed9fe59eb31474b2d5dbad975a701c2. Collector2524hostchecks/16406independentdecoderchecks; no cachewrites/aliaschange/GPUgrant. Build52799 and decoder43116 CLOSED. Reviewer001 forwardedRtlUnwind refusal and002 inheritedwarning refusal preserved;003 verified exact kernel forwardtarget and no privilegedwrites/newwarningmessages. Actualinstalled300provider/303display distinguished from oldunrelatedprovider in351tree.
+
+355candidate001 preparation79039 CLOSED clean336dirs6798files353clusters; singleWindowslaunchaccepted19:11:20UTC Oct13. Runner7427/supervisor16074 ACTIVE.235frozeninputs,freshneverexecuted339parent,ports5206/5207/5208,E:/xwn355roots. Inspectlaunch/cleanup;neverduplicate. Afterorderlyclose run355audit.py ONCE withWSLhivexpath; tenraw66560bytepackets plus exact55MiBscanout/managedshadowjoin, alloriginalpixel/audio/cold/eventgates. Physical356 payload/23pathtests preparedONLY; NOTfrozen/launched,requiresclosed355scopedPASS. AllnewworkUNCOMMITTED HEADbdc3533c. OriginalEbaseline/normalstartup,Frollback/tags preserved,Cconsoleuntouched. No newthroughputclaim; establishactualcachestate before nextdiscriminator. Initialnotesprepend cp1252readfailedbeforewrite; correctedbinaryprepend preserveshistorybytes.
+
+# Historical continuation below
 #351/352/353 CLOSED: exact eligible coverage PASS, no material physical speed gain
 
 Read eligible-copy351 REPORT/DESIGN/build001/source-review001/binary-review001, eligible-runtime352 REPORT/final-review, eligible-physical353 REPORT/NEXT/pair-results/final-review and actual records. 351/352 source/evidence and353prepared controllers pushed35d1429a; thiscloseoutpendingcommit. ALLownedsessionsCLOSED, including35360031/60803,37016,36680,46442,49054,43800,13482; no Windows test queued. Neverrepeat either353launch/four scans or352closedemulators.

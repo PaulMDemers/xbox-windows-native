@@ -1,0 +1,52 @@
+{
+  "status": "passed",
+  "inputs": {
+    "host.c": "cbc9aae31e8abc221f26dd16ce404da0a1f0a1e872e5a47d300590430b70b258",
+    "wrapper_host.c": "65a8f5ed83f1b66270901392fc7b078599081cd93b27ad6f4929b0cea533db9f",
+    "host.py": "49942542ecf367fc75b0d35197b7fdf0217d7fb6acda57153e95d96bf19dd256",
+    "capture.h": "6a9c845c3f1b74327c5cced1190ad9c38c104875c9565828e6a94eb5fdd02dcc",
+    "memory_warm.c": "44e02be60245deeaa293f9b099469078fcb9742df76dac266e866fa17f9f935f",
+    "actual_wrapper.inc": "9e6df43e6ba1a062658fe57280cc4a0d819ff6f6246ba08d26234db4ba2bc4bc"
+  },
+  "scope": "Actual collector core and extracted actual dual wrapper; privileged reads/GDI pixels/lifetime/SEH modeled",
+  "compiler": "gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+  "command": [
+    "gcc",
+    "-std=c11",
+    "-O1",
+    "-g",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-fsanitize=address,undefined",
+    "-fno-omit-frame-pointer",
+    "/mnt/e/xwn357/host001/wrapper_host.c",
+    "-o",
+    "/mnt/e/xwn357/host001/host"
+  ],
+  "results": [
+    {
+      "checks": 2524,
+      "rows": 4051,
+      "model_only": true
+    },
+    {
+      "wrapper_checks": 23,
+      "allocations": 8,
+      "frees": 8,
+      "models": "CPU/PTE/GDI pixels/SEH"
+    }
+  ],
+  "files": {
+    "host.c": "cbc9aae31e8abc221f26dd16ce404da0a1f0a1e872e5a47d300590430b70b258",
+    "wrapper_host.c": "65a8f5ed83f1b66270901392fc7b078599081cd93b27ad6f4929b0cea533db9f",
+    "host.py": "49942542ecf367fc75b0d35197b7fdf0217d7fb6acda57153e95d96bf19dd256",
+    "capture.h": "6a9c845c3f1b74327c5cced1190ad9c38c104875c9565828e6a94eb5fdd02dcc",
+    "memory_warm.c": "44e02be60245deeaa293f9b099469078fcb9742df76dac266e866fa17f9f935f",
+    "actual_wrapper.inc": "9e6df43e6ba1a062658fe57280cc4a0d819ff6f6246ba08d26234db4ba2bc4bc",
+    "host": "428ddd332165a5a0c66a6414aadf75f7d82d5ae3d3fb36fa1167faaf3b177ae5",
+    "compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "synthetic-dual.bin": "105cc33f5563c7905ca08e73a0e729a3f619e5c6bc7876af70e162a15fc97bb7",
+    "run.log": "68b78d886af69c9d96db2fd3575f77c369becf9dd734864fefa510069022783f"
+  }
+}
