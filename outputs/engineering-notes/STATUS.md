@@ -1,3 +1,19 @@
+#720p demo restored; original-driver control completed, storage fix still held
+
+October14:397 settled known-device setup before filework and completed direct
+BMP/text copying with exact cold readback, audio/GDI checks and normal Windows
+shutdown. Disk allocation, five hives, policies and protected files passed.
+The original0101 duplicate-file listing defect reproduced and CMD MOVE failed.
+Full qualification remains FALSE; Ftdisk49 is also retained.
+
+The console is back at UnleashX with normal startup, original0101, video303 and
+audio004 restored/verified. All owned processes are closed. Next is a fresh
+matched candidate390 test with this setup-first order, not another control retry.
+394's incomplete copy remains unexplained;395 bundle/adoption is still held.
+No new public release/tag/bundle, no changes to dashboard C or original F rollback.
+
+# Historical status below
+
 # 720p demo restored; storage fix and new bundle held
 
 October14:394's FATX390 test stopped during its second CMD copy and was manually

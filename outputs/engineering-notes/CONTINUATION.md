@@ -1,3 +1,37 @@
+#397 CLOSED: exact native copies, known original enumeration defect reproduced
+
+Single397 launch19:06:36UTC returned19:12:17. Setup helper handled three known
+devices and established5115ms idle before filework. Native386 copies/rename/reopen
+and bothBMP/text coldbytes PASS; original0101 returns32 duplicate exact-name
+entries twice, END2/exit1. CMD COPY0/MOVE1/FILE_FAILED retained. Audio state/probe,
+fiveGDI samples/720p, normalshutdown1 and independent integrity PASS. Six new
+systemevents/noapplicationevents; solewarning/errorFt49. Fullscoped/strictFALSE,
+not candidate acceptance and no inferred cause for394's unfinished copy.
+
+Normalstartup restoredFIRST/original0101 readback. AfterEscan674dirs7813files
+691dirclusters0errors/orphans;5hives/policies/protected/drivebindings/FrollbackPASS.
+66frozeninputs/1337privatecaptures rehashed. See setup-retry397 REPORT/NEXT,
+control001/control-analysis.json and final-review.json. ALLowned sessions CLOSED:
+58583launchobserver,3498collection,88104after-scanobserver. No launch queued.
+Next NEW matchedcandidate390 kit with identical setup-first/native-before-CMD
+order; don't rerun397 or retarget395's failed394 acceptance gate. No395archives.
+Physical303/audio004/0101/E720p374 and normalstartup retained. DashboardCuntouched.
+User didn't watch396; its clean dashboard return alone proves no Windows path.
+
+# Historical397 in-progress note (superseded by closure above)
+
+User says396 returned cleanly to UnleashX but was not watching; boot path remains
+unobserved, no inferred Windows shutdown. Explicitly authorizes another launch.
+Fresh setup-retry397 retains original0101/303/audio004/E720p; known201helper FIRST,
+then native386/CMD and251audio/GDI.66 frozen inputs and ten identity-normalized
+source/command comparisons pass. No new binaries. Host E:/xwn397 precreated.
+Beforecapture78397 CLOSED, beforeEscan21740 CLOSED clean666dirs7783files683clusters.
+Owned launch+immediate-observer session58583 ACTIVE: inspect trial.json/return.json
+and resume session; NEVER duplicate launch. This removes396's observer-start gap.
+On return collect ONCE (normalstartupFIRST), afterEscan, WSLaudit/finalstate plus
+separatecontrol-analysis. No candidate390 adoption,395stillHELD, no Caccess/Fchanges.
+Earlier394/396 remain CLOSED failures with original evidence. CurrentHEAD08db3bf2.
+
 # Closed394/396; original demo restored, boot observation pending
 
 394 candidate390 accepted18:21:49UTC; user reported blankconsole/onewizard/noinput,
