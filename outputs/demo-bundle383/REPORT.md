@@ -21,3 +21,12 @@ Watched retry384 also closed with incomplete workload. User confirms normal boot
 EventLog confirms normal shutdown; only initial BMP COPY persisted, exactly.
 No rename/runner/audio/GDI completion. Keep builders gated; do not substitute384
 as a successful validation or create archives claiming completed tests.
+
+385 completed graphics/audio/normal shutdown/integrity but CMD MOVE failed;387
+returned before startup with no existing-state changes. Both closed; gates remain
+false and archives held. No new release or driver promotion.
+
+FATX390 fixes duplicated exact-name enumeration in emulator392; actual CMD393
+copy/move/reopen and native API persistence pass with cold integrity. Physical
+console still0101;387 observation pending. Do not substitute emulator evidence
+for the physical packaging gate. Current720p user text/drag result remains valid.

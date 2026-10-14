@@ -1,3 +1,144 @@
+# Closeout:393 scopedCMD/API/audio/GDI/integrity PASS; all sessions CLOSED
+
+Finalreview fatx-enumeration390/final-review.json rehashed all959references across
+385/387/389/391/392/393 and all392/393 capturedartifact manifests. No frozen edits.
+Repositorycheck1848 PASS33061files, finalmetadata/source-stage checks beforecommit.
+Originalphysical0101/303/720p remains, normalstartup restored,Frollback retained,
+Cuntouched. Candidate390 NOThardwaredeployed; physical387 screenquestionpending.
+No furtherindependentruntime queued. Read393NEXT before newhardwaretest.383held.
+Currentcommit publishes reviewed source/evidence privately, no tag/publicrelease.
+
+# FATX390 emulator fix validated; all owned sessions CLOSED
+
+Latest393 original CMD6operations/bytes and386API PASS, audio/GDI/normalshutdown/
+orderlyexit/coldintegrityPASS. StrictFALSE soleFt49. Launch02:52:43->02:56:59UTC;
+222frozeninputs,23independent CMD mutations, captures rehashed.342dirs6827files
+359clusters0errors/orphans,5hives/policy/protected pass. No physical390promotion.
+393runner84718/super77974/audit72145 CLOSED; prepare33781 CLOSED. Repository
+check69929 previouslyPASS33040files; finalrestage/check/privatecommit needed.
+392matchedcandidate oneexactentry/end18, control389 original0101 repeated32.
+Bothbytes/audio/GDI/integrity pass; onlysharedpayload FATX differs,7helperhashes/
+5beforehives exact,6negativeparser checks.213/217 frozeninputs preserved391/392.
+391failedTaskId40charguard BEFORE xemu, unchanged stageddisk; no relaunch.
+390driver41040f9eaeaae3382a6fadf11a315253ff9017e908dc15a876818c5969039126,
+tree dc942ab4b23df76a2015c466dc37f97699938772; exact0101 pluscachednonroot+2.
+17inheritedwarnings/no new;708hostbranchchecks. Host/API/model/physical distinct.
+Read cmd-regression393 REPORT/NEXT/final-review and fatx-enumeration390 reports.
+Physical387 earlyreturn causeUNKNOWN; user screen/keyboard question pending.
+Normalstartup/original0101/display303/720p restored, Frollback intact,Cuntouched;
+no hardware queued.385physical CMD MOVE failed multiple-files, API387notexecuted.
+Resolve user observation before NEW bounded E-only candidate hardware test.
+383archives held pendingphysicalfilegate. No tag/publicrelease or event waiver.
+All old cases immutable; neverrelaunch/recollect/parentexecuted disks. C~45.7GB,
+E~21.8GBdecimal last;20GiBguard, no newoffload/backingmoves. Noactiveautomation.
+
+# CMD393 runtime ACTIVE (single accepted02:52:43UTC)
+
+Fresh candidate390 CMD393 run C:/xwn393/runs/nt5-cmd393-candidate001. Owned
+runner84718/supervisor77974 ACTIVE, preparation33781 CLOSED. Ports5336/5337/5338.
+222frozeninputs. Same386API + actual385CMDcopy/move/reopen in separatedirectory.
+Inspect/resume sessions, neverduplicate launch/collect. On normalreturn orderly
+hostclose then cmd-regression393/audit.py candidate001 ONCE viaWSL/hivex env.
+Requires CMD6exit0/exactbytes/absentintermediates AND all previous392API/audio/
+GDI/integrity/normalshutdown gates. StrictFt49 remains failure. No hardwareaccess.
+392closed scopedPASS,389closed reproducedduplicate32entries,391hostIDrefusal
+beforexemu preserved.390pair comparison independent matchedpayloads +6mutations.
+Physical387screenquestionpending, normal720p/original303+0101 unchanged.383held.
+Repositorycheck69929 ACTIVE atnote. No390physicaldeploy, no tag/publicrelease.
+After393audit update reports/review/byteexactstage/check/commit/privatepush.
+
+# Candidate392 CLOSED scopedPASS; CMD393 preparation ACTIVE
+
+392 audit closed: exactly1entry/end18 eachquery, FILE_API_END0, exactBMP/text,
+audio/GDI/normalshutdown/integrity/orderlyexitPASS. StrictFALSE soleFt49. No
+physical deployment.217frozeninputs/captures rehashed, independent390pair review.
+393 CMD original385 sixcommands plus unchanged386 APIs/audio/GDI prepared source
+only, rawpreparation33781 ACTIVE. Inspect before launch; unique ports5336..8,
+C:/xwn393, candidate001. Host0028actualNT5 CMD hostNTFS casesPASS; host001 missing
+parentdirectory pretestfailure preserved. Same never-executed391 sourceparent.
+No393 launch yet, hostcontract passed. Needfreeze/run/supervise/coldaudit once.
+All392 runner38729/supervisor2344/audit91100 CLOSED.391 closed beforexemu refusal.
+Originalphysical0101/303/720p/startup unchanged,387screenquestionpending.383held.
+Review/stage/check/commit/privatepush all385..393. No publictag/promotion.
+
+# Candidate392 ACTIVE; candidate391 closed before xemu; control389 closed
+
+392 one accepted launch02:44:38UTC, runner38729/supervisor2344 ACTIVE. Inspect
+records/sessions; never duplicate. Fresh exact copy of NEVER-executed391 seed,
+not its refused staging disk. Same386 probe/workload/native xwnenumeration391
+namespace, FATX390 only functional driver change, 217frozeninputs. Ports5326..8.
+391 TaskId over40characters refused BEFORE xemu; disk hash unchanged, closed.
+No guest in391; preserve original213pins/refusal, no relaunch.392 shorterID tested.
+390 fresh build and binary review pass,17inherited warnings/no new; original
+0101source plus cachednonroot logical+2. Driver41040f9e... emulator-only.
+389 original0101 duplicate32matches/query, directAPIbytes good; scopedFALSE,
+normalshutdown/audio/GDI/integrityPASS, soleFt49. All closed inputs immutable.
+Physical387 earlyreturn cause unknown, user screen/keyboard question pending;
+console restored normal720p/original303+0101, no hardware queued.383 held.
+Need392 orderlyclosure/coldaudit once, source/evidence review, commit/privatepush.
+
+# Candidate391 preparation ACTIVE; control389 CLOSED with duplicate enumeration
+
+Read file-enumeration389/REPORT and fatx-enumeration390/REPORT.389 original0101
+returned each exact file32times; MoveFileA/bytes passed, enumeration failed.
+Normal shutdown/audio/GDI/integrity passed; soleFt49 retained.201inputs verified.
+Never relaunch/recollect/parent389.390 build/review complete, no physical deploy.
+391 fresh same unused339seed with only FATX390 driver change, preparation48508
+ACTIVE. Inspect records/session before progressing. No391 launch yet.
+Physical387 earlyreturn cause unresolved; user screen/keyboard question pending.
+Normal720p/startup/original303+0101 restored, no hardware queued.383 held.
+No public tag/publish. New385..391 work uncommitted; stage/review/check/privatepush.
+
+# Emulator389 ACTIVE; physical385/387 CLOSED
+
+Physical console restored normal720p startup, no further hardware test queued.
+387 returned in21seconds with ALL existinghives/events/trace unchanged and no
+probe/startup logs. Cause unknown; screen/keyboard question requested ONCE pending.
+Do not retry hardware blindly; preserve387.385 graphics/audio/normalshutdown/
+integrity PASS, but CMD MOVE single saved.tmp failed as "multiple files".
+
+Native386 compiled pinnedRosBE, host success/stale/missing/repeat tests pass;
+source file-api386. Direct MoveFileA plus bounded exact-name FindFirst/Next;
+no file success if enumeration fails. No physical native execution established.
+
+Emulator389 fresh control prepared from NEVER-executed339 seed, no executed
+runtime parenting. Same physical-matching303/FATX0101,720p374/new386 probe plus
+existing /emulator audio/GDI runner. No registry/device-policy changes, inherited
+synthetic device policy explicit.201 frozeninputs. Preparation23913 CLOSED;
+runner82130 and single-launch supervisor17077 ACTIVE. Inspect/resume, no duplicate.
+Run C:/xwn389/runs/nt5-enumeration389-control001, ports5296..5298, leasedbuild+xemu.
+On return orderlyclose, then389 WSL audit once (fullcoldallocation/hives/bytes).
+No physical access from emulator workflow. Current preparation clean336dirs/
+6800files353clusters, unchanged5hives/trace, disposable rawremovedaftercomparison.
+
+388 read-only exact0101 source review plusHOST-ONLY cachedbranch normalization:
+original repeatedexactentry reproduced,708ASan/UBSanchecks267balancedmodeledcalls.
+Potential+2dot/dotdot index mismatch. NO driver candidate built/deployed yet.
+No original gates weakened.383 bundles held. Never repeat closed IDs.
+
+# Validation385 closed: MOVE rejected one file; graphics/audio/integrity pass
+
+Actual COPY_BMP returned0. MOVE_BMP returned1 and stderr was:
+Cannot move multiple files to a single file.
+No file persistence PASS. Original copied6220854bytes preserved exactly in
+artifacts/partial-files; first COPY matched the screenshot SHA. No rename output.
+
+Independent supervisor completed all5GDI samples, actual720p dimensions, audio
+API tests, setup boundaries and normal restart. Cold full allocation660dirs/
+7749files/677clusters0errors/orphans; fivehives/policy/binding/protectedE/F pass.
+Combined interval clean; whole boot retains Ftdisk49. All original gates retained:
+file/combined/strictFALSE. No package or release promotion. Normal startup restored
+first, postscan state verified; all385 processes CLOSED, never rerun/recollect.
+
+New instrumentation host001 failed status logging because digit immediately
+before >> became a CMD descriptor. Prefix-redirection host002 passed8cases.
+Pinned actual CMD5.00.2195.6995 from343 passed those8hostcases(host003); original384
+batch also passed under that binary on hostNTFS(original-cmd-host003). Earlier
+original-host001/002 forward-slash argv0 failures retained, not physical evidence.
+Host command tests do not identify FATX enumeration behavior. Physical387 now
+uses native386 FindFirst/FindNext+MoveFileA to separate those paths; no driver patch.
+
+## Earlier history
 # Watched 720p boot and normal restart; automated workload incomplete
 
 User watched Xromwell then Windows boot normally and reported restarting to

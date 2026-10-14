@@ -1,0 +1,17 @@
+--- a/drivers/filesystems/vfatfs/create.c
++++ b/drivers/filesystems/vfatfs/create.c
+@@ -145,6 +145,14 @@
+                 RtlCopyMemory(&DirContext->DirEntry, &rcFcb->entry, sizeof(DIR_ENTRY));
+                 DirContext->StartIndex = rcFcb->startIndex;
+                 DirContext->DirIndex = rcFcb->dirIndex;
++                /* Cached FATX FCB indices are physical slots. Directory queries
++                 * use logical indices including the two synthetic dot entries,
++                 * as the uncached FATX directory-entry path does. */
++                if (IsFatX && !vfatFCBIsRoot(Parent))
++                {
++                    DirContext->StartIndex += 2;
++                    DirContext->DirIndex += 2;
++                }
+                 DPRINT("FindFile: new Name %wZ, DirIndex %u (%u)\n",
+                     &DirContext->LongNameU, DirContext->DirIndex, DirContext->StartIndex);
+                 Status = STATUS_SUCCESS;

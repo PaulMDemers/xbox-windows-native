@@ -1,0 +1,30 @@
+{
+  "scope": "Actual compiled386 x86 Win32 binary on host NTFS; not physical FATX qualification",
+  "binary_sha256": "c0cd6eff8897d11b2ee2b82e55a858fd1346a4d911242bdb19a2f8fdb27aea0c",
+  "cases": [
+    {
+      "case": "success",
+      "passed": true,
+      "returncode": 0,
+      "log": "FILE_API_BEGIN 386\nsaved.tmp 1 0\nsaved.bmp 1 0\nreopened.bmp 1 0\nnote.tmp 1 0\nnote.txt 1 0\nnote-reopened.txt 1 0\nfile-complete.txt 1 0\nCOPY_BMP 1 0\nENUM_NAME saved.tmp 1 saved.tmp\nENUM_CLOSE 1 0\nENUM_END saved.tmp 1 18\nENUM_EXACT 1 18\nMOVE_BMP 1 0\nENUM_NAME saved.bmp 1 saved.bmp\nENUM_CLOSE 1 0\nENUM_END saved.bmp 1 18\nENUM_EXACT 1 18\nsaved.tmp 1 0\nREOPEN_BMP 1 0\nCOMPARE_CLOSE_LEFT 1 0\nCOMPARE_CLOSE_RIGHT 1 0\nsaved.bmp 1 0\nCOMPARE_CLOSE_LEFT 1 0\nCOMPARE_CLOSE_RIGHT 1 0\nreopened.bmp 1 0\nWRITE 1 0\nFLUSH 1 0\nCLOSE 1 0\nMOVE_NOTE 1 0\nnote.tmp 1 0\nREOPEN_NOTE 1 0\nCOMPARE_CLOSE_LEFT 1 0\nCOMPARE_CLOSE_RIGHT 1 0\nnote-reopened.txt 1 0\nWRITE 1 0\nFLUSH 1 0\nCLOSE 1 0\nFILE_API_END 0\n"
+    },
+    {
+      "case": "stale",
+      "passed": true,
+      "returncode": 1,
+      "log": "FILE_API_BEGIN 386\nsaved.tmp 1 0\nsaved.bmp 0 2\nFILE_API_END 1\n"
+    },
+    {
+      "case": "missing_input",
+      "passed": true,
+      "returncode": 1,
+      "log": "FILE_API_BEGIN 386\nsaved.tmp 1 0\nsaved.bmp 1 0\nreopened.bmp 1 0\nnote.tmp 1 0\nnote.txt 1 0\nnote-reopened.txt 1 0\nfile-complete.txt 1 0\nCOPY_BMP 0 2\nFILE_API_END 1\n"
+    }
+  ],
+  "repeat_refusal_preserved_all_bytes": true,
+  "pe_machine": "i386",
+  "subsystem_version": [
+    5,
+    0
+  ]
+}

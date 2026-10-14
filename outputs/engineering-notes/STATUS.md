@@ -1,3 +1,30 @@
+# 720p demo works; file-operation fix validated in emulator, hardware retest pending
+
+October14 UTC: user confirmed clean text and full-window dragging at720p; watched
+boot384 went normally through Xromwell into Windows. E720p374 launcher/display303,
+audio004 and originalFATX0101 remain installed. UnleashX Windows entry380 repaired.
+1080i photographed text/dragging defects remain unresolved, not promoted by720p.
+
+Physical385 completed graphics/audio/normalshutdown and clean cold integrity but
+CMD MOVE rejected one exact file as multiple files. Physical387 returned early
+without startup/Windows evidence; originalstate unchanged and startup restored.
+Cause unknown; user observation of that short boot is pending. No newhardwarequeued.
+
+Exact0101 source and ordinary389 emulator reproduced repeated exact-name entries.
+FATX390 fixes cached nonroot logical indices. Matched392 returns exactlyoneentry;
+393 actualNT5CMD copy/move/reopen plus API bytes, audio/GDI/normalshutdown/cold
+integrity pass. Candidate remains emulator-only. Both strictresultsFALSE solely
+for retainedFtdisk49. No gate waiver, fullfilesystem/physical/release claim.
+
+New383 bundles remain held pending successful physical file validation. Existing
+379 private archives/tags/rollbacks remain immutable. Public source/license and
+installer checks still apply; no publicupload. All owned emulator/buildsessions
+closed. Next: resolve physical387 observation, then one fresh bounded E-only
+candidate test with rollback and complete readback before revising bundle gates.
+See cmd-regression393/REPORT.md and NEXT.md, fatx-enumeration390/REPORT.md.
+
+# Historical status below
+
 # Integrated demo ready; physical outline observation pending
 
 October13 demo378 launched once at22:23:18 UTC and stays at the Windows desktop.
