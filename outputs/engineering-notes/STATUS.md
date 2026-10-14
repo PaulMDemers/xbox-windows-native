@@ -1,3 +1,24 @@
+# 720p demo restored; storage fix and new bundle held
+
+October14:394's FATX390 test stopped during its second CMD copy and was manually
+restarted. The file has an exact prefix and zero tail; the cause is unresolved.
+The setup helper had not run yet. Normal startup and original0101 were restored.
+Allocation, five hives, protected binaries and original F rollback passed.
+No normalshutdown or completedworkload; candidate notaccepted and395bundleheld.
+
+396 moved known-device settling before file work using original0101, but produced
+no Windows/startup evidence. The dashboard was already reachable at the first
+sample; baseline hives/eventlogs/trace are unchanged. All checks/collection are
+closed and normal720p startup is restored. Awaiting the user's boot observation;
+no more launch is queued. Preserve both failures without assigning a cause.
+
+User-confirmed clean720p text/full-window dragging and the repaired UnleashX
+menu remain the demo baseline. Video303/audio004/FATX0101 are installed.1080i's
+output problem remains separate. Allownedprocessesclosed; no newpublicrelease,
+tag or bundle. Existing privatearchives and originalrollback remain unchanged.
+
+# Historical status below
+
 # 720p demo works; file-operation fix validated in emulator, hardware retest pending
 
 October14 UTC: user confirmed clean text and full-window dragging at720p; watched

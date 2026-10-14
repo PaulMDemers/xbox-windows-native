@@ -1,3 +1,74 @@
+# Closed394/396; original demo restored, boot observation pending
+
+394 candidate390 accepted18:21:49UTC; user reported blankconsole/onewizard/noinput,
+then manuallyreset. CMD COPY/MOVE0, REOPEN began butno completion: savedBMPexact,
+reopenedBMP3,866,624correctprefix +2,354,230zerotail. NativeAPI/wizard/audio/GDInever
+started; normalshutdown0. Causeunknown. Startup restoredFIRST/original0101readback,
+finalstate18:38:25. CleanE663dirs7773files680clusters0errors/orphans,5hives/selected
+policy/protected/FrollbackPASS. StrictFt49 retained.62pins/1321capturerecords verified.
+
+396 distinctoriginal0101 setup-firstcontrol accepted18:45:42. Firstobserver18:46:08
+alreadydashboard; offlineNEVERobserved. No gate/API/CMD/runnerfiles, allbeforefiles
+including5hives/events/setup/video trace BYTEIDENTICAL. NoWindows executionevidence,
+not proof ofspecificbootcause. Ownedobserver95268/PID13080 stoppedexactidentity,
+observer-stop001.json preservesmissingtransition; no rewrite ofreturnfalse.
+Collection56532CLOSED, afterEscan35320CLOSED, audit/finalstate/reviewcomplete.
+CleanE666dirs7783files683clusters0errors/orphans;64pins/1317capturesverified.
+Native/gate/controlnotexercised, allworkloadqualificationFALSE. Hostparentprecondition
+failure and prerequisitelaunchrefusal preserved; onlyONE acceptedWindowslaunch.
+ALLownedprocessesCLOSED. No otherhardwarelaunchqueued. Useraskedwhatappearedduring396;
+replypending. Normalstartup/original0101/video303/audio004/E720p374 retained,
+Cuntouched/Frollbackunchanged. DoNOTrelaunch/recollectclosed394/396.
+
+395adopt/preview/system scripts preparedbutHELD; noacceptedstate/archivescreated.
+Its394passgatefailed; neverrelaxorretargetit.6modeledadoptionfailuretests passed,
+no physicalacceptance. Existing379/privatearchives/tags immutable, publicreleaseheld.
+Nextread setup-first396 REPORT/NEXT and394 partial-analysis. Resolvebootobservation,
+then freshnamespace ifretestingsetup-firstoriginaldrivercontrol; no speculativepatch.
+Finalsource/repositorychecks and privatecommit/push recordedinthisturn.
+
+# Historical continuation below
+
+#396 original-driver control ACTIVE;394 closed FAIL,395 HELD
+
+394 accepted18:21:49, user reset after blank console/onewizard/noinput; returned
+18:34:30. CMD copy/move0, secondcopy unfinished: exact3,866,624prefix +2,354,230
+zero tail. Native/API/wizard/audio/GDI neverstarted. No normalshutdown.
+NormalstartupFIRST/original0101 restored; finalstate18:38:25. Cold663dirs7773files
+680clusters0errors/orphans;5hives/policy/protected/Frollbackpass. StrictFt49FAIL.
+62frozeninputs/1321private records rehashed. No394relaunch/recollect.
+395adopt/package scripts preparedONLY, held permanently on394failed gate.
+No archives/accepted-state;6hostadoptionfaultcases pass, not physicalresult.
+
+NEW396 original0101 control settles known201build006 helper fromseparate gate
+folder BEFORE native386, thenCMD and251audio/GDI/normalrestart. Same720p303/audio004,
+no driverbytechange, no Caccess/Frollbackchange. Mouseleftconnected perrecovery,
+Razerunplugged. Freshnamespace xwndemo396control001.64frozeninputs.
+Beforecapture27315CLOSED; beforeEscancomplete clean663/7773/680. LocalparentE:/xwn396
+missing caused pre-collectionfailure and launchprerequisite refusal (NOlaunchrecord);
+host-precondition001 preserved, parentcreated, incompletecollection completed.
+ActualWindowslaunch13897CLOSED accepted18:45:42UTC. Observer95268ACTIVE, inspect
+neverduplicate. Onreturn physical.py control001 collect ONCE, thenafterEscan,
+WSLaudit/finalstate andseparatecontrol-analysis (originalduplicate failuresretained).
+Expectednativecopybytesmaypass while386reportsduplicateexactnames; fullgatesnotwaived.
+All394ownedprocessesCLOSED. CurrentHEAD09cf601b; source/reportsnotyetcommitted.
+
+# Physical394 ACTIVE, candidateFATX390 temporarily installed
+
+User confirms dashboard ready/goaheadOct14. Prior387cause stillUNKNOWN; current
+readiness resolved, do not askagain.62frozeninputs and rollbackhostcases passed.
+394 baselinecapture68244 CLOSED; beforeEscan44200 CLOSED clean661dirs7756files
+678clusters0errors/orphans. Candidate390 deployed/readback Eonly; launchaccepted
+18:21:49UTC, session24328 CLOSED. Owned dashboardobserver57337 ACTIVE; inspect,
+neverduplicate launch. Currentstartup temporary xwndemo394candidate001.
+Onreturn physical.py candidate001 collect ONCE: restore normalstartupFIRST,
+preserve testedFATX, restore original0101/readback, gatherCMD/API/audio/GDI files.
+Then one afterEscan/collect, WSL audit/final-state. No Caccess, Frollbackretained.
+395newprivatebundle/adoption scripts preparedONLY; require394complete scopedPASS,
+normalshutdown,exactCMD/API/coldintegrity before adoption or archivecreation.
+No395execution yet. Originalimmutabletags/archives intact. Finalcommit/privatepush
+pending; currentbaselineHEAD09cf601b. Nootherphysicalpeerqueued.
+
 # Closeout:393 scopedCMD/API/audio/GDI/integrity PASS; all sessions CLOSED
 
 Finalreview fatx-enumeration390/final-review.json rehashed all959references across
