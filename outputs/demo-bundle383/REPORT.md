@@ -16,3 +16,8 @@ not a fresh console capture, generic installer or tested full restore. It contai
 Windows/user data and must remain private. The add-on archive excludes that data
 but still needs component license/source review before publication. Neither
 builder modifies hardware. Public source export and immutable tags are unchanged.
+
+Watched retry384 also closed with incomplete workload. User confirms normal boot,
+EventLog confirms normal shutdown; only initial BMP COPY persisted, exactly.
+No rename/runner/audio/GDI completion. Keep builders gated; do not substitute384
+as a successful validation or create archives claiming completed tests.
