@@ -1,4 +1,25 @@
-# Text381 user reports clean text at720p; demo remains running
+# Validation382 CLOSED without Windows workload; demo restored at dashboard
+
+Read demo-validation382/REPORT.md and control001 audit/final-state/early-return-
+comparison. Single launch01:35:47UTC October14 accepted, FTP returned01:36:09.
+No workload files; ALL captured prior files byte-identical, including5E hives/
+events/setup/trace; normalshutdown0. Cause UNRESOLVED, not a crash claim. User
+screen/restart observation requested ONCE and pending. No blind retry, never
+relaunch/recollect382control001 or either completed scan. All owned sessions closed.
+
+Normal demo startup restored FIRST; current E720p374/display303/FATX0101/audio004,
+originalF rollback retained. NoCaccess. Before Eallocation652dirs7715files669clusters;
+after653/7721/670; zeroerrors/orphans both. Fivehives/policy/binding/protectedfiles
+PASS, workload/scoped/strictFALSE. Final postscanreadback verified, consoleUnleashX.
+Initial host scan collect missingE:/xwn382 parent failed BEFOREremote reads;
+createdparent/resumedfirstcollect, no newscan. Failure retained,50inputpins unchanged.
+
+New383 preview/system builders + docs/DEMO-SETUP prepared, NOTexecuted; require
+completed workload/closure. Do not weaken gate. Existing379bundles/tags untouched.
+Update builder evidence reference only after a distinct successful retry. Public
+licenses/currentstackrebuild/exportreview remain gates. No hardware test queued.
+
+## Prior381 visual comparison (closed by user restart)
 
 User's explicit720p reply: "Text is clean now." Leave current E launcher720p for
 demo. User also confirms "Dragging is clean now too." Both symptoms disappear

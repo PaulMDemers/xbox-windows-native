@@ -8,9 +8,9 @@ clean-machine, one-command build of the complete current E demo is not yet ready
 | FATX | candidate0101 |
 | HD reservation, miniport, boot video | reservation300 |
 | Software display | video303 |
-| E boot chain | stock-boot334 |
+| E boot chain | stock-boot334; E720p launcher resolution-e374 |
 | Audio | ACI207 build004 |
-| Outline preference utility | demo-settings372, original MIT code |
+| Drag preference utility | demo-settings376 (corrected parser), original MIT code; installed folder remains xwndemo372 |
 
 The [reconstruction prototype](../outputs/reproducible-build/README.md) describes
 its explicit limits. Its older `all` profile does not build the current combined
