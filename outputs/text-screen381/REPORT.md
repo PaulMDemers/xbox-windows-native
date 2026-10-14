@@ -1,4 +1,11 @@
-# Captured text is visually clean; physical 720p comparison launched
+# Captured image clean; user reports clean text at720p
+
+After the single720p launch, the user answered "Text is clean now." The current
+demo remains at720p. The user then confirmed "Dragging is clean now too."
+Both symptoms disappeared in this comparison. These observations,
+with unchanged Windows drivers, supports a mode-dependent display-path problem;
+it does not alone identify interlace timing, transfer, adapter or TV processing.
+It is a visual result, not a complete new physical workload/integrity qualification.
 
 The user saved a Print Screen image in Paint and restarted to UnleashX. Retrieved
 /E/xwndemo372/text-screen.bmp twice with byte-exact agreement; private original is
@@ -24,8 +31,8 @@ At 01:23:18 UTC October14, the guarded E selector preserved the exact installed
 Five shared prerequisites, audio, FATX and retained demo startup were checked.
 Only /E/Applications/XWNEBoot/default.xbe changed. Dashboard C was not accessed.
 The single launch was accepted at01:23:26 UTC. It stays at the desktop with no
-timed workload or restart. Actual physical resolution and visual result remain
-pending; a launch reply does not qualify this mode. Never repeat this launch.
+timed workload or restart. Actual runtime dimensions have not been independently
+collected; the user subsequently reported clean text. Never repeat this launch.
 
 Rollback, only at UnleashX, uses the existing selector:
 

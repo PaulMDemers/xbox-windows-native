@@ -1,4 +1,10 @@
-# Text381 physical720p comparison launched; visual reply pending
+# Text381 user reports clean text at720p; demo remains running
+
+User's explicit720p reply: "Text is clean now." Leave current E launcher720p for
+demo. User also confirms "Dragging is clean now too." Both symptoms disappear
+at720p with unchanged drivers. No user question pending. Evidence narrows problem to a
+mode-dependent display path, not proven encoder/TV/adapter/copy cause. No full
+new physical workload/integrity qualification or1080fix claim. See updated381report.
 
 Read text-screen381/REPORT.md, capture001.json, mode720p001.json, launch720p001.json.
 User PrintScreen BMP retrieved twice from dashboardE, private E:/xwn381/capture001.
@@ -13,7 +19,7 @@ Guarded E720p374 launcher applied01:23:18UTC October14, readback verified, origi
 unchanged; noCaccess. Single SITE EXEC accepted01:23:26UTC; NO timed shutdown or
 observer, stays desktop. NEVER relaunch381. User visual text/drag reply pending.
 If rollback needed at dashboard use configure-e-display.py restore with thatreceipt.
-This is first physical E720p visual comparison, not yet qualification. No host
+This is first physical E720p visual comparison, not full qualification. No host
 subprocesses left running. Previous378collection and380menu install closed.
 
 ## Previous menu handoff

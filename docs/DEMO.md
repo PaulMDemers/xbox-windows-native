@@ -19,6 +19,9 @@ installation and its launcher remain unchanged. Menu boot observation is pending
 
 ## Five-minute demonstration
 
+The current E demo selects720p. Comparison381 produced user-confirmed clean text
+and clean full-window dragging; the1080i text/motion issue remains unresolved.
+
 - Move Notepad and Explorer using outline dragging; release the mouse to draw
   the contents at the new location.
 - Save a note under `C:\xwndemo372`, close it and reopen it.
@@ -42,6 +45,9 @@ Outline mode moves only a border until mouse release. It does not eliminate the
 final repaint or accelerate scrolling, resizing or application drawing. Display
 Properties → Effects → “Show window contents while dragging” controls the same
 preference. The add-on does not install a display driver.
+
+Full-window dragging is usable in the current720p comparison; outline remains a
+reversible preference rather than a requirement.
 
 ## Finish
 

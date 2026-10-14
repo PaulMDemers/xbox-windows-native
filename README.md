@@ -23,7 +23,7 @@ Windows installer or a GPU-accelerated desktop.
 |---|---|---|
 | Storage | FATX0101, E installation, original F rollback | Experimental; preserve backups |
 | Video | Software display303 and HD boot chain | No native GPU acceleration or live mode switching |
-| HD modes | Physical 1080i on E; older F 720p/1080i profiles | E-specific 720p qualification is separate |
+| HD modes | E demo now selects720p; user reports clean text | 1080i has an unresolved visible text problem; full E720p qualification is separate |
 | Audio | ACI207 build004 | Login/louder tones heard; exact stereo routing unconfirmed |
 | Input | Standard keyboard/mouse | Keep Razer keyboard unplugged through Xromwell |
 | Network | Native networking, user-confirmed ping | Limited legacy software environment |

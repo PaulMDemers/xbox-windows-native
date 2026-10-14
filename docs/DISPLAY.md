@@ -5,7 +5,7 @@ to switch these profiles while Windows runs.
 
 | Installation | Launcher directory | Evidence |
 |---|---|---|
-| Current E demo | `E:\Applications\XWNEBoot` | Physical 1080i; E 720p under qualification |
+| Current E demo | `E:\Applications\XWNEBoot` | 720p selected; user reports clean text in comparison381 |
 | Original F | `E:\Applications\XWNFBoot` | Older private 0.2.0 720p/1080i and original rollback |
 
 These paths select different Windows installations. The old `tools/deploy-hd.py`
@@ -15,7 +15,12 @@ targets F even though its launcher is on dashboard E. Do not use it for E.
 
 720p carries about 44% as many pixels as 1080i (1280×720 versus 1920×1080).
 That is a pixel-count comparison, not a measured speedup. 1080i provides a larger
-desktop; fine horizontal details may flicker on an interlaced display.
+desktop. The current console/adapter/TV combination shows broken-looking text
+at1080i despite a visually clean saved Windows screenshot. In comparison381,
+changing only the E launcher profile to720p produced user-reported clean text
+and clean full-window dragging.
+Use720p for the current demo. The1080i output problem remains unresolved; the
+comparison does not isolate timing, scanout transfer, adapter or TV processing.
 
 The tested console has a Conexant encoder and an HD-capable signal path. An HDMI
 connector alone does not establish adapter compatibility. Other encoders,
@@ -35,7 +40,8 @@ adapters and TVs need their own checks.
 
 No mode change edits dashboard C or EEPROM flags. The E 720p launcher uses the
 original720p source with only its loader path changed. Its emulator result is
-recorded in377; physical qualification on the E installation remains pending.
+recorded in377. Physical comparison381 has user-reported clean text; a complete
+new workload/integrity qualification is not claimed from this visual check.
 
 ## E selector in the demo preview bundle
 
