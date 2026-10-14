@@ -6,12 +6,16 @@ install Windows on an empty disk.
 ## Start
 
 1. Start at UnleashX with the Razer keyboard unplugged.
-2. In its file explorer, launch `E:\Applications\XWNEBoot\default.xbe`.
+2. Select **Windows** from the root menu. If needed, its file explorer can launch
+   `E:\Applications\XWNEBoot\default.xbe` directly.
 3. Connect the keyboard after Xromwell finishes and Windows appears.
 4. Cancel unsupported-device wizards without disabling devices. Close Welcome.
 
-The root **Windows** entry still launches the original F rollback. Use the
-explicit E launcher above. Dashboard C configuration is not changed.
+The root **Windows** entry was updated to the E demo on October 14, 2026 UTC.
+Reload UnleashX after the update so it reads the new configuration. The prior
+menu is backed up at `C:\Dashboard\config.e380.bak`; this was an explicitly
+authorized menu-only exception to the dashboard C restriction. The original F
+installation and its launcher remain unchanged. Menu boot observation is pending.
 
 ## Five-minute demonstration
 

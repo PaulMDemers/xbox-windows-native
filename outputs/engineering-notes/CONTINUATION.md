@@ -1,4 +1,22 @@
-# Demo378 active for user; host experiments closed
+# Menu380 installed; dashboard reload/user boot observation pending
+
+2026-10-14 01:10 UTC: root Windows now targets E:\Applications\XWNEBoot\default.xbe.
+Read menu-e380/REPORT.md and installed.json. User explicitly approved menu-only C
+exception after prior C prohibition was explained. Only config.xml and unique
+config.e380.new/config.e380.bak siblings accessed on C; all other C access remains
+prohibited. Original menu backed up locally and remotely, exact readback verified.
+No launch/restart sent. Reload UnleashX then user may test root Windows entry.
+Current1080i launcher/five prerequisites pinned; originalFrollback unchanged.
+Do not rerun menu.py; installed receipt exists. No active owned subprocesses.
+
+Demo378 collection COMPLETE at01:08UTC; NEVER recollect. Outline first-run API and
+saved-profile log PASS, current full-drag preference not yet inspected. Protected
+E drivers/Frollback unchanged; private after-ntuser captured. User says demo works
+very well; requested full dragging and reports poor text. Prior preboot hive had
+FontSmoothing=0; no new font or driver change, cause unresolved. See collection.json.
+Existing379 bundles predate menu repair; keep their immutable manifests intact.
+
+## Previous handoff (superseded by collection/menu state above)
 
 Read demo-bundle379/REPORT.md, demo-physical378/REPORT.md, demo-runtime377/REPORT.md,
 resolution-e374/REPORT.md and docs/DEMO.md. Single physical launch accepted
