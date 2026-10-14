@@ -1,53 +1,70 @@
-# Native Windows on the original Xbox
+# Native Windows 2000 on the original Xbox
 
-Experimental native Windows 2000 bootloader, HAL and drivers for the original
-64 MiB Xbox. Windows runs on the Xbox CPU; xemu is a separate test environment.
+This project adapts open-source bootloaders, a hardware abstraction layer (HAL),
+and device drivers so Windows 2000 can run directly on the original Xbox's CPU.
+It combines FATX storage, software-rendered graphics, AC'97 audio and desktop
+input. xemu is a separate development/test environment; the physical console
+runs Windows natively.
 
-The current private demo combines native FATX storage, software-rendered HD
-video, AC'97 audio and standard USB keyboard/mouse support on the tested
-Conexant console. It is usable for desktop applications. It is not a general
-Windows installer or a GPU-accelerated desktop.
+The integrated demo is usable for desktop applications on the tested 64 MiB,
+Conexant-equipped Xbox. **720p is recommended:** text and full-window dragging
+were confirmed clean on the test display. The 1080i path boots, but its text and
+motion defects remain unresolved. Graphics are software-rendered, without
+native GPU acceleration.
 
 ## Start here
 
-- [Use the integrated demo](docs/DEMO.md)
-- [Configure resolution and dragging](docs/DISPLAY.md)
-- [Recovery and partition mapping](docs/RECOVERY.md)
-- [Build and provenance](docs/BUILD-CURRENT.md)
-- [First public source release](docs/PUBLIC-RELEASE.md)
-- [Contributing](CONTRIBUTING.md)
+- [How it works and what we changed](docs/architecture.md)
+- [Find and edit the source](src/README.md)
+- [Build the components](docs/building.md)
+- [Installation and first boot](docs/installation.md)
+- [Resolution and desktop settings](docs/display-configuration.md)
+- [Troubleshooting](docs/troubleshooting.md) and [recovery](docs/recovery-guide.md)
+- [Development](docs/development.md) and [licensing](docs/licensing.md)
 
-## Current scope
+## Current capabilities
 
-| Component | Included | Limits |
+| Area | Current result | Limits |
 |---|---|---|
-| Storage | FATX390 on0101, E installation, original0101/F rollback | Physical398 copy/move/readback passed; preserve backups |
-| Video | Software display303 and HD boot chain | No native GPU acceleration or live mode switching |
-| HD modes | E demo now selects720p; user reports clean text | 1080i text/motion problem remains;398 E720p workload/integrity scope passed |
-| Audio | ACI207 build004 | Login/louder tones heard; exact stereo routing unconfirmed |
-| Input | Standard keyboard/mouse | Keep Razer keyboard unplugged through Xromwell |
-| Network | Native networking, user-confirmed ping | Limited legacy software environment |
-| Other devices | Existing policy retained | Unqualified PCI/gamepad prototypes excluded; prompts may remain |
+| Boot | Dashboard → Xromwell → Windows | Matched boot chain required |
+| Storage | Native FATX; file creation, copy, move and readback tested | Keep backups; strict event failures remain |
+| Graphics | Software desktop and HD framebuffer | No acceleration or live resolution switching |
+| Display | 720p text and full-window dragging confirmed clean | 1080i defects; other encoders need qualification |
+| Audio | Login sound and louder tones heard | Exact stereo routing unconfirmed |
+| Input | Standard mouse/keyboard | Device prompts and boot-time USB issues remain |
+| Network | Native networking and reported ping success | Broad compatibility not established |
+| Installation | Working E-partition demo | Fresh-console installer and full restore test incomplete |
 
-Full-window dragging and text are user-confirmed clean at720p. Outline dragging
-remains a reversible preference that avoids repainting during movement. Recent
-matched software-copy/stretch experiments showed no material gain. Further
-framebuffer and GPU work proceeds separately from the demo.
+## Repository layout
 
-## Evidence and release status
+```text
+src/        Maintained source files, grouped by component
+upstream/   Base commits, source hashes and build profiles
+tools/      Build, configuration and validation commands
+docs/       User and developer guides
+LICENSES/   Preserved upstream license texts
+outputs/    Historical experiments and engineering evidence
+```
 
-The current E installation is a later private preview. Immutable 0.1.0 and
-0.2.0 remain unchanged. The older 0.2.0 HD selector targets F; do not apply it to
-E. See [current status](outputs/engineering-notes/STATUS.md) and
-[continuation notes](outputs/engineering-notes/CONTINUATION.md) for exact results.
-Physical tests, emulator tests and human observations remain distinct. Ftdisk49
-and the physical capacity warning remain failed event gates.
+Start with `src/` and the guides. Each component retains its independently tested
+upstream tree; these profiles are not one unified OS build. The current complete
+HAL/network/input binary-to-source inventory still needs release review.
 
-The repository stays private while a focused public source export is prepared.
-Windows files, firmware, EEPROMs, dashboards, hives, user data and private
-recovery archives are excluded from public assets. Each derived component
-retains its own license; no blanket project license is asserted.
+## Release status
 
-The [previous chronological README](docs/archive/README-before-demo-20261013.md)
-is preserved as history. Its historical status statements do not override the
-current guides.
+This checkout is being prepared for a first public source release. It is not a
+Windows distribution or finished fresh-install kit. Windows media, product keys,
+firmware, EEPROMs, dashboards, user data and private recovery archives are not
+public assets. The private Git history is not suitable for publication wholesale.
+
+The current demo is newer than the preserved historical tags. Do not mix older
+F-partition boot profiles with the current E installation. Dashboard partition
+names differ from Windows drive letters; consult the installation guide before
+copying anything. Dashboard C is not an installation target.
+
+Physical, emulator and human observations remain distinct. A working desktop
+does not waive the retained Ftdisk 49 event failure. Experimental GPU and device
+prototypes are excluded from the demo.
+
+Original project work is MIT-licensed where no upstream terms apply. Derived
+components retain their licenses; see [NOTICE.md](NOTICE.md).

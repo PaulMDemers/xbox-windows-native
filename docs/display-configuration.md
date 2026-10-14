@@ -1,0 +1,56 @@
+# Resolution and desktop preferences
+
+Use **720p** for the current demo. Text and full-window dragging were confirmed
+clean on the tested console/adapter/display. At 1080i, photographed text had
+missing-looking strokes and dragged contents jostled, although a saved Windows
+screenshot looked clean. The cause has not been isolated to timing, scanout,
+adapter or TV processing. Font smoothing is not a demonstrated fix for it.
+
+Resolution is selected at boot. Windows Display Properties is not a supported
+way to switch these profiles while Windows is running. An HDMI connector alone
+does not establish the adapter's supported Xbox signal modes.
+
+## Change the current E profile
+
+Use an extracted, matched demo preview package with its `resolution/` binaries
+and policy. The source checkout alone does not contain those binaries. Save work
+and return to UnleashX. Supply dashboard FTP credentials through process-local
+`XWN_FTP_HOST`, `XWN_FTP_USER` and `XWN_FTP_PASSWORD`; never commit them.
+
+```sh
+python tools/configure-e-display.py inspect --policy tools/e-display-policy.json
+python tools/configure-e-display.py apply --policy tools/e-display-policy.json --profile 720p --launcher resolution/720p/default.xbe --receipt rollback-720p-001
+```
+
+The receipt must be a new directory. The selector verifies installed
+prerequisites, captures the previous launcher, writes only the E launcher and
+verifies readback. It does not launch Windows or modify EEPROM flags. Boot the E
+entry afterward and check text, borders, colors, signal and actual dimensions.
+
+Restore the exact previous launcher with:
+
+```sh
+python tools/configure-e-display.py restore --policy tools/e-display-policy.json --receipt rollback-720p-001
+```
+
+An explicit diagnostic 1080i selection uses `--profile 1080i` and the package's
+`resolution/1080i/default.xbe` with a fresh receipt. It remains experimental.
+The older `deploy-hd.py` targets the F installation; do not use it against E.
+
+## Dragging and text preferences
+
+The existing demo provides **Full window dragging.cmd** and **Outline dragging.cmd**
+in `C:\xwndemo372`. That is a guest path, not a required host build location.
+The utility can also be invoked from its directory:
+
+```bat
+display-settings.exe status
+display-settings.exe full
+display-settings.exe outline
+```
+
+Changes apply immediately and persist for the current user through Windows
+system-parameter APIs. They do not change drivers, GPU ownership or cache state.
+At 720p, full dragging is a usable choice; outline avoids repainting while moving.
+The utility source also documents its font-smoothing options. Those preferences
+do not qualify an unresolved display mode.

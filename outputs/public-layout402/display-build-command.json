@@ -1,0 +1,31 @@
+{
+  "command": [
+    "/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/RosBE.sh",
+    "/home/paul/xbox-windows-native/build/public-layout402-display001/source",
+    "0",
+    "i386"
+  ],
+  "stdin": "set -e\n/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/bin/cmake -S /home/paul/xbox-windows-native/build/public-layout402-display001/source -B /home/paul/xbox-windows-native/build/public-layout402-display001/build -G Ninja -DCMAKE_TOOLCHAIN_FILE=/home/paul/xbox-windows-native/build/public-layout402-display001/source/toolchain-gcc.cmake -DARCH=i386 -DSARCH=xbox -DOARCH=pentium -DCMAKE_BUILD_TYPE=Release -DDBG=OFF -DKDBG=OFF -DPCH=OFF -DENABLE_CCACHE=OFF -DXBOX_NT5_HAL=ON -DXBOX_NATIVE_PREFLIGHT=OFF -DXBOX_NATIVE_IO_PREFLIGHT=ON -DXBOX_NATIVE_EXTENDED_READ_PREFLIGHT=OFF -DXBOX_NATIVE_EXTENDED_NT5_BOOT=ON -DXBOX_NATIVE_FATX_F_BOOT=ON -DXBOX_NATIVE_VOLUME_PREFLIGHT=OFF -DXBOX_NATIVE_NT5_HANDOFF=ON -DXBOX_NATIVE_NT5_ENTER=ON -DXBOX_NATIVE_NT5_AUTORUN=ON -DXBOX_NT5_VIDEO_ADAPTER_DIAGNOSTIC=OFF -DXBOX_NT5_VIDEO_TRACE=ON -DXBOX_NT5_VIDEO_PNP_DIAGNOSTIC=ON -DXBOX_NT5_VIDEO_DIAGNOSTIC=ON -DXBOX_NT5_VIDEO_ENTRY_DIAGNOSTIC=OFF -DXBOX_NT5_FRAMEBUFFER_ONLY_PCI=ON -DXBOX_NT5_VIDEO_TRACE_REUSE=ON -DXBOX_NT5_SHARED_FRAMEBUFFER=ON -DXWN_UC_STORES=OFF -DXWN_BODY_PROFILE=OFF -DXWN_TEXT_BOUNDS=ON -DXWN_HD_SURFACE_BOUNDS=ON\n/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/bin/cmake --build /home/paul/xbox-windows-native/build/public-layout402-display001/build --target xwnown -- -j4\n",
+  "tool_pins": {
+    "RosBE.sh": "1d04daf7393952441c62691bb7735042d236b0196778f1632f0a4383476143b7",
+    "bin/cmake": "049737b62e2803fd657041cf65b6bb6de7756db377c92c686c63eec373604e75",
+    "bin/ninja": "371e855768aa214225d4b17f49902cdd2b2daa8764514134524b07282c9e9e07",
+    "i386/bin/i686-w64-mingw32-gcc": "83015512671faaa0dbe6f043a0107f79c049f4268a67e39955388a8d9a0182e5"
+  },
+  "space": {
+    "minimum_free_gib": 20,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/home/paul/xbox-windows-native/build/public-layout402-display001",
+        "free_bytes": 917279019008
+      },
+      {
+        "free_bytes": 42986913792,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  }
+}

@@ -1,0 +1,10 @@
+remove_definitions(-D_WIN32_WINNT=0x502 -DWINVER=0x502)
+add_definitions(-D_WIN32_WINNT=0x500 -DWINVER=0x500 -DNTDDI_VERSION=0x05000000)
+add_library(xboxvnt5 MODULE xboxvnt5.c ../xboxvmp.rc)
+set_module_type(xboxvnt5 kernelmodedriver)
+add_importlibs(xboxvnt5 videoprt)
+target_link_libraries(xboxvnt5 libcntpr)
+if(NOT MSVC)
+    target_link_options(xboxvnt5 PRIVATE -Wl,--subsystem,native:5.0
+        -Wl,--minor-image-version,0 -Wl,--minor-os-version,0)
+endif()

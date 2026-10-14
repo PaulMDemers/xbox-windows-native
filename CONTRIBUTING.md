@@ -1,5 +1,9 @@
 # Contributing
 
+Start with the [source map](src/README.md), [build guide](docs/building.md) and
+[development workflow](docs/development.md). New original contributions may use
+MIT; preserve upstream notices and terms in derived files. See [NOTICE.md](NOTICE.md).
+
 Use isolated checkouts and record source, binary and tool hashes. Preserve failed
 attempts and use fresh IDs; never parent a fresh emulator test from an executed
 disk. Coordinate hardware access and shared build/emulator resources.

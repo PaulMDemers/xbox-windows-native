@@ -1,0 +1,109 @@
+/* SPDX-License-Identifier: GPL-2.0-or-later
+ * Native Windows 2000 debugger port entry points, direct 16450/16550 backend.
+ * ABI checked against the supplied 2195.7376 kernel and 2195.6801 PC HAL.
+ * No ARC firmware enumeration or modem command protocol is implemented.
+ */
+#include <hal.h>
+#include <cportlib/cportlib.h>
+
+typedef struct _HALP_NT5_DEBUG_PARAMETERS
+{
+    ULONG ComPort;
+    ULONG BaudRate;
+} HALP_NT5_DEBUG_PARAMETERS, *PHALP_NT5_DEBUG_PARAMETERS;
+
+static CPPORT HalpNt5DebugPort;
+static PUCHAR HalpNt5SelectedAddress;
+static ULONG HalpNt5SelectedBaud;
+static BOOLEAN HalpNt5DebugPortReady;
+extern PUCHAR KdComPortInUse;
+
+BOOLEAN NTAPI
+KdPortInitialize(PHALP_NT5_DEBUG_PARAMETERS Parameters,
+                 PLOADER_PARAMETER_BLOCK LoaderBlock,
+                 BOOLEAN Initialize)
+{
+    static const ULONG Bases[] = {0, 0x3f8, 0x2f8, 0x3e8, 0x2e8};
+    ULONG Baud;
+    PUCHAR Address;
+    UNREFERENCED_PARAMETER(LoaderBlock);
+
+    if (!HalpNt5SelectedAddress)
+    {
+        if (!Parameters || Parameters->ComPort > 4) return FALSE;
+        Baud = Parameters->BaudRate ? Parameters->BaudRate : 19200;
+        /* A nonzero integral divisor prevents division/truncation surprises. */
+        if (Baud > 115200 || 115200 % Baud || 115200 / Baud > 0xffff)
+            return FALSE;
+
+        if (Parameters->ComPort)
+        {
+            Address = UlongToPtr(Bases[Parameters->ComPort]);
+            if (!CpDoesPortExist(Address)) return FALSE;
+        }
+        else
+        {
+            /* Native NT5's legacy fallback prefers COM2, then COM1. */
+            Address = UlongToPtr(Bases[2]);
+            if (!CpDoesPortExist(Address))
+            {
+                Address = UlongToPtr(Bases[1]);
+                if (!CpDoesPortExist(Address)) return FALSE;
+            }
+        }
+        HalpNt5SelectedAddress = Address;
+        HalpNt5SelectedBaud = Baud;
+    }
+
+    /* A discovery call must not claim an operational debugger port. */
+    if (!Initialize) return TRUE;
+    HalpNt5DebugPortReady = FALSE;
+    KdComPortInUse = NULL;
+    RtlZeroMemory(&HalpNt5DebugPort, sizeof(HalpNt5DebugPort));
+    if (!NT_SUCCESS(CpInitialize(&HalpNt5DebugPort,
+                                 HalpNt5SelectedAddress,
+                                 HalpNt5SelectedBaud)))
+        return FALSE;
+    KdComPortInUse = HalpNt5DebugPort.Address;
+    HalpNt5DebugPortReady = TRUE;
+    return TRUE;
+}
+
+ULONG NTAPI KdPortGetByte(PUCHAR Byte)
+{
+    if (!Byte) return CP_GET_ERROR;
+    if (!HalpNt5DebugPortReady) return CP_GET_NODATA;
+    /* An absent/disconnected UART reads as all ones, not a framing error. */
+    if (READ_PORT_UCHAR(HalpNt5DebugPort.Address + 5) == 0xff)
+        return CP_GET_NODATA;
+    return CpGetByte(&HalpNt5DebugPort, Byte, TRUE, FALSE);
+}
+
+ULONG NTAPI KdPortPollByte(PUCHAR Byte)
+{
+    if (!Byte) return CP_GET_ERROR;
+    if (!HalpNt5DebugPortReady) return CP_GET_NODATA;
+    if (READ_PORT_UCHAR(HalpNt5DebugPort.Address + 5) == 0xff)
+        return CP_GET_NODATA;
+    /* NT5 polling is a nonblocking READ, not cportlib's peek mode. */
+    return CpGetByte(&HalpNt5DebugPort, Byte, FALSE, FALSE);
+}
+
+VOID NTAPI KdPortPutByte(UCHAR Byte)
+{
+    if (!HalpNt5DebugPortReady) return;
+    if (READ_PORT_UCHAR(HalpNt5DebugPort.Address + 5) == 0xff) return;
+    CpPutByte(&HalpNt5DebugPort, Byte);
+}
+
+VOID NTAPI KdPortSave(VOID)
+{
+    /* NT5 marks debugger entry with this flag. It affects the modem command
+     * layer on a PC; direct serial operation requires no UART state change. */
+    HalpNt5DebugPort.Flags |= 4;
+}
+
+VOID NTAPI KdPortRestore(VOID)
+{
+    HalpNt5DebugPort.Flags &= ~4;
+}

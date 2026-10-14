@@ -1,3 +1,17 @@
+# Source layout and newcomer guides implemented (402)
+
+Actual maintained source is now under src/ with six independent pinned profiles,
+MIT-scoped original work and preserved upstream licenses. New portable tools/xwn.py
+reconstructs exact full trees and builds selected components. Six fresh profile
+builds plus the settings utility pass (nine artifacts); ten guard tests and49
+local guide links pass.37 frozen399/34 frozen401 inputs unchanged. No physical
+access, tag/publication or baseline changes. Build hashes are not asserted equal
+to installed binaries. See outputs/public-layout402/REPORT.md and NEXT.md.
+
+Remaining: complete HAL/network/input provenance, public dependency acquisition,
+clean-machine build and disposable fresh-install/restore qualification. Current
+working E720p demo remains unchanged. All owned build sessions closed.
+
 # Source review package prepared; integrated demo unchanged
 
 The separate source candidate is C:/xwn401/package001/xwn-source-review401.zip.
