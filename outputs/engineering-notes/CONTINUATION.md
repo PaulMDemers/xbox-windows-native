@@ -1,4 +1,22 @@
-# Menu380 installed; dashboard reload/user boot observation pending
+# Text381 physical720p comparison launched; visual reply pending
+
+Read text-screen381/REPORT.md, capture001.json, mode720p001.json, launch720p001.json.
+User PrintScreen BMP retrieved twice from dashboardE, private E:/xwn381/capture001.
+1920x1080x24 image visually CLEAN on host, unlike TV photos; no pixel oracle and
+not the identical instant. Screenshot follows RAM-shadow read path, not proof of
+scanout bytes. Investigate copy/output chain; no encoder/adapter/TV cause proved.
+User reports full-window drag contents jostle and normalize immediately on release;
+overall speed adequate; outline acceptable. No moving capture/shared cause proved.
+
+Guarded E720p374 launcher applied01:23:18UTC October14, readback verified, original
+1080i private rollback E:/xwn381/mode720p001/before.xbe. Driver/audio/FATX/startup
+unchanged; noCaccess. Single SITE EXEC accepted01:23:26UTC; NO timed shutdown or
+observer, stays desktop. NEVER relaunch381. User visual text/drag reply pending.
+If rollback needed at dashboard use configure-e-display.py restore with thatreceipt.
+This is first physical E720p visual comparison, not yet qualification. No host
+subprocesses left running. Previous378collection and380menu install closed.
+
+## Previous menu handoff
 
 2026-10-14 01:10 UTC: root Windows now targets E:\Applications\XWNEBoot\default.xbe.
 Read menu-e380/REPORT.md and installed.json. User explicitly approved menu-only C
