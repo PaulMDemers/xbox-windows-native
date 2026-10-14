@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "scope": "Actual with-connect orchestration; FTP/store/journal modeled. Actual bounded store separately tested by physical398. No hardware access.",
+  "source_sha256": "b9ba7c11ee590a75c61c2b1cd2e915e9dbe2d404d256091f9ff5ba7d3b01b5a6",
+  "cases": [
+    {
+      "scenario": "success",
+      "failed": false,
+      "accepted": true,
+      "write_count": 1,
+      "rollback_confirmed": null
+    },
+    {
+      "scenario": "baseline_changed",
+      "failed": true,
+      "accepted": false,
+      "write_count": 0,
+      "rollback_confirmed": null
+    },
+    {
+      "scenario": "partial_write",
+      "failed": true,
+      "accepted": false,
+      "write_count": 2,
+      "rollback_confirmed": true
+    },
+    {
+      "scenario": "candidate_readback",
+      "failed": true,
+      "accepted": false,
+      "write_count": 2,
+      "rollback_confirmed": true
+    },
+    {
+      "scenario": "protected_after_write",
+      "failed": true,
+      "accepted": false,
+      "write_count": 2,
+      "rollback_confirmed": true
+    },
+    {
+      "scenario": "rollback_failure",
+      "failed": true,
+      "accepted": false,
+      "write_count": 2,
+      "rollback_confirmed": false
+    }
+  ]
+}

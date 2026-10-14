@@ -1,3 +1,23 @@
+# Integrated private demo ready; current bundles are399 revision002
+
+FATX390 is now installed and readback-verified on the Xbox alongside video303,
+audio004 and normal720p startup.68 protected/hive/control files verified; only
+the storage driver changed. Original0101 and F rollback remain. No new boot was
+started during integration, and no timed benchmark/restart is left enabled.
+
+Use Windows in UnleashX with the mouse connected before boot; leave the Razer
+keyboard unplugged through Xromwell. Current instructions and downloads are
+C:/xwn399/README.md and QUICKSTART.md. Preview002 is495kB; private system002 is327MB.
+Both are readback-verified, include rollback and corrected build documentation.
+The private system archive contains historical Windows/user data, is not a fresh
+backup and has not been full-restore-tested. Do not publish it.
+
+Scoped physical file/audio/GDI/shutdown/integrity passed in398, with the preserved
+audit identity correction. StrictFtdisk49 remains failed;1080i text/motion issue and
+exact stereo routing remain unresolved. No new public release/tag or visibility
+change. Next: ordinary user demo feedback, then sanitized source/license/build
+and disposable-installer preparation. All owned processes are closed.
+
 # Storage fix passed the physical demo workload; baseline remains restored
 
 October14: candidate390 now returns each exact filename once and passes all six

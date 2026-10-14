@@ -13,7 +13,7 @@ Windows installer or a GPU-accelerated desktop.
 - [Use the integrated demo](docs/DEMO.md)
 - [Configure resolution and dragging](docs/DISPLAY.md)
 - [Recovery and partition mapping](docs/RECOVERY.md)
-- [Build and provenance](docs/BUILD.md)
+- [Build and provenance](docs/BUILD-CURRENT.md)
 - [First public source release](docs/PUBLIC-RELEASE.md)
 - [Contributing](CONTRIBUTING.md)
 
@@ -21,15 +21,16 @@ Windows installer or a GPU-accelerated desktop.
 
 | Component | Included | Limits |
 |---|---|---|
-| Storage | FATX0101, E installation, original F rollback | Experimental; preserve backups |
+| Storage | FATX390 on0101, E installation, original0101/F rollback | Physical398 copy/move/readback passed; preserve backups |
 | Video | Software display303 and HD boot chain | No native GPU acceleration or live mode switching |
-| HD modes | E demo now selects720p; user reports clean text | 1080i has an unresolved visible text problem; full E720p qualification is separate |
+| HD modes | E demo now selects720p; user reports clean text | 1080i text/motion problem remains;398 E720p workload/integrity scope passed |
 | Audio | ACI207 build004 | Login/louder tones heard; exact stereo routing unconfirmed |
 | Input | Standard keyboard/mouse | Keep Razer keyboard unplugged through Xromwell |
 | Network | Native networking, user-confirmed ping | Limited legacy software environment |
 | Other devices | Existing policy retained | Unqualified PCI/gamepad prototypes excluded; prompts may remain |
 
-Outline dragging avoids repainting window contents during movement. Recent
+Full-window dragging and text are user-confirmed clean at720p. Outline dragging
+remains a reversible preference that avoids repainting during movement. Recent
 matched software-copy/stretch experiments showed no material gain. Further
 framebuffer and GPU work proceeds separately from the demo.
 

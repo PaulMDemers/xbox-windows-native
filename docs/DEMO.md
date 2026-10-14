@@ -5,7 +5,7 @@ install Windows on an empty disk.
 
 ## Start
 
-1. Start at UnleashX with the Razer keyboard unplugged.
+1. Connect the mouse before booting; start at UnleashX with the Razer keyboard unplugged.
 2. Select **Windows** from the root menu. If needed, its file explorer can launch
    `E:\Applications\XWNEBoot\default.xbe` directly.
 3. Connect the keyboard after Xromwell finishes and Windows appears.
@@ -15,15 +15,16 @@ The root **Windows** entry was updated to the E demo on October 14, 2026 UTC.
 Reload UnleashX after the update so it reads the new configuration. The prior
 menu is backed up at `C:\Dashboard\config.e380.bak`; this was an explicitly
 authorized menu-only exception to the dashboard C restriction. The original F
-installation and its launcher remain unchanged. Menu boot observation is pending.
+installation and its launcher remain unchanged. The user subsequently observed
+the menu boot through Xromwell into Windows normally.
 
 ## Five-minute demonstration
 
 The current E demo selects720p. Comparison381 produced user-confirmed clean text
 and clean full-window dragging; the1080i text/motion issue remains unresolved.
 
-- Move Notepad and Explorer using outline dragging; release the mouse to draw
-  the contents at the new location.
+- Move Notepad and Explorer using full-window dragging, which the user confirmed
+  looks clean at720p. Outline dragging remains available for comparison.
 - Save a note under `C:\xwndemo372`, close it and reopen it.
 - Draw a small Paint image, save as BMP in that folder, close and reopen it.
 - Open Calculator, Solitaire, Pinball or an installed screensaver. Running an
@@ -58,3 +59,10 @@ stop code and whether the system responds if something fails.
 Known limits include Ftdisk49, a physical capacity warning, unsupported-device
 prompts, software-rendering cost and the Xromwell/Razer boot interaction. This
 is a private experimental demo, not a newly certified release.
+
+The399 integration uses the FATX390 exact-name enumeration fix tested in398.
+That physical run passed direct/CMD copy, move and reopen with exact cold bytes,
+audio/GDI, normal shutdown and allocation/hive checks. The original driver397
+control reproduced duplicate entries and CMD MOVE failure. Strict qualification
+remains false for Ftdisk49. See the bundle's validation record; earlier failed
+attempts and a corrected audit identity error remain preserved in private records.

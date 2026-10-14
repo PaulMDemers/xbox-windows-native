@@ -1,3 +1,27 @@
+#399/400 CLOSED: integrated demo installed; final002 bundles verified
+
+Physical390 installed20:06:42UTC, one E driver write,68 files readback verified.
+Normal720p startup/video303/audio004/Frollback retained; no boot/Caccess/userprefs
+change. Displayselectorinspect720p passed. Original0101 rollback in captures and
+bothZIPs. Allowned sessions33076/64097/78970/72972 CLOSED. No hardwarelaunchqueued.
+399 gate explicitlyuses398correctedanalysis; fullscopedrequired,strictFt49FALSE,
+395heldunchanged.6modeledtransactionpaths and10invalidgatecases pass.37frozeninputs.
+
+Finalreviewcaught399BUILD table naming0101base without390.400docsonlyrevision
+preservesall399inputs and001archives; newBUILD-CURRENT guide/README corrected.
+002onlyBUILDdoc/manifests changed; allpayloadbytes exact against001. Current:
+C:/xwn399/preview002/xwn-demo-720p-preview-20261014.zip 494733B SHA07b3833fe91741b035ab165b0213b56ef1e37542387f7dadbd4f41f03a78fbaf
+C:/xwn399/system002/xwn-private-E-720p-demo-20261014.zip 326695634B SHAe1c242e7c9b3d2d0dbfd09d86106272845656ca116f6126858213fc9788f0546
+Preview30entries/system6583(6571payload), allreadback;27currentprotectedEmatch.
+RootREADME/QUICKSTART/CHECKSUMS/adoptionreceipt ready. Systemis343historicalpayload
++376controls+374E720p+390, NOTfreshbackup/fullrestoretested/public. No tag/release.
+See400REPORT/NEXT/final-review; nextuserordinarydemo thenlicense/export/build and
+disposableinstallerwork.1080i andFt49 unresolved;stereounconfirmed. No repeat398.
+
+#399 integration ACTIVE: FATX390 now installed/readback, normal720p startup
+
+User authorized integration/bundle. New399 explicitscopedgate accepts398corrected result; strictFt49FALSEretained,395held. Adoption64097CLOSED, soleEdriverwrite readback and68protected/hive/control files verified. No boot/Caccess/Fchange. Displayinspect720p passed.37frozeninputs;6modeledadoptionfaultcases and10invalidgatecases rejected. Systemarchive assembly78970ACTIVE underC:/xwn399/system001; inspect before any retry. Preview NOTbuilt yet. Botharchives private, systemreconstruct343+376+374+390 NOTfreshbackup/fullrestore. Original0101 inlocalcaptures/rollback, no newtag/publicchange.
+
 #398 CLOSED: candidate390 physical scope PASS; original baseline restored
 
 One launch19:43:17UTC -> dashboard19:48:11. Setup-first/native-before-CMD order

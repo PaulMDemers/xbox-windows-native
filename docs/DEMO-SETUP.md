@@ -7,7 +7,8 @@ be published. The smaller add-on archive also awaits source/license release revi
 
 ## On the configured console
 
-1. Start UnleashX with the Razer keyboard unplugged through Xromwell boot.
+1. Connect the mouse before booting. Start UnleashX with the Razer keyboard
+   unplugged through Xromwell boot.
 2. Select **Windows** from the root menu. It should point to
    `E:\Applications\XWNEBoot\default.xbe`, the E installation.
 3. Connect the keyboard after Windows appears. Close unsupported-device wizards
@@ -20,6 +21,11 @@ be published. The smaller add-on archive also awaits source/license release revi
 The working demo profile is720p. The user observed clean text and clean full
 dragging at720p;1080i has an unresolved output problem and is retained for
 diagnosis/rollback, not recommended as the demo profile.
+
+Integration399 installs the tested FATX390 storage fix with normal startup;
+it does not leave a benchmark or timed restart enabled. The preview includes
+the original0101 driver under `rollback/`. These are same-console artifacts,
+not an automatic storage upgrade for other installations.
 
 ## Applying the small add-on to this existing installation
 
@@ -51,3 +57,9 @@ If a mode loses video, return to UnleashX and use the selector's captured receip
 to restore the exact previous launcher. See [RECOVERY.md](RECOVERY.md). Archive
 verification is not a successful full-system restore test, and extracting a
 private archive over an occupied installation is not a supported upgrade.
+
+The399 private E archive reconstructs the earlier verified343 payload with the
+376 drag controls,374 E720p launcher and390 storage driver. Its registry, user
+data and other unchanged content remain historical. It is not a capture of your
+latest saved files, and it intentionally excludes the original F rollback and
+dashboard configuration. Preserve those separately.
