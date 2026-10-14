@@ -1,0 +1,2998 @@
+diff --git a/boot/freeldr/freeldr/arch/i386/xbox/machxbox.c b/boot/freeldr/freeldr/arch/i386/xbox/machxbox.c
+index 3860d4bcbd4271d8e7b6f417e2c27c89f9a0a71d..5e782dc8e6843faacaa22370774dfc87a1ba0d27 100644
+--- a/boot/freeldr/freeldr/arch/i386/xbox/machxbox.c
++++ b/boot/freeldr/freeldr/arch/i386/xbox/machxbox.c
+@@ -266,6 +266,19 @@ DetectIsaBios(
+ 
+     /* Detect ISA/BIOS devices */
+     DetectBiosDisks(SystemKey, BusKey);
++#ifdef XBOX_NATIVE_NT5_HANDOFF
++    /* DetectBiosDisks records the boot disk geometry on SystemKey, but its
++     * shared PC implementation also invents an ISA floppy controller (IRQ 6,
++     * DMA 2, ports 3f0-3f7). Xbox has no such controller: IRQ 6 belongs to ACI.
++     * Keep the system geometry and let native PCIIDE enumerate the real disks.
++     * This ISA node is new and DetectBiosDisks is its only child producer here.
++     */
++    ASSERT(!BusKey->Child ||
++           (BusKey->Child->ComponentEntry.Type == DiskController &&
++            BusKey->Child->Sibling == NULL));
++    BusKey->Child = NULL;
++#endif
++
+     DetectSerialPorts(Options, BusKey, XboxGetSerialPort, MAX_XBOX_COM_PORTS);
+ 
+     /* FIXME: Detect more ISA devices */
+diff --git a/boot/freeldr/freeldr/bootmgr.c b/boot/freeldr/freeldr/bootmgr.c
+index dbab13bddd35270a3d940e0e928ffedcaa50e18d..2699c02aef947d714fca5e5988de64ce883895a4 100644
+--- a/boot/freeldr/freeldr/bootmgr.c
++++ b/boot/freeldr/freeldr/bootmgr.c
+@@ -22,6 +22,12 @@
+ #include <freeldr.h>
+ 
+ #include <debug.h>
++#ifdef XBOX_NATIVE_IO_PREFLIGHT
++#include <xwnprobe.h>
++#ifdef XBOX_NATIVE_VOLUME_PREFLIGHT
++#include <xwnvolume.h>
++#endif
++#endif
+ DBG_DEFAULT_CHANNEL(WARNING);
+ 
+ /* GLOBALS ********************************************************************/
+@@ -70,6 +76,7 @@ OSLoadingMethods[] =
+ #endif /* _M_IX86 || _M_AMD64 */
+ #ifdef _M_IX86
+     {"WindowsNT40" , EditCustomBootNTOS, NULL, LoadAndBootWindows},
++    {"Windows2000" , EditCustomBootNTOS, MenuNTOptions, LoadAndBootWindows},
+ #endif
+     {"Windows"     , EditCustomBootNTOS, MenuNTOptions, LoadAndBootWindows},
+     {"Windows2003" , EditCustomBootNTOS, MenuNTOptions, LoadAndBootWindows},
+@@ -390,6 +397,36 @@ MainBootMenuKeyPressFilter(
+ 
+ VOID RunLoader(VOID)
+ {
++#ifdef XBOX_NATIVE_IO_PREFLIGHT
++    ULONG_PTR ProbeSection;
++    CHAR Token[64];
++    printf("XWN60: rosload entry reached; imported services active\n");
++    if (!XwnVerifyFile()) XwnStop("XWNFAIL: second-stage file verification");
++    if (!IniFileInitialize() ||
++        !IniOpenSection("XwnProbe", &ProbeSection) ||
++        !IniReadSettingByName(ProbeSection, "Token", Token, sizeof(Token)) ||
++        strcmp(Token, "XWN-SECOND-STAGE-20261003") != 0)
++        XwnStop("XWNFAIL: second-stage configuration verification");
++    printf("XWN70: second-stage file and configuration verified\n");
++#ifdef XBOX_NATIVE_VOLUME_PREFLIGHT
++    XwnVerifyInstalledVolume();
++#endif
++#ifdef XBOX_NATIVE_NT5_HANDOFF
++    {
++        PCHAR Args[] = {"rosload", "BootType=Windows2000",
++                       "SystemPartition=multi(0)disk(0)rdisk(0)partition(1)",
++                       "SystemPath=\\WINNT", "Options=/NODEBUG /SOS"};
++        ARC_STATUS Status;
++        LoadSettings(NULL);
++        if (!UiInitialize(TRUE)) XwnStop("XWNHFAIL: UI initialization");
++        Status = LoadAndBootWindows(RTL_NUMBER_OF(Args), Args, NULL);
++        printf("XWNHFAIL: NT5 loader returned status=%lu\n", Status);
++        XwnStop("XWNHFAIL: Kernel NOT entered");
++    }
++#else
++    XwnStop("XWN80: Handoff diagnostic complete. Windows NOT entered.");
++#endif
++#endif
+     OperatingSystemItem* OperatingSystemList;
+     PCSTR* OperatingSystemDisplayNames;
+     ULONG OperatingSystemCount;
+diff --git a/boot/freeldr/freeldr/freeldr.c b/boot/freeldr/freeldr/freeldr.c
+index bf9254a54c6b7d0b5feb327d318145064823c6cd..820ec284f791389f71a4eb6223a5dfc24f77eaac 100644
+--- a/boot/freeldr/freeldr/freeldr.c
++++ b/boot/freeldr/freeldr/freeldr.c
+@@ -22,6 +22,9 @@
+ #include <freeldr.h>
+ 
+ #include <debug.h>
++#ifdef XBOX_NATIVE_IO_PREFLIGHT
++#include <xwnprobe.h>
++#endif
+ DBG_DEFAULT_CHANNEL(WARNING);
+ 
+ /* GLOBALS ********************************************************************/
+@@ -103,6 +106,10 @@ VOID __cdecl BootMain(IN PCCH CmdLine)
+     MachInit(CmdLine);
+ 
+     TRACE("BootMain() called.\n");
++#if defined(XBOX_NATIVE_PREFLIGHT) || defined(XBOX_NATIVE_IO_PREFLIGHT)
++    printf("XWN10: Xbox platform initialized\n");
++#endif
++
+ 
+ #ifndef UEFIBOOT
+     /* Check if the CPU is new enough */
+@@ -123,6 +130,10 @@ VOID __cdecl BootMain(IN PCCH CmdLine)
+         goto Quit;
+     }
+ 
++#if defined(XBOX_NATIVE_PREFLIGHT) || defined(XBOX_NATIVE_IO_PREFLIGHT)
++    printf("XWN20: Memory manager initialized\n");
++#endif
++
+     /* Initialize I/O subsystem */
+     FsInit();
+ 
+@@ -140,6 +151,30 @@ VOID __cdecl BootMain(IN PCCH CmdLine)
+     }
+     
+ #ifndef SARCH_APPLETV
++#ifdef XBOX_NATIVE_PREFLIGHT
++    {
++        PFREELDR_MEMORY_DESCRIPTOR Map;
++        ULONG Count = MmGetBiosMemoryMap(&Map);
++        ULONG Index;
++        printf("XWN30: Boot devices initialized; path=%s\n", FrLdrBootPath);
++        printf("Firmware descriptors (page units): %lu\n", Count);
++        for (Index = 0; Index < Count; ++Index)
++        {
++            printf("%02lu base=%08lx pages=%08lx type=%lu\n",
++                   Index, (ULONG)Map[Index].BasePage,
++                   (ULONG)Map[Index].PageCount, (ULONG)Map[Index].MemoryType);
++        }
++        printf("XWN40: Diagnostic complete. Windows NOT entered.\n");
++        _disable();
++        for (;;) __halt();
++    }
++#endif
++
++#ifdef XBOX_NATIVE_IO_PREFLIGHT
++    printf("XWN30: Boot path=%s\n", FrLdrBootPath);
++    if (!XwnVerifyFile()) XwnStop("XWNFAIL: first-stage file verification");
++    printf("XWN50: 131075 bytes, EOF and cross-sector seek verified\n");
++#endif
+     /* Launch second stage loader */
+     if (LaunchSecondStageLoader() != ESUCCESS)
+     {
+diff --git a/boot/freeldr/freeldr/include/xwnprobe.h b/boot/freeldr/freeldr/include/xwnprobe.h
+new file mode 100644
+index 0000000000000000000000000000000000000000..b876851679e07bc065a951539b583142c766176e
+--- /dev/null
++++ b/boot/freeldr/freeldr/include/xwnprobe.h
+@@ -0,0 +1,55 @@
++/* Task-local Xbox CD/second-stage diagnostic. GPL-2.0-or-later. */
++#pragma once
++
++static VOID XwnStop(PCSTR Message)
++{
++    printf("%s\n", Message);
++    _disable();
++    for (;;) __halt();
++}
++
++static BOOLEAN XwnVerifyFile(VOID)
++{
++    CHAR Path[MAX_PATH];
++    UCHAR Buffer[1024];
++    ULONG FileId, Read, Offset = 0, Index, Wanted;
++    FILEINFORMATION Info;
++    LARGE_INTEGER Seek;
++    ARC_STATUS Status;
++    BOOLEAN Good = FALSE;
++    RtlStringCbPrintfA(Path, sizeof(Path), "%s\\probe.bin", FrLdrGetBootPath());
++    Status = ArcOpen(Path, OpenReadOnly, &FileId);
++    if (Status != ESUCCESS)
++    {
++        printf("XWNFAIL: probe open status=%lu\n", Status);
++        return FALSE;
++    }
++    Status = ArcGetFileInformation(FileId, &Info);
++    if (Status != ESUCCESS || Info.EndingAddress.QuadPart != 131075)
++        goto Done;
++    while (Offset < 131075)
++    {
++        Wanted = min(sizeof(Buffer), 131075 - Offset);
++        Status = ArcRead(FileId, Buffer, Wanted, &Read);
++        if (Status != ESUCCESS || Read != Wanted) goto Done;
++        for (Index = 0; Index < Read; ++Index)
++            if (Buffer[Index] != (UCHAR)((Offset + Index) * 37 + ((Offset + Index) >> 8) + 0x5a))
++                goto Done;
++        Offset += Read;
++    }
++    Status = ArcRead(FileId, Buffer, 1, &Read);
++    if (Status != ESUCCESS || Read != 0) goto Done;
++    Seek.QuadPart = 2041;
++    Status = ArcSeek(FileId, &Seek, SeekAbsolute);
++    if (Status != ESUCCESS) goto Done;
++    Status = ArcRead(FileId, Buffer, 31, &Read);
++    if (Status != ESUCCESS || Read != 31) goto Done;
++    for (Index = 0; Index < Read; ++Index)
++        if (Buffer[Index] != (UCHAR)((2041 + Index) * 37 + ((2041 + Index) >> 8) + 0x5a))
++            goto Done;
++    Good = TRUE;
++Done:
++    ArcClose(FileId);
++    if (!Good) printf("XWNFAIL: file data/size/seek/EOF offset=%lu status=%lu\n", Offset, Status);
++    return Good;
++}
+diff --git a/boot/freeldr/freeldr/include/xwnvolume.h b/boot/freeldr/freeldr/include/xwnvolume.h
+new file mode 100644
+index 0000000000000000000000000000000000000000..89e6248f383a5d2352b188a80b932f1db47cd944
+--- /dev/null
++++ b/boot/freeldr/freeldr/include/xwnvolume.h
+@@ -0,0 +1,89 @@
++/* Generated task-local read-only Xbox NTFS fixture probe. GPL-2.0-or-later. */
++#pragma once
++typedef struct { PCSTR Path; ULONG Size; ULONG Hash; ULONG TailHash; } XWN_VOLUME_FILE;
++static const XWN_VOLUME_FILE XwnVolumeFiles[] = {
++    {"boot.ini", 192, 0x803c3af4, 0xfe79cdc3},
++    {"WINNT\\system32\\ntoskrnl.exe", 1691648, 0xc10df1a4, 0x462a7c27},
++    {"WINNT\\system32\\hal.dll", 93536, 0x3c18fa59, 0x462a7c27},
++    {"WINNT\\system32\\bootvid.dll", 10784, 0xda5286e6, 0x462a7c27},
++    {"WINNT\\system32\\config\\system", 1810432, 0x1023cd18, 0x462a7c27},
++    {"WINNT\\system32\\drivers\\atapi.sys", 88048, 0x8147907, 0x462a7c27},
++    {"WINNT\\system32\\drivers\\disk.sys", 30864, 0xf9508b79, 0x462a7c27},
++    {"WINNT\\system32\\drivers\\ntfs.sys", 513456, 0xfb86d4a2, 0x462a7c27},
++};
++static VOID XwnVerifyInstalledVolume(VOID)
++{
++    CHAR Path[MAX_PATH];
++    UCHAR Buffer[4096];
++    ULONG Id, Read, Index, File, Total, Hash;
++    ARC_STATUS Status;
++    FILEINFORMATION Info;
++    LARGE_INTEGER Seek;
++    printf("XWN90: Checking installed NTFS volume, partition(1)\n");
++    for (File = 0; File < RTL_NUMBER_OF(XwnVolumeFiles); ++File)
++    {
++        const XWN_VOLUME_FILE *Expected = &XwnVolumeFiles[File];
++        RtlStringCbPrintfA(Path, sizeof(Path), "multi(0)disk(0)rdisk(0)partition(1)\\%s", Expected->Path);
++        Status = ArcOpen(Path, OpenReadOnly, &Id);
++        if (Status != ESUCCESS)
++        {
++            printf("XWNVFAIL: file=%lu open=%lu\n", File, Status);
++            XwnStop("XWNVFAIL: Installed file cannot be opened");
++        }
++        Status = ArcGetFileInformation(Id, &Info);
++        if (Status != ESUCCESS || Info.EndingAddress.QuadPart != Expected->Size)
++        {
++            ArcClose(Id);
++            printf("XWNVFAIL: file=%lu expected-size=%lu\n", File, Expected->Size);
++            XwnStop("XWNVFAIL: Installed file size mismatch");
++        }
++        Status = ArcRead(Id, Buffer, 0, &Read);
++        if (Status != ESUCCESS || Read != 0)
++        {
++            ArcClose(Id);
++            XwnStop("XWNVFAIL: Zero-length read failed");
++        }
++        Total = 0; Hash = 2166136261u;
++        while (Total < Expected->Size)
++        {
++            ULONG Wanted = min(sizeof(Buffer), Expected->Size - Total);
++            Status = ArcRead(Id, Buffer, Wanted, &Read);
++            if (Status != ESUCCESS || Read != Wanted)
++            {
++                ArcClose(Id);
++                printf("XWNVFAIL: file=%lu offset=%lu read=%lu status=%lu\n", File, Total, Read, Status);
++                XwnStop("XWNVFAIL: Installed file read failure");
++            }
++            for (Index = 0; Index < Read; ++Index) Hash = (Hash ^ Buffer[Index]) * 16777619u;
++            Total += Read;
++        }
++        Status = ArcRead(Id, Buffer, 1, &Read);
++        if (Status != ESUCCESS || Read != 0 || Hash != Expected->Hash)
++        {
++            ArcClose(Id);
++            printf("XWNVFAIL: file=%lu hash=%08lx expected=%08lx\n", File, Hash, Expected->Hash);
++            XwnStop("XWNVFAIL: Installed file content or EOF mismatch");
++        }
++        Seek.QuadPart = Expected->Size - 7;
++        Status = ArcSeek(Id, &Seek, SeekAbsolute);
++        if (Status != ESUCCESS)
++        {
++            ArcClose(Id);
++            XwnStop("XWNVFAIL: Tail seek failed");
++        }
++        Status = ArcRead(Id, Buffer, 32, &Read);
++        if (Status != ESUCCESS || Read != 7)
++        {
++            ArcClose(Id);
++            XwnStop("XWNVFAIL: Read beyond logical EOF was not shortened");
++        }
++        Hash = 2166136261u;
++        for (Index = 0; Index < 7; ++Index) Hash = (Hash ^ Buffer[Index]) * 16777619u;
++        Status = ArcRead(Id, Buffer, 1, &Read);
++        ArcClose(Id);
++        if (Status != ESUCCESS || Read != 0 || Hash != Expected->TailHash)
++            XwnStop("XWNVFAIL: Tail bytes or repeated EOF mismatch");
++        printf("XWN91: file=%lu bytes=%lu content/zero/short/EOF OK\n", File, Total);
++    }
++    XwnStop("XWN98: Eight installed files verified. Windows NOT entered.");
++}
+diff --git a/boot/freeldr/freeldr/lib/fs/ntfs.c b/boot/freeldr/freeldr/lib/fs/ntfs.c
+index 8efcd6c142d36bf537af9a2d56ab457861b2dccf..67c9e26f055e279391d1bc843435a886f525b075 100644
+--- a/boot/freeldr/freeldr/lib/fs/ntfs.c
++++ b/boot/freeldr/freeldr/lib/fs/ntfs.c
+@@ -1001,6 +1001,16 @@ ARC_STATUS NtfsRead(ULONG FileId, VOID* Buffer, ULONG N, ULONG* Count)
+ {
+     PNTFS_FILE_HANDLE FileHandle = FsGetDeviceSpecific(FileId);
+     ULONGLONG BytesRead64;
++    ULONGLONG FileSize;
++
++    *Count = 0;
++    if (N == 0) return ESUCCESS;
++    FileSize = NtfsGetAttributeSize(&FileHandle->DataContext->Record);
++    if (FileHandle->Offset >= FileSize) return ESUCCESS;
++
++    /* Limit non-resident reads to logical data, not allocated cluster slack. */
++    if (FileSize - FileHandle->Offset < N)
++        N = (ULONG)(FileSize - FileHandle->Offset);
+ 
+     /* Read data */
+     BytesRead64 = NtfsReadAttribute(FileHandle->Volume, FileHandle->DataContext, FileHandle->Offset, Buffer, N);
+diff --git a/boot/freeldr/freeldr/ntldr/winldr.c b/boot/freeldr/freeldr/ntldr/winldr.c
+index 7348f5649fd0882f61910c3f0cd701ba3fad99ea..52f67797b683527feafd141e803d4e7aa9ea62ab 100644
+--- a/boot/freeldr/freeldr/ntldr/winldr.c
++++ b/boot/freeldr/freeldr/ntldr/winldr.c
+@@ -75,6 +75,15 @@ NtLdrOutputLoadMsg(
+     }
+ }
+ 
++#ifdef XBOX_NATIVE_NT5_HANDOFF
++/* Monitor-readable record: no framebuffer access after switching page tables.
++ * Words 0..3: magic, magic, format, completion (99 success, 40 failure).
++ * Words 4..: LPB PA, LPB VA, kernel entry, CR0, CR3, extension size,
++ * major, minor, hive size, module count, boot-driver count, descriptor count.
++ */
++static volatile ULONG XwnHandoffRecord[17] = {0x484e5758, 0x35544e50, 1, 0};
++#endif
++
+ // Init "phase 0"
+ VOID
+ AllocateAndInitLPB(
+@@ -102,6 +111,14 @@ AllocateAndInitLPB(
+     Extension = &WinLdrSystemBlock->Extension;
+     LoaderBlock->Extension = Extension;
+     Extension->Size = sizeof(LOADER_PARAMETER_EXTENSION);
++#if defined(_M_IX86)
++    /* The supplied Windows 2000 x86 PDB defines precisely this prefix.
++     * Keep the larger allocation for loader-private fields, but advertise
++     * only the native structure through TriageDumpBlock (40 bytes). */
++    C_ASSERT(FIELD_OFFSET(LOADER_PARAMETER_EXTENSION, TriageDumpBlock) == 36);
++    if (VersionToBoot == _WIN32_WINNT_WIN2K)
++        Extension->Size = FIELD_OFFSET(LOADER_PARAMETER_EXTENSION, TriageDumpBlock) + sizeof(PVOID);
++#endif
+     Extension->MajorVersion = (VersionToBoot & 0xFF00) >> 8;
+     Extension->MinorVersion = (VersionToBoot & 0xFF);
+ 
+@@ -752,6 +769,10 @@ LoadWindowsCore(IN USHORT OperatingSystemVersion,
+     CHAR KernelFileName[MAX_PATH];
+     CHAR KdDllName[MAX_PATH];
+     CHAR BootVidName[MAX_PATH];
++#ifdef XBOX_NATIVE_NT5_HANDOFF
++    CHAR ProbeDir[MAX_PATH];
++    RtlStringCbPrintfA(ProbeDir, sizeof(ProbeDir), "%s\\loader\\", FrLdrGetBootPath());
++#endif
+ 
+     /* Initialize SystemRoot\System32 path */
+     RtlStringCbCopyA(DirPath, sizeof(DirPath), BootPath);
+@@ -891,7 +912,11 @@ LoadWindowsCore(IN USHORT OperatingSystemVersion,
+ 
+     /* Load the HAL */
+     HalBase = LoadModule(&LoaderBlock->LoadOrderListHead,
++#ifdef XBOX_NATIVE_NT5_HANDOFF
++                         ProbeDir, "halxboxnt5.dll",
++#else
+                          DirPath, HalFileName,
++#endif
+                          "hal.dll", LoaderHalCode,
+                          &HalDTE, 35);
+     if (!HalBase)
+@@ -1020,7 +1045,11 @@ LoadWindowsCore(IN USHORT OperatingSystemVersion,
+ 
+         /* Load the BootVid */
+         BootVidBase = LoadModule(&LoaderBlock->LoadOrderListHead,
++#ifdef XBOX_NATIVE_NT5_HANDOFF
++                                 ProbeDir, "xboxbvid.dll",
++#else
+                                  DirPath, BootVidName,
++#endif
+                                  "bootvid.dll", LoaderSystemCode,
+                                  &BootVidDTE, 45);
+         if (!BootVidBase)
+@@ -1420,6 +1449,9 @@ LoadAndBootWindowsCommon(
+         return ENOEXEC;
+     }
+ 
++#ifdef XBOX_NATIVE_NT5_HANDOFF
++    printf("XWNH10: NT5 kernel/HAL/bootvid loaded and imports bound\n");
++#endif
+     /* Cleanup INI file */
+     IniCleanup();
+ 
+@@ -1433,6 +1465,14 @@ LoadAndBootWindowsCommon(
+     UiSetProgressBarText("Loading boot drivers...");
+     Success = WinLdrLoadBootDrivers(LoaderBlock, BootPath);
+     TRACE("Boot drivers loading %s\n", Success ? "successful" : "failed");
++#ifdef XBOX_NATIVE_NT5_HANDOFF
++    if (!Success)
++    {
++        printf("XWNHFAIL: Boot driver loading failed; kernel NOT entered\n");
++        _disable(); for (;;) __halt();
++    }
++    printf("XWNH20: All selected boot drivers loaded\n");
++#endif
+ 
+     UiSetProgressBarSubset(0, 100);
+ 
+@@ -1491,6 +1531,13 @@ LoadAndBootWindowsCommon(
+     /* Map pages and create memory descriptors */
+     WinLdrSetupMemoryLayout(LoaderBlock);
+ 
++#ifdef XBOX_NATIVE_NT5_HANDOFF
++    XwnHandoffRecord[3] = 30;
++    XwnHandoffRecord[4] = (ULONG_PTR)LoaderBlock;
++    XwnHandoffRecord[5] = (ULONG_PTR)LoaderBlockVA;
++    XwnHandoffRecord[6] = (ULONG_PTR)KiSystemStartup;
++    printf("XWNH30: Layout prepared. Record PA=%p; paging next\n", XwnHandoffRecord);
++#endif
+     /* Set processor context */
+     WinLdrSetProcessorContext(OperatingSystemVersion);
+ 
+@@ -1509,6 +1556,48 @@ LoadAndBootWindowsCommon(
+     WinLdrpDumpArcDisks(LoaderBlockVA);
+ #endif
+ 
++#ifdef XBOX_NATIVE_NT5_HANDOFF
++    {
++        PLIST_ENTRY Link;
++        ULONG Modules = 0, Drivers = 0, Descriptors = 0;
++        PLOADER_PARAMETER_EXTENSION Ext = LoaderBlockVA->Extension;
++        for (Link = LoaderBlockVA->LoadOrderListHead.Flink;
++             Link != &LoaderBlockVA->LoadOrderListHead && Modules < 256; Link = Link->Flink) ++Modules;
++        for (Link = LoaderBlockVA->BootDriverListHead.Flink;
++             Link != &LoaderBlockVA->BootDriverListHead && Drivers < 256; Link = Link->Flink) ++Drivers;
++        for (Link = LoaderBlockVA->MemoryDescriptorListHead.Flink;
++             Link != &LoaderBlockVA->MemoryDescriptorListHead && Descriptors < 256; Link = Link->Flink) ++Descriptors;
++        XwnHandoffRecord[7] = __readcr0();
++        XwnHandoffRecord[8] = __readcr3();
++        XwnHandoffRecord[9] = Ext->Size;
++        XwnHandoffRecord[10] = Ext->MajorVersion;
++        XwnHandoffRecord[11] = Ext->MinorVersion;
++        XwnHandoffRecord[12] = LoaderBlockVA->RegistryLength;
++        XwnHandoffRecord[13] = Modules;
++        XwnHandoffRecord[14] = Drivers;
++        XwnHandoffRecord[15] = Descriptors;
++        XwnHandoffRecord[3] = 40;
++        if (Ext->Size == 40 && Ext->MajorVersion == 5 && Ext->MinorVersion == 0 &&
++            Modules && Modules < 256 && Drivers && Drivers < 256 && Descriptors && Descriptors < 256 &&
++            LoaderBlockVA->RegistryBase && LoaderBlockVA->NlsData)
++            XwnHandoffRecord[3] = 99;
++#ifdef XBOX_NATIVE_NT5_ENTER
++        _disable();
++        if (XwnHandoffRecord[3] != 99) for (;;) __halt();
++        /* The host must verify the record and set word 16 over its debugger.
++         * A separate opt-in build is required; the ordinary diagnostic halts. */
++#ifdef XBOX_NATIVE_NT5_AUTORUN
++        /* Separate opt-in image for repeating a verified boot without GDB. */
++        XwnHandoffRecord[16] = 0x4155544f; /* AUTO */
++#else
++        while (XwnHandoffRecord[16] != 0x574e454e) __asm__ __volatile__("pause");
++#endif
++        XwnHandoffRecord[3] = 100;
++#else
++        _disable(); for (;;) __halt();
++#endif
++    }
++#endif
+     /* Pass control */
+     (*KiSystemStartup)(LoaderBlockVA);
+ 
+diff --git a/boot/freeldr/freeldr/pcat.cmake b/boot/freeldr/freeldr/pcat.cmake
+index 0ac637f09780876bff8b3c3bf51c192d366d3402..28b8e66de8dca9eece4fe05f06739672c86dad1f 100644
+--- a/boot/freeldr/freeldr/pcat.cmake
++++ b/boot/freeldr/freeldr/pcat.cmake
+@@ -216,6 +216,22 @@ else()
+                     COMMAND ${CMAKE_STRIP} --strip-all $<TARGET_FILE:freeldr_pe>)
+ endif()
+ 
++option(XBOX_NATIVE_PREFLIGHT "Stop Xbox loader after platform and disk diagnostics" OFF)
++if(XBOX_NATIVE_PREFLIGHT)
++    if(NOT ARCH STREQUAL "i386" OR NOT SARCH STREQUAL "xbox")
++        message(FATAL_ERROR "XBOX_NATIVE_PREFLIGHT requires ARCH=i386 and SARCH=xbox")
++    endif()
++    target_compile_definitions(freeldr_pe PRIVATE XBOX_NATIVE_PREFLIGHT=1)
++endif()
++
++option(XBOX_NATIVE_IO_PREFLIGHT "Verify Xbox CD reads and rosload handoff, then halt" OFF)
++if(XBOX_NATIVE_IO_PREFLIGHT)
++    if(NOT ARCH STREQUAL "i386" OR NOT SARCH STREQUAL "xbox" OR XBOX_NATIVE_PREFLIGHT)
++        message(FATAL_ERROR "IO preflight requires i386/xbox and the first preflight OFF")
++    endif()
++    target_compile_definitions(freeldr_pe PRIVATE XBOX_NATIVE_IO_PREFLIGHT=1)
++endif()
++
+ set_image_base(freeldr_pe 0x10000)
+ set_subsystem(freeldr_pe native)
+ set_entrypoint(freeldr_pe RealEntryPoint)
+@@ -256,3 +272,27 @@ else()
+ endif()
+ 
+ add_cd_file(TARGET freeldr FILE ${CMAKE_CURRENT_BINARY_DIR}/freeldr.sys DESTINATION loader NO_CAB FOR bootcd regtest)
++
++option(XBOX_NATIVE_NT5_ENTER "Permit debugger-gated experimental Windows kernel entry" OFF)
++if(XBOX_NATIVE_NT5_ENTER AND NOT XBOX_NATIVE_NT5_HANDOFF)
++    message(FATAL_ERROR "NT5 entry requires the handoff diagnostic")
++endif()
++
++option(XBOX_NATIVE_NT5_AUTORUN "Enter experimental NT5 kernel without a host debugger gate" OFF)
++if(XBOX_NATIVE_NT5_AUTORUN AND NOT XBOX_NATIVE_NT5_ENTER)
++    message(FATAL_ERROR "NT5 autorun requires the explicit kernel-entry option")
++endif()
++
++option(XBOX_NATIVE_NT5_HANDOFF "Load installed NT5 files and halt before kernel entry" OFF)
++if(XBOX_NATIVE_NT5_HANDOFF AND (NOT XBOX_NATIVE_IO_PREFLIGHT OR XBOX_NATIVE_VOLUME_PREFLIGHT))
++    message(FATAL_ERROR "NT5 handoff requires I/O preflight, excludes volume-only preflight")
++endif()
++
++option(XBOX_NATIVE_VOLUME_PREFLIGHT "Read and verify the private installed Windows NTFS fixture, then halt" OFF)
++if(XBOX_NATIVE_VOLUME_PREFLIGHT AND NOT XBOX_NATIVE_IO_PREFLIGHT)
++    message(FATAL_ERROR "Volume preflight requires the IO preflight")
++endif()
++
++if(XBOX_NATIVE_NT5_HANDOFF)
++    target_compile_definitions(freeldr_common PRIVATE XBOX_NATIVE_NT5_HANDOFF=1)
++endif()
+diff --git a/boot/freeldr/freeldr/rosload.cmake b/boot/freeldr/freeldr/rosload.cmake
+index 240b27002a9d57a5826df395e6abd706e6eb2f4a..42ab70ae2c376c91229ec0320a430fa1c46e614c 100644
+--- a/boot/freeldr/freeldr/rosload.cmake
++++ b/boot/freeldr/freeldr/rosload.cmake
+@@ -75,6 +75,10 @@ set_target_properties(rosload
+     ENABLE_EXPORTS TRUE
+     DEFINE_SYMBOL "")
+ 
++if(XBOX_NATIVE_IO_PREFLIGHT)
++    target_compile_definitions(rosload PRIVATE XBOX_NATIVE_IO_PREFLIGHT=1)
++endif()
++
+ set_image_base(rosload 0x10000) # 0x200000
+ set_subsystem(rosload native)
+ set_entrypoint(rosload RunLoader)
+@@ -98,3 +102,19 @@ endif()
+ add_dependencies(rosload bugcodes asm xdk)
+ 
+ add_cd_file(TARGET rosload DESTINATION loader NO_CAB FOR bootcd regtest)
++
++if(XBOX_NATIVE_VOLUME_PREFLIGHT)
++    target_compile_definitions(rosload PRIVATE XBOX_NATIVE_VOLUME_PREFLIGHT=1)
++endif()
++
++if(XBOX_NATIVE_NT5_HANDOFF)
++    target_compile_definitions(rosload PRIVATE XBOX_NATIVE_NT5_HANDOFF=1)
++endif()
++
++if(XBOX_NATIVE_NT5_ENTER)
++    target_compile_definitions(rosload PRIVATE XBOX_NATIVE_NT5_ENTER=1)
++endif()
++
++if(XBOX_NATIVE_NT5_AUTORUN)
++    target_compile_definitions(rosload PRIVATE XBOX_NATIVE_NT5_AUTORUN=1)
++endif()
+diff --git a/drivers/network/dd/nvnet/CMakeLists.txt b/drivers/network/dd/nvnet/CMakeLists.txt
+index e3fbe130aaeb16136ffbd83b59544afe7dc95f9a..f47f5cc21e6ec6b92f5c62d198d8885aff91bd5f 100644
+--- a/drivers/network/dd/nvnet/CMakeLists.txt
++++ b/drivers/network/dd/nvnet/CMakeLists.txt
+@@ -1,7 +1,5 @@
+ 
+-add_definitions(
+-    -DNDIS51_MINIPORT
+-    -DNDIS_MINIPORT_DRIVER)
++
+ 
+ list(APPEND SOURCE
+     backoff.c
+@@ -18,9 +16,18 @@ list(APPEND SOURCE
+     send.c)
+ 
+ add_library(nvnet MODULE ${SOURCE} nvnet.rc)
++target_compile_definitions(nvnet PRIVATE NDIS51_MINIPORT NDIS_MINIPORT_DRIVER)
+ target_link_libraries(nvnet memcmp)
+ add_pch(nvnet nvnet.h SOURCE)
+ set_module_type(nvnet kernelmodedriver)
+ add_importlibs(nvnet ndis ntoskrnl hal)
+ add_cd_file(TARGET nvnet DESTINATION reactos/system32/drivers FOR all)
+ add_driver_inf(nvnet netnv.inf)
++
++if(XBOX_NT5_HAL)
++    add_library(nvnetnt5 MODULE ${SOURCE} nt5.c nvnet.rc)
++    target_compile_definitions(nvnetnt5 PRIVATE NDIS50_MINIPORT NDIS_MINIPORT_DRIVER XBOX_NVNET_NT5=1)
++    target_link_libraries(nvnetnt5 memcmp)
++    set_module_type(nvnetnt5 kernelmodedriver)
++    add_importlibs(nvnetnt5 ndis ntoskrnl hal)
++endif()
+diff --git a/drivers/network/dd/nvnet/init.c b/drivers/network/dd/nvnet/init.c
+index a83c7413eac8e01c26726e68c006218f90c71aec..ad023e6a8fe1d6d836352762b41ceb5fb2f2a873 100644
+--- a/drivers/network/dd/nvnet/init.c
++++ b/drivers/network/dd/nvnet/init.c
+@@ -630,8 +630,12 @@ NvNetFreeAdapter(
+     if (Adapter->TbdOriginal)
+     {
+         NdisMFreeSharedMemory(Adapter->AdapterHandle,
+-                              DescriptorSize * NVNET_TRANSMIT_DESCRIPTORS,
+-                              FALSE,
++                              DescriptorSize * NVNET_TRANSMIT_DESCRIPTORS
++#ifdef XBOX_NVNET_NT5
++                              + NVNET_ALIGNMENT, TRUE,
++#else
++                              , FALSE,
++#endif
+                               Adapter->TbdOriginal,
+                               Adapter->TbdPhysOriginal);
+         Adapter->TbdOriginal = NULL;
+@@ -639,15 +643,24 @@ NvNetFreeAdapter(
+     if (Adapter->RbdOriginal)
+     {
+         NdisMFreeSharedMemory(Adapter->AdapterHandle,
+-                              DescriptorSize * NVNET_RECEIVE_DESCRIPTORS,
+-                              FALSE,
++                              DescriptorSize * NVNET_RECEIVE_DESCRIPTORS
++#ifdef XBOX_NVNET_NT5
++                              + NVNET_ALIGNMENT, TRUE,
++#else
++                              , FALSE,
++#endif
+                               Adapter->RbdOriginal,
+                               Adapter->RbdPhysOriginal);
+         Adapter->RbdOriginal = NULL;
+     }
+     if (Adapter->SendBuffer)
+     {
+-        ULONG Length = ALIGN_UP_BY(Adapter->MaximumFrameSize, NVNET_ALIGNMENT);
++        ULONG Length =
++#ifdef XBOX_NVNET_NT5
++            Adapter->MaximumFrameSize + NVNET_ALIGNMENT;
++#else
++            ALIGN_UP_BY(Adapter->MaximumFrameSize, NVNET_ALIGNMENT);
++#endif
+ 
+         for (i = 0; i < NVNET_TRANSMIT_BUFFERS; ++i)
+         {
+@@ -671,7 +684,11 @@ NvNetFreeAdapter(
+     {
+         NdisMFreeSharedMemory(Adapter->AdapterHandle,
+                               NVNET_RECEIVE_BUFFER_SIZE * NVNET_RECEIVE_DESCRIPTORS,
++#ifdef XBOX_NVNET_NT5
++                              TRUE,
++#else
+                               FALSE,
++#endif
+                               Adapter->ReceiveBuffer,
+                               Adapter->ReceiveBufferPhys);
+         Adapter->ReceiveBuffer = NULL;
+@@ -692,7 +709,13 @@ NvNetFreeAdapter(
+     if (Adapter->Receive.Lock.SpinLock)
+         NdisFreeSpinLock(&Adapter->Receive.Lock);
+ 
++#ifdef XBOX_NVNET_NT5
++    if (Adapter->Nt5MapRegistersAllocated)
++        NdisMFreeMapRegisters(Adapter->AdapterHandle);
++    NdisFreeMemory(Adapter->AdapterOriginal, sizeof(NVNET_ADAPTER) + NVNET_ALIGNMENT, 0);
++#else
+     NdisFreeMemory(Adapter->AdapterOriginal, sizeof(NVNET_ADAPTER), 0);
++#endif
+ }
+ 
+ CODE_SEG("PAGE")
+@@ -782,10 +805,18 @@ MiniportInitialize(
+         goto Failure;
+     }
+ 
++#ifdef XBOX_NVNET_NT5
++    /* NT5's SG entry point rejects this serialized miniport. Establish the
++     * legacy DMA adapter; sends use the existing contiguous coalesce buffer. */
++    Status = NdisMAllocateMapRegisters(Adapter->AdapterHandle, 0, NDIS_DMA_32BITS,
++                                      NVNET_TRANSMIT_BUFFERS, NVNET_MAXIMUM_FRAME_SIZE);
++    if (Status == NDIS_STATUS_SUCCESS) Adapter->Nt5MapRegistersAllocated = TRUE;
++#else
+     Status = NdisMInitializeScatterGatherDma(Adapter->AdapterHandle,
+                                              !!(Adapter->Features & DEV_HAS_HIGH_DMA),
+                                              NVNET_MAXIMUM_FRAME_SIZE);
+                                              // ^TODO: NVNET_MAX_DMA_TRANSFER);
++#endif
+     if (Status != NDIS_STATUS_SUCCESS)
+     {
+         NvNetLogError(Adapter, NDIS_ERROR_CODE_OUT_OF_RESOURCES);
+@@ -875,6 +906,9 @@ MiniportInitialize(
+         goto Failure;
+     }
+ 
++#ifdef XBOX_NVNET_NT5
++    NvNetNt5RegisterShutdown(Adapter);
++#endif
+     NvNetStartAdapter(Adapter);
+ 
+     return NDIS_STATUS_SUCCESS;
+diff --git a/drivers/network/dd/nvnet/nt5.c b/drivers/network/dd/nvnet/nt5.c
+new file mode 100644
+index 0000000000000000000000000000000000000000..9db317efd8fb7e1edad30a3f9d364966164a7f0e
+--- /dev/null
++++ b/drivers/network/dd/nvnet/nt5.c
+@@ -0,0 +1,40 @@
++/* Experimental Windows 2000 support, GPL-2.0-or-later.
++ * Only linked into nvnetnt5. DriverEntry rejects multiprocessor systems.
++ */
++#include "nvnet.h"
++
++static VOID NTAPI
++NvNetNt5DpcBarrier(PKDPC Dpc, PVOID Context, PVOID Argument1, PVOID Argument2)
++{
++    KeSetEvent((PKEVENT)Context, IO_NO_INCREMENT, FALSE);
++}
++
++VOID
++NvNetNt5FlushDpcs(VOID)
++{
++    KEVENT Event;
++    KDPC Dpc;
++    /* On a single CPU a low-importance tail entry runs after all DPCs already
++     * queued. The waiter cannot resume until this DPC has returned. Producers
++     * are disabled by NvNetStopAdapter before this barrier is inserted. */
++    ASSERT(KeGetCurrentIrql() == PASSIVE_LEVEL);
++    KeInitializeEvent(&Event, NotificationEvent, FALSE);
++    KeInitializeDpc(&Dpc, NvNetNt5DpcBarrier, &Event);
++    KeSetImportanceDpc(&Dpc, LowImportance);
++    KeInsertQueueDpc(&Dpc, NULL, NULL);
++    KeWaitForSingleObject(&Event, Executive, KernelMode, FALSE, NULL);
++}
++
++VOID NTAPI
++NvNetNt5SendPackets(NDIS_HANDLE Context, PPNDIS_PACKET Packets, UINT Count)
++{
++    UINT Index;
++    for (Index = 0; Index < Count; ++Index)
++    {
++        NDIS_STATUS Status = MiniportSend(Context, Packets[Index], 0);
++        NDIS_SET_PACKET_STATUS(Packets[Index], Status);
++        /* NDIS requeues this packet and the untouched remainder, preserving
++         * order. None of them has been accepted by the hardware yet. */
++        if (Status == NDIS_STATUS_RESOURCES) break;
++    }
++}
+diff --git a/drivers/network/dd/nvnet/nvnet.c b/drivers/network/dd/nvnet/nvnet.c
+index 18193b6b7d4764bc8bddb6ebfd868c561ac84af7..136405f07ba8f3d589daaa8deae75b47a8443a5f 100644
+--- a/drivers/network/dd/nvnet/nvnet.c
++++ b/drivers/network/dd/nvnet/nvnet.c
+@@ -66,7 +66,13 @@ NvNetStopAdapter(
+ 
+     NvNetDisableInterrupts(Adapter);
+ 
++#ifdef XBOX_NVNET_NT5
++    /* Flush the posted interrupt-mask write before draining queued work. */
++    (VOID)NV_READ(Adapter, NvRegIrqMask);
++    NvNetNt5FlushDpcs();
++#else
+     KeFlushQueuedDpcs();
++#endif
+ }
+ 
+ CODE_SEG("PAGE")
+@@ -173,6 +179,10 @@ MiniportHalt(
+         NvNetPauseProcessing(Adapter);
+     }
+ 
++#ifdef XBOX_NVNET_NT5
++    NdisMDeregisterAdapterShutdownHandler(Adapter->AdapterHandle);
++#endif
++
+     NvNetStopAdapter(Adapter);
+ 
+     if (IsActive)
+@@ -255,6 +265,13 @@ MiniportShutdown(
+     NvNetSetPowerState(Adapter, NdisDeviceStateD3, 0);
+ }
+ 
++#ifdef XBOX_NVNET_NT5
++VOID NvNetNt5RegisterShutdown(PNVNET_ADAPTER Adapter)
++{
++    NdisMRegisterAdapterShutdownHandler(Adapter->AdapterHandle, Adapter, MiniportShutdown);
++}
++#endif
++
+ CODE_SEG("INIT")
+ NTSTATUS
+ NTAPI
+@@ -266,6 +283,11 @@ DriverEntry(
+     NDIS_MINIPORT_CHARACTERISTICS Characteristics = { 0 };
+     NDIS_STATUS Status;
+ 
++#ifdef XBOX_NVNET_NT5
++    /* The DPC barrier is deliberately UP-only. Never load it on an MP host. */
++    if (KeNumberProcessors != 1) return STATUS_NOT_SUPPORTED;
++    C_ASSERT(sizeof(NDIS_MINIPORT_CHARACTERISTICS) == 96); /* Native NDIS 5.0 */
++#endif
+     NdisMInitializeWrapper(&WrapperHandle, DriverObject, RegistryPath, NULL);
+     if (!WrapperHandle)
+     {
+@@ -281,11 +303,18 @@ DriverEntry(
+     Characteristics.ISRHandler = MiniportISR;
+     Characteristics.QueryInformationHandler = MiniportQueryInformation;
+     Characteristics.ResetHandler = MiniportReset;
++#ifdef XBOX_NVNET_NT5
++    /* Keep serialization and report ownership in each packet's OOB status. */
++    Characteristics.SendPacketsHandler = NvNetNt5SendPackets;
++#else
+     Characteristics.SendHandler = MiniportSend; /* TODO */
++#endif
+     Characteristics.SetInformationHandler = MiniportSetInformation;
+     // Characteristics.ReturnPacketHandler = MiniportReturnPacket; /* TODO */
+     // Characteristics.SendPacketsHandler = MiniportSendPackets; /* TODO */
++#ifndef XBOX_NVNET_NT5
+     Characteristics.AdapterShutdownHandler = MiniportShutdown;
++#endif
+ 
+     Status = NdisMRegisterMiniport(WrapperHandle, &Characteristics, sizeof(Characteristics));
+     if (Status != NDIS_STATUS_SUCCESS)
+diff --git a/drivers/network/dd/nvnet/nvnet.h b/drivers/network/dd/nvnet/nvnet.h
+index d4bef9c4d9c0e7dd2c54d8dbf3a56bcda487b8a9..a27cd6a581a9436e87147fea700d12c42e3aa6b6 100644
+--- a/drivers/network/dd/nvnet/nvnet.h
++++ b/drivers/network/dd/nvnet/nvnet.h
+@@ -36,6 +36,14 @@
+ 
+ #define NVNET_ALIGNMENT    64
+ 
++#ifdef XBOX_NVNET_NT5
++/* This target supports only the uniprocessor Xbox. Its conservative 64-byte
++ * alignment also preserves the explicit NVNET descriptor alignment. */
++#define NdisGetSharedDataAlignment() NVNET_ALIGNMENT
++VOID NvNetNt5FlushDpcs(VOID);
++#endif
++
++
+ #define NVNET_RECEIVE_BUFFER_SIZE    2048
+ 
+ #define NVNET_RECEIVE_PROCESSING_LIMIT   64
+@@ -382,6 +390,9 @@ typedef struct _NVNET_ADAPTER
+     NDIS_PHYSICAL_ADDRESS TbdPhysOriginal;
+     NDIS_PHYSICAL_ADDRESS RbdPhysOriginal;
+     NVNET_TX_BUFFER_DATA SendBufferAllocationData[NVNET_TRANSMIT_BUFFERS];
++#ifdef XBOX_NVNET_NT5
++    BOOLEAN Nt5MapRegistersAllocated;
++#endif
+ } NVNET_ADAPTER, *PNVNET_ADAPTER;
+ 
+ #define NvNetLogError(Adapter, ErrorCode) \
+@@ -394,6 +405,10 @@ NVNET_PROCESS_TRANSMIT ProcessTransmitDescriptors32;
+ NVNET_PROCESS_TRANSMIT ProcessTransmitDescriptors64;
+ 
+ CODE_SEG("PAGE")
++#ifdef XBOX_NVNET_NT5
++VOID NvNetNt5RegisterShutdown(PNVNET_ADAPTER Adapter);
++#endif
++
+ NDIS_STATUS
+ NTAPI
+ MiniportInitialize(
+@@ -669,4 +684,8 @@ NV_READ(
+ #define NvNetApplyInterruptMask(Adapter) \
+     NV_WRITE(Adapter, NvRegIrqMask, (Adapter)->InterruptMask);
+ 
++#ifdef XBOX_NVNET_NT5
++VOID NTAPI NvNetNt5SendPackets(NDIS_HANDLE Context, PPNDIS_PACKET Packets, UINT Count);
++#endif
++
+ #endif /* _NVNET_PCH_ */
+diff --git a/drivers/network/dd/nvnet/send.c b/drivers/network/dd/nvnet/send.c
+index 60d8afb2cd63ddd35d7fde51883523d135d2eecc..68f3beb39c219f6ac2e6cdb34f31df44e83199c3 100644
+--- a/drivers/network/dd/nvnet/send.c
++++ b/drivers/network/dd/nvnet/send.c
+@@ -203,6 +203,7 @@ NvNetTransmitPacket64(
+     NV_WRITE(Adapter, NvRegTxRxControl, Adapter->TxRxControl | NVREG_TXRXCTL_KICK);
+ }
+ 
++#ifndef XBOX_NVNET_NT5
+ static
+ DECLSPEC_NOINLINE
+ ULONG
+@@ -255,12 +256,18 @@ NvNetQueryTcpIpHeaders(
+     return IP_HEADER_LENGTH(IpHeader) + TCP_HEADER_LENGTH(TcpHeader);
+ }
+ 
++#endif
++
+ static
+ BOOLEAN
+ NvNetCopyPacket(
+     _In_ PNVNET_ADAPTER Adapter,
+     _In_ PNDIS_PACKET Packet,
+-    _In_ PNVNET_TX_BUFFER Buffer)
++    _In_ PNVNET_TX_BUFFER Buffer
++#ifdef XBOX_NVNET_NT5
++    , _In_ UINT ExpectedLength
++#endif
++    )
+ {
+     PNDIS_BUFFER CurrentBuffer;
+     PVOID Address;
+@@ -276,11 +283,19 @@ NvNetCopyPacket(
+                                      HighPagePriority);
+     if (!Address)
+         return FALSE;
++#ifdef XBOX_NVNET_NT5
++    if (!PacketLength || PacketLength != ExpectedLength ||
++        PacketLength > Adapter->MaximumFrameSize) return FALSE;
++#endif
+ 
+     Destination = Buffer->VirtualAddress;
+ 
+     while (TRUE)
+     {
++#ifdef XBOX_NVNET_NT5
++        if (CurrentLength > PacketLength) return FALSE;
++        PacketLength -= CurrentLength;
++#endif
+         NdisMoveMemory(Destination, Address, CurrentLength);
+         Destination += CurrentLength;
+ 
+@@ -297,9 +312,14 @@ NvNetCopyPacket(
+             return FALSE;
+     }
+ 
++#ifdef XBOX_NVNET_NT5
++    return PacketLength == 0;
++#else
+     return TRUE;
++#endif
+ }
+ 
++#ifndef XBOX_NVNET_NT5
+ static
+ NDIS_STATUS
+ NvNetSendPacketLargeSend(
+@@ -358,6 +378,7 @@ NvNetSendPacketLargeSend(
+     return NDIS_STATUS_SUCCESS;
+ }
+ 
++#endif
+ static
+ ULONG
+ NvNetGetChecksumInfo(
+@@ -414,9 +435,15 @@ NvNetSendPacket(
+ 
+     Flags = NvNetGetChecksumInfo(Adapter, Packet);
+ 
++#ifdef XBOX_NVNET_NT5
++    /* A serialized NT5 send owns one preallocated DMA-safe frame buffer.
++     * The normal completion path returns it to the free list. */
++    if (TRUE)
++#else
+     SgList = NDIS_PER_PACKET_INFO_FROM_PACKET(Packet, ScatterGatherListPacketInfo);
+ 
+     if (SgList->NumberOfElements > NVNET_FRAGMENTATION_THRESHOLD)
++#endif
+     {
+         if (!Adapter->Send.TbdSlots || !Adapter->Send.BufferList.Next)
+         {
+@@ -433,7 +460,11 @@ NvNetSendPacket(
+ 
+             NdisDprReleaseSpinLock(&Adapter->Send.Lock);
+ 
+-            Success = NvNetCopyPacket(Adapter, Packet, CoalesceBuffer);
++            Success = NvNetCopyPacket(Adapter, Packet, CoalesceBuffer
++#ifdef XBOX_NVNET_NT5
++                                      , TotalLength
++#endif
++                                      );
+ 
+             NdisDprAcquireSpinLock(&Adapter->Send.Lock);
+ 
+@@ -498,6 +529,10 @@ MiniportSend(
+     NDIS_DbgPrint(MIN_TRACE, ("()\n"));
+ 
+     NdisQueryPacketLength(Packet, &TotalLength);
++#ifdef XBOX_NVNET_NT5
++    if (!TotalLength || TotalLength > Adapter->MaximumFrameSize)
++        return NDIS_STATUS_INVALID_LENGTH;
++#endif
+ 
+     NdisDprAcquireSpinLock(&Adapter->Send.Lock);
+ 
+@@ -508,12 +543,14 @@ MiniportSend(
+         return NDIS_STATUS_FAILURE;
+     }
+ 
++#ifndef XBOX_NVNET_NT5
+     if (Adapter->Flags & NV_SEND_LARGE_SEND &&
+         PtrToUlong(NDIS_PER_PACKET_INFO_FROM_PACKET(Packet, TcpLargeSendPacketInfo)))
+     {
+         Status = NvNetSendPacketLargeSend(Adapter, Packet, TotalLength);
+     }
+     else
++#endif
+     {
+         Status = NvNetSendPacket(Adapter, Packet, TotalLength);
+     }
+diff --git a/drivers/wdm/audio/drivers/ac97/CMakeLists.txt b/drivers/wdm/audio/drivers/ac97/CMakeLists.txt
+index ef182eee79ef3768466296e39d2962dbee8e9a73..61c2efa110c1c5431e95f218ea0efb7e62877cab 100644
+--- a/drivers/wdm/audio/drivers/ac97/CMakeLists.txt
++++ b/drivers/wdm/audio/drivers/ac97/CMakeLists.txt
+@@ -28,3 +28,16 @@ endif()
+ 
+ add_cd_file(TARGET ac97 DESTINATION reactos/system32/drivers FOR all)
+ add_driver_inf(ac97 ac97.inf)
++
++# Experimental Xbox ACI MMIO path. Codec probing is still the PC model;
++# this target is for isolated emulator bring-up, not physical-console audio.
++if(XBOX_NT5_HAL)
++    add_library(ac97xnt5 MODULE ${SOURCE} ac97.rc)
++    target_compile_definitions(ac97xnt5 PRIVATE XBOX_NT5_AC97_MMIO=1)
++    target_link_libraries(ac97xnt5 stdunk libcntpr uuid)
++    set_module_type(ac97xnt5 wdmdriver)
++    add_importlibs(ac97xnt5 portcls hal ntoskrnl)
++    if(CMAKE_C_COMPILER_ID STREQUAL "GNU" OR CMAKE_C_COMPILER_ID STREQUAL "Clang")
++        target_compile_options(ac97xnt5 PRIVATE -Wno-write-strings -Wno-switch)
++    endif()
++endif()
+diff --git a/drivers/wdm/audio/drivers/ac97/adapter.cpp b/drivers/wdm/audio/drivers/ac97/adapter.cpp
+index 341abf7ea13e26f25ec9e3465a62f6c487b7b6f3..47022ad241170c62fd16cfaefd2cddbe51173492 100644
+--- a/drivers/wdm/audio/drivers/ac97/adapter.cpp
++++ b/drivers/wdm/audio/drivers/ac97/adapter.cpp
+@@ -185,8 +185,33 @@ NTSTATUS ValidateResources
+     ULONG countIRQ = ResourceList->NumberOfInterrupts ();
+     ULONG countDMA = ResourceList->NumberOfDmas ();
+ 
++#ifdef XBOX_NT5_AC97_MMIO
++    if (countIO == 2)
++    {
++        PCM_PARTIAL_RESOURCE_DESCRIPTOR codec = ResourceList->FindTranslatedPort(0);
++        PCM_PARTIAL_RESOURCE_DESCRIPTOR bus = ResourceList->FindTranslatedPort(1);
++        if (!codec || !bus || codec->u.Port.Start.HighPart || bus->u.Port.Start.HighPart ||
++            codec->u.Port.Length < 0x100 || codec->u.Port.Length > 0x10000 ||
++            bus->u.Port.Length < 0x80 || bus->u.Port.Length > 0x10000 ||
++            codec->u.Port.Start.LowPart > 0x10000 - codec->u.Port.Length ||
++            bus->u.Port.Start.LowPart > 0x10000 - bus->u.Port.Length ||
++            !(codec->u.Port.Start.LowPart + codec->u.Port.Length <= bus->u.Port.Start.LowPart ||
++              bus->u.Port.Start.LowPart + bus->u.Port.Length <= codec->u.Port.Start.LowPart))
++            return STATUS_DEVICE_CONFIGURATION_ERROR;
++    }
++#endif
+     // validate resources
++#ifdef XBOX_NT5_AC97_MMIO
++    if ((countIO != 0 && countIO != 2) || (ResourceList->NumberOfMemories() != 1) ||
++        (countIRQ != 1) || (countDMA != 0) ||
++        !ResourceList->FindTranslatedMemory(0) ||
++        ResourceList->FindTranslatedMemory(0)->u.Memory.Length < 0x180 ||
++        ResourceList->FindTranslatedMemory(0)->u.Memory.Start.HighPart ||
++        (ResourceList->FindTranslatedMemory(0)->u.Memory.Start.LowPart & 3) ||
++        ResourceList->FindTranslatedMemory(0)->u.Memory.Start.LowPart > 0xffffffffUL - 0x17f)
++#else
+     if ((countIO != 2) || (countIRQ != 1) || (countDMA != 0))
++#endif
+     {
+         DOUT (DBG_ERROR, ("Unknown configuration:\n"
+                           "   IO  count: %d\n"
+@@ -312,11 +337,14 @@ NTSTATUS GZCALL StartDevice
+     // These are the port driver pointers we are keeping around for registering
+     // physical connections.
+     //
++#ifndef XBOX_NT5_AC97_MMIO
+     PMINIPORT               miniTopology            = NULL;
++#endif
+     PUNKNOWN                unknownWave             = NULL;
+     PUNKNOWN                unknownTopology         = NULL;
+     PAC97MINIPORTTOPOLOGY   pMiniportTopology       = NULL;
+ 
++#ifndef XBOX_NT5_AC97_MMIO
+     //
+     // Start the topology miniport.
+     //
+@@ -350,6 +378,8 @@ NTSTATUS GZCALL StartDevice
+         }
+     }
+ 
++#endif
++
+     //
+     // Start the wave miniport.
+     //
+@@ -412,6 +442,7 @@ NTSTATUS GZCALL StartDevice
+         }
+     }
+ 
++#ifndef XBOX_NT5_AC97_MMIO
+     //
+     // Establish physical connections between filters as shown.
+     //
+@@ -460,7 +491,7 @@ NTSTATUS GZCALL StartDevice
+         }
+ 
+ 
+-        if (NT_SUCCESS (ntStatus))
++        if (NT_SUCCESS (ntStatus) && ulWaveIn != (ULONG)-1)
+         {
+             // register wave capture connection
+             ntStatus = PcRegisterPhysicalConnection (DeviceObject,
+@@ -476,7 +507,7 @@ NTSTATUS GZCALL StartDevice
+             }
+         }
+ 
+-        if (NT_SUCCESS (ntStatus))
++        if (NT_SUCCESS (ntStatus) && ulMicIn != (ULONG)-1)
+         {
+             // register mic capture connection
+             if (pAdapterCommon->GetPinConfig (PINC_MICIN_PRESENT))
+@@ -496,6 +527,8 @@ NTSTATUS GZCALL StartDevice
+         }
+     }
+ 
++#endif
++
+     //
+     // Release the adapter common object.  It either has other references,
+     // or we need to delete it anyway.
+diff --git a/drivers/wdm/audio/drivers/ac97/common.cpp b/drivers/wdm/audio/drivers/ac97/common.cpp
+index fd55d166d8ce619d72fda5124f98520f2162fc71..5ecafff589dcb73038eff7ec336b97138b86988e 100644
+--- a/drivers/wdm/audio/drivers/ac97/common.cpp
++++ b/drivers/wdm/audio/drivers/ac97/common.cpp
+@@ -12,6 +12,15 @@
+ 
+ #include "common.h"
+ 
++#ifdef XBOX_NT5_AC97_MMIO
++#define READ_PORT_UCHAR READ_REGISTER_UCHAR
++#define READ_PORT_USHORT READ_REGISTER_USHORT
++#define READ_PORT_ULONG READ_REGISTER_ULONG
++#define WRITE_PORT_UCHAR WRITE_REGISTER_UCHAR
++#define WRITE_PORT_USHORT WRITE_REGISTER_USHORT
++#define WRITE_PORT_ULONG WRITE_REGISTER_ULONG
++#endif
++
+ 
+ /*****************************************************************************
+  * Static Members
+@@ -169,6 +178,19 @@ STDMETHODIMP_(NTSTATUS) CAC97AdapterCommon::Init
+     //
+     // Get the base address for the AC97 codec and bus master.
+     //
++#ifdef XBOX_NT5_AC97_MMIO
++    PCM_PARTIAL_RESOURCE_DESCRIPTOR memory = ResourceList->FindTranslatedMemory(0);
++    if (!memory || memory->u.Memory.Length < 0x180 ||
++        memory->u.Memory.Start.HighPart ||
++        (memory->u.Memory.Start.LowPart & 3) ||
++        memory->u.Memory.Start.LowPart > 0xffffffffUL - 0x17f)
++        return STATUS_DEVICE_CONFIGURATION_ERROR;
++    m_pAciMapping = MmMapIoSpace(memory->u.Memory.Start, 0x180, MmNonCached);
++    if (!m_pAciMapping)
++        return STATUS_INSUFFICIENT_RESOURCES;
++    m_pCodecBase = (PUSHORT)m_pAciMapping;
++    m_pBusMasterBase = (PUCHAR)m_pAciMapping + 0x100;
++#else
+     ASSERT (ResourceList->FindTranslatedPort (0));
+     m_pCodecBase = (PUSHORT)ResourceList->FindTranslatedPort (0)->
+                            u.Port.Start.QuadPart;
+@@ -177,6 +199,8 @@ STDMETHODIMP_(NTSTATUS) CAC97AdapterCommon::Init
+     m_pBusMasterBase = (PUCHAR)ResourceList->FindTranslatedPort (1)->
+                               u.Port.Start.QuadPart;
+ 
++#endif
++
+     DOUT (DBG_SYSINFO, ("Configuration:\n"
+                         "   Bus Master = 0x%p\n"
+                         "   Codec      = 0x%p",
+@@ -187,6 +211,53 @@ STDMETHODIMP_(NTSTATUS) CAC97AdapterCommon::Init
+     // writes are going directly to the HW
+     //
+     m_bDirectRead = TRUE;
++#ifdef XBOX_NT5_AC97_MMIO
++    // Identify before PC-only mixer/power probing. WM9709 has no such registers.
++    ntStatus = PrimaryCodecReady();
++    if (!NT_SUCCESS(ntStatus)) return ntStatus;
++    WORD id1, id2;
++    ntStatus = ReadCodecRegister(AC97REG_VENDOR_ID1, &id1);
++    if (!NT_SUCCESS(ntStatus)) return ntStatus;
++    ntStatus = ReadCodecRegister(AC97REG_VENDOR_ID2, &id2);
++    if (!NT_SUCCESS(ntStatus)) return ntStatus;
++    if (id1 == 0x574d && id2 == 0x4c09)
++    {
++        m_FixedCodec207 = TRUE;
++        // Both output engines may retain dashboard DMA state. Stop/reset before
++        // exposing any NT5 stream. Only analog PCM is offered by this candidate.
++        for (ULONG engine = 0x10; engine <= 0x70; engine += 0x60)
++        {
++            WriteBMControlRegister(engine + X_CR, (UCHAR)0);
++            WriteBMControlRegister(engine + X_CR, (UCHAR)CR_RR);
++            ULONG attempt;
++            for (attempt = 0; attempt < 1000; ++attempt)
++            {
++                UCHAR control = ReadBMControlRegister8(engine + X_CR);
++                if (control != 0xff && !(control & CR_RR)) break;
++                KeStallExecutionProcessor(1);
++            }
++            if (attempt == 1000) return STATUS_IO_DEVICE_ERROR;
++            WriteBMControlRegister(engine + X_CR, (UCHAR)0);
++            for (attempt = 0; attempt < 100; ++attempt)
++            {
++                USHORT status = ReadBMControlRegister16(engine + X_SR);
++                if (status != 0xffff && (status & 1)) break;
++                KeStallExecutionProcessor(1);
++            }
++            if (attempt == 100) return STATUS_IO_DEVICE_ERROR;
++            WriteBMControlRegister(engine + X_SR, (USHORT)0x1c);
++            WriteBMControlRegister(engine, (ULONG)0);
++        }
++        for (int n = 0; n < NODEC_TOP_ELEMENT; ++n) SetNodeConfig((TopoNodeConfig)n, FALSE);
++        for (int n = 0; n < PINC_TOP_ELEMENT; ++n) SetPinConfig((TopoPinConfig)n, FALSE);
++        m_bDirectRead = FALSE;
++        m_PowerState = PowerDeviceD0;
++        m_FixedReady207 = TRUE;
++        return STATUS_SUCCESS;
++    }
++    // Preserve the documented xemu STAC9700 path; unknown codecs fail honestly.
++    if (id1 != 0x8384 || id2 != 0x7600) return STATUS_NOT_SUPPORTED;
++#endif
+ 
+     //
+     // Initialize the hardware.
+@@ -237,6 +308,10 @@ CAC97AdapterCommon::~CAC97AdapterCommon ()
+     PAGED_CODE ();
+ 
+     DOUT (DBG_PRINT, ("[CAC97AdapterCommon::~CAC97AdapterCommon]"));
++#ifdef XBOX_NT5_AC97_MMIO
++    if (m_pAciMapping)
++        MmUnmapIoSpace(m_pAciMapping, 0x180);
++#endif
+ }
+ 
+ 
+@@ -1098,6 +1173,11 @@ STDMETHODIMP_(NTSTATUS) CAC97AdapterCommon::ReadCodecRegister
+     _Out_ PWORD wData
+ )
+ {
++#ifdef XBOX_NT5_AC97_MMIO
++    if (m_FixedCodec207 && reg != AC97REG_VENDOR_ID1 && reg != AC97REG_VENDOR_ID2)
++        return STATUS_NOT_SUPPORTED;
++#endif
++
+     PAGED_CODE ();
+ 
+     ASSERT (wData);
+@@ -1195,8 +1275,22 @@ STDMETHODIMP_(NTSTATUS) CAC97AdapterCommon::WriteCodecRegister
+     _In_  WORD wMask
+ )
+ {
++#ifdef XBOX_NT5_AC97_MMIO
++    if (m_FixedCodec207) return STATUS_NOT_SUPPORTED;
++#endif
++
+     PAGED_CODE ();
+ 
++#ifdef XBOX_NT5_AC97_MMIO
++    /* This ACI prototype has only the stereo PCM output engine. These
++     * optional multichannel codec registers are absent from xemu's model;
++     * do not probe/write them or pretend they were programmed.
++     */
++    if (reg == AC97REG_CENTER_LFE_VOLUME || reg == AC97REG_SURROUND_VOLUME ||
++        reg == AC97REG_SURROUND_SAMPLERATE || reg == AC97REG_LFE_SAMPLERATE)
++        return STATUS_NOT_SUPPORTED;
++#endif
++
+     ASSERT (reg < AC97REG_INVALID);    // audio can only be in the primary codec
+ 
+     WORD TempData = 0;
+@@ -1292,6 +1386,9 @@ NTSTATUS CAC97AdapterCommon::PrimaryCodecReady (void)
+     // Enable the AC link and raise the reset line.
+     //
+     DWORD dwRegValue = ReadBMControlRegister32 (GLOB_CNT);
++#ifdef XBOX_NT5_AC97_MMIO
++    if (dwRegValue == 0xffffffff) return STATUS_IO_DEVICE_ERROR;
++#endif
+ 
+     // If someone enabled GPI Interrupt Enable, then he hopefully handles that
+     // too.
+@@ -1308,8 +1405,8 @@ NTSTATUS CAC97AdapterCommon::PrimaryCodecReady (void)
+ 
+     do
+     {
+-        if (READ_PORT_ULONG ((PULONG)(m_pBusMasterBase + GLOB_STA)) &
+-            GLOB_STA_PCR)
++        DWORD status = READ_PORT_ULONG((PULONG)(m_pBusMasterBase + GLOB_STA));
++        if (status != 0xffffffff && (status & GLOB_STA_PCR))
+         {
+             return STATUS_SUCCESS;
+         }
+@@ -1401,6 +1498,13 @@ STDMETHODIMP_(NTSTATUS) CAC97AdapterCommon::ProgramSampleRate
+     IN  DWORD           dwSampleRate
+ )
+ {
++#ifdef XBOX_NT5_AC97_MMIO
++    if (Register != AC97REG_FRONT_SAMPLERATE || dwSampleRate != 48000)
++        return STATUS_NOT_SUPPORTED;
++    if (m_FixedCodec207)
++        return m_FixedReady207 ? STATUS_SUCCESS : STATUS_DEVICE_NOT_READY;
++#endif
++
+     PAGED_CODE ();
+ 
+     WORD     wOldRateReg, wCodecReg;
+@@ -1534,6 +1638,23 @@ STDMETHODIMP_(void) CAC97AdapterCommon::PowerChangeState
+     _In_  POWER_STATE NewState
+ )
+ {
++#ifdef XBOX_NT5_AC97_MMIO
++    if (m_FixedCodec207)
++    {
++        if (NewState.DeviceState < PowerDeviceD0 || NewState.DeviceState > PowerDeviceD3) return;
++        if (NewState.DeviceState == PowerDeviceD0)
++            m_FixedReady207 = NT_SUCCESS(PrimaryCodecReady());
++        else
++        {
++            WriteBMControlRegister(PO_CR, (UCHAR)0);
++            WriteBMControlRegister(0x7b, (UCHAR)0);
++            m_FixedReady207 = FALSE;
++        }
++        m_PowerState = NewState.DeviceState;
++        return; // no nonexistent codec power/mixer registers
++    }
++#endif
++
+     PAGED_CODE ();
+ 
+     NTSTATUS ntStatus = STATUS_SUCCESS;
+@@ -2026,6 +2147,9 @@ STDMETHODIMP_(void) CAC97AdapterCommon::ReadChannelConfigDefault
+     // This is the default: 2 speakers, stereo.
+     *pdwChannelConfig = KSAUDIO_SPEAKER_STEREO;
+     *pwChannels = 2;
++#ifdef XBOX_NT5_AC97_MMIO
++    return; // this target exposes only stereo PCM; no registry expansion to 4/6ch
++#endif
+ 
+     // open the driver registry key
+     NTSTATUS ntStatus = PcNewRegistryKey (&DriverKey,        // IRegistryKey
+diff --git a/drivers/wdm/audio/drivers/ac97/common.h b/drivers/wdm/audio/drivers/ac97/common.h
+index 8b5162ddffab7ff6a070d83d3f532efd3d27cc82..9c6cc5da020e4eab81b65618a667d4ac08e24ce9 100644
+--- a/drivers/wdm/audio/drivers/ac97/common.h
++++ b/drivers/wdm/audio/drivers/ac97/common.h
+@@ -91,6 +91,11 @@ class CAC97AdapterCommon : public IAC97AdapterCommon,
+ private:
+     static tAC97Registers m_stAC97Registers[64];    // The shadow registers.
+     static tHardwareConfig m_stHardwareConfig;      // The hardware configuration.
++#ifdef XBOX_NT5_AC97_MMIO
++    PVOID          m_pAciMapping;
++    BOOL           m_FixedCodec207;
++    BOOL           m_FixedReady207;
++#endif
+     PDEVICE_OBJECT m_pDeviceObject;     // Device object used for registry access.
+     PWORD          m_pCodecBase;        // The AC97 I/O port address.
+     PUCHAR         m_pBusMasterBase;    // The Bus Master base address.
+@@ -165,7 +170,14 @@ private:
+ 
+ public:
+     DECLARE_STD_UNKNOWN();
++#ifdef XBOX_NT5_AC97_MMIO
++    CAC97AdapterCommon(PUNKNOWN outer) : CUnknown(outer), m_pAciMapping(NULL),
++        m_FixedCodec207(FALSE), m_FixedReady207(FALSE) { }
++    STDMETHODIMP_(BOOL) IsFixedCodec207() { return m_FixedCodec207; }
++    STDMETHODIMP_(BOOL) CodecReady207() { return !m_FixedCodec207 || m_FixedReady207; }
++#else
+     DEFINE_STD_CONSTRUCTOR(CAC97AdapterCommon);
++#endif
+     ~CAC97AdapterCommon();
+ 
+     /*************************************************************************
+diff --git a/drivers/wdm/audio/drivers/ac97/miniport.cpp b/drivers/wdm/audio/drivers/ac97/miniport.cpp
+index 83bb53d9d3c2e046e9cdede1ccd0899b816dd94a..28d7fe7cc8d199c3ce59acc6f3ac4aeab01016ca 100644
+--- a/drivers/wdm/audio/drivers/ac97/miniport.cpp
++++ b/drivers/wdm/audio/drivers/ac97/miniport.cpp
+@@ -284,6 +284,10 @@ static PCCONNECTION_DESCRIPTOR MiniportConnections[] =
+  * Init() modifies the pin count, node count and connection count in absence
+  * of the MicIn recording line.
+  */
++#ifdef XBOX_NT5_AC97_MMIO
++static GUID Audio207Categories[2];
++#endif
++
+ static PCFILTER_DESCRIPTOR MiniportFilterDescriptor =
+ {
+     0,                                  // Version
+@@ -340,6 +344,10 @@ NTSTATUS CMiniport::PropertyChannelConfig
+         // The "Value" is the input buffer with the channel config.
+         if (PropertyRequest->Value)
+         {
++#ifdef XBOX_NT5_AC97_MMIO
++            if (*(PLONG)PropertyRequest->Value != KSAUDIO_SPEAKER_STEREO)
++                return STATUS_INVALID_PARAMETER;
++#endif
+             // We can accept different channel configurations, depending
+             // on the number of channels we can play.
+             if (that->AdapterCommon->GetPinConfig (PINC_SURROUND_PRESENT))
+@@ -430,6 +438,9 @@ NTSTATUS CMiniport::BuildDataRangeInformation (void)
+         nChannels = 2;
+     }
+ 
++#ifdef XBOX_NT5_AC97_MMIO
++    nChannels = 2;
++#endif
+     // Check for the render sample rates.
+     for (nLoop = 0; nLoop < WAVE_SAMPLERATES_TESTED; nLoop++)
+     {
+@@ -860,6 +871,12 @@ NTSTATUS CMiniport::TestDataFormat
+         return STATUS_INVALID_PARAMETER;
+     }
+ 
++#ifdef XBOX_NT5_AC97_MMIO
++    if (Pin != PIN_WAVEOUT || waveFormat->Format.nChannels != 2 ||
++         waveFormat->Format.nSamplesPerSec != 48000 ||
++         waveFormat->Format.nBlockAlign != 4 || waveFormat->Format.nAvgBytesPerSec != 192000)
++        return STATUS_INVALID_PARAMETER;
++#endif
+     //
+     // We only support PCM, 16-bit.
+     //
+@@ -1237,6 +1254,20 @@ STDMETHODIMP_(NTSTATUS) CMiniport::Init
+             MiniportFilterDescriptor.ConnectionCount = SIZEOF_ARRAY(MiniportConnections) - 2;
+         }
+ 
++#ifdef XBOX_NT5_AC97_MMIO
++        {
++            MiniportFilterDescriptor.PinCount = 2;
++            MiniportFilterDescriptor.NodeCount = 1;
++            MiniportFilterDescriptor.ConnectionCount = 2;
++            // PCM -> actual DAC -> external analog output. There are no
++            // hardware mixer controls requiring a separate topology filter.
++            MiniportPins[PIN_WAVEOUT_BRIDGE].KsPinDescriptor.Category = &KSNODETYPE_SPEAKER;
++            Audio207Categories[0] = KSCATEGORY_AUDIO;
++            Audio207Categories[1] = KSCATEGORY_RENDER;
++            MiniportFilterDescriptor.CategoryCount = 2;
++            MiniportFilterDescriptor.Categories = Audio207Categories;
++        }
++#endif
+         //
+         // Process the resources.
+         //
+diff --git a/drivers/wdm/audio/drivers/ac97/miniport.h b/drivers/wdm/audio/drivers/ac97/miniport.h
+index 4a83995ac49e453770d6646d8ed773363d9bdf4e..00ab3806c4f208da0c6b1f39d8f3197b339f9e0f 100644
+--- a/drivers/wdm/audio/drivers/ac97/miniport.h
++++ b/drivers/wdm/audio/drivers/ac97/miniport.h
+@@ -30,6 +30,7 @@ public:
+     PPORT_              Port;           // Port driver object.
+     PADAPTERCOMMON      AdapterCommon;  // Adapter common object.
+     PINTERRUPTSYNC      InterruptSync;  // Interrupt Sync.
++    BOOLEAN             Audio207Fault; // zero-initialized by PortCls pool new
+     PDMACHANNEL         DmaChannel;     // Bus master support.
+     DEVICE_POWER_STATE  m_PowerState;   // advanced power control.
+     DWORD               m_dwChannelMask; // Channel config for speaker positions.
+diff --git a/drivers/wdm/audio/drivers/ac97/mintopo.h b/drivers/wdm/audio/drivers/ac97/mintopo.h
+index b5e4fa7d8b35a7054a947fa7288d8540a2b599a8..76cadadbe1f270df754eb2640efb8912dd64a878 100644
+--- a/drivers/wdm/audio/drivers/ac97/mintopo.h
++++ b/drivers/wdm/audio/drivers/ac97/mintopo.h
+@@ -253,7 +253,10 @@ public:
+         if (m_bCopyProtectFlag != flag)
+         {
+             m_bCopyProtectFlag = flag;
+-            UpdateRecordMute ();
++#ifdef XBOX_NT5_AC97_MMIO
++            if (!AdapterCommon->IsFixedCodec207())
++#endif
++                UpdateRecordMute ();
+         }
+     };
+ 
+diff --git a/drivers/wdm/audio/drivers/ac97/shared.h b/drivers/wdm/audio/drivers/ac97/shared.h
+index 3fd7c0363b8e32a0ebeef8d397e3f6f29018dec3..ed84a5d99f544aac489850dfaf94ab783ccefbfd 100644
+--- a/drivers/wdm/audio/drivers/ac97/shared.h
++++ b/drivers/wdm/audio/drivers/ac97/shared.h
+@@ -386,6 +386,10 @@ typedef IAC97MiniportTopology *PAC97MINIPORTTOPOLOGY;
+  */
+ DECLARE_INTERFACE_(IAC97AdapterCommon,IUnknown)
+ {
++#ifdef XBOX_NT5_AC97_MMIO
++    STDMETHOD_(BOOL,IsFixedCodec207)(THIS) PURE;
++    STDMETHOD_(BOOL,CodecReady207)(THIS) PURE;
++#endif
+     STDMETHOD_(NTSTATUS,Init)
+     (   THIS_
+         IN      PRESOURCELIST   ResourceList,
+diff --git a/drivers/wdm/audio/drivers/ac97/stream.cpp b/drivers/wdm/audio/drivers/ac97/stream.cpp
+index 6cec604c9df3c449bb151c5c86e3bd2ad79b7baf..aa816ef674706b945980a5324c1f716bcea4271b 100644
+--- a/drivers/wdm/audio/drivers/ac97/stream.cpp
++++ b/drivers/wdm/audio/drivers/ac97/stream.cpp
+@@ -152,7 +152,14 @@ NTSTATUS CMiniportStream::Init
+     //
+     // Reset the DMA and set the BD list pointer.
+     //
++#ifdef XBOX_NT5_AC97_MMIO
++    Audio207Touched = TRUE;
++#endif
+     ResetDMA ();
++#ifdef XBOX_NT5_AC97_MMIO
++    if (Miniport->Audio207Fault)
++        return STATUS_IO_DEVICE_ERROR;
++#endif
+ 
+     //
+     // Now set the requested sample rate. In case of a failure, the object
+@@ -205,7 +212,11 @@ CMiniportStream::~CMiniportStream()
+         //
+         // Disable interrupts and stop DMA just in case.
+         //
+-        if (Miniport->AdapterCommon)
++        if (Miniport->AdapterCommon
++#ifdef XBOX_NT5_AC97_MMIO
++            && Audio207Touched
++#endif
++            )
+         {
+             WriteReg8 (X_CR, (UCHAR)0);
+ 
+@@ -523,14 +534,29 @@ int CMiniportStream::GetBuffPos
+     // Repeat this until we get the same reading twice.  This will prevent
+     // jumps when we are near the end of the buffer.
+     //
++#ifdef XBOX_NT5_AC97_MMIO
++    for (ULONG attempt = 0; attempt < 8; ++attempt)
++    {
++        nCurrentIndex = ReadReg8(X_CIV);
++        RegisterX_PICB = ReadReg16(X_PICB);
++        if (nCurrentIndex != (int)ReadReg8(X_CIV))
++            continue;
++        if (!BDList || nCurrentIndex >= MAX_BDL_ENTRIES ||
++            RegisterX_PICB > BDList[nCurrentIndex].wLength)
++            break;
++        *buffPos = (BDList[nCurrentIndex].wLength - RegisterX_PICB) * 2;
++        return nCurrentIndex;
++    }
++    *buffPos = 0;
++    return -1; // unstable or invalid device data is not a fabricated position
++#else
+     do
+     {
+         nCurrentIndex = ReadReg8(X_CIV);
+-
+         RegisterX_PICB = ReadReg16 (X_PICB);
+     } while (nCurrentIndex != (int)ReadReg8(X_CIV));
+-
+     *buffPos = (BDList[nCurrentIndex].wLength - RegisterX_PICB) * 2;
++#endif
+     return nCurrentIndex;
+ }
+ 
+@@ -575,6 +601,11 @@ void CMiniportStream::ResetDMA (void)
+     if (bTimedOut)
+     {
+         DOUT (DBG_ERROR, ("ResetDMA TIMEOUT!!"));
++#ifdef XBOX_NT5_AC97_MMIO
++        Miniport->Audio207Fault = TRUE;
++        WriteReg8(X_CR, 0);
++        return;
++#endif
+     }
+ 
+     //
+@@ -632,3 +663,37 @@ USHORT CMiniportStream::ReadReg16(ULONG addr) { return Miniport->AdapterCommon->
+     ReadBMControlRegister16 (m_ulBDAddr + addr); }
+ ULONG CMiniportStream::ReadReg32(ULONG addr) { return Miniport->AdapterCommon->
+     ReadBMControlRegister32 (m_ulBDAddr + addr); }
++
++#ifdef XBOX_NT5_AC97_MMIO
++NTSTATUS NTAPI CMiniportStream::Quiesce207(PINTERRUPTSYNC Sync, PVOID Context)
++{
++    UNREFERENCED_PARAMETER(Sync);
++    CMiniportStream *stream = (CMiniportStream *)Context;
++    CMiniport *miniport = stream->Miniport;
++    stream->WriteReg8(X_CR, 0);
++    stream->DMAEngineState = DMA_ENGINE_OFF;
++    if (miniport->Streams[stream->Pin / 2] == stream)
++        miniport->Streams[stream->Pin / 2] = NULL;
++    for (ULONG attempt = 0; attempt < 100; ++attempt)
++    {
++        USHORT status = stream->ReadReg16(X_SR);
++        if (status != 0xffff && (status & 1)) // DCH: DMA controller halted
++        {
++            stream->WriteReg16(X_SR, 0x1c); // acknowledge only W1C status
++            stream->WriteReg32(0, 0);
++            return STATUS_SUCCESS;
++        }
++        KeStallExecutionProcessor(1);
++    }
++    miniport->Audio207Fault = TRUE;
++    return STATUS_IO_DEVICE_ERROR;
++}
++
++BOOLEAN CMiniportStream::Quiesce207()
++{
++    if (!Audio207Touched || !Miniport || !Miniport->AdapterCommon)
++        return TRUE;
++    return NT_SUCCESS(Miniport->InterruptSync->CallSynchronizedRoutine(
++        CMiniportStream::Quiesce207, this));
++}
++#endif
+diff --git a/drivers/wdm/audio/drivers/ac97/stream.h b/drivers/wdm/audio/drivers/ac97/stream.h
+index 060651bcd6922fb9bea3c47753eb7e0c8a21f8c2..14dfe3697ffb4a204f4b6bc57f6ecd501c869ec6 100644
+--- a/drivers/wdm/audio/drivers/ac97/stream.h
++++ b/drivers/wdm/audio/drivers/ac97/stream.h
+@@ -69,6 +69,11 @@ public:
+     // DMA start/stop/pause/reset routines.
+     //
+     void ResetDMA (void);
++#ifdef XBOX_NT5_AC97_MMIO
++    BOOLEAN Audio207Touched;
++    static NTSTATUS NTAPI Quiesce207(PINTERRUPTSYNC Sync, PVOID Context);
++    BOOLEAN Quiesce207();
++#endif
+     void PauseDMA (void);
+     void ResumeDMA (ULONG state = DMA_ENGINE_ON);
+ 
+diff --git a/drivers/wdm/audio/drivers/ac97/stream2.cpp b/drivers/wdm/audio/drivers/ac97/stream2.cpp
+index 5f90a9d8558647223966f69dc6ce44c526901f06..9c10fb855857a5fcccb7ea76b60321717d20435d 100644
+--- a/drivers/wdm/audio/drivers/ac97/stream2.cpp
++++ b/drivers/wdm/audio/drivers/ac97/stream2.cpp
+@@ -19,6 +19,14 @@ PVOID CMiniportStream::BDList_Alloc()
+          AllocateCommonBuffer (AdapterObject,
+                                MAX_BDL_ENTRIES * sizeof (tBDEntry),
+                                &BDList_PhysAddr, FALSE);
++#ifdef XBOX_NT5_AC97_MMIO
++    if (BDList && (BDList_PhysAddr.HighPart || (BDList_PhysAddr.LowPart & 7) ||
++        BDList_PhysAddr.LowPart > 0xffffffffUL - MAX_BDL_ENTRIES * sizeof(tBDEntry)))
++    {
++        BDList_Free();
++        return NULL;
++    }
++#endif
+     return BDList;
+ }
+ 
+@@ -33,7 +41,7 @@ void CMiniportStream::BDList_Free()
+         // free DBList
+         AdapterObject->DmaOperations->
+            FreeCommonBuffer (AdapterObject,
+-                             PAGE_SIZE,
++                             MAX_BDL_ENTRIES * sizeof(tBDEntry),
+                              BDList_PhysAddr,
+                              (PVOID)BDList,
+                              FALSE);
+@@ -86,11 +94,19 @@ NTSTATUS CMiniportStream::SetState
+     //
+     // Start or stop the DMA engine dependent of the state.
+     //
++#ifdef XBOX_NT5_AC97_MMIO
++    if (Miniport->Audio207Fault || !Miniport->AdapterCommon->CodecReady207())
++        return STATUS_IO_DEVICE_ERROR;
++#endif
+     switch (State)
+     {
+         case KSSTATE_STOP:
+             // We reset the DMA engine which will also reset the position pointers.
+             ResetDMA ();
++#ifdef XBOX_NT5_AC97_MMIO
++            if (Miniport->Audio207Fault)
++                return STATUS_IO_DEVICE_ERROR;
++#endif
+             break;
+ 
+         case KSSTATE_ACQUIRE:
+diff --git a/drivers/wdm/audio/drivers/ac97/wavecyclicminiport.cpp b/drivers/wdm/audio/drivers/ac97/wavecyclicminiport.cpp
+index 588327144821da35b4c22c9a1fcc748b068ffa47..fca98e4c2a6c3ef6af625d7a353c8d75507ce86d 100644
+--- a/drivers/wdm/audio/drivers/ac97/wavecyclicminiport.cpp
++++ b/drivers/wdm/audio/drivers/ac97/wavecyclicminiport.cpp
+@@ -126,6 +126,16 @@ STDMETHODIMP CMiniportWaveCyclic::NewStream
+     NTSTATUS ntStatus = STATUS_SUCCESS;
+ 
+     DOUT (DBG_PRINT, ("[CMiniportWaveCyclic::NewStream]"));
++#ifdef XBOX_NT5_AC97_MMIO
++    if (Capture || Audio207Fault || !AdapterCommon->CodecReady207())
++    {
++        *Stream = NULL;
++        *DmaChannel_ = NULL;
++        *ServiceGroup = NULL;
++        return STATUS_NOT_SUPPORTED;
++    }
++#endif
++
+ 
+     //
+     // Check parameters.
+diff --git a/drivers/wdm/audio/drivers/ac97/wavecyclicstream.cpp b/drivers/wdm/audio/drivers/ac97/wavecyclicstream.cpp
+index 8e833ea53bbdb4f30048757f41d1eda6957a15bf..3d4538d75ee799cde6e314d2bc1c2929c1ff049b 100644
+--- a/drivers/wdm/audio/drivers/ac97/wavecyclicstream.cpp
++++ b/drivers/wdm/audio/drivers/ac97/wavecyclicstream.cpp
+@@ -78,7 +78,16 @@ CMiniportWaveCyclicStream::~CMiniportWaveCyclicStream ()
+ 
+     DOUT (DBG_PRINT, ("[CMiniportWaveCyclicStream::~CMiniportWaveCyclicStream]"));
+ 
+-    // Release the scatter/gather table.
++#ifdef XBOX_NT5_AC97_MMIO
++    if (!Quiesce207())
++    {
++        // Keep the miniport/DMA channel and descriptor allocation alive after
++        // a hardware fault. ISR was detached; new streams are rejected.
++        Miniport = NULL;
++        return;
++    }
++#endif
++    // Release only after hardware halt and synchronized ISR detachment.
+     BDList_Free();
+ }
+ 
+@@ -144,7 +153,13 @@ NTSTATUS CMiniportWaveCyclicStream::ResizeBuffer(void)
+     DmaChannel->SetBufferSize(totalSize);
+ 
+     // initialize bdList
+-    DWORD addr = DmaChannel->PhysicalAddress().LowPart;
++    PHYSICAL_ADDRESS physical = DmaChannel->PhysicalAddress();
++    DWORD addr = physical.LowPart;
++#ifdef XBOX_NT5_AC97_MMIO
++    if (physical.HighPart || addr > 0xffffffffUL - totalSize ||
++        bufferSize == 0 || bufferSize / 2 > 0xffff || (addr & 3))
++        return STATUS_DEVICE_CONFIGURATION_ERROR;
++#endif
+     for (UINT loop = 0; loop < MAX_BDL_ENTRIES; loop++)
+     {
+         BDList[loop].dwPtrToPhyAddress = addr + bufferSize * (loop % NBUFFERS);
+@@ -205,11 +220,13 @@ STDMETHODIMP_(NTSTATUS) CMiniportWaveCyclicStream::GetPosition
+     _Out_ PULONG Position
+ )
+ {
+-    UCHAR   nCurrentIndex ;
++    int     nCurrentIndex;
+ 
+     ASSERT (Position);
+ 
+     nCurrentIndex = GetBuffPos((DWORD*)Position);
++    if (nCurrentIndex < 0)
++        return STATUS_IO_DEVICE_ERROR;
+     nCurrentIndex %= NBUFFERS;
+     *Position += nCurrentIndex * m_bufferSize;
+ 
+diff --git a/hal/halx86/CMakeLists.txt b/hal/halx86/CMakeLists.txt
+index edfe59ada9e50a3b1b59565b7ea9afa4f0b1b9fe..d247673d58031b51e0313efe61e0e3ce5c624c1a 100644
+--- a/hal/halx86/CMakeLists.txt
++++ b/hal/halx86/CMakeLists.txt
+@@ -52,6 +52,13 @@ if(ARCH STREQUAL "i386")
+     include(legacy.cmake)
+     include(pic.cmake)
+     include(xbox.cmake)
++    option(XBOX_NT5_HAL "Build experimental Windows 2000 Xbox HAL" OFF)
++    if(XBOX_NT5_HAL)
++        add_custom_target(xbox_nt5_pcidata DEPENDS
++            ${CMAKE_CURRENT_BINARY_DIR}/pci_classes.c
++            ${CMAKE_CURRENT_BINARY_DIR}/pci_vendors.c)
++        add_subdirectory(xboxnt5)
++    endif()
+     include(pc98.cmake)
+     add_subdirectory(minihal)
+ 
+diff --git a/hal/halx86/generic/dma.c b/hal/halx86/generic/dma.c
+index ad0f761e509fca96a5fa2b243dd1704cc57d79da..737e84d9e04ba6b461a0d47cd238b43ceba880f8 100644
+--- a/hal/halx86/generic/dma.c
++++ b/hal/halx86/generic/dma.c
+@@ -364,8 +364,8 @@ HalpGrowMapBuffers(IN PADAPTER_OBJECT AdapterObject,
+                 }
+             }
+ 
+-            RtlClearBit(AdapterObject->MapRegisters,
+-                        (ULONG)(CurrentEntry - AdapterObject->MapRegisterBase));
++            RtlClearBits(AdapterObject->MapRegisters,
++                        (ULONG)(CurrentEntry - AdapterObject->MapRegisterBase), 1);
+             CurrentEntry->VirtualAddress = VirtualAddress;
+             CurrentEntry->PhysicalAddress = PhysicalAddress;
+ 
+diff --git a/hal/halx86/generic/drive.c b/hal/halx86/generic/drive.c
+index f08edc493d4b4bb01a85820d4b6b758e98a03519..7e202d8363edde773b57214a4938e3c623309e5e 100644
+--- a/hal/halx86/generic/drive.c
++++ b/hal/halx86/generic/drive.c
+@@ -15,6 +15,17 @@
+ #define NDEBUG
+ #include <debug.h>
+ 
++/* Windows 2000 exports these stdcall wrappers from HAL and retains the
++ * fastcall implementations in HalDispatchTable. Use the dispatch entries,
++ * including the Xbox partition hooks, instead of importing newer kernel
++ * wrappers. Verified against the supplied 2195 HAL and kernel binaries. */
++#ifdef XBOX_NT5_HAL
++#define IoAssignDriveLetters HALDISPATCH->HalIoAssignDriveLetters
++#define IoReadPartitionTable HALDISPATCH->HalIoReadPartitionTable
++#define IoSetPartitionInformation HALDISPATCH->HalIoSetPartitionInformation
++#define IoWritePartitionTable HALDISPATCH->HalIoWritePartitionTable
++#endif
++
+ /* FUNCTIONS *****************************************************************/
+ 
+ VOID
+diff --git a/hal/halx86/generic/halinit.c b/hal/halx86/generic/halinit.c
+index e1639c0048231660b94024bd88206ef78d81733f..2937753932da2acd9b933edd1f5def6d47b2291c 100644
+--- a/hal/halx86/generic/halinit.c
++++ b/hal/halx86/generic/halinit.c
+@@ -101,7 +101,7 @@ HalInitSystem(
+         HalBootViaEfi = LoaderBlock->FirmwareInformation.FirmwareTypeEfi;
+ #else
+         HalBootViaEfi = FALSE;
+-#ifdef __REACTOS__
++#if defined(__REACTOS__) && !defined(XBOX_NT5_HAL)
+         ASSERT(LoaderBlock->Extension != NULL);
+         if (LoaderBlock->Extension->Size >= FIELD_OFFSET(LOADER_PARAMETER_EXTENSION, LoaderPerformanceData))
+             HalBootViaEfi = LoaderBlock->Extension->BootViaEFI;
+@@ -144,7 +144,11 @@ HalInitSystem(
+         HalInitPnpDriver = HaliInitPnpDriver;
+         HalGetDmaAdapter = HalpGetDmaAdapter;
+ 
++#ifdef XBOX_NT5_HAL
++        HalGetInterruptTranslator = HalpNt5GetInterruptTranslator;
++#else
+         HalGetInterruptTranslator = NULL;  // FIXME: TODO
++#endif
+         HalResetDisplay = HalpBiosDisplayReset;
+         HalHaltSystem = HaliHaltSystem;
+ 
+diff --git a/hal/halx86/generic/spinlock.c b/hal/halx86/generic/spinlock.c
+index 32b8c36e56f5e5e1d24cbe3882e7c9becc67299f..70717ee4910b3168014fb6a796b3e7b983124142 100644
+--- a/hal/halx86/generic/spinlock.c
++++ b/hal/halx86/generic/spinlock.c
+@@ -186,6 +186,18 @@ KeReleaseInStackQueuedSpinLock(IN PKLOCK_QUEUE_HANDLE LockHandle)
+ }
+ 
+ #ifndef _MINIHAL_
++#ifdef XBOX_NT5_HAL
++static BOOLEAN
++HalpNt5TryAcquireQueuedLock(KSPIN_LOCK_QUEUE_NUMBER LockNumber)
++{
++#if defined(CONFIG_SMP) || DBG
++#error The experimental NT5 target supports free UP builds only
++#endif
++    UNREFERENCED_PARAMETER(LockNumber);
++    KeMemoryBarrierWithoutFence();
++    return TRUE;
++}
++#endif
+ /*
+  * @implemented
+  */
+@@ -194,12 +206,18 @@ FASTCALL
+ KeTryToAcquireQueuedSpinLockRaiseToSynch(IN KSPIN_LOCK_QUEUE_NUMBER LockNumber,
+                                          IN PKIRQL OldIrql)
+ {
++#ifndef XBOX_NT5_HAL
+     PKSPIN_LOCK Lock = KeGetCurrentPrcb()->LockQueue[LockNumber].Lock;
++#endif
+ 
+     /* KM tests demonstrate that this raises IRQL even if locking fails */
+     KeRaiseIrql(SYNCH_LEVEL, OldIrql);
+     /* HACK */
++#ifdef XBOX_NT5_HAL
++    return HalpNt5TryAcquireQueuedLock(LockNumber);
++#else
+     return KeTryToAcquireSpinLockAtDpcLevel(Lock);
++#endif
+ }
+ 
+ /*
+@@ -210,12 +228,18 @@ FASTCALL
+ KeTryToAcquireQueuedSpinLock(IN KSPIN_LOCK_QUEUE_NUMBER LockNumber,
+                              OUT PKIRQL OldIrql)
+ {
++#ifndef XBOX_NT5_HAL
+     PKSPIN_LOCK Lock = KeGetCurrentPrcb()->LockQueue[LockNumber].Lock;
++#endif
+ 
+     /* KM tests demonstrate that this raises IRQL even if locking fails */
+     KeRaiseIrql(DISPATCH_LEVEL, OldIrql);
+     /* HACK */
++#ifdef XBOX_NT5_HAL
++    return HalpNt5TryAcquireQueuedLock(LockNumber);
++#else
+     return KeTryToAcquireSpinLockAtDpcLevel(Lock);
++#endif
+ }
+ #endif /* !defined(_MINIHAL_) */
+ 
+diff --git a/hal/halx86/include/hal.h b/hal/halx86/include/hal.h
+index 0775dda1ab2978527d1270f6b59db5fe3c0b7c49..d6548e3d99eeca2f69b501b3aa1f1fae2f497862 100644
+--- a/hal/halx86/include/hal.h
++++ b/hal/halx86/include/hal.h
+@@ -46,6 +46,12 @@
+ #include <drivers/pci/pci.h>
+ #include <drivers/acpi/acpi.h>
+ 
++/* The NT5 i386 PIC vectors already are IDT indices. There is no XP
++ * private-table translation callback in the NT5 contract. */
++#ifdef XBOX_NT5_HAL
++#define HalVectorToIDTEntry(Vector) ((UCHAR)(Vector))
++#endif
++
+ /* Internal kernel headers */
+ #ifdef _M_AMD64
+ #include <internal/amd64/ke.h>
+@@ -79,4 +85,8 @@
+ #include "mps.h"
+ #include "halacpi.h"
+ 
++#ifdef XBOX_NT5_HAL
++#include "../xboxnt5/boundary.h"
++#endif
++
+ #endif /* _HAL_PCH_ */
+diff --git a/hal/halx86/legacy/bussupp.c b/hal/halx86/legacy/bussupp.c
+index 091f13de5c0683f3ca945dc51e249dbe782efcb1..787d81323443eec3cc53d6cfdfcc1d2c1a5af557 100644
+--- a/hal/halx86/legacy/bussupp.c
++++ b/hal/halx86/legacy/bussupp.c
+@@ -1271,6 +1271,8 @@ VOID
+ NTAPI
+ HalpRegisterKdSupportFunctions(VOID)
+ {
++#if (NTDDI_VERSION >= NTDDI_WINXP)
++    /* Windows 2000 has no debugger callbacks in its private HAL table. */
+     /* Register PCI Device Functions */
+     KdSetupPciDeviceForDebugging = HalpSetupPciDeviceForDebugging;
+     KdReleasePciDeviceforDebugging = HalpReleasePciDeviceForDebugging;
+@@ -1288,6 +1290,7 @@ HalpRegisterKdSupportFunctions(VOID)
+ 
+     /* Register ACPI stub */
+     KdCheckPowerButton = HalpCheckPowerButton;
++#endif
+ }
+ #endif // _MINIHAL_
+ 
+diff --git a/hal/halx86/legacy/halpnpdd.c b/hal/halx86/legacy/halpnpdd.c
+index 9e8633f011aa4bb3c8509996a5fa7263df85022f..4810943c60b1b74092424443ae4db575b5c625d9 100644
+--- a/hal/halx86/legacy/halpnpdd.c
++++ b/hal/halx86/legacy/halpnpdd.c
+@@ -346,6 +346,9 @@ HalpQueryResources(IN PDEVICE_OBJECT DeviceObject,
+     /* Only the ACPI PDO has requirements */
+     if (DeviceExtension->PdoType == AcpiPdo)
+     {
++#ifdef XBOX_NT5_HAL
++        return HalpNt5QueryRootResources(Resources);
++#endif
+ #if 0
+         /* Query ACPI requirements */
+         Status = HalpQueryAcpiResourceRequirements(&RequirementsList);
+@@ -435,6 +438,9 @@ HalpQueryResourceRequirements(IN PDEVICE_OBJECT DeviceObject,
+     /* Only the ACPI PDO has requirements */
+     if (DeviceExtension->PdoType == AcpiPdo)
+     {
++#ifdef XBOX_NT5_HAL
++        return HalpNt5QueryRootRequirements(Requirements);
++#endif
+         /* Query ACPI requirements */
+ //        return HalpQueryAcpiResourceRequirements(Requirements);
+         return STATUS_SUCCESS;
+diff --git a/hal/halx86/xboxnt5/CMakeLists.txt b/hal/halx86/xboxnt5/CMakeLists.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..9782be808afef723799f1835dfa811cb0a67299e
+--- /dev/null
++++ b/hal/halx86/xboxnt5/CMakeLists.txt
+@@ -0,0 +1,30 @@
++# Experimental: name/structure audit target, not yet boot compatible.
++if(NOT ARCH STREQUAL "i386" OR NOT CMAKE_BUILD_TYPE STREQUAL "Release")
++    message(FATAL_ERROR "XBOX_NT5_HAL requires an i386 Release (free UP) build")
++endif()
++remove_definitions(-D_WIN32_WINNT=0x502 -DWINVER=0x502)
++add_definitions(-D_WIN32_WINNT=0x500 -DWINVER=0x500 -DNTDDI_VERSION=0x05000000
++                -DXBOX_NT5_HAL -DSARCH_XBOX)
++include_directories(${CMAKE_CURRENT_BINARY_DIR}/..)
++set(NT5_SOURCE)
++foreach(source ${HAL_XBOX_SOURCE} ${HAL_XBOX_ASM_SOURCE} ${HAL_UP_SOURCE})
++    if(IS_ABSOLUTE "${source}")
++        set_source_files_properties("${source}" PROPERTIES GENERATED TRUE)
++        list(APPEND NT5_SOURCE "${source}")
++    else()
++        list(APPEND NT5_SOURCE "../${source}")
++    endif()
++endforeach()
++spec2def(halxboxnt5.dll halnt5.spec)
++add_asm_files(nt5_boundary_asm boundary.S)
++add_library(halxboxnt5 MODULE ${NT5_SOURCE} ${nt5_boundary_asm} fmutex.c trapentry.c kdport.c translate.c rootbus.c ../xbox/halxbox.rc
++            ${CMAKE_CURRENT_BINARY_DIR}/halxboxnt5.def)
++target_link_libraries(halxboxnt5 cportlib libcntpr setjmp fast486 ${PSEH_LIB})
++add_importlibs(halxboxnt5 ntoskrnl)
++add_dependencies(halxboxnt5 psdk asm bugcodes xdk xbox_nt5_pcidata)
++set_module_type(halxboxnt5 kerneldll ENTRYPOINT HalInitSystem 8)
++if(NOT MSVC)
++    target_link_libraries(halxboxnt5 -lgcc)
++    target_link_options(halxboxnt5 PRIVATE -Wl,--subsystem,native:5.0
++        -Wl,--minor-image-version,0 -Wl,--minor-os-version,0)
++endif()
+diff --git a/hal/halx86/xboxnt5/boundary.S b/hal/halx86/xboxnt5/boundary.S
+new file mode 100644
+index 0000000000000000000000000000000000000000..d82a1442a4def4c8c7b5f76cf33eed15ec6e4d9e
+--- /dev/null
++++ b/hal/halx86/xboxnt5/boundary.S
+@@ -0,0 +1,58 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later
++ * Windows 2000 i386 boundary. Contracts verified against supplied 2195.7376.
++ * These entry points adapt the HAL's C interfaces to the native NT5 ABI.
++ */
++#include <asm.inc>
++.code
++EXTERN __imp__Kei386EoiHelper@0:DWORD
++EXTERN __imp_@KeUpdateSystemTime@12:DWORD
++EXTERN __imp__KiDispatchInterrupt@0:DWORD
++EXTERN _HalEndSystemInterrupt@8:PROC
++
++PUBLIC @HalpNt5Eoi@4
++.PROC @HalpNt5Eoi@4
++    /* Discard every C frame. The kernel restores registers and executes IRET. */
++    mov ebp, ecx
++    mov esp, ecx
++    jmp dword ptr [__imp__Kei386EoiHelper@0]
++.ENDP
++
++PUBLIC @HalpNt5UpdateSystemTime@12
++.PROC @HalpNt5UpdateSystemTime@12
++    /* ECX=trap, EDX=increment, [ESP+4]=old IRQL. Native NT expects no return
++     * address: [ESP]=old IRQL, [ESP+4]=vector, [ESP+8]=trap frame. */
++    movzx eax, byte ptr [esp+4]
++    mov ebp, ecx
++    mov esp, ecx
++    push HEX(30) /* Xbox PIC primary vector + IRQ0 */
++    push eax
++    mov eax, edx
++    jmp dword ptr [__imp_@KeUpdateSystemTime@12]
++.ENDP
++
++PUBLIC _HalpNt5EndSystemInterrupt@8
++.PROC _HalpNt5EndSystemInterrupt@8
++    /* Native NT passes a vector as argument 2; our PIC code needs EBP's trap.
++     * Keep the internal HalEndSystemInterrupt ABI for all HAL C callers. */
++    push ebp
++    push dword ptr [esp+8]
++    call _HalEndSystemInterrupt@8
++    ret 8
++.ENDP
++
++PUBLIC _HalpNt5DispatchInterrupt@0
++.PROC _HalpNt5DispatchInterrupt@0
++    /* NT's assembly DPC helper clobbers EBX. Isolate the C caller from all
++     * native nonvolatile-register assumptions. */
++    push ebp
++    push ebx
++    push esi
++    push edi
++    call dword ptr [__imp__KiDispatchInterrupt@0]
++    pop edi
++    pop esi
++    pop ebx
++    pop ebp
++    ret
++.ENDP
++END
+diff --git a/hal/halx86/xboxnt5/boundary.h b/hal/halx86/xboxnt5/boundary.h
+new file mode 100644
+index 0000000000000000000000000000000000000000..fad63d71af2ea382e01c3e0e9b21e6896f8af9be
+--- /dev/null
++++ b/hal/halx86/xboxnt5/boundary.h
+@@ -0,0 +1,17 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++#pragma once
++DECLSPEC_NORETURN VOID FASTCALL HalpNt5Eoi(PKTRAP_FRAME TrapFrame);
++DECLSPEC_NORETURN VOID FASTCALL HalpNt5UpdateSystemTime(PKTRAP_FRAME TrapFrame, ULONG Increment, KIRQL OldIrql);
++VOID NTAPI HalpNt5DispatchInterrupt(VOID);
++VOID FASTCALL HalpNt5EnterTrap(PKTRAP_FRAME TrapFrame);
++VOID FASTCALL HalpNt5EnterInterruptTrap(PKTRAP_FRAME TrapFrame);
++#define KiEoiHelper HalpNt5Eoi
++#define KeUpdateSystemTime HalpNt5UpdateSystemTime
++#define KiDispatchInterrupt HalpNt5DispatchInterrupt
++#define KiEnterTrap HalpNt5EnterTrap
++#define KiEnterInterruptTrap HalpNt5EnterInterruptTrap
++
++NTSTATUS NTAPI HalpNt5GetInterruptTranslator(INTERFACE_TYPE, ULONG, INTERFACE_TYPE, USHORT, USHORT, PTRANSLATOR_INTERFACE, PULONG);
++
++NTSTATUS NTAPI HalpNt5QueryRootResources(PCM_RESOURCE_LIST *);
++NTSTATUS NTAPI HalpNt5QueryRootRequirements(PIO_RESOURCE_REQUIREMENTS_LIST *);
+diff --git a/hal/halx86/xboxnt5/fmutex.c b/hal/halx86/xboxnt5/fmutex.c
+new file mode 100644
+index 0000000000000000000000000000000000000000..c86ca6e49f6aecc341a8af1be46d65ce5dbea292
+--- /dev/null
++++ b/hal/halx86/xboxnt5/fmutex.c
+@@ -0,0 +1,67 @@
++/*
++ * PROJECT:     Experimental Windows 2000 Xbox HAL
++ * LICENSE:     GPL-2.0-or-later
++ * PURPOSE:     HAL-owned fast mutexes, using NT 5.0 kernel exports.
++ * Derived from ReactOS ntoskrnl/include/internal/ex.h fast-mutex algorithms.
++ * Runtime/ABI validation against Windows 2000 remains required.
++ */
++#include <hal.h>
++#undef ExAcquireFastMutex
++#undef ExReleaseFastMutex
++#undef ExTryToAcquireFastMutex
++
++/* The NT5 x86 FAST_MUTEX ABI; never use a version-specific KTHREAD field. */
++C_ASSERT(NTDDI_VERSION == NTDDI_WIN2K);
++C_ASSERT(HAL_DISPATCH_VERSION == 2);
++C_ASSERT(HAL_PRIVATE_DISPATCH_VERSION == 1);
++C_ASSERT(sizeof(HAL_DISPATCH) == 0x44);
++C_ASSERT(sizeof(HAL_PRIVATE_DISPATCH) == 0x30);
++C_ASSERT(FIELD_OFFSET(HAL_DISPATCH, HalIoAssignDriveLetters) == 0x18);
++C_ASSERT(FIELD_OFFSET(HAL_DISPATCH, HalIoReadPartitionTable) == 0x1c);
++C_ASSERT(FIELD_OFFSET(HAL_DISPATCH, HalIoSetPartitionInformation) == 0x20);
++C_ASSERT(FIELD_OFFSET(HAL_DISPATCH, HalIoWritePartitionTable) == 0x24);
++C_ASSERT(sizeof(FAST_MUTEX) == 32);
++C_ASSERT(FIELD_OFFSET(FAST_MUTEX, Count) == 0);
++C_ASSERT(FIELD_OFFSET(FAST_MUTEX, Owner) == 4);
++C_ASSERT(FIELD_OFFSET(FAST_MUTEX, Contention) == 8);
++C_ASSERT(FIELD_OFFSET(FAST_MUTEX, Event) == 12);
++C_ASSERT(FIELD_OFFSET(FAST_MUTEX, OldIrql) == 28);
++
++VOID FASTCALL
++ExAcquireFastMutex(PFAST_MUTEX Mutex)
++{
++    KIRQL OldIrql;
++    KeRaiseIrql(APC_LEVEL, &OldIrql);
++    if (InterlockedDecrement(&Mutex->Count) != 0)
++    {
++        InterlockedIncrement((PLONG)&Mutex->Contention);
++        KeWaitForSingleObject(&Mutex->Event, Executive, KernelMode, FALSE, NULL);
++    }
++    Mutex->Owner = KeGetCurrentThread();
++    Mutex->OldIrql = OldIrql;
++}
++
++VOID FASTCALL
++ExReleaseFastMutex(PFAST_MUTEX Mutex)
++{
++    KIRQL OldIrql = (KIRQL)Mutex->OldIrql;
++    Mutex->Owner = NULL;
++    if (InterlockedIncrement(&Mutex->Count) <= 0)
++        KeSetEventBoostPriority(&Mutex->Event, NULL);
++    KeLowerIrql(OldIrql);
++}
++
++BOOLEAN FASTCALL
++ExTryToAcquireFastMutex(PFAST_MUTEX Mutex)
++{
++    KIRQL OldIrql;
++    KeRaiseIrql(APC_LEVEL, &OldIrql);
++    if (InterlockedCompareExchange(&Mutex->Count, 0, 1) == 1)
++    {
++        Mutex->Owner = KeGetCurrentThread();
++        Mutex->OldIrql = OldIrql;
++        return TRUE;
++    }
++    KeLowerIrql(OldIrql);
++    return FALSE;
++}
+diff --git a/hal/halx86/xboxnt5/halnt5.spec b/hal/halx86/xboxnt5/halnt5.spec
+new file mode 100644
+index 0000000000000000000000000000000000000000..41ed2ae6dfe546eb15cf44ede0c27b4cd42c1073
+--- /dev/null
++++ b/hal/halx86/xboxnt5/halnt5.spec
+@@ -0,0 +1,119 @@
++@ fastcall -arch=arm ExAcquireFastMutex(ptr)
++@ fastcall -arch=arm ExReleaseFastMutex(ptr)
++@ fastcall -arch=arm ExTryToAcquireFastMutex(ptr)
++@ fastcall -arch=i386 ExAcquireFastMutex(ptr)
++@ fastcall -arch=i386 ExReleaseFastMutex(ptr)
++@ fastcall -arch=i386 ExTryToAcquireFastMutex(ptr)
++@ stdcall HalAcquireDisplayOwnership(ptr)
++@ stdcall HalAdjustResourceList(ptr)
++@ stdcall HalAllProcessorsStarted()
++@ stdcall HalAllocateAdapterChannel(ptr ptr long ptr)
++@ stdcall HalAllocateCommonBuffer(ptr long ptr long)
++@ stdcall HalAllocateCrashDumpRegisters(ptr ptr)
++@ stdcall HalAssignSlotResources(ptr ptr ptr ptr long long long ptr)
++@ stdcall -arch=i386,arm HalBeginSystemInterrupt(long long ptr)
++@ stdcall HalCalibratePerformanceCounter(ptr long long)
++;@ stdcall -arch=x86_64 HalCallBios()
++@ fastcall HalClearSoftwareInterrupt(long)
++@ stdcall HalDisableSystemInterrupt(long long)
++@ stdcall HalDisplayString(str)
++@ stdcall HalEnableSystemInterrupt(long long long)
++@ stdcall -arch=i386,arm HalEndSystemInterrupt(long long) HalpNt5EndSystemInterrupt
++@ stdcall HalFlushCommonBuffer(long long long long long)
++@ stdcall HalFreeCommonBuffer(ptr long long long ptr long)
++@ stdcall HalGetAdapter(ptr ptr)
++@ stdcall HalGetBusData(long long long ptr long)
++@ stdcall HalGetBusDataByOffset(long long long ptr long long)
++@ stdcall HalGetEnvironmentVariable(str long str)
++@ fastcall -arch=arm HalGetInterruptSource()
++@ stdcall HalGetInterruptVector(long long long long ptr ptr)
++;@ stdcall -arch=x86_64 HalHandleMcheck()
++@ stdcall -arch=i386,x86_64 HalHandleNMI(ptr)
++@ stdcall HalInitSystem(long ptr)
++@ stdcall HalInitializeProcessor(long ptr)
++;@ stdcall -arch=x86_64 HalIsHyperThreadingEnabled()
++@ stdcall HalMakeBeep(long)
++@ stdcall HalProcessorIdle()
++@ stdcall HalQueryDisplayParameters(ptr ptr ptr ptr)
++@ stdcall HalQueryRealTimeClock(ptr)
++@ stdcall HalReadDmaCounter(ptr)
++@ stdcall HalReportResourceUsage()
++@ stdcall HalRequestIpi(long)
++@ fastcall HalRequestSoftwareInterrupt(long)
++@ stdcall HalReturnToFirmware(long)
++@ stdcall -arch=x86_64 HalSendNMI(int64)
++@ stdcall -arch=x86_64 HalSendSoftwareInterrupt(int64 long)
++@ stdcall HalSetBusData(long long long ptr long)
++@ stdcall HalSetBusDataByOffset(long long long ptr long long)
++@ stdcall HalSetDisplayParameters(long long)
++@ stdcall HalSetEnvironmentVariable(str str)
++@ stdcall HalSetProfileInterval(long)
++@ stdcall HalSetRealTimeClock(ptr)
++@ stdcall HalSetTimeIncrement(long)
++@ stdcall HalStartNextProcessor(ptr ptr)
++@ stdcall HalStartProfileInterrupt(long)
++@ stdcall HalStopProfileInterrupt(long)
++@ fastcall -arch=arm HalSweepIcache()
++@ fastcall -arch=arm HalSweepDcache()
++@ fastcall HalSystemVectorDispatchEntry(long long long)
++@ stdcall HalTranslateBusAddress(long long long long ptr ptr)
++@ stdcall -arch=i386,x86_64 IoAssignDriveLetters(ptr str ptr ptr) HalpAssignDriveLetters
++@ stdcall IoFlushAdapterBuffers(ptr ptr ptr ptr long long)
++@ stdcall IoFreeAdapterChannel(ptr)
++@ stdcall IoFreeMapRegisters(ptr ptr long)
++@ stdcall IoMapTransfer(ptr ptr ptr ptr ptr long)
++@ stdcall -arch=i386,x86_64 IoReadPartitionTable(ptr long long ptr) HalpReadPartitionTable
++@ stdcall -arch=i386,x86_64 IoSetPartitionInformation(ptr long long long) HalpSetPartitionInformation
++@ stdcall -arch=i386,x86_64 IoWritePartitionTable(ptr long long long ptr) HalpWritePartitionTable
++@ extern KdComPortInUse
++@ stdcall KdPortInitialize(ptr ptr long)
++@ stdcall KdPortGetByte(ptr)
++@ stdcall KdPortPollByte(ptr)
++@ stdcall KdPortPutByte(long)
++@ stdcall KdPortSave()
++@ stdcall KdPortRestore()
++@ fastcall -arch=i386,arm KeAcquireInStackQueuedSpinLock(ptr ptr)
++@ fastcall -arch=i386,arm KeAcquireInStackQueuedSpinLockRaiseToSynch(ptr ptr)
++@ fastcall -arch=i386,arm KeAcquireQueuedSpinLock(ptr)
++@ fastcall -arch=i386,arm KeAcquireQueuedSpinLockRaiseToSynch(ptr)
++@ stdcall -arch=i386,arm KeAcquireSpinLock(ptr ptr)
++@ fastcall -arch=i386,arm KeAcquireSpinLockRaiseToSynch(ptr)
++@ stdcall KeFlushWriteBuffer()
++@ stdcall -arch=i386,arm KeGetCurrentIrql()
++@ stdcall -arch=i386,arm KeLowerIrql(long)
++@ stdcall KeQueryPerformanceCounter(ptr)
++@ stdcall -arch=i386,arm KeRaiseIrql(long ptr)
++@ stdcall -arch=i386,arm KeRaiseIrqlToDpcLevel()
++@ stdcall -arch=i386,arm KeRaiseIrqlToSynchLevel()
++@ fastcall -arch=i386,arm KeReleaseInStackQueuedSpinLock(ptr)
++@ fastcall -arch=i386,arm KeReleaseQueuedSpinLock(ptr long)
++@ stdcall -arch=i386,arm KeReleaseSpinLock(ptr long)
++@ stdcall KeStallExecutionProcessor(long)
++@ fastcall -arch=i386,arm KeTryToAcquireQueuedSpinLock(long ptr)
++@ fastcall -arch=i386,arm KeTryToAcquireQueuedSpinLockRaiseToSynch(long ptr)
++@ fastcall -arch=i386,arm KfAcquireSpinLock(ptr)
++@ fastcall -arch=i386,arm KfLowerIrql(long)
++@ fastcall -arch=i386,arm KfRaiseIrql(long)
++@ fastcall -arch=i386,arm KfReleaseSpinLock(ptr long)
++@ stdcall -arch=i386,arm READ_PORT_BUFFER_UCHAR(ptr ptr long)
++@ stdcall -arch=i386,arm READ_PORT_BUFFER_ULONG(ptr ptr long)
++@ stdcall -arch=i386,arm READ_PORT_BUFFER_USHORT(ptr ptr long)
++@ stdcall -arch=i386,arm READ_PORT_UCHAR(ptr)
++@ stdcall -arch=i386,arm READ_PORT_ULONG(ptr)
++@ stdcall -arch=i386,arm READ_PORT_USHORT(ptr)
++@ stdcall -arch=i386,arm WRITE_PORT_BUFFER_UCHAR(ptr ptr long)
++@ stdcall -arch=i386,arm WRITE_PORT_BUFFER_ULONG(ptr ptr long)
++@ stdcall -arch=i386,arm WRITE_PORT_BUFFER_USHORT(ptr ptr long)
++@ stdcall -arch=i386,arm WRITE_PORT_UCHAR(ptr long)
++@ stdcall -arch=i386,arm WRITE_PORT_ULONG(ptr long)
++@ stdcall -arch=i386,arm WRITE_PORT_USHORT(ptr long)
++@ stdcall -version=0x0502 -arch=x86_64 x86BiosAllocateBuffer(ptr ptr ptr)
++@ stdcall -version=0x0600+ -arch=i386,x86_64 x86BiosAllocateBuffer(ptr ptr ptr)
++@ stdcall -version=0x0502 -arch=x86_64 x86BiosCall(long ptr)
++@ stdcall -version=0x0600+ -arch=i386,x86_64 x86BiosCall(long ptr)
++@ stdcall -version=0x0502 -arch=x86_64 x86BiosFreeBuffer(long long)
++@ stdcall -version=0x0600+ -arch=i386,x86_64 x86BiosFreeBuffer(long long)
++@ stdcall -version=0x0502 -arch=x86_64 x86BiosReadMemory(long long ptr long)
++@ stdcall -version=0x0600+ -arch=i386,x86_64 x86BiosReadMemory(long long ptr long)
++@ stdcall -version=0x0502 -arch=x86_64 x86BiosWriteMemory(long long ptr long)
++@ stdcall -version=0x0600+ -arch=i386,x86_64 x86BiosWriteMemory(long long ptr long)
+diff --git a/hal/halx86/xboxnt5/kdport.c b/hal/halx86/xboxnt5/kdport.c
+new file mode 100644
+index 0000000000000000000000000000000000000000..284fe1d8803a48e39a1f5d6d1a8cfc4105c55226
+--- /dev/null
++++ b/hal/halx86/xboxnt5/kdport.c
+@@ -0,0 +1,109 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later
++ * Native Windows 2000 debugger port entry points, direct 16450/16550 backend.
++ * ABI checked against the supplied 2195.7376 kernel and 2195.6801 PC HAL.
++ * No ARC firmware enumeration or modem command protocol is implemented.
++ */
++#include <hal.h>
++#include <cportlib/cportlib.h>
++
++typedef struct _HALP_NT5_DEBUG_PARAMETERS
++{
++    ULONG ComPort;
++    ULONG BaudRate;
++} HALP_NT5_DEBUG_PARAMETERS, *PHALP_NT5_DEBUG_PARAMETERS;
++
++static CPPORT HalpNt5DebugPort;
++static PUCHAR HalpNt5SelectedAddress;
++static ULONG HalpNt5SelectedBaud;
++static BOOLEAN HalpNt5DebugPortReady;
++extern PUCHAR KdComPortInUse;
++
++BOOLEAN NTAPI
++KdPortInitialize(PHALP_NT5_DEBUG_PARAMETERS Parameters,
++                 PLOADER_PARAMETER_BLOCK LoaderBlock,
++                 BOOLEAN Initialize)
++{
++    static const ULONG Bases[] = {0, 0x3f8, 0x2f8, 0x3e8, 0x2e8};
++    ULONG Baud;
++    PUCHAR Address;
++    UNREFERENCED_PARAMETER(LoaderBlock);
++
++    if (!HalpNt5SelectedAddress)
++    {
++        if (!Parameters || Parameters->ComPort > 4) return FALSE;
++        Baud = Parameters->BaudRate ? Parameters->BaudRate : 19200;
++        /* A nonzero integral divisor prevents division/truncation surprises. */
++        if (Baud > 115200 || 115200 % Baud || 115200 / Baud > 0xffff)
++            return FALSE;
++
++        if (Parameters->ComPort)
++        {
++            Address = UlongToPtr(Bases[Parameters->ComPort]);
++            if (!CpDoesPortExist(Address)) return FALSE;
++        }
++        else
++        {
++            /* Native NT5's legacy fallback prefers COM2, then COM1. */
++            Address = UlongToPtr(Bases[2]);
++            if (!CpDoesPortExist(Address))
++            {
++                Address = UlongToPtr(Bases[1]);
++                if (!CpDoesPortExist(Address)) return FALSE;
++            }
++        }
++        HalpNt5SelectedAddress = Address;
++        HalpNt5SelectedBaud = Baud;
++    }
++
++    /* A discovery call must not claim an operational debugger port. */
++    if (!Initialize) return TRUE;
++    HalpNt5DebugPortReady = FALSE;
++    KdComPortInUse = NULL;
++    RtlZeroMemory(&HalpNt5DebugPort, sizeof(HalpNt5DebugPort));
++    if (!NT_SUCCESS(CpInitialize(&HalpNt5DebugPort,
++                                 HalpNt5SelectedAddress,
++                                 HalpNt5SelectedBaud)))
++        return FALSE;
++    KdComPortInUse = HalpNt5DebugPort.Address;
++    HalpNt5DebugPortReady = TRUE;
++    return TRUE;
++}
++
++ULONG NTAPI KdPortGetByte(PUCHAR Byte)
++{
++    if (!Byte) return CP_GET_ERROR;
++    if (!HalpNt5DebugPortReady) return CP_GET_NODATA;
++    /* An absent/disconnected UART reads as all ones, not a framing error. */
++    if (READ_PORT_UCHAR(HalpNt5DebugPort.Address + 5) == 0xff)
++        return CP_GET_NODATA;
++    return CpGetByte(&HalpNt5DebugPort, Byte, TRUE, FALSE);
++}
++
++ULONG NTAPI KdPortPollByte(PUCHAR Byte)
++{
++    if (!Byte) return CP_GET_ERROR;
++    if (!HalpNt5DebugPortReady) return CP_GET_NODATA;
++    if (READ_PORT_UCHAR(HalpNt5DebugPort.Address + 5) == 0xff)
++        return CP_GET_NODATA;
++    /* NT5 polling is a nonblocking READ, not cportlib's peek mode. */
++    return CpGetByte(&HalpNt5DebugPort, Byte, FALSE, FALSE);
++}
++
++VOID NTAPI KdPortPutByte(UCHAR Byte)
++{
++    if (!HalpNt5DebugPortReady) return;
++    if (READ_PORT_UCHAR(HalpNt5DebugPort.Address + 5) == 0xff) return;
++    CpPutByte(&HalpNt5DebugPort, Byte);
++}
++
++VOID NTAPI KdPortSave(VOID)
++{
++    /* NT5 marks debugger entry with this flag. It affects the modem command
++     * layer on a PC; direct serial operation requires no UART state change. */
++    HalpNt5DebugPort.Flags |= 4;
++}
++
++VOID NTAPI KdPortRestore(VOID)
++{
++    HalpNt5DebugPort.Flags &= ~4;
++}
+diff --git a/hal/halx86/xboxnt5/rootbus.c b/hal/halx86/xboxnt5/rootbus.c
+new file mode 100644
+index 0000000000000000000000000000000000000000..b7b2d88638e31b8adf31c02b977219894cd57571
+--- /dev/null
++++ b/hal/halx86/xboxnt5/rootbus.c
+@@ -0,0 +1,149 @@
++/*
++ * PROJECT: Xbox NT5 HAL experiment
++ * LICENSE: GPL-2.0-or-later (see ReactOS COPYING)
++ * PURPOSE: Root PCI apertures for Windows 2000 resource arbitration.
++ * The original empty root resource list leaves every PCI address reserved.
++ * Report PNPBus resources in the native NT5 format: shared, fixed windows.
++ */
++#include <hal.h>
++
++#define NT5_MAX_PORT_RANGES 64
++#define NT5_ROOT_DESCRIPTORS (NT5_MAX_PORT_RANGES + 3)
++
++NTSTATUS NTAPI
++HalpNt5QueryRootResources(PCM_RESOURCE_LIST *Resources)
++{
++    struct { ULONG Start, End; } Reserved[NT5_MAX_PORT_RANGES], Swap;
++    ULONG Used = 0, i, j, Start, End, Cursor, Count = 0, Bytes;
++    PADDRESS_USAGE Usage;
++    PCM_RESOURCE_LIST List;
++    PCM_PARTIAL_RESOURCE_DESCRIPTOR Desc;
++    if (!Resources) return STATUS_INVALID_PARAMETER;
++    *Resources = NULL;
++    /* Complement the HAL's actual reservations instead of advertising PIC,
++       timer, CMOS, DMA, debugger or PCI configuration ports to child devices. */
++    for (Usage = HalpAddressUsageList; Usage; Usage = Usage->Next)
++    {
++        if (Usage->Type != CmResourceTypePort) continue;
++        for (i = 0; Usage->Element[i].Length; ++i)
++        {
++            Start = Usage->Element[i].Start;
++            if (Start >= 0x10000) continue;
++            if (Used == NT5_MAX_PORT_RANGES) return STATUS_INSUFFICIENT_RESOURCES;
++            End = Start + min(Usage->Element[i].Length, 0x10000 - Start);
++            Reserved[Used].Start = Start;
++            Reserved[Used++].End = End;
++        }
++    }
++    for (i = 1; i < Used; ++i)
++    {
++        Swap = Reserved[i]; j = i;
++        while (j && Reserved[j - 1].Start > Swap.Start)
++        {
++            Reserved[j] = Reserved[j - 1]; --j;
++        }
++        Reserved[j] = Swap;
++    }
++    Bytes = FIELD_OFFSET(CM_RESOURCE_LIST, List[0].PartialResourceList.PartialDescriptors) +
++            NT5_ROOT_DESCRIPTORS * sizeof(*Desc);
++    List = ExAllocatePoolWithTag(PagedPool, Bytes, TAG_HAL);
++    if (!List) return STATUS_INSUFFICIENT_RESOURCES;
++    RtlZeroMemory(List, Bytes);
++    List->Count = 1;
++    List->List[0].InterfaceType = PNPBus;
++    List->List[0].BusNumber = (ULONG)-1;
++    List->List[0].PartialResourceList.Version = 1;
++    List->List[0].PartialResourceList.Revision = 1;
++    Desc = List->List[0].PartialResourceList.PartialDescriptors;
++    Desc[Count].Type = CmResourceTypeBusNumber;
++    Desc[Count].ShareDisposition = CmResourceShareShared;
++    Desc[Count++].u.BusNumber.Length = 256;
++    Cursor = 0;
++    for (i = 0; i <= Used; ++i)
++    {
++        Start = (i == Used) ? 0x10000 : Reserved[i].Start;
++        if (Start > Cursor)
++        {
++            Desc[Count].Type = CmResourceTypePort;
++            Desc[Count].ShareDisposition = CmResourceShareShared;
++            Desc[Count].Flags = CM_RESOURCE_PORT_IO;
++            Desc[Count].u.Port.Start.QuadPart = Cursor;
++            Desc[Count++].u.Port.Length = Start - Cursor;
++        }
++        if (i != Used) Cursor = max(Cursor, Reserved[i].End);
++    }
++    /* Xbox PCI device/bridge apertures observed in firmware configuration:
++       NV2A framebuffer at F0000000, GPU at FD000000, MCP devices at FE8xxxxx
++       through FEFxxxxx. Exclude RAM and the FFxxxxxx flash/firmware window. */
++    Desc[Count].Type = CmResourceTypeMemory;
++    Desc[Count].ShareDisposition = CmResourceShareShared;
++    Desc[Count].u.Memory.Start.QuadPart = 0xf0000000ULL;
++    Desc[Count++].u.Memory.Length = 0x0f000000;
++    ASSERT(Count <= NT5_ROOT_DESCRIPTORS);
++    List->List[0].PartialResourceList.Count = Count;
++    *Resources = List;
++    return STATUS_SUCCESS;
++}
++
++NTSTATUS NTAPI
++HalpNt5QueryRootRequirements(PIO_RESOURCE_REQUIREMENTS_LIST *Requirements)
++{
++    PCM_RESOURCE_LIST Resources;
++    PCM_PARTIAL_RESOURCE_DESCRIPTOR Source;
++    PIO_RESOURCE_REQUIREMENTS_LIST Result;
++    PIO_RESOURCE_DESCRIPTOR Target;
++    ULONG Count, Bytes, i;
++    NTSTATUS Status;
++    if (!Requirements) return STATUS_INVALID_PARAMETER;
++    *Requirements = NULL;
++    Status = HalpNt5QueryRootResources(&Resources);
++    if (!NT_SUCCESS(Status)) return Status;
++    Count = Resources->List[0].PartialResourceList.Count;
++    Bytes = FIELD_OFFSET(IO_RESOURCE_REQUIREMENTS_LIST, List[0].Descriptors) +
++            (Count + 1) * sizeof(*Target);
++    Result = ExAllocatePoolWithTag(PagedPool, Bytes, TAG_HAL);
++    if (!Result)
++    {
++        ExFreePool(Resources);
++        return STATUS_INSUFFICIENT_RESOURCES;
++    }
++    RtlZeroMemory(Result, Bytes);
++    Result->ListSize = Bytes;
++    Result->InterfaceType = PNPBus;
++    Result->BusNumber = (ULONG)-1;
++    Result->AlternativeLists = 1;
++    Result->List[0].Version = Result->List[0].Revision = 1;
++    Result->List[0].Count = Count + 1;
++    Target = Result->List[0].Descriptors;
++    Target->Type = CmResourceTypeConfigData;
++    Target->ShareDisposition = CmResourceShareShared;
++    Target->Option = IO_RESOURCE_PREFERRED;
++    Target->u.ConfigData.Priority = 1;
++    ++Target;
++    Source = Resources->List[0].PartialResourceList.PartialDescriptors;
++    for (i = 0; i < Count; ++i, ++Target, ++Source)
++    {
++        Target->Option = IO_RESOURCE_PREFERRED;
++        Target->Type = Source->Type;
++        Target->ShareDisposition = Source->ShareDisposition;
++        Target->Flags = Source->Flags;
++        if (Source->Type == CmResourceTypeBusNumber)
++        {
++            Target->u.BusNumber.Length = 256;
++            Target->u.BusNumber.MinBusNumber = 0;
++            Target->u.BusNumber.MaxBusNumber = 255;
++        }
++        else
++        {
++            /* Port and Memory union layouts share the same fields. */
++            Target->u.Memory.Length = Source->u.Memory.Length;
++            Target->u.Memory.Alignment = 1;
++            Target->u.Memory.MinimumAddress = Source->u.Memory.Start;
++            Target->u.Memory.MaximumAddress.QuadPart = Source->u.Memory.Start.QuadPart +
++                                                     Source->u.Memory.Length - 1;
++        }
++    }
++    ExFreePool(Resources);
++    *Requirements = Result;
++    return STATUS_SUCCESS;
++}
+diff --git a/hal/halx86/xboxnt5/translate.c b/hal/halx86/xboxnt5/translate.c
+new file mode 100644
+index 0000000000000000000000000000000000000000..cd32e70271cd5acd89c89d495e394a85ac8f674a
+--- /dev/null
++++ b/hal/halx86/xboxnt5/translate.c
+@@ -0,0 +1,191 @@
++/*
++ * PROJECT: Xbox NT5 HAL experiment
++ * LICENSE: GPL-2.0-or-later (see ReactOS COPYING)
++ * PURPOSE: Fixed PIC interrupt translation for NT5 PnP.
++ * Based on the public ReactOS translator contract (fstub/translate.c).
++ * PCI routes are the firmware-programmed InterruptLine values; this does not
++ * implement an ACPI/APIC router or change chipset routing registers.
++ */
++#include <hal.h>
++
++C_ASSERT(sizeof(TRANSLATOR_INTERFACE) == 24);
++#undef HalGetInterruptTranslator
++C_ASSERT(FIELD_OFFSET(HAL_DISPATCH, HalGetInterruptTranslator) == 0x40);
++
++/* The firmware's PIC ELCR, recorded by HalpInitializePICs. PCI's generic
++ * level-sensitive descriptors are not the trigger mode of every Xbox line
++ * (notably USB0 is wired to the edge-only PIC IRQ 1). Match the translated
++ * contract to the actual PIC; preserve unrelated descriptor flag bits.
++ */
++extern LONG HalpEisaELCR;
++static USHORT HalpNt5PciInterruptFlags(USHORT Flags, ULONG Line)
++{
++    return (Flags & ~CM_RESOURCE_INTERRUPT_LATCHED) |
++           ((HalpEisaELCR & (1 << Line)) ? CM_RESOURCE_INTERRUPT_LEVEL_SENSITIVE :
++                                         CM_RESOURCE_INTERRUPT_LATCHED);
++}
++
++static VOID NTAPI HalpNt5TranslatorReference(PVOID Context) { }
++
++static NTSTATUS
++HalpNt5PciLine(PDEVICE_OBJECT Pdo, PULONG Line)
++{
++    ULONG Bus, Address, Length;
++    PCI_SLOT_NUMBER Slot;
++    UCHAR Interrupt[2];
++    NTSTATUS Status;
++    if (!Pdo) return STATUS_INVALID_PARAMETER;
++    Status = IoGetDeviceProperty(Pdo, DevicePropertyBusNumber,
++                                sizeof(Bus), &Bus, &Length);
++    if (!NT_SUCCESS(Status)) return Status;
++    if (Length != sizeof(Bus) || Bus > 255) return STATUS_INVALID_PARAMETER;
++    Status = IoGetDeviceProperty(Pdo, DevicePropertyAddress,
++                                sizeof(Address), &Address, &Length);
++    if (!NT_SUCCESS(Status)) return Status;
++    if (Length != sizeof(Address) || (Address >> 16) > 31 ||
++        (Address & 0xffff) > 7) return STATUS_INVALID_PARAMETER;
++    Slot.u.AsULONG = 0;
++    Slot.u.bits.DeviceNumber = Address >> 16;
++    Slot.u.bits.FunctionNumber = Address & 0xffff;
++    if (HalGetBusDataByOffset(PCIConfiguration, Bus, Slot.u.AsULONG,
++                             Interrupt, 0x3c, sizeof(Interrupt)) != sizeof(Interrupt))
++        return STATUS_UNSUCCESSFUL;
++    if (!Interrupt[1] || Interrupt[1] > 4 || !Interrupt[0] || Interrupt[0] >= 16)
++        return STATUS_UNSUCCESSFUL;
++    *Line = Interrupt[0];
++    return STATUS_SUCCESS;
++}
++
++static ULONG
++HalpNt5TranslateLine(ULONG Line, PKIRQL Irql, PKAFFINITY Affinity)
++{
++    if (Line >= 16) return 0;
++    return HalGetInterruptVector(Isa, 0, Line, Line, Irql, Affinity);
++}
++
++NTSTATUS NTAPI
++HalpNt5TranslateResource(PVOID Context, PCM_PARTIAL_RESOURCE_DESCRIPTOR Source,
++                        RESOURCE_TRANSLATION_DIRECTION Direction,
++                        ULONG AlternativesCount, PIO_RESOURCE_DESCRIPTOR Alternatives,
++                        PDEVICE_OBJECT Pdo, PCM_PARTIAL_RESOURCE_DESCRIPTOR Target)
++{
++    ULONG Line, Vector, i, Minimum, Maximum;
++    KIRQL Irql;
++    KAFFINITY Affinity;
++    NTSTATUS Status;
++    if (!Source || !Target || Source->Type != CmResourceTypeInterrupt)
++        return STATUS_INVALID_PARAMETER;
++    if (Direction == TranslateChildToParent)
++    {
++        Vector = HalpNt5TranslateLine(Source->u.Interrupt.Vector, &Irql, &Affinity);
++        if (!Vector) return STATUS_UNSUCCESSFUL;
++        *Target = *Source;
++        if ((ULONG_PTR)Context == PCIBus)
++            Target->Flags = HalpNt5PciInterruptFlags(Source->Flags,
++                                                    Source->u.Interrupt.Vector);
++        Target->u.Interrupt.Vector = Vector;
++        Target->u.Interrupt.Level = Irql;
++        Target->u.Interrupt.Affinity = Affinity;
++        return STATUS_TRANSLATION_COMPLETE;
++    }
++    if (Direction != TranslateParentToChild) return STATUS_INVALID_PARAMETER;
++    if ((ULONG_PTR)Context == PCIBus)
++    {
++        Status = HalpNt5PciLine(Pdo, &Line);
++        if (!NT_SUCCESS(Status)) return Status;
++        Vector = HalpNt5TranslateLine(Line, &Irql, &Affinity);
++        if (!Vector || Vector != Source->u.Interrupt.Vector) return STATUS_UNSUCCESSFUL;
++    }
++    else
++    {
++        if (!Alternatives || !AlternativesCount) return STATUS_INVALID_PARAMETER;
++        for (i = 0; i < AlternativesCount; ++i)
++        {
++            if (Alternatives[i].Type != CmResourceTypeInterrupt) continue;
++            Minimum = Alternatives[i].u.Interrupt.MinimumVector;
++            Maximum = min(Alternatives[i].u.Interrupt.MaximumVector, 15);
++            for (Line = Minimum; Line <= Maximum; ++Line)
++            {
++                Vector = HalpNt5TranslateLine(Line, &Irql, &Affinity);
++                if (Vector && Vector == Source->u.Interrupt.Vector) goto Found;
++            }
++        }
++        return STATUS_UNSUCCESSFUL;
++    }
++Found:
++    *Target = *Source;
++    if ((ULONG_PTR)Context == PCIBus)
++        Target->Flags = HalpNt5PciInterruptFlags(Source->Flags, Line);
++    Target->u.Interrupt.Vector = Target->u.Interrupt.Level = Line;
++    Target->u.Interrupt.Affinity = (KAFFINITY)-1;
++    return STATUS_SUCCESS;
++}
++
++NTSTATUS NTAPI
++HalpNt5TranslateRequirements(PVOID Context, PIO_RESOURCE_DESCRIPTOR Source,
++                            PDEVICE_OBJECT Pdo, PULONG TargetCount,
++                            PIO_RESOURCE_DESCRIPTOR *Target)
++{
++    ULONG Minimum, Maximum, Line, Vector, Count = 0, Vectors[16];
++    KIRQL Irql;
++    KAFFINITY Affinity;
++    NTSTATUS Status;
++    PIO_RESOURCE_DESCRIPTOR Result;
++    if (!Target || !TargetCount) return STATUS_INVALID_PARAMETER;
++    *Target = NULL;
++    *TargetCount = 0;
++    if (!Source || Source->Type != CmResourceTypeInterrupt)
++        return STATUS_INVALID_PARAMETER;
++    if ((ULONG_PTR)Context == PCIBus)
++    {
++        Status = HalpNt5PciLine(Pdo, &Minimum);
++        if (!NT_SUCCESS(Status)) return Status;
++        Maximum = Minimum;
++    }
++    else
++    {
++        Minimum = Source->u.Interrupt.MinimumVector;
++        Maximum = min(Source->u.Interrupt.MaximumVector, 15);
++    }
++    for (Line = Minimum; Line <= Maximum; ++Line)
++    {
++        Vector = HalpNt5TranslateLine(Line, &Irql, &Affinity);
++        if (Vector) Vectors[Count++] = Vector;
++    }
++    if (!Count) return STATUS_UNSUCCESSFUL;
++    Result = ExAllocatePoolWithTag(PagedPool, Count * sizeof(*Result), TAG_HAL);
++    if (!Result) return STATUS_INSUFFICIENT_RESOURCES;
++    for (Line = 0; Line < Count; ++Line)
++    {
++        Result[Line] = *Source;
++        if ((ULONG_PTR)Context == PCIBus)
++            Result[Line].Flags = HalpNt5PciInterruptFlags(Source->Flags, Minimum);
++        if (Line) Result[Line].Option |= IO_RESOURCE_ALTERNATIVE;
++        Result[Line].u.Interrupt.MinimumVector = Vectors[Line];
++        Result[Line].u.Interrupt.MaximumVector = Vectors[Line];
++    }
++    *Target = Result;
++    *TargetCount = Count;
++    return STATUS_TRANSLATION_COMPLETE;
++}
++
++NTSTATUS NTAPI
++HalpNt5GetInterruptTranslator(INTERFACE_TYPE Parent, ULONG ParentBus,
++                             INTERFACE_TYPE Bridge, USHORT Size, USHORT Version,
++                             PTRANSLATOR_INTERFACE Translator, PULONG BridgeBus)
++{
++    if (!Translator || Size < sizeof(*Translator) || Version != 0)
++        return STATUS_INVALID_PARAMETER;
++    if (Bridge != PCIBus && Bridge != Isa && Bridge != Eisa &&
++        Bridge != InterfaceTypeUndefined) return STATUS_NOT_IMPLEMENTED;
++    if (Parent != Internal && Parent != PCIBus && Parent != Isa && Parent != Eisa)
++        return STATUS_NOT_IMPLEMENTED;
++    Translator->Size = sizeof(*Translator);
++    Translator->Version = 0;
++    Translator->Context = UlongToPtr(Bridge == PCIBus ? PCIBus : Isa);
++    Translator->InterfaceReference = HalpNt5TranslatorReference;
++    Translator->InterfaceDereference = HalpNt5TranslatorReference;
++    Translator->TranslateResources = HalpNt5TranslateResource;
++    Translator->TranslateResourceRequirements = HalpNt5TranslateRequirements;
++    return STATUS_SUCCESS;
++}
+diff --git a/hal/halx86/xboxnt5/trapentry.c b/hal/halx86/xboxnt5/trapentry.c
+new file mode 100644
+index 0000000000000000000000000000000000000000..a1088d5e43546ef900f4021b58c0b1c9721957be
+--- /dev/null
++++ b/hal/halx86/xboxnt5/trapentry.c
+@@ -0,0 +1,30 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later
++ * Use the NT5 PCR debug flag, not the newer KTHREAD dispatcher-header byte.
++ * Offsets below are verified against the matching Windows 2000 public PDB.
++ */
++#include <hal.h>
++// The newer shared KPCR no longer names this byte DebugActive.
++#define NT5_PCR_DEBUG_ACTIVE 0x50
++C_ASSERT(FIELD_OFFSET(KPRCB, ProcessorState) == 0x1c);
++C_ASSERT(FIELD_OFFSET(KPRCB, ProcessorState.SpecialRegisters.KernelDr0) == 0x2f8);
++C_ASSERT(FIELD_OFFSET(KPRCB, ProcessorState.SpecialRegisters.KernelDr7) == 0x30c);
++C_ASSERT(FIELD_OFFSET(KTRAP_FRAME, Eip) == 0x68);
++C_ASSERT(FIELD_OFFSET(KTRAP_FRAME, EFlags) == 0x70);
++C_ASSERT(FIELD_OFFSET(KTRAP_FRAME, ExceptionList) == 0x4c);
++C_ASSERT(PRIMARY_VECTOR_BASE + PIC_TIMER_IRQ == 0x30);
++
++VOID FASTCALL HalpNt5EnterTrap(PKTRAP_FRAME TrapFrame)
++{
++    TrapFrame->Dr7 = 0;
++    if ((KiUserTrap(TrapFrame) || (TrapFrame->EFlags & EFLAGS_V86_MASK)) &&
++        *((volatile UCHAR *)KeGetPcr() + NT5_PCR_DEBUG_ACTIVE))
++    {
++        KiHandleDebugRegistersOnTrapEntry(TrapFrame);
++    }
++}
++
++VOID FASTCALL HalpNt5EnterInterruptTrap(PKTRAP_FRAME TrapFrame)
++{
++    KeGetPcr()->NtTib.ExceptionList = EXCEPTION_CHAIN_END;
++    HalpNt5EnterTrap(TrapFrame);
++}
+diff --git a/sdk/include/xdk/haltypes.h b/sdk/include/xdk/haltypes.h
+index e1c052031b802d416012d43c91cd384d68b0994c..ecb4132623c54e1738df795fc6e9381c6f487232 100644
+--- a/sdk/include/xdk/haltypes.h
++++ b/sdk/include/xdk/haltypes.h
+@@ -266,6 +266,7 @@ typedef struct {
+   pHalInitPowerManagement HalInitPowerManagement;
+   pHalGetDmaAdapter HalGetDmaAdapter;
+   pHalGetInterruptTranslator HalGetInterruptTranslator;
++#if (NTDDI_VERSION >= NTDDI_WINXP)
+   pHalStartMirroring HalStartMirroring;
+   pHalEndMirroring HalEndMirroring;
+   pHalMirrorPhysicalMemory HalMirrorPhysicalMemory;
+@@ -277,6 +278,7 @@ typedef struct {
+   pHalGetErrorCapList HalGetErrorCapList;
+   pHalInjectError HalInjectError;
+ #endif
++#endif /* NTDDI_VERSION >= NTDDI_WINXP */
+ } HAL_DISPATCH, *PHAL_DISPATCH;
+ 
+ #if !defined(_NTSYSTEM_) && (defined(_NTDRIVER_) || defined(_NTDDK_) || defined(_NTIFS_) || defined(_NTHAL_))
+diff --git a/win32ss/drivers/miniport/xboxvmp/CMakeLists.txt b/win32ss/drivers/miniport/xboxvmp/CMakeLists.txt
+index 4c50cee954fa726dbc3299a9df295856c6c5f5ff..dde91ad66d2b5c62427be7225b410d68542ec6b2 100644
+--- a/win32ss/drivers/miniport/xboxvmp/CMakeLists.txt
++++ b/win32ss/drivers/miniport/xboxvmp/CMakeLists.txt
+@@ -15,3 +15,7 @@ if(SARCH STREQUAL "xbox")
+     add_registry_inf(xboxvmp_reg.inf)
+     add_driver_inf(xboxvmp xboxdisp.inf)
+ endif()
++
++if(XBOX_NT5_HAL)
++    add_subdirectory(nt5)
++endif()
+diff --git a/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt b/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..990d30b136cfa65c27408ceff8720a32df65d58c
+--- /dev/null
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/CMakeLists.txt
+@@ -0,0 +1,10 @@
++remove_definitions(-D_WIN32_WINNT=0x502 -DWINVER=0x502)
++add_definitions(-D_WIN32_WINNT=0x500 -DWINVER=0x500 -DNTDDI_VERSION=0x05000000)
++add_library(xboxvnt5 MODULE xboxvnt5.c ../xboxvmp.rc)
++set_module_type(xboxvnt5 kernelmodedriver)
++add_importlibs(xboxvnt5 videoprt)
++target_link_libraries(xboxvnt5 libcntpr)
++if(NOT MSVC)
++    target_link_options(xboxvnt5 PRIVATE -Wl,--subsystem,native:5.0
++        -Wl,--minor-image-version,0 -Wl,--minor-os-version,0)
++endif()
+diff --git a/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c b/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c
+new file mode 100644
+index 0000000000000000000000000000000000000000..13a07a176e0ea85fc1c64a381afd37faf6685ede
+--- /dev/null
++++ b/win32ss/drivers/miniport/xboxvmp/nt5/xboxvnt5.c
+@@ -0,0 +1,166 @@
++/*
++ * PROJECT: Experimental native Windows 2000 Xbox framebuffer miniport
++ * LICENSE: GPL-2.0-or-later
++ * Derived from ReactOS xboxvmp (Ge van Geldorp, Filip Navara,
++ * Stanislav Motylkov). See ../xboxvmp.c and ReactOS COPYING.
++ * Retains firmware's mode; no acceleration, palette or mode switching.
++ */
++#include "../xboxvmp.h"
++#include <drivers/xbox/xgpu.h>
++
++typedef struct {
++    PVOID Control;
++    PHYSICAL_ADDRESS ControlPhysical, FramebufferAperture, Framebuffer;
++    ULONG ApertureLength, Offset;
++    VIDEO_MODE_INFORMATION Mode;
++    BOOLEAN Ready;
++} NT5_VIDEO, *PNT5_VIDEO;
++
++C_ASSERT(SIZE_OF_W2K_VIDEO_HW_INITIALIZATION_DATA == 80);
++C_ASSERT(sizeof(VIDEO_MODE_INFORMATION) == 80);
++C_ASSERT(sizeof(VIDEO_MEMORY_INFORMATION) == 16);
++
++static UCHAR Crtc(PNT5_VIDEO V, UCHAR Index)
++{
++    WRITE_REGISTER_UCHAR((PUCHAR)V->Control + NV2A_CRTC_REGISTER_INDEX, Index);
++    return READ_REGISTER_UCHAR((PUCHAR)V->Control + NV2A_CRTC_REGISTER_VALUE);
++}
++
++VP_STATUS NTAPI
++Nt5VideoFindAdapter(PVOID Extension, PVOID Context, PWSTR Arguments,
++                   PVIDEO_PORT_CONFIG_INFO Config, PUCHAR Again)
++{
++    PNT5_VIDEO V = Extension;
++    VIDEO_ACCESS_RANGE Ranges[3];
++    USHORT Vendor = 0x10de, Device = 0x02a0;
++    ULONG Slot = 0;
++    VP_STATUS Status;
++    *Again = FALSE;
++    VideoPortZeroMemory(Ranges, sizeof(Ranges));
++    Status = VideoPortGetAccessRanges(Extension, 0, NULL, 3, Ranges, &Vendor, &Device, &Slot);
++    if (Status != NO_ERROR) return Status;
++    if (Ranges[0].RangeInIoSpace || Ranges[1].RangeInIoSpace ||
++        Ranges[0].RangeLength < NV2A_RAMDAC_FP_HVALID_END + sizeof(ULONG) ||
++        Ranges[1].RangeLength < NV2A_VIDEO_MEMORY_SIZE) return ERROR_DEV_NOT_EXIST;
++    V->ControlPhysical = Ranges[0].RangeStart;
++    V->FramebufferAperture = Ranges[1].RangeStart;
++    V->ApertureLength = Ranges[1].RangeLength;
++    return NO_ERROR;
++}
++
++BOOLEAN NTAPI
++Nt5VideoInitialize(PVOID Extension)
++{
++    PNT5_VIDEO V = Extension;
++    ULONG Width, Height, Pitch, Bytes, Format;
++    V->Ready = FALSE;
++    V->Control = VideoPortGetDeviceBase(Extension, V->ControlPhysical, 0x681000, 0);
++    if (!V->Control) return FALSE;
++    Width = READ_REGISTER_ULONG((PULONG)((PUCHAR)V->Control + NV2A_RAMDAC_FP_HVALID_END)) + 1;
++    Height = READ_REGISTER_ULONG((PULONG)((PUCHAR)V->Control + NV2A_RAMDAC_FP_VVALID_END)) + 1;
++    Pitch = 8 * (((Crtc(V, 0x19) & 0xe0) << 3) | Crtc(V, 0x13));
++    Format = Crtc(V, 0x28) & 15;
++    Bytes = (Format == 3) ? 4 : Format;
++    V->Offset = READ_REGISTER_ULONG((PULONG)((PUCHAR)V->Control + NV2A_CRTC_FRAMEBUFFER_START)) & 0x0fffffff;
++    /* This experiment supports the firmware's direct RGB mode only. The
++       framebuffer must stay inside Cromwell's reserved top-four-MiB area. */
++    if (Width < 320 || Width > 1920 || Height < 200 || Height > 1080 || Bytes != 4 ||
++        Pitch < Width * Bytes || Pitch > 8192 || Height > NV2A_VIDEO_MEMORY_SIZE / Pitch ||
++        (V->Offset != 0x03c00000 && V->Offset != 0x07c00000) ||
++        V->Offset > V->ApertureLength - NV2A_VIDEO_MEMORY_SIZE)
++    {
++        VideoPortFreeDeviceBase(Extension, V->Control);V->Control = NULL;return FALSE;
++    }
++    V->Framebuffer.QuadPart = V->FramebufferAperture.QuadPart + V->Offset;
++    VideoPortZeroMemory(&V->Mode, sizeof(V->Mode));
++    V->Mode.Length = sizeof(V->Mode);
++    V->Mode.VisScreenWidth = Width; V->Mode.VisScreenHeight = Height;
++    V->Mode.ScreenStride = Pitch; V->Mode.NumberOfPlanes = 1; V->Mode.BitsPerPlane = 32;
++    V->Mode.Frequency = 60;
++    V->Mode.NumberRedBits = V->Mode.NumberGreenBits = V->Mode.NumberBlueBits = 8;
++    V->Mode.RedMask = 0xff0000; V->Mode.GreenMask = 0xff00; V->Mode.BlueMask = 0xff;
++    V->Mode.AttributeFlags = VIDEO_MODE_GRAPHICS | VIDEO_MODE_COLOR | VIDEO_MODE_NO_OFF_SCREEN;
++    V->Mode.VideoMemoryBitmapWidth = Pitch / 4; V->Mode.VideoMemoryBitmapHeight = Height;
++    V->Ready = TRUE;
++    return TRUE;
++}
++
++BOOLEAN NTAPI
++Nt5VideoStartIO(PVOID Extension, PVIDEO_REQUEST_PACKET Request)
++{
++    PNT5_VIDEO V = Extension;
++    VP_STATUS Status = ERROR_INVALID_FUNCTION;
++    Request->StatusBlock->Information = 0;
++    if (!V->Ready) { Request->StatusBlock->Status = ERROR_DEV_NOT_EXIST; return TRUE; }
++    switch (Request->IoControlCode)
++    {
++    case IOCTL_VIDEO_QUERY_NUM_AVAIL_MODES:
++        if (!Request->OutputBuffer || Request->OutputBufferLength < sizeof(VIDEO_NUM_MODES))
++            { Status = ERROR_INSUFFICIENT_BUFFER; break; }
++        ((PVIDEO_NUM_MODES)Request->OutputBuffer)->NumModes = 1;
++        ((PVIDEO_NUM_MODES)Request->OutputBuffer)->ModeInformationLength = sizeof(V->Mode);
++        Request->StatusBlock->Information = sizeof(VIDEO_NUM_MODES);Status = NO_ERROR;break;
++    case IOCTL_VIDEO_QUERY_AVAIL_MODES:
++    case IOCTL_VIDEO_QUERY_CURRENT_MODE:
++        if (!Request->OutputBuffer || Request->OutputBufferLength < sizeof(V->Mode))
++            { Status = ERROR_INSUFFICIENT_BUFFER; break; }
++        *(PVIDEO_MODE_INFORMATION)Request->OutputBuffer = V->Mode;
++        Request->StatusBlock->Information = sizeof(V->Mode);Status = NO_ERROR;break;
++    case IOCTL_VIDEO_SET_CURRENT_MODE:
++        if (!Request->InputBuffer || Request->InputBufferLength < sizeof(VIDEO_MODE))
++            { Status = ERROR_INSUFFICIENT_BUFFER; break; }
++        Status = (((PVIDEO_MODE)Request->InputBuffer)->RequestedMode &
++                  ~(VIDEO_MODE_MAP_MEM_LINEAR | VIDEO_MODE_NO_ZERO_MEMORY)) ? ERROR_INVALID_PARAMETER : NO_ERROR;
++        break;
++    case IOCTL_VIDEO_RESET_DEVICE:
++        Status = NO_ERROR;break;
++    case IOCTL_VIDEO_MAP_VIDEO_MEMORY:
++        if (!Request->InputBuffer || !Request->OutputBuffer ||
++            Request->InputBufferLength < sizeof(VIDEO_MEMORY) ||
++            Request->OutputBufferLength < sizeof(VIDEO_MEMORY_INFORMATION))
++            { Status = ERROR_INSUFFICIENT_BUFFER; break; }
++        {
++            VIDEO_MEMORY_INFORMATION Result;
++            ULONG Space = VIDEO_MEMORY_SPACE_MEMORY;
++            VideoPortZeroMemory(&Result, sizeof(Result));
++            Result.VideoRamBase = ((PVIDEO_MEMORY)Request->InputBuffer)->RequestedVirtualAddress;
++            Result.VideoRamLength = NV2A_VIDEO_MEMORY_SIZE;
++            Status = VideoPortMapMemory(Extension, V->Framebuffer, &Result.VideoRamLength,
++                                        &Space, &Result.VideoRamBase);
++            if (Status != NO_ERROR) break;
++            Result.FrameBufferBase = Result.VideoRamBase;
++            Result.FrameBufferLength = V->Mode.ScreenStride * V->Mode.VisScreenHeight;
++            *(PVIDEO_MEMORY_INFORMATION)Request->OutputBuffer = Result;
++            Request->StatusBlock->Information = sizeof(Result);
++        }
++        break;
++    case IOCTL_VIDEO_UNMAP_VIDEO_MEMORY:
++        if (!Request->InputBuffer || Request->InputBufferLength < sizeof(VIDEO_MEMORY))
++            { Status = ERROR_INSUFFICIENT_BUFFER; break; }
++        Status = VideoPortUnmapMemory(Extension, ((PVIDEO_MEMORY)Request->InputBuffer)->RequestedVirtualAddress, NULL);
++        break;
++    }
++    Request->StatusBlock->Status = Status;
++    return TRUE;
++}
++
++BOOLEAN NTAPI Nt5VideoReset(PVOID Extension, ULONG Columns, ULONG Rows) { return TRUE; }
++VP_STATUS NTAPI Nt5VideoPower(PVOID Extension, ULONG Id, PVIDEO_POWER_MANAGEMENT Power)
++{ return Power->PowerState == VideoPowerOn ? NO_ERROR : ERROR_INVALID_FUNCTION; }
++VP_STATUS NTAPI Nt5VideoChild(PVOID Extension, PVIDEO_CHILD_ENUM_INFO Info,
++                             PVIDEO_CHILD_TYPE Type, PUCHAR Descriptor, PULONG Id, PULONG Unused)
++{ return VIDEO_ENUM_NO_MORE_DEVICES; }
++
++ULONG NTAPI DriverEntry(PVOID Context1, PVOID Context2)
++{
++    VIDEO_HW_INITIALIZATION_DATA Init;
++    VideoPortZeroMemory(&Init, sizeof(Init));
++    Init.HwInitDataSize = SIZE_OF_W2K_VIDEO_HW_INITIALIZATION_DATA;
++    Init.AdapterInterfaceType = PCIBus;
++    Init.HwDeviceExtensionSize = sizeof(NT5_VIDEO);
++    Init.HwFindAdapter = Nt5VideoFindAdapter; Init.HwInitialize = Nt5VideoInitialize;
++    Init.HwStartIO = Nt5VideoStartIO; Init.HwResetHw = Nt5VideoReset;
++    Init.HwGetPowerState = Nt5VideoPower; Init.HwSetPowerState = Nt5VideoPower;
++    Init.HwGetVideoChildDescriptor = Nt5VideoChild;
++    return VideoPortInitialize(Context1, Context2, &Init, NULL);
++}

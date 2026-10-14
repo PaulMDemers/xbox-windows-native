@@ -1,3 +1,28 @@
+#401 CLOSED: separate source review candidate, no console change
+
+Private source candidate C:/xwn401/package001/xwn-source-review401.zip, 522791 bytes,
+33 entries, SHA256 3dbd05359123696ac9ab2d0951b09e2e3f654cb19492a3cb77960709d02e64d0.
+Exact reviewed files also in outputs/public-source401/export and C:/xwn401/source003.
+All entries read back; repeat ZIP identical. Six independent cumulative source
+trees (390/300/334/303/374/audio004) replayed via exported CLI into independent
+fresh object stores. Launcher full checkout and audio INF actual CRLF checkout
+verified. 14 actual utility guard tests passed. No compiler/guest/FTP/deployment.
+
+History scan23526 blobs:3257 local-path,601 private-IP,172 credential-pattern-review,
+5 email hits. Counts are triage, not confirmed secrets. Export32 payload files
+had zero configured pattern hits; manifest33rd entry. Licenses/notices and guides
+included; PUBLIC READY FALSE. Never export whole401 kit/history or flip private
+repo visibility. Preserve source001 worktree-path failure and source002 audio
+checkout mismatch;003 explicit upstream CRLF rule, no generic normalization.
+All owned history/prepare/replay sessions CLOSED. No hardware test queued.
+
+Next: current HAL/network/input provenance closure, manual license review/upstream
+availability, portable compiler wrappers/version identity, current-stack twice
+build and disposable installer validation. Source CLI leaves unborn HEAD/applied
+index; future compiler wrapper must explicitly establish version identity. No
+tag/publication. Physical390/video303/audio004/E720p374 unchanged; Ft49/1080i/stereo
+limits retained. Existing399/400 archives and37 frozen399 inputs preserved.
+
 #399/400 CLOSED: integrated demo installed; final002 bundles verified
 
 Physical390 installed20:06:42UTC, one E driver write,68 files readback verified.

@@ -1,0 +1,570 @@
+diff --git a/Makefile b/Makefile
+index 7d4e958e896e2cf33e6fe809316832717d2caa68..02e9edba0936d14da19247f313ec15669b3035cc 100644
+--- a/Makefile
++++ b/Makefile
+@@ -89,6 +89,7 @@ OBJECTS-CROM += $(TOPDIR)/obj/i2cio.o
+ OBJECTS-CROM += $(TOPDIR)/obj/pci.o
+ OBJECTS-CROM += $(TOPDIR)/obj/BootVgaInitialization.o
+ OBJECTS-CROM += $(TOPDIR)/obj/VideoInitialization.o
++OBJECTS-CROM += $(TOPDIR)/obj/xwn_hd_profile.o $(TOPDIR)/obj/xwn_hd_adapter.o $(TOPDIR)/obj/xwn_hd_native.o
+ OBJECTS-CROM += $(TOPDIR)/obj/conexant.o
+ OBJECTS-CROM += $(TOPDIR)/obj/focus.o
+ OBJECTS-CROM += $(TOPDIR)/obj/xcalibur.o
+diff --git a/boot/BootResetAction.c b/boot/BootResetAction.c
+index c85754b2b253da91031bbe5002b2c4a8d9530775..356f3454a80a23e9c2f4473b554247b415eca992 100644
+--- a/boot/BootResetAction.c
++++ b/boot/BootResetAction.c
+@@ -51,10 +51,10 @@ extern void BootResetAction ( void ) {
+ 	int nTempCursorX, nTempCursorY;
+ 	int n, nx;
+ 
+-        memcpy(&cromwell_config,(void*)(0x03A00000+0x20),4);
+-        memcpy(&cromwell_retryload,(void*)(0x03A00000+0x24),4);
+-	memcpy(&cromwell_loadbank,(void*)(0x03A00000+0x28),4);
+-        memcpy(&cromwell_Biostype,(void*)(0x03A00000+0x2C),4);
++        memcpy(&cromwell_config,(void*)(0x02600000+0x20),4);
++        memcpy(&cromwell_retryload,(void*)(0x02600000+0x24),4);
++	memcpy(&cromwell_loadbank,(void*)(0x02600000+0x28),4);
++        memcpy(&cromwell_Biostype,(void*)(0x02600000+0x2C),4);
+ 
+ 	VIDEO_CURSOR_POSX=40;
+ 	VIDEO_CURSOR_POSY=140;
+@@ -90,7 +90,7 @@ extern void BootResetAction ( void ) {
+ 
+         // Load and Init the Background image
+         // clear the Video Ram
+-	memset((void *)FB_START,0x00,0x400000);
++	memset((void *)FB_START,0x00,FB_SIZE);
+ 
+ 	BootVgaInitializationKernelNG((CURRENT_VIDEO_MODE_DETAILS *)&vmode);
+ 
+@@ -218,6 +218,21 @@ extern void BootResetAction ( void ) {
+ 	setLED("gggg");
+ 
+ //	printk("i2C=%d SMC=%d, IDE=%d, tick=%d una=%d unb=%d\n", nCountI2cinterrupts, nCountInterruptsSmc, nCountInterruptsIde, BIOS_TICK_COUNT, nCountUnusedInterrupts, nCountUnusedInterruptsPic2);
++#ifdef XWN_PHYSICAL_PREFLIGHT
++    {
++        CONFIGENTRY entry;
++        memset(&entry, 0, sizeof(entry));
++        entry.bootType = BOOT_FATX;
++        entry.bootSystem = SYS_REACTOS;
++        strcpy(entry.title, "XWN loader diagnostic");
++        strcpy(entry.szPath, "/Applications/XWNEBoot/freeldr.sys");
++        printk("XWN: loading isolated E:/Applications/XWNEBoot/freeldr.sys\n");
++        BootFromDevice(&entry);
++        printk("XWN: loader failed. No fallback boot. Reboot to dashboard.\n");
++        __asm__ __volatile__("cli");
++        for (;;) __asm__ __volatile__("hlt");
++    }
++#endif
+ #ifdef XBOX_LINUX_AUTOBOOT_FATX
+ 	{
+ 		CONFIGENTRY *entry;
+diff --git a/boot/LoadLinux.c b/boot/LoadLinux.c
+index aadafba43dc1b4c14f6db25d9c93e863e6d07862..5745103787be0c244ede133d84625df6374faf9e 100644
+--- a/boot/LoadLinux.c
++++ b/boot/LoadLinux.c
+@@ -424,7 +424,7 @@ void startLinux(void* initrdStart, unsigned long initrdSize, const char* appendL
+ 	"mov %eax, %gs \n"
+ 
+ 	// Set the stack pointer to give us a valid stack
+-	"movl $0x03BFFFFC, %esp \n"
++	"movl $0x027FFFFC, %esp \n"
+ 
+ 	"xor 	%eax, %eax \n"
+ 	"xor 	%ecx, %ecx \n"
+diff --git a/boot/LoadReactOS.c b/boot/LoadReactOS.c
+index ec756c7b78e100e5a6d49d566e39c18b47bff9fb..6414bad539aad6872466f913708f25c62bd17e06 100644
+--- a/boot/LoadReactOS.c
++++ b/boot/LoadReactOS.c
+@@ -329,6 +329,12 @@ void startReactOS(PMULTIBOOTHEADER mbHeader, u32 loaderSize, u32 bootDevice) {
+ 
+ 	if (mbHeader == NULL)
+ 		return;
++#ifdef XWN_HD_RESERVATION
++	if (xbox_ram != 64) {
++		printk("HD reservation requires a 64 MB console.\n");
++		return;
++	}
++#endif
+ 
+ 	/* Save needed values into static variables, as the stack pointer
+ 	 * will be modified by inline assembly below */
+@@ -407,7 +413,7 @@ void startReactOS(PMULTIBOOTHEADER mbHeader, u32 loaderSize, u32 bootDevice) {
+ 	"mov %eax, %gs \n"
+ 
+ 	/* Set the stack pointer to give us a valid stack */
+-	"movl $0x03BFFFFC, %esp \n"
++	"movl $0x027FFFFC, %esp \n"
+ 	);
+ 
+ 	/* Ok, preparations are complete. Now move the image.
+diff --git a/boot_eth/eth_Startup.S b/boot_eth/eth_Startup.S
+index 1b7a54c820230f91e26a26d1c50ecc0757320f9b..ebbac8a1cf17e4837caa41bfa0093554a476bb46 100644
+--- a/boot_eth/eth_Startup.S
++++ b/boot_eth/eth_Startup.S
+@@ -8,7 +8,7 @@
+ 	xor	%edx, %edx
+ 	cld
+ 
+-	mov 	$0x03A00000, %edi    	// Destiation
++	mov 	$0x02600000, %edi    	// Destiation
+ 	mov 	$0x00100100, %esi	// Source
+ 	mov 	$0x200000, %ecx		// 2MB
+ 	rep movsb
+@@ -57,6 +57,6 @@
+ */
+ 
+ 	cld
+-	ljmp 	$0x10, $0x03A00000
++	ljmp 	$0x10, $0x02600000
+ 
+ .org 0x0100	// append crom image here
+diff --git a/boot_eth/eth_start.ld b/boot_eth/eth_start.ld
+index a1580f50617fd56edb49941f1ec009a8ed1e2858..14aefba94ab774de726f1548c11e9b28d717929c 100644
+--- a/boot_eth/eth_start.ld
++++ b/boot_eth/eth_start.ld
+@@ -7,7 +7,7 @@ OUTPUT_ARCH(i386);
+ MEMORY
+ {
+ 	ram (rwx) : ORIGIN = 0, LENGTH = 64M
+-	rom (rx)  : ORIGIN = 0x03A00000, LENGTH = 2M
++	rom (rx)  : ORIGIN = 0x02600000, LENGTH = 2M
+ }
+ 
+ 
+diff --git a/boot_rom/2bBootStartBios.c b/boot_rom/2bBootStartBios.c
+index 3443d6b53681ab81274feb953662d25fef54e604..3118bb385490828a281a9f0ce21e6dc324e04a60 100644
+--- a/boot_rom/2bBootStartBios.c
++++ b/boot_rom/2bBootStartBios.c
+@@ -73,7 +73,7 @@ extern void BootStartBiosLoader ( void ) {
+ 
+ 	// do not change this, this is linked to many many scipts
+ 	unsigned int PROGRAMM_Memory_2bl 	= 0x00100000;
+-	unsigned int CROMWELL_Memory_pos 	= 0x03A00000;
++	unsigned int CROMWELL_Memory_pos 	= 0x02600000;
+ 	unsigned int CROMWELL_compress_temploc 	= 0x02000000;
+ 
+ 	unsigned int Buildinflash_Flash[4]	= { 0xfff00000,0xfff40000,0xfff80000,0xfffc0000};
+@@ -191,11 +191,11 @@ extern void BootStartBiosLoader ( void ) {
+ 		setLED("oooo");
+ 
+ 		// We now jump to the cromwell, Good bye 2bl loader
+-		// This means: jmp CROMWELL_Memory_pos == 0x03A00000
++		// This means: jmp CROMWELL_Memory_pos == 0x02600000
+ 		__asm __volatile__ (
+ 		"wbinvd\n"
+ 		"cld\n"
+-		"ljmp $0x10, $0x03A00000\n"
++		"ljmp $0x10, $0x02600000\n"
+ 		);
+ 		// We are not Longer here
+ 	}
+diff --git a/boot_vml/vml_Startup.S b/boot_vml/vml_Startup.S
+index 2298f6cc428d7eb9b3ef4f1f34a26f45179fdd03..18c354d1f03c6ea2b42337a668060ee85c0d932a 100755
+--- a/boot_vml/vml_Startup.S
++++ b/boot_vml/vml_Startup.S
+@@ -13,13 +13,13 @@
+ 	xor	%edx, %edx
+ 	cld
+ 
+-	mov 	$0x03A00000, %edi    	// Destiation
++	mov 	$0x02600000, %edi    	// Destiation
+ 	mov 	$0x00100100, %esi	// Source
+ 	mov 	$0x200000, %ecx		// 2MB
+ 	rep movsb
+ 	wbinvd
+ 	cld
+-	ljmp 	$0x10, $0x03A00000
++	ljmp 	$0x10, $0x02600000
+ 
+ .org 0x1700	// Here, we append the thing we want to load
+ 
+diff --git a/boot_vml/vml_start.ld b/boot_vml/vml_start.ld
+index 962c77ed90d504b3d5af63486276b4bdd0621062..0b86e1d41be1c3cbe3f7060f129a10a7df6d452d 100755
+--- a/boot_vml/vml_start.ld
++++ b/boot_vml/vml_start.ld
+@@ -7,7 +7,7 @@ OUTPUT_ARCH(i386);
+ MEMORY
+ {
+ 	ram (rwx) : ORIGIN = 0, LENGTH = 64M
+-	rom (rx)  : ORIGIN = 0x03A00000, LENGTH = 2M
++	rom (rx)  : ORIGIN = 0x02600000, LENGTH = 2M
+ }
+ 
+ 
+diff --git a/boot_xbe/xbeboot.S b/boot_xbe/xbeboot.S
+index c8bf50645edeb5f79e11f8fc61add1868f986b53..ec88cfbc1306c4e7244699dab8a11455b1033cb3 100755
+--- a/boot_xbe/xbeboot.S
++++ b/boot_xbe/xbeboot.S
+@@ -32,7 +32,7 @@
+ // Memory reserved to the kernel (1 MB at the moment)
+ #define KERNEL_MAX_SIZE			0x00100000 // 1MB maximum Kernel for Cromwell
+ // Location of kernel in RAM
+-#define KERNEL_RAM_ADDRESS		0x03A00000
++#define KERNEL_RAM_ADDRESS		0x02600000
+ // Size of memory on a retail XBOX unit
+ #define RETAIL_RAM_SIZE			0x04000000
+ // Reserve pages in address space
+diff --git a/drivers/video/BootVgaInitialization.c b/drivers/video/BootVgaInitialization.c
+index 75a66e49e73e39907d40c14b2ffdbf3efe4bdc10..9140b0f180530ab335e9975a118f2fe2216672b9 100644
+--- a/drivers/video/BootVgaInitialization.c
++++ b/drivers/video/BootVgaInitialization.c
+@@ -30,6 +30,10 @@
+ #include "xcalibur.h"
+ #include "drivers/pci/i2c.h"
+ 
++#ifdef XWN_HD_TIMING_720P
++extern int XwnHdTry720(CURRENT_VIDEO_MODE_DETAILS *,unsigned,unsigned,unsigned);
++#endif
++
+ unsigned int video_encoder;
+ u8 VIDEO_AV_MODE;
+ 
+@@ -153,6 +157,15 @@ void BootVgaInitializationKernelNG(CURRENT_VIDEO_MODE_DETAILS * pvmode) {
+ 	pvmode->hoc /= 100.0;
+ 	pvmode->voc /= 100.0;
+ 
++#ifdef XWN_HD_TIMING_720P
++	if (XwnHdTry720(pvmode,video_encoder,av_type,((u8 *)&eeprom)[0x96])) {
++		mapNvMem(&riva,pvmode->m_pbBaseAddressVideo);
++		NVVertIntrEnabled(&riva,0);
++		NVSetFBStart(&riva,0,pvmode->m_dwFrameBufferStart);
++		return;
++	}
++#endif
++
+ 	mapNvMem(&riva,pvmode->m_pbBaseAddressVideo);
+ 	unlockCrtNv(&riva,0);
+ 
+diff --git a/drivers/video/Makefile b/drivers/video/Makefile
+index 6ca281d47fd0047f3bfaab8d91ddd2c6aff16edc..e23b88b15486fb1c1a3926634eaa2fb86937cd8c 100644
+--- a/drivers/video/Makefile
++++ b/drivers/video/Makefile
+@@ -1,5 +1,5 @@
+ EXTRA_CFLAGS := -I$(TOPDIR)/lib/font -I$(TOPDIR)/lib/jpeg
+ 
+-O_TARGET := conexant.o focus.o xcalibur.o BootVgaInitialization.o BootVideoHelpers.o VideoInitialization.o
++O_TARGET := xwn_hd_profile.o xwn_hd_adapter.o xwn_hd_native.o conexant.o focus.o xcalibur.o BootVgaInitialization.o BootVideoHelpers.o VideoInitialization.o
+ 
+ include $(TOPDIR)/Rules.make
+diff --git a/drivers/video/xwn_hd_adapter.c b/drivers/video/xwn_hd_adapter.c
+new file mode 100644
+index 0000000000000000000000000000000000000000..c7b827a9c211ba2ca7fff566943151032d740993
+--- /dev/null
++++ b/drivers/video/xwn_hd_adapter.c
+@@ -0,0 +1,107 @@
++#ifdef XWN_HD_TIMING_720P
++/* SPDX-License-Identifier: GPL-2.0-or-later
++ * Explicit 720p transaction. Hardware access is supplied by the native wrapper;
++ * the same orchestration is exercised with modeled I/O in host tests.
++ */
++#include "xwn_hd_adapter.h"
++#define BUS_POLLS 1000u
++#define SYNC_POLLS 10000u
++#define VBLANK_POLLS 100000u
++#define O io->opaque
++int xwn_hd_smb_write(const struct xwn_hd_io *io,uint8_t address,uint8_t reg,uint8_t value) {
++ unsigned i;uint16_t status;
++ for(i=0;i<BUS_POLLS;i++) {
++  if(!(io->in16(O,0xc000)&0x0800))break;
++  io->delay(O,10);
++ }
++ if(i==BUS_POLLS)return 1;
++ io->out8(O,0xc004,(uint8_t)(address<<1));
++ io->out8(O,0xc008,reg);io->out16(O,0xc006,value);
++ status=io->in16(O,0xc000);io->out16(O,0xc000,status);
++ io->out8(O,0xc002,0x1a);
++ for(i=0;i<BUS_POLLS;i++) {
++  status=io->in8(O,0xc000);
++  if(status&0x36) return ((status&0x10) && !(status&0x26))?0:3;
++  io->delay(O,10);
++ }
++ return 2;
++}
++static void cr(const struct xwn_hd_io *io,uint8_t index,uint8_t value) {
++ io->w8(O,0x6013d4,index);io->w8(O,0x6013d5,value);
++}
++static int enc(const struct xwn_hd_io *io,volatile struct xwn_hd_state *s,uint8_t r,uint8_t v) {
++ int e;s->smb_attempts++;e=xwn_hd_smb_write(io,0x45,r,v);
++ if(e){s->error=10u+(unsigned)e;return 0;}s->smb_completed++;return 1;
++}
++static int edge(const struct xwn_hd_io *io,volatile struct xwn_hd_state *s,unsigned wanted) {
++ unsigned i;
++ for(i=0;i<VBLANK_POLLS;i++) {
++  s->vblank_polls++;
++  if((io->r8(O,0x6013da)&8)==wanted)return 1;
++  io->delay(O,10);
++ }
++ s->error=22;return 0;
++}
++int xwn_hd_apply(const struct xwn_hd_io *io,const struct xwn_hd_request *r,volatile struct xwn_hd_state *s) {
++ struct xwn_hd_profile p;unsigned i;uint32_t update=0;
++ static const uint8_t seq[5]={3,0x21,15,0,6};
++ static const uint8_t gra[9]={0,0,0,0,0,0x40,5,15,255};
++ static const uint8_t attr[20]={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,1,0x4a,15,0,0};
++ if(!s)return 0;
++ *s=(struct xwn_hd_state){0};
++ if(!io || !r || !io->r32 || !io->w32 || !io->r8 || !io->w8 ||
++    !io->in16 || !io->in8 || !io->out16 || !io->out8 || !io->delay)return 0;
++ if(r->mode!=XWN_HD_720P || r->encoder!=0 || r->cable!=3 || !(r->video_flags&2) ||
++    !xwn_hd_layout_valid(r->mode,r->ram,r->fb,r->reserved,r->hidden) ||
++    !xwn_hd_get_profile(r->mode,&p))return 0;
++ s->stage=1;s->vpll=io->r32(O,0x680508);s->pcrtc=io->r32(O,0x600804);
++ /* Retain clocks/PCRTC configuration; observations are not new programming values. */
++ s->mutated=1;io->out8(O,0x80d3,5);
++ io->w8(O,0xc03c4,1);io->w8(O,0xc03c5,0x21);
++ for(i=0;i<SYNC_POLLS;i++) {
++  update=io->r32(O,0x6806a0);s->sync_polls++;
++  if(!((update^(update>>4))&1))break;
++  io->delay(O,10);
++ }
++ if(i==SYNC_POLLS){s->error=21;goto fail;}
++ cr(io,0x1f,0x57);cr(io,0x21,0xff);cr(io,0x28,0);
++ io->w32(O,0x100200,0x03070003);io->w32(O,0x600800,r->fb);
++ io->w32(O,0x680880,0x21121111);s->stage=2;
++ if(!enc(io,s,0xba,0x80) || !enc(io,s,0xba,0x3f) || !enc(io,s,0x6c,0x46))goto fail;
++ io->delay(O,1);if(!enc(io,s,0x6c,0xc6))goto fail;
++ for(i=0;i<13;i++)if(!enc(io,s,xwn_hd_encoder_indices[i],p.encoder[i]))goto fail;
++ s->stage=3;io->out8(O,0x80d6,4);io->out8(O,0x80d8,4);
++ io->w32(O,0x68050c,io->r32(O,0x68050c)|0x10020000u);
++ io->w8(O,0xc03c3,1);io->w8(O,0xc03c2,0xe3);
++ /* Known common DAC setup from the existing Cromwell path. */
++ io->w32(O,0x680884,0);io->w32(O,0x680888,0);
++ io->w32(O,0x68088c,0x10001000);io->w32(O,0x680890,0x10000000);io->w32(O,0x680894,0x10000000);
++ for(i=0;i<26;i++)io->w32(O,xwn_hd_mmio_offsets[i],p.mmio[i]);
++ io->w32(O,0x680600,p.mmio[27]);
++ for(i=0;i<5;i++){io->w8(O,0xc03c4,(uint8_t)i);io->w8(O,0xc03c5,seq[i]);}
++ for(i=0;i<9;i++){io->w8(O,0xc03ce,(uint8_t)i);io->w8(O,0xc03cf,gra[i]);}
++ (void)io->r8(O,0x6013da);
++ for(i=0;i<20;i++){io->w8(O,0x6013c0,(uint8_t)i);io->w8(O,0x6013c0,attr[i]);}
++ io->w8(O,0x6013c0,0x20);
++ cr(io,0x11,0);for(i=0;i<35;i++)cr(io,xwn_hd_crtc_indices[i],p.crtc[i]);
++ io->w32(O,0x6806a0,(~update)&1);
++ io->w8(O,0xc03c4,1);io->w8(O,0xc03c5,1);s->stage=4;
++ for(i=0;i<3;i++)if(!edge(io,s,0) || !edge(io,s,8))goto fail;
++ io->w32(O,0x680880,p.mmio[26]);io->delay(O,1);
++ /* Never read/modify/write unknown6c readback. Use the declared reset image. */
++ if(!enc(io,s,0x6c,0xc6) || !enc(io,s,0xba,p.encoder[13]))goto fail;
++ io->w32(O,0x600800,r->fb);
++ /* Exact readable geometry and pitch check before exposing the new output. */
++ if(io->r32(O,0x680838)!=p.width-1 || io->r32(O,0x680818)!=p.height-1){s->error=23;goto fail;}
++ io->w8(O,0x6013d4,0x13);
++ if(io->r8(O,0x6013d5)!=p.crtc[19]){s->error=24;goto fail;}
++ io->w8(O,0x6013d4,0x19);
++ if((io->r8(O,0x6013d5)&0xe0)!=(p.crtc[25]&0xe0)){s->error=24;goto fail;}
++ io->w8(O,0x6013d4,0x28);
++ if(io->r8(O,0x6013d5)!=p.crtc[34]){s->error=24;goto fail;}
++ io->out8(O,0x80d3,4);s->stage=5;return 1;
++fail:
++ io->out8(O,0x80d3,5);s->stage=255;return -1;
++}
++
++#endif
+diff --git a/drivers/video/xwn_hd_adapter.h b/drivers/video/xwn_hd_adapter.h
+new file mode 100644
+index 0000000000000000000000000000000000000000..335f4098e0152510390c7e0bb378532a63d83da9
+--- /dev/null
++++ b/drivers/video/xwn_hd_adapter.h
+@@ -0,0 +1,23 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++#ifndef XWN_HD_ADAPTER311_H
++#define XWN_HD_ADAPTER311_H
++#include "xwn_hd_profile.h"
++struct xwn_hd_io {
++ void *opaque;
++ uint32_t (*r32)(void *,uint32_t);
++ void (*w32)(void *,uint32_t,uint32_t);
++ uint8_t (*r8)(void *,uint32_t);
++ void (*w8)(void *,uint32_t,uint8_t);
++ uint16_t (*in16)(void *,uint16_t);
++ uint8_t (*in8)(void *,uint16_t);
++ void (*out16)(void *,uint16_t,uint16_t);
++ void (*out8)(void *,uint16_t,uint8_t);
++ void (*delay)(void *,unsigned);
++};
++struct xwn_hd_request {uint32_t mode,ram,fb,reserved,hidden,encoder,cable,video_flags;};
++struct xwn_hd_state {uint32_t stage,error,mutated,smb_attempts,smb_completed,sync_polls,vblank_polls,vpll,pcrtc;};
++/* 1 success; 0 unsupported BEFORE adapter writes; -1 partial failure, no resume. */
++int xwn_hd_apply(const struct xwn_hd_io *,const struct xwn_hd_request *,volatile struct xwn_hd_state *);
++/* One bounded write, no retry after a potentially accepted transaction. */
++int xwn_hd_smb_write(const struct xwn_hd_io *,uint8_t,uint8_t,uint8_t);
++#endif
+diff --git a/drivers/video/xwn_hd_native.c b/drivers/video/xwn_hd_native.c
+new file mode 100644
+index 0000000000000000000000000000000000000000..7d6ad02ffb0c819c9b942e3978576a96b5649d8a
+--- /dev/null
++++ b/drivers/video/xwn_hd_native.c
+@@ -0,0 +1,35 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later */
++#ifdef XWN_HD_TIMING_720P
++#ifndef XWN_HD_RESERVATION
++#error HD timing requires the reviewed nine-MiB reservation
++#endif
++#include "boot.h"
++#include "memory_layout.h"
++#include "timer.h"
++#include "xwn_hd_adapter.h"
++volatile struct xwn_hd_state XwnHdState311;
++static uint32_t hd_r32(void *o,uint32_t a){(void)o;return *(volatile uint32_t*)(0xfd000000u+a);}
++static void hd_w32(void *o,uint32_t a,uint32_t v){(void)o;*(volatile uint32_t*)(0xfd000000u+a)=v;}
++static uint8_t hd_r8(void *o,uint32_t a){(void)o;return *(volatile uint8_t*)(0xfd000000u+a);}
++static void hd_w8(void *o,uint32_t a,uint8_t v){(void)o;*(volatile uint8_t*)(0xfd000000u+a)=v;}
++static uint16_t hd_in16(void *o,uint16_t p){(void)o;return IoInputWord(p);}
++static uint8_t hd_in8(void *o,uint16_t p){(void)o;return IoInputByte(p);}
++static void hd_out16(void *o,uint16_t p,uint16_t v){(void)o;IoOutputWord(p,v);}
++static void hd_out8(void *o,uint16_t p,uint8_t v){(void)o;IoOutputByte(p,v);}
++static void hd_delay(void *o,unsigned us){(void)o;wait_us(us);}
++int XwnHdTry720(CURRENT_VIDEO_MODE_DETAILS *mode,unsigned encoder,unsigned cable,unsigned flags){
++ const struct xwn_hd_io io={0,hd_r32,hd_w32,hd_r8,hd_w8,hd_in16,hd_in8,hd_out16,hd_out8,hd_delay};
++ const struct xwn_hd_request r={1,(uint32_t)xbox_ram*1024u*1024u,FB_START&0x0fffffffu,FB_SIZE,316160u,encoder,cable,flags};
++ int result=xwn_hd_apply(&io,&r,&XwnHdState311);
++ if(result<0){
++  /* Partial display setup cannot fall through into Windows or legacy setup.
++   * Request the same quick reset as the existing SMC helper, with a bounded
++   * transaction. If hardware does not reset, halt with state retained. */
++  (void)xwn_hd_smb_write(&io,0x10,0x02,0x01);
++  __asm__ __volatile__("cli" ::: "memory");
++  for(;;)__asm__ __volatile__("hlt");
++ }
++ if(result==1){mode->width=1280;mode->height=720;mode->xmargin=0;mode->ymargin=0;}
++ return result;
++}
++#endif
+diff --git a/drivers/video/xwn_hd_profile.c b/drivers/video/xwn_hd_profile.c
+new file mode 100644
+index 0000000000000000000000000000000000000000..526e467203c109aa5ab51a88c33c35d0a8a3b0c0
+--- /dev/null
++++ b/drivers/video/xwn_hd_profile.c
+@@ -0,0 +1,25 @@
++#ifdef XWN_HD_TIMING_720P
++#include "xwn_hd_profile.h"
++const uint8_t xwn_hd_crtc_indices[35]={0x0,0x1,0x2,0x3,0x4,0x5,0x6,0x7,0x8,0x9,0xa,0xb,0xc,0xd,0xe,0xf,0x10,0x11,0x12,0x13,0x14,0x15,0x16,0x17,0x18,0x19,0x1a,0x1b,0x20,0x25,0x2d,0x33,0x39,0x41,0x28};
++const uint32_t xwn_hd_mmio_offsets[28]={0x680898,0x68089c,0x6808c0,0x6808c4,0x68084c,0x680630,0x680800,0x680804,0x680808,0x68080c,0x680810,0x680814,0x680818,0x680820,0x680824,0x680828,0x68082c,0x680830,0x680834,0x680838,0x680848,0x680680,0x680684,0x680688,0x68068c,0x680690,0x680880,0x680600};
++const uint8_t xwn_hd_encoder_indices[14]={0xd6,0x2e,0x32,0x3c,0x3e,0x40,0xc4,0xc6,0xce,0xa0,0x9e,0x9c,0x6c,0xba};
++static const struct xwn_hd_profile profiles[2]={
++ {1280u,720u,5120u,3686400u,0u,{0xc8,0x9f,0x9f,0x8c,0xa7,0x31,0xec,0xf0,0x0,0x60,0x0,0x0,0x0,0x0,0x0,0x0,0xd4,0x9,0xcf,0x80,0x0,0xcf,0xed,0xe3,0xff,0x40,0x38,0x5,0x80,0x10,0x0,0x11,0xff,0x0,0x83},{0x10000000,0x10000000,0x0,0x40801080,0x801080,0x3,0x2cf,0x2ed,0x2cf,0x2d4,0x2d9,0x0,0x2cf,0x4ff,0x671,0x4ff,0x545,0x595,0x0,0x4ff,0x10100111,0x672,0x1,0x14a,0x528,0x1,0x21101100,0x100030},{0xc,0xaa,0x49,0x90,0x8c,0x8c,0x1,0x9c,0xe1,0x21,0x0,0x0,0x46,0x28}},
++ {1920u,1080u,7680u,8294400u,1u,{0x4,0xef,0xef,0x88,0xf4,0x3f,0x2f,0xf0,0x0,0x60,0x0,0x0,0x0,0x0,0x0,0x0,0x1d,0x2,0x1b,0xc0,0x0,0x1b,0x30,0xe3,0xff,0x60,0x38,0x5,0x80,0x0,0x1,0x11,0x10,0x0,0x83},{0x10000000,0x10000000,0x0,0x40801080,0x801080,0x3,0x437,0x464,0x43b,0x43b,0x445,0x0,0x437,0x77f,0x897,0x7ab,0x7ac,0x804,0x0,0x77f,0x10133111,0x898,0x1,0x1b8,0x6e0,0x1,0x21101100,0x100030},{0xc,0xab,0x49,0x90,0x8c,0x8c,0x1,0x9c,0xe1,0x21,0x0,0x0,0x46,0x28}},
++};
++int xwn_hd_get_profile(unsigned mode,struct xwn_hd_profile *out) {
++ if(!out || mode<XWN_HD_720P || mode>XWN_HD_1080I)return 0;
++ *out=profiles[mode-1];return 1;
++}
++int xwn_hd_layout_valid(unsigned mode,uint32_t ram_bytes,uint32_t fb_start,
++                        uint32_t reserved_bytes,uint32_t hidden_bytes) {
++ struct xwn_hd_profile p;
++ if(!xwn_hd_get_profile(mode,&p))return 0;
++ if(ram_bytes!=64u*1024u*1024u || fb_start!=55u*1024u*1024u ||
++    reserved_bytes!=9u*1024u*1024u || hidden_bytes!=316160u)return 0;
++ if(fb_start>ram_bytes || reserved_bytes>ram_bytes-fb_start ||
++    hidden_bytes>reserved_bytes || p.visible_bytes>reserved_bytes-hidden_bytes)return 0;
++ return 1;
++}
++
++#endif
+diff --git a/drivers/video/xwn_hd_profile.h b/drivers/video/xwn_hd_profile.h
+new file mode 100644
+index 0000000000000000000000000000000000000000..4314fd39c731c5f9350876a376d76b920942d616
+--- /dev/null
++++ b/drivers/video/xwn_hd_profile.h
+@@ -0,0 +1,24 @@
++/* SPDX-License-Identifier: GPL-2.0-or-later
++ * Explicit Conexant HDTV timing profiles for the reviewed 64MiB/9MiB handoff.
++ * Pure data preparation: NO hardware access or encoder readback assumptions.
++ */
++#ifndef XWN_HD_PROFILE310_H
++#define XWN_HD_PROFILE310_H
++#include <stdint.h>
++enum xwn_hd_mode { XWN_HD_720P=1, XWN_HD_1080I=2 };
++struct xwn_hd_profile {
++ uint32_t width,height,stride,visible_bytes,interlaced;
++ uint8_t crtc[35];
++ uint32_t mmio[28];
++ uint8_t encoder[14];
++};
++extern const uint8_t xwn_hd_crtc_indices[35];
++extern const uint32_t xwn_hd_mmio_offsets[28];
++extern const uint8_t xwn_hd_encoder_indices[14];
++/* Invalid mode/output leaves caller storage unchanged. */
++int xwn_hd_get_profile(unsigned mode,struct xwn_hd_profile *out);
++/* Exact reviewed ABI2 memory layout only. Geometry comes from selected profile,
++ * not analog HVALID or an arbitrary caller-supplied stride. */
++int xwn_hd_layout_valid(unsigned mode,uint32_t ram_bytes,uint32_t fb_start,
++                        uint32_t reserved_bytes,uint32_t hidden_bytes);
++#endif
+diff --git a/include/memory_layout.h b/include/memory_layout.h
+index da330cb46028f45583d4f7410573b9e88c67b6a1..a33ec16b508dd0ac3473db3f7aba168323273ee0 100644
+--- a/include/memory_layout.h
++++ b/include/memory_layout.h
+@@ -19,11 +19,16 @@
+ #define KERNEL_LOAD_TMP    0x01000000
+ 
+ /*
+- * Modern bzImages prefer to decompress at 16 MB and can occupy roughly
+- * 13 MB there. Keep the initrd above that kernel image window.
++ * The legacy allocator always manages 16 MB, ignoring its length argument.
++ * Its heap starts at 22 MB and ends at 38 MB. Keep the initrd at 40 MB so
++ * live USB allocations cannot overwrite it while FATX files are loading.
+  */
+-#define INITRD_START       0x02000000
++#define INITRD_START       0x02800000
++#ifdef XWN_HD_RESERVATION
++#define MAX_INITRD_END     0x03700000
++#else
+ #define MAX_INITRD_END     0x03800000
++#endif
+ 
+ #define MAX_KERNEL_SIZE    (KERNEL_PM_CODE_END - KERNEL_PM_CODE)
+ #define MAX_INITRD_SIZE    (MAX_INITRD_END - INITRD_START)
+@@ -33,18 +38,20 @@
+ #define FREELDR_MAX_SIZE   0x80000
+ 
+ /*
+- * Keep Cromwell's heap below the initrd. The old layout put the heap above
+- * MAX_INITRD_END; widening the initrd window for Tiny Core left too little
+- * heap for early video/FATX setup and xemu stayed black.
++ * Reserve the full 16 MB actually used by t_malloc (1024 x 16 KB blocks).
+  */
+ #define MEMORYMANAGERSTART 0x01600000
+-#define MEMORYMANAGEREND   0x01FFFFFF
++#define MEMORYMANAGEREND   0x02600000
+ #define MEMORYMANAGERSIZE  (MEMORYMANAGEREND - MEMORYMANAGERSTART)
+ 
+-#define STACK_TOP 0x03C00000
++#define STACK_TOP 0x02800000
+ 
+ /* the size of the framebuffer (defaults to 4 MB) */
++#ifdef XWN_HD_RESERVATION
++#define FB_SIZE 0x00900000
++#else
+ #define FB_SIZE 0x00400000
++#endif
+ /* the start of the framebuffer */
+ #define FB_START (0xf0000000 | (RAMSIZE - FB_SIZE))
+ 
+diff --git a/scripts/ldscript-crom.ld b/scripts/ldscript-crom.ld
+index 470aa81c406066a11e6ec10ccc3918855606c515..219ff35040238bca42b5a00269707527056aaf17 100644
+--- a/scripts/ldscript-crom.ld
++++ b/scripts/ldscript-crom.ld
+@@ -7,12 +7,12 @@ OUTPUT_ARCH(i386);
+ MEMORY
+ {
+ 	ram (rwx) : ORIGIN = 0, LENGTH = 64M
+-	rom (rx)  : ORIGIN = 0x03A00000, LENGTH = 2M
++	rom (rx)  : ORIGIN = 0x02600000, LENGTH = 2M
+ }
+ 
+ /* this should be changed depending the actual size of the rom */
+ ROM_SIZE = 256K;
+-LOW_ROM = 0x03A00000; /* 58MB */
++LOW_ROM = 0x02600000; /* 38MB */
+ 
+ SECTIONS {
+ 	/DISCARD/ : { *(.note.gnu.property) }
+@@ -75,3 +75,6 @@ SECTIONS {
+ BSS_SIZE = BSS_END - BSS_BASE;
+ BSS_SIZE_L = BSS_SIZE / 4;
+ 
++
++/* Relocation293: reserve a full 256 KiB downward-growing stack. */
++ASSERT(BSS_END <= 0x027C0000, "Cromwell overlaps relocated stack reserve");

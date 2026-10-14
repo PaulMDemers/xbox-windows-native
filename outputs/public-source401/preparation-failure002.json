@@ -1,0 +1,13 @@
+{
+  "status": "failed",
+  "owned_session": 41317,
+  "exit_code": 1,
+  "source": "prepare002.py",
+  "private_output": "C:/xwn401/source002",
+  "partial_result": "All five non-audio trees replayed exactly. Audio compiled-file comparison stopped at ac97.inf; no final manifest/archive produced.",
+  "cause": "Compared Git blob bytes directly to a checkout hash despite pinned upstream text/eol=crlf attributes for ac97.inf.",
+  "investigation": "All 32 other audio source blobs exactly match compiled-source hashes. ac97.inf matches exactly after LF-to-CRLF checkout. git check-attr --cached reports text=set and eol=crlf for that path.",
+  "correction": "prepare003 checks the actual attributes and exact expected checkout hash only for ac97.inf, records both hashes, and keeps the original Git tree identity. No generic normalization exemption.",
+  "shared_sources_changed": false,
+  "physical_access": false
+}

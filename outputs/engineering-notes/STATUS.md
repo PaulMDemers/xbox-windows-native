@@ -1,3 +1,17 @@
+# Source review package prepared; integrated demo unchanged
+
+The separate source candidate is C:/xwn401/package001/xwn-source-review401.zip.
+It contains33 verified entries: six exact component source patches, configuration
+tools, build/use/recovery guidance, license texts and a release checklist. All six
+source trees replay through the exported portable tool; repeat archive assembly
+is identical. No new compiler run or hardware operation occurred.
+
+This remains a private review draft. Manual license and remaining component
+provenance review, portable complete builds and disposable installer validation
+are still required. The private Git history contains many local references and
+must not be made public wholesale. No tag, publication or visibility change.
+See outputs/public-source401/REPORT.md and NEXT.md. All owned sessions closed.
+
 # Integrated private demo ready; current bundles are399 revision002
 
 FATX390 is now installed and readback-verified on the Xbox alongside video303,
