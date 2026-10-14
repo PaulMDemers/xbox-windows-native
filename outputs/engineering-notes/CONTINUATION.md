@@ -1,3 +1,33 @@
+#398 CLOSED: candidate390 physical scope PASS; original baseline restored
+
+One launch19:43:17UTC -> dashboard19:48:11. Setup-first/native-before-CMD order
+matches397. Exactlyoneentry twice, nativeEND0, all6CMDops0, fourBMPs24,883,416bytes
+and4texts exact; intermediatesabsent. Audio/GDI/720p/normalshutdown1/integrityPASS.
+CleanE682dirs7849files699clusters0errors/orphans,5hives/policy/protected/Frollback.
+71pins/1343privatecaptures rehashed. Allowned sessions CLOSED40403/66052/44083/
+13659/25849/48073/57345; no launchqueued. Normalstartup restoredFIRST; tested390
+preserved; original0101 readback restored. Cuntouched, noadoption/bundle/tag.
+
+IMPORTANT auditor preflight missed inherited0101 expectedhash. Original audit,
+candidate-analysis/finalstate/finalreview/source-review retainedBYTEEXACT with
+FALSEscope. Separatecorrected-analysis002 verifies frozen390 build/preserved
+bytes, uses originalAST fieldlists/aggregatepredicates, changesONLYexpectedhash.
+5identitynegativecasesreject; preciselytestedhash/scope/diagnosticcomplete become
+TRUE. StrictFALSEsoleFt49 and releaseFALSE unchanged. Usefinal-review002 index.
+No hardware rerun/recollection. EarlyhostnoteUTF8decodefailure preserved inpairpreflight.
+
+Next NEW scopedacceptance/bundle plan from398/397; neverretargetheld395's failed394
+gate. Currentphysical303/audio004/original0101/E720p374 remains. Failed394cause and
+396bootpath unresolved;1080i text/drag issue remainsseparate. See398REPORT/NEXT.
+
+#398 ACTIVE: single candidate390 launch19:43:17UTC
+
+Owned launch/observer13659 ACTIVE, immediate observer; never duplicate. Capture40403/before-scan66052/repo-check44083 CLOSED.71 frozeninputs,9 identicalsharedhelpers,63 baselinefiles match397. Clean preallocation674dirs7813files691clusters. Candidate390/tempstartup staged/readback; currentdriver390 during test. Onreturn collect once restores normalstartupFIRST, captures candidate then restoresoriginal0101; afterscan/WSLaudit/finalstate/candidate-analysis/review. E:/xwn398 ready. No395adoption/bundle, no Caccess/Frollbackchange.
+
+#398 fresh matched candidate preparation
+
+User authorized proceeding. New setup-candidate398 uses exact390 with397 setup-first/native-before-CMD sequence, unchanged303/audio004/E720p and helpers.71 frozen inputs. Baseline capture40403 CLOSED; all397 final-state files match. No Windows launch yet. Inspect actual records, never duplicate. Host E:/xwn398 precreated. On return restore normalstartupFIRST, preserve tested390, restore0101, full cold audit/finalstate.395 remainsheld; no adoption/bundle.
+
 #397 CLOSED: exact native copies, known original enumeration defect reproduced
 
 Single397 launch19:06:36UTC returned19:12:17. Setup helper handled three known

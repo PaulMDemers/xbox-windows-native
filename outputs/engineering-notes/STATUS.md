@@ -1,3 +1,22 @@
+# Storage fix passed the physical demo workload; baseline remains restored
+
+October14: candidate390 now returns each exact filename once and passes all six
+CMD file operations on the Xbox. Native and CMD copies match exactly, audio/GDI
+checks pass, Windows shuts down normally, and cold allocation/hive/protected-file
+checks are clean. This follows the setup-first original397 control, which
+reproduced the duplicate-listing and CMD MOVE defect.
+
+398's original audit retained the control's expected driver hash by mistake.
+It remains preserved. Separate corrected-analysis002 verifies the candidate
+against frozen build identity and preserved bytes with unchanged aggregate gates.
+Scoped result PASS; strict result FALSE for the retained Ftdisk49 event.
+
+The Xbox is at UnleashX with normal720p startup/original0101/video303/audio004.
+No candidate adoption, new bundle or tag yet;395 is still held on failed394.
+Next is a new scoped demo acceptance/bundle plan, keeping original rollback and
+explicit known limitations.720p text/full-window dragging are user-confirmed;
+1080i remains unresolved. All owned sessions are closed; dashboard C untouched.
+
 #720p demo restored; original-driver control completed, storage fix still held
 
 October14:397 settled known-device setup before filework and completed direct
