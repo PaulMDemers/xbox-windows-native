@@ -4,6 +4,9 @@ The build command reconstructs one reviewed component tree from an upstream Git
 cache plus `src/`, then builds its selected binaries. It does not create Windows
 media, configure a registry, install drivers, flash firmware or contact a console.
 
+Windows installation is a separate input. Use the [media guide](windows-media.md)
+to check your ISO against the recorded disc hashes and installation results.
+
 ## Requirements
 
 - Linux or WSL, Python 3.12+ (including `tarfile.data_filter`), Git, Make and normal build utilities.

@@ -1,3 +1,41 @@
+#404 CLOSED: supplied ISO identities and clean PC media validation
+
+Read outputs/clean-media404/REPORT.md, NEXT.md, final-review002.json and
+upstream/windows-media.json. Both supplied ISO SHA256/SHA1 identities freshly
+verified; independent Archive.org full downloads/readbacks match exactly.
+Retail e3816f6e...386859008bytes/kernel6717; customized OEM75ae5e49...
+594280448bytes/kernel7376. Retail clean installation remains PENDING matching
+retail key in private local file; user asked, no online key used. All ISO files
+read (6157/6806), DRIVER.CAB/SP4.CAB/kernel decompression pass.
+
+OEM001 fresh blank2GiB PC setup phases1..4 CLOSED, all exit0/no timeout/hostkill.
+Final disk-only desktop boot had no ISO/floppy; witness manually launched once
+through normal Run after setup removed RunOnce. Two normalshutdown records,
+no warning/error/application records, exact7376 kernel, clean fivehive headers.
+All keys/types/raw bytes agree in two independent readers. Scoped PC install
+PASS; strictFALSE typed DRM DataPath0x404 decoder failure and automatic handoff
+failure retained. No freshXbox/physical/fullNTFS qualification. Never relaunch,
+recollect or silently convert these failures into full PASS.
+
+Original probe001linkfailure, cold001typedfailure,002inline-byte comparison,
+003case-sensitive diagnosticpath failure,004phase4 capacity refusal retained.
+005 measured sparse projection keeps20GiB reserve; no backing disks moved.
+Two identical downloaded duplicates removed after fresh comparison with retained
+supplied originals; receipts preserved. Final disk SHAece991e4dc6b662ece2a39dddba384a3c480173cafd89086135f6bb861b7f796.
+113private files rehashed; keys/hives/Windows binaries/answerfloppy stay private.
+All owned VM/build/download sessions CLOSED; no physical access or test queued.
+
+Public verify-media command + docs/manifest complete. Linux27 tests pass,
+Windows18pass9explicit platform skips;13synthetic+7actualqualification negatives
+and10rawbounds checks pass. New535-entry private source review003 bundle
+C:/xwn404/source-review003/xwn-source-review404.zip SHA
+ba47e56b8e4e08e645f428f539b3f93a8536128c4edd9530c29f34b9f7152939.
+No tag/publication. Physical E720p/FATX390/video303/audio004/Frollback/0.1.0 unchanged.
+Next: matching retail key; new documented owned-media-to-Xbox registry/E assembly
+from this clean baseline, not private399 payload; pristinehost and physical
+install/recovery qualification still separate. Prior403 builds/restore remain
+complete and distinct; do not repeat them without changed inputs.
+
 #403 CLOSED: provenance, dependencies and prepared E restore
 
 Read outputs/release-readiness403/REPORT.md, NEXT.md and final-review.json.

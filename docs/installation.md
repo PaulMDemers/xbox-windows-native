@@ -79,6 +79,11 @@ physical recovery or freshly compiled replacement drivers. Owned-media assembly
 and reproducible registry/configuration provisioning remain the missing steps
 for a general fresh installer. See [offline recovery](recovery-guide.md).
 
+The [media guide](windows-media.md) records exact ISO identities and a separate
+blank-disk PC setup test. That test establishes an installation-media baseline;
+it does not supply the Xbox registry conversion or replace the assembly work
+described above.
+
 ## Updating an existing installation
 
 Use only a package explicitly naming your installation and prerequisite hashes.

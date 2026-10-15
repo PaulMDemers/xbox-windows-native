@@ -22,6 +22,7 @@ native GPU acceleration.
 - [Troubleshooting](docs/troubleshooting.md) and [recovery](docs/recovery-guide.md)
 - [Development](docs/development.md) and [licensing](docs/licensing.md)
 - [Component origins and Windows dependencies](docs/provenance.md)
+- [Windows disc hashes and media validation](docs/windows-media.md)
 - [Validated results and remaining release work](docs/validation.md)
 
 ## Current capabilities

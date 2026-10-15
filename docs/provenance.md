@@ -4,10 +4,16 @@ This project supplies an Xbox boot/platform adaptation and drivers. It does not
 replace or redistribute Windows. Building the open-source components still
 requires a separately prepared, appropriately licensed Windows installation.
 
-The tested Windows kernel is **5.0.2195.7376**, from the supplied OEM media. Its
+The tested Windows kernel is **5.0.2195.7376**, from the supplied customized
+OEM-channel media. Its
 current package hash matches the original installed-media audit. This is a
 specific compatibility baseline, not a claim that every retail SP4 kernel is
 interchangeable with the Xbox HAL. The kernel hash is also recorded below.
+
+Full-disc identities, independent online comparisons and clean-media setup
+results are recorded in the [Windows media guide](windows-media.md) and its
+machine-readable manifest. Neither matching filenames nor the label "SP4"
+establishes that two discs contain the same Windows files.
 
 | Component | Source/build profile | Current correspondence |
 |---|---|---|
