@@ -13,14 +13,15 @@ Use the result that applies to the change you intend to make.
 | Supplied Windows ISO identities | Passed | Full SHA-256/SHA-1, every ISO file read, selected full cabinets decompressed; independent Archive.org downloads byte-identical |
 | Customized Windows disc clean PC setup | Scoped pass | New blank disk, first logon and media-detached desktop boot; two normal shutdowns, matching 7376 kernel, five clean hives |
 | Fully unattended media-test harness | Failed | Setup removed the witness's RunOnce entry; second witness launched manually |
-| Complete typed registry decoding | Failed | DRM DataPath type 0x404 unsupported; independent raw key/value comparison passed |
+| Complete typed registry decoding | Unsupported custom value | Original decoder failure retained; Windows RegQueryValueEx accepts type 0x404 and returns the same 80 bytes as both cold readers. DRM functionality untested |
 | Retail SP4 clean setup | Pending | Matching retail key required; integrity checks do not establish setup success |
 | Customized-disc fresh Xbox assembly | Scoped pass | Fresh PC files/hives, explicit Xbox registry conversion and newly built components on a new standard 10 GB emulator image |
-| Fresh assembly file transfer | Strict failure | Eight paths not representable by the current FATX writer; originals retained on the PC disk |
+| Fresh assembly file transfer | Strict failure | Two OEM437 shortcut names restored natively and verified after restart; six genuinely overlong paths remain. Originals retained on the PC disk |
 | Fresh audio/network installation | Scoped pass | Genuine SetupAPI installs; subsequent boot exposes one wave device and completes exact 128 KiB TCP transfers in both directions |
 | Fresh assembly cold integrity | Scoped pass | Exact persistence data, full allocation, five hive headers/raw values and selected installed code hashes |
 | Fresh assembly strict events | Failed | Ftdisk 49, first-boot PlugPlayManager 256 and final-boot kbdhid 1 retained |
 | Fresh assembly normal startup | Scoped pass | Automatic diagnostic startup removed; desktop boot and manually invoked checks passed after display installation |
+| Windows Media Player video/audio | Emulator scoped pass | Full 3:10 CES clip completed; two video frames independently matched, captured AC97 audio envelope matched the whole source at 0.994 correlation; physical listening pending |
 | Offline prepared E installation | Passed | All 6,571 payload files read back exactly in a disposable standard 10 GB image |
 | Offline E restore | Passed | Deliberately damaged launcher bytes restored; entire E and both outside ranges verified |
 | Restored emulator boot | Scoped pass | Graphics, captured audio, allocation, hives and protected files checked; normal restart |

@@ -19,6 +19,7 @@ native GPU acceleration.
 - [Build the components](docs/building.md)
 - [Installation and first boot](docs/installation.md)
 - [Resolution and desktop settings](docs/display-configuration.md)
+- [Windows Media Player demo](docs/media-player-demo.md)
 - [Troubleshooting](docs/troubleshooting.md) and [recovery](docs/recovery-guide.md)
 - [Development](docs/development.md) and [licensing](docs/licensing.md)
 - [Component origins and Windows dependencies](docs/provenance.md)

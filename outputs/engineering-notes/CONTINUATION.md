@@ -1,3 +1,61 @@
+#406 CLOSED: OEM path correction and real Media Player playback
+
+Read outputs/install-validation406/REPORT.md, DESIGN.md, NEXT.md,
+final-review.json, emu001/audit.json and media-evidence001.json. Single owned
+emu001 launch 2026-10-15 23:21:56 UTC, normal Windows restart/dashboard,
+orderly host exit0, no fallback. All owned processes closed. No physical access.
+Runtime E:/xwn406/runs/nt5-validation406-emu001; preserve its complete backing
+chain. Never relaunch/recollect this case or earlier closed405 cases.
+
+Both original 179-byte 3½ Floppy shortcuts restored through native CopyFileW;
+OEM437 observed, original bytes exact after restart. New public FATX name
+preflight checks all6475 original paths:6469 representable, SIX genuinely
+oversized paths remain. Native43-byte create returns206. No long-name alias,
+truncation, crypto/COM+ deletion or new driver installed. General lossless
+installer remains BLOCKED on native namespace compatibility.
+
+Native RegQueryValueEx returns DRM DataPath type1028/80 bytes exactly matching
+original and independent cold readers. Typed Python decoder still unsupported;
+not evidence of storage corruption, not DRM/DPAPI functional qualification.
+Strict FALSE remains: six paths, Ftdisk49 and kbdhid1; historical405 PnP256
+warnings retained. Exact installed message resources identify dump-pagefile
+configuration, redundant HID reports and window notification timeout. No gates
+waived or services/events suppressed. Historical0102/0103 dump patches are NOT
+current fresh403/390 baseline and cannot be blindly promoted.
+
+WMP6.4 completed archived CES2001 Gates/The Rock clip,190.8 seconds. Private
+aspect-preserving MPEG SHA256e39bf2aee01eecf993723988b274518f3f75076c6b62d1f263051daadd069619
+at E:/xwn406/media001/ces2001-nt5.mpg. Two actual frames independently match
+source; complete captured audio envelope correlation0.993777, reverse/shuffle
+controls0.152112/0.030505. Real emulator video/audio PASS, physical playback
+PENDING user's console-availability answer. No copyrighted media in source repo.
+
+Cold6556 files/275dirs/254dirclusters,0errors/orphans,five hives/raw-reader
+agreement,15 protected paths and three staged files exact.83 private files
+rehashed/206 frozen host inputs exact. New scope is a fresh copy CONTINUATION of
+405, not another independent clean installation. Existing405 remains unchanged.
+
+Public tests: Windows32 tests (23 pass/9 Linux-only skips), Linux five new
+name tests pass. Original errors/failed preparations/derivative preserved.
+Public release/tag not ready. Public instructions: docs/installation.md,
+docs/validation.md, docs/media-player-demo.md; tools/fatx_names.py.
+
+Storage: ten closed old emulator binaries ZIP-retained/readback-verified,
+1,333,767,377 bytes recovered; restore exact member/path/hash before old reruns.
+E exFAT hardlink refusal immediately restored original executable byte-exact.
+C seven immutable executable and five CAB duplicates hardlinked/readback-verified;
+break links before future in-place writes. Transparent NTFS compression retains
+logical bytes/paths, including one CLOSED405 assembly image; no backing moved.
+All receipts in406. Git pack replacement blocked by automatic approval review;
+Git packs unchanged.20GiB reserve still tight: recheck before build/launch.
+
+Physical E720p/FATX390/video303/audio004, dashboard C, F rollback and immutable
+0.1.0/0088 unchanged. Private credential files never print/stage/export.
+Pending physical demo must inspect current shared lease/installed hashes first,
+upload/readback only private MPEG in new E demo folder, no fresh drivers/hives.
+Next independent filesystem work follows406 DESIGN; do not silently drop the
+six remaining security/application paths or call the general installer ready.
+
 #405 CLOSED: clean customized-SP4 Xbox assembly functional pass
 
 Read outputs/fresh-assembly405/REPORT.md, NEXT.md, qualification001.json,

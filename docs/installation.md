@@ -117,13 +117,45 @@ audio playback API completion and 128 KiB of independently checked TCP data in
 each direction. It uses the fresh component builds, not the previous demo
 binaries. It remains an engineering procedure, not a portable installer command.
 
-The lossless-transfer and strict-event gates still fail. Eight paths were not
-representable by the current FATX writer, including long crypto/COM+ names and
-non-ASCII shortcuts. The original disk preserves them. Ftdisk 49, first-boot
-Plug and Play warnings and a final-boot kbdhid 1 warning are retained. The customized disc's typed DRM registry
-decoding limitation also remains. These results do not qualify an arbitrary
+The lossless-transfer and strict-event gates still fail. Follow-up testing
+restored both `3½ Floppy (A).lnk` shortcuts through the native Windows API and
+verified their original bytes after restart. These names fit OEM code page 437;
+the earlier ASCII-only host writer was too restrictive. **Six other paths still
+exceed FATX's 42-byte component limit**, including cryptographic state and a
+COM+ log. The original PC disk preserves them. Do not truncate, hash-rename or
+silently omit them: applications request their original names.
+
+Before transferring a clean installation, preflight a JSON array of
+`{"path": "relative/path", ...}` file records using the installation's verified
+OEM code page:
+
+```powershell
+python tools/fatx_names.py installation-files.json --oemcp 437
+```
+
+The command is read-only and returns exit code 2 if any name cannot be stored
+losslessly. It checks names only, not allocation, contents or runtime behavior.
+Only code page 437 is currently accepted. The actual 6,475-file customized-disc
+manifest has six remaining failures. A general clean installer must stop at
+this point; a long-name-compatible storage implementation and native
+create/enumerate/rename/delete/restart tests are still needed.
+
+Ftdisk 49, first-boot Plug and Play warnings and kbdhid 1 are retained. Their
+installed message resources identify crash-dump pagefile configuration failure,
+window-notification timeout and redundant HID keyboard reports respectively.
+These messages identify failure categories, not every underlying cause.
+
+The customized disc's DRM `DataPath` uses custom registry type `0x404`. Windows
+`RegQueryValueEx` successfully returned that type and the same 80 bytes verified
+by both independent cold readers. The Python typed decoder still cannot
+interpret it; this is not evidence that the stored value is corrupt. Its
+original typed-decoder failure remains recorded, and DRM/DPAPI functionality
+has not been qualified. These results do not qualify an arbitrary
 SP4 disc, physical deployment, restore, DRM/DPAPI behavior or every Windows
 feature. A public installer needs explicit handling of these limitations.
+
+The separate [Media Player demo](media-player-demo.md) passed video and audio
+capture checks in this emulator installation.
 
 ## Updating an existing installation
 
