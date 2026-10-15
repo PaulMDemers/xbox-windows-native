@@ -109,7 +109,15 @@ to reproduce every vendor customization. The retail disc requires its own
 matching retail key; an OEM-channel key is not a substitute.
 
 These PC setup checks are separate from compiling the project's open-source
-components and from converting a fresh Windows installation into a bootable
-Xbox E-partition installation. See [validation](validation.md) for the remaining
-assembly, registry, hardware and recovery work. Do not copy the PC's HAL or
-storage configuration onto the Xbox.
+components. A subsequent fresh assembly from this exact customized-disc PC
+installation booted on Xbox emulation using the newly compiled components and
+explicit registry conversion. File persistence, 720p offscreen drawing, audio
+API playback and exact bidirectional TCP transfer passed. No old Xbox Windows
+tree or machine/user hive supplied that assembly.
+
+Strict qualification remains false: eight paths were not representable by the
+current FATX writer, Ftdisk 49, first-boot Plug and Play and final-boot kbdhid 1 warnings remain, and
+the typed DRM decoder limitation is unchanged. See the
+[installation procedure](installation.md#validated-clean-media-route-in-the-emulator)
+and [validation](validation.md) for scope and outstanding physical/recovery
+work. Do not copy the PC's HAL or storage configuration directly onto the Xbox.

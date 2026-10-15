@@ -1,3 +1,54 @@
+#405 CLOSED: clean customized-SP4 Xbox assembly functional pass
+
+Read outputs/fresh-assembly405/REPORT.md, NEXT.md, qualification001.json,
+installed-final001.json and closure001.json. Fresh404 customized-ISO PC disk
+unchanged; no old Xbox Windows/user hive payload. New standard 10 GB image,
+explicit 130 SYSTEM/1 SOFTWARE value changes and 14 same-ISO dependencies;
+fresh403 ten component artifacts plus settings, all 11 unique/15 paths exact.
+
+emu001 missing-FreeLoader failure preserved, never parented. emu002 core boot
+passed, audio absent. emu003 capacity-refused BEFORE launch. emu004 genuine
+SetupAPI audio/network success, immediate wave test failed while software-device
+setup pending. emu005 post-install audio/TCP pass and display PnP completion.
+emu006 normal startup restored; manual Run witness: 720p32, 2048 offscreen pixels,
+32768 exact persistence bytes, one wave device/audio result0, 32x4096 exact TCP
+bytes EACH direction. Normal Windows restart/dashboard. All five launched cases
+CLOSED orderly host exit0/no fallback; four normal Windows restarts. No xemu
+process at 18:51:34 UTC closeout. No physical access/test queued.
+
+Final cold: 6549 files read/hashed, 274 dirs/253 directory clusters, zero errors
+or orphans, five clean hive headers/raw-reader agreement, protected fresh builds
+exact. Final disk C:/xwn405/runs/nt5-fresh405-emu006/hdd.qcow2 SHA256
+757fbba9179fb990451d7a586e7f6a1695d38cb988e106d3e1a81eaf4de73922.
+Preserve its COMPLETE backing chain. 1091 frozen-input checks/409 private files
+rehashed; 14 actual qualification mutations rejected. Never relaunch/recollect.
+
+Strict FALSE: eight FATX-writer path exclusions (crypto/Protect/COM+ and non-ASCII
+shortcuts), Ftdisk49 and final kbdhid1, prior seven PlugPlayManager256 warnings,
+typed DRM DataPath0x404 decoder failure. DPAPI/DRM/COM+ semantics unqualified.
+First-boot wizard/private-credential logon remain manual. Private credential file
+C:/xwn405/logon-private001.json: NEVER print, stage or export contents. No settings
+utility runtime/performance/physical/public-installer qualification.
+
+Extraction/parser/capacity/sparse failures, provision001 case audit, probe003
+chkstk link failure and normal-stage005 empty-directory walker failure retained.
+Only verified redundant new extraction copies removed; original404 and images
+retained, no backing moves. Normal-stage006 full file-map comparison proves only
+owned Startup removal plus new manual probe/saved script. No automatic witness
+remains. Unsupported-device/welcome prompts remain; no suppression.
+
+Public tests: Linux 27 pass; Windows 18 pass/9 explicit platform skips. UTF-8
+notes update retried after a host default-encoding read failed before mutation.
+Next portable provisioning contract, explicit path compatibility and strict-event
+investigation; pristine host, physical install/recovery and curated source/license
+review remain separate. Retail key still pending. Physical E720p390/video303/
+audio004, F rollback, immutable0.1.0 unchanged. No tag or publication.
+
+Source-only review bundle: C:/xwn405/source-review001/xwn-source-review405.zip,
+SHA2563018f2f558935e038706aa83c1bda3c8872b0346f98ffbb5377ecf90c85dbed1,
+535 entries, all readback-verified and repeat packaging byte-identical. This is
+private source review, not public release or complete license/privacy clearance.
+
 #404 CLOSED: supplied ISO identities and clean PC media validation
 
 Read outputs/clean-media404/REPORT.md, NEXT.md, final-review002.json and

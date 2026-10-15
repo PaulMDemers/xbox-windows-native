@@ -1,7 +1,8 @@
 # Installation and first boot
 
 There are two different starting points. An already configured Xbox can use the
-integrated demo now. A fresh Xbox still needs a qualified provisioning workflow;
+integrated demo now. A clean-media assembly has also booted in an Xbox emulator,
+but a fresh physical Xbox still needs a qualified provisioning workflow;
 this repository does not yet offer a general Windows-from-CD/ISO installer.
 Building the drivers alone does not create a bootable Windows installation.
 
@@ -73,16 +74,56 @@ ranges outside E remained unchanged. The restored system subsequently booted
 in xemu, passed its scoped audio/graphics and filesystem checks, and restarted
 normally. Ftdisk 49 still failed the strict event gate.
 
-That test used an already prepared private Windows payload, not an assembly
-from a newcomer's Windows media. It does not qualify the FTP migration tool,
-physical recovery or freshly compiled replacement drivers. Owned-media assembly
-and reproducible registry/configuration provisioning remain the missing steps
-for a general fresh installer. See [offline recovery](recovery-guide.md).
+That restore test used an already prepared private Windows payload. It does not
+qualify the FTP migration tool or physical recovery. A separate clean-media
+assembly now exercises the newly compiled components, as described below.
+See [offline recovery](recovery-guide.md).
 
-The [media guide](windows-media.md) records exact ISO identities and a separate
-blank-disk PC setup test. That test establishes an installation-media baseline;
-it does not supply the Xbox registry conversion or replace the assembly work
-described above.
+### Validated clean-media route in the emulator
+
+The customized SP4 disc identified in the [media guide](windows-media.md) was
+installed onto a new blank PC virtual disk. That installation supplied the
+Windows files and registry for a new standard-size Xbox image. No Windows tree,
+user hive or installed-device registry was borrowed from the working Xbox demo.
+
+The validated engineering sequence is:
+
+1. Verify the exact disc hash, install Windows on a disposable PC virtual disk,
+   complete setup, then boot with installation media detached and shut down.
+2. Extract the installed files with a complete manifest. Keep the original NTFS
+   disk. Record paths FATX cannot represent; do not silently rename or discard
+   cryptographic or application state.
+3. Build the matched components using the [build guide](building.md). Select the
+   required Microsoft boot/input files from the same disc and record their
+   cabinet/member hashes and versions.
+4. On copies of the fresh registry, configure Xbox FATX/IDE, video and USB/HID
+   boot services and map Xbox E to Windows C. Record each changed value and
+   verify every other raw registry value unchanged. A PC HAL/storage registry
+   cannot simply be copied onto an Xbox.
+5. Assemble E on a disposable standard 10 GB Xbox image. Preserve factory root
+   entries and the separate dashboard. Read back every installed file and audit
+   the entire FATX allocation before booting.
+6. Boot, log on with the installation's own credentials, and install the Xbox
+   audio/network packages through Windows Plug and Play. Allow Windows to
+   finish its software-audio device setup and restart before testing audio.
+   Unsupported-device wizards may require cancellation; do not disable devices
+   or suppress signing/event policies to make the test pass.
+7. Check a subsequent boot: exact file persistence, display drawing, audio API
+   completion, real network transfer and normal shutdown. Inspect the closed
+   disk's files, allocation, registry and event deltas independently.
+
+This sequence passed its core boot and device checks in xemu, including 720p,
+audio playback API completion and 128 KiB of independently checked TCP data in
+each direction. It uses the fresh component builds, not the previous demo
+binaries. It remains an engineering procedure, not a portable installer command.
+
+The lossless-transfer and strict-event gates still fail. Eight paths were not
+representable by the current FATX writer, including long crypto/COM+ names and
+non-ASCII shortcuts. The original disk preserves them. Ftdisk 49, first-boot
+Plug and Play warnings and a final-boot kbdhid 1 warning are retained. The customized disc's typed DRM registry
+decoding limitation also remains. These results do not qualify an arbitrary
+SP4 disc, physical deployment, restore, DRM/DPAPI behavior or every Windows
+feature. A public installer needs explicit handling of these limitations.
 
 ## Updating an existing installation
 

@@ -35,8 +35,8 @@ native GPU acceleration.
 | Display | 720p text and full-window dragging confirmed clean | 1080i defects; other encoders need qualification |
 | Audio | Login sound and louder tones heard | Exact stereo routing unconfirmed |
 | Input | Standard mouse/keyboard | Device prompts and boot-time USB issues remain |
-| Network | Native networking and reported ping success | Broad compatibility not established |
-| Installation | Working E demo; disposable E restore and emulator boot tested | Fresh-console media assembly and physical recovery remain unqualified |
+| Network | Native networking; exact bidirectional TCP transfer on the fresh emulator assembly | Broad compatibility not established |
+| Installation | Clean customized-disc assembly and fresh component builds booted in xemu; prepared E restore tested separately | Portable fresh-console installer, strict qualification and physical recovery remain incomplete |
 
 ## Repository layout
 
