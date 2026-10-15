@@ -50,21 +50,34 @@ optional for additional storage/rollback. It needs:
   path; the tested console has 64 MiB and a Conexant encoder.
 - Your own Windows installation materials and appropriately obtained firmware
   for any emulator testing. Neither is distributed here.
+- The tested kernel/media baseline described in [provenance](provenance.md).
+  Do not assume an arbitrary retail SP4 installation is interchangeable.
 - A matched launcher/loader/HAL/driver set, prepared Windows registry and files,
   a verified partition layout and sufficient space.
 - A recoverable dashboard, preserved console-specific data and verified backups.
 
-The existing [stock-E migration tool](../tools/install-stock-e.py) is an
+The historical `tools/install-stock-e.py` stock-E migration tool is an
 engineering tool for a same-console captured baseline. It is **not** a fresh
 Windows installer. Its create-only guards, capacity checks, launcher-last
-ordering and readback journal have host tests; a complete disposable-fixture
-install/restore qualification is still pending. It must not be used to overwrite
+ordering and readback journal have host tests; its physical FTP migration path
+has not received a new end-to-end qualification. It must not be used to overwrite
 an occupied installation or to install someone else's private system archive.
+It is excluded from the portable source review package because it depends on
+private engineering fixtures.
 
-A newcomer-ready installer remains a release requirement: independent source
-and dependency retrieval, complete HAL/network/input provenance, owned-media
-assembly, configuration, disposable installation and recovery testing. This
-page deliberately provides no destructive fresh-disk recipe ahead of that work.
+Independent source/dependency retrieval and HAL/network/input provenance are
+now checked. A separate offline test installed all 6,571 files of the prepared
+private E baseline into a fresh standard 10 GB image, verified every file,
+backed up E, deliberately damaged launcher bytes and restored E exactly. Both
+ranges outside E remained unchanged. The restored system subsequently booted
+in xemu, passed its scoped audio/graphics and filesystem checks, and restarted
+normally. Ftdisk 49 still failed the strict event gate.
+
+That test used an already prepared private Windows payload, not an assembly
+from a newcomer's Windows media. It does not qualify the FTP migration tool,
+physical recovery or freshly compiled replacement drivers. Owned-media assembly
+and reproducible registry/configuration provisioning remain the missing steps
+for a general fresh installer. See [offline recovery](recovery-guide.md).
 
 ## Updating an existing installation
 

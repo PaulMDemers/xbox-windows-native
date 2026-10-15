@@ -1,0 +1,30 @@
+{
+  "command": [
+    "make",
+    "all",
+    "CC=/usr/bin/x86_64-linux-gnu-gcc-12",
+    "GITREV=9fc54d0-xwn-eboot",
+    "EXTRA_CROM_CFLAGS=-DXWN_PHYSICAL_PREFLIGHT -DXWN_HD_RESERVATION=1 -DXWN_HD_TIMING_720P=1",
+    "LDFLAGS-ROM=-s -S -T /home/paul/xbox-windows-native/release-readiness403-launcher001/source/scripts/ldscript-crom.ld -Map=/home/paul/xbox-windows-native/release-readiness403-launcher001/image-crom.map"
+  ],
+  "stdin": null,
+  "tool_pins": {
+    "gcc12": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4"
+  },
+  "space": {
+    "minimum_free_gib": 20,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/home/paul/xbox-windows-native/release-readiness403-launcher001",
+        "free_bytes": 910418825216
+      },
+      {
+        "free_bytes": 33555464192,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  }
+}

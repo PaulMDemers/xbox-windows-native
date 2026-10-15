@@ -13,12 +13,18 @@ Git tree identity.
 | `display` | [Software display](drivers/video/display/win32ss/drivers/displays/framebuf) | GDI drawing and framebuffer updates |
 | `launcher` | [Xromwell](boot/xromwell) | Dashboard boot entry and video timing |
 | `audio` | [AC'97](drivers/audio/drivers/wdm/audio/drivers/ac97) | Audio controller support |
+| `hal` | [Xbox HAL](platform/nt5/hal/halx86) | CPU, interrupts, PCI compatibility and platform services |
+| `network` | [NVNet](platform/nt5/drivers/network/dd/nvnet) | Xbox Ethernet support |
 | utility | [Settings](utilities/display-settings/settings.c) | Dragging and font preferences |
 
 Overlays also include supporting HAL, header and build-system changes. Their
 presence does not mean every target in that tree is the installed version.
 Only the explicit targets in [components.json](../upstream/components.json)
-are selected. Complete HAL/network/input release provenance remains unfinished.
+are selected. See [runtime provenance](../upstream/runtime-provenance.json) for
+the distinction between project source, reconstructed binaries and Microsoft
+input components supplied by the user. HAL and network reconstructions match
+the installed files outside timestamp/checksum metadata; fresh compiler builds
+still need their own runtime validation.
 
 Profiles contain different versions of some upstream paths. Keep them separate:
 merging them without new builds and regression checks would discard tested

@@ -1,3 +1,33 @@
+#403 CLOSED: provenance, dependencies and prepared E restore
+
+Read outputs/release-readiness403/REPORT.md, NEXT.md and final-review.json.
+HAL/network source correspondence PASS outside timestamp/checksum bytes;12
+Microsoft input files exact to owned media, kbdclass6875 OEM-specific/kernel7376.
+Fresh anonymous public fetch, RosBE bootstrap6587-entry receipt and8profiles+
+settings11artifacts PASS. All8 full trees reconstruct from extracted531-entry
+private source review bundle. Pristine-host setup remains separate.
+
+Install001 factory-root refusal preserved;0026571files verified then hosthivex
+load failed; finish003 only continued unstarted restore. Full E backup,32-byte
+launcher damage,exact restore/outside identity,6571files/factoryroots/5hives PASS.
+Private C:/xwn403/install-restore002/restored.qcow2 preserved; no physical access.
+Single instrumentedemu001 accepted2026-10-15 01:33:41UTC, returned01:40:27UTC;
+normalshutdown1/orderlyhostexit0,289dirs6610files269clusters0errors/orphans,
+5hives/protected hashes/720p graphics/audio scopePASS. Originalaudit/closureFALSE
+mode1 expectation retained; separatecorrected-analysis003 pins actual303build
+profileOFF/mode0 and rejects30mutations. StrictFALSE soleFt49 remains. No
+relaunch/recollect/parenting. Fresh403compiled binaries NOT used in that boot.
+
+All owned sessions CLOSED including51980/3379/13868/38535/54434/15307/67148/87138;
+no xemu process in read-only closeout query. Sources and reports committed in
+this turn; no tag/publication. Source bundle C:/xwn403/source-review002/
+xwn-source-review403.zip SHA4f85564c7b3580a9d08abf24b560931d0ae03ecab86d650b03e5b58efa09b5f3.
+Retain source-package001 failed legacy-doc-link partial directory. Existing
+historical untracked files untouched. E720p390/video303/audio004/Frollback and
+immutable0.1.0 unchanged. Fresh owned-media/registry provisioning, pristine-host
+setup, physical install/recovery and final license/export review remain. Do not
+publish privateWindows archives/history. No hardware queued.
+
 # Source layout and newcomer guides implemented (402)
 
 Actual maintained source is now under src/ with six independent pinned profiles,

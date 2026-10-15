@@ -41,10 +41,11 @@ resource-lifetime experiments are not installed native acceleration.
 
 ## Before public release
 
-Finish the complete HAL/network/input source inventory, verify anonymous upstream
-and toolchain acquisition, validate builds in a clean environment, and qualify a
-disposable owned-media installer and restore. Review per-component licensing and
-corresponding source, then export a curated tree without private history or data.
+The HAL/network/input inventory, anonymous dependency acquisition, fresh local
+toolchain/component builds and prepared E restore are now checked. Still validate
+the build on a pristine host and qualify owned-media assembly/provisioning.
+Review per-component licensing and corresponding source, then publish only a
+curated tree without private history or data. See [validation](validation.md).
 Do not publish the historical `outputs/` directory wholesale.
 
 Historical evidence remains in `outputs/`. New users should not need machine

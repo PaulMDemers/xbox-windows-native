@@ -21,6 +21,8 @@ native GPU acceleration.
 - [Resolution and desktop settings](docs/display-configuration.md)
 - [Troubleshooting](docs/troubleshooting.md) and [recovery](docs/recovery-guide.md)
 - [Development](docs/development.md) and [licensing](docs/licensing.md)
+- [Component origins and Windows dependencies](docs/provenance.md)
+- [Validated results and remaining release work](docs/validation.md)
 
 ## Current capabilities
 
@@ -33,7 +35,7 @@ native GPU acceleration.
 | Audio | Login sound and louder tones heard | Exact stereo routing unconfirmed |
 | Input | Standard mouse/keyboard | Device prompts and boot-time USB issues remain |
 | Network | Native networking and reported ping success | Broad compatibility not established |
-| Installation | Working E-partition demo | Fresh-console installer and full restore test incomplete |
+| Installation | Working E demo; disposable E restore and emulator boot tested | Fresh-console media assembly and physical recovery remain unqualified |
 
 ## Repository layout
 
@@ -48,7 +50,8 @@ outputs/    Historical experiments and engineering evidence
 
 Start with `src/` and the guides. Each component retains its independently tested
 upstream tree; these profiles are not one unified OS build. The current complete
-HAL/network/input binary-to-source inventory still needs release review.
+component inventory distinguishes project source from user-supplied Windows
+files; see [provenance](docs/provenance.md) for source and binary correspondence.
 
 ## Release status
 

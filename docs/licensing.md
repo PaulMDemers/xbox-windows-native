@@ -16,7 +16,11 @@ it does not override upstream terms or remove existing notices.
 [LICENSES](../LICENSES) holds preserved texts. [components.json](../upstream/components.json)
 records the source bases and trees. Corresponding source must cover the actual
 shipped binaries and their build configuration, not merely a similar upstream
-revision. The current complete HAL/network/input inventory remains unfinished.
+revision. The [provenance guide](provenance.md) records the HAL/network source
+profiles and exact owned-media matches for twelve Microsoft input components.
+The latter remain excluded from public binaries. HAL and network correspondence
+checks now pass outside timestamp/checksum metadata. The complete release export
+and component-specific distribution obligations still require final review.
 
 A public export should include maintained sources, reproducible build recipes,
 required notices, configuration tools and user guides. It must exclude private

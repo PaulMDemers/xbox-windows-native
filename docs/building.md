@@ -6,7 +6,7 @@ media, configure a registry, install drivers, flash firmware or contact a consol
 
 ## Requirements
 
-- Linux or WSL, Python 3.10+, Git, Make and normal build utilities.
+- Linux or WSL, Python 3.12+ (including `tarfile.data_filter`), Git, Make and normal build utilities.
 - An upstream Git cache containing the exact manifest base commit. Linked Git
   worktrees are supported.
 - Recorded RosBE 2.2.1 for ReactOS profiles, or recorded GCC 12 for Xromwell.
@@ -16,10 +16,39 @@ media, configure a registry, install drivers, flash firmware or contact a consol
 - A fresh output directory outside the repository, cache and toolchain. Prefer
   WSL's Linux filesystem for compilation speed.
 
-This guide assumes the pinned source and toolchains are already available. A
-verified anonymous dependency-download/bootstrap path remains release work.
-Recorded URLs are provenance references; do not substitute arbitrary latest
-revisions when reproducing the baseline.
+## Obtain the dependencies
+
+Start with the host distribution's build tools: GCC/G++, binutils, GNU Make,
+Texinfo (`makeinfo`), m4, bzip2, tar, pkg-config and zlib development headers.
+`python` must resolve to Python 3; some distributions package that alias separately.
+The bootstrap checks these prerequisites before creating its output. It does not
+install system packages or change your default compiler. GCC 12 is additionally
+required for the launcher; its currently accepted binary hash is in the manifest.
+
+Use new directories for each command:
+
+```sh
+DEPS="$HOME/xwn-dependencies-001"
+BOOTSTRAP="$HOME/xwn-rosbe-001"
+python3 tools/setup-dependencies.py fetch --output "$DEPS"
+python3 tools/setup-dependencies.py bootstrap --archive "$DEPS/RosBE-Unix-2.2.1.tar.bz2" --output "$BOOTSTRAP"
+python3 tools/toolchain_receipt.py --bootstrap "$BOOTSTRAP/bootstrap.json" --output "$BOOTSTRAP/toolchain.json"
+```
+
+The fetch uses public URLs, exact Git commits and an SHA-256-pinned RosBE archive
+from [dependencies.json](../upstream/dependencies.json). It disables Git credential
+helpers and prompts. The bootstrap applies one checked compatibility change to
+Ninja's Python quoting API, then compiles RosBE into its private prefix. Failed
+attempts remain intact. A receipt inventories all resulting files and symlinks;
+later builds refuse missing, extra or changed tools/libraries.
+
+Receipts describe **your local build**, and are not publisher signatures or proof
+of historical compiler identity. Create them yourself from the pinned inputs;
+do not trust an arbitrary downloaded toolchain and receipt. Anonymous fetching,
+a fresh RosBE bootstrap, all eight component builds and the settings utility
+passed on the development host. The seven ReactOS profiles used that freshly
+compiled toolchain. This was not a pristine operating-system image test; host
+build prerequisites and the launcher's GCC 12 were already installed.
 
 ## Commands
 
@@ -34,10 +63,10 @@ Choose your own paths. `CACHE` is a Git repository with the required ReactOS
 base; `ROSBE` is the extracted toolchain directory:
 
 ```sh
-CACHE="$HOME/upstream/reactos"
-ROSBE="$HOME/toolchains/RosBE-2.2.1"
+CACHE="$DEPS/reactos"
+ROSBE="$BOOTSTRAP/RosBE-2.2.1"
 OUT="$HOME/build/xwn-fatx-001"
-python3 tools/xwn.py build --profile fatx --cache "$CACHE" --rosbe "$ROSBE" --output "$OUT"
+python3 tools/xwn.py build --profile fatx --cache "$CACHE" --rosbe "$ROSBE" --toolchain-receipt "$BOOTSTRAP/toolchain.json" --output "$OUT"
 ```
 
 For source reconstruction only, use `source` instead of `build` and omit
@@ -45,11 +74,11 @@ For source reconstruction only, use `source` instead of `build` and omit
 output because the workspace borrows its objects read-only.
 
 Repeat with **fresh output directories** for `framebuffer`, `loader`, `display`
-and `audio`. They are independent trees; do not combine their build directories
+and `audio`, plus the separate `hal` and `network` profiles. They are independent trees; do not combine their build directories
 or build every component from one profile. For Xromwell:
 
 ```sh
-python3 tools/xwn.py build --profile launcher --cache "$HOME/upstream/cromwell" --gcc12 /usr/bin/gcc-12 --output "$HOME/build/xwn-launcher-001"
+python3 tools/xwn.py build --profile launcher --cache "$DEPS/cromwell" --gcc12 /usr/bin/gcc-12 --output "$HOME/build/xwn-launcher-001"
 ```
 
 This launcher selects E-partition 720p. Other resolutions need matched profiles
@@ -78,7 +107,7 @@ not acquire a machine-specific lock or alter the shared SDK.
 ## Display-preference utility
 
 [settings.c](../src/utilities/display-settings/settings.c) is independent of the
-six overlays. With RosBE's i686 compiler on PATH, its recorded command is:
+eight profiles. With RosBE's i686 compiler on PATH, its recorded command is:
 
 ```sh
 i686-w64-mingw32-gcc -Os -Wall -Wextra -Werror -nostdlib -fno-stack-protector -fno-builtin -Wno-misleading-indentation -Wl,--entry,_mainCRTStartup@0 -Wl,--subsystem,console:5.0 -o display-settings.exe src/utilities/display-settings/settings.c -lkernel32 -luser32 -ladvapi32

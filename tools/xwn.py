@@ -109,7 +109,7 @@ def materialize(profile, cache, output, allow_modified=False):
     return source, record
 
 
-def build(profile, source, output, rosbe, gcc12, manifest, jobs):
+def build(profile, source, output, rosbe, gcc12, manifest, jobs, receipt=None):
     from build_space import require_space
     space = require_space(output)
     env = os.environ.copy()
@@ -117,9 +117,12 @@ def build(profile, source, output, rosbe, gcc12, manifest, jobs):
     pins = {}
     if profile['upstream'] == 'reactos':
         rosbe = Path(rosbe).resolve()
+        if receipt:
+            from toolchain_receipt import verify as verify_toolchain
+            pins['local_bootstrap'] = verify_toolchain(rosbe, receipt, json.loads((ROOT / 'upstream/dependencies.json').read_text()))
         for name, expected in manifest['rosbe_tool_pins'].items():
             actual = digest(child(rosbe, name))
-            if actual != expected:
+            if not receipt and actual != expected:
                 raise ValueError('Toolchain identity mismatch: ' + name)
             pins[name] = actual
         cmake = rosbe / 'bin/cmake'
@@ -170,6 +173,7 @@ def main():
     parser.add_argument('--cache', type=Path, help='Existing upstream Git cache containing the pinned base commit')
     parser.add_argument('--output', type=Path, help='Fresh output directory outside this repository')
     parser.add_argument('--rosbe', type=Path)
+    parser.add_argument('--toolchain-receipt', type=Path, help='Complete receipt from your pinned local RosBE bootstrap')
     parser.add_argument('--gcc12', type=Path)
     parser.add_argument('--jobs', type=int, default=4)
     parser.add_argument('--allow-modified', action='store_true')
@@ -197,7 +201,7 @@ def main():
         require_space(args.output)
     source, record = materialize(profile, args.cache, args.output, args.allow_modified)
     if args.action == 'build':
-        record = build(profile, source, args.output.resolve(), args.rosbe, args.gcc12, manifest, args.jobs)
+        record = build(profile, source, args.output.resolve(), args.rosbe, args.gcc12, manifest, args.jobs, args.toolchain_receipt)
     print(json.dumps(record, indent=2))
 
 

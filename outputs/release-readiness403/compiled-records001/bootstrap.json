@@ -1,0 +1,41 @@
+{
+  "archive_sha256": "d720c0a77dc08c6da3929fd282de3fe7af6d697b6fb104889a0362e770742565",
+  "ninja_sha256": "4d347d639b54c85c82484c6ab09221c09d58387e24cce1a966b278f460012277",
+  "space": {
+    "minimum_free_gib": 20,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/home/paul/xbox-windows-native",
+        "free_bytes": 916234731520
+      },
+      {
+        "free_bytes": 41615753216,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "command": [
+    "taskset",
+    "-c",
+    "0,1,2,3",
+    "bash",
+    "/home/paul/xbox-windows-native/release-readiness403-bootstrap001/source/RosBE-Unix-2.2.1/RosBE-Builder.sh",
+    "/home/paul/xbox-windows-native/release-readiness403-bootstrap001/RosBE-2.2.1"
+  ],
+  "host_tools": {
+    "gcc": "/usr/bin/gcc",
+    "g++": "/usr/bin/g++",
+    "makeinfo": "/home/paul/xbox-windows-native/host-deps/root/usr/bin/makeinfo",
+    "python": "/home/paul/xbox-windows-native/host-deps/bin/python"
+  },
+  "status": "compiled",
+  "tool_sha256": {
+    "RosBE.sh": "1d04daf7393952441c62691bb7735042d236b0196778f1632f0a4383476143b7",
+    "bin/cmake": "049737b62e2803fd657041cf65b6bb6de7756db377c92c686c63eec373604e75",
+    "bin/ninja": "371e855768aa214225d4b17f49902cdd2b2daa8764514134524b07282c9e9e07",
+    "i386/bin/i686-w64-mingw32-gcc": "8ab0685d97b322aad3c37fd362b26fa5b9408ff6dd55a536c0a2d48de1c22b18"
+  }
+}
