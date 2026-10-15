@@ -1,3 +1,32 @@
+#407 ACTIVE: physical Media Player demo launched; awaiting user observation
+
+Read outputs/media-physical407/REPORT.md,NEXT.md,before.json,stage002.json,
+launch.json and source-pins.json. User confirmed dashboard and ready to watch.
+Current immutable399 physical E720p/FATX390/video303/audio004/Frollback and
+normal Startup verified. Only new E:/xwndemo407/ces2001.mpg and play.cmd written.
+Full19,742,720-byte MPEG readback SHAe39bf2aee01eecf993723988b274518f3f75076c6b62d1f263051daadd069619;
+99-byte shortcut exact. Windows path C:\xwndemo407\play.cmd.
+
+SINGLE launch2026-10-15 23:58:12UTC acceptedFTP200 using existing E720p entry.
+Do NOT repeat launch. No driver/hive/Startup/menu/dashboardC changes. Normal
+startup remains; no automatic playback/restart. User asked to open play.cmd and
+report actual moving picture/audible speech/stutters/errors. No physicalPASS yet.
+On user-requested normal Windows restart/dashboard return run collect.py once
+with supplied current FTP environment. Local before captures E:/xwn407/before.
+Collection is read-only immutable/media readback plus event deltas, not full
+allocation/clean-install qualification. Never infer playback from prior406.
+
+All host transfer/launch processes closed:15792 failedbulk,56962 resumed,
+49200 launch. Failed capitalized-password530 preserved; lowercase authenticated.
+Credentials must remain private/environment only. BulkSTOR timed out after786432
+bytes; original script/receipt and private partial retained. Exact source-prefix
+verified before bounded32768-byte APPE/1024-byte blocks; complete final equality
+permits launch. No guessed/repeatedSITE. Hardware rootdemo251 ticket retained,
+all peer claims closed. Nine source/input pins; no emulator launch this turn.
+
+Six trueFATX longpaths and strict events remain release blockers. No tag/public
+release, no other physical test queued. Preserve current media for user demo.
+
 #406 CLOSED: OEM path correction and real Media Player playback
 
 Read outputs/install-validation406/REPORT.md, DESIGN.md, NEXT.md,
