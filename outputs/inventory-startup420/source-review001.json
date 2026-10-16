@@ -1,0 +1,51 @@
+{
+  "original_sha256": "481f4cd4f32e8bb82ccc59379d02f4e8622531f8a39e3256499c1ab993819533",
+  "reconstruction_exact_after_explicit_instrumentation_removal": true,
+  "replacements": [
+    [
+      "static char report[32768]",
+      "#include \"trace420.h\"\n\nstatic char report[32768]"
+    ],
+    [
+      "    int e_ready = prepare_e();",
+      "    if (!begin420()) return 2;\n    mark420(1, 0, 0, 0);\n    int e_ready = prepare_e();\n    mark420(1, 1, 0, e_ready);"
+    ],
+    [
+      "    LONG memory_status = MmQueryStatistics(&memory);",
+      "    mark420(2, 0, 0, 0);\n    LONG memory_status = MmQueryStatistics(&memory);\n    mark420(2, 1, 0, (ULONG)memory_status);"
+    ],
+    [
+      "    DWORD settings = XVideoGetEncoderSettings();",
+      "    mark420(3, 0, 0, 0);\n    DWORD settings = XVideoGetEncoderSettings();\n    mark420(3, 1, 0, (ULONG)settings);"
+    ],
+    [
+      "    LONG cx_status = HalReadSMBusValue(0x8a, 0, FALSE, &conexant);",
+      "    mark420(4, 0, 0, 0);\n    LONG cx_status = HalReadSMBusValue(0x8a, 0, FALSE, &conexant);\n    mark420(4, 1, 0, (ULONG)cx_status);"
+    ],
+    [
+      "    LONG fs_status = HalReadSMBusValue(0xd4, 0, FALSE, &focus);",
+      "    mark420(5, 0, 0, 0);\n    LONG fs_status = HalReadSMBusValue(0xd4, 0, FALSE, &focus);\n    mark420(5, 1, 0, (ULONG)fs_status);"
+    ],
+    [
+      "    BOOL space_ok = e_ready && GetDiskFreeSpaceExA(\"E:\\\\\", &free_bytes, &total_bytes, NULL);",
+      "    mark420(6, 0, 0, 0);\n    BOOL space_ok = e_ready && GetDiskFreeSpaceExA(\"E:\\\\\", &free_bytes, &total_bytes, NULL);\n    mark420(6, 1, 0, (ULONG)space_ok);"
+    ],
+    [
+      "    int saved = !e_ready ? 7 : overflow ? 6 : save_report(path, sizeof(path));",
+      "    mark420(30, 0, 0, 0);\n    int saved = !e_ready ? 7 : overflow ? 6 : save_report(path, sizeof(path));\n    mark420(30, 1, 0, (ULONG)saved);"
+    ],
+    [
+      "                HalReadWritePCISpace(bus, slot, 0, &id, sizeof(id), FALSE);",
+      "                mark420(20, 0, (bus << 8) | slot, 0);\n                HalReadWritePCISpace(bus, slot, 0, &id, sizeof(id), FALSE);\n                mark420(20, 1, (bus << 8) | slot, id);"
+    ],
+    [
+      "                HalReadWritePCISpace(bus, slot, 8, &klass, sizeof(klass), FALSE);",
+      "                mark420(21, 0, (bus << 8) | slot, 0);\n                HalReadWritePCISpace(bus, slot, 8, &klass, sizeof(klass), FALSE);\n                mark420(21, 1, (bus << 8) | slot, klass);"
+    ],
+    [
+      "    Sleep(20000);\n    HalReturnToFirmware(HalRebootRoutine);",
+      "    mark420(32, 0, 0, 0);\n    Sleep(20000);\n    mark420(32, 1, 0, 0);\n    mark420(33, 0, 0, error420);\n    if (trace420) NtClose(trace420);\n    HalReturnToFirmware(HalRebootRoutine);"
+    ]
+  ],
+  "main_sha256": "50da35299a1dd5a051fc1671a54bb48e2e590f3c8d397e8513e345af29884ec4"
+}

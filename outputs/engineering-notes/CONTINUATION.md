@@ -1,3 +1,22 @@
+# 420 startup diagnostic staged; manual launch/result pending
+
+Read outputs/inventory-startup420/REPORT.md, stage001.json and actual records.
+417query source instrumented in separate420main/traceheader; original exactly
+reconstructs after explicit additions removed. Native E trace CREATE_NEW before
+mapping/probes,32byte records flushed before/aftercalls;2048cap/errorsticky. Kernel
+calls not cancellable; missingtrace doesnotproveentry, pendingcall notsolecause.
+Build001 lease/pinnedSDKunchanged,110592byteXBE7347176aac86a8ea24aea4e0113680de30394fb260dfa50f0efd5f7e37a58931.
+Newemu001 CLOSED exit0/nofallback,1074complete trace records/validreport/512PCI ID
+querypairs. FullE3dirs2files7clusters0errors/orphans,QCOW/EEPROMpass; reserved1540
+change keepswholediskequalityFALSE. Decoder33479negativecontrols, nohardwarePASS.
+Do not rerun/recollect/parent emulator. StageonlynewE:/Applications/XWNInfo420
+XBE, originalutility/Windowsprotectedunchanged. UseraskedmanualFileExplorerlaunch
+ONCE, responsepending. No launchsent, noobserver/processrunning, noCaccess.
+Onreturncollecttrace+newreporttwice,preservebeforedecode,verifybaseline.416inactive.
+1080i hypothesis plausible from381cleanRAMshadow vsTV andclean720p; source has
+explicitinterlacedprofile. No scanoutproof oridentifiedadapter/fieldcause. See
+INTERLACE.md futureodd/evenrow+physicalreadbacktest. Keep720pdemo default.
+
 # 419 CLOSED manual inventory route also failed
 
 User reports black screen and manual restart. Read-only closure001 completed
