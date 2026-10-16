@@ -102,6 +102,32 @@ Failed attempts remain for inspection; use a new directory next time. Successful
 compilation is not historical binary identity or hardware qualification. Follow
 [development](development.md) and [installation](installation.md) before deployment.
 
+### Comparing a rebuild with an installed binary
+
+A different SHA-256 does not by itself show a code change. These builds can embed
+PE timestamps and checksums, diagnostic source paths, and generated version/date
+strings. Changes to string lengths can also move data and the instructions that
+reference it. Compare the complete files with an explicit list of allowed
+metadata fields; do not simply strip every differing byte or compare file sizes.
+
+For the HAL and loaders, ReactOS's relative-filename macro depends on the source
+root's length as well as its spelling. A compiler prefix map alone may therefore
+leave different references. FreeLoader also embeds a generated build banner
+whose date and revision depend on the build environment.
+
+The [loader correspondence experiment](../outputs/loader-correspondence416/REPORT.md)
+rebuilt the HAL, FreeLoader and ROS loader with the independently bootstrapped
+toolchain. Matching the recorded source-path spelling/length and, for FreeLoader,
+the original generated version header produced complete-file matches outside
+timestamps and checksums. The ordinary build command still records its actual
+date/revision; it does not silently impersonate the historical build. The
+experiment's frozen banner is a reconstruction control, not a new release label.
+This result establishes source/compiler correspondence, not a fresh installation
+or hardware qualification of every new build.
+
+Keep the build receipts and original source identity alongside any normalized
+comparison. Report unexplained differences and retain unsuccessful comparisons.
+
 `--allow-modified` permits edits to listed source files and records their new
 identity. New paths/deletions/modes need manifest review. On shared machines,
 wrap builds in the machine's build lease/scheduler; this portable command does

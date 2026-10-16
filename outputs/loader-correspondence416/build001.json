@@ -1,0 +1,118 @@
+{
+  "started_utc": "2026-10-16T02:50:00.307347+00:00",
+  "status": "compiled",
+  "physical_access": false,
+  "guest_launch": false,
+  "projected_reserve_bytes": 2147483648,
+  "space": {
+    "minimum_free_gib": 20,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/home/paul/xbox-windows-native",
+        "free_bytes": 904597524480
+      },
+      {
+        "free_bytes": 24565288960,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "cases": {
+    "hal": {
+      "output": "/home/paul/xbox-windows-native/hal416001xxxxxxxx",
+      "source": "/home/paul/xbox-windows-native/hal416001xxxxxxxx/source",
+      "canonical": "/home/paul/xbox-windows-native/sources/reactos-extended",
+      "source_path_bytes": 55,
+      "flags": "-fmacro-prefix-map=/home/paul/xbox-windows-native/hal416001xxxxxxxx/source=/home/paul/xbox-windows-native/sources/reactos-extended",
+      "status": "compiled",
+      "result": {
+        "profile": "hal",
+        "artifacts": [
+          {
+            "file": "halxboxnt5.dll",
+            "bytes": 2422745,
+            "sha256": "fef6da06ff8c6d7d9a090ce4eb8a955a734c41de4b806675a5de27a4060381ac"
+          }
+        ],
+        "tool_pins": {
+          "local_bootstrap": {
+            "receipt_sha256": "6a25ae7f821c3735ecd199f2cd3d6422528628ad3fa395b3b282e1f66a526ddc",
+            "files": 6587,
+            "scope": "Locally compiled toolchain; not historical binary identity"
+          },
+          "RosBE.sh": "1d04daf7393952441c62691bb7735042d236b0196778f1632f0a4383476143b7",
+          "bin/cmake": "049737b62e2803fd657041cf65b6bb6de7756db377c92c686c63eec373604e75",
+          "bin/ninja": "371e855768aa214225d4b17f49902cdd2b2daa8764514134524b07282c9e9e07",
+          "i386/bin/i686-w64-mingw32-gcc": "8ab0685d97b322aad3c37fd362b26fa5b9408ff6dd55a536c0a2d48de1c22b18"
+        },
+        "source": {
+          "profile": "hal",
+          "base": "afc0127e8f937ab68503d715d948844973756aa1",
+          "tree": "adf9b3d166ef84630a48d7393fcc9fe3ce78f104",
+          "reference_match": true,
+          "changed_sources": [],
+          "cache_dependency": "/home/paul/xbox-windows-native/release-readiness403-dependencies001/reactos/objects",
+          "build_performed": false
+        },
+        "scope": "Compiler output only; no guest, deployment or binary reproducibility claim"
+      },
+      "log_sha256": "3e3db73fad32cd9a29d1cb3d56db85be185dce64ea24446b027b0f61b94317bb"
+    },
+    "loader": {
+      "output": "/home/paul/xbox-windows-native/loader416001xxxxxxxxxxxxxxxxx",
+      "source": "/home/paul/xbox-windows-native/loader416001xxxxxxxxxxxxxxxxx/source",
+      "canonical": "/home/paul/xbox-windows-native/build/stock-boot334-build001/reactos",
+      "source_path_bytes": 67,
+      "flags": "-fmacro-prefix-map=/home/paul/xbox-windows-native/loader416001xxxxxxxxxxxxxxxxx/source=/home/paul/xbox-windows-native/build/stock-boot334-build001/reactos",
+      "status": "compiled",
+      "result": {
+        "profile": "loader",
+        "artifacts": [
+          {
+            "file": "freeldr.sys",
+            "bytes": 171008,
+            "sha256": "333c62b7acec704e636db0d56d3f8f9fcacf2d903d4de7f5c646de5416b3579f"
+          },
+          {
+            "file": "rosload.exe",
+            "bytes": 263826,
+            "sha256": "8acf7608579d33f3b8cf9160f04bfa81a609e36b563a996c57f59214200b925d"
+          }
+        ],
+        "tool_pins": {
+          "local_bootstrap": {
+            "receipt_sha256": "6a25ae7f821c3735ecd199f2cd3d6422528628ad3fa395b3b282e1f66a526ddc",
+            "files": 6587,
+            "scope": "Locally compiled toolchain; not historical binary identity"
+          },
+          "RosBE.sh": "1d04daf7393952441c62691bb7735042d236b0196778f1632f0a4383476143b7",
+          "bin/cmake": "049737b62e2803fd657041cf65b6bb6de7756db377c92c686c63eec373604e75",
+          "bin/ninja": "371e855768aa214225d4b17f49902cdd2b2daa8764514134524b07282c9e9e07",
+          "i386/bin/i686-w64-mingw32-gcc": "8ab0685d97b322aad3c37fd362b26fa5b9408ff6dd55a536c0a2d48de1c22b18"
+        },
+        "source": {
+          "profile": "loader",
+          "base": "afc0127e8f937ab68503d715d948844973756aa1",
+          "tree": "b2bb44a126630712c01af6bc331d5d7d9e4f07b0",
+          "reference_match": true,
+          "changed_sources": [],
+          "cache_dependency": "/home/paul/xbox-windows-native/release-readiness403-dependencies001/reactos/objects",
+          "build_performed": false
+        },
+        "scope": "Compiler output only; no guest, deployment or binary reproducibility claim"
+      },
+      "log_sha256": "2ccb48a89b32963288416c5cf71cebe6e9b532d15423d27a2eb4d9cbf33be26f"
+    }
+  },
+  "inputs": {
+    "outputs/loader-correspondence416/build.py": "119a821af4927c27b5a47124ba74ac32a11b21067ef540d57b06207e68cc2158",
+    "tools/xwn.py": "1bd2b4735a635a594752b2c9e01b9bc4370f7f00d2ca23eefc47a3dc92f55cf3",
+    "tools/build_space.py": "3d38e5bacc8a9cbdd50d251dc9e529fcd38cd6f1958e6f5721ea78b8d4f8cf95",
+    "tools/toolchain_receipt.py": "d25e0c6643854f3f6bf68549470e5c0ddd25c283f4283c7dd077aad96eca8df1",
+    "upstream/components.json": "1b1069b5646ec5d88615d55b11c17ead2e2d4c349c0cb56f2551e9e2cddea264"
+  },
+  "ended_utc": "2026-10-16T02:50:54.406793+00:00"
+}
