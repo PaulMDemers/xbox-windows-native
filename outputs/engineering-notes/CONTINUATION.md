@@ -1,3 +1,15 @@
+# 419 manual inventory route comparison pending
+
+User authorized further diagnosis. Read outputs/inventory-route419/REPORT.md and
+prepared001.json. Read-only preflight verified SAME417build002 XBE and protected
+Windows bytes, no existing reports. No deployment or launch command was sent.
+User asked to launch E:/Applications/XWNInfo/default.xbe ONCE in UnleashX File
+Explorer and report summary/return versus black screen. Response pending; no
+runtime result yet. Do not repeat418 FTP launch or automatically launch419.
+Collect only after dashboard return; if both routes fail, instrument startup in
+a separate build, not a speculative probe fix.416 remains inactive. All owned
+commands closed, no observer running, no console C access or physical changes.
+
 # 418 CLOSED physical inventory failed; demo protected bytes unchanged
 
 User reported black screen and manually rebooted to dashboard. Read-only
