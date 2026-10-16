@@ -1,3 +1,56 @@
+# 417 public tester kit built; hardware deferred to this evening
+
+User requested public-repo readiness and external-tester bundles. No physical
+FTP/read/write/launch occurred. 416 remains staged INACTIVE; no activation record.
+The existing E720p/FATX390/video303/audio004 demo and all rollbacks are unchanged.
+Hardware work resumes only when the user is ready this evening.
+
+New MIT src/utilities/hardware-report builds with pinned nxdk58427c prebuilt libs.
+Build002 fixes E alias for DVD launches and verifies native Partition1 target;
+no replacement of an existing mapping. Build001 compiled, emu001 produced no
+report; failed cold audit/source preserved. Fresh emu002 cold-read exact1470-byte
+report:12 PCI devices, kernel64MiB, Conexant response, E-space status. Full E
+allocation3dirs1file4clusters0errors/orphans; QCOWchecks/EEPROM unchanged. Entire
+disk equality still FALSE at reserved byte1540. No physical/multi-revision claim.
+Owned xemu exited0 with no fallback; blank fixture has no dashboard-return proof.
+No screenshot was captured. All owned subprocesses are CLOSED.
+
+FINAL utility archive E:/xwn417/xwn-utilities-preview-417b.zip (7,206,072 bytes),
+SHA256070b8c5b54669c6b88a3459e785705aae7cae70873eb61a76d3621f87525792a.
+2246 files/324 dirs readback-verified; only binary is tested110592-byte XBE,
+SHAdd7fb7777d1806e478571f2680db771ea0ec3d13acba0e679e9077fb420074c7.
+Includes source/SDK notices, host inventory/bundle/FTP-readback validators and
+short tester instructions. No Windows/firmware/EEPROM/private recovery data or
+public binary upload. Earlier417 ZIP superseded by417b; retain originals.
+
+New public docs/testers.md, tester-bundles.md, tester-report-template.md and
+ tester-rollout.md explain inventory first, E-only matched720p, launcher-last
+readback, direct UnleashX File Explorer, saves/audio/restart and removal limits.
+README/licensing/release pages acknowledge PUBLIC repo; no intermittent-boot
+cause claim. Added GitHub issue template/read-only pinned CI. Local46 Linux
+host tests pass; Windows46 with10 platform skips. All8 source profiles unchanged.
+Remote CI status is separate; inspect actual run before claiming completion.
+
+History00124,532 reachable local blobs: no supported token/private-key/binary
+patterns. Local paths/private IPs/emails retained. All176 credential matches in
+174blobs triaged as env lookups, standarddefaults, boolean config or test text;
+not comprehensive clearance. No history rewrite/visibility change/tag.
+
+New tools/tester_bundle.py plans/builds/verifies deterministic ZIPs and exact
+manual FTP readback including deferred launcher; it is NOT Windows provisioning,
+private-data sanitization or rights clearance. Windows bundle NOT ready:6FATX
+long-name exclusions, clean registry/provisioning, strict events and physical
+install/restore remain. Do not distribute the private256/399 recovery captures.
+Next evening: physical inventory XBE check, then existing416 controlled loader
+comparison. In parallel continue clean Windows provisioning using owned media,
+then a fresh matching E720p tester package and disposable install/restore check.
+
+Capacity guard preserved; closed host executables and JSON/log evidence were
+NTFS-compressed in place with every hash verified, no deletion/backing movement.
+Prior launch capacity refusal and package path-lookup failure retained separately.
+New xemu portable has immutable executable hardlink, own config/EEPROM/child/ports.
+Exact details/failures under outputs/tester-readiness417/REPORT.md and JSONs.
+
 # 416 candidate prepared/inactive: complete loader correspondence
 
 User said proceed. New fresh HAL/loader builds used independent403 bootstrap

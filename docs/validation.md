@@ -54,8 +54,10 @@ states from hash recognition and strict qualification.
    identities must be reviewed explicitly.
 3. Qualify physical installation/recovery separately from the offline image
    test, and resolve or explicitly document the retained strict failures.
-4. Review a clean source-only export and its component licenses. Exclude private
-   Git history, proprietary files and engineering fixtures before publication.
+4. Review each public package's contents and component licenses. The repository
+   is now public; the history-pattern review and utility kit are documented in
+   [tester readiness](PUBLIC-RELEASE.md). Proprietary inputs and private recovery
+   data remain excluded from downloads.
 
 The project can explain and reproduce its component sources now. It does not
 yet promise an automated fresh-console installation or a fault-free system.

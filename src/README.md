@@ -16,6 +16,7 @@ Git tree identity.
 | `hal` | [Xbox HAL](platform/nt5/hal/halx86) | CPU, interrupts, PCI compatibility and platform services |
 | `network` | [NVNet](platform/nt5/drivers/network/dd/nvnet) | Xbox Ethernet support |
 | utility | [Settings](utilities/display-settings/settings.c) | Dragging and font preferences |
+| utility | [Hardware report](utilities/hardware-report/main.c) | Standalone nxdk inventory for external testers; no Windows dependency |
 
 Overlays also include supporting HAL, header and build-system changes. Their
 presence does not mean every target in that tree is the installed version.

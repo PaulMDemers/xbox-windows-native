@@ -22,12 +22,23 @@ The latter remain excluded from public binaries. HAL and network correspondence
 checks now pass outside timestamp/checksum metadata. The complete release export
 and component-specific distribution obligations still require final review.
 
-A public export should include maintained sources, reproducible build recipes,
-required notices, configuration tools and user guides. It must exclude private
-Git history, machine paths, credentials, proprietary media, user registries,
-screenshots containing private data and recovery archives. The current source
-layout is preparation for that export, not a declaration that the entire private
-repository is cleared for publication.
+The repository is now public. Current downloads should contain maintained source,
+build recipes, required notices, configuration tools and user guides. Historical
+engineering records retain development-machine paths and private-network addresses;
+they are not portable installation instructions. The reachable-history pattern
+audit in [417](../outputs/tester-readiness417/REPORT.md) is a limited review, not
+a comprehensive privacy or licensing clearance. History was not rewritten.
+
+Windows payloads, product keys, user registries, firmware, EEPROMs, private
+screenshots and recovery archives are not public project downloads. The tester
+ZIP tool can package a locally prepared, user-owned Windows tree; it does not
+grant redistribution rights or sanitize a previously used installation.
+
+The hardware-report utility is original MIT code linked with nxdk libraries.
+Its bundle includes the applicable SDK notices and source files with their
+copyright headers. nxdk's terms remain in force; the project MIT license does not
+relicense those libraries. The recorded build uses pinned, prebuilt nxdk libraries,
+not an independently rebuilt SDK.
 
 Before publishing binaries, complete component-by-component license review and
 source correspondence, dependency acquisition and clean build validation. The

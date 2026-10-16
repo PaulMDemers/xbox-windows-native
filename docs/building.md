@@ -7,6 +7,9 @@ media, configure a registry, install drivers, flash firmware or contact a consol
 Windows installation is a separate input. Use the [media guide](windows-media.md)
 to check your ISO against the recorded disc hashes and installation results.
 
+For the standalone inventory XBE, use the separate [nxdk utility build](tester-bundles.md#build-the-hardware-report-xbe).
+It does not require Windows or the NT5 component toolchain.
+
 ## Requirements
 
 - Linux or WSL, Python 3.12+ (including `tarfile.data_filter`), Git, Make and normal build utilities.

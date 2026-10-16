@@ -14,6 +14,7 @@ native GPU acceleration.
 
 ## Start here
 
+- **[External tester quick start](docs/testers.md)** — hardware report, installation checklist and results
 - [How it works and what we changed](docs/architecture.md)
 - [Find and edit the source](src/README.md)
 - [Build the components](docs/building.md)
@@ -57,10 +58,16 @@ files; see [provenance](docs/provenance.md) for source and binary correspondence
 
 ## Release status
 
-This checkout is being prepared for a first public source release. It is not a
-Windows distribution or finished fresh-install kit. Windows media, product keys,
-firmware, EEPROMs, dashboards, user data and private recovery archives are not
-public assets. The private Git history is not suitable for publication wholesale.
+The source repository is public. It is an experimental project, not a Windows
+distribution or a finished fresh-install kit. The [tester kit](docs/tester-bundles.md)
+provides a standalone hardware-report XBE and host verification tools. A portable
+Windows package still needs the clean-install and physical-validation gates in
+[release readiness](docs/PUBLIC-RELEASE.md). A ZIP checksum is not a compatibility claim.
+
+Windows media, product keys, firmware, EEPROMs, dashboards, user data and private
+recovery archives are excluded from project downloads. Historical `outputs/`
+records contain development-machine paths; use the parameterized `tools/` commands
+and current `docs/`, rather than running an old experiment script.
 
 The current demo is newer than the preserved historical tags. Do not mix older
 F-partition boot profiles with the current E installation. Dashboard partition

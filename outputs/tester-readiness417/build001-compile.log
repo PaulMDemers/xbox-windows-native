@@ -1,0 +1,68 @@
+[ CC       ] /e/xwn417/build001/main.obj
+nxdk-cc -I/c/nxdk/lib/winapi/winmm -I/c/nxdk/lib/usb/libusbohci/inc -I/c/nxdk/lib/usb/libusbohci_xbox/ -DUSBH_USE_EXTERNAL_CONFIG=\"usbh_config_xbox.h\" -I /c/nxdk/lib/zlib/zlib -DZ_SOLO -I/c/nxdk/lib/libpng/libpng -I/c/nxdk/lib/libpng -isystem /c/nxdk/lib/libjpeg/libjpeg-turbo -I/c/nxdk/lib/libjpeg -I/c/nxdk/lib/net/lwip/src/include -I/c/nxdk/lib/net/nforceif/include -I/c/nxdk/lib/net/nvnetdrv -std=gnu11 -Wall -Wextra -Werror -MD -MP -MT '/e/xwn417/build001/main.obj' -MF '/e/xwn417/build001/main.c.d' -c -o '/e/xwn417/build001/main.obj' '/e/xwn417/build001/main.c'
+[ LD       ] main.exe
+nxdk-link -include:_automount_d_drive  -out:'main.exe' /e/xwn417/build001/main.obj /c/nxdk/lib/xboxkrnl/libxboxkrnl.lib /c/nxdk/lib/libpdclib.lib /c/nxdk/lib/winmm.lib /c/nxdk/lib/libwinapi.lib /c/nxdk/lib/libnxdk_hal.lib /c/nxdk/lib/libnxdk.lib /c/nxdk/lib/libnxdk_automount_d.lib /c/nxdk/lib/libpbkit.lib /c/nxdk/lib/nxdk_usb.lib /c/nxdk/lib/libxboxrt.lib /c/nxdk/lib/libzlib.lib /c/nxdk/lib/libpng.lib /c/nxdk/lib/libjpeg.lib /c/nxdk/lib/libnxdk_net.lib
+[ CXBE     ] bin/default.xbe
+/c/nxdk/tools/cxbe/cxbe -OUT:bin/default.xbe -TITLE:XWN\ Hardware\ Report main.exe 
+Exe::Exe: Opening Exe file...OK
+Exe::Exe: Reading DOS stub...Found, Ignoring...OK
+Exe::Exe: Reading PE header...OK
+Exe::Exe: Reading Optional Header...OK
+Exe::Exe: Reading Section Headers...
+Exe::Exe: Reading Section Header 0x0000...OK 0
+Exe::Exe: Reading Section Header 0x0001...OK 1
+Exe::Exe: Reading Section Header 0x0002...OK 2
+Exe::Exe: Reading Section Header 0x0003...OK 3
+Exe::Exe: Reading Sections...
+Exe::Exe: Reading Section 0x0000...OK
+Exe::Exe: Reading Section 0x0001...OK
+Exe::Exe: Reading Section 0x0002...OK
+Exe::Exe: Reading Section 0x0003...OK
+Exe::Exe: Exe main.exe was successfully opened.
+Xbe::Xbe: Pass 1 (Simple Pass)...OK
+Xbe::Xbe: Pass 2 (Calculating Requirements)...OK
+Xbe::Xbe: Pass 3 (Generating Xbe)...
+Xbe::Xbe: Encoding Retail Entry Point...OK (0xA8FDE1EB)
+Xbe::Xbe: Relocating TLS directory...OK (0x00026278)
+Xbe::Xbe: Found Extra Header Bytes...OK
+Xbe::Xbe: Generating Section Headers...
+Xbe::Xbe: Generating Section Header 0000...OK
+Xbe::Xbe: Generating Section Header 0001...OK
+Xbe::Xbe: Generating Section Header 0002...OK
+Xbe::Xbe: Generating Section Header 0003...OK
+Xbe::Xbe: Generating Logo Bitmap...OK (default)
+Xbe::Xbe: Generating Sections...
+Xbe::Xbe: Generating Section 0000...OK
+Xbe::Xbe: Generating Section 0001...OK
+Xbe::Xbe: Generating Section 0002...OK
+Xbe::Xbe: Generating Section 0003...OK
+Xbe::Xbe: Pass 4 (Finalizing)...
+Xbe::Xbe: Relocating to Base 0x00010000...OK (0 Fixups)
+Xbe::Export: Writing Xbe file...OK
+Xbe::Export: Writing Image Header...OK
+Xbe::Export: Writing Image Header Extra Bytes...OK
+Xbe::Export: Writing Certificate...OK
+Xbe::Export: Writing Section Headers...
+Xbe::Export: Writing Section Header 0x0000...OK
+Xbe::Export: Writing Section Header 0x0001...OK
+Xbe::Export: Writing Section Header 0x0002...OK
+Xbe::Export: Writing Section Header 0x0003...OK
+Xbe::Export: Writing Sections...
+Xbe::Export: Writing Section 0x0000 (.text)...OK
+Xbe::Export: Writing Section 0x0001 (.rdata)...OK
+Xbe::Export: Writing Section 0x0002 (.data)...OK
+Xbe::Export: Writing Section 0x0003 (.tls)...OK
+Xbe::Export: Writing Zero Padding...OK
+[ XISO     ] hardware-report.iso
+/c/nxdk/tools/extract-xiso/build/extract-xiso -c bin  "hardware-report.iso" 
+extract-xiso v2.7.1 (01.11.14) for win32 - written by in <in@fishtank.com>
+
+creating hardware-report.iso:
+
+generating avl tree from filesystem: default.xbe           [OK]
+
+adding \ (0 bytes) [OK]
+adding \default.xbe (110592 bytes) [OK]
+
+sucessfully created hardware-report.iso (1 files totalling 110592 bytes added)
+lld: warning: .edata=.rdata: already merged into .edataxb

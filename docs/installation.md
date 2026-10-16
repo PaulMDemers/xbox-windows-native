@@ -1,5 +1,8 @@
 # Installation and first boot
 
+External testers should start with the shorter [tester guide](testers.md).
+The steps below distinguish the existing demo from a new installation.
+
 There are two different starting points. An already configured Xbox can use the
 integrated demo now. A clean-media assembly has also booted in an Xbox emulator,
 but a fresh physical Xbox still needs a qualified provisioning workflow;
@@ -14,7 +17,8 @@ Building the drivers alone does not create a bootable Windows installation.
    `E:\Applications\XWNEBoot\default.xbe`. This route worked in the latest
    physical test. The front-page Windows item and FTP launch have also failed
    with a black screen and dashboard return, despite pointing to the correct
-   file; that intermittent launch issue remains under investigation.
+   file. The difference between launch routes remains under investigation;
+   same-build, same-route intermittent failure has not been established.
 3. Windows should reach the desktop. Close unsupported-device wizards without
    disabling devices. These prompts are not evidence that all those devices
    have working drivers.
