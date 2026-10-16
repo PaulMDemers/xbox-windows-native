@@ -1,3 +1,34 @@
+#411 DEMO READY /412 ORIGINAL HANDOFF TRACE CLOSED
+
+User requested lastbootable+video available while work continues. 411 readonly
+verification61files exact, no writes/hostlaunch/Caccess. User instructed to run
+UnleashX FileExplorer E:/Applications/XWNEBoot/default.xbe, then Windows
+C:/xwndemo407/play.cmd. Maynowbeusingconsole; doNOTinterrupt/deploy. Current
+physical E720p/FATX390/video303/audio004 andFrollback unchanged. Frontmenu/FTP
+issue remains; original407 windowedvideo/audio good, fullscreen drops retained.
+
+412 exactoriginal374launcher emu001 accepted01:24:37UTC October16;6stops passed
+through actual pagingdisable/CSfarjump/Cromwellentry02600000 by01:24:44. Original
+loadedbytes/payload/copies exact; lowphysical00085000/loader02000000, CR0PGoff,
+CR3zero. No guest memory/registerwrites, all12bpadd/removes paired, physicalmode0,
+26privatecaptures rehashed/20actualmutationsreject. StopBEFOREfirstCromwell
+instruction, thenhoststop/quitexit0; NOTordinary/physical/Windowsshutdownproof.
+ActualIDT/kernelPEcaptured, notfullsymbolmatch. Allownedsessionsclosed.
+
+Preparation001 refused differentfresh406launcher beforeguest; preparation002
+newunusedchild replacesonly21bytes ofsameallocatedlauncher with exact374,
+fullmap/local1703936bytecompare, parentsunchanged. Runtimechildfresh,191pins,
+privateE:/xwn412. Neverrepeatclosed412or409/410. Read412REPORT/DESIGN/NEXT.
+Cold10GBmap:55changedbytes(1540,sector8,3directorycreationbytes), strictdiskFALSE;
+writerunknown. Separate E6552names/contenthashesexact,275dirs/254dirclusters,
+0errors/orphans,QCOW/EEPROMclean, sourceunchanged. Originalauditfalsepreserved.
+Rawnamespace-review privatecopy E:/xwn412/cold001, compactsummarycommitted.
+
+Nextsource review/NEW boundedtrace of original earlyCromwell PCI/video init,
+usingstaticleads onlyafterbyteverification; no guessedaddresses/randomrepeatboot
+or speculativepatch. SixFATXlongpaths/strictevents/publicrelease remainopen.
+Maintain20GiBguard;C/E tight. Userdemoandemulatorfixtureareseparate.
+
 #410 CLOSED: hardware relocated-copy preparation PASS, handoff still unobserved
 
 Read outputs/launch-handoff410 REPORT/DESIGN/NEXT/final-review and actual records.
