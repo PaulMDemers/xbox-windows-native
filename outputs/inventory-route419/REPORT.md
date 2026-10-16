@@ -1,4 +1,13 @@
-# Inventory route 419: manual comparison pending
+# Inventory route 419: closed failed manual comparison
+
+User reported the manual File Explorer launch stayed black and manually restarted
+the console. Read-only closure001 completed2026-10-16T22:27:17Z: no inventory
+report, exact utility XBE, all selected protected Windows files unchanged.
+No relaunch or console write occurred. Both recorded routes failed physically;
+FTP-specific launching alone does not explain these observations. Application
+entry and the failing operation remain unknown. Next use a separately reviewed
+startup/probe diagnostic, not another identical boot. All host commands closed.
+The pending narrative below is historical; closure001 supersedes it.
 
 User authorized investigation after the418 FTP-command attempt produced a black
 screen, required manual reboot and left no inventory report. The existing Windows

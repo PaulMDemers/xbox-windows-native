@@ -7,7 +7,8 @@ prepared; the installation steps below apply once you receive a reviewed package
 ## 1. Report your hardware
 
 **Inventory utility hold:** the first physical FTP-command launch produced a
-black screen, saved no report and required a manual reboot. Its bytes and the
+black screen, saved no report and required a manual reboot. A subsequent manual
+File Explorer launch failed the same way. Its bytes and the
 existing Windows boot files were unchanged afterward. The cause is unresolved;
 the emulator test does not qualify physical hardware. Wait for a reviewed fix
 or an explicitly coordinated diagnostic before running this utility. The steps

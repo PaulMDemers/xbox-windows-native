@@ -38,9 +38,28 @@ def fresh(path, protected):
     if path.exists():
         raise ValueError('Output already exists; choose a fresh directory: ' + str(path))
     for anchor in protected:
-        if path.is_relative_to(Path(anchor).resolve()):
-            raise ValueError('Output must be outside repository/cache/toolchain: ' + str(path))
+        resolved = Path(anchor).resolve()
+        if path.is_relative_to(resolved):
+            raise ValueError(f'Output {path} is inside protected root {resolved}. '
+                             'Check repository, --cache and toolchain paths; choose a fresh sibling directory.')
     return path
+
+
+def cli_path(value):
+    if not value.strip():
+        raise argparse.ArgumentTypeError('Empty path: set the shell variable before running this command')
+    return Path(value)
+
+
+def toolchain_root(tool, upstream):
+    tool = Path(tool).resolve()
+    if upstream == 'reactos':
+        if not tool.is_dir() or not (tool / 'RosBE.sh').is_file():
+            raise ValueError(f'--rosbe must name the installed directory containing RosBE.sh: {tool}')
+        return tool
+    if not tool.is_file():
+        raise ValueError(f'--gcc12 must name an existing compiler executable: {tool}')
+    return tool.parent
 
 
 def verify(profile, allow_modified=False):
@@ -170,11 +189,11 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('action', choices=['list', 'verify', 'source', 'build'])
     parser.add_argument('--profile')
-    parser.add_argument('--cache', type=Path, help='Existing upstream Git cache containing the pinned base commit')
-    parser.add_argument('--output', type=Path, help='Fresh output directory outside this repository')
-    parser.add_argument('--rosbe', type=Path)
-    parser.add_argument('--toolchain-receipt', type=Path, help='Complete receipt from your pinned local RosBE bootstrap')
-    parser.add_argument('--gcc12', type=Path)
+    parser.add_argument('--cache', type=cli_path, help='Existing upstream Git cache containing the pinned base commit')
+    parser.add_argument('--output', type=cli_path, help='Fresh output directory outside this repository')
+    parser.add_argument('--rosbe', type=cli_path)
+    parser.add_argument('--toolchain-receipt', type=cli_path, help='Complete receipt from your pinned local RosBE bootstrap')
+    parser.add_argument('--gcc12', type=cli_path)
     parser.add_argument('--jobs', type=int, default=4)
     parser.add_argument('--allow-modified', action='store_true')
     args = parser.parse_args()
@@ -196,7 +215,7 @@ def main():
         tool = args.rosbe if profile['upstream'] == 'reactos' else args.gcc12
         if not tool or args.jobs < 1 or args.jobs > 32:
             parser.error('build requires its toolchain (--rosbe or --gcc12) and 1..32 jobs')
-        fresh(args.output, [ROOT, args.cache, tool if tool.is_dir() else tool.parent])
+        fresh(args.output, [ROOT, args.cache, toolchain_root(tool, profile['upstream'])])
         from build_space import require_space
         require_space(args.output)
     source, record = materialize(profile, args.cache, args.output, args.allow_modified)

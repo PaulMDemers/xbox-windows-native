@@ -33,6 +33,12 @@ required for the launcher; its currently accepted binary hash is in the manifest
 
 Use new directories for each command:
 
+Do not create those output directories first. Each command creates its own;
+an existing directory (even empty) is refused. Keep successful downloads and
+bootstrap outputs and reuse them as inputs, rather than repeating completed
+steps. Shell variables do not persist into a new terminal: set them again to
+the directories you actually used.
+
 ```sh
 DEPS="$HOME/xwn-dependencies-001"
 BOOTSTRAP="$HOME/xwn-rosbe-001"
@@ -66,7 +72,7 @@ python3 tools/xwn.py verify
 ```
 
 Choose your own paths. `CACHE` is a Git repository with the required ReactOS
-base; `ROSBE` is the extracted toolchain directory:
+base; `ROSBE` is the installed toolchain directory containing `RosBE.sh`:
 
 ```sh
 CACHE="$DEPS/reactos"
@@ -74,6 +80,32 @@ ROSBE="$BOOTSTRAP/RosBE-2.2.1"
 OUT="$HOME/build/xwn-fatx-001"
 python3 tools/xwn.py build --profile fatx --cache "$CACHE" --rosbe "$ROSBE" --toolchain-receipt "$BOOTSTRAP/toolchain.json" --output "$OUT"
 ```
+
+### If the output-directory guard refuses a build
+
+`Output must be outside repository/cache/toolchain` in older versions means
+that the resolved output falls under a protected input path, not that you need
+administrator permissions. Current versions identify the offending root. Run
+`git pull --ff-only` to obtain the improved diagnostics if your checkout has no
+local changes to preserve.
+
+Check the variables in the same terminal where you run the build:
+
+```sh
+printf 'Repository: %s\nCACHE: <%s>\nROSBE: <%s>\nBOOTSTRAP: <%s>\nOUT: <%s>\n' \
+  "$PWD" "$CACHE" "$ROSBE" "$BOOTSTRAP" "$OUT"
+test -f "$ROSBE/RosBE.sh" && echo 'RosBE path OK'
+test -f "$BOOTSTRAP/toolchain.json" && echo 'Receipt found'
+git -C "$CACHE" rev-parse --absolute-git-dir
+```
+
+`CACHE` must name the fetched `reactos` repository, not
+your home/build directory. `ROSBE` must name the existing installed
+`RosBE-2.2.1` directory, not its parent or the extracted builder source. Older
+versions mistakenly protected the parent of a nonexistent RosBE directory;
+correct that variable instead of repeatedly renaming the output. Choose an
+unused output outside all three resolved input directories. Never delete the
+cache/toolchain or bypass the guard to resolve this error.
 
 For source reconstruction only, use `source` instead of `build` and omit
 `--rosbe`. The full Git tree must match. Keep the source cache while using the

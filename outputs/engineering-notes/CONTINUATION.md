@@ -1,4 +1,20 @@
-# 419 manual inventory route comparison pending
+# 419 CLOSED manual inventory route also failed
+
+User reports black screen and manual restart. Read-only closure001 completed
+22:27:17UTC: NO report; utility and all selected Windows baseline bytes unchanged.
+No automatic return, application entry or particular probe failure established.
+Both FTP418 and manual419 failed; no repeat unchanged launch. Next distinct
+instrumented startup/probe diagnostic.416 still inactive; no console writes or
+running observer. Public utility hold remains. See419REPORT/closure001.
+
+User also supplied external tester xwn.py output guard error. Improved diagnostics
+identify actual protected root, reject empty shell arguments, and validate RosBE
+directory before deriving its protected root (older missing-directory branch
+incorrectly protected its parent). docs/building.md explains terminal variables
+and input/output separation. Exact tester variable values remain unknown; do not
+assert the screenshot proves which input path is wrong.
+
+# 419 manual inventory route comparison pending (historical)
 
 User authorized further diagnosis. Read outputs/inventory-route419/REPORT.md and
 prepared001.json. Read-only preflight verified SAME417build002 XBE and protected

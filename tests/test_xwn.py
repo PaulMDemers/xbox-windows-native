@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: MIT
 """Exercise source/output guards without compilers or a console."""
 import copy
+import argparse
 import hashlib
 import importlib.util
 from pathlib import Path
@@ -81,6 +82,34 @@ class Guards(unittest.TestCase):
 
     def test_fresh_sibling_allowed(self):
         self.assertEqual(xwn.fresh(self.root / 'output', [self.overlay]), self.root / 'output')
+
+    def test_output_error_identifies_actual_protected_root(self):
+        with self.assertRaises(ValueError) as caught:
+            xwn.fresh(self.overlay / 'output', [self.root / 'unrelated', self.overlay])
+        self.assertIn('protected root ' + str(self.overlay.resolve()), str(caught.exception))
+
+    def test_empty_shell_paths_rejected(self):
+        for value in ['', ' ', '\t']:
+            with self.assertRaises(argparse.ArgumentTypeError):
+                xwn.cli_path(value)
+        self.assertEqual(xwn.cli_path('some path'), Path('some path'))
+
+    def test_missing_rosbe_is_not_interpreted_as_parent_directory(self):
+        tool = self.root / 'missing-rosbe'
+        with self.assertRaisesRegex(ValueError, 'RosBE.sh'):
+            xwn.toolchain_root(tool, 'reactos')
+        tool.mkdir()
+        with self.assertRaisesRegex(ValueError, 'RosBE.sh'):
+            xwn.toolchain_root(tool, 'reactos')
+        (tool / 'RosBE.sh').write_text('# bootstrap')
+        self.assertEqual(xwn.toolchain_root(tool, 'reactos'), tool.resolve())
+
+    def test_compiler_file_required(self):
+        compiler = self.root / 'gcc-12'
+        with self.assertRaises(ValueError):
+            xwn.toolchain_root(compiler, 'cromwell')
+        compiler.write_bytes(b'test placeholder')
+        self.assertEqual(xwn.toolchain_root(compiler, 'cromwell'), self.root.resolve())
 
 
 if __name__ == '__main__':
