@@ -1,3 +1,47 @@
+#407 CLOSED /408 READ-ONLY: physical Media Player demo confirmed
+
+Read media-physical407 REPORT,final-review003.json,user-result003.json,
+collection003.json; launch-route408/menu-inspection001.json and REPORT.
+User confirms video fine windowed/audio audible; fullscreen loses a fewframes,
+acceptable to user. NormalWindowsrestart then dashboard; one6006, history
+preserved, allprotected/demo bytes exact, noapplicationevents, soleFtdisk49
+retained. No fullallocation/stereorouting/framecount/freshphysicalinstall claim.
+Clip remains C:\xwndemo407\play.cmd (dashboard E). Use windowed for demo.
+
+BothfailedFTP launches and userfrontmenu blackreturn remain preserved. User
+reports noXromwellUI/DVDnoise duringfailure. Exact-file launch from UnleashX
+FileExplorer did reachWindows/player. LocalXBE extent/sectiondigest/embedded
+image valid. 408 read ONLY existing authorized380 menu config C exception plus
+Elauncher: liveconfig exactly380, correct E XWNEBoot target/current720p bytes.
+No menu edit or otherCaccess/write. Route-dependent cause remainsunknown;
+uncheckedXBEallocationreturns onlystaticlead, noobservedallocationfailure.
+
+No hostprocesses, newlaunch or physicaltest queued. All407 launches/collections
+consumed; neverrerun. Manual003 is separate userboot. Nineoriginal407sourcepins
+unchanged; newcollect-manual003.py used once. Privateevidence E:/xwn407,
+menuXML E:/xwn408 private only. No newdrivers/settings/Startup changes.
+Docs media-player-demo/validation updated. SixFATXlongpaths/strictfreshinstall
+failures remainopen; no publicrelease/tag. Preserve allpriorfailures/rollbacks.
+
+#407 MANUAL003 PLAYING: physical audio heard; await video/normal return
+
+Read media-physical407 REPORT/NEXT,manual003.json,user-playback003.json and
+entry-review003/path-review003. User reports failed retry had noXromwell UI,
+heardDVD; front Windows menu also black/reboot. Requested exact File Explorer
+E:/Applications/XWNEBoot/default.xbe; user reports Xromwell/Windows appears,
+then clip loads and audio audible. No new host launch/write. Actual physical
+Windows/player/audio user-observed; explicit video motion and fullcompletion
+not yetconfirmed. User asked videoquality and normalWindowsrestart whenfinished.
+Do NOT interrupt/play/reboot remotely. On dashboardreturn collect-manual003.py
+ONCE. Old collect.py alreadyconsumed afterfailedretry, neverrepeat.
+
+Local exactXBE sectionextent/digest/embeddedimage valid; FTPcommand equals398
+successfulcommand. Historicmenu notcurrentproof. Reviewedsource fixed E loader,
+noDVDfallback; uncheckedallocationreturns are onlystaticlead, NOcauseproved,
+NOpatch. Menu/FTP versusdirectfile difference remainsunresolved. No physical
+file changes except originaldemoMPEG/play.cmd. No C access this407 work.
+All hostprocesses CLOSED. SixFATXpaths/strictfailures/publicrelease remainopen.
+
 #407 RETRY FAILED: early black screen/dashboard return; no playback
 
 Read outputs/media-physical407/REPORT.md,launch001-user-observation.json,

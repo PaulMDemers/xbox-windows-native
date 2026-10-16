@@ -1,3 +1,28 @@
+# Closed: manual003 physical playback confirmed
+
+Windowed video fine/audio audible per user; fullscreen loses a few frames,
+acceptable to user. Normal restart and exact protected/media readback confirmed
+in collection003.json/final-review003.json. Ftdisk49 retained. Never rerun either
+completed collection or any consumed launch. Demo clip remains on E; console
+at dashboard, no further boot queued.
+
+Current menu target is correct (separate launch-route408 read-only inspection).
+Investigate launch-context/early-wrapper behavior with a specific discriminator;
+do not fix this by guessing paths or patching unchecked allocation calls without
+actual failure evidence. File Explorer exact-file launch is the observed working
+route. Fresh clean-install FATX six-long-path and strict gates remain unresolved.
+
+Previous workflow/observations below are historical, not instructions to rerun.
+
+# Current: manual003 playing; audio heard, await motion/normal return
+
+User File Explorer boot reached Windows/player; user says clip loads and audio
+is audible. Asked whether video moves normally and to restart normally when done.
+Do not interrupt playback or send any launch. On user-confirmed dashboard return,
+run collect-manual003.py ONCE, not old collect.py (already consumed).
+No current actor/process running on host. Record user motion/quality separately;
+no strict clean-install or launch-route fix claim. Existing clip remains for demo.
+
 # Current: retry002 failed; collection complete
 
 Do not run collect.py again: collection.json is complete after retry002. Neither

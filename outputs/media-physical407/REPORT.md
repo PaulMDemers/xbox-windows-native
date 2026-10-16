@@ -54,3 +54,43 @@ The read-only loader listing/configuration and private hive captures are retaine
 under E:/xwn407. No driver, registry, startup or console file was changed by the
 retry or these diagnostics. The user was asked whether Xromwell was visible;
 that observation is pending. No third launch or scan is queued.
+
+## Direct-file boot and physical audio observation
+
+The user clarified no Xromwell UI was visible during the failed retry, only
+DVD activity, and reported the front-page Windows menu also returned black/to
+the dashboard. A direct File Explorer launch of the exact E XWNEBoot file was
+then requested. User reported Xromwell or Windows appeared, followed by:
+"Yeah it loads and the audio is audible" for the media clip. No additional
+host launch or console write occurred. Physical Windows/player and audible audio
+are now user-observed; explicit video motion/quality and normal return are pending.
+
+Local exact-XBE review verifies declared section extent, length-prefixed SHA1,
+embedded Cromwell bounds and complete embedded bytes against the original build.
+The FTP command has normal single separators and matches successful398's command.
+The historical380 menu is not proof of current live menu content. Source shows
+fixed E FreeLoader selection/no DVD fallback, plus unchecked pre-UI allocation
+results in the original stub. No actual allocation failure has been observed;
+this is a possible diagnostic target, not grounds for a functional patch.
+
+Manual003 is a distinct user-driven boot. Do not rerun the completed failed-boot
+collect.py. After the user finishes and normally restarts to UnleashX, run the
+new collect-manual003.py once. No settings or drivers were changed. The
+menu/FTP versus direct-file difference remains unresolved.
+
+## Completed physical playback result
+
+User explicitly confirmed windowed video plays fine and audio is audible.
+Fullscreen loses a few frames and was acceptable to the user; no instrumental
+frame-drop or stereo-routing measurement is claimed. User then restarted.
+Collection003 confirms one normal Windows shutdown, preserved event history,
+all protected/demo files exact, no application events; Ftdisk49 remains strict
+failure. This qualifies the reported application demonstration on the existing
+physical demo, not a new clean installation, full disk audit or launch-route fix.
+
+Separate408 read only the previously authorized menu380 C configuration file
+and E launcher. The live menu exactly matches380 and points to the same correct
+XWNEBoot file. No menu edit was justified/performed. Menu/FTP versus successful
+File Explorer outcome is unexplained. Console is back at dashboard; no new boot
+queued. Both failed host launches, their collection and distinct successful
+user boot remain separate. All host processes are closed.

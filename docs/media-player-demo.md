@@ -3,7 +3,9 @@
 The CES 2001 segment featuring Bill Gates and The Rock plays in Windows Media
 Player 6.4 on the clean customized-SP4 Xbox emulator installation. It is a
 useful demonstration of video decoding, software drawing and the audio stack.
-Physical TV/speaker playback of this clip still needs confirmation.
+The user also confirmed good windowed video and audible audio on the existing
+physical demo. Fullscreen playback dropped a few frames but was acceptable to
+the user. This physical demo is separate from the fresh emulator installation.
 
 The private test used Giant Bomb's archived
 [CES 2001 segment](https://archive.org/details/youtube-WMZa-tNwAzQ).
@@ -33,7 +35,10 @@ ffmpeg -i input.mp4 -map 0:v:0 -map 0:a:0 -vf "scale=320:180:flags=lanczos,pad=3
    profile, dashboard `E:\Demo` is Windows `C:\Demo`. Leave dashboard C and the
    rollback installation untouched.
 2. Copy the clip to that demo directory and verify its hash after transfer.
-3. Connect the mouse before boot, start Windows at 720p, and close the welcome
+3. Connect the mouse before boot. The working route in the physical test was
+   UnleashX File Explorer → `E:\Applications\XWNEBoot\default.xbe`. The Windows
+   menu and FTP launch attempts failed despite the correct target; that launch
+   issue remains unresolved. Start Windows at 720p and close the welcome
    window so it does not cover the player. Handle unsupported-device prompts
    without disabling devices.
 4. Open Windows Media Player, choose **File → Open**, and select the clip. Or use
@@ -56,7 +61,10 @@ envelope with 0.9938 correlation; reversed/shuffled controls did not match.
 Windows then restarted normally, with a clean full allocation audit and
 unchanged protected binaries.
 
-This establishes actual application playback in the emulator. It does not
-certify physical stereo routing, subjective quality, zero dropped frames,
+The physical follow-up completed a normal Windows restart and exact readback of
+the demo and protected files. Its Ftdisk49 failure remains recorded. Windowed
+playback is the recommended demo presentation; fullscreen frame drops remain.
+
+These results do not certify exact physical stereo routing, zero dropped frames,
 arbitrary codecs, DRM playback or GPU acceleration. The clean-install FATX
 long-name and strict event failures remain separate release blockers.

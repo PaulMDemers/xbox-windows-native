@@ -21,7 +21,9 @@ Use the result that applies to the change you intend to make.
 | Fresh assembly cold integrity | Scoped pass | Exact persistence data, full allocation, five hive headers/raw values and selected installed code hashes |
 | Fresh assembly strict events | Failed | Ftdisk 49, first-boot PlugPlayManager 256 and final-boot kbdhid 1 retained |
 | Fresh assembly normal startup | Scoped pass | Automatic diagnostic startup removed; desktop boot and manually invoked checks passed after display installation |
-| Windows Media Player video/audio | Emulator scoped pass | Full 3:10 CES clip completed; two video frames independently matched, captured AC97 audio envelope matched the whole source at 0.994 correlation; physical listening pending |
+| Windows Media Player video/audio | Emulator scoped pass | Full 3:10 CES clip completed; two video frames independently matched, captured AC97 audio envelope matched the whole source at 0.994 correlation; physical follow-up listed separately |
+| Physical Media Player demo | User-confirmed scoped pass | Existing demo: good windowed video, audible audio, a few fullscreen frame drops; normal restart and protected-file readback verified, Ftdisk 49 retained |
+| Physical launch routes | Unresolved failure | Menu/FTP attempts returned to dashboard; direct File Explorer launch worked. Live menu target and XBE bytes are correct; no cause or fix established |
 | Offline prepared E installation | Passed | All 6,571 payload files read back exactly in a disposable standard 10 GB image |
 | Offline E restore | Passed | Deliberately damaged launcher bytes restored; entire E and both outside ranges verified |
 | Restored emulator boot | Scoped pass | Graphics, captured audio, allocation, hives and protected files checked; normal restart |
