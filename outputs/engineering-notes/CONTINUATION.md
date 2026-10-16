@@ -1,3 +1,25 @@
+#410 CLOSED: hardware relocated-copy preparation PASS, handoff still unobserved
+
+Read outputs/launch-handoff410 REPORT/DESIGN/NEXT/final-review and actual records.
+One FTPlaunch01:06:47UTC October16; complete144byte report/dashboard01:07:10,
+collection closed. Payload288316bytes and two1024byte loader copies exact;
+both targets02000050, critical loader/GDTspan224. PayloadPA01f00000, loaderPA
+02000000, lowVA02000000 backed by00086000. Distinct backing consistent with
+original dual copies, not failure. All62protected files/diagnostic/owner exact.
+No Windowsboot/Caccess/driver/Startup/originallauncherchanges. Historical407
+cause stillunknown; paging/CR3/GDT/Cromwell entry NOT executed by410 probe.
+
+Build002 d1b86685... compiled, exact original copy/fixup+loader source reviewed.
+Host00221 actualx86 cases with modeled kernel/file semantics;225decodernegatives.
+Build001/host001 diagnostic address-expression bug caught beforedeployment,
+preserved; corrected reader uses explicit74byte index. No emulatorrun. All
+source/hostpins rehashed, original407ninepins unchanged. Private E:/xwn410.
+Allownedprocessesclosed; no testqueued. Neverrepeat410or409closedattempts.
+Next bounded owned-emulator trace of original paging/handoff, using ORIGINAL
+symbol offsets, actualkernel/code/register pins and freshunusedfixture. No
+speculative allocation/copy patch. SixFATXlongpaths/strictevents/publicrelease
+remainopen. Physicaldemo/rollbacks unchanged, fullallocation notaudited here.
+
 #409 BOTH PHYSICAL PROBES CLOSED: identical allocation results
 
 B user observation: "B - it launched to xbox logo, then black screen, then back
