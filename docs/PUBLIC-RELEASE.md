@@ -23,7 +23,7 @@ Conexant console. Other revisions are test targets, not supported claims.
 | Gate | Current state / next evidence |
 |---|---|
 | Clean media | Customized SP4 assembly boots in xemu; six FATX long-name exclusions remain unresolved |
-| Rebuilt boot chain | Full loader correspondence recorded; candidate temporarily activated for the pending 422 physical comparison |
+| Rebuilt boot chain | Reconstructed HAL/loaders booted on the existing development-console installation; normal shutdown logged and originals restored/readback-verified in [422](../outputs/loader-physical422/REPORT.md). Fresh-install qualification remains separate |
 | Registry/install | Fresh physical provisioning and strict event qualification remain incomplete |
 | Display | E/720p first on the known configuration; 1080i text/motion defects remain |
 | Recovery | Prepared-image restore tested offline; fresh-console FTP recovery is not qualified |

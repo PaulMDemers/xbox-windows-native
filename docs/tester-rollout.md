@@ -18,8 +18,11 @@ with the exact XBE/ZIP hash; this does not qualify Windows on that configuration
 
 ## Then: qualify one Windows package
 
-1. Complete the staged rebuilt-loader comparison on the development console.
-   Use the same direct File Explorer route and record normal restart and rollback.
+1. Use the reconstructed loader artifacts whose scoped development-console boot
+   comparison completed in [422](../outputs/loader-physical422/REPORT.md): user
+   reported working boot, normal shutdown was logged, and originals were restored
+   and readback-verified. Preserve the direct File Explorer route for the fresh
+   installation test; this existing-install result does not qualify a new OS tree.
 2. Resolve the six overlong paths in the clean-media assembly without silently
    discarding Windows state. Record any explicitly supported exclusions and their
    functional tests; keep the original strict failure visible.
