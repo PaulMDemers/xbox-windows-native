@@ -10,8 +10,11 @@ Building the drivers alone does not create a bootable Windows installation.
 
 1. Connect the mouse before boot. Keep a keyboard known to hang Xromwell
    disconnected until Windows appears; the Razer keyboard did so during testing.
-2. In UnleashX, choose **Windows**. For the current E installation its executable
-   is `E:\Applications\XWNEBoot\default.xbe`.
+2. Use **UnleashX File Explorer** to open
+   `E:\Applications\XWNEBoot\default.xbe`. This route worked in the latest
+   physical test. The front-page Windows item and FTP launch have also failed
+   with a black screen and dashboard return, despite pointing to the correct
+   file; that intermittent launch issue remains under investigation.
 3. Windows should reach the desktop. Close unsupported-device wizards without
    disabling devices. These prompts are not evidence that all those devices
    have working drivers.
@@ -36,7 +39,9 @@ The host PC's C/E drives are unrelated to Xbox partition letters.
 ### Launch menu
 
 If the menu starts an obsolete profile or a blank screen, first use UnleashX's
-file explorer to inspect the intended E launcher. An authorized menu update
+file explorer to inspect the intended E launcher. A blank screen alone does not
+prove that the menu path is wrong: the tested console's live menu and launcher
+hashes were correct. An authorized menu update
 should change only the Windows item's launch action to the exact path above,
 preserve the previous configuration and reload UnleashX. The old
 `E:\Applications\XWNFBoot\default.xbe` selects a different Windows installation.

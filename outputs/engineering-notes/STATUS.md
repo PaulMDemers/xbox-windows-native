@@ -1,3 +1,37 @@
+#409 PHYSICAL001 CLOSED; paired File Explorer diagnostic pending
+
+Read outputs/launch-wrapper409 REPORT/DESIGN/NEXT/final-review and actual
+stage/launch/collection. One FTP probe accepted2026-10-16 00:45:44UTC; complete
+80-byte report/dashboard by00:46:06; collected00:46:16. All62 sampled protected
+files/Startup/hives/events exact. Originallauncher/drivers/settings unchanged;
+no Windows boot or dashboardC access. PayloadVA81f00000/PA01f00000, loader
+VA82000000/PA02000000, virtualalias02000000/status0/size4096, DFclear. Only the
+instrumented allocation prefix succeeded. Historical407 cause/paging/handoff
+stillunknown. Firstparser wrongly excluded the inclusive32MiB page start;
+originaldecode.py/collection failure retained, interpretation002 separate.
+
+B is staged/readback exact at E:/Applications/XWNBoot409b/default.xbe. NO host
+launch. User asked to run ONCE via UnleashX File Explorer and report dashboard
+return (diagnosticonly, notWindows). On answer write manual-user-return002.json
+then manual.py collect ONCE. Never repeat A/collection/build/test attempts.
+Missing report does not prove noentry. Rootdemo251 ticket retained, no active
+host processes. Existing working demo remains E:/Applications/XWNEBoot/default.xbe.
+
+Build003 compiled from exact374 wrapper/header/payload, same300624bytefootprint;
+13 actualx86 hostcases plus capturedreports/129decodernegatives use modeled
+kernel/file effects. B variant004 changes only two data cookies, one directory
+character and sectiondigest; instructions/layout identical, separate13cases/
+129decodernegatives. No emulatorrun. Physical001 is separate actual evidence.
+Preserve build001 paddinglength failure and build002 wrongparentpath failure;
+neitherdeployed. Privatecapsules E:/xwn409. All9original407sourcepins unchanged.
+TransparentNTFScompression of oneclosedfixture/tenhostEXEs/twoRAMcaptures kept
+exact fullhashes/paths; no chainmove/delete/rebase. Build20GiBguard unchanged.
+
+SixFATX true longpaths/strictfreshinstall events remainopen. No crypto/SID/COM+
+rename/deletion, new FATXdriver, losslessinstaller or publicrelease. PhysicalWMP
+windowedvideo/audio confirmed407; fullscreenframedrops retained. Installation
+instructions now use observed File Explorer workaround, not a proven menu fix.
+
 #407 CLOSED /408 READ-ONLY: physical Media Player demo confirmed
 
 Read media-physical407 REPORT,final-review003.json,user-result003.json,
