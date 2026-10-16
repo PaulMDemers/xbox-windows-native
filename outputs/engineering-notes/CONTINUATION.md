@@ -1,3 +1,23 @@
+#409 BOTH PHYSICAL PROBES CLOSED: identical allocation results
+
+B user observation: "B - it launched to xbox logo, then black screen, then back
+to the dashboard". Collected ONCE at 2026-10-16 00:58:54..00:59:02 UTC. This was
+an intentionally returning diagnostic, not a Windows boot. manual-collection002
+and pair-review002 record the complete80-byte result, identical to A except the
+two attempt-cookie bytes. Both phases4; payloadPA01f00000, loaderPA02000000,
+virtualalias02000000/status0/4096bytes, DFclear. All62 protected checks exact,
+B diagnostic/owner exact, four frozen manual source pins unchanged. No writes,
+launches, C access, driver/Startup changes or new host runtime during collection.
+
+Never relaunch/recollect either409 attempt. Original decoder failure retained;
+final-review.json is the historical pending-B record, pair-review002 closes it.
+Both observed allocation prefixes succeeded; original407 failure cause and later
+relocation/paging/handoff remain unknown. No route-causality/reliable-boot claim.
+Next review the exact relocated copies and paging/far-jump boundary, then design
+a fresh bounded discriminator if needed; no speculative allocation patch.
+Six clean-install FATX long paths and strict event failures remain separate.
+Working physical demo and all rollback bytes preserved; no public release/tag.
+
 #409 PHYSICAL001 CLOSED; paired File Explorer diagnostic pending
 
 Read outputs/launch-wrapper409 REPORT/DESIGN/NEXT/final-review and actual

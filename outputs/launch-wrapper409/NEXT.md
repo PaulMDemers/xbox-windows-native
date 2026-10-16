@@ -1,3 +1,23 @@
+# Both allocation probes are closed; investigate the later handoff
+
+Read pair-review002.json and manual-collection002.json. B's complete physical
+report matches A except attempt cookies; protected files remain exact. The
+user's logo/black/dashboard observation is the expected diagnostic return.
+Do not launch or collect either probe again. No current user action is needed.
+
+Review the exact original relocated-loader copies, virtual/physical alias use,
+far-jump construction and paging transition against the actual allocation
+addresses. Source concerns alone are not the cause: preserve the successful
+File Explorer Windows boot and earlier failed launches. A new diagnostic must
+use a fresh identity and bounded stage evidence; do not install an allocation
+patch merely because the loader starts at 32 MiB. Consider separately how to
+observe an original failed launch without changing allocation behavior.
+
+Six FATX long paths and fresh-install strict event gates remain unresolved.
+No release/tag, speculative namespace rename, or security-data deletion.
+
+## Historical instructions before B collection (completed)
+
 # Await the one direct File Explorer comparison
 
 The user was asked to run E:/Applications/XWNBoot409b/default.xbe ONCE and report

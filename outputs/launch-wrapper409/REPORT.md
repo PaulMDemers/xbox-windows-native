@@ -1,3 +1,21 @@
+# 409 closeout: A and B allocation results match
+
+The user reported B reached the Xbox logo, went black and returned to the
+dashboard. This is the diagnostic's intended return path; it does not start
+Windows. B was collected once at 2026-10-16 00:59:02 UTC. Both 80-byte reports
+are identical except the two attempt-cookie bytes. All decoded allocation
+addresses, statuses, sizes and flags match. Each attempt passed 62 protected
+file checks; B's diagnostic and owner also remain exact. No console writes or
+C access occurred during collection.
+
+See manual-user-return002.json, manual-collection002.json and pair-review002.json.
+The original failed decoder and prior pending-B final-review remain unchanged.
+This pair does not reproduce the original launch failure, establish a route
+cause, or validate the later relocation/paging/handoff. Neither attempt should
+be rerun. The next source review concerns that later boundary.
+
+## Historical report before B collection
+
 # 409: physical allocation prefix succeeded; paired manual observation pending
 
 One physical FTP diagnostic launch was accepted at 2026-10-16 00:45:44 UTC.
