@@ -1,3 +1,18 @@
+# 418 physical inventory launch accepted; screen/return pending
+
+User confirmed existing XWNEBoot demo boot/work/manual restart; no automated
+benchmark was queued. Rebuilt416 remains INACTIVE, never activated. User then
+authorized inventory test. Read outputs/hardware-inventory418/REPORT.md and
+actual stage003/launch001 records.417build002 XBE uploaded/readback exact to
+E:/Applications/XWNInfo/default.xbe; selected protected baseline unchanged.
+One SITE EXEC accepted200 at2026-10-16T21:46:10Z. Never repeat this launch.
+Collection connection timed out before collecting; screen question pending.
+No physical inventory PASS or automatic dashboard return established. All host
+commands CLOSED, no observer running. On return collect once using physical.py
+collect, validate fresh report and baseline; preserve absence/failure rather
+than relaunch. Stage001 login failure and002 host path error occurred before
+writes, originals preserved. No Xbox C access/Windows/loader changes.
+
 # 417 public tester kit built; hardware deferred to this evening
 
 User requested public-repo readiness and external-tester bundles. No physical
