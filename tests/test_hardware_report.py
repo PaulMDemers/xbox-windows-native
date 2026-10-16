@@ -21,6 +21,18 @@ def example():
 
 
 class Inventory(unittest.TestCase):
+    def test_v2_declares_and_enforces_scan_policy(self):
+        r=example();r.update(schema=2,tool='xwn-hardware-report-2',pci_scan_policy='xbox-safe-v1')
+        h.validate(r)
+        for bus, device, function in [(0,0,1),(0,0,2),(1,1,0),(1,31,7)]:
+            bad=copy.deepcopy(r);bad['pci'][0].update(bus=bus,device=device,function=function)
+            with self.assertRaises(ValueError):h.validate(bad)
+        for value in ('', 'all-functions', None):
+            bad=copy.deepcopy(r);bad['pci_scan_policy']=value
+            with self.assertRaises(ValueError):h.validate(bad)
+        del r['pci_scan_policy']
+        with self.assertRaises(ValueError):h.validate(r)
+
     def test_valid_and_unknown_encoder(self):
         r=example(); self.assertEqual(h.validate(r),r)
         r['encoder_probe']['conexant_status']=1; r['encoder_probe']['label']='unidentified'

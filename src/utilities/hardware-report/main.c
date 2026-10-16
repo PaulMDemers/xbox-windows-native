@@ -12,6 +12,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
+#include "pci_probe.h"
 
 static char report[32768], verify[32768];
 static size_t used;
@@ -88,7 +89,8 @@ int main(void)
     LONG fs_status = HalReadSMBusValue(0xd4, 0, FALSE, &focus);
     const char *encoder = cx_status == 0 && fs_status != 0 ? "conexant-response" :
                           fs_status == 0 && cx_status != 0 ? "focus-response" : "unidentified";
-    append("{\n  \"schema\":1,\n  \"tool\":\"xwn-hardware-report-1\",\n");
+    append("{\n  \"schema\":2,\n  \"tool\":\"xwn-hardware-report-2\",\n");
+    append("  \"pci_scan_policy\":\"xbox-safe-v1\",\n");
     append("  \"kernel\":[%u,%u,%u,%u],\n", XboxKrnlVersion.Major, XboxKrnlVersion.Minor,
            XboxKrnlVersion.Build, XboxKrnlVersion.Qfe);
     append("  \"hardware_flags\":%lu,\n  \"gpu_revision\":%u,\n  \"mcp_revision\":%u,\n",
@@ -118,6 +120,7 @@ int main(void)
     for (unsigned bus = 0; bus < 2; ++bus) {
         for (unsigned device = 0; device < 32; ++device) {
             for (unsigned function = 0; function < 8; ++function) {
+                if (!xwn_pci_probe_allowed(bus, device, function)) continue;
                 ULONG id = 0xffffffff, klass = 0;
                 ULONG slot = device | (function << 5);
                 HalReadWritePCISpace(bus, slot, 0, &id, sizeof(id), FALSE);
@@ -134,7 +137,7 @@ int main(void)
     int saved = !e_ready ? 7 : overflow ? 6 : save_report(path, sizeof(path));
     /* SD display for the inventory UI; never asks a new encoder to enter HD. */
     if (XVideoSetMode(640, 480, 32, REFRESH_DEFAULT)) {
-        debugPrint("XWN hardware report 1\n\n");
+        debugPrint("XWN hardware report 2\n\n");
         debugPrint("Kernel %u.%u.%u.%u   RAM pages %lu\n", XboxKrnlVersion.Major,
                    XboxKrnlVersion.Minor, XboxKrnlVersion.Build, XboxKrnlVersion.Qfe,
                    (unsigned long)memory.TotalPhysicalPages);

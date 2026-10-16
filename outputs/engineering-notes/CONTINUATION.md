@@ -1,3 +1,41 @@
+# 421 physical inventory fixed; corrected tester kit ready
+
+420 is CLOSED failed after the user reported black screen/manual restart.
+physical-collection001 preserved 28 records/896 bytes; last pending PCI query is
+0:0:1 (stage20,arg32). Pinned ReactOS explicitly documents that query hangs Xbox.
+No old attempt rerun/recollection. Original raw trace and utilities unchanged.
+
+421 corrected ordinary scanner omits0:0:1/.2 and bus1 device aliases; schema2
+records xbox-safe-v1. No tracing/Windows driver/loader/display change. Native
+XBE f9163c73c3baa556c80138e122dbc81fe9aec77bd7ec3d951ec9fd9ad0778d5d,
+110592 bytes, pinned nxdk58427c/prebuilt libraries unchanged.524 actual-header
+ASan/UBSan checks;5 validator tests each Windows/Linux;9 bundle tests pass/1 skip.
+Fresh unused blank8GiB emulator C:/xwn421/emu001 CLOSED exit0/nofallback. Valid
+report, clean E3dirs1file4clusters0errors/orphans; QCOW/EEPROMpass. Reserved1540
+change retains strict whole-disk FALSE. No backing chains moved; E margin tight.
+
+One authorized FTP launch of E:/Applications/XWNInfo421/default.xbe accepted
+23:18:36UTC; dashboardFTP/newreport observed23:19:19, collected23:19:27. Complete
+5353-byte schema2 report exact twice, SHA0cfa10dd4caf622d7a5c72611d2860977ec781d1d1016cf19f7d0caa1256fa2c.
+Kernel1.0.4034.1,64MiB,Conexant response; raw PCI function aliases remain and are
+NOT independent devices. Selected Windows files/oldutility/420trace unchanged.
+No consoleC access, no Windows boot/full physical disk audit/other revision claim.
+All owned sessions CLOSED, no xemu processes found in closeout query.
+
+Corrected utilities archive E:/xwn421/xwn-utilities-preview-421.zip,
+7208064 bytes, SHA24a52f961bddd1911dcf7003a606b8b5c997ebd90a0c275a3a21d2e0c942011d.
+2247 files/324dirs verified against staging; matching source/header, SDK notices,
+updated host validator/docs. No Windows/media/firmware/keys; NOT uploaded as a
+release asset. Public docs warn against old417/417b. Other configurations need
+coordinated inventory tests; manifest remains experimental-not-hardware-qualified.
+
+Next: deliver corrected utility bundle, then resume distinct416 matched boot-chain
+comparison and clean install FATX/provisioning/restore gates;416 remains inactive.
+720p demo untouched.1080i is plausible mode-path discriminator, not proved cause;
+see420INTERLACE.md for odd/even rows + actual scanout readback comparison. No1080
+experiment done. Do not duplicate420/421 launches or collection. Keep historical
+failures/private recovery/physical rollbacks. Read421REPORT/final-review/actualrecords.
+
 # 420 physical FTP diagnostic launched ONCE; return pending
 
 User explicitly authorized automated launch, superseding manual419-style request

@@ -70,14 +70,14 @@ Source: [src/utilities/hardware-report](../src/utilities/hardware-report).
 Use [nxdk](https://github.com/XboxDev/nxdk) revision
 `58427c078b4ccb0121f359b6b6c536b3b2914976`, including its pinned submodules
 and nxdk's documented prerequisites. Runtime libraries must be built for that
-revision. The recorded 417 build used prebuilt SDK libraries; it is not a clean
+revision. The recorded 421 build used prebuilt SDK libraries; it is not a clean
 rebuild of the SDK itself.
 
 In a configured nxdk shell, copy the source to a fresh, short build path:
 
 ```sh
 mkdir -p /path/to/new-hardware-report-build
-cp src/utilities/hardware-report/main.c src/utilities/hardware-report/Makefile /path/to/new-hardware-report-build/
+cp src/utilities/hardware-report/main.c src/utilities/hardware-report/pci_probe.h src/utilities/hardware-report/Makefile /path/to/new-hardware-report-build/
 cd /path/to/new-hardware-report-build
 make NXDK_DIR=/absolute/path/to/nxdk V=1
 ```
@@ -90,5 +90,7 @@ clean rules before running `make clean` against a shared SDK.
 The tested build has one inherited SDK linker merge warning and no native C
 warnings. The tool checks or creates the E drive alias only for
 `\Device\Harddisk0\Partition1`, refusing a conflicting mapping. It does not
-change partition tables or dashboard settings. See [417](../outputs/tester-readiness417/REPORT.md)
-for exact build and test results.
+change partition tables or dashboard settings. The schema-2 scanner excludes
+documented hazardous PCI locations and GPU device aliases. Do not distribute the
+older 417/417b binary. See [421](../outputs/inventory-pci421/REPORT.md) for exact
+build, emulator and development-console results; other revisions are unqualified.

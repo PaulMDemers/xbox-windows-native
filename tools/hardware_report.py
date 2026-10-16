@@ -24,8 +24,13 @@ def keys(obj, names):
 
 
 def validate(r):
-    keys(r, KEYS)
-    require(type(r['schema']) is int and r['schema'] == 1 and r['tool'] == 'xwn-hardware-report-1', 'Unknown tool/schema')
+    require(isinstance(r, dict), 'Report must be an object')
+    version = r.get('schema')
+    require(type(version) is int and version in (1, 2), 'Unknown tool/schema')
+    keys(r, KEYS | ({'pci_scan_policy'} if version == 2 else set()))
+    require(r['tool'] == f'xwn-hardware-report-{version}', 'Unknown tool/schema')
+    if version == 2:
+        require(r['pci_scan_policy'] == 'xbox-safe-v1', 'Unknown PCI scan policy')
     require(r['complete'] is True, 'Incomplete report')
     require(isinstance(r['kernel'], list) and len(r['kernel']) == 4, 'Kernel version shape')
     for v in r['kernel']: integer(v, 65535)
@@ -57,6 +62,9 @@ def validate(r):
         keys(d, ('bus', 'device', 'function', 'id', 'class_revision'))
         for n, high in [('bus', 1), ('device', 31), ('function', 7), ('id', 0xffffffff), ('class_revision', 0xffffffff)]: integer(d[n], high)
         slot = (d['bus'], d['device'], d['function'])
+        if version == 2:
+            require(slot not in ((0, 0, 1), (0, 0, 2)) and not (slot[0] == 1 and slot[1] != 0),
+                    'Report includes a location excluded by its PCI policy')
         require(slot not in slots and d['id'] & 0xffff not in (0, 65535), 'Duplicate/absent PCI device')
         slots.add(slot)
     return r
@@ -79,7 +87,7 @@ def main():
     r = load(a.report)
     memory = r['kernel_total_pages'] / 256 if r['memory_status'] == 0 else None
     print(json.dumps(dict(kernel=r['kernel'], encoder_observation=r['encoder_probe']['label'],
-        kernel_reported_ram_mib=memory, pci_devices=len(r['pci']), e_space=r['e_space'],
+        kernel_reported_ram_mib=memory, pci_response_records=len(r['pci']), e_space=r['e_space'],
         available_modes=r['available_32bit_modes'], compatibility='Not established by this inventory'), indent=2))
 
 

@@ -3,8 +3,10 @@
 ## First: inventory, without Windows installation
 
 Use the utilities preview to collect kernel, RAM, PCI, AV-pack and encoder
-observations. Test its first physical run on the development console this evening
-before asking others to use it. Keep reports associated with the exact XBE/ZIP hash.
+observations. Corrected preview 421 completed on the development console and
+returned a report; obsolete 417/417b builds must not be used. Start with one
+coordinated inventory run on each other configuration. Keep reports associated
+with the exact XBE/ZIP hash; this does not qualify Windows on that configuration.
 
 | Configuration | Current Windows evidence | Initial tester action |
 |---|---|---|

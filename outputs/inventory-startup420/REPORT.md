@@ -1,3 +1,19 @@
+# 420 CLOSED: partial trace localizes hazardous PCI query
+
+User reported black screen and manual restart to UnleashX. Read-only collection
+completed23:13:04UTC on October16. Preserved896-byte trace/28records exact twice,
+SHAe5dfb1121b8cb35987cf4b5fc207d53cda0dd9b4dd7fa2965ce7a5cea1eac968.
+Last record stage20/phase0/arg32 is before PCI0:0:1 ID read; no after-record,
+finalJSON or reboot request. Prior memory/SMBus/mode enumeration and PCI0:0:0
+ID/class reads completed. Selected Windows files and both utility binaries exact.
+Physical inventory FAIL; no whole-disk audit. No relaunch/recollection.
+
+Pinned ReactOS explicitly documents hardware hangs for0:0:1 and0:0:2. The trace
+alone cannot distinguish the call from failure writing its after-record. New421
+ordinary scanner applies documented exclusions and completed on this console,
+supporting the hardware-query diagnosis. See ../inventory-pci421/REPORT.md.
+All earlier pending paragraphs below are preserved historical status.
+
 # 420: diagnostic launched by FTP; dashboard return not observed
 
 User explicitly authorized automated launching, superseding the manual launch

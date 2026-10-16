@@ -6,13 +6,12 @@ prepared; the installation steps below apply once you receive a reviewed package
 
 ## 1. Report your hardware
 
-**Inventory utility hold:** the first physical FTP-command launch produced a
-black screen, saved no report and required a manual reboot. A subsequent manual
-File Explorer launch failed the same way. Its bytes and the
-existing Windows boot files were unchanged afterward. The cause is unresolved;
-the emulator test does not qualify physical hardware. Wait for a reviewed fix
-or an explicitly coordinated diagnostic before running this utility. The steps
-below describe the intended workflow once that hold is cleared.
+Use **utilities preview 421 or later**, with hardware-report schema 2. The older
+417/417b utility can hang the Xbox while querying a documented hazardous PCI
+address; do not run it. The corrected scanner skips those addresses and completed
+on the development console (64 MiB, Conexant response, kernel 1.0.4034.1), saving a
+report and returning to dashboard FTP. Other hardware revisions remain untested.
+See the [421 evidence](../outputs/inventory-pci421/REPORT.md).
 
 You need an original Xbox that already runs homebrew, a working dashboard with
 FTP, and a PC on the same local network. This kit does not install a mod or flash
@@ -40,7 +39,10 @@ are observations, not proof that Windows supports them.
 No EEPROM contents, HDD keys, serial number, MAC address, firmware or Windows
 registry are collected. Do not attach those separately. The library may perform
 normal runtime initialization; this is a homebrew diagnostic, not a passive
-electrical measurement. Physical validation is blocked by the failure above.
+electrical measurement. The PCI list contains raw responding locations, including
+possible function aliases; its length is not a count of independent physical
+devices. Policy `xbox-safe-v1` leaves hazardous 00:00.1/00:00.2 and bus-1 GPU
+device aliases unprobed. Omitted addresses are not evidence of absent hardware.
 
 ## 2. Prepare for a Windows preview
 
