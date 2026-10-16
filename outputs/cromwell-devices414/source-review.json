@@ -1,0 +1,86 @@
+{
+  "passed": true,
+  "source_files": {
+    "boot/BootStartup.S": "3dfbb3c3fedfaa36d6c2c7b8429e9575008c4be3b2b7bf28cb3fff95456b858f",
+    "boot/BootResetAction.c": "b27a08d5c4e18d331d2794ba0f50731d2768d5edc6addbeba3148a6b942612df",
+    "drivers/video/BootVgaInitialization.c": "481e95c8335ba0d865b3ccddfc1b1acfaf0721e12045104e37c5d4d13573c4d4",
+    "drivers/video/BootVgaInitialization.h": "41311fae124b3f60b95830947fa05b066567b88b75c25b5b20428291ef38f3e7",
+    "drivers/video/BootVideoHelpers.c": "790b5117dd98341130e48b97b2735d5cad82be53a59976d21502516a6f121512",
+    "include/memory_layout.h": "ff8ce576254e8d97e7252683817f08086bb88a01d4a1635b118a643ef50acc54",
+    "drivers/video/BootVideo.h": "68d768654286a8b69287d70b21fdbec53c913025d4d1532bbb86ed81d6573b7e",
+    "drivers/video/xwn_hd_native.c": "b3b216c96e4ca4fb69bd1ca1365dadbc21c64399ee68fcac07230587b720ac93",
+    "drivers/video/xwn_hd_adapter.c": "30333610cfcc7761a36bd92b4f5260073b20a4b050bf4a160d3198f3483bf912",
+    "drivers/usb/sys/BootUSB.c": "f410e9945b0e5ea57fe836fce8e0cee8cfa30e88e4577ec799092e2671cbf3e8",
+    "drivers/ide/BootIde.c": "5d5029d2468f001cd71903baae785929c7f832db09fcae6ac6a913f49bdaf83e"
+  },
+  "elf_sha256": "f64c05c1c07797945244b4a8db7fe79256db3a8f0fefac48cc8508b966cc2f0d",
+  "payload_sha256": "49f1332526c4155bd16bc2d16d138d7cb67f8498c80bc19ad0b64cd4ab671301",
+  "original_xbe_sha256": "6240a801d97c4894e56d516a934059da056446fb77cf895b5364bdd6cd24be9a",
+  "sections": [
+    {
+      "name": ".text",
+      "address": 39845888,
+      "bytes": 213836,
+      "sha256": "f3b4d157b9baf2ab866591429e3d2b8ceb0b2929a6acfcb3347170dd62d39d75"
+    },
+    {
+      "name": ".rodata",
+      "address": 40059724,
+      "bytes": 70979,
+      "sha256": "051288bfa5660ad0b122dabbf204e4a46335d372f9e5273bff4edbc665eaedcb"
+    },
+    {
+      "name": ".data",
+      "address": 40130703,
+      "bytes": 3501,
+      "sha256": "3a533f10f8ba0420700f8d0bd78822fb9a56009ead68370cbe17c548c70022ff"
+    }
+  ],
+  "calls": [
+    {
+      "address": 39847707,
+      "target": 39978656,
+      "name": "BootStartUSB"
+    },
+    {
+      "address": 39847800,
+      "target": 39874288,
+      "name": "BootIdeInit"
+    },
+    {
+      "address": 39847937,
+      "target": 39904208,
+      "name": "BootFromDevice"
+    }
+  ],
+  "stops": [
+    {
+      "address": 39847707,
+      "label": "before_usb",
+      "expected_code": "e880ff01008d83851bffffc706c8c8c8ff890424e83c910000c70424f0010000"
+    },
+    {
+      "address": 39847712,
+      "label": "after_usb",
+      "expected_code": "8d83851bffffc706c8c8c8ff890424e83c910000c70424f0010000e8704d0000"
+    },
+    {
+      "address": 39847800,
+      "label": "before_ide",
+      "expected_code": "e8736700005a8b4c241451e8e89000008b078983500000008b0689834c000000"
+    },
+    {
+      "address": 39847805,
+      "label": "after_ide",
+      "expected_code": "5a8b4c241451e8e89000008b078983500000008b0689834c0000008d83a21bff"
+    },
+    {
+      "address": 39847937,
+      "label": "before_boot_device",
+      "expected_code": "e8cadb00008d83ac2fffff890424e85c900000fa83c410f4ebfd83ec0c8d83df"
+    }
+  ],
+  "video_mode_address": 40134208,
+  "physical_access": false,
+  "runtime_evidence": false
+}

@@ -1,3 +1,45 @@
+# 413/414 closed: original Cromwell device initialization observed
+
+User finished recording the demo and explicitly authorized console access again.
+This supersedes the historical411 demo hold below. No physical access occurred
+in413/414; E720p/FATX390/video303/audio004, F rollback and video are unchanged.
+Direct launch remains E:/Applications/XWNEBoot/default.xbe via File Explorer;
+Windows clip C:/xwndemo407/play.cmd. Physical menu/FTP failure is unexplained.
+
+413 original PCI/video/backdrop returns and USB call reached at nine actual
+instruction stops. Final HMP screendump was unsupported: original run FAILED,
+source/report immutable. Separate completed-instruction review verifies17
+captures/24 actual report mutations. No visible-screen claim for413.
+
+414 accepted2026-10-16 02:04:50 UTC, closed02:05:41. Seven stops reached USB
+and IDE returns then BootFromDevice call BEFORE execution. Original374 launcher
+and288316-byte payload exact;11 source pins and217 frozen inputs. Two actual
+mode/register-validated1280x720 software framebuffer captures show Xromwell and
+isolated E FreeLoader message.25 memory captures/20 actual report mutations.
+Generic emulator keyboard/mouse only, not physical Razer behavior. No Windows
+boot/shutdown, ordinary timing, TV scanout or physical-failure reproduction.
+
+Both new children use never-executed412 preparation002, not old runtime parents.
+All breakpoints removed, physical mode0, orderly host exits0 without fallback;
+all sessions closed and read-only process query found no xemu process. Never
+relaunch/recollect/parent413 or414. Read their REPORT/DESIGN/NEXT/final-review.
+Private E:/xwn413 and E:/xwn414. Shared source/SDK/binaries were not modified.
+
+Both cold audits retain strict whole-disk FALSE55bytes: reserved1540,sector8,
+three directory creation bytes; no writer attribution/waiver. Complete10GB
+mapping and separate E6552 names/content hashes exact;275dirs,254dirclusters,
+zero allocation errors/orphans, QCOW/EEPROM clean, seed unchanged. Raw private
+namespace/frames remain on E; compact reports only in Git.203 frozen inputs413,
+217 in414 exact.413 unsupported-command failure remains distinct from414 PASS.
+
+Next inspect exact BootFromDevice FATX read/format/entry/error return paths for
+one new bounded discriminator, not another early-init repetition. Physical use
+is authorized but first inspect actual dashboard/state; no random boots or
+speculative fix. Six genuine FATX long-name exclusions and strict-event failures
+still block clean-install/public-release qualification. No public tag yet.
+C26995597312/E21645754368 bytes free at closeout: preserve20GiB projected guard,
+private roots/leases and backing chains. No new hardware test queued.
+
 #411 DEMO READY /412 ORIGINAL HANDOFF TRACE CLOSED
 
 User requested lastbootable+video available while work continues. 411 readonly
