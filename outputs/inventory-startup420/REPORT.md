@@ -1,4 +1,18 @@
-# 420: instrumented inventory staged, manual hardware run pending
+# 420: diagnostic launched by FTP; dashboard return not observed
+
+User explicitly authorized automated launching, superseding the manual launch
+request. Physical-launch001 records ONE SITE EXEC at23:10:14.927824UTC, accepted
+200. Before launch the diagnostic and original XBE, selected protected files,
+and all frozen stage input hashes were exact; no trace or inventory report existed.
+Physical-return001 observed12 timed-out connection attempts through23:11:58UTC,
+closed23:12:03UTC. FTP return was not observed; screen and application-entry state
+remain unknown. No repeat launch sent. User asked for screen state and, if black,
+a manual restart to UnleashX. No collection has run. All host processes closed.
+
+After dashboard return run collect-physical.py once with authorized FTP environment.
+It preserves any trace/report bytes privately before decoding and verifies the
+selected baseline. Missing/partial/invalid trace remains evidence, never an
+ordinary inventory PASS. Older manual-pending paragraphs below are historical.
 
 418 FTP and419 manual File Explorer launches both stayed black and left no final
 report. Both were manually restarted; selected Windows files and original utility

@@ -1,4 +1,16 @@
-# 420 startup diagnostic staged; manual launch/result pending
+# 420 physical FTP diagnostic launched ONCE; return pending
+
+User explicitly authorized automated launch, superseding manual419-style request
+for420. physical-launch001 SITEEXEC accepted200 at23:10:14.927824UTC. Original
+utility/Windowsselectedbaseline/frozeninputs exact beforelaunch, traceabsent.
+Bounded observer physical-return001 CLOSED23:12:03UTC:12connectiontimeouts,
+no dashboardreturn observed. Screenunknown, useraskedwhatisshown andifblack to
+rebootUnleashX. No collection yet, NO repeatlaunch, allhostprocessesclosed.
+Onreturnrun outputs/inventory-startup420/collect-physical.py ONCE to preserve
+trace/report rawbytes then decode andverifybaseline. Missingtrace doesn't prove
+pre-mainfailure.416inactive, noWindowsmodechange. Priorpendingnotes historical.
+
+# 420 startup diagnostic staged; manual launch/result pending (historical)
 
 Read outputs/inventory-startup420/REPORT.md, stage001.json and actual records.
 417query source instrumented in separate420main/traceheader; original exactly
