@@ -6,6 +6,13 @@ prepared; the installation steps below apply once you receive a reviewed package
 
 ## 1. Report your hardware
 
+**Inventory utility hold:** the first physical FTP-command launch produced a
+black screen, saved no report and required a manual reboot. Its bytes and the
+existing Windows boot files were unchanged afterward. The cause is unresolved;
+the emulator test does not qualify physical hardware. Wait for a reviewed fix
+or an explicitly coordinated diagnostic before running this utility. The steps
+below describe the intended workflow once that hold is cleared.
+
 You need an original Xbox that already runs homebrew, a working dashboard with
 FTP, and a PC on the same local network. This kit does not install a mod or flash
 a BIOS. Keep your existing dashboard and recovery route working.
@@ -32,7 +39,7 @@ are observations, not proof that Windows supports them.
 No EEPROM contents, HDD keys, serial number, MAC address, firmware or Windows
 registry are collected. Do not attach those separately. The library may perform
 normal runtime initialization; this is a homebrew diagnostic, not a passive
-electrical measurement. Physical validation of this new utility is pending.
+electrical measurement. Physical validation is blocked by the failure above.
 
 ## 2. Prepare for a Windows preview
 

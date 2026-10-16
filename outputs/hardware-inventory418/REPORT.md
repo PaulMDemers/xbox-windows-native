@@ -1,4 +1,21 @@
-# Physical inventory 418: launch accepted, return pending
+# Physical inventory 418: failed launch, closed after manual reboot
+
+Post-reboot closure001 at2026-10-16T21:50:29Z found NO numbered inventory report.
+The user observed a black screen and manually rebooted to UnleashX. Dashboard
+FTP then returned. All selected protected Windows binaries/configuration/startup
+files matched stage003, and the utility XBE still matched417build002 exactly.
+No automatic dashboard return or utility entry/completion is established. This
+is a failed physical inventory attempt, not evidence of Windows regression.
+The capture was read-only; no console C access, deployment or relaunch occurred.
+No whole-disk audit was performed. Exact evidence is in closure001.json.
+
+Do not rerun this attempt. The failure is not localized: no saved report cannot
+distinguish failure before application entry from a failure in its initial probes.
+The historical Windows FTP-versus-File-Explorer launch difference is a lead,
+not proof of the cause for this utility. A separately recorded manual-route test
+or instrumented entry/probe diagnostic is needed before external utility rollout.
+The public instructions now flag this physical failure explicitly. Older pending
+notes below describe the state before the user observation and closure.
 
 The user confirmed the existing XWNEBoot demo booted and worked, then manually
 restarted to the dashboard. No benchmark was queued and no command window was

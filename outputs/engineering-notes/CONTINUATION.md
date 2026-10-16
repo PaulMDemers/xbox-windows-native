@@ -1,4 +1,16 @@
-# 418 physical inventory launch accepted; screen/return pending
+# 418 CLOSED physical inventory failed; demo protected bytes unchanged
+
+User reported black screen and manually rebooted to dashboard. Read-only
+close001.py/closure001.json completed21:50:29UTC: NO inventory report, uploaded
+XBE exact417build002, all selected stage003 protected Windows files unchanged.
+No automatic return or utility entry/completion proved. No whole-disk audit.
+No relaunch, console C access, active loader/config changes or observer running.
+416 remains inactive. Failed physical utility result now flagged in tester docs;
+do not promote emulator PASS to physical qualification. Need distinct manual-route
+or instrumented diagnostic to localize launch-vs-probe failure; no cause inferred.
+The previous pending narrative below is historical, superseded by closure001.
+
+# 418 physical inventory launch accepted; screen/return pending (historical)
 
 User confirmed existing XWNEBoot demo boot/work/manual restart; no automated
 benchmark was queued. Rebuilt416 remains INACTIVE, never activated. User then
