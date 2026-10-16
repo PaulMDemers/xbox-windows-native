@@ -12,17 +12,18 @@ is implied by the tester kit.
 - [Hardware inventory utility and tester instructions](testers.md).
 - [Local bundle planning, creation and verification](tester-bundles.md).
 
-The inventory utility has an emulator smoke test and cold report readback. It
-has not been qualified on physical hardware or every encoder. The integrated
-Windows demo is physically tested on one 64 MiB Conexant console. Other revisions
-are test targets, not supported claims.
+Corrected inventory preview 421 has an emulator cold report readback and one
+successful development-console run with a saved report and dashboard return.
+Obsolete 417/417b utilities must not be used. Other encoders and revisions are
+unqualified. The integrated Windows demo is physically tested on one 64 MiB
+Conexant console. Other revisions are test targets, not supported claims.
 
 ## Windows bundle gates
 
 | Gate | Current state / next evidence |
 |---|---|
 | Clean media | Customized SP4 assembly boots in xemu; six FATX long-name exclusions remain unresolved |
-| Rebuilt boot chain | Full loader correspondence recorded; candidate staged inactive for physical testing |
+| Rebuilt boot chain | Full loader correspondence recorded; candidate temporarily activated for the pending 422 physical comparison |
 | Registry/install | Fresh physical provisioning and strict event qualification remain incomplete |
 | Display | E/720p first on the known configuration; 1080i text/motion defects remain |
 | Recovery | Prepared-image restore tested offline; fresh-console FTP recovery is not qualified |

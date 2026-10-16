@@ -1,3 +1,34 @@
+# 422 reconstructed loader candidate ACTIVE; manual result pending
+
+Read outputs/loader-physical422/REPORT.md,NEXT.md and activation001.json.
+Activation completed2026-10-16T23:49:18.279830UTC, allthree416candidate files at
+original E:/Applications/XWNEBoot paths exact; original active binaries preserved
+as .422old, plus inactive staged rollback. XBE/INI/Windowsdrivers/startup/current
+hives unchanged. No consoleC access. No launch command sent, no observer running.
+User asked ONE FileExplorer launch E:\Applications\XWNEBoot\default.xbe, report
+Xromwell/Windows, play C:\xwndemo407\play.cmd, then normal Windows Restart.
+No test/commandwindow expected. Do NOT send FTPlaunch or repeat activation.
+
+Old416 hive hashes differed:422preflight001 refused beforewrites. Separatecapture
+and complete decoded key/value comparison:6022SYSTEM/26921SOFTWAREkeys,24+8value
+changes onlyruntime state (logon/shutdown/DHCP/serverGUID/RNG/WBEM/profile/sync).
+Noadded/deletedkeys/types; allotherdecodeddata includingdrivers/display/pagefile/
+mounts exact.128negative reviewmutations rejected. Originalfailure/stage untouched;
+new422pins CURRENT hives explicitly. Privatehives/events E:/xwn422/before001;
+actualpreactivationevents/startup E:/xwn422/activation-before001.
+
+On user's dashboard return: run outputs/loader-physical422/activate.py restore
+ONCE with authorizedFTPenv. NOT416script. It captures afterevents/startup, journals
+known-byte renames, retains candidates as .422used and rechecks selected originals.
+Never retryunknown/partialstate; inspectjournal. Restoreplanner identicalAST416,
+256states14accept242refuse; no physicalrestore yet. Afterward analyzeeventdelta
+with actualpreactivation boundaries, preservewarnings/errors andringdecoderlimits,
+recorduserobservation separately, updatepublicreadinessandnotes. No cleaninstall/
+strictorotherhardwarePASSyet. Both candidate andoriginal exist; no fullOSreplace.
+Allownedhostsubprocessesclosed. 421utilitysuccess/bundle and1080i question remain
+separate; same720p mode retained. Hardware FileExplorer route needed to avoid
+changing the route while comparing loaders. All closed420/421 records preserved.
+
 # 421 physical inventory fixed; corrected tester kit ready
 
 420 is CLOSED failed after the user reported black screen/manual restart.
