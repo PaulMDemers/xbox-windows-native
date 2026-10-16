@@ -1,3 +1,16 @@
+# Current: retry002 failed; collection complete
+
+Do not run collect.py again: collection.json is complete after retry002. Neither
+launch reached a confirmed Windows desktop. User screen detail question pending:
+only black, Xromwell, or Windows before return. Source-pinned/current boot files,
+five system hives and prior video trace are exact; no new event records.
+No further launch, console write or scan has been requested. Preserve all407
+records and the private clip. Current failure needs a distinct early-boot
+explanation before another launch; no speculative driver/configuration change.
+
+Previous instructions below describe the original intended playback workflow,
+not authorization to repeat consumed launches or collection.
+
 # Resume
 
 Inspect stage002.json/launch.json before any action; never repeat a recorded launch.

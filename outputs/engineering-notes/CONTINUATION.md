@@ -1,3 +1,21 @@
+#407 RETRY FAILED: early black screen/dashboard return; no playback
+
+Read outputs/media-physical407/REPORT.md,launch001-user-observation.json,
+launch002.json,launch002-user-observation.json,collection.json,boot-state002.json
+and boot-inspect002.json. Original launch001 FTP200 only dismissed screensaver
+per user. User explicitly authorized retry; SINGLE retry002 at2026-10-16
+00:05:31UTC acceptedFTP200, FTP went offline, then user saw black/dashboard.
+No further launch. User asked whether Xromwell/Windows was visible; pending.
+
+Collection COMPLETE, never repeat. All protected/demo files exact, zero new
+system/application events and zero normalshutdowns. All five E system hives
+match accepted399 byte-exact/clean headers; video trace matches prior398.
+Exact early failure/cause remains unknown. Private evidence E:/xwn407. Physical
+playback NOT reached; emulator406 PASS separate. No writes beyond original two
+demo files; retry/diagnostics read-only, dashboardC untouched. No candidate
+patch, setting change, allocation-scan boot or third launch queued. Host retry
+38700 and collection27133 CLOSED. Hardware ticket demo251 retained.
+
 #407 ACTIVE: physical Media Player demo launched; awaiting user observation
 
 Read outputs/media-physical407/REPORT.md,NEXT.md,before.json,stage002.json,

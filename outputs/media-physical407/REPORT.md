@@ -35,3 +35,22 @@ Stage002 completed:19,742,720-byte MPEG and99-byte play.cmd read back exactly.
 One normal Windows launch was accepted at2026-10-15 23:58:12 UTC with FTP200.
 No automatic playback or restart is configured. User observation is pending;
 no physical video/audio PASS or return collection is claimed yet.
+
+## Explicit retry and failed early boot
+
+The user reported launch001 only dismissed the dashboard screensaver and
+explicitly requested one retry. The original launch/receipts remain unchanged.
+Retry002 reverified every protected file and the complete clip before one SITE
+EXEC at2026-10-16 00:05:31UTC, acceptedFTP200. Dashboard FTP became unavailable
+at the bounded observation. The user then reported a black screen followed by
+a return to UnleashX. No further launch was sent.
+
+Read-only collection completed. Protected files and both demo files remain
+exact. System/application histories are unchanged, with zero new records and
+zero normal Windows shutdowns. All five E system hives match accepted399 bytes
+and have clean sequence headers; the video trace matches the prior398 capture.
+This does not prove the exact failure point or cause. Playback was not reached.
+The read-only loader listing/configuration and private hive captures are retained
+under E:/xwn407. No driver, registry, startup or console file was changed by the
+retry or these diagnostics. The user was asked whether Xromwell was visible;
+that observation is pending. No third launch or scan is queued.
