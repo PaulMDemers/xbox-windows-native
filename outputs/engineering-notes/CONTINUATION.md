@@ -1,3 +1,25 @@
+# 431 photos and live motion: horizontal row-parity detail collapses
+
+Read outputs/field-photos431/REPORT.md, NEXT.md and analysis001.json. Four newly
+supplied photos are from Windows428; user says stock430effect was the same.
+Photos2/3 show solidblack one-line area, survivingtwo-line stripes, blackbit0 and
+magenta marker;photo4 whiteone-line/whitebit0/greenmarker, two-line survives.
+Photo1iscroppedrightside. Four phase/parity model cases reproduce these color
+relationships. Manual interpretation, NOT automatedcamera fit or temporal proof.
+Consistentwithsingle-field expansion/bob/rowdecimation/fieldsampling; cannotprove
+permanentlymissingfield, fixedparity orblameTV/adapter/encoder. No speculativefix.
+UserconfirmsadapterDIRECTTOTV; no receiver/switch/captureinchainreported. TV/adaptermodelunknown; singleTVmake/modelquestionpending. CorrectedLIVEreport:
+"when the test moves, the green column alternates between green and purple. the
+black/white columns flash". Actual428phase2unchangedsource movesy32+(step*3)%64;
+512positions/twoparitymodels showcorrespondingblack-magenta/white-green swaps.
+No actualfieldfrequency/order/componentmeasurement;camera-onlyinsufficient.
+Read431motion002.json/py fornewmodel andexactquote. Next controlledoutput-chaincomparison afteridentification,
+originalsettingspreserved; donotassumeGame/PC modeshelp.720p staysdefault.
+No hardwareaccess/build/launch/settingschange; allpriorcasesclosed. Photohashes
+recorded, originalsprivate/unedited. Frozen428/430reportsretainoldphotos_received
+false accuratelyatclosure; thisnewnote supplieslater evidence.34527bee pushed
+previousruntime/storageevidence; thisturnaddsphotoanalysis/docs only.
+
 # 428-430 CLOSED: exact framebuffer pixels, stock1080i visual issue also reported
 
 Read outputs/field-scanout428/REPORT.md/final-review.json,

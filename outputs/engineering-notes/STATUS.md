@@ -1,4 +1,19 @@
-# Current: 1080i issue also observed outside Windows
+# Current: photographs show row-parity-dependent loss of fine detail
+
+Windows test photos show single-line stripes collapsing to solidblack/magenta
+or white/green while two-line stripes remain. This matches selecting alternate
+source rows, consistent with field-based processing. Still photos do not prove
+permanent field loss or identify the responsible device. The user reports the
+same effect with the stock Xbox test and confirms a direct adapter-to-TV path.
+The corrected live report adds green/purple alternation and black/white flashing
+during movement, so camera sampling alone cannot explain the symptom. Odd-row
+movement of the unchanged pattern explains the parity-color swaps under a model;
+the actual processing algorithm and field order remain unmeasured.
+Next is identifying that equipment and changing one output-chain variable in a
+controlled comparison. No new hardware operation;720p remains the Windows default.
+See [photo interpretation](../field-photos431/REPORT.md).
+
+# Prior: 1080i issue also observed outside Windows
 
 The Windows pattern tests at720p/1080i both returned exact pixels and zero
 shadow-to-mapped-framebuffer mismatches, including after movement. The stock

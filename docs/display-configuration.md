@@ -13,7 +13,15 @@ A standalone test through the stock Xbox video API also produced correct
 framebuffer pixels, while the tester reported clean 720p and solid alternate
 bands at 1080i. The visual issue therefore also occurs without Windows running.
 1080i remains experimental; this is not evidence of a completed fix or a faulty
-adapter specifically.
+adapter specifically. Follow-up photos show the one-line stripe area collapsing
+to black or white, paired with its magenta/green row-parity marker, while two-line
+stripes survive. This is consistent with field-based processing or lost alternate
+row detail, but still photos cannot establish permanently missing fields or
+identify which device is responsible.
+The tester also sees green/purple alternation and black/white flashing during
+movement, so this is not solely a camera artifact. Moving unchanged pixels by
+an odd number of rows can produce those swaps when output processing selects
+one row parity at a time; the responsible processing stage remains unconfirmed.
 
 Resolution is selected at boot. Windows Display Properties is not a supported
 way to switch these profiles while Windows is running. An HDMI connector alone
