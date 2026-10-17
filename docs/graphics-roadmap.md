@@ -54,8 +54,11 @@ were changed. The focused color-key diagnostic also
 [passes on the Xbox 32-bit desktop](../outputs/key-retry449/REPORT.md).
 The [fresh full Xbox matrix](../outputs/sprites-retry452/REPORT.md) also passes
 all six cases and174,080 exact bytes at720p/32-bit, followed by normal restart.
-The earlier no-receipt attempt remains preserved. Next qualify lifecycle tests
-and then D3D discovery; no accelerated rendering is implied.
+The earlier no-receipt attempt remains preserved. Bounded surface lifecycle
+controls also [pass on PC and Xbox](../outputs/lifecycle-xbox454/REPORT.md),
+including exact copies, repeated release, thread-local focus and a fixed memory
+budget. Actual lost-surface restoration remains unqualified. Next is D3D device
+discovery; no accelerated rendering is implied.
 
 | Stage | Work | Evidence needed to advance |
 |---|---|---|

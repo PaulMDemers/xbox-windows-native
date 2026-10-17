@@ -1,3 +1,27 @@
+# Current: lifecycle453 PC and454 physical bounded controls PASS; next D3D discovery
+
+Read outputs/lifecycle453 and lifecycle-xbox454 REPORT/DESIGN/NEXT/final-review,
+runtime-review/actual-controls and all lifecycle records. Same new sample
+4d1151e57bc04df2318c52df8ca0496cb54bce8610f591145a709d1ac2b97ca9,17674B/27NT5imports;
+controllers24imports. Eachdefault/HEL8warmup+64measured,2surfaces128x96RGB32,
+288releases0/platform;12582912exactbytes/platform;4718actualmutations/platform.
+Thread-localfocus3ackswhilefirstpairlive;allIsLostDD_OK, NOactualRestore/loss/OOM/
+globalforeground/GPU/leakfreeclaim.1MiBcommitgrowthbudget;exactvaluesinrecords.
+453fresh404child146preflightBEFORElaunch,gatebyteexact;generator001newlinefailure
+retained/restoredbeforeprep.64MiB/640x480x16 unchanged;normalrestart/QEMUexit0,
+cold6483files309dirs8adds0removed15changed5cleanhives,19NTFS3Gfilesagree/unmounted,
+147inputsarchived231privatefiles. All453closed inclcold070351/run64591/cold123686.
+454newphysicalsamebinary,720p1280x720x32;PSAPImodulepinned/readback;oneacceptedSITE,
+receiptat119seconds;normalrestart/new6006,hookremovedfirst,5clean/rawagreehives,
+protectedstartup/launcher/code exact. StrictFALSEFt49+TWOrundll32shutdownpopups.
+All454closed inclstage28145/observe76571/collect4673. Neverrerun/rearm/recollect.
+454prepackagecapacityreview fixedunexecuted32KiB wrapperto256KiB afteractualPC
+reports43KiB;bothreportsand8negativescheckedbeforefreeze. Allfailuresretained.
+452spritePASS174080bytes remainscommitted ec969909; manualboots2confirmed1uncertain.
+Next outputs/d3d-discovery455/DESIGN.md only:actualD3D7QI/EnumDevices,boundedcomplete
+caps+GUIDtransport,independentnegatives,freshPCthenphysical. NO455build/runtimeyet.
+No activeconsolehook/useraction. Keep720p/runtime/driver, dashboardC untouched.
+
 # Current: Xbox452 full sprite matrix PASS; next lifecycle05
 
 Read outputs/sprites-retry452 REPORT/DESIGN/NEXT/final-review/runtime-review and

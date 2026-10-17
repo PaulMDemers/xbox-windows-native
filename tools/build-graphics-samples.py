@@ -22,7 +22,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--rosbe', required=True, type=Path)
     p.add_argument('--output', required=True, type=Path)
-    p.add_argument('--sample', choices=('ladder', 'present', 'sprites', 'keyprobe'), default='ladder')
+    p.add_argument('--sample', choices=('ladder', 'present', 'sprites', 'keyprobe', 'lifecycle'), default='ladder')
     a = p.parse_args()
     if sys.platform != 'linux':
         p.error('Build under Linux/WSL with the documented RosBE toolchain')

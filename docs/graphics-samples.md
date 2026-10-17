@@ -26,7 +26,7 @@ The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 | 02 | DirectDraw system-memory copy | Explicit RGB32 offscreen surfaces; write/lock/unlock, rectangle blit, exact source and destination readbacks | Default and HEL controls passed on PC/NT5/Xbox |
 | 03 | Windowed DirectDraw presentation | Primary surface plus window clipper; cover/uncover and move the window without damaging adjacent GDI content | NT5 PC/Xbox default and HEL pixel controls passed |
 | 04 | Palettes, formats and sprites | 8-bit palette changes, supported 16/32-bit formats, color-key sprites, clipping and overlapping copies in both directions | All six cases pass on NT5 PC at24-bit and Xbox at32-bit |
-| 05 | Surface lifecycle and memory budget | Focus changes, lost-surface handling where applicable, repeated create/release, failure recovery and bounded memory use | Planned |
+| 05 | Surface lifecycle and memory budget | Focus changes, lost-surface handling where applicable, repeated create/release, failure recovery and bounded memory use | Bounded churn/focus/memory controls pass on NT5 PC and Xbox; actual loss/restore remains unqualified |
 | 06 | Legacy D3D discovery | Query the chosen D3D interface, enumerate actual devices/caps; distinguish software and hardware choices | Planned; begin with the installed legacy runtime, not a DLL upgrade |
 | 07 | Clear and triangle | Offscreen render target, clear, pretransformed colored triangle, independent interior/background pixel checks | Planned |
 | 08 | Textures, depth and blending | Known texture orientation/filtering, overlapping triangles with depth, transparent quads and alpha reference pixels | Planned |
@@ -374,3 +374,60 @@ qualifies all six rung04 cases, including the remaining palette and overlap
 stages:174,080 exact bytes,2,520 rejected actual-result mutations, normal restart
 and test-hook removal. It leaves the720p mode, runtime and driver unchanged.
 This is system-memory correctness, not GPU acceleration or game qualification.
+
+## Bounded surface lifecycle sample
+
+[lifecycle.c](../src/samples/graphics-ladder/lifecycle.c) checks repeated
+system-memory allocation, exact copies and release without changing display mode.
+The bounded control passes on [NT5 PC](../outputs/lifecycle453/REPORT.md) and
+[Xbox](../outputs/lifecycle-xbox454/REPORT.md):12,582,912 exact bytes per platform
+and4,718 rejected actual-result mutations. Actual lost-surface restoration remains
+unqualified.
+Build it in a fresh directory:
+
+```sh
+python3 tools/build-graphics-samples.py \
+    --sample lifecycle \
+    --rosbe "$HOME/xwn-rosbe-001/RosBE-2.2.1" \
+    --output "$HOME/xwn-lifecycle-001"
+```
+
+Copy `lifecycle.exe` and `lifecycle.cmd` together. Run each backend with its own
+fresh output prefix, using a disposable Windows 2000 PC control before an Xbox:
+
+```bat
+lifecycle.cmd default life-d
+lifecycle.cmd hel life-s
+```
+
+Two small owned windows appear briefly. With two surfaces still allocated, the
+sample checks activation/focus between its own windows using thread-local handles
+and focus messages. It does not dismiss other applications' dialogs or assert
+that its window is globally in the foreground. Eight warm-up iterations precede
+64 measured iterations. Each holds two 128×96 RGB32 system-memory surfaces, checks
+a copied rectangle and untouched borders, then releases both objects.
+
+Keep `.txt`, `.exit` and `-pixels.bin` for each prefix. Each complete pixel file is
+6,291,456 bytes, containing 64 consecutive source/destination pairs of tightly
+packed little-endian DWORDs. The file includes every source and destination pixel;
+no guest checksum substitutes for the independent host oracle. Validate with:
+
+```sh
+python3 tools/graphics_lifecycle.py /path/to/results/life-d --backend default
+python3 tools/graphics_lifecycle.py /path/to/results/life-s --backend hel
+python3 tests/test_graphics_lifecycle.py
+```
+
+The sample records PSAPI process commitment and working-set measurements. Its
+predeclared commitment-growth limit is 1 MiB above the post-warm-up baseline.
+Passing this finite bound does not prove the absence of leaks or account for all
+kernel/driver memory. It also requires refusal of a malformed surface descriptor,
+followed by successful valid allocations; this does not test out-of-memory recovery.
+
+In this unchanged-mode test, `IsLost` must return `DD_OK`. It does not force a loss
+or call `Restore`, so actual lost-surface recovery remains a separate unqualified
+scenario. Exit0 means the scoped checks completed, exit1 means a check/API failed,
+exit2 is an argument/initial-output failure, and exit4 is a recorded I/O failure.
+The batch wrapper has no watchdog; the private validation controller separately
+bounds each process at 90 seconds. No primary-surface, GPU or D3D support follows
+from this sample.

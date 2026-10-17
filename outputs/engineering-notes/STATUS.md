@@ -1,3 +1,13 @@
+# Current: bounded lifecycle controls pass on PC and Xbox
+
+The [new lifecycle sample](../lifecycle-xbox454/REPORT.md) passed on both platforms:
+64 measured iterations per backend,12,582,912 exact bytes per platform, repeated
+surface release, owned-window focus checks and a fixed commitment-growth budget.
+Both controls restarted normally. The Xbox hook is removed and all owned sessions
+are closed. Ftdisk49 and two shutdown-time rundll32 popups remain separate limits.
+Actual lost-surface recovery, GPU acceleration and games are not yet qualified.
+Next is the installed Direct3D7 device/capability inventory; its design is ready.
+
 # Current: complete Xbox sprite matrix passes
 
 The [452 physical retry](../sprites-retry452/REPORT.md) passes all six palette,
