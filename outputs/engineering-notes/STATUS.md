@@ -1,4 +1,24 @@
-# Current: clean-install security storage blocker confirmed
+# Current: failing security-storage requests identified
+
+425 completed one fresh emulator debugger run and cold audit. It observed
+STATUS_NAME_TOO_LONG for a44-byte userSID directory under Crypto/RSA, a69-byte
+machine RSA key filename, and a services.exe request for the44-byte user Protect
+SID directory during userDPAPI. All145 observed file calls paired with returns;
+seven native checkpoints and full debugger cleanup passed. Service RPC identity
+was not independently traced. See [425 report](../crypto-path425/REPORT.md).
+
+Normal restart, orderly exit0, clean FATX allocation, five clean hives and3149
+unchanged protected Windows binaries are recorded. Strict qualification remains
+false for inherited Ftdisk49/kbdhid1; this debugger run is not ordinary validation.
+No physical Xbox change or functional driver patch occurred. The720p demo remains
+available. All owned processes are closed; no hardware test is queued.
+
+Next is a compatible long-name storage design and bounded crash/collision models,
+followed by driver integration and actual API/namespace/restore tests. Raising
+FATX's fixed42-byte directory field limit is not a fix. Six clean-transfer
+exclusions and public Windows-bundle gates remain unresolved.
+
+# Prior: clean-install security storage blocker confirmed
 
 The 423/424 emulator comparison is complete and all owned processes are closed.
 The same original NT5 probe passes user/machine RSA key and DPAPI persistence on

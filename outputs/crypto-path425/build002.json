@@ -1,0 +1,54 @@
+{
+  "space": {
+    "minimum_free_gib": 20.0078125,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/e",
+        "free_bytes": 21791899648
+      },
+      {
+        "free_bytes": 22339014656,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "compiler": "/home/paul/xbox-windows-native/release-readiness403-bootstrap001/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc",
+  "compiler_sha256": "8ab0685d97b322aad3c37fd362b26fa5b9408ff6dd55a536c0a2d48de1c22b18",
+  "source_sha256": "aae4365123cd906af2a5f8e52e193a86038749e02cce8146c7fa9b6063af4662",
+  "rows": [
+    {
+      "name": "trace.exe",
+      "command": [
+        "/home/paul/xbox-windows-native/release-readiness403-bootstrap001/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc",
+        "-Os",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-nostdlib",
+        "-fno-stack-protector",
+        "-fno-builtin",
+        "-Wl,--entry,_mainCRTStartup@0",
+        "-Wl,--subsystem,console:5.0",
+        "-Wl,--image-base,0x17000000",
+        "-Wl,-Map,/mnt/e/xwn425/build002/trace.map",
+        "-DCREATE_PHASE=1",
+        "-o",
+        "/mnt/e/xwn425/build002/trace.exe",
+        "/mnt/e/xwn425/build002/probe.c",
+        "-lkernel32",
+        "-luser32",
+        "-ladvapi32",
+        "-lcrypt32"
+      ],
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "/mnt/e/xwn425/build002/trace.exe",
+      "sha256": "daebde3e2391f9dcf1e626d7081d7d539d2614488479a7c62ef6796c9ca32eda",
+      "bytes": 20593
+    }
+  ],
+  "guest_launched": false
+}

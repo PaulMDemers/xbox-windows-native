@@ -154,10 +154,13 @@ two-boot emulator comparison, the same diagnostic passed user/machine RSA key
 persistence and user/machine DPAPI protection on NTFS. On FATX, user RSA and user
 DPAPI creation failed with error 206 (filename exceeds range), and machine RSA
 creation also failed. Machine-scoped DPAPI alone passed the immediate and
-post-restart checks. The exact failing provider file requests have not yet been
-traced; these results do not justify renaming or dropping cryptographic files.
+post-restart checks. A subsequent native file-API trace observed
+`STATUS_NAME_TOO_LONG` when creating the 44-byte user SID directories and a
+69-byte machine RSA key filename. These results do not justify renaming or
+dropping cryptographic files; compatible long-name storage is still needed.
 See the [NTFS control](../outputs/crypto-persistence423/REPORT.md) and
-[FATX results](../outputs/crypto-fatx424/REPORT.md).
+[FATX results](../outputs/crypto-fatx424/REPORT.md), followed by the
+[actual file-request trace](../outputs/crypto-path425/REPORT.md).
 
 Ftdisk 49, first-boot Plug and Play warnings and kbdhid 1 are retained. Their
 installed message resources identify crash-dump pagefile configuration failure,

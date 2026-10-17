@@ -1,3 +1,58 @@
+# 425 CLOSED: actual native long-name requests identified
+
+Read outputs/crypto-path425/REPORT.md, DESIGN.md, NEXT.md, final-review.json,
+trace-verification001.json and source-closure001.json. All owned sessions closed:
+builds/static reviews, preparation93539, runner63912, supervisor74853, tracer21691
+and cold collector66280. Host/WSL closeout found no xemu, QEMU, NBD or FUSE workers.
+No physical access or driver change. Never relaunch/recollect425emu001 or consumed
+423/424/425 cases; no hardware test queued. Original720p demo restored by422.
+
+One fresh425 child of unchanged406 staged only a new checkpoint-only probe.
+Native build002 daebde3e2391f9dcf1e626d7081d7d539d2614488479a7c62ef6796c9ca32eda,
+38 actual NT5 imports, seven checkpoints with PID/TID/header/stub/callsite proof.
+Actual145 native file-call pairs:120 trace.exe and25 services.exe. No pending,
+unpaired or incomplete calls; all breakpoints removed, physical mode0 and resume.
+853 actual-evidence mutations and64 synthetic parser/pairing cases pass.
+All231 frozen inputs exact; no private data buffers were read.
+
+Specific C0000106 (STATUS_NAME_TOO_LONG) requests: event83 creates44-byte userSID
+directory under Crypto/RSA; event112 FILE_OPEN_IF on69-byte machine RSA key file
+under All Users Crypto/RSA/MachineKeys. That leaf exactly matches423's NTFS file.
+Event130 services.exe creates44-byte userSID directory under Protect during the
+userDPAPI interval. No RPC call-ID or impersonation trace: do not overclaim that
+service-to-caller pairing. Events30/31 direct43/69-byte names fail the same way.
+MachineDPAPI service creates/opens its shortSID/master-key paths successfully.
+The cold log reproduces424 userRSA206/machineRSA80090020/userDPAPI206.
+
+Source closure: installed403 FATX318fc432... matches tree dc942ab4...; public and
+recorded create.c/dirwr.c exact. Matching add-entry source contains the42-character
+and encoded-byte guards. This is static source correlation plus actual native
+syscall return, not an internal FATX instruction breakpoint.
+
+Launch accepted2026-10-17T01:22:32UTC, dashboard returned01:25:49UTC; normal native
+restart/EventLog6006delta1, orderlyhostexit0, no timeout/fallback. Cold279dirs,
+6564files,257directoryclusters,0errors/orphans, five clean independently raw-checked
+hives,3149 protected Windows binaries plus probe unchanged.18 runtime files
+changed, seven added. Ftdisk49/kbdhid1 and DRMtyped0x404 failure retained.
+StrictFALSE and ordinaryFALSE (debugger run), no long-name storage fix.
+
+Preserve425 build001 lease-env refusal before compile, sites001 WindowsCapstone
+inWSL import refusal, sites002 decimal/hex ret-operand refusal; corrected002build/
+003sites separate. Initial Enter while stopped did not dismiss Run or reach a
+checkpoint. Unknown HMPscreendump failure retained; bounded running framebuffer
+read showed exact Run path. One additional Enter while running yielded all seven
+stops. No second SITE EXEC/executable launch, no frozen-script edit. UI capture
+is not a coherent framebuffer test. Exact interventions recorded in emu001.
+
+Next: review/select actual long-name storage design against boot/dashboard/recovery
+constraints (logical FATX namespace with durable metadata versus file-backed
+Windows volume). Do not repeat solved probe-only boots, raise the42-byte disk
+field, drop/rename security files or waive clean-install gates. Start with bounded
+host transaction/collision/torn-write models before integrating any driver. COM+
+and real install/restore remain separate. 1080i and hardware launch parity remain
+open. Private425 runtime/modules/build/screens at E:/xwn425, never publish them.
+Keep20GiB projected build/launch reserve; see host-closeout001 for current space.
+
 # 423/424 CLOSED: real FATX crypto persistence failures, NTFS control passes
 
 Read outputs/crypto-fatx424/REPORT.md, DESIGN.md, NEXT.md, final-review.json and
