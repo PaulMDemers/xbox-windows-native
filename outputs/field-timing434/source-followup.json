@@ -1,0 +1,56 @@
+{
+  "sources": [
+    {
+      "repo": "Cxbx-Reloaded/Cxbx-Reloaded",
+      "revision": "585c49a50af1255ab155099e06f24505f9c5a800",
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/Cxbx-Reloaded/Cxbx-Reloaded/585c49a50af1255ab155099e06f24505f9c5a800/src/devices/video/EmuNV2A_PCRTC.cpp",
+          "path": "C:\\xwn434\\source003\\EmuNV2A_PCRTC.cpp",
+          "sha256": "ab07979bc1b629385ead7959d0c54a3864cea15210a9fb0351e8811b464dffae",
+          "bytes": 3216
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Cxbx-Reloaded/Cxbx-Reloaded/585c49a50af1255ab155099e06f24505f9c5a800/src/devices/video/EmuNV2A_PRAMDAC.cpp",
+          "path": "C:\\xwn434\\source003\\EmuNV2A_PRAMDAC.cpp",
+          "sha256": "7101f15b65bd8d5508eac16db7f6f73cfe2f88693f81998f9510cfd26c30733e",
+          "bytes": 3239
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Cxbx-Reloaded/Cxbx-Reloaded/585c49a50af1255ab155099e06f24505f9c5a800/src/devices/video/EmuNV2A_PRMCIO.cpp",
+          "path": "C:\\xwn434\\source003\\EmuNV2A_PRMCIO.cpp",
+          "sha256": "a39b5f41299d86efe6c72f42123922dfc050fe7a5993c8e5f7df9a0d5e3969a5",
+          "bytes": 3750
+        }
+      ]
+    },
+    {
+      "revision": "585c49a50af1255ab155099e06f24505f9c5a800",
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/Cxbx-Reloaded/Cxbx-Reloaded/585c49a50af1255ab155099e06f24505f9c5a800/src/core/hle/D3D8/Direct3D9/Direct3D9.cpp",
+          "path": "C:\\xwn434\\source004\\Direct3D9.cpp",
+          "sha256": "3fe69c71903f2280cb586c7bdbff00fb99bba80e3951473f5b67349e87e0c3d4"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Cxbx-Reloaded/Cxbx-Reloaded/585c49a50af1255ab155099e06f24505f9c5a800/src/devices/video/EmuNV2A_PRMCIO.cpp",
+          "path": "C:\\xwn434\\source004\\EmuNV2A_PRMCIO.cpp",
+          "sha256": "a39b5f41299d86efe6c72f42123922dfc050fe7a5993c8e5f7df9a0d5e3969a5"
+        }
+      ]
+    }
+  ],
+  "installed_sources": {
+    "C:\\nxdk\\lib\\pbkit\\pbkit.c": "da9835f0d9e9da4a7e5c185b7913752aab5614bfc170ebc572cc12cc3af0da92",
+    "C:\\nxdk\\lib\\pbkit\\outer.h": "d1bac570ee7e2ee1fce989899819a74d0245f5f1948f54a63a01b7f0927faa0c",
+    "C:\\nxdk\\lib\\hal\\video.c": "3441a2d933b475a05d4edb1ff02bcdbc160f76b970d847169c0c4ca7d261dc2f"
+  },
+  "findings": [
+    "nxdk video ISR acknowledges vblank and queues event DPC; no row-offset toggle in reviewed body",
+    "PBKit ISR swaps complete queued framebuffer bases; no explicit interlaced offset toggle in reviewed body",
+    "PBKit initialization sets PCRTC_CONFIG low3bits to2; actual434 mode-only captures read3. Untested difference, not root-cause proof",
+    "Cxbx GetDisplayFieldStatus uses emulated vblank parity, not a physical register bit; cannot serve as hardware proof"
+  ],
+  "conexant_reference": "https://dtsheet.com/doc/737283/conexant-cx25870",
+  "conexant_scope": "Manufacturer Appendix E: SD FLD_MODE has no HDTV effect; 1080i relies on input sync phase. Actual encoder revision unresolved."
+}

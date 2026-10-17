@@ -1,3 +1,14 @@
+# Current: live raster timing captured; 1080i row loss unresolved
+
+A new read-only hardware probe completed and returned to the dashboard. Its
+41,071 samples show the expected 540-line CRTC active area for 1080i and about
+60 cycles per second. Pitch is correct; standard double-scan and vertical-scale
+controls are off. This narrows the software investigation but does not establish
+that opposite source rows are fetched for alternate fields. No adapter fault or
+fix is proved. Next review the normal graphics initialization's scanout setup
+before a controlled comparison. Windows remains at the known-good720p default.
+See [live timing evidence](../field-timing434/REPORT.md).
+
 # Current: second display reproduces the 1080i artifact
 
 A fresh comparison on the user's new display reports the same visible behavior.

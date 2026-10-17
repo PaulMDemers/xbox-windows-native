@@ -1,3 +1,36 @@
+# 434 CLOSED: actual raster cadence, parity remains unresolved
+
+Read outputs/field-timing434/REPORT.md, NEXT.md, review002.json,
+physical001-collection.json and analysis001.json. One accepted launch
+2026-10-17 05:14:16 UTC, collected 05:15:29 after firmware restart/dashboard.
+Three modes 720p/1080i/recovery720p; 41,071 raw timestamped samples, stable
+23 CRTC/29 MMIO snapshots, native same-helper pixel checks zero. No timing
+patch, encoder write, GPU initialization, Windows/driver/startup change or C
+access. Protected baseline and 720p launcher unchanged. Five private captures
+C:/xwn434/physical001 double-read/rehashed; never relaunch/recollect this case.
+All host sessions closed. No new test queued.
+
+1080i: decoded pitch7680, CRTC540 active/output1080, raster low0..560,
+~16.667ms cycles with short/long alternation; double-scan/row-repeat/NV04-named
+vertical-scale enable off. Counter range/cadence is not row-fetch parity proof.
+Bit16 blanking correlation; no physical field-ID definition established.
+One197->196 internal regression preserved (13 raw decreases,12 selectedwraps).
+720p low0..749; recovery same. 79 host negatives plus54 actual-header negatives.
+Build001 e221a9f3... sharedSDK unchanged; inherited mergewarning only.
+Host001 wrong modeled AV pack enum preserved; host002 uses actual4.
+Review001 pointer-declaration matcher failure preserved; review002 passes.
+xemu raster stub increments on read; no emulator timing qualification.
+
+Source review: nxdk ISR has no row-offset toggle; PBKit swaps whole bases and
+sets PCRTC_CONFIG address mode2 instead of observedstock3. This is an UNTESTED
+lead, not a diagnosed cause/patch. Review full normal initialization/ownership/
+restoration before new owned graphics-initialized comparison with independent
+pixels and actual visual evidence. No guessed register/IRQ fix. Conexant manual
+says SD FLD_MODE has no HDTV effect, incoming sync phase matters; actualencoder
+revision stillunknown. Adapterfault notproved, purchase not prerequisite.
+720p remains default; 1080i visual issue unresolved. Otherreleasepriority429
+native image discovery/clean install/tester bundles unchanged.
+
 # 433 read-only field hypothesis review
 
 User confirms POUND externally powered. Fullscreen, solidone-rowband, odd-row
