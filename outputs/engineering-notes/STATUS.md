@@ -1,3 +1,17 @@
+# Current: RGB32 color-key behavior isolated on the NT5 PC control
+
+The new [diagnostic446](../key-semantics446/REPORT.md) passes all plain RGB32
+copies and reproduces keyed-copy failures with three keys, with and without
+clipping. Full key values are retained. All captured pixels fit a low16-bit
+comparison model; the responsible implementation is not traced. Both default
+and HEL completed all12 operations and correctly reported failure.
+
+92,160 captured bytes;11,416 evidence mutations rejected. Normal restart, clean
+cold audit, independent20-file readback and145 archived dependencies. The new
+launcher enforces completed preflight itself;59 host refusal checks passed.
+No Xbox changes. Next compare the same binary on an actually enumerated24-bit
+desktop, then qualify the Xbox path before lifecycle and D3D discovery.
+
 # Current: palette/RGB565 sprites pass on NT5; RGB32 key issue isolated
 
 Rung04 now builds and has documented run/check commands. Four default/HEL

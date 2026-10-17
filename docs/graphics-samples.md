@@ -291,3 +291,53 @@ mode before any sample case ran. It also retains a host preflight-ordering
 limitation and is not deployment qualification. No rung04 Xbox test has run.
 Expected pixels and all failed results remain intact; the installed Xbox driver
 and 720p baseline are unchanged.
+
+### RGB32 color-key diagnostic
+
+[keyprobe.c](../src/samples/graphics-ladder/keyprobe.c) narrows the RGB32 failure
+without modifying the rung04 sample or changing the desktop mode:
+
+```sh
+python3 tools/build-graphics-samples.py --sample keyprobe \
+    --rosbe "$HOME/xwn-rosbe-001/RosBE-2.2.1" \
+    --output "$HOME/xwn-keyprobe-001"
+```
+
+Copy `keyprobe.exe` and `keyprobe.cmd` together. From Windows, run each backend
+with a fresh output prefix:
+
+```bat
+keyprobe.cmd default keyd
+keyprobe.cmd hel keys
+```
+
+The hidden-window test enumerates supported display modes, then performs twelve
+independent RGB32 copies: three keys, with/without keying, with/without clipping.
+It tests exact keys and near-colors that differ only in their red byte. Each
+operation resets its destination. Pixel mismatches are recorded while later
+operations continue; API or layout failures stop the diagnostic.
+
+Keep `.txt`, `.exit`, `-source.bin` and `-dest.bin` for each prefix. The two binary
+files contain twelve consecutive frames of little-endian DWORD pixels: source
+16x12 (9,216 bytes total), destination32x24 (36,864 bytes total). Copy them back
+to the host and check:
+
+```sh
+python3 tools/graphics_keyprobe.py /path/to/results/keyd --backend default
+python3 tools/graphics_keyprobe.py /path/to/results/keys --backend hel
+python3 tests/test_graphics_keyprobe.py
+```
+
+Exit0 means all expected pixels matched; exit1 records pixel failures, exit2
+includes API/layout or argument failures, and exit4 is an I/O failure. Complete
+diagnostic records do not make failing pixels acceptable. The batch wrapper has
+no watchdog; the owned validation controller separately bounds each process at
+90 seconds. There is no display-mode change, primary surface, scanout test or
+hardware acceleration claim.
+
+The [NT5 diagnostic](../outputs/key-semantics446/REPORT.md) completed both backends:
+all plain copies matched, while keyed copies failed with three distinct keys,
+both with and without clipping. Full keys were retained by `GetColorKey`.
+All destination captures match a low16-bit comparison model; the responsible
+implementation is not traced. The current16-bit desktop enumerates24-bit modes
+but no32-bit mode. These failures are recorded, not accepted as compatible.

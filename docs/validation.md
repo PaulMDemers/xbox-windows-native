@@ -35,6 +35,7 @@ Use the result that applies to the change you intend to make.
 | Graphics ladder 00–02 | Modern host, NT5 PC and Xbox scoped pass | Six allowed cases; NT5 and Xbox each verify 129,024 bytes and reject 402 actual-evidence mutations. [Xbox438](../outputs/graphics-xbox438/REPORT.md) retains Ftdisk49 and two shutdown-time rundll32 popups; no primary/D3D/GPU qualification. HAL-only system-memory path remains excluded after the retained host crash |
 | Graphics ladder 03 | NT5 PC and Xbox scoped pass | Default/HEL primary presentation with exact HWND clipping, cover/move/uncover and neighboring GDI pixels. Each platform verifies 3,604,480 bytes and rejects 468 mutations. [Xbox442](../outputs/presentation442/REPORT.md) retains Ftdisk49 and two new shutdown rundll32 popups. No scanout/GPU/D3D claim |
 | Graphics ladder 04 | Partial NT5 PC pass | Indexed8/RGB565 default and HEL verify 118,784 bytes. RGB32 clipped keyed copies omit pure-red pixels on the 16-bit PC desktop; unresolved, no Xbox rung04 qualification. [444 evidence](../outputs/sprites444/REPORT.md) |
+| RGB32 key diagnostic | Complete observation; keyed semantics fail | Both backends pass plain copies; three keys fail with/without clipping,134 pixels/backend. Full key values retained; all pixels match low16 comparison model, implementation not traced. [446 evidence](../outputs/key-semantics446/REPORT.md) |
 
 The [1080i investigation](1080i-investigation.md) is paused. Standalone tests
 reproduce the defect without Windows, and normal PBKit initialization did not

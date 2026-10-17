@@ -1,3 +1,47 @@
+# Current: RGB32 keyed-copy failure narrowed; diagnostic446 closed - October17,2026
+
+Read outputs/key-semantics446/REPORT.md,DESIGN.md,NEXT.md,runtime-review001.json,
+launch-admission001.json,actual-controls001.json,final-review.json and actual logs.
+One fresh PC child of404, normal restart/QEMUexit0, no hostquit/kill/deadline.
+ALL owned sessions CLOSED:builds/controller, runtime87109,cold0 96576/cold1 51066,
+graphics tests87177, independent reader/actual controls/closeout. No Xbox access.
+
+New keyprobe.c and independent tools/graphics_keyprobe.py, builder --sample keyprobe.
+Binary0fcbc34e3d18339aa0f4a7bfe1d2e8852846a697469e7a591d97456863b3649c,
+17366B,23NT5 imports; controller24. Warningfree, no host executable execution.
+Private /home/paul/xbox-windows-native/key-semantics446-{build001,runner-build001,
+pc001,independent001,inputs001}. Exact source/pins preserved. Initial copied batch
+wrapper lacked receipt handling; retained unused. Current public wrapper corrected
+before preflight; guest exclusively used native controller's own process receipts.
+
+Actual default/HEL each completed12 operations, exit1 with134 pixel mismatches.
+All6plain copies/backend PASS (clipped/unclipped), allsourcecaptures exact.
+All6keyed copies/backend FAIL: keys0/ff0000/123456, full GetColorKey values retained,
+all APIs DD_OK, exactlayouts, releasecounts0. Failures(unclipped/clipped):36/21,
+36/22,12/7. Every destination matches low16-comparison MODEL; implementation
+not traced. Do not call this a fixed runtime/driver or passing RGB32 rung04.
+Desktop640x48016. Actual105mode rows incl4/8/16/24, no32;640x48024 at60/72/75/85Hz.
+
+New actual launch gate requires completed pinned preflight/fixture/cold baseline,
+onehour validity, unique attempt, atomic publication/exclusive launch consumption.
+59host refusals passed with modeled Popen; actual preflight published beforedispatch.
+No missing/partial/stale/changed record may launch. Failedspawn consumesattempt.
+Hostorchestrator must still await actualdependentprocess exit.445orderfailure unchanged.
+
+92160captured bytes,11416actual mutations rejected,12graphics verifiergroupsPASS.
+Cold6485files309dirs10ownedadds,5clean/rawagreehives,protectedbinaries/source/floppy
+unchanged,QCOWclean,new6006. NTFS3G20selectedreadsagree/unmounted/diskunchanged.
+145frozen dependencies privatelyarchived,229privatefilesrehash. No fullNTFSallocation
+audit; inheritedSOFTWARE DRMtypeddecode limitation retained. No GPU/performanceclaim.
+
+NEXT fresh exactbinary24bit desktopdiagnostic using actualenumeratedmode: test/apply/
+verify,2backends,restore/verify16,normalrestart/coldaudit. Not a32bitmatch. Then matched
+Xbox720p32bit diagnosis/rung04, lifecycle05 andD3D discovery06. No currenthardwaretest
+queued. Neverrerun/recollect/parent446 or443/444/445; keep all expectedpixels/gates.
+Public docs/build/checkcommands updated. Earlier qualifiedrungs00-03, physical720p,
+driver/DLLs/recovery and1080pause unchanged. Originalgamesuntested. Historicaluntracked
+files untouched. Commit/push state: read git HEAD/origin after this closeout.
+
 # Current: rung04 partial NT5 pass; RGB32 keyed-copy gap - October17,2026
 
 Read outputs/sprites443/REPORT.md,failure-analysis001.json,final-review.json;

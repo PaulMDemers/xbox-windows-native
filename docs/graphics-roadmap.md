@@ -48,8 +48,10 @@ surfaces to D3D triangles, textures and game-like scenes. Rungs 00–02 now have
 passing scoped controls on the modern host, Windows 2000 PC and physical Xbox.
 Rung 03 now passes windowed presentation and GDI coexistence on NT5 PC and Xbox.
 Rung04 now has NT5 indexed-palette and RGB565 sprite controls; RGB32 color-key
-validation remains incomplete. Next resolve that format behavior and check the
-Xbox before lifecycle tests and D3D.
+validation remains incomplete. A [focused NT5 diagnostic](../outputs/key-semantics446/REPORT.md)
+passes plain RGB32 copies but reproduces keyed-copy failures with three keys,
+with and without clipping. Next compare desktop depth and check the Xbox before
+lifecycle tests and D3D.
 
 | Stage | Work | Evidence needed to advance |
 |---|---|---|
