@@ -1,3 +1,35 @@
+# Current:462 first-refusal diagnostic launched; screen reply/cold collection pending
+
+Read outputs/boot-refusal462 DESIGN/REPORT/NEXT/build001/source-review001/host001/
+refusal-tests001/decoder001/stage001/launch001/observation001. New separatewrapper
+capturesFIRST deliberate-refusal reason/status/IOSB/handle/close-state BEFORE
+cleanup in exclusive96-byte refusal.bin. Reasons1..11create/headerwrite/flush/
+trailerwrite/flush/close/snapshot/eligibility/postlogpayload/high/low. Fallbackown
+handle/IOSB, oneattempt, no recursion/retry/resume. MissingrecordUNKNOWN, complete
+recordnotproofitsflush/close/reboot. Successflow461exact exceptMOVstage/closestores,
+no new successfilecall. Entireoriginalsource11editsreverse;payload288316unchanged.
+Host00155actualassembledx86cases(kernel/fileMODELS),48completefallbackrecords,
+976fallback+296primaryparsernegatives. CLItrapbeforeprivilegedexecution verifies
+restoredregs/flags. No actualpaging/GPU/D3D/ASan claim.
+Build001 E:/xwn462/build001/default.xbe SHAd71cc4e06b8a0477b0a8aa2fa4be8bcbbbf39b22682e8f0db35e37470d325e29,
+300624B. StagefreshE:\Applications\XWNBoot462a, oneSITEaccepted23:06:26UTC.
+Observer74719CLOSEDnormal90secdeadline, FTPoffline. UserASKEDscreen; replypending.
+IfdesktoprequestnormalWindowsRestart; ifblack/stuckrecorduserbefore recovery.
+NOnewlaunch,NOone-shotreset. Stage/launch2480closed. Allownedprocessesclosed.
+No hook/autorestart,original6240launcher/startup/720pdriversunchanged,NoXboxCaccess.
+Afterdashboardreturn physical.py collectONCE then cold-review001.py(WSL hivepath).
+Handlesoptionalprimary/refusal,jointfirst-state,evidencebytes,hives/newEventLog;
+recordactualreasonifpresent; absenceisUNKNOWN. Host/corechecksnotphysicalauthority.
+Nextbasedonrefusalprecisestage; elseboundedearlyCromwellmarkerrequiresreview,
+noXboxkernelfilecallsafterpaging. OriginalpathremainsE:\Applications\XWNEBoot.
+
+461closedboot/restartPASSscope,strictFt49; allnonidentityprepwordsequalfailed460,
+rootcauseunknown. Alloldfailures/rollbacks/pins preserved. D3Dphysicalinventory/
+renderingstillpending,455PC/452sprites/454lifecyclescopesseparate. Consolephysical
+rootdemo251ticket retained.20GiB C/Eguard; E tight~21.52GBdecimal. NoDdrive.
+Latestpushedbeforethisworkba3d8281;finishrepo/exactstage/commit/pushpendingstate.
+Historicaluntrackedfilesuntouched. No pendingautomation.
+
 # Current:461 successful desktop/restart cold-audited; prep record equals failed460
 
 Read outputs/boot-handoff461 REPORT/NEXT/actual-review002/comparison001/collection001

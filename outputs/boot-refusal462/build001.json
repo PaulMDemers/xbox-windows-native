@@ -1,0 +1,88 @@
+{
+  "status": "compiled",
+  "utc": "2026-10-17T23:03:40.709510+00:00",
+  "space": {
+    "minimum_free_gib": 20,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/e",
+        "free_bytes": 21519925248
+      },
+      {
+        "free_bytes": 27735273472,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "original_xbe_sha256": "6240a801d97c4894e56d516a934059da056446fb77cf895b5364bdd6cd24be9a",
+  "original_wrapper_sha256": "b8ddf72f41a682d3868f1b801492b31005611c6868aa5927f54e5ce14bb94a2c",
+  "source_sha256": "6b138001069140479273261241517a69c21081657720ebb135f0c20701ef1dff",
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "actual_windows_boot": false,
+  "physical_access": false,
+  "handoff_intended": true,
+  "attempt_cookie": "46200101",
+  "pins": {
+    "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/boot-refusal462/build001.py": "0944520114d46287143ae78b8585bdf10c8cc8c25d9cd08709a49a602a57066f",
+    "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/boot-refusal462/logger.S": "c6610f8e79d8a48395ee34c8fc36919d744090c72080cc2b6908d07887c8b980",
+    "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/boot-refusal462/verify.S": "3fc15e9fe85ef80920882f191ad7fa4f8fc1a225fabfa15f175ea8c15daed889",
+    "/mnt/e/xwn462/build001/xbe.S": "dfa3fa5a31bb6ed01d774d9269682c03f7bfe8a5e047287377423a3a546f9a73",
+    "/mnt/e/xwn462/build001/font.S": "8f8dc5ff0bc015e6eb88ff43b54390057dbc866345a09ddbe88baf153da5df45",
+    "/mnt/c/nxdk/lib/xboxkrnl/xboxkrnl.h": "3e0350626872eb4593b251e2674713f2d8d0b29b32b6bdf0cfd9f51b6a091346",
+    "/mnt/c/nxdk/lib/xboxkrnl/xboxkrnl.exe.def": "8aa3e48417c8a60aea8d1953bcc0674cdee95ce9a11e5e861d3107c3339d2527",
+    "/mnt/c/nxdk/lib/hal/xbox.c": "a735cb2d8c0d2869b9173974ebd0653912d054b1a8f46e72cc3216859ae7ba14"
+  },
+  "loader_copy_bytes": 1024,
+  "critical_loader_span": 224,
+  "symbols": {
+    "blentry": 70310,
+    "ptr_newloc": 70384,
+    "newloc": 70390,
+    "gdt_48_base": 70530,
+    "diag_verify": 71017,
+    "diag_record": 72328,
+    "diag_trailer": 72488,
+    "diag_handoff": 71854,
+    "diag_reboot": 71913,
+    "_start": 69888,
+    "refusal_record": 72612,
+    "refusal_reboot": 72318
+  },
+  "bytes": 300624,
+  "sha256": "d71cc4e06b8a0477b0a8aa2fa4be8bcbbbf39b22682e8f0db35e37470d325e29",
+  "embedded_payload_unchanged": true,
+  "commands": [
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-m32",
+      "-DASSEMBLER",
+      "-c",
+      "xbeboot.S",
+      "-o",
+      "xbeboot.o"
+    ],
+    [
+      "ld",
+      "-m",
+      "elf_i386",
+      "-Ttext",
+      "0x10000",
+      "-e",
+      "_start",
+      "xbeboot.o",
+      "-o",
+      "wrapper.elf"
+    ],
+    [
+      "objcopy",
+      "-O",
+      "binary",
+      "wrapper.elf",
+      "wrapper.bin"
+    ]
+  ],
+  "header_unchanged_except_section_digest": true
+}

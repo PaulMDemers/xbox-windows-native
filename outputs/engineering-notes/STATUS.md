@@ -1,3 +1,15 @@
+# Current: first-refusal diagnostic launched; screen observation pending
+
+The new462 diagnostic records the exact first deliberate wrapper refusal after
+logging, using a separate file and preserving the original status before cleanup.
+55 host cases and independent decoder negatives passed before one console launch.
+The original launcher, normal startup and720p settings remain unchanged.
+
+Dashboard FTP has not returned within the observation window. The user's screen
+report is pending; this alone does not establish a failed boot. No further launch
+is queued. Collect once after dashboard return and review any actual refusal
+record before deciding the next change. Details: [462 report](../boot-refusal462/REPORT.md).
+
 # Current: successful boot/restart verified; failure boundary still unresolved
 
 The watched461 diagnostic reached Windows and returned through a normal restart.
