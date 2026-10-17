@@ -1,3 +1,53 @@
+# Current: rung04 partial NT5 pass; RGB32 keyed-copy gap - October17,2026
+
+Read outputs/sprites443/REPORT.md,failure-analysis001.json,final-review.json;
+sprites444/REPORT.md,runtime-review001.json,failure-analysis001.json,
+actual-controls001.json,final-review.json; sprites445/REPORT.md,NEXT.md,
+runtime-review002.json,preflight-ordering-failure001.json,final-review.json.
+All three guests CLOSED normalrestart/QEMUexit0,no hostquit/kill/deadline.
+No physical access or queued hardware test; installed720p/driver/DLLs unchanged.
+
+Public sprites.c/sprites.cmd plus builder --sample sprites and independent
+schema2 tools/graphics_sprites.py. Six cases:default/HEL x index8/RGB565/RGB32.
+Four stages:two-rectangle keyed copy,palette-only update,two overlapping copies.
+Current compiled444build001 SHA23fcd2208b74a80feaf55d6a52be1b4a34a4138da859fa10bc06d5867862776f,
+21724bytes,29NT5 imports,warningfree. Private under
+/home/paul/xbox-windows-native/sprites444-build001; unchanged in445.
+
+443samplebuild001 failed __chkstk_ms;002 static palette buffers compiled.
+Four indexed/RGB565 cases had all exact content but FAILED duplicate clipper
+cleanup88760238. RGB32 two cases omitted16red pixels confounded with clipright.
+All original sources/checker/binaries/captures retained and137inputs archived
+BEFORE revision; no historical requalification. Leasewrapper invalidMode failed
+before launch, retained. Cold6513files309dirs38adds,48NTFS3G independentreads.
+
+444schema2 tracks actual clip attachment; RGB ycoefficient7->5 separates colors
+from clipedge, samekey/rectangles/expectedsemantics. Four indexed/RGB565 cases
+PASSED:118784exactbytes,1718actualnegativecontrols,actualexit0. Both RGB32 cases
+FAILED stage0:12pure-red pixels omitted across varied positions; nonred clipright
+pixels copy. Fullactualdestination matches low16-only zero-key comparison MODEL;
+not traced implementation/component. Sourceexact, laterRGB32stages unknown.
+Cold6513files309dirs38adds,48NTFS3G independentreads,137archivedinputs. UNCcopy
+OSError22/nativeWSLcopy recovery and earlycoldinvocation beforepreparation
+retained, both before guest; all completed evidence unchanged.
+
+445requested same640x48032 viaCDS_TEST before6cases; actualmode-test -2BADMODE,
+ZERO samplecases, no modeapplication. Normalrestart,cold6477files309dirs2adds,
+12NTFS3G independentreads,140archivedinputs. Diagnostic-only also because host
+startedlaunch0.407723s before finalpreflightpublication. Exactinputs rehash does
+NOTwaiveordering. Originalsixcase review001 etc NEVERexecuted; separate002
+explicitrefusal readers/closeout. Futurelauncher must enforce completedpreflight
+itself plus hostwaitforactualexit. No consumedguest rerun/parent permitted.
+
+AllcoldQCOWclean,5hivesclean/rawagree,new6006,protected/source/floppyexact.
+No fullNTFSallocationaudit; inheritedSOFTWAREDRMtypedvalue limitation remains.
+10graphicsverifier testgroups pass. Docs build/run/check/rungstatus updated.
+Next inspect actual supported NT5 modes/adapter for32bit reference and narrow
+RGB32key semantics; no guessed32bitmode or arbitraryruntimeDLLreplacement.
+Only then newqualified physicalrung04. Rungs00-03 priorPASS remain separate;
+XboxFt49/rundllshutdownpopups unresolved. 1080iPAUSED. NoD3D/GPU/gameclaim.
+Allownedhostsessionsclosed atcloseout; no console mutation this turn.
+
 # Current: rung03 presentation passed NT5 PC and Xbox - October17,2026
 
 Read outputs/presentation439/REPORT.md,final-review.json (FAILED first cover

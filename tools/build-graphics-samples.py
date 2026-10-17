@@ -22,7 +22,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--rosbe', required=True, type=Path)
     p.add_argument('--output', required=True, type=Path)
-    p.add_argument('--sample', choices=('ladder', 'present'), default='ladder')
+    p.add_argument('--sample', choices=('ladder', 'present', 'sprites'), default='ladder')
     a = p.parse_args()
     if sys.platform != 'linux':
         p.error('Build under Linux/WSL with the documented RosBE toolchain')
@@ -37,7 +37,7 @@ def main():
     space = require_space(out, 20 + 8/1024)
     out.mkdir(parents=True)
     source = SOURCE.with_name(a.sample + '.c')
-    runner = 'present.cmd' if a.sample == 'present' else 'run.cmd'
+    runner = a.sample + '.cmd' if a.sample != 'ladder' else 'run.cmd'
     copied = out / source.name
     shutil.copyfile(source, copied)
     shutil.copyfile(source.with_name(runner), out/runner)

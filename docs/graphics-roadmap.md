@@ -47,7 +47,9 @@ small owned programs with explicit results, progressing from GDI and DirectDraw
 surfaces to D3D triangles, textures and game-like scenes. Rungs 00–02 now have
 passing scoped controls on the modern host, Windows 2000 PC and physical Xbox.
 Rung 03 now passes windowed presentation and GDI coexistence on NT5 PC and Xbox.
-Next come palettes/formats/color-key sprites, then lifecycle tests before D3D.
+Rung04 now has NT5 indexed-palette and RGB565 sprite controls; RGB32 color-key
+validation remains incomplete. Next resolve that format behavior and check the
+Xbox before lifecycle tests and D3D.
 
 | Stage | Work | Evidence needed to advance |
 |---|---|---|

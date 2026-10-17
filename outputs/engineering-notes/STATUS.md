@@ -1,3 +1,18 @@
+# Current: palette/RGB565 sprites pass on NT5; RGB32 key issue isolated
+
+Rung04 now builds and has documented run/check commands. Four default/HEL
+indexed8 and RGB565 cases pass 118,784 independent bytes, including palette
+updates, color keys, clipping and overlapping copies. RGB32 omits pure-red
+pixels on the 16-bit PC desktop; the behavior follows color, not clip edges.
+The actual faulty component remains unresolved. A 32-bit desktop probe was
+refused by the pinned Cirrus driver before any sample ran.
+
+[444 results](../sprites444/REPORT.md), [445 refusal](../sprites445/REPORT.md).
+All three new PC guests restarted normally, are cold-audited and closed. Earlier
+failures and one host preflight-ordering error are retained. Xbox unchanged;
+no rung04 physical qualification, D3D or acceleration claim. Next establish a
+suitable NT5 mode control and narrow the 32-bit key comparison before hardware.
+
 # Current: windowed DirectDraw presentation passes on NT5 and Xbox
 
 Rung03 default/HEL covers visible, covered, moved and uncovered windows with

@@ -13,7 +13,7 @@ they do not qualify DirectDraw presentation, Direct3D or GPU acceleration.
 **Rung 03 also passes default/HEL windowed presentation on Windows 2000 PC and
 Xbox**, with exact source and GDI-observed primary pixels through cover/move/
 uncover stages. Physical scanout, D3D and acceleration remain unqualified.
-Later rungs below are planned, not stubbed-out passes.
+Rung04 is under validation; later rungs are planned, not stubbed-out passes.
 The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 
 ## The ladder
@@ -24,7 +24,7 @@ The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 | 01 | DirectDraw inventory | Independently request default, HEL and HAL-only objects; record HRESULTs, hardware/HEL caps and current mode | All three inventories completed on PC/NT5/Xbox |
 | 02 | DirectDraw system-memory copy | Explicit RGB32 offscreen surfaces; write/lock/unlock, rectangle blit, exact source and destination readbacks | Default and HEL controls passed on PC/NT5/Xbox |
 | 03 | Windowed DirectDraw presentation | Primary surface plus window clipper; cover/uncover and move the window without damaging adjacent GDI content | NT5 PC/Xbox default and HEL pixel controls passed |
-| 04 | Palettes, formats and sprites | 8-bit palette changes, supported 16/32-bit formats, color-key sprites, clipping and overlapping copies in both directions | Planned |
+| 04 | Palettes, formats and sprites | 8-bit palette changes, supported 16/32-bit formats, color-key sprites, clipping and overlapping copies in both directions | NT5 indexed8/RGB565 pass; RGB32 failure retained |
 | 05 | Surface lifecycle and memory budget | Focus changes, lost-surface handling where applicable, repeated create/release, failure recovery and bounded memory use | Planned |
 | 06 | Legacy D3D discovery | Query the chosen D3D interface, enumerate actual devices/caps; distinguish software and hardware choices | Planned; begin with the installed legacy runtime, not a DLL upgrade |
 | 07 | Clear and triangle | Offscreen render target, clear, pretransformed colored triangle, independent interior/background pixel checks | Planned |
@@ -86,7 +86,7 @@ prefixes for every attempt. `view` shows a small GDI preview for five seconds;
 `quiet` leaves the window hidden. Rung 01 only records inventory. Closing a
 preview early records cancellation, not success. No test moves the mouse or
 changes the desktop mode. The optional preview is **GDI presentation of the
-captured pixels**, not the future rung 03 DirectDraw presentation test.
+captured pixels**, separate from rung 03 DirectDraw presentation.
 
 The three backend requests mean:
 
@@ -210,7 +210,7 @@ were unchanged. Each retained 402 rejected evidence mutations. The physical
 run restarted normally but retains Ftdisk49 and two shutdown-time rundll32
 initialization popups, so it is not a clean overall system qualification.
 
-Next implement rung 04's palettes, pixel formats and color-key sprites.
+Rung 04 now has an implementation; its qualification is recorded below.
 Keep default/HEL distinctions, independent destination/neighbor checks and
 every refusal. Use a fresh PC control before a distinct Xbox run.
 Advance to D3D rendering only with actual capability and surface evidence; do not
@@ -219,3 +219,75 @@ change `DrvEnableDirectDraw` to advertise support without implementing its contr
 Host verifier tests: `python3 tests/test_graphics_sample.py`. The initial control
 and negative tests are [recorded separately](../outputs/graphics-ladder436/REPORT.md)
 from Windows 2000/Xbox testing. The original games remain untested.
+
+### Rung 04: palettes, formats and sprites
+
+Build [sprites.c](../src/samples/graphics-ladder/sprites.c) from Linux/WSL:
+
+```sh
+python3 tools/build-graphics-samples.py --sample sprites \
+    --rosbe "$HOME/xwn-rosbe-001/RosBE-2.2.1" \
+    --output "$HOME/xwn-sprites-001"
+```
+
+Choose a fresh output directory. Copy `sprites.exe` and
+[sprites.cmd](../src/samples/graphics-ladder/sprites.cmd) together. Run each
+combination separately, using a new prefix:
+
+```bat
+sprites.cmd default index8 r04di
+sprites.cmd hel index8 r04si
+sprites.cmd default rgb565 r04d6
+sprites.cmd hel rgb565 r04s6
+sprites.cmd default rgb32 r04d3
+sprites.cmd hel rgb32 r04s3
+```
+
+This sample leaves its window hidden and uses only owned system-memory surfaces.
+It does not create a primary surface or change the desktop palette or mode.
+Four stages check a transparent color-key sprite through two disjoint clip
+rectangles, a palette-only update, then overlapping self-copies in both directions.
+The palette stage must change converted colors while preserving the raw indices.
+RGB cases retain their pixels at that stage. The source remains unchanged.
+
+Each prefix produces `.txt`, `.exit`, `-source.bin`, `-dest.bin`, `-rgb.bin` and
+`-palette.bin`. Each pixel file contains four consecutive frames. Source is
+16x12, destination and converted RGB are 32x24. Every raw pixel or index is
+stored as a little-endian 32-bit integer, including the 8/16-bit formats.
+The RGB capture is BGR0 after conversion through the surface's GDI DC.
+The indexed palette file contains four sets of 256 actual four-byte
+`PALETTEENTRY` records (red, green, blue, flags); flags must be zero. RGB cases
+have an empty palette file. Successful captures total 31,744 bytes per indexed
+case or 27,648 bytes per RGB case. Surface padding is not an allocation guard.
+
+Verify one case after copying its files back to the host:
+
+```sh
+python3 tools/graphics_sprites.py /path/to/results/r04di --backend default --format index8
+python3 tests/test_graphics_sprites.py
+```
+
+The checker calculates expected indices, packed pixels, palette entries and
+converted colors independently. It requires a complete report and external
+exit receipt. Exit 1 includes API, pixel, layout and cleanup failure; 2 is invalid
+arguments/output collision and 4 is I/O failure. Preserve partial outputs.
+The owned test controller bounds each process at 90 seconds; the batch file
+alone supplies no watchdog. Busy/unsupported operations fail without retry.
+This does not qualify presentation, scanout, GPU use or a game.
+
+The [first NT5 control](../outputs/sprites443/REPORT.md) failed: indexed/RGB565
+pixels matched, but the sample detached its clipper twice during cleanup. RGB32
+also omitted 16 red pixels during the clipped keyed copy. The
+[corrected control](../outputs/sprites444/REPORT.md) passes indexed8 and
+RGB565 through both backends: 118,784 exact bytes and 1,718 rejected evidence
+mutations. With colors varying in both axes, RGB32 still omits 12 pure-red pixels
+at varied positions; non-red clip-edge pixels copy correctly. A low 16-bit-only
+key comparison explains those bytes, but the actual faulty component is not
+identified. This occurs on the PC control's 16-bit desktop.
+
+A [separate mode diagnostic](../outputs/sprites445/REPORT.md) requested a 32-bit
+desktop without changing the sample. The pinned Cirrus driver rejected that
+mode before any sample case ran. It also retains a host preflight-ordering
+limitation and is not deployment qualification. No rung04 Xbox test has run.
+Expected pixels and all failed results remain intact; the installed Xbox driver
+and 720p baseline are unchanged.

@@ -1,0 +1,1 @@
+Read445 mode-control results. Never rerun/recollect/parent444. Resolve the RGB32 keyed-copy behavior with pinned runtime and independent expected bytes; do not waive red pixels or alter driver capabilities. Existing four cases are PC-only passes.

@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "sample": "sprites",
+  "source_sha256": "1c2742e2d4191e406153096a69789907058c8d782d6be9849dd9e5a3f5b3f539",
+  "runner_sha256": "e4835c3f78cc66edb98f4be26ff6f260fdbaefa95792e371baa0b47062e2526d",
+  "builder_sha256": "94ba98fd2c38442c28c5aea9b61f76f364d0a77a44981368f2f3ff3dfde6972d",
+  "compiler": "/home/paul/xbox-windows-native/release-readiness403-bootstrap001/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc",
+  "compiler_sha256": "8ab0685d97b322aad3c37fd362b26fa5b9408ff6dd55a536c0a2d48de1c22b18",
+  "objdump_sha256": "6eba37b951ec8e546640957299f0ac8fdc83f64702bb8fc8e62b1c3c90b83598",
+  "command": [
+    "/home/paul/xbox-windows-native/release-readiness403-bootstrap001/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc",
+    "-Os",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-nostdlib",
+    "-fno-stack-protector",
+    "-fno-builtin",
+    "-Wl,--entry,_mainCRTStartup@0",
+    "-Wl,--subsystem,console:5.0",
+    "-Wl,--major-os-version,5",
+    "-Wl,--minor-os-version,0",
+    "-Wl,-Map,/home/paul/xbox-windows-native/sprites443-build001/sprites.map",
+    "-MD",
+    "-MF",
+    "/home/paul/xbox-windows-native/sprites443-build001/headers.d",
+    "-o",
+    "/home/paul/xbox-windows-native/sprites443-build001/sprites.exe",
+    "/home/paul/xbox-windows-native/sprites443-build001/sprites.c",
+    "-lkernel32",
+    "-luser32",
+    "-lgdi32"
+  ],
+  "space": {
+    "minimum_free_gib": 20.0078125,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/home/paul/xbox-windows-native",
+        "free_bytes": 902204923904
+      },
+      {
+        "free_bytes": 29642686464,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "executable_run": false,
+  "scope": "compile and PE inspection only; NT5/physical runtime unqualified",
+  "exit_code": 1,
+  "log_sha256": "666a10942e1a3a37c4632a55a77333dcf65ece48be296177591e19c299597009",
+  "error": "Compile failed; retained build.log and inputs"
+}
