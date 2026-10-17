@@ -1,3 +1,24 @@
+# 435 CLOSED: same framebuffer before/after PBKit; visual answer pending
+
+Read outputs/pbkit-compare435/REPORT.md,NEXT.md,review004.json,analysis001.json
+and physical001-collection.json. One accepted physical launch05:29:52UTC,
+terminal4phases/error0/PBKitreturn0, dashboard collection05:31:29UTC Oct17.
+Never rerun/recollect. Orange stages before normal pb_init, cyan afterward via
+pb_show_debug_screen. Same framebuffer0x037f7000/allocation8294400/pitch7680,
+2097152 independent exact pixels;104actual/203synthetic negatives. Among23CRTC/
+29MMIO captures onlyPCRTC_CONFIG600804 changes3->2. NOT one-variable proof:
+normalPBKit also changes unobservedCR31/82 and graphics/interrupt/gamma state.
+User visual orange-vs-cyan question pending; no fix/adapterfault/1080i promotion.
+Build001 edbbc2ef...143360bytes, sharedSDK unchanged, inheritedmergewarning only.
+Review001/002 newline direction failures and003 decoratedsymbol failure retained;
+review004 passes unchanged native build. Frozen design sum corrected separately:
+44236800 color/depthbytes,48MiB actualguard unchanged;14186freepages beforeinit.
+6privatefiles C:/xwn435/physical001 double-read/rehashed. Source/binary pins exact.
+All owned host sessions CLOSED. Firmware restart, notWindows shutdown/fullaudit.
+Physical720p baseline/startup/driver/launcher unchanged, noXboxCaccess/noqueuedtest.
+Next use visualanswer to determine whether broadPBKitinit is a discriminator;
+no guessedtiming/IRQ/encoderpatch.429publicrelease tasks remain separate.
+
 # 434 CLOSED: actual raster cadence, parity remains unresolved
 
 Read outputs/field-timing434/REPORT.md, NEXT.md, review002.json,

@@ -1,0 +1,9 @@
+echo "[ CC       ] /c/xwn435/build001/main.obj"
+nxdk-cc -I/c/nxdk/lib/winapi/winmm -I/c/nxdk/lib/usb/libusbohci/inc -I/c/nxdk/lib/usb/libusbohci_xbox/ -DUSBH_USE_EXTERNAL_CONFIG=\"usbh_config_xbox.h\" -I /c/nxdk/lib/zlib/zlib -DZ_SOLO -I/c/nxdk/lib/libpng/libpng -I/c/nxdk/lib/libpng -isystem /c/nxdk/lib/libjpeg/libjpeg-turbo -I/c/nxdk/lib/libjpeg -I/c/nxdk/lib/net/lwip/src/include -I/c/nxdk/lib/net/nforceif/include -I/c/nxdk/lib/net/nvnetdrv -O1 -g -Wall -Wextra -Werror -MD -MP -MT '/c/xwn435/build001/main.obj' -MF '/c/xwn435/build001/main.c.d' -c -o '/c/xwn435/build001/main.obj' '/c/xwn435/build001/main.c'
+echo "[ LD       ] main.exe"
+nxdk-link -include:_automount_d_drive -map:main.map -out:'main.exe' /c/xwn435/build001/main.obj /c/nxdk/lib/xboxkrnl/libxboxkrnl.lib /c/nxdk/lib/libpdclib.lib /c/nxdk/lib/winmm.lib /c/nxdk/lib/libwinapi.lib /c/nxdk/lib/libnxdk_hal.lib /c/nxdk/lib/libnxdk.lib /c/nxdk/lib/libnxdk_automount_d.lib /c/nxdk/lib/libpbkit.lib /c/nxdk/lib/nxdk_usb.lib /c/nxdk/lib/libxboxrt.lib /c/nxdk/lib/libzlib.lib /c/nxdk/lib/libpng.lib /c/nxdk/lib/libjpeg.lib /c/nxdk/lib/libnxdk_net.lib
+mkdir -p bin;
+echo "[ CXBE     ] bin/default.xbe"
+/c/nxdk/tools/cxbe/cxbe -OUT:bin/default.xbe -TITLE:HDOutput435 main.exe 
+echo "[ XISO     ] hd435.iso"
+/c/nxdk/tools/extract-xiso/build/extract-xiso -c bin  "hd435.iso" 

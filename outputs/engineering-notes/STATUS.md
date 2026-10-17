@@ -1,3 +1,12 @@
+# Current: PBKit comparison completed; visual confirmation pending
+
+The same1080i framebuffer was captured before and after normalPBKit initialization.
+All2,097,152 checked pixels are exact; among captured registers only the address
+mode changed3->2. This does not prove a fix. We are awaiting the user's orange-
+versus-cyan observation. The console returned to the dashboard, all sessions are
+closed, and the installed720p Windows baseline remains unchanged.
+See [comparison evidence](../pbkit-compare435/REPORT.md).
+
 # Current: live raster timing captured; 1080i row loss unresolved
 
 A new read-only hardware probe completed and returned to the dashboard. Its
