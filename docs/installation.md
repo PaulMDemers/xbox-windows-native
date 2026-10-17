@@ -3,6 +3,11 @@
 External testers should start with the shorter [tester guide](testers.md).
 The steps below distinguish the existing demo from a new installation.
 
+For the practical sequence after compiling, use
+[From a component build to a bootable Xbox](build-to-boot.md): component-to-file
+mapping, Windows setup/conversion, prepared-package commands, FTP destinations
+and readback. This page retains the detailed qualification limits and evidence.
+
 There are two different starting points. An already configured Xbox can use the
 integrated demo now. A clean-media assembly has also booted in an Xbox emulator,
 but a fresh physical Xbox still needs a qualified provisioning workflow;

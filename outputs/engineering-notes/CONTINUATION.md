@@ -1,3 +1,37 @@
+# Current direction: builder documentation and classic games - October 17, 2026
+
+User requests clear post-build Windows preparation/copying documentation and
+sets the next milestone as D3D support with original RollerCoaster Tycoon and
+The Sims as practical goals. docs/build-to-boot.md is the canonical walkthrough;
+docs/graphics-roadmap.md records the proposed sequence and acceptance criteria.
+Original game editions are an explicit starting assumption, not yet supplied or
+tested. No game/DirectDraw/D3D runtime result, build, deployment or console access
+occurred for this documentation update. Existing 720p baseline is unchanged.
+
+Current source DrvEnableDirectDraw in the maintained framebuf enable.c returns
+FALSE and clears callback tables to protect the private RAM primary. Do not
+enable it by changing a capability flag. Next graphics work: exact edition/API
+inventory and Windows 2000 PC controls, owned DirectDraw/input/audio probes,
+then evidence-driven surface/presentation and selected legacy D3D implementation.
+Native Windows GPU ownership/acceleration remains separate from xemu GL work.
+Game acceptance includes play, controls, sound and save/restart/reload on 64 MiB.
+
+Installation still needs a portable raw-value-preserving Xbox registry converter,
+lossless long-name storage and physical install/recovery qualification. Six FATX
+paths remain unresolved; two earlier CP437 shortcut failures were resolved.
+Do not ship private recovery archives, run old machine-specific assembly scripts
+as public instructions, or silently omit files. Package/copy commands apply only
+to a prepared, reviewed matched payload. All prior failures remain intact.
+
+Documentation validation: all 133 local links and five anchors resolve; all ten
+profile/artifact pairs match upstream/components.json. Documented command flags
+checked against actual CLI help; repository scan passed 35,089 tracked files.
+The first local link-check invocation failed on the host's default text encoding;
+explicit UTF-8 corrected the checker without changing documentation inputs.
+No component rebuild or runtime qualification was attempted.
+
+1080i remains PAUSED; no new test queued. Historical handoffs follow.
+
 # 1080i investigation PAUSED at user request - October 17, 2026
 
 Canonical handoff: docs/1080i-investigation.md. User asked to document findings

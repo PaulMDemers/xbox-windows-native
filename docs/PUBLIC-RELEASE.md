@@ -11,6 +11,7 @@ is implied by the tester kit.
   been compiled with recorded tools; see the documented reproducibility limits.
 - [Hardware inventory utility and tester instructions](testers.md).
 - [Local bundle planning, creation and verification](tester-bundles.md).
+- [Build-to-boot walkthrough](build-to-boot.md), including the remaining clean-install blockers.
 
 Corrected inventory preview 421 has an emulator cold report readback and one
 successful development-console run with a saved report and dashboard return.

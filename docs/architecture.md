@@ -36,6 +36,12 @@ copy, text, bounds and transfer paths have been investigated. At 720p, the user
 confirmed clean text and full-window dragging. 1080i presentation remains open.
 The working demo contains no experimental GPU ownership or acceleration code.
 
+The display driver currently declines DirectDraw access to protect the private
+RAM primary's drawing model. The next [classic-game and Direct3D milestone](graphics-roadmap.md)
+will first measure the selected games' actual API requirements, then add the
+required surface/presentation support. Native NV2A acceleration needs a separate
+Windows ownership and synchronization design.
+
 AC'97 integration provides audible login sounds and test tones. Exact stereo
 routing and broad audio compatibility remain unconfirmed.
 

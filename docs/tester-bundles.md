@@ -2,7 +2,7 @@
 
 | Package | Contents | Readiness |
 |---|---|---|
-| Utilities | Hardware-report XBE, host validators, source/notices and instructions | Built; emulator smoke and cold readback passed; first physical test pending |
+| Utilities | Hardware-report XBE, host validators, source/notices and instructions | Corrected 421 utility passed emulator and first development-console inventory; other revisions unqualified |
 | Windows E/720p preview | Matched boot chain, prepared Windows files/registry and manifest | Not yet approved for general tester distribution |
 
 Windows, firmware, EEPROMs, dashboards and console-specific recovery material
@@ -10,6 +10,11 @@ are not included in the public utility package. Build Windows inputs locally
 from your own installation materials. The ZIP tool does not convert an ISO,
 fix the six outstanding FATX exclusions, sanitize a used system or establish
 redistribution rights. See [media](windows-media.md) and [release gates](PUBLIC-RELEASE.md).
+
+If you have component binaries but no prepared Windows tree, start with
+[build to boot](build-to-boot.md). Packaging starts after Windows preparation;
+it does not replace setup or the Xbox registry conversion. The same guide gives
+the exact FTP destination and launcher-last readback steps.
 
 ## Verify an archive
 

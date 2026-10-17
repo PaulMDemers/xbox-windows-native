@@ -18,6 +18,7 @@ native GPU acceleration.
 - [How it works and what we changed](docs/architecture.md)
 - [Find and edit the source](src/README.md)
 - [Build the components](docs/building.md)
+- **[After building: prepare Windows, package, copy and boot](docs/build-to-boot.md)**
 - [Installation and first boot](docs/installation.md)
 - [Resolution and desktop settings](docs/display-configuration.md)
 - [Windows Media Player demo](docs/media-player-demo.md)
@@ -26,6 +27,7 @@ native GPU acceleration.
 - [Component origins and Windows dependencies](docs/provenance.md)
 - [Windows disc hashes and media validation](docs/windows-media.md)
 - [Validated results and remaining release work](docs/validation.md)
+- [Next milestone: classic games and Direct3D](docs/graphics-roadmap.md)
 
 ## Current capabilities
 
@@ -55,6 +57,20 @@ Start with `src/` and the guides. Each component retains its independently teste
 upstream tree; these profiles are not one unified OS build. The current complete
 component inventory distinguishes project source from user-supplied Windows
 files; see [provenance](docs/provenance.md) for source and binary correspondence.
+
+## Next milestone
+
+The next graphics target is playable original **RollerCoaster Tycoon and The
+Sims**, including input, sound and save/reload on a 64 MiB Xbox. Neither game is
+qualified yet. The [graphics roadmap](docs/graphics-roadmap.md) starts with exact
+game editions and DirectDraw/API probes, then the required legacy Direct3D work.
+Game compatibility, software rendering and native GPU acceleration are separate
+results. 720p remains the baseline; the 1080i investigation is paused.
+
+In parallel, installation needs a portable Windows registry conversion and a
+lossless solution for FATX's long-name limitation. The [build-to-boot guide](docs/build-to-boot.md)
+shows the artifact layout, preparation requirements and verified copying procedure,
+including where the current clean-install workflow must stop.
 
 ## Release status
 

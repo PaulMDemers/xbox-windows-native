@@ -5,6 +5,11 @@ Change the smallest relevant component. Keep source revisions, compiler settings
 output hashes and test scope together. Profiles remain separate until a combined
 source tree is deliberately built and qualified.
 
+The next milestone is [classic-game compatibility and legacy Direct3D](graphics-roadmap.md).
+Use that plan for API probes, driver boundaries and game acceptance criteria.
+The [build-to-boot guide](build-to-boot.md) identifies the parallel installation
+work; 1080i experiments remain paused.
+
 ## Editing a profile
 
 1. Run `python3 tools/xwn.py verify` on the baseline.

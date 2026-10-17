@@ -30,6 +30,8 @@ Use the result that applies to the change you intend to make.
 | Strict restored-system events | Failed | Ftdisk 49 retained; no waiver or event suppression |
 | Physical 720p desktop | User confirmed | Clean text and full-window dragging on the tested display |
 | Physical 1080i desktop | Defective | Text and motion defects remain; use 720p |
+| Original RollerCoaster Tycoon / The Sims | Not yet tested | Exact editions, PC controls, API requirements and physical play/save/reload remain to be established |
+| Native Direct3D / NV2A acceleration | Not qualified | Current display driver declines DirectDraw; no accelerated driver installed |
 
 The [1080i investigation](1080i-investigation.md) is paused. Standalone tests
 reproduce the defect without Windows, and normal PBKit initialization did not
@@ -49,6 +51,10 @@ failures remain in the evidence. The public media manifest separates these
 states from hash recognition and strict qualification.
 
 ## Still needed for a general installation release
+
+The [build-to-boot guide](build-to-boot.md) now explains the preparation and
+transfer stages. The [graphics roadmap](graphics-roadmap.md) defines the next
+game/D3D milestone; it does not change the installation gates below.
 
 1. Turn the validated emulator assembly procedure into a portable provisioning
    tool, with an explicit policy for unsupported FATX paths and first-boot device

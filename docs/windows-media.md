@@ -115,9 +115,15 @@ explicit registry conversion. File persistence, 720p offscreen drawing, audio
 API playback and exact bidirectional TCP transfer passed. No old Xbox Windows
 tree or machine/user hive supplied that assembly.
 
-Strict qualification remains false: eight paths were not representable by the
-current FATX writer, Ftdisk 49, first-boot Plug and Play and final-boot kbdhid 1 warnings remain, and
-the typed DRM decoder limitation is unchanged. See the
+Strict qualification remains false. The original assembly excluded eight paths;
+follow-up native CP437 handling restored two floppy shortcuts, leaving **six
+overlong paths unresolved**. Ftdisk 49, first-boot Plug and Play and final-boot
+kbdhid 1 warnings remain, and the typed DRM decoder limitation is unchanged. See the
 [installation procedure](installation.md#validated-clean-media-route-in-the-emulator)
 and [validation](validation.md) for scope and outstanding physical/recovery
 work. Do not copy the PC's HAL or storage configuration directly onto the Xbox.
+
+For what happens after PC setup, continue with the
+[Windows preparation and copying guide](build-to-boot.md#3-prepare-the-windows-tree-for-xbox).
+It separates the original NTFS installation, the converted Xbox payload and the
+final verified transfer; verifying an ISO alone does not perform those steps.

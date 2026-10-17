@@ -7,6 +7,10 @@ media, configure a registry, install drivers, flash firmware or contact a consol
 Windows installation is a separate input. Use the [media guide](windows-media.md)
 to check your ISO against the recorded disc hashes and installation results.
 
+**Already have a successful build?** Continue with
+[From a component build to a bootable Xbox](build-to-boot.md) for the complete
+artifact list, Windows preparation, packaging, copying and first-boot sequence.
+
 For the standalone inventory XBE, use the separate [nxdk utility build](tester-bundles.md#build-the-hardware-report-xbe).
 It does not require Windows or the NT5 component toolchain.
 
@@ -179,3 +183,15 @@ i686-w64-mingw32-gcc -Os -Wall -Wextra -Werror -nostdlib -fno-stack-protector -f
 
 The indentation-warning exemption is inherited from this utility's recorded
 build; it is not a general suppression policy.
+
+## After the build
+
+Keep each profile's `artifacts/`, `build.json`, `source.json`, command and log.
+The next input is an installed copy of your own Windows media, not another
+compiler target. It needs Xbox-specific offline registry preparation and a
+lossless storage preflight before a matched payload can be copied.
+
+Follow the [build-to-boot guide](build-to-boot.md). It includes the ten binaries'
+destination paths and the launcher-last FTP/readback procedure. It also marks
+the missing portable conversion tool and the six unresolved FATX paths, so you
+can distinguish an incomplete project step from a build/setup error.

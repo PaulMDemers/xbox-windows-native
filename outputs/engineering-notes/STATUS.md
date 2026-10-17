@@ -1,3 +1,18 @@
+# Current: clearer build-to-boot documentation; classic games are the next milestone
+
+The [new walkthrough](../../docs/build-to-boot.md) connects component builds to
+Windows setup, offline conversion, package layout, FTP readback and first boot.
+It explicitly identifies the missing portable conversion and six unresolved
+FATX paths; this is documentation, not a newly qualified clean installer.
+
+The [graphics roadmap](../../docs/graphics-roadmap.md) targets the original
+RollerCoaster Tycoon and The Sims, beginning with exact versions and API probes.
+Neither game nor native Direct3D is qualified. The current display driver declines
+DirectDraw, so surface/GDI coherence must be designed before exposing it. Native
+GPU acceleration has separate ownership/synchronization requirements. No new
+build, console access or driver change occurred. 720p stays the working baseline,
+and the 1080i investigation remains paused.
+
 # Current: 1080i investigation paused; ready to pivot
 
 The findings, evidence limits and resume criteria are consolidated in the
