@@ -1,0 +1,235 @@
+{
+  "passed": true,
+  "sources": [
+    {
+      "profile": "hal",
+      "path": "hal/halx86/xbox/halinit.c",
+      "tree": "adf9b3d166ef84630a48d7393fcc9fe3ce78f104",
+      "sha256": "aa80532500f76cd0c249a6d497d8739686d829d9256ef68a7326b7e767354ff4",
+      "recorded_tree_exact": true,
+      "anchors": {
+        "HalpInitPhase0(": [
+          28
+        ],
+        "HalpXboxInitPartIo();": [
+          31
+        ]
+      },
+      "overlay": null,
+      "note": "Inherited complete upstream file, absent from partial overlay"
+    },
+    {
+      "profile": "hal",
+      "path": "hal/halx86/generic/halinit.c",
+      "tree": "adf9b3d166ef84630a48d7393fcc9fe3ce78f104",
+      "sha256": "b8fda641fb6474515bfa74a343196709815552875b33b782d32d3e5856b4648d",
+      "recorded_tree_exact": true,
+      "anchors": {
+        "HalInitSystem(": [
+          130
+        ],
+        "BootPhase == 0": [
+          144
+        ],
+        "HalpInitPhase0(LoaderBlock);": [
+          233
+        ]
+      },
+      "overlay": "src/platform/nt5/hal/halx86/generic/halinit.c",
+      "overlay_exact": true
+    },
+    {
+      "profile": "hal",
+      "path": "hal/halx86/xbox/part_xbox.c",
+      "tree": "adf9b3d166ef84630a48d7393fcc9fe3ce78f104",
+      "sha256": "e92bd37978cb615103969ead24a95c96c2c96b31380f7fe2d93e1d0b969a7734",
+      "recorded_tree_exact": true,
+      "anchors": {
+        "HalpXboxIoReadPartitionTable(": [
+          286,
+          299
+        ],
+        "PARTITION_SIGNATURE   0xaa55": [
+          20
+        ],
+        "HalIoReadPartitionTable = HalpXboxIoReadPartitionTable;": [
+          446
+        ],
+        "return STATUS_ACCESS_DENIED;": [
+          396,
+          432
+        ]
+      },
+      "overlay": "src/platform/nt5/hal/halx86/xbox/part_xbox.c",
+      "overlay_exact": true
+    },
+    {
+      "profile": "hal",
+      "path": "hal/halx86/generic/drive.c",
+      "tree": "adf9b3d166ef84630a48d7393fcc9fe3ce78f104",
+      "sha256": "d0aa1a1a580ad00546c8a609647a53db0bb04c5e2fae5e525a7d8a5d6fc042d5",
+      "recorded_tree_exact": true,
+      "anchors": {
+        "IoAssignDriveLetters HALDISPATCH": [
+          23
+        ],
+        "return IoReadPartitionTable(": [
+          53
+        ]
+      },
+      "overlay": "src/platform/nt5/hal/halx86/generic/drive.c",
+      "overlay_exact": true
+    },
+    {
+      "profile": "hal",
+      "path": "hal/halx86/xboxnt5/fmutex.c",
+      "tree": "adf9b3d166ef84630a48d7393fcc9fe3ce78f104",
+      "sha256": "3698af088fe03eacf9c439ddf6adb71862da1778506156a2713d1a7ba8e5cf49",
+      "recorded_tree_exact": true,
+      "anchors": {
+        "HalIoReadPartitionTable) == 0x1c": [
+          20
+        ]
+      },
+      "overlay": "src/platform/nt5/hal/halx86/xboxnt5/fmutex.c",
+      "overlay_exact": true
+    },
+    {
+      "profile": "loader",
+      "path": "boot/freeldr/freeldr/ntldr/winldr.c",
+      "tree": "b2bb44a126630712c01af6bc331d5d7d9e4f07b0",
+      "sha256": "74f79b8259632127c9dc8fdff01d616a931c9d450466e3b0dbefab7e7e2a7b46",
+      "recorded_tree_exact": true,
+      "anchors": {
+        "WinLdrInitializePhase1(": [
+          398,
+          570,
+          1743
+        ],
+        "LoaderBlock->ArcBootDeviceName": [
+          437,
+          438,
+          440
+        ],
+        "LoaderBlock->ArcHalDeviceName": [
+          460,
+          461,
+          462
+        ],
+        "WinLdrLoadBootDrivers(": [
+          662,
+          1722
+        ]
+      },
+      "overlay": "src/boot/loader/boot/freeldr/freeldr/ntldr/winldr.c",
+      "overlay_exact": true
+    },
+    {
+      "profile": "loader",
+      "path": "boot/freeldr/freeldr/ntldr/wlregistry.c",
+      "tree": "b2bb44a126630712c01af6bc331d5d7d9e4f07b0",
+      "sha256": "6bc223082963c1cbe7488801a45eecbc04be7e38fdc54377b7c25520024d518e",
+      "recorded_tree_exact": true,
+      "anchors": {
+        "BootFileSystem = FsGetServiceName(FileId);": [
+          118
+        ],
+        "CmpFindDrivers(": [
+          592
+        ],
+        "CmpSortDriverList(": [
+          601
+        ],
+        "CmpResolveDriverDependencies(": [
+          608
+        ]
+      },
+      "overlay": "src/boot/loader/boot/freeldr/freeldr/ntldr/wlregistry.c",
+      "overlay_exact": true
+    },
+    {
+      "profile": "loader",
+      "path": "boot/freeldr/freeldr/disk/disk.c",
+      "tree": "b2bb44a126630712c01af6bc331d5d7d9e4f07b0",
+      "sha256": "6ee79d0ab90795659d05bed51a8bb103493c0349cd013712df15cb4afee89cae",
+      "recorded_tree_exact": true,
+      "anchors": {
+        "Signature = 0xAA55;": [
+          156
+        ],
+        "Checksum = ~Checksum + 1;": [
+          138
+        ],
+        "AddReactOSArcDiskInfo(": [
+          185
+        ]
+      },
+      "overlay": "src/boot/loader/boot/freeldr/freeldr/disk/disk.c",
+      "overlay_exact": true
+    },
+    {
+      "profile": "loader",
+      "path": "boot/freeldr/freeldr/disk/part_brfr.c",
+      "tree": "b2bb44a126630712c01af6bc331d5d7d9e4f07b0",
+      "sha256": "76199b3b1ccd66c1ef400fe6614098c2676af38d968ea960d69503e76227be1d",
+      "recorded_tree_exact": true,
+      "anchors": {
+        "DiskGetBrfrPartitionEntry(": [
+          48
+        ],
+        "Store , E:": [
+          28
+        ],
+        "System, C:": [
+          29
+        ]
+      },
+      "overlay": "src/boot/loader/boot/freeldr/freeldr/disk/part_brfr.c",
+      "overlay_exact": true
+    },
+    {
+      "profile": "loader",
+      "path": "boot/freeldr/freeldr/lib/fs/fs.c",
+      "tree": "b2bb44a126630712c01af6bc331d5d7d9e4f07b0",
+      "sha256": "f6048168a79b613d28501b4720cf24c8feceec475ddf0cf7023a99cb4f9728dc",
+      "recorded_tree_exact": true,
+      "anchors": {
+        "NtfsMount,": [
+          67
+        ]
+      },
+      "overlay": "src/boot/loader/boot/freeldr/freeldr/lib/fs/fs.c",
+      "overlay_exact": true
+    },
+    {
+      "profile": "loader",
+      "path": "boot/freeldr/freeldr/lib/fs/ntfs.c",
+      "tree": "b2bb44a126630712c01af6bc331d5d7d9e4f07b0",
+      "sha256": "04f43eea83b69b33a200a555132bbabfe91092817e11ad91f5881ba241664384",
+      "recorded_tree_exact": true,
+      "anchors": {
+        "L\"ntfs\"": [
+          1121
+        ],
+        "NtfsMount(ULONG DeviceId)": [
+          1124
+        ],
+        "ArcRead(DeviceId": [
+          1151,
+          1205
+        ]
+      },
+      "overlay": "src/boot/loader/boot/freeldr/freeldr/lib/fs/ntfs.c",
+      "overlay_exact": true
+    }
+  ],
+  "context_only": {
+    "outputs/fresh-assembly405/provision002.py": "c93bc93ecbd907bd7d173061835519a535c47ecbc12491f4bd706f847d1c41ed",
+    "outputs/native-windows-ntfs-shutdown/REPORT.txt": "6f3d8849375654dbc6f9fe9a95e1f58e06061e0ac338b8c3bf1b842189a737fa",
+    "outputs/native-windows-ntfs-shutdown/validation-002.json": "b34bbd725f20ff16c601e7626f0fa5363f232879285a416278f9a2e95cb357d8",
+    "outputs/native-windows-physical-hooks/validation.json": "e451d2c191cf3702e60646bfd487274852721b9005b86a3056738261da34fb7a",
+    "outputs/image-volume426/model.py": "e12845f036fa1989c386138f2879d2af6d546d177ef312b85cd56686186833c3"
+  },
+  "native_source_modified": false,
+  "old_runtime_recollected": false
+}

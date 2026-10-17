@@ -1,3 +1,52 @@
+# 427 CLOSED: contiguous image boot projection reviewed, host-only
+
+Read outputs/image-handoff427/REPORT.md, DESIGN.md, NEXT.md, final-review.json,
+source-review001.json, kernel-calls002.json and tests001.json. All owned commands
+closed. No native build/patch, guest preparation/launch or physical access.
+No hardware test queued; restored720p demo unchanged. Never rerun consumed427
+static001/002, tests001, source-review001/review001 or earlier closed guests.
+
+Refined426 fixed-image route: require CONTIGUOUS FATX file, with immutable64KiB
+wrapper prefix followed by NTFS; project inner range as partition1 in matching
+loader/HAL. No new file-backed disk driver for this first path. Fragmentation
+refuses. ParentE is replaced, never additionally exposed; other entries unchanged.
+This is a proposed implementation, not actual exclusion or a bootable image.
+
+Actual403 source closure:11 full loader/HAL files match recorded trees,10 public
+overlays exact; inherited Xbox halinit.c reviewed in fullsource. HalInitSystem(0)
+calls HalpInitPhase0/installs existing partitionhooks before disk enumeration.
+Loader carries physical0xaa55/actualsector0checksum; NTFS reader provides bootFS
+name. Current405 MountedDevices C identity is outerE; future fresh image needs
+inneroffset. ArcHalDeviceName must also be runtime-valid, not assumed outerE.
+
+Owned kernel84172dbd... static six intervals identify bootdevice waits then
+IopCreateArcNames at14b340, IoInitSystem bootdrivers149d69/SystemRoot149e20/
+driveletters149e7e. Not new runtime/controlflow proof. Private disassembly on
+E:/xwn427/static002; six files rehashed. static001 wrongly required PDBstream1
+age==image; failed BEFOREoutputdir/disassembly. Investigated actual image1/PDB2/
+DBI1 signaturematch. Microsoft's OpenValidate4 permits PDBage>=image while DBI
+age mustmatch(nonzero); static002 checksactualDBI header/equality. Failure001
+source/record preserved, no binary/PDB edits or old evidence changes.
+
+Original MIT projection.py experimentalenvelope/read-only adapter passes4952
+synthetic checks:512truncations4096singlebitmutations, recomputedsemanticheaders,
+partitionoverlap/identity,fragment/stale-maprefusal,128independenthighLBAsector
+reads, prefix/EOFbounds,shortreadquarantine andpairagreement. CompleteFATownership,
+mediafacts and loader/HALauthority MODELED; no actualFATscan/exclusion/NTFSboot.
+UUID/checksum notauthentication; native concurrentquerypublication unresolved.
+
+NEXT implement boundedrawFATX shortpath/full-owner resolver, realinnerNTFSboot
+geometry/serial checks and independentread-onlysourceoracle in NEWfixture.
+Then opt-in loaderprojection readsfiles/halts BEFOREkernel, onlythen HALadapter
+withindependentrevalidation andactualARC/SystemRoot/parentEabsence evidence.
+No writableboot beforethat. Preserveall crypto/COM+/events/install/restore gates,
+dump settings and all failures. ParentPartition0rawwrites aren't prevented just
+by hidingEpartition. No spoofedownership,lategeometryswitchorfallbacktoouterE.
+
+C initially21294034944bytes(<20GiB), E21732130816bytes. Smallhostworkonly; no
+build/launchguardbypass/offload/backingmoves. Review capacity before next build.
+Newkit -text attributes; original426 and425inputs unchanged.
+
 # 426 CLOSED: fixed NTFS image route selected; host-only model
 
 Read outputs/image-volume426/REPORT.md, DESIGN.md, NEXT.md, source-review001.json

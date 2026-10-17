@@ -1,0 +1,16 @@
+{
+  "result": "refused_before_output_directory_or_disassembly",
+  "source_sha256": "1fe71be2e0bb5b8165b0dcec766984cc079eb68709b031764b575a6cd6ac88e7",
+  "reason": "Incorrectly required PDB stream1 age equal DBG image age",
+  "observed": {
+    "image_age": 1,
+    "pdb_age": 2,
+    "dbi_age": 1,
+    "signature": 1266293717
+  },
+  "correction": "Microsoft PDB1::OpenValidate4 validates PDB age >= image age and nonzero DBI age == image age; static002 explicitly requires exact DBI age",
+  "references": [
+    "https://github.com/microsoft/microsoft-pdb/blob/master/PDB/dbi/pdb.cpp#L745-L821",
+    "https://github.com/microsoft/microsoft-pdb/blob/master/PDB/dbi/dbi.h#L116-L129"
+  ]
+}

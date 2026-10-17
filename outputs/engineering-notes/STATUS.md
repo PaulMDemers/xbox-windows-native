@@ -1,4 +1,21 @@
-# Current: fixed image storage prototype selected
+# Current: contiguous image boot route reviewed
+
+427 narrows the first image prototype to a contiguous FATX file. The existing
+loader/HAL partition path could expose its inner NTFS range as Windows' system
+partition, avoiding a new file-backed disk driver. The parent FATX E range would
+be absent from ordinary Windows partition enumeration. This remains uninstalled
+and does not prove exclusion against raw disk access.
+
+Eleven full loader/HAL source files and the owned kernel's relevant static
+callsites were reviewed. A host projection/read-only adapter passed4,952 checks.
+No native code, guest or physical console changed. Next is actual read-only
+FATX image discovery and loader projection before any writable boot. See
+[427 report](../image-handoff427/REPORT.md).
+
+The720p demo remains available. All owned commands are closed; no hardware test
+is queued. Long-name storage, clean install/restore and release gates remain open.
+
+# Prior: fixed image storage prototype selected
 
 426 selects a fixed NTFS image stored on FATX for further development. The
 comparison covers the existing namespace, boot, dashboard and recovery paths.
