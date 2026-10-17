@@ -52,9 +52,10 @@ at a verified 24-bit desktop: all six palette/format/sprite/overlap cases match.
 The earlier 16-bit RGB32 failures remain preserved; no expected pixels or driver
 were changed. The focused color-key diagnostic also
 [passes on the Xbox 32-bit desktop](../outputs/key-retry449/REPORT.md).
-The [full Xbox matrix attempt](../outputs/sprites-xbox451/REPORT.md) produced no
-receipt, so a direct boot-path comparison is pending. Complete that physical
-matrix before qualifying lifecycle tests and D3D.
+The [fresh full Xbox matrix](../outputs/sprites-retry452/REPORT.md) also passes
+all six cases and174,080 exact bytes at720p/32-bit, followed by normal restart.
+The earlier no-receipt attempt remains preserved. Next qualify lifecycle tests
+and then D3D discovery; no accelerated rendering is implied.
 
 | Stage | Work | Evidence needed to advance |
 |---|---|---|

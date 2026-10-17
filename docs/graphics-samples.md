@@ -13,7 +13,8 @@ they do not qualify DirectDraw presentation, Direct3D or GPU acceleration.
 **Rung 03 also passes default/HEL windowed presentation on Windows 2000 PC and
 Xbox**, with exact source and GDI-observed primary pixels through cover/move/
 uncover stages. Physical scanout, D3D and acceleration remain unqualified.
-Rung04 is under validation; later rungs are planned, not stubbed-out passes.
+Rung04 also passes all six cases on NT5 PC and Xbox; later rungs are planned,
+not stubbed-out passes.
 The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 
 ## The ladder
@@ -24,7 +25,7 @@ The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 | 01 | DirectDraw inventory | Independently request default, HEL and HAL-only objects; record HRESULTs, hardware/HEL caps and current mode | All three inventories completed on PC/NT5/Xbox |
 | 02 | DirectDraw system-memory copy | Explicit RGB32 offscreen surfaces; write/lock/unlock, rectangle blit, exact source and destination readbacks | Default and HEL controls passed on PC/NT5/Xbox |
 | 03 | Windowed DirectDraw presentation | Primary surface plus window clipper; cover/uncover and move the window without damaging adjacent GDI content | NT5 PC/Xbox default and HEL pixel controls passed |
-| 04 | Palettes, formats and sprites | 8-bit palette changes, supported 16/32-bit formats, color-key sprites, clipping and overlapping copies in both directions | All six cases pass on NT5 PC at 24-bit; full Xbox matrix pending |
+| 04 | Palettes, formats and sprites | 8-bit palette changes, supported 16/32-bit formats, color-key sprites, clipping and overlapping copies in both directions | All six cases pass on NT5 PC at24-bit and Xbox at32-bit |
 | 05 | Surface lifecycle and memory budget | Focus changes, lost-surface handling where applicable, repeated create/release, failure recovery and bounded memory use | Planned |
 | 06 | Legacy D3D discovery | Query the chosen D3D interface, enumerate actual devices/caps; distinguish software and hardware choices | Planned; begin with the installed legacy runtime, not a DLL upgrade |
 | 07 | Clear and triangle | Offscreen render target, clear, pretransformed colored triangle, independent interior/background pixel checks | Planned |
@@ -367,3 +368,9 @@ normal restart and removal of the test hook. The earlier
 This focused key diagnostic does not qualify the remaining full rung04 RGB32
 sprite/overlap stages. Ftdisk49 and a shutdown-time rundll32 popup remain separate
 system issues; no hardware acceleration or D3D result is implied.
+
+The [complete Xbox sprite retry](../outputs/sprites-retry452/REPORT.md) now
+qualifies all six rung04 cases, including the remaining palette and overlap
+stages:174,080 exact bytes,2,520 rejected actual-result mutations, normal restart
+and test-hook removal. It leaves the720p mode, runtime and driver unchanged.
+This is system-memory correctness, not GPU acceleration or game qualification.

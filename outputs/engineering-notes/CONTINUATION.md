@@ -1,3 +1,34 @@
+# Current: Xbox452 full sprite matrix PASS; next lifecycle05
+
+Read outputs/sprites-retry452 REPORT/DESIGN/NEXT/final-review/runtime-review and
+actual-controls.6cases default/HEL×index8/RGB565/RGB32,4stages each,exit0;
+174080exactbytes,2520actualmutationsreject. Same444sample23fcd220... unchanged,
+1280x720x32,24/29actualNT5imports.9sources reconstruct451 afterONLYnamespace/schema.
+Oneacceptedlaunch20:54UTC,returned93.6seconds,newreceipt. HookdisabledFIRST,
+5clean/rawagreehives,new6006,protectedstartup/launcher/code exact. StrictFALSE
+Ft49+one shutdownrundll32popup,fullFATXallocation/scanout/GPU/D3D unqualified.
+Allownedprocessesclosed:build/import/package,stage4896,observe15443,collect81509,
+manualreviews/runtime/controls/closeout. Neverrerun/rearm/recollect452/oldercases.
+Usermanualboots:firstuncertain,2/3worked. Separatemanual0025hivesclean,new6006delta2;
+noindividualattribution. manual001TCPtimeout retained; connectivity002laterpassed.
+No useraction currentlyneeded. Complete local452review/commit thenboundedlifecycle05
+sampledevelopment/freshPCcontrol, freshXbox onlyafterPCqualifies. D3Ddiscovery06next.
+
+# Current: user direct boots2/3 worked; fresh452 package ready, FTP unavailable
+
+User reported3directboots:firstuncertain,second/thirdworkedthenrestarted. No testhook
+wasactive; not451samplequalification. New452manual-observation001 TCPconnect timed
+out beforelogin; partialrecord/failure preserved,0remotereads/writes/nolaunch. Asked
+userwhetherUnleashXopen andIPstill192.168.50.242; awaitinganswer. Read outputs/
+sprites-retry452 REPORT/DESIGN/NEXT/readiness-review/package/source-review.
+Nine sources reverse namespace/schema changes backto451 byte-exact. Build001passed
+leased/pinnedRosBE,24/29actualNT5imports; exact444sample unchanged,PC450passgate.
+Allpackageinputs/payloads rehashed. No452stage/launch; no console changes. Allowned
+processesclosed. Neverrerunprepare/build/import/package/manual001; physical001unused.
+UseNEWmanual002afterconnectivity, thenprestagepins/guard/baseline,stage/oneSITE/observe/
+collect/review/controls/closeout. Preserve451closednoreceipt and449keyPASS. Fullphysical
+rung04 thenlifecycle05/D3Ddiscovery06 pending. NoGPU/game/1080promotion.
+
 # Current: PC450 full sprite matrix PASS; Xbox451 no receipt, direct launch requested
 
 Read outputs/sprites-depth450 REPORT/DESIGN/NEXT/final-review/runtime-review,

@@ -1,3 +1,22 @@
+# Current: complete Xbox sprite matrix passes
+
+The [452 physical retry](../sprites-retry452/REPORT.md) passes all six palette,
+format, keyed/clipped and overlapping-copy cases:174,080 independently checked
+bytes and2,520 rejected mutations. It restarted normally, and the test hook is
+removed. All owned processes are closed;720p/runtime/driver are unchanged.
+Ftdisk49 and one shutdown-time rundll32 popup remain separate system limitations.
+Next: surface lifecycle05, then legacy D3D device discovery. No GPU or game claim.
+
+# Current: two user-confirmed direct boots; fresh sprite package ready
+
+The user reports successful second and third direct boots with restart to the
+dashboard; the first attempt is uncertain. These boots had no test hook. The
+[fresh452 package](../sprites-retry452/REPORT.md) is built and checked locally.
+Dashboard FTP timed out before login, so nothing was uploaded or launched.
+Connectivity confirmation is pending; all owned processes are closed. Full
+physical sprite qualification remains pending, followed by lifecycle and D3D
+discovery samples. The unchanged720p baseline was not modified.
+
 # Current: complete PC sprite matrix passes; Xbox launch comparison needed
 
 The [450 PC control](../sprites-depth450/REPORT.md) passes all six sprite cases:
