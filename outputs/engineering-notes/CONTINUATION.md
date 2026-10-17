@@ -1,3 +1,24 @@
+# Current: Xbox448 launch consumed; no sample receipt, baseline restored
+
+Read outputs/key-xbox448 REPORT/NEXT, physical001 stage/launch/observation/collection,
+no-receipt-review001.json and observer-stop001.json. One accepted SITE EXEC at
+2026-10-17T19:28:05UTC; dashboard reachable again by observation+15sec, no runner
+receipt or xwn448 result directory. Visual question pending. No Windows entry,
+normal restart or sample execution proved; no cause attribution.
+Hook disabled/preserved E:/xwn448-kit/startup-used.cmd; normal startup/launcher/
+protected code/720p exact. Five hives and two event logs byte-identical before/after;
+five hives clean/header/raw agreement.17 private files,21 dependencies,2payloads
+rehashed. DashboardC untouched. No public sample/driver/DLL/mode changes.
+Observer37188/PID15864 explicitly terminated after collection, exit1; original
+closed=false observation preserved, separate stop record/hash proves closure.
+ALL owned sessions CLOSED including stage2403. Success review/controls/closeout
+NOT run because receipts absent; separate no-receipt review completed. Never
+relaunch/recollect/rearm448 or any older closed case. Await visual observation,
+review FTP-vs-direct launch before fresh unique attempt. No hardware qualification.
+447 PC24-bit pass and446 PC16-bit failure unchanged; fullrung04 still next before
+lifecycle/D3D. Historical failures and untracked files untouched. Git current state
+is authoritative for commit/push. Prior continuation follows.
+
 # Current: RGB32 key probe passes at24-bit; Xbox448 prepared, awaiting dashboard
 
 Latest completed work: outputs/key-depth447 REPORT/DESIGN/NEXT, mode-tests001,

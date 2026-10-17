@@ -1,3 +1,13 @@
+# Current: Xbox key diagnostic launch produced no receipt
+
+One launch was accepted, but dashboard FTP returned without a result directory.
+The temporary startup hook is disabled; the normal launcher and720p baseline
+verified unchanged. Five hives and both event logs are byte-identical. The screen
+observation is pending; no Windows entry or sample execution is proved.
+[448 evidence](../key-xbox448/REPORT.md). The PC24-bit pass remains valid; the Xbox
+RGB32 probe and complete rung04 matrix remain unqualified. All owned processes
+are closed. No driver or display changes were made.
+
 # Current: RGB32 key diagnostic passes at24-bit; Xbox package ready
 
 The identical diagnostic that failed on the16-bit PC desktop passes all12

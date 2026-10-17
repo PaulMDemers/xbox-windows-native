@@ -346,6 +346,8 @@ The [24-bit comparison](../outputs/key-depth447/REPORT.md) runs that exact binar
 on an enumerated 640×480×24 desktop. Both backends pass every operation and all
 92,160 captured bytes, then the controller verifies restoration to 16-bit mode.
 The difference supports desktop-depth dependence in this PC configuration; the
-responsible implementation remains untraced. The same probe is prepared for the
-Xbox's existing 720p/32-bit desktop, but has not yet been deployed there. This
-focused result does not qualify the remaining full rung04 RGB32 sprite stages.
+responsible implementation remains untraced. The [Xbox attempt](../outputs/key-xbox448/REPORT.md) staged the same probe on the
+existing 720p/32-bit desktop installation, but the accepted launch returned to
+dashboard FTP without any sample receipt. Its hook is disabled and the baseline
+verified unchanged; hardware behavior remains unqualified. This focused PC result
+does not qualify the remaining full rung04 RGB32 sprite stages.
