@@ -1,3 +1,51 @@
+# Current: PC D3D7 inventory PASS; Xbox456 no receipt; watched457 ready locally
+
+Read outputs/d3d-discovery455 REPORT/DESIGN/NEXT/final-review/runtime-review and
+actual controls, outputs/d3d-xbox456 REPORT/no-receipt-review/final-review, and
+outputs/d3d-retry457 REPORT/DESIGN/NEXT/readiness-review/package/build002.
+455 exact sample577bd78e1aae562eef1c7bc8c5d500f604e0d340fca50ea553504608dafdb143,
+14878B/21NT5imports, controller24. Actual default and HEL both QI IDirect3D7 and
+enumerate one RGB Emulation device a4665c60-2673-11cf-a31a-00aa00b93356, software
+caps1361/noHWflags. Both236-byte descriptors identical;472bytes/566actual mutations.
+No CreateDevice/draw/GPU/game qualification.150preflightinputs BEFORE launch,
+fresh404child640x480x16 unchanged/64MiB/noNIC;normalrestart/QEMUexit0, nofallback.
+5clean/raw-agree hives, protectedOS/source/floppy exact;18NTFS3Gfiles/unmounted;
+150inputs archived,229privatefiles rehashed. Layout001 compiled but metadata
+KeyError;002read-only reviewer wrong one-extra-header assumption;003 corrects
+two stddef.h pins without recompilation. All originals preserved. All455closed
+includingcold093151/run10362(QEMUPID465)/cold124648. Never rerun/recollect/parent.
+
+456 one accepted SITE launch21:33UTC, dashboard back29.95sec, NO result directory.
+All5hives+2events byteidentical; no evidence probe started, boot stage/cause UNKNOWN.
+Hook removedFIRST21:34:58..21:35:05UTC;startup/launcher/code exact720p;21deps/2payloads
+verified. ObserverPID17232/session4753 explicitly stopped21:38:05UTC after collection,
+original partial observation closed:false preserved, not deadline completion.
+All456processes closed; no physical C access/fullallocation/Windowsrestart claim.
+Success-pathreview/controls/closeout unexecuted; separate no-receipt review/closeout.
+Never rearm/relaunch/recollect456. Same installed driver/runtime unchanged.
+
+457 fresh LOCAL ONLY package, NOT uploaded/launched. Nine source files reconstruct
+456 by namespace/schema reversal. Build001 pre-mutation refusal: Windowsenv not
+forwarded toWSL; no compiler/private directory. Preserve source/failure. Fresh002
+with explicit WSLenv insideactualbuildlease compiled warning-free;24/21imports.
+Unexecuted consumers pointto002;source-review002 records changes. Sample identical455.
+21dependencies/2payloads rehashed;readiness21:40UTC C28753805312/E21536047104,20GiB
+reserve plus32MiBcollection. Refresh capacity/pins BEFORE stage/launch.
+User asked if available towatch Xromwell/Windowsstartup/desktop orblackreturn;
+answer pending, do not assume readiness. No active testhook. Oncewatching stage/readback
+fresh457once, SITEonce, bounded observation, disablehookFIRST/collect/audit. Don't
+automaticallyretryacceptedrequest. Ifcomplete qualifyinventorythenoffscreen triangle.
+
+PreviouslyPUSHED3c45011d lifecycle453/454;ec969909452. Sprites6cases174080bytes2520
+mutations; lifecycle12582912bytes/platform4718mutations,288releases0/platform,
+8warmup64measured/defaultHEL,0commitgrowth within1MiBbudget. ActualIsLost DD_OK,
+noactualRestore/loss/OOM/globalforeground/GPU/leakfreeclaim. 454strictFALSEFt49+
+TWOshutdownrundll32popups;452onepopup. Allpriorclosed. Usermanual2/3worked,first
+uncertain;manualcold2new6006aggregateonly. Historicaluntrackedfilesuntouched.
+Keep720p baseline, physicalC untouched, exactpins/leases/uniqueIDs. No queued
+hardwarebeyondpendingwatched457; no new agent/automation. Repo review/commit/push
+455..457 andpublicsampledocs after this note; verify actual HEAD rather than infer.
+
 # Current: lifecycle453 PC and454 physical bounded controls PASS; next D3D discovery
 
 Read outputs/lifecycle453 and lifecycle-xbox454 REPORT/DESIGN/NEXT/final-review,

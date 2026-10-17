@@ -1,7 +1,7 @@
 # Next probe: installed Direct3D7 device discovery
 
-This is the planned next rung after the bounded lifecycle controls. No455 sample
-has been built or run. The first probe will enumerate the installed interface and
+This rung follows the qualified bounded lifecycle controls. The probe is now
+implemented; build and runtime receipts record its validation state. It inventories the installed interface and
 capabilities; it will not create a render device, replace a DLL, touch the primary
 surface or claim GPU support from a capability bit.
 

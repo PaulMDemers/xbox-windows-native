@@ -1,3 +1,21 @@
+# Current: Direct3D device inventory passes on NT5 PC; Xbox comparison pending
+
+The [new D3D7 discovery sample](../d3d-discovery455/REPORT.md) found Microsoft's
+RGB software renderer through both default and explicit HEL paths. Its complete
+descriptors and566 negative mutations passed independent checks. This establishes
+capability enumeration only; no D3D device creation or drawing is qualified.
+
+The [Xbox456 attempt](../d3d-xbox456/REPORT.md) returned without a probe receipt.
+Five hives and both event logs are unchanged, so the failing boot stage remains
+unknown. Its startup hook is removed and all owned processes are closed. A
+[fresh457 package](../d3d-retry457/REPORT.md) is ready locally, awaiting the user
+to watch one boot. It has not been uploaded or launched.720p is unchanged.
+
+The earlier full sprite and bounded lifecycle controls pass on PC and Xbox.
+Ftdisk49 and shutdown-time rundll32 popups remain separate system limitations.
+Games, actual lost-surface restoration, D3D rendering and GPU acceleration remain
+unqualified. All failures and historical untracked files are preserved.
+
 # Current: bounded lifecycle controls pass on PC and Xbox
 
 The [new lifecycle sample](../lifecycle-xbox454/REPORT.md) passed on both platforms:

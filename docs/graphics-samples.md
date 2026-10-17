@@ -13,8 +13,9 @@ they do not qualify DirectDraw presentation, Direct3D or GPU acceleration.
 **Rung 03 also passes default/HEL windowed presentation on Windows 2000 PC and
 Xbox**, with exact source and GDI-observed primary pixels through cover/move/
 uncover stages. Physical scanout, D3D and acceleration remain unqualified.
-Rung04 also passes all six cases on NT5 PC and Xbox; later rungs are planned,
-not stubbed-out passes.
+Rung 04 also passes all six cases on NT5 PC and Xbox, and rung 05 passes its
+bounded lifecycle controls. Rung 06 has a complete NT5 PC inventory; its Xbox
+comparison is pending. Later rendering rungs remain planned.
 The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 
 ## The ladder
@@ -27,7 +28,7 @@ The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 | 03 | Windowed DirectDraw presentation | Primary surface plus window clipper; cover/uncover and move the window without damaging adjacent GDI content | NT5 PC/Xbox default and HEL pixel controls passed |
 | 04 | Palettes, formats and sprites | 8-bit palette changes, supported 16/32-bit formats, color-key sprites, clipping and overlapping copies in both directions | All six cases pass on NT5 PC at24-bit and Xbox at32-bit |
 | 05 | Surface lifecycle and memory budget | Focus changes, lost-surface handling where applicable, repeated create/release, failure recovery and bounded memory use | Bounded churn/focus/memory controls pass on NT5 PC and Xbox; actual loss/restore remains unqualified |
-| 06 | Legacy D3D discovery | Query the chosen D3D interface, enumerate actual devices/caps; distinguish software and hardware choices | Planned; begin with the installed legacy runtime, not a DLL upgrade |
+| 06 | Legacy D3D discovery | Query the chosen D3D interface, enumerate actual devices/caps; distinguish software and hardware choices | NT5 PC default/HEL inventory passes: RGB software device found; Xbox pending, no draw qualification |
 | 07 | Clear and triangle | Offscreen render target, clear, pretransformed colored triangle, independent interior/background pixel checks | Planned |
 | 08 | Textures, depth and blending | Known texture orientation/filtering, overlapping triangles with depth, transparent quads and alpha reference pixels | Planned |
 | 09 | Transforms and scene stability | Rotating textured object, camera/projection, resize/activation handling and repeated resource teardown | Planned |
@@ -431,3 +432,53 @@ exit2 is an argument/initial-output failure, and exit4 is a recorded I/O failure
 The batch wrapper has no watchdog; the private validation controller separately
 bounds each process at 90 seconds. No primary-surface, GPU or D3D support follows
 from this sample.
+
+## Direct3D 7 device inventory
+
+The [NT5 PC control](../outputs/d3d-discovery455/REPORT.md) enumerates Microsoft's
+RGB software device through both default and explicit HEL paths. Neither reports
+hardware rasterization or hardware transform/lighting. The first
+[Xbox attempt](../outputs/d3d-xbox456/REPORT.md) returned without a result receipt;
+it does not establish whether the probe started. Physical inventory and all D3D
+rendering remain unqualified.
+
+[discovery.c](../src/samples/graphics-ladder/discovery.c) queries the installed
+Direct3D 7 interface and enumerates device capabilities. It does not create a
+rendering device, draw, replace runtime DLLs or install a driver. Build it with:
+
+```sh
+python3 tools/build-graphics-samples.py \
+    --sample discovery \
+    --rosbe "$HOME/xwn-rosbe-001/RosBE-2.2.1" \
+    --output "$HOME/xwn-discovery-001"
+```
+
+Copy `discovery.exe` and `discovery.cmd` together. Run default and explicit
+software-emulation DirectDraw paths separately:
+
+```bat
+discovery.cmd default d3d-default
+discovery.cmd hel d3d-hel
+```
+
+Keep each prefix's `.txt`, `.exit` and `-caps.bin`, then validate on the host:
+
+```sh
+python3 tools/graphics_discovery.py /path/to/results/d3d-default --backend default
+python3 tools/graphics_discovery.py /path/to/results/d3d-hel --backend hel
+python3 tests/test_graphics_discovery.py
+```
+
+The report retains the QueryInterface and enumeration results, device GUIDs,
+names, descriptions and selected capability fields. The binary contains the full
+236-byte little-endian descriptor for every returned device, up to 16 records.
+The checker joins both representations, including the complete descriptor bytes,
+and rejects duplicates, overflow, truncation, missing completion and failed cleanup.
+Names/descriptions are hex-encoded in the raw report to preserve their bytes.
+
+A complete inventory can truthfully report an unavailable interface or zero
+returned devices. That outcome is distinct from a failed/incomplete probe.
+Hardware capability flags are the runtime's declarations; they do not prove a
+working accelerated driver or successful draw. The next rendering test must use
+an actually enumerated device and independently check its output. The sample's
+exit0 means a complete scoped inventory, not Direct3D rendering support.

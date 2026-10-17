@@ -57,8 +57,11 @@ all six cases and174,080 exact bytes at720p/32-bit, followed by normal restart.
 The earlier no-receipt attempt remains preserved. Bounded surface lifecycle
 controls also [pass on PC and Xbox](../outputs/lifecycle-xbox454/REPORT.md),
 including exact copies, repeated release, thread-local focus and a fixed memory
-budget. Actual lost-surface restoration remains unqualified. Next is D3D device
-discovery; no accelerated rendering is implied.
+budget. Actual lost-surface restoration remains unqualified. The
+[D3D7 inventory on NT5 PC](../outputs/d3d-discovery455/REPORT.md) now finds
+Microsoft's RGB software renderer through both default and explicit HEL paths.
+The Xbox comparison returned without a probe receipt and needs a watched fresh
+boot. No device creation, D3D drawing or accelerated rendering is qualified yet.
 
 | Stage | Work | Evidence needed to advance |
 |---|---|---|
@@ -127,7 +130,7 @@ Proposed first acceptance target for **each exact game edition**:
 |---|---|---|
 | Original RollerCoaster Tycoon | Not tested by this milestone | Exact edition/patch, Windows 2000 PC control and actual API dependencies |
 | Original The Sims | Not tested by this milestone | Exact edition/expansions, Windows 2000 PC control and actual API dependencies |
-| Legacy Direct3D support | Planned; no qualified native implementation | Selected API/runtime, owned probes and reviewed driver design |
+| Legacy Direct3D support | D3D7 software-device inventory passes on NT5 PC; Xbox inventory and rendering pending | Watched Xbox inventory, then an offscreen clear/triangle with independent pixel checks |
 | Native NV2A acceleration | Unimplemented in the working demo | Windows ownership, submission, synchronization and lifetime proof |
 
 ## Installation work remains part of this goal

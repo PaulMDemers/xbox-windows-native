@@ -1,0 +1,66 @@
+{
+  "command": [
+    "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/bin/qemu-system-i386",
+    "-name",
+    "xwn-d3d-discovery455-pc-phase1",
+    "-L",
+    "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/qemu",
+    "-bios",
+    "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/seabios/bios.bin",
+    "-machine",
+    "pc,acpi=off,hpet=off",
+    "-accel",
+    "tcg,thread=single",
+    "-cpu",
+    "pentium3",
+    "-smp",
+    "1",
+    "-m",
+    "64",
+    "-vga",
+    "cirrus",
+    "-display",
+    "none",
+    "-nic",
+    "none",
+    "-drive",
+    "file=/home/paul/xbox-windows-native/d3d-discovery455-pc001/disk.qcow2,format=qcow2,if=ide,index=0",
+    "-drive",
+    "file=/home/paul/xbox-windows-native/d3d-discovery455-pc001/probe.img,format=raw,if=floppy,readonly=on",
+    "-boot",
+    "order=c",
+    "-qmp",
+    "unix:/home/paul/xbox-windows-native/d3d-discovery455-pc001/phase1/qmp.sock,server=on,wait=off",
+    "-rtc",
+    "base=utc",
+    "-no-reboot"
+  ],
+  "started_utc": "2026-10-17T21:28:37.322457+00:00",
+  "closed": true,
+  "phase": 1,
+  "space": {
+    "minimum_free_gib": 20.125,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/home/paul/xbox-windows-native/d3d-discovery455-pc001",
+        "free_bytes": 901417230336
+      },
+      {
+        "free_bytes": 28953784320,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "physical_access": false,
+  "network_device": false,
+  "pid": 465,
+  "deadline": false,
+  "exit_code": 0,
+  "ended_utc": "2026-10-17T21:30:30.244868+00:00",
+  "disk_sha256": "23fe8ca53a389abf20576a1c560c8bf8efbc66ff0094ade2af9153c3dc37715c",
+  "source_unchanged": true,
+  "floppy_unchanged": true
+}
