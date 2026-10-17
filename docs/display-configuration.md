@@ -23,6 +23,10 @@ movement, so this is not solely a camera artifact. Moving unchanged pixels by
 an odd number of rows can produce those swaps when output processing selects
 one row parity at a time; the responsible processing stage remains unconfirmed.
 
+A fresh run of the same standalone test on a second display produced the same
+reported artifact, with exact captured pixels. This makes a TCL-specific cause
+less likely, but the adapter and Xbox interlaced output have not been isolated.
+
 Resolution is selected at boot. Windows Display Properties is not a supported
 way to switch these profiles while Windows is running. An HDMI connector alone
 does not establish the adapter's supported Xbox signal modes.

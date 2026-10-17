@@ -1,3 +1,20 @@
+# 432 CLOSED: second display reports the same 1080i behavior
+
+Read outputs/display-compare432/REPORT.md, observation001.json and final-review.json.
+New unique stock comparison used identical430build003, freshE:/Applications/XWNField432.
+Launch2026-10-17T04:33:11.039113UTC; all8phases/4194304independentpixels pass,
+10filesdouble-read/rehashed,96actualrecordmutationsrejected. Actualscanout/allocation
+checks pass;16RAMDACvalues/encoder setting match earlierTCLrun. No fullCRTC/encoder
+orHDMIcapture. Terminalerror0/firmwarerestartrequest/dashboardreturn;noWindowsaudit.
+User: "same results, pictures taken"; newphotosnotyetreceived. OlddisplayTCL50S425,
+GameModeOFF;newdisplayandadaptermodel/incomingformatUNKNOWN. Sameeffectweakens
+TCL-specific explanation, notproofwhichsharedcomponentcausesit. Questionpending.
+PrivateC:/xwn432/physical001; all15inputs exact. Baseline/startup/720plauncherunchanged.
+No build/SDKchange/physicaldriverchange/XboxCaccess. Allownedprocessesclosed;
+nohardwarequeued. Neverrerun/recollect432physical001 or anyoldcase. Nextidentify
+adapter/newdisplay/signalformat, alternativeadapterpath ifavailable orfulltiming
+review beforepatch; do notforce1080p orpromote1080i.
+
 # 431 photos and live motion: horizontal row-parity detail collapses
 
 Read outputs/field-photos431/REPORT.md, NEXT.md and analysis001.json. Four newly

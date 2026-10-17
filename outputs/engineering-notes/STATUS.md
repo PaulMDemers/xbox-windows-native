@@ -1,3 +1,13 @@
+# Current: second display reproduces the 1080i artifact
+
+A fresh comparison on the user's new display reports the same visible behavior.
+All captured pixels and read-only timing checks pass; old and new runs have the
+same captured stock timing values. This makes a TCL-only explanation less likely,
+without identifying the shared adapter or Xbox output as the cause. Adapter/new
+display identification and actual incoming signal format are pending. Windows
+remains720p, baseline unchanged, all sessions closed and no next test queued.
+See [new display comparison](../display-compare432/REPORT.md).
+
 # Current: photographs show row-parity-dependent loss of fine detail
 
 Windows test photos show single-line stripes collapsing to solidblack/magenta
