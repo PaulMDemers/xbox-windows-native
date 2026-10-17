@@ -1,3 +1,53 @@
+# Graphics437 PC and438 physical controls CLOSED - October17,2026
+
+Read outputs/graphics-nt5437/REPORT.md, runtime-review002.json, independent001.json,
+controls001.json, final-review.json and outputs/graphics-xbox438/REPORT.md,
+runtime-review001.json, physical001-{stage,launch,observation,collection}.json,
+controls001.json, final-review.json. Six allowed cases PASS on each:00 GDI,
+01 DD7 default/HEL/HAL inventory,02 default/HEL explicit RGB32 system-memory blit.
+Each has129024 exact source/destination bytes and402 actual mutations rejected.
+No primary-surface/clipper/D3D/GPU/visual/performance/game qualification.
+
+Exact436build004 sample unchanged, SHA256
+09d355d8e55081433b62f94a2203cfa56bb23c4e6181f07f9b5087c7b6f3d050.
+437 fresh private child of CLOSED404 NTFS install, not newISOsetup:
+/home/paul/xbox-windows-native/graphics437-pc001. Parent ece991e4... unchanged;
+never relaunch/parent/recollect this consumed child.640x480x16 Cirrus,64MiB,
+noNIC. Normal runner restart/QEMUexit0, nohostquit/deadline/kill.6475->6495files,
+308->309dirs,20owned additions,protectedWindowsbinaries unchanged,QCOWclean.
+Fiveclean hiveheaders/rawvaluesagree; inheritedSOFTWARE DRMtype1028 unknown.
+NTFS3G independent30selectedfiles agree, viewunmounted/diskunchanged.
+Not fullNTFSallocation/logicalfileaudit; retain423readerdiscrepancies.
+131frozen dependencies,116privatefilesrehashed,5publicverifiertestsPASS.
+Preservecold001Registry import/cold002libhivex failures beforediskaccess,
+review001 wrongcontroller-schema rejection. Cold003 environment/review002 corrected
+hosttooling only; no guest repeat. Private captures remain onC's WSL volume.
+
+438physical001 oneacceptedlaunch09:03:14UTC, dashboardreturn09:04:49UTC.
+All6trueprocess exits0,1280x720x32,45secwaits completed,normalrestartreceipt+6006.
+Startup xwn438.cmd removed/preserved as E:/xwn438-kit/startup-used.cmd;
+originalstartup,720plauncher/protecteddrivers unchanged. XboxC NOTaccessed.
+Runner1780b90a70714bee556d56655e31818f9cdfcaa8f8cbd7a146641b986ad9a008,
+onlyID/schema/sourcecopypath differ from actual437controller. ActualmatchedNT5
+imports24,warningfreebuild. Newsource/exe under graphics438-build001 (WSL),
+privatephysicalevidence work/graphics438.37before/afterfilesrehashed.
+Never relaunch/recollect438 or reuse438result namespace. All owned sessionsclosed.
+
+438 strictsystemFALSE: Ftdisk49 plus TWOnewApplicationPopup26 rundll32.exe records, initialization failed because windowstation
+is shuttingdown. InitiatorNOTtraced; late startup vsquickrestart is inference,
+notproved cause. No suppression or waiver. Fivehivesclean/rawvalueagreement,
+SOFTWAREunknownDRMtypeddecode remains; nofullFATXallocationaudit.
+Observe001 importnamecollision beforeconnection retained; observe002 watched
+samealreadyacceptedboot.437 wrong-password authrefusal retained; usercorrected
+password before438stage. Credentials remain environmental, notcommitted.
+
+Next implement sample03 primary surface/window clipper/GDIcoexistence with
+independent neighbor/pixel checks, default/HEL distinct. FreshPCcontrol before
+freshXboxattempt; preserve shutdownpopup limitation. Do not advertiseDirectDraw
+callbacks or nativeGPUownership.720pbaseline unchanged;1080i PAUSED. OriginalRCT
+andTheSims are targets, notyettested. Publicbuild/install limitations unchanged.
+No testsqueued; no SDK/driver/sharedsource mutation. Historicalnotesfollow.
+
 # Graphics sample ladder 436: first three rungs implemented
 
 User requested an incremental sample ladder before game testing. Read

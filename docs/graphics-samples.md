@@ -5,18 +5,21 @@ has an explicit result to check. The samples are original project code, target
 32-bit Windows 2000, and run as ordinary applications. They do not install a
 driver, change resolution, reboot, or initialize the Xbox GPU.
 
-**Rungs 00–02 are implemented.** They compile with RosBE, and their allowed paths
-have run on the modern Windows development PC. They have **not yet run on
-Windows 2000 or the Xbox**. Later rungs below are planned, not stubbed-out passes.
+**Rungs 00–02 are implemented and have passed their six allowed cases on a modern
+Windows PC, a Windows 2000 SP4 PC control, and the installed Xbox at 720p.**
+The three pixel cases each matched 43,008 independently expected bytes on NT5
+and Xbox. These runs checked memory operations with the preview disabled;
+they do not qualify DirectDraw presentation, Direct3D or GPU acceleration.
+Later rungs below are planned, not stubbed-out passes.
 The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 
 ## The ladder
 
 | Rung | Sample | Check before advancing | Status |
 |---|---|---|---|
-| 00 | GDI reference copy | Two owned 32-bit DIBs; exact source and copied rectangle, unchanged destination border; GDI flush and cleanup | Implemented; host pixel control passed |
-| 01 | DirectDraw inventory | Independently request default, HEL and HAL-only objects; record HRESULTs, hardware/HEL caps and current mode | Implemented; all three host inventories completed |
-| 02 | DirectDraw system-memory copy | Explicit RGB32 offscreen surfaces; write/lock/unlock, rectangle blit, exact source and destination readbacks | Implemented; default and HEL host controls passed |
+| 00 | GDI reference copy | Two owned 32-bit DIBs; exact source and copied rectangle, unchanged destination border; GDI flush and cleanup | PC/NT5/Xbox pixel controls passed |
+| 01 | DirectDraw inventory | Independently request default, HEL and HAL-only objects; record HRESULTs, hardware/HEL caps and current mode | All three inventories completed on PC/NT5/Xbox |
+| 02 | DirectDraw system-memory copy | Explicit RGB32 offscreen surfaces; write/lock/unlock, rectangle blit, exact source and destination readbacks | Default and HEL controls passed on PC/NT5/Xbox |
 | 03 | Windowed DirectDraw presentation | Primary surface plus window clipper; cover/uncover and move the window without damaging adjacent GDI content | Next implementation |
 | 04 | Palettes, formats and sprites | 8-bit palette changes, supported 16/32-bit formats, color-key sprites, clipping and overlapping copies in both directions | Planned |
 | 05 | Surface lifecycle and memory budget | Focus changes, lost-surface handling where applicable, repeated create/release, failure recovery and bounded memory use | Planned |
@@ -150,10 +153,16 @@ does not infer NT5, physical-console or acceleration qualification from pixels.
 
 ## Next implementation
 
-First run the existing rungs on a fresh owned Windows 2000 PC fixture, then on
-the unchanged Xbox test installation under the normal launch/collection process.
-Retain default/HEL/HAL distinctions and every refusal. That establishes the
-baseline before implementing rung 03's primary surface, clipper and GDI interaction.
+The [437 NT5 control](../outputs/graphics-nt5437/REPORT.md) and
+[438 Xbox control](../outputs/graphics-xbox438/REPORT.md) establish the initial
+baseline. Both used the same sample executable; the Xbox driver and 720p mode
+were unchanged. Each retained 402 rejected evidence mutations. The physical
+run restarted normally but retains Ftdisk49 and two shutdown-time rundll32
+initialization popups, so it is not a clean overall system qualification.
+
+Next implement rung 03's primary surface, window clipper and GDI interaction.
+Keep default/HEL distinctions, independent destination/neighbor checks and
+every refusal. Use another fresh PC control before a distinct Xbox run.
 Advance to D3D rendering only with actual capability and surface evidence; do not
 change `DrvEnableDirectDraw` to advertise support without implementing its contract.
 

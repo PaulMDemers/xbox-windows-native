@@ -1,4 +1,22 @@
-# Current: runnable graphics ladder foundation
+# Current: graphics ladder passed scoped NT5 and Xbox controls
+
+Six allowed cases now pass on both the isolated Windows 2000 PC and installed
+Xbox at unchanged 720p. Each verified 129,024 source/destination bytes and
+rejected 402 actual-evidence mutations. Both restarted normally. Physical438's
+temporary hook is removed; protected code and startup are unchanged. See
+[437 PC](../graphics-nt5437/REPORT.md), [438 Xbox](../graphics-xbox438/REPORT.md).
+
+Physical strict qualification remains false: existing Ftdisk49 and two rundll32
+initialization popups during shutdown remain recorded. Their initiating process
+was not traced. Five hives have clean headers and raw-value agreement; inherited
+unknown typed DRM data and missing full allocation audit remain limitations.
+No new display driver, primary-surface presentation, D3D or acceleration claim.
+
+Next: rung03 primary surface/window clipper/GDI coexistence, with a fresh PC
+control before a distinct Xbox attempt. Do not rerun437pc001 or438physical001.
+All owned processes are closed, no test queued, and1080i remains paused.
+
+# Prior: runnable graphics ladder foundation
 
 [Samples 00–02](../../docs/graphics-samples.md) implement a GDI pixel reference,
 DirectDraw capability inventory and system-memory copies. The current build
