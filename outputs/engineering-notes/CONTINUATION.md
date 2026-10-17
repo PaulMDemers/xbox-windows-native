@@ -1,3 +1,28 @@
+# Current: watched Xbox449 RGB32 key diagnostic PASS, strict system FALSE
+
+Read outputs/key-retry449 REPORT/DESIGN/NEXT, final-review.json, runtime-review001,
+actual-controls001, source-review001 and physical001 lifecycle records. One accepted
+launch2026-10-17T19:48:16UTC; observer found receipt19:49:40; collection ended19:49:55.
+User: "it cleanly booted to the desktop and restarted." Both actual default/HEL
+processes exit0/wait0,12stages each,92160 source/destination bytes exact. Desktop
+1280x720x32. Same446 probe0fcbc34e... unchanged. Controllerd4a9b0cdd92705e284bb61441925ce3c4a228ff6fb79eca93ce6e9e3047bdde4,
+12958bytes/24NT5imports; sample23imports. Nine sources reconstruct448 byte-exact
+by reversing ONLY fixture/schema names. Build lease/20GiB guard passed, no warnings.
+21frozen dependencies/27private files rehashed;19592actual mutations rejected.
+Fivehivesclean/header/rawagree. Normal restart request1 plusnew6006. NewFtdisk49
+andONErundll32 ApplicationPopup26 windowstation-shutdown failure retained. No full
+FATXallocation/active-ring-completeness/scanout/GPU/D3D/performance qualification.
+Hook removed to E:/xwn449-kit/startup-used.cmd; originalstartup/launcher/protected
+code/720p exact. DashboardC untouched. ALLowned sessions CLOSED inclstage75708,
+observer44575. Neverrelaunch/recollect/rearm449 or448. Privatework/key-retry449
+andWSLkey-retry449-runner-build001; original446probe reused byte-exact, not rerunonPC.
+448user-observation001 now records uncertain recollection ofWindows starting then
+quicklyexiting; cause remains unresolved. Existing448no-receipt evidence unchanged.
+NEXT fullrung04 PC24bit (real switch/restore) thenfreshXbox matrix; focusedkeyprobe
+isnotlateroverlap qualification. Thenlifecycle05/D3Ddiscovery06. No installeddriver/
+DLL/modechange;1080paused,gameuntested. Historicaluntracked untouched. GitHEAD/origin
+is authoritative forcommit/push; priorcontinuation follows.
+
 # Current: Xbox448 launch consumed; no sample receipt, baseline restored
 
 Read outputs/key-xbox448 REPORT/NEXT, physical001 stage/launch/observation/collection,

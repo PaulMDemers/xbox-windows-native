@@ -24,7 +24,7 @@ The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 | 01 | DirectDraw inventory | Independently request default, HEL and HAL-only objects; record HRESULTs, hardware/HEL caps and current mode | All three inventories completed on PC/NT5/Xbox |
 | 02 | DirectDraw system-memory copy | Explicit RGB32 offscreen surfaces; write/lock/unlock, rectangle blit, exact source and destination readbacks | Default and HEL controls passed on PC/NT5/Xbox |
 | 03 | Windowed DirectDraw presentation | Primary surface plus window clipper; cover/uncover and move the window without damaging adjacent GDI content | NT5 PC/Xbox default and HEL pixel controls passed |
-| 04 | Palettes, formats and sprites | 8-bit palette changes, supported 16/32-bit formats, color-key sprites, clipping and overlapping copies in both directions | NT5 indexed8/RGB565 pass; RGB32 failure retained |
+| 04 | Palettes, formats and sprites | 8-bit palette changes, supported 16/32-bit formats, color-key sprites, clipping and overlapping copies in both directions | NT5 indexed8/RGB565 pass; focused RGB32 keys pass on PC 24-bit/Xbox 32-bit; full matrix pending |
 | 05 | Surface lifecycle and memory budget | Focus changes, lost-surface handling where applicable, repeated create/release, failure recovery and bounded memory use | Planned |
 | 06 | Legacy D3D discovery | Query the chosen D3D interface, enumerate actual devices/caps; distinguish software and hardware choices | Planned; begin with the installed legacy runtime, not a DLL upgrade |
 | 07 | Clear and triangle | Offscreen render target, clear, pretransformed colored triangle, independent interior/background pixel checks | Planned |
@@ -346,8 +346,13 @@ The [24-bit comparison](../outputs/key-depth447/REPORT.md) runs that exact binar
 on an enumerated 640×480×24 desktop. Both backends pass every operation and all
 92,160 captured bytes, then the controller verifies restoration to 16-bit mode.
 The difference supports desktop-depth dependence in this PC configuration; the
-responsible implementation remains untraced. The [Xbox attempt](../outputs/key-xbox448/REPORT.md) staged the same probe on the
-existing 720p/32-bit desktop installation, but the accepted launch returned to
-dashboard FTP without any sample receipt. Its hook is disabled and the baseline
-verified unchanged; hardware behavior remains unqualified. This focused PC result
-does not qualify the remaining full rung04 RGB32 sprite stages.
+responsible implementation remains untraced.
+
+The [watched Xbox retry](../outputs/key-retry449/REPORT.md) also passes both
+backends on the existing 1280×720×32 desktop: all 24 stages and 92,160 captured
+bytes match. The same executable, runtime and driver were used, followed by a
+normal restart and removal of the test hook. The earlier
+[no-receipt launch](../outputs/key-xbox448/REPORT.md) is retained separately.
+This focused key diagnostic does not qualify the remaining full rung04 RGB32
+sprite/overlap stages. Ftdisk49 and a shutdown-time rundll32 popup remain separate
+system issues; no hardware acceleration or D3D result is implied.

@@ -1,3 +1,16 @@
+# Current: Xbox RGB32 color-key diagnostic passes
+
+The watched [449 retry](../key-retry449/REPORT.md) booted to the desktop and
+restarted normally. Default and HEL each passed all12 stages at1280×720×32;
+92,160 captured bytes matched with zero errors. The independent checker rejected
+19,592 altered results. The same executable passes at24-bit on the PC control
+and fails keyed copies at16-bit; no driver, DLL or expected pixels changed.
+
+The test hook is removed and the720p baseline verified. Strict system qualification
+remains false: Ftdisk49 and one shutdown-time rundll32 popup are retained. All owned
+processes are closed. Next complete the full rung04 sprite/overlap matrix, then
+surface lifecycle and D3D discovery. No native GPU or game support is claimed.
+
 # Current: Xbox key diagnostic launch produced no receipt
 
 One launch was accepted, but dashboard FTP returned without a result directory.
