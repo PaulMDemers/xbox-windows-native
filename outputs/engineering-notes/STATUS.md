@@ -1,3 +1,19 @@
+# Current: fresh FATX allocation scan clean; early boot diagnostic under review
+
+A new physical E scan passed on October17:722 directories,8063 files, no allocation
+errors/orphans/marked bad clusters, and1.76GB free. The prior full physical E scan
+was October14; recent boot checks had covered selected files and hives only.
+The scanner returned to the dashboard. Boot/startup/hives/logs remain unchanged.
+It read E and stored reports in its own F folder; dashboard C was untouched.
+This is not a disk-surface test or a fresh F allocation audit.
+
+Boot source review pinned the exact entry and stack boundaries. It also showed
+that existing LED helpers can wait indefinitely and cannot safely be reused as
+an early marker unchanged. No new marker is installed; host validation and an
+owned emulator check precede the next hardware test. The boot cause remains
+unresolved. See [health scan](../fatx-health463/REPORT.md) and
+[entry review](../early-entry464/REPORT.md). No console test is queued.
+
 # Current: diagnostic boot and normal restart verified; cause remains unresolved
 
 462 reached the Windows desktop and returned through a normal restart, supported

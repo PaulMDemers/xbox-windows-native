@@ -1,3 +1,31 @@
+# Current:463 fresh E allocation PASS;464 early-entry source review complete
+
+Fresh physical463 scan002 completed and returned to UnleashX;722dirs8063files739dir
+clusters204937allocated,0errors/orphans/markedbad,107487free=1761067008bytes.
+Unchanged341scanner66e58932... reads nativePartition1/E; outputs uniqueF app
+XWNFatx463b. No Caccess/rawwrite/repair/Windowsboot.10boot/startup/hive/event/trace
+files unchanged from462; protected720p matches.3capturesdouble-readexact;5host
+corruptioncases reject and originals rehash. PreviousfullphysicalEscan398 was
+2026-10-14T19:49UTC clean682dirs7849files. F not freshlyallocationaudited; no
+surface/SMART/fullcontentcheck. WindowsF/Srv2013 historicallydashboardC untouched.
+Scan001 timedout FTPbefore remote mutation/launch; preserve run.py/preflight001/
+trial001/failure001. Fresh run002 changes attemptIDs/socket45sec only; actual
+oneSITEaccepted, no retry.4257/2248/58617 closed; collection/reviews exit0.
+Read outputs/fatx-health463 REPORT/NEXT/final-review/actualreceipts.
+
+464review exact374ELF/payload and7originalsources; privateE:/xwn464/source001.
+Entry02600000->start02600090; stackset026000f0 to02800000. Originalwrapperdoesnot
+rebaseESP;462actualoldESPd001cd7c. OriginalprestackcodeavoidsPUSH/CALL; addingone
+wouldnotbesafe. ExistingSMBusbusy/completionunbounded; LEDhelperdiscardsstatuses,
+oldnewflashterminal; normalredLEDafterPCI/video. No sourcepatch/build/marker yet.
+Read early-entry464 REPORT/DESIGN/NEXT/source-review001. Next actual bounded
+adapter/insertionhosttests, exactcopy/branch/registerproof thenfreshownedemulator
+beforephysical. NoXboxkernelfilecallsafterpaging, nofakeLEDack/persistence/reset.
+No bootcause/fix/D3Dresult. Installedoriginal6240/startup/drivers720p unchanged.
+Allownedprocessesclosed; no hardware testqueued/human action needed.20GiBguard
+stillrequired;E margin tight. Previouspushede8d387bc. Check/exactstage/commit/push
+this closeout; historicaluntracked untouched. Neverrerun consumed463attempts.
+
 # Current:462 successful boot/restart closed; intermittent failure still unlocated
 
 The user observed Windows at the desktop and confirmed UnleashX return after the

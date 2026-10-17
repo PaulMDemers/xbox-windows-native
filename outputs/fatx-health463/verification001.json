@@ -1,0 +1,80 @@
+{
+  "passed": true,
+  "physical_E_allocation_consistent": true,
+  "original_captures_unchanged": true,
+  "synthetic_corruption_controls": [
+    {
+      "case": "orphan",
+      "rejected": true,
+      "exit_code": 0,
+      "errors": [],
+      "orphan_count": 1
+    },
+    {
+      "case": "root-free",
+      "rejected": true,
+      "exit_code": 1,
+      "errors": null,
+      "orphan_count": null
+    },
+    {
+      "case": "crosslink",
+      "rejected": true,
+      "exit_code": 0,
+      "errors": [
+        {
+          "path": "/dpkgroot.ext2",
+          "kind": "crosslink",
+          "cluster": 13031,
+          "other": "/linuxboot.cfg"
+        },
+        {
+          "path": "/dpkgroot.ext2",
+          "kind": "short-chain",
+          "size": 805306368,
+          "capacity": 16384
+        }
+      ],
+      "orphan_count": 49152
+    },
+    {
+      "case": "oversize",
+      "rejected": true,
+      "exit_code": 0,
+      "errors": [
+        {
+          "path": "/linuxboot.cfg",
+          "kind": "short-chain",
+          "size": 4294967295,
+          "capacity": 16384
+        }
+      ],
+      "orphan_count": 0
+    },
+    {
+      "case": "bad-name",
+      "rejected": true,
+      "exit_code": 0,
+      "errors": [
+        {
+          "path": "/",
+          "kind": "invalid-name-length",
+          "cluster": 1,
+          "offset": 192,
+          "length": 43
+        }
+      ],
+      "orphan_count": 1
+    }
+  ],
+  "free_clusters": 107487,
+  "free_bytes": 1761067008,
+  "marked_bad_clusters": 0,
+  "full_surface_media_scan": false,
+  "full_file_content_audit": false,
+  "console_F_allocation_audited": false,
+  "console_C_accessed": false,
+  "repairs_performed": false,
+  "before_after_unchanged_files": 10,
+  "source_sha256": "74c36acf9458117b1d29a9dfea570fba9e08719cbd7cc7c5250adcb49d7244ac"
+}
