@@ -1,3 +1,17 @@
+# Current: RGB32 key diagnostic passes at24-bit; Xbox package ready
+
+The identical diagnostic that failed on the16-bit PC desktop passes all12
+operations on both backends at24-bit:92,160 exact bytes. Mode restoration and
+normal restart are verified. [447 evidence](../key-depth447/REPORT.md).
+
+This supports desktop-depth dependence; no runtime/driver patch was made.
+The [448 Xbox package](../key-xbox448/REPORT.md) is compiled and checked for the
+existing720p/32-bit baseline. Dashboard FTP timed out before authentication,
+so nothing was uploaded or launched. Awaiting console readiness.
+
+Fullrung04 laterRGB32 sprite stages, lifecycle tests andD3D remain next; no new
+game, acceleration or whole-system qualification. Previous failures retained.
+
 # Current: RGB32 color-key behavior isolated on the NT5 PC control
 
 The new [diagnostic446](../key-semantics446/REPORT.md) passes all plain RGB32

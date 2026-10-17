@@ -341,3 +341,11 @@ both with and without clipping. Full keys were retained by `GetColorKey`.
 All destination captures match a low16-bit comparison model; the responsible
 implementation is not traced. The current16-bit desktop enumerates24-bit modes
 but no32-bit mode. These failures are recorded, not accepted as compatible.
+
+The [24-bit comparison](../outputs/key-depth447/REPORT.md) runs that exact binary
+on an enumerated 640×480×24 desktop. Both backends pass every operation and all
+92,160 captured bytes, then the controller verifies restoration to 16-bit mode.
+The difference supports desktop-depth dependence in this PC configuration; the
+responsible implementation remains untraced. The same probe is prepared for the
+Xbox's existing 720p/32-bit desktop, but has not yet been deployed there. This
+focused result does not qualify the remaining full rung04 RGB32 sprite stages.

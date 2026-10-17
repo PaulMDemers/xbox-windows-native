@@ -50,8 +50,9 @@ Rung 03 now passes windowed presentation and GDI coexistence on NT5 PC and Xbox.
 Rung04 now has NT5 indexed-palette and RGB565 sprite controls; RGB32 color-key
 validation remains incomplete. A [focused NT5 diagnostic](../outputs/key-semantics446/REPORT.md)
 passes plain RGB32 copies but reproduces keyed-copy failures with three keys,
-with and without clipping. Next compare desktop depth and check the Xbox before
-lifecycle tests and D3D.
+with and without clipping, on the16-bit desktop. The same binary
+[passes on a24-bit desktop](../outputs/key-depth447/REPORT.md). Next check the
+Xbox32-bit path and complete the sprite matrix before lifecycle tests and D3D.
 
 | Stage | Work | Evidence needed to advance |
 |---|---|---|

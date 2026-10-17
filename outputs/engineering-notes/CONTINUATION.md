@@ -1,3 +1,48 @@
+# Current: RGB32 key probe passes at24-bit; Xbox448 prepared, awaiting dashboard
+
+Latest completed work: outputs/key-depth447 REPORT/DESIGN/NEXT, mode-tests001,
+runtime-review001, actual-controls001, independent001, final-review.json.
+Prepared physical work: outputs/key-xbox448 REPORT/DESIGN/NEXT, package001.json,
+prepared-review001.json, connection001.json. Read git HEAD/origin for pushed state.
+
+447 actual scoped key-probe PASS: SAME446 executable0fcbc34e3d18339aa0f4a7bfe1d2e8852846a697469e7a591d97456863b3649c,
+17366bytes/23NT5imports. Default+HEL each12operations/exit0, all92160bytes exact.
+The same binary failed134pixels/backend at16-bit in446; no expectedpixels/DLLs/
+driver/publicsample changed. Strong desktop-depth evidence; actualimplementation
+untraced. Not all later fullsprites stages and not a32-bit desktop qualification.
+
+Actual447controller selectedindex58 from105modes;640x480/60Hz/flags0 remained
+constant,16->24->16 verified by fresh queries. CDS_TEST/apply/restore all0, mode
+restored1. Bothsample modeinventories joinselectedindex/count. Controllerbb7b8cf06d9473f6c9d7daaf1f7fdaecdcf21f53776ad20ef88fe9b743098c34,
+15146bytes/26imports,warningfree.153synthetic mode-receipt negatives passed.
+Gatebyteidentical446;59 inheritedtests explicitly not rerun.147frozen inputs.
+
+447 new404child normalrestart/QEMUexit0,nohostquit/kill/deadline. Cold6486files,
+309dirs,11adds(10owned+IEdesktop.htt),5clean/rawagreehives,protected/source/floppy
+unchanged,QCOWclean,new6006. NTFS3G20filesagree/unmounted/diskunchanged.11416
+actual mutations rejected.147inputsarchived/231privatefilesrehashed. Original
+keyedfailure wording in inheritedactual-controls scope refers446;447allpassed.
+ALL447owned sessions CLOSED inclbinaryreview40905,cold0 10757,runtime17861,
+cold1 5474,independent/controls/closeout. Privatekey-depth447-{runner-build001,
+pc001,independent001,inputs001}. Neverrelaunch/recollect/parent447 orolderclosedcases.
+
+448physical package READY ONLY. Exact446probe plus physicalcontroller derivedfrom
+446 byfixture/schema/source-copy path only; no displaymodecode.24/23NT5imports,
+warningfree; build/package sessionsclosed. Privatework/key-xbox448/payload and
+/home/paul/xbox-windows-native/key-xbox448-runner-build001. Dependencies/payloads
+verified inprepared-review001. One5sec FTPconnect timedout BEFOREauth. No stage,
+upload,hook,launch orconsolewrite occurred. User asked asynchronously ifatUnleashX;
+no answer yet. Do not mistake offlineconsole forsample/bootfailure orretry oldrun.
+
+NEXT verify448frozenpackage/payloads anddashboard720pbaseline/ownership, thenstage
+once,launchonce,observe002; no retry uncertainSITE. Onreturncollect removes hook
+first, thenreview/hives/events/actualcontrols/closeout. Envcredentials userprovided
+already known; do not askagainunlessactualauthfailure. Never touchdashboardC.
+Physicalprobe1280x72032 shouldisolateactualpath; historicalFt49/shutdownpopups
+remainseparate. Ifqualified, finishfullrung04 PC24bit+Xboxsprite matrix, then
+lifecycle05/D3Ddiscovery06. No acceleration/game/scanout claim. RCT/Simsuntested.
+No installeddriver/DLL/bootpath/720pchange;1080paused. Historicaluntracked untouched.
+
 # Current: RGB32 keyed-copy failure narrowed; diagnostic446 closed - October17,2026
 
 Read outputs/key-semantics446/REPORT.md,DESIGN.md,NEXT.md,runtime-review001.json,
