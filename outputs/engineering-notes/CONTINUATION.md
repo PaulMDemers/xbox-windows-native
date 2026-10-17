@@ -1,3 +1,29 @@
+# Current:462 successful boot/restart closed; intermittent failure still unlocated
+
+The user observed Windows at the desktop and confirmed UnleashX return after the
+requested normal restart. Read outputs/boot-refusal462 REPORT/NEXT/collection001,
+cold-review001/closeout001/final-review and user-observation001/user-restart001.
+The primary176-byte report is complete; refusal.bin absent. Absence alone does not
+prove handoff. All nonidentity preparation words match failed460 and successful461.
+Five hives clean/header/raw-agree;27 private files rehashed;269 actual primary
+mutations rejected. SOFTWARE DRM type1004 typed limitation retained/raw agrees.
+New records589..594:Ft49,6009,6005,Tcpip4201,Srv2013(F:),6006; no new app events.
+Normal startup/shutdown supported; strictFALSE Ft49+Srv2013. WindowsF historically
+maps dashboardC; no consoleC access/cleanup. No full FATX allocation audit/D3D test.
+Original6240launcher/startup/protected720p unchanged. Collection2674 CLOSEDexit0;
+cold-review001 and closeout001 exit0. All owned processes closed, no launch queued.
+Never relaunch/recollect/reset462 or prior closed attempts. Source/payload/host
+proof remains as recorded; historical pending-closeout001 superseded by final.
+
+Next: review new bounded earlyCromwell marker for actual post-wrapper entry and
+later initialization. Review copied spans/stack/registers and safe observation
+channel; no Xbox kernel/file services after paging discarded, no speculative
+functional fix. Keep first-refusal mechanism; no repeat preparation-only boot.
+D3D ladder pending physical inventory;455PC/452sprites/454lifecycle unchanged.
+No boot-reliability/GPU/game qualification. Keep rootdemo251 lease,20GiB host guard,
+private proprietary assets and historical failures. Prior pushed86cc16c6; commit
+this closeout after repository/exact-stage checks. Historical untracked untouched.
+
 # Current:462 first-refusal diagnostic launched; screen reply/cold collection pending
 
 Read outputs/boot-refusal462 DESIGN/REPORT/NEXT/build001/source-review001/host001/

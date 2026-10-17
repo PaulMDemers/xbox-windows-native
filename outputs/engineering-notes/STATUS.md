@@ -1,3 +1,17 @@
+# Current: diagnostic boot and normal restart verified; cause remains unresolved
+
+462 reached the Windows desktop and returned through a normal restart, supported
+by fresh startup/shutdown logs and five clean registry hives. Its preparation
+record matches both the earlier failed460 and successful461 in every nonidentity
+word. No first-refusal file was present. This is a successful diagnostic run,
+not a demonstrated fix for intermittent boots.
+
+All original720p boot files and startup remain unchanged. Ftdisk49 and Srv2013
+remain recorded failures; the latter names WindowsF (historically dashboardC,
+which was not accessed). No D3D workload ran. The next step is source review of
+a bounded marker at early Cromwell entry; no hardware test is queued. All owned
+processes are closed. See [462 closeout](../boot-refusal462/REPORT.md).
+
 # Current: first-refusal diagnostic launched; screen observation pending
 
 The new462 diagnostic records the exact first deliberate wrapper refusal after

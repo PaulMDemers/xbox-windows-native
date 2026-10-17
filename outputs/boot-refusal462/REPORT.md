@@ -1,4 +1,4 @@
-# New first-refusal diagnostic; console observation pending
+# First-refusal diagnostic: successful boot and normal restart
 
 462 extends the reviewed461 wrapper with an immutable first-refusal record.
 Reasons distinguish report create/write/flush/close, snapshot/eligibility refusals
@@ -29,9 +29,40 @@ Build001 SHA256:
 One SITE request for `E:\Applications\XWNBoot462a\default.xbe` was accepted at
 2026-10-17 23:06:26UTC. No graphics hook or automatic Windows restart was installed.
 The bounded dashboard observer did not establish return within its window.
-Screen observation is pending; FTP absence is not a boot failure. Do not repeat
-this launch. Prior460/461 reports and their differing outcomes remain unchanged.
+The user subsequently reported the Windows desktop and confirmed dashboard return
+after the requested normal restart. FTP absence during the observation window was
+not a boot failure. This attempt is closed; never relaunch or recollect it.
+Prior460/461 reports and their differing outcomes remain unchanged.
 
 Evidence: [build](build001.json), [source review](source-review001.json),
 [host cases](host001.json), [refusal decoder](refusal-tests001.json),
 [primary decoder](decoder001.json), [launch](launch001.json).
+
+## Actual collection and closeout
+
+The complete176-byte preparation report passed independent decoding. No
+`refusal.bin` was present. The desktop observation and fresh EventLog6005/6009
+and6006 separately corroborate a Windows boot and normal shutdown; absence of a
+refusal file alone would not prove successful handoff. All recorded nonidentity
+preparation words match both failed460 and successful461, including allocations,
+copy checks, jump targets and saved registers/flags. The intermittent cause remains
+unresolved; this diagnostic is not a boot fix.
+
+Five registry hives passed clean-header and independent raw-value checks. The
+existing SOFTWARE DRM type1004 limitation remains a typed-decoder limitation;
+raw values agree. Ten before-files and13 after-files were verified, plus four
+private decoded event files:27 private files rehashed.269 mutations of the actual
+primary report were rejected. No real refusal record was available for the
+actual-refusal mutation branch; its host tests remain separate.
+
+New system records589..594 contain Ftdisk49, EventLog6009/6005, Tcpip4201,
+Srv2013 and EventLog6006. The Srv warning names Windows `F:` and is retained;
+historical partition mapping identifies Windows F as dashboard C. No dashboard
+C access or cleanup was performed. There are no new application events.
+The scoped boot/selected cold audit passes; strict system qualification remains
+FALSE for Ftdisk49 and Srv2013. No full FATX allocation audit or D3D test ran.
+
+Original installed launcher, startup and protected720p files remain unchanged.
+All owned processes are closed; no next launch is queued. See
+[collection](collection001.json), [cold review](cold-review001.json),
+[comparison and byte verification](closeout001.json), and [final review](final-review.json).

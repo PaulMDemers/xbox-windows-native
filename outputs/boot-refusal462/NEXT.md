@@ -1,18 +1,21 @@
-# Await actual screen and normal dashboard return
+# Closed462; next boundary remains unlocated
 
-462 launched once. Do not rerun, reset its one-shot files or send another launch.
-If Windows is at the desktop, request normal Start/Shut Down/Restart and collect
-once after UnleashX return. If black/stuck, preserve that user observation before
-requesting recovery. FTP absence alone is not failure. No startup hook is present.
+Do not relaunch, recollect, reset, or reuse462 or prior closed attempts.
+The user observed the desktop, then confirmed dashboard return after the requested
+normal Windows restart. Cold EventLog6006 corroborates shutdown. No refusal file
+was created. The complete preparation state matches both failed460 and successful461.
+No inference of boot reliability or a causal fix follows from these successful runs.
 
-Run physical.py collect ONCE, then cold-review001.py under WSL with the existing
-hive-audit library path. It accepts optional absent primary/refusal files, joins
-both when valid, preserves parse failures, audits five hives and new event records.
-Read actual refusal reason/status if present; absence remains UNKNOWN. A primary
-report does not prove final file close, post-log checks or paging transition.
+Next review a NEW bounded early Cromwell marker that can distinguish entry after
+the wrapper from later initialization. Review actual copied code/stack/register
+lifetimes and a durable, safe observation channel before implementation. Do not
+invoke Xbox kernel/file services after paging is discarded. Preserve462's bounded
+first-refusal mechanism in any successor; do not repeat a preparation-only boot
+without new diagnostic coverage or an explicit watched-repeat request.
 
-If a wrapper refusal is captured, investigate that precise stage before changing
-functional boot behavior. If still unlocated, separately review a bounded early
-Cromwell marker; no Xbox kernel/file services after paging, no speculative memory
-range/video/device reset patch. Keep original720p launcher/startup/drivers intact.
-No D3D rendering or boot-reliability promotion from diagnostic evidence alone.
+Keep installed original launcher/startup/protected720p drivers intact. Windows F
+in the Srv2013 record is historically mapped to dashboard C; leave dashboard C
+alone. Preserve Ftdisk49 and Srv2013; no suppression or gate waiver. D3D physical
+inventory, device creation and rendering remain pending, with455 PC evidence
+separate. No hardware test is queued. Use fresh attempt identities, exact pins,
+20GiB projected host reserve, owned leases, bounded collection and cold audits.
