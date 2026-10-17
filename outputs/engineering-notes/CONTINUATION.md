@@ -1,3 +1,30 @@
+# Current:461 successful desktop/restart cold-audited; prep record equals failed460
+
+Read outputs/boot-handoff461 REPORT/NEXT/actual-review002/comparison001/collection001
+and user-observation001/user-restart001. User: "Windows it at the desktop" then
+"All set" to requestednormalRestart. NewEventLog6005/6009/6006 andTcpip4201,
+Ft49recurs(strictFALSE), no newapplicationevents.5clean/header/rawagreehives;
+SOFTWAREexistingDRMtype1004typedunsupported/rawverified.13afterfiles+10before
+rehashed23;269actualreportnegativecontrols. No fullFATXallocationaudit/D3Dtest.
+Installedoriginal6240launcher/startup/protected720pdriversruntimeunchanged.
+Actual176-byte461reportdiffers460ONLY3identitybytes; ALLnonidentitywords equal:
+allocationaddresses/mappings/copies/targets/savedregsflags. No rootcause yet.
+FullreportstilldoesNOTprovefinalflush/close/postlogchecks/paging; userdesktop+
+normalshutdownrecords separateactualsuccessfulboot evidence. No fix promotion.
+OneSITE22:45:35UTC,90secobserverdeadlinewhileWindowsdesktop, notfailure.
+461collection35647CLOSEDexit0,review002completedexit0. Allownedprocessesclosed.
+No hook/autorestart/newlaunchqueued. Neverrelaunch/recollect460/461oroldcases.
+
+NextNEWdiagnostic shouldrecordexactwrapperrefusalreason/status afterreportwrite
+(finalwrite/flush/close/postlogcopy checks), testactualpaths/transport beforestage.
+MissingfallbackrecordUNKNOWN, notproofjump. Nofile/kernelcallsafterpaging.
+EarlyCromwellmarkerrequiresseparateregister/stack/copiedboundsreview. No repeated
+preparation-onlyboot or speculativefunctionalpatch. D3Dphysicalinventorypending;
+455PC/452sprites/454lifecyclepassscopesunchanged, GPU/gameunqualified.
+Source/release/rollback/privateassetsretainallfailures. NoXboxCaccess,20GiB C/E
+reserve, rootdemo251ticket. Latestpushedbeforecloseoutdfe79b35;finishcheck/exactstage/
+commit/push. Historicaluntrackedfilesuntouched.
+
 # Current:461 watched repeat reached Windows; normal restart/collection pending
 
 User460 recollection: "Black followed by dash I believe. Rerun it" preserved in

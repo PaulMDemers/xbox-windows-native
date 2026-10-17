@@ -1,15 +1,20 @@
-# One fresh watched repeat; no automatic retry
+# Closed successful diagnostic; distinguish the remaining boundary
 
-This is the user's explicitly requested repeat of460, using a new461 report
-path/cookie. Never reuse either completed report or relaunch an uncertain request.
-Await visual observation and dashboard return. If Windows remains open, request
-a normal Start/Shut Down/Restart before collecting cold files; do not force-reset
-an apparently working system or call FTP absence a crash.
+Never relaunch/recollect461 or460. Both original reports, captures and user
+observations are preserved. Original720p launcher/startup/drivers remain unchanged.
+No next launch or graphics test hook is queued.
 
-On return, collect once, verify original720p boot files and normal startup, compare
-all five hives and both event logs, and audit the saved hives. The report proves
-pre-logging copy preparation only. Final flush/close/post-log checks and actual
-handoff remain separately unobserved, even if the full report is valid.
+The two preparation records are equal after excluding only identity words.
+Next extend a NEW diagnostic to preserve the exact reason/status if the wrapper
+itself refuses after report writing: trailer-write result, final flush/close and
+fresh post-log copy checks. Model and test those failure paths before staging.
+Any fallback recorder may itself fail; missing failure bytes are UNKNOWN, never
+proof that the jump executed. Do not use Xbox kernel/file services after paging
+has been discarded. Any subsequent early-Cromwell marker needs separate review
+of stack/register preservation, copied-code bounds and bounded observation.
 
-The next new diagnostic should identify those remaining boundaries rather than
-repeat a preparation-only observation. No boot fix, D3D rendering or GPU claim.
+Do not promote this one successful instrumented boot to a fix, infer a memory
+allocation cause, or change original boot/driver behavior speculatively. Physical
+D3D inventory/rendering remains pending;455 PC inventory and452/454 Xbox sprite/
+lifecycle results are separate. Ftdisk49 and earlier shutdown popups remain in
+history. NativeGPU ownership and game compatibility remain unqualified.

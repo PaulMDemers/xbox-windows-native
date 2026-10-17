@@ -1,3 +1,17 @@
+# Current: successful boot/restart verified; failure boundary still unresolved
+
+The watched461 diagnostic reached Windows and returned through a normal restart.
+Cold logs confirm startup and shutdown; five registry hives passed validation.
+Original720p boot files, drivers and startup remain unchanged. Ftdisk49 persists.
+No D3D workload ran in this attempt.
+
+Its complete preparation record matches the failed460 run in every nonidentity
+word. The next diagnostic should capture deliberate wrapper refusals after
+logging and distinguish them from later boot failure. This is not a proven fix
+or evidence that allocation addresses explain the behavior. Both outcomes are
+preserved in the [461 report](../boot-handoff461/REPORT.md). All owned processes
+are closed and no further test is queued.
+
 # Current: watched diagnostic reached Windows; cold collection pending
 
 The user-requested fresh461 diagnostic reached the Windows desktop. Its logic
