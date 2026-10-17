@@ -1,3 +1,60 @@
+# 423/424 CLOSED: real FATX crypto persistence failures, NTFS control passes
+
+Read outputs/crypto-fatx424/REPORT.md, DESIGN.md, NEXT.md, final-review.json and
+actual-review001.json, plus outputs/crypto-persistence423/REPORT.md/final-review.
+No physical access this work. Original 720p demo loaders remain restored by422;
+no hardware test queued. All owned emulator/runner/supervisor/cold-reader/FUSE
+processes closed. Host query01:10:32UTC: zero xemu processes; WSL closeout found
+zero QEMU/NBD/FUSE workers or crypto423 mounts. Never relaunch/recollect423's two
+boots,424emu001/002, or any consumed preparation/build/reader/archive IDs.
+
+Same original MIT native witness, pinned403RosBE: create.exe1fee5972... and
+reopen.exe6c51dd3b..., warning-free build001, actual34/33NT5imports resolved.
+423NTFS two ordinary boots: user/machineRSA signatures and user/machineDPAPI
+plaintext persist, all41/42/43/69byte filenames exact, sameSID. Independent
+NTFS-3G reads41selected finalfiles, both logs exact; current disks/sources and
+selected files rehashed at closeout. New actualRSA finalcomponents69bytes and
+userSIDdirectory44bytes. No general NTFS allocation ownership audit or COM+ test.
+
+424FATX samebinaries on new406child, onlyXWN423BIN binaries staged; phase2 is a
+deliberate persistence child of closed/auditedphase1. Create: userRSA206,
+machineRSA80090020 NTE_FAIL, userDPAPI206. Reopen: userRSA206,
+machineRSA80090016 NTE_BAD_KEYSET, userblobmissing2. MachineDPAPI226byteblob
+decrypts exactly bothboots; in-memoryprovider works.41/42bytefiles persist;
+43/69create206, subsequentopen2. ThreeAPIerrors eachboot, notfullAPI PASS.
+Exactproviderfile-call producer/path/status NOTtraced; genericmachineRSAerror
+cannot establish its specificfilename. PCNTFS/XboxFATX environments differ.
+
+Both424runs: normalrestart/dashboard, EventLog6006delta1, orderlyhostexit0,
+nofallback/deadline. Cold279dirs/257dirclusters/6565then6566files,0errors/orphans,
+fivecleanhives/independentrawvalues,3149protectedWindowsbinaries+probes exact.
+18existingfiles changed eachboot(runtimehives/WBEM/events); notwhole-diskequality.
+EachretainsFtdisk49+kbdhid1, DRMtyped0x404failure/raw80bytesagree. StrictFALSE.
+224/231frozeninputs exact;151syntheticdecodercontrols+402actual-log negative
+controls pass. Rawkeys/blobs/hives/disks/screens private; no privatepayloadbundle.
+
+Preserve423 reader failures: unavailablefs.get/importpath/32MiBreadbound,
+blankpasswordattempt, full6475comparison8mismatches(3valid-dataeventtails and
+5compressedDLLtails); independentNTFS-3G agreesoriginal7ZipALL8. RawDissect
+reader is not logicalcompressed-fileoracle. SymlinkextractiononexFAT and first
+case-sensitiveNTFScatlookup failures retained. No kernelNBDdeviceattached.
+Preserve424prepare001missingstruct(pre-disk), neverlaunchedInvoke001/Run001,
+lateoptional screen004 connectionrefused AFTER orderlyclosure; no retry.
+
+Next: bounded actualnativefile-call/path/status trace in NEW unique fixture;
+not another probe-onlyboot. Then choose compatible namespace/storage design;
+do nottruncate/hashrename/dropkeys/SIDs orwaive42bytegate. Sixclean-transfer
+exclusions remain; COM+, physicalcleaninstall/restore and1080i stillopen.
+Publicinstallation/releaseguidance nowstates actualsecurityAPIlimitation.
+
+423archive001 compressed3closed241/242executables with verifiedreadback,
+399613694bytes reclaimed; exactrestorepaths/hashes preserved. NoQCOWbacking,
+driverbaseline/SDK/sharedsource moved. Cbrieflybelow20GiB duringaudit; closeout
+C22484520960/E21791899648bytes. Recheckprojected20GiBguard beforebuild/launch.
+Private423NTFSdisk /home/paul/xbox-windows-native/crypto423-ntfs001;
+424assembly/runs/coldfiles E:/xwn424. Keepallfailureevidence andhistoricaluntracked
+files intact. No release tag or uploadedWindowsbundle.
+
 # 422 CLOSED: rebuilt loaders booted; original demo restored
 
 User: "it booted and worked fine, it has rebooted to the dashboard". This is a

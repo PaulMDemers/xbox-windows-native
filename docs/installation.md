@@ -149,6 +149,16 @@ manifest has six remaining failures. A general clean installer must stop at
 this point; a long-name-compatible storage implementation and native
 create/enumerate/rename/delete/restart tests are still needed.
 
+The exclusions affect real security APIs, not just unused setup files. In a
+two-boot emulator comparison, the same diagnostic passed user/machine RSA key
+persistence and user/machine DPAPI protection on NTFS. On FATX, user RSA and user
+DPAPI creation failed with error 206 (filename exceeds range), and machine RSA
+creation also failed. Machine-scoped DPAPI alone passed the immediate and
+post-restart checks. The exact failing provider file requests have not yet been
+traced; these results do not justify renaming or dropping cryptographic files.
+See the [NTFS control](../outputs/crypto-persistence423/REPORT.md) and
+[FATX results](../outputs/crypto-fatx424/REPORT.md).
+
 Ftdisk 49, first-boot Plug and Play warnings and kbdhid 1 are retained. Their
 installed message resources identify crash-dump pagefile configuration failure,
 window-notification timeout and redundant HID keyboard reports respectively.
@@ -158,10 +168,11 @@ The customized disc's DRM `DataPath` uses custom registry type `0x404`. Windows
 `RegQueryValueEx` successfully returned that type and the same 80 bytes verified
 by both independent cold readers. The Python typed decoder still cannot
 interpret it; this is not evidence that the stored value is corrupt. Its
-original typed-decoder failure remains recorded, and DRM/DPAPI functionality
-has not been qualified. These results do not qualify an arbitrary
-SP4 disc, physical deployment, restore, DRM/DPAPI behavior or every Windows
-feature. A public installer needs explicit handling of these limitations.
+original typed-decoder failure remains recorded. DRM functionality is unqualified;
+the separate DPAPI results above cover only the stated synthetic operations.
+These results do not qualify an arbitrary SP4 disc, physical deployment,
+restore or every Windows feature. A public installer needs explicit handling
+of these limitations.
 
 The separate [Media Player demo](media-player-demo.md) passed video and audio
 capture checks in this emulator installation.

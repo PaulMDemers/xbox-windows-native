@@ -1,0 +1,80 @@
+{
+  "space": {
+    "minimum_free_gib": 20.0078125,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/e",
+        "free_bytes": 21523857408
+      },
+      {
+        "free_bytes": 21875470336,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "compiler": "/home/paul/xbox-windows-native/release-readiness403-bootstrap001/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc",
+  "compiler_sha256": "8ab0685d97b322aad3c37fd362b26fa5b9408ff6dd55a536c0a2d48de1c22b18",
+  "source_sha256": "8fa8098c4a33f85ee0e50b7e953732f80ce442f88d1148dc0abf714d4563f142",
+  "rows": [
+    {
+      "name": "create.exe",
+      "command": [
+        "/home/paul/xbox-windows-native/release-readiness403-bootstrap001/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc",
+        "-Os",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-nostdlib",
+        "-fno-stack-protector",
+        "-fno-builtin",
+        "-Wl,--entry,_mainCRTStartup@0",
+        "-Wl,--subsystem,console:5.0",
+        "-DCREATE_PHASE=1",
+        "-o",
+        "/mnt/e/xwn423/build001/create.exe",
+        "/mnt/e/xwn423/build001/probe.c",
+        "-lkernel32",
+        "-luser32",
+        "-ladvapi32",
+        "-lcrypt32"
+      ],
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "/mnt/e/xwn423/build001/create.exe",
+      "sha256": "1fee5972025615b969762f321f54d1476a810e8413886b8814c2a7c0cf228e8a",
+      "bytes": 19653
+    },
+    {
+      "name": "reopen.exe",
+      "command": [
+        "/home/paul/xbox-windows-native/release-readiness403-bootstrap001/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc",
+        "-Os",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-nostdlib",
+        "-fno-stack-protector",
+        "-fno-builtin",
+        "-Wl,--entry,_mainCRTStartup@0",
+        "-Wl,--subsystem,console:5.0",
+        "-DCREATE_PHASE=0",
+        "-o",
+        "/mnt/e/xwn423/build001/reopen.exe",
+        "/mnt/e/xwn423/build001/probe.c",
+        "-lkernel32",
+        "-luser32",
+        "-ladvapi32",
+        "-lcrypt32"
+      ],
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "/mnt/e/xwn423/build001/reopen.exe",
+      "sha256": "6c51dd3b5347389bc72cf9a71f2b6716086224f08122bd491dbdf8ae3ff48954",
+      "bytes": 19492
+    }
+  ],
+  "guest_launched": false
+}

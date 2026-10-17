@@ -1,0 +1,66 @@
+{
+  "command": [
+    "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/bin/qemu-system-i386",
+    "-name",
+    "xwn-crypto423-ntfs-phase1",
+    "-L",
+    "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/qemu",
+    "-bios",
+    "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/seabios/bios.bin",
+    "-machine",
+    "pc,acpi=off,hpet=off",
+    "-accel",
+    "tcg,thread=single",
+    "-cpu",
+    "pentium3",
+    "-smp",
+    "1",
+    "-m",
+    "64",
+    "-vga",
+    "cirrus",
+    "-display",
+    "none",
+    "-nic",
+    "none",
+    "-drive",
+    "file=/home/paul/xbox-windows-native/crypto423-ntfs001/disk.qcow2,format=qcow2,if=ide,index=0",
+    "-drive",
+    "file=/home/paul/xbox-windows-native/crypto423-ntfs001/probe.img,format=raw,if=floppy,readonly=on",
+    "-boot",
+    "order=c",
+    "-qmp",
+    "unix:/home/paul/xbox-windows-native/crypto423-ntfs001/phase1/qmp.sock,server=on,wait=off",
+    "-rtc",
+    "base=utc",
+    "-no-reboot"
+  ],
+  "started_utc": "2026-10-17T00:41:49.410138+00:00",
+  "closed": true,
+  "phase": 1,
+  "space": {
+    "minimum_free_gib": 20.125,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/home/paul/xbox-windows-native/crypto423-ntfs001",
+        "free_bytes": 902591537152
+      },
+      {
+        "free_bytes": 21742358528,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "physical_access": false,
+  "network_device": false,
+  "pid": 452,
+  "deadline": false,
+  "exit_code": 0,
+  "ended_utc": "2026-10-17T00:44:43.502694+00:00",
+  "disk_sha256": "b8039c0a4a33db9755a26c16c590d6850cb377bfd32ecfa1e0206238b0c6e9ab",
+  "source_unchanged": true,
+  "floppy_unchanged": true
+}

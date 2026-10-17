@@ -1,3 +1,25 @@
+# Current: clean-install security storage blocker confirmed
+
+The 423/424 emulator comparison is complete and all owned processes are closed.
+The same original NT5 probe passes user/machine RSA key and DPAPI persistence on
+NTFS. On FATX, user RSA/user DPAPI creation return filename error206, machine RSA
+creation fails, and only machine-scoped DPAPI passes both boots. Actual NTFS key
+files have69byte components and a44byte userSID directory. The exact failing
+native file request remains untraced; no namespace repair has been implemented.
+
+Both FATX boots completed normal restart and orderly host exit0. Full E allocation
+is clean, five hives agree in independent raw values and3149 protected binaries
+are unchanged. Ftdisk49/kbdhid1 remain, so strict qualification isFALSE.
+402actual-log negative controls reject malformed evidence; source/binary/frozen
+inputs and independentNTFSselectedfiles were rehashed. See
+[424 report](../crypto-fatx424/REPORT.md) and [423 control](../crypto-persistence423/REPORT.md).
+
+The physical720p demo is unchanged and usable; no physical test isqueued.
+Six FATX transfer exclusions, COM+, clean installation/restore and1080i remain
+open. Next work is a bounded real file-request trace, not another identical
+probe-only run. Public install/release docs now state the measured limitation.
+All failures and private recovery material remain preserved; no release tag.
+
 # 422 CLOSED: rebuilt loaders booted; original demo restored
 
 User: "it booted and worked fine, it has rebooted to the dashboard". This is a

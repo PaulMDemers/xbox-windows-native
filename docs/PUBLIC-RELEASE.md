@@ -22,7 +22,7 @@ Conexant console. Other revisions are test targets, not supported claims.
 
 | Gate | Current state / next evidence |
 |---|---|
-| Clean media | Customized SP4 assembly boots in xemu; six FATX long-name exclusions remain unresolved |
+| Clean media | Customized SP4 assembly boots in xemu; six FATX long-name exclusions remain unresolved. [424](../outputs/crypto-fatx424/REPORT.md) reproduces persistent RSA and user-DPAPI failures; the same probe passes on NTFS |
 | Rebuilt boot chain | Reconstructed HAL/loaders booted on the existing development-console installation; normal shutdown logged and originals restored/readback-verified in [422](../outputs/loader-physical422/REPORT.md). Fresh-install qualification remains separate |
 | Registry/install | Fresh physical provisioning and strict event qualification remain incomplete |
 | Display | E/720p first on the known configuration; 1080i text/motion defects remain |
