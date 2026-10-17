@@ -1,3 +1,15 @@
+# 435 visual002: same fault confirmed in orange AND cyan
+
+User supplied4photos and reports same results. See pbkit-compare435/VISUAL002.md
+and visual002.json: orange beforePBKit andcyan after bothblack/magenta then
+white/green, two-rowstripesvisible. Photohashes saved; rawphotosprivate. PBKit
+initialization inclactualPCRTC_CONFIG3->2 didNOTfixdetail. No Windows patch or
+1080i promotion. CorrectCPUcaptures are separate from failedvisualqualification.
+No newruntime/consoleaccess;002/001 remainCLOSED. Existingpending records frozen;
+newaddendum resolvesanswer. Nextindependentfield-fetch/output evidence orcontrolled
+alternateoutputpath, no guessedfieldbit/rowoffset/SDencodercontrol.720pdefault,
+allpreviousfailures preserved, otherpublicrelease429tasks unchanged.
+
 # 435 physical002 CLOSED: user-requested watched rerun
 
 Identical435 build001, new E:/Applications/XWNPBCompare435B; accepted05:36:08UTC

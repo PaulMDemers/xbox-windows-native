@@ -1,3 +1,12 @@
+# Current: PBKit initialization does not fix 1080i detail loss
+
+The watched comparison and four photographs show the same parity-dependent
+solid-color regions before and after normalPBKit initialization. Correct CPU
+pixels and address-mode3->2 did not restore the displayed thin stripes. The
+remaining investigation is actual scanout/field handling; the responsible stage
+is still unproved.720p remains the supported working baseline, no test queued.
+See [visual result](../pbkit-compare435/VISUAL002.md).
+
 # Current: PBKit comparison completed; visual confirmation pending
 
 The same1080i framebuffer was captured before and after normalPBKit initialization.
