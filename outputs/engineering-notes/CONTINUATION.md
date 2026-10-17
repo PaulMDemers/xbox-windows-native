@@ -1,3 +1,39 @@
+# Current:457 FTP and458 direct launches returned without receipts;459 normal cold boot requested
+
+Read outputs/d3d-retry457 and d3d-direct458 REPORT/NEXT/final-review,
+no-receipt reviews, user observations and actual stage/launch/collection records.
+457 accepted SITE21:53:04UTC; FTP back15sec/no receipt; user reports black or return
+before desktop.458 used read-only manual-request adapter, NO SITE sent; user
+launched exact File Explorer path and reported instant reboot to dashboard.
+Both have no result directory, all5hives+2events byteidentical/clean/rawagree,
+protected720p baseline exact. Both hooks removedFIRST. Explicit observer stops
+preserve original partial closed:false records (not deadlines). No D3D API failure
+or normal Windows restart is established. Never rerun/rearm/recollect either.
+45721deps/45820deps and2payloads exact. Allownedprocesses CLOSED including457
+stage33472/observe66636,458stage57592/observe92316 andcollections/reviews.
+458newcontroller/source reverse457namespace except buildreceipt001 and manual
+adapter;24/21NT5imports. Exact455sample577bd78e... unchanged. No driver/runtime/
+mode patch or Xbox C access. Original failed456 remainsclosed.
+
+Read outputs/boot-baseline459/capture001.json/review001.json/REPORT/NEXT.
+Read-only capture8files, seven boot-chain/config/startup pins match known415;
+launcher6240a801... has valid sectiondigest. Existing4096-byte video trace captured,
+no prior415 pin/no failed-boot attribution. Startup onlynormalxwnsetup/metadata,
+NOgraphics test or automatic restart scheduled. No remote writes/launch in459.
+User ASKED fullpoweroff/wait10sec/on, peripheralsunchanged, direct
+E:\Applications\XWNEBoot\default.xbe once, reportXromwell/Windows; ifdesktop leaveit.
+Await actualreply, no host launch. This baseline changespower/startup context,
+not a uniquely isolated causal proof or graphicsrequalification. IfWindowsloads,
+normalRestartbeforefresh read-onlycapture002 compareclosed458 hives/events.
+Ifstillfails, boundedphysical earlyhandoffdiscriminator; no blindgraphicsretry.
+Old409/410prefix and414emulator observations don'tproveactualfailedstage.
+
+455PC D3DinventoryPASS remainsclosed:default/HEL oneRGBsoftwaredevice,472exactcaps
+bytes566negatives. No CreateDevice/draw/GPU/games.452sprites/453454lifecyclePASS
+unchanged with strictFt49/shutdownpopup limitations. No change to installedbaseline.
+Latestpushedbeforethiswork df6cf38a; finishreview/check/exactstage/commit/pushnew
+evidence. Historicaluntrackedfilesuntouched. No activeobserver/hardwaretesthook.
+
 # Current: PC D3D7 inventory PASS; Xbox456 no receipt; watched457 ready locally
 
 Read outputs/d3d-discovery455 REPORT/DESIGN/NEXT/final-review/runtime-review and

@@ -1,3 +1,20 @@
+# Current: early returns through both launch routes; normal cold boot requested
+
+The watched457 FTP launch and458 direct File Explorer launch both returned
+without test receipts. Five registry hives and both event logs remained unchanged;
+neither establishes D3D probe execution. Both test hooks are removed and all owned
+processes are closed. The [direct-launch record](../d3d-direct458/REPORT.md) rules
+out an explanation confined to FTP, while the actual failing stage remains unknown.
+
+[Read-only459 verification](../boot-baseline459/REPORT.md) matches the known
+working boot files/configuration/startup and validates the launcher section digest.
+The user has been asked for one normal direct boot after full power-off, without
+a graphics test hook. No host launch or automatic restart is scheduled. Await
+that observation before changing the boot chain or scheduling another sample.
+
+The earlier sprite/lifecycle passes and PC D3D7 software-device inventory remain
+valid within their scopes. Physical D3D drawing and game compatibility are pending.
+
 # Current: Direct3D device inventory passes on NT5 PC; Xbox comparison pending
 
 The [new D3D7 discovery sample](../d3d-discovery455/REPORT.md) found Microsoft's

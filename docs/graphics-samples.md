@@ -437,10 +437,11 @@ from this sample.
 
 The [NT5 PC control](../outputs/d3d-discovery455/REPORT.md) enumerates Microsoft's
 RGB software device through both default and explicit HEL paths. Neither reports
-hardware rasterization or hardware transform/lighting. The first
-[Xbox attempt](../outputs/d3d-xbox456/REPORT.md) returned without a result receipt;
-it does not establish whether the probe started. Physical inventory and all D3D
-rendering remain unqualified.
+hardware rasterization or hardware transform/lighting. The Xbox attempts,
+including a [watched direct launch](../outputs/d3d-direct458/REPORT.md), returned
+without result receipts; they do not establish whether the probe started.
+Physical inventory and all D3D rendering remain unqualified while the boot issue
+is investigated.
 
 [discovery.c](../src/samples/graphics-ladder/discovery.c) queries the installed
 Direct3D 7 interface and enumerates device capabilities. It does not create a
