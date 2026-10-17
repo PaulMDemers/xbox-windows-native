@@ -1,3 +1,11 @@
+# Current: 1080i investigation paused; ready to pivot
+
+The findings, evidence limits and resume criteria are consolidated in the
+[1080i handoff](../../docs/1080i-investigation.md). The issue remains unresolved:
+normal PBKit initialization did not restore lost row detail.720p remains the
+working default. All display tests are closed, no new test is queued, and the
+user has requested a pivot to new tasks. Historical status entries follow.
+
 # Current: PBKit initialization does not fix 1080i detail loss
 
 The watched comparison and four photographs show the same parity-dependent

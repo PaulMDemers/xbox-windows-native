@@ -1,3 +1,15 @@
+# 1080i investigation PAUSED at user request - October 17, 2026
+
+Canonical handoff: docs/1080i-investigation.md. User asked to document findings
+and pivot to new tasks. Do not launch another display experiment by default.
+435 physical001/002 CLOSED; final photos/user report confirm same artifact before
+and after PBKit initialization. Exact CPU pixels and captured PCRTC_CONFIG3->2
+are not a fix or output qualification. Root cause remains unresolved between
+scanout/field generation and downstream interpretation.720p remains unchanged.
+All owned commands closed; no test queued. Existing frozen pending-answer records
+are superseded by VISUAL002.md, not rewritten. Future work needs independent
+field/output discrimination; no guessed register/IRQ patch. No new task chosen.
+
 # 435 visual002: same fault confirmed in orange AND cyan
 
 User supplied4photos and reports same results. See pbkit-compare435/VISUAL002.md

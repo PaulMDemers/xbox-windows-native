@@ -7,6 +7,7 @@ in any Linux FATX implementation. No external project has been contacted.
 
 - [FATX findings and Linux-oriented review checklist](FATX.md)
 - [Current overall status and remaining gates](STATUS.md)
+- [1080i investigation handoff and resume criteria](../../docs/1080i-investigation.md)
 - [128GiB dump correction and complete emulator recovery](../atapi-dump-lba48/REPORT.md)
 - [Boot, memory, display, network and validation notes](PLATFORM.md)
 - [Video performance and modes plan](../video-next/PLAN.md)

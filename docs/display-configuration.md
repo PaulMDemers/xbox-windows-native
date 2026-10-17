@@ -27,6 +27,12 @@ A fresh run of the same standalone test on a second display produced the same
 reported artifact, with exact captured pixels. This makes a TCL-specific cause
 less likely, but the adapter and Xbox interlaced output have not been isolated.
 
+Normal PBKit graphics initialization also left the artifact unchanged in a
+watched comparison using the same framebuffer. Its captured address-mode change
+from 3 to 2 is not a demonstrated fix. The investigation is paused; see the
+[1080i findings and resume criteria](1080i-investigation.md) for the consolidated
+evidence. No further display test is queued.
+
 Resolution is selected at boot. Windows Display Properties is not a supported
 way to switch these profiles while Windows is running. An HDMI connector alone
 does not establish the adapter's supported Xbox signal modes.

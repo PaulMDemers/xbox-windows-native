@@ -31,6 +31,11 @@ Use the result that applies to the change you intend to make.
 | Physical 720p desktop | User confirmed | Clean text and full-window dragging on the tested display |
 | Physical 1080i desktop | Defective | Text and motion defects remain; use 720p |
 
+The [1080i investigation](1080i-investigation.md) is paused. Standalone tests
+reproduce the defect without Windows, and normal PBKit initialization did not
+fix it. Correct captured pixels and raster cadence do not qualify the emitted
+fields or identify the responsible device.
+
 The restored-image test used the prepared demo binaries. The separate fresh
 assembly test uses the fresh compiler outputs and Windows files/hives from the
 clean customized-disc installation. Neither test qualifies physical deployment
