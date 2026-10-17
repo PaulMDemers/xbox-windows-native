@@ -1,3 +1,20 @@
+# Current: boot preparation verified; handoff investigation continues
+
+The normal cold-start attempt also returned to the dashboard. Its registry and
+logs were unchanged. A [separate instrumented launcher](../boot-handoff460/REPORT.md)
+then verified the allocations, complete payload copy, both loader copies and
+jump targets on the console. The installed launcher, drivers and720p settings
+remain unchanged; no test startup hook is installed.
+
+This narrows that diagnostic attempt to the remaining file-close/recheck/handoff
+boundary. It does not prove paging changed or identify the cause. The console
+returned to dashboard FTP with a complete report and unchanged Windows hives/events.
+The user's visual report is pending; all owned processes are closed and no retry
+is queued. Further instrumentation must distinguish the remaining boundaries.
+
+PC D3D7 enumeration and earlier Xbox sprite/lifecycle passes remain separate.
+Physical D3D rendering and games are still pending.
+
 # Current: early returns through both launch routes; normal cold boot requested
 
 The watched457 FTP launch and458 direct File Explorer launch both returned

@@ -1,3 +1,40 @@
+# Current:460 physical allocation/copy report PASS; later handoff unknown, screen reply pending
+
+Read outputs/boot-baseline459 REPORT/capture002/review002 and outputs/boot-handoff460
+REPORT/DESIGN/NEXT/source-review001/actual-review001 plus actual stage/launch/collection.
+459 user: "It just rebooted straight to the dash" after requested normal cold start;
+actual duration unverified.10filesexact/5cleanhives/7hiveevents unchanged from458;
+normalstartup only, no Windows/D3Dreceipt.459closed, no retry.
+
+460 separate E:\Applications\XWNBoot460a\default.xbe stagedexact, oneSITE accepted
+22:39:06UTC, FTPback22:39:34UTC with176-byte exclusive report. Phase6 prelogging
+allocations/mappings/288316payload/two1024loadercopies/targets PASS. Originalsaved
+regs/flagsconsistent; tuplematchesold410 but no retrospective qualification.
+FINALflush/close/postlogchecks/jump/CR0 NOT proved by report. Pendinguserquestion:
+whatappeared, Xromwell/Windows/dashboard? Do not reask/relaunch. Collected13files,
+24privatecapturesverified,5clean/rawagreehives,269actualreportmutationsrejected.
+Allbaselinehives/events/trace/startup/launcherunchanged,720p. No fullFATXaudit,
+Windowsrestart/D3D/paging qualification. Reportone-shot;neverrelaunch/recollect.
+Allownedprocessesclosed:stage39687,host55552,observer79667;launch/collect/reviews
+completedexit0. Nohook/autorestart ornexttestqueued. NoXboxCaccess.
+
+460build003 E:/xwn460/build003/default.xbe SHA63e678280c9d5c5c511f7c47562b005134ee2f7147f99a651b91d65d1fc7a51f,
+300624B.Original6240a801... installedXWNEBoot untouched.11editsreverseentirepinned
+374wrapperbyteexact,embedded288316payloadunchanged,pagingloaderunchanged.
+Host00145actualassembledx86cases withMODELEDkernel/fileeffects;trapCLIbefore
+execution/restoredregsflags verified, noASan/realpaging claim.296parsernegatives.
+Build001compiledNEVERlaunched/refusedjnspositiveNTstatus;002namespacegenerator
+incorrect374inputpathsfailedbeforeprivate/compile;003correctsinputpaths/exactzero.
+Allfailureinputsimmutable. Do NOT rerun consumedIDs. Sourcepins/hostfilesverified.
+Nextnewdiagnosticmustobservablyseparatepost-close/post-logchecksfromearlyCromwell;
+noXboxkernel/filecallsafterpaging. Needreviewpreservedregisters/stack/sourcebounds
+andboundedmarker BEFOREbuild/hardware. Not a speculativebootfix orD3Dretry.
+
+Prior455PCinventory/452sprites/454lifecycle scopes unchanged, strictFt49/popups
+retained. PhysicalD3Ddraw/GPU/game qualificationpending. Keepallclosedfailures,
+rollbacks/privatecaptures/publicnoWindowsassets. C/E20GiBreserve tightonE,
+noDdrive. Originalrootdemo251ticket. Historicaluntrackedfilesuntouched.
+
 # Current:457 FTP and458 direct launches returned without receipts;459 normal cold boot requested
 
 Read outputs/d3d-retry457 and d3d-direct458 REPORT/NEXT/final-review,
