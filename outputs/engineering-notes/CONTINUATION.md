@@ -1,3 +1,39 @@
+# 426 CLOSED: fixed NTFS image route selected; host-only model
+
+Read outputs/image-volume426/REPORT.md, DESIGN.md, NEXT.md, source-review001.json
+and final-review.json. All426 commands completed; no owned running sessions.
+No native build, guest preparation/launch, driver/SDK/shared-source or physical
+change. The720p demo remains restored; no hardware test queued. Never rerun
+consumed426 tests001/002/review001 or any earlier closed guest.
+
+Selected fixed NTFS-in-FATX image as the next prototype direction, NOT bootable
+support or a qualified install. Review compares namespace aliasing with block
+storage against actual FATX create/lookup/enumeration/rename/delete/FCB paths,
+32-bit filesize, current FreeLoader NTFS ARC reader, partition and recovery paths.
+Five complete403 FATX files match recorded tree dc942ab4;12 public files pinned.
+An older FATX driver cannot be forced to respect a new alias metadata protocol;
+an image retains inner NTFS semantics but needs actual early-device ownership.
+
+Original MIT model/tests pass4065 synthetic checks: immutable supplied allocation
+map, all subranges of fragmented example,200 randomized fragmentations,64-bit
+offsets above128GiB, strict bounds/crosslinks, incomplete descriptor publication,
+stale mapping/identity, partial lower IO/quarantine/flush and independent byte-array
+guards. No real FAT parser, NTFS/device IO, exclusive lease, IRP concurrency,
+hardware flush or crash recovery. Complete owners and lower acknowledgments are
+MODELED. Descriptor checksum is not authentication/anti-rollback and matching
+serial alone does not exclude replacement. No actual long-name storage fix.
+
+Next prove exact NT5 boot-driver/ARC/device initialization and identity handoff,
+with parentE excluded from concurrent FATX writes, no paging recursion, bounded
+nonpaged metadata and explicit dump path. Resolve identity before implementation.
+Then a NEW read-only image device prototype/independent source-byte oracle before
+any writable boot. Do not skip straight to transplanting NTFS or patching name
+limits. Keep all six transfer exclusions/events/COM+/install/restore gates.
+
+C initially21320617984bytes (<20GiB), E21732130816bytes; no builds/launches or
+offload attempted. Inspect projected reserve next time. Do not move backingchains.
+New kit uses -text attributes; prior failures/immutable0.1.0/0088/recovery preserved.
+
 # 425 CLOSED: actual native long-name requests identified
 
 Read outputs/crypto-path425/REPORT.md, DESIGN.md, NEXT.md, final-review.json,

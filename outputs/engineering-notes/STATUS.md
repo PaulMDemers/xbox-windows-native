@@ -1,4 +1,22 @@
-# Current: failing security-storage requests identified
+# Current: fixed image storage prototype selected
+
+426 selects a fixed NTFS image stored on FATX for further development. The
+comparison covers the existing namespace, boot, dashboard and recovery paths.
+A host-only mapping/lifecycle model passes4,065 synthetic checks, including
+fragmented/high-LBA requests, guard contents, stale allocation, incomplete
+descriptor publication and failed writes/flushes. See
+[426 report](../image-volume426/REPORT.md).
+
+This is not yet a driver or bootable image solution. Next is proving early
+Windows block-device/ARC initialization and exclusive backing allocation
+ownership, then a read-only prototype. Paging, dump support, real durability and
+install/restore remain required. No hardware change or guest launch occurred;
+the720p demo remains available. All owned sessions are closed.
+
+Six clean-transfer exclusions and strict events remain failures. No public
+Windows bundle or release tag is qualified by this host model.
+
+# Prior: failing security-storage requests identified
 
 425 completed one fresh emulator debugger run and cold audit. It observed
 STATUS_NAME_TOO_LONG for a44-byte userSID directory under Crypto/RSA, a69-byte
