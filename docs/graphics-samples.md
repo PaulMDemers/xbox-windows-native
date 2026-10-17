@@ -10,6 +10,9 @@ Windows PC, a Windows 2000 SP4 PC control, and the installed Xbox at 720p.**
 The three pixel cases each matched 43,008 independently expected bytes on NT5
 and Xbox. These runs checked memory operations with the preview disabled;
 they do not qualify DirectDraw presentation, Direct3D or GPU acceleration.
+**Rung 03 also passes default/HEL windowed presentation on Windows 2000 PC and
+Xbox**, with exact source and GDI-observed primary pixels through cover/move/
+uncover stages. Physical scanout, D3D and acceleration remain unqualified.
 Later rungs below are planned, not stubbed-out passes.
 The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 
@@ -20,7 +23,7 @@ The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 | 00 | GDI reference copy | Two owned 32-bit DIBs; exact source and copied rectangle, unchanged destination border; GDI flush and cleanup | PC/NT5/Xbox pixel controls passed |
 | 01 | DirectDraw inventory | Independently request default, HEL and HAL-only objects; record HRESULTs, hardware/HEL caps and current mode | All three inventories completed on PC/NT5/Xbox |
 | 02 | DirectDraw system-memory copy | Explicit RGB32 offscreen surfaces; write/lock/unlock, rectangle blit, exact source and destination readbacks | Default and HEL controls passed on PC/NT5/Xbox |
-| 03 | Windowed DirectDraw presentation | Primary surface plus window clipper; cover/uncover and move the window without damaging adjacent GDI content | Next implementation |
+| 03 | Windowed DirectDraw presentation | Primary surface plus window clipper; cover/uncover and move the window without damaging adjacent GDI content | NT5 PC/Xbox default and HEL pixel controls passed |
 | 04 | Palettes, formats and sprites | 8-bit palette changes, supported 16/32-bit formats, color-key sprites, clipping and overlapping copies in both directions | Planned |
 | 05 | Surface lifecycle and memory budget | Focus changes, lost-surface handling where applicable, repeated create/release, failure recovery and bounded memory use | Planned |
 | 06 | Legacy D3D discovery | Query the chosen D3D interface, enumerate actual devices/caps; distinguish software and hardware choices | Planned; begin with the installed legacy runtime, not a DLL upgrade |
@@ -151,7 +154,54 @@ Record the actual OS separately, plus the executable hash, console revision,
 driver/runtime versions, mode and visual observations. The checker deliberately
 does not infer NT5, physical-console or acceleration qualification from pixels.
 
-## Next implementation
+## Presentation results and next implementation
+
+### Rung 03: primary presentation
+
+The separate [present.c](../src/samples/graphics-ladder/present.c) sample uses
+the current desktop mode. Build it with the same command above, adding
+`--sample present` and choosing another fresh output. Copy `present.exe` and
+`present.cmd` together, then run one case at a time:
+
+```bat
+present.cmd default r03d
+present.cmd hel r03s
+```
+
+Keep the desktop visible and leave the sample unobstructed. Its own magenta
+sibling window deliberately covers part of the target. Four stages check the
+visible target, cover, move while covered, and uncover. The blit rectangle extends
+beyond the target; the HWND clipper must protect the blue surrounding GDI region
+and the cover. GDI paint handlers never draw the expected DirectDraw pattern.
+
+Each case produces `.txt`, `.exit`, `-source.bin`, `-before.bin`, and `-after.bin`.
+The binaries contain four consecutive top-down BGR0 frames: source 128×112,
+before/after 256×192. They total 1,802,240 bytes per successful case. Keep these
+private desktop readbacks with the test, then verify on the host:
+
+```sh
+python3 tools/graphics_present.py /path/to/results/r03d --backend default
+python3 tools/graphics_present.py /path/to/results/r03s --backend hel
+```
+
+The verifier checks the full clip region, exact independent pixels, position,
+occlusion and API/cleanup results. It accepts the tested RGB565/RGB555/RGB32
+layouts only. The sample does not switch modes or lock the primary surface.
+These are GDI-observed desktop pixels, not a physical scanout or GPU completion
+measurement. The owned NT5 test controller bounds each case at 90 seconds;
+`present.cmd` itself does not provide a watchdog. Rung03 pixel/API failures use
+exit 1; preserve partial captures as well as successes.
+
+Host verifier tests: `python3 tests/test_graphics_present.py`.
+
+The [440 NT5 presentation control](../outputs/presentation440/REPORT.md) and
+[442 Xbox control](../outputs/presentation442/REPORT.md) each verify 3,604,480
+bytes across both backends and reject 468 actual-evidence mutations. The same
+sample runs on PC RGB565 and Xbox RGB32. Both restarted normally; the physical
+test hook is removed and 720p/code are unchanged. The first PC test's missing
+sibling-order precondition and a physical preflight manifest error are retained
+as separate failed attempts. The Xbox again logged Ftdisk49 and two shutdown
+rundll32 popups; a presentation pass does not qualify the whole system.
 
 The [437 NT5 control](../outputs/graphics-nt5437/REPORT.md) and
 [438 Xbox control](../outputs/graphics-xbox438/REPORT.md) establish the initial
@@ -160,9 +210,9 @@ were unchanged. Each retained 402 rejected evidence mutations. The physical
 run restarted normally but retains Ftdisk49 and two shutdown-time rundll32
 initialization popups, so it is not a clean overall system qualification.
 
-Next implement rung 03's primary surface, window clipper and GDI interaction.
+Next implement rung 04's palettes, pixel formats and color-key sprites.
 Keep default/HEL distinctions, independent destination/neighbor checks and
-every refusal. Use another fresh PC control before a distinct Xbox run.
+every refusal. Use a fresh PC control before a distinct Xbox run.
 Advance to D3D rendering only with actual capability and surface evidence; do not
 change `DrvEnableDirectDraw` to advertise support without implementing its contract.
 

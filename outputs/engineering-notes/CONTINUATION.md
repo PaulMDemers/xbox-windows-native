@@ -1,3 +1,56 @@
+# Current: rung03 presentation passed NT5 PC and Xbox - October17,2026
+
+Read outputs/presentation439/REPORT.md,final-review.json (FAILED first cover
+precondition), presentation440/REPORT.md,runtime-review001.json,
+actual-controls001.json,final-review.json (PC PASS), presentation441/REPORT.md
+(pre-write staging refusal), presentation442/REPORT.md,runtime-review001.json,
+physical001-{stage,launch,observation,collection}.json,final-review.json.
+
+New public src/samples/graphics-ladder/present.c,present.cmd; builder --sample
+present. tools/graphics_present.py independent schema2 oracle and three new
+test groups; all8 graphics verifier tests passed. Exact440 sample SHA256
+4f1abf4417620aee9c8343962042cc48cbd6c6abc37215a457acd08c2e310132,25302bytes,
+45 actualNT5 import matches, warningfree pinnedRosBE. Original00-02 unchanged.
+Four stages eachdefault/HEL: visible, siblingcovered, movedcovered, uncovered.
+ActualHWND siblingorder/visibility,1/4/4/1cliprectangles, source/primary GDI
+readbacks and guard/cover equality. Eachplatform3604480exactbytes and468actual
+mutations rejected. No primarylock,modechange,driverchange or GPUgrant.
+
+439build001 sample b2e9d4e... stage0exact450560bytes/case, stage1clip.exact0,
+exit1 beforecoveredcapture/blit. Missingexplicit/observed siblingZorder in
+test, NOT provenDirectDrawbug.439closed normalrestart/coldaudit/independent
+reads;136exactinputs privatelyarchived BEFORE publicsource/checker revision.
+440explicitSetWindowPosHWND_TOP andobservedcoverabove; originalpreabove0 both
+backends. Expectedpixels unchanged. Neverrelauch/recollect/parent either
+consumedguest. Fresh440 childofunchangedCLOSED404 install,640x480x16Cirrus,
+64MiB/noNIC, normalrestart/QEMUexit0, nodeadline/hostquit/kill. Cold6487files,
+309dirs,12ownedadds,protectedOSbinariesunchanged,QCOWclean,new6006. Fivehives
+clean/rawvaluesagree,unknownSOFTWAREDRMtype retained,noallocationaudit.
+NTFS3G22selectedfilesagree,unmounted/diskunchanged;137inputcapsule onWSLC.
+
+441stage failedKeyError(ddraw.dll) inold425manifest AFTER readonlybaseline,
+BEFOREANYconsolewrites/launch. Originalfailedscript/package/privatefiles
+preserved, no rollbackneeded.442usesactual440NTFS3Gddrawpin, unchangedDLL.
+442oneacceptedlaunch17:19:27UTC, dashboard17:21:02UTC.2actualexits0,
+1280x720x32,normalrestartreceipt/new6006. Hookremovedfirst/preservedunder
+E:/xwn442-kit/startup-used.cmd; originalnormalstartup,target/protectedcode
+unchanged.29privatefilesrehashed. No dashboardC access. Ownedhostsessions
+closed,consoleatdashboard,nohardwaretestqueued. Privatework/presentation442.
+
+442strictsystemFALSE: newFtdisk49 andtwoApplicationPopup26records552/553,
+rundll32 DLLinitializationfailed becausewindowstationisshuttingdown. Initiator
+NOTtraced, no claimofdrivercause/fix/suppression.5hivesclean/rawagreement,
+unknownDRMtype/fullFATXallocation/eventring limitationsremain. GDIobserved
+pixels NOT humanvisual/physicalscanout/GPU/performance/D3Dqualification.
+
+Next rung04 palettes/formats/color-key sprites/overlap with independentoracles,
+freshPC beforephysical. Correlate recurringrundll32 withactualcommandlines,
+SetupAPI/device records separately. No originalRCT/Sims editiontested yet.
+720pbaselineunchanged;1080iPAUSED. Preserve all historicalfailedfixtures,
+shareddrivers/SDK/immutable0.1.0/0088/private256recovery; no recapture.
+CurrentFTPhost/user/password supplieddirectlybyuser andloadedonlyinprocess
+environment, never committed. Existingrootdemo251hardwareownership retained.
+
 # Graphics437 PC and438 physical controls CLOSED - October17,2026
 
 Read outputs/graphics-nt5437/REPORT.md, runtime-review002.json, independent001.json,

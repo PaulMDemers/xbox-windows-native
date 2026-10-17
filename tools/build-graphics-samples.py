@@ -22,6 +22,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--rosbe', required=True, type=Path)
     p.add_argument('--output', required=True, type=Path)
+    p.add_argument('--sample', choices=('ladder', 'present'), default='ladder')
     a = p.parse_args()
     if sys.platform != 'linux':
         p.error('Build under Linux/WSL with the documented RosBE toolchain')
@@ -35,16 +36,18 @@ def main():
             p.error(f'Missing tool: {tool}')
     space = require_space(out, 20 + 8/1024)
     out.mkdir(parents=True)
-    copied = out / SOURCE.name
-    shutil.copyfile(SOURCE, copied)
-    shutil.copyfile(SOURCE.with_name('run.cmd'), out/'run.cmd')
+    source = SOURCE.with_name(a.sample + '.c')
+    runner = 'present.cmd' if a.sample == 'present' else 'run.cmd'
+    copied = out / source.name
+    shutil.copyfile(source, copied)
+    shutil.copyfile(source.with_name(runner), out/runner)
     command = [str(cc), '-Os', '-Wall', '-Wextra', '-Werror', '-nostdlib',
                '-fno-stack-protector', '-fno-builtin', '-Wl,--entry,_mainCRTStartup@0',
                '-Wl,--subsystem,console:5.0', '-Wl,--major-os-version,5',
-               '-Wl,--minor-os-version,0', '-Wl,-Map,' + str(out/'ladder.map'),
+               '-Wl,--minor-os-version,0', '-Wl,-Map,' + str(out/(a.sample+'.map')),
                '-MD', '-MF', str(out/'headers.d'),
-               '-o', str(out/'ladder.exe'), str(copied), '-lkernel32', '-luser32', '-lgdi32']
-    record = dict(schema=1, source_sha256=sha(copied), runner_sha256=sha(out/'run.cmd'),
+               '-o', str(out/(a.sample+'.exe')), str(copied), '-lkernel32', '-luser32', '-lgdi32']
+    record = dict(schema=1, sample=a.sample, source_sha256=sha(copied), runner_sha256=sha(out/runner),
                   builder_sha256=sha(Path(__file__)), compiler=str(cc),
                   compiler_sha256=sha(cc), objdump_sha256=sha(objdump),
                   command=command, space=space, executable_run=False,
@@ -56,7 +59,7 @@ def main():
         record['log_sha256'] = sha(out/'build.log')
         if result.returncode:
             raise RuntimeError('Compile failed; retained build.log and inputs')
-        exe = out/'ladder.exe'
+        exe = out/(a.sample+'.exe')
         deps=(out/'headers.d').read_text().replace('\\\n','').split(': ',1)[1].split()
         record['headers'] = {name:sha(Path(name)) for name in sorted(set(deps)) if Path(name)!=copied}
         raw = subprocess.check_output([str(objdump), '-p', str(exe)], timeout=30)

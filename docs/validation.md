@@ -33,6 +33,7 @@ Use the result that applies to the change you intend to make.
 | Original RollerCoaster Tycoon / The Sims | Not yet tested | Exact editions, PC controls, API requirements and physical play/save/reload remain to be established |
 | Native Direct3D / NV2A acceleration | Not qualified | Current display driver declines DirectDraw; no accelerated driver installed |
 | Graphics ladder 00–02 | Modern host, NT5 PC and Xbox scoped pass | Six allowed cases; NT5 and Xbox each verify 129,024 bytes and reject 402 actual-evidence mutations. [Xbox438](../outputs/graphics-xbox438/REPORT.md) retains Ftdisk49 and two shutdown-time rundll32 popups; no primary/D3D/GPU qualification. HAL-only system-memory path remains excluded after the retained host crash |
+| Graphics ladder 03 | NT5 PC and Xbox scoped pass | Default/HEL primary presentation with exact HWND clipping, cover/move/uncover and neighboring GDI pixels. Each platform verifies 3,604,480 bytes and rejects 468 mutations. [Xbox442](../outputs/presentation442/REPORT.md) retains Ftdisk49 and two new shutdown rundll32 popups. No scanout/GPU/D3D claim |
 
 The [1080i investigation](1080i-investigation.md) is paused. Standalone tests
 reproduce the defect without Windows, and normal PBKit initialization did not

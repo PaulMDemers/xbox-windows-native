@@ -21,8 +21,9 @@ clears its DirectDraw callback tables and returns `FALSE`: its comment explicitl
 prohibits direct access that bypasses the private primary. There is no installed
 native GPU acceleration or qualified Direct3D driver. The first actual Xbox
 samples pass default/HEL DirectDraw 7 system-memory blits and independent pixel
-readbacks with this driver unchanged. Primary-surface presentation and D3D
-rendering remain untested; see the [sample results](graphics-samples.md).
+readbacks with this driver unchanged. Default/HEL windowed primary presentation,
+clipping and GDI coexistence also pass independent pixel checks. D3D rendering
+remains untested; see the [sample results](graphics-samples.md).
 
 DirectX is a family of APIs. A game's DirectX requirement does not by itself mean
 it requires accelerated Direct3D. Chris Sawyer's own FAQ identifies DirectX 5
@@ -45,7 +46,8 @@ Implementation starts with the [graphics sample ladder](graphics-samples.md):
 small owned programs with explicit results, progressing from GDI and DirectDraw
 surfaces to D3D triangles, textures and game-like scenes. Rungs 00–02 now have
 passing scoped controls on the modern host, Windows 2000 PC and physical Xbox.
-Rung 03 adds windowed presentation and coexistence with GDI before later D3D work.
+Rung 03 now passes windowed presentation and GDI coexistence on NT5 PC and Xbox.
+Next come palettes/formats/color-key sprites, then lifecycle tests before D3D.
 
 | Stage | Work | Evidence needed to advance |
 |---|---|---|

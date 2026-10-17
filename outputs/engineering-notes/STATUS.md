@@ -1,3 +1,19 @@
+# Current: windowed DirectDraw presentation passes on NT5 and Xbox
+
+Rung03 default/HEL covers visible, covered, moved and uncovered windows with
+exact clip regions and unchanged neighboring GDI content. Each platform checks
+3,604,480 bytes and rejects468 evidence mutations. Source/build/run/check
+instructions are in docs/graphics-samples.md. Driver and720p mode unchanged.
+
+[440 PC](../presentation440/REPORT.md) and [442 Xbox](../presentation442/REPORT.md)
+are closed with normal restarts. The Xbox test hook is removed. The firstPC
+stacking-order test failure439 and zero-write staging refusal441 are preserved.
+
+Strict system qualification remains false: Ftdisk49 and two shutdown-time
+rundll32 initialization popups recurred. No D3D, acceleration, performance or
+physical scanout claim. Next is palettes/formats/color-key sprites, followed by
+surface lifecycle and the D3D discovery/triangle rungs. Original games untested.
+
 # Current: graphics ladder passed scoped NT5 and Xbox controls
 
 Six allowed cases now pass on both the isolated Windows 2000 PC and installed
