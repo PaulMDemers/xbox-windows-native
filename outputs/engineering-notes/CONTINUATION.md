@@ -1,3 +1,27 @@
+# Current:461 watched repeat reached Windows; normal restart/collection pending
+
+User460 recollection: "Black followed by dash I believe. Rerun it" preserved in
+outputs/boot-handoff460/user-observation001.json. Explicitly requested fresh461
+repeat, not a new fix;460 and olderattempts immutable. Read outputs/boot-handoff461
+DESIGN/REPORT/NEXT/namespace-review/source-review/build001/host001/decoder001 and
+stage/launch/observation/user-observation records.
+461binary f7fe1eec0332ba9bc5321d506d6a1f01c303a6ddd58ebb1e83de4d16e69753da,
+E:/xwn461/build001/default.xbe;24changedbytes versus460 (20digest+4identity),
+embeddedpayloadexact/logicunchanged.45actualhostwrapperMODELEDkernel/filecases,
+296decodernegatives,11editreconstructionPASS. Consolefreshpath
+E:\Applications\XWNBoot461a\default.xbe. OneSITEaccepted22:45:35UTC.
+User: "Windows it at the desktop". No graphics hook/autorestart. UserASKEDnormal
+Start/ShutDown/Restart andnotifyUnleashX. Awaitreply or read-onlydashboardreturn;
+then collectONCE and run actual-review002.py(success-aware,eventdelta). Do NOT
+run preparedactual-review001 (unchanged-file refusal assumptions, NEVERexecuted).
+Observer31571endednormal90secdeadline with noFTP/report; NOTbootfailure,userdesktop
+observed. Stage/launch43462closed; noownedprocessrunning. No nextlaunchqueued.
+NoXboxCaccess,installed6240launcher/drivers720p/startupunchanged.
+Needfinishcoldhive/event/receipt audit, preservefreshreport limitations: final
+flush/close/post-logcheck notinferablefromreportalone; desktopuserseparateproof.
+Thenreview/check/exactstage/commit/push. Latestpushedb05a8c47; current461uncommitted.
+Historicaluntrackedfilesuntouched. Originalrootdemo251ticket,20GiB C/Ereserve.
+
 # Current:460 physical allocation/copy report PASS; later handoff unknown, screen reply pending
 
 Read outputs/boot-baseline459 REPORT/capture002/review002 and outputs/boot-handoff460

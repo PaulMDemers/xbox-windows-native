@@ -1,3 +1,11 @@
+# Current: watched diagnostic reached Windows; cold collection pending
+
+The user-requested fresh461 diagnostic reached the Windows desktop. Its logic
+matches460; only the fresh identity/report path differs. This successful boot
+and the earlier black/dashboard outcome are both preserved. It is not a boot fix
+or D3D qualification. Normal Windows restart has been requested before collecting
+the report, registry hives and event logs. No further launch is queued.
+
 # Current: boot preparation verified; handoff investigation continues
 
 The normal cold-start attempt also returned to the dashboard. Its registry and
