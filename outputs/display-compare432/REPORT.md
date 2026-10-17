@@ -27,3 +27,9 @@ SDK rebuild or shared-source mutation. Same XBE SHA256:
 f10bf211e0035d60a625227be662921fa8c5269074e376a06d9eba2b449a020b.
 All 15 preflight input hashes remain exact. Host sessions are closed. Old cases
 remain untouched; never rerun or recollect this consumed directory.
+
+Later adapter identification: user supplied an Amazon short link resolving to
+ASIN B07D19QQHW (POUND HD Link for Original Xbox). Manufacturer describes component
+to HDMI native-resolution passthrough and notes possible external micro USB power
+for artifacts. See adapter002.json for sources and limits. Actual unit revision,
+power state and measured HDMI signal remain unknown; no power fault is proved.

@@ -1,3 +1,12 @@
+# 432 adapter identification follow-up
+
+Userlink https://a.co/d/04IhfpZP resolvesAmazonASIN B07D19QQHW, POUND HD Link
+OriginalXbox family. Manufacturer original-xbox-v2 page describes analogcomponent
+HDMI native-resolution passthrough (not1080pupscale) and possiblemicroUSBpower
+forartifacts. Actualrevision/powerstate/newmonitormodel/HDMIformatUNKNOWN.
+See outputs/display-compare432/adapter002.json. Doesnotproveadapter/powerfault.
+432runtimeCLOSED; noextra testqueued. a8b21f83 pushedruntimeevidence.
+
 # 432 CLOSED: second display reports the same 1080i behavior
 
 Read outputs/display-compare432/REPORT.md, observation001.json and final-review.json.
