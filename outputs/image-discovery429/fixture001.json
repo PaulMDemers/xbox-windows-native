@@ -1,0 +1,99 @@
+{
+  "passed": true,
+  "space": {
+    "minimum_free_gib": 20.15625,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/e",
+        "free_bytes": 21701328896
+      },
+      {
+        "free_bytes": 22331183104,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "physical_access": false,
+  "guest_launched": false,
+  "tools": {
+    "/home/paul/xbox-windows-native/toolchains/offline-disk/root/usr/sbin/mkntfs": "d30ccb1cf05c2669cdc6732804597a6cfce2bf70c1f0eaa2a311e6caace5e6d1",
+    "/home/paul/xbox-windows-native/toolchains/offline-disk/root/usr/sbin/ntfscp": "a420fb6cfbc63c0a5f80cd123ff18d0fc80d1406e32818ed0b8f12b2607e1be9",
+    "/home/paul/xbox-windows-native/toolchains/offline-disk/root/usr/bin/ntfscat": "1601467b5bd892d852acc89a6428fe4623838686949ec596bdf279e9363f82de"
+  },
+  "inputs": {
+    "reader.py": "5fdc500de466497786919fa946d62b49a69b8b626ad7e8d5ef6271f930fba3c8",
+    "ntfs_header.py": "c7d59e972ee851949991002b863826bbc803fefeac834287334d79daaf22a37b",
+    "fixture001.py": "d388fe8c26a55c412413c80eff69d5235596e1cdd4353c367bfb7fdfcd4487f2"
+  },
+  "format_command": [
+    "/home/paul/xbox-windows-native/toolchains/offline-disk/root/usr/sbin/mkntfs",
+    "-F",
+    "-Q",
+    "-s",
+    "512",
+    "-c",
+    "4096",
+    "-p",
+    "2256",
+    "-L",
+    "XWN429",
+    "/mnt/e/xwn429/fixture001/inner.ntfs"
+  ],
+  "ntfs_geometry": {
+    "sector": 512,
+    "sectors_per_cluster": 8,
+    "data_sectors": 65535,
+    "backup_sector": 65535,
+    "mft_lcn": 4,
+    "mirror_lcn": 4095,
+    "record_bytes": 1024,
+    "index_bytes": 4096,
+    "hidden_sectors": 2256
+  },
+  "discovery": {
+    "directories": 1,
+    "entries": 1,
+    "owned_clusters": 8209,
+    "image_clusters": 8208,
+    "bytes_read": 33633792,
+    "all_image_bytes_exact": true,
+    "file_start": 1089536,
+    "inner_start": 1155072
+  },
+  "disk_sha256": "3278d5b0c55bed8593bf54294d01b64d1fb2d89bb27ed851f1a8f9939b599ad3",
+  "ntfs_sha256": "7c85bf7e67ff87830cf0342d78e6d737429cdcdfcaa9b3f9715c4403b7dabf54",
+  "payload_sha256": "be6273e13d00a911a32f9640c3454d471423eb153e6a427227af4ac0d0ca978c",
+  "long_name_bytes": 69,
+  "raw_disk_unchanged_by_reader": true,
+  "outside_partition_marker_exact": true,
+  "files": {
+    "inner.ntfs": {
+      "bytes": 33554432,
+      "sha256": "7c85bf7e67ff87830cf0342d78e6d737429cdcdfcaa9b3f9715c4403b7dabf54"
+    },
+    "mkntfs.log": {
+      "bytes": 643,
+      "sha256": "81547302289eb45f24e59a8ffd9f630f41fe02f12e8afcdb5a65d550cd71fa19"
+    },
+    "payload.bin": {
+      "bytes": 8193,
+      "sha256": "be6273e13d00a911a32f9640c3454d471423eb153e6a427227af4ac0d0ca978c"
+    },
+    "ntfscp.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fatx.raw": {
+      "bytes": 68157440,
+      "sha256": "3278d5b0c55bed8593bf54294d01b64d1fb2d89bb27ed851f1a8f9939b599ad3"
+    },
+    "projected.ntfs": {
+      "bytes": 33554432,
+      "sha256": "7c85bf7e67ff87830cf0342d78e6d737429cdcdfcaa9b3f9715c4403b7dabf54"
+    }
+  },
+  "scope": "Real formatted NTFS file inside new miniature FATX bytes, independent writer/read/cat. No Windows mount, boot, live exclusion or native memory/IRP qualification."
+}

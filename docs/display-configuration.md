@@ -3,8 +3,17 @@
 Use **720p** for the current demo. Text and full-window dragging were confirmed
 clean on the tested console/adapter/display. At 1080i, photographed text had
 missing-looking strokes and dragged contents jostled, although a saved Windows
-screenshot looked clean. The cause has not been isolated to timing, scanout,
-adapter or TV processing. Font smoothing is not a demonstrated fix for it.
+screenshot looked clean. A later pattern test also found exact pixels and no
+shadow-to-framebuffer mismatch at eight checkpoints in each mode, including
+after window movement. That does not verify the interlaced signal reaching the
+TV. Timing, encoder, adapter and TV processing remain under investigation.
+Font smoothing is not a demonstrated fix for it.
+
+A standalone test through the stock Xbox video API also produced correct
+framebuffer pixels, while the tester reported clean 720p and solid alternate
+bands at 1080i. The visual issue therefore also occurs without Windows running.
+1080i remains experimental; this is not evidence of a completed fix or a faulty
+adapter specifically.
 
 Resolution is selected at boot. Windows Display Properties is not a supported
 way to switch these profiles while Windows is running. An HDMI connector alone

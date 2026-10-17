@@ -1,3 +1,62 @@
+# 428-430 CLOSED: exact framebuffer pixels, stock1080i visual issue also reported
+
+Read outputs/field-scanout428/REPORT.md/final-review.json,
+outputs/image-discovery429/REPORT.md/final-review.json and
+outputs/stock-field430/REPORT.md/analysis002.json/final-review.json. All owned
+host sessions CLOSED including430collection78102 and repositorycheck8758.
+No physical test queued. Dashboard returned; Windows720p launcher retained.
+Do not rerun/recollect428control001/interlace001,429fixture001/tests001,
+430build001..003/host001/physical001..003 or earlier closed attempts.
+
+428 actualWindows720p/1080i each4,194,304 exact independentpixels/eightcaptures,
+eightzero-mismatch shadow-versus-actualvolatilemappedscanoutchecks. RealUSERmove.
+Eachnormaluserrestart hasone6006andsoleFt49(strictFALSE). Bothhooksremoved,
+originalstartup/drivers exact,720p restored. User1080i: "every other column is a
+solid color, and they fish when it moves, pictures taken. rebooting now".
+PrivateE:/xwn428. No photographsattached. Intentionalbinary-labelsolidbands
+mustnotbeconfusedwithcorruption. Completeactual-log128mutations/case rejected.
+
+430physical003 stocknxdk/kernel video API accepted03:05:24.536UTCOct17, completed
+8phases/4,194,304 exactindependentCPUreadbackpixels, physicalFB==scanout, normal
+firmwarerestartrequest/dashboardreturn. All10privatefilesdouble-read/rehashed at
+C:/xwn430/physical003. NoWindows/Xromwellrunning or newdriver. User: "on 720
+ everything looks perfect, on 1080, every other column is a solid color."
+No separate static/moving or one/two-line comparison.14actualstockRAMDACregisters
+permode matchpublicprofileconstants; NOTactualWindowsruntime/fullCRTC/encoder.
+96actualrecordmutations rejected. ActualpaintASan/UBSan23,961,632hostchecks,
+64modeledrecordnegatives; modeledflush. Noemulator430run/fullallocationaudit.
+
+Stockbuild003 atC:/xwn430/build003/bin/default.xbe SHA
+f10bf211e0035d60a625227be662921fa8c5269074e376a06d9eba2b449a020b, allSDKpins
+unchanged. OwnedconsoleE:/Applications/XWNField430c; one-shotfilesretained.
+NoXboxCaccess/Windowsstartupchange/EEPROMchange/menuedit. Original720pWindows
+launcher6240a801d97c4894e56d516a934059da056446fb77cf895b5364bdd6cd24be9a.
+Preserve430001compilemissingFlushFileBuffers, physical001noresult(Ealiasinferred,
+notruntimeNTSTATUS), physical002stalehostguardrefusedBEFOREmutation, analysis001
+wrongHDTVenum1(ownedSDKdefines4); correctedbuild003/analysis002 separate.
+No failed attempt rerun; prior001/002sourcesretained.
+
+NEXTdisplay: obtainphotos to identifyactualaffectedbands/lostrows. Sameproblem
+reportedwithoutWindowssupportsinterlacedoutput-pathinvestigation, notcomponent
+attribution orproofeverymovingframecorrect. Testseparateknown-gooddisplay/input/
+adapterifphotoswarrant, orcapturefulltimingstateasnewboundedcomparison. No speculative
+fieldpatch, fontblur, forced1080p/EEPROMchange or1080promotion.720p staysdefault.
+
+429 boundedhostrawFATXreader discoversrealcontiguousWINDOWS.IMG andprojectsall
+32MiBNTFSexact, independentntfscatrecovers69charfilename/8193bytes. Fresh65MiBraw
+fixtureE:/xwn429/fixture001 unchanged;50actualmutation/syntheticcases pass.
+No nativeport/mount/boot/exclusion/installfix. ASCII-onlycasefold, offlineinput,
+nativebudgets andfulltool/librarysourceclosure unresolved. Dependencycloseoutpins
+postdateexecution; recordedexplicitly. Nextreview/portboundedREADONLYloaderresolver,
+haltbeforekernel, then matchingHALARC/SystemRoot/parentEabsencebeforewritableboot.
+Keepallcrypto/COM+/events/dump/install/restoregates; nobackingrawPartition0exclusionclaim.
+
+CapacityC~22.1GB/E21.55GBdecimal;20GiBprojectedguard retained.428verifiedhardlink
+deduprecovered1,187,374,397bytes preservingbotharchivedzstpaths; no backingmoved.
+430builds/capturesonC. Newkit-textattributes beforestage; source/evidence checks passed34988trackedfiles before6compilerlogs were explicitly
+added,71kitfilesbyteexact plus6rawlogs verified. Finalcommit/push follows. Historicaluntracked
+filesuntouched; no publicreleasequalification/tag. Earlier427andallfailuresbelow.
+
 # 427 CLOSED: contiguous image boot projection reviewed, host-only
 
 Read outputs/image-handoff427/REPORT.md, DESIGN.md, NEXT.md, final-review.json,

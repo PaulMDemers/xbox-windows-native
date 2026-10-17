@@ -1,0 +1,47 @@
+{
+  "space": {
+    "minimum_free_gib": 20.0078125,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/e",
+        "free_bytes": 21731082240
+      },
+      {
+        "free_bytes": 22433648640,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "compiler_sha256": "8ab0685d97b322aad3c37fd362b26fa5b9408ff6dd55a536c0a2d48de1c22b18",
+  "inputs": {
+    "probe.c": "e43159fc4af7be936c57221e750f9e799268e09ec83caaf55284a1e8cd76c9a8",
+    "pattern.h": "9e74f245c35b6f1f3078c1b81086294a84db87ca663f578e8966a082ed1f36dd"
+  },
+  "command": [
+    "/home/paul/xbox-windows-native/release-readiness403-bootstrap001/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc",
+    "-Os",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-nostdlib",
+    "-fno-stack-protector",
+    "-fno-builtin",
+    "-Wl,--entry,_mainCRTStartup@0",
+    "-Wl,--subsystem,console:5.0",
+    "-Wl,-Map,/mnt/e/xwn428/build001/probe.map",
+    "-o",
+    "/mnt/e/xwn428/build001/probe.exe",
+    "/mnt/e/xwn428/build001/probe.c",
+    "-lkernel32",
+    "-luser32",
+    "-lgdi32"
+  ],
+  "exit_code": 0,
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "compiled": true,
+  "binary_sha256": "2857a171c9b3ebf6f39c1797b69a8d5624a4044d185b9691bee831c8ad499eb7",
+  "binary_bytes": 19651
+}

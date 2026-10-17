@@ -1,0 +1,67 @@
+{
+  "passed": true,
+  "binary_sha256": "2857a171c9b3ebf6f39c1797b69a8d5624a4044d185b9691bee831c8ad499eb7",
+  "imports": {
+    "gdi32.dll": [
+      "BitBlt",
+      "CreateCompatibleDC",
+      "CreateDIBSection",
+      "DeleteDC",
+      "DeleteObject",
+      "ExtEscape",
+      "GdiFlush",
+      "GetStockObject",
+      "SelectObject",
+      "SetBkColor",
+      "SetTextColor",
+      "TextOutA"
+    ],
+    "kernel32.dll": [
+      "CloseHandle",
+      "CreateFileA",
+      "ExitProcess",
+      "FlushFileBuffers",
+      "GetLastError",
+      "GetModuleHandleA",
+      "GetTickCount",
+      "Sleep",
+      "WriteFile",
+      "lstrlenA"
+    ],
+    "user32.dll": [
+      "BeginPaint",
+      "ClientToScreen",
+      "CreateWindowExA",
+      "DefWindowProcA",
+      "DestroyWindow",
+      "DispatchMessageA",
+      "EndPaint",
+      "FillRect",
+      "GetClientRect",
+      "GetDC",
+      "GetSystemMetrics",
+      "PeekMessageA",
+      "PostQuitMessage",
+      "RegisterClassA",
+      "ReleaseDC",
+      "SetForegroundWindow",
+      "SetWindowPos",
+      "ShowCursor",
+      "ShowWindow",
+      "TranslateMessage",
+      "wsprintfA"
+    ]
+  },
+  "providers": {
+    "gdi32.dll": "4525e25c187364c82be9f1885b1edc9c6f0465fe326e5087b167257f9e75b46f",
+    "kernel32.dll": "6b05b0749b5dd86da94cc4acd062ca05472509f70216b56cd4a5b9809c602e73",
+    "user32.dll": "291210cf381dc269f8847a86e59a7cf775e5dd4086f94ff1266714f34ff55063"
+  },
+  "sources": {
+    "probe.c": "e43159fc4af7be936c57221e750f9e799268e09ec83caaf55284a1e8cd76c9a8",
+    "pattern.h": "9e74f245c35b6f1f3078c1b81086294a84db87ca663f578e8966a082ed1f36dd"
+  },
+  "host_checks": 2105360,
+  "guest_or_hardware_execution": false,
+  "scope": "Read-only existing escapes and bounded user-mode GDI. No mode, MMIO, driver or settings mutation. No reboot request."
+}

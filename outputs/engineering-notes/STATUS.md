@@ -1,4 +1,24 @@
-# Current: contiguous image boot route reviewed
+# Current: 1080i issue also observed outside Windows
+
+The Windows pattern tests at720p/1080i both returned exact pixels and zero
+shadow-to-mapped-framebuffer mismatches, including after movement. The stock
+Xbox video API comparison also returned exact pixels; the user reported perfect
+720p and solid alternate bands at1080i. Fourteen stock timing registers per mode
+match our public profile constants. This points toward the shared interlaced
+output path, without yet identifying encoder, adapter, TV or lost-field behavior.
+Photographs and a targeted output-chain comparison are next. Windows stays720p;
+no speculative driver patch or1080i promotion. All trials are closed and no
+hardware test is queued. See [428](../field-scanout428/REPORT.md) and
+[430](../stock-field430/REPORT.md). Windows runs retain sole newFtdisk49 failure.
+
+The clean-install prototype now discovers a real contiguous NTFS image inside
+FATX, reproduces all32MiB exactly and independently reads a69-character filename.
+Fifty host cases pass. It is still a read-only host prototype, not a bootable
+Windows solution or resolved install/restore gate. See
+[429](../image-discovery429/REPORT.md). No release tag or public Windows bundle
+is qualified by these results.
+
+# Prior: contiguous image boot route reviewed
 
 427 narrows the first image prototype to a contiguous FATX file. The existing
 loader/HAL partition path could expose its inner NTFS range as Windows' system
