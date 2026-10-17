@@ -1,3 +1,34 @@
+# Graphics sample ladder 436: first three rungs implemented
+
+User requested an incremental sample ladder before game testing. Read
+docs/graphics-samples.md and outputs/graphics-ladder436/REPORT.md, host001.json,
+host002.json, controls001.json and final-review.json. Public source is
+src/samples/graphics-ladder; tools/build-graphics-samples.py and graphics_sample.py
+build/check it. Rungs00 GDI,01 DD7 inventory,02 system-memory blit only. Later
+presentation/palette/sprite/lifecycle/D3D rungs are PLANNED, not stub passes.
+
+Current build004 E:/xwn436/build004/ladder.exe, 23985 bytes, SHA256
+09d355d8e55081433b62f94a2203cfa56bb23c4e6181f07f9b5087c7b6f3d050.
+Strict warning-free RosBE build, PE32 subsystem5.0, 43 actual NT5 import-export
+matches,151 header pins. No shared SDK/driver modification. Host002 actual modern
+Windows control: six allowed cases PASS; three pixel cases each43008 exact bytes.
+287 actual evidence mutations rejected; five public verifier tests pass.
+Repository check passed35127trackedfiles;97local documentation links resolve.
+Final read-only host query found no ladder process; no hardware test queued.
+
+Host001 build002 HAL-only system-memory CreateSurface path crashed0xC0000005
+before return logging; cause/module unproved. Original inputs/checker/failure
+retained. Current rung02 refuses HAL at argument parsing; rung01 HAL inventory
+still allowed. No hardware-rendering PASS. Build001 boolean typedef compile
+collision preserved;003 native same as004 never executed;004 adds runner package.
+Never rerun consumed build/host/control IDs. All owned host processes CLOSED.
+
+No NT5/Xbox runtime, visual qualification, GPU acceleration, new driver, device
+grant, mode switch or console access. Next: owned fresh NT5 PC sample control,
+then controlled Xbox observation; only then rung03 primary/clipper/GDI interplay.
+Use new result prefixes, preserve failures; batch wrapper has no driver-hang
+watchdog. Existing720p baseline unchanged,1080i remains PAUSED.
+
 # Current direction: builder documentation and classic games - October 17, 2026
 
 User requests clear post-build Windows preparation/copying documentation and

@@ -28,6 +28,7 @@ native GPU acceleration.
 - [Windows disc hashes and media validation](docs/windows-media.md)
 - [Validated results and remaining release work](docs/validation.md)
 - [Next milestone: classic games and Direct3D](docs/graphics-roadmap.md)
+- [Graphics sample ladder: build and run](docs/graphics-samples.md)
 
 ## Current capabilities
 

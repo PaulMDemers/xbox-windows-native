@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "source_sha256": "8a225dc88856b792d9d4081743daa96006fe02461df3fa76e6e0dde4f2cbf376",
+  "compiler": "/home/paul/xbox-windows-native/release-readiness403-bootstrap001/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc",
+  "compiler_sha256": "8ab0685d97b322aad3c37fd362b26fa5b9408ff6dd55a536c0a2d48de1c22b18",
+  "objdump_sha256": "6eba37b951ec8e546640957299f0ac8fdc83f64702bb8fc8e62b1c3c90b83598",
+  "command": [
+    "/home/paul/xbox-windows-native/release-readiness403-bootstrap001/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc",
+    "-Os",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-nostdlib",
+    "-fno-stack-protector",
+    "-fno-builtin",
+    "-Wl,--entry,_mainCRTStartup@0",
+    "-Wl,--subsystem,console:5.0",
+    "-Wl,--major-os-version,5",
+    "-Wl,--minor-os-version,0",
+    "-Wl,-Map,/mnt/e/xwn436/build001/ladder.map",
+    "-o",
+    "/mnt/e/xwn436/build001/ladder.exe",
+    "/mnt/e/xwn436/build001/ladder.c",
+    "-lkernel32",
+    "-luser32",
+    "-lgdi32"
+  ],
+  "space": {
+    "minimum_free_gib": 20.0078125,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/e",
+        "free_bytes": 21546401792
+      },
+      {
+        "free_bytes": 28791574528,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "executable_run": false,
+  "scope": "compile and PE inspection only; NT5/physical runtime unqualified",
+  "exit_code": 1,
+  "log_sha256": "1b822c0d6b91dd4e9b067f6406f07bbab4a2787cde07ce36a7f79f024c636599",
+  "error": "Compile failed; retained build.log and inputs"
+}

@@ -39,6 +39,11 @@ rather than declaring all Direct3D versions supported.
 
 ## Work in order
 
+Implementation starts with the [graphics sample ladder](graphics-samples.md):
+small owned programs with explicit results, progressing from GDI and DirectDraw
+surfaces to D3D triangles, textures and game-like scenes. Rungs 00–02 are built
+and have modern-host controls; NT5/Xbox runtime testing is still pending.
+
 | Stage | Work | Evidence needed to advance |
 |---|---|---|
 | 1. Establish game baselines | Inspect exact executable/import identities and supplied requirements; install and play each owned edition on a disposable Windows 2000 PC control | Recorded game/patch/runtime versions, settings, APIs observed and a save/reload control |

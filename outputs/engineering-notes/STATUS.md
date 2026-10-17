@@ -1,3 +1,16 @@
+# Current: runnable graphics ladder foundation
+
+[Samples 00–02](../../docs/graphics-samples.md) implement a GDI pixel reference,
+DirectDraw capability inventory and system-memory copies. The current build
+passed six allowed modern-Windows host cases and independent pixel checks;
+NT5/Xbox execution remains pending. A hardware-only system-memory attempt
+crashed on the host; its evidence is retained and that combination is explicitly
+refused in the current sample. Hardware-only inventory remains available.
+
+The ladder continues through presentation, palettes, sprites, lifecycle and D3D
+rendering toward the game goals. Those later rungs are planned. No console,
+driver or display-mode changes; 1080i remains paused. See [436](../graphics-ladder436/REPORT.md).
+
 # Current: clearer build-to-boot documentation; classic games are the next milestone
 
 The [new walkthrough](../../docs/build-to-boot.md) connects component builds to
