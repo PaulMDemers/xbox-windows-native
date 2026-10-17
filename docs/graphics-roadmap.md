@@ -47,13 +47,14 @@ small owned programs with explicit results, progressing from GDI and DirectDraw
 surfaces to D3D triangles, textures and game-like scenes. Rungs 00–02 now have
 passing scoped controls on the modern host, Windows 2000 PC and physical Xbox.
 Rung 03 now passes windowed presentation and GDI coexistence on NT5 PC and Xbox.
-Rung04 now has NT5 indexed-palette and RGB565 sprite controls; RGB32 color-key
-validation remains incomplete. A [focused NT5 diagnostic](../outputs/key-semantics446/REPORT.md)
-passes plain RGB32 copies but reproduces keyed-copy failures with three keys,
-with and without clipping, on the16-bit desktop. The same binary
-[passes on a24-bit desktop](../outputs/key-depth447/REPORT.md) and on the
-[Xbox 32-bit desktop](../outputs/key-retry449/REPORT.md), without a driver change.
-Next complete the full sprite/overlap matrix before lifecycle tests and D3D.
+Rung 04 now has a [complete NT5 PC pass](../outputs/sprites-depth450/REPORT.md)
+at a verified 24-bit desktop: all six palette/format/sprite/overlap cases match.
+The earlier 16-bit RGB32 failures remain preserved; no expected pixels or driver
+were changed. The focused color-key diagnostic also
+[passes on the Xbox 32-bit desktop](../outputs/key-retry449/REPORT.md).
+The [full Xbox matrix attempt](../outputs/sprites-xbox451/REPORT.md) produced no
+receipt, so a direct boot-path comparison is pending. Complete that physical
+matrix before qualifying lifecycle tests and D3D.
 
 | Stage | Work | Evidence needed to advance |
 |---|---|---|

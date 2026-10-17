@@ -24,7 +24,7 @@ The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 | 01 | DirectDraw inventory | Independently request default, HEL and HAL-only objects; record HRESULTs, hardware/HEL caps and current mode | All three inventories completed on PC/NT5/Xbox |
 | 02 | DirectDraw system-memory copy | Explicit RGB32 offscreen surfaces; write/lock/unlock, rectangle blit, exact source and destination readbacks | Default and HEL controls passed on PC/NT5/Xbox |
 | 03 | Windowed DirectDraw presentation | Primary surface plus window clipper; cover/uncover and move the window without damaging adjacent GDI content | NT5 PC/Xbox default and HEL pixel controls passed |
-| 04 | Palettes, formats and sprites | 8-bit palette changes, supported 16/32-bit formats, color-key sprites, clipping and overlapping copies in both directions | NT5 indexed8/RGB565 pass; focused RGB32 keys pass on PC 24-bit/Xbox 32-bit; full matrix pending |
+| 04 | Palettes, formats and sprites | 8-bit palette changes, supported 16/32-bit formats, color-key sprites, clipping and overlapping copies in both directions | All six cases pass on NT5 PC at 24-bit; full Xbox matrix pending |
 | 05 | Surface lifecycle and memory budget | Focus changes, lost-surface handling where applicable, repeated create/release, failure recovery and bounded memory use | Planned |
 | 06 | Legacy D3D discovery | Query the chosen D3D interface, enumerate actual devices/caps; distinguish software and hardware choices | Planned; begin with the installed legacy runtime, not a DLL upgrade |
 | 07 | Clear and triangle | Offscreen render target, clear, pretransformed colored triangle, independent interior/background pixel checks | Planned |
@@ -288,9 +288,20 @@ identified. This occurs on the PC control's 16-bit desktop.
 A [separate mode diagnostic](../outputs/sprites445/REPORT.md) requested a 32-bit
 desktop without changing the sample. The pinned Cirrus driver rejected that
 mode before any sample case ran. It also retains a host preflight-ordering
-limitation and is not deployment qualification. No rung04 Xbox test has run.
-Expected pixels and all failed results remain intact; the installed Xbox driver
-and 720p baseline are unchanged.
+limitation and is not deployment qualification. Expected pixels and all failed
+results remain intact.
+
+The [full 24-bit PC control](../outputs/sprites-depth450/REPORT.md) now passes all
+six cases, including RGB32 and both overlapping-copy directions: 174,080 exact
+bytes and 2,520 rejected evidence mutations. The sample executable is unchanged.
+Its controller verifies the supported 24-bit mode and restoration to the original
+16-bit desktop before normal shutdown. The checker accepts 24-bit desktop metadata
+without changing surface formats or expected pixels.
+
+The [matched Xbox attempt](../outputs/sprites-xbox451/REPORT.md) returned to the
+dashboard without a result directory. Its test hook is disabled; the launcher,
+normal startup and 720p settings are unchanged. Full physical rung04 qualification
+remains pending a boot-path comparison and a fresh instrumented attempt.
 
 ### RGB32 color-key diagnostic
 

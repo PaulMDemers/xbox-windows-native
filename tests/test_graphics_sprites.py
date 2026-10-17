@@ -23,6 +23,22 @@ def encode(r):
 
 
 class Sprites(unittest.TestCase):
+    def test_desktop_depth_is_independent_of_surface_format(self):
+        for fmt in g.FORMATS:
+            r, captures = fixture(fmt)
+            for depth in (16, 24, 32):
+                r['mode.bpp'] = depth
+                self.assertTrue(g.validate(encode(r), captures, 'default', fmt, 0)['passed'])
+            for depth in (0, 1, 4, 8, 15, 23, 25, 48, '024', '-24'):
+                r['mode.bpp'] = depth
+                with self.subTest(fmt=fmt, depth=depth), self.assertRaises(ValueError):
+                    g.validate(encode(r), captures, 'default', fmt, 0)
+            r['mode.bpp'] = 24
+            changed = dict(captures)
+            changed['dest'] = bytes([captures['dest'][0] ^ 1]) + captures['dest'][1:]
+            with self.assertRaises(ValueError):
+                g.validate(encode(r), changed, 'default', fmt, 0)
+
     def test_oracle_semantics(self):
         o = g.oracle('index8')
         frames = [struct.unpack('<768I', o['dest'][s*3072:(s+1)*3072]) for s in range(4)]

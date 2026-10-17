@@ -1,3 +1,16 @@
+# Current: complete PC sprite matrix passes; Xbox launch comparison needed
+
+The [450 PC control](../sprites-depth450/REPORT.md) passes all six sprite cases:
+174,080 exact bytes across palette changes, keyed/clipped copies and overlapping
+copies. The actual24-bit mode was verified and the original mode restored before
+normal shutdown. The sample and pixel expectations are unchanged.
+
+The [451 Xbox attempt](../sprites-xbox451/REPORT.md) returned without a result
+directory. Its test hook is removed; five hives and both logs are unchanged, with
+normal720p startup/launcher verified. A direct File Explorer launch comparison is
+requested. No test remains queued. All owned sessions are closed. The earlier449
+focused key-probe pass remains valid; full physical sprites/D3D remain pending.
+
 # Current: Xbox RGB32 color-key diagnostic passes
 
 The watched [449 retry](../key-retry449/REPORT.md) booted to the desktop and

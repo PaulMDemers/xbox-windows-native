@@ -1,3 +1,35 @@
+# Current: PC450 full sprite matrix PASS; Xbox451 no receipt, direct launch requested
+
+Read outputs/sprites-depth450 REPORT/DESIGN/NEXT/final-review/runtime-review,
+source-review, actual-controls, oracle-tests and all lifecycle records. Sixcases
+(default/HEL × indexed8/RGB565/RGB32) each4stages/exit0,174080exactbytes. Same444
+sample23fcd2208b74a80feaf55d6a52be1b4a34a4138da859fa10bc06d5867862776f unchanged.
+Original444controller reconstructed after exact447mode transaction removed. Actual
+105modes/index58,640x48016->24->16,60Hz/flags0,allAPIs0,freshrestoration; samplemode
+agrees. Publicgraphics_sprites checker ONLY adds24-bit desktop acceptance; oracle
+unchanged.3testgroups+153mode negatives pass; exact446/447gate with59inheritedcases
+notrerun. Completed147inputpreflight BEFORElaunch.26/29NT5imports warningfree.
+Fresh404child normalrestart/QEMUexit0,nohostquit/kill/deadline. Cold6514files309dirs,
+39adds(38owned+desktop.htt),0removed,5clean/rawagreehives,protectedbinary/parent/
+floppyexact,QCOWclean,new6006. NTFS3G48filesmatch/unmounted/diskunchanged.2520actual
+mutationsreject;147inputsarchived316privatefilesrehashed. ALL450sessionsclosed
+inclcold087923/runtime87827/cold146418. Neverrerun/recollect/parent450oroldercases.
+
+451newphysical matchedpackage built/staged/oneacceptedlaunch, dashboardreturned
+byobserver+15sec withNOreceipt/resultdirectory. Fivehives+twoevents byte-identical;
+clean/rawagreehives. Hookdisabled E:/xwn451-kit/startup-used.cmd; startup/launcher/
+protectedcode/720p exact; dashboardC untouched.21deps/2payloads/17privatefilesexact.
+No sample/Windowsrestart proved. Independent no-receipt review, notsuccessparser.
+Observer37397/PID26216 explicitlystopped aftercollection; originalclosed=false
+recordpreserved plusobserver-stop001 hash/identity. ALLowned sessionsclosed incl
+stage26331/build/imports/reviews. No pendingtesthook or queuedlaunch. Neverrearm451.
+Userasync questionrequestsONEdirectFileExplorer E:\Applications\XWNEBoot\default.xbe
+normalboot(no testhooks), reportdesktopvsreturn,normalRestartifdesktop. PENDING.
+Do notcollect itas451sample orrepeatSITE. Needfreshnamespace afterbootpath review.
+449watchedRGB32keyPASS/strictFt49+1rundll32popup remains;448no-receipt unresolved.
+Nextfullphysicalsprites thenlifecycle05/D3Ddiscovery06. No GPU/game/1080promotion.
+Historicaluntrackedfiles untouched. GitHEAD/originauthoritative; priornotesfollow.
+
 # Current: watched Xbox449 RGB32 key diagnostic PASS, strict system FALSE
 
 Read outputs/key-retry449 REPORT/DESIGN/NEXT, final-review.json, runtime-review001,

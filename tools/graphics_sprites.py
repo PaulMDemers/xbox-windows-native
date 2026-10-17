@@ -116,7 +116,7 @@ def validate(raw, captures, backend, fmt, exit_code):
         if not v.isascii() or not v.isdigit() or str(int(v)) != v:
             raise ValueError('Invalid integer: '+k)
         return int(v)
-    if integer('mode.width') < 640 or integer('mode.height') < 480 or integer('mode.bpp') not in (16, 32):
+    if integer('mode.width') < 640 or integer('mode.height') < 480 or integer('mode.bpp') not in (16, 24, 32):
         raise ValueError('Display mode')
     allowed = set(required) | {'mode.width', 'mode.height', 'mode.bpp'}
     for stage in range(4):
