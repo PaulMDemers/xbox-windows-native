@@ -1,3 +1,19 @@
+# 433 read-only field hypothesis review
+
+User confirms POUND externally powered. Fullscreen, solidone-rowband, odd-row
+move flipscolor: supports parityselection+expansion model, notblackgaps. See
+outputs/field-hypothesis433/REPORT.md/source-review.json.1080modeisinterlaced.
+Noadapterfaultproved; no purchase required before software review. 430/432CPU
+pixels/base/16RAMDACsnapshots doNOTmeasure transmittedfieldparities; Windows
+profile derivedfromolderstockcapture so sharedtimingmatchisnotindependentproof.
+Pinnednxdkpassesmode880E0C03/pitch7680/full8294400allocation; noexplicitcaller
+halfheightcopyfound. Prior309CRTC/encoderreadbacks exist,6cUNKNOWN. Nextdecode
+field/stride/line-repeat/interlacecontrolsfromprimarysources anddesignbounded
+safe temporalobservation beforeanypatch. Fieldorderaloneweakerforstablebands;
+normalbobversusfixedparityunresolvedwithouttemporalmeasurement. No433build,
+launch,registerchange; alloldcasesclosed.720pdefault. Otherpublicreleasepriority
+remains429read-onlyFATXimage-discovery/nativeport,cleaninstall/testerbundles.
+
 # 432 adapter identification follow-up
 
 Userlink https://a.co/d/04IhfpZP resolvesAmazonASIN B07D19QQHW, POUND HD Link
