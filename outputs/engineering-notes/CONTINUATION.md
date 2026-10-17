@@ -1,3 +1,13 @@
+# 435 physical002 CLOSED: user-requested watched rerun
+
+Identical435 build001, new E:/Applications/XWNPBCompare435B; accepted05:36:08UTC
+Oct17. Native4phases/error0/PBKit0, dashboard returned; sixprivatefiles double
+read/rehashed C:/xwn435/physical002.2097152exactpixels/104actualnegatives again.
+Samebuffer/pitch, capturedPCRTC_CONFIG3->2 only. Visualorange/cyan answer PENDING.
+See RUN002.md,physical002-closure.json,analysis002.json. Parent001 unchanged,
+neverrelaunch/recollect either. All owned commandsCLOSED,720pbaselineunchanged,
+noXboxCaccess, noqueuedtest. Samebroadinitconfounders/limits aspreviousreport.
+
 # 435 CLOSED: same framebuffer before/after PBKit; visual answer pending
 
 Read outputs/pbkit-compare435/REPORT.md,NEXT.md,review004.json,analysis001.json
