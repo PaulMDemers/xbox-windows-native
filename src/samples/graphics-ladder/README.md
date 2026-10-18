@@ -6,6 +6,12 @@ run instructions, output interpretation and current qualification limits.
 
 - `ladder.c`: runnable GDI reference, DirectDraw inventory and system-memory copy.
 - `run.cmd`: records the actual exit code; refuses reused result prefixes.
+- `present.c`, `sprites.c`, `lifecycle.c`: DirectDraw presentation, pixel formats
+  and bounded resource-lifetime controls.
+- `discovery.c`, `triangle.c`, `texture.c`, `depth.c`: D3D7 software inventory
+  and offscreen rendering controls.
+- `blend.c`: alpha-blending diagnostic. Its first NT5 PC run fails the exact
+  transparent/opaque endpoint checks by one color level; see the sample guide.
 - [Builder](../../../tools/build-graphics-samples.py): fresh out-of-tree RosBE build.
 - [Independent checker](../../../tools/graphics_sample.py): report and pixel oracle.
 

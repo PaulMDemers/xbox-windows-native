@@ -18,9 +18,9 @@ bounded lifecycle controls. Rung 06 now passes complete default/HEL inventories
 on NT5 PC and Xbox, reporting the RGB software renderer. Rung 07 now creates
 that software device and passes offscreen clear/triangle pixel checks on both.
 Rung 08a passes owned point-sampled texture controls on NT5 PC and Xbox. Rung 08b
-depth controls pass on the NT5 PC; two Xbox launches returned without Windows
-receipts, so physical depth remains unqualified. Blending, D3D presentation and
-game performance remain separate work.
+depth controls pass on NT5 PC and Xbox. Two earlier Xbox launches returned without
+Windows receipts; the later 483 run completed both depth cases and a normal restart.
+Blending, D3D presentation and game performance remain separate work.
 The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 
 ## The ladder
@@ -36,8 +36,8 @@ The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 | 06 | Legacy D3D discovery | Query the chosen D3D interface, enumerate actual devices/caps; distinguish software and hardware choices | NT5 PC/Xbox default/HEL inventory passes: RGB software device found; no draw qualification |
 | 07 | Clear and triangle | Offscreen render target, clear, pretransformed colored triangle, independent interior/background pixel checks | RGB software path passes on NT5 PC and Xbox; no presentation/GPU claim |
 | 08a | Point-sampled texture | Enumerated texture format, exact upload/readback, known orientation and interior sampling | Default/HEL RGB software controls pass on NT5 PC and Xbox |
-| 08b | Depth buffer | Enumerated depth surface, both draw orders, depth-disabled and clear-zero controls | NT5 PC passes; Xbox launches incomplete, no depth result |
-| 08c | Alpha blending | Transparent quads and fixed alpha reference pixels | Next separate test |
+| 08b | Depth buffer | Enumerated depth surface, both draw orders, depth-disabled and clear-zero controls | Default/HEL RGB software controls pass on NT5 PC and Xbox |
+| 08c | Alpha blending | Transparent, partial, opaque and blending-disabled triangle controls | NT5 PC arithmetic characterized; exact endpoints fail. Xbox attempt produced no Windows result |
 | 09 | Transforms and scene stability | Rotating textured object, camera/projection, resize/activation handling and repeated resource teardown | Planned |
 | 10 | Small game-like scenes | Scrolling isometric tiles and moving sprites, then a textured room; controls, audio and save/reload | Planned; precedes the actual game acceptance tests |
 
@@ -674,3 +674,64 @@ Runtime evidence is recorded in the [480 PC report](../outputs/d3d-depth480/REPO
 and [483 Xbox report](../outputs/handoff-witness483/REPORT.md). The Xbox retains
 Ftdisk49 and two shutdown-time application popups; the scoped depth pass does not
 qualify the whole system or game compatibility.
+
+## Offscreen alpha blending
+
+[blend.c](../src/samples/graphics-ladder/blend.c) is rung 08c. It draws a
+magenta triangle over a green background using the enumerated D3D7 RGB software
+device. Six captures distinguish a clear target, alpha 0, alpha 85, alpha 170,
+alpha 255, and alpha 85 with blending disabled. Each stage records the actual
+blend enable and source/destination factors. The private 64x64 RGB32 surface
+never changes the desktop mode or displays a preview.
+
+Build with the documented RosBE toolchain and a fresh directory:
+
+```sh
+python3 tools/build-graphics-samples.py \
+    --sample blend \
+    --rosbe "$ROSBE" \
+    --output "$HOME/xwn-blend-001"
+```
+
+Copy `blend.exe` and `blend.cmd` together into Windows 2000, then use two fresh
+output prefixes:
+
+```bat
+blend.cmd default blend-default
+blend.cmd hel blend-hel
+```
+
+Copy each prefix's `.txt`, `.exit` and all six `.bin` captures back to the host:
+
+```sh
+python3 tools/graphics_blend.py /path/to/results/blend-default --backend default
+python3 tools/graphics_blend.py /path/to/results/blend-hel --backend hel
+python3 tests/test_graphics_blend.py
+```
+
+The independent oracle requires exact background, transparent, opaque and
+blending-disabled colors. Partial blends allow at most one level per 8-bit RGB
+channel around the calculated color; this tolerance was fixed before execution.
+It checks every pixel, with a separate boundary region that permits either
+background or foreground because exact raster-edge coverage is not qualified.
+The unused X byte is ignored. Missing captures, failed API calls, unexpected
+states and incomplete cleanup fail validation even if the process exits zero.
+
+The public batch wrapper has no watchdog. Private validation uses a 90-second
+process deadline. Destination alpha, texture alpha, depth/blend interaction,
+presentation, acceleration and game performance require separate tests.
+
+The [first PC alpha control](../outputs/d3d-blend484/REPORT.md) completed both
+processes and restarted normally, but failed its exact transparent/opaque endpoint
+checks: a drawn channel expected to remain 255 became 254. Partial blends fit the
+predeclared one-level allowance, and blending disabled is exact. This is a failed
+pixel qualification despite successful API calls.
+
+The [separate mixed-color control](../outputs/blend-precision486/REPORT.md) matches
+`(source * alpha + destination * (255 - alpha)) // 256` per channel for its selected
+inputs on both software paths. Explicit ZERO/ONE and ONE/ZERO factor controls
+remain exact. That distinguishes the observed result from the ideal divide-by-255
+calculation and from separately truncating each product. It characterizes these
+inputs without changing the original failed oracle or proving the runtime's
+internal implementation. The [Xbox comparison](../outputs/blend-precision487/REPORT.md)
+returned before any Windows test receipts; it provides no alpha qualification.

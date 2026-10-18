@@ -155,7 +155,7 @@ Proposed first acceptance target for **each exact game edition**:
 |---|---|---|
 | Original RollerCoaster Tycoon | Not tested by this milestone | Exact edition/patch, Windows 2000 PC control and actual API dependencies |
 | Original The Sims | Not tested by this milestone | Exact edition/expansions, Windows 2000 PC control and actual API dependencies |
-| Legacy Direct3D support | D3D7 RGB software triangle/texture pass on NT5 PC and Xbox; depth passes on NT5 PC only | Resolve incomplete physical launch and qualify depth; add blending, then D3D presentation and bounded resource/performance tests |
+| Legacy Direct3D support | D3D7 RGB software triangle, texture and depth pass on NT5 PC and Xbox; PC alpha arithmetic is characterized with an endpoint precision limitation | Obtain Xbox alpha evidence, then D3D presentation and bounded resource/performance tests; the latest hardware attempt returned without Windows receipts |
 | Native NV2A acceleration | Unimplemented in the working demo | Windows ownership, submission, synchronization and lifetime proof |
 
 ## Installation work remains part of this goal
