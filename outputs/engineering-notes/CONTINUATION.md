@@ -1,8 +1,8 @@
 # Current: 479 PC and478 Xbox scoped D3D7 texture PASS, closed;477 failure preserved
 
 Read outputs/d3d-texture477,478,479 REPORT/DESIGN/NEXT/final-review and actual
-records. New work commit/push pending final repository/stage checks. Previous
-pushed0d05d913. All owned processes CLOSED:477runtime72092/cold34007,3264;
+records. Work/evidence PUSHED51ce868e via bounded HTTP1.1. Final status commit follows.
+Tracked Git clean after work push; historical untracked files untouched. All owned processes CLOSED:477runtime72092/cold34007,3264;
 479runtime3068/cold72913,57419/actual62361;478stage36858/launchobserver58932,
 collection synchronous/module read closed/actual74139. Console at UnleashX,
 no next test queued. 478hook removed FIRST to E:/xwn478-kit/startup-used.cmd;
@@ -55,7 +55,8 @@ Preserve allhistoric failures/rollbacks/Ft49/recovery256. 720p baseline,1080i pa
 Public build/run/check docs updated. C24349065216B,E21499871232B atcloseout;
 20GiBprojectedreserve, newprivateartifactsC/WSL, no offload/backingmove/deletion.
 Historicaluntracked files untouched. All owned guest/build/host/review processes
-closed; finalrepo/exactstagecheck andcommit/push follow.
+closed. Repository check71133 PASS36604files;131stagedfiles byte-exact and
+whitespace checks PASS. Work commit133files pushed; final status push follows.
 
 # Current:474PC/476Xbox scoped D3D7 triangle PASS CLOSED;475bootFAIL preserved
 

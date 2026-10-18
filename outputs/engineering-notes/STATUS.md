@@ -15,8 +15,10 @@ size, so the sample did not run. New479 uses bounded naming and an independent
 FAT12 preflight. No repair/relaunch of477. Build/run/check docs and source are
 updated. Next: separate depth and alpha-blending controls, PC first then Xbox.
 
-All owned processes are closed and no hardware test is queued. Final repository
-check, exact staged-byte verification and commit/push follow this status update.
+All owned processes are closed and no hardware test is queued. Work/evidence
+pushed as51ce868e. Repository check passed36604files;131stagedfiles byte-exact;
+whitespace check passed. Final status commit follows. Historical untracked files
+remain untouched.
 
 # Latest: first D3D7 software triangle passes on PC and Xbox
 
