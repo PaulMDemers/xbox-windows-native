@@ -1,3 +1,14 @@
+# Closeout: depth480/481/482 work pushed2016f0ee
+
+132 files committed and pushed with bounded HTTP1.1. Tracked worktree clean at
+work push. Repository check91255 passed36,730 tracked files; staged whitespace
+check passed and130 staged files matched working bytes exactly. Check receipts
+were added explicitly. Earlier check2142 passed36,727 files before final process
+inventory/byte-check records. All sessions closed, no test queued. Direct /proc
+inventory confirms no QEMU/NBD/FUSE process; initial shell-pipe inventory failed
+and is explicitly recorded in process-closeout001.json. Historical untracked
+files untouched. Status-only commit follows. Current results/next steps below.
+
 # Current: PC480 depth PASS; Xbox481/482 incomplete launches closed, retries stopped
 
 Read outputs/d3d-depth480,481,482 REPORT/DESIGN/NEXT/final-review and482

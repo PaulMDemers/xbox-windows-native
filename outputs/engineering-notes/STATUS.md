@@ -1,3 +1,5 @@
+Work/evidence pushed:2016f0ee. Repository checks passed; all owned processes closed.
+
 # Latest: depth passes on PC; two Xbox launches closed without receipts
 
 The new D3D7 software depth sample passes both draw orders, depth-disabled and

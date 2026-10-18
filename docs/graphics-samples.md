@@ -623,7 +623,7 @@ failed and produced no texture result.
 ## Offscreen depth buffer
 
 The [PC480 control](../outputs/d3d-depth480/REPORT.md) passes both default and HEL
-with an enumerated16-bit depth format and all five fixed image controls. The
+with an enumerated 16-bit depth format and all five fixed image controls. The
 [Xbox481](../outputs/d3d-depth481/REPORT.md) and
 [Xbox482](../outputs/d3d-depth482/REPORT.md) attempts returned to the dashboard
 without Windows receipts. They establish no physical depth result; retries have
