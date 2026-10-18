@@ -622,12 +622,14 @@ failed and produced no texture result.
 
 ## Offscreen depth buffer
 
-The [PC480 control](../outputs/d3d-depth480/REPORT.md) passes both default and HEL
-with an enumerated 16-bit depth format and all five fixed image controls. The
+The [PC480 control](../outputs/d3d-depth480/REPORT.md) and
+[Xbox483 comparison](../outputs/handoff-witness483/REPORT.md) pass both default
+and HEL with an enumerated 16-bit depth format and all five fixed image controls. The
 [Xbox481](../outputs/d3d-depth481/REPORT.md) and
 [Xbox482](../outputs/d3d-depth482/REPORT.md) attempts returned to the dashboard
-without Windows receipts. They establish no physical depth result; retries have
-stopped pending a more informative boot-handoff diagnostic.
+without Windows receipts and remain failed. The fresh483 diagnostic records a
+later boot-handoff boundary and completes the depth workload and normal restart.
+It does not establish a fix for intermittent boot failures.
 
 [depth.c](../src/samples/graphics-ladder/depth.c) is rung 08b. It enumerates depth
 formats for the actual RGB software device and attaches a private 64x64 depth
@@ -668,4 +670,7 @@ raster edges and the unused X byte remain outside the claim. This is not a
 stencil, depth-precision, presentation, acceleration or game-performance test.
 The public batch wrapper has no watchdog; private validation uses a 90-second
 process deadline. Keep failures and use a fresh output prefix for each run.
-Runtime evidence is recorded in the [480 PC report](../outputs/d3d-depth480/REPORT.md).
+Runtime evidence is recorded in the [480 PC report](../outputs/d3d-depth480/REPORT.md)
+and [483 Xbox report](../outputs/handoff-witness483/REPORT.md). The Xbox retains
+Ftdisk49 and two shutdown-time application popups; the scoped depth pass does not
+qualify the whole system or game compatibility.

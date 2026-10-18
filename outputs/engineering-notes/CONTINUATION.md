@@ -1,3 +1,44 @@
+# Current: Xbox483 software depth PASS; late handoff witness observed
+
+Read outputs/handoff-witness483 REPORT/DESIGN/NEXT/final-review and actual records.
+One new physical launch accepted2026-10-18 04:17:11UTC, dashboard04:18:39UTC;
+Windows default/HEL depth5controls each passed, normal restart supported.
+No further test queued, Xbox at UnleashX. Never rerun/recollect483 or481/482.
+Next experiment484: bounded alpha-blending oracle/sample, fresh PC then Xbox.
+
+Same480 sample00f6487c...20,283B; both actually enumerated D16, attached private
+64x64 depth target.10captures163840bytes;561safeinterior2199exterior pixels/capture;
+complete API/state/cleanup, both process exit0,11actual modules/process exact.
+41986actual metadata/pixel mutations rejected; originals unchanged. No GPU,
+stencil/precision/presentation/speed/game claim. StrictFALSE: Ftdisk49 and2
+rundll32 shutdown popups; initiator unknown.5hives clean/header/raw agreement;
+EventLog6006delta1. No full FATXscan; latest463 remains separate.
+
+483 new GPL wrapper diagnostic appends854B at0x84000, full XBE541526B SHA
+763b9516be6ea3c5c17aaf356a9743ea94385c77b2a1d32598359a009f65438e.
+Original payload/font/entry/thunks/loader symbols preserved; section/image
+sizes/digest change. Extra loaded memory and I/O perturb execution, NOT bootfix.
+Cold256Bwitness proves originalprimaryclose/rechecks and2SMBus transactions;
+1160polls624391TSCticks; frame/allocations matchprimary. Witness alone cannot
+prove its own flush/close/laterchecks/jump/Windows; actual workload proves this
+run reached Windows. 1553actual witness mutations rejected. No refusal. Alias
+backing790528 differs old traces, no causal claim. 481/482 still unexplained.
+
+Host132 assembled-x86 cases=104inherited+28new(27refusals/1DFsuccess), kernel/
+file/SMBus/TSC MODELED, privileged loader trapped BEFOREexecution; noASanclaim.
+Transport1680negatives,10actual dispatcher cases with modeledFTP,24/26NT5imports.
+39frozen package inputs archived. Unexecuted inheritedcold-review001 has stale
+refusalimport/missingwitness; preserved; separateunexecuted002 correction.
+Successful actual audit used frozen runtime-review001. No overwritten failures.
+
+Allowned sessions CLOSED:stage52120,observer49356,actualcontrols85564; builds,
+collection/imports/modules/analysis synchronous. Finalprocessinventory nohost
+emulator orQEMU/NBD/FUSE. HookremovedFIRST,6240original/da47startup/protected720p
+unchanged; no consoleC/driver/SDK changes. No new hardware observation needed.
+C24879083520B,E21499871232B;20GiBguard, new scratch/build onC/WSL. Oldoutputs,
+closedcases/backings/rollback/recovery unchanged. Docs updated; commit/check
+receipts and push follow this work note. Previouspushed3d198878.
+
 # Closeout: depth480/481/482 work pushed2016f0ee
 
 132 files committed and pushed with bounded HTTP1.1. Tracked worktree clean at

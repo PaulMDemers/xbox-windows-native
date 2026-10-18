@@ -24,9 +24,10 @@ samples pass default/HEL DirectDraw 7 system-memory blits and independent pixel
 readbacks with this driver unchanged. Default/HEL windowed primary presentation,
 clipping and GDI coexistence also pass independent pixel checks. D3D7 RGB
 software offscreen clear/triangle rendering now passes on NT5 PC and Xbox.
-Owned point-sampled texture controls also pass on NT5 PC and Xbox. Depth controls
-pass on the NT5 PC, but two physical launches returned without Windows receipts;
-Xbox depth remains unqualified. Blending and D3D presentation remain unqualified. See the
+Owned point-sampled texture and depth controls also pass on NT5 PC and Xbox.
+Two earlier physical depth launches returned without Windows receipts and remain
+failed; a fresh diagnostic completed the workload. Intermittent boot failures
+remain unresolved. Blending and D3D presentation remain unqualified. See the
 [sample results](graphics-samples.md).
 
 DirectX is a family of APIs. A game's DirectX requirement does not by itself mean
@@ -81,8 +82,11 @@ floppy prevented sample execution and remains a separate preserved failure.
 The [depth PC control](../outputs/d3d-depth480/REPORT.md) now passes both draw
 orders, depth-disabled and clear-zero image controls. Physical481/482 produced
 no Windows receipts; [the handoff review](../outputs/d3d-depth482/REPORT.md)
-records the observation gap and stops repeated identical boots. Alpha blending
-is the next separate image oracle; physical depth still needs a completed run.
+records the observation gap and stops repeated identical boots. The fresh
+[483 Xbox run](../outputs/handoff-witness483/REPORT.md) adds a later handoff
+witness and passes all five depth controls on both software paths, followed by
+normal restart. The witness does not diagnose earlier failures. Alpha blending
+is the next separate image oracle.
 
 | Stage | Work | Evidence needed to advance |
 |---|---|---|
