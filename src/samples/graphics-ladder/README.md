@@ -12,6 +12,8 @@ run instructions, output interpretation and current qualification limits.
   and offscreen rendering controls.
 - `blend.c`: alpha-blending diagnostic. Its first NT5 PC run fails the exact
   transparent/opaque endpoint checks by one color level; see the sample guide.
+- `d3dpresent.c`: windowed D3D render, cover, move and expose checks.
+- `transform.c`: six XYZ world/view/projection and viewport controls.
 - [Builder](../../../tools/build-graphics-samples.py): fresh out-of-tree RosBE build.
 - [Independent checker](../../../tools/graphics_sample.py): report and pixel oracle.
 

@@ -166,7 +166,7 @@ Proposed first acceptance target for **each exact game edition**:
 |---|---|---|
 | Original RollerCoaster Tycoon | Not tested by this milestone | Exact edition/patch, Windows 2000 PC control and actual API dependencies |
 | Original The Sims | Not tested by this milestone | Exact edition/expansions, Windows 2000 PC control and actual API dependencies |
-| Legacy Direct3D support | D3D7 RGB software triangle, texture and depth pass on NT5 PC and Xbox; selected alpha arithmetic matches on both; windowed D3D presentation passes on NT5 PC | Xbox windowed presentation comparison, then bounded resource/performance tests; alpha precision and intermittent boot failures remain unresolved |
+| Legacy Direct3D support | D3D7 RGB software triangle, texture and depth pass on NT5 PC and Xbox; selected alpha arithmetic matches on both; windowed D3D presentation passes on NT5 PC and Xbox; six XYZ transform controls pass on PC | Matched Xbox transforms, then combined scenes and bounded resource/performance tests; alpha precision and intermittent boot failures remain unresolved |
 | Native NV2A acceleration | Unimplemented in the working demo | Windows ownership, submission, synchronization and lifetime proof |
 
 ## Installation work remains part of this goal
@@ -177,3 +177,8 @@ long names, and physical install/restore qualification still need implementation
 The current FATX RSA/DPAPI failures cannot be waved away because a game reaches
 its title screen. Use private disposable test installations, preserve failures,
 and keep game compatibility separate from the general clean-install release gate.
+
+The [493 transform control](../outputs/d3d-transform493/REPORT.md) adds actual
+XYZ world/view/projection and viewport coverage on the NT5 PC software renderer.
+Both default and HEL paths pass the independent pixel oracle. The next comparison
+uses that unchanged sample on Xbox before combining features into a visible scene.

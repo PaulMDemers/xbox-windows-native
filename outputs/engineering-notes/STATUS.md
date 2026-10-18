@@ -1,3 +1,64 @@
+# 493 closeout verified; ready for new494 matched Xbox test
+
+Repository check2646 CLOSED/pass37271trackedfiles;61 staged source/evidence/docs
+files byte-exact before closeout receipts. All493 processes closed, no493 physical
+access or hook. NormalPCrestart/scopedtransformPASS; no Xbox transform claim.
+C23658631168B/E21499871232B, retain20GiB projectedreserve includingWSL backingC.
+493 is beingcommitted/pushed; read493REPORT/NEXT, neverrerun closed493.
+
+# 493 PC XYZ transforms CLOSED: scoped PASS; next494 matched Xbox
+
+Read outputs/d3d-transform493 REPORT/DESIGN/NEXT/final-review and actual records.
+Both default/HEL pass six actual XYZ transform/viewport cases, 393216 captured
+bytes (294912 RGB checked; X/padding excluded, fixed2pixel edge band). Exact
+matrices/vertices/readback,11modules each joined to independent cold bytes.
+Independent second reader agrees;1448 actual metadata/pixel negatives rejected.
+Normalrestart06:47:17UTC, exit0/no watchdog/kill; cold6485files309dirs5hiveheaders
+clean, shutdown delta1, selectednew systemevents6006/6009/6005 noerrors/warnings.
+Not fullNTFS allocationaudit; inherited SOFTWARE typedDRM limitation retained.
+149frozeninputs archived,246privatefiles rehashed. No physical493 access/hook.
+Allruntime55802/baseline43492/cold70670/helperprocesses CLOSED. Console last
+recorded dashboard after492, hookremoved; no queuedlaunch. Last pushed0436a8df
+until493 closeout commit. Source/evidence/docs now being checked and pushed.
+
+Executed sample02b6e4191b07eaccfe1dc199655a9deb1292e6e45341bf2a72c56fd2b25f8eca
+22745B. Publicbuilder5PEsectionsidentical, headers differ/notseparateexecution.
+Oracle001/002 failed beforebuild and preserved;003fourgroupsPASS withunchanged
+band/minimumgates, geometryselectedbeforeguest. Neverrerun closed493/oldcases.
+NEXT494 matchedphysical sample/oracle with namespace-only492launcher/runner;
+retain490schema explicitly. Hosttestactualdispatch, uniqueE/Fpaths/leases,
+oneSITE20sec/readback; removehookFIRST onreturn, modules/hives/events/context.
+No GPU/game/performance/clipping/lighting/generalstabilityclaim. Preserve492
+Ft49/shutdownpopup failures and alloldboots. Protected720p/normalpaths unchanged.
+Continueuntil14UTC, closeoutonly13:50 onward; C/WSL20GiBguard, Enearreserve.
+
+# 493 PC runtime active; do not relaunch
+
+Baselinecold43492 CLOSED6475files308dirs. Preflight149pins passed, fresh493pc001
+launched once underxemu lease, session55802 RUNNING with600sec watchdog. Guest
+logon submittedfromownedfixture withoutsecretoutput; desktopobserved. Run dialog
+received a:\run493.exe andReturn at~06:46UTC. Two90sec boundeddefault/HEL cases,
+then normalrestart. Do not repeat the runner or launch. Wait55802, then cold1,
+review001, independent002, module-review002, actual-controls002 and closeout002.
+No493physicalaccess. Publicbuild001 compiled andall5PEsectionsmatchprivatecontrol;
+header/timestamp differ, notseparateexecution. Sample02b6e419...22745B.
+Source/oracle/kit/preflight are frozen; preserve anyfailure, no expectedpixel edits.
+
+# 493 PC XYZ transform control preparing; no guest launch yet
+
+492 PUSHED0436a8df, all physical sessions closed, console dashboard/nohook.
+New outputs/d3d-transform493 follows492NEXT: six actual XYZ world/view/projection/
+viewport cases with independent Fraction pixel oracle. HOST oracle001 FAILED
+unchangedidentity accepted perspective/viewport withinband; preserved C:/xwn493/
+oracle001.002failed existing>=20safeinterior gate withsmallviewport, preserved
+oracle002.003all4groupsPASS, samefixed2pixelband/minarea, strongergeometry chosen
+BEFORE anybuild/runtime. Source003 pinned; no expectedpixeladjustment toguest.
+Sample/runnerbuild001 compiled emptylogs, staticNT5imports26/24. Fresh404PCchild
+andfloppy prepared; baselinecold session43492running. No493guestlaunch yet;
+readpreparation/coldrecords beforepreflight. Neverrerun consumed test/buildIDs.
+Allkit scripts frozen byprepare; do notedit withoutnewattempt/failurepreservation.
+No493physicalaccess. Continueuntil14UTC, projected20GiBC/WSLguard/Enearreserve.
+
 # 492 repository closeout complete; next493 PC transforms
 
 Full staged repositorycheck19590 passed37,213files and is CLOSED; earlier

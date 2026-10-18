@@ -788,6 +788,50 @@ The [491 PC control](../outputs/d3d-present491/REPORT.md) passes both cases at
 640×480 RGB565, including 4,063,232 captured bytes and normal restart. An independent
 cold reader agrees on the results. The matched
 [492 Xbox comparison](../outputs/d3d-present492/REPORT.md) passes both cases at
-1280�720 RGB32 with the same oracle, exact source preservation and normal
+1280×720 RGB32 with the same oracle, exact source preservation and normal
 restart. Ftdisk 49 and three shutdown-time rundll32 popup events remain recorded;
 this scoped graphics pass does not qualify overall system stability.
+
+
+## World, view and projection transforms
+
+[transform.c](../src/samples/graphics-ladder/transform.c) starts rung 09 with
+six unlit, offscreen D3D7 controls. It submits XYZ vertices, sets and reads back
+world/view/projection matrices, and captures the actual rendered pixels. It
+does not draw a visible scene or change the display mode.
+
+Build with the same command above, adding `--sample transform` and choosing a
+fresh output directory. Copy `transform.exe` and `transform.cmd` together into
+an owned Windows test directory. Run one case at a time:
+
+```bat
+transform.cmd default r09ad
+transform.cmd hel r09as
+```
+
+Keep each prefix's `.txt`, `.exit`, `-clear.bin` and `-draw.bin` together. Each
+pixel stream is 98,304 bytes: six 64×64 RGB32 images. Check on the host:
+
+```sh
+python3 tools/graphics_transform.py /path/to/results/r09ad --backend default
+python3 tools/graphics_transform.py /path/to/results/r09as --backend hel
+```
+
+The checker calculates screen coordinates using rational arithmetic and a fixed
+two-pixel edge band. Interior and exterior colors must match; the edge band may
+contain only the two declared colors. It also requires exact matrix, viewport
+and vertex records. The unused high color byte and pitch padding are excluded.
+Matrix readback alone is insufficient. The sample covers identity, separate
+world/view translation, rotation followed by view translation, perspective
+and an offset viewport. Raster clipping, lighting, combined scenes, frame rate,
+GPU use and games remain separate work.
+
+The initial host oracle tests found two insufficiently distinct geometries;
+those failures are preserved. Stronger geometries passed before the first PC
+launch. See the [493 design](../outputs/d3d-transform493/DESIGN.md). Runtime
+qualification is recorded separately in that attempt's report.
+
+The [493 PC control](../outputs/d3d-transform493/REPORT.md) passes both default
+and HEL paths, with normal restart and independent cold-file agreement. The
+matched Xbox transform comparison is pending. This establishes six software
+transform cases, not general D3D compatibility or hardware acceleration.
