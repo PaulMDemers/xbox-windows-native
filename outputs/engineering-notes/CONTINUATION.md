@@ -1,3 +1,86 @@
+# Current:474PC/476Xbox scoped D3D7 triangle PASS CLOSED;475bootFAIL preserved
+
+Read outputs/d3d-triangle474,475,476 REPORT/DESIGN/NEXT/final-review and actual
+records. Latest prior PUSHEDcc52acb6. All owned sessions CLOSED:474runtime52296,
+cold68811/35059,actual7195;475stage4929/launchobserver94132;476stage/launchobserver
+46850,collect10449,actual64254. No queued test. Console at dashboard. No physical
+C access; original6240launcher/da47startup/protected720p unchanged;476hook removed
+FIRST to E:/xwn476-kit/startup-used.cmd. Never rerun/recollect/parent these cases.
+
+Sample triangle.c18070B SHAeee41bde74531434f777b5b0bd98784d0e56d5e992c7d541c91fe5f05848be59
+same PC andXbox. Eachdefault/HEL case enumerates RGBsoftwareGUID, CreateDevice,
+owned64x64RGB32 SYSTEMMEMORY clear and pretransformedtriangle; process0. Each
+4096clear/561interior/2199exterior correctRGB;1336boundary two-color only, exact
+edgecoverage/Xbyte unqualified. Fourcaptures65536rawbytes percontrol. Actual
+11module snapshots includeD3DIM700; hashes/PEimagesizes verify withcoldreads.
+Notunloadedhelperhistory.16924actualmetadata/pixel mutations rejected eachcontrol.
+PC144preflightpins/146archivedinputs,25independentNTFSfiles; cold6485files309dirs,
+5hivesclean/rawagreement, normalrestartQEMUexit0/nofallback/source/floppyexact.
+474coldimportenvironmentfailure preserved; no fixturemutation fromfailedimport.
+PCfinal strict_system_qualification field is ONLY selectedeventdelta gate, not
+whole-system qualification; precise limitation inREPORT. Neverbroadenit.
+
+476singlelaunch02:59:15UTC ->dashboard03:00:43, two completedcases/restartprivilege
+andrequest1/fresh6006. 5beforeafterhivesclean/header/rawagreement, inherited
+SOFTWAREDRMtype1004limitation retained. Newsystem608..613:Ft49,6009,6005,Tcpip4201,
+ApplicationPopup26 rundll32 DLLinitializationfailed/windowstationshuttingdown,
+6006. No appdelta. Popupinitiatorunknown. StrictFALSE. No fullFATXscan.
+476bootSHA1389e4823a605a3d11f69dda93582008c2911c813e7a0b17cea162258563548a;
+namespace-only471child/payloadBYTEEXACT.104hostwrappermodeledkernelpaths,
+8actualdispatchermodeledFTPpaths,171records/37truncations,31frozendepsarchived,
+176actualprimarytruncationsreject. No GPU/driver/sharedSDK change.
+
+475singlelaunch02:56:05->dashboard02:56:30 onlyphase6preparation. No resultdir,
+all5hives/2events/videotrace unchanged/noeventdelta. Handoff/WindowsUNKNOWN,
+noD3Dtest. Closed/preservedbootfailure;476success notretrospectivequalification
+orintermittencyfix.475host001 failed stale numericnamespace tag; unchangedbinary
+correct, host002 correctedharness/decodersPASS; alloldinputs preserved.475freeze
+C:/xwn475/frozen001,476C:/xwn476/frozen001; PC privateinWSL d3d-triangle474-pc001.
+
+NEXT rung08 separateownedtexture/depth/blendoracles, actualdeviceformats/states,
+freshPC thenXbox. No repeatedtriangle-onlyboot/oldcase. Presentation/resource
+stress/performance/games stilllater. No globalreset/borrowedfirmware/nativeGPUgrant.
+720p remainsbaseline;1080i paused. LatestfullphysicalEallocationaudit463 remains.
+C24.60GBdecimal,E21.50GBdecimal; retain20GiBprojectedguard/newartifactsC, no backing
+moves/deletes. No new physicalaudio/USB/PCI/driver changes. Historicalfailures and
+untracked files untouched. Repositorycheck46793 CLOSED/PASS36477files;126stagedfilesbyteexact,
+whitespacechecksPASS withnarrowexceptionsforfrozeninheritedreviewendblanklines.
+Commit/push pending; allguest/build/host/collection/reviewownedprocessesCLOSED.
+
+# Current:474 PC triangle PASS CLOSED;475 physical launch RUNNING
+
+Read outputs/d3d-triangle474 REPORT/final-review: both actual RGB devices create,
+clear/triangle pass.2x4096clear/561interior/2199exterior pixels, boundaries two-color
+only.11actual live modules each cold-verified.16924actual mutations rejected,
+146frozen archived inputs. All474processes CLOSED incl52296/35059/7195.
+No GPU/texture/depth/blending/presentation/game/performance claim.
+
+New475stage4929 CLOSED; launch+observer94132 RUNNING, one SITE only. Fresh
+E:/Applications/XWNBoot475a, E:/xwn475-kit and resultE:/xwn475. Normal6240launcher/
+da47startup/720p unchanged; ten runtimeDLLpreflight pins matchPC. Sample exact474.
+475bootbuild001 SHA53949b572cc41301ad351dfa8eea200a10227cfd7ef554d98c834012476e59cc.
+Host001 failed stale numeric X473/R473 tag constants; binary correct X475/R475,
+preserve failedhost/source and preflightdecoders. Newhost002104casesPASS, corrected
+decoders171complete/37truncated,8actualdispatcher modeledpathsPASS.34frozendeps.
+On dashboard return collect FIRSTremoves475hook, then coldreview/modules/controls.
+Never repeat accepted launch, no physical475 result yet. ConsoleC untouched.
+Previous pushedcc52acb6; historical untracked files untouched.20GiBguard retained.
+
+# Current:474 guest CLOSED; cold review RUNNING
+
+New rung07 triangle.c/graphics_triangle.py. 474build00118070B
+SHAeee41bde74531434f777b5b0bd98784d0e56d5e992c7d541c91fe5f05848be59.
+Host3tests/8192pixel mutations/347transport negatives pass;24/26imports.
+Fresh404NTFSchild with144-pin preflight; runtime52296 CLOSED after normal
+restart/QEMUexit0/nohostquit/deadline; source/floppy unchanged. Actual pixels
+not reviewed yet. Cold0=6475files308dirs. Import-environment failure preserved;
+unchanged reader with corrected LD_LIBRARY_PATH qualified cold0. Cold1session
+35059 RUNNING. Private /home/paul/xbox-windows-native/d3d-triangle474-pc001.
+Never relaunch this consumed guest. Next cold1/runtime/independent/module review;
+no physical test until qualification. No driver/sharedSDK changes. Frozen474
+inputs must remain unchanged until closure/archive. Previous pushedcc52acb6.
+Original historical untracked files untouched.
+
 # Current:473 CLOSED physical D3D7 inventory PASS; strict FALSE Ftdisk49
 
 Read outputs/d3d-marker473 REPORT/DESIGN/NEXT/build001/package001,

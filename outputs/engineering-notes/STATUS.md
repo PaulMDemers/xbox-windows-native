@@ -1,3 +1,18 @@
+# Latest: first D3D7 software triangle passes on PC and Xbox
+
+474PC and476Xbox both create the enumerated RGB software device, clear an owned
+offscreen target and draw a triangle with independent pixel checks. Default and
+HEL processes exit0 and Windows restarts normally. Actual11-module snapshots
+match verified files. Public source/build/run/check instructions are included.
+No GPU acceleration, textures/depth/blending, presentation or game claim.
+
+475 returned before Windows/sample evidence; failure preserved.476 succeeds but
+boot intermittency remains unresolved. Ftdisk49 and one shutdown-time rundll32
+initialization popup keep overall qualification FALSE. All476hives clean; no
+fullFATXscan. Original launcher/startup/720p unchanged, temporary hook removed,
+consoleC untouched. Console at dashboard, all owned processes closed.
+Next: separate texture, depth and blend cases, PC first then Xbox.
+
 # Latest: Xbox D3D7 software-device inventory completed
 
 473 passed both default and software-only inventory paths on the Xbox at720p.

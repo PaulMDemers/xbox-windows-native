@@ -22,8 +22,10 @@ prohibits direct access that bypasses the private primary. There is no installed
 native GPU acceleration or qualified Direct3D driver. The first actual Xbox
 samples pass default/HEL DirectDraw 7 system-memory blits and independent pixel
 readbacks with this driver unchanged. Default/HEL windowed primary presentation,
-clipping and GDI coexistence also pass independent pixel checks. D3D rendering
-remains untested; see the [sample results](graphics-samples.md).
+clipping and GDI coexistence also pass independent pixel checks. D3D7 RGB
+software offscreen clear/triangle rendering now passes on NT5 PC and Xbox;
+textures, depth, blending and D3D presentation remain unqualified. See the
+[sample results](graphics-samples.md).
 
 DirectX is a family of APIs. A game's DirectX requirement does not by itself mean
 it requires accelerated Direct3D. Chris Sawyer's own FAQ identifies DirectX 5
@@ -62,8 +64,12 @@ budget. Actual lost-surface restoration remains unqualified. The
 Microsoft's RGB software renderer through both default and explicit HEL paths.
 The [fresh Xbox comparison](../outputs/d3d-marker473/REPORT.md) now reports the
 same software device in both paths and completes a normal restart. Earlier
-no-receipt boots remain preserved. No device creation, D3D drawing or accelerated
-rendering is qualified yet.
+no-receipt boots remain preserved. The next [PC control](../outputs/d3d-triangle474/REPORT.md)
+and [Xbox control](../outputs/d3d-triangle476/REPORT.md) create that device and
+draw an offscreen triangle with independent clear/interior/background checks.
+The Xbox restarts normally, but Ftdisk49, a shutdown-time rundll32 popup and the
+separate intermittent boot failure remain unresolved. There is no accelerated
+rendering, game compatibility or game-performance qualification.
 
 | Stage | Work | Evidence needed to advance |
 |---|---|---|
@@ -132,7 +138,7 @@ Proposed first acceptance target for **each exact game edition**:
 |---|---|---|
 | Original RollerCoaster Tycoon | Not tested by this milestone | Exact edition/patch, Windows 2000 PC control and actual API dependencies |
 | Original The Sims | Not tested by this milestone | Exact edition/expansions, Windows 2000 PC control and actual API dependencies |
-| Legacy Direct3D support | D3D7 software-device inventory passes on NT5 PC and Xbox; rendering pending | Create the enumerated software device, then check an offscreen clear/triangle against independent pixels |
+| Legacy Direct3D support | D3D7 RGB software device creation and offscreen clear/triangle pass on NT5 PC and Xbox | Add separate texture, depth and blending oracles, then D3D presentation and bounded resource/performance tests |
 | Native NV2A acceleration | Unimplemented in the working demo | Windows ownership, submission, synchronization and lifetime proof |
 
 ## Installation work remains part of this goal

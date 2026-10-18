@@ -12,11 +12,12 @@ and Xbox. These runs checked memory operations with the preview disabled;
 they do not qualify DirectDraw presentation, Direct3D or GPU acceleration.
 **Rung 03 also passes default/HEL windowed presentation on Windows 2000 PC and
 Xbox**, with exact source and GDI-observed primary pixels through cover/move/
-uncover stages. Physical scanout, D3D and acceleration remain unqualified.
+uncover stages. Those checks do not qualify physical scanout or GPU acceleration.
 Rung 04 also passes all six cases on NT5 PC and Xbox, and rung 05 passes its
 bounded lifecycle controls. Rung 06 now passes complete default/HEL inventories
-on NT5 PC and Xbox, reporting the RGB software renderer. Later rendering rungs
-remain planned.
+on NT5 PC and Xbox, reporting the RGB software renderer. Rung 07 now creates
+that software device and passes offscreen clear/triangle pixel checks on both.
+Textures, depth, blending, D3D presentation and game performance remain planned.
 The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 
 ## The ladder
@@ -30,7 +31,7 @@ The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 | 04 | Palettes, formats and sprites | 8-bit palette changes, supported 16/32-bit formats, color-key sprites, clipping and overlapping copies in both directions | All six cases pass on NT5 PC at24-bit and Xbox at32-bit |
 | 05 | Surface lifecycle and memory budget | Focus changes, lost-surface handling where applicable, repeated create/release, failure recovery and bounded memory use | Bounded churn/focus/memory controls pass on NT5 PC and Xbox; actual loss/restore remains unqualified |
 | 06 | Legacy D3D discovery | Query the chosen D3D interface, enumerate actual devices/caps; distinguish software and hardware choices | NT5 PC/Xbox default/HEL inventory passes: RGB software device found; no draw qualification |
-| 07 | Clear and triangle | Offscreen render target, clear, pretransformed colored triangle, independent interior/background pixel checks | Planned |
+| 07 | Clear and triangle | Offscreen render target, clear, pretransformed colored triangle, independent interior/background pixel checks | RGB software path passes on NT5 PC and Xbox; no presentation/GPU claim |
 | 08 | Textures, depth and blending | Known texture orientation/filtering, overlapping triangles with depth, transparent quads and alpha reference pixels | Planned |
 | 09 | Transforms and scene stability | Rotating textured object, camera/projection, resize/activation handling and repeated resource teardown | Planned |
 | 10 | Small game-like scenes | Scrolling isometric tiles and moving sprites, then a textured room; controls, audio and save/reload | Planned; precedes the actual game acceptance tests |
@@ -491,3 +492,68 @@ Hardware capability flags are the runtime's declarations; they do not prove a
 working accelerated driver or successful draw. The next rendering test must use
 an actually enumerated device and independently check its output. The sample's
 exit0 means a complete scoped inventory, not Direct3D rendering support.
+
+## Offscreen software triangle
+
+The [fresh NT5 PC control](../outputs/d3d-triangle474/REPORT.md) and
+[physical Xbox control](../outputs/d3d-triangle476/REPORT.md) pass both default
+and explicit HEL cases using the same executable. Each creates the enumerated
+RGB software device and verifies 4,096 clear pixels, 561 triangle-interior pixels
+and 2,199 exterior pixels. The remaining boundary band contains only the two
+prescribed colors. Both processes exit 0 and the controller restarts Windows
+normally. Each actual 11-module snapshot matches independently checked files.
+
+The preceding [475 boot attempt](../outputs/d3d-triangle475/REPORT.md) returned
+before producing Windows/sample evidence and remains failed. The successful
+Xbox run still records Ftdisk49 and a shutdown-time `rundll32.exe` initialization
+popup; overall system qualification therefore remains false. Rendering success
+does not resolve those issues or the intermittent boot path.
+
+[triangle.c](../src/samples/graphics-ladder/triangle.c) is rung 07. It selects the
+enumerated RGB software device and creates a private 64×64, 32-bit system-memory
+render target. It clears the target, draws a solid pretransformed triangle, and
+captures the pixels after each operation. It does not change the desktop mode or
+display the triangle on screen. This is a rendering diagnostic, not a benchmark.
+
+```sh
+python3 tools/build-graphics-samples.py \
+    --sample triangle \
+    --rosbe "$HOME/xwn-rosbe-001/RosBE-2.2.1" \
+    --output "$HOME/xwn-triangle-001"
+```
+
+Copy `triangle.exe` and `triangle.cmd` together to Windows 2000. Run each request
+with a fresh result prefix:
+
+```bat
+triangle.cmd default triangle-default
+triangle.cmd hel triangle-hel
+```
+
+Copy each prefix's `.txt`, `.exit`, `-clear.bin` and `-draw.bin` back to the host:
+
+```sh
+python3 tools/graphics_triangle.py /path/to/results/triangle-default --backend default
+python3 tools/graphics_triangle.py /path/to/results/triangle-hel --backend hel
+python3 tests/test_graphics_triangle.py
+```
+
+The checker requires a successful external process exit, complete API/cleanup
+records, the actual enumerated device identity, and the prescribed vertices.
+It checks every clear RGB pixel, a triangle interior well away from raster edges,
+and a predefined exterior region. The remaining band may contain either of the
+two prescribed colors; exact edge coverage is not qualified. The unused X byte
+is retained in the capture but is not a color channel and is not compared.
+
+`CAPTURED` and exit 0 mean the sample finished its API calls and wrote its files.
+Only the host checker establishes the scoped pixel result. Exit 1 means an API
+or check failed, exit 2 means arguments or initial output creation failed, and
+exit 4 means recorded I/O failed. The batch wrapper has no watchdog; private
+validation runs additionally impose a 90-second process deadline. Keep failed
+results and choose a new prefix instead of overwriting them.
+
+The sample also records a bounded snapshot of loaded modules while its D3D
+device exists. This helps identify the installed software runtime; it does not
+trace helpers that were loaded and unloaded before that snapshot. A successful
+triangle does not establish textures, depth, blending, presentation, hardware
+acceleration, game compatibility or useful game performance.
