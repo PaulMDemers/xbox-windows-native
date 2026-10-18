@@ -1,0 +1,621 @@
+{
+  "passed": true,
+  "actual_local_socket_successes": 2,
+  "default_passive_reproduction": {
+    "login_succeeded": true,
+    "data_channel_unreachable": true,
+    "error_type": "ConnectionRefusedError",
+    "default_passive": true,
+    "verbs": [
+      "USER",
+      "PASS",
+      "TYPE",
+      "PASV"
+    ]
+  },
+  "control_only_failure_cases": 17,
+  "input_refusals": 4,
+  "failures": [
+    {
+      "change": [
+        "connect",
+        "421 unavailable"
+      ],
+      "stage": "connect",
+      "error": "error_temp",
+      "events": [
+        {
+          "stage": "connect",
+          "error": "error_temp",
+          "reply": "421 unavailable",
+          "monotonic": 299351.2460585
+        }
+      ],
+      "verbs": []
+    },
+    {
+      "change": [
+        "login",
+        "530 denied"
+      ],
+      "stage": "login",
+      "error": "error_perm",
+      "events": [
+        {
+          "stage": "connect",
+          "reply": "220 fixture",
+          "monotonic": 299351.2626092
+        },
+        {
+          "stage": "login",
+          "error": "error_perm",
+          "reply": "530 denied",
+          "monotonic": 299351.2629686
+        }
+      ],
+      "verbs": [
+        "USER",
+        "PASS"
+      ]
+    },
+    {
+      "change": [
+        "binary",
+        "500 unsupported"
+      ],
+      "stage": "binary",
+      "error": "error_perm",
+      "events": [
+        {
+          "stage": "connect",
+          "reply": "220 fixture",
+          "monotonic": 299351.2789833
+        },
+        {
+          "stage": "login",
+          "reply": "230 fixture",
+          "monotonic": 299351.2794118
+        },
+        {
+          "stage": "binary",
+          "error": "error_perm",
+          "reply": "500 unsupported",
+          "monotonic": 299351.2795305
+        }
+      ],
+      "verbs": [
+        "USER",
+        "PASS",
+        "TYPE"
+      ]
+    },
+    {
+      "change": [
+        "pwd",
+        "200 wrong"
+      ],
+      "stage": "pwd",
+      "error": "AssertionError",
+      "events": [
+        {
+          "stage": "connect",
+          "reply": "220 fixture",
+          "monotonic": 299351.2949943
+        },
+        {
+          "stage": "login",
+          "reply": "230 fixture",
+          "monotonic": 299351.2953687
+        },
+        {
+          "stage": "binary",
+          "reply": "200 binary",
+          "monotonic": 299351.2954425
+        },
+        {
+          "stage": "pwd",
+          "reply": "200 wrong",
+          "monotonic": 299351.295583
+        }
+      ],
+      "verbs": [
+        "USER",
+        "PASS",
+        "TYPE",
+        "PWD"
+      ]
+    },
+    {
+      "change": [
+        "size",
+        "213 111"
+      ],
+      "stage": "size",
+      "error": "AssertionError",
+      "events": [
+        {
+          "stage": "connect",
+          "reply": "220 fixture",
+          "monotonic": 299351.3112627
+        },
+        {
+          "stage": "login",
+          "reply": "230 fixture",
+          "monotonic": 299351.3116454
+        },
+        {
+          "stage": "binary",
+          "reply": "200 binary",
+          "monotonic": 299351.3117847
+        },
+        {
+          "stage": "pwd",
+          "reply": "257 \"/\"",
+          "monotonic": 299351.311865
+        },
+        {
+          "stage": "size",
+          "reply": "213 111",
+          "monotonic": 299351.3119648
+        }
+      ],
+      "verbs": [
+        "USER",
+        "PASS",
+        "TYPE",
+        "PWD",
+        "SIZE"
+      ]
+    },
+    {
+      "change": [
+        "size",
+        "213 nope"
+      ],
+      "stage": "size",
+      "error": "AssertionError",
+      "events": [
+        {
+          "stage": "connect",
+          "reply": "220 fixture",
+          "monotonic": 299351.3276601
+        },
+        {
+          "stage": "login",
+          "reply": "230 fixture",
+          "monotonic": 299351.3279696
+        },
+        {
+          "stage": "binary",
+          "reply": "200 binary",
+          "monotonic": 299351.3280641
+        },
+        {
+          "stage": "pwd",
+          "reply": "257 \"/\"",
+          "monotonic": 299351.3281669
+        },
+        {
+          "stage": "size",
+          "reply": "213 nope",
+          "monotonic": 299351.328277
+        }
+      ],
+      "verbs": [
+        "USER",
+        "PASS",
+        "TYPE",
+        "PWD",
+        "SIZE"
+      ]
+    },
+    {
+      "change": [
+        "size",
+        "550 absent"
+      ],
+      "stage": "size",
+      "error": "error_perm",
+      "events": [
+        {
+          "stage": "connect",
+          "reply": "220 fixture",
+          "monotonic": 299351.3435886
+        },
+        {
+          "stage": "login",
+          "reply": "230 fixture",
+          "monotonic": 299351.3439701
+        },
+        {
+          "stage": "binary",
+          "reply": "200 binary",
+          "monotonic": 299351.3440432
+        },
+        {
+          "stage": "pwd",
+          "reply": "257 \"/\"",
+          "monotonic": 299351.3441561
+        },
+        {
+          "stage": "size",
+          "error": "error_perm",
+          "reply": "550 absent",
+          "monotonic": 299351.3442626
+        }
+      ],
+      "verbs": [
+        "USER",
+        "PASS",
+        "TYPE",
+        "PWD",
+        "SIZE"
+      ]
+    },
+    {
+      "change": [
+        "noop",
+        "421 closing"
+      ],
+      "stage": "noop",
+      "error": "error_temp",
+      "events": [
+        {
+          "stage": "connect",
+          "reply": "220 fixture",
+          "monotonic": 299351.3597868
+        },
+        {
+          "stage": "login",
+          "reply": "230 fixture",
+          "monotonic": 299351.3601201
+        },
+        {
+          "stage": "binary",
+          "reply": "200 binary",
+          "monotonic": 299351.3602344
+        },
+        {
+          "stage": "pwd",
+          "reply": "257 \"/\"",
+          "monotonic": 299351.3603479
+        },
+        {
+          "stage": "size",
+          "reply": "213 112",
+          "monotonic": 299351.3604604
+        },
+        {
+          "stage": "noop",
+          "error": "error_temp",
+          "reply": "421 closing",
+          "monotonic": 299351.3605472
+        }
+      ],
+      "verbs": [
+        "USER",
+        "PASS",
+        "TYPE",
+        "PWD",
+        "SIZE",
+        "NOOP"
+      ]
+    },
+    {
+      "change": [
+        "quit",
+        "500 refused"
+      ],
+      "stage": "quit",
+      "error": "error_perm",
+      "events": [
+        {
+          "stage": "connect",
+          "reply": "220 fixture",
+          "monotonic": 299351.3761867
+        },
+        {
+          "stage": "login",
+          "reply": "230 fixture",
+          "monotonic": 299351.3765502
+        },
+        {
+          "stage": "binary",
+          "reply": "200 binary",
+          "monotonic": 299351.3766115
+        },
+        {
+          "stage": "pwd",
+          "reply": "257 \"/\"",
+          "monotonic": 299351.3766627
+        },
+        {
+          "stage": "size",
+          "reply": "213 112",
+          "monotonic": 299351.3767147
+        },
+        {
+          "stage": "noop",
+          "reply": "200 okay",
+          "monotonic": 299351.3767739
+        },
+        {
+          "stage": "quit",
+          "error": "error_perm",
+          "reply": "500 refused",
+          "monotonic": 299351.3768739
+        }
+      ],
+      "verbs": [
+        "USER",
+        "PASS",
+        "TYPE",
+        "PWD",
+        "SIZE",
+        "NOOP",
+        "QUIT"
+      ]
+    },
+    {
+      "change": [
+        "connect",
+        "eof"
+      ],
+      "stage": "connect",
+      "error": "EOFError",
+      "events": [],
+      "verbs": []
+    },
+    {
+      "change": [
+        "login",
+        "eof"
+      ],
+      "stage": "login",
+      "error": "EOFError",
+      "events": [
+        {
+          "stage": "connect",
+          "reply": "220 fixture",
+          "monotonic": 299351.4087014
+        }
+      ],
+      "verbs": [
+        "USER",
+        "PASS"
+      ]
+    },
+    {
+      "change": [
+        "binary",
+        "eof"
+      ],
+      "stage": "binary",
+      "error": "EOFError",
+      "events": [
+        {
+          "stage": "connect",
+          "reply": "220 fixture",
+          "monotonic": 299351.4251134
+        },
+        {
+          "stage": "login",
+          "reply": "230 fixture",
+          "monotonic": 299351.4254878
+        }
+      ],
+      "verbs": [
+        "USER",
+        "PASS",
+        "TYPE"
+      ]
+    },
+    {
+      "change": [
+        "pwd",
+        "eof"
+      ],
+      "stage": "pwd",
+      "error": "EOFError",
+      "events": [
+        {
+          "stage": "connect",
+          "reply": "220 fixture",
+          "monotonic": 299351.4412133
+        },
+        {
+          "stage": "login",
+          "reply": "230 fixture",
+          "monotonic": 299351.4414897
+        },
+        {
+          "stage": "binary",
+          "reply": "200 binary",
+          "monotonic": 299351.4415989
+        }
+      ],
+      "verbs": [
+        "USER",
+        "PASS",
+        "TYPE",
+        "PWD"
+      ]
+    },
+    {
+      "change": [
+        "size",
+        "eof"
+      ],
+      "stage": "size",
+      "error": "EOFError",
+      "events": [
+        {
+          "stage": "connect",
+          "reply": "220 fixture",
+          "monotonic": 299351.4572543
+        },
+        {
+          "stage": "login",
+          "reply": "230 fixture",
+          "monotonic": 299351.4575817
+        },
+        {
+          "stage": "binary",
+          "reply": "200 binary",
+          "monotonic": 299351.4576776
+        },
+        {
+          "stage": "pwd",
+          "reply": "257 \"/\"",
+          "monotonic": 299351.4577827
+        }
+      ],
+      "verbs": [
+        "USER",
+        "PASS",
+        "TYPE",
+        "PWD",
+        "SIZE"
+      ]
+    },
+    {
+      "change": [
+        "noop",
+        "eof"
+      ],
+      "stage": "noop",
+      "error": "EOFError",
+      "events": [
+        {
+          "stage": "connect",
+          "reply": "220 fixture",
+          "monotonic": 299351.4735318
+        },
+        {
+          "stage": "login",
+          "reply": "230 fixture",
+          "monotonic": 299351.4739017
+        },
+        {
+          "stage": "binary",
+          "reply": "200 binary",
+          "monotonic": 299351.4739622
+        },
+        {
+          "stage": "pwd",
+          "reply": "257 \"/\"",
+          "monotonic": 299351.4740145
+        },
+        {
+          "stage": "size",
+          "reply": "213 112",
+          "monotonic": 299351.4740715
+        }
+      ],
+      "verbs": [
+        "USER",
+        "PASS",
+        "TYPE",
+        "PWD",
+        "SIZE",
+        "NOOP"
+      ]
+    },
+    {
+      "change": [
+        "quit",
+        "eof"
+      ],
+      "stage": "quit",
+      "error": "EOFError",
+      "events": [
+        {
+          "stage": "connect",
+          "reply": "220 fixture",
+          "monotonic": 299351.489877
+        },
+        {
+          "stage": "login",
+          "reply": "230 fixture",
+          "monotonic": 299351.4902439
+        },
+        {
+          "stage": "binary",
+          "reply": "200 binary",
+          "monotonic": 299351.490299
+        },
+        {
+          "stage": "pwd",
+          "reply": "257 \"/\"",
+          "monotonic": 299351.4903835
+        },
+        {
+          "stage": "size",
+          "reply": "213 112",
+          "monotonic": 299351.4905136
+        },
+        {
+          "stage": "noop",
+          "reply": "200 okay",
+          "monotonic": 299351.4906217
+        }
+      ],
+      "verbs": [
+        "USER",
+        "PASS",
+        "TYPE",
+        "PWD",
+        "SIZE",
+        "NOOP",
+        "QUIT"
+      ]
+    },
+    {
+      "change": [
+        "size",
+        "delay"
+      ],
+      "stage": "size",
+      "error": "TimeoutError",
+      "events": [
+        {
+          "stage": "connect",
+          "reply": "220 fixture",
+          "monotonic": 299351.5059767
+        },
+        {
+          "stage": "login",
+          "reply": "230 fixture",
+          "monotonic": 299351.5063184
+        },
+        {
+          "stage": "binary",
+          "reply": "200 binary",
+          "monotonic": 299351.5064414
+        },
+        {
+          "stage": "pwd",
+          "reply": "257 \"/\"",
+          "monotonic": 299351.5065686
+        }
+      ],
+      "verbs": [
+        "USER",
+        "PASS",
+        "TYPE",
+        "PWD",
+        "SIZE"
+      ]
+    }
+  ],
+  "all_server_threads_closed": true,
+  "physical_access": false,
+  "guest_access": false,
+  "server_effects_modeled": true,
+  "actual_stdlib_transport_executed": true,
+  "live_receipt_bytes_qualified": false,
+  "sources": {
+    "probe.py": "c75844e4eec121217b3102482080ff9a3f6f64eaf3a01a790457ce1d4b6d128f",
+    "host002.py": "b015d3b1405b9a25f4e9263f0fdf7d79b1ac148876235132973d8efcdee3c5f6"
+  }
+}

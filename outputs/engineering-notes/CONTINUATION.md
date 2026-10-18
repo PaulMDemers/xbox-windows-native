@@ -1,3 +1,21 @@
+# 506 HOST-ONLY FTP return transport complete
+
+505 PUSHED40777364, closedscoped12kernelcallsPASS/fullreturn-readbackFAIL retained.
+Read outputs/return-transport506 REPORT/DESIGN/NEXT/host002/host003/final-review.
+Real stdlibFTP+loopbacksockets reproduce login then unreachablePASVdata refusal
+beforeRETR; actual505packetendpoint unrecorded, mechanism notwriter/guestattribution.
+New control-only probe connect/login/TYPE/PWD/SIZE112/NOOP/QUIT, noPASV/PORT/RETR;
+explicitly no livecontentproof. Independentcold112bytes stillmandatory. Actual
+socket17failures4inputrefusals; finiteactualwaiter13paths withprobe/clock/sinkmodeled.
+Host0011sectimeout expectedrefusal butgotTimeoutError preserved;0023sec accepts
+boundedunreachabledata, actualConnectionRefused. Productionprobeunchanged.
+ALLownedprocesses/socketthreadsCLOSED. NoXBE/guestprep/emulator/physical/hook/queued
+launch. NEXTNEWfresh507 exact504samekernelcode, onlyreviewed506returnobserver
+contract +unchangedguards/actualAPI/fullcoldaudit. Neverreuse505runtime orrewrite
+itsfailure. Thenphysicalentry-only/nohook/oneSITE20sec.501unknown/487latefailure
+remainseparate;486/496pending.720p/ordinarylauncher/XboxCprotected. C/WSL20GiBguard
+noEallocation.13:50reviewonly14UTCclose/pause. Repositorycheck/commitpush next.
+
 # 505 CLOSED: actual kernel calls PASS, dashboard readback gate FAIL
 
 504 PUSHED3cfc166b. Read outputs/entry-runtime505 REPORT/DESIGN/NEXT/final-review,
