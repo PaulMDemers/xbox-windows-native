@@ -1,3 +1,18 @@
+# Latest: physical marker busy-state diagnosis captured
+
+The capture-only469 diagnostic recorded0x0808 while its first LED transaction
+was still busy, then deliberately refused before Xromwell. The normal boot
+installation is unchanged; five hives pass integrity checks with no new events.
+Primary controller source confirms our diagnostic omitted the host-busy bit.
+This explains the diagnostic exit, not the historical intermittent boot issue.
+
+The proposed470 correction passed51 actual assembly host cases and51 immutable
+repeat checks. It waits on both busy bits under the old bounds and still refuses
+errors. It is HOST-ONLY, not integrated or installed. Next is a new wrapper build,
+emulator qualification and watched console trial. No hardware run is queued.
+468's capture protocol passed normal and debugger-injected emulator paths; both
+are closed and cold-audited. Evidence/failures and original files are preserved.
+
 # Current: watched LED diagnostic returned through its own refusal path
 
 The user saw amber and a black screen, then exit. The saved refusal identifies

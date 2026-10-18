@@ -1,3 +1,52 @@
+# Current:469 CLOSED raw status0x0808; diagnostic busy-bit bug identified;470 HOST-ONLY
+
+Read marker-capture468 REPORT/DESIGN/NEXT/final-review, physical-status469
+REPORT/DESIGN/NEXT/status-source-review/final-review/actualrecords and
+marker-busy470 REPORT/DESIGN/NEXT/host001/final-review. No launch queued.
+Previous pushed b560abf5; review/check/exact-stage/commit/push current changes.
+
+469 single physical launch01:28:03UTC2026-10-18, dashboard returned01:28:26UTC.
+Actual primary176B phase6/copiesPASS, refusal192B reason12/result5. Full marker:
+transaction0,startmask1,completed0,idle0,completion0x0808,2polls,4writes,0acks,
+3TSCreads,start1967119314916,end1967119317860. Raw hardware status captured.
+No second marker/original loader reached; later hardware completion UNKNOWN.
+No new user screen observation. Original launcher/startup,5hives,2eventlogs,
+video trace exact;5hives clean/rawagreement,zeroevents,229actualnegatives.
+No full FATX scan;463Eclean remains latest. No consoleC/SDK/driver/startup changes.
+Private C:/xwn469/physical001; consumed E:/Applications/XWNBoot468a NEVERrerun.
+
+Pinned upstream Linux nForce status definitions identify0x8 hostbusy,0x800 busbusy.
+Our465/466/468 helper wrongly rejects hostbusy. This diagnoses the NEW marker
+refusal, NOT old intermittent Windowsboot. Upstream xemu transaction synchronous;
+source-to-exacthistoricalbinary identity not requalified in this comparison.
+PrimarysourceURLs/commits/hashes in469status-source-review, private source001.
+
+470HOST-ONLY fouroperand correction: knownmask includesbit3; wait on0x808 in
+idle+completion. Busy neverPASS, busy+done waits, busy+errors refuses. No extra
+clear/retry/reset/IO. Existing4096reads/64millionticks, register/flags preserved.
+51actualassemblycases+51immutable repeats, all32old+19new, privateC:/xwn470/host001.
+PrivilegedIO/CLI/TSC MODELED. No XBE/emulator/physical integration of470 yet.
+Next NEW integration of470 into468 wrapper and poststack payload, newnamespace,
+fullrefusalcapture/newstrictdecoder, source reconstruction, actualwrapper/file
+failure tests, freshownedemu/coldaudit, then watchedphysical. Preserveolddecoders.
+Never call old467/469 failures success or claim originalboot/D3D fix.
+
+468build001537170B SHA184c08709673d0b2a9128579dc248782b2b6e9431b816e43c0cb0ee860dd46bc.
+Capture-only exact466child; payloadbyteidentical. Host85wrappercases73fullrefusals
+243negatives. Freshemu001 normalbothmarkers/loader/stack/continuationPASS.
+Freshemu002 EXPLICITdebugger injectedrefusal afternaturalfirstmarker;192Bmemory
+anddiskexact. Notnaturalstatus/ordinaryboot.514actualrecordnegatives. Bothfull
+BP/physicalmodecleanup,orderlyhostexit0,nofallback; stoppedbeforeWindows.
+Cold10GBmaps,545/816changedbytes,strictFALSE,276dirs6554/6555files255clusters,
+zeroerrors/orphans,5hives3binariesexact,EEPROM/seedunchanged. Preservefailed
+decoder001 transitionlaststatus assumption, cold002 pathlookup, review001 invalid
+handle mutation; correctedversions separate;no guest rerun. All ownedsessions
+CLOSED:prepare50611,emu95776/75559/51052/99371,stage63034,physical62180,readsearch59449.
+Newwork onC; lastC~25.3GBdecimal,E~21.5GBdecimal. Keep20GiBprojectedreserve.
+No oldfailed/completedruntimeparents, backingmoves,offload/deletion, orrepeat IDs.
+Normalboot E:/Applications/XWNEBoot/default.xbe6240...,normalstartupda47...,720p
+protected. HistoricalphysicalCofflimits/D3D/1080i/WindowsFt49 limitations unchanged.
+
 # Current: 467 watched diagnostic CLOSED; first LED marker refused physical status
 
 Read physical-marker467 REPORT/DESIGN/NEXT/final-review and actual stage/launch/
