@@ -1,41 +1,56 @@
-#536 warm/cold instrumented comparison: warm case collected
+#536 warm/cold CPU-context comparison closed
 
-Warm case1 reached the Windows desktop after534 Windows Restart without an
-intervening power cycle. User then reported dashboard return after our normal
-Windows Restart request. Actual after1 collection completed19:28:27UTC,
-October18,2026 (supervisor closed19:28:28UTC). All five hives passed raw and
-independent parser checks; ordinary launcher/startup and720p baseline are exact.
-System event delta includes one6005, one6006, oneFtdisk49 and three Application
-Popup26 records (rundll32 window station shutting down). This confirms a normal
-shutdown record, not an error-free event log or complete filesystem health audit.
+Both instrumented launches reached the Windows desktop, followed by user-requested
+normal Windows Restart and dashboard return. Case1 followed the previous Windows
+Restart with no intervening power cycle. Case2 followed a separately reported
+power-off for10seconds and power-on. Power rails/duration were not instrumented.
+Cold-case after2 collection completed on October18,2026 at19:44:04UTC; all host
+supervisors are closed. No third launch is planned or allowed in this pair.
 
-Primary, handoff and context receipts are present and decode without errors;
-no refusal record. Preparation and loader/payload byte checks passed. Both CPU
-snapshots agree on CR0/2/3/4, selectors and descriptor-table registers. They are
-before/after witness IO, before the context packet's own IO and final handoff;
-no pagewalk, descriptor contents, own-close or final-transition proof is claimed.
-Actual Windows execution is supported separately by user and event evidence.
+| Actual evidence | Warm536a | Cold536b |
+| --- | --- | --- |
+| Desktop and dashboard observed by user | Yes | Yes |
+| Five registry hives independently validated | Clean | Clean |
+| New EventLog6005 /6006 | 1 /1 | 1 /1 |
+| New Ftdisk49 /shutdown Popup26 | 1 /3 | 1 /3 |
+| Preparation, handoff, CPU records decoded | Yes | Yes |
+| Refusal record present | No | No |
+| Original launcher/startup and720p protected baseline | Exact | Exact |
 
-The first collection supervisor failed the unchanged capacity gate before
-creating capture files or doing network IO. It remains preserved. User authorized
-old-build cleanup;538 removed six obsolete negative-test fixture copies, freeing
-6.2GB. A new after1-only supervisor002 collected this still-uncollected run using
-the unchanged frozen controller. No console launch was retried.
+The raw preparation packet is byte-identical across the pair. Its allocation
+addresses, physical backing, saved registers, flags, loader/payload comparisons
+and completion marker match. At each corresponding pre-witness/post-witness
+snapshot, CR0/CR2/CR3/CR4, EFLAGS, segment selectors, GDTR/IDTR, ESP and return EIP
+match. The complete decoded difference list contains only case ordinal, TSC
+samples and marker polling count (1170 warm /1158 cold). See comparison001.json.
+The two epochs are compared separately; the later snapshot still precedes the
+context packet's own file IO and final handoff. No pagewalk, descriptor contents,
+cache/device state, own-close or final-transition proof follows. Equal CR2 is an
+observed register value, not evidence of a new fault during this launch.
 
-Cold case2 launched once at 2026-10-18T19:37:14.528234+00:00 after user-reported
-poweroff10seconds/on. All10 prelaunch files matched warm after1. Dashboard
-accepted SITE and host supervisor closedexit0. User confirms Windows desktop;
-normal Restart requested. Await dashboard confirmation, then
-collect after2, audit2 and decode2, compare actual evidence. No third launch.
-No startup hook, ordinary driver/launcher patch or dashboardC access.
+This experiment did not reproduce the ordinary-launch failure. It provides no
+CPU/preparation difference explaining532's warm failure, and does not qualify a
+boot fix. Recorder code/layout, memory use, IO and timing differ from the ordinary
+launcher. Preserve532/533 ordinary success/failure/success and534 cold success/
+success; neither deterministic alternation nor a power-cycle fix is established.
+Both runs retain Ftdisk49 and shutdown rundll32 Popup26 entries. The hive checks
+are not a complete FATX allocation/health audit. No GPU/game/release promotion.
 
-This warm instrumented boot succeeded, so it does not reproduce ordinary532's
-warm failure. Added recorder code/layout/IO/timing prevents treating it as a
-fix or conclusive test of the ordinary launcher. Preserve warm532 success/fail/
-success and cold534 success/success. No GPU/game/release promotion.
+The original after1 supervisor refused host capacity before any network access or
+capture. Its failed receipt remains. User-authorized cleanup538 removed six
+obsolete negative-test fixture copies, freeing6.2GB while preserving recovery,
+source, current dependencies and historical outcomes. New supervisor002 collected
+the still-uncollected warm case with the frozen controller; no launch was retried.
 
-Preparation: both images exactly reconstruct494/490 except four fixed-width
-receipt paths and section digest.29 modeled admission/launch/receipt checks and
-six modeled stage/capture checks passed; full pins and readback were verified.
-Read DESIGN.md and NEXT.md with this current report; their frozen preparation
-instructions predate the preserved capacity-refusal/new-supervisor recovery.
+No Windows startup hook was installed. Ordinary launcher, drivers and720p settings
+were preserved. Xbox dashboardC was not accessed. Console remains at UnleashX;
+automation remains paused. final001.json records processes, supervisor outcomes,
+all package source/binary pins and every collected record hash.
+
+Next: review the original374 and recorder490 allocation/control-flow footprint,
+including unchecked allocation results and DF before the ordinary first copy,
+against retained535 disassembly evidence. Design a smaller bounded observer only
+if it distinguishes a concrete hypothesis with less perturbation. Validate its
+memory access and host checks before a fresh experiment. Do not repeat either
+closed536 runtime, clear pending hardware state, or infer a functional patch from
+this successful instrumented pair. The next D3D stage remains separate.

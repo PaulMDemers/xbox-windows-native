@@ -1,0 +1,235 @@
+{
+  "closed": true,
+  "utc": "2026-10-18T19:45:02.286587+00:00",
+  "cases": [
+    {
+      "ordinal": 1,
+      "predecessor": "warm after534 Windows Restart",
+      "desktop_user_observed": true,
+      "dashboard_user_observed": true,
+      "hives_clean": true,
+      "ordinary_code_exact": true,
+      "normal_shutdown_delta": 1,
+      "new_event_counts": {
+        "EventLog:6005": 1,
+        "EventLog:6006": 1,
+        "Ftdisk:49": 1,
+        "Application Popup:26": 3
+      },
+      "receipt_hashes": {
+        "report.bin": "4adf9b266bad6cef26dcb4b122fa14990fcfdfadf569121ef4f0a50392078052",
+        "handoff.bin": "4fdc814625bdfcbb147aec606576b80eefabe5917ddf1e23b7a34ea6c376fce1",
+        "context.bin": "30aa6957548374e147f57b2fc58bc7fe24a927a0f2869a5134f28d10b674fbfa",
+        "refusal.bin": null
+      }
+    },
+    {
+      "ordinal": 2,
+      "predecessor": "user-reported poweroff10seconds/on",
+      "desktop_user_observed": true,
+      "dashboard_user_observed": true,
+      "hives_clean": true,
+      "ordinary_code_exact": true,
+      "normal_shutdown_delta": 1,
+      "new_event_counts": {
+        "EventLog:6005": 1,
+        "EventLog:6006": 1,
+        "Ftdisk:49": 1,
+        "Application Popup:26": 3
+      },
+      "receipt_hashes": {
+        "report.bin": "4adf9b266bad6cef26dcb4b122fa14990fcfdfadf569121ef4f0a50392078052",
+        "handoff.bin": "a9ff0ad1e9216e89b759fa26644fd84920efc2de7b674401d9edc824a449cacf",
+        "context.bin": "c3e48f5a52b04fc88e5b75b199669fe9baaac2d58a8d29d24dafec0413fda304",
+        "refusal.bin": null
+      }
+    }
+  ],
+  "all_decoded_differences": [
+    {
+      "path": "/context.bin/records/0/tsc_end",
+      "warm": 777050023674,
+      "cold": 62670887869
+    },
+    {
+      "path": "/context.bin/records/0/tsc_start",
+      "warm": 777050023429,
+      "cold": 62670887623
+    },
+    {
+      "path": "/context.bin/records/1/tsc_end",
+      "warm": 777066126798,
+      "cold": 62686505427
+    },
+    {
+      "path": "/context.bin/records/1/tsc_start",
+      "warm": 777066126670,
+      "cold": 62686505313
+    },
+    {
+      "path": "/handoff.bin/preceding_marker/polls",
+      "warm": 1170,
+      "cold": 1158
+    },
+    {
+      "path": "/handoff.bin/preceding_marker/tsc_end",
+      "warm": 777050015275,
+      "cold": 62670872831
+    },
+    {
+      "path": "/handoff.bin/preceding_marker/tsc_start",
+      "warm": 777049385285,
+      "cold": 62670242088
+    },
+    {
+      "path": "/ordinal",
+      "warm": 1,
+      "cold": 2
+    }
+  ],
+  "primary_preparation_raw_and_decoded_identical": true,
+  "matched_epochs": [
+    {
+      "epoch": 1,
+      "meaning": "before witness write",
+      "equal_fields": {
+        "eflags": 582,
+        "cr0": 2147549243,
+        "cr2": 354865,
+        "cr3": 61440,
+        "cr4": 1552,
+        "selectors": [
+          8,
+          16,
+          16,
+          32,
+          0,
+          16,
+          0,
+          24
+        ],
+        "gdtr": [
+          56,
+          2147729528
+        ],
+        "idtr": [
+          512,
+          2147708032
+        ],
+        "entry_esp": 3489778988,
+        "return_eip": 607140
+      },
+      "direction_flag": false,
+      "interrupt_flag": true
+    },
+    {
+      "epoch": 2,
+      "meaning": "after witness close, before context packet IO",
+      "equal_fields": {
+        "eflags": 582,
+        "cr0": 2147549243,
+        "cr2": 354865,
+        "cr3": 61440,
+        "cr4": 1552,
+        "selectors": [
+          8,
+          16,
+          16,
+          32,
+          0,
+          16,
+          0,
+          24
+        ],
+        "gdtr": [
+          56,
+          2147729528
+        ],
+        "idtr": [
+          512,
+          2147708032
+        ],
+        "entry_esp": 3489778988,
+        "return_eip": 607250
+      },
+      "direction_flag": false,
+      "interrupt_flag": true
+    }
+  ],
+  "predecessor_memory_contents_not_measured": true,
+  "ordinary_failure_reproduced": false,
+  "boot_fix_established": false,
+  "device_or_final_handoff_state_proved": false,
+  "conclusion": "Both instrumented boots succeeded; equal observed CPU/preparation fields do not identify the ordinary-launch failure. Instrumentation changes layout, memory use, IO and timing.",
+  "limitations": [
+    "Recorded contexts precede their own packet IO and final handoff",
+    "No page-table walk or descriptor-content validation",
+    "No device/cache/interrupt-controller state comparison",
+    "Event scan may include stale records outside active ring",
+    "Ftdisk49 and shutdown Popup26 remain in both cases",
+    "No GPU/game/release promotion"
+  ],
+  "pins": {
+    "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\outputs\\context-pair536\\before1.json": "86191dd2a53d496e64b2f7b153207b2d8efa6371a375810f6a5c20036eebf50a",
+    "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\outputs\\context-pair536\\after1.json": "682e3965621cf1f4d3d2891e9c3b10443d8b6755dc347d9671c5465db00cf92f",
+    "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\outputs\\context-pair536\\audit1.json": "f0dc85316ae96a7fdebe57e1395bce00700ea296078b0f569cb4b12a670b2fb0",
+    "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\outputs\\context-pair536\\decoded1.json": "c53770cd489a3433f2b885556b1851db76fdda83a6e02c26c5c02fc38728614d",
+    "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\outputs\\context-pair536\\observer1.json": "83eb214b3538e87d2a71a6cf69a948e2ce36ef555090c02a1724d076fb0c4bbe",
+    "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\outputs\\context-pair536\\ready1.json": "bc0480b5d6990d0b673d6e97d05e973de8aa46a507fe4dca80ca28661b33be01",
+    "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\outputs\\context-pair536\\launch1.json": "aff8de6d0116691d7223cb212e8a88ea381fb5e7afc2ee3eef9c7f48fcf8ffa6",
+    "C:\\xwn536\\physical001\\before1\\E\\documents and settings\\all users\\start menu\\programs\\startup\\xwnsetup.cmd": "da47fdf32e29b81ba9f5148d86f291ed708c9432c268b1682668c5b50883aa43",
+    "C:\\xwn536\\physical001\\before1\\E\\Applications\\XWNEBoot\\default.xbe": "6240a801d97c4894e56d516a934059da056446fb77cf895b5364bdd6cd24be9a",
+    "C:\\xwn536\\physical001\\before1\\E\\winnt\\system32\\config\\system": "c2d8518bc1e06b0da139a503e08271c13790a725894fd1e58bf349aca0bc3b34",
+    "C:\\xwn536\\physical001\\before1\\E\\winnt\\system32\\config\\software": "03ed50330bdc6e0ff176d422875716b21ad48781dda099d78923f938b4dd234a",
+    "C:\\xwn536\\physical001\\before1\\E\\winnt\\system32\\config\\sam": "80c6ee6bf0edad50a8e5b551d390d7c1ac578623ae43b3256afe67b33dfa9388",
+    "C:\\xwn536\\physical001\\before1\\E\\winnt\\system32\\config\\security": "f129fd42a5a553bb055adf4d19b9553c6431520d373b779d8cdfc6d2c1d066b3",
+    "C:\\xwn536\\physical001\\before1\\E\\winnt\\system32\\config\\default": "d1ed660f3f8232407698d553acfacf5fa909973f615413de98ffc5a6a82ae224",
+    "C:\\xwn536\\physical001\\before1\\E\\winnt\\system32\\config\\sysevent.evt": "92ec0f6416c248eba08c6711a64f2b6fc9b2576e82efa4715fde0a65287703e0",
+    "C:\\xwn536\\physical001\\before1\\E\\winnt\\system32\\config\\appevent.evt": "af36c94bb8b4f477b0b2f2cc39d7e2b4a6a587f490032577361f1bf64acee58b",
+    "C:\\xwn536\\physical001\\before1\\E\\winnt\\system32\\xwn-video-trace.bin": "5fa278e10686d93997e587e897a18c37d9e5aa808e8ab5740ec150d51df223ab",
+    "C:\\xwn536\\physical001\\after1\\E\\documents and settings\\all users\\start menu\\programs\\startup\\xwnsetup.cmd": "da47fdf32e29b81ba9f5148d86f291ed708c9432c268b1682668c5b50883aa43",
+    "C:\\xwn536\\physical001\\after1\\E\\Applications\\XWNEBoot\\default.xbe": "6240a801d97c4894e56d516a934059da056446fb77cf895b5364bdd6cd24be9a",
+    "C:\\xwn536\\physical001\\after1\\E\\winnt\\system32\\config\\system": "d3920839cfa8e05fbcec11c7a033b249d12da7cdadb52d9a8ef257c99bef0e81",
+    "C:\\xwn536\\physical001\\after1\\E\\winnt\\system32\\config\\software": "89971cb982c6efbbd3cae636707e5e9d23a977691e6181ad186764407eb7aab2",
+    "C:\\xwn536\\physical001\\after1\\E\\winnt\\system32\\config\\sam": "7e4859a087e45269244d4d4138d084102d351a512c714e422abbeae41223219d",
+    "C:\\xwn536\\physical001\\after1\\E\\winnt\\system32\\config\\security": "9d37be4be89a25bcdb00fd58ebaa26ea83a9ad8f2294b71137f3a45ebac8bca2",
+    "C:\\xwn536\\physical001\\after1\\E\\winnt\\system32\\config\\default": "e7b80bcc68de93271e1ae5fddae09d4ff8ecdd071f4db99a9299534fbeeb78cc",
+    "C:\\xwn536\\physical001\\after1\\E\\winnt\\system32\\config\\sysevent.evt": "48e4f3b5d1235bc38c350f9f435b7b610f0e024cc30b837727eff804d5e66c5c",
+    "C:\\xwn536\\physical001\\after1\\E\\winnt\\system32\\config\\appevent.evt": "af36c94bb8b4f477b0b2f2cc39d7e2b4a6a587f490032577361f1bf64acee58b",
+    "C:\\xwn536\\physical001\\after1\\E\\winnt\\system32\\xwn-video-trace.bin": "5fa278e10686d93997e587e897a18c37d9e5aa808e8ab5740ec150d51df223ab",
+    "C:\\xwn536\\physical001\\after1\\E\\Applications\\XWNBoot536a\\report.bin": "4adf9b266bad6cef26dcb4b122fa14990fcfdfadf569121ef4f0a50392078052",
+    "C:\\xwn536\\physical001\\after1\\E\\Applications\\XWNBoot536a\\handoff.bin": "4fdc814625bdfcbb147aec606576b80eefabe5917ddf1e23b7a34ea6c376fce1",
+    "C:\\xwn536\\physical001\\after1\\E\\Applications\\XWNBoot536a\\context.bin": "30aa6957548374e147f57b2fc58bc7fe24a927a0f2869a5134f28d10b674fbfa",
+    "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\outputs\\context-pair536\\before2.json": "6679067f9e0de289a8a89abb4082c6db0166ab38ef92eae570248ac8af7dd7bd",
+    "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\outputs\\context-pair536\\after2.json": "b4d107c94ddc46779e711c78f62fe0f8642a28da250c89430d7bff4c2ad00cf2",
+    "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\outputs\\context-pair536\\audit2.json": "febe94b74b8dca35d8c4dbc3fc9b25f78f8c55aae15fc32ee13b25242780592d",
+    "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\outputs\\context-pair536\\decoded2.json": "15324db37b03ffe143ee72f78f6c1c6e697e227d83c57b26474d05c458f3c03c",
+    "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\outputs\\context-pair536\\observer2.json": "d36b573b568dc35ae3806c836ca4fa4e4adb004eeae8e4123bfc6a34626ab3fb",
+    "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\outputs\\context-pair536\\ready2.json": "9bad9f91f1f56e88c0c3cca7c66edbfc38a97901d8c2c47affe055d261a57e51",
+    "C:\\Users\\Paul\\Documents\\Codex\\2026-10-02\\xbox-windows-feasibility\\outputs\\context-pair536\\launch2.json": "1b5f69d21057a2a564e5d631e469066278d379938a721a8d61143ff4bc64bdf1",
+    "C:\\xwn536\\physical001\\before2\\E\\documents and settings\\all users\\start menu\\programs\\startup\\xwnsetup.cmd": "da47fdf32e29b81ba9f5148d86f291ed708c9432c268b1682668c5b50883aa43",
+    "C:\\xwn536\\physical001\\before2\\E\\Applications\\XWNEBoot\\default.xbe": "6240a801d97c4894e56d516a934059da056446fb77cf895b5364bdd6cd24be9a",
+    "C:\\xwn536\\physical001\\before2\\E\\winnt\\system32\\config\\system": "d3920839cfa8e05fbcec11c7a033b249d12da7cdadb52d9a8ef257c99bef0e81",
+    "C:\\xwn536\\physical001\\before2\\E\\winnt\\system32\\config\\software": "89971cb982c6efbbd3cae636707e5e9d23a977691e6181ad186764407eb7aab2",
+    "C:\\xwn536\\physical001\\before2\\E\\winnt\\system32\\config\\sam": "7e4859a087e45269244d4d4138d084102d351a512c714e422abbeae41223219d",
+    "C:\\xwn536\\physical001\\before2\\E\\winnt\\system32\\config\\security": "9d37be4be89a25bcdb00fd58ebaa26ea83a9ad8f2294b71137f3a45ebac8bca2",
+    "C:\\xwn536\\physical001\\before2\\E\\winnt\\system32\\config\\default": "e7b80bcc68de93271e1ae5fddae09d4ff8ecdd071f4db99a9299534fbeeb78cc",
+    "C:\\xwn536\\physical001\\before2\\E\\winnt\\system32\\config\\sysevent.evt": "48e4f3b5d1235bc38c350f9f435b7b610f0e024cc30b837727eff804d5e66c5c",
+    "C:\\xwn536\\physical001\\before2\\E\\winnt\\system32\\config\\appevent.evt": "af36c94bb8b4f477b0b2f2cc39d7e2b4a6a587f490032577361f1bf64acee58b",
+    "C:\\xwn536\\physical001\\before2\\E\\winnt\\system32\\xwn-video-trace.bin": "5fa278e10686d93997e587e897a18c37d9e5aa808e8ab5740ec150d51df223ab",
+    "C:\\xwn536\\physical001\\after2\\E\\documents and settings\\all users\\start menu\\programs\\startup\\xwnsetup.cmd": "da47fdf32e29b81ba9f5148d86f291ed708c9432c268b1682668c5b50883aa43",
+    "C:\\xwn536\\physical001\\after2\\E\\Applications\\XWNEBoot\\default.xbe": "6240a801d97c4894e56d516a934059da056446fb77cf895b5364bdd6cd24be9a",
+    "C:\\xwn536\\physical001\\after2\\E\\winnt\\system32\\config\\system": "88638533f0671da6ee6b963ec2ca04a57d73e72a8348af6a779c9911d7645ef9",
+    "C:\\xwn536\\physical001\\after2\\E\\winnt\\system32\\config\\software": "5ffd41412f73d714ac414973e8bafa97d1167c8ea56bea34d792fd5654e1f1e0",
+    "C:\\xwn536\\physical001\\after2\\E\\winnt\\system32\\config\\sam": "f0e5f46775743f00be1b3516269053022af0067cbedea67fc82e85bdf51f7404",
+    "C:\\xwn536\\physical001\\after2\\E\\winnt\\system32\\config\\security": "46a76b5f12e258d63faddebbb729f7436215a9be19525148eb701541bffc8e99",
+    "C:\\xwn536\\physical001\\after2\\E\\winnt\\system32\\config\\default": "ae693e8b7ae73416cb3c5f57f95791a4682ce9484852c2c1c1144d75e7478c60",
+    "C:\\xwn536\\physical001\\after2\\E\\winnt\\system32\\config\\sysevent.evt": "33632edcf691cea66bc01c44abf72191a7897702b61768d5b4675265e7c839ec",
+    "C:\\xwn536\\physical001\\after2\\E\\winnt\\system32\\config\\appevent.evt": "af36c94bb8b4f477b0b2f2cc39d7e2b4a6a587f490032577361f1bf64acee58b",
+    "C:\\xwn536\\physical001\\after2\\E\\winnt\\system32\\xwn-video-trace.bin": "5fa278e10686d93997e587e897a18c37d9e5aa808e8ab5740ec150d51df223ab",
+    "C:\\xwn536\\physical001\\after2\\E\\Applications\\XWNBoot536b\\report.bin": "4adf9b266bad6cef26dcb4b122fa14990fcfdfadf569121ef4f0a50392078052",
+    "C:\\xwn536\\physical001\\after2\\E\\Applications\\XWNBoot536b\\handoff.bin": "a9ff0ad1e9216e89b759fa26644fd84920efc2de7b674401d9edc824a449cacf",
+    "C:\\xwn536\\physical001\\after2\\E\\Applications\\XWNBoot536b\\context.bin": "c3e48f5a52b04fc88e5b75b199669fe9baaac2d58a8d29d24dafec0413fda304"
+  },
+  "source_sha256": "a560367d5cc581ba08de59fd8270f565d299b416030f28effc1bed0a241b45d8"
+}

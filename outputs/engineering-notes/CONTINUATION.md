@@ -1,3 +1,26 @@
+#536 CLOSED: warm/cold instrumented boots both succeed; no CPU-state discriminator
+
+Read outputs/context-pair536/REPORT.md, comparison001.json, final001.json and
+NEXT-CLOSED.md (frozen NEXT.md describes the now-closed preparation sequence).
+Cold536b userdesktop then requestednormalRestart/dashboard; after2 collected
+19:44:04UTC. Bothcases5hivesclean, new6005/6006=1each,Ft49=1,popup26=3.
+Primary packet byte-identical. Matching epoch CR0/2/3/4,EFLAGS,selectors,GDTR/IDTR,
+ESP/returnEIP equal. Only decoded ordinal,TSC and markerpolls1170/1158 differ.
+No pagewalk/device/ownpacketclose/finalhandoff proof. Instrumentation changes
+layout/IO/timing; ordinary532 failure not reproduced, bootfixnotestablished.
+
+Bothlaunches/captures CLOSED. No thirdlaunch/recollection/reparenting; nohook.
+Allhostprocessesclosed; Xbox userconfirmed/authenticated dashboard; ordinary720p/
+startup/drivers preserved, consoleCuntouched. AutomationPAUSED. No run queued.
+Keep capacity-refusedafter1, newcollectionsupervisor002, cleanup538 and all prior
+failures. Cleanup538 freed6.2GB; current C guard passes; recovery/currentpinsintact.
+
+Next independent read-only review: exact ordinary374 versus recorder490 entry
+allocation/controlflow/IO footprint, using535 pinned evidence, to design a smaller
+bounded observer only for a concrete hypothesis. Validate memoryaccess/hostchecks
+before new code/hardware; no speculative driver/reset/DF patch. User not needed
+for source review. D3D/GPU/game/release claims unchanged.
+
 #536 cold case2 reached desktop; normal Restart requested
 
 User reports "It’s at the desktop" for536b cold case2. desktop2 saved.
