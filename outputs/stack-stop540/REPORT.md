@@ -44,3 +44,22 @@ not a historical539 diagnosis, HLT attestation, ordinary boot fix or Windows/D3D
 qualification. A missing color does not distinguish earlier failure from LED
 transaction failure. See DESIGN.md and NEXT.md. All earlier runtimes stay closed;
 the10am automation remains paused and this is manually authorized follow-on work.
+
+## Single watched launch sent
+
+The user replied "Go for it" to the watcher/reset readiness request. before1
+completed21:18:07UTC; all ten files match retained539 after1. One SITE request
+was issued21:18:25UTC and the bounded host supervisor closed successfully. The
+LED/screen observation is pending; no console outcome is inferred. This candidate
+intentionally holds before Windows and may need a manual power cycle after the
+observation. No repeat/control launch is allowed. All host launch processes closed.
+
+## Expected LED/held-screen observation
+
+The user reports red/green flashing while the screen remains black. This matches
+the intended post-stack indication and hold; amber was not explicitly reported.
+It supports arrival at the checkpoint for this instrumented run. It does not
+independently attest execution of HLT, both marker statuses, or exclude another
+source of a red/green indication. No Windows execution or539 cause is established.
+Power off/on and dashboard confirmation were requested; reset completion and cold
+collection are pending. No second launch will be made.

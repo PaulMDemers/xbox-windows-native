@@ -1,3 +1,44 @@
+#540 expected red/green LED observed; manual reset requested
+
+User reports red/green flashing and screen still black. led1.json preserves exact
+report; amber stage not explicitly observed. This matches intended post-stack
+indicator/hold and supports checkpoint arrival for540, but does not independently
+prove HLT, both transaction statuses or exclude another red/green indication source.
+No Windows boot intended or observed. No historical539 cause/fix established.
+
+Requested user poweroff/on and leave atUnleashX. Await dashboardconfirmation;
+DO NOT collect while held or infer reset completion. Save observer1 with exact
+manualreset/dashboard facts once reported, then frozen supervise.py after1 once,
+WSL audit.py1 and Windows decode_actual.py1. No hook installed. No secondlaunch.
+
+Last console observation blackscreen/red-green; hostlaunchprocessesclosed.
+Ordinary720p/startup exact prelaunch; pending cold postreset verification.
+Read540NEXT/DESIGN. Automation remainsPAUSED; no D3D/GPU/release promotion.
+
+#540 LAUNCHED once; front LED observation pending
+
+User replied "Go for it" to watcher/reset readiness. ready1 saved. before1
+completed21:18:07UTC; all10 selected baseline files equal retained closed539 after1.
+Single SITE request issued21:18:25UTC; host launch supervisor closed/completed.
+Exact reply/request in launch1.json. No retry, second launch or control fallback.
+
+Pending user question: watch frontLED~30seconds, amber then alternatingred/green
+or othersequence; blackscreenhold versus dashboardreturn. Leave as-is until user
+reports sequence. This candidate intentionally halts before Windows on successful
+post-stack marker; it is not expected to return automatically. Host completion
+is not console completion. Actual console/LED state currently UNKNOWN.
+
+After LED/screen report save exact observation. If still held, request poweroff/on
+and confirm UnleashX. Record explicit manualreset separately from checkpoint claim.
+If self-returned, record that without assuming normalWindowsRestart. On dashboard
+confirmation save observer1 and run frozen supervise.py after1 once, WSL audit.py1,
+Windows decode_actual.py1. No startup hook to remove. Never collect while held.
+
+Ordinary720p/startup exact immediately before dispatch; no consoleC access. All
+launch hostprocesses closed. Earlier539/536runtimes stay closed; no reparenting.
+PositiveLED supports this checkpoint only, notHLT/fullmarkerstatus/historicalcause.
+No D3D/Windows/release promotion. AutomationPAUSED. Read540DESIGN/NEXT for limits.
+
 #540 STAGED, not launched: intentional post-stack LED hold
 
 Read outputs/stack-stop540/REPORT.md, DESIGN.md and NEXT.md. Seven exact code
