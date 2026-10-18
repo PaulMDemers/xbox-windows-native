@@ -1,3 +1,26 @@
+# 497 final repository closeout checked; pending screen observation
+
+Check55366 CLOSED PASS37433trackedfiles,42initialstagedfilesbyteexact. All497
+processesCLOSED/dashboard/nohook/noqueuedlaunch. NoWindowsresult/entryreceipt;
+496PCcombinedscenePASS retained. Read497REPORT/NEXT before newwork; doNOTretry497.
+No user screenanswer yet. Completed evidence nowbeingcommitted/pushed.
+
+# 497 CLOSED missing-entry/Windows evidence; 496PCscenePASS preserved
+
+496PUSHED2b869550. Read497REPORT/NEXT/physical-final001/end-state001. OneSITE
+07:28:12UTC reply200,84observations alldashboard/no report through07:36:23.
+Cold: all4native receipts absent/noWindowsresultdir; noentry/normalrestart/D3D
+claim. HookremovedFIRST;10beforefiles andallstagedfiles byteidentical;5hivesPASS,
+System/Applicationunchanged/noevents/shutdowndelta0.47frozeninputs183privatefiles
+rehashed. Allstage98774/observer48170/collector2127/build/host/coldprocesses CLOSED;
+noQEMU/NBD/FUSE/nohook/noqueuedlaunch. User screenquestionpending. DoNOTretry497.
+Launcher09e3043c... differs494only4paths+SHA; firstreportafterpreparation, absence
+cannotlocalize dispatch/entry/filefailure. Source-review001wrongsubstringlabel
+preserved;002correctsentryline142/firstcreate803. Nofunctionalpatchjustified.
+Next targeted NEWentrydiscriminator/hosttests afterreview; no pixels fitted or
+Xboxqualification. Ordinary720p/startup/launcher/Cprotected;Ft49/popups/older
+failures intact. Continue14UTC/closeout13:50;current07:38UTC.497check/commitpushnext.
+
 # 496 repository closeout checked; commit/push next
 
 Repository13324 CLOSED PASS37391trackedfiles;59initialstagedfilesbyteexact.

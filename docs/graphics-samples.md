@@ -875,4 +875,4 @@ perspective-correct interpolation across varying W, visible presentation,
 lighting, acceleration or game performance. See the [496 result](../outputs/d3d-scene496/REPORT.md)
 for the actual tested build and qualification status.
 
-The [496 PC control](../outputs/d3d-scene496/REPORT.md) passes both default and HEL paths with a normal restart. The matched Xbox combined-scene run is pending.
+The [496 PC control](../outputs/d3d-scene496/REPORT.md) passes both default and HEL paths with a normal restart. The [497 Xbox attempt](../outputs/d3d-scene497/REPORT.md) produced no launcher or Windows test receipts and does not qualify this rung on Xbox. Its temporary startup hook was removed; further entry diagnosis is needed.

@@ -1,3 +1,58 @@
+# 497 final repository closeout checked; pending screen observation
+
+Check55366 CLOSED PASS37433trackedfiles,42initialstagedfilesbyteexact. All497
+processesCLOSED/dashboard/nohook/noqueuedlaunch. NoWindowsresult/entryreceipt;
+496PCcombinedscenePASS retained. Read497REPORT/NEXT before newwork; doNOTretry497.
+No user screenanswer yet. Completed evidence nowbeingcommitted/pushed.
+
+# 497 CLOSED missing-entry/Windows evidence; 496PCscenePASS preserved
+
+496PUSHED2b869550. Read497REPORT/NEXT/physical-final001/end-state001. OneSITE
+07:28:12UTC reply200,84observations alldashboard/no report through07:36:23.
+Cold: all4native receipts absent/noWindowsresultdir; noentry/normalrestart/D3D
+claim. HookremovedFIRST;10beforefiles andallstagedfiles byteidentical;5hivesPASS,
+System/Applicationunchanged/noevents/shutdowndelta0.47frozeninputs183privatefiles
+rehashed. Allstage98774/observer48170/collector2127/build/host/coldprocesses CLOSED;
+noQEMU/NBD/FUSE/nohook/noqueuedlaunch. User screenquestionpending. DoNOTretry497.
+Launcher09e3043c... differs494only4paths+SHA; firstreportafterpreparation, absence
+cannotlocalize dispatch/entry/filefailure. Source-review001wrongsubstringlabel
+preserved;002correctsentryline142/firstcreate803. Nofunctionalpatchjustified.
+Next targeted NEWentrydiscriminator/hosttests afterreview; no pixels fitted or
+Xboxqualification. Ordinary720p/startup/launcher/Cprotected;Ft49/popups/older
+failures intact. Continue14UTC/closeout13:50;current07:38UTC.497check/commitpushnext.
+
+# 497 observer deadline CLOSED; hook-first collection ACTIVE
+
+Observer48170 CLOSED atboundeddeadline, dashboardFTP repeatedlyreachable/no
+report.bin. No acceptedrequestretry/noWindowsresultclaim. Collector2127 ACTIVE;
+inspectcollection hook_removed field before anynextaction. User screenquestion
+pending, no replyyet. Keep47frozeninputs/launcherexactcomparison/entrysource
+review002 (001 matchedwronglabel, preserved). Do notrunthegraphicsreviewwithout
+actualrunnerfiles. Completefailedattemptpairedcold/hives/events/context/archive,
+thenreview/check/commitpush. No furtherlaunchqueued.
+
+# 497 accepted SITE but no runtime receipt yet; observer ACTIVE
+
+OneSITE07:28:12UTC reply200. Stage98774 CLOSED/readbackverified; observer48170
+ACTIVE bounded486s. DashboardFTPreachable but diagnosticreportabsent sofar;
+noactualWindows/graphicsresult. Askedone specific screenquestion, awaitingreply.
+Do NOT retrylaunch. Launcher497 independently bytecompared toclosed494: onlyfour
+paths+sectionSHAchanged, nofunctionalcodechange. This doesnotproveexecution.
+Afterobserver/knownreturn removeownedhookFIRST and collectpartialevidence/paired
+hives/events/protectedfiles, evenifnoresult. No furtherlaunchqueued.496PUSHED
+2b869550 scopedPCscenePASS. Deadline14UTC, closeout13:50;720p/Cprotected.
+
+# 497 matched combined-scene staging ACTIVE; no launch yet
+
+496 PUSHED2b869550, trackedclean before497. New497 exact496sample7cbf053f...
+28934B, runner0a2ca88f...12958B/launcher09e3043c...542839B. Launcheronly4paths+
+sectionSHA from490; originalfunctionalcode/schema unchanged.17 actualdispatcher
+modeledFTP pathsPASS;24/26importsPASS;47dependencies frozen. No newpixeloracle.
+Stage98774 ACTIVE; no acceptedSITE yet. Onsuccess oneSITE/486secobserver, collect
+hookFIRST, pairedcoldcontext/5hives/events/live modules/source+RGBA negatives.
+No driver/mode/ordinarylauncher/startupchange;720p/dashboardCprotected.
+Continueuntil14UTC/closeout13:50. Neverrerunclosed496/494/oldcases.
+
 # 496 repository closeout checked; commit/push next
 
 Repository13324 CLOSED PASS37391trackedfiles;59initialstagedfilesbyteexact.
