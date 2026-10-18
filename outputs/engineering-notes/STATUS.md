@@ -1,3 +1,32 @@
+# 513 CLOSED scoped entry emulator PASS; 511/512 harness failures preserved
+
+Latest prior PUSHEDb41ec2c5(510). Read513 REPORT/DESIGN/NEXT/final-review/actual-review/
+trampoline-review and actualrecords. Exact510unchanged545088B fe9d78fa2f07d4804d0a82a66188e45293ac45a212575613369815c766c7f83f.
+Actual11100->94aff fivebytejump preserved8GPR/EFLAGS/CR0/3/4; guard11105neverhit.
+12actualkernelcalls status0,file7/indicator2,sixLEDstatuses0,restoredGPRflags,one
+firmwarereturnmode1.29stops88captures;10imports actualexportmatched/pagewalks.
+AllBPsremoved/physicalmode0 BEFOREresume;506controlreturnSIZE112,coldreceipt exact.
+Independent96file+58indicator+112receipt+35trampmutationsreject. Hostactualfull
+observer27stops91failures15mutations;file51failures21mutations;arguments48negatives;
+tramp113invalid/4transport/12cleanup+7cleanupfailures,112representationnegatives.
+HostCPU/kernel/transportMODELED, runtimeabove separate. NoWindows/physical/GPUclaim.
+Cold10GBmap327680extentbytes274changed =>strictFALSE,writerunattributed/no waiver.
+FATX276dirs6554files255dirclusters0errors/orphans;5hives3baselinebinaries exact;
+QCOW/source/EEPROMsame.449privatefiles267frozen19external exact. ALL sessions
+86977/37133/94585CLOSED; noxemu/QEMU/hook/queuedlaunch,hostexit0/nofallback.
+511CLOSED failedencodedheadercheck at11100 BEFOREjump; actual loadedfield11100,
+diskencoded a8fd46ab. 512CLOSED actualjumpPASS/3LEDcallspassed, helper stale504path
+refused510 beforecreateexecution. Both55diskbyteschanged/strictFALSE,baselineexact,
+alloriginalsources/results/failures preserved. Neverrerun/recollect/parent511..513.
+513onlyhelperchange fixed504->510path;512headercontract unchanged. Candidateunchanged.
+NEXTNEW514 physical510namespace entry-only with508controller independentlyadapted/
+hosttested/pins/readback/ownedlease,oneSITE20sec,boundedcollect; NO Windowshook.
+No physical request queued. Read513NEXT. Do not repeat508oroldruntime. No absent
+receipt=>noentry claim.508LEDpending,95000datapagevariable/kernelidentitydistinct.
+486/496D3D pending,720p/ordinary/XboxC protected; nofunctionaldriver/SDKchange.
+C/WSL20GiBguard,noEallocation;13:50reviewonly14UTCclose/pause. Repositorycheck72515
+CLOSED PASS37894files, exactstage131files. Commit/push next.
+
 # 510 CLOSED candidate built/reviewed; NEVERLAUNCHED
 
 509 PUSHED1b66a148. Read510 REPORT/DESIGN/NEXT/host001/build001/review002/final-review.
