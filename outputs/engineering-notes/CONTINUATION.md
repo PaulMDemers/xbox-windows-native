@@ -1,3 +1,24 @@
+#536 warm run returned to dashboard; collection BLOCKED by host capacity
+
+User "It’s back on the dash" after requested normal Windows Restart; observer1
+saved. First after1 supervisor closed exit1 at unchanged C free-minus64MiB>=20GiB
+check BEFORE creating after1.json/directory or any network access. See536
+collection-capacity-failure001.json and537 REPORT/final001. No cold record yet;
+no hive/event/context result or normal-shutdown log claim. No hook to remove.
+
+537 read-only storage review made NO mutation. Plan001 rejected four hardlinked
+527/528 copies; plan002 narrowed to524 but compact/Q showed already compressed
+external storage despite absent compressed attribute. NEVER run apply001/apply002.
+All537 tool processes closed. C now below20GiB floor; user asked to free at least
+2GB onC and keep console powered at dashboard. No launch/retry or source patch.
+
+On capacity confirmation, measure actual C/WSL backing capacity, retain guard,
+then create NEW collection supervisor ID for this still-uncollected536 warm run.
+Do not reuse failed supervisor-after1.json; its after1 data file does not exist.
+After actual collection: WSL audit1 and decode_actual1; only then request cold
+poweroff10s/on +ready2. No second launch yet. Ordinary720p/startup last verified
+before launch, pending post-run verification. Automation PAUSED, no XboxC access.
+
 #536 warm case1 reached Windows desktop; normal Restart requested
 
 User reports "It’s on the desktop" for warm instrumented536a after534 normal

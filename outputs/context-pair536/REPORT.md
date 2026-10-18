@@ -1,3 +1,8 @@
+> Current state: warm case1 reached the desktop and user reports dashboard return
+> after normal Restart. Collection was refused before network access by the host
+> capacity guard. See collection-capacity-failure001.json and ../collection-storage537/REPORT.md.
+> No after1/context/event/hive results yet; no cold case launch. Await freed C space.
+
 #536 prepared and staged; no launch yet
 
 Two new recorder images are staged at E:/Applications/XWNBoot536a/default.xbe
