@@ -1,0 +1,13 @@
+# 510 trampoline candidate built and reviewed; never launched
+
+Private candidate: C:/xwn510/build001/default.xbe,545088bytes, SHA256 fe9d78fa2f07d4804d0a82a66188e45293ac45a212575613369815c766c7f83f. The build uses the pinned GCC12/as/ld toolchain and the existing cooperative build lease. Build and host compiler logs are empty; all original504 inputs remain unchanged. No shared source or SDK was modified.
+
+The candidate changes38 actual bytes: encoded entry, the five-byte relative jump, five same-length path literals and section digest. Header entry0x11100 jumps to the original diagnostic gate0x94aff. Image size, imports, all existing symbol addresses, the0x95000 data page and929 bytes of file/LED code remain exact. Nine source files reconstruct to their exact parents after removing the documented modifications. This is not a data-layout, TLS, kernel-call, Windows or driver change.
+
+Actual Linux i386 execution of the exact-address stub passed4,096 seeded register/flag cases and rejected two executed negative stubs (cleared carry and an extra stack push). The fixture restores its own host caller state and unmaps its pages; its processes exited zero. This is not Xbox/privileged-state/interrupt proof and did not execute Xbox APIs.
+
+Independent review reconstructs the complete expected binary and rejects5,796 mutations, including incorrect targets and body corruption with repaired section hashes. The actual assembled diagnostic disassembly has49 direct control-flow edges confined to the diagnostic body, eight indirect edges restricted to seven kernel thunk slots and one fixed failure-adapter pointer, and seven return sites. This bounds the visible code paths; it does not prove external kernel behavior or replace actual runtime checks.
+
+Review001 passed full expected-image reconstruction but then failed an overly narrow lower-region equality assertion: that region includes authorized namespace literals. Its exact source, empty private review directory and failure record remain. Review002 changes only that normalization and its output/private directory IDs. The candidate was not modified or rebuilt to satisfy review. No host/build failure occurred.
+
+No emulator preparation, emulator launch, physical access, Windows startup hook or queued console launch occurred.508 remains closed with no receipt and unknown LED observation.509's entry-placement hypothesis remains unproven; successful494 already executed the same high code page, and low-entry487 failed later. The data-page variable remains deliberately unchanged. Matched486/496 graphics work and broader boot reliability remain pending.

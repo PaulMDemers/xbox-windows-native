@@ -1,0 +1,126 @@
+{
+  "started_utc": "2026-10-18T09:46:41.374858+00:00",
+  "passed": true,
+  "closed": true,
+  "source_pins": {
+    "trampoline.S": "e201d2db1906c05692cb71686010a8bd08f12e13b96117a60a053bb4121b0e52",
+    "host.S": "c2bf447efbcb8cff6e74d8d9cf09c2d8da3fcbdc69987af94cb88a716b7984df",
+    "host.c": "6bd22db4bcd7586175294673489563d5a364a8a3e6f04098726bc1ef06d85edc",
+    "host001.py": "b5d55ed12a415e2d314573070ad5704b9407a940e699f54bf95d6c1242303328"
+  },
+  "tool_pins": {
+    "/usr/bin/x86_64-linux-gnu-gcc-12": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+    "/usr/bin/as": "4e5fcaa3cdc160173cb5cfe7aa35dc39d7aa1f06ba8d75b8d923bbae5473991b",
+    "/usr/bin/ld": "97f48d93b8b076a92d2809ec29dcb17f0f37c8827358f832255e2ed22fef6075",
+    "/usr/bin/objcopy": "05f4473d24f7330a9b13f43d007d619a2e792e33de453cd7533a2d97c30da770",
+    "/usr/bin/objdump": "44f07f8da860b15bd4dec909f229dec536595fb170a616fe3ab29c7b21c9736f"
+  },
+  "commands": [
+    [
+      "as",
+      "--32",
+      "trampoline.S",
+      "-o",
+      "trampoline.o"
+    ],
+    [
+      "ld",
+      "-m",
+      "elf_i386",
+      "-Ttext",
+      "0x11100",
+      "-e",
+      "entry510_trampoline",
+      "trampoline.o",
+      "-o",
+      "trampoline.elf"
+    ],
+    [
+      "objcopy",
+      "-O",
+      "binary",
+      "trampoline.elf",
+      "trampoline.bin"
+    ],
+    [
+      "x86_64-linux-gnu-gcc-12",
+      "-m32",
+      "-O2",
+      "-g",
+      "-fno-pie",
+      "-no-pie",
+      "-fno-stack-protector",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "host.c",
+      "host.S",
+      "-o",
+      "host"
+    ]
+  ],
+  "physical_access": false,
+  "new_XBE": false,
+  "exit_code": 0,
+  "result": {
+    "passed": true,
+    "actual_jump_cases": 4096,
+    "executed_negative_controls": 2,
+    "capture_bytes": 26,
+    "xbox_APIs_executed": false
+  },
+  "stub_hex": "e9fa390800",
+  "rel32": 539130,
+  "scope": "actual Linux i386 five-byte jump at11100 to94aff; captures GPR/EFLAGS/ESP; not Xbox kernel/privileged state/boot proof",
+  "finished_utc": "2026-10-18T09:46:41.787793+00:00",
+  "files": {
+    "/mnt/c/xwn510/host001/build.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/mnt/c/xwn510/host001/host": {
+      "bytes": 23428,
+      "sha256": "651d0a10838eb67cb68bb9f57b3fb7bf92fbf146b967e436b07297715fc2b897"
+    },
+    "/mnt/c/xwn510/host001/host.c": {
+      "bytes": 2421,
+      "sha256": "6bd22db4bcd7586175294673489563d5a364a8a3e6f04098726bc1ef06d85edc"
+    },
+    "/mnt/c/xwn510/host001/host.S": {
+      "bytes": 780,
+      "sha256": "c2bf447efbcb8cff6e74d8d9cf09c2d8da3fcbdc69987af94cb88a716b7984df"
+    },
+    "/mnt/c/xwn510/host001/host001.py": {
+      "bytes": 2665,
+      "sha256": "b5d55ed12a415e2d314573070ad5704b9407a940e699f54bf95d6c1242303328"
+    },
+    "/mnt/c/xwn510/host001/stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/mnt/c/xwn510/host001/stdout.txt": {
+      "bytes": 118,
+      "sha256": "c4ab8de94885047b30bf1862d73cafb904d8bd5beab1e15372a237a091272d29"
+    },
+    "/mnt/c/xwn510/host001/trampoline-disassembly.txt": {
+      "bytes": 176,
+      "sha256": "6b96b65f0446029b659e02b2f6f787adafe0662e7e4b96e7940fc0097234907b"
+    },
+    "/mnt/c/xwn510/host001/trampoline.bin": {
+      "bytes": 5,
+      "sha256": "e1c1e1dc772d309d0995a4801d30789fdcdf06a74770b112e49c99c54d0aac8a"
+    },
+    "/mnt/c/xwn510/host001/trampoline.elf": {
+      "bytes": 624,
+      "sha256": "981961241f07dacaf4973e0ca56526a26701b506d63c5130a5c67d3653b2ea27"
+    },
+    "/mnt/c/xwn510/host001/trampoline.o": {
+      "bytes": 548,
+      "sha256": "dbd00ff726f6af337b7e7770d0b7389bc326c11bb2c77c42ae0e5ad90c4d65c8"
+    },
+    "/mnt/c/xwn510/host001/trampoline.S": {
+      "bytes": 218,
+      "sha256": "e201d2db1906c05692cb71686010a8bd08f12e13b96117a60a053bb4121b0e52"
+    }
+  }
+}
