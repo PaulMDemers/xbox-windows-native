@@ -45,3 +45,11 @@ has stayed powered at UnleashX since536, with no intervening launch/power cycle.
 See DESIGN.md for the one-run inference limits and NEXT.md for the exact workflow.
 Boot reliability, D3D/GPU/game and release claims remain unchanged. Automation is
 paused; this work follows the user's later manual authorization.
+
+## Single launch sent
+
+User confirmed uninterrupted dashboard power since536. The fresh before1 capture
+completed20:34:13UTC and all ten selected files equal retained536 after2. One539b
+SITE launch was sent; its bounded host supervisor closed successfully20:34:52UTC.
+The screen observation is pending. No second launch or retry is admitted. No hook
+was installed. Host completion does not establish Windows execution or shutdown.

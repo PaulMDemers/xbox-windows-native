@@ -1,3 +1,22 @@
+#539 single launch sent; screen observation pending
+
+User confirms Xbox stayed powered at dashboard since536. ready1 saved. Frozen
+before1 completed20:34:13UTC; all10 selected baseline files equal closed536 after2.
+Single539b launch supervisor closed successfully20:34:52UTC. See launch1.json
+for exact request/reply. No second launch, retry or control fallback is allowed.
+Host completion is not console completion; actual screen observation pending.
+
+Pending user question: Xromwell/Windows desktop versus black/dashboard. If desktop,
+save desktop1 and request normal WindowsRestart; await dashboard report. Then save
+observer1 and run frozen supervise.py after1 once, WSL audit.py1 and Windows
+decode_actual.py1. No hook was installed; preserve any manual reset distinction.
+Do not collect while Windows is running or infer a boot from FTP alone.
+
+Allhostlaunchprocessesclosed. Console state unknown until user observation.
+Ordinary720p/startup exact immediately before dispatch; consoleC not accessed.
+Frozen package/code and previous536 closed records unchanged. AutomationPAUSED.
+This ablates only the post-stack diagnostic LED hook, not a proven ordinary fix.
+
 #539 STAGED, not launched: post-stack diagnostic hook isolated
 
 Read outputs/entry-footprint539/REPORT.md, DESIGN.md and NEXT.md. Exact ordinary374
