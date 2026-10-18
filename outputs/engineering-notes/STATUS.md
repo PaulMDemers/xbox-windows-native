@@ -1,3 +1,30 @@
+# 499 closeout complete: compiled candidate, no physical launch
+
+Repositorycheck8343 CLOSED PASS37461 trackedfiles. Allownedprocessesclosed.
+498PUSHEDd29c62d6;499build/review/final-review complete; checkGitHEAD/upstream
+forpublicationstatus. Noqueuedlaunch/nohook/nohardwarechange. Pending497screen
+observationunchanged; doNOTretry497. Read499NEXT before anynewcontroller/launch.
+Completeentryreceiptisnotboot/closeproof; newcandidateisdiagnosticonly.
+
+# 499 entry XBE compiled/reviewed only; no console access or launch
+
+498 PUSHEDd29c62d6;497 PUSHED8935db5a. Readentry-launch499 REPORT/DESIGN/NEXT,
+build001/review002/final-review. PrivateC:/xwn499/build001/default.xbe545004B SHA
+22d3a9224965159a53cb188be9530f1b211aff8480d3d5773405d7e2974cf6d9.
+Appended498gate at0x94877, oldstart0x11100 unchanged; originalinstructions/addresses
+andpayload byteexact, only4oldpaths+headers+newgate/data.60actualELFrelocations,
+648code236data bytes independentlyresolved;989mutations reject evenwithouterSHA
+repaired. Review001weakerchecksumnegatives preserved;002corrects teststrength.
+NEVERstaged/launched, nohook/FTP/SDK/sharedchange; allownedprocesses CLOSED.
+Pending497screenobservation unanswered. Noactualboot/privilegedcontext/D3Dclaim.
+NEXTnewboundedcontroller/hosttests andexplicitconsole-returnplan beforelaunch:
+currentbinarycontinuesWindows onentrysuccess, NOautorestart hook. Do notsilently
+assumeautomaticreturn. CompleteentryfiledoesNOTprovefinalclose/preparation;
+absenceambiguous. EarlyI/O/imagegrowth areinterventions, notbootfixes.
+496PCscenePASS remains separate;720p/Cprotected/Ft49popup limitsretained.
+Deadline14UTC/closeout13:50; C/WSL20GiBguard, Enonewscratchmargin.
+499repositorycheck/commitpushnext. Noqueuedlaunch; neverretryclosed497.
+
 # 498 host entry gate complete; 497 remains closed awaiting screen observation
 
 497 PUSHED8935db5a. Read entry-receipt498 REPORT/DESIGN/NEXT/final-review.
