@@ -1,0 +1,3 @@
+# Physical busy correction 472
+
+One new pass-through diagnostic using qualified471 XBE SHA256 5428e61be174226dc4969cedf7778bccaf8408d5a99cb77558c15478ea66a119. Both bounded markers wait for host/bus busy rather than treating host busy as error. No original launcher, startup, Windows driver or display changes. The console C partition is excluded. New remote E:/Applications/XWNBoot471a only; preserve before/after selected files. One SITE request, 20-second reply bound, 90-second observation. No retry of an accepted/uncertain request. No automatic Windows restart installed; user observation/restart may be needed. Missing refusal alone does not prove handoff.

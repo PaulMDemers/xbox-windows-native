@@ -1,3 +1,13 @@
+Latest user observation472: Windows is at the desktop. Normal Windows restart requested; await dashboard return then collect. User LED not reported. No second launch.
+
+# Latest: busy-state correction passed emulator; physical observation pending
+
+The diagnostic now waits for host+bus busy instead of rejecting0x0808. Actual
+assembled wrapper/poststack tests and one fresh emulator handoff pass. The Xbox
+accepted one new diagnostic launch; screen/return and cold evidence are pending.
+The normal Windows installation/startup remain unchanged. Historical boot
+intermittency and D3D capability are not yet resolved by this correction.
+
 # Latest: physical marker busy-state diagnosis captured
 
 The capture-only469 diagnostic recorded0x0808 while its first LED transaction

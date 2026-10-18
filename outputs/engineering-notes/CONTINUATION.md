@@ -1,3 +1,40 @@
+Latest user observation472: Windows is at the desktop. Normal Windows restart requested; await dashboard return then collect. User LED not reported. No second launch.
+
+# Current:471 emulator handoff PASS;472 physical launched, awaiting screen/return
+
+Previous pushed dfcbdaed. Read busy-handoff471 REPORT/DESIGN/NEXT/final-review and
+physical-busy472 REPORT/DESIGN/NEXT/stage001/launch001/observation001. No retry.
+472 single accepted physical launch2026-10-18T01:58:28UTC. Remote new
+E:/Applications/XWNBoot471a, privateC:/xwn472/physical001. Original launcher6240,
+normalstartupda47 and720p unchanged before launch; consoleC untouched. No automatic
+restart installed. User asked for LED/screen and to leave Windows if desktop.
+Dashboard absent during observation; no actual cold report collected yet. This is
+PENDING, not pass/fail. After return collect once and cold-review before next work.
+Do not infer marker/loader/Windows completion from missing refusal or FTP state.
+
+471 exact468 child integrates BYTE-EXACT470 busy fix at both placements. NewXBE
+537170B SHA5428e61be174226dc4969cedf7778bccaf8408d5a99cb77558c15478ea66a119.
+Sources reverse-reconstruct468; symbols/lengths identical; payloadonly4operand
+bytes changed, original pre-tail exact. Host104actualwrapper/45actualstub cases,
+84complete refusals decoded/251negatives plus9newbusy/oldnamespace negatives.
+SMBus/kernel/CLI/TSC interfaces MODELED. Strictbounds/errors preserved.
+Fresh471emu0018actualcheckpoints bothmarkers/originalloader/stack/continuation,
+192actualtruncationnegatives. NotWindowsboot. FullBP/physicalmode cleanup;
+orderlyhostexit0,nofallback. Coldcomplete10GBmapping/327680localbytes,
+546changedbytes strictFALSE,276dirs6554files255clusters0errors/orphans,
+5hives3binariesbyteexact,EEPROM/seedexact. All471sessionsCLOSED:
+prepare66843,runner83982,tracer34377, host/build commands; neverrerun/parent.
+Never-executed466preparationparent pinned, new471preparationneverexecuted.
+
+472stage21743 and physical launch/observer1481 CLOSED.90secobservationdeadline;
+no dashboard report. All ownedhostprocessesclosed, noxemu processes. Console
+state pendinguser; do NOT claimcoldclosed. See472handoff001.json. C25024749568B,
+E21499871232B atcloseout; newwrites onC onlyunder20GiBguard.
+No sharedSDK/renderer/Windowsdriver change; no original boot-failure/D3D fix claim.
+Earlier4690x808 physicalrefusal,470hostmodel,468failures remain immutable.
+UseC for new artifacts; E near20GiBthreshold. Keepprojected20GiBreserve.
+No deletions/offloads/backingmoves. Normalboot remainsE:/Applications/XWNEBoot.
+
 # Current:469 CLOSED raw status0x0808; diagnostic busy-bit bug identified;470 HOST-ONLY
 
 Read marker-capture468 REPORT/DESIGN/NEXT/final-review, physical-status469
