@@ -1,3 +1,78 @@
+# 534 CLOSED: two power-cycled Windows launches succeeded
+
+Read outputs/cold-pair534/REPORT.md, final001.json and NEXT.md. Both separately
+reported dashboard power-off about10seconds/on launches reached Windows desktop.
+Both normal Windows Restarts confirmed by user/dashboard readback and new6006delta1;
+all5hives clean after each. Run1 Ft49=1/popup26=3; run2 Ft49=1/popup26=0, so strict
+clean-event condition remains false. Same ordinary720p launcher/startup; no host
+file reset, trace reseed, temporary hook, remote file write or dashboardC access.
+Final after2 collected18:56:36UTC; audit2 and final001 closed. All6 supervisors
+closed; console at dashboard; NO third launch or other runtime queued.
+
+Prior532/533 warm success/failure/success plus534 cold success/success strengthens
+warm predecessor-state investigation, not a root cause, deterministic rule or
+functional fix. Windows exit used Restart; Windows Shut Down menu not compared.
+Next source/actual-evidence review of warm restart/Xromwell assumptions, then only
+if justified a bounded discriminating state capture. Never rerun closed attempts.
+No D3D/GPU/game promotion. Automation remains PAUSED; manual session only.
+
+# 534 both cold-start launches reached Windows desktop; final Restart pending
+
+User reports second "It’s on the desktop". Two launches each preceded by reported
+full dashboard poweroff about10seconds/on both reached desktop. Same original
+launcher/path/method, no hostfile/trace reset. Normal Start/Restart requested for
+run2; await dashboard reply before final after2/audit2. No third launch planned.
+This strengthens predecessor-state investigation versus prior warm S/F/S but is
+not a deterministic rule or functional fix. Preserve run1 Ft49/3shutdownpopups.
+No hook, consoleC access or driverchange; automation PAUSED. Host supervisors closed.
+# 534 cold-start run2 launched after second reported power-off/on
+
+Run1 desktop/normalRestart confirmed, audit1 clean5hives/new6006delta1. Known
+Ftdisk49 and3rundll32 shutdown popup26 events preserved. Separate ready2 received
+after dashboard poweroff about10seconds/on. Before2 selected10files identical
+to after1; same ordinary720p XBE, no trace/file reset. SITE2 accepted18:54:17UTC.
+Screen report pending; if desktop request normal Restart then after2/audit2.
+No third launch planned. No hook/remote writes/driverchanges/dashboardC access.
+All current host supervisors closed. Automation remains PAUSED. Do not infer
+cold-pair result yet. Keep full532/533 warm success/failure/success sequence.
+# 534 run1 closed locally; waiting for separate power cycle ready2
+
+User desktop then normal Restart/dashboard confirmed. After1 collected18:52:20UTC,
+independent5hive audit clean. Requested dashboard poweroff about10seconds/on for
+second cold run; readiness pending. No launch2 issued. Before2 must read exact
+current selected files and launch2 must compare against after1 with no reseed.
+Run1 initial single dashboardprobe timeout preserved; later user/readbackconfirm
+normal return. No forcedreset/popup reported. No hook/remote writes/driverchange.
+Automation PAUSED; finite2coldruns only, no third. Keep all old532/533 failures.
+# 534 run1 desktop; user Rebooting now, dashboard confirmation pending
+
+User reported Rebooting now after requested normal Windows Restart. A single
+read-only dashboard1 probe at18:51:05UTC timed out; this does not prove a hang or
+failure. Asked whether UnleashX returned or Windows awaits shutdown. Leave power
+on until run1 collected. No after1 attempted, no second power-cycle/readiness or
+second launch. Last confirmed screen Windows desktop. No temporary hook exists.
+Current host launch/capture supervisors closed; interim repo check in progress.
+# 534 cold-start run1 reached Windows desktop; normal Restart requested
+
+One SITE accepted18:49:20UTC, unchanged ordinary720p launcher after user-reported
+power off about10seconds/on. Before1 selected10 files exactly matched closed533;
+trace marker checked inside actual prelaunch before intent. User desktop report
+received; normal Start/Restart requested. Await dashboard reply then after1/audit1.
+Only after that request dashboard power-off/on and separate ready2 for run2.
+No hook, remote file writes, driver change or trace reset. No third run planned.
+Automation remains PAUSED. Retain532/533 success/failure/success and harnessfailure.
+# 534 new cold-start pair preparing; ready1 reported after power off/on
+
+User requested full shutdowns between launches.534 DESIGN specifies exactly2
+new ordinary Windows launches, each after dashboard power off about10seconds
+then power on. Keep Windows exit via normal Restart so intervening console power
+cycle is the changed condition; this is not a Windows Shut Down menu comparison.
+Ready1 received. Host9 admission cases/18 malformed trace checks PASS; used trace
+allowed. Preflight pins sources and closed533 baseline; no new guest binary.
+Before1 capture running, no launch yet. Ready2 must be separate after first cold
+audit and power cycle. No automatic retries, no third run planned. No remote
+file writes/hook/reseed/driver change,720p and ordinary launcher preserved.
+Automation remains PAUSED; dashboardC offlimits and C/WSL20GiB reserve retained.
 # 532/533 CLOSED: ordinary Windows watched success/failure/success
 
 Read533 REPORT/NEXT/final001 and532 REPORT/final001. First after requested cold
