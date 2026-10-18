@@ -1,3 +1,50 @@
+#541 CLOSED: green/amber pre-C indication; clean postreset audit
+
+User reported "Green/Amber flashing and the screen is black", then "Ready" after
+requested poweroff/on toUnleashX. led1/observer1 preserve exact reports/context.
+Fresh after1 completed21:53:32UTC. All10 baseline files byte-identical, fivehives
+clean, no newWindows events/6006delta or video-trace change. Manual powercycle
+is not normalWindowsRestart. Primary/witness/context valid; no refusal packet.
+
+Primary bytes equal both successful536 runs and held540. Matching-epoch control
+registers/segments/tables/stack/return values equal; onlyTSC and earlier marker
+polls differ(1179 versus1170/1158/1168). These are pre-handoff packets. The distinct
+LED/blackhold supports arrival at02600200 before firstC in THIS instrumentedrun;
+not independent HLT/status proof, ordinary-boot cause/fix or cache qualification.
+The earlier post-stack I/O/delay was removed, limiting comparison with540.
+
+541 is CLOSED after one launch. Never rerun/recollect/reparent. Candidate remains
+unique E:/Applications/XWNBoot541a. No hook/queuedlaunch/ownedrunningprocess.
+Ordinary720p/startup exact, no XboxC access. Dashboard userconfirmed/authenticated.
+AutomationPAUSED. Read541final001,close-review001,REPORT,NEXT-CLOSED first.
+
+Next: inspect actual firstC prologue and calls through memory-manager and IDT
+initialization, then PCI/AGP setup, to choose the next discriminating boundary.
+Any later checkpoint needs a fresh unique kit, actual byte/stack/memory validation
+and distinct observed indicator. Do not reuse the current marker blindly: its
+MOVESP would discard the C frame if placed inside a C function. Preserve the
+original stack and full state in a newly reviewed stub. No speculative functional
+patch or Windows/D3D/GPU/game/release promotion from this checkpoint.
+
+#541 expected green/amber observed; manual reset requested
+
+User: "Green/Amber flashing and the screen is black". Exact report saved in led1.
+Matches the distinctive later pre-C marker and supports arrival at02600200 in
+THIS instrumented run, after original BSS/IDT/FPU/cache setup. Does not independently
+attest HLT or both transaction statuses, diagnose539/ordinary532, or qualify
+physical cache correctness/boot reliability. Earlier amber was not reported.
+
+Requested poweroff/on and leave atUnleashX. Await actual dashboardconfirmation;
+do not infer reset from elapsed time. Console last observed held black/green-amber.
+No hook installed, host processesclosed, no queuedlaunch. Earlier runtimesclosed.
+
+On reset/dashboardconfirmation save observer1 with exact user report/context and
+manual_reset=true, at_dashboard=true, user_report_received=true. Then frozen
+supervise.py after1 once, WSL audit.py1 and Windows decode_actual.py1. Preserve
+all records, compare matching epochs and unchanged files, then close541. Do not
+relaunch/recollect a closed runtime. Read541DESIGN/NEXT/launch1/led1 first.
+Ordinary720p/startup exact prelaunch; postreset readback pending. AutomationPAUSED.
+
 #541 LAUNCHED once: pre-C LED/screen observation pending
 
 User said "Proceed" in reply to staged diagnostic awaiting watcher/reset readiness;

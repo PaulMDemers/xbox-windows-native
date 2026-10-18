@@ -47,3 +47,36 @@ request was accepted; the launch supervisor closed21:50:42UTC without timeout.
 The exact LED/screen observation is pending. No console completion is inferred
 from host exit, and no Windows boot is intended. No retry or second launch.
 No hook was installed. All protected files were exact immediately before dispatch.
+
+## Expected later indicator observed
+
+The user reports "Green/Amber flashing and the screen is black". This matches
+the distinct pre-C checkpoint indication and supports arrival there in this
+instrumented run. Earlier amber was not explicitly reported. The observation
+does not independently attest HLT or both transaction statuses, locate a prior
+ordinary-boot failure, or establish reliable cache/boot behavior.
+
+Manual poweroff/on and dashboard confirmation were requested. Reset completion
+and cold readback remain pending. No additional launch is planned for this run.
+
+## Closed after manual power cycle
+
+The user confirmed readiness at UnleashX after the requested poweroff/on. Fresh
+after1 completed21:53:32UTC. All ten baseline files are byte-identical; all five
+registry hives pass; event logs and video trace are unchanged, with no new events
+or6006 delta. This was a manual reset, not a normal Windows restart.
+
+Primary, witness and context records decode correctly, with no refusal packet.
+Primary bytes match both536 successes and540. Matching-epoch control registers,
+segments, tables, stack and return values match; differences are only timestamps
+and preceding-marker polls(1179 versus1170/1158/1168). These remain pre-handoff
+records, not persisted records of the later LED routine.
+
+The user's distinctive green/amber indication supports reaching the pre-C
+checkpoint in this instrumented run. It does not establish the cause of earlier
+failures or ordinary-boot reliability. No Windows workload was intended.
+
+All supervisors closed; no hook or XboxC access. Protected720p and ordinary
+launcher/startup remain exact. The console is authenticated at UnleashX after
+the manual power cycle. One launch only;541 is now CLOSED. Never relaunch,
+recollect or use its runtime as a parent. See final001 and NEXT-CLOSED.md.
