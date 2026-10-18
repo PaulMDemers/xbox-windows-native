@@ -1,3 +1,31 @@
+#539 STAGED, not launched: post-stack diagnostic hook isolated
+
+Read outputs/entry-footprint539/REPORT.md, DESIGN.md and NEXT.md. Exact ordinary374
+versus490 review found only five changed original payload bytes at026000f0:
+MOV ESP replaced by a jump to a574-byte LED/SMBus stub after235972 zero padding.
+536 context snapshots precede this hook. Longer initialized copy and earlier
+IO/guards remain independent variables. No physical root cause or boot fix proven.
+
+New539b restores the five original bytes, retaining all sizes/copy lengths and
+pre-handoff diagnostics; only namespace and section digest otherwise differ.
+10 prefix/40 stack/19 controller/6 stage-capture host cases pass. Prefix001
+pointer-address failure and workflow001 redundant-replacement failure retained;
+corrected unique successors passed. Decoder equivalence uses retained536 only.
+
+539b staged/read back under new E:/Applications/XWNBoot539b; supervisor closed
+successfully20:16:02UTC. Ordinary launcher/startup and protected720p exact before/
+after; no hook, no consoleC access, no launch.539a control remains host-only.
+All current host processes closed. Dashboard FTP authenticated; power history
+not yet confirmed. User asked whether remained powered atUnleashX since536 with
+no intervening launch/reset and ready to watch. Await answer; do not infer it.
+
+On confirmation follow frozen NEXT: ready1, before1, launch1 exactly once, observe,
+normalRestart ifdesktop, observer1, after1 then audit/decode. One20s SITE reply
+bound; no accepted/uncertain retry, no second/control launch. If history differs,
+record it and redesign instead of bypassing admission. All earlier runs closed.
+Capacity C28.6GB before stage;20GiB+64MiB guard; no E allocation. AutomationPAUSED.
+No D3D/GPU/game/release promotion; ordinary failure532 and all earlier limits remain.
+
 #536 CLOSED: warm/cold instrumented boots both succeed; no CPU-state discriminator
 
 Read outputs/context-pair536/REPORT.md, comparison001.json, final001.json and

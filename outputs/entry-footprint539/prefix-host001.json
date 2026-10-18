@@ -1,0 +1,472 @@
+{
+  "status": "failed",
+  "physical_access": false,
+  "kernel_memory_and_API_results": "MODELED; no Xbox kernel executes",
+  "cases": [
+    {
+      "image": "ordinary",
+      "mode": "normal",
+      "sha256": "6240a801d97c4894e56d516a934059da056446fb77cf895b5364bdd6cd24be9a",
+      "calls": [
+        {
+          "api": "MmAllocateContiguousMemoryEx",
+          "args": [
+            1048576,
+            2097152,
+            33554431,
+            0,
+            4
+          ],
+          "result": 2179989504
+        },
+        {
+          "api": "MmGetPhysicalAddress",
+          "args": [
+            2179989504
+          ],
+          "result": 32505856
+        },
+        {
+          "api": "MmAllocateContiguousMemoryEx",
+          "args": [
+            4096,
+            16777216,
+            33554432,
+            16,
+            4
+          ],
+          "result": 2181038080
+        },
+        {
+          "api": "MmGetPhysicalAddress",
+          "args": [
+            2181038080
+          ],
+          "result": 33554432
+        },
+        {
+          "api": "NtAllocateVirtualMemory",
+          "args": [
+            70788,
+            0,
+            70757,
+            12288,
+            4
+          ],
+          "result": 0
+        }
+      ],
+      "boundary": "original-loader-before-cli",
+      "invalid_memory": [],
+      "privileged_loader_executed": false,
+      "copied_payload_bytes": 288316
+    },
+    {
+      "image": "ordinary",
+      "mode": "df-at-copy",
+      "sha256": "6240a801d97c4894e56d516a934059da056446fb77cf895b5364bdd6cd24be9a",
+      "calls": [
+        {
+          "api": "MmAllocateContiguousMemoryEx",
+          "args": [
+            1048576,
+            2097152,
+            33554431,
+            0,
+            4
+          ],
+          "result": 2179989504
+        },
+        {
+          "api": "MmGetPhysicalAddress",
+          "args": [
+            2179989504
+          ],
+          "result": 32505856
+        }
+      ],
+      "boundary": "unmapped-access",
+      "invalid_memory": [
+        {
+          "access": 20,
+          "address": 2179989503,
+          "bytes": 1
+        }
+      ],
+      "privileged_loader_executed": false,
+      "unicorn_error": "Invalid memory write (UC_ERR_WRITE_UNMAPPED)"
+    },
+    {
+      "image": "ordinary",
+      "mode": "null-kernel",
+      "sha256": "6240a801d97c4894e56d516a934059da056446fb77cf895b5364bdd6cd24be9a",
+      "calls": [
+        {
+          "api": "MmAllocateContiguousMemoryEx",
+          "args": [
+            1048576,
+            2097152,
+            33554431,
+            0,
+            4
+          ],
+          "result": 0
+        },
+        {
+          "api": "MmGetPhysicalAddress",
+          "args": [
+            0
+          ],
+          "result": 0
+        }
+      ],
+      "boundary": "unmapped-access",
+      "invalid_memory": [
+        {
+          "access": 20,
+          "address": 0,
+          "bytes": 1
+        }
+      ],
+      "privileged_loader_executed": false,
+      "unicorn_error": "Invalid memory write (UC_ERR_WRITE_UNMAPPED)"
+    },
+    {
+      "image": "ordinary",
+      "mode": "null-loader",
+      "sha256": "6240a801d97c4894e56d516a934059da056446fb77cf895b5364bdd6cd24be9a",
+      "calls": [
+        {
+          "api": "MmAllocateContiguousMemoryEx",
+          "args": [
+            1048576,
+            2097152,
+            33554431,
+            0,
+            4
+          ],
+          "result": 2179989504
+        },
+        {
+          "api": "MmGetPhysicalAddress",
+          "args": [
+            2179989504
+          ],
+          "result": 32505856
+        },
+        {
+          "api": "MmAllocateContiguousMemoryEx",
+          "args": [
+            4096,
+            16777216,
+            33554432,
+            16,
+            4
+          ],
+          "result": 0
+        },
+        {
+          "api": "MmGetPhysicalAddress",
+          "args": [
+            0
+          ],
+          "result": 0
+        },
+        {
+          "api": "NtAllocateVirtualMemory",
+          "args": [
+            70788,
+            0,
+            70757,
+            12288,
+            4
+          ],
+          "result": 0
+        }
+      ],
+      "boundary": "unmapped-access",
+      "invalid_memory": [
+        {
+          "access": 20,
+          "address": 0,
+          "bytes": 1
+        }
+      ],
+      "privileged_loader_executed": false,
+      "unicorn_error": "Invalid memory write (UC_ERR_WRITE_UNMAPPED)"
+    },
+    {
+      "image": "ordinary",
+      "mode": "virtual-failure",
+      "sha256": "6240a801d97c4894e56d516a934059da056446fb77cf895b5364bdd6cd24be9a",
+      "calls": [
+        {
+          "api": "MmAllocateContiguousMemoryEx",
+          "args": [
+            1048576,
+            2097152,
+            33554431,
+            0,
+            4
+          ],
+          "result": 2179989504
+        },
+        {
+          "api": "MmGetPhysicalAddress",
+          "args": [
+            2179989504
+          ],
+          "result": 32505856
+        },
+        {
+          "api": "MmAllocateContiguousMemoryEx",
+          "args": [
+            4096,
+            16777216,
+            33554432,
+            16,
+            4
+          ],
+          "result": 2181038080
+        },
+        {
+          "api": "MmGetPhysicalAddress",
+          "args": [
+            2181038080
+          ],
+          "result": 33554432
+        },
+        {
+          "api": "NtAllocateVirtualMemory",
+          "args": [
+            70788,
+            0,
+            70757,
+            12288,
+            4
+          ],
+          "result": 3221225495
+        }
+      ],
+      "boundary": "unmapped-access",
+      "invalid_memory": [
+        {
+          "access": 20,
+          "address": 33554432,
+          "bytes": 1
+        }
+      ],
+      "privileged_loader_executed": false,
+      "unicorn_error": "Invalid memory write (UC_ERR_WRITE_UNMAPPED)"
+    },
+    {
+      "image": "diagnostic",
+      "mode": "normal",
+      "sha256": "d5d220f76dd5c672346244e0d2ba257ac148498b5e2433fb1653ee36caf12e58",
+      "calls": [
+        {
+          "api": "MmAllocateContiguousMemoryEx",
+          "args": [
+            1048576,
+            2097152,
+            33554431,
+            0,
+            4
+          ],
+          "result": 2179989504
+        },
+        {
+          "api": "MmGetPhysicalAddress",
+          "args": [
+            2179989504
+          ],
+          "result": 32505856
+        },
+        {
+          "api": "MmAllocateContiguousMemoryEx",
+          "args": [
+            4096,
+            16777216,
+            33554432,
+            16,
+            4
+          ],
+          "result": 2181038080
+        },
+        {
+          "api": "MmGetPhysicalAddress",
+          "args": [
+            2181038080
+          ],
+          "result": 33554432
+        },
+        {
+          "api": "NtAllocateVirtualMemory",
+          "args": [
+            70964,
+            0,
+            70933,
+            12288,
+            4
+          ],
+          "result": 0
+        }
+      ],
+      "boundary": "prepared-before-diagnostics",
+      "invalid_memory": [],
+      "privileged_loader_executed": false,
+      "phase": 4,
+      "copied_payload_bytes": 524862
+    },
+    {
+      "image": "diagnostic",
+      "mode": "df-at-copy",
+      "sha256": "d5d220f76dd5c672346244e0d2ba257ac148498b5e2433fb1653ee36caf12e58",
+      "calls": [
+        {
+          "api": "MmAllocateContiguousMemoryEx",
+          "args": [
+            1048576,
+            2097152,
+            33554431,
+            0,
+            4
+          ],
+          "result": 2179989504
+        },
+        {
+          "api": "MmGetPhysicalAddress",
+          "args": [
+            2179989504
+          ],
+          "result": 32505856
+        }
+      ],
+      "boundary": "refused-before-report",
+      "invalid_memory": [],
+      "privileged_loader_executed": false,
+      "phase": 5
+    },
+    {
+      "image": "diagnostic",
+      "mode": "null-kernel",
+      "sha256": "d5d220f76dd5c672346244e0d2ba257ac148498b5e2433fb1653ee36caf12e58",
+      "calls": [
+        {
+          "api": "MmAllocateContiguousMemoryEx",
+          "args": [
+            1048576,
+            2097152,
+            33554431,
+            0,
+            4
+          ],
+          "result": 0
+        }
+      ],
+      "boundary": "refused-before-report",
+      "invalid_memory": [],
+      "privileged_loader_executed": false,
+      "phase": 1
+    },
+    {
+      "image": "diagnostic",
+      "mode": "null-loader",
+      "sha256": "d5d220f76dd5c672346244e0d2ba257ac148498b5e2433fb1653ee36caf12e58",
+      "calls": [
+        {
+          "api": "MmAllocateContiguousMemoryEx",
+          "args": [
+            1048576,
+            2097152,
+            33554431,
+            0,
+            4
+          ],
+          "result": 2179989504
+        },
+        {
+          "api": "MmGetPhysicalAddress",
+          "args": [
+            2179989504
+          ],
+          "result": 32505856
+        },
+        {
+          "api": "MmAllocateContiguousMemoryEx",
+          "args": [
+            4096,
+            16777216,
+            33554432,
+            16,
+            4
+          ],
+          "result": 0
+        }
+      ],
+      "boundary": "refused-before-report",
+      "invalid_memory": [],
+      "privileged_loader_executed": false,
+      "phase": 2
+    },
+    {
+      "image": "diagnostic",
+      "mode": "virtual-failure",
+      "sha256": "d5d220f76dd5c672346244e0d2ba257ac148498b5e2433fb1653ee36caf12e58",
+      "calls": [
+        {
+          "api": "MmAllocateContiguousMemoryEx",
+          "args": [
+            1048576,
+            2097152,
+            33554431,
+            0,
+            4
+          ],
+          "result": 2179989504
+        },
+        {
+          "api": "MmGetPhysicalAddress",
+          "args": [
+            2179989504
+          ],
+          "result": 32505856
+        },
+        {
+          "api": "MmAllocateContiguousMemoryEx",
+          "args": [
+            4096,
+            16777216,
+            33554432,
+            16,
+            4
+          ],
+          "result": 2181038080
+        },
+        {
+          "api": "MmGetPhysicalAddress",
+          "args": [
+            2181038080
+          ],
+          "result": 33554432
+        },
+        {
+          "api": "NtAllocateVirtualMemory",
+          "args": [
+            70964,
+            0,
+            70933,
+            12288,
+            4
+          ],
+          "result": 3221225495
+        }
+      ],
+      "boundary": "refused-before-report",
+      "invalid_memory": [],
+      "privileged_loader_executed": false,
+      "phase": 3
+    }
+  ],
+  "error": "AssertionError()"
+}
