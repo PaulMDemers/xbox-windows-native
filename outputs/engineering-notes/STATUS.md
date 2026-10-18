@@ -1,3 +1,23 @@
+# Latest: D3D7 software textures pass on PC and Xbox
+
+Rung08a now passes default and HEL texture upload, unchanged source readback,
+orientation and point-sampling checks on Windows2000 PC479 and Xbox478. Both
+use the same binary and fixed oracle; both restart normally. No GPU acceleration,
+depth/blending, D3D presentation, game compatibility or performance qualification.
+
+The Xbox is at UnleashX with the temporary hook removed. Normal launcher/startup
+and720p configuration are unchanged. Ftdisk49 and two shutdown-time rundll32
+initialization popups keep overall qualification FALSE; their initiating command
+and historical boot intermittency remain unresolved. No full FATX scan repeated.
+
+477 is a preserved failed PC attempt: namespace generation corrupted the floppy
+size, so the sample did not run. New479 uses bounded naming and an independent
+FAT12 preflight. No repair/relaunch of477. Build/run/check docs and source are
+updated. Next: separate depth and alpha-blending controls, PC first then Xbox.
+
+All owned processes are closed and no hardware test is queued. Final repository
+check, exact staged-byte verification and commit/push follow this status update.
+
 # Latest: first D3D7 software triangle passes on PC and Xbox
 
 474PC and476Xbox both create the enumerated RGB software device, clear an owned

@@ -17,7 +17,8 @@ Rung 04 also passes all six cases on NT5 PC and Xbox, and rung 05 passes its
 bounded lifecycle controls. Rung 06 now passes complete default/HEL inventories
 on NT5 PC and Xbox, reporting the RGB software renderer. Rung 07 now creates
 that software device and passes offscreen clear/triangle pixel checks on both.
-Textures, depth, blending, D3D presentation and game performance remain planned.
+Rung 08a now passes owned point-sampled texture controls on NT5 PC and Xbox. Depth,
+blending, D3D presentation and game performance remain separate work.
 The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 
 ## The ladder
@@ -32,7 +33,8 @@ The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 | 05 | Surface lifecycle and memory budget | Focus changes, lost-surface handling where applicable, repeated create/release, failure recovery and bounded memory use | Bounded churn/focus/memory controls pass on NT5 PC and Xbox; actual loss/restore remains unqualified |
 | 06 | Legacy D3D discovery | Query the chosen D3D interface, enumerate actual devices/caps; distinguish software and hardware choices | NT5 PC/Xbox default/HEL inventory passes: RGB software device found; no draw qualification |
 | 07 | Clear and triangle | Offscreen render target, clear, pretransformed colored triangle, independent interior/background pixel checks | RGB software path passes on NT5 PC and Xbox; no presentation/GPU claim |
-| 08 | Textures, depth and blending | Known texture orientation/filtering, overlapping triangles with depth, transparent quads and alpha reference pixels | Planned |
+| 08a | Point-sampled texture | Enumerated texture format, exact upload/readback, known orientation and interior sampling | Default/HEL RGB software controls pass on NT5 PC and Xbox |
+| 08b | Depth and blending | Overlapping triangles with depth, transparent quads and alpha reference pixels | Planned separately |
 | 09 | Transforms and scene stability | Rotating textured object, camera/projection, resize/activation handling and repeated resource teardown | Planned |
 | 10 | Small game-like scenes | Scrolling isometric tiles and moving sprites, then a textured room; controls, audio and save/reload | Planned; precedes the actual game acceptance tests |
 
@@ -557,3 +559,60 @@ device exists. This helps identify the installed software runtime; it does not
 trace helpers that were loaded and unloaded before that snapshot. A successful
 triangle does not establish textures, depth, blending, presentation, hardware
 acceleration, game compatibility or useful game performance.
+
+## Offscreen point-sampled texture
+
+The [fresh PC control](../outputs/d3d-texture479/REPORT.md) and
+[Xbox comparison](../outputs/d3d-texture478/REPORT.md) pass both default and HEL
+cases with the same executable. Each enumerates ten formats and uses an actual
+RGB32 format. The source bytes remain unchanged after drawing, all 576 interior
+texture checkpoints match, and Windows restarts normally. This qualifies this
+small software-rendering case; game compatibility and performance remain open.
+The Xbox still logs Ftdisk49 and shutdown-time rundll32 initialization popups,
+so overall system qualification remains false despite the scoped rendering pass.
+
+[texture.c](../src/samples/graphics-ladder/texture.c) is rung 08a. It enumerates
+the software device's texture formats, uploads an owned 8×8 color pattern, and
+draws a textured quad into a private 64×64 target. Each texel has a distinct RGB
+value; this checks orientation as well as checkerboard parity. It uses nearest
+filtering with no mipmaps, depth testing or blending. Nothing is shown on screen
+and the desktop resolution is unchanged.
+
+```sh
+python3 tools/build-graphics-samples.py \
+    --sample texture \
+    --rosbe "$HOME/xwn-rosbe-001/RosBE-2.2.1" \
+    --output "$HOME/xwn-texture-001"
+```
+
+Copy `texture.exe` and `texture.cmd` together to Windows 2000, then run:
+
+```bat
+texture.cmd default texture-default
+texture.cmd hel texture-hel
+```
+
+Copy all six files per prefix back to the host: `.txt`, `.exit`, `-clear.bin`,
+`-draw.bin`, `-source-before.bin` and `-source-after.bin`. Validate them with:
+
+```sh
+python3 tools/graphics_texture.py /path/to/results/texture-default --backend default
+python3 tools/graphics_texture.py /path/to/results/texture-hel --backend hel
+python3 tests/test_graphics_texture.py
+```
+
+The checker requires the actual format enumeration and selected format, complete
+API/cleanup records, exact upload bytes unchanged after drawing, all clear RGB
+pixels, 576 predefined samples inside the 64 texel cells, and exterior background.
+Other pixels must contain source-palette or background colors; exact texel and
+raster edge selection is outside this test. The unused render-target X byte is
+not a color channel. An unsupported texture format is a refusal, not permission
+to change the expected image. `CAPTURED` still requires host validation.
+
+Use fresh prefixes and retain failures. The public batch file has no watchdog;
+private qualification adds a 90-second process deadline and normal shutdown
+checks. This rung does not qualify presentation, depth, blending, acceleration,
+game compatibility or performance. Runtime results are recorded separately in
+the [479 PC control report](../outputs/d3d-texture479/REPORT.md). The earlier
+[477 malformed-floppy attempt](../outputs/d3d-texture477/REPORT.md) remains
+failed and produced no texture result.

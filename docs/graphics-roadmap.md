@@ -23,8 +23,9 @@ native GPU acceleration or qualified Direct3D driver. The first actual Xbox
 samples pass default/HEL DirectDraw 7 system-memory blits and independent pixel
 readbacks with this driver unchanged. Default/HEL windowed primary presentation,
 clipping and GDI coexistence also pass independent pixel checks. D3D7 RGB
-software offscreen clear/triangle rendering now passes on NT5 PC and Xbox;
-textures, depth, blending and D3D presentation remain unqualified. See the
+software offscreen clear/triangle rendering now passes on NT5 PC and Xbox.
+Owned point-sampled texture controls also pass on NT5 PC and Xbox. Depth,
+blending and D3D presentation remain unqualified. See the
 [sample results](graphics-samples.md).
 
 DirectX is a family of APIs. A game's DirectX requirement does not by itself mean
@@ -70,6 +71,13 @@ draw an offscreen triangle with independent clear/interior/background checks.
 The Xbox restarts normally, but Ftdisk49, a shutdown-time rundll32 popup and the
 separate intermittent boot failure remain unresolved. There is no accelerated
 rendering, game compatibility or game-performance qualification.
+
+The [rung08a PC control](../outputs/d3d-texture479/REPORT.md) and
+[Xbox comparison](../outputs/d3d-texture478/REPORT.md) now verify an
+enumerated RGB32 texture format, exact unchanged upload bytes, and point-sampled
+colors/orientation in both default and HEL paths. The earlier477 malformed
+floppy prevented sample execution and remains a separate preserved failure.
+Depth testing and alpha blending require their own fixed reference images next.
 
 | Stage | Work | Evidence needed to advance |
 |---|---|---|
