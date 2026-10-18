@@ -1,3 +1,32 @@
+# 526 CLOSED original-context alpha attempt; no preparation/Windows result
+
+525 PUSHED6db7ce52. Read526 REPORT/DESIGN/NEXT/preflight/review-build/package001/
+physical-final/final andactualrecords. Exact542839B407f631524dd5d264e5134a611327b9d
+3f9a6d2d135e94e45e4813c6a10c9a79 is494 except4paths/digest; alloriginal490symbols/code
+exact. Exact486sampleunchanged. OneSITE12:09:14UTC accepted;15dashboardno-report,
+2transporttimeouts overlappingcollection (notboot/crashproof). Noprimary/witness/
+context/refusal/Windowsresultnamespace. Originalpathgraphicsattempt NOTbootfix;
+arithmetic/context/stabilityFALSE. Noabsence=>noentryinference. Noidenticalretry.
+CollectremovedhookFIRST; observer14676intentionallystopped12:11:04UTC, completed
+false/exit4294967295preserved. Collection12:11:31.149346UTC complete.10before4staged
+byteexact,5pairedhivesclean/header/raw,2logsbyteexact0new/6006.Ordinary720p/launcher/
+startupunchanged,noXboxCaccess/fullallocation/whole-diskequality/normalrestartproof.
+163prebuildpins,leased3buildsno warnings,24/26imports;17MODELEDcontrollercases,
+3actualchildlifetimes420retainedcontextnegPASS;62frozeninputs224privatefilesrehash.
+Preservehost001missingparentprecasefailure/002parentsmkdirfreshIDPASS;package001
+nonexistentunusedgraphics_d3d dependencyfailure/002removesonlybaddepwritespackage001
+receiptPASS. Unexecutedmodule-reader importcorrectedtopinned486beforefirstuse.
+ALL81322stage/42358observe/81121collect/build/cold/reviewsCLOSED,nohook/emulator/
+queuedlaunch. Consolelastdashboardduringcollection. Source/pixel/module runtime
+helpersUNEXECUTED because noWindowsoutput.525absent/524strictFALSE/allfailuresretained.
+NEXT527 separatelydesignstandalonenxdkdispatchcontrol: distinguishacceptedFTPfrom
+actualentry usingowneduniquereceipt/checkedEalias/boundedreturn,noWindows/display/
+PCI/EEPROM/rawchanges. Host/parser/controller/transport beforebuild; exactcandidate
+freshunusedemuqualbeforephysical. Notcustomwrapperfix/equivalence.486/496pending.
+C/WSL20GiBguard/noEallocation;13:50reviewonly14UTCclose/report/pause.
+Repositorycheck46230 CLOSED PASS38272files;163prebuildpins reread exact. Final
+stage/commitclosure recorded by Git HEAD; historicaluntrackedfilesuntouched.
+
 # 525 CLOSED physical520 receipt ABSENT; no boot fix
 
 524 PUSHEDb2a11bc3. Read525 REPORT/DESIGN/NEXT/source-review/physical-final/final
