@@ -1,3 +1,30 @@
+# 531 CLOSED: both watched standalone launches reached the application
+
+Manual first/second pair complete; read531 REPORT, final001 and NEXT. First528
+SITE18:23:32UTC after requested cold readiness: user blue/green/dashboard; valid
+begin+entry receipts kernel1.0.4034.1. Second531 SITE18:26:13UTC same110592B XBE,
+path/method, no receipt deletion/reseed or reported intervening reset: user blue,
+red, automatic dashboard return. Exact red API error unknown; consistent with
+CREATE_NEW refusal. Old receipts do not establish second execution; screen does.
+All14 collected paths identical after second, first5hive independent audits and
+both unchanged event logs remain applicable by byte identity. No Windows boot,
+normal Windows restart or deterministic every-other failure established.
+All first4 and second3 supervisors CLOSED; first audit and second closeout PASS.
+No hook, ordinary launcher/startup/720p unchanged, no dashboardC access. Console
+last observed at UnleashX. No next launch queued. Keep all owned artifacts.
+Automation remains PAUSED; fresh manual authorization covers future watched
+Windows comparison. First inspect ordinary launcher used-file lifecycle; fixed
+494/526 diagnostic paths and one-shot hooks would confound an unchanged pair.
+No closed528/531 rerun or recollection. No GPU/game/release/stability promotion.
+# 531 manual first launch issued; watched result pending
+
+User replied "Xbox is ready" to the requested full power-off/on readiness step.
+Read531 readiness001.json; cold-power state is contextual user evidence, not a
+measurement.528 stage completed with exact candidate/readback and protected720p.
+One SITE accepted at18:23:32UTC; supervisor closed. Bounded first observation is
+running. No second request issued. Do not rerun the first stage/launch/observer.
+No temporary startup hook, ordinary launcher unchanged, dashboardC untouched.
+Automation remains PAUSED; this is separately authorized manual testing.
 # 531 MANUAL first/second comparison prepared; cold-power confirmation pending
 
 User explicitly authorized watched first-versus-second launch testing after the

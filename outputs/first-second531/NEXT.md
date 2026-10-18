@@ -1,37 +1,36 @@
-# Continue the manual watched pair
+# Next: a matched Windows first/second comparison
 
-The user authorized first/second testing and is available for hardware resets.
-The cold-power-on readiness question is pending; do not label the initial state
-cold without the user's confirmation. No console connection/stage/launch has
-occurred in531. Automation remains PAUSED; the old14UTC cutoff does not cancel
-this newly authorized manual session or automatically resume scheduled work.
+531's planned standalone pair has consumed both launch ordinals. Never rerun
+528's first controller or531's second request/collector. Preserve used receipts:
+blue/green on first, blue/red and automatic return on second. Read REPORT.md and
+final001.json; old receipts cannot prove second execution. No deterministic
+alternation or Windows reliability claim follows from this pair.
 
-After confirmation, record the user's exact readiness report in a fresh531 JSON
-record. Recheck capacity and package pins, then use528's existing supervise.py
-stage and launch actions with session-only FTP environment. Its package exists,
-candidate bytes are unchanged and physical namespace was previously unused.
-Tell the observer blue12s then green/red20s then requested dashboard return.
-One SITE request20s, no automatic retry. Observe with the bounded existing528
-controller; ask the watcher what appeared and whether any manual reset occurred.
-Collect the first run and run the prepared528 independent cold reviewer with
-the documented WSL libhivex environment. Preserve incomplete/failed evidence.
+The hypothesis concerns Windows. Prepare a fresh matched Windows pair, preferably
+using the installed ordinary launcher unchanged if its diagnostic file lifecycle
+permits consecutive launches. Inspect its exact payload/source and used trace
+behavior before selection. Do not reuse closed526 or494's fixed-output wrapper:
+its diagnostic paths and one-shot runner/hook can stop the second run for reasons
+unrelated to boot reliability. Do not silently clear traces, alter the executable
+or reset state between runs. If instrumentation must change, specify that
+intervention and validate it first.
 
-Do not erase, rename, reseed or overwrite any first-run receipt. Record the first
-watcher answer in first-observation.json with user_report_received, at_dashboard,
-manual_reset_between_launches and the original text. second-launch.py requires
-an observed dashboard and no intervening manual reset for its consecutive pair.
-If recovery required a reset, redesign/label that comparison before proceeding.
+Use distinct host journals for each ordinal with identical executable/path/method
+and paired readback. Obtain a newly reported power-off/on baseline when ready,
+since two standalone apps have run in the current power-on sequence. Record
+Xromwell, Windows logo, desktop, and reset/return method for each. When Windows
+runs, prefer the user's normal Start/Restart and preserve events. A manual reset
+to recover must be recorded and breaks a no-reset pair. Stop after the planned
+two attempts; never retry an uncertain SITE. One20second request and bounded host
+lifetime per ordinal. Another cold pair can test reproducibility if justified.
 
-second-host001 PASSES18 admission cases plus2 modeled accepted/uncertain request
-cases. The actual code saves intent before its only SITE and refuses duplicates.
-Freeze/check the second source and first-run evidence; use a bounded supervisor
-for the planned second request. Prepare a separate second observation/collection
-record; never overwrite or rerun528's first launch/collector. Existing receipt
-bytes are not second-run evidence. Blue then existing-file red may be expected.
-No second call has been issued; second observer/cold evidence is not fabricated.
+Current manual authorization permits watched console testing; no new routine
+launch permission needed. Automation remains PAUSED. Keep protected720p, ordinary
+startup/launcher and dashboardC exclusion. Projected20GiB C/WSL reserve, no hostE
+allocation, historical deletion, backing moves or recovery duplication. No test
+is queued. Last console observation: UnleashX. No temporary hook exists.
 
-Compare actual ordering, screen, return/reset, bytes and events. One pair does
-not establish deterministic alternation, a Windows boot fix or GPU/game support.
-Keep ordinary startup/launcher/720p, no dashboardC access, projected20GiB C/WSL,
-no hostE allocation or historical/backing changes. The next Windows pair needs
-its own diagnostic file lifecycle review before launch.
+After justified Windows launch coverage, matched496 combined scene remains the
+D3D target.490 selected alpha,492 presentation and494 transforms retain their
+scoped physical passes.484 ideal endpoint failure and497/526 absent Windows
+results remain; no GPU/game/release promotion.
