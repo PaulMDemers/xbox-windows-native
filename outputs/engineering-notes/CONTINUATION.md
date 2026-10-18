@@ -1,3 +1,31 @@
+#542 STAGED: stack-preserving pre-PCI checkpoint; readiness pending
+
+Original firstC code builds its frame, copies configuration, sets up the memory
+manager and IDT/PIC/APIC, then CALLs PCI at026004f8. New542 detours thatCALL to
+terminal marker with MOVESP replaced by5NOPs, preserving actual C frame.
+Expected new LED red/amber(maskf5), then intentional blackscreenhold. Earlier
+wrapperamber unchanged. No PCI/Windows execution intended or ordinarybootfix.
+
+12 integrated host cases passed: real C/memcpy/heap/IDT/marker bytes, modeledPIC/
+APIC/SMBus/TSC, bothconfigbranches/APICenabled-disabled and heap/DF negatives.
+All256gates andheap match independent source/map spec, frame/GPR/ESP/flags
+preserved onmarker success except terminalIF. CheckpointESP027fdf84, marker minimum
+027fdf2c. 40marker cases,19controller and6stage/capture cases also pass(77total).
+Actual physical cache/interrupt/mapping behavior remains unqualified.
+
+Package00155pins freezes542839B SHA256
+fcdad678b7e3709692c2a22eed0593697868df31ab3b7bf674a98087e9b17252.
+Unique E:/Applications/XWNBoot542a staged22:21:33UTC with exactreadback; only
+ownedfolder/owner/XBE written. Ordinary720p/startup exactbefore/after; nohook/Caccess.
+Hoststageclosed. NO LAUNCH SENT/QUEUED. Pendinguserquestion asks watch/resetready.
+Elapsedtime isnotreadiness. Read542DESIGN/NEXT and staged-review001 first.
+
+On actualready save ready1 exactreport/context, frozen supervise.py before1 once,
+compareall10files toclosed541after1, then one launch1 only. Watchred/amber versus
+otherLED/screens; ifheld requestpoweroff/on+dashboardconfirmation, collectafter1,
+WSLaudit anddecode thenclose. Neverretryaccepted/uncertainlaunch orreuseclosedrun.
+All earlierattemptsclosed; automationPAUSED. Noownedrunningprocess.
+
 #541 CLOSED: green/amber pre-C indication; clean postreset audit
 
 User reported "Green/Amber flashing and the screen is black", then "Ready" after
