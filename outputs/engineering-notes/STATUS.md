@@ -1,3 +1,28 @@
+# 529 documentation reviewed; 528 observer still pending
+
+528 PUSHED d06b7d90. 529 updates the public graphics guide, roadmap and source
+index only. Read outputs/docs-ladder529/REPORT.md, NEXT.md and review001.json.
+All 140 local links/anchors and 13 builder/source/runner/checker mappings pass.
+Existing 490 physical runtime/closure records confirm matched selected-input
+486 alpha arithmetic already PASSED. 484 ideal endpoints remain FAILED;
+526 produced no Windows results and adds no measurement. Do not erase490 or
+repeat the workload solely because the heartbeat still describes487. Actual
+boot repeatability remains unresolved. 496 PC combined scene PASSED; 497 Xbox
+attempt provided no workload result. Combined Xbox/presentation/performance,
+GPU, games and release remain unqualified. No source/oracle/binary change.
+
+No529 build/VM/console connection/staging/launch/hook. All prior owned processes
+closed; 528 physical package not yet frozen, namespace unstaged, launch unqueued.
+Observer-availability question still unanswered; no reply is not readiness.
+Last actual dashboard observation remains527 paired collection12:32:16UTC.
+Next watched diagnostic follows528/NEXT with fresh baseline/readback and one
+SITE20s; no unsupported screenshot claim. All closed runtimes remain closed.
+C/WSL projected20GiB guard; no E allocation, historical deletion/backing moves
+or repeat compression. 13:50UTC review only; 14UTC close/report/pause automation.
+Repository check82777 CLOSED PASS38417files; document/evidence/source hashes
+reverified, Windows/WSL relevant process inventory empty. Stage/commit next;
+historical untracked files untouched.
+
 # 528 PREPARED visible control; observer pending, no physical launch
 
 527 PUSHEDa4c97eac (evidence3ccba972). Read528 REPORT/DESIGN/NEXT/final-review and

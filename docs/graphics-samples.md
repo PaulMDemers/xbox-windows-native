@@ -26,6 +26,33 @@ D3D presentation on NT5 PC and Xbox. Rung 09a adds six XYZ transform controls
 on both. The combined offscreen scene passes on the PC fixture; its Xbox comparison and game performance remain separate work.
 The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 
+## Start here
+
+These programs run **inside an already working Windows installation**. They do
+not create that installation or boot the Xbox. If you have only component
+builds, follow [build to boot](build-to-boot.md) first. Source and matching
+checkers are indexed in the [sample directory](../src/samples/graphics-ladder/README.md).
+
+| Where | What to do |
+|---|---|
+| Linux/WSL on your PC | Build one sample with `tools/build-graphics-samples.py`; retain its build receipt |
+| Windows 2000 PC control, then the prepared Xbox Windows installation | Copy the sample's `.exe` and `.cmd` together into an owned test directory; run one case with a fresh result prefix |
+| Your PC | Copy back every file with that prefix and run the matching Python checker |
+| Test report | Keep the checker output, original files, executable hash, hardware/runtime identity and screen observations together |
+
+For a first test, start with rungs 00–02 below. For a first D3D rendering test
+after those controls, use [the triangle sample](#offscreen-software-triangle).
+The offscreen samples intentionally show no picture: a brief console window or
+a return to the desktop is not the result. Their saved pixels and reports are.
+Use [windowed D3D presentation](#windowed-d3d-presentation) when testing visible
+rendering; follow the section's cover/move/uncover instructions.
+
+An exit code of zero still requires the host checker. If Windows never starts
+or the result files are missing, record an incomplete launch rather than a
+graphics pass or pixel failure. Keep the ordinary boot configuration and use
+720p on Xbox. The batch wrappers neither install a startup task nor restart
+Windows automatically, and they do not impose a process watchdog.
+
 ## The ladder
 
 | Rung | Sample | Check before advancing | Status |
@@ -682,6 +709,11 @@ qualify the whole system or game compatibility.
 
 ## Offscreen alpha blending
 
+**The public `blend` sample retains the original exact-endpoint checks, which
+failed on the tested PC runtime.** The separate selected-input characterization
+below is a different diagnostic; its pass does not make `graphics_blend.py`
+accept those failed endpoint captures. Keep the original expected pixels.
+
 [blend.c](../src/samples/graphics-ladder/blend.c) is rung 08c. It draws a
 magenta triangle over a green background using the enumerated D3D7 RGB software
 device. Six captures distinguish a clear target, alpha 0, alpha 85, alpha 170,
@@ -745,6 +777,11 @@ completed both default and HEL cases with all sixteen captures matching the
 predeclared486 oracle, followed by a recorded normal restart. This characterizes
 those selected inputs on the RGB software renderer; it does not remove the
 endpoint limitation or qualify windowed D3D presentation, GPU use or games.
+
+The later [526 repeat attempt](../outputs/blend-context526/REPORT.md) produced no
+Windows results. It adds no alpha measurement and leaves boot repeatability
+unresolved; it does not replace the earlier 490 result. A new matched run is
+still needed to assess repeatability after the launch problem is diagnosed.
 
 ## Windowed D3D presentation
 

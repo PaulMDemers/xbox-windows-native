@@ -184,6 +184,22 @@ Both default and HEL paths pass the independent pixel oracle. The matched
 comparison also passes on Xbox in [494](../outputs/d3d-transform494/REPORT.md). Combining
 features into a visible scene remains the next step.
 
-The [495 host oracle](../outputs/scene-oracle495/REPORT.md) defines the next
-combined texture/depth/transform scene and checks deliberately wrong synthetic
-images. It is preparation only; no combined-scene Windows runtime result exists yet.
+The [495 host oracle](../outputs/scene-oracle495/REPORT.md) defines the combined
+texture/depth/transform scene and checks deliberately wrong synthetic images.
+The subsequent [496 Windows 2000 PC control](../outputs/d3d-scene496/REPORT.md)
+passes all five offscreen cases through both default and HEL software paths,
+including unchanged texture bytes and normal restart. The
+[497 Xbox attempt](../outputs/d3d-scene497/REPORT.md) produced no launcher or
+Windows test receipts, so the combined scene remains unqualified on Xbox.
+Visible combined presentation, varying-W interpolation and game performance
+also remain untested.
+
+The next hardware step is to diagnose the launch/evidence gap before repeating
+the combined scene. Preserve the existing 490 alpha, 492 presentation and 494
+transform passes alongside later failed launches. In particular, the
+[526 alpha repeat](../outputs/blend-context526/REPORT.md) produced no Windows
+measurement; it neither establishes a new pixel failure nor erases 490's
+selected-input arithmetic result. The original 484 ideal-endpoint failure
+remains unresolved. After a justified launch control, finish the matched Xbox
+scene, then add combined windowed presentation and bounded resource/performance
+measurements before trying the games.
