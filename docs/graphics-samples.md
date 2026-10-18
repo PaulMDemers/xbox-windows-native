@@ -20,7 +20,9 @@ that software device and passes offscreen clear/triangle pixel checks on both.
 Rung 08a passes owned point-sampled texture controls on NT5 PC and Xbox. Rung 08b
 depth controls pass on NT5 PC and Xbox. Two earlier Xbox launches returned without
 Windows receipts; the later 483 run completed both depth cases and a normal restart.
-Blending, D3D presentation and game performance remain separate work.
+Rung 08c now has matched selected-input alpha arithmetic on NT5 PC and Xbox,
+with the endpoint precision limitation retained. D3D presentation and game
+performance remain separate work.
 The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 
 ## The ladder
@@ -37,7 +39,7 @@ The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 | 07 | Clear and triangle | Offscreen render target, clear, pretransformed colored triangle, independent interior/background pixel checks | RGB software path passes on NT5 PC and Xbox; no presentation/GPU claim |
 | 08a | Point-sampled texture | Enumerated texture format, exact upload/readback, known orientation and interior sampling | Default/HEL RGB software controls pass on NT5 PC and Xbox |
 | 08b | Depth buffer | Enumerated depth surface, both draw orders, depth-disabled and clear-zero controls | Default/HEL RGB software controls pass on NT5 PC and Xbox |
-| 08c | Alpha blending | Transparent, partial, opaque and blending-disabled triangle controls | NT5 PC arithmetic characterized; exact endpoints fail. Xbox attempt produced no Windows result |
+| 08c | Alpha blending | Transparent, partial, opaque and blending-disabled triangle controls | Selected-input arithmetic matches on NT5 PC/Xbox default and HEL; exact ideal endpoints remain failed |
 | 09 | Transforms and scene stability | Rotating textured object, camera/projection, resize/activation handling and repeated resource teardown | Planned |
 | 10 | Small game-like scenes | Scrolling isometric tiles and moving sprites, then a textured room; controls, audio and save/reload | Planned; precedes the actual game acceptance tests |
 
@@ -735,3 +737,8 @@ calculation and from separately truncating each product. It characterizes these
 inputs without changing the original failed oracle or proving the runtime's
 internal implementation. The [Xbox comparison](../outputs/blend-precision487/REPORT.md)
 returned before any Windows test receipts; it provides no alpha qualification.
+The later [490 Xbox comparison](../outputs/context-adapter490/PHYSICAL.md)
+completed both default and HEL cases with all sixteen captures matching the
+predeclared486 oracle, followed by a recorded normal restart. This characterizes
+those selected inputs on the RGB software renderer; it does not remove the
+endpoint limitation or qualify windowed D3D presentation, GPU use or games.

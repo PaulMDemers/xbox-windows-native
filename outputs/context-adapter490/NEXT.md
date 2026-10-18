@@ -1,3 +1,25 @@
+490physical001 is CLOSED. Read PHYSICAL.md and physical-final001.json first.
+The prior host-only plan below has been completed; do not execute it again.
+
+Next NEW491: design and implement windowed D3D7 RGB software presentation,
+combining independently checked D3D render-target bytes with GDI-observed primary
+pixels through cover/move/uncover, clip guards and bounded resource cleanup.
+Use existing DirectDraw present.c and D3D triangle/texture/blend source as references;
+no claim that DirectDraw presentation already qualifies D3D. Predeclare oracle,
+negative controls and actual target imports; test owned Windows2000 PC first.
+Only qualified new PC evidence supports one fresh Xbox trial with owned namespace,
+protected720p/ordinarylauncher, stage readback, temporaryhook and coldclosure.
+No runtime DLL/driver replacement or GPU claim. Do not repeat490 diagnostic solely
+for another boot success; its CPU registers do not explain intermittent failures.
+A safe kernel-specific memory provider/page-walk diagnostic remains separate.
+
+All490processes closed and hookremoved. Newselectedalpha evidence preserves484
+idealendpointfailure,487 noWindows and strictFALSE(Ftdisk49,RemovableStorage102).
+Review dependency failures and actual results without rewriting frozen inputs.
+Continue to14:00UTC cutoff; onlycloseout after13:50UTC. Enear20GiBguard, smallC/WSL.
+
+## Historical pre-launch plan (completed, retained for provenance)
+
 490 host001/full001/build001 are CLOSED. No490 console preparation or launch,
 native runner/controller package, startup hook or physical state change exists.
 Do not rerun consumed IDs or alter their executed sources/capsules.

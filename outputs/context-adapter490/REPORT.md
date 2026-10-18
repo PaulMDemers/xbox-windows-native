@@ -1,3 +1,5 @@
+> Subsequent physical result: see [PHYSICAL.md](PHYSICAL.md). The original host-only report below is retained as its historical scope.
+
 # CPU context adapter490 — compiled, host-qualified; no console launch
 
 The new wrapper adds two read-only CPU captures to exact487: before the original

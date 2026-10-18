@@ -86,7 +86,9 @@ records the observation gap and stops repeated identical boots. The fresh
 [483 Xbox run](../outputs/handoff-witness483/REPORT.md) adds a later handoff
 witness and passes all five depth controls on both software paths, followed by
 normal restart. The witness does not diagnose earlier failures. Alpha blending
-is the next separate image oracle.
+now has a [matched PC/Xbox selected-input characterization](../outputs/context-adapter490/PHYSICAL.md),
+with the exact ideal endpoint failure retained. Windowed D3D presentation is the
+next separate image and GDI-coexistence check.
 
 | Stage | Work | Evidence needed to advance |
 |---|---|---|
@@ -155,7 +157,7 @@ Proposed first acceptance target for **each exact game edition**:
 |---|---|---|
 | Original RollerCoaster Tycoon | Not tested by this milestone | Exact edition/patch, Windows 2000 PC control and actual API dependencies |
 | Original The Sims | Not tested by this milestone | Exact edition/expansions, Windows 2000 PC control and actual API dependencies |
-| Legacy Direct3D support | D3D7 RGB software triangle, texture and depth pass on NT5 PC and Xbox; PC alpha arithmetic is characterized with an endpoint precision limitation | Obtain Xbox alpha evidence, then D3D presentation and bounded resource/performance tests; the latest hardware attempt returned without Windows receipts |
+| Legacy Direct3D support | D3D7 RGB software triangle, texture and depth pass on NT5 PC and Xbox; selected alpha arithmetic matches on both with an endpoint precision limitation | Windowed D3D presentation, then bounded resource/performance tests; intermittent boot failures remain unresolved |
 | Native NV2A acceleration | Unimplemented in the working demo | Windows ownership, submission, synchronization and lifetime proof |
 
 ## Installation work remains part of this goal

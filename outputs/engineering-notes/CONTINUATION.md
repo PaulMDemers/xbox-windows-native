@@ -1,3 +1,44 @@
+# 490 physical closeout reviewed; ready for next sample
+
+Repositorycheck47388 passed37,096files and is CLOSED. Initial49stagedfiles
+byte-exact (git-byte-review003). Allownedprocesses closed; console lastobserved
+atdashboard, hookremoved, noqueuedlaunch. ReadPHYSICAL/NEXT/physical-final001.
+Complete source/evidence is beingcommitted/pushed. ContinuewithNEW491 windowed
+D3D presentation, ownedNT5controlfirst. HeartbeatACTIVEuntil14:00UTC.
+
+# Current: 490 physical context and matched alpha comparison CLOSED
+
+Read outputs/context-adapter490/PHYSICAL.md, NEXT.md, physical-final001.json,
+actual-context001.json, runtime-review002.json and actual records. One accepted
+SITE at05:51:47UTC, dashboardreturn05:53:16UTC; hookremoved FIRST, ordinary
+launcher/startup/720p unchanged, Xbox dashboardC untouched. No furtherlaunchqueued.
+Two arithmetic cases completed/exited0 and all16captures match independent486
+selected-input floor256 model;11loadedmodule records/case exact,11204 actual
+metadata/pixel mutations reject. Preserve484 idealendpointFAIL and487 noWindows.
+New400byteactualCPUcontext joins originalprimary/witness/symbols;2577 negatives.
+Both snapshots show equal CR0/2/3/4 andselectors/GDTR/IDTR; no pagewalk, cache,
+ABA exclusion or earlierfailurecause proof. No ordinary bootstability/GPUclaim.
+NormalWindowsrestart supported byrunner+oneEventLog6006. Fivehives clean before/
+after; strictFALSE includesnewFtdisk49 andRemovableStorageService102. No new
+Applicationrecords/popups thisrun; historicalshutdownlimitation unchanged.
+41collectedfiles,57frozeninputs archived,1591privatefiles hashed atclosure.
+Full002154actualwrappercases withmodeledCPU passed;5241transport negatives.
+Controller17modeleddispatchcases andNT5imports24runner/26sample passed.
+Preservephysicalreview001missinglibhivex processdependency failure beforeoutput;
+new002review suppliedLD_LIBRARY_PATH andpassed. Nohardware retry.
+Allownedtestprocesses CLOSED: full002,runnerbuild,stage23536,observer91315,
+collector19315,module8749,controls50177,coldcloseout1612. NoQEMU/NBD/FUSE running.
+Noownedstartuphook; uservisualreply optional, independentcompletionalreadyrecorded.
+Neverrerun/recollect490physical001 or any closedhost/build/runtime.
+
+NEXT new491 windowedD3D presentation sample withindependentoracle, ownedNT5PC
+control BEFORE uniqueXboxtrial. Existingpresent.c isDirectDraw, notD3Dqualification.
+Keepintermittentbootunresolved; do not repeatidenticaldiagnosticbootsuntil lucky.
+Continueauthorizedworkuntil2026-10-18 14:00UTC, closeoutonlyafter13:50UTC, thenpause
+existingheartbeat. C24107606016bytes,E21499871232bytes at06:01UTC; projected20GiB
+reserve includingWSLbackingC. SmallC/WSLonly, noElargeartifact/backingmoves/deletion.
+Review/exactstage/repositorycheck/commit/push thisclosure before newexperiment.
+
 # 490 repository closeout; overnight work continues
 
 Repository check19000 passed37,049 tracked files and is closed. Initial36 staged
