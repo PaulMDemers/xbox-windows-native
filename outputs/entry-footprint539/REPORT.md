@@ -53,3 +53,25 @@ completed20:34:13UTC and all ten selected files equal retained536 after2. One539
 SITE launch was sent; its bounded host supervisor closed successfully20:34:52UTC.
 The screen observation is pending. No second launch or retry is admitted. No hook
 was installed. Host completion does not establish Windows execution or shutdown.
+
+## Closed result: dashboard return without a watched boot
+
+The user was elsewhere and can confirm only that the console is at the dashboard.
+No Windows desktop, reset path or normal shutdown was observed. The one fresh
+after1 collection completed20:38:49UTC. All ten baseline files are byte-identical;
+all five registry hives pass their checks. Neither Windows event log nor video
+trace changed. There are no new6005/6006 events and no normal-shutdown delta.
+
+All three diagnostic packets are valid and there is no refusal packet. The primary
+preparation packet is byte-identical to both successful536 cases. All recorded
+control registers, flags, segments, descriptor-table pointers, stack and return
+addresses match at corresponding epochs. Only TSC values and preceding LED poll
+counts differ (1155 versus1170/1158). This proves progress through the recorded
+pre-handoff checkpoints, not execution of the restored stack instruction.
+
+The result does not qualify a Windows boot, identify where it stopped, or prove
+that the removed post-stack LED hook was necessary. It remains one unobserved
+return with no persisted Windows activity. No identical retry or second control
+launch was made. Ordinary720p/startup remain exact, no hook was installed and all
+owned supervisors are closed. The console is authenticated at the dashboard.
+See final001.json and NEXT-CLOSED.md; the original NEXT.md is historical.

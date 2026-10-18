@@ -1,3 +1,31 @@
+#539 CLOSED: unobserved dashboard return, no persisted Windows activity
+
+User was elsewhere and confirms only dashboard. observer1 preserves that limit;
+no desktop/boot sequence/normalRestart claim. One launch only. Fresh after1
+completed20:38:49UTC. All10 baseline files byte-identical (including5 clean hives,
+both eventlogs and video trace), no new events or6006 delta. Ordinary720p/startup
+exact. No temporary hook or consoleC access; all539 supervisors closed.
+
+Primary/witness/context packets present and valid; no refusal. Preparation packet
+byte-identical to both successful536 runs. Matching-epoch control registers,
+flags,selectors,tables,stack/returnaddresses identical. OnlyTSC and earlier LED
+polls differ (1155 versus1170/1158). Those snapshots precede the restored stack
+instruction; they do not prove execution of it or locate the failure. No Windows
+success, normalrestart, post-stack cause, or ordinary boot fix established.
+
+Read outputs/entry-footprint539/final001.json, REPORT.md and NEXT-CLOSED.md.
+This runtime CLOSED: never launch/recollect/reparent539; no second/control fallback.
+User's powered dashboard history preserved. Candidate539b remains in its unique
+E folder;539a is host-only. Earlier532 failure/534cold/536success evidence retained.
+
+Next independent work: review the exact interval between the final recorded
+context and Xromwell stack setup and design a bounded observation that separates
+failure before entry from failure after entry. Host-validate any new observer and
+its actual memory/device footprint before a fresh runtime. Do not infer necessity
+of the removed LED hook from this single unobserved result or repeat until lucky.
+Keep long-copy/tail, earlierIO, mapping/cache/interrupt differences distinct.
+No functional patch or D3D/GPU/game/release promotion. Automation remainsPAUSED.
+
 #539 single launch sent; screen observation pending
 
 User confirms Xbox stayed powered at dashboard since536. ready1 saved. Frozen
