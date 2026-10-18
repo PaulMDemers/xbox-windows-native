@@ -1,3 +1,25 @@
+# 504 entry-only XBE static integration complete; never launched
+
+503 PUSHED6a2b10a8. Read outputs/entry-binary504 REPORT/DESIGN/NEXT/build001/
+review001/final-review. New exact499child with byte-identical503 indicator and498
+file gate (namespace/integration only); no old preparation/Windows execution.
+XBE C:/xwn504/build001/default.xbe545088B SHA95a9734048b552fb531cd0c83138f9d7b332c8542573a4f49d5fa385fb0b4ece.
+Entry94aff, filegate94877, completion94b51, failure94bac,data95000. Old8imports
+unchanged, added50/99 at11020/11024, terminator11028. Fullimage independent
+reconstruction82relocations929text320data,6988repaired-checksumnegativesreject.
+38buildinputs55privatefilesrehashed, compilerlogempty. ALL ownedcommandsCLOSED,
+zero xemu processes. No guestfixture/emulator/physical/hook/queuedlaunch. Never
+rerun504build001/review001 or anyclosedruntime. InitialrootSTATUSreadfailed,
+corrected engineering-notes path; no buildfailure. Source/helpercommenterratum503
+retained. Actualkernel/LED/firmwarereturnstillunproved; notboot/D3Dqualification.
+NEXTnew isolated emulatoractualLED/delay/file/return proof with actualloadedcode,
+originalregs/ABI, original_start refusal, tested observer, boundedouterwatchdog,
+allbreakpoints/physicalmodecleanup, dashboardreturn andfullcoldaudit. ThenNEW
+physicalentry-only/nohook/oneSITE20sec.501unknown/487latefailure separate;486alpha/
+496scene pending.720p/ordinarylauncher/startup/XboxC protected. C~23.3GB/E21499871232,
+C/WSL20GiBprojectedguard/noEallocation.13:50reviewonly,14UTCclose/pause.
+Repositorycheck/exactstage/commitpush next.
+
 # 503 repository closeout complete
 
 Repository72372 CLOSED PASS37600 trackedfiles; stage-byte reviewPASS22files.
