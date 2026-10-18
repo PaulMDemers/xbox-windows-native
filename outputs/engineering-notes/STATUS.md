@@ -1,3 +1,26 @@
+# 522 CLOSED host observer integration PASS; no new runtime
+
+521 PUSHED3984075b. Read522 REPORT/DESIGN/NEXT/host001..005/review001..002/final.
+Exact520 NEVERLAUNCHED. Actualstoppedtransaction/ActualCalls/pagewalk/kernel-export/
+cleanup replay:29stops88retained517captures,176transportfailures29mutations.
+Allguest/socket/CPU/APIresponses MODELED, notnewhardware/runtimeproof. Fixtureonly
+changes2loadedheaders(3sizes+digest),initialdata/path;alladdresses/otherbytessame517.
+Trampvalidatesloaded+disk544096/540000/540000 extents.304header/stub/lengthneg,
+113state/stubneg4transportfail12cleanup,7cleanupfail. Actualpacket/chunk/capture
+code16positive11negative7capturepaths,MODELEDsocket.9sources reconstruct517 exact
+withdeclared changes;498decoderbyteexact;88captures4privateoutputs rehashed.
+Review001FAILED WSLpgrepquoting, preserved.002psinventoryPASS/noemulator;noobserver
+orcandidatepatchtoobtainPASS. ALLhost/reviewprocessesCLOSED,nohook/build/prep/launch/
+physical/sharedsourceSDKchange.518lastdashboard/nohook;strictFALSE/failuresretained.
+C22257565696/E21499871232B; unchanged768MiB+20GiBguard FAIL22577152Bshort again.
+521 saved139919360allocatedbytes buthostusage consumedmargin. NEXT523 reviewlarger
+verifiedclosednonbackinglosslessstorage forsubstantialheadroom;neverretry521/force
+system/deletehistory/movebackings/waiveguard. ThenNEW524 exact520runtime using522
+observer+517completeworkflow,explicitfreshIDs/ports/seed/EEPROM/lease/hostcontrols.
+Noold513shift/globalnumericreplace/closedguestparent.486/496physicalD3Dpending.
+13:50UTC reviewonly14UTCclose/report/pause. Repositorycheck87463 CLOSED PASS38123
+files;33stagedfilesbyteexact,128frozeninputs4privatefilesrehash. Commit/pushnext.
+
 # 521 CLOSED lossless host snapshot compression; byte integrity PASS
 
 520 PUSHED3f95d0fb. Read521 REPORT/DESIGN/DESIGN002/DESIGN003/NEXT andactualplans/

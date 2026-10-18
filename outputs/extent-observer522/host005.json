@@ -1,0 +1,139 @@
+{
+  "passed": true,
+  "scope": "actual Remote packet/chunk and trace capture; all socket and guest responses modeled",
+  "physical_access": false,
+  "protocol_positive_cases": 16,
+  "protocol_negative_cases": 11,
+  "capture_cases": [
+    {
+      "physical": false,
+      "length": 17,
+      "injected_failure": null,
+      "raised": false,
+      "events": [
+        "read1"
+      ],
+      "physical_mode_remaining": false,
+      "reads": [
+        {
+          "address": 606208,
+          "bytes": 17,
+          "physical": false,
+          "label": "sample",
+          "private_file": "C:\\xwn522\\transport001\\case000\\000-sample.bin",
+          "sha256": "57a3b20664992c4d7106c75dd850275b288c287b1fd8f200bc01def4bf24e1b9"
+        }
+      ]
+    },
+    {
+      "physical": true,
+      "length": 17,
+      "injected_failure": null,
+      "raised": false,
+      "events": [
+        "Qqemu.PhyMemMode:1",
+        "read1",
+        "Qqemu.PhyMemMode:0"
+      ],
+      "physical_mode_remaining": false,
+      "reads": [
+        {
+          "address": 606208,
+          "bytes": 17,
+          "physical": true,
+          "label": "sample",
+          "private_file": "C:\\xwn522\\transport001\\case001\\000-sample.bin",
+          "sha256": "57a3b20664992c4d7106c75dd850275b288c287b1fd8f200bc01def4bf24e1b9"
+        }
+      ]
+    },
+    {
+      "physical": true,
+      "length": 65537,
+      "injected_failure": null,
+      "raised": false,
+      "events": [
+        "Qqemu.PhyMemMode:1",
+        "read1",
+        "read2",
+        "Qqemu.PhyMemMode:0"
+      ],
+      "physical_mode_remaining": false,
+      "reads": [
+        {
+          "address": 606208,
+          "bytes": 65537,
+          "physical": true,
+          "label": "sample",
+          "private_file": "C:\\xwn522\\transport001\\case002\\000-sample.bin",
+          "sha256": "a873b12a1eef8992e7473fc59b0beb454cc73f0076b7d10ddcdb46066ec8bd1b"
+        }
+      ]
+    },
+    {
+      "physical": true,
+      "length": 65537,
+      "injected_failure": "read1",
+      "raised": true,
+      "events": [
+        "Qqemu.PhyMemMode:1",
+        "read1",
+        "Qqemu.PhyMemMode:0"
+      ],
+      "physical_mode_remaining": false,
+      "reads": []
+    },
+    {
+      "physical": true,
+      "length": 65537,
+      "injected_failure": "read2",
+      "raised": true,
+      "events": [
+        "Qqemu.PhyMemMode:1",
+        "read1",
+        "read2",
+        "Qqemu.PhyMemMode:0"
+      ],
+      "physical_mode_remaining": false,
+      "reads": []
+    },
+    {
+      "physical": true,
+      "length": 17,
+      "injected_failure": "enter",
+      "raised": true,
+      "events": [
+        "Qqemu.PhyMemMode:1"
+      ],
+      "physical_mode_remaining": false,
+      "reads": []
+    },
+    {
+      "physical": true,
+      "length": 17,
+      "injected_failure": "exit",
+      "raised": true,
+      "events": [
+        "Qqemu.PhyMemMode:1",
+        "read1",
+        "Qqemu.PhyMemMode:0"
+      ],
+      "physical_mode_remaining": true,
+      "reads": [
+        {
+          "address": 606208,
+          "bytes": 17,
+          "physical": true,
+          "label": "sample",
+          "private_file": "C:\\xwn522\\transport001\\case006\\000-sample.bin",
+          "sha256": "57a3b20664992c4d7106c75dd850275b288c287b1fd8f200bc01def4bf24e1b9"
+        }
+      ]
+    }
+  ],
+  "source_sha256": {
+    "host005.py": "c92f98f3b2372179c2ccdf3e270dff8bd3bd52f1cdc352b7368fc5edc292652a",
+    "protocol003.py": "2cf8e69f0a59a6a8b664c63f0d33d144021e48f0d0f611b5b36e9c0d8afba7f5",
+    "trace001.py": "d9dba7e052d0b264b8d553696eb07f77d5965f1e46e8bd34087ee26a444e9982"
+  }
+}
