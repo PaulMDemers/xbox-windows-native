@@ -1,3 +1,15 @@
+# Current: watched LED diagnostic returned through its own refusal path
+
+The user saw amber and a black screen, then exit. The saved refusal identifies
+the new first LED marker: it rejected a hardware status outside its accepted
+mask before handing control to Xromwell. This explains this diagnostic exit,
+not the older intermittent startup failures. The raw hardware status was not
+persisted, so the next diagnostic must capture it before changing any predicate.
+
+Original launcher/startup, all five hives, event logs and video trace are
+unchanged; no Windows events were added. The console is back at the dashboard.
+No further launch is queued. See [467 report](../physical-marker467/REPORT.md).
+
 # Current: early boot markers validated in emulator; watched console test next
 
 Both new checkpoints passed an owned emulator run: before the wrapper handoff
