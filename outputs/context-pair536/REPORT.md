@@ -1,38 +1,40 @@
-> Current state: warm case1 reached the desktop and user reports dashboard return
-> after normal Restart. Collection was refused before network access by the host
-> capacity guard. See collection-capacity-failure001.json and ../collection-storage537/REPORT.md.
-> No after1/context/event/hive results yet; no cold case launch. Await freed C space.
+#536 warm/cold instrumented comparison: warm case collected
 
-#536 prepared and staged; no launch yet
+Warm case1 reached the Windows desktop after534 Windows Restart without an
+intervening power cycle. User then reported dashboard return after our normal
+Windows Restart request. Actual after1 collection completed19:28:27UTC,
+October18,2026 (supervisor closed19:28:28UTC). All five hives passed raw and
+independent parser checks; ordinary launcher/startup and720p baseline are exact.
+System event delta includes one6005, one6006, oneFtdisk49 and three Application
+Popup26 records (rundll32 window station shutting down). This confirms a normal
+shutdown record, not an error-free event log or complete filesystem health audit.
 
-Two new recorder images are staged at E:/Applications/XWNBoot536a/default.xbe
-and E:/Applications/XWNBoot536b/default.xbe. Stage completed19:10:30UTC on
-October18,2026, with exact binary/owner readback and protected720p checks.
-The host stage process exited0 and is closed. No Windows startup hook, driver
-change, ordinary launcher change, consoleC access or launch occurred.
+Primary, handoff and context receipts are present and decode without errors;
+no refusal record. Preparation and loader/payload byte checks passed. Both CPU
+snapshots agree on CR0/2/3/4, selectors and descriptor-table registers. They are
+before/after witness IO, before the context packet's own IO and final handoff;
+no pagewalk, descriptor contents, own-close or final-transition proof is claimed.
+Actual Windows execution is supported separately by user and event evidence.
 
-The first readiness question is pending: the user must confirm that the Xbox
-remained at the powered dashboard after534, with no intervening launch or reset,
-and that they can watch. No readiness or launch receipt exists. Do not infer the
-answer from FTP availability. If the history changed, do not launch or relabel it.
+The first collection supervisor failed the unchanged capacity gate before
+creating capture files or doing network IO. It remains preserved. User authorized
+old-build cleanup;538 removed six obsolete negative-test fixture copies, freeing
+6.2GB. A new after1-only supervisor002 collected this still-uncollected run using
+the unchanged frozen controller. No console launch was retried.
 
-Both images reconstruct physically successful494 and original490 exactly except
-four fixed-width owned receipt paths and the section digest. Every instruction,
-payload, symbol address and image size is unchanged. Sources are retained privately
-with namespace substitutions. No compiler, SDK mutation or new guest code was used.
-The independent review inverted exact literal ranges, checked complete binary
-equality and decoded a retained494 context fixture without rerunning that runtime.
+Cold case2 is staged but NOT launched. User has been asked to power off at
+UnleashX for about10seconds/on and report ready; await that answer. Then save
+ready2, supervise before2 and launch2 once. On desktop request normal Restart;
+collect after2, audit2 and decode2, compare actual evidence. No third launch.
+No startup hook, ordinary driver/launcher patch or dashboardC access.
 
-Twenty-nine modeled admission/launch/receipt cases and six modeled stage/capture
-cases passed. These include accepted/uncertain single-request behavior, duplicate
-refusal, mismatched inputs, stale receipts, partial writes, readback corruption and
-listed-but-unreadable receipts. The actual supervisor is byte-equivalent to534
-except namespace and a stage timeout entry. This is reused host-lifetime coverage,
-not newly repeated lifetime testing. All package pins rehashed after staging.
+This warm instrumented boot succeeded, so it does not reproduce ordinary532's
+warm failure. Added recorder code/layout/IO/timing prevents treating it as a
+fix or conclusive test of the ordinary launcher. Preserve warm532 success/fail/
+success and cold534 success/success. No GPU/game/release promotion.
 
-The proposed pair measures warm-after-Windows then cold-after-power-cycle CPU and
-preparation records. It adds the known490 instrumentation and IO and therefore
-cannot by itself qualify the original ordinary launcher. Missing records do not
-prove no dispatch; CPU records do not prove final handoff or device state. Keep
-all532/533/534 observations and the prior failures. No boot fix or D3D promotion.
-Read DESIGN.md and NEXT.md for exact admission, collection and stop conditions.
+Preparation: both images exactly reconstruct494/490 except four fixed-width
+receipt paths and section digest.29 modeled admission/launch/receipt checks and
+six modeled stage/capture checks passed; full pins and readback were verified.
+Read DESIGN.md and NEXT.md with this current report; their frozen preparation
+instructions predate the preserved capacity-refusal/new-supervisor recovery.

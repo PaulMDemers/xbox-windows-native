@@ -1,3 +1,28 @@
+#538 cleanup complete;536 warm collected, awaiting cold readiness
+
+User explicitly authorized old-build cleanup.538 removed six obsolete generated
+negative-test QCOW2 fixtures only (bootvideo/mmcomplete/processinit bad HAL/kernel).
+Measured C gain6,200,553,472B; after27,628,158,976B free. Exact hashes, closure
+records, dependency scan and deletion receipt in outputs/build-cleanup538.
+Recovery/releases/source/current inputs and all historical test outcomes remain.
+Broad WSL find terminated; targeted23 image scan passed;1543 hostheaders checked.
+No active dependent disk found. No emulator active or disk backing-volume change.
+
+536 after1 completed through NEW after1-only supervisor002, closedexit0 at
+19:28:28UTC. Failed original supervisor remains. No console relaunch.
+audit1:all5hivesclean, ordinary720p/startupexact, new6006delta1,Ft49=1,popup26=3.
+decoded1:primary/handoff/context valid, refusalabsent, preparationverified.
+Snapshots are pre/postwitnessIO, not finalhandoff/pagewalkproof. Warm instrumented
+success does not reproduce ordinary532 failure or establish a boot fix.
+
+Pending user question: poweroff atUnleashX about10seconds/on and reportready for
+coldcase2. DO NOT infer readiness. Once answered save536ready2, supervisebefore2
+andlaunch2 once (frozen supervisor001 has unused case2 actions). If desktop,
+request normal WindowsRestart, collectafter2, audit2/decode2 andcompare. No thirdrun.
+Console last userconfirmed dashboard; nohook installed; allhostprocessesclosed.
+Automation remainsPAUSED. No functionalpatch, GPU/gamepromotion or consoleCaccess.
+See536 REPORT.md for current workflow; frozen NEXT predates capacity recovery.
+
 #536 warm run returned to dashboard; collection BLOCKED by host capacity
 
 User "It’s back on the dash" after requested normal Windows Restart; observer1
