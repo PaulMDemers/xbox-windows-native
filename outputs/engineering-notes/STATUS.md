@@ -1,3 +1,14 @@
+# Latest: corrected diagnostic booted Windows and shut down normally
+
+472 is closed. The user observed the desktop and dashboard return; saved loader
+preparation and fresh Windows startup/shutdown events corroborate this cycle.
+Five registry hives pass integrity checks. Original launcher/startup and720p
+remain unchanged. Strict qualification remains false: Ftdisk49, WindowsF/Srv2013
+and two rundll32 shutdown popups are preserved. WindowsF historically maps to
+protected dashboardC; no cleanup there. No new D3D capability or repeat-boot
+stability claim. Next is a fresh useful D3D inventory using the corrected marker,
+with its own reviewed controller and evidence. No new launch is queued.
+
 Latest user observation472: Windows is at the desktop. Normal Windows restart requested; await dashboard return then collect. User LED not reported. No second launch.
 
 # Latest: busy-state correction passed emulator; physical observation pending

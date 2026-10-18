@@ -1,5 +1,9 @@
 # Next
 
-The user confirmed Windows reached the desktop and has been asked for a normal Start/Shut Down/Restart. Await dashboard return. Then run physical.py collect with the existing session FTP credentials, cold-review001.py under the offline hive runtime, and closeout001.py. Compare original boot/startup, five hives, two event logs and video trace against captured before files. Record any manual recovery distinctly.
+472 is closed. Do not rerun/recollect this diagnostic or any old closed case. Keep the working launcher, startup, drivers and720p unchanged; console C remains excluded.
 
-Do not repeat stage/launch/observe or rerun any closed case. No automatic Windows restart was installed. Missing refusal alone does not prove either marker completed; the user desktop observation is a separate evidence class. Historical intermittent boot and D3D remain unresolved. Finalize continuation/results and commit the cold evidence before another experiment.
+The corrected marker can now support a fresh D3D inventory attempt that also records boot progress. Review the latest physical inventory source/receipt status first, create a fresh namespace and bounded workload/normal-restart protocol, and test the combined controller before a new launch. Do not spend another boot repeating preparation-only evidence without a new discriminator or useful workload.
+
+The original intermittent boot failure remains unresolved: one success is not a stability qualification. Preserve Ftdisk49, WindowsF/Srv2013 and both shutdown popups. For popup diagnosis, correlate actual pending device setup and command lines; do not infer cause from the event text or suppress events. A full FATX rescan is a separate operation;463 remains the latest E allocation check.
+
+455 PC inventory exposed RGB software emulation, not a hardware D3D device. Physical inventory, actual device creation and an offscreen clear/triangle with independent pixels remain separate milestones. No native GPU or game-performance claim follows from this boot.

@@ -1,3 +1,35 @@
+# Current:472 CLOSED; observed Windows boot and selected cold audit pass, strict FALSE
+
+Read outputs/physical-busy472 REPORT/NEXT/final-review/event-review001,
+collection001/cold-review001 and actual records. Prior pushed74cc4d6d.
+The user confirmed Windows desktop, then dashboard return after normal restart.
+Collection6382 closed. One physical launch only; NEVERrerun/recollect472 or
+E:/Applications/XWNBoot471a. No next launch queued. No consoleC access.
+
+Actual176B phase6 primary verifies payload/high/low copies; refusal absent.
+Machine-captured physical success-marker records are unavailable, actual busy
+statuses/timing UNKNOWN. Desktop observation and fresh6009/6005/6006 separately
+support boot/normalshutdown. New system records595..602:Ft49,6009,6005,Tcpip4201,
+Srv2013WindowsF, TWO ApplicationPopup26 rundll32 DLLinitializationfailed because
+windowstationisshuttingdown,6006. Zero new app events. StrictsystemFALSE.
+HistoricalWindowsF mapsdashboardC: do not clean/probe it; warningisnotdashboardF.
+Popupinitiator/commandunknown. No event suppression or gate waiver.
+Fivehivesclean/header/rawagreement; changedbytes expected Windowsactivity,
+NOTbefore/afteridentical. ExistingSOFTWAREDRMtype1004typedlimitation retained.
+Original6240launcher/da47startup/video trace/candidate/owner exact,720p verified.
+23before/aftercapturesverified,decodedprivateevents preserved,176actualprimary
+truncationsrejected. PrivateC:/xwn472/physical001. No fullFATXscan/newD3Dworkload.
+463remainslatestfullEallocationcheck. NoSDK/driver/normalbootchanges.
+
+Next review latest physical D3D inventory/receipt status and prepare a fresh
+useful workload with corrected471 markers and bounded restart/collection. Test
+combined controller before launch. Do not repeat preparation-only boots without
+new discriminator. One success doesnotfix historicintermittency orqualify games.
+455PCinventoryRGBsoftwareonly; physicalinventory/devicecreation/offscreenpixels
+remainpending. Existing472handoff001/pendingobservations keptasdatedhistory.
+Allownedprocessesclosed; no currentguest/tracer/build. Keep20GiBprojectedguard,
+newartifactsonC; E nearthreshold. No offloads/deletes/backingmoves.
+
 Latest user observation472: Windows is at the desktop. Normal Windows restart requested; await dashboard return then collect. User LED not reported. No second launch.
 
 # Current:471 emulator handoff PASS;472 physical launched, awaiting screen/return
