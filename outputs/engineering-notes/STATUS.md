@@ -1,3 +1,26 @@
+# 520 CLOSED extent candidate built/reviewed; NEVERLAUNCHED
+
+519 PUSHED02746a1d. Read520 REPORT/DESIGN/NEXT/host001/build001/review001/final-review.
+C:/xwn520/build001/default.xbe544096B SHA256
+73b3623af2694d3c803f70f49fc9c8c072df54a7010d3238358cf6576589ca13.
+Exact516child: remove992tail,3lengthfields+digest,5fresh520paths;roundedend95000.
+929codebytes/tramp11100->94aff/allsymbols395relocs/addresses/imports/TLS/payloadsame.
+9sources reconstruct516 namespace-only. PinnedGNUbuildlease; inheritedELFRWXwarning
+retainedexact,finalXBEflags7unchanged. Host5529byte+6length+5namespace negatives;
+actualindependentinverse1461mutations. No host/build/reviewfailures.46inputs18private
+filesexact. ALLhost62494/build/review/finalCLOSED;zeroownedemulator/QEMU.
+No emulatorprep/physical/Windowshook/deploy/sharedsource/SDKchange;no launchqueued.
+Existing768MiBprepguard FAILS. NEXT521 capacity review: potentially losslessNTFS
+compression ONLY exactverifiedCclosedphysical before/after snapshots501/508/514/518
+(~83.5MB);preservepath/bytes,joinhashes/ownership/attrs,explicitlist/prepostreadback.
+No historicaldeletion/backingchainmove/compression/firmware/SDK/recovery256change.
+No compressionperformed520. Re-establishactualfree/projected20GiBguard unchanged.
+ThenNEW522 exact520observer:544096headerlen,3sizefields,freshnamespace,alladdresses
+same516. Useactual517fixture,NOold513datashift;fullhosttransport/call/pagewalkproof
+BEFOREfreshunused466fixture/EEPROM/lease. No globalnumericreplace/decoderchanges.
+518receiptabsent/517strictFALSE/TLSunknown preserved;486/496physicalD3Dpending.
+13:50UTC reviewonly14UTCclose/report/pause. Repositorycheck20777 CLOSED PASS38066files; exactstage/commitnext.
+
 # 519 CLOSED static extent contract PASS; no candidate saved/runtime
 
 518 PUSHEDbe62d2fc,physical516receiptabsent. Read519 REPORT/DESIGN/NEXT/review001/
