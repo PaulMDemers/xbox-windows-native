@@ -1,3 +1,25 @@
+# 515 CLOSED static data-layout review PASS; no build/runtime
+
+514 PUSHEDed241d1b. Read515 REPORT/DESIGN/NEXT/review004/final-review andactual
+records. Exact510 object reconstructs fulltext/data395relocations byteexact.
+72code+2internaldata refs allaccounted, independentbyte/opcodeinventory;49direct
+edgesunchanged. Existing1000bytezero gap94c18..95000 fits320bytes94c20..94d60.
+SyntheticHOSTimage only:entry/imports/extents/old95000tailunchanged;5822mutations
+and10invalidbases reject. No newinstructions executed/no candidateXBE saved.
+494actual400bytecontext rehashed/redecoded joinedELF:historical94000writes/code,
+NOTcurrentmapping/exact94c20proof.513old95000mapping isEMUONLY;514physicalreceipt
+absent stillunknownentry/cause;optionalLEDreplypending. No paging/interruptfix.
+Preserve515review001WindowsWSLpathfailure,002rawobjdumpmodefailure,003renumbered
+historicalJSONpathfailure;004onlyharnesscorrections. No rerunoldruntime/review.
+34inputs9privatefilesverified,pinnedobjdump;session21562CLOSED/allownedclosed.
+No physical/emulator/build/hook/sharedsource/SDKchange;ordinary720p/XboxCuntouched.
+NEXT516 newexact510child data94c20/freshnamespace,retainedtail/extents. Hosttest
+transformationBEFOREbuild,then independentactualbyte/reloc/controlflow review.
+Fullactual516observerhosttests inclnamespace/headerform beforefreshfixture.
+No identical510retry; no launchqueued. 486/496D3D pending,allfailures/Ft49retained.
+C22609686528/E21499871232B;20GiBC/WSLprojectedguard,noEallocation.
+13:50UTCreviewonly14UTCclose/pause. Repositorycheck30403CLOSED PASS; exactstage/commitnext.
+
 # 514 CLOSED physical low-entry receipt absent; no Windows result
 
 513 PUSHED04503b13 scopedemulatorPASS/strictFALSE. Read514 REPORT/DESIGN/NEXT,
