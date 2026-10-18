@@ -41,3 +41,11 @@ A matching observation would support reaching this boundary in this instrumented
 run. It would not attest HLT/both marker statuses, explain earlier failures, or
 establish ordinary-boot reliability. The automation remains paused; no Windows,
 D3D, GPU, game or release qualification is claimed. See DESIGN.md and NEXT.md.
+
+## Single watched launch sent
+
+The user replied "Proceed" to the staged diagnostic awaiting watch/reset readiness.
+Fresh before1 completed22:25:07UTC and all10 files match closed541after1. One SITE
+request was accepted22:25:23UTC; the launch supervisor closed without timeout or
+retry. Exact frontLED/screen observation is pending. No console outcome or
+Windows execution is inferred. No second launch, startup hook or XboxC access.

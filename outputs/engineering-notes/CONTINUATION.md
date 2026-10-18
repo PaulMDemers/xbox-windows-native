@@ -1,3 +1,24 @@
+#542 LAUNCHED once: pre-PCI LED/screen observation pending
+
+User "Proceed" accepted as watch/reset readiness in context; ready1 preserves
+report. Fresh before1 completed22:25:07UTC; all10files equal closed541after1.
+One SITE request accepted22:25:23UTC, exact reply/time in launch1.json.
+Launch supervisor closed without timeout/retry. No second/controllaunch allowed.
+
+Candidate542 preserves active C stack and deliberately holds before PCI call.
+Pending userquestion: frontLED alternating red/amber versus otherpattern, screen
+blackhold versus dashboardreturn; leave as-is until report. Actualconsole state
+UNKNOWN pending observation. Matchingcolor supports thisrun checkpointarrival,
+not HLT/status/physicalinterrupt correctness or historicalordinaryboot diagnosis.
+No Windowsboot intended. Neverinfer consolecompletion from hostprocess exit.
+
+On observation save led1 exactly. Ifheld requestmanualpoweroff/on and dashboard
+confirmation, then save observer1 distinguishing manualreset from WindowsRestart.
+Only after confirmation run frozen supervise.py after1 once, WSL audit.py1 and
+Windows decode_actual.py1. No hookinstalled, XboxC untouched. Read542DESIGN/NEXT,
+launch1 and actualrecords before continuing. No relaunch/recollection ofclosedruns.
+Ordinary720p/startup exactprelaunch. Hostsupervisorsclosed; automationPAUSED.
+
 #542 STAGED: stack-preserving pre-PCI checkpoint; readiness pending
 
 Original firstC code builds its frame, copies configuration, sets up the memory
