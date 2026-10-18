@@ -1,3 +1,48 @@
+# 501 repository closeout complete
+
+Repository10041 CLOSED PASS37537 trackedfiles; initial56stagedfiles byteexact.
+AllownedprocessesCLOSED, hookremoved, consolelastobservedatdashboard. Noqueuedlaunch.
+Read501REPORT/NEXT/final-review; physicalqualificationFALSE/all5receiptsabsent.
+Currenttime08:33UTC, before14UTCcutoff; continuewithnewisolatedfirstfileboundary
+review, notanotheridenticalphysicalboot. Commit/push now; verifyHEAD/upstream.
+# 501 CLOSED: no early entry or Windows receipt; no hook remains
+
+500PUSHED407ac08d. Readentry-scene501 REPORT/DESIGN/NEXT/final-review andactualrecords.
+OneSITE08:20:02.680UTC reply200;84dashboardobservations through08:28:24. Five native
+receipts absent/noWindowsnamespace. MissingentrydoesNOTprovenoentry; firstfilecall
+unobserved. Entry/context/Windows/scene/normalrestart/strictqualificationFALSE.
+HookremovedFIRST;15filespairedcold,10before+4stagedexact,5hivesPASS,eventsidentical
+zero6006delta.58frozeninputs651privatefilesrehashed. AllownedprocessesCLOSED:
+stage49767,observer81207,collect19205,cold62803; four supervisorchildrenabsent.
+NoQEMU/NBD/FUSE; noqueuedlaunch. Screenquestionpending/historyunknown,notpermission.
+501runnercompiled101prebuildpinsunchanged;40actualcontrollerpaths modeledFTP/etc,
+3actualsupervisorchildrenclosed. entry-host001offlinefixture failurepreserved;
+002fixesfixtureonly. Exact499XBE22d3a922... nowCONSUMED, NEVERrelaunch/recollect501.
+496PCscenePASSstillseparate. No ordinarylauncher/SDK/driver/720pchange;XboxCuntouched.
+Nextactualkernel/loader/firstfilecontract review andnewownedisolatedemulatorprobe
+beforeanynewphysicalcandidate; noanothernamespace-onlyretry. SeeNEXTrequirements.
+Preserve475/481phase6failures,487latewitness,458manualfailure asdistinctevidence.
+C23712182272B,E21499871232B,20GiBreserve; Eonly~25MBmargin. Cutoff14UTC/13:50closeout.
+Repositorycheck/byteexactstage/commitpushnext. NoattemptcauseorGPU/gamepromotion.
+# 501 one physical request accepted; bounded observer ACTIVE
+
+Stage49767 CLOSED verified. SITE08:20:02.680UTC reply200 on unused499XBE in
+XWNBoot499a. New501 hook/runner installed; source58pins frozen,720p protected.
+Observer81207 ACTIVE (supervisor PID2820 child), inner486s deadline. Dashboard
+reachable but no entry/report so far. User screenquestionasked, replypending.
+Never repeat acceptedrequest. Onreturn collect removesownedhookFIRST; preserve
+allfive receipts evenabsent/partial, beforeafterfiles/hives/events. NoWindows/D3D
+claim yet. No otherexperimentqueued. Hostentry001fixturefailure retained;002PASS.
+# 501 fresh early-entry + bounded scene stage starting
+
+500 PUSHED407ac08d. New outputs/entry-scene501 package freezes58 inputs,
+unused499XBE22d3a922..., namespace-only runnerbf0079ef..., exact496sample7cbf053f.
+40actualdispatcher hostpathsPASS withFTP/baseline/timeMODELED;3actual supervisor
+childrenCLOSED. Entry-host001failed dueofflinefixture appliedduringlaunch;002fix
+scopeonly andpasses23cases. No source/SDKfunctionalpatch. New one-shot hook501,
+uniqueunusedXWNBoot499a, existingdemo251ticket. Stage viaownedsupervisor starting;
+inspectsupervisor-stage/physical001-stage before nextaction. No launchyet.
+C23724048384B,E21499871232B;64MiBprojectedCguardPASS. Deadline14UTC/13:50closeout.
 # 500 repository closeout complete; autonomous-return kit is next
 
 Repository60277 CLOSED PASS37481 trackedfiles. AllownedprocessesCLOSED.
