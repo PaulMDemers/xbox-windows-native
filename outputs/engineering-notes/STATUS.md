@@ -1,3 +1,30 @@
+#540 CLOSED: expected LED/hold observed; manual reset and cold audit complete
+
+User observed flashingred/green on held blackscreen, then repliedReady after
+requestedpoweroff/on toUnleashX. Exact reports in led1/observer1. Fresh after1
+completed21:23:50UTC. All10 baseline files byte-identical, all5hivesclean, no new
+Windows events/6006delta orvideo-trace change. Primary/witness/context valid;
+no refusal. Ordinary720p/startup exact. No hook/consoleCaccess, allsupervisorsclosed.
+
+Primary record equals both successful536 records; matching-epochCPU/segments/
+tables/stack/return values identical. OnlyTSC and preceding markerpolls differ
+(1168 versus1170/1158). UserLED/blackhold matches intendedpoststackendpoint and
+supportscheckpointarrival in THIS instrumentedrun. It does not independently
+proveHLT/bothmarkerstatuses, exclude anotherLEDsource, or diagnose539/ordinary532.
+No Windowsboot intended/observed. Userreset is not normalWindowsRestart evidence.
+
+Read outputs/stack-stop540/final001.json, REPORT.md and NEXT-CLOSED.md.
+One540launch only; CLOSED, neverretry/recollect/reparent. Candidate remains unique
+E:/Applications/XWNBoot540a; no queued launch or ownedrunningprocess. Dashboard
+userconfirmed and authenticated after manualpowercycle. AutomationPAUSED.
+
+Next independent source review: exact Xromwell stack-setup-to-first-visible-output
+path, especially BSS/IDT/cache setup and firstC entry. Design a later bounded
+checkpoint with a distinctive indicator to reduce red/green-source ambiguity;
+prove exact bytes/memoryaccess and hostfailurepaths before a new unique runtime.
+Keep instrumentation-inducedIO/delay versus originalboot explicit. No speculative
+functionaldriver/reset/firmware patch or Windows/D3D/GPU/game/release promotion.
+
 #540 expected red/green LED observed; manual reset requested
 
 User reports red/green flashing and screen still black. led1.json preserves exact

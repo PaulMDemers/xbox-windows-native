@@ -63,3 +63,29 @@ independently attest execution of HLT, both marker statuses, or exclude another
 source of a red/green indication. No Windows execution or539 cause is established.
 Power off/on and dashboard confirmation were requested; reset completion and cold
 collection are pending. No second launch will be made.
+
+## Closed after manual power cycle
+
+The user confirmed readiness at UnleashX after the requested power off/on. Fresh
+paired collection completed21:23:50UTC. All ten baseline files are byte-identical,
+five registry hives pass their independent checks, and both Windows event logs
+and video trace are unchanged. There are no new Windows events or6006 delta.
+The manual reset is recorded separately; no normal Windows restart is claimed.
+
+Primary/witness/context records are valid and no refusal packet is present. The
+primary bytes equal both successful536 cases. All matching-epoch CPU context
+values match; only timestamps and earlier marker polling counts differ (1168
+versus1170/1158). These packets remain pre-handoff evidence, not post-stack logs.
+
+Combined with the user's flashing red/green and held black screen, this is
+consistent with the intended post-stack checkpoint/hold. It supports arrival
+there for this instrumented run, without independently proving HLT or excluding
+another source of the same LED pattern. It does not identify539's stopping point
+or establish an ordinary-boot fix. No Windows or graphics workload was intended.
+
+All owned supervisors closed without timeout/fallback. Ordinary launcher/startup
+and protected720p are exact; no hook or Xbox C access. One launch only; the run
+is now closed and cannot be relaunched/recollected/reused as a runtime parent.
+The console is authenticated at UnleashX after the user's manual power cycle.
+See final001.json and NEXT-CLOSED.md; earlier staging/launch instructions are
+historical. The paused automation remains paused.
