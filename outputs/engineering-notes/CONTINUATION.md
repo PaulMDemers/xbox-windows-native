@@ -1,3 +1,34 @@
+# 508 CLOSED physical entry receipt absent; no Windows launch
+
+507 PUSHEDb91e0442 remains emulator-onlyPASS/strictFALSE. Read508 REPORT/DESIGN/NEXT,
+package/source-review/physical-final/final-review andactualrecords. OneSITEaccepted
+09:29:08UTC exact504XBE95a97340... atunusedphysicalXWNBoot504a; boundedobservation
+16dashboardobservations, entryabsent; coldcollection09:31:44 all6receiptsabsent.
+Noabsence=>noentry inference. UserLEDquestionpending, noAPIstatus/close/Windowsproof.
+10beforefiles+2stagedfiles unchanged;5hivepairs raw/headerPASS,2eventlogs byteexact,
+0newvalidatedrecords/6006delta. No whole-disk/fullphysicalallocationaudit. No hook/
+Windowsrunner; ordinarylauncher/startup/720p protected, XboxC untouched.29actual
+controller paths withFTP/baseline/timeMODELED,3actualsupervisorchildrenPASS;41frozen
+inputs566privatefilesverified. ALL sessions35348/97968/62150/59670CLOSED, noemulator,
+noqueuedlaunch; physicaldashboardreachableatcollection. No repeatedlaunch/reset.
+NEXTnewindependentload/import/entrycontextreview againstactualsuccessful483/494/
+ordinarywrapper andphysicalkernelidentity, NOTanothernamespace-onlyboot. Read508NEXT.
+No functionalpaging/interrupt/driverpatch justified. 501/487/486/496 scopes retained.
+C23733116928/E21499871232B, noEallocation;13:50reviewonly14UTCclose/pause.
+Repositorycheck52437 CLOSED PASS37733files; exactstagedbytes verified. Commit/push next.
+
+# 508 physical entry-only observation ACTIVE
+
+507 PUSHEDb91e0442 CLOSED. New508 controller29modeledFTP/time/baseline paths plus
+3actualsupervisorchildlifetimes PASS. Exact504XBE95a97340... staged/readback at
+unused E:/Applications/XWNBoot504a; noWindowsrunner/hook. OneSITE accepted
+09:29:08UTC; shortboundedobservation running session97968, no secondlaunch.
+Stage35348 CLOSED; ordinarylauncher/startup/protected720p unchanged, XboxCofflimits.
+Read508DESIGN/package/source-review/actualrecords. PendinguserLED/screenquestion;
+unknown ifunanswered. Collect pairedcoldhives/events/protectedfiles afterobservation.
+No receiptabsence=>noentry inference. Cprojected64MiBguardPASS,noEallocation.
+13:50reviewonly14UTCclose/pause. Neverrerunoldclosedcase.
+
 # 507 CLOSED scoped actual entry/return PASS, strict disk FALSE
 
 506 PUSHED6e8497ff. Read outputs/entry-return507 REPORT/DESIGN/NEXT/final-review,
