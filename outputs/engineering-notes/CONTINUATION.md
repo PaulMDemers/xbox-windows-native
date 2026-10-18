@@ -1,3 +1,36 @@
+# 503 repository closeout complete
+
+Repository72372 CLOSED PASS37600 trackedfiles; stage-byte reviewPASS22files.
+AllownedprocessesCLOSED, nohook/noqueuedlaunch.503HOSTONLY; readREPORT/NEXT.
+Exact499 thunk sparebytes11020..1107f verifiedzero; slots50/99 andterminatorfit
+before11080metadata. No XBE modified. CheckGitHEAD/upstreamforpublication.
+
+# 503 HOST-ONLY entry indicator complete; no console launch
+
+502 PUSHED f4f47417. Read outputs/entry-indicator503 REPORT/DESIGN/NEXT,host001,
+kernel-identity001,review001,final-review. Proposed kernel-API amber-before-file/
+green-after-state7/automatic-mode-once/firmware-return entry-only adapter.293actual
+i386hostcases+293reentriesPASS:199inherited498cases incl128flagcases +94indicator
+failurecombinations. AllSMBus/delay/file/firmware effects MODELED; no XBE/guestprep/
+emulator/physical/SDK/sharedchange. Exact498gate/decoder/filemodelprefix retained.
+214productioninstructions no rawI/O/CLI/STI; originalentryregsflags preserved.
+194complete receipts decode99partialreject,893privatefiles9sources4tools8identity
+inputsrehashed. Internalhelpercomment sayscdecl butactual ret8 callee-cleanup is
+exercised; frozencommenterratumrecorded. AllownedprocessesCLOSED incl99426.
+Historicalphysical307 kernel1.0.4034.1 size623712 timestamp1004048809 differsactual502
+emulatorkernel636160/1023192752; allneededordinalsavailable, no ABIdefectproved.
+Oldprivate307DpathnotfoundincheckedC/Earchives; retainedmetadataonly, nofreshprivate
+rehash/disassemblyclaim. Do NOT move470rawSMBus/CLI markerintoactiveearlykernel.
+NEXTnewexact499child entry-onlyXBE with2newimportslots50/99 inverifiedsparearea,
+independentlyresolvedallrelocations/headers/modifiedbytes andnegativecontrols,
+thenfreshisolatedactualAPI emulatorproof before NEWphysical controller. Never
+rerunclosedcases/503host001. Kernelcallsmayblock; controllerouterboundrequired,
+notfake2sdeadline. NoWindowsstartuphook orphysicalrequestqueued.501/497failure
+stillunexplained;487latehandoffseparate.720p/ordinarylauncher/startupprotected,
+XboxCofflimits/Ft49popups/alloldfailurespreserved. Then486alpha/496scene ladder.
+C~23.4GBdecimal,E21499871232B; projected20GiBguard inclWSL; no new E allocation.
+Deadline14UTC;13:50reviewonly. Repositorycheck/stageexact/commitpush next.
+
 # 502 repository closeout complete
 
 Repository30098 CLOSED PASS37578 trackedfiles; exact staged-byte check PASS.

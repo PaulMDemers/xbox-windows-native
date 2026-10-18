@@ -1,0 +1,98 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "historical_physical_kernel": {
+    "version": "1.0.4034.1",
+    "timestamp": 1004048809,
+    "size": 623712,
+    "capture_sha256": "717482bc649804080820f05723fce6cc8b114f6ca95d134c94d9d0ed1895083b",
+    "missing_pages": 106
+  },
+  "actual502_kernel": {
+    "base": 2147549184,
+    "size": 636160,
+    "timestamp": 1023192752,
+    "export_base": 1,
+    "export_count": 366
+  },
+  "identities_differ": true,
+  "exports": [
+    {
+      "name": "HalReturnToFirmware",
+      "ordinal": 49,
+      "historical_physical_address": 2147575245,
+      "actual502_emulator_address": 2147570329
+    },
+    {
+      "name": "HalWriteSMBusValue",
+      "ordinal": 50,
+      "historical_physical_address": 2147572323,
+      "actual502_emulator_address": 2147567395
+    },
+    {
+      "name": "KeDelayExecutionThread",
+      "ordinal": 99,
+      "historical_physical_address": 2147593338,
+      "actual502_emulator_address": 2147588106
+    },
+    {
+      "name": "NtClose",
+      "ordinal": 187,
+      "historical_physical_address": 2147621338,
+      "actual502_emulator_address": 2147616406
+    },
+    {
+      "name": "NtCreateFile",
+      "ordinal": 190,
+      "historical_physical_address": 2147581064,
+      "actual502_emulator_address": 2147576141
+    },
+    {
+      "name": "NtFlushBuffersFile",
+      "ordinal": 198,
+      "historical_physical_address": 2147581407,
+      "actual502_emulator_address": 2147576484
+    },
+    {
+      "name": "NtWriteFile",
+      "ordinal": 236,
+      "historical_physical_address": 2147584867,
+      "actual502_emulator_address": 2147579944
+    },
+    {
+      "name": "XboxKrnlVersion",
+      "ordinal": 324,
+      "historical_physical_address": 2147551728,
+      "actual502_emulator_address": 2147551760
+    }
+  ],
+  "pins": {
+    "outputs\\hd-timing-capture307\\kernel-review001.json": "11dfb32910b1a4254d5e633205c5b19ae16a7e37136e7f05da1f467ed460ab62",
+    "outputs\\entry-kernel502\\emu001\\trace.json": "52db1be1c474a840f95f1ec9b7bfab11146c744ac23e42b19274b606247db405",
+    "outputs\\hd-timing-capture307\\physical001\\hd307.txt": "38d1ca6bc280ee0d184892d9f6bfccf4a1d14e4c9cb7139cffb1afc4a3fd9df5",
+    "outputs\\native-windows-hardware-probe-v2\\physical-validation.json": "2cc61e1a801796e88f51827d65acad09f73e09c32df679ee23ac3cfbd55d2d7d",
+    "C:\\nxdk\\lib\\xboxkrnl\\xboxkrnl.h": "3e0350626872eb4593b251e2674713f2d8d0b29b32b6bdf0cfd9f51b6a091346",
+    "C:\\nxdk\\lib\\xboxkrnl\\xboxkrnl.exe.def": "8aa3e48417c8a60aea8d1953bcc0674cdee95ce9a11e5e861d3107c3339d2527",
+    "C:\\nxdk\\lib\\hal\\led.c": "6362bd25cc8511bd0d17d333497b508cdbd385c6069eeb486db50849dec84ae6",
+    "C:\\nxdk\\lib\\hal\\led.h": "ffb2adfd5da78a5674a590b2eb321987306c6fa76c508a73623121edfe3d281b"
+  },
+  "historical_private_kernel_currently_located": false,
+  "scope": "Re-read retained public physical307 metadata and actual502 retained export bytes. The old private307 kernel at historical D path was not found at checked C/E archive locations; no current rehash or new disassembly claimed.",
+  "raw_marker_early_reuse_rejected": true,
+  "raw_marker_reason": "470 helper uses CLI and raw SMBus port transactions at late handoff; do not move it into an active early kernel context without an ownership proof.",
+  "kernel_LED_API_contract": {
+    "slave": 32,
+    "pattern_register": 8,
+    "manual_register": 7,
+    "byte_access": true,
+    "amber": 255,
+    "green": 15,
+    "automatic": 0
+  },
+  "kernel_delay_contract": {
+    "mode": 0,
+    "alertable": false,
+    "relative_100ns": -20000000
+  },
+  "kernel_call_deadline_guarantee": false
+}
