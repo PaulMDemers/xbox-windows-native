@@ -22,9 +22,10 @@ old-build cleanup;538 removed six obsolete negative-test fixture copies, freeing
 6.2GB. A new after1-only supervisor002 collected this still-uncollected run using
 the unchanged frozen controller. No console launch was retried.
 
-Cold case2 is staged but NOT launched. User has been asked to power off at
-UnleashX for about10seconds/on and report ready; await that answer. Then save
-ready2, supervise before2 and launch2 once. On desktop request normal Restart;
+Cold case2 launched once at 2026-10-18T19:37:14.528234+00:00 after user-reported
+poweroff10seconds/on. All10 prelaunch files matched warm after1. Dashboard
+accepted SITE and host supervisor closedexit0; screen observation is pending.
+If desktop, request normal Restart and wait for dashboard confirmation, then
 collect after2, audit2 and decode2, compare actual evidence. No third launch.
 No startup hook, ordinary driver/launcher patch or dashboardC access.
 

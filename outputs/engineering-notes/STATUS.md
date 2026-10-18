@@ -1,3 +1,23 @@
+#536 cold case2 launched once; screen observation pending
+
+User explicitly reports shutdown/off10seconds/poweron/dashboard. ready2 saved.
+Before2 completed19:36:59UTC; all10 selected files equal warm after1; ordinary
+launcher/startup and protected720p verified. Single SITE launch requested at
+2026-10-18T19:37:14.528234+00:00 via E:/Applications/XWNBoot536b/default.xbe.
+Reply: 200 EXEC command succeeded.. Supervisor closed exit0.
+This is host completion only; actual console screen currently unknown.
+
+Pending user question: desktop or black/dashboard. If desktop, record observation
+and request normal WindowsRestart; await dashboard report. Save observer2, then
+supervise.py after2 once, WSL audit.py2 and Windows decode_actual.py2. No temporary
+hook installed. Compare two actual receipts; no third launch and no retry.
+If still booting leave running; do not infer completion from FTP or missing logs.
+Preserve warm successful536 plus ordinary532 failure and cold534 successes.
+
+538 cleanup preserved all current dependencies and freed6.2GB; C guard passed.
+No source/driver/ordinarylauncher changes, consoleCaccess or mode change.
+Automation PAUSED. Both before2/launch2 host processes closed; console state pending.
+
 #538 cleanup complete;536 warm collected, awaiting cold readiness
 
 User explicitly authorized old-build cleanup.538 removed six obsolete generated
