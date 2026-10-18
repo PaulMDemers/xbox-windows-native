@@ -1,3 +1,54 @@
+# Final488 repository closeout
+
+Final repository scan59374 passed36,995 tracked files;29 staged files matched
+working bytes before final receipts. All build/VM/check sessions are closed.
+Source link.ld explicitly tracked. No next launch queued; no console changes.
+See paging-handoff488/repository-check002.json and git-byte-review003.json.
+
+# Closeout: CPU handoff investigation488
+
+All owned fixture processes and repository check91296 are closed. Rehash closeout
+passes147 private files/69 distinct input pins. Initial repository scan passed
+36,991 tracked files and25 staged files were byte-exact. Authored link.ld was
+excluded by the historical outputs ignore rule; explicitly track it before final
+scan002 and commit. No executable, disk or proprietary payload is committed.
+C24,299,511,808bytes/E21,499,871,232bytes free at closeout. No physical access,
+console change, backing move, queued test or outstanding user action. Continue
+with the read-only CPU-context diagnostic described below, not an identical boot.
+
+# Current: privileged handoff CPU fixture488 closed; physical cause unresolved
+
+Read outputs/paging-handoff488 REPORT/DESIGN/NEXT/final-review and closeout001.
+483 success and487 failure have EXACT decoded preparation/registers/flags;
+namespace-normalized wrapper/witness sources and1024 loader bytes identical.
+Only raw identity plus marker polls/TSC/TSC-read count differ. No historical
+failure requalified. Same nonidentity alias is not a cause discriminator.
+
+Diskless PC QEMU lab003 executes unchanged loader through PG disable/CR3 clear,
+GDT/IDT/LDT/segments/far jump/full1MiB copy into independent synthetic oracle.
+Two positive mappings and8 negative cases pass their expected outcomes;
+96 independent transport/lifecycle negatives reject. CPU/PIC/maps/payload are
+SYNTHETIC, not actual Xbox context/cache/interrupt evidence. Prior466/471 xemu
+entry evidence remains distinct. Intel SDM24.30.3 identity-map recommendation
+is a review constraint, NOT proof of the intermittent cause or an installed fix.
+
+Preserve lab001 assembler flat-label failure; lab002 original predicates passed
+but oracle trailingUD2 raced QEMU exit. lab003 only changes oracle terminal tail
+and forbids exceptions in positive/short-copy cases. Preserve review001 mistaken
+raw-offset allowance and corrected002. No new XBE/Windows/physical run, SDK,
+shared source, driver or console file change. All20 VM processes closed;
+147 private files and69 distinct input pins rehashed.
+PrivateC:/xwn488/lab001..003. No disks/backing moves or E allocation.
+
+Next NEW read-only actual CPU context/page-walk diagnostic on exact487, with
+independently validated memory access and actual-instruction host tests BEFORE
+fresh XBE/console. Preserve frame/loader; no page-table/interrupt change disguised
+as observation. No identical physical retry. Last verified console state is487
+back at dashboard, hook removed, baseline720p intact; no new test queued.
+484 exact-alpha endpoints stillFAIL;486 selected arithmetic characterization
+PASS;487 noWindows result. Xboxalpha/presentation/GPU/games unqualified.
+Historical continuation retained below. No user action needed now.
+
 # Closeout: alpha diagnostics pushed3a002f02
 
 Work commit3a002f02 is pushed (190 files). Repository scan001 timed out at180s;
