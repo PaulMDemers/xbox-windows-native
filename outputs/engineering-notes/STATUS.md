@@ -1,3 +1,24 @@
+# 521 CLOSED lossless host snapshot compression; byte integrity PASS
+
+520 PUSHED3f95d0fb. Read521 REPORT/DESIGN/DESIGN002/DESIGN003/NEXT andactualplans/
+applications/review/final.236 retained before/after host snapshots from19closed
+physical cases rehashed against ownhistoricalrecords.228compressed,8systemcopies
+unchanged/uncompressed.139919360 allocatedbytes recovered; allpaths/bytes/lengths/
+fileIDs/singlelinks exact.001 exited0 but8compressionflagsabsent => FAILED,
+reasonunknown;48compressed/29491200saved. No retry/force.00248files/29454336saved,
+003132files/80973824saved PASS. Allfilesdisjoint, no backing/firmware/256/release/
+SDK/sharedsource/console changes;no deletion/move/semanticedit. ALLtool/plan/review
+processesCLOSED;zeroownedemulator/QEMU. No build/prep/launch/hook/physicalaccess.
+ReviewC22288846848/E21499871232B; unchanged768MiB+20GiBguard PASS butonly8704000B
+margin andfluctuating. Recheckbeforeprep; noEallocation/waiver/retryoldstorageIDs.
+NEXT522 actual520 observer, sameaddresses516/new544096len/3sizefields/fresh520paths.
+Useactual517fixture,NOold513shift;fullactualworker/transport/call/pagewalk/cleanup
+hostproofBEFOREfreshunused466seed/privatechildEEPROM/ports/lease.520NEVERLAUNCHED.
+518lastdashboard10:57:34UTC/nohook;receiptabsent/517strictFALSE/TLSunknown preserved.
+486/496physicalD3Dpending.13:50UTC reviewonly14UTCclose/report/pause automation.
+Repositorycheck7458 CLOSED PASS38092files;27stagedfilesbyteexact. Commit/pushnext;
+historicaluntrackedfilesuntouched.
+
 # 520 CLOSED extent candidate built/reviewed; NEVERLAUNCHED
 
 519 PUSHED02746a1d. Read520 REPORT/DESIGN/NEXT/host001/build001/review001/final-review.
