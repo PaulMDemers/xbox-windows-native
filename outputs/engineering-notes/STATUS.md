@@ -1,3 +1,16 @@
+#536 warm case1 reached Windows desktop; normal Restart requested
+
+User reports "It’s on the desktop" for warm instrumented536a after534 normal
+Windows Restart, no intervening power cycle. desktop1.json saved. Requested
+Start/Shut Down/Restart and dashboard confirmation; leave powered on for collection.
+Do not collect or declare normal shutdown until returned. No second launch issued.
+After confirmation save observer1, supervise after1 once, WSL audit1, decode_actual1.
+Only then request off10seconds/on for separately admitted cold case2. No third run.
+This instrumented warm boot succeeded; it does not reproduce the ordinary532 warm
+failure. Recorder layout/IO and timing differ, so no fix or cause established.
+Ordinary720p/startup unchanged, no hook, all host processes closed. Last confirmed
+console state Windows desktop. Automation remains PAUSED.
+
 #536 warm case1 LAUNCHED once; screen observation pending
 
 User confirmed "Yes it has stayed on since the last reboot mentioned" after
