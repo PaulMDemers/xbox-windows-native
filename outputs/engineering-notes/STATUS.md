@@ -1,3 +1,21 @@
+# Current: early boot markers validated in emulator; watched console test next
+
+Both new checkpoints passed an owned emulator run: before the wrapper handoff
+and after Xromwell installs its stack. The original loader and continuation were
+observed with registers and flags preserved. Host tests cover bounded success,
+timeout and refusal behavior. This adds diagnostic visibility, not a boot fix.
+
+The emulator was closed cleanly and its FATX allocation audit passed. Five hives
+and the original launcher/FATX/video files remained byte-identical. Two failed
+controller attempts are retained separately. No physical console files changed.
+The next test needs someone watching the console LED and screen; no launch is
+queued. See [466 report](../marker-handoff466/REPORT.md) and
+[next test requirements](../marker-handoff466/NEXT.md).
+
+The latest physical E health scan remains463:722 directories,8063 files,
+zero allocation errors/orphans/marked bad clusters and1.76GB free. 720p remains
+the working display baseline. D3D inventory/device work follows boot diagnosis.
+
 # Current: fresh FATX allocation scan clean; early boot diagnostic under review
 
 A new physical E scan passed on October17:722 directories,8063 files, no allocation
