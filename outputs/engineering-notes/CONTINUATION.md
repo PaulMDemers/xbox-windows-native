@@ -1,3 +1,31 @@
+#540 STAGED, not launched: intentional post-stack LED hold
+
+Read outputs/stack-stop540/REPORT.md, DESIGN.md and NEXT.md. Seven exact code
+intervals mapped after lastcontext through realXromwell stack setup. New540 uses
+original490 post-stack marker and replaces only its five-byte success jump with
+CLI/HLT/backward-jump/NOP. Namespace/digest also change; inverse is exact490.
+This intentionally holds before Windows and REQUIRES user observation/reset.
+Existing marker polling bounded; terminal halt intentionally indefinite.
+
+40actual-marker host cases and19controller/6stage-capture modeled cases pass.
+Preserve stage-host001 stale539 assertion failure;002 corrects test only.
+Package frozen49pins; newE:/Applications/XWNBoot540a staged/readback verified
+20:50:34UTC. No launch/hook, ordinary720p/startupexact, consoleCuntouched.
+Host processes closed, authenticated dashboard; C28.58GB free, no hostEallocation.
+
+Pending async question: can user watch front LED and reset afterward? Await actual
+answer. On confirmation save ready1(watching_LED/manual_reset_available), run
+frozen before1, compare10files to closed539 after1, launch1 once. No accepted/
+uncertain retry. Ask exact LEDsequence for~30seconds: earlieramber, then existing
+alternatingred/green at stack checkpoint. Screen maystayblack. This is NOT meant
+ to boot Windows or return automatically. After observation request poweroff/on
+and dashboardconfirmation, recordmanualreset; then after1/audit/decode once.
+
+Positivecolor supports checkpointarrival in540 only, not539cause or HLTattestation.
+Absentcolor is ambiguous (earlyfailure or markerfailure). No second/controllaunch.
+All prior runtimesclosed; do not rerun/recollect/reparent. AutomationPAUSED.
+No functionaldriver/reset patch or Windows/D3D/GPU/game/release qualification.
+
 #539 CLOSED: unobserved dashboard return, no persisted Windows activity
 
 User was elsewhere and confirms only dashboard. observer1 preserves that limit;
