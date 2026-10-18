@@ -1,3 +1,32 @@
+# 495 closeout checked; next496 actual combined-scene sample
+
+Repositorycheck56888 CLOSED PASS37335trackedfiles;15initialstagedfiles byteexact.
+495HOSTONLY oracle/test design complete, allprocessesclosed/nohardwareaccess.
+Source/reports beingcommitted/pushed; latestphysical494pushed e59b84f4 dashboard
+nohook. Read495NEXT beforeimplementingactualscene/decoder/freshPCcontrol.
+
+# 495 combined-scene oracle HOST-ONLY; next496 actual sample/PCcontrol
+
+494 PUSHED e59b84f4, allphysicalprocessesclosed/dashboard/nohook. Read
+outputs/scene-oracle495 REPORT/DESIGN/NEXT/oracle.py/host003/coverage003/final-review.
+FivehostgroupsPASS,61440invalidRGBword/2048sourcebyte/22wrongscene/18typeextent
+negatives; literalprojection/eightpixelwitnesses. Two8x8textures/overlappingXYZ
+triangles, fiveorder/depth/worldmotioncontrols. Fixed2pixelbands/20near20far2000BG
+gates. Host001FAILED farcoverage15; preservedC:/xwn495/host001. Newgeometry002
+passes,003addsstrongerwitnesses/flattexturetests; oraclebytes002/003identical.
+All6privateinputsrehashed, ALLhostprocessesCLOSED. No495Csample/build/guestprep/
+launch/physicalaccess/actualmetadataortransportdecoder. No runtimeclaim.
+Fifthcamera_move label changesWORLDtx, constantVIEW; actualmetadata mustbespecific.
+ConstantW/depthpertriangle, notvaryingWperspectiveinterpolationqualification.
+
+NEXT496 actualFVF_XYZ|TEX1 scene/strictdecoder andhostnegativesBEFOREcompile/
+freshPCrun; unchanged495oracle. Existingtexture/depth/transform sources; no
+primarysurfaceuntilcombinedoffscreenqualifies. Same90sec/600secboundedrunner,
+404unusedseed/privatefloppy, independentcoldreader/module/hive/eventaudit.
+OnlyPCpasspermitsmatchedXbox. Preserve494Ft49/popups/earlierbootfailures/720p.
+C23555424256B/E21499871232B;20GiBprojectedguardincludingWSL. Continue14UTC,
+closeout13:50 onward. 495source/evidence nowbeingreviewed/check/commitpushed.
+
 # 494 repository closeout complete; next495 PC combined scene
 
 Repositorycheck98199 CLOSED PASS37321trackedfiles.52stagedfiles byteexact after

@@ -183,3 +183,7 @@ XYZ world/view/projection and viewport coverage on the NT5 PC software renderer.
 Both default and HEL paths pass the independent pixel oracle. The matched
 comparison also passes on Xbox in [494](../outputs/d3d-transform494/REPORT.md). Combining
 features into a visible scene remains the next step.
+
+The [495 host oracle](../outputs/scene-oracle495/REPORT.md) defines the next
+combined texture/depth/transform scene and checks deliberately wrong synthetic
+images. It is preparation only; no combined-scene Windows runtime result exists yet.
