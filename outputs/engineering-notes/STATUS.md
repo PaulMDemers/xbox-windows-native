@@ -1,3 +1,20 @@
+# Closeout: alpha diagnostics pushed3a002f02
+
+Work commit3a002f02 is pushed (190 files). Repository scan001 timed out at180s;
+unchanged scan002 passed36,967 tracked files in44.63s. Both outcomes preserved.
+189 staged work files matched working bytes exactly before adding their receipt;
+staged whitespace check passed. All owned sessions now closed, including
+repository96462/50032 and boundedHTTP1.1 push. No next hardware launch queued.
+
+PC484 exact alpha endpoints FAILED; PC486 mixed-color arithmetic uniquely matches
+combined_floor256 in both software paths. Xbox487 produced a valid late witness
+but no Windows workload; cold files unchanged, startup hook removed, dashboard
+available, normal launcher/startup/protected720p intact. Original boot failure
+remains unresolved; no Xbox alpha/ideal blending/GPU/game qualification.
+Next inspect remaining post-witness privileged handoff using successful483 and
+failed487 evidence before a fresh hardware comparison. Historical untracked
+files left untouched. Exact details and failures are preserved below.
+
 # Current: PC alpha precision characterized; Xbox487 closed without Windows results
 
 Read outputs/d3d-blend484 REPORT/final-review (FAILED exact endpoints),
