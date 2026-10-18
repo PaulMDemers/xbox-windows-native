@@ -17,8 +17,10 @@ Rung 04 also passes all six cases on NT5 PC and Xbox, and rung 05 passes its
 bounded lifecycle controls. Rung 06 now passes complete default/HEL inventories
 on NT5 PC and Xbox, reporting the RGB software renderer. Rung 07 now creates
 that software device and passes offscreen clear/triangle pixel checks on both.
-Rung 08a now passes owned point-sampled texture controls on NT5 PC and Xbox. Depth,
-blending, D3D presentation and game performance remain separate work.
+Rung 08a passes owned point-sampled texture controls on NT5 PC and Xbox. Rung 08b
+depth controls pass on the NT5 PC; two Xbox launches returned without Windows
+receipts, so physical depth remains unqualified. Blending, D3D presentation and
+game performance remain separate work.
 The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 
 ## The ladder
@@ -34,7 +36,8 @@ The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 | 06 | Legacy D3D discovery | Query the chosen D3D interface, enumerate actual devices/caps; distinguish software and hardware choices | NT5 PC/Xbox default/HEL inventory passes: RGB software device found; no draw qualification |
 | 07 | Clear and triangle | Offscreen render target, clear, pretransformed colored triangle, independent interior/background pixel checks | RGB software path passes on NT5 PC and Xbox; no presentation/GPU claim |
 | 08a | Point-sampled texture | Enumerated texture format, exact upload/readback, known orientation and interior sampling | Default/HEL RGB software controls pass on NT5 PC and Xbox |
-| 08b | Depth and blending | Overlapping triangles with depth, transparent quads and alpha reference pixels | Planned separately |
+| 08b | Depth buffer | Enumerated depth surface, both draw orders, depth-disabled and clear-zero controls | NT5 PC passes; Xbox launches incomplete, no depth result |
+| 08c | Alpha blending | Transparent quads and fixed alpha reference pixels | Next separate test |
 | 09 | Transforms and scene stability | Rotating textured object, camera/projection, resize/activation handling and repeated resource teardown | Planned |
 | 10 | Small game-like scenes | Scrolling isometric tiles and moving sprites, then a textured room; controls, audio and save/reload | Planned; precedes the actual game acceptance tests |
 
@@ -616,3 +619,53 @@ game compatibility or performance. Runtime results are recorded separately in
 the [479 PC control report](../outputs/d3d-texture479/REPORT.md). The earlier
 [477 malformed-floppy attempt](../outputs/d3d-texture477/REPORT.md) remains
 failed and produced no texture result.
+
+## Offscreen depth buffer
+
+The [PC480 control](../outputs/d3d-depth480/REPORT.md) passes both default and HEL
+with an enumerated16-bit depth format and all five fixed image controls. The
+[Xbox481](../outputs/d3d-depth481/REPORT.md) and
+[Xbox482](../outputs/d3d-depth482/REPORT.md) attempts returned to the dashboard
+without Windows receipts. They establish no physical depth result; retries have
+stopped pending a more informative boot-handoff diagnostic.
+
+[depth.c](../src/samples/graphics-ladder/depth.c) is rung 08b. It enumerates depth
+formats for the actual RGB software device and attaches a private 64x64 depth
+surface to an offscreen color target. It draws the same overlapping triangles
+in both orders, then repeats with depth disabled and with depth cleared to zero.
+This isolates depth comparison, depth writes, clear and draw-order behavior.
+Nothing is shown on screen; the desktop mode is unchanged.
+
+```sh
+python3 tools/build-graphics-samples.py \
+    --sample depth \
+    --rosbe "$HOME/xwn-rosbe-001/RosBE-2.2.1" \
+    --output "$HOME/xwn-depth-001"
+```
+
+Copy `depth.exe` and `depth.cmd` together into Windows 2000. Use fresh prefixes:
+
+```bat
+depth.cmd default depth-default
+depth.cmd hel depth-hel
+```
+
+Retrieve all seven files per prefix: `.txt`, `.exit`, `-clear.bin`,
+`-far-near.bin`, `-near-far.bin`, `-no-z.bin` and `-zero-z.bin`.
+
+```sh
+python3 tools/graphics_depth.py /path/to/results/depth-default --backend default
+python3 tools/graphics_depth.py /path/to/results/depth-hel --backend hel
+python3 tests/test_graphics_depth.py
+```
+
+A successful process only means its captures are ready. The checker requires
+complete API/format/attachment/cleanup records, prescribed vertices and states,
+and independently expected RGB pixels. Both depth-enabled draw orders must show
+the nearer triangle; the depth-disabled control must show the last triangle;
+clearing depth to zero must reject both triangles with LESS comparison. Exact
+raster edges and the unused X byte remain outside the claim. This is not a
+stencil, depth-precision, presentation, acceleration or game-performance test.
+The public batch wrapper has no watchdog; private validation uses a 90-second
+process deadline. Keep failures and use a fresh output prefix for each run.
+Runtime evidence is recorded in the [480 PC report](../outputs/d3d-depth480/REPORT.md).

@@ -1,0 +1,1 @@
+481 is closed, never rerun. One distinct482 comparison only; unchanged sample and fixed oracle. Later success cannot erase481 or qualify boot stability. If482 again lacks receipts, stop physical retries and review the handoff evidence before any additional launch.

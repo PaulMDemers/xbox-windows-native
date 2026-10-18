@@ -1,3 +1,22 @@
+# Latest: depth passes on PC; two Xbox launches closed without receipts
+
+The new D3D7 software depth sample passes both draw orders, depth-disabled and
+clear-zero controls on a fresh Windows2000 PC fixture. Its source, build/run
+instructions, independent image checker and negative tests are in the repo.
+
+Two distinct Xbox attempts returned to UnleashX without Windows test receipts.
+Both are closed, hooks removed and baseline files unchanged. No physical depth
+result or boot-stability claim. The preparation trace is identical to the earlier
+successful texture run except test IDs; it cannot identify the failing boundary.
+Further identical retries stopped. Next: a bounded handoff observation beyond
+preparation, then physical depth validation. Alpha blending follows separately.
+
+No GPU acceleration, game compatibility or overall system qualification claim.
+Ftdisk49, prior shutdown popups, boot intermittency and1080i remain open.
+Console is at the dashboard with no test queued. Reports: d3d-depth480/481/482.
+
+--- Previous status follows unchanged ---
+
 # Latest: D3D7 software textures pass on PC and Xbox
 
 Rung08a now passes default and HEL texture upload, unchanged source readback,

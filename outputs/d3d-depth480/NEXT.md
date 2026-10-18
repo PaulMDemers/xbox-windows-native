@@ -1,0 +1,1 @@
+PC480 closed scoped depth PASS. Physical481/482 both closed without Windows receipts; no physical depth result. Do not rerun any case. See482 closed-handoff review before another hardware launch. Add alpha as a separate future rung; preserve fixed depth expectations.

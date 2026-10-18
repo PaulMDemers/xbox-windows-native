@@ -24,8 +24,9 @@ samples pass default/HEL DirectDraw 7 system-memory blits and independent pixel
 readbacks with this driver unchanged. Default/HEL windowed primary presentation,
 clipping and GDI coexistence also pass independent pixel checks. D3D7 RGB
 software offscreen clear/triangle rendering now passes on NT5 PC and Xbox.
-Owned point-sampled texture controls also pass on NT5 PC and Xbox. Depth,
-blending and D3D presentation remain unqualified. See the
+Owned point-sampled texture controls also pass on NT5 PC and Xbox. Depth controls
+pass on the NT5 PC, but two physical launches returned without Windows receipts;
+Xbox depth remains unqualified. Blending and D3D presentation remain unqualified. See the
 [sample results](graphics-samples.md).
 
 DirectX is a family of APIs. A game's DirectX requirement does not by itself mean
@@ -77,7 +78,11 @@ The [rung08a PC control](../outputs/d3d-texture479/REPORT.md) and
 enumerated RGB32 texture format, exact unchanged upload bytes, and point-sampled
 colors/orientation in both default and HEL paths. The earlier477 malformed
 floppy prevented sample execution and remains a separate preserved failure.
-Depth testing and alpha blending require their own fixed reference images next.
+The [depth PC control](../outputs/d3d-depth480/REPORT.md) now passes both draw
+orders, depth-disabled and clear-zero image controls. Physical481/482 produced
+no Windows receipts; [the handoff review](../outputs/d3d-depth482/REPORT.md)
+records the observation gap and stops repeated identical boots. Alpha blending
+is the next separate image oracle; physical depth still needs a completed run.
 
 | Stage | Work | Evidence needed to advance |
 |---|---|---|
@@ -146,7 +151,7 @@ Proposed first acceptance target for **each exact game edition**:
 |---|---|---|
 | Original RollerCoaster Tycoon | Not tested by this milestone | Exact edition/patch, Windows 2000 PC control and actual API dependencies |
 | Original The Sims | Not tested by this milestone | Exact edition/expansions, Windows 2000 PC control and actual API dependencies |
-| Legacy Direct3D support | D3D7 RGB software device creation and offscreen clear/triangle pass on NT5 PC and Xbox | Add separate texture, depth and blending oracles, then D3D presentation and bounded resource/performance tests |
+| Legacy Direct3D support | D3D7 RGB software triangle/texture pass on NT5 PC and Xbox; depth passes on NT5 PC only | Resolve incomplete physical launch and qualify depth; add blending, then D3D presentation and bounded resource/performance tests |
 | Native NV2A acceleration | Unimplemented in the working demo | Windows ownership, submission, synchronization and lifetime proof |
 
 ## Installation work remains part of this goal

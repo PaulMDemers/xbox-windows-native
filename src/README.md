@@ -17,7 +17,7 @@ Git tree identity.
 | `network` | [NVNet](platform/nt5/drivers/network/dd/nvnet) | Xbox Ethernet support |
 | utility | [Settings](utilities/display-settings/settings.c) | Dragging and font preferences |
 | utility | [Hardware report](utilities/hardware-report/main.c) | Standalone nxdk inventory for external testers; no Windows dependency |
-| samples | [Graphics ladder](samples/graphics-ladder) | Original NT5 GDI/DirectDraw samples; later D3D rungs planned |
+| samples | [Graphics ladder](samples/graphics-ladder) | Original NT5 GDI/DirectDraw and D3D7 software samples; [build, run and validate](../docs/graphics-samples.md) |
 
 Overlays also include supporting HAL, header and build-system changes. Their
 presence does not mean every target in that tree is the installed version.
