@@ -1,3 +1,48 @@
+# 489 checked closeout; overnight heartbeat ACTIVE
+
+Repository check32327 passed37,013 tracked files;18 staged files matched bytes
+before receipts. All owned build/test/check sessions closed. Final exact-stage
+receipt is cpu-context489/git-byte-review002.json. Work remains authorized until
+2026-10-18 14:00UTC; active heartbeat reads these notes and continues the next
+adapter. No new console test queued and no user action required at this point.
+
+# Current: overnight work authorized through October18 10a.m.; CPU capture489 closed
+
+User explicitly authorized continued boot/D3D work until2026-10-18 14:00UTC
+(10:00a.m. America/New_York). Actual clock at authorization05:17:42UTC. Existing
+xbox-emulator-development-until-10am heartbeat reactivated every10minutes using
+continuation-first current instructions. No experiments aftercutoff; closeout
+only after13:50UTC, preserve/close owned state and PAUSE atcutoff. User available
+to watch a few more hours; ask only when an actual test observation helps.
+
+Read outputs/cpu-context489 REPORT/DESIGN/NEXT/final-review/closeout001.489 is
+HOST-ONLY new read-only313-byte capture, SHA d5bed1052a1eeab8810e15f05734b2c9795d56641bf1ddb50e1a2618a808b196.
+Actual privileged QEMU instructions capture2 synthetic CR2/CR3 contexts and
+preserve every general register/EFLAGS withIF/DF set. Fourguards unchanged;
+12 refusals (repeat, unmapped-pointer invalidcapacity,10invalidheaders) unchanged.
+397-byte transport includes320snapshot+72register-frame bytes;3642 actual
+mutations/truncations reject. All313bytes mapped/disassembled,76instructionrows
+reviewed: no control-register write/descriptorload/CLI/STI/CLD/kernelcall/portIO
+inside capture. Test harness alone creates/changes synthetic state.
+
+No page walk, descriptor contents, safe kernel-memory provider, atomicity,
+ABA exclusion or physical CPU/boot qualification. No XBE built/deployed/launched,
+console/sharedsource/SDK/driver change. Single owned disklessQEMU closed exit33,
+noexception/deadline/fallback;14 private files/64 input pins rehashed.
+Private C:/xwn489/host001; do not rerun. No next hardwaretest queued.
+
+Next NEW exact487 adapter with byte-identical489 capture, owned twoepochslots,
+explicit file lifecycle/refusal reasons and actual sequencing tests BEFOREXBE.
+Define persisted boundaries precisely; no receipt attests its own finalclose or
+laterPGtransition. Register-only evidence must stay scoped. Establish actual
+kernel bounded-read provider separately before page-table/descriptor dereference;
+no assumed directmap or mapping/interrupt mutation in read-only diagnostic.
+Then fresh matchedXbox486 arithmetic and windowedD3D ladder. Keep484exactalphaFAIL,
+486selected arithmetic characterization,487noWindowsresult,488synthetichandoff
+and all old failures separate. DashboardC offlimits, baseline720p/startup/launcher
+unchanged, no backing moves. C24.324GBdecimal/E21.499GBdecimal;20GiBguard.
+All owned489 sessions closed; repository finalization follows. No useraction now.
+
 # Final488 repository closeout
 
 Final repository scan59374 passed36,995 tracked files;29 staged files matched

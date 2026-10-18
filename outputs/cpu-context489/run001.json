@@ -1,0 +1,142 @@
+{
+  "started": "2026-10-18T05:22:44.724355+00:00",
+  "closed": true,
+  "passed": true,
+  "physical_access": false,
+  "command": [
+    "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/bin/qemu-system-i386",
+    "-name",
+    "xwn-cpu-context489-host001",
+    "-L",
+    "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/qemu",
+    "-bios",
+    "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/seabios/bios.bin",
+    "-machine",
+    "pc,acpi=off,hpet=off",
+    "-accel",
+    "tcg,thread=single",
+    "-cpu",
+    "pentium3",
+    "-smp",
+    "1",
+    "-m",
+    "64",
+    "-vga",
+    "none",
+    "-display",
+    "none",
+    "-nic",
+    "none",
+    "-serial",
+    "none",
+    "-monitor",
+    "none",
+    "-kernel",
+    "/mnt/c/xwn489/host001/test.elf",
+    "-debugcon",
+    "file:/mnt/c/xwn489/host001/run001/capture.bin",
+    "-device",
+    "isa-debug-exit,iobase=0xf4,iosize=0x04",
+    "-no-reboot",
+    "-d",
+    "int,cpu_reset",
+    "-D",
+    "/mnt/c/xwn489/host001/run001/cpu.log"
+  ],
+  "build_sha256": "26ab918a889c8461014e150e0b5795508af7fbeb369d0042aca4a41d13c66230",
+  "pid": 465,
+  "exit_code": 33,
+  "deadline": false,
+  "review": {
+    "passed": true,
+    "records": [
+      {
+        "epoch": 1,
+        "eflags": 1666,
+        "cr0": 2147483665,
+        "cr2": 305418240,
+        "cr3": 16777216,
+        "cr4": 16,
+        "selectors": [
+          8,
+          16,
+          16,
+          16,
+          16,
+          16,
+          0,
+          0
+        ],
+        "gdtr": [
+          23,
+          1049376
+        ],
+        "idtr": [
+          0,
+          0
+        ],
+        "entry_esp": 1572860,
+        "return_eip": 1048814,
+        "tsc_start": 110544280,
+        "tsc_end": 110634150,
+        "atomic_snapshot": false,
+        "mapping_validated": false,
+        "descriptor_contents_read": false,
+        "physical_origin_requires_external_evidence": true
+      },
+      {
+        "epoch": 2,
+        "eflags": 1666,
+        "cr0": 2147483665,
+        "cr2": 1737072640,
+        "cr3": 16785408,
+        "cr4": 16,
+        "selectors": [
+          8,
+          16,
+          16,
+          16,
+          16,
+          16,
+          0,
+          0
+        ],
+        "gdtr": [
+          23,
+          1049376
+        ],
+        "idtr": [
+          0,
+          0
+        ],
+        "entry_esp": 1572860,
+        "return_eip": 1048865,
+        "tsc_start": 110778892,
+        "tsc_end": 110779006,
+        "atomic_snapshot": false,
+        "mapping_validated": false,
+        "descriptor_contents_read": false,
+        "physical_origin_requires_external_evidence": true
+      }
+    ],
+    "two_contexts_observed": true,
+    "registers_flags_restored": true,
+    "guard_and_refusal_paths_reached": true,
+    "physical_cpu_qualification": false
+  },
+  "files": {
+    "/mnt/c/xwn489/host001/run001/capture.bin": {
+      "bytes": 397,
+      "sha256": "a8fb3f51a8384112d2a55a501f4fa9193cf3dfb2384d897feab96d44113a2a1c"
+    },
+    "/mnt/c/xwn489/host001/run001/cpu.log": {
+      "bytes": 2604,
+      "sha256": "35e3ec151ba0967d8c0eb31a23258f1fc2064ed4cfd68b5c29034ec25cecc755"
+    },
+    "/mnt/c/xwn489/host001/run001/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "finished": "2026-10-18T05:22:45.062190+00:00"
+}
