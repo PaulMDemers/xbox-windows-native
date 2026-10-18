@@ -1,3 +1,49 @@
+# 502 repository closeout complete
+
+Repository30098 CLOSED PASS37578 trackedfiles; exact staged-byte check PASS.
+AllownedprocessesCLOSED, nohook/noqueuedphysicallaunch. Read502REPORT/NEXT and
+actualrecords. Actualemulator six earlyfilecalls PASS; physical501failurecause
+unresolved. Strictwhole-diskFALSE preserved. CheckGitHEAD/upstream for publication.
+
+# 502 CLOSED: real emulator kernel file contract PASS; physical cause unresolved
+
+501 PUSHED ec017159. Read outputs/entry-kernel502 REPORT/DESIGN/NEXT/final-review,
+emu001/trace/audit/protected and actual-review001. New isolated exact499 trial:
+create/write96/flush/write16/flush/close all actualstatus0, expectedIOSB/stackcleanup.
+14stops70captures;648gate236initialdata64oldstartbytes exact,8thunks actualexports,
+actualCPU/segments/GDT/IDT/pagewalks, state7 and restoredregistersflags.112bytecold
+receipt exactmemory. Stopped BEFORE originalstart executes; noWindows/physical/
+ordinaryboot/D3D qualification. Actual502kernel Complex4627 differsphysicalunknown.
+Host00351modeledfailureboundaries21negatives; host002badopaquehandlemutationFAIL
+preserved, fixtureonlyfix. Actualreview96callmutations112receiptbytes rejected.
+Allbreakpointsremoved/physicalmode0, orderlyhoststopquit exit0/no fallback.
+Full10GBmapping327680localbytes compared,275changed, strictFALSE/no writerwaiver.
+FATX276dirs6554files255dirclusters0errors/orphans;5hives3baselinebinaries/EEPROM/
+seedunchanged.246frozen+17externalinputs404privatefiles rehashed. ALL ownedprocesses
+CLOSED incl4343/69063/2021; noQEMU/NBD/xemu. No physicalaccess/hook/queuedlaunch.
+Initialnoteswritecp1252decodefailure preserved; correctedUTF8, no secondlaunch.
+NEXTreviewphysicalkernel/loader identity and NEWdistinctprefileentrydiscriminator,
+notanothernamespace-onlyboot.501/497absenceambiguous;487latefailureseparate.
+No speculativepaging/interrupt/driverpatch. Thenactual486alpha/496scene/windowed
+ladder.720p/ordinarylauncher/startupprotected;XboxCofflimits/Ft49/popupsretained.
+C/WSLprojected20GiBreserve; Eonly25MBmargin/no newallocation. Deadline14UTC,
+13:50closeout. Repositorycheck/exactstage/commitpush next.
+
+# 502 isolated early-kernel observation ACTIVE
+
+501 PUSHED ec017159, closed/no hook/console last dashboard. New502 preflight PASS,
+246 frozen inputs17 external pins; exact499 XBE in fresh child of never-executed466
+preparation. No physical access or new XBE. Host00112accepts48negatives; host003
+actual observer sequence51 modeled transport failures21 negatives. Host002 invalid
+opaque-handle negative preserved; corrected test only. Emulator runner69063 and
+trace2021 ACTIVE. Read-only entry/API trace stops BEFORE original preparation.
+Read outputs/entry-kernel502 DESIGN/preflight/emu001/trace and actual owned runner
+status. No retry. Kernel/API/boot facts remain unproved until actual captures.
+On completion remove breakpoints/physicalmode, orderly stop/quit, full cold audit.
+C23650709504 E21499871232; projectedC768MiB guardPASS; no E allocation.
+Initial note-writing command failed cp1252 decode before mutation; recorded and
+corrected explicitly with UTF8. It did not cancel the launched runner.
+
 # 501 repository closeout complete
 
 Repository10041 CLOSED PASS37537 trackedfiles; initial56stagedfiles byteexact.
