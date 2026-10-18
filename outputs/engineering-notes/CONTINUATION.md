@@ -1,3 +1,64 @@
+# 494 repository closeout complete; next495 PC combined scene
+
+Repositorycheck98199 CLOSED PASS37321trackedfiles.52stagedfiles byteexact after
+preserved.gitattributesnewlinefailure; finalreceiptsbeingstaged. All494sessions
+CLOSED, console dashboard/nohook/noqueuedlaunch. ScopedXYZtransformPASS/strict
+FALSE retainsFt49/three shutdownpopups. C23556591616B/E21499871232B.
+Read494REPORT/NEXT, neverrerunoldcases; commit/push follows thiscloseout.
+
+# 494 Xbox XYZ transforms CLOSED scopedPASS/strictFALSE; next495 scene
+
+493pushed7a6fa147. Read outputs/d3d-transform494 REPORT/DESIGN/NEXT and
+physical-final001/runtime-review001/actualcontrols/context/module records.
+OneSITE06:57:22UTC, dashboard06:58:50UTC. Same493sample02b6e419...22745B passed
+bothdefault/HEL sixXYZcases.393216capturebytes/294912RGBchecked, highX/padding
+excluded,fixed2pixeledgeband; noexpectedpixelchange. Bothprocesses0/restart1,
+EventLog6006delta1. HookremovedFIRST; ordinarylauncher/startup/720p unchanged,
+dashboardCuntouched.29pairedcoldfiles,5hiveaudits,11modules/caseexact,1448actual
+metadata/RGBnegatives and2577contextnegatives.45frozeninputs/209privatefileshashed.
+StrictFALSE newFtdisk49+3Popup26rundll32initialization duringwindowstationshutdown;
+Applicationlognoevents. No fullFATXallocationaudit/bootstability/GPU/gameclaim.
+Allbuild67056/stage14024/observer92138/collector95810/modules75545 CLOSED;
+allotherhelpersclosed, noQEMU/NBD/FUSE. Console dashboard/nohook/noqueuedlaunch.
+
+Launcher9a63a061...542839B only4paths/sectionSHA from492, original490functional
+code/capture/schemaunchanged. Runner57d3fb5e... namespaceonly493.24/26NT5imports,
+17modeledactualdispatcherpaths. Build001missingparentprecompileFAIL preserved;
+build002PASS. Binaryreview001newlineequalityFAIL,002provesonlyCRLF/LFdiffs;
+no semanticdecoderchanges. Continuationwrite001cp1252decodefailure preserved.
+Do notrerunclosed494/493/oldcases. New495firstPCcombinedXYZ/texture/depth scene
+withindependentoracle BEFOREvisiblepresentation/matchedXbox. ReadNEXT precisely.
+C/WSLprojected20GiBguard,Enearatreserve. Continueuntil14UTC, closeout13:50 onward.
+494source/evidence/docs nowreview/check/commitpush; allolderfailures retained.
+
+# 494 dashboard return; hook removed, collection active
+
+OneSITE accepted06:57:22UTC, dashboard06:58:50UTC. Stage14024/observer92138 CLOSED.
+Collector95810 ACTIVE; hook removal confirmed before evidence reads. Actual
+runner/result files present; do not infergraphicsPASS until frozenoraclechecks.
+No secondlaunch. Completecontext/review/modules/actualcontrols/hives/events/
+archive, thenreview/check/commitpush. Protected720p/ordinarypaths preserved.
+493pushed7a6fa147;494sources45pinsfrozen, priorbuild/reviewfailures preserved.
+
+# 494 physical test launched once; collection pending
+
+SITE accepted2026-10-18 06:57:22UTC. Stage14024 CLOSED/readbackverified;
+launch/observer92138 ACTIVE bounded486sec. Do not repeatlaunch orrunner.
+Exact493offscreenXYZsample02b6e419... default/HEL; automaticnormalrestart.
+No visualtriangleexpected. On dashboard return collect494hookFIRST thencontext,
+runtimeoracle/modules/actualnegatives/hives/events/closure. Sources45pinsfrozen.
+No ordinarylauncher/startup/modechange. 493pushed7a6fa147. Continueuntil14UTC.
+
+# 494 staging active; no launch yet
+
+493 PUSHED7a6fa147 andclosed. New494 build002/runner001/imports pass;
+17actualdispatcher modeledcasesPASS,45dependencies frozen. Exact493 sample
+02b6e419...22745B. Launcher9a63a061... only4paths/checksum from492; schema490.
+Build001 missingparent precompilefailure and binaryreview001 newlineequality
+failure preserved; corrected002 semanticdecoderclosurePASS. Allsourcesfrozen.
+Stage14024 RUNNING; inspect stage receipt beforelaunch. No acceptedSITE yet.
+Onreturn removehookFIRST. Continueuntil14UTC/protected720p/Cofflimits.
+
 # 493 closeout verified; ready for new494 matched Xbox test
 
 Repository check2646 CLOSED/pass37271trackedfiles;61 staged source/evidence/docs

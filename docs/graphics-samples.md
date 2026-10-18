@@ -22,7 +22,8 @@ depth controls pass on NT5 PC and Xbox. Two earlier Xbox launches returned witho
 Windows receipts; the later 483 run completed both depth cases and a normal restart.
 Rung 08c now has matched selected-input alpha arithmetic on NT5 PC and Xbox,
 with the endpoint precision limitation retained. Rung 08d now passes windowed
-D3D presentation on NT5 PC and Xbox. Game performance remains separate work.
+D3D presentation on NT5 PC and Xbox. Rung 09a adds six XYZ transform controls
+on both. Combined scenes and game performance remain separate work.
 The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 
 ## The ladder
@@ -41,7 +42,8 @@ The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 | 08b | Depth buffer | Enumerated depth surface, both draw orders, depth-disabled and clear-zero controls | Default/HEL RGB software controls pass on NT5 PC and Xbox |
 | 08c | Alpha blending | Transparent, partial, opaque and blending-disabled triangle controls | Selected-input arithmetic matches on NT5 PC/Xbox default and HEL; exact ideal endpoints remain failed |
 | 08d | Windowed D3D presentation | Render-target readback, exact clipped presentation through cover/move/uncover, unchanged source after blit | NT5 PC/Xbox default/HEL pixel controls pass; no GPU or performance claim |
-| 09 | Transforms and scene stability | Rotating textured object, camera/projection, resize/activation handling and repeated resource teardown | Planned |
+| 09a | XYZ transforms | Identity, world/view translation, rotation then view translation, perspective divide and displaced viewport; independent pixel checks | NT5 PC/Xbox default and HEL controls pass |
+| 09b | Combined scene stability | Textured object, camera/projection, depth, windowed presentation and repeated resource teardown | Planned |
 | 10 | Small game-like scenes | Scrolling isometric tiles and moving sprites, then a textured room; controls, audio and save/reload | Planned; precedes the actual game acceptance tests |
 
 Do not require hardware acceleration for a software-compatible rung. An inventory
@@ -833,5 +835,5 @@ qualification is recorded separately in that attempt's report.
 
 The [493 PC control](../outputs/d3d-transform493/REPORT.md) passes both default
 and HEL paths, with normal restart and independent cold-file agreement. The
-matched Xbox transform comparison is pending. This establishes six software
-transform cases, not general D3D compatibility or hardware acceleration.
+[494 matched Xbox comparison](../outputs/d3d-transform494/REPORT.md) also passes.
+This establishes six software transform cases, not general D3D compatibility or hardware acceleration.
