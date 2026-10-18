@@ -1,3 +1,39 @@
+# 507 CLOSED scoped actual entry/return PASS, strict disk FALSE
+
+506 PUSHED6e8497ff. Read outputs/entry-return507 REPORT/DESIGN/NEXT/final-review,
+actual-review001/trace/audit. Exact504XBE95a97340... freshunused466child. OneSITE
+09:19:51->completed09:20:19.12actualkernelcalls all0,firmware49mode1,28stops86captures,
+929text320data/10imports actualkernel exact. Originalregsflags restored, file7/
+indicator2/all6statuses0; original_startneverhit. BPscleared/physicalmode0 before
+firmware resume. NEW506controlreturn login/TYPE/PWD/SIZE112/NOOP/QUIT PASS; cold112
+receipt exactmemory. No liveFTPcontentclaim and505originalgateFAILEDunchanged.
+Independent96file58indicator112receiptmutationsreject. Full10GBmap327680localbytes
+275changes strictFALSE/no waiver. FATX276dirs6554files255dirclusters0errors/orphans;
+5hives3baselinebinaries/seed/EEPROMexact.254frozen17external434privatefilesrehashed.
+ALL sessions53537/57605/31438CLOSED, noxemu/QEMU/nohook/noqueuedphysical. NoWindows/
+physicalLED/boot/D3Dqualification. Preflight001scalarpin schemafailurepreserved;
+002handlesactualschema beforefreeze/launch, helpersunchanged/exactpriorhostpins.
+NEXT NEW508physicalentry-onlycontroller from501 removingWindowskit/hook; same504
+atunusedphysicalXWNBoot504a, baseline/uniquepaths/pins/hostnegativecontroller tests,
+oneSITE20sec/boundedreturn/fullcoldhive-eventaudit. AskLEDquestionwhenready; no
+routinepermission. Missingreceipt/LED remainsunknown, noWindowsbootclaim.
+501physicalabsence/487latehandoff separate;486/496pending. C/WSL20GiBguard/noE,
+720p/ordinarylauncher/startup/XboxCprotected.13:50reviewonly14UTCclose/pause.
+Repositorycheck/exactstage/commitpush next.
+
+# 507 isolated corrected-return observer starting
+
+506 PUSHED6e8497ff;505FAILEDliveFTPgate immutable. New507 exact504candidate, fresh
+neverexecuted466child/privateEEPROM/6074..6077, noXBE/guestcodechange. Exact505actual
+API/register/original_start guards; ONLY506returnprobe/waiter replaceslivePASVread.
+Newcontract requiresauthenticatedcontrol/SIZE112 plusindependentcold112content.
+Preflight002PASS254frozen17external,C24033427456/E21499871232,768MiBguard/noEallocation.
+Preflight001scalar-host-sourcepin schemafailure preserved beforefreeze/launch;
+002handles actualschema, nochange totestedobserver. Prep53537CLOSED. Newbounded
+runner/trace starting; read507DESIGN/preflight002/actualrecords. No physicalaccess,
+startuphook orqueuedphysicallaunch. AllBP/physicalmodecleanup/fullcoldaudit required.
+13:50reviewonly14UTCclose/pause. Neverrerunclosed505oranyoldguest.
+
 # 506 HOST-ONLY FTP return transport complete
 
 505 PUSHED40777364, closedscoped12kernelcallsPASS/fullreturn-readbackFAIL retained.
