@@ -1,3 +1,18 @@
+# 498 host entry gate complete; 497 remains closed awaiting screen observation
+
+497 PUSHED8935db5a. Read entry-receipt498 REPORT/DESIGN/NEXT/final-review.
+199 actual Linux i386 assembly cases pass (128 register/flag,71 modeled I/O failure),
+1019 independent transport negatives.606 private files rehashed, all processes closed.
+No XBE integration/build, console access, hook or queued launch. Exact497 source/
+binary untouched; no requalification. Pending user screen question still unanswered.
+Complete entry receipt does NOT prove final flush/close/Windows; missing stays
+ambiguous. Early I/O changes timing/memory and is only a diagnostic intervention.
+Next NEW pinned integration/appended gate preserving original instructions and
+controller host checks before a distinct physical run; no identical retry.
+496 PC combined-scene PASS unchanged; Xbox scene still unqualified.720p/C protected.
+HostC~23.08GB/E21499871232B; projected20GiB guard. Deadline14UTC/closeout13:50.
+498 repository check and commit/push next. No hardware observation invented.
+
 # 497 final repository closeout checked; pending screen observation
 
 Check55366 CLOSED PASS37433trackedfiles,42initialstagedfilesbyteexact. All497
