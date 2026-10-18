@@ -1,0 +1,88 @@
+{
+  "passed": true,
+  "actual_socket_transport": true,
+  "server_and_pixels": "MODELED",
+  "cases": [
+    {
+      "case": "success",
+      "commands": 1,
+      "server_closed": true,
+      "result": {
+        "completed": true,
+        "utc": "2026-10-18T12:49:45.133282+00:00",
+        "path": "C:\\xwn528\\capture-host001\\success.ppm",
+        "port": 59757,
+        "command_sent": true,
+        "retry": false,
+        "banner": "QEMU modeled monitor\r\n(qemu) ",
+        "reply": "\r\n(qemu) ",
+        "width": 2,
+        "height": 2,
+        "bytes": 23,
+        "sha256": "e2d1976121d77c0f070972e742f8a67d36a30bc091145adc088f2ac19a791f4a"
+      }
+    },
+    {
+      "case": "no-banner",
+      "commands": 0,
+      "server_closed": true,
+      "result": {
+        "completed": false,
+        "utc": "2026-10-18T12:49:45.162211+00:00",
+        "path": "C:\\xwn528\\capture-host001\\no-banner.ppm",
+        "port": 59759,
+        "command_sent": false,
+        "retry": false,
+        "failure": "TimeoutError('timed out')"
+      }
+    },
+    {
+      "case": "no-ack",
+      "commands": 1,
+      "server_closed": true,
+      "result": {
+        "completed": false,
+        "utc": "2026-10-18T12:49:45.575425+00:00",
+        "path": "C:\\xwn528\\capture-host001\\no-ack.ppm",
+        "port": 59761,
+        "command_sent": true,
+        "retry": false,
+        "banner": "QEMU modeled monitor\r\n(qemu) ",
+        "failure": "TimeoutError('timed out')"
+      }
+    },
+    {
+      "case": "ack-no-file",
+      "commands": 1,
+      "server_closed": true,
+      "result": {
+        "completed": false,
+        "utc": "2026-10-18T12:49:45.984174+00:00",
+        "path": "C:\\xwn528\\capture-host001\\ack-no-file.ppm",
+        "port": 59763,
+        "command_sent": true,
+        "retry": false,
+        "banner": "QEMU modeled monitor\r\n(qemu) ",
+        "reply": "\r\n(qemu) ",
+        "failure": "FileNotFoundError(2, 'No such file or directory')"
+      }
+    },
+    {
+      "case": "truncated-file",
+      "commands": 1,
+      "server_closed": true,
+      "result": {
+        "completed": false,
+        "utc": "2026-10-18T12:49:46.009835+00:00",
+        "path": "C:\\xwn528\\capture-host001\\truncated-file.ppm",
+        "port": 59765,
+        "command_sent": true,
+        "retry": false,
+        "banner": "QEMU modeled monitor\r\n(qemu) ",
+        "reply": "\r\n(qemu) ",
+        "failure": "ValueError('PPM body')"
+      }
+    }
+  ],
+  "source_sha256": "ec7a9cde2b013389df3544b4ddf0d7fd655b81cb7e4949097e39d65fbec546fe"
+}

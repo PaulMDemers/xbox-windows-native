@@ -1,3 +1,39 @@
+# 528 PREPARED visible control; observer pending, no physical launch
+
+527 PUSHEDa4c97eac (evidence3ccba972). Read528 REPORT/DESIGN/NEXT/final-review and
+actualhost/build/preflight/emulator/capture/capacityrecords. Exact110592B SHA256
+d2f32d69247358bddb7dad4274789c8645e496bfe60476ccd41889a39fc24499. Standardnxdk
+720p bluebeforeEalias/filecalls12s; perAPI/status+sanitizedalias text; green/red20s
+thenfirmwarereturnrequest. CRT/Dmountprecedesmain; no marker isnotnoentryproof.
+UsesactualMmQueryAllocationSize, notSDKhardcodedVideoMemorySize. ProtectedWindows
+720p/startup/launcherunchanged; no528physicalconnection/stage/package/launch/hook.
+Actualengine19+UI/main30 ASan/UBSan MODELED-SDK cases,112transportnegatives,
+30MODELED-FTPcontrollercases3realchildlifetimes5real-socketMODELED-HMP cases PASS.
+Leasedprivate2Cbuild,1661SDKpins/toolsunchanged; soleinheritedlinkerwarning.
+Emu001 actual2x48receipts kernel1.0.4627.1, naturalexit0/PID30484closed12:47:54UTC.
+E5dirs4files15clusters0errors/orphans, source/seed/privateEEPROMsame. Fullmap1034
+changedbytesincluding1540outsideE=>strictFALSE/noattribution. Ownfinalclose/
+firmwarereturn/physical/Windows/display NOTqualified. Unackcaptureleftnoimages.
+Freshsamecandidateemu002 acknowledged 'unknown command: screendump'; capture
+unsupported. FallbackkillPID27744exit-1closed12:50:56UTC; coldmapbyteequal/no
+receipts/noentryinference;inputsEEPROMsame0allocationerrors. BOTHclosedneverreuse.
+Visualcolors/text UNVERIFIED; noimagehelperexecuted, PILprobeunavailablepreserved.
+Prep00120GiB/768MiBguardrefusedbeforefixture.38new528closedhostXBEscompressed
+byteexact; insufficient. Newselectedclosed524singlelinkexecompressedonce with
+actualclosure/fileID/hash/links proof,135217152allocatedbytes saved; not523repeat,
+nohistoricaldeletion/backingmoves. Guardedprep002freshunusedblank8GiBparentvalid.
+FinalreviewPASS662privatefiles+immutablepins+1661SDKrehashed; ALL86350/63335/host/
+build/coldprocessesCLOSED. Lastactualdashboard527collection12:32:16UTC. No528
+physicalaccess/queuedlaunch. Useravailabilityquestionpending; noanswerisnotready.
+NEXT whenobserverready: freeze528physicalpackage usingexactcandidate/scopedemu
+receipt qualification (NOTvisualpass), freshbaseline/readback, oneSITE20s,
+observeblue->green/red->dashboard, pairedcoldhive/events. Ifredgetactualalias/
+status; ifblackearlierCRT/video/dispatchremainunknown. Noidenticalsilentretry.
+Independenthost/docsreviewavailablewhilewaiting.486/496pending,484failed,noGPU/
+game/release/stabilitypromotion. C/WSL20GiBguard/noEallocation;13:50reviewonly,
+14UTCclose/report/pauseautomation. Repositorycheck34351 CLOSED PASS38411files;
+exactstage/commitnext. Historicaluntrackeduntouched.
+
 # 527 CLOSED standalone nxdk control: physical receipts ABSENT
 
 526 PUSHED9efc7f15. Read527 REPORT/DESIGN/NEXT, host/build/emulator/physical
