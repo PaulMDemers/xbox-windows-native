@@ -1,3 +1,30 @@
+#544 LAUNCHED after normal Restart; final boot observation pending
+
+543 CLOSED: user desktop observation then normal Windows Restart to dashboard.
+Fresh after1 completed23:06:50UTC; fivehivesclean, newEventLog6005/6006 each1.
+Ft49 and Srv2013 WindowsF: warning retained; nofullallocation/free-space audit.
+Ordinarylauncher/startup/applicationlog/videotrace unchanged. No543rerun/recollect.
+
+544 stage/before completed; exacttenbeforefiles equal543after1, candidate readback
+matches frozen59pinpackage. One SITE accepted23:09:16UTC. Intendedred/amber then
+blackhold; actualLED/screen report stillpending. Userquestion sent, leaveas-is.
+Readiness inference fromactivewatchedsequence documented inready1; no newexplicit
+readiness answer. Nointerveningpowercycle reported. No hook or ownedrunninghost
+process; hostsupervisorsclosed doesnotmeanconsoleclosed. Neverrepeatlaunch.
+Read warm-pre-pci544/NEXT-LAUNCHED.md. Onactualobservation, requestmanualresetifheld,
+then frozenafter1/audit/decode and exactclosure. This is LASTbootdiagnostic; table
+bootissue regardlessofoutcome, no furthercheckpointladder or functionalbootpatch.
+
+545 combinedD3D preparation nowcomplete: newcontroller16modeledcases passed,
+ordinarylauncher/uniquehook/kit, exact496sample/newrunner,49pinsfrozen. No545console
+writes/hook/launch. Stageonlyafter544closed. Read d3d-scene545/NEXT-PREPARED.md.
+Matchedscene/oracle plusactualsource/pixel/module/exit/cold evidence required;
+noGPU/game/performance promotion.496PCscenePASS/497noXboxresult remain current.
+
+AutomationPAUSED; manualauthorization active. XboxCofflimits;720p/ordinarystartup
+protected. SmallC/WSL outputs20GiBguard, noEhostallocation. Actualconsole may be
+heldblack from544; awaitobserver before any newphysicalwork. No launchqueued.
+
 #543 desktop observed; normal Windows Restart requested
 
 User reports "Windows is waiting at the desktop". Exact report in543desktop1.
