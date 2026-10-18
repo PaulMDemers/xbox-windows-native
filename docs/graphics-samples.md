@@ -23,7 +23,8 @@ Windows receipts; the later 483 run completed both depth cases and a normal rest
 Rung 08c now has matched selected-input alpha arithmetic on NT5 PC and Xbox,
 with the endpoint precision limitation retained. Rung 08d now passes windowed
 D3D presentation on NT5 PC and Xbox. Rung 09a adds six XYZ transform controls
-on both. The combined offscreen scene passes on the PC fixture; its Xbox comparison and game performance remain separate work.
+on both. The combined offscreen scene also passes on PC and Xbox; combined
+windowed presentation and game performance remain separate work.
 The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 
 ## Start here
@@ -70,7 +71,7 @@ Windows automatically, and they do not impose a process watchdog.
 | 08c | Alpha blending | Transparent, partial, opaque and blending-disabled triangle controls | Selected-input arithmetic matches on NT5 PC/Xbox default and HEL; exact ideal endpoints remain failed |
 | 08d | Windowed D3D presentation | Render-target readback, exact clipped presentation through cover/move/uncover, unchanged source after blit | NT5 PC/Xbox default/HEL pixel controls pass; no GPU or performance claim |
 | 09a | XYZ transforms | Identity, world/view translation, rotation then view translation, perspective divide and displaced viewport; independent pixel checks | NT5 PC/Xbox default and HEL controls pass |
-| 09b | Combined scene stability | XYZ textures, transforms and depth, followed by windowed presentation and resource teardown | Offscreen PC default/HEL pass; Xbox and combined presentation pending |
+| 09b | Combined scene stability | XYZ textures, transforms and depth, followed by windowed presentation and resource teardown | Offscreen PC/Xbox default and HEL pass; combined presentation pending |
 | 10 | Small game-like scenes | Scrolling isometric tiles and moving sprites, then a textured room; controls, audio and save/reload | Planned; precedes the actual game acceptance tests |
 
 Do not require hardware acceleration for a software-compatible rung. An inventory
@@ -241,14 +242,14 @@ bytes across both backends and reject 468 actual-evidence mutations. The same
 sample runs on PC RGB565 and Xbox RGB32. Both restarted normally; the physical
 test hook is removed and 720p/code are unchanged. The first PC test's missing
 sibling-order precondition and a physical preflight manifest error are retained
-as separate failed attempts. The Xbox again logged Ftdisk49 and two shutdown
+as separate failed attempts. The Xbox again logged Ftdisk 49 and two shutdown
 rundll32 popups; a presentation pass does not qualify the whole system.
 
 The [437 NT5 control](../outputs/graphics-nt5437/REPORT.md) and
 [438 Xbox control](../outputs/graphics-xbox438/REPORT.md) establish the initial
 baseline. Both used the same sample executable; the Xbox driver and 720p mode
 were unchanged. Each retained 402 rejected evidence mutations. The physical
-run restarted normally but retains Ftdisk49 and two shutdown-time rundll32
+run restarted normally but retains Ftdisk 49 and two shutdown-time rundll32
 initialization popups, so it is not a clean overall system qualification.
 
 Rung 04 now has an implementation; its qualification is recorded below.
@@ -406,7 +407,7 @@ bytes match. The same executable, runtime and driver were used, followed by a
 normal restart and removal of the test hook. The earlier
 [no-receipt launch](../outputs/key-xbox448/REPORT.md) is retained separately.
 This focused key diagnostic does not qualify the remaining full rung04 RGB32
-sprite/overlap stages. Ftdisk49 and a shutdown-time rundll32 popup remain separate
+sprite/overlap stages. Ftdisk 49 and a shutdown-time rundll32 popup remain separate
 system issues; no hardware acceleration or D3D result is implied.
 
 The [complete Xbox sprite retry](../outputs/sprites-retry452/REPORT.md) now
@@ -483,7 +484,7 @@ at the unchanged 1280×720/32-bit desktop, followed by a normal restart. Their f
 mutations of the actual Xbox records were rejected.
 
 This qualifies device discovery only: no D3D rendering device was created and no
-triangle was drawn. Five registry hives passed integrity checks; Ftdisk49 remains
+triangle was drawn. Five registry hives passed integrity checks; Ftdisk 49 remains
 an overall-system qualification failure. Earlier no-receipt attempts, including
 [458](../outputs/d3d-direct458/REPORT.md), remain failed/incomplete attempts and
 are not retrospectively qualified. The temporary test startup entry was removed;
@@ -542,7 +543,7 @@ normally. Each actual 11-module snapshot matches independently checked files.
 
 The preceding [475 boot attempt](../outputs/d3d-triangle475/REPORT.md) returned
 before producing Windows/sample evidence and remains failed. The successful
-Xbox run still records Ftdisk49 and a shutdown-time `rundll32.exe` initialization
+Xbox run still records Ftdisk 49 and a shutdown-time `rundll32.exe` initialization
 popup; overall system qualification therefore remains false. Rendering success
 does not resolve those issues or the intermittent boot path.
 
@@ -603,7 +604,7 @@ cases with the same executable. Each enumerates ten formats and uses an actual
 RGB32 format. The source bytes remain unchanged after drawing, all 576 interior
 texture checkpoints match, and Windows restarts normally. This qualifies this
 small software-rendering case; game compatibility and performance remain open.
-The Xbox still logs Ftdisk49 and shutdown-time rundll32 initialization popups,
+The Xbox still logs Ftdisk 49 and shutdown-time rundll32 initialization popups,
 so overall system qualification remains false despite the scoped rendering pass.
 
 [texture.c](../src/samples/graphics-ladder/texture.c) is rung 08a. It enumerates
@@ -704,7 +705,7 @@ The public batch wrapper has no watchdog; private validation uses a 90-second
 process deadline. Keep failures and use a fresh output prefix for each run.
 Runtime evidence is recorded in the [480 PC report](../outputs/d3d-depth480/REPORT.md)
 and [483 Xbox report](../outputs/handoff-witness483/REPORT.md). The Xbox retains
-Ftdisk49 and two shutdown-time application popups; the scoped depth pass does not
+Ftdisk 49 and two shutdown-time application popups; the scoped depth pass does not
 qualify the whole system or game compatibility.
 
 ## Offscreen alpha blending
@@ -912,4 +913,12 @@ perspective-correct interpolation across varying W, visible presentation,
 lighting, acceleration or game performance. See the [496 result](../outputs/d3d-scene496/REPORT.md)
 for the actual tested build and qualification status.
 
-The [496 PC control](../outputs/d3d-scene496/REPORT.md) passes both default and HEL paths with a normal restart. The [497 Xbox attempt](../outputs/d3d-scene497/REPORT.md) produced no launcher or Windows test receipts and does not qualify this rung on Xbox. Its temporary startup hook was removed; further entry diagnosis is needed.
+The [496 PC control](../outputs/d3d-scene496/REPORT.md) and fresh
+[545 Xbox comparison](../outputs/d3d-scene545/REPORT.md) pass all five offscreen
+cases through both default and HEL software paths, followed by normal restart.
+The Xbox comparison uses the exact 496 executable and unchanged oracle, with
+independent source/pixel and live/cold module checks. Ftdisk 49 and a shutdown
+popup remain; the scoped graphics pass does not qualify the whole system.
+The [497 Xbox attempt](../outputs/d3d-scene497/REPORT.md) produced no launcher or
+Windows test receipts and remains a separate failed attempt. Its hook and the
+545 hook were removed after collection. Combined visible presentation is next.

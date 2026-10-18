@@ -19,11 +19,14 @@ Building the drivers alone does not create a bootable Windows installation.
 1. Connect the mouse before boot. Keep a keyboard known to hang Xromwell
    disconnected until Windows appears; the Razer keyboard did so during testing.
 2. Use **UnleashX File Explorer** to open
-   `E:\Applications\XWNEBoot\default.xbe`. This route worked in the latest
-   physical test. The front-page Windows item and FTP launch have also failed
-   with a black screen and dashboard return, despite pointing to the correct
-   file. The difference between launch routes remains under investigation;
-   same-build, same-route intermittent failure has not been established.
+   `E:\Applications\XWNEBoot\default.xbe`. Intermittent failure is confirmed
+   with the same executable and launch route: an ordinary Windows boot and
+   restart were followed by a black-screen/dashboard return, then a successful
+   third launch without changing files. A correct path does not guarantee boot.
+   If it returns to the dashboard, one further manual attempt may work. If it
+   remains black, power off, wait about ten seconds, and return to the dashboard
+   before trying again. These are workarounds, not a proven fix or a guaranteed
+   every-other-launch pattern. Record each failed and successful attempt.
 3. Windows should reach the desktop. Close unsupported-device wizards without
    disabling devices. These prompts are not evidence that all those devices
    have working drivers.
@@ -32,6 +35,15 @@ Building the drivers alone does not create a bootable Windows installation.
 5. Use Windows **Start → Shut Down → Restart** to return to the dashboard.
 
 The normal demo has no benchmark or automatic timed restart enabled.
+
+The [ordinary pair](../outputs/windows-pair532/REPORT.md),
+[third launch](../outputs/windows-third533/REPORT.md) and
+[cold-start pair](../outputs/cold-pair534/REPORT.md) document these observations.
+The [final instrumented comparison](../outputs/warm-pre-pci544/REPORT.md) reached
+the same pre-PCI checkpoint after both cold and warm starts, without identifying
+the ordinary failure's cause. Boot investigation is currently tabled while the
+graphics sample ladder advances. Automated test packages retain separate
+single-request journals; do not manually relaunch one without its test procedure.
 
 ### Partition mapping on this E installation
 

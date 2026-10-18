@@ -1,3 +1,43 @@
+# 545 CLOSED: combined D3D scene passes; boot investigation TABLED
+
+Updated 2026-10-18 23:38 UTC. Latest authenticated console state: UnleashX
+following 545 automatic return and completed collection. No owned process,
+startup hook, queued launch or active runtime remains. Automation is PAUSED;
+later manual authorization remains the scope. Do not rerun or recollect 543-545.
+
+544 final warm checkpoint is CLOSED. After the user's manual reset, all ten
+baseline files were unchanged, five hives passed, and no Windows events were
+added. The observed red/amber black hold supports checkpoint arrival only.
+It did not establish the ordinary boot failure's cause or a fix. Boot diagnosis
+is TABLED at the user's request; do not start another checkpoint ladder.
+Read outputs/warm-pre-pci544/REPORT.md and final001.json for the exact limits.
+
+545 used the unchanged ordinary launcher once at 23:29:55 UTC. Collection
+completed at 23:34:09 UTC, removing the owned xwn545.cmd hook FIRST by rename
+to the owned kit's startup-used.cmd. Both default and HEL software modes passed
+all five combined offscreen transform/texture/depth cases using the exact 496
+sample and unchanged oracle. Pixel/source checks, eleven live/cold module
+records per mode, 2,256 mutation rejection controls, and five hive checks pass.
+Runner completion plus new EventLog 6005/6006 support normal Windows restart.
+No visual observation of this offscreen scene is claimed. Actual records:
+outputs/d3d-scene545/REPORT.md, final001.json, runtime-review001.json,
+module-review001.json, actual-controls001.json, audit1.json and collection001.json.
+
+Strict system qualification remains FALSE: Ftdisk 49 and Application Popup 26
+remain. GPU acceleration, game compatibility, performance, varying-W
+interpolation and visible combined presentation are unqualified. Preserve
+484's ideal-alpha failure, 490's selected-input result and 497's failed launch.
+The first 545 runner build failed before compilation; fresh build002 succeeded.
+Frozen 545 inputs are archived privately at C:/xwn545/frozen001.
+
+Next: a fresh bounded combined windowed presentation test, joining the 545
+scene coverage with the qualified 492 presentation path. Read
+outputs/d3d-scene545/NEXT-CLOSED.md before implementation. Use fresh fixtures,
+independent pixel expectations and host controls before physical staging.
+Preserve ordinary 720p launcher/startup and protected dashboard C. Windows F:
+is dashboard C on this fixture; do not act on the old low-space warning there.
+No new hardware launch is pending or needed to finish this closeout.
+
 #544 red/amber black screen observed; reset requested, boot work ending
 
 User: "Red amber with a black screen" in response to question about alternating

@@ -25,6 +25,7 @@ readbacks with this driver unchanged. Default/HEL windowed primary presentation,
 clipping and GDI coexistence also pass independent pixel checks. D3D7 RGB
 software offscreen clear/triangle rendering now passes on NT5 PC and Xbox.
 Owned point-sampled texture and depth controls also pass on NT5 PC and Xbox.
+The combined offscreen transform/texture/depth scene also passes on PC and Xbox.
 Two earlier physical depth launches returned without Windows receipts and remain
 failed; a fresh diagnostic completed the workload. Intermittent boot failures
 remain unresolved. Selected-input alpha arithmetic and windowed D3D presentation
@@ -72,7 +73,7 @@ same software device in both paths and completes a normal restart. Earlier
 no-receipt boots remain preserved. The next [PC control](../outputs/d3d-triangle474/REPORT.md)
 and [Xbox control](../outputs/d3d-triangle476/REPORT.md) create that device and
 draw an offscreen triangle with independent clear/interior/background checks.
-The Xbox restarts normally, but Ftdisk49, a shutdown-time rundll32 popup and the
+The Xbox restarts normally, but Ftdisk 49, a shutdown-time rundll32 popup and the
 separate intermittent boot failure remain unresolved. There is no accelerated
 rendering, game compatibility or game-performance qualification.
 
@@ -96,8 +97,9 @@ through cover/move/uncover with independent pixel checks. The matched
 [492 Xbox comparison](../outputs/d3d-present492/REPORT.md) also passes both paths
 at 720p/RGB32, with unchanged source surfaces and exact clipped GDI readback.
 Normal restart is supported, while Ftdisk 49 and shutdown popup events remain.
-World/view/projection controls now pass on PC and Xbox; next is a small
-combined scene; these graphics passes do not qualify games or acceleration.
+World/view/projection controls and the combined offscreen scene now pass on PC
+and Xbox; next is combined windowed presentation. These graphics passes do not
+qualify games or acceleration.
 
 | Stage | Work | Evidence needed to advance |
 |---|---|---|
@@ -166,7 +168,7 @@ Proposed first acceptance target for **each exact game edition**:
 |---|---|---|
 | Original RollerCoaster Tycoon | Not tested by this milestone | Exact edition/patch, Windows 2000 PC control and actual API dependencies |
 | Original The Sims | Not tested by this milestone | Exact edition/expansions, Windows 2000 PC control and actual API dependencies |
-| Legacy Direct3D support | D3D7 RGB software triangle, texture and depth pass on NT5 PC and Xbox; selected alpha arithmetic matches on both; windowed D3D presentation passes on NT5 PC and Xbox; six XYZ transform controls pass on PC and Xbox | Combined scenes and bounded resource/performance tests; alpha precision and intermittent boot failures remain unresolved |
+| Legacy Direct3D support | D3D7 RGB software triangle, texture and depth pass on NT5 PC and Xbox; selected alpha arithmetic matches on both; windowed D3D presentation, six XYZ transform controls and five combined offscreen scene controls pass on PC and Xbox | Combined windowed presentation and bounded resource/performance tests; alpha precision and intermittent boot failures remain unresolved |
 | Native NV2A acceleration | Unimplemented in the working demo | Windows ownership, submission, synchronization and lifetime proof |
 
 ## Installation work remains part of this goal
@@ -190,16 +192,19 @@ The subsequent [496 Windows 2000 PC control](../outputs/d3d-scene496/REPORT.md)
 passes all five offscreen cases through both default and HEL software paths,
 including unchanged texture bytes and normal restart. The
 [497 Xbox attempt](../outputs/d3d-scene497/REPORT.md) produced no launcher or
-Windows test receipts, so the combined scene remains unqualified on Xbox.
-Visible combined presentation, varying-W interpolation and game performance
-also remain untested.
+Windows test receipts and remains a failed attempt. The fresh
+[545 Xbox comparison](../outputs/d3d-scene545/REPORT.md) passes all five cases in
+both software paths using the exact 496 sample and unchanged oracle. Source,
+pixel, live/cold module, process-exit and normal-restart checks pass. Ftdisk 49
+and a shutdown popup remain. Visible combined presentation, varying-W
+interpolation and game performance remain untested.
 
-The next hardware step is to diagnose the launch/evidence gap before repeating
-the combined scene. Preserve the existing 490 alpha, 492 presentation and 494
+Boot investigation is [tabled after the final warm checkpoint](../outputs/warm-pre-pci544/REPORT.md).
+The next graphics step is combined windowed presentation. Preserve the existing
+490 alpha, 492 presentation and 494
 transform passes alongside later failed launches. In particular, the
 [526 alpha repeat](../outputs/blend-context526/REPORT.md) produced no Windows
 measurement; it neither establishes a new pixel failure nor erases 490's
 selected-input arithmetic result. The original 484 ideal-endpoint failure
-remains unresolved. After a justified launch control, finish the matched Xbox
-scene, then add combined windowed presentation and bounded resource/performance
-measurements before trying the games.
+remains unresolved. Add bounded resource/performance measurements after combined
+presentation before trying the games.
