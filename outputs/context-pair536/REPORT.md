@@ -24,8 +24,8 @@ the unchanged frozen controller. No console launch was retried.
 
 Cold case2 launched once at 2026-10-18T19:37:14.528234+00:00 after user-reported
 poweroff10seconds/on. All10 prelaunch files matched warm after1. Dashboard
-accepted SITE and host supervisor closedexit0; screen observation is pending.
-If desktop, request normal Restart and wait for dashboard confirmation, then
+accepted SITE and host supervisor closedexit0. User confirms Windows desktop;
+normal Restart requested. Await dashboard confirmation, then
 collect after2, audit2 and decode2, compare actual evidence. No third launch.
 No startup hook, ordinary driver/launcher patch or dashboardC access.
 

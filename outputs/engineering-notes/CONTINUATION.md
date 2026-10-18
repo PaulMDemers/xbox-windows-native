@@ -1,3 +1,18 @@
+#536 cold case2 reached desktop; normal Restart requested
+
+User reports "It’s at the desktop" for536b cold case2. desktop2 saved.
+Both instrumented warm/cold cases reached desktop; no claim of fixed ordinary
+boot reliability. Normal Windows Start/Shut Down/Restart requested; user asked
+to leave Xbox powered at dashboard afterward. Await explicit dashboard return.
+No after2 capture, hive/event audit or context comparison exists yet.
+
+On dashboard report saveobserver2; run frozen supervise.py after2 once, then WSL
+audit.py2 and Windows decode_actual.py2. Compare actual warm/cold preparation,
+CPU and event evidence with pre/postwitness epochs kept distinct. No thirdlaunch.
+Nohookinstalled; ordinary720p/startup last verified before cold launch.
+Allhostlaunchprocessesclosed; console last observed Windows desktop.
+AutomationPAUSED. Preserve capacity failure and cleanup538 records; no patch.
+
 #536 cold case2 launched once; screen observation pending
 
 User explicitly reports shutdown/off10seconds/poweron/dashboard. ready2 saved.
