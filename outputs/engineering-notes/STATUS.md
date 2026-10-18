@@ -1,3 +1,29 @@
+# 516 CLOSED candidate built/reviewed; NEVERLAUNCHED
+
+515 PUSHED529a4d4a. Read516 REPORT/DESIGN/NEXT/host001/build001/review001/final-review.
+Exact510child C:/xwn516/build001/default.xbe545088B SHA
+ a272c18d32f96719ddf5ec07dcc551f74165f797b8247b361c1a4e3b3d84da1d.
+Data320bytes now94c20..94d60;74refs moved -3e0,entry11100/gate94aff/tramp/49direct
+edges/imports/imagebounds/old95000tail preserved.5activepaths516,oldtail510unused.
+HostactualPythontransform6503negatives;actualbuiltimage399negatives;395relocs/full
+linkedsections reconstructed,9sources normalizeexact510,22datasymbols+3generated
+end moved,othersfixed. Rawlink544096B explicitlyextendedusingoldtailto545088B.
+NEW intermediateELF RWXloadwarning retained/reviewed;finalXBEsectionflags7/header
+permissions/extents unchanged. No warning suppression/no releasequalification.
+No test/buildfailures516;515failedreviews001..003 preserved. No codeexecuted/
+emulatorprep/consolelaunch/hook/sharedsource/SDKchange. Allownedclosed;session23245
+CLOSED,build/reviewexit0;nohostxemu/QEMU. Ordinary720p/XboxCuntouched.
+NEXT517 FULLexact516observerhostintegration beforefresh466unusedfixture/lease.
+DataEntryReturn94d0c/state94d10/status94d14/restore94d2c/return94d30/restored94d34/
+interval94d58;deriveactualsymbols. Oldguard11105;encodedDISKvsdecodedLIVEentry.
+Rejectstale510path/95000data;full12APIarguments/returns/pagewalk/pins/failurecleanup.
+Onlyfreshqualifiedemulator supportsNEWphysical516;nonequeued. Neverrerunclosed.
+514absence/causeunknown/LEDreplypending;494historical94000notcurrentmappingproof.
+486/496D3Dpending;allstrictFALSE/Ft49/popups preserved. No rootcauseclaim.
+C/WSL20GiBprojectedguard/noEallocation.13:50reviewonly14UTCclose/report/pause.
+Repositorycheck10697CLOSED PASS37953files;42inputs20privatefiles verified.
+C22643240960/E21499871232B. Exactstage/commitnext.
+
 # 515 CLOSED static data-layout review PASS; no build/runtime
 
 514 PUSHEDed241d1b. Read515 REPORT/DESIGN/NEXT/review004/final-review andactual
