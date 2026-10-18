@@ -1,3 +1,13 @@
+#543 desktop observed; normal Windows Restart requested
+
+User reports "Windows is waiting at the desktop". Exact report in543desktop1.
+Requested Start/Shut Down/Restart and leave atUnleashX poweredon without launching
+anything. Await actual dashboardconfirmation; do not infer restart completion.
+No new launch or console mutation. No hook/ownedrunninghostprocess.543 remains
+open pending after1/audit.544 preparedonly,545 runnerbuiltonly. Read their NEXT.
+After successful543 cold audit, ONE warm544 checkpoint, then table boot issue and
+resume combined3D545. No further boot ladder. AutomationPAUSED.
+
 #543 LAUNCHED; final boot comparison capped, then return to D3D
 
 Latest user scope: "Try out a few more things then let’s table it for now and
