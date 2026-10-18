@@ -1,3 +1,40 @@
+#543 LAUNCHED; final boot comparison capped, then return to D3D
+
+Latest user scope: "Try out a few more things then let’s table it for now and
+get back to the 3d work. We know how to avoid it at least/know to try running
+twice sometimes". Cap remaining boot investigation to543 ordinary primer and,
+only after normal Windows Restart without powercycle, ONE fresh544 pre-PCI
+checkpoint. Then table boot issue regardless of outcome; no further boot ladder.
+Powercycle/retry is a practical workaround, not a reliability fix.
+
+543 uses unchanged ordinary720p launcher, no hook, remote writes or trace reseed.
+Fresh ten-file before1 completed22:43:20UTC; one SITE accepted22:43:30UTC.
+Eight modeled controller cases pass,26pins frozen; before/launch supervisors
+closed. Actual console state UNKNOWN awaiting user screen report (async question
+sent). Ifdesktop, request normalWindowsRestart and wait for dashboardconfirmation.
+Then save exact observer1, collect after1 once and independently audit. If failure,
+preserve/close and tableboot; no retry543. Read boot-primer543/NEXT.md.
+
+544 is HOST-PREPARED ONLY, not packaged/staged/launched. Candidate normalized
+bytes exactly542.40marker+12C+19controller+6stage+11warm-admission cases pass.
+Fresh path XWNBoot544a; red/amber beforePCI then intentionalhold. package.py
+requires543 normalRestart/audit. Launch requires no interveningpowercycle and
+currentwatch/resetreadiness. Read warm-pre-pci544/NEXT.md; no new bootfix claim.
+
+545 D3D preparation advanced independently: namespace-only runner002 compiled
+under existingbuildlease; matched496 sample retained,24/26NT5imports pass.
+001 failed beforecompiler due missingparent; preserved,002 fixedmkdir in fresh
+output. No545controller/package/hook/physicalaction yet. Plan ordinarylauncher
+with uniqueowned545kit/hook, exact receipts and coldvalidation, not497recorderXBE.
+Read d3d-scene545/NEXT.md.490selectedalpha,492presentation,494transform scoped
+physicalPASS;496PCcombinedscenePASS;497noXboxworkload.484idealalpha stillFAILED.
+Combinedphysicalscene pending, noGPU/game/performance qualification.
+
+No owned runninghostprocess, no hook/queuedautomaticlaunch. Console may be in
+Windows from543; don't infer currentstate from host exit.542andallolderclosed.
+AutomationPAUSED. Protect720p/ordinarylauncher/startup, XboxCofflimits; smallC/WSL
+artifacts with20GiBguard, noEallocations. Manualauthorization remainsactive.
+
 #542 CLOSED: red/amber pre-PCI indication; clean postreset audit
 
 User reported "Amber/red flashing with a black screen", then "All set" after
