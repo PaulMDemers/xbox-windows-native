@@ -1,3 +1,18 @@
+#536 warm case1 LAUNCHED once; screen observation pending
+
+User confirmed "Yes it has stayed on since the last reboot mentioned" after
+unchanged-powered-dashboard request. ready1 saved. Before1 closed19:13:03UTC;
+all10 selected files exactly match534 after2, original720p/startup preserved.
+Launch1 sent once at 2026-10-18T19:13:22.038083+00:00 through E:/Applications/XWNBoot536a/default.xbe.
+Reply: 200 EXEC command succeeded.. Host launch supervisor closed exit0; this is not console completion.
+Screen question pending: Xromwell/Windows desktop versus black/dashboard.
+If desktop, leave running until request normal Windows Restart and dashboard
+confirmation. Then observer1, after1 once, WSL audit1 and decode_actual1. No hook.
+Do not launch again or infer screen from FTP. Second cold case requires first
+collection/audit then separately requested off10s/on and ready2. No third case.
+All host processes currently closed; last console screen unknown after launch.
+Automation PAUSED; no ordinarylauncher/driver/startup changes or consoleC access.
+
 #535 review closed;536 matched CPU/preparation pair STAGED, NOT LAUNCHED
 
 Read outputs/restart-review535/REPORT.md and audit001.json. Exact installed HAL
