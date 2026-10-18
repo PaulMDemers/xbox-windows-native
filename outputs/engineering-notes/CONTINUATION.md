@@ -1,3 +1,42 @@
+# 490 repository closeout; overnight work continues
+
+Repository check19000 passed37,049 tracked files and is closed. Initial36 staged
+files were byte-exact. All owned build/fixture/full-wrapper/check processes are
+closed. No console access or queued hardware test. Read490NEXT: complete new
+admission cleanup coverage, then package the reviewed490 XBE for one fresh test.
+Heartbeat remains ACTIVE until2026-10-18 14:00UTC; no user action required yet.
+
+# Current: CPU-context adapter490 compiled and host-qualified; no console launch
+
+Read outputs/context-adapter490 REPORT/DESIGN/NEXT/final-review and actual records.
+New exact487 diagnostic adds BYTE-IDENTICAL489 capture before witness IO and after
+its successfulclose.400-bytecontext packet cannotproveitsownclose/laterPG.
+Diskless privilegedhost001 actualadapter/capture/originalwitness/helper46cases
+PASS (2contextpairs44refusals), originalregisters/flags exact; CPU/allocations/IO
+synthetic and refusalendpointmodeled. VMclosedexit33,noexceptions/deadline/fallback.
+Full001 actualassembledwrapper150cases PASS withoriginalrefusalcleanup, CPUcapture
+substitutedbydebuggertrap/model; distinctfromactualprivilegedfixture.18newfile
+failurepaths22..25 covered. Newadmissionreasons20/21 stillneedfullcleanuppaths in
+NEWfull002 beforephysicalpackage;46fixturecoversadmissionwithmodeledendpoint.
+4067fixturetransport+5241fulltransport negativesreject;28modeledCPUcontextpackets,
+129refusalrecordsdecode. Original1024loader/payload/font/imports unchanged;313byte
+captureexact. OnefixtureRWXLOADwarningreviewed;XBEbuildlogempty. Preservecloseout001metadata
+checkerfailure: full-source001 usesgenerated, notpassed/status;002 accepts
+that explicitprovenancefield. No failedbuild/run andnoinputmutation.
+
+PrivateC:/xwn490/{host001,build001,full001}; allclosed, neverrerunconsumedIDs.
+Next NEWfull002 admissioncleanup tests thennamespace490physicalrunner/controller
+usingexisting490XBE andunchanged486sample/oracle, boundedFTPreadreconnect andcontext
+collection/identitychecks; seeNEXT preciseimports/boundaries. No490consolefiles,
+startuphook/deployment/launch, sharedSDK/driver/720pchange orpagewalkprovider.
+Nohardwaretestqueued/useractionneededyet. Lastverifiedconsolestate remains487
+dashboardreturn/hookremoved; do notclaimfreshaccess. Bootcauseunresolved.
+
+Continueauthorizedworkuntil2026-10-18 14:00UTC, closeoutonlyafter13:50UTC; actual
+clockfirst/betweenstages. HeartbeatACTIVE. Preserveoldresults/failures andstrict
+Ft49/shutdownlimits; noidenticalfailedbootretry orfunctionaldriverpatch. Enear
+20GiBguard; smallC/WSLonly, projectedguardrequired. No backingmoves/deletions.
+
 # 489 checked closeout; overnight heartbeat ACTIVE
 
 Repository check32327 passed37,013 tracked files;18 staged files matched bytes

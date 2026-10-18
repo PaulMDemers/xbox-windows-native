@@ -1,0 +1,76 @@
+{
+  "started": "2026-10-18T05:37:18.983599+00:00",
+  "closed": true,
+  "passed": true,
+  "physical_access": false,
+  "command": [
+    "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/bin/qemu-system-i386",
+    "-name",
+    "xwn-context-adapter490-host001",
+    "-L",
+    "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/qemu",
+    "-bios",
+    "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/seabios/bios.bin",
+    "-machine",
+    "pc,acpi=off,hpet=off",
+    "-accel",
+    "tcg,thread=single",
+    "-cpu",
+    "pentium3",
+    "-smp",
+    "1",
+    "-m",
+    "64",
+    "-vga",
+    "none",
+    "-display",
+    "none",
+    "-nic",
+    "none",
+    "-serial",
+    "none",
+    "-monitor",
+    "none",
+    "-kernel",
+    "/mnt/c/xwn490/host001/fixture.elf",
+    "-debugcon",
+    "file:/mnt/c/xwn490/host001/run001/capture.bin",
+    "-device",
+    "isa-debug-exit,iobase=0xf4,iosize=0x04",
+    "-no-reboot",
+    "-d",
+    "int,cpu_reset",
+    "-D",
+    "/mnt/c/xwn490/host001/run001/cpu.log"
+  ],
+  "build_sha256": "19986f3f9088bd570eb60a8e1f71203475087b91450b8cb616246d665f186aa1",
+  "pid": 474,
+  "exit_code": 33,
+  "deadline": false,
+  "review": {
+    "passed": true,
+    "cases": 46,
+    "successful_context_pairs": 2,
+    "refusals": 44,
+    "actual_privileged_capture": true,
+    "original_handoff_frames_exact": true,
+    "kernel_IO": "MODELED",
+    "physical_context": false,
+    "original_refusal_cleanup_tested": false
+  },
+  "files": {
+    "/mnt/c/xwn490/host001/run001/capture.bin": {
+      "bytes": 1887,
+      "sha256": "86463ff90952305319559d0b896a248800acd106f7b6c1ce5d64a1aad39a42ed"
+    },
+    "/mnt/c/xwn490/host001/run001/cpu.log": {
+      "bytes": 2604,
+      "sha256": "35e3ec151ba0967d8c0eb31a23258f1fc2064ed4cfd68b5c29034ec25cecc755"
+    },
+    "/mnt/c/xwn490/host001/run001/qemu.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "finished": "2026-10-18T05:37:19.963551+00:00"
+}
