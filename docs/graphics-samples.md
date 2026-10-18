@@ -23,7 +23,7 @@ Windows receipts; the later 483 run completed both depth cases and a normal rest
 Rung 08c now has matched selected-input alpha arithmetic on NT5 PC and Xbox,
 with the endpoint precision limitation retained. Rung 08d now passes windowed
 D3D presentation on NT5 PC and Xbox. Rung 09a adds six XYZ transform controls
-on both. Combined scenes and game performance remain separate work.
+on both. The combined offscreen scene passes on the PC fixture; its Xbox comparison and game performance remain separate work.
 The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 
 ## The ladder
@@ -43,7 +43,7 @@ The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 | 08c | Alpha blending | Transparent, partial, opaque and blending-disabled triangle controls | Selected-input arithmetic matches on NT5 PC/Xbox default and HEL; exact ideal endpoints remain failed |
 | 08d | Windowed D3D presentation | Render-target readback, exact clipped presentation through cover/move/uncover, unchanged source after blit | NT5 PC/Xbox default/HEL pixel controls pass; no GPU or performance claim |
 | 09a | XYZ transforms | Identity, world/view translation, rotation then view translation, perspective divide and displaced viewport; independent pixel checks | NT5 PC/Xbox default and HEL controls pass |
-| 09b | Combined scene stability | Textured object, camera/projection, depth, windowed presentation and repeated resource teardown | Planned |
+| 09b | Combined scene stability | XYZ textures, transforms and depth, followed by windowed presentation and resource teardown | Offscreen PC default/HEL pass; Xbox and combined presentation pending |
 | 10 | Small game-like scenes | Scrolling isometric tiles and moving sprites, then a textured room; controls, audio and save/reload | Planned; precedes the actual game acceptance tests |
 
 Do not require hardware acceleration for a software-compatible rung. An inventory
@@ -837,3 +837,42 @@ The [493 PC control](../outputs/d3d-transform493/REPORT.md) passes both default
 and HEL paths, with normal restart and independent cold-file agreement. The
 [494 matched Xbox comparison](../outputs/d3d-transform494/REPORT.md) also passes.
 This establishes six software transform cases, not general D3D compatibility or hardware acceleration.
+
+
+## Combined XYZ, textures and depth
+
+[scene.c](../src/samples/graphics-ladder/scene.c) combines two owned 8x8 textures,
+actual XYZ vertices, world/view/projection transforms and an attached depth
+buffer. Its five 64x64 offscreen cases compare both draw orders, depth disabled,
+a zero-cleared depth buffer, and a small world-space movement. The final case's
+record label is `camera_move`; it changes the **world** matrix, not the view matrix.
+
+Build using the same RosBE command, selecting `--sample scene` and a fresh
+output directory. Copy `scene.exe` and `scene.cmd` together into Windows. Run:
+
+```bat
+scene.cmd default r09bd
+scene.cmd hel r09bs
+```
+
+Each result prefix produces a text report, exit receipt, two framebuffer streams
+(`-clear.bin`, `-draw.bin`) and two texture-source streams (`-source-before.bin`,
+`-source-after.bin`). Copy all six files per prefix back to the host and check:
+
+```sh
+python3 tools/graphics_scene.py /path/to/results/r09bd --backend default
+python3 tools/graphics_scene.py /path/to/results/r09bs --backend hel
+```
+
+The checker requires exact matrices, state readbacks, format selection, owned
+surface capabilities, draw order and completed cleanup as well as pixel data.
+The [495 oracle](../outputs/scene-oracle495/REPORT.md) was fixed before this
+sample was compiled: safe RGB regions must match exactly; predefined two-pixel
+geometry/texture boundaries allow only the specified colors. Texture source
+bytes must remain exact. Framebuffer X bytes and pitch padding are excluded.
+Both triangles have constant W individually, so this does not yet test
+perspective-correct interpolation across varying W, visible presentation,
+lighting, acceleration or game performance. See the [496 result](../outputs/d3d-scene496/REPORT.md)
+for the actual tested build and qualification status.
+
+The [496 PC control](../outputs/d3d-scene496/REPORT.md) passes both default and HEL paths with a normal restart. The matched Xbox combined-scene run is pending.

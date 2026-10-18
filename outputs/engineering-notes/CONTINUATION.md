@@ -1,3 +1,57 @@
+# 496 repository closeout checked; commit/push next
+
+Repository13324 CLOSED PASS37391trackedfiles;59initialstagedfilesbyteexact.
+All496processesclosed/nohardwareaccess; PCscopedscenePASS, noXboxsceneclaim.
+Next497matchedphysicalonly after reading496NEXT. Preservefrozeninputs/closedIDs.
+
+# 496 PC combined scene CLOSED scopedPASS; next497 matched Xbox
+
+495 PUSHED e55fb4af. Read496REPORT/DESIGN/NEXT/final-review. Both default/HEL
+five XYZ/texture/depth cases pass against unchanged495oracle.327680framebytes,
+245760RGBchecked,2048exactsourcebytes; fixedbands/Xpadding exclusions. Actual
+metadata/readbacks/formats/owners/cleanup pass, normalrestart07:22:54UTC/nohoststop,
+6489files309dirs5hives,29independentfiles/11modules each,2256actualmutationsreject.
+155frozeninputs archived; privatehashcounts in final-review. AllsessionsCLOSED,
+includingbuild/prepcold71656/runtime45432/cold93031; no496physicalaccess/hook.
+Sample7cbf053f...28934B/runner3608a87b...12958B; public5PEsectionsmatch, no separate
+execution. Host001 wrongsyntheticMIPMAPbitfail preserved,002fixedfixtureonly;
+all16privatehostfilesverified. Screenqueryafterclose refused/no recollection.
+Next497exactsample matchedXbox via494controller/uniqueownedpaths/hosttests/pins,
+oneSITE/hookfirst/coldaudits. No consolelaunchqueued. Last494dashboard/nohook.
+PhysicalFt49/popups/bootfailures retained. Continue14UTC/closeout13:50.
+496review/check/commitpush now; do not changefrozeninputs or rerunclosedcases.
+
+# 496 PC CLOSED; cold review active, graphics result not yet qualified
+
+Runtime45432 CLOSED exit0/deadlinefalse/source+floppyunchanged, normalguest
+restart evidence pending cold review. Cold93031 ACTIVE phase1; do notrelaunch.
+Public build five PE sections match actual sample; no separate execution.
+One screen query raced already-closed runtime and correctly refused; no runtime
+recollection or mutation. No496 console access/hook. Next strict report/source/
+RGBA oracle and independent cold reader/module/events/negativecontrols/closeout.
+
+# 496 PC run ACTIVE; no Xbox access
+
+Fresh PC phase1 launched07:21UTC under xemu lease, session45432 ACTIVE bounded600s.
+154 preflight dependencies frozen; baseline6475files308dirs,5hives audited.
+Build001 sample7cbf053f...28934B, runner3608a87b...12958B. No repeatlaunch.
+Next inspect login/desktop, send owned run496.exe ONCE, collect normal restart
+and both strict scene reports/source+pixel captures; full independent cold review.
+Console remains prior494 dashboard/nohook. Deadline14UTC/closeout13:50.
+
+# 496 combined-scene PC preparation active; no launch yet
+
+495 PUSHED e55fb4af. New scene.c/strict graphics_scene.py join real XYZ|TEX1,
+owned textures/depth with byte-identical frozen495 oracle. Five host002 groups
+PASS; host001 wrong synthetic MIPMAP bit failure preserved. Decoder/oracle
+unchanged between host001/002. Build001 no warnings, 24/26 NT5 imports pass.
+Runner3608a87b...12958B; sample7cbf053f...28934B. Fresh404 child/floppy prepared;
+read-only baseline cold audit session71656 ACTIVE. No496 guest/physical launch,
+no temporary console hook. All prior494/495 processes closed; console lastdashboard.
+Next finish cold/preflight then one bounded496PC control; neverparent/relaunchold.
+Currenttime07:20UTC, authorizeduntil14UTC/closeout13:50. C~23.3GB/E21.499GB;
+20GiB projectedreserve retained. No backing moves/deletions or physicalchanges.
+
 # 495 closeout checked; next496 actual combined-scene sample
 
 Repositorycheck56888 CLOSED PASS37335trackedfiles;15initialstagedfiles byteexact.

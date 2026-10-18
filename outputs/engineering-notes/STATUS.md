@@ -1,3 +1,26 @@
+# 496 repository closeout checked; commit/push next
+
+Repository13324 CLOSED PASS37391trackedfiles;59initialstagedfilesbyteexact.
+All496processesclosed/nohardwareaccess; PCscopedscenePASS, noXboxsceneclaim.
+Next497matchedphysicalonly after reading496NEXT. Preservefrozeninputs/closedIDs.
+
+# 496 PC combined scene CLOSED scopedPASS; next497 matched Xbox
+
+495 PUSHED e55fb4af. Read496REPORT/DESIGN/NEXT/final-review. Both default/HEL
+five XYZ/texture/depth cases pass against unchanged495oracle.327680framebytes,
+245760RGBchecked,2048exactsourcebytes; fixedbands/Xpadding exclusions. Actual
+metadata/readbacks/formats/owners/cleanup pass, normalrestart07:22:54UTC/nohoststop,
+6489files309dirs5hives,29independentfiles/11modules each,2256actualmutationsreject.
+155frozeninputs archived; privatehashcounts in final-review. AllsessionsCLOSED,
+includingbuild/prepcold71656/runtime45432/cold93031; no496physicalaccess/hook.
+Sample7cbf053f...28934B/runner3608a87b...12958B; public5PEsectionsmatch, no separate
+execution. Host001 wrongsyntheticMIPMAPbitfail preserved,002fixedfixtureonly;
+all16privatehostfilesverified. Screenqueryafterclose refused/no recollection.
+Next497exactsample matchedXbox via494controller/uniqueownedpaths/hosttests/pins,
+oneSITE/hookfirst/coldaudits. No consolelaunchqueued. Last494dashboard/nohook.
+PhysicalFt49/popups/bootfailures retained. Continue14UTC/closeout13:50.
+496review/check/commitpush now; do not changefrozeninputs or rerunclosedcases.
+
 # 495 closeout checked; next496 actual combined-scene sample
 
 Repositorycheck56888 CLOSED PASS37335trackedfiles;15initialstagedfiles byteexact.
