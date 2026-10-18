@@ -1,3 +1,24 @@
+# 523 CLOSED lossless private executable compression PASS
+
+522 PUSHED09453fe1. Read523 REPORT/DESIGN/NEXT/plan001failure/plan002/apply001/
+review001/final. Sevenclosedprivatexemu copies502/505/507/511/512/513/517 joined
+ownfinal/instance/hostexit/cleanup;allbytehashes/paths/lengths/fileIDs/singlelinks
+exact. Logical1339219399;actualallocation1339240448->687984640;651255808Bsaved.
+Oneexplicitboundedcompactexit0/all7compressed;no retry/delete/move/contentedit.
+Plan001FAILED hashobjectreturn beforemutation;common002onlyhexreturnfix;preserved.
+No backing/firmware/EEPROM/sharedinstalledemulator/521snapshots/256/consolechanges.
+ALL10575/storage/reviewCLOSED;zeroemulatorWindows/WSL;nohook/build/prep/launch.
+C22870188032/E21499871232;unchanged768MiB+20GiBguardPASS590045184Bspare,also512MiB
+operationaltargetPASS.Recheckbeforeprep;noEallocation. NEXT524 exact520emulator,
+522testedobserver+517completeworkflow, explicitnew524identity/ports/freshunused466
+child/privateEEPROM/lease;hostcontrols/preflightbeforelaunch, fullcoldafter.
+544096image/540000section sizes;all516addresses same,520namespace;498decoderexact,
+NOold513shift/globalnumericreplace/closedruntimeparent.520NEVERLAUNCHED.
+518lastdashboard/nohook;receiptabsence/strictFALSE/Ft49/popups/allfailurespreserved.
+486/496physicalD3Dpending.13:50UTC reviewonly14UTCclose/report/pauseautomation.
+Repositorycheck87139 CLOSED PASS38140files;exactstage/commit/pushnext;
+historicaluntrackedfilesuntouched.
+
 # 522 CLOSED host observer integration PASS; no new runtime
 
 521 PUSHED3984075b. Read522 REPORT/DESIGN/NEXT/host001..005/review001..002/final.
