@@ -1,3 +1,29 @@
+# 524 CLOSED exact520 scoped emulator PASS; strict disk FALSE
+
+523 PUSHEDc2802f63. Read524 REPORT/DESIGN/NEXT/actual-review/trampoline-review/
+extent-review/final andactualtrace/audit. Exact520544096B73b3623af2694d3c803f70f49fc9c8c0
+72df54a7010d3238358cf6576589ca13 oneSITE11:48:10.447696UTC->end11:48:38.322165UTC.
+29stops88captures11100->94affGPRflagsCR0/3/4exact,guard11105neverhit;2actualheaders
+544096/540000/540000end94d60rounded95000,929code320dataexact. Actualcode/data same
+4KiBpagePDE364647/PTE778339,RW/usertrue/PWTPCDfalse,10kernelimportsresolved.
+12originalkernelcallsstatus0,file7/indicator2/sixstatuses0/restoredregsflags,
+onefirmwaremode1entry;allBPsremoved/physicalmode0beforecontinue. ControlreturnSIZE112,
+coldreceiptexactmemory;orderlyhostexit0/nofallback. NoWindows/physicalcauseproof.
+10GBmap327680localbytes274changed=>strictFALSE,nowaiver/writerattribution.
+FATX276dirs6554files255dirclusters0errors/orphans;5hives3baselinebinaries2logs
+byteexact,sourceQCOWEEPROMsame/QCOWcheck0.Independent96file58indicator112receipt
+35tramp192extentmutationsreject.291frozen105external473privatefilesrehash.
+21sourceadaptations/522validators498decoderexact. Host00129stops88captures176fail
+29neg withMODELED517responses separate. No524failures. ALL48731prep/35833runner/
+51165trace/cold/reviewsCLOSED;zeroemulatorQEMU;nohook/physical/sharedsourceSDKchange.
+NEXT525 separatephysical520unusedXWNBoot520a under518controller/newpins/524receipt
+fixture/hosttests/retaineddemo251ticket;oneSITE20s/neverretry,pairedcoldhives/events.
+Noabsence=>noentryinference;LED/screenunknownunlessobserved. Neverparent/relaunch524.
+486/496physicalD3Dpending;allpriorfailures/Ft49/popups retained. C/WSLguardunchanged,
+noEallocation/oldcompressionreruns/backingmoves.13:50reviewonly14UTCclose/report/pause.
+Repositorycheck37659 CLOSED PASS38183files;45stagedfilesbyteexact/291frozen105external
+473privaterehash. Commit/pushnext;historicaluntrackedfilesuntouched.
+
 # 523 CLOSED lossless private executable compression PASS
 
 522 PUSHED09453fe1. Read523 REPORT/DESIGN/NEXT/plan001failure/plan002/apply001/
