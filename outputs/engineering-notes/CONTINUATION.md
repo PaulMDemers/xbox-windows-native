@@ -1,3 +1,34 @@
+# 527 CLOSED standalone nxdk control: physical receipts ABSENT
+
+526 PUSHED9efc7f15. Read527 REPORT/DESIGN/NEXT, host/build/emulator/physical
+records and final-review. Exact102400B fcc5536db1c27e5e3795151d9220cac9ce0487575
+b14a7b1c3cd33a66a0ccfbd standalone nxdk, not Xromwell/Windows. Pinned SDK58427c
+unchanged1657headers/libs +toolpins;2privateC files leasedbuild, sole inherited
+.edata mergewarning. ActualengineASan/UBSan19MODELED-OSscenarios112independent
+transportnegatives;30MODELED-FTPcontrollerpaths3actualchildlifetimes PASS.
+Freshemu002 receipts2x48 kernel1.0.4627.1; naturalexit0 closedPID24232. Begin
+pipeline complete beforeentry; ownfinalclose/firmwarereturnNOTproved. E5dirs4files
+15clusters0errors/orphans,2expectedadds/restexact,sourceinputsseedEEPROMunchanged.
+8GiBfullmap1034changedbytes,offset1540outsideE=>strictdiskFALSE/noattribution.
+PhysicaloneSITE12:29:50.070241UTC accepted;16dashboardobservationsnoreceipt;
+pairedcollect12:32:16.682535UTC begin+entryABSENT,10before2stagedexact,5hives
+clean/header/raw,2logsbyteexact0new/6006. Noabsence=>noentryinference; Ealias/I/O
+couldrefuse. Windows-onlyexplanationinsufficient, causenotidentified. NoXboxC/
+Windows/hook/ordinarylauncher/startup/720pchange/allocationaudit/normalrestartproof.
+PreserveRun001prelaunchtimezoneguardrefusal;Run002emu001hostexit1invalidWSLabsolute
+backingname/noexecution;failedaudit001;freshrelativechaincheckedbothhostsfor
+Run003emu002. Inventorylowercasecorrected002. Newclosed527emu001exeonlylosslessly
+compressed/hashunchanged thenhardlinkednewportable; nohistoricalrepeat/backingmove.
+FinalreviewPASS physicalgateFALSE,41frozeninputs674privatefilesrehashed.
+ALL27725build/25003emu/10250stage/22536launch-observe/34912collect/81822coldCLOSED;
+child11048/24784/22392/14500closed,emulator28176/24232closed,nohook/queuedlaunch.
+NEXT528 visible standalone earlymarker beforeEalias/I/O, showqueriedalias/statuses;
+noassumedaliasrelaxation. Useravailabilityquestionpending, preparehostwork while
+waiting, no newphysicaltestqueued. Hostsequencing/failures/controllerbeforebuild,
+exactfreshunusedemuqualificationbeforephysical.486/496physicalpending,484failed.
+C/WSL20GiBprojectedguard/noEallocation.13:50reviewonly14UTCclose/report/pause.
+Repositorycheck/exactstage/commitnext; historicaluntrackedfilesuntouched.
+
 # 526 CLOSED original-context alpha attempt; no preparation/Windows result
 
 525 PUSHED6db7ce52. Read526 REPORT/DESIGN/NEXT/preflight/review-build/package001/
