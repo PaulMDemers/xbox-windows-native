@@ -40,6 +40,7 @@ The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 | 08a | Point-sampled texture | Enumerated texture format, exact upload/readback, known orientation and interior sampling | Default/HEL RGB software controls pass on NT5 PC and Xbox |
 | 08b | Depth buffer | Enumerated depth surface, both draw orders, depth-disabled and clear-zero controls | Default/HEL RGB software controls pass on NT5 PC and Xbox |
 | 08c | Alpha blending | Transparent, partial, opaque and blending-disabled triangle controls | Selected-input arithmetic matches on NT5 PC/Xbox default and HEL; exact ideal endpoints remain failed |
+| 08d | Windowed D3D presentation | Render-target readback, exact clipped presentation through cover/move/uncover, unchanged source after blit | NT5 PC default/HEL controls pass; Xbox comparison pending |
 | 09 | Transforms and scene stability | Rotating textured object, camera/projection, resize/activation handling and repeated resource teardown | Planned |
 | 10 | Small game-like scenes | Scrolling isometric tiles and moving sprites, then a textured room; controls, audio and save/reload | Planned; precedes the actual game acceptance tests |
 
@@ -742,3 +743,47 @@ completed both default and HEL cases with all sixteen captures matching the
 predeclared486 oracle, followed by a recorded normal restart. This characterizes
 those selected inputs on the RGB software renderer; it does not remove the
 endpoint limitation or qualify windowed D3D presentation, GPU use or games.
+
+## Windowed D3D presentation
+
+[d3dpresent.c](../src/samples/graphics-ladder/d3dpresent.c) adds a D3D-rendered
+triangle to the owned window/clipper arrangement from rung03. Build it with
+`--sample d3dpresent` and a fresh output directory. Copy `d3dpresent.exe` and
+`d3dpresent.cmd` together, then run one case at a time on a visible desktop:
+
+```bat
+d3dpresent.cmd default r08dd
+d3dpresent.cmd hel r08ds
+```
+
+The sample keeps the current mode and requests the enumerated RGB software
+device. Supported targets use the primary's RGB565, RGB555 or RGB32 format.
+It renders four differently colored triangles while the owned window is
+visible, covered, moved while covered, and uncovered. Blue GDI surroundings and
+a magenta cover check that the clipper protects neighboring content.
+
+Keep `.txt`, `.exit`, `-source.bin`, `-post.bin`, `-before.bin` and `-after.bin`
+for each prefix. Source captures are taken before and after presentation; the
+second capture must be unchanged. Check the files on the host:
+
+```sh
+python3 tools/graphics_d3dpresent.py /path/to/results/r08dd --backend default
+python3 tools/graphics_d3dpresent.py /path/to/results/r08ds --backend hel
+```
+
+Each complete case has2,031,616 captured bytes. The independent checker requires
+the declared triangle interior/background colors, allows only those two colors
+in a narrow predefined edge band, and then checks exact source-to-screen mapping
+and GDI guards. It also checks clip rectangles, vertices, render states, module
+inventory and cleanup. Exact triangle-edge placement, padding bytes, physical
+scanout and GPU acceleration are outside this test. Do not adjust expected
+pixels to match a failed capture.
+
+The batch file records the process exit; it has no watchdog. The owned test
+controller bounds each process at90seconds. Synthetic decoder tests are in
+`tests/test_graphics_d3dpresent.py`; they do not establish guest correctness.
+See the [491 design](../outputs/d3d-present491/DESIGN.md) for the control scope.
+
+The [491 PC control](../outputs/d3d-present491/REPORT.md) passes both cases at
+640×480 RGB565, including4,063,232 captured bytes and normal restart. An independent
+cold reader agrees on the results. The Xbox comparison remains pending.

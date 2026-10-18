@@ -1,3 +1,50 @@
+# 491 repository closeout complete; next492 physical comparison
+
+Repositorycheck45802 passed37,166files and is CLOSED. Initial73stagedfiles
+byte-exact. All491ownedprocesses closed, noXboxlaunch/hook wascreated. Source,
+checker,publicbuildinstructions andactualPCevidence arebeingcommitted/pushed.
+C23941623808bytes/E21499871232bytes; retainprojected20GiBguard. Continueauthorized
+workuntil14:00UTC with491NEXT; noreset/relaunch ofclosedattempts. HeartbeatACTIVE.
+
+# Current: 491 PC windowed D3D presentation CLOSED scopedPASS
+
+Read outputs/d3d-present491 REPORT/DESIGN/NEXT/final-review/runtime-review002 and
+actualrecords. Onefresh404seed PCchild (neverexecutedruntimeparent), default/HEL
+bothpass640x480RGB565 fourstages visible/cover/move/uncover;4063232capturedbytes,
+actualclipunion/source-before-after/GDIguards/vertices/states/11modules each.
+Normalrestart,QEMUexit0 06:13:51UTC,no deadline/fallback; allownedprocesses CLOSED
+includingVM7799,cold78847/65450,failedUNCreview98210. No491physicalaccess/hook.
+Consolelastatdashboardafter490; ordinarylauncher/startup/720p unchanged.
+
+Cold6489files309dirs,fivehivesclean,protectedOSbinariesexact,normalshutdown+1;
+selectedSystemdeltahasnoerrors/warnings. IndependentNTFS-3G agrees29files,clean
+unmount/exit/diskunchanged. No fullNTFSallocationaudit; inheritedtypedDRMlimit.
+149preflightinputs exact,157originalinputsarchived,265privatefileshashed.
+Actualnegativecontrols1804total, originalcapturefilesunchanged. Publicsample
+31,294Bcodecompiled with50NT5imports;privatecontroller24imports. Publicbuilder
+all5PEsectionsBYTEIDENTICAL tocontrol,headers/timestamp differ;notseparateruntime.
+ControlSHA5bc04570fe39a6d68aae82ed24182ec280645594294967db3898d14e9f2d0a79.
+
+Preserveruntime-review001incorrectreporthash(modulelocalshadowedraw). Explicit
+failure001kept;decoder002/review002 correctdigestONLY, unchangedpixelpredicates,
+6synthetictestgroupsPASSincludingactualreporthash. No rerun/oracleadjustment.
+Originalpublicdecoder/test archivedBEFORE publicfix; currentpublicpathdiffers
+historicalpreflightpinsintentionally. public-decoder-fix001documentsarchive.
+Preservefloppytest001Windows/WSLpathfailure,00239rejectionsPASS; publicUNCreview001
+firstreadfailed,native002passed;lateQMPscreenrequestrefusedclosedphasebeforeaccess.
+
+NEXT NEW492matchedphysicalwindowedD3D comparison, seepreciseNEXT. Namespace-only
+newrunnerandXBEpaths onexact490, neverreset/reuseclosed490loggingpaths. Same491
+controlsample/correctedchecker; newactualdispatchtests,source/binary/importpins,
+freshEpaths,ownedleases,singlerequest/hook-firstcoldcollection. PCRGB565 and
+Xbox720pRGB32 aredistinctnativeformats; nopaging/interrupt/driverchange. Preserve
+490Ft49/RemovableStorage102, historicalshutdownpopups andintermittentbootfailures.
+NoGPU/performance/gameclaim. Do not repeatidenticalbootdiagnosticuntil lucky.
+
+Continueuntil2026-10-18 14:00UTC; closeoutonlyafter13:50UTC thenpauseheartbeat.
+Enear20GiBguard; smallC/WSLonly,checkactualprojectedCincludingWSLbackingbeforebuild.
+No backingmoves/deletions. Review/exactstage/check/commit/push491 before492launch.
+
 # 490 physical closeout reviewed; ready for next sample
 
 Repositorycheck47388 passed37,096files and is CLOSED. Initial49stagedfiles

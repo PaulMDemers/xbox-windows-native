@@ -88,7 +88,9 @@ witness and passes all five depth controls on both software paths, followed by
 normal restart. The witness does not diagnose earlier failures. Alpha blending
 now has a [matched PC/Xbox selected-input characterization](../outputs/context-adapter490/PHYSICAL.md),
 with the exact ideal endpoint failure retained. Windowed D3D presentation is the
-next separate image and GDI-coexistence check.
+next separate image and GDI-coexistence check. Its
+[491 PC control](../outputs/d3d-present491/REPORT.md) now passes default and HEL
+through cover/move/uncover with independent pixel checks; the Xbox comparison is pending.
 
 | Stage | Work | Evidence needed to advance |
 |---|---|---|
@@ -157,7 +159,7 @@ Proposed first acceptance target for **each exact game edition**:
 |---|---|---|
 | Original RollerCoaster Tycoon | Not tested by this milestone | Exact edition/patch, Windows 2000 PC control and actual API dependencies |
 | Original The Sims | Not tested by this milestone | Exact edition/expansions, Windows 2000 PC control and actual API dependencies |
-| Legacy Direct3D support | D3D7 RGB software triangle, texture and depth pass on NT5 PC and Xbox; selected alpha arithmetic matches on both with an endpoint precision limitation | Windowed D3D presentation, then bounded resource/performance tests; intermittent boot failures remain unresolved |
+| Legacy Direct3D support | D3D7 RGB software triangle, texture and depth pass on NT5 PC and Xbox; selected alpha arithmetic matches on both; windowed D3D presentation passes on NT5 PC | Xbox windowed presentation comparison, then bounded resource/performance tests; alpha precision and intermittent boot failures remain unresolved |
 | Native NV2A acceleration | Unimplemented in the working demo | Windows ownership, submission, synchronization and lifetime proof |
 
 ## Installation work remains part of this goal
