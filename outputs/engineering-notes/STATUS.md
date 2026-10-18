@@ -1,3 +1,29 @@
+# 528 physical package READY; observer pending, no stage or launch
+
+529 docs/evidence PUSHED9f15ab56, closeout0ae6b9d5. New528 package001.json now
+exists: do not rerun package001.py. Read528 PACKAGE.md and package-review001.json
+before NEXT.md. Exact unchanged110592B XBE d2f32d69247358bddb7dad4274789c8645e496bfe60476ccd41889a39fc24499.
+All59 frozen dependencies rehashed;1661SDKpins/tools/source/build outputs exact.
+Actualemu001 candidate/closure joined, prior begin pipeline only; no visual or
+physical qualification. StrictdiskFALSE/offset1540 retained. New cold-review
+source is exact527 namespace-only adaptation, UNEXECUTED pending actual data.
+All closed emulator/physical cases remain closed; no rerun/recollect/parent.
+
+Host preparation only: no connection/build/VM/staging/hook/launch/queued launch.
+Observer-availability question remains unanswered; no reply is not readiness.
+Physical528 paths still unused locally; remote namespace requires fresh check.
+Last actual dashboard527 collection12:32:16UTC, current console state unknown.
+When observerready before13:50UTC: verify frozen package, fresh baseline/capacity,
+unused E namespace/readback, oneSITE20s, watched blue->green/red->dashboard,
+bounded observation and paired cold collection. Original launcher/startup720p
+protected; dashboardC offlimits. No need rebuild candidate or repeat host tests.
+C/WSL20GiBguard/noEallocation.13:50reviewonly;14UTCclose/report/pauseautomation.
+490selected alphaPASSED;484idealendpointsFAILED;526noWindows result.496PCscene
+PASSED,497noXboxresult; no boot/GPU/game/release promotion. Repository check
+82755 CLOSED PASS38425files. Stage bytes verified before commit; all owned
+processes closed. Historical untracked files untouched. Resolve gitHEAD for
+the package closeout commit; no console action is queued.
+
 # 529 PUSHED 9f15ab56; 528 observer still pending
 
 528 PUSHED d06b7d90. 529 updates the public graphics guide, roadmap and source
