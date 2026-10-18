@@ -1,3 +1,80 @@
+# 532/533 CLOSED: ordinary Windows watched success/failure/success
+
+Read533 REPORT/NEXT/final001 and532 REPORT/final001. First after requested cold
+power-on reached desktop and normal Restart; second after Windows Restart went
+black/dashboard; third after that failed return reached desktop and normal
+Restart. Same original720p launcher/path/FTPmethod, no host file/trace reset or
+reported power cycle between attempts. Accepted SITE timestamps18:34:24,
+18:37:45,18:40:16UTC. Finite sequence complete; NO fourth launch queued.
+Both successful boots have new Windows startup and6006shutdown records; failed
+second has no changed collected files/events. All5hives clean after each. Ftdisk49
+recurs on both successes, strict clean-event gate remains FALSE. Video trace
+unchanged even on successful third: unchanged trace alone is not no-boot proof.
+All10 selected disk bytes before second failure and third success identical;
+not whole-disk equality or root-cause proof. One trio consistent with alternation,
+not deterministic rule, fixed boot, GPU/game/release or stability qualification.
+
+User reported final Rebooted after Start/Restart request;533 dashboard collection
+complete18:42:46UTC. All owned supervisors/audits CLOSED; no hook, no dashboardC
+access, ordinary launcher/startup/720p unchanged. Evidence retained. Automation
+PAUSED.532 extra-NUL review failure plus erroneous orchestration continuation
+preserved; corrected002 and explicit presecond gate passed. No driver mutation.
+Next investigate predecessor state (Windows normal Restart versus failed return
+or power-on) with finite matched observations, not unbounded lucky retries or
+speculative functional patches. See533 NEXT. D3D combined496 target still pending.
+# 533 third Windows boot reached desktop: watched success/failure/success
+
+User reports third at desktop. Same ordinary launcher/path/method and no reported
+intervening power cycle or host file/trace reset. Requested normal Start/Restart;
+reply pending, then533 one cold collection/audit. No fourth launch.532 is CLOSED
+and must not be recollected. This observed sequence matches user's alternating
+impression, but one sequence does not prove a deterministic rule or cause.
+No fix/driver/firmware/startup change. Automation remains PAUSED.
+# 532 CLOSED success/failure pair;533 third recovery check launched
+
+First ordinary Windows boot reached desktop and normal Restart (new6006delta1,
+Ftdisk49 retained). Second same launcher/path/method showed black/dashboard; all
+10 collected files unchanged, no new event records,5hives clean.532 closed with
+both requests/supervisors complete. Read532 REPORT/final001, preserve harness
+review001 failure/corrected002 and both outcomes. No power reset/file reset.
+533 is one separately planned third launch to test recovery after failure;
+SITE accepted18:40:16UTC, same ordinary launcher, no remote writes/hook/reseed.
+User screen reply pending. No fourth invocation planned. If desktop, ask normal
+Restart; then collect533 once and independent audit. Do not retry any SITE or
+recollect532. Automation PAUSED. No deterministic alternation/cause/fix claimed.
+# 532 second ordinary Windows launch issued after first normal restart
+
+First Windows desktop user-confirmed; user Rebooted after Start/Restart request.
+After1 cold collection complete:5 hives independently clean, new EventLog6006
+normal-shutdown delta1. Trace reused normally (44 records), no host reseed.
+Presecond001 passed corrected trace contract and all first closure/source checks.
+Second SITE accepted18:37:45UTC, same original720p launcher/path/method. Screen
+reply pending; leave Windows at desktop then request normal Restart. No hook,
+remote file writes, firmware/driver changes or intervening reported power reset.
+All current host supervisors closed. Do not retry either launch. After dashboard
+report collect after2, audit2, compare/preserve failures and publish closure.
+Automation remains PAUSED. No deterministic alternation or stable boot claim yet.
+# 532 Windows first boot reached desktop; normal Restart requested
+
+User reports "It’s sitting on the desktop now" for ordinary first launch.
+Read532 desktop1.json. Requested Start/Shut Down/Restart, then UnleashX readiness;
+reply pending. Do not collect while Windows runs or send another launch. No hook
+or automated restart. After dashboard report capture after1 and cold audit1,
+then separately planned ordinal2 same launcher/path without reset or trace edits.
+Preserve review001 failure and corrected002; no driver change or boot fix claim.
+# 532 first ordinary Windows launch issued; screen report pending
+
+Read532 DESIGN/preflight001/host001/before/launch1. User reported Ready after
+new cold power-off/on request. One SITE accepted18:34:24UTC for exact ordinary
+720p XWNEBoot launcher; no remote file writes, no hook, no trace reseed. Installed
+video driver provenance has TRACE_REUSE ON. Before10 files equal closed531.
+Host review001 wrongly expected extra NUL in16byte magic and failed; orchestration
+incorrectly continued to launch. Preserve before-review001-failure; corrected002
+uses established audit magic and rejects18 malformed cases. No physical mutation
+or driver change; this is a harness sequencing failure, not a console failure.
+All launched host supervisors closed. Await actual screen, then user normal
+Restart if Windows desktop; after1 collection/audit before any second request.
+No second launch queued; never retry launch1. Automation remains PAUSED.
 # 531 CLOSED: both watched standalone launches reached the application
 
 Manual first/second pair complete; read531 REPORT, final001 and NEXT. First528
