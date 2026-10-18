@@ -1,3 +1,32 @@
+# 531 MANUAL first/second comparison prepared; cold-power confirmation pending
+
+User explicitly authorized watched first-versus-second launch testing after the
+scheduled window closed. Automation remains PAUSED. Read531 DESIGN/NEXT,
+preflight001 and second-host001; current manual authorization supersedes the old
+cutoff for this work only. All prior cases/evidence remain preserved.
+
+No531 console connection/stage/launch yet. Asked user to power fully off/on and
+leave UnleashX before any launch; no reply yet. Prepared528 original candidate
+and59deps rehashed, freeC21952507904B with64MiBprojected20GiBguard. No build/VM/
+SDK/functional driver change. First A will use unused528 physical controller;
+second B uses distinct531 journal with identical XBE/path/FTPmethod and NO
+receipt deletion/reseed. User's explicit repeat-test request authorizes this
+planned second invocation, not unbounded retry of an uncertain SITE request.
+
+Second actual admission/request code passes18 modeled-evidence admission cases
+and2 modeled FTP accepted/uncertain cases; duplicate request refused, intent
+saved before one20sSITE. NOT hardware evidence. First needs watched return and
+no intervening manual reset for a consecutive pair. Existing first receipts
+cannot prove second execution; blue then existing-file red can be expected.
+First-observation.json and first closed cold records do not exist yet. Second
+observation/collection remains to prepare after actual first facts, not assumed.
+
+Keep ordinary launcher/startup720p and dashboardC offlimits. No Ehostallocation,
+backing movement, historical deletion or repeat old emu tests. All new host
+helpers closed; hardware state not queried during this preparation. 530 closed
+scheduledwindow/PAUSED evidence remains valid. Repositorycheck9453 CLOSED
+PASS38456files. No GPU/game/release promotion.
+
 # WINDOW CLOSED: automation PAUSED at14:00UTC
 
 Actual clock14:00:09UTC confirmed cutoff; automation update returnedPAUSED and
