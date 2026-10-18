@@ -1,3 +1,25 @@
+#535 review closed;536 matched CPU/preparation pair STAGED, NOT LAUNCHED
+
+Read outputs/restart-review535/REPORT.md and audit001.json. Exact installed HAL
+host dispatch seven cases distinguishes reset01/cycle40/off80; stopped before
+hardware helper. Actual physical Windows action is unknown. Original374 wrapper
+five calls have no conditional return checks; first copy precedesCLD. These are
+observational targets, NOT established failure causes. No functional patch.
+
+536 packages at E:/Applications/XWNBoot536a and536b staged/readback verified
+19:10:30UTC. Code/layout/payload exact490/494 except four owned paths+digest.
+No compiler/new guest code/hook/driver change/ordinary launcher change/C access.
+29 modeled controller and6 stage/capture cases PASS; inherited bounded supervisor
+closed exit0. All52 package pins rehashed. No readiness/launch receipt yet.
+
+Pending user question: remained powered at dashboard since534 with no other
+launch/reset, and available to watch? Do not assume. If yes save exact ready1
+then before1/launch1 once. If history changed redesign baseline in a fresh case.
+See outputs/context-pair536/NEXT.md for full warm/cold pair and stop conditions.
+No run queued automatically. Console last authenticated at dashboard duringstage;
+ordinary720p/startup preserved. Automation PAUSED. Never rerun closed attempts.
+C reserve tight:64MiB projected guard, no hostE writes/deletions/backingmoves.
+
 # 534 CLOSED: two power-cycled Windows launches succeeded
 
 Read outputs/cold-pair534/REPORT.md, final001.json and NEXT.md. Both separately

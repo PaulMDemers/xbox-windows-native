@@ -1,0 +1,489 @@
+{
+  "closed": true,
+  "utc": "2026-10-18T19:04:32.673224+00:00",
+  "scope": "Host instruction execution of exact HAL dispatcher; static original wrapper/source review",
+  "physical_access": false,
+  "physical_launches": 0,
+  "remote_writes": [],
+  "new_binary_built": false,
+  "hal_sha256": "a3a84368d59936dfa6bbcdc6d5839d57b886342211142d305e9dde941e4d1648",
+  "ntoskrnl_sha256": "84172dbd7e148dcf6e87c2e75e0c8716b3afcb6041b39802f63fd7fb67d7a152",
+  "ordinary_xbe_sha256": "6240a801d97c4894e56d516a934059da056446fb77cf895b5364bdd6cd24be9a",
+  "tools": {
+    "unicorn": "2.1.4",
+    "capstone": "5.0.7",
+    "pefile": "2024.8.26"
+  },
+  "dispatch_entry_va": 104368,
+  "power_helper_va": 104128,
+  "dispatch_cases": [
+    {
+      "action": 0,
+      "command": 128,
+      "stopped_before_helper": true,
+      "executed_instructions": 9
+    },
+    {
+      "action": 1,
+      "command": 128,
+      "stopped_before_helper": true,
+      "executed_instructions": 9
+    },
+    {
+      "action": 2,
+      "command": 64,
+      "stopped_before_helper": true,
+      "executed_instructions": 8
+    },
+    {
+      "action": 3,
+      "command": 1,
+      "stopped_before_helper": true,
+      "executed_instructions": 11
+    },
+    {
+      "action": 4,
+      "command": null,
+      "stopped_before_helper": true,
+      "executed_instructions": 12
+    },
+    {
+      "action": 2147483647,
+      "command": null,
+      "stopped_before_helper": true,
+      "executed_instructions": 12
+    },
+    {
+      "action": 4294967295,
+      "command": null,
+      "stopped_before_helper": true,
+      "executed_instructions": 12
+    }
+  ],
+  "device_io_executed": false,
+  "kernel_runtime_action_observed": false,
+  "kernel_static_direct_iat_references": [
+    {
+      "rva": 175212,
+      "immediately_preceding_push3": true
+    },
+    {
+      "rva": 201558,
+      "immediately_preceding_push3": false
+    },
+    {
+      "rva": 576024,
+      "immediately_preceding_push3": true
+    },
+    {
+      "rva": 576921,
+      "immediately_preceding_push3": true
+    },
+    {
+      "rva": 1139324,
+      "immediately_preceding_push3": true
+    }
+  ],
+  "kernel_static_reference_limit": "Byte-pattern inventory only; no caller identity, complete xrefs or UI-to-firmware mapping claim",
+  "original_wrapper_prefix": [
+    {
+      "address": 69888,
+      "mnemonic": "push",
+      "operands": "ebx"
+    },
+    {
+      "address": 69889,
+      "mnemonic": "push",
+      "operands": "ecx"
+    },
+    {
+      "address": 69890,
+      "mnemonic": "push",
+      "operands": "4"
+    },
+    {
+      "address": 69892,
+      "mnemonic": "push",
+      "operands": "0"
+    },
+    {
+      "address": 69894,
+      "mnemonic": "push",
+      "operands": "0x1ffffff"
+    },
+    {
+      "address": 69899,
+      "mnemonic": "push",
+      "operands": "0x200000"
+    },
+    {
+      "address": 69904,
+      "mnemonic": "push",
+      "operands": "0x100000"
+    },
+    {
+      "address": 69909,
+      "mnemonic": "call",
+      "operands": "dword ptr [0x11000]"
+    },
+    {
+      "address": 69915,
+      "mnemonic": "mov",
+      "operands": "dword ptr [0x11478], eax"
+    },
+    {
+      "address": 69920,
+      "mnemonic": "pop",
+      "operands": "ecx"
+    },
+    {
+      "address": 69921,
+      "mnemonic": "pop",
+      "operands": "ebx"
+    },
+    {
+      "address": 69922,
+      "mnemonic": "push",
+      "operands": "ebx"
+    },
+    {
+      "address": 69923,
+      "mnemonic": "push",
+      "operands": "ecx"
+    },
+    {
+      "address": 69924,
+      "mnemonic": "push",
+      "operands": "dword ptr [0x11478]"
+    },
+    {
+      "address": 69930,
+      "mnemonic": "call",
+      "operands": "dword ptr [0x11004]"
+    },
+    {
+      "address": 69936,
+      "mnemonic": "mov",
+      "operands": "dword ptr [0x1147c], eax"
+    },
+    {
+      "address": 69941,
+      "mnemonic": "pop",
+      "operands": "ecx"
+    },
+    {
+      "address": 69942,
+      "mnemonic": "pop",
+      "operands": "ebx"
+    },
+    {
+      "address": 69943,
+      "mnemonic": "push",
+      "operands": "ecx"
+    },
+    {
+      "address": 69944,
+      "mnemonic": "mov",
+      "operands": "esi, 0x13000"
+    },
+    {
+      "address": 69949,
+      "mnemonic": "mov",
+      "operands": "edi, dword ptr [0x11478]"
+    },
+    {
+      "address": 69955,
+      "mnemonic": "mov",
+      "operands": "ecx, dword ptr [0x11084]"
+    },
+    {
+      "address": 69961,
+      "mnemonic": "rep movsb",
+      "operands": "byte ptr es:[edi], byte ptr [esi]"
+    },
+    {
+      "address": 69963,
+      "mnemonic": "pop",
+      "operands": "ecx"
+    },
+    {
+      "address": 69964,
+      "mnemonic": "push",
+      "operands": "ebx"
+    },
+    {
+      "address": 69965,
+      "mnemonic": "push",
+      "operands": "ecx"
+    },
+    {
+      "address": 69966,
+      "mnemonic": "push",
+      "operands": "4"
+    },
+    {
+      "address": 69968,
+      "mnemonic": "push",
+      "operands": "0x10"
+    },
+    {
+      "address": 69970,
+      "mnemonic": "push",
+      "operands": "0x2000000"
+    },
+    {
+      "address": 69975,
+      "mnemonic": "push",
+      "operands": "0x1000000"
+    },
+    {
+      "address": 69980,
+      "mnemonic": "push",
+      "operands": "0x1000"
+    },
+    {
+      "address": 69985,
+      "mnemonic": "call",
+      "operands": "dword ptr [0x11000]"
+    },
+    {
+      "address": 69991,
+      "mnemonic": "mov",
+      "operands": "dword ptr [0x11480], eax"
+    },
+    {
+      "address": 69996,
+      "mnemonic": "pop",
+      "operands": "ecx"
+    },
+    {
+      "address": 69997,
+      "mnemonic": "pop",
+      "operands": "ebx"
+    },
+    {
+      "address": 69998,
+      "mnemonic": "push",
+      "operands": "ebx"
+    },
+    {
+      "address": 69999,
+      "mnemonic": "push",
+      "operands": "ecx"
+    },
+    {
+      "address": 70000,
+      "mnemonic": "push",
+      "operands": "dword ptr [0x11480]"
+    },
+    {
+      "address": 70006,
+      "mnemonic": "call",
+      "operands": "dword ptr [0x11004]"
+    },
+    {
+      "address": 70012,
+      "mnemonic": "mov",
+      "operands": "dword ptr [0x11484], eax"
+    },
+    {
+      "address": 70017,
+      "mnemonic": "pop",
+      "operands": "ecx"
+    },
+    {
+      "address": 70018,
+      "mnemonic": "pop",
+      "operands": "ebx"
+    },
+    {
+      "address": 70019,
+      "mnemonic": "push",
+      "operands": "ebx"
+    },
+    {
+      "address": 70020,
+      "mnemonic": "push",
+      "operands": "ecx"
+    },
+    {
+      "address": 70021,
+      "mnemonic": "push",
+      "operands": "4"
+    },
+    {
+      "address": 70023,
+      "mnemonic": "push",
+      "operands": "0x3000"
+    },
+    {
+      "address": 70028,
+      "mnemonic": "push",
+      "operands": "0x11465"
+    },
+    {
+      "address": 70033,
+      "mnemonic": "push",
+      "operands": "0"
+    },
+    {
+      "address": 70035,
+      "mnemonic": "push",
+      "operands": "0x11484"
+    },
+    {
+      "address": 70040,
+      "mnemonic": "call",
+      "operands": "dword ptr [0x11008]"
+    },
+    {
+      "address": 70046,
+      "mnemonic": "pop",
+      "operands": "ecx"
+    },
+    {
+      "address": 70047,
+      "mnemonic": "pop",
+      "operands": "ebx"
+    },
+    {
+      "address": 70048,
+      "mnemonic": "cld",
+      "operands": ""
+    },
+    {
+      "address": 70049,
+      "mnemonic": "mov",
+      "operands": "esi, 0x111f4"
+    },
+    {
+      "address": 70054,
+      "mnemonic": "mov",
+      "operands": "edi, dword ptr [0x11480]"
+    },
+    {
+      "address": 70060,
+      "mnemonic": "mov",
+      "operands": "ecx, 0x400"
+    },
+    {
+      "address": 70065,
+      "mnemonic": "rep movsb",
+      "operands": "byte ptr es:[edi], byte ptr [esi]"
+    },
+    {
+      "address": 70067,
+      "mnemonic": "mov",
+      "operands": "esi, 0x111f4"
+    },
+    {
+      "address": 70072,
+      "mnemonic": "mov",
+      "operands": "edi, dword ptr [0x11484]"
+    },
+    {
+      "address": 70078,
+      "mnemonic": "mov",
+      "operands": "ecx, 0x400"
+    },
+    {
+      "address": 70083,
+      "mnemonic": "rep movsb",
+      "operands": "byte ptr es:[edi], byte ptr [esi]"
+    },
+    {
+      "address": 70085,
+      "mnemonic": "mov",
+      "operands": "esi, dword ptr [0x1147c]"
+    },
+    {
+      "address": 70091,
+      "mnemonic": "mov",
+      "operands": "edx, dword ptr [0x11484]"
+    },
+    {
+      "address": 70097,
+      "mnemonic": "mov",
+      "operands": "ecx, edx"
+    },
+    {
+      "address": 70099,
+      "mnemonic": "sub",
+      "operands": "ecx, 0x111f4"
+    },
+    {
+      "address": 70105,
+      "mnemonic": "mov",
+      "operands": "eax, ecx"
+    },
+    {
+      "address": 70107,
+      "mnemonic": "add",
+      "operands": "eax, 0x11244"
+    },
+    {
+      "address": 70112,
+      "mnemonic": "mov",
+      "operands": "ebx, ecx"
+    },
+    {
+      "address": 70114,
+      "mnemonic": "add",
+      "operands": "ebx, 0x1123e"
+    },
+    {
+      "address": 70120,
+      "mnemonic": "mov",
+      "operands": "dword ptr [ebx], eax"
+    },
+    {
+      "address": 70122,
+      "mnemonic": "add",
+      "operands": "ebx, 0x80000000"
+    },
+    {
+      "address": 70128,
+      "mnemonic": "mov",
+      "operands": "dword ptr [ebx], eax"
+    },
+    {
+      "address": 70130,
+      "mnemonic": "jmp",
+      "operands": "edx"
+    },
+    {
+      "address": 70132,
+      "mnemonic": "cli",
+      "operands": ""
+    }
+  ],
+  "original_prefix_call_count": 5,
+  "original_prefix_conditional_branches": 0,
+  "first_payload_copy_before_cld": true,
+  "source_pins": {
+    "/home/paul/xbox-windows-native/build/hd-reservation300-build001/source/hal/halx86/xbox/reboot.c": {
+      "sha256": "7e7be858ca17de64dfc43efdb159a7ff6da08242ff1a62c0e002c1252dfd6a57",
+      "bytes": 3118
+    },
+    "/home/paul/xbox-windows-native/build/hd-reservation300-build001/source/hal/halx86/xbox/halxbox.h": {
+      "sha256": "e2abad884ee495cf4ebb1659e42a652755e6217ba743f8fd6bc098c102ab65be",
+      "bytes": 1328
+    },
+    "/home/paul/xbox-windows-native/build/resolution-e374-build001/source/boot_xbe/xbeboot.S": {
+      "sha256": "b8ddf72f41a682d3868f1b801492b31005611c6868aa5927f54e5ce14bb94a2c",
+      "bytes": 13330
+    },
+    "/home/paul/xbox-windows-native/build/resolution-e374-build001/source/boot/BootResetAction.c": {
+      "sha256": "b27a08d5c4e18d331d2794ba0f50731d2768d5edc6addbeba3148a6b942612df",
+      "bytes": 7697
+    },
+    "/home/paul/xbox-windows-native/build/resolution-e374-build001/source/drivers/pci/i2cio.c": {
+      "sha256": "1bd2331de151bfe8453235e3469334b93f2d636dab94a3d5610594c4befe6b2e",
+      "bytes": 5612
+    }
+  },
+  "source_provenance_limit": "374 wrapper hash matches532 retained build;300 HAL source is a reference, not a claim that300 built the installed HAL",
+  "hardware_root_cause_known": false,
+  "functional_patch": false,
+  "source_sha256": "5e3919414e021c0f48101ce57b262ea79b62a1112e99c6c095f13682b0cbd485"
+}
