@@ -1,3 +1,14 @@
+# Latest: Xbox D3D7 software-device inventory completed
+
+473 passed both default and software-only inventory paths on the Xbox at720p.
+The actual RGB software renderer matches the NT5 PC control; hardware flags are
+clear. Both processes exited0, Windows restarted normally, and the temporary
+startup hook is removed. Five hives pass integrity checks. Ftdisk49 remains;
+this is scoped inventory success, not a clean overall system or rendering pass.
+Public graphics documentation is updated. Next: create the enumerated software
+device and verify an offscreen clear/triangle on fresh PC then Xbox tests.
+No further hardware test is queued; all owned processes are closed.
+
 # Latest: corrected diagnostic booted Windows and shut down normally
 
 472 is closed. The user observed the desktop and dashboard return; saved loader

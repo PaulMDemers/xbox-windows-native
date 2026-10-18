@@ -60,8 +60,10 @@ including exact copies, repeated release, thread-local focus and a fixed memory
 budget. Actual lost-surface restoration remains unqualified. The
 [D3D7 inventory on NT5 PC](../outputs/d3d-discovery455/REPORT.md) now finds
 Microsoft's RGB software renderer through both default and explicit HEL paths.
-The Xbox comparison returned without a probe receipt and needs a watched fresh
-boot. No device creation, D3D drawing or accelerated rendering is qualified yet.
+The [fresh Xbox comparison](../outputs/d3d-marker473/REPORT.md) now reports the
+same software device in both paths and completes a normal restart. Earlier
+no-receipt boots remain preserved. No device creation, D3D drawing or accelerated
+rendering is qualified yet.
 
 | Stage | Work | Evidence needed to advance |
 |---|---|---|
@@ -130,7 +132,7 @@ Proposed first acceptance target for **each exact game edition**:
 |---|---|---|
 | Original RollerCoaster Tycoon | Not tested by this milestone | Exact edition/patch, Windows 2000 PC control and actual API dependencies |
 | Original The Sims | Not tested by this milestone | Exact edition/expansions, Windows 2000 PC control and actual API dependencies |
-| Legacy Direct3D support | D3D7 software-device inventory passes on NT5 PC; Xbox inventory and rendering pending | Watched Xbox inventory, then an offscreen clear/triangle with independent pixel checks |
+| Legacy Direct3D support | D3D7 software-device inventory passes on NT5 PC and Xbox; rendering pending | Create the enumerated software device, then check an offscreen clear/triangle against independent pixels |
 | Native NV2A acceleration | Unimplemented in the working demo | Windows ownership, submission, synchronization and lifetime proof |
 
 ## Installation work remains part of this goal

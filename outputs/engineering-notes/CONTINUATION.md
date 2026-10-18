@@ -1,3 +1,46 @@
+# Current:473 CLOSED physical D3D7 inventory PASS; strict FALSE Ftdisk49
+
+Read outputs/d3d-marker473 REPORT/DESIGN/NEXT/build001/package001,
+runtime-review001/actual-controls001/final-review and actual records.
+Previous pushed12c7592b. New single launch02:34:25UTC2026-10-18 accepted;
+automatic dashboard return02:35:54UTC. Both default/HEL inventory processes
+exit0, two completed cases, restart privilege/request1, freshEventLog6006.
+Actual1280x720x32. One RGB Emulation device in both, GUIDa4665c60-2673-11cf-
+a31a-00aa00b93356, caps1361/renderdepth3840/z1024/texture1024x1024/ops30975/
+stages8/textures8; hardware rasterization/TnL flagsCLEAR. Full236B descriptors
+sameSHAcfa54dd297348c09f2c7ae33ff07df5941770bc5f1faa030c590d7ba2a2df367
+as455PC. 566actualinventory mutations rejected,176actualboottruncations.
+No actual CreateDevice/draw/GPU/game/performance qualification.
+
+Cold5before/afterhivesclean/header/rawagreement; SOFTWAREtype1004typedlimitation
+retained. Newrecords603..607:Ft49,6009,6005,Tcpip4201,6006. No newpopup/Srv/app
+records; historical warnings remain. StrictsystemFALSEFt49. No fullFATXscan.
+Complete176BbootpreparationPASS/refusalabsent; physical marker successstatuses
+andtimingnotpersisted/UNKNOWN. No historicintermittencyfix/repeatbootclaim.
+HookremovedFIRST toE:/xwn473-kit/startup-used.cmd, original6240launcher/
+da47startup/protected720pcode unchanged, allstagedpayloadsexact, consoleCuntouched.
+Consumed E:/Applications/XWNBoot473a and E:/xwn473 NEVERrerun/recollect.
+PrivateC:/xwn473. Stage12328/launchobserver85211 and allbuild/host/collect/
+reviewprocessesCLOSED. No newhardwaretaskqueued.
+
+473bootbuild001537170B SHA83ac7e27060f3f9ba1554f74ff7e0dcb4cb805b9a54aa5f26ac65bbac75ba903.
+Namespace-only471child, payloadBYTEIDENTICAL/symbolsexact. Runnernamespace-only
+455/458 source,12958B SHAd5ea0c890e34e5113714c03ce0db0b6245c88d96770fca98109e850fc87c7878.
+Unchanged455sample14878B SHA577bd78e1aae562eef1c7bc8c5d500f604e0d340fca50ea553504608dafdb143.
+104actualwrapperhostcases;8actualdispatcherpathswithFTP/baselineMODELS;
+24/21NT5imports,28frozendeps,171hostrecords/37truncations,3checkerunittests.
+FiveinstalledruntimeDLLspinned; completehelpermoduleclosure stillseparate.
+No newemulatorguest: namespace-onlyreconstruction retains471/455runtimeevidence.
+
+NEXT rung07: actualenumeratedRGBCreateDevice, ownedsystemmemoryoffscreen target,
+clear/pretransformedtriangle, independentpredefinedinterior/backgroundpixels,
+explicitstates/format/caps/cleanup. FreshNT5PC then distinctXboxcase. No primary
+surface/GPUhandoff/driverreplacement. Do not repeat inventory-only boots. Preserve
+472desktop/shutdownscope,469busybug/oldfailure,allpriorrefusals/closedcases.
+Publicgraphics-samples/roadmap now record473physicalinventory. 720p remainsbaseline;
+1080i/gamecompatibility/nativeGPU separate. ConsoleCofflimits; WindowsF historically
+mapsdashboardC, notdashboardF. Keep20GiBguard, newartifactsonC; no backingmoves.
+
 # Current:472 CLOSED; observed Windows boot and selected cold audit pass, strict FALSE
 
 Read outputs/physical-busy472 REPORT/NEXT/final-review/event-review001,

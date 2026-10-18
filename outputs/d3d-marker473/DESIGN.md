@@ -1,0 +1,5 @@
+# D3D inventory with corrected boot markers473
+
+One fresh physical trial combines the unchanged PC455 D3D inventory sample, a namespace-only child of the455/458 controller, and a namespace-only child of471 corrected XBE. No graphics device creation or driver change. Default and HEL inventory run in isolated processes with90-second waits; controller requests normal restart. A temporary one-shot startup entry is removed first after dashboard return, with its bytes preserved in the owned kit. Existing normal launcher/startup and720p remain unchanged. Console C is excluded.
+
+New remote paths: E:/Applications/XWNBoot473a, E:/xwn473-kit and E:/xwn473. Preflight absence, exact build/header/import/module/source pins and readback required. One SITE request with20-second reply bound; never retry. At most480seconds dashboard observation; missing runner remains unknown, then collect boot refusal evidence if dashboard returned. Host filesystem/protocol tests model interfaces and are not physical evidence. Prior closed cases are not reused.

@@ -14,8 +14,9 @@ they do not qualify DirectDraw presentation, Direct3D or GPU acceleration.
 Xbox**, with exact source and GDI-observed primary pixels through cover/move/
 uncover stages. Physical scanout, D3D and acceleration remain unqualified.
 Rung 04 also passes all six cases on NT5 PC and Xbox, and rung 05 passes its
-bounded lifecycle controls. Rung 06 has a complete NT5 PC inventory; its Xbox
-comparison is pending. Later rendering rungs remain planned.
+bounded lifecycle controls. Rung 06 now passes complete default/HEL inventories
+on NT5 PC and Xbox, reporting the RGB software renderer. Later rendering rungs
+remain planned.
 The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 
 ## The ladder
@@ -28,7 +29,7 @@ The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 | 03 | Windowed DirectDraw presentation | Primary surface plus window clipper; cover/uncover and move the window without damaging adjacent GDI content | NT5 PC/Xbox default and HEL pixel controls passed |
 | 04 | Palettes, formats and sprites | 8-bit palette changes, supported 16/32-bit formats, color-key sprites, clipping and overlapping copies in both directions | All six cases pass on NT5 PC at24-bit and Xbox at32-bit |
 | 05 | Surface lifecycle and memory budget | Focus changes, lost-surface handling where applicable, repeated create/release, failure recovery and bounded memory use | Bounded churn/focus/memory controls pass on NT5 PC and Xbox; actual loss/restore remains unqualified |
-| 06 | Legacy D3D discovery | Query the chosen D3D interface, enumerate actual devices/caps; distinguish software and hardware choices | NT5 PC default/HEL inventory passes: RGB software device found; Xbox pending, no draw qualification |
+| 06 | Legacy D3D discovery | Query the chosen D3D interface, enumerate actual devices/caps; distinguish software and hardware choices | NT5 PC/Xbox default/HEL inventory passes: RGB software device found; no draw qualification |
 | 07 | Clear and triangle | Offscreen render target, clear, pretransformed colored triangle, independent interior/background pixel checks | Planned |
 | 08 | Textures, depth and blending | Known texture orientation/filtering, overlapping triangles with depth, transparent quads and alpha reference pixels | Planned |
 | 09 | Transforms and scene stability | Rotating textured object, camera/projection, resize/activation handling and repeated resource teardown | Planned |
@@ -435,13 +436,20 @@ from this sample.
 
 ## Direct3D 7 device inventory
 
-The [NT5 PC control](../outputs/d3d-discovery455/REPORT.md) enumerates Microsoft's
+The [NT5 PC control](../outputs/d3d-discovery455/REPORT.md) and
+[physical Xbox control](../outputs/d3d-marker473/REPORT.md) enumerate Microsoft's
 RGB software device through both default and explicit HEL paths. Neither reports
-hardware rasterization or hardware transform/lighting. The Xbox attempts,
-including a [watched direct launch](../outputs/d3d-direct458/REPORT.md), returned
-without result receipts; they do not establish whether the probe started.
-Physical inventory and all D3D rendering remain unqualified while the boot issue
-is investigated.
+hardware rasterization or hardware transform/lighting. Both Xbox cases exited 0
+at the unchanged 1280×720/32-bit desktop, followed by a normal restart. Their full
+236-byte capability descriptors match the PC control's recorded hashes, and 566
+mutations of the actual Xbox records were rejected.
+
+This qualifies device discovery only: no D3D rendering device was created and no
+triangle was drawn. Five registry hives passed integrity checks; Ftdisk49 remains
+an overall-system qualification failure. Earlier no-receipt attempts, including
+[458](../outputs/d3d-direct458/REPORT.md), remain failed/incomplete attempts and
+are not retrospectively qualified. The temporary test startup entry was removed;
+the normal boot installation and 720p configuration remain unchanged.
 
 [discovery.c](../src/samples/graphics-ladder/discovery.c) queries the installed
 Direct3D 7 interface and enumerates device capabilities. It does not create a
