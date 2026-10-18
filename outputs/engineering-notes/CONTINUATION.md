@@ -1,3 +1,31 @@
+# 517 CLOSED scoped emulator516 PASS; strictFALSE
+
+516 PUSHEDf91c7c6d. Read517 REPORT/DESIGN/NEXT/actual-review/data-placement-review/
+trampoline-review/final-review andactualrecords. Exact516a272c18d...545088B oneSITE
+10:45:58.990680UTC, ended10:46:27.617230UTC;29stops88captures,12actualcallsstatus0,
+file7/indicator2/sixstatuses0,restoredGPRflags,onefirmwaremode1.11100->94aff equal
+GPR/EFLAGS/CR0/3/4,guard11105neverhit.929code320data exact;code94877/data94c20
+same4KiBphysicalpage/PTE778275,10actualkernelimport/exportmatches. NoWindows.
+AllBPsremoved/physicalmode0beforefirmwareresume,controlreturnSIZE112,coldreceipt
+exactmemory,orderlyhostexit0/no fallback.Independent96file58indicator112receipt
+35trampmutationsreject. Full10GBmap327680localextentbytes275changed=>strictFALSE,
+no waiver/allwriterattribution. FATX276dirs6554files255dirclusters0errors/orphans;
+5hives3baselinebinaries2eventlogs byteexact,QCOW/source/EEPROMsame.
+Host008 ACTUAL stoppedtrace/pagewalk/kernel/ActualCalls/cleanup withMODELED513->516
+fixture:29stops88captures176transportfailures33negatives. Otherhost001..006pass.
+Preserve007invalidnegative onunusedexportbyte;008targetsvalidatedordinalfields,
+no gatechange. Preserveunexecutedpre-reviewdecoderportsubstitutioncopy;actual
+receiptdecoder restoredBYTEEXACTbeforetests.26parentfilesdeclaredtransformexact.
+272frozen107external473privatefilesexact. ALL84393/5276/70230CLOSED,synchronous
+cold/reviews exit0,zeroownedxemu/QEMU. No physical/hook/sharedsource/SDKchange.
+NEXT518 separatephysical516unusedpath under514controller/hosttests/retainedticket,
+pins/readback/oneSITE20s/boundedpairedcollect. No launcher/startup/720p/XboxCchange.
+517notphysicalproof;514absence/causeunknown,LEDpending. No launchqueued.
+Neverrerun/recollect/parentclosed517/others.486/496D3Dpending,allfailures/Ft49remain.
+20GiBC/WSLprojectedguard,noEallocation.13:50reviewonly14UTCclose/report/pause.
+Repositorycheck44332CLOSED PASS38011files;C22383689728/E21499871232B.
+Exactstage/commitnext.
+
 # 516 CLOSED candidate built/reviewed; NEVERLAUNCHED
 
 515 PUSHED529a4d4a. Read516 REPORT/DESIGN/NEXT/host001/build001/review001/final-review.
