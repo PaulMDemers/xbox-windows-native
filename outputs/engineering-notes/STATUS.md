@@ -1,3 +1,28 @@
+# WINDOW CLOSED: automation PAUSED at14:00UTC
+
+Actual clock14:00:09UTC confirmed cutoff; automation update returnedPAUSED and
+saved configuration was independently checked. Existing prompt/schedule/name/
+target preserved. Final repositorycheck86700 CLOSED PASS38447files. Read530
+final-cutoff.json, REPORT and dashboard003. No new
+experiment after13:50review-only boundary. Final metadata commit is gitHEAD.
+Precutoff closeout PUSHED4cc4d91e, package1789587f, docs9f15ab56/0ae6b9d5.
+
+All owned processes CLOSED; fresh Windows/WSL emulator/NBD/NTFSinventory empty
+at13:59:51UTC. Last actual dashboard13:52:06UTC authenticated; E startup only
+xwnsetup.cmd, no temporary hook/removalneeded, ordinary startup/launcher and
+720p prerequisite hashes verified. No remote writes or launches followed.
+Screen/power not independently observed; no Windows experiment left running.
+No dashboardC access. Preserve530 publication failures001/002 and003success.
+
+528 exact prepared110592B candidate/package59deps ready, unstaged/unlaunched,
+no queued action. Observer question unanswered. Later human-authorized watched
+run must use fresh time/capacity/baseline/unusednamespace/readback; never rerun
+package001.py or closed runtime. No experiment resumes from this automation.
+490 selected alphaPASS;484idealFAILED;526noWindows;492presentation/494transform
+PASS;496PCcombinedscenePASS/497noXboxresult. Boot repeatability, combined Xbox
+scene/presentation/performance, GPU/games/release remain unqualified. No cleanup
+of historical artifacts/backing chains; C/WSL20GiBguard/noEallocation retained.
+
 # 530 REVIEW ONLY; cutoff pause pending at14UTC
 
 Latest package PUSHED1789587f; docs9f15ab56/closure0ae6b9d5. Read530 REPORT/NEXT,
