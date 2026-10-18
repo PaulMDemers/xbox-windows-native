@@ -27,7 +27,9 @@ software offscreen clear/triangle rendering now passes on NT5 PC and Xbox.
 Owned point-sampled texture and depth controls also pass on NT5 PC and Xbox.
 Two earlier physical depth launches returned without Windows receipts and remain
 failed; a fresh diagnostic completed the workload. Intermittent boot failures
-remain unresolved. Blending and D3D presentation remain unqualified. See the
+remain unresolved. Selected-input alpha arithmetic and windowed D3D presentation
+now have matched software controls. Full blending precision, games and GPU
+acceleration remain unqualified. See the
 [sample results](graphics-samples.md).
 
 DirectX is a family of APIs. A game's DirectX requirement does not by itself mean
@@ -87,10 +89,15 @@ records the observation gap and stops repeated identical boots. The fresh
 witness and passes all five depth controls on both software paths, followed by
 normal restart. The witness does not diagnose earlier failures. Alpha blending
 now has a [matched PC/Xbox selected-input characterization](../outputs/context-adapter490/PHYSICAL.md),
-with the exact ideal endpoint failure retained. Windowed D3D presentation is the
-next separate image and GDI-coexistence check. Its
+with the exact ideal endpoint failure retained. Windowed D3D presentation has a
+separate image and GDI-coexistence check. Its
 [491 PC control](../outputs/d3d-present491/REPORT.md) now passes default and HEL
-through cover/move/uncover with independent pixel checks; the Xbox comparison is pending.
+through cover/move/uncover with independent pixel checks. The matched
+[492 Xbox comparison](../outputs/d3d-present492/REPORT.md) also passes both paths
+at 720p/RGB32, with unchanged source surfaces and exact clipped GDI readback.
+Normal restart is supported, while Ftdisk 49 and shutdown popup events remain.
+Next are independently checked world/view/projection transforms, then a small
+combined scene; these graphics passes do not qualify games or acceleration.
 
 | Stage | Work | Evidence needed to advance |
 |---|---|---|

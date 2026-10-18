@@ -1,3 +1,72 @@
+# 492 repository closeout complete; next493 PC transforms
+
+Full staged repositorycheck19590 passed37,213files and is CLOSED; earlier
+check98080 was pre-stage only.49 staged files byte-exact before closeout records.
+All492 owned sessions closed, console at dashboard, hook removed, no launchqueued.
+Physical windowed D3D scopedPASS/strictFALSE as below. Read492NEXT for the new493
+PC transform oracle/sample. Source/reports/docs are beingcommitted/pushed. Last
+pushed baseline15487bce remains until this closeoutpush. HeartbeatACTIVEto14UTC.
+
+# Current: 492 physical windowed D3D comparison CLOSED, scoped PASS
+
+Read outputs/d3d-present492 REPORT/DESIGN/NEXT/physical-final001 and actual
+records. One SITE accepted 06:27:32UTC, dashboard return 06:29:25UTC. Both
+unchanged491 sample cases pass at1280x720 RGB32, four stages visible/cover/move/
+uncover,4,063,232 exact captured bytes, clip counts1/4/4/1 and unchanged sources.
+Both process exits0; runner restart request1 and EventLog6006 delta1. Hook removed
+FIRST, original launcher/startup/protected720p unchanged, dashboardC untouched.
+11 modules/case exact against installed files and prelaunch pins;1804 actual
+metadata/pixel negatives rejected. User screen reply remains optional/pending;
+no visual or GPU/performance/game qualification inferred from machine checks.
+
+StrictFALSE: new Ftdisk49 plus3 Application Popup26 records, each rundll32.exe
+DLL initialization failed because window station shutting down. No new Application
+log records. Five hives clean,33 collected files,42 frozen dependencies archived,
+210 private files rehashed. No full FATX allocation audit. Earlier boot failures
+and shutdown limitation remain unresolved, not waived or suppressed.
+
+New XBE7675ad0072345af1ddb6c98b5f4dc09142031e8607ed664f663f96726a40230d,
+542839B changes ONLY4 log-path digits+20 sectionSHA1 bytes from exact490. All
+functional code/1024loader/payload/313capture/symbols unchanged; retained schema/
+cookie490 is explicit, attempt492 identity separate. Runnerb5a25504... namespace
+only; same actual491 sample5bc04570...31294B. Empty build logs,24/50NT5imports,
+17 dispatcher host-model paths PASS. Actual CPU context2577 negatives; equal
+register snapshots within run, not pagewalk/cache/atomic/finalpaging proof.
+Private C:/xwn492/{build001,runner-build001,controller-host001,physical001,
+modules001,frozen001}; never rerun/recollect/reset any consumed case or oldruntime.
+ALL owned build/stage62195/observer96916/collector59200/module20404/controls89885
+sessions CLOSED. Console at dashboard, no startup hook or next launch queued.
+
+NEXT493: owned PC rung09a world/view/projection transform control, independent
+rational pixel oracle and actual XYZ vertices before later combined scenes.
+Follow precise492NEXT. No physical launch until new PC control passes. Preserve
+720p/normal paths, Ftdisk49, shutdown popups, failures/recovery/immutable releases.
+C latest23862636544B/E21499871232B; keep projected20GiB includingWSLbackingC.
+E only~25MB aboveguard; smallC/WSL artifacts, no backing moves/deletions. Continue
+until14:00UTC, closeout only after13:50; then cleanup/report/pauseheartbeat.
+492 source/evidence/docs are being reviewed/checked and committed/pushed.
+
+# 492 physical test launched once; collection pending
+
+SITE accepted2026-10-18 06:27:32UTC. Stage62195 CLOSED/readback verified. Observer
+96916 running (bounded486sec). No second launch. User asked screen-only question.
+Read492physical001-* and DESlGN. On dashboardreturn remove ownedstartup hookFIRST
+using physical.py collect, thenactualcontext/review/modules/negativecontrols/cold
+closure. Same491sample, schema490, unique492paths. Ordinary720punchanged.
+
+# 492 physical comparison preparing; no launch yet
+
+New outputs/d3d-present492 is frozen with42 dependencies. Exact491 tested sample
+5bc04570...; runner492 namespace only, NT5 imports24/50. XBE7675ad00... changes
+ONLY four path digit bytes plus sectionSHA1, all functional bytes/loader/capture
+exact490. Diagnostic schema/cookie490 retained explicitly; attempt492 separate.
+17 actual controller paths PASS with FTP/baseline modeled. Stage session62195
+is running; check physical001-stage.json before further action. No launch yet.
+New owned E/Applications/XWNBoot492a, E/xwn492-kit, startup/xwn492.cmd only.
+One SITE request20sec, hook-first collection. Read491NEXT and492DESIGN. Do not
+rerun any consumed build/host/stage ID. Preserve720p/ordinarylauncher/startup.
+Continue until14:00UTC; closeout only after13:50. No GPU/game promotion.
+
 # 491 repository closeout complete; next492 physical comparison
 
 Repositorycheck45802 passed37,166files and is CLOSED. Initial73stagedfiles

@@ -1,0 +1,460 @@
+{
+  "status": "compiled",
+  "diagnostic_schema": 490,
+  "attempt": 492,
+  "source_changes": [
+    {
+      "file": "xbeboot.S",
+      "occurrences": 2,
+      "old_sha256": "a5ade3953143e32ad785d2636b31009790d8214af1d85d23f4f53b133bc18121"
+    },
+    {
+      "file": "xbe.S",
+      "occurrences": 0,
+      "old_sha256": "dfa3fa5a31bb6ed01d774d9269682c03f7bfe8a5e047287377423a3a546f9a73"
+    },
+    {
+      "file": "font.S",
+      "occurrences": 0,
+      "old_sha256": "8f8dc5ff0bc015e6eb88ff43b54390057dbc866345a09ddbe88baf153da5df45"
+    },
+    {
+      "file": "witness.S",
+      "occurrences": 1,
+      "old_sha256": "d7516ad22d08c4c806b5b4b0e2edbf018ba8bd8396762c4aabcee6dde411d6d9"
+    },
+    {
+      "file": "context.S",
+      "occurrences": 1,
+      "old_sha256": "541a49c83403a0de268f6564cc74e77e99e2d05fa0430787bf0bd95cab9bd5b6"
+    },
+    {
+      "file": "capture.S",
+      "occurrences": 0,
+      "old_sha256": "f48fa6112ef6d4a996e6ad5ebc63d625c58af7b7407032be132788b98d2bbe8d"
+    }
+  ],
+  "commands": [
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-m32",
+      "-DASSEMBLER",
+      "-c",
+      "xbeboot.S",
+      "-o",
+      "xbeboot.o"
+    ],
+    [
+      "ld",
+      "-m",
+      "elf_i386",
+      "-Ttext",
+      "0x10000",
+      "-e",
+      "_start",
+      "xbeboot.o",
+      "-o",
+      "wrapper.elf"
+    ],
+    [
+      "objcopy",
+      "-O",
+      "binary",
+      "wrapper.elf",
+      "wrapper.bin"
+    ]
+  ],
+  "physical_access": false,
+  "sha256": "7675ad0072345af1ddb6c98b5f4dc09142031e8607ed664f663f96726a40230d",
+  "bytes": 542839,
+  "wrapper_symbols": {
+    "PARAM": 0,
+    "PARAM_CURSOR_POS": 0,
+    "SCREEN_INFO": 0,
+    "EXT_MEM_K": 2,
+    "PARAM_VIDEO_PAGE": 4,
+    "PARAM_VIDEO_MODE": 6,
+    "PARAM_VIDEO_COLS": 7,
+    "PARAM_VIDEO_EGA_BX": 10,
+    "PARAM_VIDEO_LINES": 14,
+    "PARAM_HAVE_VGA": 15,
+    "PARAM_FONT_POINTS": 16,
+    "PARAM_LFB_WIDTH": 18,
+    "PARAM_LFB_HEIGHT": 20,
+    "PARAM_LFB_DEPTH": 22,
+    "PARAM_LFB_BASE": 24,
+    "PARAM_LFB_SIZE": 28,
+    "CL_MAGIC": 32,
+    "CL_OFFSET": 34,
+    "PARAM_LFB_LINELENGTH": 36,
+    "PARAM_LFB_COLORS": 38,
+    "PARAM_VESAPM_SEG": 46,
+    "PARAM_VESAPM_OFF": 48,
+    "PARAM_LFB_PAGES": 50,
+    "APM_BIOS_INFO": 64,
+    "DRIVE_INFO": 128,
+    "SYS_DESC_TABLE": 160,
+    "ALT_MEM_K": 480,
+    "SETUP_SECTS": 497,
+    "MOUNT_ROOT_RDO": 498,
+    "SYSSIZE": 500,
+    "RAMDISK_FLAGS": 504,
+    "ORIG_ROOT_DEV": 508,
+    "AUX_DEVICE_INFO": 511,
+    "LOADER_TYPE": 528,
+    "LOAD_FLAGS": 529,
+    "KERNEL_START": 532,
+    "INITRD_START": 536,
+    "INITRD_SIZE": 540,
+    "COMMAND_LINE": 2048,
+    "REL_COMMAND_LINE": 2048,
+    "header_start": 65536,
+    "certificate": 65912,
+    "header_end": 65912,
+    "unicodename": 65924,
+    "normalname": 65946,
+    "certificate_end": 66376,
+    "section_headers": 66376,
+    "rc1": 66432,
+    "section_headers_end": 66432,
+    "rc2": 66434,
+    "section_name": 66436,
+    "logo": 66444,
+    "headers_end": 67372,
+    "logo_end": 67372,
+    "MmAllocateContiguousMemoryEx": 69632,
+    "section_1_start": 69632,
+    "MmGetPhysicalAddress": 69636,
+    "NtAllocateVirtualMemory": 69640,
+    "DiagNtCreateFile": 69644,
+    "DiagNtWriteFile": 69648,
+    "DiagNtFlushBuffersFile": 69652,
+    "DiagNtClose": 69656,
+    "DiagHalReturnToFirmware": 69660,
+    "cromwellstart": 69760,
+    "cromwellsize": 69764,
+    "_start": 69888,
+    "entry": 69888,
+    "blentry": 70310,
+    "ptr_newloc": 70384,
+    "newloc": 70390,
+    "newflash": 70410,
+    "l2": 70450,
+    "lx": 70488,
+    "bootloader_gdt": 70496,
+    "idt_48": 70520,
+    "gdt_48": 70528,
+    "gdt_48_base": 70530,
+    "strhexout": 70534,
+    "cr": 70546,
+    "strout": 70550,
+    "charend": 70567,
+    "hexout32": 70568,
+    "hexout16": 70583,
+    "hexout8": 70592,
+    "hexout4": 70604,
+    "hexoutd": 70612,
+    "chrout": 70614,
+    "nlf": 70625,
+    "fl1": 70667,
+    "fl2": 70674,
+    "f2": 70685,
+    "no1": 70711,
+    "text1": 70712,
+    "text2": 70745,
+    "text3": 70770,
+    "text_kernel": 70798,
+    "text_kernelram": 70809,
+    "text_phys_kernelram": 70823,
+    "text_bootloaderram": 70842,
+    "text_phys_bootloaderram": 70860,
+    "text_allocvirt": 70883,
+    "text_setup_sects": 70917,
+    "ptr_PAGE_SIZE": 70933,
+    "my_command_line": 70937,
+    "kernelram": 70952,
+    "phys_kernelram": 70956,
+    "bootloaderram": 70960,
+    "phys_bootloaderram": 70964,
+    "diag_bad_size": 70968,
+    "diag_bad_alias": 70980,
+    "diag_bad_mirror": 70992,
+    "diag_refuse": 71002,
+    "diag_verify": 71017,
+    "diag_compare_loader": 71241,
+    "diag_finish": 71297,
+    "diag_handoff": 71858,
+    "diag_marker_ready": 71891,
+    "diag_reset_iosb": 71896,
+    "diag_flush": 71917,
+    "diag_close_refuse": 71951,
+    "diag_reboot": 71951,
+    "refusal_snapshot_ready": 72104,
+    "refusal_write": 72139,
+    "refusal_close": 72363,
+    "refusal_reboot": 72384,
+    "diag_record": 72396,
+    "diag_trailer": 72556,
+    "diag_handle": 72572,
+    "diag_iosb": 72576,
+    "diag_object": 72584,
+    "diag_name": 72596,
+    "diag_path": 72604,
+    "diag_path_end": 72668,
+    "diag_reason": 72672,
+    "diag_closed": 72676,
+    "refusal_record": 72680,
+    "refusal_marker": 72760,
+    "refusal_handle": 72872,
+    "refusal_iosb": 72876,
+    "refusal_object": 72884,
+    "refusal_name": 72896,
+    "refusal_path": 72904,
+    "refusal_path_end": 72969,
+    "before_marker_record": 72972,
+    "marker_guarded": 73068,
+    "marker_body": 73083,
+    "marker_stage2": 73160,
+    "marker_valid": 73183,
+    "marker_transaction": 73222,
+    "marker_idle": 73225,
+    "marker_configure": 73297,
+    "marker_value": 73332,
+    "marker_completion": 73349,
+    "marker_done": 73421,
+    "marker_return": 73428,
+    "marker_idle_budget": 73429,
+    "marker_completion_budget": 73438,
+    "marker_status_error": 73447,
+    "marker_clock": 73456,
+    "marker_clock_reverse": 73488,
+    "marker_clock_deadline": 73497,
+    "font": 73506,
+    "kernel": 77824,
+    "witness_entry": 606208,
+    "witness_jump": 606724,
+    "witness_record": 606728,
+    "witness_object": 606984,
+    "witness_name": 606996,
+    "witness_path": 607004,
+    "witness_path_end": 607069,
+    "context490_pre": 607072,
+    "context490_pre_return": 607140,
+    "context490_post": 607156,
+    "context490_post_return": 607250,
+    "context490_bad_stack": 607564,
+    "context490_claim": 607572,
+    "context490_packet": 607576,
+    "context490_first": 607640,
+    "context490_second": 607800,
+    "context490_object": 607976,
+    "context490_name": 607988,
+    "context490_path": 607996,
+    "context490_path_end": 608061,
+    "capture489": 608062,
+    "capture490_begin": 608062,
+    "capture_return": 608372,
+    "capture490_end": 608375,
+    "__bss_start": 610304,
+    "_edata": 610304,
+    "_end": 610304
+  },
+  "full_expected_binary_match": true,
+  "path_literals": [
+    {
+      "offset": 7068,
+      "bytes": 65,
+      "suffix": "report.bin"
+    },
+    {
+      "offset": 7368,
+      "bytes": 66,
+      "suffix": "refusal.bin"
+    },
+    {
+      "offset": 541468,
+      "bytes": 66,
+      "suffix": "handoff.bin"
+    },
+    {
+      "offset": 542460,
+      "bytes": 66,
+      "suffix": "context.bin"
+    }
+  ],
+  "changed_bytes": [
+    {
+      "offset": 876,
+      "before": 189,
+      "after": 19
+    },
+    {
+      "offset": 877,
+      "before": 79,
+      "after": 216
+    },
+    {
+      "offset": 878,
+      "before": 112,
+      "after": 242
+    },
+    {
+      "offset": 879,
+      "before": 183,
+      "after": 3
+    },
+    {
+      "offset": 880,
+      "before": 31,
+      "after": 123
+    },
+    {
+      "offset": 881,
+      "before": 203,
+      "after": 227
+    },
+    {
+      "offset": 882,
+      "before": 141,
+      "after": 245
+    },
+    {
+      "offset": 883,
+      "before": 200,
+      "after": 75
+    },
+    {
+      "offset": 884,
+      "before": 253,
+      "after": 69
+    },
+    {
+      "offset": 885,
+      "before": 150,
+      "after": 44
+    },
+    {
+      "offset": 886,
+      "before": 240,
+      "after": 29
+    },
+    {
+      "offset": 887,
+      "before": 85,
+      "after": 124
+    },
+    {
+      "offset": 888,
+      "before": 158,
+      "after": 68
+    },
+    {
+      "offset": 889,
+      "before": 195,
+      "after": 120
+    },
+    {
+      "offset": 890,
+      "before": 231,
+      "after": 107
+    },
+    {
+      "offset": 891,
+      "before": 134,
+      "after": 168
+    },
+    {
+      "offset": 892,
+      "before": 81,
+      "after": 50
+    },
+    {
+      "offset": 893,
+      "before": 182,
+      "after": 14
+    },
+    {
+      "offset": 894,
+      "before": 239,
+      "after": 112
+    },
+    {
+      "offset": 895,
+      "before": 212,
+      "after": 81
+    },
+    {
+      "offset": 7119,
+      "before": 48,
+      "after": 50
+    },
+    {
+      "offset": 7419,
+      "before": 48,
+      "after": 50
+    },
+    {
+      "offset": 541519,
+      "before": 48,
+      "after": 50
+    },
+    {
+      "offset": 542511,
+      "before": 48,
+      "after": 50
+    }
+  ],
+  "payload_byte_exact": true,
+  "loader1024_byte_exact": true,
+  "capture313_byte_exact": true,
+  "files": {
+    "/mnt/c/xwn492/build001/build.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/mnt/c/xwn492/build001/capture.S": {
+      "bytes": 2127,
+      "sha256": "f48fa6112ef6d4a996e6ad5ebc63d625c58af7b7407032be132788b98d2bbe8d"
+    },
+    "/mnt/c/xwn492/build001/context.S": {
+      "bytes": 3396,
+      "sha256": "9264e7a80ac5f69b03089d7f4c6412e0844fe0c506a2a1331aa75d9994a2337a"
+    },
+    "/mnt/c/xwn492/build001/default.xbe": {
+      "bytes": 542839,
+      "sha256": "7675ad0072345af1ddb6c98b5f4dc09142031e8607ed664f663f96726a40230d"
+    },
+    "/mnt/c/xwn492/build001/font.S": {
+      "bytes": 26002,
+      "sha256": "8f8dc5ff0bc015e6eb88ff43b54390057dbc866345a09ddbe88baf153da5df45"
+    },
+    "/mnt/c/xwn492/build001/symbols.txt": {
+      "bytes": 4667,
+      "sha256": "abb0daf8ea8a0cd7c5449caba43ffdf8d521b41d8044237578e44f7bd293aec7"
+    },
+    "/mnt/c/xwn492/build001/witness.S": {
+      "bytes": 3543,
+      "sha256": "5275c3be32fe8f136d50b2adc1d4c23aacbda1ea2d1a5b5e981138e279ddcf28"
+    },
+    "/mnt/c/xwn492/build001/wrapper.bin": {
+      "bytes": 542839,
+      "sha256": "6b503dcfc49b69249296ced8fa5f4cb256bf7f54c52052386db026e560258988"
+    },
+    "/mnt/c/xwn492/build001/wrapper.elf": {
+      "bytes": 552712,
+      "sha256": "f70858193aadf4947a96f970622923cfd6498e2e16a90fe7c325259b596b9dea"
+    },
+    "/mnt/c/xwn492/build001/xbe.S": {
+      "bytes": 10561,
+      "sha256": "dfa3fa5a31bb6ed01d774d9269682c03f7bfe8a5e047287377423a3a546f9a73"
+    },
+    "/mnt/c/xwn492/build001/xbeboot.o": {
+      "bytes": 551240,
+      "sha256": "9d4fbfbf3f03efe70713017772ccb6ee64387f9be5ea89799e63eaaf68a00bde"
+    },
+    "/mnt/c/xwn492/build001/xbeboot.S": {
+      "bytes": 28154,
+      "sha256": "92f9148cfb3ea9e4f15cec7b3595ca7d66f06b009041a600998a39ea5b3d11de"
+    }
+  }
+}

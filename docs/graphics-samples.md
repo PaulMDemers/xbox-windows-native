@@ -21,8 +21,8 @@ Rung 08a passes owned point-sampled texture controls on NT5 PC and Xbox. Rung 08
 depth controls pass on NT5 PC and Xbox. Two earlier Xbox launches returned without
 Windows receipts; the later 483 run completed both depth cases and a normal restart.
 Rung 08c now has matched selected-input alpha arithmetic on NT5 PC and Xbox,
-with the endpoint precision limitation retained. D3D presentation and game
-performance remain separate work.
+with the endpoint precision limitation retained. Rung 08d now passes windowed
+D3D presentation on NT5 PC and Xbox. Game performance remains separate work.
 The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 
 ## The ladder
@@ -40,7 +40,7 @@ The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 | 08a | Point-sampled texture | Enumerated texture format, exact upload/readback, known orientation and interior sampling | Default/HEL RGB software controls pass on NT5 PC and Xbox |
 | 08b | Depth buffer | Enumerated depth surface, both draw orders, depth-disabled and clear-zero controls | Default/HEL RGB software controls pass on NT5 PC and Xbox |
 | 08c | Alpha blending | Transparent, partial, opaque and blending-disabled triangle controls | Selected-input arithmetic matches on NT5 PC/Xbox default and HEL; exact ideal endpoints remain failed |
-| 08d | Windowed D3D presentation | Render-target readback, exact clipped presentation through cover/move/uncover, unchanged source after blit | NT5 PC default/HEL controls pass; Xbox comparison pending |
+| 08d | Windowed D3D presentation | Render-target readback, exact clipped presentation through cover/move/uncover, unchanged source after blit | NT5 PC/Xbox default/HEL pixel controls pass; no GPU or performance claim |
 | 09 | Transforms and scene stability | Rotating textured object, camera/projection, resize/activation handling and repeated resource teardown | Planned |
 | 10 | Small game-like scenes | Scrolling isometric tiles and moving sprites, then a textured room; controls, audio and save/reload | Planned; precedes the actual game acceptance tests |
 
@@ -771,7 +771,7 @@ python3 tools/graphics_d3dpresent.py /path/to/results/r08dd --backend default
 python3 tools/graphics_d3dpresent.py /path/to/results/r08ds --backend hel
 ```
 
-Each complete case has2,031,616 captured bytes. The independent checker requires
+Each complete case has 2,031,616 captured bytes. The independent checker requires
 the declared triangle interior/background colors, allows only those two colors
 in a narrow predefined edge band, and then checks exact source-to-screen mapping
 and GDI guards. It also checks clip rectangles, vertices, render states, module
@@ -780,10 +780,14 @@ scanout and GPU acceleration are outside this test. Do not adjust expected
 pixels to match a failed capture.
 
 The batch file records the process exit; it has no watchdog. The owned test
-controller bounds each process at90seconds. Synthetic decoder tests are in
+controller bounds each process at 90 seconds. Synthetic decoder tests are in
 `tests/test_graphics_d3dpresent.py`; they do not establish guest correctness.
 See the [491 design](../outputs/d3d-present491/DESIGN.md) for the control scope.
 
 The [491 PC control](../outputs/d3d-present491/REPORT.md) passes both cases at
-640×480 RGB565, including4,063,232 captured bytes and normal restart. An independent
-cold reader agrees on the results. The Xbox comparison remains pending.
+640×480 RGB565, including 4,063,232 captured bytes and normal restart. An independent
+cold reader agrees on the results. The matched
+[492 Xbox comparison](../outputs/d3d-present492/REPORT.md) passes both cases at
+1280�720 RGB32 with the same oracle, exact source preservation and normal
+restart. Ftdisk 49 and three shutdown-time rundll32 popup events remain recorded;
+this scoped graphics pass does not qualify overall system stability.
