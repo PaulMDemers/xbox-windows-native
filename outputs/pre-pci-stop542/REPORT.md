@@ -59,3 +59,27 @@ statuses, establish correct interrupt behavior or diagnose earlier boot failures
 
 Manual poweroff/on and dashboard confirmation were requested. Reset completion
 and fresh readback remain pending. No additional launch is planned for542.
+
+## Closed after manual power cycle
+
+The user confirmed "All set" after the requested power cycle to UnleashX. Fresh
+after1 completed22:35:51UTC. All ten baseline files are byte-identical, all five
+hives pass independent checks, and event logs/video trace are unchanged. No new
+Windows events or6006 delta appeared. This was a manual reset, not WindowsRestart.
+
+Primary/witness/context records decode with no refusal. Primary bytes equal both
+536 successes and540/541. Matching-epoch CPU/segment/table/stack/return values
+match; only timestamps and preceding-marker polls differ(1163 versus1170/1158/
+1168/1179). These remain pre-handoff records, not later PCI-checkpoint receipts.
+
+The observed red/amber supports arrival before PCI in this instrumented run.
+It does not identify PCI as the cause of earlier ordinary-boot failures. These
+latest watched checkpoint runs followed manual power cycles; they do not recreate
+the normal-Windows-Restart condition of532's ordinary failure. The earlier536
+instrumented warm/cold pair also succeeded, so instrumentation remains a confound.
+
+All supervisors closed, no hook or XboxC access. Protected720p/ordinary startup
+remain exact. The console is authenticated at UnleashX. One launch only;542 is
+CLOSED and must not be relaunched/recollected/reparented. Before another later
+checkpoint, design a fresh same-checkpoint warm comparison with explicit primer
+and normalRestart evidence. See final001 and NEXT-CLOSED.md.

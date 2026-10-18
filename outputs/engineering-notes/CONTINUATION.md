@@ -1,3 +1,33 @@
+#542 CLOSED: red/amber pre-PCI indication; clean postreset audit
+
+User reported "Amber/red flashing with a black screen", then "All set" after
+requested powercycle toUnleashX. Exact reports/context in led1/observer1.
+Fresh after1 completed22:35:51UTC. All10baselinefiles byte-identical, fivehivesclean,
+no newWindows events/6006delta or tracechange. Primary/witness/context valid;
+no refusal. Manual powercycle is not normalWindowsRestart evidence.
+
+Primary bytes equal both536 successes and held540/541. Matching-epochCPU/segments/
+tables/stack/return values equal; onlyTSC and preceding marker polls differ(1163
+versus1170/1158/1168/1179). Those records remain pre-handoff. Distinctred/amber
+supports reaching026004f8 beforePCI in THIS instrumentedrun, not HLT/status proof,
+physicalinterrupt correctness, priorordinaryfailure cause or bootfix. No Windows.
+
+542 CLOSED after one launch; neverrerun/recollect/reparent. Candidate remains
+unique E:/Applications/XWNBoot542a. No hook/queuedlaunch/ownedrunningprocess.
+Ordinary720p/startup exact; no XboxC access. Dashboarduserconfirmed/authenticated.
+AutomationPAUSED. Read542final001/close-review001/REPORT/NEXT-CLOSED first.
+
+Next experiment design should address restart-condition coverage before moving
+another marker:540/541/542 followed manual powercycles.532/533 ordinary warm
+success/failure/success is not reproduced here;536 instrumented warm/cold both
+succeeded. Consider a fresh predeclared Windows-primer then same-checkpoint warm
+comparison, with new namespaces and unchanged normalized542 code. Capture primer
+Windows events/hives; require user normalRestart and no interveningpowercycle.
+No identical-failed-boot retry or implied success. A warm diagnostic success would
+still not prove ordinarybootreliability due recorder IO/layout/timing differences.
+If warmfailure reproduces, use exact records to choose next boundary. Functional
+PCI/driver/reset patches remain unjustified. No GPU/game/release promotion.
+
 #542 expected red/amber observed; manual reset requested
 
 User: "Amber/red flashing with a black screen". Exact report saved in led1.
