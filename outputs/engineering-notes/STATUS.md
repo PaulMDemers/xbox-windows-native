@@ -1,3 +1,40 @@
+# 505 CLOSED: actual kernel calls PASS, dashboard readback gate FAIL
+
+504 PUSHED3cfc166b. Read outputs/entry-runtime505 REPORT/DESIGN/NEXT/final-review,
+actual-review003 andactualtrace/audit. OneSITE09:09:33;12actualAPIcalls all0,
+firmwareroutine49 enteredmode1, originalregsrestored/state7/state2/all6statuses0.
+929code320data/10importsactualkernel exact;28stops86captures. AllBPsremoved/physical
+mode0 then firmware resumed09:09:40.509. DashboardFTPLOGIN succeeded09:10:01.060;
+receipttransfer ConnectionRefused then temporaryerrors; original45secreadbackgate
+FAILED/tracepassedFALSE. Not proofdashboardneverreturned. DefaultPASV onrestricted
+forwardedport suspected transportissue; exactreply/endpoint notcaptured, noattribution.
+Cold112bytereceipt exact, full10GBmap327680localbytes275changes strictFALSE. FATX
+276dirs6554files255dirclusters0errors/orphans;5hives3baselinebinaries/EEPROM/seedexact.
+Independent96file/58indicator/112receiptmutationsreject.245frozen17external425private
+inputs/capturesrehashed. Orderlyhostexit0/no fallback; ALL sessions85500/98906/98563
+CLOSED, noxemu/QEMU/nohook/noqueuedlaunch. NoWindows/physical/D3Dqualification.
+Actualreview002 mistakenno-login assertionFAIL andfirstfinalreview missingresult
+FAILpreserved;003correctsreviewonly, originalruntimeFAILunchanged. Frozenreview001
+notexecutedrequiresfullPASS. Neverrerun505oroldclosedruntime. NEXT boundedreal-socket
+hostqualification ofFTPreturn transport, preservefullstages/replies. ThenNEWfresh
+isolated correctedprotocol, same504code/no speculativeguestpatch;onlythen NEW
+physicalentry-only/nohook/oneSITE.501unknown/487latefailure separate;486/496pending.
+C/WSL20GiBguard/noEallocation;720p/ordinarylauncher/startup/XboxCprotected.
+13:50reviewonly14UTCclose/pause. Repositorycheck/stageexact/commitpush next.
+
+# 505 isolated entry-indicator runtime starting
+
+504 PUSHED3cfc166b, entry-only XBE95a97340... neverphysicallylaunched. New505
+freshchild of neverexecuted466 preparation, reviewedcandidate/privateEEPROM,
+ports6054..6057. PreflightPASS245frozen17externalinputs,C23242625024B/E21499871232B,
+projectedC768MiB reservePASS/noEallocation. Host00112/48,00351/21,004completeactual
+observer91failureboundaries15indicatornegatives27stops; kernel/transport/verify
+callbacks MODELED only. No physicalaccess/startuphook/queuedphysicallaunch.
+Read505DESIGN/preflight/trace/audit. Bounded240secrunner; actual LED/delay/file/
+firmware-return and separate dashboardreturn; original_start guarded. AllBP/
+physicalmodecleanup, orderlyhoststopquit/fullcoldaudit required. No retry. Existing
+502/501/487 limitations andprotected720p/ordinarylauncher/XboxC unchanged.
+
 # 504 entry-only XBE static integration complete; never launched
 
 503 PUSHED6a2b10a8. Read outputs/entry-binary504 REPORT/DESIGN/NEXT/build001/
