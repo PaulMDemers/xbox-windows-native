@@ -49,3 +49,13 @@ Fresh before1 completed22:25:07UTC and all10 files match closed541after1. One SI
 request was accepted22:25:23UTC; the launch supervisor closed without timeout or
 retry. Exact frontLED/screen observation is pending. No console outcome or
 Windows execution is inferred. No second launch, startup hook or XboxC access.
+
+## Expected pre-PCI indication observed
+
+The user reports "Amber/red flashing with a black screen". This matches the
+distinctive target indication and supports reaching the checkpoint before PCI
+initialization in this instrumented run. It does not attest HLT/both marker
+statuses, establish correct interrupt behavior or diagnose earlier boot failures.
+
+Manual poweroff/on and dashboard confirmation were requested. Reset completion
+and fresh readback remain pending. No additional launch is planned for542.

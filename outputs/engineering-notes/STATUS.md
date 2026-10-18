@@ -1,3 +1,23 @@
+#542 expected red/amber observed; manual reset requested
+
+User: "Amber/red flashing with a black screen". Exact report saved in led1.
+Matches the intended pre-PCI indicator and supports arrival at026004f8 after
+C-frame/memory-manager/IDT/PIC/APIC initialization in THIS instrumented run.
+Does not independently attest HLT/both transaction statuses, interrupt hardware
+correctness, past failure cause or ordinary-boot reliability. Earlier amber
+was not separately reported. No Windows or PCI initialization was intended.
+
+Requested poweroff/on and leave atUnleashX. Await actual dashboardconfirmation;
+do not infer reset from elapsed time. Last console observation black/red-amber.
+No hookinstalled, hostprocessesclosed, no queuedlaunch. Earlier runsclosed.
+
+On dashboardconfirmation save observer1 exactreport/context with manual_reset,
+at_dashboard,user_report_received. Then frozen supervise.py after1 once, WSL
+ audit.py1 and Windows decode_actual.py1; inspect results before close001.py.
+The closure helper is prepared but not run. Preserve failures, compare matching
+epochs and protectedfiles. Never relaunch/recollect a closed runtime.
+Ordinary720p/startup exactprelaunch; postreset readback pending. AutomationPAUSED.
+
 #542 LAUNCHED once: pre-PCI LED/screen observation pending
 
 User "Proceed" accepted as watch/reset readiness in context; ready1 preserves
