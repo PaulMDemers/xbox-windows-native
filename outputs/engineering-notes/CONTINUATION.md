@@ -1,3 +1,20 @@
+#544 red/amber black screen observed; reset requested, boot work ending
+
+User: "Red amber with a black screen" in response to question about alternating
+red/amber hold vs otherpattern/dashboard. Exactreport/context in544led1. Supports
+arrival at sameprePCI checkpoint after543normalWindowsRestart; noHLT/status proof,
+noordinarybootfix or historicalfailurecause. NoWindows intended on544.
+Requested poweroff/on and leaveUnleashX; await actualdashboardconfirmation. Last
+observedconsole black/redamber, not reset yet. No hook/ownedrunninghostprocess.
+
+On confirmation, save544observer1 exactreport/manualreset true/normalRestartfalse;
+run frozen supervise.py after1 ONCE, WSL audit.py1, Windows decode_actual.py1.
+Then inspect actualresults before prepared close001.py. Sourcehash inclose-source001.
+Compare matchingepochs to542 and536, preserve allfailures. No544rerun/recollection.
+Table bootinvestigation afterclosure and proceed545 combinedD3D. No furtherboot
+checkpoint ladder.545package frozen49pins,16controllercases, no545physicalstage,
+hook or launch. Read545NEXT-PREPARED. AutomationPAUSED; manualauthorizationactive.
+
 #544 LAUNCHED after normal Restart; final boot observation pending
 
 543 CLOSED: user desktop observation then normal Windows Restart to dashboard.
