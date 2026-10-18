@@ -1,4 +1,4 @@
-# 529 documentation reviewed; 528 observer still pending
+# 529 PUSHED 9f15ab56; 528 observer still pending
 
 528 PUSHED d06b7d90. 529 updates the public graphics guide, roadmap and source
 index only. Read outputs/docs-ladder529/REPORT.md, NEXT.md and review001.json.
@@ -20,8 +20,9 @@ SITE20s; no unsupported screenshot claim. All closed runtimes remain closed.
 C/WSL projected20GiB guard; no E allocation, historical deletion/backing moves
 or repeat compression. 13:50UTC review only; 14UTC close/report/pause automation.
 Repository check82777 CLOSED PASS38417files; document/evidence/source hashes
-reverified, Windows/WSL relevant process inventory empty. Stage/commit next;
-historical untracked files untouched.
+reverified, Windows/WSL relevant process inventory empty. Twelve staged files
+byte-exact before the exact-stage receipt. Evidence9f15ab56 pushed successfully
+at13:07UTC; this subsequent note records closure. Historical untracked untouched.
 
 # 528 PREPARED visible control; observer pending, no physical launch
 
