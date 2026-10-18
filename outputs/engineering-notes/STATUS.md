@@ -1,3 +1,30 @@
+#541 STAGED: pre-C checkpoint; watcher/reset readiness pending
+
+New candidate intercepts the existing jump at02600200 before firstC entry
+BootResetAction(02600420). Original stack/BSS/IDT/FPU/cache/MTRR interval bytes
+are preserved; earlier post-stack marker is removed. Reused bounded marker now
+requests alternating green/amber(mask5f), then intentional indefinite hold.
+This changes earlier I/O/delay placement too; no one-variable causal claim.
+
+Original374 binary/map/ELF/source pinned, publicBootResetAction matches source.
+6 host setup cases pass (privileged effects modeled),40 marker cases,19 controller
+and6 stage/capture cases pass. No physical cache/MSR/mapping proof. No driverfix.
+Package001 freezes55pins;542839B image SHA256
+fbcdd7cfae25181bb2165755771bb20064d61a2c5ec0774d6fb9c2a4b0840876.
+
+Staged21:42:40UTC with exact readback at E:/Applications/XWNBoot541a.
+Only owned directory/owner/XBE written. Ordinary720p/startup exact before/after;
+no hook or XboxC access. Stage process closed. Dashboard FTP authenticated.
+NO LAUNCH SENT/QUEUED. Pending user question asks LED watch/manual reset readiness.
+Do not infer readiness from elapsed time. Read541NEXT.md and DESIGN.md first.
+
+Once actual readiness arrives: save ready1 with exact user report, run frozen
+supervise.py before1, match10files to closed540after1, then one launch1 only.
+Ask for exactLED/screen sequence; ifheld request poweroff/on/dashboardconfirmation.
+Then freshafter1/audit/decode and close. No retry/secondlaunch/closedruntime reuse.
+All earlier attempts including540 remain closed. AutomationPAUSED.
+Windows/D3D/GPU/game/release claims unchanged. No owned running host process.
+
 #540 CLOSED: expected LED/hold observed; manual reset and cold audit complete
 
 User observed flashingred/green on held blackscreen, then repliedReady after
