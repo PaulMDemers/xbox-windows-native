@@ -1,3 +1,27 @@
+#541 LAUNCHED once: pre-C LED/screen observation pending
+
+User said "Proceed" in reply to staged diagnostic awaiting watcher/reset readiness;
+exact report/context saved in ready1. before1 completed21:50:29UTC, all10 files
+match retained closed540after1. Single SITE request accepted; exact time/reply in
+launch1.json. Launch supervisor closed21:50:42UTC without timeout or retry.
+No second/control launch is permitted. Candidate541 deliberately holds before C.
+
+Pending user question asks frontLED amber/green versus amber/red-green/other,
+and held blackscreen versus automatic dashboard return. Leave console as-is
+until report. Expected green/amber supports checkpoint arrival in THIS run, not
+HLT/both transaction status proof or retrospective539/ordinary boot diagnosis.
+Actual console/LED state is UNKNOWN until user observation. No Windows intended.
+
+On report save led1 exactly. If held request manual poweroff/on and dashboard
+confirmation, save observer1 separately from normal Windows restart. Only after
+dashboardconfirmation run frozen supervise.py after1 once, WSL audit.py1 and
+Windows decode_actual.py1. No hook installed. Never collect while intentionally
+held or relaunch this runtime. Read541DESIGN/NEXT and actual launch records.
+
+Ordinary720p/startup and10baseline files checked exact immediately before launch.
+No XboxC access, host supervisorsclosed, no queued actions. Earlier runs remain
+closed; automationPAUSED. No Windows/D3D/GPU/game/release promotion.
+
 #541 STAGED: pre-C checkpoint; watcher/reset readiness pending
 
 New candidate intercepts the existing jump at02600200 before firstC entry

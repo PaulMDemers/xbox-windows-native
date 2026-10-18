@@ -38,3 +38,12 @@ Watcher/reset readiness is pending in the user question. The test intentionally
 holds on black after a bounded LED transaction; it is not an automatic-return
 test. Await readiness before the one allowed launch. See DESIGN.md and NEXT.md.
 All previous runtimes remain closed; the automation remains paused.
+
+## Single watched launch sent
+
+The user replied "Proceed" to the staged test awaiting watch/reset readiness.
+before1 completed21:50:29UTC and all10 files match closed540after1. One SITE
+request was accepted; the launch supervisor closed21:50:42UTC without timeout.
+The exact LED/screen observation is pending. No console completion is inferred
+from host exit, and no Windows boot is intended. No retry or second launch.
+No hook was installed. All protected files were exact immediately before dispatch.
