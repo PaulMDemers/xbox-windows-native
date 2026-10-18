@@ -1,0 +1,11 @@
+# Next: isolate initial entry placement without changing the file/LED logic
+
+509 is a read-only comparison, not a fix. Do not rerun review001/002 or any closed guest. Preserve508's missing receipt and unknown LED sequence. No new launch is queued. Existing authorization covers a properly reviewed new diagnostic; it does not justify identical retries.
+
+Prepare a NEW510 diagnostic design from exact504: retain its section/image extents, imports, data page, complete503 indicator and498 file logic, but use the historical0x11100 entry and one relative JMP to the unchanged0x94aff diagnostic gate. Replace only the otherwise unused original preparation entry bytes, encoded header entry, unique owned namespace and resulting section digest. Do not enter the old preparation path or Windows. Prove the full expected binary independently, including disassembled branch target and unchanged code/data outside explicit sites. Preserve registers/flags/stack through the actual trampoline with host execution and negative targets before runtime.
+
+First review all reachable entry/failure/return paths so the overwritten old_start cannot be reached accidentally. Independently retain the unchanged0x95000 data-page variable. A success would support this specific entry-path comparison but would not establish a general address restriction, stability fix or current kernel cause; a failure still needs a distinct boundary, not another retry. A separate data-layout or SDK-entry comparison must use its own design and ownership, not silently change several variables in510.
+
+Only after host/static checks, use a fresh unused owned emulator child and exact pins to validate actual entry, file/LED calls, register preservation, return and cold evidence with bounded cleanup. Never parent/relaunch507 or any closed runtime. Then, if qualified, one fresh physical owned E path, no Windows hook, oneSITE20sec, short observation and full paired cold baseline/hive/event collection. Ask a concise LED observation when useful; missing observation is unknown.
+
+Continue toward separate487 late handoff and matched486/496 D3D coverage. Preserve ordinary launcher/startup/720p, Xbox C exclusion, Ft49/popups, immutable releases/recovery and all failures. C/WSL projected20GiB reserve; no newE allocation. At13:50UTC only review/closeout; at14UTC preserve/close/report and pause automation.

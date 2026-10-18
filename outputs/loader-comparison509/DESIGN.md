@@ -1,0 +1,7 @@
+# Independent comparison of closed physical loader evidence
+
+No new build, console query, guest launch, source mutation or runtime recollection. Join the retained build bytes to staged hashes and paired cold captures for physical483,487,494,501 and508. Include the ordinary launcher captured before508. Use a new bounded parser, independently derived from the pinned nxdk Xbe.h field definitions, for this observed one-section family. Verify file/header/section extents, entry/thunk pointers, ordinal bounds, certificate bounds and section SHA1. Keep those structural checks separate from signature validation, physical loader acceptance and TLS handling.
+
+Compare all header DWORDs, certificate hashes, TLS bytes, imports and page-rounded extents. Join494 symbols and its existing validated physical context to avoid incorrectly asserting that the last code page has never executed. The historical307 kernel record lists exports, version and missing pages; rehash its JSON only. Its unavailable old D-path kernel reconstruction is not reopened or freshly rehashed, and the current physical kernel is not remeasured. The507 emulator kernel identity remains a different actual runtime.
+
+Keep every unsuccessful read/review immutable. Review001 used an incorrect historical487 stage-record filename and failed before completing comparison. Review002 changes only that filename and its own output ID; parser and analysis remain exact. In-memory negative mutations never alter original images and are not physical experiments.

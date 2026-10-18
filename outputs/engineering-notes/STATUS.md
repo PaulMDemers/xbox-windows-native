@@ -1,3 +1,25 @@
+# 509 CLOSED read-only loader comparison; no physical cause established
+
+508 PUSHED0d5ccf1f CLOSED absententryreceipt; LEDquestionpending. Read509 REPORT/
+DESIGN/NEXT/review002/final-review.6actualimages independentlyparsed,5build/staged/
+coldphysicalbytejoins,993structural/digest/truncationnegatives,38inputsrehashed.
+483/487/494/ordinaryentry11100;499/504entry94877/94aff. 487lowentryalsofailed.
+Successful494actualcapture9473e..94877 executed SAME94000codepage as504entry;
+no blanketlastpageexecutionclaim.499/504 add95000data page, keep separatevariable.
+OnlyheaderDWORDdiffsvs494 size/entry;section/content differencesalsoexist,notmatchedAB.
+Allcertificate/media/region/stack/TLSpointerbytescommon. InheritedTLS18000 points
+payloadbytes failinggenericTLSranges EVENsuccessfulimages; runtimeunknown,nopatch.
+Historical3074034.1 exportmetadata includesallordinals; rawkernelunavailable oldD
+path NOTrehashed/currentkernelNOTremeasured;507kernel differs. NoABI/rootcauseclaim.
+Review001 wrong487stagefilename FileNotFound preserved;002filename/outputIDonly.
+No build/guest/physical/hook/sharedsource/SDKchange. AllownedprocessesCLOSED,noqueue.
+NEXTNEW510 exact504 diagnostic low11100entry relativeJMPto94aff; same95000data,
+imports/file/LEDlogic/extents. Independentlyproveallbytes/reachablepaths andactual
+trampoline register/flags/stack preservation BEFOREfreshownedemulator andphysical.
+UniqueIDs/paths;neverrerun508/507/oldcase. NoWindowsintended/nohook. Read509NEXT.
+720p/ordinarylauncher/XboxC protected;C/WSL20GiBguard/noEallocation.486/496pending.
+13:50reviewonly14UTCclose/pause. Repositorycheck47553 CLOSED PASS37746files; exactstage verified. Commit/push next.
+
 # 508 CLOSED physical entry receipt absent; no Windows launch
 
 507 PUSHEDb91e0442 remains emulator-onlyPASS/strictFALSE. Read508 REPORT/DESIGN/NEXT,
