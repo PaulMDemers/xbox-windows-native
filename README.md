@@ -19,6 +19,7 @@ native GPU acceleration.
 - [Find and edit the source](src/README.md)
 - [Build the components](docs/building.md)
 - **[After building: prepare Windows, package, copy and boot](docs/build-to-boot.md)**
+- **[Build the hardware-info and private Windows ZIPs](docs/build-test-kits.md)**
 - [Installation and first boot](docs/installation.md)
 - [Resolution and desktop settings](docs/display-configuration.md)
 - [Windows Media Player demo](docs/media-player-demo.md)

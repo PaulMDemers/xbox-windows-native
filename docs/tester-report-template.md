@@ -24,5 +24,17 @@ hardware-report JSON and relevant photographs without private information.
 - Any forced restart and why:
 - Other observations:
 
+For a new console, use a short label (for example Xbox-B) to keep its JSON,
+package hash and photographs together. Record each launch separately:
+
+| Run | Power state before launch | Launch path | Furthest screen/error | Returned by normal Restart, automatic failure, or reset? | Saved file reopened? |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Cold start to dashboard | | | | |
+| 2 | After normal Windows Restart | | | | |
+
+Use a uniquely named plain-text file for the initial save check. Record its
+Windows path and whether the contents survive close/reopen and the next boot.
+A failed boot is still a result; do not replace it with a later successful one.
+
 Do not include product keys, EEPROMs, HDD keys, serials, MAC addresses, firmware,
 registry hives, passwords or disk archives. An unknown field is fine.

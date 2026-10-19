@@ -1,8 +1,10 @@
 # Xbox tester quick start
 
-Start with the inventory kit. **Do not copy the developer's Windows recovery
-archive onto your console.** The portable Windows preview is still being
-prepared; the installation steps below apply once you receive a reviewed package.
+Start with the inventory kit. The private Windows delivery587 is a prepared
+E/720p test package, with copying instructions and checksums; it has not yet
+been qualified on another console and is not a public Windows download.
+Use a package explicitly prepared for your test, not a developer's disk/recovery
+archive. Builders should follow the [two-kit recipe](build-test-kits.md).
 
 ## 1. Report your hardware
 
@@ -60,8 +62,9 @@ device aliases unprobed. Omitted addresses are not evidence of absent hardware.
 
 ## 3. Install a reviewed Windows package
 
-These steps apply only after the maintainer supplies a package qualified for
-your configuration, or verifies a locally assembled package from your own media.
+These steps apply after the maintainer reviews the package and hardware report
+for an initial watched test, or verifies a locally assembled package from your own media.
+Record new-console compatibility as untested until that test completes.
 The repository alone does not include Windows.
 
 1. Verify the ZIP and its separately supplied hash. Read its profile and known
@@ -70,7 +73,8 @@ The repository alone does not include Windows.
    additional room for the pagefile and saved files; the package must state its
    required reserve. ZIP size is not the installed size.
 3. Check that `E:\WINNT`, `E:\Documents and Settings`, `E:\Program Files` and
-   `E:\Applications\XWNEBoot` do not conflict with existing files. If they do,
+   `E:\Applications\XWNEBoot`, plus any packaged support root such as
+   `E:\xwndemo372`, do not conflict with existing files. If they do,
    stop. Do not merge or overwrite an older Windows installation.
 4. FTP only the package's `E` contents into dashboard E, preserving the exact
    structure. Keep `default.xbe` out of XWNEBoot until everything else has

@@ -1,3 +1,30 @@
+# Build documentation refreshed; hardware target pending
+
+The user reports copying the two delivery ZIPs to a flash drive and authorizes
+reclaiming those local ZIPs if space is needed. No deletion was needed or done;
+see outputs/delivery587/retention002.md for exact scope. The delivered ZIPs and
+flash copy were not modified; flash-copy bytes were not independently checked.
+
+Start at docs/build-test-kits.md for inputs, component-build links, both ZIP
+stages, source/notices, stopped Windows capture, manifests, hashes and copying.
+The older guides now include the xwndemo372 startup dependency. The clean-media
+registry converter and FATX-name gaps remain explicit; documentation does not
+make that unfinished route reproducible. The prepared-installation packaging
+route is documented separately. No Windows/RCT payload was committed.
+
+Documentation validation: 70 local links/anchors and five Bash command blocks
+passed; documented packager flags exist. The first syntax check failed because
+Windows text-mode subprocess input inserted CRLF; the corrected byte-input
+check passes. Preserve docs-check002-failure.json and docs-check003.json.
+No build, new ZIP, VM, FTP connection or console launch occurred this turn.
+PC586 and prior runtimes stay closed; automation stays PAUSED. Prior process,
+hook and console observations below are historical, not fresh observations.
+
+Next: identify which console the user offers (async question pending), collect
+its hardware-info JSON, then arrange a watched first boot and a plain-text
+save/normal-restart/reopen check. Do not assume the old FTP target is the new
+console. Physical RCT persistence remains unqualified and RCT stays out of kits.
+
 # Completed: private Xbox ZIPs and PC save/restart/load
 
 The resumed user request is complete. Automation remains PAUSED. Two private

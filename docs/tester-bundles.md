@@ -1,9 +1,12 @@
 # Tester bundles and local assembly
 
+For the complete staging and delivery recipe, use [Build the two Xbox test
+ZIPs](build-test-kits.md). This page documents the packager and inventory build.
+
 | Package | Contents | Readiness |
 |---|---|---|
 | Utilities | Hardware-report XBE, host validators, source/notices and instructions | Corrected 421 utility passed emulator and first development-console inventory; other revisions unqualified |
-| Windows E/720p preview | Matched boot chain, prepared Windows files/registry and manifest | Not yet approved for general tester distribution |
+| Windows E/720p preview | Matched boot chain, prepared Windows files/registry and manifest | Private delivery587 built and verified; second-console boot and general distribution unqualified |
 
 Windows, firmware, EEPROMs, dashboards and console-specific recovery material
 are not included in the public utility package. Build Windows inputs locally

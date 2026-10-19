@@ -11,6 +11,10 @@ to check your ISO against the recorded disc hashes and installation results.
 [From a component build to a bootable Xbox](build-to-boot.md) for the complete
 artifact list, Windows preparation, packaging, copying and first-boot sequence.
 
+To assemble the two transferable archives, follow [Build the two Xbox test
+ZIPs](build-test-kits.md). It lists the input provenance, staging layout,
+packaging commands, checksums and delivery checks for each kit.
+
 For the standalone inventory XBE, use the separate [nxdk utility build](tester-bundles.md#build-the-hardware-report-xbe).
 It does not require Windows or the NT5 component toolchain.
 

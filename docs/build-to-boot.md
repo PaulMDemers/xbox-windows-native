@@ -183,6 +183,10 @@ this preparation gate.
 
 ## 4. Package and verify a prepared payload on the PC
 
+The [two-kit build recipe](build-test-kits.md) gives the complete staging,
+source/notices, snapshot, checksum and removable-drive delivery steps. The
+layout and commands below cover the Windows half of that process.
+
 A prepared staging directory has this shape:
 
 ```text
@@ -192,12 +196,15 @@ staging/
     Documents and Settings/        (this installation's profiles)
     Program Files/
     Applications/XWNEBoot/          (matched boot chain and support files)
+    xwndemo372/                     (ordinary startup dependency in delivery587)
   docs/                            (stays on the PC)
   host/                            (stays on the PC)
 ```
 
-The package tool's Windows allowlist covers these four installation roots.
-Extra demo/driver directories outside them need a reviewed layout change; do
+The package tool's Windows allowlist covers the four installation roots plus
+`E/xwndemo372` for the existing startup dependency. In delivery587 that folder
+contains the exact `display-settings.exe` and `outline-applied.txt` referenced
+by ordinary startup. Extra directories outside these need a reviewed layout change; do
 not silently leave them out to make packaging succeed. Keep manifests and ZIPs
 outside staging, and use fresh output filenames:
 
@@ -224,7 +231,8 @@ throughout the transfer.
    and E's `Apps`, `Applications`, `TDATA` and `UDATA`. Check E's free space against
    the package and its specified runtime reserve. Do not format or repartition.
 2. Stop on collisions with `WINNT`, `Documents and Settings`, `Program Files`,
-   or `Applications/XWNEBoot`. An existing installation requires its own matched
+   `Applications/XWNEBoot`, or packaged support roots such as `xwndemo372`.
+   An existing installation requires its own matched
    update/rollback plan; choosing “overwrite all” is not a fresh install.
 3. Extract the verified ZIP locally. With your FTP client in **binary mode**,
    upload the **contents of its `E/` folder into dashboard `E:\`**. For example,
