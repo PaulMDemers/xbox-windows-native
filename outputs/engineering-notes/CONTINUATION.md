@@ -1,3 +1,20 @@
+# PC578 CLOSED; physical576 stage still ACTIVE
+
+578 dialog inspection passed: owned Save Game #32770, filename Edit1148,
+SaveButton1/Cancel2. PassiveQMP shows actual Save dialog; after cancel parkROI
+is exactly unchanged. SevenBMPs valid; normalVMexit0 at10:23:48UTC, fiveclean
+hives/new6006, registry/desktop restored. All578 processes CLOSED. First review
+was mistakenly run underWSL withWindows paths; review-attempt001 preserved,
+host review passed without guest relaunch or recollection.578/NEXT.md defines
+next planned two-boot save/reload control; no save or load qualified yet.
+Private578ISO retained as asset; closed guest must never be reopened/parented.
+
+576 stage exec8054 ACTIVE, hook absent/no launch at10:28UTC;417740210bytes
+verified. Use576/NEXT002.md and exactactualjournals. Qualified575binary unchanged.
+No Xbox result beyond565 yet. d84ce0be pushed; supplemental578closure pending.
+Host20GiB guard includingWSL; no new fixture allocation admitted.
+Deadline14:00UTC Oct19, closeout13:50; user cannot reset before10am.
+
 # PC578 Save dialog probe submitted; physical576 still staging
 
 578 VM exec12453 ACTIVE. Owned logon,800x60016bit display confirmation and
