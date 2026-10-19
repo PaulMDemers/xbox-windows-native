@@ -1,3 +1,59 @@
+# PC575 qualified; physical576 readiness passed, no writes/launch
+
+575 CLOSED: window edge stationary, arrows/drag move; fullscreen all three move.
+Game PCX and passiveQMP regions agree including cleared notification area. Ten-
+second capture settling resolves574 unchanged drag in this control. All cleanup,
+five hives/new6006, normal restart pass. All575 processes closed; exact transport
+ISO removed, private evidence retained. No closed runtime may be reopened.
+
+576 fresh read-only dashboard probe completed09:54UTC: authenticated dashboard,
+protected720p/startup exact, xwn575-kit/xwn575 unused, no owned hook, no writes or
+launch. Private namespace wrapper C:/xwn576/session.py prepared from active
+configuration without exposing credentials. Follow outputs/rct576/NEXT.md next:
+capacity accounting, exact575 binary + pristine retail package, new fault-tested
+controller, scoped stage/readback/hookLAST, one SITE/20sec, hookFIRST on return.
+No physical game result beyond565 yet. No active owned processes. Host20GiB guard
+required includingWSL. User cannot reset until10am; cutoff14:00UTC Oct19,
+closeout13:50. Save/reload across restart and actual API/cost tracing follow.
+Full repository check40135files passed; publication commit pending.
+
+# PC575 CLOSED and qualified; prepare physical576 next
+
+Native window arrows/drag move; right edge stays still. Fullscreen right edge,
+arrows and right drag all visibly move. Fifteen valid captures; four builtinPCX
+files match independently sampled QMP regions including the notification area.
+Ten-second settling after Screenshot resolves574 unchanged drag in this control;
+notification interference supported, unique cause not proven. Normal game exit0,
+desktop/registry restored, five clean hives/new6006, no force/host quit/deadline.
+VM09:46:43UTC closed; first cold1/collection complete; all owned processes CLOSED.
+Exact-hash transportISO removed; all private evidence retained. Never reopen575.
+
+Next outputs/rct575/NEXT.md: physical576 with exact qualified575 executable and
+unused console xwn575-kit/xwn575 paths, unique576 hook/owner/journal. New physical
+runtime; no closedPC parent. Fresh readiness/space/controller-fault/stage-readback
+checks first, oneSITE/20sec, hook removalFIRST on return, exact images+hives/events.
+No Xbox access/hook yet;565 last known dashboard. HostC/E reserve remains20GiB.
+Save/reload and actual API/cost tracing follow. Deadline14:00UTC Oct19, closeout13:50.
+574 pushed0406e554;575 publication pending. User cannot reset until10am.
+
+# PC575 stopped automatically; first cold1/readback ACTIVE
+
+VM575 exited0 at09:46:43UTC without host quit/deadline or passive capture error.
+Parent andISO unchanged; exec40621 CLOSED. Native captures await first collection.
+Passive screen showed fullscreen then restoredWindow Options. No claims about
+full-drag until exact images reviewed. Cold1/collect holds real build+xemu leases.
+No Xbox access/hook.574 CLOSED/pushed0406e554. Follow575/NEXT.md.
+Deadline14:00UTC Oct19; closeout13:50.
+
+# PC575 native sequence ACTIVE exec40621
+
+Owned logon and800x60016bit desktop confirmed, Start balloon dismissed.
+First display confirmation timed out and reverted before game launch; repeated
+settings acceptance succeeded and is independently pictured. D:PREP.CMD verified
+and submitted once at09:40UTC. No host game input after helper start. Wait bounded
+normal stop, then cold1/collect once and independent display/capture review.
+574 CLOSED and pushed0406e554. No Xbox access/hook. Deadline14:00UTC, closeout13:50.
+
 # PC575 VM ACTIVE
 
 Cold0 passed6475files/308dirs. One VM575 launch under real build+xemu leases.

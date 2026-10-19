@@ -83,6 +83,14 @@ the park; the subsequent drag did not. A centered screenshot notification may
 interfere with that drag, so it remains inconclusive pending a fresh settling
 control. Normal restart and registry/hive checks passed; no Xbox claim is added.
 
+The fresh [settling control575](../outputs/rct575/REPORT.md) added ten seconds
+after each builtin screenshot. The same native drag now visibly moved the
+fullscreen park. Arrows and dragging moved the landscape in both modes;
+right-edge scrolling moved it only fullscreen. Game images matched independent
+emulator display regions, and normal shutdown/registry/hive checks passed.
+This qualifies the automated PC probe for a separate Xbox comparison. It
+supports notification interference in574 without proving a unique cause.
+
 The next performance work uses a save reloaded across a normal restart, a
 recorded fixed scene and an observed graphics-API path before choosing an
 optimization. See the [measurement plan](rct-performance-plan.md) for the
