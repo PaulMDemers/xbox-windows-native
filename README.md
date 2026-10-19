@@ -29,6 +29,7 @@ native GPU acceleration.
 - [Validated results and remaining release work](docs/validation.md)
 - [Next milestone: classic games and Direct3D](docs/graphics-roadmap.md)
 - [Graphics sample ladder: build and run](docs/graphics-samples.md)
+- [RollerCoaster Tycoon installation and compatibility tests](docs/rct-compatibility.md)
 
 ## Current capabilities
 
@@ -63,7 +64,10 @@ files; see [provenance](docs/provenance.md) for source and binary correspondence
 
 The next graphics target is playable original **RollerCoaster Tycoon and The
 Sims**, including input, sound and save/reload on a 64 MiB Xbox. Neither game is
-qualified yet. The [graphics roadmap](docs/graphics-roadmap.md) starts with exact
+qualified on Xbox yet. Three supplied RCT editions now install and render a park
+in Windows 2000 PC controls; two also pass a short same-session save/reload check.
+See the [RCT results and limitations](docs/rct-compatibility.md).
+The [graphics roadmap](docs/graphics-roadmap.md) starts with exact
 game editions and DirectDraw/API probes, then the required legacy Direct3D work.
 Game compatibility, software rendering and native GPU acceleration are separate
 results. 720p remains the baseline; the 1080i investigation is paused.

@@ -1,3 +1,72 @@
+# RCT559-563 CLOSED: three PC installs/rendered parks; no Xbox game run
+
+All three supplied ISOs installed in separate fresh original404 NTFS children.
+561 Hasbro1999: title and Forest Frontiers render, v1.08.187; save exists but
+returned to desktop during save/load sequence, cause unresolved. Reload NOT passed.
+562 later Atari: title/park render, v1.08.187, same-session save/reload observed.
+563 Deluxe: title/park render, same-session save/reload observed. No sound device
+in any PC control; no audio/FPS/extended play/Xbox qualification. Two non-Deluxe
+executables differ in size/hash despite equal displayed version. All three have
+normal Restart,6006 delta1, clean five-hive checks and unchanged protected OS.
+All VM/cold-audit supervisors are closed, including latest26834/52994. Final
+records archive8inputs each and29/54/46screens for561/562/563 respectively.
+560 host-only DrvFS QMP socket failure remains closed, with no guest boot.
+No physical access, console modification or armed hook this turn. Last console
+state is historical558 dashboard authentication, not a fresh observation.
+Read docs/rct-compatibility.md and outputs/rct559/NEXT-final.md for next work.
+No full installed-game export exists; private inspection folders have selected
+EXE/config/save files only. New Xbox work needs a fresh reproduction/export,
+registry/disc-access handling, FATX validation and bounded observed launch.
+Never rerun/recollect/parent closed560/561/562/563. Keep20GiB reserve. Prior
+boot diagnosis tabled;720p protected; automation paused. No game/GPU promotion.
+
+# RCT562 Atari PC ACTIVE: booting; original561 post-run audit
+
+563 Deluxe CLOSED: installed/full, title and ForestFrontiers render, same-session
+save/reload, normalrestart6006delta1, fivehivesclean;483installedfiles noneover42.
+No audio device, noFPS/Xboxclaim.563finalrecords8frozeninputs46screens.
+561Hasbro1999 installed/full intoC:\RCT99, title/ForestFrontiers render,v1.08.187.
+After save submission and subsequent load-menu clicks gamewasbackatdesktop;
+no exception screen observed; cannot attribute cause. Save/loadNOTpassed.
+VM72673 closednormalrestart; cold1session53909 active, theninspect_installed.py561.
+562Atari freshVM supervisor26834 activeboot; next observedlogin/install.
+Use559vm002.py, PIDchecked/tmpQMP, UIlease.30minboundedlifetime. NoXboxchanges.
+560hostsocketfailureclosedpreserved.20GiBreserve. Neverrerunclosed563.
+
+# RCT retail tests ACTIVE: Deluxe renders/saves; Hasbro561 booting
+
+563 Deluxe installed fully into C:\RCTDX; existingDirectX accepted. Title/menu
+and ForestFrontiers rendered at640x480; mousemenus work;XWN563.SV4 saved and
+reloaded in-session. Gamequitdesktop then normalWindowsrestart; VM80619 closed
+exit0/nohostquit/deadline. Cold1audit session56542 active; no finalqualificationyet.
+No audio device inPC fixture; noaudio/FPS/Xboxclaim. Private screenshots retained.
+561Hasbro1999 freshVM supervisor72673 booting; login/installnotyetsent.562Atari
+freshbaselinecomplete but noVM.560hostsocketfailureclosedpreserved.
+No console changes. Use559vm002.py with UIlease, PIDchecked QMP/tmp sockets.
+QMPnamedbackslash dropped; use key0x2b when entering paths. Never alterfrozen
+scripts. Eachgame controlled throughobservedUI, bounded30min VMlifetime.
+
+# RCT563 Deluxe PC ACTIVE: Windows booting, installation not started
+
+563 fresh child atC:/xwn563/pc001; exclusive supervisor session80619. QMPsocket
+/tmp/xwn-rct563-phase1.sock; vm002.py owns PID and records inputs/screens.
+One30minute bounded lifetime; no network,64MiBPentiumIII,Cirrus,USBtablet.
+Latest screen Windows startup. Next inspect/login001 once, install from D:\setup.exe,
+then observe game startup/menu/park if reachable, normalrestart,cold1audit.
+560hostattempt failedAF_UNIXonDrvFS beforeguest;diskunchanged;allclosed preserved.
+561Hasbro1999 baseline session9391 and562Atari baseline10518; both fresh/noVM.
+No console access.20GiB reserve; no newbootdiagnosis; previous558closed.
+
+# Retail RCT tests ACTIVE: Deluxe560 prepared, baseline audit
+
+User supplied3ISOs Desktop/rct_isos and authorized installing/testing startup.
+559inventory hashes all3; Deluxe560 fresh original404 child atC:/xwn560/pc001.
+Baseline cold0 session34645 in progress. No VM launched yet. Read559DESIGN.
+Next one exclusive vm.py560run, owned screenshots/login, install Deluxe from
+D:\setup.exe, inspect observed screens. Then normalrestart/cold1. Separate561
+Hasbro1999 and562laterAtari controls afterward.20GiB guard with1GiB projected
+allocation perinstall. No console changes/launches; prior558closed preserved.
+
 # 558 CLOSED: user-requested retry returned before desktop
 
 User requested dashboard retry; no new power cycle confirmed. Exact556sample,

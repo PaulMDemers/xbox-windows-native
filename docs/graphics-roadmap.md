@@ -166,7 +166,7 @@ Proposed first acceptance target for **each exact game edition**:
 
 | Target | Current status | Next evidence |
 |---|---|---|
-| Original RollerCoaster Tycoon | Not tested by this milestone | Exact edition/patch, Windows 2000 PC control and actual API dependencies |
+| Original RollerCoaster Tycoon | Three editions installed and rendered Forest Frontiers in fresh Windows 2000 PC controls; two passed same-session save/reload ([details](rct-compatibility.md)) | Native Xbox startup/rendering, actual API dependencies, sound, sustained play and across-reboot saves; 1999 reload unresolved |
 | Original The Sims | Not tested by this milestone | Exact edition/expansions, Windows 2000 PC control and actual API dependencies |
 | Legacy Direct3D support | D3D7 RGB software triangle, texture and depth pass on NT5 PC and Xbox; selected alpha arithmetic matches on both; windowed D3D presentation, six XYZ transform controls and five combined offscreen and windowed scene controls pass on PC and Xbox | Bounded resource/performance tests; alpha precision and intermittent boot failures remain unresolved |
 | Native NV2A acceleration | Unimplemented in the working demo | Windows ownership, submission, synchronization and lifetime proof |
