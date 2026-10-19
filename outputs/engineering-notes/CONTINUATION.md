@@ -1,3 +1,33 @@
+# Current priorities: other-console testing deferred by user
+
+The user explicitly deferred testing other Xboxes for this conversation on
+October19. Do not make inventory/second-console qualification the next action
+or keep requesting another console. No new runtime is launched by this update.
+588 remains CLOSED; original console idle at dashboard; automation PAUSED.
+
+Remaining work, ordered around the user's games/graphics goal:
+1. Finish RCT Deluxe controls on the original Xbox: window/fullscreen edge,
+   arrow and right-drag comparison. PC584 has complete controls; physical576
+   was occluded and583 had no guest result. Neither qualifies Xbox scrolling.
+2. RCT save/normal-restart/load on Xbox. PC586 passes and plain-text physical588
+   passes, but neither is a physical RCT save/load result.
+3. Fixed-park game API/cost tracing and honest performance baseline. Synthetic
+   Xbox554 timings are not game FPS. Measure before selecting optimizations.
+4. Continue software D3D coverage (physical perspective-texture result still
+   missing; broader blend/lost-surface cases remain) and implement native NV2A
+   operations only behind measured need and independent correctness checks.
+5. Establish original The Sims installation/startup/render/input/save baseline
+   from the user's available media. No current Sims execution qualification.
+6. Complete portable clean-media Windows preparation: registry/drive conversion
+   and FATX-incompatible-name handling. Existing packaging/build documentation
+   and two delivered ZIPs are complete, but this setup tooling is unfinished.
+
+Keep boot intermittency,1080i and sound deferred. Storage/paging Ftdisk49 and
+shutdown-popup limitations remain recorded; do not claim global FS health from
+588. New physical/PC work requires a fresh attempt and existing capacity/lease/
+source-pin/cleanup rules. Do not reopen any closed runtime. RCT remains excluded
+from the delivered Windows package. No new hardware action is requested now.
+
 # Closed588: physical file save/restart/reopen passed
 
 The original development Xbox completed both planned ordinary720p Windows
