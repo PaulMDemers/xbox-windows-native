@@ -69,6 +69,11 @@ These are PC results; the Xbox alternatives still need testing. The game loaded
 `DDRAW.DLL`, but that module inventory is not an API call trace or acceleration
 measurement. See the [fresh input comparison](../outputs/rct568/REPORT.md).
 
+The next performance work uses a save reloaded across a normal restart, a
+recorded fixed scene and an observed graphics-API path before choosing an
+optimization. See the [measurement plan](rct-performance-plan.md) for the
+workloads, clock checks and limits on interpreting presentation calls as FPS.
+
 The transfer is about 508 MiB, before spare space for logs and saves. It contains
 retail assets from the supplied disc and is not a public redistributable bundle.
 The watched Xbox result applies to Deluxe only; the two non-Deluxe discs still

@@ -1,3 +1,148 @@
+# PC571 CLOSED; native input matrix still unqualified
+
+Foreground request and actual game focus now pass in571. The second readiness
+signature varies across valid animated title scenes;90-second gate rejected
+before game test input. Native GDI title BMP is valid/unobscured. Cleanup passed:
+desktop800x600 restored, game exit0, no forced stop, registry exact, five hives
+and one6006. VM exited0 at08:25:20UTC. All owned processes closed.569/570 failures
+and cleanups remain preserved. All three reproducible transport ISOs removed
+with exact hashes; private runtime evidence retained. No Xbox access/hook.
+571 compressed two closed disks and29 historical input archives with all hashes
+exact. C reserve remains enforced; E unchanged. docs/rct-performance-plan.md
+records save/restart, fixed-scene, actual API trace and measured-cost sequence.
+Next outputs/rct571/NEXT.md: fresh572 stable title reference against multiple
+retained positive frames and569 splash negative, then independent fresh PC
+input/capture validation. Never rerun/recollect/parent closed569/570/571.
+User cannot reset until10am; cutoff Oct19 14:00UTC, closeout only from13:50.
+
+# PC571 stopped automatically; readback ACTIVE
+
+VM571 exited0 at08:25:20UTC without host quit/deadline; source404 and helperISO
+unchanged. Exec66474 closed. Cold1/first collection ACTIVE exec66200 under
+actual build+xemu leases. Observed active title window: foreground fix works
+visually. Host comparison found first logo hash stable, second differs between
+valid title scenes (0xbf2efb1f reference vs0xbcf54549 later screenshot). Await
+native logs to classify readiness timeout. No game inputs or Xbox success
+inferred. Need stable logo reference across multiple positive frames and the
+retained splash negative before a fresh successor. No Xbox access/hook.
+569/570 remain CLOSED.29 archive compressions +2closed disk compressions exact.
+Follow571/NEXT.md. Cutoff Oct19 14:00UTC, review/closeout from13:50.
+
+# PC571 ACTIVE in exec66474
+
+Cold0 passed6475files/308dirs. One VM571 launch at08:17UTC under actual
+build+xemu leases, explicit WSL XBOX_XEMU_MODE=exclusive. Await logon screen,
+then own login001. Prepare PC800x600 via observed Display Properties and
+confirm promptly; dismiss Start balloon and close Getting Started before
+PREP.CMD. No host game input. Foreground request/readiness/capture sequence
+must qualify before Xbox use. All prior569/570 runtimes closed, failures kept.
+No Xbox access/hook. Archive29+two closed disks compressed with hashes exact.
+Follow outputs/rct571/NEXT.md; cutoff Oct19 14:00UTC, closeout from13:50.
+
+# Fresh PC571 prepared; cold0 ACTIVE
+
+Foreground-preserving helper compiled and source review passed. All504 helper
+media entries match. New immutable404 child prepared; no VM launch yet. Cold0
+read-only audit ACTIVE exec51546 under real build+xemu leases. Archive batch
+closed:29 additional pinned inputs compressed, plus closed569/570 disks; all
+hashes exact, no deletion/reparent/reopen. Preflight projected1600MiB growth
+above20GiB reserve including WSL. No Xbox access/hook. 569 and570 remain CLOSED
+failed native-input controls with successful cleanup; title-runtime positive
+and full native input/capture matrix still unqualified. Follow571/NEXT.md.
+Cutoff Oct19 14:00UTC; review/closeout only from13:50, no user reset currently.
+
+# PC569/570 CLOSED; foreground-preserving571 source compiled
+
+569 failed splash/occlusion,570 rejected foreground before game test input.
+Both cleanup paths passed exact registry/five hives/6006/game exit0 and normal
+VM exit. Both owned transport ISOs removed with exact pins; private runtime
+files retained. No Xbox access/hook. Never rerun/recollect/parent either.
+571 source compiled with one owned foreground request, readable context even
+on rejection, no pre-launch minimization, and immediate normal close after
+sequence completion/failure. Title constants unchanged from570 (CRLF-to-LF
+normalization caused initial byte-comparison rejection; source-review001
+independently checks constants against the original reference). Runtime
+positive still unqualified. No571 fixture/media/VM prepared yet. Closed569/570
+NTFS compression preserved hashes. Additional pinned historical archive
+compression ACTIVE exec46698 under actual build+xemu leases; record
+outputs/rct571/archive-compression002.json. No deletion/move/reparent/reopen.
+After completion check reserve, prepare fresh571 PC control. Follow its NEXT.
+Cutoff Oct19 14:00UTC, closeout only from13:50. No user reset needed currently.
+
+# PC570 stopped automatically; first cold readback ACTIVE
+
+VM570 exited0 at08:00:56UTC, no host quit/deadline; immutable404 source and
+helperISO unchanged. Exec1340 CLOSED. Cold1+first collection ACTIVE exec96332
+under real build+xemu leases. Title menu was visible with inactive title bar;
+read exact runner log before classifying foreground failure. No rescue game
+input. No Xbox access/hook. Follow outputs/rct570/NEXT.md. 569 remains CLOSED.
+After readback run review001 and capture_review001 using bundled Pillow; keep
+empty capture matrix as unqualified, not a vacuous pass. No new physical launch
+until fresh PC input/capture sequence independently qualifies. User cannot reset
+until10am; cutoff Oct19 14:00UTC, review/closeout only from13:50.
+
+# PC570 helper running; awaiting its bounded cleanup
+
+Fresh VM570 ACTIVE exec1340, game copied and started about07:55UTC. PC800x600
+set through Display Properties; confirmation timeout and pre-game Start balloon
+dismissal preserved in display-setup001. No host game input. Screens show title
+menu rendered but inactive title bar; native foreground gate may have stopped
+the sequence. Do not infer the result until first readback. Let300-second
+helper bound and normal restart finish; do not send a rescue click. No Xbox
+access/hook. 569 CLOSED failed input, successful cleanup; never reopen/parent.
+Next wait1340, then570 cold1+collect under actual leases, review and inspect.
+If foreground rejection confirmed, fresh successor should retain foreground
+through game creation, request and verify SetForegroundWindow for owned game,
+and close immediately after sequence/failure rather than idle to300seconds.
+Microsoft ShowWindow documentation notes SW_MINIMIZE activates another window;
+current570 minimized own console before child creation. This is a harness
+hypothesis, not a game/driver fault. Preserve this attempt and its exact pins.
+User cannot reset until10am; cutoff Oct19 14:00UTC, closeout from13:50.
+
+# Fresh PC570 native input validation preparing;569 CLOSED failure preserved
+
+569 never reached scrolling: first capture was licence splash with shell
+taskbar/balloon occlusion; first click lost foreground and helper aborted.
+Cleanup passed (registry exact, five hives,6006, game/VM exit0, no forced stop).
+The reproducible569 ISO alone was removed after hash check; all private runtime
+evidence retained. Never rerun/recollect/parent569. Xbox untouched/no hook.
+570 build001 compiled: minimize own console, WindowFromPoint target checks,
+two hash-only title readiness signatures (569 splash rejected), native private
+BMPs. No helper desktop change; set this fresh PC800x600 through desk.cpl before
+PREP.CMD. All504 media entries match. New immutable404 child, cold0 passed6475
+files/308dirs. VM570 ACTIVE exec1340, launched once at07:49UTC under real
+build+xemu leases. No console launch. PC desktop800x600 confirmed through UI; first confirmation
+timeout preserved. PREP.CMD copy started07:53UTC; Start balloon dismissed during
+copy before game starts, no host game input. Follow
+outputs/rct570/NEXT.md. Cutoff Oct19 14:00UTC; user cannot reset Xbox until then.
+
+# PC569 native input attempt stopped; readback ACTIVE
+
+VM569 exited0 automatically at07:40:59UTC; no host quit/deadline, immutable
+source and helperISO unchanged. PC screen showed a command window/menu
+covering the game, so native input behavior is NOT qualified. Let the exact
+private captures/logs determine the failed stage. Cold1+first collection ACTIVE
+in exec23855 under real build+xemu leases. No Xbox access or hook.
+A read-only screen request raced final supervisor hashing after PID513 exited;
+ownership guard refused before QMP. screen-race001 preserves it; no relaunch.
+Next: finish audit, review001, capture_review001 with bundled Pillow Python,
+inspect captures. Close569 without reopening/parenting. Before a fresh control,
+add WindowFromPoint/owned-child hit checks and minimize only helper console;
+read actual logs first. Cutoff Oct19 14:00UTC, closeout from13:50.
+
+# Native input/capture PC569 preparation ACTIVE
+
+New native Windows input/capture helper compiled in build002; build001 failed
+-Werror misleading-indentation and its source/log/receipt remain retained.
+All504 helper ISO payloads match. New child of immutable404; no closed runtime
+reopened. Preflight projects1600MiB growth above20GiB reserve including WSL.
+Cold0 completed6475 files/308dirs; VM569 ACTIVE exec97665, launched once
+under real build+xemu leases at07:34UTC. No console launch. New helper drives only owned PID/class/client,
+logs focus and bounds, saves private BMPs and releases inputs on exit. Semantics
+remain unqualified until independent captures and shutdown/registry review.
+Follow outputs/rct569/NEXT.md. User cannot reset Xbox until10am; cutoff Oct19
+14:00UTC, closeout only from13:50. Ordinary720p/startup untouched, no hook.
+
 # PC568 CLOSED: documented mode-specific scrolling confirmed on PC
 
 Window right-edge dwell stayed still (checked viewport pixel-identical), arrows
