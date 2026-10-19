@@ -1,0 +1,66 @@
+{
+  "command": [
+    "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/bin/qemu-system-i386",
+    "-name",
+    "xwn-scene-cost550-pc-phase1",
+    "-L",
+    "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/qemu",
+    "-bios",
+    "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/seabios/bios.bin",
+    "-machine",
+    "pc,acpi=off,hpet=off",
+    "-accel",
+    "tcg,thread=single",
+    "-cpu",
+    "pentium3",
+    "-smp",
+    "1",
+    "-m",
+    "64",
+    "-vga",
+    "cirrus",
+    "-display",
+    "none",
+    "-nic",
+    "none",
+    "-drive",
+    "file=/home/paul/xbox-windows-native/scene-cost550-pc001/disk.qcow2,format=qcow2,if=ide,index=0",
+    "-drive",
+    "file=/home/paul/xbox-windows-native/scene-cost550-pc001/probe.img,format=raw,if=floppy,readonly=on",
+    "-boot",
+    "order=c",
+    "-qmp",
+    "unix:/home/paul/xbox-windows-native/scene-cost550-pc001/phase1/qmp.sock,server=on,wait=off",
+    "-rtc",
+    "base=utc",
+    "-no-reboot"
+  ],
+  "started_utc": "2026-10-19T00:40:13.486804+00:00",
+  "closed": true,
+  "phase": 1,
+  "space": {
+    "minimum_free_gib": 20.125,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/home/paul/xbox-windows-native/scene-cost550-pc001",
+        "free_bytes": 900105146368
+      },
+      {
+        "free_bytes": 27544829952,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "physical_access": false,
+  "network_device": false,
+  "pid": 542,
+  "deadline": false,
+  "exit_code": 0,
+  "ended_utc": "2026-10-19T00:43:11.428731+00:00",
+  "disk_sha256": "8da6fae08f459c5a46dab427fa825742c27894d09c9dcefcdbfff678ea8e0d30",
+  "source_unchanged": true,
+  "floppy_unchanged": true
+}

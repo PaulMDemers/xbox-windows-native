@@ -1,3 +1,28 @@
+# 550 CLOSED PC process-cost PASS; 551 awaits cold-start readiness
+
+550 completes three scene children per default/HEL mode: all six five-stage
+pixel oracles pass. Whole-process elapsed15.172-16.437seconds, reported peakWS
+1980KiB and peakcommit624KiB for allsix. Includes startup/pauses/captureI/O;
+notFPS, Xbox speed or in-process leak proof. Normal restart, two cold readers,
+11live/cold modules perchild and372actual telemetry negatives pass.157inputs
+archived; all owned VM/reader processes closed. Read550REPORT/final-review and
+NEXT-final. Preserve initial host fixture-ordering failure; never rerun/recollect550.
+
+551 is prepared: exact550benchmark plus exact547/549scene, namespace/transport
+only runner build002, imports24/28/50,16controller-model cases (host002) pass.
+Earlier host001source privately retained; host002 increases projected reserve
+to256MiB for worst-case73result files. InstalledPSAPI paired read matchesPC;
+no console writes. No551package freeze,hook,stage orlaunch. User asked to power
+off10seconds, poweron and leaveUnleashX; WAIT for actual readiness answer.
+Then record exactanswer+UTC in ready001.json with full_power_cycle and dashboard
+booleans expected by NEXT.md, package.py, stage/readback/one launch, observe and
+hook-FIRST collection (420second bound), offlineaudit/reviews/close.
+
+Public scenebench builder/run/checker documented; source/import comparison passed
+for public rebuild, without claiming runtime qualification for different bytes.
+Boot diagnosis TABLED; physical last authenticated dashboard, ordinary720p and
+startup unchanged. Overnight automation remains PAUSED. No processes/launch queued.
+
 # 549 CLOSED: combined windowed scene passes on Xbox
 
 Updated 2026-10-19 00:23 UTC. User-confirmed cold start; one ordinary launch at

@@ -22,7 +22,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--rosbe', required=True, type=Path)
     p.add_argument('--output', required=True, type=Path)
-    p.add_argument('--sample', choices=('ladder', 'present', 'sprites', 'keyprobe', 'lifecycle', 'discovery', 'triangle', 'texture', 'depth', 'blend', 'd3dpresent', 'transform', 'scene', 'scenepresent'), default='ladder')
+    p.add_argument('--sample', choices=('ladder', 'present', 'sprites', 'keyprobe', 'lifecycle', 'discovery', 'triangle', 'texture', 'depth', 'blend', 'd3dpresent', 'transform', 'scene', 'scenepresent', 'scenebench'), default='ladder')
     a = p.parse_args()
     if sys.platform != 'linux':
         p.error('Build under Linux/WSL with the documented RosBE toolchain')
@@ -66,6 +66,21 @@ def main():
         (out/'pe.txt').write_bytes(raw)
         record.update(executable_sha256=sha(exe), executable_bytes=exe.stat().st_size,
                       pe_sha256=sha(out/'pe.txt'))
+        if a.sample == 'scenebench':
+            # Compile the unchanged scene separately; the wrapper launches it
+            # as a sibling, never through a shell or a globally installed copy.
+            child = out/'scene-build'
+            child_command = [sys.executable, '-B', str(Path(__file__).resolve()),
+                             '--rosbe', str(sdk), '--sample', 'scenepresent',
+                             '--output', str(child)]
+            record['scene_build_command'] = child_command
+            with (out/'scene-build.log').open('xb') as f:
+                subprocess.run(child_command, stdout=f, stderr=subprocess.STDOUT,
+                               check=True, timeout=210)
+            shutil.copyfile(child/'scenepresent.exe', out/'scene.exe')
+            record['supporting_scene'] = dict(executable_sha256=sha(out/'scene.exe'),
+                                             executable_bytes=(out/'scene.exe').stat().st_size,
+                                             build_receipt_sha256=sha(child/'build.json'))
     except Exception as exc:
         record['error'] = str(exc)
         raise

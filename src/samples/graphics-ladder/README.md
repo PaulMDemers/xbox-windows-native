@@ -16,6 +16,7 @@ run instructions, output interpretation and current qualification limits.
 - `transform.c`: six XYZ world/view/projection and viewport controls.
 - `scene.c`: combined offscreen XYZ, two textures and depth/order controls.
 - `scenepresent.c`: combined scene with clipped window presentation (PC and Xbox validated).
+- `scenebench.c`: three bounded scene processes with CPU/memory telemetry (PC validated).
 - [Builder](../../../tools/build-graphics-samples.py): fresh out-of-tree RosBE build.
 - [Independent checker](../../../tools/graphics_sample.py): report and pixel oracle.
 
@@ -43,6 +44,7 @@ See the guide for each sample's arguments and required capture files.
 | `transform` | [transform.c](transform.c) | [transform.cmd](transform.cmd) | [graphics_transform.py](../../../tools/graphics_transform.py) |
 | `scene` | [scene.c](scene.c) | [scene.cmd](scene.cmd) | [graphics_scene.py](../../../tools/graphics_scene.py) |
 | `scenepresent` | [scenepresent.c](scenepresent.c) | [scenepresent.cmd](scenepresent.cmd) | [graphics_scenepresent.py](../../../tools/graphics_scenepresent.py) |
+| `scenebench` | [scenebench.c](scenebench.c) | [scenebench.cmd](scenebench.cmd) | [graphics_scenebench.py](../../../tools/graphics_scenebench.py) |
 
 `blend` still tests the original ideal alpha endpoints; the separate arithmetic
 characterization does not turn its failed endpoint result into a pass. `scene`
@@ -54,3 +56,6 @@ interpreting a successful build as tested support.
 
 No game assets, driver binaries, Windows DLLs or automatic console deployment.
 Later ladder rungs are explicitly planned; they do not return placeholder PASS.
+
+`scenebench` also builds the supporting `scene.exe`; copy both executables and
+its `.cmd` together. Its timings include pauses and capture I/O, not just drawing.

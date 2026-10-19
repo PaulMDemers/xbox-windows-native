@@ -74,6 +74,7 @@ Windows automatically, and they do not impose a process watchdog.
 | 09a | XYZ transforms | Identity, world/view translation, rotation then view translation, perspective divide and displaced viewport; independent pixel checks | NT5 PC/Xbox default and HEL controls pass |
 | 09b | Combined offscreen scene | XYZ textures, transforms and depth/order controls | PC/Xbox default and HEL pass |
 | 09c | Combined windowed scene | Native-format CPU staging, clipped primary blit, cover/move/uncover and exact GDI readback | PC RGB565 and Xbox RGB32 default/HEL pass |
+| 09d | Repeated scene process costs | Three separate scene processes per backend, exact pixel checks, CPU time and working-set/commit counters | PC six-run control passes; matched Xbox costs pending |
 | 10 | Small game-like scenes | Scrolling isometric tiles and moving sprites, then a textured room; controls, audio and save/reload | Planned; precedes the actual game acceptance tests |
 
 Do not require hardware acceleration for a software-compatible rung. An inventory
@@ -978,3 +979,53 @@ The subsequent 549 cold-start comparison passes, preserving the existing 720p
 setup. Both modes check 64,000 native screen samples, source preservation and
 live/cold module identity. Ftdisk 49 and a shutdown popup remain; this scoped
 graphics result does not qualify the whole system or resolve intermittent booting.
+
+## Bounded scene process costs (rung 09d)
+
+`scenebench` launches the unchanged windowed scene three times in sequence for
+one software mode. Each child has a 50-second deadline. It records elapsed
+and process CPU time, sampled working-set/commit usage, reported peaks and
+page-fault counters. Every child still needs all of its pixel checks to pass.
+The wrapper never changes display mode, installs drivers or restarts Windows.
+
+Build under the same WSL/RosBE environment:
+
+```sh
+python3 tools/build-graphics-samples.py --rosbe "$ROSBE" \
+  --sample scenebench --output "$HOME/build/xwn-scenebench-001"
+```
+
+Copy `scenebench.exe`, `scenebench.cmd` and `scene.exe` from the output root
+into the same folder on Windows 2000. `scene-build/` contains the supporting
+scene's source/build receipt; it is not needed to run. Open a command prompt
+in the copied folder and use fresh, short prefixes:
+
+```bat
+scenebench.cmd default cost01d
+scenebench.cmd hel cost01s
+```
+
+Use letters, digits and hyphens only. Keep Xbox prefixes at 16 characters or
+fewer to leave room for capture suffixes on FATX. Leave the windows alone;
+manual interference can intentionally cause the pixel checker to fail.
+After each command finishes, retrieve **all files starting with its prefix**,
+including the wrapper `.exit`, `-bench.txt` and each `-c0`, `-c1`, `-c2` child's
+`.txt`, `.exit` and nine binary captures. Validate on your PC:
+
+```sh
+python3 tools/graphics_scenebench.py /path/to/results/cost01d --backend default
+python3 tools/graphics_scenebench.py /path/to/results/cost01s --backend hel
+```
+
+Keep every repetition, including the first. Elapsed times include process
+startup, deliberate window pauses, CPU conversion and capture I/O; they are
+**not FPS**. Emulator timing cannot predict Xbox speed. Available system RAM
+can change for unrelated reasons, and separate child processes do not prove
+that repeated work in one process is leak-free.
+
+The [550 PC control](../outputs/scene-cost550/REPORT.md) passes all six scenes
+and telemetry checks, with normal restart and independent cold readback.
+Whole-process elapsed times were 15.2–16.4 seconds; all children reported a
+1,980 KiB peak working set. These are baseline measurements, not performance
+targets. The matched Xbox resource comparison is pending. Earlier graphics
+passes and the existing alpha/system limitations remain unchanged.

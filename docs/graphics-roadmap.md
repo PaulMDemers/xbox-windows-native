@@ -219,3 +219,10 @@ passes both software modes at 720p/RGB32, including exact clipping, movement,
 source preservation and normal restart. Ftdisk 49 and a shutdown popup remain.
 Boot investigation stays tabled. This windowed path adds no acceleration or game
 performance claim.
+
+The [550 resource/timing PC control](../outputs/scene-cost550/REPORT.md) adds
+three separate scene processes per software mode, with every scene's pixels
+validated and CPU/working-set/commit telemetry retained. All six complete and
+restart normally. These whole-process timings include pauses and capture I/O;
+they are not FPS, physical-console performance or in-process leak proof.
+The matching Xbox comparison is prepared. See [the build/run guide](graphics-samples.md#bounded-scene-process-costs-rung-09d).
