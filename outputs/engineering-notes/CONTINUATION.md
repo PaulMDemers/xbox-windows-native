@@ -1,3 +1,46 @@
+# 558 CLOSED: user-requested retry returned before desktop
+
+User requested dashboard retry; no new power cycle confirmed. Exact556sample,
+namespace-only runner, oneacceptedSITE03:35:14UTC. User: "Tried to load and went
+right back to the dash". No test namespace/receipt/captures; no Xbox graphics
+result. Hook removed FIRST;24pairedcoldfiles agree; allbaselineunchanged; five
+hivesclean, no newevents,6006delta0. Protected720p/ordinarystartup exact.
+56inputs archived C:/xwn558/frozen001; allownedprocessesclosed. Lastconsole
+state authenticateddashboard. No nextlaunchqueued. Neverrerun/recollect/parent
+558,557,556. Read558REPORT/NEXT-final/final001. Preserve557failure and the
+host-only premature staging review in558staging-review001. Finalclosedbytes
+restaged/rechecked. BootdiagnosisTABLED; automationPAUSED.556PCpass remains;
+noGPU/game/releasepromotion and no reliable alternate-launch conclusion.
+
+# 558 ACTIVE: failed retry, hook-FIRST collection
+
+User reports "Tried to load and went right back to the dash". One launch only;
+no further retry. Collection supervisor session91131 active; checkcollection001
+for hook removal and paired reads. Observer72122 remains read-only bounded.
+After collection audit1; no runtime review absent results; wait observer closed,
+close.py, report/commit.56inputs frozen. Closed557failure remains preserved.
+Dashboard retry had no confirmed power cycle. Boot diagnosisTABLED.
+
+# 558 ACTIVE: one retry accepted, observing
+
+Fresh558 staged/readback exact and one SITE accepted200 at03:35:14UTC.
+Observer session72122 active with240second bound. No repeat launch. User asked
+for screen observation; waiting. On dashboard return collect FIRST to remove
+owned hook, then audit1/runtime/module/controls if receipts exist, close.
+56frozeninputs; exact556sample, namespace-only runner. Dashboard retry requested
+by user; no confirmed power cycle. Closed557 no-result failure preserved.
+Protected720p/ordinary launcher/startup; boot diagnosisTABLED; automationPAUSED.
+
+# 558 ACTIVE: user-requested dashboard retry, staging
+
+User: "It’s currently sitting on the dashboard, retry". No new cold power cycle
+confirmed; reset history since557 unknown. Fresh558 uses exact qualified556
+sample and namespace-only runner.16controller models,7admission negatives and
+24/26imports pass;56inputs frozen. Stage supervisor session54005 active.
+No launch yet. After stage completes, one launch, observe, hook-FIRST collect,
+audit/runtime/module/controls if results exist, close. Preserve closed557 failure.
+Protected720p/ordinary startup; boot diagnosisTABLED; automationPAUSED.
+
 # 555/556 CLOSED pass;557 CLOSED with no Windows test result
 
 555 exact-rational/ray oracle and10host tests pass.556 freshNT5 default/HEL

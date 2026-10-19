@@ -1146,6 +1146,8 @@ qualification bounds each process separately. The [host oracle](../outputs/persp
 is synthetic evidence only. The [556 Windows 2000 control](../outputs/perspective556/REPORT.md)
 passes all five cases in both software backends, unchanged texture bytes and
 normal restart. Independent cold readers and live module checks agree. The
-[557 Xbox attempt](../outputs/perspective557/REPORT.md) returned to the dashboard
-without a runner receipt or graphics captures; it does not qualify Xbox
-perspective rendering and does not invalidate the PC result.
+[557 Xbox attempt](../outputs/perspective557/REPORT.md) and the subsequent
+[user-requested 558 retry](../outputs/perspective558/REPORT.md) returned to the
+dashboard without runner receipts or graphics captures. Neither qualifies Xbox
+perspective rendering or invalidates the PC result. The 558 retry was launched
+from the dashboard without a newly confirmed power cycle.
