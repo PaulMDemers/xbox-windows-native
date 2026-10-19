@@ -1,3 +1,70 @@
+# Closed physical590: windowed controls qualified; fullscreen incomplete
+
+One launch accepted22:20:12UTC; dashboard returned22:24:15. User saw windowed
+sequence then restart as fullscreen was attempted. Nine captures and log show
+window-edge no movement, arrows/right-drag actual camera movement. Helper hit
+fullscreen_dimensions_failed; live640x480 client remained on1280x720 desktop.
+It closed game(exit0), restored registry/desktop, requested normal restart.
+No fullscreen capture/API return; fullmatrix failed. Current miniport source
+single-retained-mode behavior is consistent but not traced cause. Do not patch
+driver or waive guard. Read590 REPORT/final/review/capture/visual/user evidence.
+
+Collection17938closed; hook removedFIRST;39selectedfiles; system6006delta1;
+five systemhives+userhiveclean; game registry and Welcome preference preserved;
+ordinarylauncher/startup720p exact. Ftdisk49 remains. No XboxCaccess. All owned
+hostjobs closed, console at dashboard.590CLOSED: no rerun/recollect/parent.
+
+Next fresh work: physical RCT windowed save/restart/load (PC586passed but closed;
+plain-text588passed, neither substitutes). Then fixed-scene API/cost baseline.
+Separately prepare bounded read-only display-mode/API inventory to explain why
+RCT offers640x480 but retained720p path did not switch. No further boot reset or
+launch requested this turn. Otherconsoles/bootintermittency/1080i/sound deferred.
+AutomationPAUSED. Host20GiB reserve includingWSL remains. User photo613.38MB E
+free preceded590; charge actualnewresult/helper allocation before nextbudget.
+Retain old package001 refusal; package002 admitted freshphoto; no consoledelete.
+
+# Physical590 returned; hook-first collection ACTIVE
+
+Dashboard observed back22:24:15UTC after oneaccepted launch22:20:12. Observer
+81030closed. Collection exec17938 ACTIVE; inspect collection001.json/supervisor
+before continuing. Exactstartup hook removed FIRST if hook_removed=true. No
+secondlaunch. After collection complete audit1/registry/welcome/userhive and
+capture/review files, inspect images independently. User watched reply pending.
+Dashboard return alone is not normalshutdown/gamepass. Keep packagepins frozen.
+
+# Physical590 launched once; dashboard observer ACTIVE
+
+One SITE accepted200 at2026-10-19T22:20:12UTC; launch supervisor95509closed.
+Observer exec81030 ACTIVE,600second bound; check observation001.json. Startup
+xwn590.cmd remains installed until dashboard return. No repeat launch. User
+asked to leave controls untouched and report window/fullscreen park/return.
+On dashboard return run supervise001.py collect through C:/xwn590/session.py;
+first remote mutation disables exact owned hook. Then audit retained files.
+Staging and final prelaunch readbacks passed. No gameplay result claim yet.
+
+# Physical590 staged; supervised launch verification ACTIVE
+
+Stage completed2026-10-19T22:18:40UTC. Exact502 retail assets moved/readback,
+newrun589 helper exact, owned startup590 hook installed LAST. Stage41317closed.
+Supervised launch exec95509 is ACTIVE; inspect launch001.json and supervisor
+record before any action. It may still be verifying all staged bytes; absence
+of launch receipt while child alive is NOT permission to resend. Never repeat
+launch. Next observe600seconds after sent, ask watched screen result, collect
+hookFIRST on dashboard return. Existing590 package files frozen, no edits.
+
+# Active physical590 staging after current dashboard capacity
+
+User photo shows E613.38MB free at18:14:43 dashboard clock; interpreted as
+613380000 decimal bytes. Fresh budget subtracts64MiB, retains546271136bytes,
+above128MiB reserve. package002 passed; package001 failure remains preserved.
+User cold-ready stands. Stage supervisor is ACTIVE in exec41317; inspect
+supervisor001-stage.json and stage001.json before doing anything else. Never
+repeat stage or launch on uncertainty. Current stage verifies before files and
+all502 assets before move/hook. Package freezes all existing590 files; do not
+edit them. No SITE sent at this note. After verified stage, one supervised launch,
+600second observation, hook-first collection, cold audits/independent image review.
+No extra reset requested. OriginalXbox only, automationPAUSED, otherunits deferred.
+
 # Physical590: cold-ready, awaiting current E free-space reading
 
 User replied Ready to the cold-start request at2026-10-19T21:59UTC. Recorded
