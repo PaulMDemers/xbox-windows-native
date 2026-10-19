@@ -1,3 +1,20 @@
+# 549 CLOSED: combined windowed scene passes on Xbox
+
+Updated 2026-10-19 00:23 UTC. User-confirmed cold start; one ordinary launch at
+00:17:26 UTC. Both default/HEL processes pass five scene cases, RGB32 native CPU
+staging, exact clip/occlusion/move GDI samples and source preservation. Eleven
+live/cold modules match per mode;3340negative mutations rejected. Normal restart
+supported by runner and cold6006delta1. Fivehivesclean; Ftdisk49 and shutdown
+popup recur, so strict-system qualification remains FALSE. No GPU/game,
+performance/varying-W/ideal-alpha promotion; user visual answer pending.
+
+Collection ended00:21:23UTC at authenticated dashboard. Owned hook removed FIRST,
+ordinary720p/launcher/startup preserved. All49frozeninputs archived C:/xwn549/frozen001.
+Allownedprocesses closed; no hook or next launch queued. Read549REPORT.md,
+final001.json and NEXT-final.md. Never rerun/recollect/parent549. Boot diagnosis
+TABLED. Next graphics work: bounded resource/timing controls with new PC fixture
+before matched hardware. Overnight automation remains PAUSED.
+
 # 548 CLOSED without Windows receipts; 549 awaits user cold-start confirmation
 
 Latest console state: authenticated UnleashX after548 collection completed

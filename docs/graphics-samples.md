@@ -24,8 +24,8 @@ Rung 08c now has matched selected-input alpha arithmetic on NT5 PC and Xbox,
 with the endpoint precision limitation retained. Rung 08d now passes windowed
 D3D presentation on NT5 PC and Xbox. Rung 09a adds six XYZ transform controls
 on both. The combined offscreen scene also passes on PC and Xbox; combined
-windowed presentation now passes on PC, while the Xbox comparison and game
-performance remain separate work.
+windowed presentation now passes on both. Resource and performance measurement
+remain the next steps before game trials.
 The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 
 ## Start here
@@ -73,7 +73,7 @@ Windows automatically, and they do not impose a process watchdog.
 | 08d | Windowed D3D presentation | Render-target readback, exact clipped presentation through cover/move/uncover, unchanged source after blit | NT5 PC/Xbox default/HEL pixel controls pass; no GPU or performance claim |
 | 09a | XYZ transforms | Identity, world/view translation, rotation then view translation, perspective divide and displaced viewport; independent pixel checks | NT5 PC/Xbox default and HEL controls pass |
 | 09b | Combined offscreen scene | XYZ textures, transforms and depth/order controls | PC/Xbox default and HEL pass |
-| 09c | Combined windowed scene | Native-format CPU staging, clipped primary blit, cover/move/uncover and exact GDI readback | PC RGB565 default and HEL pass; Xbox comparison pending |
+| 09c | Combined windowed scene | Native-format CPU staging, clipped primary blit, cover/move/uncover and exact GDI readback | PC RGB565 and Xbox RGB32 default/HEL pass |
 | 10 | Small game-like scenes | Scrolling isometric tiles and moving sprites, then a textured room; controls, audio and save/reload | Planned; precedes the actual game acceptance tests |
 
 Do not require hardware acceleration for a software-compatible rung. An inventory
@@ -923,8 +923,8 @@ independent source/pixel and live/cold module checks. Ftdisk 49 and a shutdown
 popup remain; the scoped graphics pass does not qualify the whole system.
 The [497 Xbox attempt](../outputs/d3d-scene497/REPORT.md) produced no launcher or
 Windows test receipts and remains a separate failed attempt. Its hook and the
-545 hook were removed after collection. The combined windowed PC result and
-pending Xbox comparison are described below.
+545 hook were removed after collection. The combined windowed PC and Xbox results
+are described below.
 
 
 ## Combined windowed scene (rung 09c)
@@ -969,8 +969,12 @@ performance, acceleration, game compatibility or varying-W interpolation.
 The [547 PC comparison](../outputs/d3d-window547/REPORT.md) passes both software
 paths on RGB565. The [546 attempt](../outputs/d3d-window546/REPORT.md) refused
 an unsupported 32-bit desktop prerequisite before running the sample; it remains
-a separate failed attempt. The Xbox comparison is pending.
+a separate failed attempt. The matched [549 Xbox comparison](../outputs/d3d-window549/REPORT.md)
+passes both modes at protected 720p/RGB32, with normal restart supported.
 
 The [548 Xbox attempt](../outputs/d3d-window548/REPORT.md) returned without
 Windows test receipts; it does not qualify the new windowed scene on Xbox.
-A fresh cold-start comparison is prepared, preserving the existing 720p setup.
+The subsequent 549 cold-start comparison passes, preserving the existing 720p
+setup. Both modes check 64,000 native screen samples, source preservation and
+live/cold module identity. Ftdisk 49 and a shutdown popup remain; this scoped
+graphics result does not qualify the whole system or resolve intermittent booting.

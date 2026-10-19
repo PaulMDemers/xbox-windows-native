@@ -98,9 +98,8 @@ through cover/move/uncover with independent pixel checks. The matched
 at 720p/RGB32, with unchanged source surfaces and exact clipped GDI readback.
 Normal restart is supported, while Ftdisk 49 and shutdown popup events remain.
 World/view/projection controls and the combined offscreen scene now pass on PC
-and Xbox; combined windowed presentation also passes on PC, with its Xbox
-comparison pending. These graphics passes do not
-qualify games or acceleration.
+and Xbox; combined windowed presentation also passes on both. These graphics
+passes do not qualify games or acceleration.
 
 | Stage | Work | Evidence needed to advance |
 |---|---|---|
@@ -169,7 +168,7 @@ Proposed first acceptance target for **each exact game edition**:
 |---|---|---|
 | Original RollerCoaster Tycoon | Not tested by this milestone | Exact edition/patch, Windows 2000 PC control and actual API dependencies |
 | Original The Sims | Not tested by this milestone | Exact edition/expansions, Windows 2000 PC control and actual API dependencies |
-| Legacy Direct3D support | D3D7 RGB software triangle, texture and depth pass on NT5 PC and Xbox; selected alpha arithmetic matches on both; windowed D3D presentation, six XYZ transform controls and five combined offscreen scene controls pass on PC and Xbox | Combined windowed presentation and bounded resource/performance tests; alpha precision and intermittent boot failures remain unresolved |
+| Legacy Direct3D support | D3D7 RGB software triangle, texture and depth pass on NT5 PC and Xbox; selected alpha arithmetic matches on both; windowed D3D presentation, six XYZ transform controls and five combined offscreen and windowed scene controls pass on PC and Xbox | Bounded resource/performance tests; alpha precision and intermittent boot failures remain unresolved |
 | Native NV2A acceleration | Unimplemented in the working demo | Windows ownership, submission, synchronization and lifetime proof |
 
 ## Installation work remains part of this goal
@@ -197,11 +196,11 @@ Windows test receipts and remains a failed attempt. The fresh
 [545 Xbox comparison](../outputs/d3d-scene545/REPORT.md) passes all five cases in
 both software paths using the exact 496 sample and unchanged oracle. Source,
 pixel, live/cold module, process-exit and normal-restart checks pass. Ftdisk 49
-and a shutdown popup remain. Visible combined presentation, varying-W
-interpolation and game performance remain untested.
+and a shutdown popup remain. That attempt did not test combined windowed
+presentation; the later 549 result below adds it. Varying-W interpolation and game performance remain untested.
 
 Boot investigation is [tabled after the final warm checkpoint](../outputs/warm-pre-pci544/REPORT.md).
-The next graphics step is the matched Xbox combined windowed comparison. Preserve the existing
+The next graphics step is bounded resource and timing measurement. Preserve the existing
 490 alpha, 492 presentation and 494
 transform passes alongside later failed launches. In particular, the
 [526 alpha repeat](../outputs/blend-context526/REPORT.md) produced no Windows
@@ -215,6 +214,8 @@ The [547 combined windowed PC control](../outputs/d3d-window547/REPORT.md) now
 passes the five scene cases in both software modes through an explicit native
 CPU staging surface and exact clipped GDI readback. Its existing desktop is
 RGB565. The [548 Xbox comparison](../outputs/d3d-window548/REPORT.md) returned
-without Windows receipts; a fresh cold-start comparison is prepared. Boot
-investigation remains tabled. This windowed path adds no acceleration or game
+without Windows receipts; the fresh [549 cold-start comparison](../outputs/d3d-window549/REPORT.md)
+passes both software modes at 720p/RGB32, including exact clipping, movement,
+source preservation and normal restart. Ftdisk 49 and a shutdown popup remain.
+Boot investigation stays tabled. This windowed path adds no acceleration or game
 performance claim.
