@@ -1,3 +1,44 @@
+# 551 CLOSED: six Xbox scene process-cost runs PASS
+
+Updated2026-10-19 01:05UTC. User-confirmed cold start, one ordinary launch,
+all six five-stage windowed scene pixel/counter checks pass default/HEL.
+First process22.455s; other five7.350-8.145s. Process CPU0.390-0.510s;
+peakWS1988-1996KiB,peakcommit656KiB. Whole-process costs include pauses/captureI/O,
+notFPS, backend-speed comparison, startup-cause proof or in-process leak proof.
+Normal restart supported by runner and cold6006delta1. Ftdisk49 recurred; no new
+application/popup record in audited delta, earlier popup unresolved. Strict
+system qualificationfalse. Allfivehivesclean;66live/coldscene moduleentries and
+11runtimeDLLpins match;372negative telemetry mutations rejected. Read551REPORT,
+final001 and NEXT-final. Never rerun/recollect551.
+
+Collection ended01:04:33UTC; authenticated dashboard, owned hook removedFIRST,
+ordinarylauncher/startup/protected720p exact.54inputs archived C:/xwn551/frozen001.
+Allownedsupervisors/observer closed; no launchqueued. Screenanswerpending; no
+visual observer claim. Boot diagnosis TABLED, automationPAUSED. Next: bounded
+in-process render/resource-lifetime rung with independent host controls and fresh
+NT5PC fixture before new physical test. No GPU/game qualification.
+
+# 551 collecting after authenticated dashboard return
+
+Observe001 closed with runner receipt;73 result files listed. Collection is
+running with420second bound. Exact owned hook already removed FIRST and ordinary
+protected code verified. Do not relaunch/recollect. Wait for supervisor-collect
+completion, then offline audit1/runtime/module/actual-controls/close. Graphics
+and normal-restart results pending audit. No console action needed from user.
+See current551records. Frozen54inputs unchanged; boot diagnosis remains TABLED.
+
+# 551 ACTIVE physical scene process-cost comparison
+
+User confirmed requested full power cycle with "Ready". Package001 frozen54inputs,
+stage/readback completed, one ordinary-launch SITE request accepted at00:58UTC
+2026-10-19. Observe.py running bounded240seconds. No second launch allowed.
+On dashboard return FIRST remote mutation is supervise.py collect (420s bound)
+which removes exact owned xwn551.cmd hook; then audit1, runtime/module/control
+reviews and close.py. Read scene-cost551/NEXT.md and actual records. The ready
+requirement is now satisfied; do not stage or launch again. Graphics outcome
+pending. Protected720p/ordinary launcher/startup; boot diagnosis TABLED.
+Automation PAUSED. No new boot experiments. Do not alter frozen551 input files.
+
 # 550 CLOSED PC process-cost PASS; 551 awaits cold-start readiness
 
 550 completes three scene children per default/HEL mode: all six five-stage

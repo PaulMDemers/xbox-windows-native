@@ -74,7 +74,7 @@ Windows automatically, and they do not impose a process watchdog.
 | 09a | XYZ transforms | Identity, world/view translation, rotation then view translation, perspective divide and displaced viewport; independent pixel checks | NT5 PC/Xbox default and HEL controls pass |
 | 09b | Combined offscreen scene | XYZ textures, transforms and depth/order controls | PC/Xbox default and HEL pass |
 | 09c | Combined windowed scene | Native-format CPU staging, clipped primary blit, cover/move/uncover and exact GDI readback | PC RGB565 and Xbox RGB32 default/HEL pass |
-| 09d | Repeated scene process costs | Three separate scene processes per backend, exact pixel checks, CPU time and working-set/commit counters | PC six-run control passes; matched Xbox costs pending |
+| 09d | Repeated scene process costs | Three separate scene processes per backend, exact pixel checks, CPU time and working-set/commit counters | PC and Xbox six-run process-cost controls pass; not FPS or in-process leak proof |
 | 10 | Small game-like scenes | Scrolling isometric tiles and moving sprites, then a textured room; controls, audio and save/reload | Planned; precedes the actual game acceptance tests |
 
 Do not require hardware acceleration for a software-compatible rung. An inventory
@@ -1027,5 +1027,11 @@ The [550 PC control](../outputs/scene-cost550/REPORT.md) passes all six scenes
 and telemetry checks, with normal restart and independent cold readback.
 Whole-process elapsed times were 15.2–16.4 seconds; all children reported a
 1,980 KiB peak working set. These are baseline measurements, not performance
-targets. The matched Xbox resource comparison is pending. Earlier graphics
-passes and the existing alpha/system limitations remain unchanged.
+targets. The [551 Xbox comparison](../outputs/scene-cost551/REPORT.md) also passes
+all six scenes, module/counter checks and normal restart. Its first process took
+22.455 seconds and the other five took 7.350–8.145 seconds; reported peak working
+sets were 1,988–1,996 KiB and peak commit was 656 KiB. The fixed test order and
+startup/system activity prevent attributing the first-run difference to a
+specific cause or comparing backend speed. Ftdisk 49 recurred; earlier alpha,
+shutdown-popup and boot-reliability limitations remain. The next rung will
+separate repeated rendering within one process from capture I/O and pauses.

@@ -16,7 +16,7 @@ run instructions, output interpretation and current qualification limits.
 - `transform.c`: six XYZ world/view/projection and viewport controls.
 - `scene.c`: combined offscreen XYZ, two textures and depth/order controls.
 - `scenepresent.c`: combined scene with clipped window presentation (PC and Xbox validated).
-- `scenebench.c`: three bounded scene processes with CPU/memory telemetry (PC validated).
+- `scenebench.c`: three bounded scene processes with CPU/memory telemetry (PC and Xbox validated; not FPS).
 - [Builder](../../../tools/build-graphics-samples.py): fresh out-of-tree RosBE build.
 - [Independent checker](../../../tools/graphics_sample.py): report and pixel oracle.
 

@@ -225,4 +225,10 @@ three separate scene processes per software mode, with every scene's pixels
 validated and CPU/working-set/commit telemetry retained. All six complete and
 restart normally. These whole-process timings include pauses and capture I/O;
 they are not FPS, physical-console performance or in-process leak proof.
-The matching Xbox comparison is prepared. See [the build/run guide](graphics-samples.md#bounded-scene-process-costs-rung-09d).
+The [551 matched Xbox comparison](../outputs/scene-cost551/REPORT.md) also passes
+all six scenes and telemetry checks, with normal restart. Peak working sets are
+1,988–1,996 KiB; the first process took 22.455 seconds and the others 7.350–8.145 seconds.
+These whole-process costs do not identify why the first run is slower or measure
+FPS. Next is sustained work within one process, with separate rendering and
+presentation intervals, checked frames and resource release. Ftdisk 49 persists;
+boot diagnosis stays tabled. See [the build/run guide](graphics-samples.md#bounded-scene-process-costs-rung-09d).
