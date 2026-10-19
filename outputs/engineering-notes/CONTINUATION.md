@@ -1,3 +1,105 @@
+# PC584 ACTIVE: unchanged582 helper,1024x768 control
+
+Cold0passed6475files308dirs; first/only runtimeexec7344 holdsxemu lease. Use
+outputs/rct584/vm.py584 forQMP and584/login001.py--phase1 afterobservedlogin.
+Guestpayload/lognames remain xwn582, exact582binary/media; hostfixtureC:/xwn584.
+Setdesktop1024x768 (two sliderRight steps from640), confirm within15sec, observe.
+Run cmd /c D:\PREP.CMD, inspect502assetreceipt, ejectbothCDs andrecordempty,
+then inspect cmd /c C:\xwn582-kit\RUN582.EXE beforeEnter. No othergameinput.
+Allguards/90secwait/lateWelcomeinjectionretained. Requires full coldreview.
+581/582closedfailures preserved.583 drafthosttests002 pass11cases, requires584
+qualification; no consoleaccess/change/hook/launch.13:50review,14:00UTC cutoff.
+
+# PC582 CLOSED; exact-binary PC584 preparation active
+
+582 waited90seconds but Explorer Start guidance remained over titlecapture point.
+Inputmatrix/lateWelcome remain unqualified; normalgameclose/restart/6006/hives/
+registry/Show1 passed. Read582/REPORT.md. Never reopen/recollect/parent581or582.
+584 freshimmutable404 child is preparing/cold0 inexec57560. No guest launch yet.
+Reuses exact582 runner/media and guest namespace xwn582; host fixture C:/xwn584.
+Change initialPCdesktop to1024x768, observeactualgamebounds. No unknown dismissal
+or exposure waiver. Firstprepare002 failed missingparent before diskcreation;
+prepare003 corrects parentmkdir, failure retained. Read584/DESIGN.md.
+583assets-only physicalcontroller is draft only, requires584 qualification.
+No consoleaccess/change; dashboardlastverified576/nohook/nolaunch.
+401Gitpack storage deduplicated with identicalbytes/paths/indexes preserved and
+verify-pack before/after. Host reserve21GiB admission/projected20GiB unchanged.
+Deadline14:00UTC Oct19;13:50reviewonly. Sound/boot/1080i remain tabled.
+
+# PC582 ACTIVE: title exposure wait and late Welcome qualification
+
+First/only runtime exec80343 holds xemu lease; cold0 passed. Display800x600 was
+observed and accepted. All502 local assets verified (10.641sec,error0), bothCDs
+were ejected/readback empty. The exact spaced cmd /c launch command was inspected
+before Enter at12:13:50UTC. Observe automatically; no host game input planned.
+Runner waits90sec maximum for unobscured title before the full input matrix and
+PC-only lateWelcome injection. Require normal restart, cold1, collection and
+independent reviews before closure. No repeats of this runtime.
+
+581 CLOSED with Explorer tooltip obstruction; input and lateWelcome unqualified.
+583 controller/assets-only reuse plan and11 host fault models are prepared only;
+no package/admission/console access. It requires582 success before any staging.
+Xbox last verified dashboard after576, no hook/launch outstanding. User cannot
+reset until10am. Host capacity reserve restored by journaled lossless compression
+and duplicate-executable cleanup; no disks or failure evidence deleted.
+Deadline14:00UTC Oct19; review-only13:50. See582/DESIGN.md and583/DESIGN.md.
+
+# PC581 CLOSED; fresh582 exposure-wait control preparing
+
+581 firstWelcome normal close and all502 two-CD copy qualified, but Explorer
+Startguidance tooltip occluded firsttitlecapture. Zero nativecaptures/inputcases;
+lateWelcomeinjectionnotreached. Normalgameexit0/restart/6006/hives/registry/Show1.
+Read581/REPORT.md and final001.json. Neverreopen/recollect/parent581.
+582freshimmutable404 child cold0 inexec56696. Exact581logic plusbounded90sec
+waitforfive exposedtitlepoints, retainingstrictfocus/identity/dimensions and
+unknownblockerlogs. No dismissal/waiver; timeoutnormallycloses/restores/restarts.
+582smallmedia502assetsverified,binariescompiled/frozenexact. See582/DESIGN.md.
+Nextstartonceaftercold0;observedlogin/display800x600;D:\PREP.CMD;inspectcopyreceipt;
+ejectbothCD;type cmd /c C:\xwn582-kit\RUN582.EXE andinspectbeforeEnter.
+Xboxunchanged/dashboardlastverified576,nohook/nolaunch. Coldtestsclosedall.
+Capacityrecovered:67smallretainedfiles+11closeddiskslosslesslycompressed;10old
+byte-identical emulator copies removed, identical466emu001retained.391candidate
+excludedbecauseoldhost-exit.closed=false; noaccess/mutationthere. Receipts581.
+HostC~23.1GBfreebefore582media/cold;keep21GiBlaunch/projected20GiBreserve.
+Stop14:00UTC Oct19,reviewonly13:50. No GPU/FPS/save/sound claim.
+
+# PC581 stopped normally; cold review pending
+
+First/only PC581 runtime ended11:52:59UTC exit0, nohostquit/deadline. Disk0005d343
+f64784d372f73fe896e66beff52295c32a4f34ba4d60145f1f9c3d1b. Cold1/firstcollection
+exec39755 running. Passive screen shows RCTtitle and Windows Start-button balloon
+coveringlowerleft; likelyguardabort, awaitnativefacts. InitialWelcome disappeared.
+Do notrerun/recollect581. All502assets prelaunchSHA1verified,error0,10.766sec;bothCD
+emptyreadbackbeforelocalgame. Preservefirstdisplayconfirmationrevert and hostWSL
+singlewordbackslashstripping(noexeexecuted);correctedcmd /c visuallychecked.
+A screenrequestafterVMexit wasrefusedbyclosedguard, noQMPaccess. NoXboxchange.
+Next depends oncoldlog; bounded waitforexposuremayqualifyearlytransientobstruction
+withoutdismissal/waiver. No inputmatrix/lateWelcome qualificationyet.
+
+# PC581 ACTIVE: first/only integrated control
+
+Cold0 passed6475files308dirs. Runtime exec70722 holds xemu lease, first/only boot.
+Use581/vm.py581 for owned QMP. Observe login; adjust800x600 while preserving
+Welcome, run D:\PREP.CMD, inspect502-file copy verification, ejectbothCD, then
+local C:\xwn581-kit\RUN581.EXE. See581/NEXT.md and DESIGN. Frozen sources/build
+and all502 media assets independently exact. No console changes/hooks/launches.
+Normal restart and cold1/collection/reviews required before closure.13:50review,
+14:00UTC stop Oct19. No hardware reset available until10am.
+
+# Fresh PC581 preparation: integrated Welcome and two-CD copy
+
+581 compiled both helpers with pinned NT5 toolchain/-Werror. Independent media
+readback verifies all502 asset hashes across small35.9MB helper and originalCD.
+Fresh immutable404 child cold0 audit is running in exec78643; no guest launch yet.
+Next: pass cold0, first/only PC launch, observed login/display800x600 leaving
+Welcome alive, D:\PREP.CMD copy/verifier; inspect502-file verification, ejectbothCD,
+run C:\xwn581-kit\RUN581.EXE. It normally closes exact Welcome before game and
+injects one late Welcome only with PC sentinel; retains strict focus/exposure.
+Require full Window/Full Screen matrix, normal restart/cold hashes before anyXbox.
+Sources/build/media/preparation in outputs/rct581, private C:/xwn581/pc001.
+No console change:576 closed/dashboard/nohook.579/580 closed, never reopen.
+Cutoff14:00UTC Oct19, reviewonly13:50. No sound/GPU/FPS/save claims.
+
 # PC580 CLOSED: exact Welcome close qualified; integrated581 next
 
 Read outputs/rct580/NEXT002.md.580 selected exact Welcome executable/full title/

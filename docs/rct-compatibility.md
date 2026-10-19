@@ -192,3 +192,10 @@ Game compatibility and native GPU acceleration remain separate milestones.
 - [Deluxe local-data and windowed control](../outputs/rct566/REPORT.md)
 - [Watched native Xbox Deluxe result](../outputs/rct565/REPORT.md)
 - [Xbox transfer tooling and preserved FTP failures](../outputs/rct565/TRANSPORT.md)
+
+The [integrated PC581 control](../outputs/rct581/REPORT.md) qualified reconstruction
+of502 local assets using the original CD plus a small supplemental CD, with both
+drives empty before launch. The exact Welcome process closed normally, but an
+Explorer Start-button guidance balloon blocked the first title capture. The
+strict exposure check stopped the sequence; no scrolling or late-popup result
+was obtained. Normal shutdown, registry restoration and cold checks passed.

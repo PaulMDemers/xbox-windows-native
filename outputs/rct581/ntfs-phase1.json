@@ -1,0 +1,78 @@
+{
+  "command": [
+    "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/bin/qemu-system-i386",
+    "-name",
+    "xwn-rct581-pc-phase1",
+    "-L",
+    "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/qemu",
+    "-bios",
+    "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/seabios/bios.bin",
+    "-machine",
+    "pc,acpi=off,hpet=off",
+    "-accel",
+    "tcg,thread=single",
+    "-cpu",
+    "pentium3",
+    "-smp",
+    "1",
+    "-m",
+    "64",
+    "-vga",
+    "cirrus",
+    "-display",
+    "none",
+    "-nic",
+    "none",
+    "-drive",
+    "file=/mnt/c/xwn581/pc001/disk.qcow2,format=qcow2,if=ide,index=0",
+    "-drive",
+    "file=/mnt/c/xwn581/helper001.iso,media=cdrom,readonly=on,if=ide,index=2",
+    "-drive",
+    "file=/mnt/c/Users/Paul/Desktop/rct_isos/RollerCoaster Tycoon Deluxe.iso,media=cdrom,readonly=on,if=ide,index=3",
+    "-usb",
+    "-device",
+    "usb-tablet",
+    "-boot",
+    "order=c",
+    "-qmp",
+    "unix:/tmp/xwn-rct581-phase1.sock,server=on,wait=off",
+    "-rtc",
+    "base=utc",
+    "-no-reboot"
+  ],
+  "started_utc": "2026-10-19T11:44:12.067632+00:00",
+  "closed": true,
+  "space": {
+    "minimum_free_gib": 21,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c/xwn581/pc001",
+        "free_bytes": 22612070400
+      },
+      {
+        "free_bytes": 22612070400,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "physical_access": false,
+  "network_device": false,
+  "phase": 1,
+  "pid": 510,
+  "capture_errors": [
+    {
+      "error": "FileNotFoundError",
+      "utc": "2026-10-19T11:52:59.398265+00:00",
+      "process_exit": 0
+    }
+  ],
+  "deadline": false,
+  "exit_code": 0,
+  "ended_utc": "2026-10-19T11:52:59.398575+00:00",
+  "disk_sha256": "0005d343f64784d372f73fe896e66beff52295c32a4f34ba4d60145f1f9c3d1b",
+  "source_unchanged": true,
+  "iso_unchanged": true
+}
