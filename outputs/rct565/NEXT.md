@@ -27,6 +27,10 @@ The user subsequently confirmed building worked, but window-edge scrolling
 left the view still. Sound is deferred at the user's request. First distinguish
 window focus and pointer position at the game boundary, then compare edge
 scrolling with arrow keys and right-button dragging in a fresh watched session.
+Run that matrix in both the game's Window and Full Screen modes, as requested
+by the user. Record the actual desktop/game dimensions, focus and display mode;
+do not attribute a mode or resolution change to an input fix. Retain the
+protected 720p boot configuration and return through normal Windows Restart.
 Those alternatives have not yet been tested; no cause or workaround is proven.
 The exact construction action is unspecified, so retain the narrow observation.
 Then check save persistence. Save under a

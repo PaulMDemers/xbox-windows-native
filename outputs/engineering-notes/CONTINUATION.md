@@ -1,3 +1,15 @@
+# Next: windowed/fullscreen scrolling, persistence, then measured performance
+
+User requests the scrolling matrix in both Window and Full Screen modes. Sound
+remains deferred. Record actual dimensions/mode and focus; compare edge, arrow
+keys and right-button dragging before diagnosing. Then save/reload across restart.
+The graphics roadmap now separates fixed-park game measurements, larger owned
+software benchmarks, measured software optimization and Windows-owned NV2A
+bringup. Existing Xbox554 phase timings are scoped synthetic evidence, not RCT
+FPS; actual game API tracing and sustained performance remain unqualified.
+No console access, new launch or runtime reopening in this planning update.
+See outputs/rct565/NEXT.md and docs/graphics-roadmap.md.565 remains CLOSED.
+
 # Xbox565 follow-up: building worked; window-edge scrolling failed; sound deferred
 
 User clarified after closure that building worked and window-edge scrolling

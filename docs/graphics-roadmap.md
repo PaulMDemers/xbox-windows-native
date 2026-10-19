@@ -136,7 +136,43 @@ system DLLs until a game starts. Keep original installation media and rollback
 private. No game assets, Windows runtime binaries or preinstalled user hives
 belong in the public source or utilities package.
 
-### Native GPU acceleration is a separate engineering gate
+### Performance work after the first Deluxe park
+
+The watched Deluxe run establishes startup, park rendering and a working
+construction action. Window-edge scrolling failed; sound is deferred at the
+user's request. First compare edge scrolling, arrow keys and right-button
+dragging in both Window and Full Screen modes. Record focus, game dimensions
+and actual display mode. Then verify saving and loading across Windows Restart.
+
+Measure a fixed park and repeatable actions: a paused view, ordinary simulation,
+camera movement and construction. Keep game version, save, resolution and
+settings fixed for comparisons. Record loading time, update/presentation cadence,
+long stalls, input response, CPU time and memory use where instrumentation can
+measure them honestly. Separate simulation rate from rendered/presented frames;
+an API call count is not necessarily a displayed-frame count. Obtain an
+uninstrumented control before attributing an instrumented slowdown to the game.
+
+The [554 Xbox software scene](../outputs/scene-loop554/REPORT.md) already has
+clock-checked API phase timings and bounded memory observations. Extend those
+owned samples to representative target sizes, sprite/blit workloads and scene
+complexity. Separate render, conversion/copy and presentation costs. The tiny
+correctness scenes are not RCT frame-rate benchmarks; PC553's failed QPC clock
+checks also remain a limitation of cross-platform timing comparisons.
+
+Trace the actual game graphics path before selecting an optimization. Address
+measured costs in project-owned software code first, such as redundant copies,
+conversions or full-surface updates, while retaining independent pixel and
+resource-lifetime checks. Compare changes one at a time against the same scene
+and distinguish speed from correctness or reduced image quality.
+
+Native NV2A work then starts with one Windows-owned offscreen operation and
+independent readback, followed by useful fills/copies or other operations the
+profile actually identifies. Integrate completion and presentation safely before
+expanding the accelerated 3D capability ladder. If a game renders mainly on the
+CPU, adding a Direct3D driver does not automatically accelerate that code.
+Report game playability, software speed and native GPU support separately.
+
+### Native GPU ownership and integration
 
 If the selected D3D path needs native NV2A acceleration, establish Windows-owned
 channels/objects, safe memory and cache mappings, command submission, completion,
