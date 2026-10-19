@@ -15,9 +15,11 @@ Xbox565 building result remains the physical compatibility baseline.
 
 The first cross-restart save helper stopped at its asset-verification gate
 before starting the game ([PC585](../outputs/rct585/REPORT.md)). Its corrected
-[PC586 preparation](../outputs/rct586/REPORT.md) passed build and media checks
-but has not run: verified host capacity must be recovered before admitting a
-fresh fixture. These failures supply no save, reload or performance result.
+[PC586 control](../outputs/rct586/REPORT.md) subsequently ran after verified
+capacity recovery. It saved a paused Forest Frontiers scene, restarted Windows
+normally, and loaded that exact save after a deliberate camera change on the
+second boot. The checked 165600 scenery pixels matched the saved scene exactly.
+This is a PC control, not Xbox save persistence or a performance result.
 
 After the window/fullscreen input comparison, create one uniquely named park
 save and record its hash, game executable, settings, actual display/client

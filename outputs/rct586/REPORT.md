@@ -1,4 +1,56 @@
-# PC586: corrected save-test preparation, no runtime admitted
+# PC586: save, normal restart and observed load
+
+The user resumed after cutoff and authorized storage recovery and the save test.
+After delivery587 recovered verified host capacity, a fresh immutable404 child
+was admitted under the existing leases and 21GiB guard. This is an owned PC
+QEMU control; there was no physical Xbox write or launch.
+
+Phase1 reconstructed all502 pristine game files. The verifier reported502/502,
+error0. Both CDs were ejected before the game started. The helper selected
+Forest Frontiers, paused, saved a previously absent XWN586.SV4 (290242 bytes),
+closed the game normally, restored the registry and requested Windows Restart.
+Cold readback found the save at SHA256
+5be45ff18afa9968fdcf97c2532625bdca77574759f53bafcef97b00b309cf1.
+The five hives passed raw/header/clean checks and EventLog6006 advanced once.
+
+The planned second boot used this still-open experiment, not a new fixture
+parented to a closed run. A fixed Python action dispatcher corrected an observed
+WSL command-line backslash loss before the helper launched. The failed Run
+dialog and input journal are retained in phase2-launch-text-failure001.json.
+A deliberate two-second right-arrow input visibly moved the park entrance off
+screen. Load Game then listed the persisted save; selecting its exact absolute
+path restored the entrance, road and paused scene.
+
+Independent comparison in load-visual001.json checks a460x360 interior scenery
+region, excluding UI and pointer positions. Camera movement changed130145 of
+165600 pixels. The loaded view matches the phase1 saved view at all165600 pixels.
+This qualifies the observed image restoration, not every serialized game field.
+Both phases completed normal restart without host quit or forced game
+termination. Final shutdown, save-byte equality and registry checks passed in
+[final002.json](final002.json). Phase2 stopped at 20:39:54 UTC; its disk hash is
+`620929d8151ef69a937ee9dd8aeed5555ef2e5657fcebceaae83bf2f8b7b6a3e`.
+Each cold audit recorded one new EventLog6006. Protected Windows binaries,
+all 500 immutable game assets and the exact helper match their pins. The save
+remained byte-identical after Load. No owned VM or test hook remains active.
+
+The initial final001 review failed an incorrectly broad requirement that all
+502 pre-launch files remain immutable. Only CSS0.DAT and Game.cfg changed;
+the pre-existing PC584 review already treats these as retained mutable state.
+The corrected review applies that existing contract, without a new exception,
+guest write, rerun or recollection. Preserve final001, the per-file differences,
+and review-correction001 alongside the passing final002 result.
+
+The helper intentionally reports input_sequence_submitted=0 in phase2: it makes
+no automatic Load claim. The separate observed dialog, private passive frames,
+image comparison and cold evidence determine that result. No injected key,
+module listing, timeout or exit code alone is treated as game behavior.
+
+Game files, saves and captures remain private. This is one paused windowed PC
+case on a1024x768 desktop with a640x480 client. Xbox FATX save/reload, full game
+state, FPS, sound and GPU acceleration are not qualified. Boot intermittency
+and1080i remain tabled. A future fixed-scene API trace needs a fresh fixture.
+
+# Historical PC586 preparation before resumed authorization
 
 The asset table is regenerated from pinned retail bytes, without attempt-number
 substitution. An independent parser checks all502 names, sizes and SHA1 digests

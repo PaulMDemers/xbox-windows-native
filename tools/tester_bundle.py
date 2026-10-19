@@ -36,7 +36,7 @@ def safe_path(name, kind):
             require(lower.startswith('e/applications/xwninfo/'), 'Utility console path outside XWNInfo')
         else:
             require(any(lower.startswith(p) for p in ('e/winnt/', 'e/documents and settings/',
-                'e/program files/', 'e/applications/xwneboot/')), 'Windows path outside dedicated installation roots')
+                'e/program files/', 'e/applications/xwneboot/', 'e/xwndemo372/')), 'Windows path outside dedicated installation roots')
     require(not any(p.lower() in ('eeprom.bin', 'hddkey.bin', '.env') for p in parts), 'Private console data refused')
 
 

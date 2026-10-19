@@ -1,3 +1,50 @@
+# Completed: private Xbox ZIPs and PC save/restart/load
+
+The resumed user request is complete. Automation remains PAUSED. Two private
+ZIPs are at E:/Xbox-Test-Kits/2026-10-19: Xbox-Hardware-Info.zip and
+Windows-2000-Xbox-E720p.zip. Both hashes/readbacks passed. Windows includes the
+matched modified DLLs/drivers, Xromwell and ordinary startup dependencies; no
+RCT. Another-console installation/boot/removal remains unqualified. Use
+outputs/delivery587/README.md and the included instructions.
+
+PC586 is CLOSED. Both planned phases completed normal Windows Restart. The
+290242-byte save survived exactly; Load restored all165600 checked scenery
+pixels after a deliberate camera change. final002 passes the pre-existing
+mutable-file contract. Preserve final001: its all502-immutable assumption failed
+on CSS0.DAT/Game.cfg; all500 immutable assets passed. No runtime was reopened
+or recollected to correct that review. No Xbox save/FPS/GPU claim follows.
+
+Verified capacity recovery retained exact archives and executable restoration
+catalogs; prior failures remain. No console launch/write occurred in this turn,
+no owned startup hook is outstanding, and both VMs exited normally. Dashboard
+FTP and protected720p were verified during the read-only capture (last complete
+snapshot20:18UTC), not freshly after PC testing. No hardware reset is needed.
+
+Next: outputs/rct586/NEXT005.md. Receive other-console reports and conduct
+watched first boots; future physical save/load or API tracing needs a fresh
+owned attempt with capacity checks. Boot/1080i and sound remain deferred.
+
+# Resumed: private transfer kits delivered; PC586 phase2 active
+
+The user explicitly resumed capacity recovery, save/load testing and two private
+Xbox ZIPs. Automation stays PAUSED. Follow outputs/delivery587/README.md and
+the exact rct586 runtime receipts. Both requested ZIPs are built and readback
+verified at E:/Xbox-Test-Kits/2026-10-19; Windows excludes RCT and retains the
+ordinary startup plus its exact xwndemo372 dependency. No console write/launch
+occurred; dashboard FTP and 720p were verified during the read-only snapshot.
+
+Space was recovered by verified duplicate executable removal and lossless
+archival of five closed leaf disks. Closed runtimes were not reopened. C was
+below the target at archival start, recovered above it; 21GiB admission passed
+for both new VM phases. Preserve failure receipts and restoration catalogs.
+
+PC586 phase1 saved XWN586.SV4 and restarted normally; cold readback passed.
+The planned second boot is ACTIVE (owned QEMU phase2 PID in ntfs-phase2.json).
+Load restored the saved scene after deliberate camera movement: 165600 interior
+scenery pixels match exactly. Wait for its bounded helper normal restart, then
+run cold_phase2.py --phase 2, collect_phase2.py, close_review002.py once. Do not
+relaunch or collect a completed phase twice. No Xbox save/load claim.
+
 # Session closed at cutoff; automation PAUSED
 
 The October19 14:00UTC cutoff has passed. At14:04UTC the automation

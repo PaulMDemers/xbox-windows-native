@@ -60,6 +60,16 @@ class Bundles(unittest.TestCase):
         with self.assertRaises(ValueError): b.build(self.root,self.plan,self.base/'private.zip')
         b.build(self.root,self.plan,self.base/'private.zip',private_windows=True)
 
+    def test_windows_startup_support_root_is_scoped(self):
+        b.safe_path('E/xwndemo372/display-settings.exe', 'windows-e-preview')
+        b.safe_path('E/xwndemo372/outline-applied.txt', 'windows-e-preview')
+        for kind, name in [('utilities', 'E/xwndemo372/display-settings.exe'),
+                           ('windows-e-preview', 'E/xwndemo373/tool.exe'),
+                           ('windows-e-preview', 'E/xwn582-kit/game/RCT.EXE'),
+                           ('windows-e-preview', 'C/xwndemo372/tool.exe')]:
+            with self.subTest(kind=kind, name=name), self.assertRaises(ValueError):
+                b.safe_path(name, kind)
+
     def test_duplicate_json_and_symlink(self):
         with self.assertRaises(ValueError): b.decode(b'{"schema":1,"schema":1}')
         p=self.root/'host/link'; p.parent.mkdir()

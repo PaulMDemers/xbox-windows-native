@@ -64,10 +64,20 @@ on the same Python/zlib implementation. Failed partial outputs remain for diagno
 For a **private, prepared Windows tree**, use `--kind windows-e-preview` when
 planning and `--private-windows` when building. Allowed console roots are
 `E/WINNT`, `E/Documents and Settings`, `E/Program Files` and
-`E/Applications/XWNEBoot`. Essential filenames, lossless OEM437 FATX names and
+`E/Applications/XWNEBoot`, plus `E/xwndemo372` for the existing normal-startup
+display-settings dependency. Do not omit a support path referenced by the
+packaged startup scripts. Essential filenames, lossless OEM437 FATX names and
 collisions are checked; this does not prove those files form a working OS.
 Every manifest retains `experimental-not-hardware-qualified` status. No command
 connects to or launches a console.
+
+The [private delivery587 record](../outputs/delivery587/README.md) documents a
+complete development-console E/720p snapshot, its source/ZIP integrity checks
+and the existing startup dependency. Its [copying instructions](../outputs/delivery587/WINDOWS-README.txt)
+cover inventory first, 1.25 GiB target E headroom, separate extraction folders,
+binary FTP, uploading the launcher last, round-trip verification and removal.
+The two private ZIPs exclude RCT and have no public download. Successful
+packaging does not qualify installation or boot on another Xbox.
 
 ## Build the hardware-report XBE
 

@@ -226,3 +226,11 @@ request and returned to the dashboard without creating the runner's output.
 Checked files and event logs were unchanged, with no new normal-shutdown event.
 Its test hook was removed and the baseline preserved. It supplies no additional
 physical scrolling or fullscreen result; the boot-stage cause is unresolved.
+
+The two-phase [PC586 save/load control](../outputs/rct586/REPORT.md) created
+XWN586.SV4, completed a normal Windows restart, and read back the save cold.
+On the second boot, a right-arrow movement visibly changed the camera before
+Load Game restored the saved park view. An independent comparison found an
+exact match across 165600 interior scenery pixels. This qualifies that paused
+windowed PC case; physical Xbox save/reload remains untested. RCT is excluded
+from the separate private Windows transfer kit requested for other consoles.
