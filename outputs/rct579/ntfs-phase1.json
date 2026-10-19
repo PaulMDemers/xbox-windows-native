@@ -1,0 +1,69 @@
+{
+  "command": [
+    "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/bin/qemu-system-i386",
+    "-name",
+    "xwn-rct579-pc-phase1",
+    "-L",
+    "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/qemu",
+    "-bios",
+    "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/seabios/bios.bin",
+    "-machine",
+    "pc,acpi=off,hpet=off",
+    "-accel",
+    "tcg,thread=single",
+    "-cpu",
+    "pentium3",
+    "-smp",
+    "1",
+    "-m",
+    "64",
+    "-vga",
+    "cirrus",
+    "-display",
+    "none",
+    "-nic",
+    "none",
+    "-drive",
+    "file=/mnt/c/xwn579/pc001/disk.qcow2,format=qcow2,if=ide,index=0",
+    "-drive",
+    "file=/mnt/c/xwn579/helper002.iso,media=cdrom,readonly=on,if=ide,index=2",
+    "-usb",
+    "-device",
+    "usb-tablet",
+    "-boot",
+    "order=c",
+    "-qmp",
+    "unix:/tmp/xwn-rct579-phase1.sock,server=on,wait=off",
+    "-rtc",
+    "base=utc",
+    "-no-reboot"
+  ],
+  "started_utc": "2026-10-19T11:10:19.917848+00:00",
+  "closed": true,
+  "space": {
+    "minimum_free_gib": 21,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c/xwn579/pc001",
+        "free_bytes": 22551408640
+      },
+      {
+        "free_bytes": 22551408640,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "physical_access": false,
+  "network_device": false,
+  "phase": 1,
+  "pid": 464,
+  "deadline": false,
+  "exit_code": 0,
+  "ended_utc": "2026-10-19T11:16:28.878286+00:00",
+  "disk_sha256": "67ce5c427e57e92d265dd5eff8da8cb667bef0a097aef2558cf0a9c90610b83c",
+  "source_unchanged": true,
+  "iso_unchanged": true
+}

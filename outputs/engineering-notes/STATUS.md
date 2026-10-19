@@ -1,3 +1,76 @@
+# PC580 CLOSED: exact Welcome close qualified; integrated581 next
+
+Read outputs/rct580/NEXT002.md.580 selected exact Welcome executable/full title/
+class, posted one normal close, observed process exit/window absence and fake
+same-title/class wrong-process survival. Startup checkbox and cold Show remained1.
+Normal restart/new6006, five system hives, OS binaries and staged helper passed.
+All owned host processes closed. No RCT/Xbox run this control, no console hook or
+outstanding launch; console last verified at dashboard after576, no reset needed.
+579 CLOSED wrong-case no-action failure retained, plus all build/capacity/input
+failures. Never reopen/recollect/parent closed controls. Publication in progress;
+inspect HEAD/remote rather than stale heartbeat. Next fresh581 must integrate
+scoped/late Welcome handling and qualify small supplementary-CD asset copy and
+media ejection, then resume physical scrolling. No FPS/GPU/save-persistence claim.
+Storage reclaimed losslessly with exact hashes; no historical deletion/rerun.
+21GiB launch threshold and projected20GiB reserve unchanged. E still near reserve.
+Deadline14:00UTC Oct19; only review from13:50. Sound/boot/1080i remain tabled.
+
+# PC580 Welcome control ACTIVE; console unchanged
+
+PC580 runtime exec49607 holds xemu lease; first/only boot after passed cold0.
+Read580/NEXT.md. Observe login, then D:\PREP.CMD exact batch. Expect one real
+Welcome close and wrong-process fake survival, then normal restart and cold
+checks. No game assets copied and no console change.579 remains CLOSED with
+wrong-case matcher refusal; all failures retained. Cutoff14:00UTC Oct19.
+
+# Fresh PC580 prepared;579 CLOSED matcher miss retained
+
+PC580 tiny Welcome-only control is preparing/cold0 in exec81662, no guest launch
+yet. Same verified helper logic, unique580 namespace, exact `_BerksWin2kWelcomeApp_`
+class copied from cold579 log into verified batch. No interactive transcription;
+QMP text helper now maps equals and rejects HMP textual errors. Expected result:
+one real candidate, normal close/process exit, wrong-process fake survives,
+startup Show remains1, normal restart/cold audit. Read580/DESIGN.md.
+579 CLOSED; no close was posted there. All prelaunch/build/transport/matcher
+failures retained. Additional466 immutable seed compression006 now completed
+with identical hash after capacity recovered. No deletion or historical rerun.
+Xbox still dashboard/no hook; no new physical experiment. Cutoff14:00UTC Oct19.
+
+# PC579 CLOSED: guard refused mistyped class; fresh580 next
+
+Read outputs/rct579/NEXT002.md. Cold inventory establishes exact class
+_BerksWin2kWelcomeApp_ (uppercase W). Screenshot transcription used lowercase w;
+the guard selected zero candidates and posted no close. Normal restart/6006,
+five hives, protected OS binaries and startup Show1 passed; no close qualification.
+All579 host processes closed. No console change/hook/reset; physical576 CLOSED.
+Use fresh580 and copy exact class from cold log, verified batch command, then
+require positive close and wrong-process lookalike survival before Xbox use.
+Keep all build, capacity, input and matcher failures; all completed compression
+hashes unchanged. No historical guest reruns/deletion. Deadline14:00UTC Oct19.
+
+# PC579 Welcome control ACTIVE; console unchanged
+
+Fresh PC579 first/only guest boot is active under owned xemu lease exec2592.
+Use vm002.py579 for UI. Inventory first via D:\PREP.CMD; leave Welcome visible,
+inspect exact title/class/module before close. Corrected build003 expects the
+cold-verified Windows-directory welcome.exe. Preserve build001 warning failure,
+prelaunch space refusal and compression scratch refusals. Two403 containers,
+316 closed evidence files,502 retail assets and11inactive emulator copies were
+losslessly compressed, every completed hash unchanged. Reserve stays20GiB;
+VM preflight stays21GiB. No closed runtime rerun. See rct579/NEXT.md and amended
+ntfs-preparation002. Physical576 stays CLOSED/dashboard/no hook/no reset needed.
+
+# PC579 Welcome control prepared; no console change
+
+Fresh immutable404 child and 81920-byte probe ISO prepared in C:/xwn579/pc001.
+Read outputs/rct579/NEXT.md. Cold0 audit is running in exec42980; no VM launch
+has occurred yet. Build001 failed -Werror misleading-indentation, preserved;
+build002 compiled after braces correction. No game copied. Inventory first,
+then inspect exact module/title/class before an allowlisted normal-close test.
+Same-title/class fake in another process must survive. Never change checkbox.
+Physical576 and PC578 remain CLOSED; console at dashboard/no hook/no reset.
+Cutoff Oct19 14:00UTC; review only13:50. All prior findings/limitations retained.
+
 # Physical576 closed: Welcome obstruction; PC578 closed: Save dialog qualified
 
 Read outputs/rct576/NEXT004.md next. The Xbox is at the dashboard, with no owned

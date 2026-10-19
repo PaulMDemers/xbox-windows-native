@@ -98,6 +98,13 @@ Normal restart, hook removal and registry/hive checks passed. This leaves the
 Xbox input comparison inconclusive; the Welcome window needs scoped handling
 before another unattended test.
 
+A [standalone PC control580](../outputs/rct580/REPORT.md) now qualifies an exact
+Welcome-window normal close. A same-title/class lookalike in another process
+survived, and the startup checkbox setting remained enabled. The preceding
+[control579](../outputs/rct579/REPORT.md) refused a mistyped class and posted no
+close; that failure is retained. Integrating this handling with the game and
+checking late arrival remain separate steps before another Xbox comparison.
+
 The [Save Game dialog inspection578](../outputs/rct578/REPORT.md) identified the
 owned filename and Save/Cancel controls on a fresh PC fixture. Cancelling returned
 to an unchanged park view, and normal restart and registry/hive checks passed.
