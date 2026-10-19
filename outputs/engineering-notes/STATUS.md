@@ -20,7 +20,8 @@ No Xbox, GPU, audio or release promotion. Protected720p/ordinaryboot untouched.
 Private wrapper C:/xwn565/session.py holds session credentials; never publish.
 Source review, AST/JSON, frozen package pins and exact staged kit bytes checked;
 repository scan passed39725tracked files. Dotfile-check script mistake preserved
-and corrected; no package-byte mismatch. Commit/push next. No old runtime reopened.
+and corrected; no package-byte mismatch. Evidence committed/pushed868d4ba1.
+No old runtime reopened. Pending user E free-space answer; no physical launch.
 
 # RCT566 no-disc windowed park PASS observed; final collection pending
 
