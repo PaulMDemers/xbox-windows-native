@@ -61,7 +61,7 @@ The earlier 16-bit RGB32 failures remain preserved; no expected pixels or driver
 were changed. The focused color-key diagnostic also
 [passes on the Xbox 32-bit desktop](../outputs/key-retry449/REPORT.md).
 The [fresh full Xbox matrix](../outputs/sprites-retry452/REPORT.md) also passes
-all six cases and174,080 exact bytes at720p/32-bit, followed by normal restart.
+all six cases and174,080 exact bytes at 720p/32-bit, followed by normal restart.
 The earlier no-receipt attempt remains preserved. Bounded surface lifecycle
 controls also [pass on PC and Xbox](../outputs/lifecycle-xbox454/REPORT.md),
 including exact copies, repeated release, thread-local focus and a fixed memory
@@ -239,5 +239,8 @@ The [553 sustained PC control](../outputs/scene-loop553/REPORT.md) now completes
 observations and coarse render/upload/presentation phase totals. Its explicit
 clock checks reject the high-resolution counter durations; they remain
 unqualified. The [552 earlier timing failure](../outputs/scene-loop552/REPORT.md)
-is preserved separately. Matched Xbox validation is prepared; these results
-add no GPU, game, FPS or long-run leak-freedom claim.
+is preserved separately. The [554 matched Xbox comparison](../outputs/scene-loop554/REPORT.md)
+passes the same 5,120 frames and ten endpoints with normal restart, stable batch
+commit and valid clock cross-checks. Ftdisk 49 persists. Next is an independent
+varying-W texture-interpolation oracle and a fresh PC control before a matched
+Xbox test. These results add no GPU, game, FPS or long-run leak-freedom claim.

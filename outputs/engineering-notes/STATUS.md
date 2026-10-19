@@ -1,3 +1,34 @@
+# 554 CLOSED: sustained Xbox software scene passes
+
+User-confirmed cold start; one accepted launch. Default/HEL each2560frames,
+ten checked endpoints,12live/coldmodules each and616negative metadata checks
+pass. XboxQPC1,125,000Hz passes both clock cross-checks; PC553clock failure
+remains. Commit steady667648B across batches; afterrelease577536B, notleakproof.
+49pairedcoldfiles agree; fivehives clean; EventLog6006delta1. Ftdisk49 persists,
+strictsystemqualificationfalse. Hook removed FIRST; protected720p/startup exact.
+Allsupervisors/observer closed;57inputs archived C:/xwn554/frozen001. Last console
+state authenticateddashboard. Noqueuedlaunch. Neverrerun/recollect/parent554.
+Next independent varying-W texture oracle then freshPCcontrol; see554NEXT-final.
+BootdiagnosisTABLED; automationPAUSED; noGPU/game/releasepromotion.
+
+# 554 ACTIVE: one launch accepted; observation running
+
+Cold-start answer "OK ready" recorded. Stage verified paired baseline files,
+exact binaries/runtime DLLs, protected720p and ordinary startup. One SITE request
+accepted200 at2026-10-19T02:06:20Z. No retry. Observation supervisor session12838
+has240second bound. On dashboard return remove owned hook FIRST via collect,
+then cold audit/runtime/module/controls/close. Do not change57frozeninputs.
+No graphics outcome yet. Boot diagnosis TABLED; automation PAUSED.
+
+# 554 ACTIVE: cold start confirmed, staging in progress
+
+User answered "OK ready" to the ten-second power-off/dashboard request.
+ready001 and package001 record the answer and 57 frozen pins. Stage supervisor
+is active; no launch requested yet. Check supervisor-stage/stage001 before
+one launch. Never change frozen kit inputs. Then observe, hook-FIRST collect,
+audit/runtime/module/controls/close. Boot diagnosis TABLED; automation PAUSED.
+Prior sustained PC sample and kit pushed as45758203. No GPU/game qualification.
+
 # 553 CLOSED scoped PC pass; 554 awaits actual cold-start answer
 
 553 two software contexts each2560frames; tenendpoints, coarse phase counters,

@@ -17,7 +17,7 @@ run instructions, output interpretation and current qualification limits.
 - `scene.c`: combined offscreen XYZ, two textures and depth/order controls.
 - `scenepresent.c`: combined scene with clipped window presentation (PC and Xbox validated).
 - `scenebench.c`: three bounded scene processes with CPU/memory telemetry (PC and Xbox validated; not FPS).
-- `sceneloop.c`: 2,560 frames in one context with coarse phase timings (PC scoped pass; QPC durations unqualified).
+- `sceneloop.c`: 2,560 frames in one context with phase timings (PC/Xbox scoped pass; Xbox clock cross-checks pass, PC QPC durations unqualified).
 - [Builder](../../../tools/build-graphics-samples.py): fresh out-of-tree RosBE build.
 - [Independent checker](../../../tools/graphics_sample.py): report and pixel oracle.
 

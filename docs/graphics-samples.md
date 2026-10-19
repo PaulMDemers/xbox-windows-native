@@ -75,7 +75,7 @@ Windows automatically, and they do not impose a process watchdog.
 | 09b | Combined offscreen scene | XYZ textures, transforms and depth/order controls | PC/Xbox default and HEL pass |
 | 09c | Combined windowed scene | Native-format CPU staging, clipped primary blit, cover/move/uncover and exact GDI readback | PC RGB565 and Xbox RGB32 default/HEL pass |
 | 09d | Repeated scene process costs | Three separate scene processes per backend, exact pixel checks, CPU time and working-set/commit counters | PC and Xbox six-run process-cost controls pass; not FPS or in-process leak proof |
-| 09e | Sustained scene in one process | 2,560 repeated frames, calibrated API phase timings, five checked endpoints and memory before/after release | PC scoped control passes; QPC durations unqualified; Xbox pending |
+| 09e | Sustained scene in one process | 2,560 repeated frames, calibrated API phase timings, five checked endpoints and memory before/after release | PC/Xbox scoped controls pass; PC QPC durations unqualified; Xbox clock cross-checks pass |
 | 10 | Small game-like scenes | Scrolling isometric tiles and moving sprites, then a textured room; controls, audio and save/reload | Planned; precedes the actual game acceptance tests |
 
 Do not require hardware acceleration for a software-compatible rung. An inventory
@@ -1093,4 +1093,14 @@ phase counters. The [553 revised PC control](../outputs/scene-loop553/REPORT.md)
 The long clock checks reject QPC durations on this fixture, so only coarse phase
 measurements are retained. Batch commit stayed constant and dropped by 64 KiB
 after graphics release, without returning to its pre-graphics value. These
-observations do not establish leak freedom. Matched Xbox validation is pending.
+observations do not establish leak freedom.
+
+The [554 matched Xbox comparison](../outputs/scene-loop554/REPORT.md) passes both
+2,560-frame software runs and all ten endpoints at 720p, followed by a normal
+restart. Its 1,125,000 Hz QPC agrees with both longer clock checks, so API phase
+measurements are retained. Commit stays 667,648 bytes across batches and drops
+to 577,536 bytes after graphics release; peak working set is 2,068,480 bytes.
+These bounded observations do not qualify game FPS or leak freedom. Ftdisk 49
+persists, so strict system qualification remains false. The temporary startup
+hook is removed and ordinary startup is unchanged. Next is independent coverage
+of perspective-correct texture interpolation across varying W.
