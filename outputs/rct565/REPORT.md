@@ -8,8 +8,13 @@ followed by the test's automatic restart. The user's exact answer was:
 > Yeah it all worked, it just rebooted
 
 This is a watched native-console result. It is separate from the earlier PC
-controls for all three supplied editions. Audio, save/reload, construction,
-frame rate, extended play and repeated-launch reliability were not qualified.
+controls for all three supplied editions. A post-close clarification reports
+that building worked, but window-edge scrolling left the view completely still.
+The exact construction action was not specified. Arrow-key scrolling and
+right-button dragging remain untested. Sound testing is deferred at the user's
+request. Save/reload, frame rate, extended play and repeated-launch reliability
+were not qualified. This additional user observation does not reopen the runtime
+or alter its frozen final001 record; see user-observation002.json.
 No graphics API trace or native GPU acceleration claim follows from this result.
 
 ## Candidate and launch
@@ -88,6 +93,6 @@ ownership audit, and one successful game run does not resolve the tabled boot
 intermittency or shutdown-popup investigations.
 
 Evidence: `stage004.json`, `launch001.json`, `observation001.json`,
-`user-observation001.json`, `collection001.json`, `collection002.json`,
+`user-observation001.json`, `user-observation002.json`, `collection001.json`, `collection002.json`,
 `audit1.json`, `registry-review001.json`, `closeout-review001.json`,
 `final001.json` and their supervisor records.

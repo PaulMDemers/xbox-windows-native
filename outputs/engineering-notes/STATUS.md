@@ -1,3 +1,15 @@
+# Xbox565 follow-up: building worked; window-edge scrolling failed; sound deferred
+
+User clarified after closure that building worked and window-edge scrolling
+left the view completely still. Arrow keys and right-button dragging remain
+untested; exact construction action unspecified. Sound deferred at user request.
+New user-observation002.json preserves both statements. Closed runtime, source,
+collection, audit and final001 remain unchanged; no new console access/launch.
+Next: isolate edge/focus/boundary behavior and compare other scrolling controls
+in a fresh attempt, then save/reload. No diagnosis or workaround is proven.
+See outputs/rct565/NEXT.md. Prior closeout pushed as9e59d2ec; this follow-up
+updates public documentation only. Boot/1080i investigations remain tabled.
+
 # Xbox565 CLOSED: Deluxe title/menu and Forest Frontiers on native Xbox
 
 User watched the requested game sequence and reported automatic restart. Actual

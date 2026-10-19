@@ -23,8 +23,13 @@ it intentionally requires a fresh result directory. Its temporary game registry
 settings are restored after the test, so the retained RCT.EXE is not by itself
 a documented permanent installation workflow.
 
-The useful next check is a longer watched Deluxe session: audible game sound,
-menu/input operation, park scrolling and one construction action. Save under a
+The user subsequently confirmed building worked, but window-edge scrolling
+left the view still. Sound is deferred at the user's request. First distinguish
+window focus and pointer position at the game boundary, then compare edge
+scrolling with arrow keys and right-button dragging in a fresh watched session.
+Those alternatives have not yet been tested; no cause or workaround is proven.
+The exact construction action is unspecified, so retain the narrow observation.
+Then check save persistence. Save under a
 new unique name, explicitly observe return to the park, and exit gracefully.
 Collect the exact save, runner receipt, hive/event deltas and changed game state
 after normal Windows Restart. Only then admit a separate launch to reload that

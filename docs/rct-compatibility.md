@@ -40,8 +40,11 @@ it does not establish which change alone resolves the dependency.
 The game executable remains unchanged. The resulting private installation was
 copied to the Xbox and launched through the ordinary Windows path at 720p. The
 user confirmed the requested title/menu and New Game → Forest Frontiers sequence,
-followed by a restart. Audio, save/reload, construction, sustained play and frame
-rate remain untested on Xbox. Rendering this game does not establish native GPU
+followed by a restart. In a follow-up, the user confirmed building worked but
+window-edge scrolling left the view completely still. The exact construction
+action was not specified; arrow-key scrolling and right-button dragging remain
+untested. Sound testing is deferred at the user's request. Save/reload, sustained
+play and frame rate remain untested on Xbox. Rendering this game does not establish native GPU
 acceleration or the graphics APIs used at runtime.
 
 The transfer is about 508 MiB, before spare space for logs and saves. It contains

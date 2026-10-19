@@ -166,7 +166,7 @@ Proposed first acceptance target for **each exact game edition**:
 
 | Target | Current status | Next evidence |
 |---|---|---|
-| Original RollerCoaster Tycoon | Deluxe title/menu and windowed Forest Frontiers observed by the user on native Xbox. Three editions installed and rendered in PC controls; two passed same-session save/reload ([details](rct-compatibility.md)) | Xbox sound, sustained play, save/reload, repeatability and actual API trace; non-Deluxe Xbox tests and 1999 PC reload remain unresolved |
+| Original RollerCoaster Tycoon | Deluxe title/menu, windowed Forest Frontiers and building observed by the user on native Xbox; window-edge scrolling failed with the view still. Three editions installed and rendered in PC controls; two passed same-session save/reload ([details](rct-compatibility.md)) | Diagnose window-edge scrolling; arrow keys/right-button dragging untested. Sound deferred. Sustained play, save/reload, repeatability and actual API trace remain open; non-Deluxe Xbox tests and 1999 PC reload unresolved |
 | Original The Sims | Not tested by this milestone | Exact edition/expansions, Windows 2000 PC control and actual API dependencies |
 | Legacy Direct3D support | D3D7 RGB software triangle, texture and depth pass on NT5 PC and Xbox; selected alpha arithmetic matches on both; windowed D3D presentation, six XYZ transform controls and five combined offscreen and windowed scene controls pass on PC and Xbox | Bounded resource/performance tests; alpha precision and intermittent boot failures remain unresolved |
 | Native NV2A acceleration | Unimplemented in the working demo | Windows ownership, submission, synchronization and lifetime proof |

@@ -30,7 +30,7 @@ Use the result that applies to the change you intend to make.
 | Strict restored-system events | Failed | Ftdisk 49 retained; no waiver or event suppression |
 | Physical 720p desktop | User confirmed | Clean text and full-window dragging on the tested display |
 | Physical 1080i desktop | Defective | Text and motion defects remain; use 720p |
-| RollerCoaster Tycoon Deluxe | User observed title/menu and windowed Forest Frontiers on native Xbox; three supplied RCT editions also rendered in PC controls ([details](rct-compatibility.md)) | Xbox sound, sustained play, save/reload, repeatability and graphics API trace remain unqualified |
+| RollerCoaster Tycoon Deluxe | User observed title/menu, windowed Forest Frontiers and building on native Xbox; window-edge scrolling failed with the view still. Three supplied RCT editions also rendered in PC controls ([details](rct-compatibility.md)) | Arrow-key scrolling/right-button dragging untested; sound deferred. Sustained play, save/reload, repeatability and graphics API trace remain unqualified |
 | Original The Sims | Not yet tested | Exact edition, PC control, API requirements and physical play/save/reload remain to be established |
 | Native Direct3D / NV2A acceleration | Not qualified | Current display driver declines DirectDraw; no accelerated driver installed |
 | Graphics ladder 00–02 | Modern host, NT5 PC and Xbox scoped pass | Six allowed cases; NT5 and Xbox each verify 129,024 bytes and reject 402 actual-evidence mutations. [Xbox438](../outputs/graphics-xbox438/REPORT.md) retains Ftdisk49 and two shutdown-time rundll32 popups; no primary/D3D/GPU qualification. HAL-only system-memory path remains excluded after the retained host crash |
