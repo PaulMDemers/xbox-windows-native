@@ -1,3 +1,27 @@
+# Session closed at cutoff; automation PAUSED
+
+The October19 14:00UTC cutoff has passed. At14:04UTC the automation
+xbox-emulator-development-until-10am was set to PAUSED and the saved status
+verified. No new experiment or console access occurred during closeout.
+HEAD/origin before these final notes were d4f2aa71; tracked worktree was clean.
+No owned emulator or583/585/586 Python job was found on Windows, nor any
+QEMU/xemu/find process in WSL. PC586 has no fixture and has never launched.
+No owned startup hook is outstanding. Xbox is last verified at dashboard after
+closed583; current screen/power state was not freshly observed. No reset is
+needed for cleanup. See outputs/rct586/closeout002.json.
+
+Physical Deluxe565 remains the watched title/menu, Forest Frontiers and building
+success. Window-edge scrolling stayed still. PC584 qualifies arrows/drag in
+both modes and edge scrolling in Full Screen only; Xbox583 supplied no runner
+output. PC585 failed generated metadata before RCT launch; all502 retail assets
+were correct. Corrected586 passed build/media checks but remains unlaunched.
+No cross-restart save/reload, game FPS/cost trace or native GPU claim is added.
+
+Next, on resumed authorization: outputs/rct586/NEXT004.md. Recover verified
+capacity before a fresh fixture; C21,692,813,312 and E21,499,871,232 bytes free
+at closeout remain below21GiB admission. Do not retry closed inventories or
+runtimes. Boot intermittency/1080i remain tabled and sound remains deferred.
+
 # 13:54 UTC pre-cutoff closeout check
 
 Review only: no new runtime or console access. HEAD/origin were3a679d8c,
