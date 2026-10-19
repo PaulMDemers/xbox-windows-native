@@ -111,6 +111,19 @@ to an unchanged park view, and normal restart and registry/hive checks passed.
 This prepares the save/reload test; it did not create a save or establish Xbox
 persistence across restart.
 
+The [PC585 save attempt](../outputs/rct585/REPORT.md) stopped before launching
+RCT: an unrestricted attempt-number substitution had changed two entries in
+the generated asset manifest. Independent cold readback verified that all 502
+retail files were correct. No save was created; this is a test-helper failure,
+not a game compatibility result. Normal Windows shutdown and cleanup passed.
+
+The corrected [PC586 preparation](../outputs/rct586/REPORT.md) regenerates that
+manifest from pinned assets and independently checks every entry, including
+negative tests for corrupt metadata. Build and media checks passed, but the
+fresh fixture was refused by the host-space guard before creation. No guest
+or Xbox test has run with this helper. Save/reload across a normal restart
+therefore remains pending on both platforms.
+
 The next performance work uses a save reloaded across a normal restart, a
 recorded fixed scene and an observed graphics-API path before choosing an
 optimization. See the [measurement plan](rct-performance-plan.md) for the

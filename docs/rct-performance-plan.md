@@ -7,6 +7,18 @@ separates the watched Xbox result from PC controls and unresolved inputs.
 
 ## Establish a repeatable scene
 
+The automated input comparison is qualified on [PC584](../outputs/rct584/REPORT.md):
+arrows and right-button dragging moved the view in both modes; edge scrolling
+moved it only in Full Screen mode. The matching Xbox583 launch produced no
+runner output, so those physical input checks remain pending. The watched
+Xbox565 building result remains the physical compatibility baseline.
+
+The first cross-restart save helper stopped at its asset-verification gate
+before starting the game ([PC585](../outputs/rct585/REPORT.md)). Its corrected
+[PC586 preparation](../outputs/rct586/REPORT.md) passed build and media checks
+but has not run: verified host capacity must be recovered before admitting a
+fresh fixture. These failures supply no save, reload or performance result.
+
 After the window/fullscreen input comparison, create one uniquely named park
 save and record its hash, game executable, settings, actual display/client
 size, camera position, zoom, pause state and visible scenery. Reload that exact
@@ -27,6 +39,12 @@ validate a bounded user-mode API observation on a fresh PC fixture. Record
 resolved module identities, DirectDraw creation/interface requests, cooperative
 level, display mode, surface descriptions/capabilities and the methods actually
 used to update surfaces. Include GDI calls if the observed path uses them.
+
+The [PC586 static import inventory](../outputs/rct586/api-inventory001.json)
+finds `LoadLibraryA` and `GetProcAddress` imports, with no static
+`DirectDrawCreate` import. Observe dynamic resolution as an initial trace
+boundary, then follow the interfaces actually returned. This inventory is
+preparation for a runtime trace; it does not identify a rendering cost.
 
 Keep pristine and instrumented controls separate. A debugger pause or wrapper
 can change scheduling and behavior; a call-count trace must not be presented as

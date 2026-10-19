@@ -1,3 +1,27 @@
+# 13:47 UTC documentation review; no new runtime
+
+Public compatibility and performance documentation now includes PC584's
+qualified input behavior, Xbox583's missing runner output, PC585's manifest
+failure and PC586's corrected but unlaunched preparation. Dynamic API resolution
+is a future trace boundary, not a measured rendering or acceleration result.
+
+No experiment, console access, hook change or runtime collection occurred in
+this review. Windows process enumeration found no QEMU/xemu or owned 583/585/586
+Python job. The first WSL process filter failed because of shell quoting; a
+separate ps listing filtered in PowerShell completed and found no QEMU/xemu/find
+process. This check did not launch or modify a fixture.
+
+At the review C had 21,717,843,968 free bytes and E 21,499,871,232, still below
+21 GiB fixture admission. No capacity retry or disk archival was attempted.
+Xbox remains last verified at dashboard after closed583, with no owned startup
+hook; that is not a fresh physical observation. No reset is needed for cleanup.
+
+The first documentation-link check used the Windows default text encoding and
+failed on UTF-8 punctuation; explicit UTF-8 decoding passed all local links.
+
+Continue with outputs/rct586/NEXT003.md. From13:50 review/closeout only. At14:00
+verify final owned state, preserve/push notes, report and PAUSE the automation.
+
 # PC586 blocked by capacity; inventory attempts are closed
 
 As of13:41UTC no VM, archive job or dependency inventory process remains.
