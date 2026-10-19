@@ -1,3 +1,88 @@
+# Deluxe transfer ready; Xbox565 waiting for E free-space observation
+
+566 CLOSED: Deluxe title/menu and windowed ForestFrontiers rendered with CD
+empty. Original404 fresh control; 20 exact original disc Data files plus local
+SetupPath and Window configuration. Combined candidate, no isolated causality.
+Normal restart6006delta1, five clean hives, protected OS binaries unchanged;
+runner004 game_exit0 without force, Path/Language/SetupPath restored independently.
+Export502gamefiles533084524bytes private C:/xwn566/transfer002. Failed export001
+CSS0.DAT mismatch preserved; only mutable CSS0/Game.cfg differed across common
+files; all other common assets matched564, addedfiles matchedoriginalISO.
+Temporary helperISO alone removed afterclose/hash; originalmedia retained.
+564 CLOSED missing-disc-data failure; game_exit0 did not meanrender success.
+
+565 frozen package503files533101681bytes, host controller11cases passed. No
+physical stage, writes, hook or launch. Xbox Ready/read-only authenticated earlier.
+User question for E free space STILL PENDING. Need667319409bytes (payload+128MiB)
+minimum. Do not stage without actual capacity. Follow outputs/rct566/NEXT.md.
+All owned emulator/collection processes closed; no console started this turn.
+No Xbox, GPU, audio or release promotion. Protected720p/ordinaryboot untouched.
+Private wrapper C:/xwn565/session.py holds session credentials; never publish.
+Source review, AST/JSON, frozen package pins and exact staged kit bytes checked;
+repository scan passed39725tracked files. Dotfile-check script mistake preserved
+and corrected; no package-byte mismatch. Commit/push next. No old runtime reopened.
+
+# RCT566 no-disc windowed park PASS observed; final collection pending
+
+566 fresh original404 child supervisor98803 still active; exact565runner004
+launched once from C:\xwn565-kit\run565.exe aftercopying20missing originalData
+files+windowedcfg. BOTHoriginalandhelperISOs ejected; no-disc001 captures empty
+CDdrive. Title/menu and ForestFrontiers rendered in window; observations003 and
+private screenshot preserve it. Candidate combines missingData+SetupPath value;
+not attribution to either change alone. Helper180sec gracefulclose/restartpending.
+Next poll98803, then cold1, cleanup_transport.py AFTERVMclosed (exactownedISO,
+original sources retained), export.py, finalclosure. Never rerunclosed564 failure.
+C reserve20GiB remains; deleteonlyownedtemporaryhelperISO beforefull export to
+keep headroom. Gamefiles remainprivate.565controller_host003 passes11cases,
+source-review/importchecks pass; package.py waiting566transfer001. Needsource
+review/close/docs/repositorychecks beforephysicalpackage deployment.
+Xbox authenticated earlier; no physical writes, hook or launch. User E free-space
+question PENDING; totalpayloadabout510MiB. Do not stage without response/current
+capacity. Protected720p/ordinarybootunchanged.565supervise stage/collect1200s,
+launch300s; oneSITEwith20sreply. Controllercollect preservesunchangedgamebytes
+once, discoversnewgamefiles, removesownedhookFIRST. NoGPU/audio/Xboxqualification.
+
+# RCT566 corrected disc-data control ACTIVE; physical565 NOT staged
+
+User Ready, Xbox authenticated565dashboard001, protected720p/ordinarystartup
+exact. No remote writes or launch. E free space question pending; payload now
+about510MiB including20original disc Data files omitted byfull install.
+564 CLOSED failed no-disc control: originalISO title/park+Window option worked;
+helper-onlyISO prompted LoopyLandscapesCD; pointing installed folder produced
+Missing or inaccessible data file. Game exit0 despite FAILURE; registry restored,
+normalrestart6006delta1/hivesclean; receipt/windowedGame.cfg privately retained,
+frozen inputs+screens archived. Never reopen/recollect/parent564.
+566 fresh original404 child C:/xwn566/pc001; supervisor98803 active,30minbound.
+FullDeluxe install C:\xwn565-kit\game currently copying. QMP/tmp/xwn-rct566-phase1.sock.
+Use566vm.py with UIlease. AfterFinish skipregistration/readme, cd.py mounts
+C:/xwn566/helper-media001.iso, run D:\PREP.CMD (copies20missingData+windowedcfg),
+observe successful copy, then run D:\RUN565.EXE ONCE. Exact565runner-build004
+adds SetupPath backup/set/restore (003onlyPath/Language, usedinfailed564).
+Observe actualtitle/park; exitcode0alone insufficient. Helper180sec then graceful
+close, registry restore and normalrestart. Original game ISO absent fromdrive.
+AfterVMexit: cold1, observations003 actualrenderbool, export.py privatefullcopy
+plusreceipt/registrycheck. Temporary helpermediaISO can be removed afterexact
+hash+VMclosureverified perDESIGN tokeep20GiB; originalmedia/config/runnerand
+reconstructionremain. Needimplementcleanuprecord beforeexport ifspace requires.
+565controller_host002 passes11faultcases; host001sourcepreserved. Package,
+imports/source review, console-space record and stage/launch/collect stillpending.
+Currentcontroller requires566transfer001. No physical startuphook armed.
+
+# RCT564 transfer fixture ACTIVE; physical565 not staged
+
+Xbox Ready confirmed.565dashboard001 authenticates protected720p/ordinary
+startup, no writes. E free space requested; STAT unsupported and HELP framing
+failures preserved.565space003 captured bounded HELP; no SITE or mutations.
+564 fresh original404 child C:/xwn564/pc001; supervisor90222 active,30min bound.
+QMP /tmp/xwn-rct564-phase1.sock; full Deluxe installed C:\xwn565-kit\game.
+Initial game launch sent for windowed configuration if available; next quit,
+cd.py mounts helper001.iso, run D:\RUN565.EXE once.180second owned process bound,
+registry restore and normal restart.565compile002 failed;003pass. Controller
+unfrozen draft; no package/stage yet. After564: cold1, full private export and
+receipt/registry checks BEFORE closing. No closed561/562/563 runtime reopened.
+No boot/display changes. Prior note-write cp1252 decode failed before mutation;
+this explicit UTF8 write corrects only the documentation operation.
+
 # RCT559-563 CLOSED: three PC installs/rendered parks; no Xbox game run
 
 All three supplied ISOs installed in separate fresh original404 NTFS children.

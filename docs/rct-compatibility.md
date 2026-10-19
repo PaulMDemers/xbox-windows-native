@@ -21,6 +21,24 @@ Both non-Deluxe editions display 1.08.187, but their installed `rct.exe` files
 have different sizes and SHA-256 hashes. They remain separate test candidates;
 matching displayed version numbers do not establish binary equivalence.
 
+Deluxe's full installation still needs disc data. A separate transfer control
+removed the original ISO, after selecting the game's built-in Window display
+mode. The game requested its Loopy Landscapes CD. Pointing that normal dialog
+at the installed folder produced “Missing or inaccessible data file.” It then
+returned process exit code zero, so exit status alone cannot qualify startup.
+The supplied ISO has 20 Data files absent from the full installation. A fresh
+PC control copied those unmodified files, retained the game's Window setting,
+and temporarily pointed the `Path` and `SetupPath` registry values at the local
+game folder. With the optical drive empty, Deluxe reached its title menu and
+rendered Forest Frontiers in a window. This tests the combined configuration;
+it does not establish which change alone resolves the dependency.
+
+The game executable remains unchanged. The resulting private installation is
+being prepared for a watched Xbox run; Xbox rendering, audio and save behavior
+remain untested. The transfer is about 510 MiB, before spare space for logs and
+saves. It contains retail assets from the supplied disc and is not a public
+redistributable bundle.
+
 ## Test conditions
 
 Each installation used a fresh child of the same Windows 2000 NTFS seed,
@@ -79,3 +97,5 @@ Game compatibility and native GPU acceleration remain separate milestones.
 - [Later Atari installation](../outputs/rct562/REPORT.md)
 - [Deluxe installation and reload](../outputs/rct563/REPORT.md)
 - [Initial host socket failure, before guest boot](../outputs/rct560/REPORT.md)
+- [Deluxe full-install disc-data failure](../outputs/rct564/REPORT.md)
+- [Deluxe local-data and windowed control](../outputs/rct566/REPORT.md)
