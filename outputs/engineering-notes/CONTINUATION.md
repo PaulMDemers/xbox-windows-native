@@ -1,3 +1,74 @@
+# Xbox565 launched ONCE at05:57:49UTC; watching for game and dashboard return
+
+launch001 exactSITE ordinary XWNEBoot accepted200. supervise004 launchclosedexit0;
+no retry allowed. Originalobserve.py running; observation001 hasPID/state.
+Hook xwn565.cmd ARMED until supervise004 collect removesitFIRST onreturn.
+User screenquestionpending: titlemenu/NewGame/ForestFrontiers orerror. Helper180sec
+thenclose/restore/restart, ifWindows reachesstartup. No rendererclaimyet.
+Allstage004files exact. Collection: supervise004 collect; audit004.py1 underWSL;
+registry_review004 WindowsPython. Preserveeveryfailure, normalrestartnotdashalone.
+
+# Xbox565 stage004 COMPLETE; hook armed; launch preflight ACTIVE
+
+All504files includingowner (game+runner533101681bytes) verified via chunkedFTP.
+Stage004 completed05:56:22UTC. Hook /E/documents and settings/all users/start
+menu/programs/startup/xwn565.cmd installedLAST and verified. No SITE confirmedyet;
+supervise004 launch session90250 started05:56:30UTC. Check launch001.json and
+supervisor004-launch before any action; NEVERretry accepted/uncertainlaunch.
+User instructedNewGame->ForestFrontiers aftertitle. Helper180sec thenclose/restart.
+Uponauthenticateddashboard return removeexacthookFIRST using supervise004 collect.
+Then audit004.py1 andregistry_review004. Originalobserve.py bounded360sec valid.
+Previousstage1slowabort,stage2refusal,stage3perfiletimeout preserved. Stage4source
+andtransport-package003 frozen. No game/driverbytes changed from PC566package.
+AllPCfixturesclosed. Protected720p ordinarylauncher retained. Needactualconsole
+observation+runner receipt+registry/hive/event audits; noXboxgamequalificationyet.
+
+# Xbox565 stage004 active: established chunked upload
+
+Stage003 failed its180second per-file pacing bound atCSG8.DAT after448files,
+238.6MiB verified. Supervisorclosed; nohook/noSITE. Preservefailed records.
+Sourcegame/runner unchanged. Stage004 uses established32KiB STOR/APPE with1KiB
+blocks, complete readback,600sec perfile/3600sec supervisorbound. Resume validates
+all priorcompleted files, exact interruptedprefix, unchangedbaseline/owner, and
+copies onlyremainingfiles. HookLAST. Supervisor session42662 active. Inspect
+stage004 and supervisor004-stage. transport-package003 pins latestcodes plusall
+previousrecords; controller-host00611cases pass. Userspace1647MB sufficient.
+Aftercomplete use supervise004 launch/collect, audit004.py1 andregistry_review004.
+Originalobserve.py remainsvalid. Single SITE20sec reply, neverretry uncertain.
+Onreturn collectremovesownedhookFIRST. Normalshutdown/rendering needactualevidence.
+No emulator active,566/564CLOSED. NoXboxgamequalificationyet. Protected720p intact.
+
+# Xbox565 stage003 active: paced FTP transfer, no launch yet
+
+User E free1647MB recorded conservatively. Stage001 single-stream upload too
+slow; owned child stopped beforehook. Stage002 recovery refused unexpected
+partial probe files beforewrites. Timed-out probes2/4 had misleading immediate
+RETR absence; laterLIST exposed retained partials. cleanup_probes.py verified
+exact patternprefixes, removed only those twofiles, twiceLIST confirmedabsence.
+Probes3/5 paced1024byte blocks+1ms passed512KiB/4MiB exact readback; probe5 6.49s.
+All failures/prematurecleanupclaims preserved. No boot happened.
+
+Supervisor003 stage session8122 now active,1800secondbound. Inspect stage003.json
+and supervisor003-stage.json. Immutable originalgame/runner package unchanged;
+transport-package002 pins controller003/resume_stage003/supervise003. Host005
+11casespass. Never rerun a failed stage blindly. Stage003 verifiesinterrupted
+PDFprefix and beforefiles, retainsalreadyverified3files, copiesrest, hookLAST.
+Aftercomplete use supervisor003 launch (controller003 reads stage003); oneSITE.
+Use originalobserve.py; collection via supervisor003 collect; audit003.py 1 and
+registry_review003.py use stage003. RemoveownedhookFIRST ondashboardreturn.
+Latestpreviouspackage evidencepushed1dea597d. Newtransportworknotyetcommitted.
+566/564 CLOSED; no reopening. Protected720p/ordinarylauncher retained.
+
+# Xbox565 staging in progress
+
+User reports UnleashX E free1,647MB; console-space001.json conservatively records
+1647000000bytes, enough for533101681byte package plus128MiB spare. Source package
+frozen and unchanged. Supervisor stage11554 launched; inspect supervisor-stage
+and stage001 for exact progress. No SITE request until stage complete/readback.
+Hook installedLAST. Do not retry a partially completed stage automatically.
+Previous566/564 closed; no old runtime reopened. Continue outputs/rct566/NEXT.md
+with space question now resolved. Protected720p and ordinary launcher retained.
+
 # Deluxe transfer ready; Xbox565 waiting for E free-space observation
 
 566 CLOSED: Deluxe title/menu and windowed ForestFrontiers rendered with CD
