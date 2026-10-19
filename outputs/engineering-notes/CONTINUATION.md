@@ -1,3 +1,46 @@
+# RCT591 closed; save test did not run
+
+Read final001.json and REPORT.md. User screen reply is pending. Append any late
+observation in a new receipt; do not revise frozen preparation or rerun/recollect
+this closed physical experiment. One launch was accepted, early dashboard return,
+no runner result/save, unchanged selected Windows files and event logs. Hook was
+removed first and all audits passed. Normal restart is unproved (6006 delta 0).
+
+No active host process or owned startup hook remains. Game assets are now at
+/E/xwn586-kit/game (502 files), not the old xwn589-kit/game location. Retain the
+closed records. A future admitted attempt must use a new attempt ID, confirm
+hardware readiness, revalidate current assets and available space, and account
+for this failure. Do not repeat identical launches until lucky. Do not launch
+phase 2 without an actual newly saved file and qualifying first phase.
+
+The practical next hardware step is a fresh explicitly confirmed power cycle,
+then a separately recorded save attempt if the user wants to continue. The
+qualified unchanged helpers can be reused; do not reopen the closed PC runtime.
+Other consoles, fullscreen, boot diagnosis,1080i and sound remain deferred.
+Automation remains paused. Afterwards, pursue actual fixed-scene API/cost
+measurement; no synthetic timing or RCT desktop result proves acceleration.
+
+# Physical591 save phase launched once
+
+Launch accepted23:30:52UTC through ordinary XWNEBoot. Observation001 is running
+with600s limit; no retries. Owned hookxwn591.cmd installed pending dashboard
+return and hookFIRST collection. User asked to watch automatic save/restart.
+No save result yet. Allstage readbacks passed; supervisorstage/launch closed.
+
+# Physical591 staged; final launch verification running
+
+Stage completed23:29:17UTC, owned hookxwn591.cmd is installed. All502 game
+assets verified beforemove and504 stagedfiles readback exact. Launch supervisor
+is running final rehash; consult launch001.json for requested/accepted state.
+Never repeat launch if requested. On dashboard return collect hookFIRST.
+
+# Physical591 save phase staging
+
+User confirmed cold-start readiness at23:25UTC. Package frozen; stage supervisor
+is running, exact existing game assets are being verified before moving to
+xwn586-kit. No launch yet. Read stage001.json/supervisor001-stage.json for actual
+mutation and process state. Existing prepared NEXT001 applies after staging.
+
 # Physical591 prepared; awaiting cold-start readiness
 
 User authorized windowed RCT save/restart/load. Coldstart question pending;
