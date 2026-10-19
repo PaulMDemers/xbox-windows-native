@@ -1,3 +1,39 @@
+# Physical583 staging active; PC584 CLOSED and qualified
+
+At12:41UTC stage first requested, exec99930/supervisor001-stage. No launch yet.
+Privatewrapper C:/xwn583/session.py provides active private configuration; never
+print or publish it. Exact582 helper/package503files, PC584 full control passed.
+Stage must finish once, with verified-assets-only move575-kit/game to582-kit/game,
+two pristine mutable assets restored, all502hashed before/after and hook583 LAST.
+If stage fails, preserve exact partial state and remove any owned hook before
+further action. Do not restart stage or assume launch. No dashboardC access.
+
+On complete stage, inspect actual record, launch once through private wrapper
+supervise001.py launch (oneSITE20sec bound), observe001.py bounded600sec. On return,
+supervise001.py collect removes hookFIRST. Then audit002.py1 underWSL/buildlease,
+registry_review002.py, welcome_review001.py, capture_review002.py, review002.py.
+Inspect images independently. If offline, preservehook/state andswitchhostwork.
+User cannotresetbefore10am. Reviewonly13:50UTC; no newexperimentafter14:00UTC.
+
+# PC584 runtime stopped; cold audit/first collection active
+
+First/only runtime ended12:38:17UTC, exit0, nohostquit/deadline. Diskb4b5a7337abe
+59b5f009bdf501a6a778ea6e77aa11ff875b31d90a13a55e9675. Passive screens reached
+scenario,park,fullscreen,restoredwindow. Native facts pending. Cold1/collection
+exec66095 holdsbuildlease; no reopen/recollect. Automatic post-exit screenshot
+race FileNotFoundError preserved withprocess_exit0. Next independent reviews.
+583draftprivatewrapperprepared/no consoleconnection,stage,hookorlaunch. Stop14UTC.
+# PC584 automatic input control running
+
+At12:34UTC the exact582 runner was launched once after visually checking its
+spaced cmd /c path. Desktop1024x768 confirmed. All502 assets verified, error0,
+10891ms; bothCD devices independently readback empty. No further host game input.
+Real xemu lease/runtime exec7344 remains active, first/only runtime. Wait for
+automatic normal restart; then cold1/collection once under build lease and
+independent cleanup, integration, input/image and passive-PCX reviews.
+581/582 remain CLOSED. No console access or hook;583 remains draft pending584.
+Preserve any failed checks. Review-only13:50UTC, stop14:00UTC Oct19.
+
 # PC584 ACTIVE: unchanged582 helper,1024x768 control
 
 Cold0passed6475files308dirs; first/only runtimeexec7344 holdsxemu lease. Use

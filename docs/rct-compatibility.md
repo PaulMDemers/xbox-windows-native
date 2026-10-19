@@ -199,3 +199,11 @@ drives empty before launch. The exact Welcome process closed normally, but an
 Explorer Start-button guidance balloon blocked the first title capture. The
 strict exposure check stopped the sequence; no scrolling or late-popup result
 was obtained. Normal shutdown, registry restoration and cold checks passed.
+
+The subsequent [PC584 control](../outputs/rct584/REPORT.md) used the same tested
+helper on a1024x768 desktop, leaving that shell balloon outside the640x480 game
+window. All15 captures completed: window-edge scrolling remained still, arrows
+and right-drag moved the camera, and all three worked in Full Screen mode. Early
+and deliberately reopened late Welcome windows closed normally; startup
+preferences, registry restoration and shutdown checks passed. This is PC control
+evidence, separate from the Xbox result.
