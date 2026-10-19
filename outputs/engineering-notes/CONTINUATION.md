@@ -1,3 +1,73 @@
+# PC578 Save dialog probe submitted; physical576 still staging
+
+578 VM exec12453 ACTIVE. Owned logon,800x60016bit display confirmation and
+Start balloon dismissal completed; D:/PREP.CMD submitted once about10:20UTC.
+No host game input after helper launch. Watch passiveQMP and await automatic
+restart, then one cold1/collection and independent review. No save file creation
+claimed: this bounded probe only opens, inspects and cancels Save Game.
+
+576 exec8054 ACTIVE, no launch/hook yet. Follow576/NEXT002.md. Full repository
+check40183files passed before final supplemental staging; exact staged kit bytes
+verified. Host compression571-575 complete with hashes unchanged. Keep20GiB
+projected reserve; no further media allocation without fresh accounting.
+Deadline14:00UTC Oct19; closeout13:50; user unavailable for Xbox reset until10am.
+
+# PC578 ACTIVE exec12453; physical576 stage ACTIVE exec8054
+
+578 cold0 complete (6475files/308dirs), source/media pins exact, fresh404parent.
+VM launched10:17UTC under xemu lease, no guest logon/helper submitted yet.
+Five closed571-575 disks compressed with exact before/after hashes, no reopen
+or deletion; compression process CLOSED. Media504payloads verified. HostC/E
+20GiB reserve enforced includingWSL,578 guest21GiB launch floor. No otherVM.
+
+576 remains transfer-only, no hook/launch at10:17. Follow576/NEXT002.md and
+actual stage/supervisor records. Frozen package unchanged; supplemental offline
+reviews and read-only bounded observer prepared. Physical andPC results separate.
+577 static import metadata is preparation only. Deadline14:00UTC, closeout13:50.
+
+# Physical576 stage continues; PC578 Save dialog preparation
+
+576 stage exec8054/supervisor child16928 remains ACTIVE; no launch or hook yet.
+New unpinned capture_review001/review001/observe001 sources prepare cold analysis
+and bounded dashboard observation. Frozen package/controller sources unchanged.
+Follow stage001/supervisor journals before any launch. Partial progress10:15UTC
+is only transport progress, not a game result. Existing next actions below apply.
+
+577 read-only static PE inventory agrees between pefile and independent table
+walk:11DLLs/12imports, including dynamic loader APIs. This is NOT renderer proof.
+578 new Save Game dialog inspection helper compiled with pinnedRosBE/-Werror.
+No578 runtime or media yet. It opens/cancels the Save dialog, logs owned controls,
+and requests normal restart; it neither enters a name nor claims a saved game.
+Host compression of CLOSED571-575 disks ACTIVE exec42428 under xemu lease,
+before/after exact hashes, no deletion/reparent/guest reopen. Need capacity checks
+before578 ISO/overlay. Physical576 and host578 are independent destinations.
+Deadline14:00UTC Oct19, closeout13:50. User cannot reset Xbox until10am.
+
+# Physical576 staging ACTIVE exec8054
+
+Fresh readiness passed; protected720p/startup exact and xwn575 namespaces unused.
+Exact qualified575 helper/503payloads frozen;41source pins and exact Git-staged
+bytes verified. Twelve controller fault cases include partial append timeout,
+corrupt readback and uncertain launch without retry. New bounded supervisor001
+stage is ACTIVE, one-hour host bound, chunked32KiB STOR/APPE/1024-byte blocks.
+Startup hook is LAST; no launch admitted until stage completes and full readback.
+
+Console conditional capacity accounting leaves144566361bytes after all charges,
+above128MiB spare: last user1647decimalMB minus all565 bytes,64MiB old allocation,
+256MiB OS/other growth, new533119210bytes,64MiB new allocation,32MiB results.
+This assumes no unrecorded external writes; NOT a fresh free-space measurement.
+Package001 first script failed invalid codec before outputs/access; preserved
+package-failure001. Corrected package002 produced frozen package001.json.
+Do not edit pinned576 files/NEXT.md; use new notes. Host20GiB reserve enforced.
+
+Follow stage001 and supervisor001-stage actual journals. If complete, launch ONCE
+via private C:/xwn576/session.py outputs/rct576/supervise001.py launch; bound20sec
+SITE reply. One accepted/uncertain launch must never repeat. Collect after return
+via supervise001.py collect: hookFIRST, selected contents/full directory inventory.
+Audit001.py under WSL with existing libhivex LD_LIBRARY_PATH then registry review.
+No console launch yet, last known dashboard. User cannot reset until10am.
+Deadline Oct19 14:00UTC; closeout13:50. PC575 CLOSED/pusheda75e1f67; headc6da9963.
+
 # Publication checkpoint: qualified575 pushed a75e1f67
 
 574/575 evidence and576 read-only readiness are published. All owned build, VM,
