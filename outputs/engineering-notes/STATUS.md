@@ -1,3 +1,29 @@
+# Active588 phase2: first save persisted, second launch sent
+
+User reported saving, closing/reopening and normal Restart to dashboard.
+Fresh after1 paired capture contains /E/xwn588.txt, exactly18 ASCII bytes:
+Xbox save test 588. SHA2568800e17235914771753c7af7ce8d57ba407b2b949be8d187a6f054da2d774cb3.
+System EventLog6006 delta1; five hives clean/raw checks pass; protected720p,
+ordinary launcher and startup unchanged. No temporary hook exists to remove.
+Ftdisk49 and Srv2013 remain in new events; no whole-allocation/paging-health claim.
+
+Source review caught audit.py assuming every after-file existed before; no
+execution of that version occurred. audit_review002.py handles newly created
+files; audit1 and phase1-review pass. Preserve the original and review record.
+First phase is collected/audited; NEVER recollect it or resend launch1.
+
+Second ordinary launch sent at 2026-10-19T21:13:31.048719+00:00, reply 200 EXEC command succeeded..
+NEVER resend launch2. User asked to reopen C:/xwn588.txt without rewriting,
+confirm text, Restart normally and report dashboard. Actual phase2 screen is
+not yet observed. Wait for response; if failed, preserve instead of retrying.
+
+After response record observer2.json, run controller.py after2 ONCE through
+private C:/xwn588/session.py, then audit_review002.py 2 with installed offline-disk
+LD_LIBRARY_PATH as in previous note. Require same exact saved bytes and normal
+shutdown delta, user reopen observation and clean hives. No third launch planned.
+Leave the small test file on E; no cleanup of unrelated paths. No RCT/GPU claim.
+Automation PAUSED. No owned host process remains; console phase2 is OPEN.
+
 # Active588 watched physical file persistence test
 
 The user authorized proceeding on the original development Xbox. Fresh588
