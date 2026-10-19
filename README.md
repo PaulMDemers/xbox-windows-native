@@ -63,9 +63,11 @@ files; see [provenance](docs/provenance.md) for source and binary correspondence
 ## Next milestone
 
 The next graphics target is playable original **RollerCoaster Tycoon and The
-Sims**, including input, sound and save/reload on a 64 MiB Xbox. Neither game is
-qualified on Xbox yet. Three supplied RCT editions now install and render a park
-in Windows 2000 PC controls; two also pass a short same-session save/reload check.
+Sims**, including input, sound and save/reload on a 64 MiB Xbox. Deluxe now reaches
+its title menu and renders Forest Frontiers in a watched native Xbox test.
+Sound, save/reload and sustained play on Xbox remain unqualified. Three supplied
+RCT editions also install and render a park in Windows 2000 PC controls; two
+pass a short same-session save/reload check. The Sims has not been tested.
 See the [RCT results and limitations](docs/rct-compatibility.md).
 The [graphics roadmap](docs/graphics-roadmap.md) starts with exact
 game editions and DirectDraw/API probes, then the required legacy Direct3D work.

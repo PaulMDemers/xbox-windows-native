@@ -3,7 +3,11 @@
 All three supplied disc images installed and reached a rendered Forest Frontiers
 park on separate Windows 2000 PC controls on October 19, 2026. Deluxe and the
 later Atari disc also saved and reloaded a park in the same session. These are
-**PC control results, not native Xbox compatibility results**.
+**PC control results**. A subsequent watched native Xbox Deluxe run also reached
+the title/menu and rendered Forest Frontiers in a window, as reported by the
+user. Its runner exited the game without forced termination, restored the game
+registry settings and requested Restart. Cold readback confirms consistent
+hives and one new normal-shutdown event. The existing Ftdisk 49 event remains.
 
 | Disc | Installation | Startup and rendering | Save/load |
 |---|---|---|---|
@@ -33,15 +37,21 @@ game folder. With the optical drive empty, Deluxe reached its title menu and
 rendered Forest Frontiers in a window. This tests the combined configuration;
 it does not establish which change alone resolves the dependency.
 
-The game executable remains unchanged. The resulting private installation is
-being prepared for a watched Xbox run; Xbox rendering, audio and save behavior
-remain untested. The transfer is about 510 MiB, before spare space for logs and
-saves. It contains retail assets from the supplied disc and is not a public
-redistributable bundle.
+The game executable remains unchanged. The resulting private installation was
+copied to the Xbox and launched through the ordinary Windows path at 720p. The
+user confirmed the requested title/menu and New Game → Forest Frontiers sequence,
+followed by a restart. Audio, save/reload, construction, sustained play and frame
+rate remain untested on Xbox. Rendering this game does not establish native GPU
+acceleration or the graphics APIs used at runtime.
+
+The transfer is about 508 MiB, before spare space for logs and saves. It contains
+retail assets from the supplied disc and is not a public redistributable bundle.
+The watched Xbox result applies to Deluxe only; the two non-Deluxe discs still
+have PC-control results only.
 
 ## Test conditions
 
-Each installation used a fresh child of the same Windows 2000 NTFS seed,
+Each PC installation used a fresh child of the same Windows 2000 NTFS seed,
 64 MiB RAM, a Pentium III CPU model and Cirrus VGA under QEMU TCG. The original
 ISO was mounted read-only. No game patch, compatibility shim or executable edit
 was applied. The fixtures had no network or emulated audio device. Optional
@@ -54,9 +64,18 @@ an 800 by 600 Windows desktop to expose its Close control; the game switched to
 construction, frame rate, prolonged play and sound have not been qualified.
 Save reload was within the same game session, not after rebooting Windows.
 
-Each successful guest session ended through Windows Restart. Closed-disk checks
-verify registry hive consistency, shutdown events and unchanged protected OS
-executables. Game binaries, screenshots, saves and disc images remain private.
+The Xbox check used the existing native Windows 2000 installation, its protected
+720p configuration and the ordinary XWNEBoot launcher. The prepared Deluxe files
+were copied to dashboard `E:\xwn565-kit\game`, visible to Windows as
+`C:\xwn565-kit\game`. A temporary startup helper set three game registry values,
+launched the unmodified executable, waited about three minutes, then requested
+a graceful game close, restored the values and requested Windows Restart.
+Rendering evidence for this run is the user's watched observation; the helper
+records process and window state, not screenshots or graphics API calls.
+
+Each successful guest session ended through Windows Restart. Offline disk or
+dashboard readback checks verify registry hive consistency, shutdown events and
+unchanged protected OS executables. Game binaries, screenshots, saves and disc images remain private.
 Only hashes, metadata, tooling and observations are published.
 
 ## Disc identities
@@ -83,9 +102,9 @@ ISO files actually used:
    file and observe rendering again. Keep each step separately evidenced.
 6. Quit the game and restart Windows normally before inspecting persisted files.
 
-Do not treat these steps as an Xbox installer. The native Xbox comparison still
-needs a verified installation transfer, matching registry paths and disc-access
-behavior, followed by startup/rendering, input, save persistence and audio checks.
+Do not treat these steps as an Xbox installer. The exploratory Deluxe transfer
+uses matching registry paths, local disc data and a bounded test runner. Broader
+Xbox input, save persistence, audio and repeatability checks are still needed.
 An installed filename-length check alone does not qualify the whole FATX layout.
 Static executable imports are not a trace of the graphics APIs used at runtime.
 Game compatibility and native GPU acceleration remain separate milestones.
@@ -99,3 +118,5 @@ Game compatibility and native GPU acceleration remain separate milestones.
 - [Initial host socket failure, before guest boot](../outputs/rct560/REPORT.md)
 - [Deluxe full-install disc-data failure](../outputs/rct564/REPORT.md)
 - [Deluxe local-data and windowed control](../outputs/rct566/REPORT.md)
+- [Watched native Xbox Deluxe result](../outputs/rct565/REPORT.md)
+- [Xbox transfer tooling and preserved FTP failures](../outputs/rct565/TRANSPORT.md)

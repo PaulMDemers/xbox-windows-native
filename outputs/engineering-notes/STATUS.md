@@ -1,3 +1,53 @@
+# Xbox565 CLOSED: Deluxe title/menu and Forest Frontiers on native Xbox
+
+User watched the requested game sequence and reported automatic restart. Actual
+runner: game_exit0, no forced termination, registry_restored1, restart_requested1.
+Independent game registry subtree restored exactly; five hives consistent; one
+new6006 shutdown event, no new application events. Ftdisk49 remains. Ordinary
+launcher/startup,720p and ten runtime modules unchanged. CSS0.DAT/Game.cfg changed;
+no other game payload change or new save. Audio/save-reload/FPS/long play/GPU
+remain unqualified. No new game/driver release promotion.
+
+All527 selected files collected. Original collection001 timed out at1200seconds
+with499files; failure retained. Read-only tail collected28 remaining paths in
+collection002; no launch or console write. Both collector processes CLOSED.
+One recovered read timeout and initial offline audit missing-libhivex failure
+retained; audit005 passed with offline-disk LD_LIBRARY_PATH. Hook removed FIRST;
+Xbox at dashboard. final001 closes565: NEVER rerun/recollect/parent it.
+Next: outputs/rct565/NEXT.md, fresh longer Deluxe audio/input/save-and-reload
+attempt if continuing. No more watched boots needed for this closed check.
+Public README/graphics-roadmap/validation/RCT guide updated. This closeout
+contains the final evidence and publication review; prior pushed commit f381e495.
+All PC fixtures remain closed; old overnight automation remains paused.
+
+# Xbox565 readback tail ACTIVE; watched park success retained
+
+User confirmed Deluxe title/menu and Forest Frontiers, then restart. One accepted
+SITE only; temporary hook removed FIRST, ordinary launcher and720p unchanged.
+Original collection001 stopped at its1200second bound with499 verified files;
+supervisor004-collect CLOSED deadline failure is preserved. One recovered read
+TimeoutError is also retained. Runtime565 is still open for evidence closure.
+New read-only collect_tail001/supervise_tail001 session62190 reads ONLY28 missing
+paths; no console writes or launch. collection002 inherits/pins the partial
+record and verifies its local retained files. Inspect supervisor-tail001.
+After completion: Windows registry_review005.py; WSL audit005.py1; then
+closeout_review001.py. Original reviews004 remain frozen. Finish REPORT/NEXT,
+final001, documentation, checks, commit/push. Do not rerun any closed runtime.
+New documentation/report files are pending, latest pushed f381e495. No VM active.
+
+# Xbox565 user-reported title/park SUCCESS; collection ACTIVE, hook removed
+
+User answered 'Yeah it all worked, it just rebooted' to requestedtitle/menu and
+NewGame->ForestFrontiers sequence. user-observation001 preserves exactanswer;
+noaudio/FPS/save-reload/GPUclaim. Observerclosedauthenticateddashboardwithrunner
+receipt06:02:07UTC. SingleSITE05:57:49 accepted200; no secondlaunch.
+Supervise004 collect session69665 active. collection001 confirmsownedhookremoved
+FIRST byrename to/E/xwn565-kit/startup-used.cmd; ordinary720p/launcherprotected.
+Waitfor collectioncomplete; thenWSL audit004.py1 andWindowsregistry_review004.
+Do not treat observedrender or returnasnormalrestartproof untilaudit/runnerreview.
+No emulator active. Stage/transportfailuresandcodespushedf381e495. Newruntime
+recordsnotyetcommitted. No newexperiment neededwhileclosingthissuccessfulcheck.
+
 # Xbox565 launched ONCE at05:57:49UTC; watching for game and dashboard return
 
 launch001 exactSITE ordinary XWNEBoot accepted200. supervise004 launchclosedexit0;
