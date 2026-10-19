@@ -76,6 +76,7 @@ Windows automatically, and they do not impose a process watchdog.
 | 09c | Combined windowed scene | Native-format CPU staging, clipped primary blit, cover/move/uncover and exact GDI readback | PC RGB565 and Xbox RGB32 default/HEL pass |
 | 09d | Repeated scene process costs | Three separate scene processes per backend, exact pixel checks, CPU time and working-set/commit counters | PC and Xbox six-run process-cost controls pass; not FPS or in-process leak proof |
 | 09e | Sustained scene in one process | 2,560 repeated frames, calibrated API phase timings, five checked endpoints and memory before/after release | PC/Xbox scoped controls pass; PC QPC durations unqualified; Xbox clock cross-checks pass |
+| 09f | Perspective texture interpolation | Fixed projected outlines with constant, increasing, decreasing and scaled W; swapped UV control | NT5 PC default/HEL pass; matched Xbox prepared |
 | 10 | Small game-like scenes | Scrolling isometric tiles and moving sprites, then a textured room; controls, audio and save/reload | Planned; precedes the actual game acceptance tests |
 
 Do not require hardware acceleration for a software-compatible rung. An inventory
@@ -1104,3 +1105,45 @@ These bounded observations do not qualify game FPS or leak freedom. Ftdisk 49
 persists, so strict system qualification remains false. The temporary startup
 hook is removed and ordinary startup is unchanged. Next is independent coverage
 of perspective-correct texture interpolation across varying W.
+
+## Perspective texture interpolation (rung 09f)
+
+`perspective` renders two disjoint XYZ triangles into a 64x64 offscreen target.
+Five cases keep their projected outlines fixed while changing vertex depths or
+texture coordinates. The independent reference computes perspective-correct UV
+and cross-checks it using object-space ray/triangle intersections. It fixes the
+two-pixel boundary tolerance before a runtime capture; robust interior regions
+reject affine interpolation. No lighting, blending, visible presentation,
+acceleration or game-performance claim is made by this sample.
+
+Build into a fresh directory with the same pinned RosBE setup:
+
+```sh
+python3 tools/build-graphics-samples.py --rosbe "$ROSBE" \
+  --sample perspective --output "$HOME/build/xwn-perspective-001"
+```
+
+Copy `perspective.exe` and `perspective.cmd` together. Run once per fresh prefix:
+
+```bat
+perspective.cmd default persp01d
+perspective.cmd hel persp01s
+```
+
+Collect each prefix's `.txt`, `.exit`, `-clear.bin`, `-draw.bin`,
+`-source-before.bin` and `-source-after.bin`. On the host:
+
+```sh
+python3 tools/graphics_perspective.py /path/to/results/persp01d --backend default
+python3 tools/graphics_perspective.py /path/to/results/persp01s --backend hel
+```
+
+The sample requires Windows 2000 and selects the enumerated RGB software device.
+It explicitly sets and reads back texture perspective state. Each screenshot
+stream has five 64x64 RGB32 frames; source streams contain two 8x8 textures.
+The wrapper does not impose an external watchdog or restart Windows. Private
+qualification bounds each process separately. The [host oracle](../outputs/perspective-oracle555/REPORT.md)
+is synthetic evidence only. The [556 Windows 2000 control](../outputs/perspective556/REPORT.md)
+passes all five cases in both software backends, unchanged texture bytes and
+normal restart. Independent cold readers and live module checks agree. The
+matched Xbox comparison is prepared and has not yet launched.

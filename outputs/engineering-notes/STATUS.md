@@ -1,3 +1,43 @@
+# 555/556 CLOSED: varying-W PC pass;557 waits for actual cold-start answer
+
+555 independent rational/ray reference and10host tests pass.556 fresh original404
+child: default/HEL eachfive offscreen cases pass, normalrestart6006delta1, two
+coldreaders agree,11modules/backend,2268actualnegative controls.155inputs archived;
+allVM/readers/mountsclosed. Neverrerun/recollect/parent556. Publicbuild compiles
+source/compiler match, separatebinaryunrun. Existinggraphics results unchanged.
+
+557 prepared exact556sample; namespace/transport-only runner compiled,24/26NT5
+imports,16controller cases pass. Async user asked poweroff10seconds thenUnleashX;
+WAITactualanswer before ready001+UTC+fullpowercycle/dashboardflags, package,
+stage/oneSITElaunch, observe,hookFIRSTcollect/audit/reviews/close. No557ready,
+package,stage,hookorlaunch. Read557NEXT.md. Console lastatdashboard from554.
+BootdiagnosisTABLED; automationPAUSED; noGPU/game/releasepromotion.
+
+# 556 ACTIVE: run556 submitted once at desktop
+
+Owned desktop/Run dialog observed. Fixture login once; A:\run556.exe submitted
+once around03:11UTC. VM supervisor session14355 remains owner. Wait for normal
+exit, then cold1/review001/independent002/module-review002/actual-controls002/
+closeout002.155frozen dependencies must stay exact. No physicalconsole access.
+Do not resubmit or repeat launch. Host555 pass is not yet guest qualification.
+
+# 556 ACTIVE: fresh NT5 VM booting; sample not yet submitted
+
+155inputs frozen, baseline6475files/5hives audited. Exclusive VM supervisor
+session14355, phase1 started once. Owned screenshot shows Windows startup.
+Next inspect login, login001 once, then A:\run556.exe once at desktop. After
+normalexit cold1/review001/independent002/module-review002/actual-controls002/
+closeout002. Never repeat launch. No console changes. Preserve555host-onlyscope.
+
+# 555 host oracle passes; 556 fresh PC preparation active
+
+Exact-rational varying-W texture reference independently agrees with object-space
+ray/plane interpolation. Fixed two-pixel bands distinguish affine by38-108pixels
+per varying-depth stage.10host tests pass, sample/runner compile,24/26NT5imports
+and39floppy negatives pass. Preparing NEW556 child of original404 seed. Next
+cold0/preflight then one exclusive VM. No556guestlaunch yet, no physical changes.
+Use556NEXT.md. Boot diagnosisTABLED; automationPAUSED;554closed preserved.
+
 # 554 CLOSED: sustained Xbox software scene passes
 
 User-confirmed cold start; one accepted launch. Default/HEL each2560frames,

@@ -244,3 +244,11 @@ passes the same 5,120 frames and ten endpoints with normal restart, stable batch
 commit and valid clock cross-checks. Ftdisk 49 persists. Next is an independent
 varying-W texture-interpolation oracle and a fresh PC control before a matched
 Xbox test. These results add no GPU, game, FPS or long-run leak-freedom claim.
+
+
+The [556 varying-W PC control](../outputs/perspective556/REPORT.md) passes five
+perspective-texture cases in each software backend using an independent
+rational reference cross-checked by object-space ray/plane intersection.
+Projected outlines stay fixed while depth and UV change; robust pixels reject
+affine interpolation. The matched 557 Xbox test is prepared, awaiting a cold
+start. This adds offscreen perspective coverage, not game or GPU qualification.

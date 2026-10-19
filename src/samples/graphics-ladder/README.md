@@ -18,6 +18,7 @@ run instructions, output interpretation and current qualification limits.
 - `scenepresent.c`: combined scene with clipped window presentation (PC and Xbox validated).
 - `scenebench.c`: three bounded scene processes with CPU/memory telemetry (PC and Xbox validated; not FPS).
 - `sceneloop.c`: 2,560 frames in one context with phase timings (PC/Xbox scoped pass; Xbox clock cross-checks pass, PC QPC durations unqualified).
+- `perspective.c`: offscreen varying-W texture controls with an independent perspective reference.
 - [Builder](../../../tools/build-graphics-samples.py): fresh out-of-tree RosBE build.
 - [Independent checker](../../../tools/graphics_sample.py): report and pixel oracle.
 
@@ -61,3 +62,5 @@ Later ladder rungs are explicitly planned; they do not return placeholder PASS.
 
 `scenebench` also builds the supporting `scene.exe`; copy both executables and
 its `.cmd` together. Its timings include pauses and capture I/O, not just drawing.
+
+Perspective rung: [source](perspective.c), [wrapper](perspective.cmd), [checker](../../../tools/graphics_perspective.py).
