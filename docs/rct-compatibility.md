@@ -47,6 +47,28 @@ untested. Sound testing is deferred at the user's request. Save/reload, sustaine
 play and frame rate remain untested on Xbox. Rendering this game does not establish native GPU
 acceleration or the graphics APIs used at runtime.
 
+The supplied Deluxe manual describes edge scrolling specifically in fullscreen
+mode (PDF page 29, printed pages 56–57). It documents right-button dragging and
+arrow keys as other ways to move the landscape. The observed still view at a
+window edge is therefore consistent with the documented behavior; it is not yet
+evidence of an Xbox input defect. The next comparison retains both display
+modes and all three controls. See the [manual review](../outputs/rct567/manual-review001.json).
+
+A fresh PC comparison now supports that distinction, with the edge-scrolling
+option visibly enabled in both modes:
+
+| PC control568 | Right-edge dwell | Arrow keys | Right-button drag |
+|---|---|---|---|
+| Window, 640×480 client on an 800×600 desktop | View stayed still; checked viewport pixels identical | Landscape moved | Landscape moved |
+| Full Screen640×480 | Landscape moved | Landscape moved | Landscape moved |
+
+Only the right edge was tested, and arrow directions and drag trajectories
+differed between modes. Window mode was restored before the helper's automatic
+close and normal Restart. Registry restoration and cold hive/event checks passed.
+These are PC results; the Xbox alternatives still need testing. The game loaded
+`DDRAW.DLL`, but that module inventory is not an API call trace or acceleration
+measurement. See the [fresh input comparison](../outputs/rct568/REPORT.md).
+
 The transfer is about 508 MiB, before spare space for logs and saves. It contains
 retail assets from the supplied disc and is not a public redistributable bundle.
 The watched Xbox result applies to Deluxe only; the two non-Deluxe discs still

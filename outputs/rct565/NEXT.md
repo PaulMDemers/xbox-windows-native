@@ -1,3 +1,13 @@
+# Overnight continuation: October 19
+
+New authorization runs through 14:00 UTC; the user cannot reset until then.
+Use outputs/rct567 and the fresh PC control568. The supplied manual explicitly
+describes edge scrolling for fullscreen mode; window-edge stillness alone is
+not a demonstrated defect. Validate alternate controls and both modes before
+unattended console use. No reset-dependent probe overnight. The automation has
+been reactivated under the new authorization; the older paused note below is
+historical. Runtime565 remains CLOSED.
+
 # Xbox565 CLOSED; next is a separate gameplay test
 
 The user observed Deluxe's title/menu and Forest Frontiers on native Xbox, then

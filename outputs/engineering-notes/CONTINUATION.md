@@ -1,3 +1,75 @@
+# PC568 CLOSED: documented mode-specific scrolling confirmed on PC
+
+Window right-edge dwell stayed still (checked viewport pixel-identical), arrows
+and right-button dragging moved landscape. Full Screen640x480 right-edge dwell,
+arrows and right-button dragging moved it; edge option enabled in both modes.
+Window restored. PC-only; Xbox alternate inputs/fullscreen remain untested.
+600-second helper closed gracefully, game_exit0, no forced termination, exact
+registry subtree restoration, five clean hives and one new6006 shutdown event.
+VM exited0 without host quit/deadline; immutable404 source exact. DDRAW.DLL loaded,
+not an API-call trace or acceleration result. No performance/audio/save claim.
+568 final001 CLOSED; never rerun/recollect/parent. Owned helper ISO removed with
+hash check; all original media/disks/captures retained. All processes closed.
+567 host compression preserved46 hashes; original parser failure retained.
+568 prep001 path failure and screen-request exit race retained. No console
+access or hook during567/568; ordinary720p remains. User cannot reset until10am.
+Next outputs/rct568/NEXT.md: implement a Windows-owned input/capture helper and
+validate it on a NEW PC fixture before unattended Xbox use. Use owned PID/class,
+actual client bounds/focus and private captures; never count sent input as motion.
+Cutoff Oct19 14:00UTC, cleanup only from13:50. Heartbeat ACTIVE. Public commit
+checkpoint reviewed; includes only567/568 and the listed documentation changes.
+
+# PC568 exited automatically; readback ACTIVE
+
+Window right-edge dwell was pixel-identical in the checked viewport; arrows
+and right-button dragging visibly moved it. Fullscreen640x480 right-edge dwell,
+arrows and right-button dragging all moved the landscape. Edge option checked
+in both modes. Window restored. See observations001.json; this is PC-only.
+VM exited0 at07:18:54UTC without host quit/deadline; immutable source/ISO exact.
+Read-only screen request raced process exit and was refused before QMP; retained
+screen-race001. No relaunch. Audit/collection exec12205 ACTIVE under real leases:
+cold002.py --phase1 then collect001.py. Wait, then Windows review001.py. Only
+close568 after registry, runner, hive/events and source checks; preserve failures.
+No physical console access/hook. All prior runtimes closed. Oct19 cutoff14:00UTC,
+cleanup from13:50, user unavailable to reset. Next native input/capture helper
+must be validated on a NEW PC fixture before unattended Xbox deployment.
+
+# Fresh PC568 ACTIVE; no console launch
+
+October19 overnight authorization until14:00UTC remains active; no user reset
+available. All46 archive hashes preserved across completed567 compression passes.
+Storage before helper creation24,449,196,032 bytes free. Helper568 compiled and
+all504 ISO files independently read back exact. Preparation001 failed Windows
+path translation before child creation; prepare002 succeeded and is retained.
+Cold0 checked6475 files/308 directories, five hives and immutable404 source.
+PC568 launched once under real build+xemu leases, exec54832, WSL QEMU PID460;
+phase1 record owns actual state. Login submitted from private cold hive.
+Physical Xbox has not been accessed; ordinary720p/startup remains untouched.
+Next observe PC desktop, launch D:\PREP.CMD once via QMP Run dialog, then inspect
+window/park and compare edge/arrows/right-drag, followed by fullscreen if exposed.
+Runner automatically closes after600seconds and requests normal restart; host
+VM deadline1800seconds. Preserve any failure. Do not rerun closed561-566.
+After exit cold002.py --phase1 under leases/offline library path, collect private
+runner log using a new read-only audit while568 is still open, verify registry,
+hive/events/screens and close568. No game-performance or GPU claim.
+
+# Overnight Oct19 ACTIVE: manual explains fullscreen edge-scrolling scope
+
+Authorized through14:00UTC (10am Eastern), cleanup only from13:50. User cannot
+reset until then. Heartbeat xbox-emulator-development-until-10am reactivated
+with updated date and no-reset constraint. No new console access or hook.
+567 retains host archive compression records and the manual review: supplied
+Deluxe PDF page29 describes edge scrolling specifically for fullscreen; arrows
+and right-button dragging are alternatives. Window-edge stillness is not yet
+a demonstrated input defect. All three methods still need observed comparison.
+568 fresh PC tooling is being prepared from immutable404 plus verified retail
+export files, never a closed runtime parent. No VM launched yet.
+Host compression005 currently runs under build+xemu leases in exec session93521;
+check its record/process before further work. First five disk hashes preserved;
+003 preserved eight fixture hashes;004 preserved three legacy input hashes.
+002 failed JSON case parsing before mutation and is retained. Do not rerun
+compression records. See outputs/rct567/NEXT.md for exact next operations.
+
 # Next: windowed/fullscreen scrolling, persistence, then measured performance
 
 User requests the scrolling matrix in both Window and Full Screen modes. Sound
