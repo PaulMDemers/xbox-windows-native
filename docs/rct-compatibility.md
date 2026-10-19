@@ -69,6 +69,13 @@ These are PC results; the Xbox alternatives still need testing. The game loaded
 `DDRAW.DLL`, but that module inventory is not an API call trace or acceleration
 measurement. See the [fresh input comparison](../outputs/rct568/REPORT.md).
 
+The later [native input control573](../outputs/rct573/REPORT.md) reproduced
+windowed arrow-key and right-button scrolling without host game input. Edge
+scrolling remained stationary. Its fullscreen captures and one passive emulator
+image were black, so that unattended fullscreen path remains unqualified.
+Returning to Window mode and normal cleanup passed. This is a harness/display
+investigation on the PC fixture, not a new Xbox result.
+
 The next performance work uses a save reloaded across a normal restart, a
 recorded fixed scene and an observed graphics-API path before choosing an
 optimization. See the [measurement plan](rct-performance-plan.md) for the

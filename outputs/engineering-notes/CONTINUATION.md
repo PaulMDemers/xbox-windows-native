@@ -1,3 +1,99 @@
+# PC573 CLOSED; fullscreen evidence still unqualified
+
+573 native scan-code arrows and relative right-drag visibly move the windowed
+park; right-edge stays still. HWND reacquisition passes both mode changes.
+All16capture calls and submission contract pass, but five fullscreen GDI BMPs
+are solid black, as is passive QMP auto-1792400424685241061.png. Thus full-matrix
+qualification remains FALSE; not proven merely a GDI capture limitation. Window
+restoration/cleanup pass: exact game registry, five hives, new6006, exit0 without
+force, normal VM restart09:01:15UTC. All owned processes closed.572 remains CLOSED
+failed native scroll/mode-transition control with successful cleanup. Transport
+ISOs removed by exact hash/path, all private runtime evidence retained.
+
+Next outputs/rct573/NEXT.md: fresh574 retains inputs and removes fullscreen GDI
+capture as controlled variable. Supplied manual and retained568 menu identify
+built-in Screenshot; validate its new file plus passive QMP display images before
+any Xbox admission. Do not infer visible output from a game-generated image.
+No Xbox access/hook in these controls. Physical565 remains last result/dashboard;
+window fullscreen alternatives still untested there. Sound deferred. Save/reload,
+actual API tracing and performance follow qualified input/capture evidence.
+Deadline Oct19 14:00UTC; closeout only13:50; user cannot reset until10am.
+# PC573 stopped automatically; first readback ACTIVE exec33099
+
+VM573 exited0 at09:01:15UTC, no host quit/deadline, parent/ISO unchanged.
+Exec61117 closed. Passive image shows changed park view; case-specific movement
+and restoration await native captures. Cold1+first collection ACTIVE exec33099
+under real build+xemu leases. Full repository check40044files passed on staged
+source set; restage final records before commit. No Xbox access/hook.572 CLOSED.
+Read573/NEXT.md; deadline Oct19 14:00UTC, closeout13:50.
+# PC573 native sequence ACTIVE exec61117
+
+Owned logon completed; observed800x60016bit desktop with taskbar at bottom600.
+Start balloon dismissed before game. D:PREP.CMD verified and submitted once at
+08:56UTC. No host game input after helper begins. VM61117 owns real build+xemu
+leases. Wait bounded completion, cold1/collect once, then reviews and captures.
+572 CLOSED with failed input matrix and successful cleanup. No Xbox access/hook.
+Deadline Oct19 14:00UTC, closeout only13:50. See573/NEXT.md.
+# PC573 ACTIVE
+
+Cold0 passed6475files/308dirs. One fresh573 VM launch under actual build+xemu
+leases, XBOX_XEMU_MODE=exclusive. Read573/NEXT.md for owned login,800x600 desktop,
+Start balloon dismissal, D:PREP.CMD. No host game input after helper begins.
+572 CLOSED: nine captures, native scroll/mode-transition qualification failed;
+cleanup passed. No Xbox access/hook. Cutoff Oct19 14:00UTC; closeout13:50.
+# PC572 CLOSED; fresh573 cold0 ACTIVE exec73710
+
+572 cleanup passed, nine native captures reviewed. Title/scenario/Options clicks
+worked; all three windowed scrolling ROIs stayed identical. Fullscreen changed
+to640x480 but recreated the HWND, causing safe guard refusal before full capture.
+Native input qualification FAILED. All572 processes closed; ISO removed after
+exact hash check, private disk/logs/captures retained. Report/final001 preserve it.
+573 implements bounded owned-HWND reacquisition, scan-code extended arrows,
+relative mouse movement and input-state receipts. Build001-Werror passed, exact
+build sources and closed572 pins verified; all504 media payloads exact. Projected
+1600MiB reserve passed including WSL backing C. Fresh immutable404 child prepared;
+cold0 ACTIVE exec73710 under actual build+xemu leases. No573 VM launch yet.
+No Xbox access/hook. Follow outputs/rct573/NEXT.md. Cutoff Oct19 14:00UTC;
+review/closeout only from13:50. User cannot reset until10am.
+# PC572 stopped normally; first readback ACTIVE exec90675
+
+VM572 exited0 at08:46:39UTC with no host quit/deadline and unchanged parent/ISO.
+Passive capture shows Forest Frontiers, but native sequence/case results await
+first collection. Exec20005 closed; cold1+collection ACTIVE under actual
+build+xemu leases (exec90675). No host game input was submitted. No Xbox access
+or startup hook. Follow572/NEXT.md for review001/capture/input and visual checks.
+Prior569-571 remain CLOSED. Cutoff Oct19 14:00UTC; closeout from13:50.
+# PC572 native sequence ACTIVE
+
+At08:42UTC owned logon completed, Start balloon dismissed and PC desktop
+confirmed800x60016bit with taskbar at bottom600. D:PREP.CMD text verified and
+submitted once. Copy/helper remains foreground; no host game input after launch.
+VM exec20005 owns actual build+xemu leases. Passive captures and bounded
+supervisor only until normal restart, then cold1/first collect and independent
+capture review. No Xbox access/hook. Prior569-571 CLOSED, pushed b55b0fd1.
+Cutoff Oct19 14:00UTC; review/closeout only from13:50.
+# PC572 ACTIVE exec20005
+
+Cold0 passed6475files/308dirs. One VM572 launch at08:36UTC under actual
+build+xemu leases and explicit WSL XBOX_XEMU_MODE=exclusive. Prepared media
+and four-positive/one-negative title reference checks passed. Follow572/NEXT.md
+for owned login, PC800x600 setup, Start balloon dismissal, D:PREP.CMD and native
+sequence. No host game input after helper starts. No Xbox access/hook. Prior
+569/570/571 CLOSED and pushed b55b0fd1. Cutoff Oct19 14:00UTC, closeout13:50.
+
+# Fresh PC572 prepared; cold0 ACTIVE
+
+b55b0fd1 is pushed: closed569/570/571 failures, cleanup evidence, compression
+and game performance plan. Full repository check39977 files passed; exact staged
+bytes/pins and links passed, dotfile allowlist review failure retained.
+572 uses a new second title rectangle matching four retained positive frames
+(including native GDI) and rejecting569 splash; first rectangle unchanged.
+Build001 compiled, all504 media payloads exact, projected1600MiB reserve passed.
+New immutable404 child prepared; cold0 audit ACTIVE exec77226 under actual
+build+xemu leases. No572 VM launch yet. Follow outputs/rct572/NEXT.md.
+No Xbox access/hook during these controls. User cannot reset until10am.
+Cutoff Oct19 14:00UTC, review/closeout only from13:50. Closed controls immutable.
+
 # PC571 CLOSED; native input matrix still unqualified
 
 Foreground request and actual game focus now pass in571. The second readiness
