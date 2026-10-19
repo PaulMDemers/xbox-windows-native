@@ -1,0 +1,3 @@
+# Fresh590 watched Xbox control
+
+Wait for user cold-start readiness and PC589 integrated qualification before physical stage. Use exact589 runner; no PC injection flag. Independently verify all502 retail assets under582-kit/game against closed583 stage and new pristine manifest, move only those assets to new589-kit with new owner, retain old runner/owner/used-hook and all583 evidence. New outputs E:/xwn589 and startup hook xwn590.cmd. One launch, watched cold start, hook removed FIRST on dashboard return, bounded cold audits. No drivers/ordinary startup changes, no closed runtime reused, no game patched. Budget at least128MiB console spare and20GiB host reserve.
