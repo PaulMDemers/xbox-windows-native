@@ -1,3 +1,24 @@
+# Closed588: physical file save/restart/reopen passed
+
+The original development Xbox completed both planned ordinary720p Windows
+launches and normal restarts. User confirmed save/close/reopen in phase1 and
+unchanged text after the second boot. Paired cold readbacks show the exact same
+18-byte file: Xbox save test 588, SHA2568800e17235914771753c7af7ce8d57ba407b2b949be8d187a6f054da2d774cb3.
+Both system EventLog6006 deltas are1; five hives clean in both audits. Protected
+files and ordinary startup unchanged. Ftdisk49/Srv2013 remain; no full allocation,
+paging-health, RCT persistence, GPU or another-console qualification follows.
+
+Follow outputs/save588/REPORT.md and final001.json. Runtime588 is CLOSED: never
+relaunch/recollect/parent it. Console last observed at dashboard by user and
+fresh after2 FTP capture. No owned host job or temporary hook remains. The small
+/E/xwn588.txt is intentionally left in place. No FTP file writes or driver changes
+were made. Delivered ZIPs remain unchanged; automation stays PAUSED.
+
+Next useful package test: collect inventory from a different Xbox and conduct
+its watched initial Windows boot/persistence check. Original hardware is now
+idle; no further reset or third launch is needed. A future RCT persistence/API
+cost test requires a new owned attempt. Keep all prior failures and closed runs.
+
 # Active588 phase2: first save persisted, second launch sent
 
 User reported saving, closing/reopening and normal Restart to dashboard.
