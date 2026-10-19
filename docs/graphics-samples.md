@@ -76,7 +76,7 @@ Windows automatically, and they do not impose a process watchdog.
 | 09c | Combined windowed scene | Native-format CPU staging, clipped primary blit, cover/move/uncover and exact GDI readback | PC RGB565 and Xbox RGB32 default/HEL pass |
 | 09d | Repeated scene process costs | Three separate scene processes per backend, exact pixel checks, CPU time and working-set/commit counters | PC and Xbox six-run process-cost controls pass; not FPS or in-process leak proof |
 | 09e | Sustained scene in one process | 2,560 repeated frames, calibrated API phase timings, five checked endpoints and memory before/after release | PC/Xbox scoped controls pass; PC QPC durations unqualified; Xbox clock cross-checks pass |
-| 09f | Perspective texture interpolation | Fixed projected outlines with constant, increasing, decreasing and scaled W; swapped UV control | NT5 PC default/HEL pass; matched Xbox prepared |
+| 09f | Perspective texture interpolation | Fixed projected outlines with constant, increasing, decreasing and scaled W; swapped UV control | NT5 PC default/HEL pass; Xbox attempt returned without test receipts |
 | 10 | Small game-like scenes | Scrolling isometric tiles and moving sprites, then a textured room; controls, audio and save/reload | Planned; precedes the actual game acceptance tests |
 
 Do not require hardware acceleration for a software-compatible rung. An inventory
@@ -1146,4 +1146,6 @@ qualification bounds each process separately. The [host oracle](../outputs/persp
 is synthetic evidence only. The [556 Windows 2000 control](../outputs/perspective556/REPORT.md)
 passes all five cases in both software backends, unchanged texture bytes and
 normal restart. Independent cold readers and live module checks agree. The
-matched Xbox comparison is prepared and has not yet launched.
+[557 Xbox attempt](../outputs/perspective557/REPORT.md) returned to the dashboard
+without a runner receipt or graphics captures; it does not qualify Xbox
+perspective rendering and does not invalidate the PC result.

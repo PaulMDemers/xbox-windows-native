@@ -1,3 +1,49 @@
+# 555/556 CLOSED pass;557 CLOSED with no Windows test result
+
+555 exact-rational/ray oracle and10host tests pass.556 freshNT5 default/HEL
+fiveperspective cases each pass, normalrestart, independentcoldreaders agree,
+11modules/backend and2268negativecontrols;155inputs archived, allprocessesclosed.
+Source/PC/557preparation pushed eb92c1cf. Neverrerun/recollect/parent556.
+
+557 usercoldstartReady, oneacceptedSITErequest03:18:28UTC. Dashboardreturned
+withouttestnamespace. HookremovedFIRST;24pairedcoldfiles agree; baselineall
+unchanged, fivehivesclean, no new events,6006delta0. NoWindowsgraphicsresult,
+no normalrestartproof. Allsupervisors/observer closed;51inputs archived
+C:/xwn557/frozen001. Lastconsole authenticateddash, noqueuedlaunch. Preserve
+failure; neverrerun/recollect/parent557. Read557REPORT/NEXT-final/final001.
+Userquestion pending: diddesktopappear or blackreturn? Append actualanswer in
+newobservationrecord whenreceived. BootdiagnosisTABLED; automationPAUSED;
+protected720p/ordinarylauncher/startupexact. NoGPU/game/releasepromotion.
+
+# 557 ACTIVE collection: dashboard returned without test namespace
+
+Authenticated dashboard observed03:19:44UTC without runner receipt. Started
+hook-FIRST collection immediately after inspecting that observation. Hook
+confirmed removed; protected720p/startup exact. Collection supervisor68955
+still paired-reading files. Observer53524 remains read-only until240s deadline;
+do not launch again. User asked whether desktop appeared or blackreturned.
+No test namespace observed, so no Windows graphics result yet. Aftercollect,
+audit1, waitobserverclosed, close.py supports absent runtime as failed/noresult.
+Do not call runtime/module/controls absent capture files. Preserve failure.
+
+# 557 ACTIVE: one launch accepted; waiting for dashboard return
+
+Stage/readbacks complete. OneSITE request accepted200 at03:18:28UTC.
+Observation supervisor session53524 has240second bound. No retry. These are
+offscreen tests; desktop alone notqualification. Onreturn hookFIRSTcollect,
+audit/runtime/module/actualcontrols/close.51frozen inputs stayexact.
+ConsoleCuntouched; protected720p/ordinarystartup.556closed preserved.
+
+# 557 ACTIVE: cold start confirmed, staging
+
+User answered "Ready" to requested ten-second power-off thenUnleashX.
+ready001 records exactanswer/UTC; package001 freezes51inputs with exact556sample
+and qualifiedchecker/source hashes. Stage supervisor session91933 active. No
+launch yet. After stagecompletion send one launch, observe,hookFIRSTcollect,
+audit/runtime/module/actualcontrols/close. Neverretry accepted/uncertainrequest.
+Source/PC evidence pushed eb92c1cf.556closed neverrerun/recollect/parent.
+BootdiagnosisTABLED; automationPAUSED; protected720p and ordinarystartup.
+
 # 555/556 CLOSED: varying-W PC pass;557 waits for actual cold-start answer
 
 555 independent rational/ray reference and10host tests pass.556 fresh original404

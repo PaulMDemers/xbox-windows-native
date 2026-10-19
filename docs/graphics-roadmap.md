@@ -250,5 +250,6 @@ The [556 varying-W PC control](../outputs/perspective556/REPORT.md) passes five
 perspective-texture cases in each software backend using an independent
 rational reference cross-checked by object-space ray/plane intersection.
 Projected outlines stay fixed while depth and UV change; robust pixels reject
-affine interpolation. The matched 557 Xbox test is prepared, awaiting a cold
-start. This adds offscreen perspective coverage, not game or GPU qualification.
+affine interpolation. The [557 Xbox attempt](../outputs/perspective557/REPORT.md) returned without a
+Windows test receipt; no Xbox perspective result is available. The PC result
+adds offscreen perspective coverage, not game or GPU qualification.
