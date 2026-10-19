@@ -1,3 +1,12 @@
+# Publication checkpoint: qualified575 pushed a75e1f67
+
+574/575 evidence and576 read-only readiness are published. All owned build, VM,
+audit and probe processes are closed; no console hook or launch is outstanding.
+Xbox authenticated at dashboard09:54UTC, protected720p/startup exact. Next actionable
+work is outputs/rct576/NEXT.md (capacity, new controller/package/fault tests and
+fresh physical staging). Do not rerun PC575 or closed physical565. Automation
+continues toward Oct19 14:00UTC, closeout13:50; no reset available until10am.
+
 # PC575 qualified; physical576 readiness passed, no writes/launch
 
 575 CLOSED: window edge stationary, arrows/drag move; fullscreen all three move.
