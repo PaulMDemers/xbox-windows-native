@@ -1,3 +1,65 @@
+# PC575 VM ACTIVE
+
+Cold0 passed6475files/308dirs. One VM575 launch under real build+xemu leases.
+Follow575/NEXT.md for owned logon/800x60016bit/Start balloon dismissal and one
+D:PREP.CMD submission. Ten-second post-Screenshot settling is the controlled
+helper change; verify passive image notification state and drag movement.
+574 CLOSED, all source/media/runtime evidence preserved; no Xbox access/hook.
+Deadline14:00UTC Oct19; closeout13:50. Full repo check33919 still running.
+
+# PC574 CLOSED; fresh575 cold0 ACTIVE
+
+574 has visible fullscreen with game-PCX/passive-QMP region agreement. Window
+edge stationary, arrows/drag move; fullscreen edge/arrows move, drag unchanged.
+Centered Screenshot notification may intercept drag origin. No cause proven.
+Cleanup passes, five hives/new6006/exit0; capture FileNotFoundError has no recorded
+event time (earlier around-shutdown wording was inference). All574 processes
+closed; exact-hash ISO removed, private evidence retained. Never reopen574.
+
+575 adds only ten-second post-Screenshot settling to game helper; input methods
+unchanged. Compiler-Werror/source review and504payload media checks passed.
+Fresh404 child/cold0 ACTIVE under real build+xemu leases, exec49101.
+Follow575/NEXT.md. No Xbox access/hook. Last physical565/dashboard.
+Deadline14:00UTC Oct19; closeout only13:50. User cannot reset until10am.
+Boot/1080i tabled. Initial note update failed default-codepage decode before write;
+this UTF8 update preserves the full prior history.
+
+# PC574 stopped automatically; readback ACTIVE
+
+VM574 exited0 at09:25:57UTC, no host quit/deadline, parent/ISO unchanged.
+Exec61981 closed. Passive images show visible fullscreen Options before builtin
+Screenshot, then restored Window view. Per-case game files await first collection.
+Supervisor retained capture_error FileNotFoundError around shutdown; do not erase
+or retry it. Cold1/collect ACTIVE under real build+xemu leases. No Xbox access/hook.
+Deadline14:00UTC Oct19; closeout13:50. Follow574/NEXT.md.
+# PC574 native sequence ACTIVE exec61981
+
+Owned logon and observed800x60016bit desktop setup completed; Start balloon
+was dismissed. D:PREP.CMD verified/submitted once at09:20UTC. No host game input
+after helper starts. Actual build+xemu leases held by VM supervisor61981.
+Wait bounded stop, cold1/collect once, then compare builtin images and passive
+QMP frames before/during fullscreen. No Xbox access/hook.573 remains CLOSED.
+Deadline14:00UTC Oct19; closeout only13:50. See574/NEXT.md.
+# PC574 ACTIVE exec61981
+
+Cold0 passed6475files/308dirs. One VM574 launch under real build+xemu leases,
+explicit XBOX_XEMU_MODE=exclusive. Follow574/NEXT.md for own logon,800x600 setup,
+Start balloon dismissal and D:PREP.CMD. No host game input after helper begins.
+Fullscreen GDI removed; builtin Screenshot and5second passive QMP observations
+must be checked independently after normal restart. No Xbox access/hook.
+573 remains CLOSED with windowed controls working, fullscreen black/unqualified.
+Deadline14:00UTC Oct19, closeout only13:50.
+# Fresh574 cold0 ACTIVE
+
+408ce040 is pushed. Closed573 has working native window arrows/drag but black
+fullscreen GDI and passive QMP images; complete-matrix qualification stays false.
+574 preserves input methods, removes fullscreen GDI capture, holds20seconds
+before builtin Screenshot, and samples passive QMP every5seconds. New root files
+are bounded/stable/copied without deleting originals; format/content still need
+runtime validation. Build001-Werror and source review passed; all504 media
+payloads exact. Projected1600MiB guard passed including WSL backingC. Fresh404
+child prepared; cold0 audit ACTIVE under real build+xemu leases. No VM launch yet.
+No Xbox access/hook. Follow574/NEXT.md. Deadline14:00UTC Oct19, closeout13:50.
 # PC573 CLOSED; fullscreen evidence still unqualified
 
 573 native scan-code arrows and relative right-drag visibly move the windowed

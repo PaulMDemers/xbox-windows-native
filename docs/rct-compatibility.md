@@ -76,6 +76,13 @@ image were black, so that unattended fullscreen path remains unqualified.
 Returning to Window mode and normal cleanup passed. This is a harness/display
 investigation on the PC fixture, not a new Xbox result.
 
+The [builtin Screenshot control574](../outputs/rct574/REPORT.md) rendered
+fullscreen without GDI capture. Its game-produced PCX files match independently
+sampled emulator display regions. Fullscreen edge scrolling and arrows moved
+the park; the subsequent drag did not. A centered screenshot notification may
+interfere with that drag, so it remains inconclusive pending a fresh settling
+control. Normal restart and registry/hive checks passed; no Xbox claim is added.
+
 The next performance work uses a save reloaded across a normal restart, a
 recorded fixed scene and an observed graphics-API path before choosing an
 optimization. See the [measurement plan](rct-performance-plan.md) for the
