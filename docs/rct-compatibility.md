@@ -91,6 +91,19 @@ emulator display regions, and normal shutdown/registry/hive checks passed.
 This qualifies the automated PC probe for a separate Xbox comparison. It
 supports notification interference in574 without proving a unique cause.
 
+The [unattended Xbox comparison576](../outputs/rct576/REPORT.md) reached Forest
+Frontiers, but the Windows2000 Getting Started window covered the next click.
+The occlusion guard stopped before any scrolling case or fullscreen switch.
+Normal restart, hook removal and registry/hive checks passed. This leaves the
+Xbox input comparison inconclusive; the Welcome window needs scoped handling
+before another unattended test.
+
+The [Save Game dialog inspection578](../outputs/rct578/REPORT.md) identified the
+owned filename and Save/Cancel controls on a fresh PC fixture. Cancelling returned
+to an unchanged park view, and normal restart and registry/hive checks passed.
+This prepares the save/reload test; it did not create a save or establish Xbox
+persistence across restart.
+
 The next performance work uses a save reloaded across a normal restart, a
 recorded fixed scene and an observed graphics-API path before choosing an
 optimization. See the [measurement plan](rct-performance-plan.md) for the

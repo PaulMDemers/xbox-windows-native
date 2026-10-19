@@ -28,3 +28,12 @@ conversion, no driver patch, no native acceleration claim from loaded DLLs.
 Host C/E reserve remains20GiB, including WSL backingC. Establish projected space
 before creating another ISO/overlay; no such allocation is admitted by this note.
 All physical hooks/launch state remain governed by576 and engineering continuation.
+
+The new disc-mapping001 record independently matches63 destination files,
+498083923bytes, to the supplied Deluxe disc. A future supplemental ISO needs only
+439files/35000601bytes plus its runner/scripts. The parser reported a missing UDF
+File Set Terminator; the mapping uses Joliet and exact full ISO/payload hashes.
+This is byte mapping only, not a qualified two-CD guest copy path. Validate that
+copy route on a fresh fixture, then eject original and helper media before game
+launch so the game is tested using local assets. Existing578 transport ISO was
+removed only after exact retained-source verification; its closed disk remains.

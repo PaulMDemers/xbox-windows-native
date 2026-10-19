@@ -21,5 +21,8 @@ preserved in review-attempt001.json. Running it on the host passed without any
 guest relaunch or repeat cold collection.
 
 This PC control is CLOSED. It does not qualify saving/reloading, Xbox behavior,
-frame rate or acceleration. The private transport ISO remains a pinned asset;
-the closed runtime must not be reopened or used as a new experiment's parent.
+frame rate or acceleration. The private transport ISO was retained at closure,
+then removed by [scoped cleanup](../rct577/transport578-cleanup001.json) after
+all502 source assets, the runner and exact ISO hash were verified. The closed
+guest disk and evidence remain; they must not be reopened or used as a new
+experiment's parent.

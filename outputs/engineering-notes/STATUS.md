@@ -1,3 +1,80 @@
+# Physical576 closed: Welcome obstruction; PC578 closed: Save dialog qualified
+
+Read outputs/rct576/NEXT004.md next. The Xbox is at the dashboard, with no owned
+startup hook, outstanding launch or reset needed. All owned runtime, collection,
+audit and compression processes are closed. Never rerun/recollect/parent576 or578.
+
+Physical576: one launch accepted10:43:02UTC; native captures show title, scenarios
+and Forest Frontiers. Getting Started covers the next click, so the occlusion
+guard aborts before pause/options/scrolling. No fullscreen/input comparison is
+qualified. Blocking process identity was not logged. Dashboard returned10:46:16;
+hook removal was collection's first mutation. Game exit0, no forced termination,
+registry/desktop restoration, five clean hives and one new6006 passed. Ftdisk49
+remains. Preserve original stage001 APPE timeout, independently verified prefix
+recovery002, and CRLF parser failure/corrected review002. Final001 is authoritative.
+
+Next fresh PC control: identify Welcome's exact process/module/title/class and
+qualify a scoped normal close without changing its startup checkbox. Handle
+delayed appearance and log blockers. Do not waive occlusion or dismiss unknown
+setup/error dialogs. Then resume matched Xbox inputs and planned two-boot save/
+reload per578/NEXT.md.578 inspected Save Game (#32770, Edit1148, Save1, Cancel2),
+cancelled to an identical park region and restarted cleanly; no save was created.
+
+Storage:577/disc-mapping001.json verifies498083923bytes/63files on the supplied
+Deluxe CD, leaving35000601bytes/439files for a small supplement. The proposed
+two-CD copy/ejection route is not guest-qualified. Duplicate578 helper ISO was
+removed after all502 retained assets and runner were checked. Closed568/578 disks
+were NTFS-compressed with unchanged hashes. No guest reopen, reparent or evidence
+loss. Host C had22675243008bytes after compression; E last21499871232. Enforce
+projected20GiB reserve including WSL before any new allocation. No new PC fixture
+is admitted yet. Keep720p, ordinary startup and console dashboard C untouched.
+
+Publication checks passed:40243 tracked files, closed576/578 pins, staged kit
+bytes and18 local links. Preserve the initial cp1252 link-check failure. Closure,
+resource and docs evidence is being committed/pushed; inspect current Git HEAD
+and remote rather than stale heartbeat hashes. Deadline Oct19 14:00UTC; review
+only from13:50. Sound, boot intermittency and1080i remain deferred. No FPS/GPU claim.
+
+# Physical576 launch ACCEPTED10:43:02UTC; bounded observation ACTIVE
+
+Stage002 recovered exactmissing tail and completed504files533119346bytes,
+hookLAST. All491previousfiles reread; originalstage001failure preserved.
+Supervise002 launch exec2252 CLOSED0; full prelaunchreadback passed, oneSITE
+returned200 EXEC command succeeded. NEVER retry this launch. Ownedxwn576.cmd
+is installed; Windows/game state unknown until observation andcoldreceipts.
+observe001.py now runs600-second bounded read-only dashboardcheck. Onreturn
+use supervise002.py collect immediately(hookFIRST). Ifstillofflineatbound,
+preserveexactstate/hook andswitchhostwork; noovernightresetrequest.
+
+Follow576/NEXT003.md:audit002.py1 WSLlibhivex,registry_review002/review001 HOST,
+imagecapture_review001 withPillow andindependentlandmarkinspection.
+578 CLOSED/pushed7001173b.577 newread-onlydiscmap verified498083923bytes
+(63files) cancomefromoriginalDeluxeISO, leaving35000601bytes439files for
+future smallsupplement. No newmedia/runtimeallocated. OriginalISO parserUDF
+terminatorwarningretained; mappingusesJolietandexacthashes. Needcapacityand
+qualifiedtwo-CDcopy/ejection before future use; notyetguest-proven.
+Deadline14:00UTC Oct19;closeout13:50;usercannotresetuntil10am.
+
+# Physical576 recovery002 ACTIVE exec61471; original stage FAILED
+
+Original exec8054 CLOSED failure10:34:35UTC:APPE final reply timeout after
+524732784verified bytes. No launch/hook. Stage001/supervisor/failure preserved.
+Probe002 independently read2785280byte exact prefix of7005802byte Css9.dat;
+progress counter2129920 was not actualoffset. Seven resume fault tests and
+twelve newcontroller cases pass. Frozen recovery-admission002 sources/staged
+bytes exact. Recovery stage002 rereads all previous files/baseline, resumes
+verified missing tail, writes remaining files and only then hookLAST.
+
+Follow576/NEXT003.md. NEW supervise002.py stage/launch/collect andcontroller002
+use stage002; do not use originalsupervise001/failedstage. One futureSITE20sec,
+no retry. observe001 remains read-only. Onreturn collectFIRSThook; audit002.py1
+underWSLlibhivex, registry_review002 andreview001 onHOST, imagePillowreview.
+Read actualrecords before any action; nolaunch yet atthischeckpoint.
+
+578 CLOSED/pushed7001173b. NoPC process active. Physical game result still565.
+HostC~21.9GB/E~21.5GB; retain20GiB, no newfixturewithoutcapacity.
+Deadline14:00UTC Oct19, closeout13:50; usercannotresetuntil10am.
+
 # PC578 CLOSED; physical576 stage still ACTIVE
 
 578 dialog inspection passed: owned Save Game #32770, filename Edit1148,
