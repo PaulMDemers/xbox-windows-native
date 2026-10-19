@@ -1,4 +1,4 @@
-# Build documentation refreshed; hardware target pending
+# Build documentation refreshed; original development Xbox available
 
 The user reports copying the two delivery ZIPs to a flash drive and authorizes
 reclaiming those local ZIPs if space is needed. No deletion was needed or done;
@@ -20,10 +20,11 @@ No build, new ZIP, VM, FTP connection or console launch occurred this turn.
 PC586 and prior runtimes stay closed; automation stays PAUSED. Prior process,
 hook and console observations below are historical, not fresh observations.
 
-Next: identify which console the user offers (async question pending), collect
-its hardware-info JSON, then arrange a watched first boot and a plain-text
-save/normal-restart/reopen check. Do not assume the old FTP target is the new
-console. Physical RCT persistence remains unqualified and RCT stays out of kits.
+The user identified the available hardware as the original development Xbox.
+No repeat inventory is needed for that unchanged target. Next useful physical
+check is a fresh plain-text save/normal-restart/reopen sequence; it has not
+launched. Another-console kit compatibility still awaits a different console
+and its inventory. Physical RCT persistence remains unqualified; no RCT in kits.
 
 # Completed: private Xbox ZIPs and PC save/restart/load
 

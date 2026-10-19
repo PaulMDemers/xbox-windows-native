@@ -25,5 +25,7 @@ Documentation now starts at docs/build-test-kits.md, linked from the README,
 component build guide, build-to-boot guide and tester guides. The clean-media
 converter/storage limitations remain explicit. No build or physical launch
 was performed to validate prose. Next hardware work is inventory and a watched
-first Windows boot on an identified target; a clarification is pending about
-which console is available. Automation remains paused.
+first Windows boot on another target when available. The user subsequently
+identified the currently available console as the original development Xbox;
+its useful next check is fresh physical save/restart/reopen, not repeated
+inventory. No new hardware test has launched. Automation remains paused.
