@@ -15,6 +15,7 @@ run instructions, output interpretation and current qualification limits.
 - `d3dpresent.c`: windowed D3D render, cover, move and expose checks.
 - `transform.c`: six XYZ world/view/projection and viewport controls.
 - `scene.c`: combined offscreen XYZ, two textures and depth/order controls.
+- `scenepresent.c`: combined scene with clipped window presentation (PC validated; Xbox pending).
 - [Builder](../../../tools/build-graphics-samples.py): fresh out-of-tree RosBE build.
 - [Independent checker](../../../tools/graphics_sample.py): report and pixel oracle.
 
@@ -41,10 +42,12 @@ See the guide for each sample's arguments and required capture files.
 | `d3dpresent` | [d3dpresent.c](d3dpresent.c) | [d3dpresent.cmd](d3dpresent.cmd) | [graphics_d3dpresent.py](../../../tools/graphics_d3dpresent.py) |
 | `transform` | [transform.c](transform.c) | [transform.cmd](transform.cmd) | [graphics_transform.py](../../../tools/graphics_transform.py) |
 | `scene` | [scene.c](scene.c) | [scene.cmd](scene.cmd) | [graphics_scene.py](../../../tools/graphics_scene.py) |
+| `scenepresent` | [scenepresent.c](scenepresent.c) | [scenepresent.cmd](scenepresent.cmd) | [graphics_scenepresent.py](../../../tools/graphics_scenepresent.py) |
 
 `blend` still tests the original ideal alpha endpoints; the separate arithmetic
 characterization does not turn its failed endpoint result into a pass. `scene`
-has a Windows 2000 PC result, but no completed Xbox comparison. See the
+has completed Windows 2000 PC and Xbox offscreen comparisons. The combined
+windowed `scenepresent` sample uses the existing RGB32/RGB565/RGB555 desktop; PC validation passed and the Xbox comparison is pending. See the
 [current ladder status](../../../docs/graphics-samples.md#the-ladder) before
 interpreting a successful build as tested support.
 

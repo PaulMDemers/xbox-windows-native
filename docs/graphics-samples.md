@@ -24,7 +24,8 @@ Rung 08c now has matched selected-input alpha arithmetic on NT5 PC and Xbox,
 with the endpoint precision limitation retained. Rung 08d now passes windowed
 D3D presentation on NT5 PC and Xbox. Rung 09a adds six XYZ transform controls
 on both. The combined offscreen scene also passes on PC and Xbox; combined
-windowed presentation and game performance remain separate work.
+windowed presentation now passes on PC, while the Xbox comparison and game
+performance remain separate work.
 The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 
 ## Start here
@@ -71,7 +72,8 @@ Windows automatically, and they do not impose a process watchdog.
 | 08c | Alpha blending | Transparent, partial, opaque and blending-disabled triangle controls | Selected-input arithmetic matches on NT5 PC/Xbox default and HEL; exact ideal endpoints remain failed |
 | 08d | Windowed D3D presentation | Render-target readback, exact clipped presentation through cover/move/uncover, unchanged source after blit | NT5 PC/Xbox default/HEL pixel controls pass; no GPU or performance claim |
 | 09a | XYZ transforms | Identity, world/view translation, rotation then view translation, perspective divide and displaced viewport; independent pixel checks | NT5 PC/Xbox default and HEL controls pass |
-| 09b | Combined scene stability | XYZ textures, transforms and depth, followed by windowed presentation and resource teardown | Offscreen PC/Xbox default and HEL pass; combined presentation pending |
+| 09b | Combined offscreen scene | XYZ textures, transforms and depth/order controls | PC/Xbox default and HEL pass |
+| 09c | Combined windowed scene | Native-format CPU staging, clipped primary blit, cover/move/uncover and exact GDI readback | PC RGB565 default and HEL pass; Xbox comparison pending |
 | 10 | Small game-like scenes | Scrolling isometric tiles and moving sprites, then a textured room; controls, audio and save/reload | Planned; precedes the actual game acceptance tests |
 
 Do not require hardware acceleration for a software-compatible rung. An inventory
@@ -921,4 +923,54 @@ independent source/pixel and live/cold module checks. Ftdisk 49 and a shutdown
 popup remain; the scoped graphics pass does not qualify the whole system.
 The [497 Xbox attempt](../outputs/d3d-scene497/REPORT.md) produced no launcher or
 Windows test receipts and remains a separate failed attempt. Its hook and the
-545 hook were removed after collection. Combined visible presentation is next.
+545 hook were removed after collection. The combined windowed PC result and
+pending Xbox comparison are described below.
+
+
+## Combined windowed scene (rung 09c)
+
+`scenepresent` combines the five offscreen scene cases with an owned window,
+DirectDraw clipper, GDI occluder and exact screen-pixel readback. It uses
+the existing RGB32, RGB565 or RGB555 desktop and never changes the display mode.
+The RGB32 rendered scene is explicitly copied into a native-format staging
+surface before the clipped blit; this CPU conversion is part of the test. The window
+moves, is covered and uncovered, then closes. Software rendering only.
+
+Build in WSL using the same RosBE setup as the earlier samples:
+
+```sh
+python3 tools/build-graphics-samples.py --rosbe "$ROSBE" \
+  --sample scenepresent --output "$HOME/build/xwn-scenepresent-001"
+```
+
+Copy `scenepresent.exe` and `scenepresent.cmd` together to Windows. From that
+folder, run each mode with a fresh output prefix:
+
+```bat
+scenepresent.cmd default scene-default-001
+scenepresent.cmd hel scene-hel-001
+```
+
+Retrieve each prefix's `.txt`, `.exit`, `-clear.bin`, `-draw.bin`,
+`-source-before.bin`, `-source-after.bin`, `-screen-before.bin`,
+`-screen-after.bin`, `-post.bin`, `-native-before.bin` and `-native-after.bin`.
+From the repository on your PC:
+
+```sh
+python3 tools/graphics_scenepresent.py /path/to/scene-default-001 --backend default
+python3 tools/graphics_scenepresent.py /path/to/scene-hel-001 --backend hel
+```
+
+A zero process exit means the capture completed; the host checker must also
+pass. It checks the independent scene expectations, exact clipping/occlusion,
+GDI readback and unchanged RGB source pixels. This sample does not establish
+performance, acceleration, game compatibility or varying-W interpolation.
+
+The [547 PC comparison](../outputs/d3d-window547/REPORT.md) passes both software
+paths on RGB565. The [546 attempt](../outputs/d3d-window546/REPORT.md) refused
+an unsupported 32-bit desktop prerequisite before running the sample; it remains
+a separate failed attempt. The Xbox comparison is pending.
+
+The [548 Xbox attempt](../outputs/d3d-window548/REPORT.md) returned without
+Windows test receipts; it does not qualify the new windowed scene on Xbox.
+A fresh cold-start comparison is prepared, preserving the existing 720p setup.

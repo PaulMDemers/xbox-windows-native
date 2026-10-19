@@ -98,7 +98,8 @@ through cover/move/uncover with independent pixel checks. The matched
 at 720p/RGB32, with unchanged source surfaces and exact clipped GDI readback.
 Normal restart is supported, while Ftdisk 49 and shutdown popup events remain.
 World/view/projection controls and the combined offscreen scene now pass on PC
-and Xbox; next is combined windowed presentation. These graphics passes do not
+and Xbox; combined windowed presentation also passes on PC, with its Xbox
+comparison pending. These graphics passes do not
 qualify games or acceleration.
 
 | Stage | Work | Evidence needed to advance |
@@ -200,7 +201,7 @@ and a shutdown popup remain. Visible combined presentation, varying-W
 interpolation and game performance remain untested.
 
 Boot investigation is [tabled after the final warm checkpoint](../outputs/warm-pre-pci544/REPORT.md).
-The next graphics step is combined windowed presentation. Preserve the existing
+The next graphics step is the matched Xbox combined windowed comparison. Preserve the existing
 490 alpha, 492 presentation and 494
 transform passes alongside later failed launches. In particular, the
 [526 alpha repeat](../outputs/blend-context526/REPORT.md) produced no Windows
@@ -208,3 +209,12 @@ measurement; it neither establishes a new pixel failure nor erases 490's
 selected-input arithmetic result. The original 484 ideal-endpoint failure
 remains unresolved. Add bounded resource/performance measurements after combined
 presentation before trying the games.
+
+
+The [547 combined windowed PC control](../outputs/d3d-window547/REPORT.md) now
+passes the five scene cases in both software modes through an explicit native
+CPU staging surface and exact clipped GDI readback. Its existing desktop is
+RGB565. The [548 Xbox comparison](../outputs/d3d-window548/REPORT.md) returned
+without Windows receipts; a fresh cold-start comparison is prepared. Boot
+investigation remains tabled. This windowed path adds no acceleration or game
+performance claim.

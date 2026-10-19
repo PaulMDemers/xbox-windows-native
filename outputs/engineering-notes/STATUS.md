@@ -1,3 +1,29 @@
+# 548 CLOSED without Windows receipts; 549 awaits user cold-start confirmation
+
+Latest console state: authenticated UnleashX after548 collection completed
+2026-10-19 00:07:47 UTC. Owned hook removed FIRST. All10baseline files unchanged,
+5hivesclean, no newWindows events. No scene result or normalRestart supported.
+Read548REPORT/final001. Observer was explicitly stopped after repeated dashboard
+observations with no runner receipt; before-stop bytes retained/hash recorded.
+All owned host processes closed, no hook or queued launch.47inputs archived.
+Never rerun/recollect548. Boot diagnosis remains TABLED.
+
+547 CLOSED scoped PC windowed-scene PASS: default/HEL, five scene cases, RGB565
+native CPU staging plus exact clipped GDI before/after samples, preserved source,
+11modules each from two independent cold readers,3340negative mutations rejected,
+normal restart and154archivedinputs.546 CLOSED failed32-bit desktop prerequisite;
+zero scene processes. Preserve every failure. Public build/guide now available.
+No GPU, games, performance, varying-W or new ideal-alpha qualification.
+
+549 prepared: namespace-only runner build002/imports24/50 and16controller model
+cases pass. Same547sample4073e0a0...; no549package freeze/stage/launch. User asked
+via async tool to power off10seconds, power on, leaveUnleashX, then confirm ready.
+WAIT for actual answer; do not infer power cycle from FTP. Read549NEXT.md. On
+confirmation create ready001 exactanswer+UTC+user_confirmed_full_power_cycle and
+at_dashboard true, then freeze package, verify/stage/readback and one launch.
+No more boot diagnostic ladder. Keep ordinary720p/launcher/startup, protected
+C and20GiB projected host/WSL guard. Automation remains PAUSED.
+
 # 545 CLOSED: combined D3D scene passes; boot investigation TABLED
 
 Updated 2026-10-18 23:38 UTC. Latest authenticated console state: UnleashX
