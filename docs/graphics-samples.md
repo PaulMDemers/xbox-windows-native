@@ -75,6 +75,7 @@ Windows automatically, and they do not impose a process watchdog.
 | 09b | Combined offscreen scene | XYZ textures, transforms and depth/order controls | PC/Xbox default and HEL pass |
 | 09c | Combined windowed scene | Native-format CPU staging, clipped primary blit, cover/move/uncover and exact GDI readback | PC RGB565 and Xbox RGB32 default/HEL pass |
 | 09d | Repeated scene process costs | Three separate scene processes per backend, exact pixel checks, CPU time and working-set/commit counters | PC and Xbox six-run process-cost controls pass; not FPS or in-process leak proof |
+| 09e | Sustained scene in one process | 2,560 repeated frames, calibrated API phase timings, five checked endpoints and memory before/after release | PC scoped control passes; QPC durations unqualified; Xbox pending |
 | 10 | Small game-like scenes | Scrolling isometric tiles and moving sprites, then a textured room; controls, audio and save/reload | Planned; precedes the actual game acceptance tests |
 
 Do not require hardware acceleration for a software-compatible rung. An inventory
@@ -1035,3 +1036,61 @@ startup/system activity prevent attributing the first-run difference to a
 specific cause or comparing backend speed. Ftdisk 49 recurred; earlier alpha,
 shutdown-popup and boot-reliability limitations remain. The next rung will
 separate repeated rendering within one process from capture I/O and pauses.
+
+
+## Sustained scene (rung 09e)
+
+`sceneloop` holds one software D3D7 context, two textures, and the existing
+windowed presentation surfaces across five batches of 512 frames. The five
+batch endpoints retain the independent geometric and clipped-screen checks.
+Timing intervals separate render/state API work with target completion,
+CPU readback/native pixel conversion, and primary blit plus `GdiFlush`.
+Captures, report writes and deliberate display pauses are outside those intervals.
+The presentation interval measures API completion, not when pixels reach the TV.
+Two longer intervals check the high-resolution counter against coarse elapsed
+time. When they disagree, QPC-derived durations are explicitly unavailable;
+raw counter readings and independent `GetTickCount` phase totals remain. Those
+coarse totals include counter-call overhead and are limited by clock-tick
+quantization: a zero phase duration means unresolved, not zero work.
+
+```sh
+python3 tools/build-graphics-samples.py --rosbe "$ROSBE" \
+  --sample sceneloop --output "$HOME/build/xwn-sceneloop-001"
+```
+
+Copy `sceneloop.exe` and `sceneloop.cmd` together. Use a fresh prefix each time
+and leave the scene window untouched:
+
+```bat
+sceneloop.cmd default loop01d
+sceneloop.cmd hel loop01s
+```
+
+Retrieve all files beginning with each prefix, including nine `.bin` captures,
+the `.txt` report and `.exit` receipt. Check them on the host:
+
+```sh
+python3 tools/graphics_sceneloop.py /path/to/results/loop01d --backend default
+python3 tools/graphics_sceneloop.py /path/to/results/loop01s --backend hel
+```
+
+The sample bounds each repeated batch to 30 seconds at frame boundaries; that
+cannot interrupt a blocked API call. The public command wrapper has no external
+watchdog. The private validation fixture additionally bounds each owned process.
+The checker requires 2,560 completed frames and five valid image endpoints, checks
+counter ordering against coarse elapsed time, and applies an 8 MiB limit to each
+reported working-set and commit peak. Memory is observed before graphics setup,
+before/after each batch, and after graphics resource release. Windows and PSAPI
+still exist at the final snapshot. Runtime caches and system activity mean a
+nonzero final memory delta is not automatically a leak. This bounded workload
+cannot prove long-run leak freedom, FPS, GPU acceleration, or game compatibility.
+
+The [552 initial attempt](../outputs/scene-loop552/REPORT.md) passed its image
+endpoints but failed the original counter-frequency gate; it remains failed.
+The revised sample adds explicit clock calibration and independent coarse
+phase counters. The [553 revised PC control](../outputs/scene-loop553/REPORT.md) passes both
+2,560-frame runs, ten image endpoints, resource/counter checks and normal restart.
+The long clock checks reject QPC durations on this fixture, so only coarse phase
+measurements are retained. Batch commit stayed constant and dropped by 64 KiB
+after graphics release, without returning to its pre-graphics value. These
+observations do not establish leak freedom. Matched Xbox validation is pending.

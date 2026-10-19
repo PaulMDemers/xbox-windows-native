@@ -1,0 +1,66 @@
+{
+  "command": [
+    "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/bin/qemu-system-i386",
+    "-name",
+    "xwn-scene-loop552-pc-phase1",
+    "-L",
+    "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/qemu",
+    "-bios",
+    "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/seabios/bios.bin",
+    "-machine",
+    "pc,acpi=off,hpet=off",
+    "-accel",
+    "tcg,thread=single",
+    "-cpu",
+    "pentium3",
+    "-smp",
+    "1",
+    "-m",
+    "64",
+    "-vga",
+    "cirrus",
+    "-display",
+    "none",
+    "-nic",
+    "none",
+    "-drive",
+    "file=/home/paul/xbox-windows-native/scene-loop552-pc001/disk.qcow2,format=qcow2,if=ide,index=0",
+    "-drive",
+    "file=/home/paul/xbox-windows-native/scene-loop552-pc001/probe.img,format=raw,if=floppy,readonly=on",
+    "-boot",
+    "order=c",
+    "-qmp",
+    "unix:/home/paul/xbox-windows-native/scene-loop552-pc001/phase1/qmp.sock,server=on,wait=off",
+    "-rtc",
+    "base=utc",
+    "-no-reboot"
+  ],
+  "started_utc": "2026-10-19T01:30:40.888720+00:00",
+  "closed": true,
+  "phase": 1,
+  "space": {
+    "minimum_free_gib": 20.125,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/home/paul/xbox-windows-native/scene-loop552-pc001",
+        "free_bytes": 899963531264
+      },
+      {
+        "free_bytes": 27126431744,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "physical_access": false,
+  "network_device": false,
+  "pid": 519,
+  "deadline": false,
+  "exit_code": 0,
+  "ended_utc": "2026-10-19T01:33:03.809079+00:00",
+  "disk_sha256": "948815a6b994a471fbd0b546a9e344c56da49e64ff3f7d660a8280814d765e6a",
+  "source_unchanged": true,
+  "floppy_unchanged": true
+}

@@ -232,3 +232,12 @@ These whole-process costs do not identify why the first run is slower or measure
 FPS. Next is sustained work within one process, with separate rendering and
 presentation intervals, checked frames and resource release. Ftdisk 49 persists;
 boot diagnosis stays tabled. See [the build/run guide](graphics-samples.md#bounded-scene-process-costs-rung-09d).
+
+
+The [553 sustained PC control](../outputs/scene-loop553/REPORT.md) now completes
+2,560 frames per software context with ten checked image endpoints, memory
+observations and coarse render/upload/presentation phase totals. Its explicit
+clock checks reject the high-resolution counter durations; they remain
+unqualified. The [552 earlier timing failure](../outputs/scene-loop552/REPORT.md)
+is preserved separately. Matched Xbox validation is prepared; these results
+add no GPU, game, FPS or long-run leak-freedom claim.

@@ -1,3 +1,89 @@
+# 553 CLOSED scoped PC pass; 554 awaits actual cold-start answer
+
+553 two software contexts each2560frames; tenendpoints, coarse phase counters,
+memory/COMrelease,12live/coldmodules each and616metadata negatives pass. QPC long
+intervals disagree(1000ms ->141-143ms); QPC-derived phase ms explicitly null.
+Normalrestart, two coldreaders,156inputs archived, allownedprocessesclosed.
+Never rerun/recollect/parent553.552 timingfailure remains; bothoriginal checker/
+source/test versions preserved in frozen-source001. Read reports/NEXT-final.
+
+554 prepared exact553sample and namespace/transport-only runner;24/54imports,
+16controller-modelcases pass. Checker metadatahashfix offline-equivalent except
+raw report hash; fivehosttests pass. Preservechecker-review001tuple/listfailure.
+No554ready/package/stage/hook/launch. User asked via async to power off10seconds,
+turn on and leaveUnleashX; WAIT actualanswer. Then exactready001+UTC with
+user_confirmed_full_power_cycle=true,at_dashboard=true; package/stage/one launch,
+observe, hook-FIRSTcollect, audit/runtime/module/controls/close. See554NEXT.md.
+Protected720p/ordinarystartupunchanged. Boot diagnosis TABLED; automationPAUSED.
+
+# 553 ACTIVE: run553 submitted once at desktop
+
+Owned desktop observed, login once, Run dialog dispatch A:\run553.exe once at
+approximately01:42UTC. Do not repeat. VM supervisor session14020; check actual
+ntfs-phase1. After normalexit cold1/review001/independent002/module-review002/
+actualcontrols/closeout. 156inputs frozen. No console changes, no boot experiments.
+
+# 553 ACTIVE: fresh NT5 PC VM running
+
+One exclusive phase1 VM launched after156dependency preflight. Current session
+14020, actualPID/QMP in553ntfs-phase1. Runner NOT submitted yet. Inspect owned
+screenshot, login001 once at password prompt, then A:\run553.exe once at desktop.
+Sources frozen; no mutations to553kit or sample/checker before closeout archive.
+After normalexit: cold1/review001/independent002/module-review002/actualcontrols/
+closeout. No console access.552 remains closedfailedtiming/pixel-onlypass.
+
+# 553 ACTIVE fresh PC preflight; 552 CLOSED timing failure retained
+
+553 version2 compiled and five host tests pass;24/54 NT5 imports and38floppy
+negative controls pass. New original404 child prepared; cold0 audit running.
+2560frames/process, two long-interval QPC comparisons; independent coarse phase
+totals. UncalibratedQPC stays raw, no derivedmilliseconds; no timer rescaling.
+After cold0: dynamic-import/preflight/run001 once/login/run553.exe once. No
+physical launch.552 all156inputs archived; failedtiming and pixel-only pass
+remain separate. See552REPORT and553DESIGN. Boot diagnosis TABLED.
+
+# 552 CLOSED timing failure; preparing NEW553 PC control
+
+552 both software processes completed160frames and normalrestart; frozen QPC
+frequencygate failed(26,534,450,000Hz >10GHz). No waiver/no overallpass. Separate
+pixel-only review tenendpoints pass,12live/coldmodules each, two cold readers,
+156inputs archived, allprocesses/mountsclosed. Preserve wrong-runner-decoder
+review001 and frequency-review002 failures. Never rerun/recollect/parent552.
+Next NEW553 adds long-interval clock checks and independent coarse phase totals;
+uncalibratedQPC remains raw, not accurate milliseconds. No console changes.
+Boot diagnosis TABLED,720p/startupunchanged, automationPAUSED.
+
+# 552 ACTIVE: sustained scene runner submitted once
+
+Fresh NT5PC desktop observed and owned fixture login completed. Submitted
+A:\run552.exe once via Run dialog at approximately2026-10-19 01:32UTC. Do not
+send again. run001 phase1 VM supervisor session60604 has600second bound; runner
+each child180seconds. Wait for normal exit; inspect screenshots only if needed.
+Then cold1/review001/independent002/module-review002/actual-controls001/closeout.
+156frozeninputs must remain exact. No physical access; boot diagnosis TABLED.
+
+# 552 ACTIVE: fresh NT5 PC VM running
+
+Preflight156dependencies complete; one exclusive run001 phase1 launched. Actual
+ntfs-phase1.json owns PID/QMP path. No runner submitted yet: inspect screenshot,
+use login001 once only at correct logon prompt, then A:\run552.exe once at desktop.
+Frozen sources/kit must remain exact. Bound600seconds; owned runner180seconds.
+After normal exit: cold002 phase1, review001, independent002, module-review002,
+actual-controls001, closeout. Prior551 closed; no physical change or launch.
+Boot diagnosis TABLED. Read552DESIGN/currentrecords. Automation remains PAUSED.
+
+# 552 ACTIVE PC preflight for sustained scene
+
+Fresh scene-loop552 PC fixture created from original404 NTFS seed; no console
+writes or launch. New sample compiled with pinned RosBE; runner24/sample54 NT5
+imports pass. Four host tests and38 malformed floppy controls pass. Cold0 audit
+running. After complete: dynamic-import001, preflight001, one exclusive run001
+phase1, inspect owned screenshot and login once, then A:\run552.exe once.
+Never retry accepted/uncertain runner dispatch. Cold1/runtime/independent/module/
+actualcontrols/closeout after normal exit. Read552DESIGN and actual records.
+551 CLOSED,54inputs archived; do not rerun/recollect. Console last at dashboard,
+ordinary720p/startup unchanged. Boot diagnosis TABLED; automationPAUSED.
+
 # 551 CLOSED: six Xbox scene process-cost runs PASS
 
 Updated2026-10-19 01:05UTC. User-confirmed cold start, one ordinary launch,

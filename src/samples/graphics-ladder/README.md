@@ -17,6 +17,7 @@ run instructions, output interpretation and current qualification limits.
 - `scene.c`: combined offscreen XYZ, two textures and depth/order controls.
 - `scenepresent.c`: combined scene with clipped window presentation (PC and Xbox validated).
 - `scenebench.c`: three bounded scene processes with CPU/memory telemetry (PC and Xbox validated; not FPS).
+- `sceneloop.c`: 2,560 frames in one context with coarse phase timings (PC scoped pass; QPC durations unqualified).
 - [Builder](../../../tools/build-graphics-samples.py): fresh out-of-tree RosBE build.
 - [Independent checker](../../../tools/graphics_sample.py): report and pixel oracle.
 
@@ -44,6 +45,7 @@ See the guide for each sample's arguments and required capture files.
 | `transform` | [transform.c](transform.c) | [transform.cmd](transform.cmd) | [graphics_transform.py](../../../tools/graphics_transform.py) |
 | `scene` | [scene.c](scene.c) | [scene.cmd](scene.cmd) | [graphics_scene.py](../../../tools/graphics_scene.py) |
 | `scenepresent` | [scenepresent.c](scenepresent.c) | [scenepresent.cmd](scenepresent.cmd) | [graphics_scenepresent.py](../../../tools/graphics_scenepresent.py) |
+| `sceneloop` | [sceneloop.c](sceneloop.c) | [sceneloop.cmd](sceneloop.cmd) | [graphics_sceneloop.py](../../../tools/graphics_sceneloop.py) |
 | `scenebench` | [scenebench.c](scenebench.c) | [scenebench.cmd](scenebench.cmd) | [graphics_scenebench.py](../../../tools/graphics_scenebench.py) |
 
 `blend` still tests the original ideal alpha endpoints; the separate arithmetic
