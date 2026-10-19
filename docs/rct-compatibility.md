@@ -207,3 +207,9 @@ and right-drag moved the camera, and all three worked in Full Screen mode. Early
 and deliberately reopened late Welcome windows closed normally; startup
 preferences, registry restoration and shutdown checks passed. This is PC control
 evidence, separate from the Xbox result.
+
+The matching [Xbox583 attempt](../outputs/rct583/REPORT.md) accepted one launch
+request and returned to the dashboard without creating the runner's output.
+Checked files and event logs were unchanged, with no new normal-shutdown event.
+Its test hook was removed and the baseline preserved. It supplies no additional
+physical scrolling or fullscreen result; the boot-stage cause is unresolved.

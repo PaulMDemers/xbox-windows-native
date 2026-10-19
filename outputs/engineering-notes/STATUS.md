@@ -1,3 +1,63 @@
+# Closed583; next work is independent host save/reload preparation
+
+Physical583 CLOSED without guest runner/result, no new6006 or event records,
+all12 baseline files byte-identical. Hook removedFIRST; dashboard reachable.
+No console reset is needed for cleanup, but a future comparison should use a
+new watched/cold-start attempt when the user is available. Do not retry583,
+recollect576/583, or keep repeating identical launches. Boot/1080i remain tabled.
+Exact583 assets now live in /E/xwn582-kit/game; old575-kit keeps its owner,
+runner and usedhook, but game assets were moved. Any future assets-only reuse
+must independently verify the new ownership and actual583 collection.
+
+PC584 CLOSED: full15-capture Window/Full Screen control, early+late Welcome close,
+normal restart/cold hives/registry/Show1 passed. Exact582binary used; no sentinel
+was staged onXbox. Read584/REPORT.md,583/REPORT.md and theirfinalrecords.
+
+Next host step: a fresh planned two-boot save/reload experiment from immutable404,
+never a CLOSED runtime parent. Reuse verified582 two-CD asset reconstruction and
+584's1024x768 initial desktop/control flow. Incorporate578's observed owned
+SaveGame dialog (#32770, Edit1148 nestedComboBox, SaveButton1). Validate bounded
+WM_SETTEXT/WM_GETTEXT readback and exact owned path before Save; refuse existing
+targets. The overall experiment stays OPEN between its two planned boots.
+Cold-audit/hash save and normal shutdown before secondboot; independently verify
+the Load dialog and restored park/camera/pause state. No file-existence-only claim.
+
+At12:53UTC hostCfree21777805312 and E21499871232bytes. Both remain above20GiB,
+but C is BELOW21GiB VM admission. No new fixture admitted. Small source/build
+preparation may proceed within projected20GiB; recover space only with exact
+owned/closed provenance and preserved bytes/evidence. Do not weaken admission.
+No source was created for the next save experiment yet. Performance API/cost
+tracing follows a persisted fixed scene;554synthetic timings are not gameFPS.
+
+No owned processes active, no startuphook outstanding, no furtherlaunchqueued.
+13:50UTC reviewonly;14:00UTC stop andPAUSE automation. Usercannotresetuntil10am.
+
+# Physical583 dashboard returned; hook removed, first collection active
+
+Observationauthenticateddashboard12:48:42UTC afteroneacceptedSITE12:47:01.
+Collectsupervisor exec85089 active. collection001.json confirms hookremovedFIRST,
+rename to582-kit/startup-used583.cmd. No furtherlaunch/reset. Runtimeoutcomeunknown
+untilcollection/audit; quickreturnisnotnormalrestartproof. NoPCVMactive.
+Next audit1 and welcome/userhive/registrychecks; handlenoresultasfailed/inconclusive,
+notretry.13:50review,14UTCstop. Pushed20a6e898; all565/576/581/582/584closed.
+# Physical583 launched once; bounded dashboard observation active
+
+One SITE accepted200 at12:47:01UTC after exact stage/launch readback. No retry.
+Observe001.pyexec91671 starts12:48UTC, atmost600sec; no furtherlaunches. Console
+screenunknown/unwatched. Ownedhook583stillarmed untilreturn; collectFIRSTmutation
+renamesit to582-kit/startup-used583.cmd, then exact evidence and independentaudits.
+No activePCVM;584CLOSEDqualified. Pushed20a6e898. If offlineafterbound, preserve
+hook/state andswitchhost; no userresetavailablebefore10am. Review13:50,stop14UTC.
+# Physical583 staged; launch preflight active
+
+Stage completed12:45:16UTC. All502 assets verified before/after assets-only move;
+504staged entries (assets/runner/owner),7owned writes,hook583installedLAST.
+Launch supervisor first requested12:45:31UTC, exec48707; it rechecks staged bytes
+beforeoneSITE20sec. Inspect launch001.json and supervisor state; neverretry.
+Current outstanding hook: /E/documents and settings/all users/start menu/programs/startup/xwn583.cmd.
+Thenobserve001.py600sec; ondashboardreturn collectremoveshookFIRST, audits.
+PC584CLOSED fullcontrolqualified/pushed20a6e898. NootherVMs/physicalattemptsactive.
+Reviewonly13:50UTC,stop14UTC; usercannotresetbefore10am.
 # Physical583 staging active; PC584 CLOSED and qualified
 
 At12:41UTC stage first requested, exec99930/supervisor001-stage. No launch yet.
