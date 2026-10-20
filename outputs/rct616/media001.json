@@ -1,0 +1,134 @@
+{
+  "path": "C:\\xwn616\\helper001.iso",
+  "sha256": "3d7fbcaa9873f0a14cf2279a429647b2d179bd318d34b5fe3e10a396fa9f4634",
+  "bytes": 120832,
+  "files": {
+    "SUBJECT.EXE": {
+      "path": "/mnt/c/xwn616/build002/subject.exe",
+      "bytes": 11342,
+      "sha256": "bf7c57b3bfc1d31410c30390f9d8096efead42c2947fc4b7e1b8a3cc8a645bdf",
+      "imports": {
+        "GDI32.dll": [
+          "CreateCompatibleDC",
+          "DeleteDC",
+          "DeleteObject",
+          "GdiFlush",
+          "SelectObject"
+        ],
+        "KERNEL32.dll": [
+          "CloseHandle",
+          "CreateFileA",
+          "ExitProcess",
+          "FlushFileBuffers",
+          "GetCommandLineA",
+          "GetCurrentProcessId",
+          "GetProcAddress",
+          "GetTickCount",
+          "LoadLibraryA",
+          "OpenEventA",
+          "SetEvent",
+          "Sleep",
+          "WaitForSingleObject",
+          "WriteFile",
+          "lstrlenA"
+        ],
+        "USER32.dll": [
+          "wsprintfA"
+        ]
+      }
+    },
+    "TRACE.EXE": {
+      "path": "/mnt/c/xwn616/build002/trace.exe",
+      "bytes": 22975,
+      "sha256": "32207d50ad1224a2cbffb43192312c82c75b091d378ffd16c8e689393aa9c95c",
+      "imports": {
+        "KERNEL32.dll": [
+          "CloseHandle",
+          "ContinueDebugEvent",
+          "CreateEventA",
+          "CreateFileA",
+          "CreateProcessA",
+          "ExitProcess",
+          "FlushFileBuffers",
+          "FlushInstructionCache",
+          "GetCurrentProcessId",
+          "GetLastError",
+          "GetProcessTimes",
+          "GetThreadContext",
+          "GetTickCount",
+          "ReadProcessMemory",
+          "ResumeThread",
+          "SetEvent",
+          "SetLastError",
+          "SetThreadContext",
+          "SuspendThread",
+          "TerminateProcess",
+          "VirtualProtectEx",
+          "VirtualQueryEx",
+          "WaitForDebugEvent",
+          "WaitForSingleObject",
+          "WriteFile",
+          "WriteProcessMemory",
+          "lstrcmpA",
+          "lstrlenA"
+        ],
+        "USER32.dll": [
+          "wsprintfA"
+        ]
+      }
+    },
+    "RUN616.EXE": {
+      "path": "/mnt/c/xwn616/build002/run616.exe",
+      "bytes": 20284,
+      "sha256": "feb630790746fae62d38a40f4dba392df158fa954d88dd174ef8106f56ad4a97",
+      "imports": {
+        "ADVAPI32.dll": [
+          "AdjustTokenPrivileges",
+          "LookupPrivilegeValueA",
+          "OpenProcessToken"
+        ],
+        "KERNEL32.dll": [
+          "CloseHandle",
+          "CreateDirectoryA",
+          "CreateEventA",
+          "CreateFileA",
+          "CreateProcessA",
+          "ExitProcess",
+          "FlushFileBuffers",
+          "GetCommState",
+          "GetCurrentProcess",
+          "GetCurrentProcessId",
+          "GetExitCodeProcess",
+          "GetFileSize",
+          "GetLastError",
+          "GetModuleHandleA",
+          "GetProcAddress",
+          "GetProcessTimes",
+          "GetTickCount",
+          "LoadLibraryA",
+          "OpenProcess",
+          "QueryPerformanceCounter",
+          "QueryPerformanceFrequency",
+          "ReadFile",
+          "SetCommState",
+          "SetCommTimeouts",
+          "SetEvent",
+          "SetLastError",
+          "Sleep",
+          "TerminateProcess",
+          "WaitForSingleObject",
+          "WriteFile",
+          "lstrcmpiA",
+          "lstrcpyA",
+          "lstrlenA"
+        ],
+        "USER32.dll": [
+          "ExitWindowsEx",
+          "wsprintfA"
+        ]
+      }
+    }
+  },
+  "copy_script": "@echo off\r\nif exist C:\\xwn616-kit goto fail\r\nmkdir C:\\xwn616-kit\r\ncopy D:\\SUBJECT.EXE C:\\xwn616-kit\\SUBJECT.EXE\r\nif errorlevel 1 goto fail\r\ncopy D:\\TRACE.EXE C:\\xwn616-kit\\TRACE.EXE\r\nif errorlevel 1 goto fail\r\ncopy D:\\RUN616.EXE C:\\xwn616-kit\\RUN616.EXE\r\nif errorlevel 1 goto fail\r\nattrib -R C:\\xwn616-kit\\*.*\r\necho XWN616 READY - EJECT CD BEFORE RUNNING\r\nexit\r\n:fail\r\necho COPY FAILED\r\npause\r\n",
+  "readback_passed": true
+}

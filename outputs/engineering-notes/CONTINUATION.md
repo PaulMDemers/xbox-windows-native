@@ -1,3 +1,41 @@
+# PC616 closed PASS: original recorder-cost coordination
+
+Fresh404 original-code fixture ran18:48:27–18:51:02UTC2026-10-20. Both direct and
+recorded subjects passed75 pixel-checked copies, with40 paced copies inside each
+20s interval. Host/tick agreement within9.7ms including5s sleep;183 samples per
+case. Actual subject/recorder/observer identities separate;32 sampled API11 pairs
+per phase and35/40 total hits confirm capped breakpoints remain active. All
+measured returns precede subject DONE. Tiny workload CPU increments0 at coarse
+resolution, not zero overhead or RCT costs. QPC remains invalid for elapsed time.
+Read outputs/rct616/REPORT.md and exact NEXT001.md. Next adapt coordination to
+retail's continuously running thread, phase ordering and matched615 scene.
+Normal restart/one6006,6492 files/310 directories,five clean hives, exact tools,
+protectedOS/seed/raw-event checks passed. All owned processes closed; no pending
+launch. Build001 cast-warning failure and inheritance-review001 normalization
+failure preserved;build002 and corrected reviewer002 passed.19 host rejections.
+Closed612 raw leaf archived with full decompression/hash verification to
+E:/xwn616/archives/rct612-pc001-disk.qcow2.zst; map archive001.json. Never reopen,
+recollect or parent any closed runtime. Recheck22GiB fresh admission/2GiB allowance/
+20GiB reserve including WSL before another fixture. No physical access; Xbox last
+dashboard/no hook;596 SOFTWARE cold-only.720p/launcher/packages/deferrals unchanged.
+Automation remains paused. No game/FPS/acceleration/release claim from616.
+
+# PC616 original recorder-cost control prepared
+
+Continuing from pushed615 (6b093253). Fresh immutable404 child cold0 passed6475 files/308 directories.
+PC616 phase1 OPEN; follow ntfs-phase1.json and C:/xwn616/pc001/phase1.
+Three-tool copy complete; CD ejected/read back. One runner launch submitted
+18:50UTC; no screenshots/input during measured windows. Follow launch-once001. Read outputs/rct616/DESIGN.md. Host controls passed
+19 rejection cases and sanitized timing-buffer bounds. Build001 failed a typed
+function-pointer warning; retained source/log/receipt; build002 compiled and media
+readback passed. Actual direct/traced NT5 result remains pending. Source inspection
+shows cap exhaustion still handles breakpoints;616 counts all hits and timestamps
+sampled calls/returns within separate subject/recorder/observer cost windows.
+Only closed612 raw leaf archived with full decompression/hash verification at
+E:/xwn616/archives/rct612-pc001-disk.qcow2.zst; see archive001.json. Never boot or
+parent the archived runtime. No physical access; Xbox last dashboard/no hook,
+596 SOFTWARE cold-only,720p/launcher/packages unchanged; automation remains paused.
+
 # PC615 closed PASS: pristine paused RCT process-cost baseline
 
 Fresh404 PC run17:57:50-18:07:10UTC2026-10-20, direct game launch/no tracer.

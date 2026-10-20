@@ -7,6 +7,16 @@ separates the watched Xbox result from PC controls and unresolved inputs.
 
 ## Save/load checkpoint and next measurement
 
+[PC616](../outputs/rct616/REPORT.md) qualified the next measurement setup on
+original Windows 2000 code: distinct subject/recorder/observer identities,
+host-correlated twenty-second intervals, exact pixels and all recorded-phase
+call/return timestamps inside the interval. It counted40 measured entry hits,
+including8 beyond the32-call cap. The cap leaves breakpoints active; it does not
+make execution uninstrumented. This tiny paced control registered no CPU
+increment at coarse resolution, so it supplies no recorder-overhead estimate.
+Normal restart and cold checks passed. Next adapt the coordination to the retail
+saved scene, explicitly handling its continuously running game thread.
+
 [PC615](../outputs/rct615/REPORT.md) completed the first host-clock-checked,
 uninstrumented paused saved-scene cost baseline. Over20.016 seconds, RCT used
 19.859375 seconds of process CPU (99.2% of the single emulated CPU), while its
@@ -14,8 +24,8 @@ working set stayed33.684MiB. The165600-pixel scene remained exact. Normal restar
 registry restoration, saved-file and cold checks passed. This is one PC interval,
 not game FPS or Xbox throughput. It does not identify the cause of the CPU use.
 Next align actual recorder activity with a matched timed interval and measure
-game, recorder and counter-observer processes separately. Capped tracing that
-finishes before timing starts cannot establish active recorder overhead.
+game, recorder and counter-observer processes separately. Recording that finishes before timing starts cannot establish sampled-call
+costs. PC616 confirms capped entry breakpoints still incur debugger handling.
 
 [PC613](../outputs/rct613/REPORT.md) exposed a timing problem in the PC fixture:
 a two-second sleep appeared as about 0.286 seconds through QPC/frequency. It failed
