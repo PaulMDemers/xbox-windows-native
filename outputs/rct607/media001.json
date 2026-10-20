@@ -1,0 +1,29 @@
+{
+  "path": "C:\\xwn607\\helper001.iso",
+  "sha256": "b1d6c70b88b7c71d4fa6ab7b1efd6342b097a72fd5cfbcbdaa217c76f7caf4f6",
+  "bytes": 126976,
+  "files": {
+    "FIXTURE.DLL": {
+      "path": "/mnt/c/xwn607/build002/fixture.dll",
+      "sha256": "e950600b21e8b8a682ccb51456fddac786b1d3970b0803db4522c1e562f21bea",
+      "bytes": 6958
+    },
+    "SUBJECT.EXE": {
+      "path": "/mnt/c/xwn607/build002/subject.exe",
+      "sha256": "f528276e385d537ed75df54906a43fb1d052ac69dcefc1ee0d9745ffcf83267c",
+      "bytes": 20387
+    },
+    "TRACE.EXE": {
+      "path": "/mnt/c/xwn607/build002/trace.exe",
+      "sha256": "6734e26495b46acbe9eebb12a323dec11062fb4ca1d4d4ff43ef0e0c4ee3bbc9",
+      "bytes": 20487
+    },
+    "RUN607.EXE": {
+      "path": "/mnt/c/xwn607/build002/run607.exe",
+      "sha256": "69b97fd6e7d9af753b8ec60ee19608904da52e7da3f4a3f59c2357cbb8b0d5b0",
+      "bytes": 11563
+    }
+  },
+  "copy_script": "@echo off\r\nif exist C:\\xwn607-kit goto fail\r\nmkdir C:\\xwn607-kit\r\ncopy D:\\FIXTURE.DLL C:\\xwn607-kit\\FIXTURE.DLL\r\nif errorlevel 1 goto fail\r\ncopy D:\\SUBJECT.EXE C:\\xwn607-kit\\SUBJECT.EXE\r\nif errorlevel 1 goto fail\r\ncopy D:\\TRACE.EXE C:\\xwn607-kit\\TRACE.EXE\r\nif errorlevel 1 goto fail\r\ncopy D:\\RUN607.EXE C:\\xwn607-kit\\RUN607.EXE\r\nif errorlevel 1 goto fail\r\nattrib -R C:\\xwn607-kit\\*.*\r\necho XWN607 READY - EJECT CD BEFORE RUNNING\r\nexit\r\n:fail\r\necho COPY FAILED\r\npause\r\n",
+  "readback_passed": true
+}

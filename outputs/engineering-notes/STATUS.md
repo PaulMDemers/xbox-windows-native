@@ -1,3 +1,17 @@
+# PC607 closed: absent-output recorder handling qualified
+
+Fresh original NT5 control passed pristine/traced with identical logs: RGB and
+BI_BITFIELDS objects with NULL ppvBits checked through GetObjectA, invalid-header
+failure retained.196 paired calls/87 headers;32 StretchDIBits samples per phase.
+23 existing,11 phase and7 absent-output trace mutations rejected. Normal restart,
+unchanged tools/OS/seed, five clean hives/raw agreement and one new6006 passed.
+All owned processes exited; VM closed04:59:13UTC. No game or Xbox changes.
+Read outputs/rct607/REPORT.md and NEXT001.md.606 remains closed failed evidence.
+Next608: fresh404 child, exact606 saved-park test with qualified607 observer.
+Then clock-qualified pristine costs/observer overhead; no FPS/acceleration claim.
+No hardware reset needed. Last Xbox dashboard/no hook;596 cleanup cold-only.
+Launcher/protected720p/saves/ZIPs unchanged (ZIPs exclude RCT); automation paused.
+
 # PC606 closed failed: recorder rejects an absent GDI output pointer
 
 Actual RCT reached Forest Frontiers and moved the camera, then the recorder

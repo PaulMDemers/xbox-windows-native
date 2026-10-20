@@ -167,3 +167,9 @@ Choose an optimization only when the game measurements identify a substantial
 cost and a reproducible visual baseline can detect regressions. Native NV2A
 acceleration remains a separate capability milestone; successful game startup,
 module presence or a faster host model cannot qualify it.
+
+[PC607](../outputs/rct607/REPORT.md) qualifies the narrow recorder fix for606's
+absent CreateDIBSection output address. Original pristine/traced controls agree,
+including independently inspected returned bitmap objects and expected failure.
+The actual saved-park trace still needs a fresh game run;607 is no new game or
+performance result. Non-NULL reads and DirectDraw checks remain strict.
