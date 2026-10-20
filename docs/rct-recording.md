@@ -8,19 +8,21 @@ desktop**. Keep this session separate from the timed diagnostic runners.
 The interactive launcher prepared in [624](../outputs/rct624/DESIGN.md) waits
 for the player to quit RCT. It does not move the pointer, change resolution,
 close the game on a timer, or restart Windows. Hardware deployment and actual
-readiness are recorded separately in `outputs/rct625`; preparation alone is
+readiness are recorded separately in `outputs/rct625` and `outputs/rct626`; preparation alone is
 not a successful Xbox run.
 
-1. Boot the ordinary Windows entry after the recording session is staged.
-2. If Windows Getting Started covers RCT, close that window normally.
+1. Boot the ordinary Windows entry and wait for the desktop. The revised
+   recording attempt installs no automatic game startup entry.
+2. Choose **Start → Run**, enter `C:\xwn624-kit\play624.exe`, and launch it once.
+   If Windows Getting Started covers RCT, close that window normally.
 3. Choose **New Game → Forest Frontiers**, or load your existing saved park.
 4. Move around with **arrow keys** or **right-button dragging**. Window-edge
    scrolling is stationary in the tested Window mode. Keep **Window** selected.
 5. Record normal play, construction and save/load as desired. Sound is deferred.
 6. When finished, quit RCT normally. Wait for the launcher's confirmation that
    temporary settings were restored, then use **Start → Shut Down → Restart**.
-   Report dashboard return so the owned startup entry can be removed and the
-   session records collected. Do not power off during a save.
+   Report dashboard return so the session records can be collected.
+   Do not power off during a save.
 
 This is a one-session launcher. Do not repeatedly run it or delete its session
 guard. A later session needs its own reviewed launch record. If Windows fails

@@ -1,3 +1,47 @@
+# Recording625 CLOSED failure/cleanup PASS;626 awaits cold-start readiness
+
+625 accepted once21:30:22UTC Oct20; user reported dashboard/error. No runner
+output. Hook removed FIRST;21files collected, all18before-files identical.
+Five system hives clean, registry subtree unchanged, no normal-shutdown delta.
+No precise boot-stage/cause proof.625final001 closed; never rerun/recollect.
+All host processes closed. Console lastdashboard, no owned hook.
+
+User has been asked power-off10seconds/on/dashboard for fresh626. Await ready;
+do not launch until confirmed.626 will boot ordinary Windows WITHOUT any game
+startup hook, then user opens C:\xwn624-kit\play624.exe once from desktop.
+Same PC624-qualified retained helper, exact-hash verified; no game timeout or
+restart. No new physical writes planned. Read626/NEXT001.md and actual receipts.
+Private626 session and bounded supervisor prepared; no626snapshot/launch yet.
+Stage preserves protected720p/normal launcher/retail files/saves; consoleCofflimits.
+On return collect626, audit hives/events/game registry/saves; no hook to remove.
+
+Recording goal remains18:30EDT today; prioritize windowed play. No profiling,
+fullscreen/boot patching, sound or other-console work until recording complete.
+PC624 CLOSED PASS; previous preparation pushed da4a0431. All prior closed cases
+remain immutable. Automation paused. Recheck20GiB hostreserve before allocations.
+
+# Recording625 LAUNCHED once; awaiting screen report
+
+At21:30:22.063005UTC Oct20, one SITE for ordinary Windows entry was accepted.
+Do NOT retry. Exact PC624-qualified interactive launcher staged/read back in
+/E/xwn624-kit; owned startup/xwn625.cmd is installed. No game timeout/reboot.
+User confirmed Xbox is on/dashboard; no explicit10-second interval asserted.
+Fresh before002 matched596-cleaned SOFTWARE,720p, original boot/startup and
+retail RCT executable. Baseline17selected files read twice; see actual receipt.
+No game files overwritten. Initialsnapshot001 timeout preserved separately.
+
+User screen question pending: RCT window/park, desktop only, or dashboard/error.
+Leave successful game running for recording. Do not inject input or restart.
+User quits RCT normally, waits for restored-settings confirmation, then normal
+Windows Restart. On dashboard return controller002 collect removes exact owned
+hook FIRST, then captures hives/events/config/saves/session output. Run audit001
+under WSL and registry_review001 after collection; preserve failures. Ftdisk49
+and prior limitations remain; no boot/game pass from accepted SITE alone.
+All host snapshot/stage/launch supervisors closed; no VM. Physical session OPEN.
+Automation paused; other-console/sound/boot/1080i/fullscreen/profiling deferred.
+Deadline target for recording readiness18:30EDT, not an automatic game cutoff.
+PC624 CLOSED PASS; never rerun/recollect. Published preparation da4a0431.
+
 # PC624 CLOSED PASS;625 recording setup waits for dashboard readiness
 
 User prioritizes windowed RCT recording by18:30EDT Oct20; profiling/fullscreen

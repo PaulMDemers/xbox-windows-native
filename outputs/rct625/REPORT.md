@@ -1,4 +1,31 @@
-# Windowed recording preparation: waiting for the Xbox
+# Recording625: no launcher evidence; cleanup passed
+
+## Closed attempt after dashboard return
+
+Following the user's dashboard-ready message, before002 completed with18selected
+files read twice, exact596-cleaned SOFTWARE and protected720p/boot state. The
+qualified624launcher was staged/read back without changing retail files. One
+SITE was accepted at21:30:22.063005UTC Oct20. The user reported dashboard/error;
+the precise observed screen is not known. No launcher output directory appeared.
+
+On dashboard return, the owned hook was removed FIRST and21selected files
+collected. All18before-files remained byte-identical, including all system/user
+hives, event logs, game configuration and saves. Five system hive audits passed;
+the game registry subtree was unchanged. No new normal-shutdown event exists.
+This is a failed recording-readiness attempt with successful cleanup, not proof
+of a Windows/game crash or of reaching a specific boot stage.625final001 CLOSED;
+never rerun/recollect. All host processes closed; no owned startup hook remains.
+
+An initial audit invocation omitted the offline-toolchain shared-library path;
+it failed during import before an audit. The unchanged script then passed with
+the required environment. The failure is retained separately.
+
+Next626 changes the recording sequence: user-confirmed power-off10seconds,
+ordinary Windows boot with NO game startup hook, then manual RCT launcher from
+the desktop. The retained qualified executable is reused by verified identity;
+its one-shot output must still be absent. Do not resend625's launch.
+
+## Earlier preparation record
 
 The interactive launcher passed its separate original PC624 control.625 will
 use the existing `/E/xwn586-kit/game` retail installation without overwriting
