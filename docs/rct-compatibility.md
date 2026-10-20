@@ -16,6 +16,20 @@ These results support moving on to rendering-path and performance measurements.
 They establish neither game FPS nor native GPU acceleration. RCT remains excluded
 from the separate Windows transfer ZIPs.
 
+## Initial graphics request observation
+
+[PC599](../outputs/rct599/REPORT.md) reached the title and paused Forest Frontiers
+under a recorder validated with known Windows 2000 calls. It captured 237
+RCT-origin library/function lookup requests, including `DirectDrawCreate` and
+GDI exports such as `BitBlt` and `StretchDIBits`. Normal game close, registry
+restoration and Windows restart passed. The preceding display-setup failure is
+retained in [598](../outputs/rct598/REPORT.md).
+
+This is an instrumented PC result, not a new Xbox test. Requested export names
+do not establish successful resolution, drawing calls, frame rate or acceleration.
+Actual invocations/interfaces and a matched performance control are next; see
+the [measurement plan](rct-performance-plan.md).
+
 ## Initial installation controls
 
 All three supplied disc images installed and reached a rendered Forest Frontiers

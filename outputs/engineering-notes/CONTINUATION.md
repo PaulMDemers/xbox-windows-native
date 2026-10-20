@@ -1,3 +1,144 @@
+# PC597â€“599 closed: request discovery complete; actual drawing calls next
+
+PC597 passed the original synthetic recorder control: 25 requests across two
+threads, matching subject return/invocation checks with and without tracing,
+normal restart and cold audit. Its first compiler failure remains preserved.
+
+PC598 failed its display setup: requested 800x600x32 returned BADMODE(-2), but
+the helper continued at 640x480 until the visible-client guard rejected input.
+Its 332 API entries remain useful discovery evidence; park/input stayed failed.
+Normal close/restart, registry restoration and cold checks passed.
+
+PC599 corrected setup through native Display Properties, confirmed 1024x768 at
+16 bits, and checked actual metrics before game/registry changes. Title, named
+Forest Frontiers objective and paused park captures passed. All five BMPs are
+valid. Game/debugger exited0 without forced termination; registry absence and
+normal restart/cold audits passed. One automatic screenshot raced normal VM exit
+(FileNotFoundError, process_exit0), retained in the record. No rerun/recollection.
+
+Both game attempts captured 332 requests: 237 RCT-image callers and95 other DLL
+callers. Main library/export counts agree. RCT requested DDRAW.DLL,
+DirectDrawCreate, DirectDrawEnumerateA/W and GDI exports including BitBlt,
+StretchDIBits/CreateDIBSection/palette operations. Entry arguments are NOT
+successful resolution returns, drawing invocations, surface types, FPS or GPU
+evidence. No matched pristine game control or overhead measurement yet.
+
+Next: NEW bounded synthetic control for paired function returns and actual
+invocations, including recursion/thread interleaving and failure cases. Then a
+fresh game fixture observing DirectDrawCreate results, returned interfaces,
+surface descriptions and actual GDI/DirectDraw update calls. Qualify the retained
+593 save as a fixed loaded scene before timings; pair uninstrumented/instrumented
+game controls and quantify overhead. Do not repeat manual save/load compatibility
+solely to replace the user's confirmed596 result. No functional driver patch.
+
+All owned host processes are closed; all597â€“599 runtimes are CLOSED and must not
+be reopened or used as parents. Xbox untouched this turn, last at dashboard with
+no owned hook. The596 offline SOFTWARE cleanup is still cold-only, awaiting a
+subsequent Windows boot. Existing saves, launcher, protected720p and both delivered
+ZIPs remain unchanged; no RCT in those ZIPs. Other consoles, sound, fullscreen,
+boot intermittency and1080i stay deferred. Automation remains paused.
+
+C: about20.26GiB free; E: about26.52GiB. No new VM/large allocation before capacity
+recovery and projected reserve checks including WSL backing.597 already archived
+closed572/566 leaf disks losslessly to E:/xwn597/archives, verified decompressed
+SHA/length and excluded recorded backing references before exact original removal.
+Those are evidence archives, never resumable runtimes. Preserve private256/release
+rollback and all failed evidence. Public review/staging/commit status is recorded
+in the final turn message; never infer a push from these notes alone.
+
+# PC599 running game request discovery
+
+OwnedVM exec13671, exclusivelease, PID recorded inntfs-phase1.json. NativeDisplay
+panel setandconfirmed1024x768HighColor16bit; privateimagepinnedindisplay-review001.
+All502assetscopiedandguestverifiercompleted; bothejectedCDsrecorded. run599.exe
+launchedoncefromRun afterinspectingexactpath. Awaitself-close/restart; noXboxwork.
+Do notlaunchanotherhelperorreuseanyclosedruntime. VMbound1800s; tracerbound360s.
+
+AfterVMexits, cold002.py --phase1underbuildlease; thenreview001.py. Itrequires
+actualdesktoppreflight, inputsequence, fivevalidBMPs, alltools, protectedOS,
+rootregistryrestoration, game/debuggerexit0 andnormalWindowsrestart. Inspect
+private00-title/04-park-api-observationBMPs beforefinalqualification. Compare
+requestinventorywithfailed598; entriesarenotreturnvalues/drawingcalls/FPS.
+
+597closedPASSsynthetic25requests/2threads.598closeddisplayfailure(-2),retained
+332requests(237RCT/95other),normalcleanup. Bothmustremainclosed. Noownedconsole
+hook; lastdashboardand596SOFTWAREcleanupstillawaitsWindowsboot. HostC~20.5GiB,
+noadditionalVMorlargeallocationwithoutcapacityrecovery. Otherhardware/sound/
+fullscreen/boot/1080i deferred; automationpaused. Updatebothengineeringnotes,
+review/stageexactbytes andcommit/pushallcompleted597-599evidenceatcloseout.
+
+# PC599 preparing corrected desktop preflight;597/598 CLOSED
+
+597known recorder control passed25requests/2threads, normal restart/coldreadback.
+598display setup failed800x600x32 with DISP_CHANGE_BADMODE(-2); strict clientguard
+rejectedinput. Retained332entries(237RCT/95other), includingDirectDrawCreate and
+GDI lookup requests. These do not prove returned pointers, drawing methods orGPU.
+598normal close/restart, registryrestoration and coldchecks passed. Neverreopen.
+
+599fresh immutable404 uses native Display panel first and refuses game/registry
+changes unless actualdesktop1024x768. Build/source/header/media/parser checkspass.
+Preparation/cold0 activeexec98551. After cold0 runvm599underexclusivelease; login
+throughownedfixturesecret. Open Display usingopen-display001.json, inspectSettings,
+set1024x768throughobservedslider andconfirmactualscreen. CopyD:\PREP.CMD, verify
+copyreceipt/desktopreturn, ejectbothCDs, runC:\xwn599-kit\run599.exe. Onebootonly.
+Helperopens/pausesForestFrontierswindowed, captures, closesgame, restoresregistry
+andrequestsnormalrestart. Cold1andprivatevisualreviewrequiredbeforeclosing599.
+
+No consoleaccess/hook; lastdashboard.596SOFTWAREcleanupstillcold-only. No needto
+repeatmanualsave/loadcompatibility. HostCabout21GiB; preserve20GiBreserveincluding
+WSLbacking, no newlargeallocationswithoutfreshadmission.597archivesclosed572/566
+arelossless andverified; originalsremoved. Otherhardware/sound/fullscreen/boot/
+1080i deferred. Automationpaused. Newmatchedgamecontrol/overheadandactualfunction
+invocation/returnobservation precedeperformanceclaims.
+
+# PC598 game request discovery preparing;597 CLOSED
+
+PC597 qualified25known requests across2threads with identical passing subject
+receipts with/without tracing, normal restart and cold audits. Its VM is closed;
+never reopen it. Build001 warning failure retained; build002 qualified.
+Lossless archive597 recovered closed572/566 leaf disks, no chain changes.
+
+598 uses fresh immutable404,3newly compiled tools and502mapped retail assets.
+Source/binary/media/header checks passed. Cold0 pending exec14605 under leases.
+No physical access/hook; console lastdashboard. Next run ownedvm598, logon,
+copy D:\PREP.CMD (retail on E:), confirm verification, ejectbothCDs, then run
+C:\xwn598-kit\run598.exe. It sets temporary800x600 PC display, opens game under
+the qualified request recorder, captures title/paused Forest Frontiers and
+requests WM_CLOSE then restores registry and restarts. Only one boot planned;
+the inherited preparation print's second-boot text is stale.
+
+After normal VM exit do cold1 audit, exact request parsing, protected binary/
+asset checks and visual review. Preserve any failure, no hardware admission
+or FPS claim from entry names. This has no fresh matched pristine game control
+or instrumentation-overhead measurement; those precede later timings.
+No need to repeat user's confirmed save/load. Other hardware/sound/fullscreen
+and boot/1080i work remain deferred.596 SOFTWARE cleanup remains cold-only.
+
+# PC597 open: synthetic API request recorder control
+
+Fresh immutable404 child C:/xwn597/pc001/disk.qcow2. VM lifetime is bounded900s,
+exclusive xemu lease, exec48415; no Xbox access. Preparation/cold0 passed.
+Build001 failed three misleading-indentation warnings; source/log retained.
+Build002 uses trace002.c and runner002.c; PE imports checked against actual NT5
+seed. Host oracle passed positive +12 negative controls. Media readback passed.
+Archived closed572/566 leaf disks losslessly to E:/xwn597/archives after backing
+inventory and decompressed SHA/length checks; originals removed, receipts retained.
+
+Next: inspect owned QMP screen; at logon run login001.py --phase1. At desktop run
+D:\PREP.CMD via Run. Confirm copy, eject ide1-cd0 through vm.py597 eject, then
+run C:\xwn597-kit\run597.exe. No game installed. It runs a plain known subject and
+the same subject under a debugger, then requests normal Windows restart.
+Do not reopen closed fixtures. On VM exit cold002.py --phase1 under build lease,
+read private cold1 logs and compare exact25 subject-origin API requests with the
+independent oracle. Review normal shutdown, all copied binary hashes and hives.
+If recorder fails preserve it; no hardware deployment. Entry requests are not
+resolved-return values, rendering calls or performance. Console lastdashboard
+with no hook;596 offline SOFTWARE cleanup still has no subsequent Windows boot.
+
+The inherited prepare001 print mentions a planned second boot; that text is a
+stale template diagnostic, not this attempt's design. Only one boot is planned.
+Automation remains paused; no unattended deadline applies to this user turn.
+
 # RCT596 CLOSED: manual Xbox save/load confirmed; performance work next
 
 User confirmed repeated manual saves and loads work. New Dynamite Dunes.SV4

@@ -1,0 +1,2 @@
+#define IAT_LOAD597 0x00c460f4u
+#define IAT_PROC597 0x00c460f0u

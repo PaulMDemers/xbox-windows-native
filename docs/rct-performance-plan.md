@@ -14,11 +14,19 @@ across normal restart. Treat the manual compatibility check as complete for the
 current scope. The planned `XWN593.SV4` moved-view/reload image pair was not captured;
 qualifying the exact loaded scene remains part of measurement preparation.
 
-The next controlled experiment is a bounded dynamic API-resolution trace on a
-fresh PC fixture, followed by actual surface/presentation-method observation.
-Keep the unmodified game/control separate from the instrumented case and measure
-trace overhead before using any timings. Current Xbox registry cleanup is cold
-readback verified but has not yet received a subsequent Windows boot.
+The first request recorder passed a known Windows 2000 control in
+[PC597](../outputs/rct597/REPORT.md): 25 expected requests across two threads,
+with the subject's own checks passing with and without tracing. The adapted
+recorder reached the title and Forest Frontiers in
+[PC599](../outputs/rct599/REPORT.md), with normal close, registry restoration
+and restart. The earlier [598 display-setup failure](../outputs/rct598/REPORT.md)
+remains recorded separately.
+
+Next, observe actual function invocations and returned interfaces. Keep a new
+unmodified game control separate from the instrumented case and measure trace
+overhead before using timings. The synthetic subject is a recorder control,
+not a matched game-performance control. Current Xbox registry cleanup is cold
+readback verified but has not received a subsequent Windows boot.
 
 ## Establish a repeatable scene
 
@@ -50,18 +58,26 @@ and report writes outside the timed interval. Sound remains deferred.
 
 ## Identify the actual rendering path
 
-PC568 observed DDRAW.DLL loaded in the game process. Module loading does not
-identify the calls made, surface types, renderer or acceleration used. First
-validate a bounded user-mode API observation on a fresh PC fixture. Record
-resolved module identities, DirectDraw creation/interface requests, cooperative
-level, display mode, surface descriptions/capabilities and the methods actually
-used to update surfaces. Include GDI calls if the observed path uses them.
+PC599 captured 332 API-entry requests: 237 from the RCT executable image and
+95 from other DLL callers. RCT requested `DDRAW.DLL`, `DirectDrawCreate` and
+`DirectDrawEnumerateA/W`, as well as GDI exports such as `BitBlt`, `StretchDIBits`,
+`CreateDIBSection` and palette operations. The request names/counts match the
+earlier failed-layout run, showing why startup lookup inventories alone cannot
+identify rendering behavior.
+
+These are `LoadLibraryA`/`GetProcAddress` arguments. They do not prove successful
+resolution, invocation, surface types, renderer choice or acceleration. Extend
+the synthetic control to cover paired returns and actual function entries before
+following the game's DirectDraw objects. Record resolved module identities,
+creation results, requested interfaces, cooperative level, display mode, surface
+descriptions/capabilities and the methods actually used to update surfaces.
+Include actual GDI drawing calls rather than assuming DirectDraw owns every update.
 
 The [PC586 static import inventory](../outputs/rct586/api-inventory001.json)
 finds `LoadLibraryA` and `GetProcAddress` imports, with no static
-`DirectDrawCreate` import. Observe dynamic resolution as an initial trace
-boundary, then follow the interfaces actually returned. This inventory is
-preparation for a runtime trace; it does not identify a rendering cost.
+`DirectDrawCreate` import. The new request trace supplies a dynamic discovery
+boundary, but does not yet follow returned function pointers or interfaces.
+Neither inventory identifies a rendering cost.
 
 Keep pristine and instrumented controls separate. A debugger pause or wrapper
 can change scheduling and behavior; a call-count trace must not be presented as
