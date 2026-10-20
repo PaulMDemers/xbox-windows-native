@@ -1,3 +1,88 @@
+# RCT595 CLOSED: Windows startup returned early; cold retry pending
+
+User observed Windows loading, then early dashboard return. One SITE accepted
+at01:23:17UTC; dashboard reachable at01:23:52UTC. No586p2 result directory,
+no runner log/capture, no new EventLog normal-shutdown record. This is a failed
+startup attempt, not a Load failure and not a normal restart.
+
+Hook removed first. Stage/launch/collect and observer processes closed. All12
+collected baseline files unchanged; five system hives and user hive clean;
+game registry and Welcome preference unchanged. Both saves preserved exactly.
+Full504game directory inventory and selected contents checked; no full FATX audit.
+New saved593 SHA256fe67dd7567ecd6282b30715a2c0e668a3b9c3baab57b7f7bdce5f1dc69feb77d.
+No newFtdisk49 record in this attempt does not clear historical limitation.
+
+Current game path /E/xwn586-kit/game. Exact load586.exe remains installed;
+/E/xwn586p2 remains absent. Archived hook /E/xwn586-kit/startup-used594.cmd;
+old /E/xwn593-kit/startup-used594.cmd is a different preserved file. No hook in
+startup.595 final001 CLOSED; never rerun/recollect it or overwrite its receipts.
+
+User asked for full off10seconds/on/dashboard and to report ready. No new launch
+until that hardware response. Prepare fresh596 record with same qualified helper,
+unused guarded output586p2, uniquehook596; reverify existing payload without
+moving game again. No claim of cold state until user's confirmation. Keep ordinary
+launcher/720p unchanged. Automation paused, no VM, noFPS/GPU/sound/fullscreen claim.
+
+# RCT595 launched once; watched Load observation active
+
+SITE accepted200 at2026-10-20T01:23:17.370127Z. Launch supervisor closed0;
+524preflight entries exact. One CSS17 read timeout was recovered by the bounded
+read-only retry; receipt retained. No second SITE permitted.
+
+User has the watched instructions: wait for paused park/options close, move right
+about2s, hold20s, Load C:\xwn586-kit\game\Saved Games\XWN593.SV4, hold20s and report
+restored entrance/error. Manual window360s then automatic restart. No report yet.
+Observe001 active exec27620;900s dashboard bound. Hook xwn595.cmd remains installed.
+On return run supervise001 collect via privateC:/xwn595/session.py FIRST. Archived
+hook destination586-kit/startup-used594.cmd is deliberately unused and documented.
+
+Then audit002.py1 WSL, registry_review001.py,user_hive_audit001.py WSL,
+welcome_review001.py,review_load001.py,visual_inventory001.py(PIL). Preserve user
+observation separately. Do not claim Load from elapsed time, injected input, image
+equality alone, or desktop. Both saves hash exact throughstage; cold read required.
+No owned VM. Stage/launch processes closed. Automation paused; no cold-start claim.
+
+# RCT595 staged; one launch preflight active
+
+Stage001 completed normally at01:19:12UTC. Both saves exact,504assets verified
+before and after move to586-kit, pristine CSS0/Game.cfg restored. Hook xwn595.cmd
+is installed; archived destination586-kit/startup-used594.cmd remains absent.
+Stage supervisor closed0. Launch supervisor001 active inexec7574. Inspect
+launch001.json before further action; never retry accepted/uncertain SITE.
+Current console screen unknown. Do not let ordinary Windows boot while this hook
+remains unless this admitted attempt is intended. No physical reset confirmed.
+
+When accepted, send watched Load instructions and run observe001 through private
+C:/xwn595/session.py. On dashboard return supervise001 collect FIRST to remove
+hook. Then audit002.py1 WSL, registry_review001.py, user_hive_audit001.py WSL,
+welcome_review001.py, review_load001.py, visual_inventory001.py withPIL.
+Read NEXT001 for scope. No behavioral Load claim yet. Automation paused.
+
+# RCT595 watched Load preparation active
+
+User Go for it confirms availability. Exact PC586 manual Load binary is frozen
+in595/package001, with12 passing host fault cases. Stage001 is running under
+supervisor001 (exec73860), initially read-only source verification. Inspect its
+actual receipt before any continuation. Never restart/replay an uncertain write.
+Game assets currently transition from593-kit/game to586-kit/game only when the
+recorded verified move occurs. Both saved586 and saved593 must be preserved.
+No launch until stage completes. Then supervise001 launch once, observe001,
+and supervise001 collect on dashboard return (hook removal first).
+
+Hook: startup/xwn595.cmd. Archived hook is586-kit/startup-used594.cmd (inherited
+basename, distinct from retained593-kit/startup-used594.cmd); review001 documents
+this. Use audit002.py1, not audit001, after collection. Then registry_review001,
+user_hive_audit001, welcome_review001, review_load001 and visual_inventory001.
+Saved593 SHA256fe67dd7567ecd6282b30715a2c0e668a3b9c3baab57b7f7bdce5f1dc69feb77d.
+
+After accepted launch, ask user to wait for paused Forest Frontiers, move camera,
+hold20s, Load XWN593.SV4 under C:\xwn586-kit\game\Saved Games, hold20s and report
+restored view. Helper watches360s and restarts normally. No automatic Load verdict;
+input_sequence_submitted=0 is intentional. Need user plus private visual proof.
+
+No new emulator, no cold-start claim, no ordinary launcher/720p change.594 closed;
+never rerun/recollect it. Automation paused. Ftdisk49 remains; no FPS/GPU claim.
+
 # RCT594 CLOSED: physical save passed; watched Load next
 
 Read REPORT.md,final001.json,save-phase1-review001.json,visual-review001.json.
