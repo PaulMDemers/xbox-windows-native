@@ -56,6 +56,16 @@ normally, and loaded that exact save after a deliberate camera change on the
 second boot. The checked 165600 scenery pixels matched the saved scene exactly.
 This is a PC control, not Xbox save persistence or a performance result.
 
+[PC603](../outputs/rct603/REPORT.md) now qualifies the retained **PC593** save
+on a fresh uninstrumented game fixture. After a deliberate camera change, loading
+restored all165600 checked scenery pixels exactly to the matching PC593 reference
+and held them unchanged ten seconds later. The save stayed byte-identical; native
+Window mode, normal exit/restart and registry cleanup passed. This supplies a
+repeatable scene, with no timing or acceleration result. The physical594 save has
+the same filename but different bytes/hash and must not be substituted into this
+PC comparison. User-confirmed physical manual save/load remains accepted.
+
+For subsequent measurement scenes, retain the same discipline:
 After the window/fullscreen input comparison, create one uniquely named park
 save and record its hash, game executable, settings, actual display/client
 size, camera position, zoom, pause state and visible scenery. Reload that exact

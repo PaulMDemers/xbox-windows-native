@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "game_instrumentation": false,
+  "game_code_patch": false,
+  "debugger": false,
+  "one_load_submission": true,
+  "correction_diff": [
+    "--- load_dialog.h\n",
+    "+++ load_dialog002.h\n",
+    "@@ -25,7 +25,8 @@\n",
+    " static BOOL load_owned_park(void){",
+    "  DWORD start=GetTickCount(),high=0,size;DWORD_PTR result=0;HANDLE f;char got[MAX_PATH];BOOL posted;",
+    "  f=CreateFileA(loadpath,GENERIC_READ,FILE_SHARE_READ,0,OPEN_EXISTING,0,0);",
+    "- if(f==INVALID_HANDLE_VALUE)return FALSE;size=GetFileSize(f,&high);CloseHandle(f);",
+    "+ if(f==INVALID_HANDLE_VALUE)return FALSE;",
+    "+ size=GetFileSize(f,&high);CloseHandle(f);",
+    "  number(\"load_file_bytes\",size);if(high||size!=290244)return FALSE;",
+    "  do{loaddialog=0;loaddialogcount=0;EnumWindows(findload,0);if(loaddialogcount==1)break;Sleep(100);}while(GetTickCount()-start<10000);",
+    "  number(\"load_dialog_count\",loaddialogcount);if(loaddialogcount!=1)return FALSE;"
+  ],
+  "save": {
+    "path": "C:\\xwn593\\pc001\\cold1-002\\files\\xwn593-kit\\game\\Saved Games\\XWN593.SV4",
+    "sha256": "ca9a26c940a6dfc8dc5ba53cf8717eb4eb7b247140aa636a0afd29b9bbf5947e",
+    "sha1": "af6dbb5a131aa2ec79f5574bb3a9e99ce90985fa",
+    "bytes": 290244
+  },
+  "reference": {
+    "path": "C:\\xwn593\\pc001\\collection001\\06-park-after-save.bmp",
+    "sha256": "8178f585ddb10d28e2011f7dc446c40509143b80aae96cdcaf38f37afdea0e1d"
+  },
+  "frozen_build_sources": true,
+  "limits": "Static source/build review; native UI behavior and saved pixels still require guest evidence."
+}

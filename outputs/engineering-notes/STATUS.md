@@ -1,3 +1,30 @@
+# PC603 closed: exact retained PC593 saved scene qualified
+
+A fresh uninstrumented RCT PC fixture loaded the retained PC593 save after a
+deliberate camera move.130200 of165600 scenery pixels changed with movement;
+loading restored all165600 pixels exactly to the retained reference, unchanged
+ten seconds later. All nine captures were inspected. The290244-byte PC593 save
+remained identical; physical594 has a different same-named save and is not this
+comparison. This is scene qualification, not FPS/cost or Xbox acceleration.
+
+Build001 misleading-indentation failure is preserved; distinct002 sources and
+build passed.503-file copy/media checks, seven scene rejection cases, source/
+binary review and final cold cleanup passed. One game launch, normal exit,
+registry restoration, five clean hives with raw agreement, protected OS identity
+and one new EventLog6006 are verified. VM closed2026-10-20 03:50:09UTC; all owned
+VM/build/cold processes exited. Do not reopen/recollect/parent closed runtimes.
+Read outputs/rct603/REPORT.md and outputs/rct603/NEXT001.md.
+
+Next: independently qualify bounded DIB header reads on an original graphics
+control, then actual park-phase layout and matched fixed-scene process/presentation
+costs with clock checks and observer overhead. No measurements or acceleration
+claims yet. User-confirmed physical manual save/load remains accepted.
+
+Xbox untouched; last dashboard/no owned hook.596 offline SOFTWARE cleanup remains
+cold-only. Ordinary launcher/protected720p/transfer ZIPs unchanged; RCT excluded.
+Other consoles/sound/fullscreen/input follow-up/boot intermittency/1080i deferred.
+Automation remains paused; old overnight cutoffs are inactive. No reset needed.
+
 # PC602 closed: actual RCT windowed GDI calls observed
 
 PC601 original graphics control passed106 paired calls, exact GDI pixels and
