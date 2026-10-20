@@ -1,3 +1,31 @@
+# PC605 closed: saved-park sampling mechanism qualified
+
+Fresh original NT5 control passed pristine/traced execution with identical logs:
+192 paired calls,84 bitmap headers and32 StretchDIBits samples per phase. A request
+inside a pending call deferred until return; duplicate requests did not reset the
+second sample. Four skipped entries per phase remained explicit. The601 graphics
+core and604 bounded header reader are preserved. New host phase tests,23 existing
+trace mutations and11 phase mutations passed.
+
+Code inspection found a WORDS marker variable overwriting the new phase state in
+the frozen offline checker. Corrected002 renames that local only; originals are
+preserved, no runtime or expected outcome changed. Review002 passed. VM closed
+2026-10-20 04:23:30UTC; one final screenshot raced process exit0 and is preserved.
+Cold tools/OS/seed identity, five clean hives/raw agreement and one new6006 passed.
+All owned VM/build/cold processes exited. Never reopen/recollect/parent closed
+runtimes. Read outputs/rct605/REPORT.md and outputs/rct605/NEXT001.md.
+
+Next: actual RCT saved-park trace combining602 retail handoff,603 exact PC593 scene
+and605 phase/header observer with corrected checker002. Signal only after exact
+loaded scene verification; independently decode layout and pointer correlation.
+Then clock-qualified pristine process costs and observer overhead. No game layout,
+FPS or Xbox acceleration conclusion comes from this original control.
+
+Xbox untouched; last dashboard/no owned hook.596 SOFTWARE cleanup remains cold-only.
+Launcher/protected720p/saves/transfer ZIPs unchanged; ZIPs exclude RCT. Other consoles,
+sound/fullscreen/input follow-up/boot intermittency/1080i deferred. Automation paused;
+old overnight cutoffs inactive. No hardware reset needed for host work.
+
 # PC604 closed: bounded bitmap-header observer qualified
 
 Fresh original NT5 control passed pristine and traced execution with identical

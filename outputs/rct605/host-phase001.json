@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "space": {
+    "minimum_free_gib": 20.02,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c",
+        "free_bytes": 25166528512
+      },
+      {
+        "free_bytes": 25166528512,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "inputs": {
+    "host_phase.c": "1f686800905eaa44e5e8bb1bec81c77080f81a992f0797173ea4feff0158937c",
+    "phase.h": "c83addac9ad17e4a130d800ccf60bad10c83026ebf464bbfaf36a03d97e777a8"
+  },
+  "build": {
+    "command": [
+      "/usr/bin/cc",
+      "-std=c99",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/rct605/host_phase.c",
+      "-o",
+      "/mnt/c/xwn605/host-phase001"
+    ],
+    "code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "run": {
+    "code": 0,
+    "stdout": "PHASE605 PASS: pending drain, one transition, 100 duplicate requests, 3 invalid states\n",
+    "stderr": ""
+  },
+  "binary_sha256": "b0b8126245b08bbf239e68d329c56da1a5f6b79542415afed6bc136f88d7fb41"
+}

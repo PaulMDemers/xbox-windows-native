@@ -40,6 +40,17 @@ before interpreting costs. The original subject is a recorder control, not a
 matched game-performance control. Current Xbox registry cleanup is cold readback
 verified but has not received a subsequent Windows boot.
 
+The [PC603 scene control](../outputs/rct603/REPORT.md) subsequently restored the
+exact retained PC593 park view, with all165600 checked scenery pixels matching
+its reference after a deliberate camera move. [PC604](../outputs/rct604/REPORT.md)
+qualified bounded bitmap-header reads. [PC605](../outputs/rct605/REPORT.md) then
+qualified a single explicit phase transition after recorded calls drain, including
+exhausted startup sampling and duplicate requests:32 StretchDIBits samples per
+phase,192 total pairs and84 header records on an original NT5 control. Its offline
+checker naming collision and corrected002 review are preserved. The next actual
+RCT trace can use this mechanism to delimit the verified saved park. Actual game
+layout, process costs, clock qualification and observer overhead remain unmeasured.
+
 ## Establish a repeatable scene
 
 The automated input comparison is qualified on [PC584](../outputs/rct584/REPORT.md):
