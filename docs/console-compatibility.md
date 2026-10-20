@@ -6,6 +6,15 @@ coverage before native GPU acceleration. Finish the physical RCT process-cost
 comparison first; the [PC caller measurement](../outputs/rct628/REPORT.md) is
 complete and does not establish Xbox performance.
 
+## First additional-console inventory
+
+A [user-supplied 1.6 report](../outputs/inventory630/REPORT.md) passes the schema-2
+validator. It reports64MiB, kernel1.0.5838.1, about4.05GiB free onE, and an
+unidentified encoder after both supported probes fail. Its current mode list
+contains only640x480 and720x480 at32-bit/60Hz; it does not encode interlace flags.
+Cable/adapter and dashboard HD-setting context is pending. This establishes a
+useful inventory target, not Windows support or an intrinsic720p limitation.
+
 ## What the current source actually accepts
 
 | Hardware observation | Current evidence and limitation | First useful next step |

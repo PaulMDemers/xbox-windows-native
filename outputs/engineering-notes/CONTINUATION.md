@@ -1,3 +1,19 @@
+# Additional-console inventory630 validated; no Windows launch
+
+User provided a report from a console identified by the user as1.6. Exact JSON
+and validation retained in outputs/inventory630. Schema2/xbox-safe-v1 passes;
+RAM64MiB, kernel1.0.5838.1, encoder unidentified (both probes0xc0000185), only
+640x480/720x48032bit60Hz enumerated, Efree4353671168bytes. No interlace flag;
+not proof of480p or an intrinsic720p limitation. Tool does not positively detect
+Xcalibur. No new-console Windows/return-to-dashboard qualification or source patch.
+
+Asked once for cable/adapter and whether720p is enabled; answer pending. This
+report is not a reply to original development Xbox availability. No FTP/stage/
+launch this turn; original console last626dashboard, nohook,720p unchanged.
+PC627/628 remain CLOSED; physical RCT counter baseline still needs qualified
+runner and original hardware availability. Then qualify other-console profiles
+beforeGPU. Next unused experiment identity631. Automation remains PAUSED.
+
 # PC measurements CLOSED; revision source review documented; hardware reply pending
 
 cc24e39b pushed:627 original controls and628 matched retail runtime are CLOSED PASS.
