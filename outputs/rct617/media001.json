@@ -1,0 +1,135 @@
+{
+  "path": "C:\\xwn617\\helper001.iso",
+  "sha256": "6ab36ff8b3f92ae445d7af8fcbbb749dc3ea1cd2cfeeb6dd42afbe9ad8c635f4",
+  "bytes": 122880,
+  "files": {
+    "SUBJECT.EXE": {
+      "path": "/mnt/c/xwn617/build001/subject.exe",
+      "bytes": 11342,
+      "sha256": "56913ed8ceaa166bf281e6a3fe0e664851cd0d1650b48587402e225603e485d0",
+      "imports": {
+        "GDI32.dll": [
+          "CreateCompatibleDC",
+          "DeleteDC",
+          "DeleteObject",
+          "GdiFlush",
+          "SelectObject"
+        ],
+        "KERNEL32.dll": [
+          "CloseHandle",
+          "CreateFileA",
+          "ExitProcess",
+          "FlushFileBuffers",
+          "GetCommandLineA",
+          "GetCurrentProcessId",
+          "GetProcAddress",
+          "GetTickCount",
+          "LoadLibraryA",
+          "OpenEventA",
+          "SetEvent",
+          "Sleep",
+          "WaitForSingleObject",
+          "WriteFile",
+          "lstrlenA"
+        ],
+        "USER32.dll": [
+          "wsprintfA"
+        ]
+      }
+    },
+    "TRACE.EXE": {
+      "path": "/mnt/c/xwn617/build001/trace.exe",
+      "bytes": 22975,
+      "sha256": "38d0048e6ad68ebd0133104cd3a65437642bf95388ced887b4d1606b65849b2a",
+      "imports": {
+        "KERNEL32.dll": [
+          "CloseHandle",
+          "ContinueDebugEvent",
+          "CreateEventA",
+          "CreateFileA",
+          "CreateProcessA",
+          "ExitProcess",
+          "FlushFileBuffers",
+          "FlushInstructionCache",
+          "GetCurrentProcessId",
+          "GetLastError",
+          "GetProcessTimes",
+          "GetThreadContext",
+          "GetTickCount",
+          "ReadProcessMemory",
+          "ResumeThread",
+          "SetEvent",
+          "SetLastError",
+          "SetThreadContext",
+          "SuspendThread",
+          "TerminateProcess",
+          "VirtualProtectEx",
+          "VirtualQueryEx",
+          "WaitForDebugEvent",
+          "WaitForSingleObject",
+          "WriteFile",
+          "WriteProcessMemory",
+          "lstrcmpA",
+          "lstrlenA"
+        ],
+        "USER32.dll": [
+          "wsprintfA"
+        ]
+      }
+    },
+    "RUN617.EXE": {
+      "path": "/mnt/c/xwn617/build001/run617.exe",
+      "bytes": 20994,
+      "sha256": "8f5a57a36d93f15b1312395e72aba0758118b2618780d41812d2532b2480fa85",
+      "imports": {
+        "ADVAPI32.dll": [
+          "AdjustTokenPrivileges",
+          "LookupPrivilegeValueA",
+          "OpenProcessToken"
+        ],
+        "KERNEL32.dll": [
+          "CloseHandle",
+          "CreateDirectoryA",
+          "CreateEventA",
+          "CreateFileA",
+          "CreateProcessA",
+          "ExitProcess",
+          "FlushFileBuffers",
+          "GetCommState",
+          "GetCurrentProcess",
+          "GetCurrentProcessId",
+          "GetExitCodeProcess",
+          "GetFileSize",
+          "GetLastError",
+          "GetModuleHandleA",
+          "GetProcAddress",
+          "GetProcessTimes",
+          "GetTickCount",
+          "LoadLibraryA",
+          "OpenEventA",
+          "OpenProcess",
+          "QueryPerformanceCounter",
+          "QueryPerformanceFrequency",
+          "ReadFile",
+          "SetCommState",
+          "SetCommTimeouts",
+          "SetEvent",
+          "SetLastError",
+          "Sleep",
+          "TerminateProcess",
+          "WaitForSingleObject",
+          "WriteFile",
+          "lstrcmpiA",
+          "lstrcpyA",
+          "lstrlenA"
+        ],
+        "USER32.dll": [
+          "ExitWindowsEx",
+          "wsprintfA"
+        ]
+      }
+    }
+  },
+  "copy_script": "@echo off\r\nif exist C:\\xwn617-kit goto fail\r\nmkdir C:\\xwn617-kit\r\ncopy D:\\SUBJECT.EXE C:\\xwn617-kit\\SUBJECT.EXE\r\nif errorlevel 1 goto fail\r\ncopy D:\\TRACE.EXE C:\\xwn617-kit\\TRACE.EXE\r\nif errorlevel 1 goto fail\r\ncopy D:\\RUN617.EXE C:\\xwn617-kit\\RUN617.EXE\r\nif errorlevel 1 goto fail\r\nattrib -R C:\\xwn617-kit\\*.*\r\necho XWN617 READY - EJECT CD BEFORE RUNNING\r\nexit\r\n:fail\r\necho COPY FAILED\r\npause\r\n",
+  "readback_passed": true
+}

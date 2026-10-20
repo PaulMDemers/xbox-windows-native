@@ -7,6 +7,18 @@ separates the watched Xbox result from PC controls and unresolved inputs.
 
 ## Save/load checkpoint and next measurement
 
+[PC618](../outputs/rct618/REPORT.md) completes the matched saved-scene cost
+milestone, using [PC617](../outputs/rct617/REPORT.md)'s qualified continuous-work
+coordination. Over20.062 seconds, the game used19.3125 CPU seconds, the recorder
+0.375 seconds (1.87% of one emulated CPU), and the observer0.015625 seconds.
+The165600-pixel scenery matched exactly before and after; independent host
+elapsed was20.044836489 seconds. All processes closed normally and cold checks
+passed. Compare pristine615's19.859375 CPU seconds over20.016 elapsed seconds.
+These are single PC intervals under capped32-pair recording with ongoing entry
+handling. Recorder process CPU is measured, but total instrumentation overhead,
+FPS and Xbox acceleration are not established. The paused game dominates CPU;
+next attribute that time to waiting, rendering and copies before optimizing.
+
 [PC616](../outputs/rct616/REPORT.md) qualified the next measurement setup on
 original Windows 2000 code: distinct subject/recorder/observer identities,
 host-correlated twenty-second intervals, exact pixels and all recorded-phase
@@ -14,8 +26,8 @@ call/return timestamps inside the interval. It counted40 measured entry hits,
 including8 beyond the32-call cap. The cap leaves breakpoints active; it does not
 make execution uninstrumented. This tiny paced control registered no CPU
 increment at coarse resolution, so it supplies no recorder-overhead estimate.
-Normal restart and cold checks passed. Next adapt the coordination to the retail
-saved scene, explicitly handling its continuously running game thread.
+Normal restart and cold checks passed. PC617 subsequently qualified continuous work; PC618 completed the matched retail
+saved-scene measurement.
 
 [PC615](../outputs/rct615/REPORT.md) completed the first host-clock-checked,
 uninstrumented paused saved-scene cost baseline. Over20.016 seconds, RCT used
@@ -23,8 +35,8 @@ uninstrumented paused saved-scene cost baseline. Over20.016 seconds, RCT used
 working set stayed33.684MiB. The165600-pixel scene remained exact. Normal restart,
 registry restoration, saved-file and cold checks passed. This is one PC interval,
 not game FPS or Xbox throughput. It does not identify the cause of the CPU use.
-Next align actual recorder activity with a matched timed interval and measure
-game, recorder and counter-observer processes separately. Recording that finishes before timing starts cannot establish sampled-call
+PC618 now aligns actual recorder activity with a matched timed interval and
+measures game, recorder and counter-observer processes separately. Recording that finishes before timing starts cannot establish sampled-call
 costs. PC616 confirms capped entry breakpoints still incur debugger handling.
 
 [PC613](../outputs/rct613/REPORT.md) exposed a timing problem in the PC fixture:
@@ -37,7 +49,7 @@ unreliable for elapsed time in these fixtures; no correction factor or driver
 patch was applied. The observer recorded no CPU increment at coarse resolution,
 which is not zero-overhead proof. These are synthetic controls, not game FPS or
 Xbox measurements. PC615 subsequently included host clock agreement on its own verified saved-scene
-interval. A matched traced comparison remains pending.
+interval. PC618 supplies the matched traced comparison above.
 
 [PC610](../outputs/rct610/REPORT.md) qualifies recorder DLL unload/reload using
 original code at a reused address with different instruction bytes. Pristine
@@ -49,8 +61,7 @@ larger capacity headroom: the loaded park matched all165600 reference scenery
 pixels and remained unchanged ten seconds later. Its571 paired calls include32
 RCT StretchDIBits samples in each phase, linked to a1024x768 top-down8-bit BI_RGB
 DIB. Normal restart and cleanup passed. This establishes the sampled GDI path;
-PC615 subsequently measured pristine game costs; recorder overhead remains
-a separate pending measurement.
+PC615 subsequently measured pristine game costs; PC618 supplies separate recorder process costs, with the limitations above.
 Neither capped API counts nor these PC observations establish FPS or Xbox GPU
 acceleration.
 
@@ -82,8 +93,7 @@ failed/successful creation results and returned DirectDraw/surface methods with
 [PC602](../outputs/rct602/REPORT.md) now supplies actual game invocations and
 returns: successful DIB creation and32 sampled StretchDIBits calls from RCT,
 plus DirectDraw creation/release. Title and Forest Frontiers rendered; normal
-close, registry restoration and restart passed. The exact saved scene is now qualified by PC603/612. PC615 provides a clock-qualified uninstrumented cost baseline; a fresh matched
-instrumented case remains necessary before interpreting recorder overhead. The original subject is a recorder control, not a
+close, registry restoration and restart passed. The exact saved scene is now qualified by PC603/612. PC615 provides a clock-qualified uninstrumented cost baseline; PC618 supplies the matched instrumented case and bounded recorder process costs. The original subject is a recorder control, not a
 matched game-performance control. Current Xbox registry cleanup is cold readback
 verified but has not received a subsequent Windows boot.
 

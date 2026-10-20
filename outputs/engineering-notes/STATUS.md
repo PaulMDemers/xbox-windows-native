@@ -1,3 +1,67 @@
+# PC617/618 CLOSED PASS: matched RCT cost milestone complete
+
+2026-10-20:618 fresh404 runtime closed normally19:22:41UTC. Exact165600-pixel
+paused PC593 scenery matched before/after. Over20.062s (20.044836489s host), actual
+game CPU19.3125s, recorder0.375s, observer0.015625s;176 samples. Pristine615 used
+19.859375s game CPU over20.016s. One PC interval per condition, capped32-pair
+sampling with continued entry handling: not FPS, Xbox throughput, speedup or
+full instrumentation-overhead isolation.522 interior entries plus1 boundary hit;
+post-window hits excluded. QPC remains invalid. Game CPU attribution is next.
+
+617 qualified continuous-work timing; its window/timing bytes are unchanged in
+618. Corrected618 decoder permits ordered separate entry/call clock reads;
+13 rejection cases and cached617 regression pass. Preserve review001 timestamp
+assumption failure, review002 JSON ROI type failure, and copy-test ordering
+failure. Review003, visual/cost/scene/cold checks passed:7006 files/315 directories,
+five clean hives, exact save/tools/OS/seed, registry restoration and one normal
+shutdown. All owned processes closed. Read618/REPORT.md and exact NEXT001.md.
+
+Do not reopen/recollect/parent closed runtimes. Closed615 verified archive map is
+617/archive001.json. Recheck22GiB admission/20GiB reserve including WSL before
+new fixtures. No physical access; Xbox last dashboard/no hook;596 SOFTWARE
+cold-only.720p, launcher, packages and deferrals unchanged. Automation paused.
+Current milestone complete; no user input required.
+
+# PC617 closed PASS; PC618 fresh retail child admitted
+
+617 final001 passed continuous-work timing,22 host rejections,69 trace pairs,
+160 strictly interior hits plus5 boundary-tick hits, normal shutdown and clean
+cold review. All617 processes closed. 615 verified archive map in617/archive001.
+618 cold0 passed6475 files/308 directories; PC618 phase1 OPEN, booting.
+Follow actual ntfs-phase1.json and C:/xwn618/pc001/phase1. Desktop1024x768 matched; copy/verifier completed, both CDs ejected/read back.
+Runner launched once19:19UTC; follow launch-once001. No host screenshots/input
+during timed windows. Await bounded normal exit then one cold1 audit. Sources/build503-member
+media readback,11 counter rejections,10 copy and7 scene rejections passed. Read
+618/DESIGN.md. One matched pausedPC593 scene under capped recorder is planned,
+separate actual game/recorder/observer handles and unchanged617 window/timing.
+All previous runtimes closed; never rerun/recollect/parent. No physical access;
+Xbox last dashboard/no hook,596 SOFTWARE cold-only;720p/packages unchanged.
+Automation paused; no user input needed for this host milestone.
+
+# PC617 continuous-work control OPEN; PC618 prepared but not admitted
+
+Closed615 leaf archived with roundtrip verification: outputs/rct617/archive001.json.
+617 cold0 passed6475 files/308 directories; owned PC617 phase1 OPEN.
+Follow C:/xwn617/pc001/phase1 and ntfs-phase1.json. Copy complete/CD ejected; runner launched once19:08UTC. No screenshots or
+input during measured windows; follow launch-once001 receipt.
+618 retail sources, build,503-member media readback,11 counter rejection cases,
+10 copy rejections and7 scene rejections passed. Preparation requires actual617
+closed PASS. Copy test called before media existed once; ordering failure retained.
+No physical access; no reset needed. Prior runtimes remain closed; automation paused.
+
+# PC617 original continuous-work control awaiting capacity
+
+User authorized continuing until matched RCT measurement milestone or input is
+needed.616 pushed0accbc05.617 sources/build/media ready;22 host rejections pass.
+First host check failed before compilation due absent parent;host002 fixed only
+setup. Admission stopped before child allocation at23610425344 bytes, below
+22GiB. Fresh backing inventory in progress, then verified archive of closed615
+leaf only (archive001.py); no runtime exists yet, no guest launch. Do not waive
+reserve. Planned original continuously running subject qualifies window.h phase
+request after start and buffered all-hit ticks before adapting to618 retail.
+No physical access; Xbox last dashboard/no hook;596 SOFTWARE cold-only. All prior
+runtimes CLOSED; never reopen/recollect/parent them. Automation remains paused.
+
 # PC616 closed PASS: original recorder-cost coordination
 
 Fresh404 original-code fixture ran18:48:27–18:51:02UTC2026-10-20. Both direct and

@@ -1,0 +1,26 @@
+{
+  "passed": false,
+  "review": "review001.json",
+  "cause": "Separate GetTickCount reads surrounding memory/frame/breakpoint setup were incorrectly required equal.",
+  "observed": [
+    {
+      "phase": 0,
+      "ordinal": 19,
+      "id": 380,
+      "entry_tick": 383171,
+      "call_tick": 383187,
+      "return_tick": 383187,
+      "next_entry_tick": 383218
+    },
+    {
+      "phase": 1,
+      "ordinal": 11,
+      "id": 548,
+      "entry_tick": 480968,
+      "call_tick": 480984,
+      "return_tick": 480984,
+      "next_entry_tick": 481015
+    }
+  ],
+  "remedy": "Ordered pairing: entry <= call <= return; call <= next entry, plus unchanged phase/window/identity/total gates. No runtime alteration or recollection."
+}
