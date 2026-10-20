@@ -173,3 +173,12 @@ absent CreateDIBSection output address. Original pristine/traced controls agree,
 including independently inspected returned bitmap objects and expected failure.
 The actual saved-park trace still needs a fresh game run;607 is no new game or
 performance result. Non-NULL reads and DirectDraw checks remain strict.
+
+[PC608](../outputs/rct608/REPORT.md) stopped at copy admission because of a stale
+uppercase tool name; no game launched. [PC609](../outputs/rct609/REPORT.md) corrects
+that with a checked copy contract and confirms607's absent-output handling in the
+actual game. Its Load dialog accepted the save path, but a tracked DLL unload
+triggered deliberate recorder termination before scene verification.536 calls and
+returns pair; no park sample or timing result was obtained. Qualify module lifetime
+and address reuse on an original NT5 control before the next game retry; keep
+active/pending/stepping checks strict. Existing manual Xbox save/load remains valid.

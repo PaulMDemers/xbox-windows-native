@@ -1,3 +1,21 @@
+# PC609 closed failed: tracked DLL unload stops the recorder
+
+608 copy error corrected;609 passed exact tool-copy contract and503-file guest
+verification. Actual RCT title/Forest Frontiers/Window/camera movement and Load
+dialog/path/Open/disappearance passed. Three absent-output bitmap calls passed.
+Then unload601 rejected a DLL with15 recorded return sites and no pending calls;
+536 pairs complete, no park phase/loaded capture. Deliberate recorder termination,
+not proven save failure/game crash. Preserve review001 failure and exit screenshot
+race. Normal restart05:36:40UTC, registry/save/tools/OS/seed, five clean hives/raw
+agreement and one6006 passed; all processes exited.609 CLOSED FAILED.
+Read outputs/rct609/REPORT.md and NEXT001.md. Never reopen/recollect/parent closed
+runtimes. Next: original module unload/reload/address-reuse control with explicit
+lifetime ownership and strict pending/step guards before a new game retry. No
+speculative driver patch or guard waiver. No performance/acceleration result yet.
+Xbox unchanged, last dashboard/no hook;596 SOFTWARE cleanup cold-only. No reset
+needed. Protected720p/launcher/saves/ZIPs unchanged (ZIPs exclude RCT). Deferred
+other consoles/sound/fullscreen/input/boot/1080i and paused automation unchanged.
+
 # PC608 closed failed: copy guard caught stale uppercase tool name
 
 Copy script asked for TRACE606.EXE; media contained TRACE608.EXE. No game launched.
