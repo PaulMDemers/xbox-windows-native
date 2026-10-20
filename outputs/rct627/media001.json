@@ -1,0 +1,93 @@
+{
+  "path": "C:\\xwn627\\helper001.iso",
+  "sha256": "6b9be500718a6759be889919e72032f0657a18a7c63253c3c3c98b30ede8f88e",
+  "bytes": 96256,
+  "files": {
+    "SUBJECT.EXE": {
+      "path": "/mnt/c/xwn627/build001/subject.exe",
+      "bytes": 9328,
+      "sha256": "8cbbe463c4bd3eb1937d2ef37e16e688422547616ac9787ec96a0c5cd5f5da42",
+      "imports": {
+        "KERNEL32.dll": [
+          "CloseHandle",
+          "CreateFileA",
+          "ExitProcess",
+          "FlushFileBuffers",
+          "GetCommandLineA",
+          "GetCurrentProcessId",
+          "GetCurrentThreadId",
+          "GetTickCount",
+          "OpenEventA",
+          "SetEvent",
+          "Sleep",
+          "WaitForSingleObject",
+          "WriteFile",
+          "lstrlenA"
+        ],
+        "USER32.dll": [
+          "wsprintfA"
+        ],
+        "WINMM.DLL": [
+          "timeGetTime"
+        ]
+      }
+    },
+    "RUN627.EXE": {
+      "path": "/mnt/c/xwn627/build001/run627.exe",
+      "bytes": 22019,
+      "sha256": "ecff19166aed9fb980e7afccd40359bbbdc4d1ae268e07cadac945673add51b4",
+      "imports": {
+        "ADVAPI32.dll": [
+          "AdjustTokenPrivileges",
+          "LookupPrivilegeValueA",
+          "OpenProcessToken"
+        ],
+        "KERNEL32.dll": [
+          "CloseHandle",
+          "CreateDirectoryA",
+          "CreateEventA",
+          "CreateFileA",
+          "CreateProcessA",
+          "ExitProcess",
+          "FlushFileBuffers",
+          "GetCommState",
+          "GetCurrentProcess",
+          "GetCurrentProcessId",
+          "GetCurrentThread",
+          "GetExitCodeProcess",
+          "GetLastError",
+          "GetModuleHandleA",
+          "GetProcAddress",
+          "GetProcessTimes",
+          "GetThreadContext",
+          "GetThreadTimes",
+          "GetTickCount",
+          "LoadLibraryA",
+          "QueryPerformanceCounter",
+          "QueryPerformanceFrequency",
+          "ReadProcessMemory",
+          "ResumeThread",
+          "SetCommState",
+          "SetCommTimeouts",
+          "SetEvent",
+          "SetLastError",
+          "SetThreadPriority",
+          "Sleep",
+          "SuspendThread",
+          "TerminateProcess",
+          "VirtualQueryEx",
+          "WaitForSingleObject",
+          "WriteFile",
+          "lstrcmpiA",
+          "lstrlenA"
+        ],
+        "USER32.dll": [
+          "ExitWindowsEx",
+          "wsprintfA"
+        ]
+      }
+    }
+  },
+  "copy_script": "@echo off\r\nif exist C:\\xwn627-kit goto fail\r\nmkdir C:\\xwn627-kit\r\ncopy D:\\SUBJECT.EXE C:\\xwn627-kit\\SUBJECT.EXE\r\nif errorlevel 1 goto fail\r\ncopy D:\\RUN627.EXE C:\\xwn627-kit\\RUN627.EXE\r\nif errorlevel 1 goto fail\r\nattrib -R C:\\xwn627-kit\\*.*\r\necho XWN627 READY - EJECT CD BEFORE RUNNING\r\nexit\r\n:fail\r\necho COPY FAILED\r\npause\r\n",
+  "readback_passed": true
+}

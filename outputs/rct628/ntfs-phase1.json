@@ -1,0 +1,73 @@
+{
+  "command": [
+    "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/bin/qemu-system-i386",
+    "-name",
+    "xwn-rct628-pc-phase1",
+    "-L",
+    "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/qemu",
+    "-bios",
+    "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/seabios/bios.bin",
+    "-machine",
+    "pc,acpi=off,hpet=off",
+    "-accel",
+    "tcg,thread=single",
+    "-cpu",
+    "pentium3",
+    "-smp",
+    "1",
+    "-m",
+    "64",
+    "-vga",
+    "cirrus",
+    "-display",
+    "none",
+    "-nic",
+    "none",
+    "-serial",
+    "unix:/tmp/xwn-rct628-serial.sock,server=on,wait=off",
+    "-drive",
+    "file=/mnt/c/xwn628/pc001/disk.qcow2,format=qcow2,if=ide,index=0",
+    "-drive",
+    "file=/mnt/c/xwn628/helper001.iso,media=cdrom,readonly=on,if=ide,index=2",
+    "-drive",
+    "file=/mnt/c/Users/Paul/Desktop/rct_isos/RollerCoaster Tycoon Deluxe.iso,media=cdrom,readonly=on,if=ide,index=3",
+    "-usb",
+    "-device",
+    "usb-tablet",
+    "-boot",
+    "order=c",
+    "-qmp",
+    "unix:/tmp/xwn-rct628-phase1.sock,server=on,wait=off",
+    "-rtc",
+    "base=utc",
+    "-no-reboot"
+  ],
+  "started_utc": "2026-10-20T23:18:13.725564+00:00",
+  "closed": true,
+  "space": {
+    "minimum_free_gib": 22,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c/xwn628/pc001",
+        "free_bytes": 23781302272
+      },
+      {
+        "free_bytes": 23781240832,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "physical_access": false,
+  "network_device": false,
+  "phase": 1,
+  "pid": 517,
+  "deadline": false,
+  "exit_code": 0,
+  "ended_utc": "2026-10-20T23:27:10.106569+00:00",
+  "disk_sha256": "61792e1daf2eb913f632816e9a183fab6cae74ad36b1769a597e8bd8912f5b80",
+  "source_unchanged": true,
+  "iso_unchanged": true
+}

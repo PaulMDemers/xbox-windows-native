@@ -48,6 +48,20 @@ target. Pick the API version from the selected software and tested runtime,
 rather than declaring all Direct3D versions supported.
 [Microsoft's legacy graphics interface overview](https://learn.microsoft.com/en-us/windows/win32/devnotes/-dxgkernel-low-level-client-support).
 
+## Current priority after the RCT recording
+
+Finish the focused RCT CPU/caller measurements and a bounded physical baseline.
+Then review and qualify **other Xbox console revisions before native GPU
+acceleration**. Start with the already-built hardware-report kit and an explicit
+encoder/RAM/boot-profile compatibility matrix. Trace the actual loader, video
+handoff and platform assumptions before preparing per-console tests. A package
+working on the development console does not qualify another revision.
+
+Keep the current720p development-console baseline and recovery route intact.
+Use watched initial boots on newly inventoried hardware, followed by display,
+input, storage/save and normal-restart checks. Do not infer motherboard revision
+from a failed encoder probe. Acceleration remains the following milestone.
+
 ## Work in order
 
 Implementation starts with the [graphics sample ladder](graphics-samples.md):

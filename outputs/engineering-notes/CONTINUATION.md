@@ -1,3 +1,108 @@
+# PC627 and PC628 CLOSED PASS; physical measurement preparation next
+
+Read outputs/rct627/REPORT.md and outputs/rct628/REPORT.md and final001.json.
+627 qualified bounded live-byte capture on original controls;628 matched RCT
+scene/cost/caller measurement passed. All87 fixed timer frames resolve one RCT
+return RVA0x1828d6 and captured target timeGetTime. CPU19.890625s / tick20.016s /
+host20.025054937s. Not timer CPU attribution, call frequency, Xbox cost or FPS.
+No game/driver patch. All host processes closed; never reopen/recollect/parent.
+Raw runtime bytes remain private; public raw-counter logs omit all byte records.
+
+Physical next: one fresh bounded unmodified-game process-cost measurement after
+same-boot clock/counter sanity and saved-scene qualification, then normal restart
+and selected-file/hive/event cleanup. PC serial markers cannot be assumed on the
+Xbox. Explicitly distinguish guest QPC/tick agreement from external calibration.
+Keep instrumentation overhead separate; do not transplant PC cost to hardware.
+Need freshly qualified no-serial physical runner before stage/launch. User asked
+whether original Xbox is available at UnleashX after recording; answer pending.
+No physical launch/stage/FTP in627/628, no hook; last dashboard after closed626.
+Do not reuse play624 output guard or launch a closed identity. Automation PAUSED.
+
+User priority: finish focused measurements, then other console revisions, then
+GPU. Use hardware-report kit and explicit encoder/RAM/boot compatibility matrix;
+no untested revision support claim. Ordinary launcher/720p/packages unchanged.
+
+Capacity maps627archive001..005 and628archive001 remain authoritative.627archive004
+supersedes621 compressed disk location;627archive005 supersedes seven small prior
+compressed archive locations. Failed611 retained as failed. No backing chains
+moved. C/E near reserve; check C/E/WSL and projected allocation before new builds.
+628 initial admission refusal and two reverted display confirmations preserved.
+
+# PC628 matched RCT runtime measurement OPEN
+
+628 fresh404 cold0 passed; original627 byte/frame control is CLOSED PASS.
+PC628 phase1 is OPEN; follow ntfs-phase1 and C:/xwn628/pc001/phase1/serial-host.
+503 assets copied/verified, bothCDs ejected/read back. Desktop1024x76816bit was
+verified before launch after two reverted confirmation attempts; all preserved
+in display-preparation001. Runner launched ONCE via launch-once001 after23:23UTC.
+Sleep sanity markers received; wait for game/scene/measurement and bounded normal
+restart. Do not launch again or inject during the measurement. No physical access.
+
+Next cold1 once closed, unchanged scene/cost/hive/event checks, private runtime
+code/stack/caller-target review. Raw captured memory must remain private; public
+raw-counter logs strip CODE/STACK/CALLSITE/TARGET rows. frame-tests001 passes41
+fixed boundaries and eight malformed-record controls; unsupported calls stay
+unknown. No timing/driver/game patch. Never reopen closed627 or earlier cases.
+
+User priority: finish measurements, then other console revisions, then GPU.
+Original Xbox lastdashboard after626; protected720p/launcher/packages unchanged,
+no hook. Automation paused. Need physical counter baseline after PC result,
+then inventory/encoder/RAM/boot compatibility review before acceleration.
+Capacity mappings:627archive001..005 and628archive001; preserve every failure.
+627archive004/005 supersede older compressed archive locations. C/E remain near
+reserve; check actual space and WSL backing volume before every new allocation.
+
+# PC627 CLOSED PASS;628 matched retail preparation
+
+User order: finish focused measurements, then other-console revisions, then GPU
+acceleration.627 actual control passed896 exact instruction/stack captures and
+165 fixed-WINMM unwinds to original subject call boundary. Timing bounds and
+normal restart/cold/process checks passed. Read627/REPORT.md and final001.json.
+Do not reopen/recollect/parent627. Private code/stack bytes must stay private.
+
+628 built with qualified627 reader, fixed timer-stack plan and bounded caller
+code/IAT capture.503 assets/media readback,15 profile and10 copy negatives,
+seven scene negatives passed. Fresh404 preparation exists; cold0 in progress.
+No628VM/game launch yet. Follow actual628 receipts and C:/xwn628/pc001.
+Initial628admission missed22GiB byabout4MB before allocation; preserved refusal.
+Closed helper media losslessly archived in628/archive001.json, then admitted.
+
+627archive004/005 supersede earlier compressed-archive locations; consult maps.
+All historical closed failures retained.628 must finish matched scene, live-byte
+caller interpretation, normal shutdown and cold reviews. No physical access;
+Xbox last dashboard/no hook after626.720p/packages unchanged, automation paused.
+After focused PC result prepare matched physical counters, then revision/encoder/
+RAM/boot compatibility. No speculative pacing/driver/GPU patch.
+
+# PC627 runtime-byte controls OPEN; revisions precede acceleration
+
+User now prioritizes finishing focused RCT measurements, then supporting other
+console revisions, then acceleration. Other-console investigation is no longer
+deferred behind GPU work. No new physical launch has occurred;626 remains CLOSED
+with user-confirmed game/scrolling and verified cleanup, Xbox last at dashboard.
+
+627 fresh immutable404 cold0 passed6475 files/308 directories. PC phase1 OPEN,
+booting; follow outputs/rct627/ntfs-phase1.json and C:/xwn627/pc001/phase1.
+Original623 busy/paced workloads and CPU/timing bounds preserved. New bounded
+read-only32-byte instruction/64-byte stack captures are held inside balanced
+suspension, with checked memory regions and exact read lengths. Host13 memory
+cases, suspension and timer/serial checks passed; build/media qualified. Need
+runtime and byte/caller interpretation before any retail claim. Never treat
+stack words alone as proven callers or sample fractions as CPU-time fractions.
+
+Capacity: archive001 refused C reserve before compression. archive002 archived
+closed failed611 to E, refused621 reserve. archive003 archived closed leaves
+losslessly with roundtrip hash verification. archive004 relocates621 compressed
+archive to E; archive005 relocates seven small compressed archives to C. Read
+those maps; originals and previous archive paths may be intentionally absent.
+All closed failures remain preserved; no runtime reopened or parented. Build
+lease refusal occurred while own inventory held it; subsequent build passed.
+C approximately22.22GiB/E20.14GiB after archival; actual checks still mandatory.
+No new proprietary data committed. Protected720p/packages remain unchanged.
+Automation paused. Finish627 normal restart/cold audits before closing; then
+matched retail timer-caller work and Xbox fixed-scene measurement, followed by
+revision/encoder/RAM/boot-chain compatibility review. GPU implementation waits.
+
 # Recording626 CLOSED: user-confirmed game/scrolling; cleanup PASS
 
 Original Xbox RCT ran; user confirmed right-mouse scrolling and arrow keys,
