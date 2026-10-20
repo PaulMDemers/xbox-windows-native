@@ -1,3 +1,23 @@
+# PC612 closed PASS: exact saved-park graphics trace and cleanup
+
+Fresh404 child ran16:28:28-16:36:21UTC on2026-10-20. Loading exact PC593 save
+restored all165600 scenery pixels after camera movement and remained exact ten
+seconds later. Nine captures visually reviewed.571 paired calls,32 RCT
+StretchDIBits samples per phase; linked1024x768 top-down8-bit BI_RGB DIB,
+stride1024/extent786432. This establishes a bounded GDI path, not FPS, frame
+count, CPU bottleneck or Xbox acceleration. Six lifetime and ten trace mutations
+rejected. Normal restart/one6006, registry/save/tools/OS/seed/five hives/raw checks
+passed;7005 files/315 directories. Exit screenshot race preserved. All owned
+processes exited; no physical access. Read outputs/rct612/REPORT.md and NEXT001.md.
+Never reopen/recollect/parent closed runtimes. Next: clock-qualified pristine game
+costs and observer overhead using fresh fixtures and the exact matched scene.
+611 host-space failure remains closed; archive map in outputs/rct611/archive001.json
+preserves602/606/608/609 leaf bytes on E,2717122560 bytes recovered on C. Fresh
+admission22GiB/2GiB budget; recheck C/E and WSL before any allocation, no waiver.
+Xbox unchanged/last dashboard/no hook;596 SOFTWARE cleanup cold-only. No reset
+needed. Protected720p/launcher/saves/ZIPs unchanged; ZIPs exclude RCT. Other-console,
+sound/fullscreen/input/boot/1080i deferrals and paused automation unchanged.
+
 # PC611 closed by host-space guard; verified archive recovery complete
 
 611 received one runner launch, then host space protection sent QMP quit at

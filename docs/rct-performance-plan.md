@@ -12,15 +12,22 @@ original code at a reused address with different instruction bytes. Pristine
 and traced behavior matched; unsafe pending/active states remain rejected.
 [PC611](../outputs/rct611/REPORT.md) was stopped by host disk-space protection;
 it supplies no game outcome. Historical leaf disks are now losslessly archived
-and612 is preparing with larger capacity headroom. Saved-scene trace coverage,
-pristine game costs and recorder overhead are still distinct pending steps.
+with full verification. [PC612](../outputs/rct612/REPORT.md) then passed with
+larger capacity headroom: the loaded park matched all165600 reference scenery
+pixels and remained unchanged ten seconds later. Its571 paired calls include32
+RCT StretchDIBits samples in each phase, linked to a1024x768 top-down8-bit BI_RGB
+DIB. Normal restart and cleanup passed. This establishes the sampled GDI path;
+pristine game costs and recorder overhead remain separate pending measurements.
+Neither capped API counts nor these PC observations establish FPS or Xbox GPU
+acceleration.
 
 The user confirmed repeated manual Xbox saves/loads in
 [596](../outputs/rct596/REPORT.md), with a new park file collected and both prior
 saves unchanged. [594](../outputs/rct594/REPORT.md) verified the new paused save
 across normal restart. Treat the manual compatibility check as complete for the
-current scope. The planned `XWN593.SV4` moved-view/reload image pair was not captured;
-qualifying the exact loaded scene remains part of measurement preparation.
+current scope. The physical `XWN593.SV4` moved-view/reload image pair was not captured. The
+separate PC593 scene is now qualified by PC603 and instrumented PC612; do not
+substitute the differently hashed physical save into that PC comparison.
 
 The first request recorder passed a known Windows 2000 control in
 [PC597](../outputs/rct597/REPORT.md): 25 expected requests across two threads,
@@ -42,9 +49,9 @@ failed/successful creation results and returned DirectDraw/surface methods with
 [PC602](../outputs/rct602/REPORT.md) now supplies actual game invocations and
 returns: successful DIB creation and32 sampled StretchDIBits calls from RCT,
 plus DirectDraw creation/release. Title and Forest Frontiers rendered; normal
-close, registry restoration and restart passed. Next, qualify the exact saved
-scene and compare a fresh uninstrumented game control with the instrumented case
-before interpreting costs. The original subject is a recorder control, not a
+close, registry restoration and restart passed. The exact saved scene is now qualified by PC603/612. Next compare a fresh
+clock-qualified uninstrumented game control with the instrumented case before
+interpreting costs. The original subject is a recorder control, not a
 matched game-performance control. Current Xbox registry cleanup is cold readback
 verified but has not received a subsequent Windows boot.
 
@@ -55,16 +62,16 @@ qualified bounded bitmap-header reads. [PC605](../outputs/rct605/REPORT.md) then
 qualified a single explicit phase transition after recorded calls drain, including
 exhausted startup sampling and duplicate requests:32 StretchDIBits samples per
 phase,192 total pairs and84 header records on an original NT5 control. Its offline
-checker naming collision and corrected002 review are preserved. The next actual
-RCT trace can use this mechanism to delimit the verified saved park. Actual game
-layout, process costs, clock qualification and observer overhead remain unmeasured.
+checker naming collision and corrected002 review are preserved. PC612 subsequently used this mechanism to delimit the verified saved park and
+record its actual DIB layout. Process costs, clock qualification and observer
+overhead remain unmeasured.
 
 [PC606](../outputs/rct606/REPORT.md) captured an early RCT1024x768 top-down8-bit
 BI_RGB DIB, with32 sampled StretchDIBits calls using its returned bits pointer.
 It failed before saved-park sampling: an internal GDI call returned a bitmap with
 NULL ppvBits, which the recorder rejected and then terminated the game. Cleanup
-and normal restart passed. A new absent-output recorder control is required before
-the next game attempt. Early layout evidence is retained separately from this
+and normal restart passed. PC607 subsequently qualified absent-output handling, and PC610 qualified DLL
+lifetimes before the successful PC612 saved-scene trace. Early layout evidence is retained separately from this
 failed saved-scene objective; no game costs or acceleration result is available.
 
 ## Establish a repeatable scene
