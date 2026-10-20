@@ -5,6 +5,8 @@ E/720p test package, with copying instructions and checksums; it has not yet
 been qualified on another console and is not a public Windows download.
 Use a package explicitly prepared for your test, not a developer's disk/recovery
 archive. Builders should follow the [two-kit recipe](build-test-kits.md).
+The [compatibility matrix](console-compatibility.md) explains which hardware
+assumptions need review before the initial Windows boot.
 
 ## 1. Report your hardware
 

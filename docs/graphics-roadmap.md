@@ -55,7 +55,9 @@ Then review and qualify **other Xbox console revisions before native GPU
 acceleration**. Start with the already-built hardware-report kit and an explicit
 encoder/RAM/boot-profile compatibility matrix. Trace the actual loader, video
 handoff and platform assumptions before preparing per-console tests. A package
-working on the development console does not qualify another revision.
+working on the development console does not qualify another revision. See the
+[source-based compatibility review](console-compatibility.md) for the current
+encoder and RAM restrictions and the qualification order.
 
 Keep the current720p development-console baseline and recovery route intact.
 Use watched initial boots on newly inventoried hardware, followed by display,
