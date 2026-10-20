@@ -1,3 +1,20 @@
+# PC611 closed by host-space guard; verified archive recovery complete
+
+611 received one runner launch, then host space protection sent QMP quit at
+16:14:02UTC. No durable runner/trace namespace or new6006. Game.cfg changed and
+temporary game registry remained; other502 assets/tools/OS/seed exact, five clean
+hives/raw agreement. This is no game result or normal-shutdown/cleanup pass.
+Preserve review001 failure and failure_review001 wrong unchanged-assets assumption;
+failure_review002 and close003 record actual outcome. Never rerun/recollect/parent.
+Read outputs/rct611/REPORT.md and NEXT001.md. Closed602/606/608/609 leaf bytes now
+archived losslessly under E:/xwn611/archives with roundtrip hashes/restore maps in
+archive001.json.2717122560 C bytes recovered; no historical evidence discarded.
+610 original DLL lifetime remains PASS (5211eea5 pushed).612 source/build preparing
+same game test, fresh404 child,22GiB admission/2GiB total allocation allowance;
+no612 guest yet. Follow612 actual records. Xbox unchanged/last dashboard/no hook;
+596 SOFTWARE cleanup cold-only, protected720p/launcher/ZIPs unchanged. Deferrals
+and paused automation unchanged. No hardware reset needed.
+
 # PC610 closed passed;611 fresh actual-game fixture preparing
 
 610 original NT5 A/B/A DLLs reused base/return address across generations12/13/14,
