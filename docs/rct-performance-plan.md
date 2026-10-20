@@ -51,6 +51,14 @@ checker naming collision and corrected002 review are preserved. The next actual
 RCT trace can use this mechanism to delimit the verified saved park. Actual game
 layout, process costs, clock qualification and observer overhead remain unmeasured.
 
+[PC606](../outputs/rct606/REPORT.md) captured an early RCT1024x768 top-down8-bit
+BI_RGB DIB, with32 sampled StretchDIBits calls using its returned bits pointer.
+It failed before saved-park sampling: an internal GDI call returned a bitmap with
+NULL ppvBits, which the recorder rejected and then terminated the game. Cleanup
+and normal restart passed. A new absent-output recorder control is required before
+the next game attempt. Early layout evidence is retained separately from this
+failed saved-scene objective; no game costs or acceleration result is available.
+
 ## Establish a repeatable scene
 
 The automated input comparison is qualified on [PC584](../outputs/rct584/REPORT.md):

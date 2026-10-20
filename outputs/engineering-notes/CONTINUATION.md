@@ -1,3 +1,26 @@
+# PC606 closed failed: recorder rejects an absent GDI output pointer
+
+Actual RCT reached Forest Frontiers and moved the camera, then the recorder
+terminated it while opening Load. Call406 returned a bitmap with NULL ppvBits;
+the frozen output guard rejects that address immediately after RETURN. No park
+phase was requested. Do not attribute the later access violation to a game fault.
+Early32 RCT StretchDIBits samples share its successful DIB bits pointer/header:
+1024x768 top-down8-bit BI_RGB, stride1024/extent786432. This is bounded early
+layout evidence, not saved-park coverage, costs, frames or Xbox acceleration.
+
+606 review001 failed; failure-review001 independently checks the failed trace
+without fabricating success. Normal Windows restart, registry restoration,
+unchanged save/tools/OS, five clean hives/raw agreement and one new6006 passed.
+VM closed04:44:31UTC; all owned processes exited. Preserve source-review001 CRLF
+mismatch and expired display-confirmation attempt. Read outputs/rct606/REPORT.md
+and NEXT001.md. Never reopen/recollect/parent closed runtimes.
+
+Next: qualify explicit absent-output recording on a fresh original NT5 control,
+keeping non-NULL read failures/DirectDraw checks strict and BI_BITFIELDS unsupported.
+Then retry the exact saved-park trace on a fresh404 child. Xbox/launcher/protected720p/
+saves/transfer ZIPs unchanged, ZIPs exclude RCT; no hardware reset needed.596 cleanup
+remains cold-only. Other deferred items and paused automation remain unchanged.
+
 # PC605 closed: saved-park sampling mechanism qualified
 
 Fresh original NT5 control passed pristine/traced execution with identical logs:
