@@ -1,3 +1,104 @@
+# RCT596 CLOSED: manual Xbox save/load confirmed; performance work next
+
+User confirmed repeated manual saves and loads work. New Dynamite Dunes.SV4
+collected; oldXWN586 and newXWN593 remain byte-identical. User rebooted; new
+EventLog6006 proves normal Windows shutdown. Ftdisk49 recurred.13valid640x480
+captures show title, menus, paused Forest Frontiers and return to title; last
+runner record identifies Load Game dialog. No captured moved/restored pair proves
+exact593 reload. Manual observation started but no finish/cleanup receipt before
+user reboot. Do not call this an automatic-loop pass or game failure.
+
+Hook596 removed first. Cold system/user hive checks passed. Recorder's temporary
+HKLM Fish Technology Group subtree remained (onlySetupPath,Path,Language). Exact
+subtree cleanup prepared from captured postrunSOFTWARE, preserving all other key
+names/rawvalues. Independent raw readers agree; pre-existing DRMtype1004 typed
+decode limitation unchanged. Initial complete-typed gate failure preserved in
+cleanup-preparation-failure001; corrected002 requires exact unchanged errors.
+Eight transaction fault cases passed. Reviewed candidate staged/readback, old
+hive renamed to /E/xwn586-kit/software-before596.hiv, candidate installed with
+cold double-read confirmation. No Windows boot since offline cleanup. No driver
+or game patch. registry-review002 passes; original failedreview001 retained.
+
+All owned host processes closed, no VM/hook, console lastdashboard.596final001
+closed; never rerun/recollect. Prior595 Windows-startup failure retained and
+pushedb39da636. Both delivered ZIPs unchanged/excludeRCT. Automation paused.
+
+Next: graphicsAPI observation and fixed-scene software-performance preparation.
+Do not repeat save/load solely to replace the user's manual result. Use retained
+593 save as candidate fixed scene; qualify exact loaded frame separately before
+timing. Dynamic LoadLibraryA/GetProcAddress trace on a NEW PCfixture first;
+static imports/module presence are not runtimecalls or GPU evidence. Freeze
+pristine/instrumented controls, bound overhead, then measure CPU/drawing/copy/
+presentation with clock checks. No speculative functional displaydriver changes.
+Read docs/rct-performance-plan.md. Host C still near20GiB reserve; capacity must
+be re-admitted including WSL backing before any freshVM. Never reuseclosedPCs.
+
+Current game /E/xwn586-kit/game has505files including3saves. Kit root additionally
+contains load586.exe,run586.exe,owner.json,used591/592/594/596 hooks and rollback
+software-before596.hiv. Source593-kit retainsowner/run593/used594. Output586p2 is
+USED and immutable; any future helper must use a new output path and new validation
+if its bytes change. CurrentSOFTWARE hash is incleanup-apply001 verified map;
+use that as current baseline, not pre-cleanup collection hash. Otherconsole,
+fullscreen,boot,1080i,sound tests remain deferred. No gameFPS/GPU qualification.
+
+# RCT596 cold launch accepted; watching for return
+
+One SITE accepted200 at2026-10-20T01:33:56.476581Z. Stage and launch supervisors
+closed0. Observer activeexec39714 (900s bound). User has watched move20s/Load593/
+hold20s steps. No screen observation yet. Hook596 remains installed untilreturn.
+Do not issue anotherlaunch. On dashboard return supervise001 collect FIRST;
+archivehook to586-kit/startup-used596.cmd. Then cold audits asNEXT002 specifies.
+
+No new payload/config/helper bytes; cold state reported byuser. Saved593 preserved
+through staging. Game output586p2 absent beforelaunch, fresh guard required. No
+behavioral Load evidence yet. Source and binary remain frozen. Automation paused.
+
+# RCT596 cold stage completed; launch preflight active
+
+User confirmed off10seconds/on/dashboard. Stage001 completed01:33:24UTC,
+513entries verified plus12baseline files, no transport failures. Only newhook
+xwn596.cmd installed; game/helper/saves untouched. Supervisor stage closed0.
+Launch supervisor activeexec54038; inspect launch001 before anything else.
+Never repeat accepted/uncertain launch. Awaited path C:\xwn586-kit\game\Saved Games\XWN593.SV4.
+
+On accepted launch runobserve001, give watched camera-move/hold20s/Load/hold20s
+instructions;360s manual interval, normal restart requested afterward. On dashboard
+return supervise001 collect FIRST, archiving onlyhook596 to586-kit/startup-used596.cmd.
+Then audit002.py1 WSL +user_hive_audit001 WSL, registry_review001,welcome_review001,
+review_load001, private visual_inventory001(PIL) when captures exist.
+
+595closed,pushedb39da636. Do not rerun/recollect.596screen unknown, no behavior
+claim yet. No VM or reset request pending. Automation paused. Preserve limitations.
+
+# RCT596 cold-start watched Load preparation
+
+User explicitly confirmed power-off10seconds/on/dashboard with Ready. Hardware
+state is user-reported, not instrumented.595 closed and pushed b39da636; never
+rerun/recollect it.596 is a fresh admitted attempt, same qualified PC586 helper,
+same preserved game assets, unused output586p2 required absent. No game movement,
+config rewrite, or helper overwrite. Only fresh startup/xwn596.cmd will be added.
+
+Stage001 running under supervisor001 exec21883. It fully double-reads504assets
+and9preserved kit files, captures baseline, installs hook last.12host cases passed,
+including absence of cold confirmation, damaged saves/loader, existing output,
+changed staged executable and uncertain launch. Exact staged source bytes checked.
+
+Launch preflight verifies baseline and all executable/config/saves/owner entries,
+full directory equality and runtime module hashes. Static retail archives already
+verified during stage are not needlessly re-read a third time. No intervening
+payload mutations/game execution. Source explicitly records this scope.
+
+When stage complete, supervise001 launch once through privateC:/xwn596/session.py.
+Then observe001 exec (not started yet), user watched steps same as595, collect
+hook-first on return. Hook archived uniquely586-kit/startup-used596.cmd. Use
+ audit002.py1 underWSL, registry_review001.py, user_hive_audit001.py underWSL,
+welcome_review001.py,review_load001.py,visual_inventory001.py(PIL).
+Require observed moved/restored scene and user report; sequence0 intentional.
+
+No behavioral Load proof yet. Ordinary launcher720p unchanged, boot/1080i/sound/
+fullscreen/other-console work tabled. Automation paused. No owned VM. Historical
+Ftdisk49 and fullFATX-audit limitations remain. No FPS/GPU claims.
+
 # RCT595 CLOSED: Windows startup returned early; cold retry pending
 
 User observed Windows loading, then early dashboard return. One SITE accepted

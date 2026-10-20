@@ -1,5 +1,23 @@
 # RollerCoaster Tycoon compatibility tests
 
+## Current Xbox save/load result
+
+[Physical596](../outputs/rct596/REPORT.md) adds the user's confirmation that
+repeated manual saving and loading work in Deluxe. A new `Dynamite Dunes.SV4`
+was collected after a normal Windows shutdown; both earlier test saves remained
+unchanged. [Physical594](../outputs/rct594/REPORT.md) separately verifies a new
+save across normal restart. The planned automated moved-view/reload comparison
+did not finish before the user's reboot, so exact scripted scene restoration
+remains distinct from the confirmed manual behavior. Its temporary registry
+entry was subsequently restored and read back, with a rollback copy retained.
+No Windows boot has yet tested that offline cleanup. Ftdisk49 remains.
+
+These results support moving on to rendering-path and performance measurements.
+They establish neither game FPS nor native GPU acceleration. RCT remains excluded
+from the separate Windows transfer ZIPs.
+
+## Initial installation controls
+
 All three supplied disc images installed and reached a rendered Forest Frontiers
 park on separate Windows 2000 PC controls on October 19, 2026. Deluxe and the
 later Atari disc also saved and reloaded a park in the same session. These are
@@ -43,9 +61,10 @@ user confirmed the requested title/menu and New Game → Forest Frontiers sequen
 followed by a restart. In a follow-up, the user confirmed building worked but
 window-edge scrolling left the view completely still. The exact construction
 action was not specified; arrow-key scrolling and right-button dragging remain
-untested. Sound testing is deferred at the user's request. Save/reload, sustained
-play and frame rate remain untested on Xbox. Rendering this game does not establish native GPU
-acceleration or the graphics APIs used at runtime.
+untested. Sound testing is deferred at the user's request. Save/reload was
+subsequently confirmed manually in 596; sustained play and frame rate remain
+unqualified. Rendering this game does not establish native GPU acceleration
+or the graphics APIs used at runtime.
 
 The supplied Deluxe manual describes edge scrolling specifically in fullscreen
 mode (PDF page 29, printed pages 56–57). It documents right-button dragging and
@@ -120,9 +139,9 @@ not a game compatibility result. Normal Windows shutdown and cleanup passed.
 The corrected [PC586 preparation](../outputs/rct586/REPORT.md) regenerates that
 manifest from pinned assets and independently checks every entry, including
 negative tests for corrupt metadata. Build and media checks passed, but the
-fresh fixture was refused by the host-space guard before creation. No guest
-or Xbox test has run with this helper. Save/reload across a normal restart
-therefore remains pending on both platforms.
+fresh fixture initially hit the host-space guard. After verified capacity
+recovery, the completed PC586 control below passed its two-phase comparison.
+The later Xbox 594/596 results are summarized at the top of this page.
 
 The next performance work uses a save reloaded across a normal restart, a
 recorded fixed scene and an observed graphics-API path before choosing an
@@ -189,7 +208,8 @@ ISO files actually used:
 
 Do not treat these steps as an Xbox installer. The exploratory Deluxe transfer
 uses matching registry paths, local disc data and a bounded test runner. Broader
-Xbox input, save persistence, audio and repeatability checks are still needed.
+Xbox input, audio and repeatability checks are still needed; save persistence
+and manual reload now have the narrower 594/596 evidence described above.
 An installed filename-length check alone does not qualify the whole FATX layout.
 Static executable imports are not a trace of the graphics APIs used at runtime.
 Game compatibility and native GPU acceleration remain separate milestones.
@@ -232,5 +252,6 @@ XWN586.SV4, completed a normal Windows restart, and read back the save cold.
 On the second boot, a right-arrow movement visibly changed the camera before
 Load Game restored the saved park view. An independent comparison found an
 exact match across 165600 interior scenery pixels. This qualifies that paused
-windowed PC case; physical Xbox save/reload remains untested. RCT is excluded
+windowed PC case; later physical save persistence and manual save/load evidence
+are recorded in 594/596 above. RCT is excluded
 from the separate private Windows transfer kit requested for other consoles.

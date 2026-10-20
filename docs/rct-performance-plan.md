@@ -5,6 +5,21 @@ That establishes a useful compatibility starting point, not a frame-rate or
 hardware-acceleration result. The current [compatibility record](rct-compatibility.md)
 separates the watched Xbox result from PC controls and unresolved inputs.
 
+## Save/load checkpoint and next measurement
+
+The user confirmed repeated manual Xbox saves/loads in
+[596](../outputs/rct596/REPORT.md), with a new park file collected and both prior
+saves unchanged. [594](../outputs/rct594/REPORT.md) verified the new paused save
+across normal restart. Treat the manual compatibility check as complete for the
+current scope. The planned `XWN593.SV4` moved-view/reload image pair was not captured;
+qualifying the exact loaded scene remains part of measurement preparation.
+
+The next controlled experiment is a bounded dynamic API-resolution trace on a
+fresh PC fixture, followed by actual surface/presentation-method observation.
+Keep the unmodified game/control separate from the instrumented case and measure
+trace overhead before using any timings. Current Xbox registry cleanup is cold
+readback verified but has not yet received a subsequent Windows boot.
+
 ## Establish a repeatable scene
 
 The automated input comparison is qualified on [PC584](../outputs/rct584/REPORT.md):
