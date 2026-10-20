@@ -26,13 +26,19 @@ The paired-return recorder subsequently passed an original NT5 control in
 [PC600](../outputs/rct600/REPORT.md): 45 matched calls/returns, including20
 recursive probe invocations across two threads and five expected failed lookups.
 Both pristine and traced subjects passed; normal restart and cold checks passed.
-This qualifies the scoped return recorder, not game drawing or COM observation.
+That qualified the scoped return recorder. The subsequent
+[PC601 graphics control](../outputs/rct601/REPORT.md) verified exact GDI pixels,
+failed/successful creation results and returned DirectDraw/surface methods with
+106 paired calls. Its pristine and traced subject outputs matched.
 
-Next, observe actual graphics invocations and returned interfaces. Keep a new
-unmodified game control separate from the instrumented case and measure trace
-overhead before using timings. The synthetic subject is a recorder control,
-not a matched game-performance control. Current Xbox registry cleanup is cold
-readback verified but has not received a subsequent Windows boot.
+[PC602](../outputs/rct602/REPORT.md) now supplies actual game invocations and
+returns: successful DIB creation and32 sampled StretchDIBits calls from RCT,
+plus DirectDraw creation/release. Title and Forest Frontiers rendered; normal
+close, registry restoration and restart passed. Next, qualify the exact saved
+scene and compare a fresh uninstrumented game control with the instrumented case
+before interpreting costs. The original subject is a recorder control, not a
+matched game-performance control. Current Xbox registry cleanup is cold readback
+verified but has not received a subsequent Windows boot.
 
 ## Establish a repeatable scene
 
@@ -71,20 +77,30 @@ PC599 captured 332 API-entry requests: 237 from the RCT executable image and
 earlier failed-layout run, showing why startup lookup inventories alone cannot
 identify rendering behavior.
 
-These game records are `LoadLibraryA`/`GetProcAddress` arguments. They do not prove
-successful resolution, invocation, surface types, renderer choice or acceleration.
-PC600 now covers paired returns and actual original-probe entries. Qualify graphics
-output pointers, calling conventions and module lifetimes in a new control before
-following the game's DirectDraw objects. Record resolved module identities,
-creation results, requested interfaces, cooperative level, display mode, surface
-descriptions/capabilities and the methods actually used to update surfaces.
-Include actual GDI drawing calls rather than assuming DirectDraw owns every update.
+Those599 records are `LoadLibraryA`/`GetProcAddress` arguments only. PC602 extends
+them to393 paired invocations:272 from RCT and121 from other modules. All32 sampled
+StretchDIBits calls used the pixel pointer returned by CreateDIBSection and
+returned768. Their destination rectangles were22 full640x480 rectangles and ten
+64x480 strips.26 BitBlt calls came from other module callers, with none directly
+from the RCT image in this trace.
+
+RCT successfully created a DirectDraw interface and later released it. The
+recorder observed no calls to that interface's armed SetCooperativeLevel or
+CreateSurface entries. Other interfaces/methods were outside coverage. Thus a
+GDI DIB presentation path is observed in this PC windowed run; complete rendering
+costs and physical acceleration remain unknown. The32-entry cap is an early
+sample, not a frame count or a park-specific trace.
+
+Next capture independently qualified, bounded DIB header fields to establish
+format, dimensions and orientation.602 recorded the header pointer, not its
+contents; neither the return768 nor the640x480 client establishes the bitmap
+layout. Preserve per-phase and sampling limits when measuring selected calls.
 
 The [PC586 static import inventory](../outputs/rct586/api-inventory001.json)
 finds `LoadLibraryA` and `GetProcAddress` imports, with no static
-`DirectDrawCreate` import. The new request trace supplies a dynamic discovery
-boundary, but does not yet follow returned function pointers or interfaces.
-Neither inventory identifies a rendering cost.
+`DirectDrawCreate` import. The602 trace follows selected resolved function
+pointers and the returned DirectDraw interface. Neither the static inventory
+nor this bounded invocation trace identifies a rendering cost.
 
 Keep pristine and instrumented controls separate. A debugger pause or wrapper
 can change scheduling and behavior; a call-count trace must not be presented as
