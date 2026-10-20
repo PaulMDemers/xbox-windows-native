@@ -1,0 +1,23 @@
+{
+  "stage": "close001.py backup validation",
+  "failure": "Assumed absent RegQueryValueExA value leaves type zero",
+  "observed_backup_headers": [
+    [
+      0,
+      68,
+      0
+    ],
+    [
+      0,
+      68,
+      0
+    ],
+    [
+      0,
+      68,
+      0
+    ]
+  ],
+  "explanation": "Existence and size are zero. The type output for an absent value is not meaningful. Independent before/after hive subtree comparison already passed. No final record written; no console action.",
+  "correction": "close002 checks existence=0 and size=0, records raw type without assigning semantics"
+}

@@ -11,6 +11,12 @@ close the game on a timer, or restart Windows. Hardware deployment and actual
 readiness are recorded separately in `outputs/rct625` and `outputs/rct626`; preparation alone is
 not a successful Xbox run.
 
+[Physical session626](../outputs/rct626/REPORT.md) now confirms the game ran
+and both right-mouse scrolling and arrow keys worked. Normal game exit, registry
+restoration and Windows shutdown passed collection checks. That session is closed;
+its one-session launcher must not be rerun. A further recording session needs a
+fresh owned output identity. Video recording completion has not been reported.
+
 1. Boot the ordinary Windows entry and wait for the desktop. The revised
    recording attempt installs no automatic game startup entry.
 2. Choose **Start → Run**, enter `C:\xwn624-kit\play624.exe`, and launch it once.
