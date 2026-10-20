@@ -1,5 +1,19 @@
 # RollerCoaster Tycoon compatibility tests
 
+## Recording baseline and fullscreen limitation
+
+Use Window mode on the protected 720p desktop for the current recording.
+[Recording instructions](rct-recording.md) distinguish an interactive session
+from the diagnostic helpers' automatic close/restart timers.
+[Physical run 590](../outputs/rct590/REPORT.md) confirmed windowed arrow-key and
+right-button camera movement; window-edge scrolling stayed stationary.
+Its 640×480 fullscreen request did not produce the expected transition. The game
+remained alive; the helper closed it normally and requested Restart after its
+dimension check failed. This was not evidence of an RCT crash.
+The current miniport exposes one retained 32-bit boot mode, not every output
+format the Xbox hardware can generate. This is a concrete limitation consistent
+with the result, but the exact failed game API request remains untraced.
+
 ## Current Xbox save/load result
 
 [Physical596](../outputs/rct596/REPORT.md) adds the user's confirmation that
@@ -74,8 +88,9 @@ copied to the Xbox and launched through the ordinary Windows path at 720p. The
 user confirmed the requested title/menu and New Game → Forest Frontiers sequence,
 followed by a restart. In a follow-up, the user confirmed building worked but
 window-edge scrolling left the view completely still. The exact construction
-action was not specified; arrow-key scrolling and right-button dragging remain
-untested. Sound testing is deferred at the user's request. Save/reload was
+action was not specified; arrow-key scrolling and right-button dragging were
+untested at that point. Physical run 590 subsequently confirmed both in Window mode,
+as summarized above. Sound testing is deferred at the user's request. Save/reload was
 subsequently confirmed manually in 596; sustained play and frame rate remain
 unqualified. Rendering this game does not establish native GPU acceleration
 or the graphics APIs used at runtime.
@@ -98,7 +113,7 @@ option visibly enabled in both modes:
 Only the right edge was tested, and arrow directions and drag trajectories
 differed between modes. Window mode was restored before the helper's automatic
 close and normal Restart. Registry restoration and cold hive/event checks passed.
-These are PC results; the Xbox alternatives still need testing. The game loaded
+These are PC results; the later physical run 590 comparison is summarized above. The game loaded
 `DDRAW.DLL`, but that module inventory is not an API call trace or acceleration
 measurement. See the [fresh input comparison](../outputs/rct568/REPORT.md).
 

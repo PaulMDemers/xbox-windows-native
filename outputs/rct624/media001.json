@@ -1,0 +1,70 @@
+{
+  "path": "C:\\xwn624\\helper001.iso",
+  "sha256": "43521e8c7b5a29e51b53ee5851e5c46e551da167d5ab6eb42e242af74e5dcf2d",
+  "bytes": 86016,
+  "files": {
+    "RCT.EXE": {
+      "path": "/mnt/c/xwn624/build002/RCT.EXE",
+      "bytes": 8043,
+      "sha256": "0778915b110d572a08f751b429ffde7f15c5f1f4bfc84fb3478187ee6bbcbe07",
+      "imports": {
+        "ADVAPI32.dll": [
+          "RegCloseKey",
+          "RegOpenKeyExA",
+          "RegQueryValueExA"
+        ],
+        "KERNEL32.dll": [
+          "CloseHandle",
+          "CreateFileA",
+          "ExitProcess",
+          "FlushFileBuffers",
+          "GetCurrentDirectoryA",
+          "WriteFile",
+          "lstrcmpA",
+          "lstrcmpiA"
+        ],
+        "USER32.dll": [
+          "MessageBoxA"
+        ]
+      }
+    },
+    "PLAY624.EXE": {
+      "path": "/mnt/c/xwn624/build002/play624.exe",
+      "bytes": 14086,
+      "sha256": "da92f2546a5ee4b8253a106c00e288a8efb076538e31beb270b0c4f90180aa16",
+      "imports": {
+        "ADVAPI32.dll": [
+          "RegCloseKey",
+          "RegCreateKeyExA",
+          "RegDeleteKeyA",
+          "RegDeleteValueA",
+          "RegFlushKey",
+          "RegQueryValueExA",
+          "RegSetValueExA"
+        ],
+        "KERNEL32.dll": [
+          "CloseHandle",
+          "CreateDirectoryA",
+          "CreateFileA",
+          "CreateProcessA",
+          "ExitProcess",
+          "FlushFileBuffers",
+          "GetExitCodeProcess",
+          "GetLastError",
+          "GetTickCount",
+          "SetCurrentDirectoryA",
+          "WaitForSingleObject",
+          "WriteFile",
+          "lstrlenA"
+        ],
+        "USER32.dll": [
+          "MessageBoxA",
+          "wsprintfA"
+        ]
+      }
+    }
+  },
+  "copy_script": "@echo off\r\nif exist C:\\xwn624-kit goto fail\r\nif exist C:\\xwn586-kit goto fail\r\nmkdir C:\\xwn624-kit\r\nmkdir C:\\xwn586-kit\r\nmkdir C:\\xwn586-kit\\game\r\ncopy D:\\PLAY624.EXE C:\\xwn624-kit\\PLAY624.EXE\r\nif errorlevel 1 goto fail\r\ncopy D:\\RCT.EXE C:\\xwn586-kit\\game\\RCT.EXE\r\nif errorlevel 1 goto fail\r\nattrib -R C:\\xwn624-kit\\*.*\r\nattrib -R C:\\xwn586-kit\\game\\*.*\r\necho CONTROL READY - EJECT CD\r\nexit\r\n:fail\r\necho COPY FAILED\r\npause\r\n",
+  "readback_passed": true,
+  "retail_game_included": false
+}

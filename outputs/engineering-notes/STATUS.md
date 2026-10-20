@@ -1,3 +1,45 @@
+# PC624 CLOSED PASS;625 recording setup waits for dashboard readiness
+
+User prioritizes windowed RCT recording by18:30EDT Oct20; profiling/fullscreen
+work deferred until afterward.624 interactive launcher passed original stand-in
+control:201844ms user-controlled lifetime, registry restored, manual normal
+restart,6490files/312dirs,five clean hives,one6006,exact OS/tools/seed. No game
+or physical run. All owned PC/build/audit processes closed. Read624/REPORT.md;
+never reopen its runtime. Qualified exe C:/xwn624/build002/play624.exe.
+
+625 first read-only FTP connection timed out15s before any writes/launch. User
+readiness question pending. No hook staged. Preserve incompletebefore001 and
+snapshot-failure001; use controller002 snapshot tobefore002/privatephysical002
+once user confirms dashboard. Then bounded supervisorstage and one launch,
+gated on624final PASS and exact596-cleaned SOFTWARE. No startup/game/display
+changes beyond new owned launcher/hook. Console C off limits; protected720p.
+
+Recording launcher waits for normal game close, restores temporary values and
+leaves Windows running. User must quit game, wait for confirmation, then normal
+Restart. Remove exact625hook FIRST on dashboard return, collect hives/events/
+saves, audit before close. No automatic launch retry or timeout during recording.
+Read625/NEXT001.md and docs/rct-recording.md. User hardware input now needed.
+Source review and590 show640x480 fullscreen transition failed while game stayed
+alive; diagnostic helper performed normal close/restart. Mode-switch limitation
+is consistent with one retained32bit mode; no traced API failure/cause proof.
+Previous623 CLOSED PASS pushed066c1c6e. Resume623/NEXT001 after recording.
+Both ZIPs unchanged; excludeRCT. Other-console/sound/boot/1080i remain deferred.
+Automation paused. HostC~22.07GiB/E~20.92GiB; recheck reserve before allocation.
+
+# Windowed recording preparation624/625 OPEN
+
+User prioritizes RCT recording by18:30EDT Oct20; defer profiling/fullscreen.
+PC624 fresh404 cold0 passed; original stand-in tests interactive launcher.
+Build001 compiler warning failed; build002 passed. Initial VM invocation refused
+missing WSL environment before launch; retry with explicit exclusive environment.
+Consult ntfs-phase1.json for actual launch. 625 snapshot read-only in progress;
+no staging or console launch. User dashboard readiness question pending.
+Launcher has no input, timer, restart or forced close; waits for user game exit
+then restores temporary registry. Need >3-minute control, normal PC close/cold
+review before physical stage.625 requires624 final PASS. Use new625 records only.
+Preserve720p/ordinary launcher; no console C. Current retail path586-kit/game.
+Prior623 CLOSED PASS pushed066c1c6e; all earlier runtimes stay closed.
+
 # PC623 CLOSED PASS: busy/paced timer-control milestone complete
 
 623 completed8 original cases and normal shutdown2026-10-20
