@@ -1,3 +1,32 @@
+# PC604 closed: bounded bitmap-header observer qualified
+
+Fresh original NT5 control passed pristine and traced execution with identical
+subject logs. The observer captured123 paired calls and19 independently decoded
+header records, including actual PAGE_NOACCESS/truncated-boundary failures and
+real CreateDIBSection/StretchDIBits arguments. Fixed4+40-byte reads capture no
+palette/masks/pixels. Supported policy is40-byte BI_RGB with bounded dimensions
+and extent; rejected layouts remain explicit. The601 graphics/arithmetic core
+is preserved. Host reader19 rejection controls, Python decoder controls and23
+actual trace mutations passed. No new604 build/runtime failure occurred.
+
+One helper ran two original subjects and requested normal restart. VM exited
+2026-10-20 04:07:28UTC; cold tools/OS/seed identity, five clean hives/raw agreement
+and one new6006 passed. Raw timestamps place shutdown after startup even though
+record numbers differ in ordering. All owned VM/build/cold processes exited.
+Never reopen/recollect/parent closed runtimes. Read outputs/rct604/REPORT.md and
+outputs/rct604/NEXT001.md for exact next work and remaining coverage limits.
+
+Next: actual RCT bitmap layout on the exact603 saved scene, with explicit park
+phase coverage.602's early32-call cap is not park evidence; qualify any new phase
+signaling/arming change on an original control before game use. Then clock-checked
+pristine process baselines and matched observer/presentation costs. No game FPS,
+RCT layout or Xbox acceleration claim follows from604's original control alone.
+
+Xbox untouched; last dashboard/no owned hook.596 offline SOFTWARE cleanup remains
+cold-only. Launcher/protected720p/saves/transfer ZIPs unchanged; RCT excluded.
+Other consoles/sound/fullscreen/input follow-up/boot intermittency/1080i deferred.
+Automation paused; old overnight cutoffs inactive. No hardware reset needed.
+
 # PC603 closed: exact retained PC593 saved scene qualified
 
 A fresh uninstrumented RCT PC fixture loaded the retained PC593 save after a

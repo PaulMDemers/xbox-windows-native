@@ -101,10 +101,18 @@ GDI DIB presentation path is observed in this PC windowed run; complete renderin
 costs and physical acceleration remain unknown. The32-entry cap is an early
 sample, not a frame count or a park-specific trace.
 
-Next capture independently qualified, bounded DIB header fields to establish
-format, dimensions and orientation.602 recorded the header pointer, not its
-contents; neither the return768 nor the640x480 client establishes the bitmap
-layout. Preserve per-phase and sampling limits when measuring selected calls.
+[PC604](../outputs/rct604/REPORT.md) qualifies the bounded header reader on an
+original NT5 graphics control: 123 paired calls and 19 header observations,
+including real inaccessible-page/truncated-header failures, with identical
+pristine/traced result logs. It reads at most four plus forty bytes and interprets
+only the bounded 40-byte BI_RGB policy; palette, masks and pixels are not captured.
+
+Next apply that qualified reader to actual RCT headers to establish format,
+dimensions and orientation.602 recorded the header pointer, not its contents;
+neither return768 nor client640x480 establishes the bitmap layout. Its early
+32-call cap also does not establish saved-park coverage. Qualify any new phase
+signaling or delayed arming on an original control before using it in the game,
+and preserve explicit phase/sampling limits when measuring selected calls.
 
 The [PC586 static import inventory](../outputs/rct586/api-inventory001.json)
 finds `LoadLibraryA` and `GetProcAddress` imports, with no static

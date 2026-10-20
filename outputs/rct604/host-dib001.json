@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "space": {
+    "minimum_free_gib": 20.02,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c",
+        "free_bytes": 25462677504
+      },
+      {
+        "free_bytes": 25462611968,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "inputs": {
+    "host_dib.c": "18311a490d7a4b61c7fc0321809ee0d25640bcaf5da6733fb5877bb18589e82a",
+    "dib_header.h": "27ee67ce1f3441e5ccae6eb48229412c9e3bc5a8f8a3e7f55201c586aea3cf86"
+  },
+  "build": {
+    "command": [
+      "/usr/bin/cc",
+      "-std=c99",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/rct604/host_dib.c",
+      "-o",
+      "/mnt/c/xwn604/host-dib001"
+    ],
+    "code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "run": {
+    "code": 0,
+    "stdout": "DIB604 PASS: 19 rejection controls, signed heights, supported bpp, bounded reads\n",
+    "stderr": ""
+  },
+  "binary_sha256": "5ff900f07392193e8635de59b09d55f3fd92b1936d941c5f4bf7b390eb0bba52"
+}
