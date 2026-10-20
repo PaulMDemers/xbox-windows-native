@@ -1,0 +1,39 @@
+{
+  "path": "C:\\xwn610\\helper001.iso",
+  "sha256": "38e9ca9dd2e1e5fd8858d77dd385ffa2a8c0e4c6b40c9359a8ee197d3fc317c5",
+  "bytes": 145408,
+  "files": {
+    "FIXTURE.DLL": {
+      "path": "/mnt/c/xwn610/build002/fixture.dll",
+      "sha256": "9bb39f0d74f00f457de24a98d45f51fd9267da5b941b7307c738eb6985fa6a70",
+      "bytes": 6958
+    },
+    "SUBJECT.EXE": {
+      "path": "/mnt/c/xwn610/build002/subject.exe",
+      "sha256": "b33f66705538d87943a657f8e2e2494b3c6429a0366dc6ef5df4b82303d114e9",
+      "bytes": 20899
+    },
+    "LIFEA.DLL": {
+      "path": "/mnt/c/xwn610/build002/lifea.dll",
+      "sha256": "77bcfb1f866a65b09e6d78e9da3befd8285505014b85af4b4325be2a3b898a62",
+      "bytes": 6371
+    },
+    "LIFEB.DLL": {
+      "path": "/mnt/c/xwn610/build002/lifeb.dll",
+      "sha256": "d691265887afd68cdf3a1b39a385c52da0e787ffcf068da94e8975a6b8897a4d",
+      "bytes": 6371
+    },
+    "TRACE.EXE": {
+      "path": "/mnt/c/xwn610/build002/trace.exe",
+      "sha256": "4ab2c7e1739c90151e7fa24b94b917db415dbb6487bd6da0bf5b5f9380df8fe7",
+      "bytes": 21511
+    },
+    "RUN610.EXE": {
+      "path": "/mnt/c/xwn610/build002/run610.exe",
+      "sha256": "39ca54276f69eed9a538d1e75c420404b7ce54364cf675c261db958c240b7e52",
+      "bytes": 11563
+    }
+  },
+  "copy_script": "@echo off\r\nif exist C:\\xwn610-kit goto fail\r\nmkdir C:\\xwn610-kit\r\ncopy D:\\FIXTURE.DLL C:\\xwn610-kit\\FIXTURE.DLL\r\nif errorlevel 1 goto fail\r\ncopy D:\\SUBJECT.EXE C:\\xwn610-kit\\SUBJECT.EXE\r\nif errorlevel 1 goto fail\r\ncopy D:\\LIFEA.DLL C:\\xwn610-kit\\LIFEA.DLL\r\nif errorlevel 1 goto fail\r\ncopy D:\\LIFEB.DLL C:\\xwn610-kit\\LIFEB.DLL\r\nif errorlevel 1 goto fail\r\ncopy D:\\TRACE.EXE C:\\xwn610-kit\\TRACE.EXE\r\nif errorlevel 1 goto fail\r\ncopy D:\\RUN610.EXE C:\\xwn610-kit\\RUN610.EXE\r\nif errorlevel 1 goto fail\r\nattrib -R C:\\xwn610-kit\\*.*\r\necho XWN610 READY - EJECT CD BEFORE RUNNING\r\nexit\r\n:fail\r\necho COPY FAILED\r\npause\r\n",
+  "readback_passed": true
+}

@@ -1,0 +1,18 @@
+/* MIT. Original recursive cdecl target; volatile indirection prevents inlining. */
+#define _WIN32_WINNT 0x0500
+#include <windows.h>
+typedef DWORD (__cdecl *PROBE)(DWORD,DWORD);
+DWORD __cdecl probe601(DWORD depth,DWORD seed);
+static PROBE volatile again=probe601;
+DWORD __cdecl probe601(DWORD depth,DWORD seed) {
+    DWORD v;
+    if(!depth) {Sleep(1);return seed^0x601abcdeu;}
+    v=again(depth-1,seed+1); return v+depth;
+}
+BOOL WINAPI DllMain(HINSTANCE h,DWORD why,LPVOID reserved) {
+    (void)h;(void)why;(void)reserved;return TRUE;
+}
+
+DWORD __cdecl probe_dib604(const void *header) {(void)header;return 0x604d1b00u;}
+
+DWORD __cdecl probe_phase605(HANDLE request) {return SetEvent(request)?0x605face0u:0;}

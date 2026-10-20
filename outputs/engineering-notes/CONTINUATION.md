@@ -1,3 +1,17 @@
+# PC610 closed passed;611 fresh actual-game fixture preparing
+
+610 original NT5 A/B/A DLLs reused base/return address across generations12/13/14,
+with fresh restored bytes90/f8/90 and identical pristine/traced logs. Conservative
+empty-call/step/held-thread and disabled/disarmed/unreferenced return-site guards
+passed19 host rejection cases;23+11+7+16 trace mutations rejected. Normal restart
+16:01:10UTC,6494 files/310 directories, tools/OS/seed/five hives/one6006 passed.
+All610 processes exited; CLOSED PASS, never reopen/recollect/parent.
+Read outputs/rct610/REPORT.md and NEXT001.md.611 carries exact610 observer helpers
+and retired-site dispatch into609's saved-scene/copy-contract runner; build,
+imports, media, copy and scene checks passed. Fresh404 child prepared; cold0
+in progress, no611 guest launch yet. Follow611 records for subsequent live state.
+No Xbox change/reset needed; other deferrals and paused automation unchanged.
+
 # PC609 closed failed: tracked DLL unload stops the recorder
 
 608 copy error corrected;609 passed exact tool-copy contract and503-file guest

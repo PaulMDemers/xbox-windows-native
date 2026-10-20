@@ -7,6 +7,12 @@ separates the watched Xbox result from PC controls and unresolved inputs.
 
 ## Save/load checkpoint and next measurement
 
+[PC610](../outputs/rct610/REPORT.md) qualifies recorder DLL unload/reload using
+original code at a reused address with different instruction bytes. Pristine
+and traced behavior matched; unsafe pending/active states remain rejected.
+The fresh actual-game retry611 is being prepared. Saved-scene trace coverage,
+pristine game costs and recorder overhead are still distinct pending steps.
+
 The user confirmed repeated manual Xbox saves/loads in
 [596](../outputs/rct596/REPORT.md), with a new park file collected and both prior
 saves unchanged. [594](../outputs/rct594/REPORT.md) verified the new paused save
