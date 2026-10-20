@@ -22,7 +22,13 @@ recorder reached the title and Forest Frontiers in
 and restart. The earlier [598 display-setup failure](../outputs/rct598/REPORT.md)
 remains recorded separately.
 
-Next, observe actual function invocations and returned interfaces. Keep a new
+The paired-return recorder subsequently passed an original NT5 control in
+[PC600](../outputs/rct600/REPORT.md): 45 matched calls/returns, including20
+recursive probe invocations across two threads and five expected failed lookups.
+Both pristine and traced subjects passed; normal restart and cold checks passed.
+This qualifies the scoped return recorder, not game drawing or COM observation.
+
+Next, observe actual graphics invocations and returned interfaces. Keep a new
 unmodified game control separate from the instrumented case and measure trace
 overhead before using timings. The synthetic subject is a recorder control,
 not a matched game-performance control. Current Xbox registry cleanup is cold
@@ -65,9 +71,10 @@ PC599 captured 332 API-entry requests: 237 from the RCT executable image and
 earlier failed-layout run, showing why startup lookup inventories alone cannot
 identify rendering behavior.
 
-These are `LoadLibraryA`/`GetProcAddress` arguments. They do not prove successful
-resolution, invocation, surface types, renderer choice or acceleration. Extend
-the synthetic control to cover paired returns and actual function entries before
+These game records are `LoadLibraryA`/`GetProcAddress` arguments. They do not prove
+successful resolution, invocation, surface types, renderer choice or acceleration.
+PC600 now covers paired returns and actual original-probe entries. Qualify graphics
+output pointers, calling conventions and module lifetimes in a new control before
 following the game's DirectDraw objects. Record resolved module identities,
 creation results, requested interfaces, cooperative level, display mode, surface
 descriptions/capabilities and the methods actually used to update surfaces.
