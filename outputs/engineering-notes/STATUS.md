@@ -1,3 +1,63 @@
+# RCT592 closed: new save survived restart; helper timing check failed
+
+Read REPORT.md, final001.json and save-phase1-review001.json. User screen report
+pending. One explicitly requested watched rerun launched, Windows and RCT ran,
+normal restart6006delta1. New XWN586.SV4 collected after reboot (290247bytes,
+SHA25687f2ddaf852a1ebfc9f8b2c734bbdedfffe83ce8e2a97fb33d0bb41ce7909fd2).
+Helper's immediate CreateFile after Save dialog closure returned error2, so
+sequence=0, no post-save capture. Gate remains failed. No phase2/load launch.
+
+No owned host process or startup hook remains. Original launcher/startup/720p
+preserved; six hive audits and game registry restoration pass; Ftdisk49 recurred.
+Game and save retained /E/xwn586-kit/game; now503 files. Existing resultxwn586
+must never be reused/overwritten. Prior591 and592 are closed; no rerun/recollect.
+
+Next engineering step: inspect the exact dialog/file-read sequence and prepare
+a bounded wait/observation helper that records first file visibility and stable
+readback, without resubmitting Save or silently claiming success. Validate it
+on a fresh owned PC fixture before new physical execution. Preserve the current
+save for a separately justified future reload check; do not overwrite it. No
+gate waiver and no inference that the missing immediate file implies corruption.
+Space must be re-admitted (host C near20GiB reserve); do not reopen old PC disks.
+User only requested this watched rerun; no further console launch now. Other
+consoles/fullscreen/boot diagnosis/1080i/sound remain deferred; automation paused.
+
+# Physical592 launched once; watched observation pending
+
+Single SITE accepted23:53:52UTC. Observer active with600s bound; no retry.
+Hookxwn592.cmd installed until collection. On dashboard return collectFIRST to
+remove owned hook, then cold audit. User asked to watch Windows/park/save/restart.
+No result known. Stage/launch supervisors closed; observer only activeprocess.
+
+# Physical592 staged; launch verification in progress
+
+Stage completed23:52:21UTC; new hookxwn592.cmd installed. Exact505 existing
+payload files verified. Launch supervisor started23:52:26; check launch001.json
+for whether SITE was requested. Never repeat accepted/uncertain launch. User
+will watch. On dashboard return collect hookFIRST. Stage host process closed.
+
+# Physical592: user-requested watched rerun staging
+
+User reported not watching591 and explicitly requested a rerun. One fresh592
+attempt, no claim of power cycle. 591 stays closed; new namespace for host
+records/hook xwn592.cmd and startup-used592.cmd. Same installed qualified helper
+and game; result xwn586 must be absent. No old runtime reopened/recollected.
+
+Ten host transport tests pass. Package592 frozen. Stage supervisor currently
+running; consult stage001 and supervisor001-stage before acting. No launch yet.
+Use private C:/xwn592/session.py (never print it), supervise001.py stage/launch/
+collect, observe001.py. One SITE20s bound. Ask watched screen question only once
+launch receipt exists. On return collect hookFIRST, audit002.py1 and user hive
+under WSL with LD_LIBRARY_PATH=/home/paul/xbox-windows-native/toolchains/offline-disk/root/usr/lib/x86_64-linux-gnu;
+registry/welcome with bundledPython, then review_save001. No second launch if
+accepted/uncertain. Any phase2 requires actual save and normal shutdown first.
+
+Retained game /E/xwn586-kit/game, previous owner591 and used591 unchanged.
+Newstage verifies505 existing files, installs only new hookLAST. C reserve20GiB
+with128MiB projected allowance; console allowance64MiB charged conservatively.
+No activePC. Otherconsoles/fullscreen/bootdiagnosis/1080i/sound deferred. Automation
+paused. Useravailable to watch this launch. Read actual receipts for current state.
+
 # RCT591 closed; save test did not run
 
 Read final001.json and REPORT.md. User screen reply is pending. Append any late
