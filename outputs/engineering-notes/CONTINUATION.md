@@ -1,3 +1,186 @@
+# RCT594 CLOSED: physical save passed; watched Load next
+
+Read REPORT.md,final001.json,save-phase1-review001.json,visual-review001.json.
+One accepted SITE, normal restart, exact new save guest/cold size+SHA1 match,
+oldsave586 preserved. Initial missing-file2 then sharing32 became four equal full
+reads; first successful read4080ms,total7605ms. New saved593 is290247bytes,
+SHA256fe67dd7567ecd6282b30715a2c0e668a3b9c3baab57b7f7bdce5f1dc69feb77d.
+Postsave165600pixel interior matches presave. This is save persistence, NOT Load.
+
+Console last dashboard, no startup hook, all owned host processes closed. Six
+hives/registry/Welcome/protected720p checks pass; Ftdisk49 remains. 39 collected
+files and504game directory entries; selected-content readback, not whole FATX.
+Keep source stage001 PASV502 failure, stage002 read-only host termination, and
+successful stage003 separately. Do not rerun/recollect closed593/594.
+
+Pending async question asks whether user is available for a watched reload.
+No new console launch until availability arrives. Next candidate can use exact
+PC586 phase2 manual loader (C:/xwn586/phase2-build001/load586.exe), pinned by
+586 phase2-source/media001 and final002. It expects586-kit/game and output586p2;
+verify unused physical output586p2 and load586.exe before admission. A new owned
+attempt must reverify and move only game assets from593-kit back to586-kit to
+match that unchanged binary; preserve BOTH saves and all old helpers/results.
+Do not assume this movement/staging already happened. Alternative is a newly
+validated loader; no source-path change can inherit binary qualification.
+
+For watched Load: user moves camera, holds changed view long enough for capture,
+loads exact new saved593 through RCT dialog, then holds restored view. Existing
+manual helper observes for360s and requests restart; its sequence0 is deliberate,
+not automatic Load success. Require user report plus private before/moved/restored
+captures and fresh cold audits. New save will be under586-kit only AFTER verified
+owned move. Current path is still /E/xwn593-kit/game/Saved Games/XWN593.SV4.
+
+Host C near21GiB, E about27GiB; re-admit projected20GiB including WSL backing.
+Exact historical archives are cataloged in593/archive003.json. No VM reopening,
+backing-chain moves or unverified deletion. Two delivered ZIPs unchanged, no RCT.
+Other consoles/fullscreen/boot diagnosis/1080i/sound deferred; automation paused.
+
+# Physical594 launched once; observe then hook-first collection
+
+Stage003 completed with505 staged entries (503gamefiles, owner, exact helper).
+Launch preflight verified517 payload/baseline entries on bounded small sessions.
+One SITE accepted200 at2026-10-20T00:54:13.664537Z; supervisor003-launch closed0.
+No second launch allowed. observe003 active inexec90524; inspect observation001.
+Temporary startup /E/documents and settings/all users/start menu/programs/startup/
+xwn594.cmd remains installed UNTIL dashboard return/collection. Console current
+screen unknown; no user observation requested yet. Original720p remains selected.
+
+When dashboard reachable, run private session.py -> supervise003 collect FIRST;
+it removes hook before result collection. Then audit004.py1 underWSL withhivex,
+registry_review004.py,user_hive_audit003.py,welcome_review003.py,review_save002.py.
+Inspect private captures and write visual-review001; close002 when cleanup checks
+pass. Preserve prior saved586, source failedstages001/002 and full594 receipts.
+No new experiment while this console/collection is unresolved. If offline after
+bounded observation, keep exact hook/state and request hardware recovery.
+
+PC593 is closed qualified save-only. Physical save/reload still unproved until
+actual records. No FPS/GPU/fullscreen/other-console claim. Automation stays paused.
+
+# Physical594 bounded batched staging active
+
+Stage001 failed PASV502 after folder move/config restore; no hook/helper/SITE.
+Stage002 fresh-per-file readback was deliberately stopped by exact owned PID
+before any remote writes: too slow for600s full verification. Preserve both
+receipts and supervisor exits; stage-failure001/002 explain actual outcomes.
+
+Stage003/package003/controller003 now use batch_read001: at most16files per
+connection, two whole reads per file, at most two attempts only for recognized
+read-only transport failures. Hash/data disagreement fails immediately. Seven
+batch cases and nine recovery controller cases pass. New42 Python source files
+match index exactly (staged-source-review004). Current stage session87721.
+
+Read actual stage003/supervisor003-stage state. No launch at this checkpoint.
+After stage completes, private session.py -> supervise003 launch, observe003,
+supervise003 collect. Only one SITE; hook removed first on dashboard return.
+Use audit004.py1 underWSL, registry_review004.py,user_hive_audit003.py,
+welcome_review003.py,review_save002.py,visual-review001 then close002.py.
+No code edits after package003 freeze. Old package/controller/recovery attempts
+stay immutable. Observe uses explicit local module path; its prior source is
+retained and final controller host tests repeated after that import-path fix.
+
+Original saved586 is retained in moved503file game tree593-kit/game. Newsave593
+and result593 remain absent. Old result586 untouched. No PC runtime reopening.
+Load and performance remain subsequent work; all deferred scopes unchanged.
+
+# Physical594 staging recovery active; no launch yet
+
+Stage001 failed with FTP502 on PASV during readback after503 sourcefiles verified,
+folder moved, two pristine config files restored, and189 new entries verified.
+No helper upload, startuphook or SITE occurred. Failed stage/supervisor remain
+immutable. See stage-failure001. Do not rerun stage001 or replay its writes.
+
+Package002/controller002/stage_recovery002 now pin an explicit continuation.
+Nine actual-controller fault-model cases passed; prior save preservation,
+no-move-replay, hook-last, one SITE and hook-first collection covered. All33 new
+source bytes match Git index. stage002 running in exec6628 with bounded
+supervise002 stage. Fresh connections for each cold read. Verify actual records.
+
+On completed stage002, use private C:/xwn594/session.py with supervise002 launch
+(one request only), observe002 and supervise002 collect. Collection removes exact
+xwn594 hook first. Use audit003.py1 (WSL), registry_review003.py,
+user_hive_audit002.py, welcome_review002.py, then review_save001.py and private
+visual review before close001.py. No source changes after package002 freeze.
+If launch returns early/missing logs, retain failure; no lucky retry. Ask for
+cold reset only if justified. No reopening/recollecting closed593 PC.
+
+Original saved586 remains in moved gamefolder593-kit; new save593 absent so far.
+Prior closed592 resultdirectory586 untouched. 720p and ordinary boot protected.
+No new performance/reload/other-console/fullscreen/sound/boot diagnosis claims.
+
+# Physical594 staging; PC593 closed
+
+PC593 save-helper qualification passed, normal restart and exact saved SHA1/size.
+Read593 REPORT, final001, save-review002; preserve failed review001 orientation
+check and build001, compression001/002. No closed PC runtime may be reopened.
+
+594 exact593 binary packaged, controller-host002 passed11 cases, new staged
+source bytes exact. staged-source-review001 failed only inherited unchanged
+display-policy CRLF normalization; review002 verifies it against original runtime
+pin and HEAD. New sources are not normalized. Repository check41028 passed.
+
+Original development Xbox stage launched in exec54028 via private session wrapper,
+bounded supervisor. Inspect actual stage/supervisor receipts. No launch yet.
+Move verified503file game tree586-kit/game to593-kit/game; preserve prior save586;
+restore only two known mutable retail data files, stage helper, hook last. Old
+resultxwn586 is retained. New resultxwn593/newsave593 must not exist beforehand.
+Host space recovered via exact archive003. Conservative console reserve after
+128MiB allowance is210726816bytes; no duplicated retail game. Dashboard C offlimits.
+
+If stage succeeds, one bounded launch then observe; collect removes hook FIRST.
+No accepted/uncertain launch retry. Keep automatic restart and720p baseline.
+Audit six hives, registry,Welcome,events, prior save retention and new save hash.
+If offline hold state and ask user recovery; no guessing game behavior. Reload
+still separate; no fullscreen/boot/sound/1080i/other-console/performance claims.
+
+# RCT593 PC phase1 running
+
+Cold0 passed6475files/308directories; immutable source and disk unchanged.
+VM launched underexclusive xemu lease inexec50214. Fresh593 only; no Xboxaccess.
+Latest manualscreen shows Windows startup. Use vm.py593screen and ownedlogin001
+when loginvisible; then recorded copy001 actionplan. No game launched yet.
+Archive003 andbuild002/media reviews passed; priorfailures retained. Read actual
+ntfs-phase1.json for processstate. Overall593 OPEN until audits/closure.
+
+# RCT593 fresh PC preparation active; storage recovered
+
+Archive003 completed: exact verified archives on E, all original paths cataloged.
+Raw335seed003 and closed589/574/573/575/568 leaf bytes preserved; no backing refs.
+C returned above22GiB. Compression001 reserve failure remains separately noted;
+compression002 no gain. No runtime reopened, no historical bytes discarded.
+
+11 actualC wait-policy tests passed. Build001 failed __chkstk_ms (4096byte local
+buffer); failedsource/log retained. Build002 moves buffer static and compiles;
+NT5PE imports/source review and502asset media readback pass. Source/helper only,
+no driver/gamechange. Fresh593 PC prepared from immutable404 seed, cold0 audit
+running in exec97352. No VM yet, no console action. Use existingexclusive xemu
+lease for vm.py593run after cold0complete. HostC/E guard rechecked byscripts.
+Source frozen byntfs-preparation001; don't edit its inputfiles. New actionJSON
+plans can be added. Login usingownprivatehive via login001 --phase1 (never print
+credentials). Opticalcopy D:\PREP.CMD, independent502file verification, ejectboth
+CDs before RUN593.EXE. Watch actualscreens; cold audit and collect after normal
+VMrestart. Save logs20SHA1bytes must equal cold savedfileSHA1 plus exactsize;
+requirestable>=1000ms, >=3reads, sequence1, post-savecapture, normalshutdown and
+registry/hive cleanup. Do not implyload/GPU proof. OriginalXboxsave592 preserved.
+
+# RCT593 preparation and storage recovery in progress
+
+User authorized helper fix, fresh PC validation then save/load. Source593 adds
+bounded30s full-file SHA1 visibility observation; not compiled or executed yet.
+Original592 partialsave and failed immediate-read check preserved. No console
+access this turn; Xbox last at dashboard with no hook. NewPC not created.
+
+Compression001 preserved all checked hashes but only589 actually compressed;
+free C dropped unexpectedly while hashing already-compressed others. Its
+completed=true means process finished, NOT reserve success. No VM admitted.
+Compression002 raw335 preserved bytes but compact reported0files, no gain.
+Overbroad owned find336 terminated; no relevant output, access denials retained
+in session. Current backing_inventory001 scans only own WSL project with180s
+bound; use actual receipt for status. Planned archive003 requires complete
+inventory, excludes backing references, archivesE335seed003raw then closed C
+leaf disks to E, roundtrip verifies before removing exact originals. No runtime
+reopened/recollected. Do not bypass20GiB reserve. Active inventory session82345;
+other compression processes closed. Source/homegrownwaittests drafted.
+
 # RCT592 closed: new save survived restart; helper timing check failed
 
 Read REPORT.md, final001.json and save-phase1-review001.json. User screen report
