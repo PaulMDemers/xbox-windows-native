@@ -7,6 +7,24 @@ separates the watched Xbox result from PC controls and unresolved inputs.
 
 ## Save/load checkpoint and next measurement
 
+[PC623](../outputs/rct623/REPORT.md) now qualifies the original busy-versus-paced
+timer comparison. Busy `timeGetTime` and `GetTickCount` loops used nearly one
+emulated CPU; the `Sleep(10)` cases made 1,284 payload calls in about twenty
+seconds and registered no CPU increment at coarse resolution. Both sampled and
+unsampled cases passed. The call counts cover separately bounded subject windows,
+exclude setup/deadline calls, and are not game FPS or pristine API-latency figures.
+
+Busy `timeGetTime` produced many locations in its WINMM body/helper; paced cases
+landed at the `NtDelayExecution` return. Busy cases also produced ntdll wait-return
+locations from zero-timeout checks, so a wait API name alone does not establish
+sleeping. [PC622](../outputs/rct622/REPORT.md) remains a failed qualification:
+logging extended the subject window beyond its declared bound. PC623 moved the
+subject release ahead of logging without changing the workload or relaxing gates.
+
+This supports the timer-polling lead below. Next validate runtime code and callers
+with original controls before applying the method to a fresh RCT fixture. It does
+not yet justify pacing the game, replacing timer APIs or changing drivers.
+
 [PC621](../outputs/rct621/REPORT.md) completes the matched saved-scene location
 milestone after [PC620](../outputs/rct620/REPORT.md)'s original workload controls.
 RCT used 20.046875 CPU seconds over 20.094 elapsed, all accounted for by its main

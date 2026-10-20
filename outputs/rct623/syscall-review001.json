@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "dll_sha256": "ed276d6a3ae93c71a6cef73672b82e3808211da1c63bf7d3e23d93294e54813a",
+  "sites": [
+    {
+      "export": "NtWaitForSingleObject",
+      "export_rva": "0x8f08",
+      "saved_return_rva": "0x8f13"
+    },
+    {
+      "export": "NtDelayExecution",
+      "export_rva": "0x8398",
+      "saved_return_rva": "0x83a3"
+    }
+  ],
+  "conclusion": "Paced controls stop in NtDelayExecution; busy controls also have NtWaitForSingleObject returns from zero-timeout release checks. The API name alone does not supply wait duration or CPU cost.",
+  "scope": "Exact on-disk exports and decoded syscall-return boundaries. No kernel stacks/runtime bytes captured."
+}

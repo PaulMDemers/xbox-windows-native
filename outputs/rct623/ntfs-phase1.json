@@ -1,0 +1,71 @@
+{
+  "command": [
+    "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/bin/qemu-system-i386",
+    "-name",
+    "xwn-rct623-pc-phase1",
+    "-L",
+    "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/qemu",
+    "-bios",
+    "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/seabios/bios.bin",
+    "-machine",
+    "pc,acpi=off,hpet=off",
+    "-accel",
+    "tcg,thread=single",
+    "-cpu",
+    "pentium3",
+    "-smp",
+    "1",
+    "-m",
+    "64",
+    "-vga",
+    "cirrus",
+    "-display",
+    "none",
+    "-nic",
+    "none",
+    "-serial",
+    "unix:/tmp/xwn-rct623-serial.sock,server=on,wait=off",
+    "-drive",
+    "file=/mnt/c/xwn623/pc001/disk.qcow2,format=qcow2,if=ide,index=0",
+    "-drive",
+    "file=/mnt/c/xwn623/helper001.iso,media=cdrom,readonly=on,if=ide,index=2",
+    "-usb",
+    "-device",
+    "usb-tablet",
+    "-boot",
+    "order=c",
+    "-qmp",
+    "unix:/tmp/xwn-rct623-phase1.sock,server=on,wait=off",
+    "-rtc",
+    "base=utc",
+    "-no-reboot"
+  ],
+  "started_utc": "2026-10-20T20:53:16.768534+00:00",
+  "closed": true,
+  "space": {
+    "minimum_free_gib": 22,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c/xwn623/pc001",
+        "free_bytes": 24014667776
+      },
+      {
+        "free_bytes": 24014667776,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "physical_access": false,
+  "network_device": false,
+  "phase": 1,
+  "pid": 457,
+  "deadline": false,
+  "exit_code": 0,
+  "ended_utc": "2026-10-20T20:58:04.600537+00:00",
+  "disk_sha256": "1cb7247f263d1048438f5762c2fd21b34934257f40ba769ac8d451883856a022",
+  "source_unchanged": true,
+  "iso_unchanged": true
+}

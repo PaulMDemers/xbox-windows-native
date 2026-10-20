@@ -1,0 +1,91 @@
+{
+  "path": "C:\\xwn622\\helper001.iso",
+  "sha256": "1777df3247f95fb213f5a59e5c20a7f9ff8231fa4b48bc706fd4439719ed6da8",
+  "bytes": 96256,
+  "files": {
+    "SUBJECT.EXE": {
+      "path": "/mnt/c/xwn622/build001/subject.exe",
+      "bytes": 9328,
+      "sha256": "3eaf7b58a9bdb06ef6afe335064f1f80b102c22fef3ae0011820e1dcc4358b22",
+      "imports": {
+        "KERNEL32.dll": [
+          "CloseHandle",
+          "CreateFileA",
+          "ExitProcess",
+          "FlushFileBuffers",
+          "GetCommandLineA",
+          "GetCurrentProcessId",
+          "GetCurrentThreadId",
+          "GetTickCount",
+          "OpenEventA",
+          "SetEvent",
+          "Sleep",
+          "WaitForSingleObject",
+          "WriteFile",
+          "lstrlenA"
+        ],
+        "USER32.dll": [
+          "wsprintfA"
+        ],
+        "WINMM.DLL": [
+          "timeGetTime"
+        ]
+      }
+    },
+    "RUN622.EXE": {
+      "path": "/mnt/c/xwn622/build001/run622.exe",
+      "bytes": 20999,
+      "sha256": "81fe77b89a3e63d719bdd28ab73b8922076c5872bdb7352e8a52bc67b066f0eb",
+      "imports": {
+        "ADVAPI32.dll": [
+          "AdjustTokenPrivileges",
+          "LookupPrivilegeValueA",
+          "OpenProcessToken"
+        ],
+        "KERNEL32.dll": [
+          "CloseHandle",
+          "CreateDirectoryA",
+          "CreateEventA",
+          "CreateFileA",
+          "CreateProcessA",
+          "ExitProcess",
+          "FlushFileBuffers",
+          "GetCommState",
+          "GetCurrentProcess",
+          "GetCurrentProcessId",
+          "GetCurrentThread",
+          "GetExitCodeProcess",
+          "GetLastError",
+          "GetModuleHandleA",
+          "GetProcAddress",
+          "GetProcessTimes",
+          "GetThreadContext",
+          "GetThreadTimes",
+          "GetTickCount",
+          "LoadLibraryA",
+          "QueryPerformanceCounter",
+          "QueryPerformanceFrequency",
+          "ResumeThread",
+          "SetCommState",
+          "SetCommTimeouts",
+          "SetEvent",
+          "SetLastError",
+          "SetThreadPriority",
+          "Sleep",
+          "SuspendThread",
+          "TerminateProcess",
+          "WaitForSingleObject",
+          "WriteFile",
+          "lstrcmpiA",
+          "lstrlenA"
+        ],
+        "USER32.dll": [
+          "ExitWindowsEx",
+          "wsprintfA"
+        ]
+      }
+    }
+  },
+  "copy_script": "@echo off\r\nif exist C:\\xwn622-kit goto fail\r\nmkdir C:\\xwn622-kit\r\ncopy D:\\SUBJECT.EXE C:\\xwn622-kit\\SUBJECT.EXE\r\nif errorlevel 1 goto fail\r\ncopy D:\\RUN622.EXE C:\\xwn622-kit\\RUN622.EXE\r\nif errorlevel 1 goto fail\r\nattrib -R C:\\xwn622-kit\\*.*\r\necho XWN622 READY - EJECT CD BEFORE RUNNING\r\nexit\r\n:fail\r\necho COPY FAILED\r\npause\r\n",
+  "readback_passed": true
+}

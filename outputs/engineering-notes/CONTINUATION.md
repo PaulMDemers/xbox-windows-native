@@ -1,3 +1,61 @@
+# PC623 CLOSED PASS: busy/paced timer-control milestone complete
+
+623 completed8 original cases and normal shutdown2026-10-20
+20:58:04.600537UTC. CPU windows20.046–20.063s,host agreement within17.263ms.
+Busy timeGetTime/GetTickCount used~20.047s main-thread CPU; paced Sleep(10)
+cases made1284 payload calls and registered0 CPU at coarse resolution. Zero is
+not zero-cost proof. Every unchanged subject-window boundary passed:15–32ms
+before,0ms after. No output-time workload continuation. Read623/REPORT.md.
+
+224 snapshots per observed case: busy timeGetTime155 WINMM/43 subject/26 ntdll;
+busy GetTickCount93 kernel32/68 subject/63 ntdll; paced cases224 ntdll each.
+Exact DLL review maps timer-body/helper and delay/zero-timeout-wait return sites.
+No CPU-time fractions,kernel stacks,retail call counts or FPS. Timer polling
+remains a lead for621; next qualify bounded runtime code/caller capture on
+original controls before a fresh RCT child. Follow623/NEXT001.md.
+
+622 CLOSED failed unchanged1s post-window bound;cleanup passed.623 moved only
+release/join before buffered logging after final module capture;workload,oracle
+and sampler loop unchanged. Preserve622 and all earlier failures. Never reopen/
+recollect/parent closed runtimes.623 cold6495 files/310 dirs,five clean hives,
+exact tools/OS/seed,one normal shutdown;all owned processes closed.
+No physical access; Xbox last dashboard/no hook;596 SOFTWARE cold-only.720p,
+launcher/packages and deferrals unchanged;automation paused. No hardware input
+needed. Recheck22GiB admission/20GiB reserve includingWSL before new work.
+
+# PC622 CLOSED failed timing-bound qualification;623 prepared
+
+622 completed8 original timer cases and normal shutdown; cold audit6495 files/
+310 dirs,five clean hives,exact tools/OS/seed. review001 failed unchanged1s
+post-window bound: case4 subject ended1.563s after end counters during logging.
+final001 CLOSED failed/cleanup passed. Never rerun/recollect/parent622.
+
+623 fresh immutable404 cold0 passed6475 files/308 dirs. Phase1 OPEN, booting;
+follow623/ntfs-phase1 and C:/xwn623/pc001/phase1. Runner launched once20:55:07UTC via launch-once001, after copy and CD-eject
+readback. No input/captures during timing; await bounded normal exit and cold1.
+Compiled and host tests
+passed exact unchanged workload/oracle/sampler loop, permitting only release/join
+block movement after final module capture and before buffered output. Media
+readback passed. No game/physical access. Follow623 actual phase/cold records.
+Next: cold0 pass,one bounded8-case run,normal exit,cold1 and unchanged review.
+Xbox last dashboard/no hook;596 SOFTWARE cold-only; automation paused. All622
+processes closed. No hardware input needed. Preserve every failed gate.
+
+# PC622 original timer controls prepared
+
+After pushed621 d59ff44c, original busy/paced timeGetTime and GetTickCount
+controls compiled; balanced suspension, timer rejection cases and18 serial
+markers passed. Two-tool media readback passed; cold0 complete6475 files/308 dirs.
+622 phase1 OPEN, booting. Follow622/ntfs-phase1 and C:/xwn622/pc001/phase1.
+Runner launched once20:45:48UTC via launch-once001 after copy/CD-eject
+readback. Await normal close, then one cold1 audit. No input/screenshots or heavy
+host work during measured windows. This is one
+bounded8-case run using unchanged620 sampler; no retail/physical launch.
+Counts span the full subject window, separately bounded from20s CPU windows.
+No inference from sample percentages. No changes to closed619/620/621.
+No physical access; Xbox last dashboard/no hook;596 SOFTWARE cold-only.
+Automation paused. Follow622 actual preparation/phase/cold records as created.
+
 # PC621 CLOSED PASS: matched saved-scene location milestone complete
 
 621 runtime closed normally20:28:26UTC2026-10-20.20.094s guest/20.095143685s host;
