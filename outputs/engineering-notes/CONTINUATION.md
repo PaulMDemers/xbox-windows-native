@@ -1,3 +1,40 @@
+# PC615 closed PASS: pristine paused RCT process-cost baseline
+
+Fresh404 PC run17:57:50-18:07:10UTC2026-10-20, direct game launch/no tracer.
+ExactPC593 scenery165600 pixels restored and unchanged across20.016s ticks;
+host20.015898578s. GameCPU19.859375s (99.2175%), kernel6.921875/user12.9375;
+working set33.684MiB and PagefileUsage53.949MiB stable over174 samples. Observer
+CPU0 at coarse resolution, not zero-overhead proof. Same-boot sleep5s matched
+host5.001333517s; QPC still wrong and diagnostic only. No FPS/Xbox/GPU/recorder
+cost claim. Read outputs/rct615/REPORT.md and precise NEXT001.md. Next: align
+tracer activity with a matched timed window, actual game/recorder/observer handles
+separate; original control for new coordination before retail. Do not measure an
+already-exhausted32-call recorder and call it active overhead.
+Normal restart/one6006,7003 files/315 directories, five clean hives/raw events,
+registry/save/tools/OS/seed checks passed. Nine private captures visually checked.
+All owned VM/reader/build/audit processes closed; no pending launch. All prior
+runtimes remain closed; never reopen/recollect/parent them. Recheck22GiB fresh
+admission/2GiB allowance/20GiB reserve including WSL; C~23.076GB is below22GiB.
+Use verified leaf archives if needed; existing611/613 maps and partial613 batch
+failure preserved. No new reclamation this turn. Xbox unchanged/last dashboard/
+no hook;596 SOFTWARE cleanup cold-only. Protected720p/launcher/saves/packages
+unchanged (no RCT in packages). Deferrals and paused automation unchanged.
+
+# PC615 fresh pristine RCT cost fixture running
+
+Fresh immutable404 child admitted with22GiB reserve on output and WSL backing.
+Pinned uninstrumented direct game runner combines603 launch,612 corrected scene
+load/hash and614 counter/COM1 primitives. Build,503-member media readback,
+13 cost rejection cases,10 copy rejections and7 scene rejections passed.
+Cold0 passed6475 files/308 directories. Owned PC615 phase1 is OPEN; follow actual
+ntfs-phase1.json and C:/xwn615/pc001/phase1. Desktop1024x768 configured; copy/verifier completed and both CDs ejected.
+One runner launch submitted18:03UTC2026-10-20 (launch-once001 receipt).
+One bounded run planned; after launch no host screenshots/input during cost
+window. Five-second sleep sanity then settled exactPC593 paused-scene20s window.
+Read outputs/rct615/DESIGN.md. All earlier runtimes remain closed.
+No physical access; Xbox last dashboard/no hook;596 SOFTWARE cleanup cold-only.
+Protected720p/launcher/saves/packages and deferrals unchanged; automation paused.
+
 # PC614 closed PASS: host-correlated tick/process CPU control
 
 614 original workers completed with host/tick elapsed agreement within12.8ms.

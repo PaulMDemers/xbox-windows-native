@@ -7,6 +7,16 @@ separates the watched Xbox result from PC controls and unresolved inputs.
 
 ## Save/load checkpoint and next measurement
 
+[PC615](../outputs/rct615/REPORT.md) completed the first host-clock-checked,
+uninstrumented paused saved-scene cost baseline. Over20.016 seconds, RCT used
+19.859375 seconds of process CPU (99.2% of the single emulated CPU), while its
+working set stayed33.684MiB. The165600-pixel scene remained exact. Normal restart,
+registry restoration, saved-file and cold checks passed. This is one PC interval,
+not game FPS or Xbox throughput. It does not identify the cause of the CPU use.
+Next align actual recorder activity with a matched timed interval and measure
+game, recorder and counter-observer processes separately. Capped tracing that
+finishes before timing starts cannot establish active recorder overhead.
+
 [PC613](../outputs/rct613/REPORT.md) exposed a timing problem in the PC fixture:
 a two-second sleep appeared as about 0.286 seconds through QPC/frequency. It failed
 qualification; the short busy workload also fell below the sampling interval.
@@ -16,8 +26,8 @@ agreed within 12.8 ms, and busy/idle CPU accounting behaved as expected. QPC rem
 unreliable for elapsed time in these fixtures; no correction factor or driver
 patch was applied. The observer recorded no CPU increment at coarse resolution,
 which is not zero-overhead proof. These are synthetic controls, not game FPS or
-Xbox measurements. The next pristine RCT run must include host clock agreement
-on its own verified saved-scene measurement interval, before a traced comparison.
+Xbox measurements. PC615 subsequently included host clock agreement on its own verified saved-scene
+interval. A matched traced comparison remains pending.
 
 [PC610](../outputs/rct610/REPORT.md) qualifies recorder DLL unload/reload using
 original code at a reused address with different instruction bytes. Pristine
@@ -29,7 +39,8 @@ larger capacity headroom: the loaded park matched all165600 reference scenery
 pixels and remained unchanged ten seconds later. Its571 paired calls include32
 RCT StretchDIBits samples in each phase, linked to a1024x768 top-down8-bit BI_RGB
 DIB. Normal restart and cleanup passed. This establishes the sampled GDI path;
-pristine game costs and recorder overhead remain separate pending measurements.
+PC615 subsequently measured pristine game costs; recorder overhead remains
+a separate pending measurement.
 Neither capped API counts nor these PC observations establish FPS or Xbox GPU
 acceleration.
 
@@ -61,9 +72,8 @@ failed/successful creation results and returned DirectDraw/surface methods with
 [PC602](../outputs/rct602/REPORT.md) now supplies actual game invocations and
 returns: successful DIB creation and32 sampled StretchDIBits calls from RCT,
 plus DirectDraw creation/release. Title and Forest Frontiers rendered; normal
-close, registry restoration and restart passed. The exact saved scene is now qualified by PC603/612. Next compare a fresh
-clock-qualified uninstrumented game control with the instrumented case before
-interpreting costs. The original subject is a recorder control, not a
+close, registry restoration and restart passed. The exact saved scene is now qualified by PC603/612. PC615 provides a clock-qualified uninstrumented cost baseline; a fresh matched
+instrumented case remains necessary before interpreting recorder overhead. The original subject is a recorder control, not a
 matched game-performance control. Current Xbox registry cleanup is cold readback
 verified but has not received a subsequent Windows boot.
 
@@ -75,8 +85,8 @@ qualified a single explicit phase transition after recorded calls drain, includi
 exhausted startup sampling and duplicate requests:32 StretchDIBits samples per
 phase,192 total pairs and84 header records on an original NT5 control. Its offline
 checker naming collision and corrected002 review are preserved. PC612 subsequently used this mechanism to delimit the verified saved park and
-record its actual DIB layout. Process costs, clock qualification and observer
-overhead remain unmeasured.
+record its actual DIB layout. PC613/614 subsequently qualified host-correlated timing, and PC615 measured
+pristine process costs. Recorder overhead remains unmeasured.
 
 [PC606](../outputs/rct606/REPORT.md) captured an early RCT1024x768 top-down8-bit
 BI_RGB DIB, with32 sampled StretchDIBits calls using its returned bits pointer.
