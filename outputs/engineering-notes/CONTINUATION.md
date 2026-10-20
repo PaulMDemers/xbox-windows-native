@@ -1,3 +1,14 @@
+# PC608 closed failed: copy guard caught stale uppercase tool name
+
+Copy script asked for TRACE606.EXE; media contained TRACE608.EXE. No game launched.
+All503 assets unchanged, runner copied, trace/verifier absent, no game logs or
+registry. UI normal restart05:10:24UTC; cold five hives/raw agreement, OS/seed and
+one6006 passed. All processes exited. Preserve608 sources/media; never reopen/
+recollect/parent it. Read outputs/rct608/REPORT.md and NEXT001.md.607 remains PASS.
+Next609 adds exact script-tool source/destination/hash/verifier checks and corrects
+uppercase TRACE namespace before a fresh404 child. No Xbox change/reset needed.
+Other deferred work and paused automation remain unchanged.
+
 # PC607 closed: absent-output recorder handling qualified
 
 Fresh original NT5 control passed pristine/traced with identical logs: RGB and
