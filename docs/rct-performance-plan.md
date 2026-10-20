@@ -7,6 +7,23 @@ separates the watched Xbox result from PC controls and unresolved inputs.
 
 ## Save/load checkpoint and next measurement
 
+[PC621](../outputs/rct621/REPORT.md) completes the matched saved-scene location
+milestone after [PC620](../outputs/rct620/REPORT.md)'s original workload controls.
+RCT used 20.046875 CPU seconds over 20.094 elapsed, all accounted for by its main
+thread; the 165,600-pixel scene stayed exact. 240 saved-user locations comprised
+73 RCT, 88 WINMM, 78 ntdll and 1 GDI32. Exact protected DLL address analysis places
+the WINMM samples in timeGetTime and its direct arithmetic helper. This makes
+timer polling a concrete next lead; it does not prove the source of all CPU use.
+The ntdll samples are syscall returns and do not establish sleeping or kernel
+costs. Location counts are not CPU-time percentages, game FPS or Xbox results.
+Normal restart, cold audit and all nine private capture inspections passed.
+
+Next qualify busy versus paced timer polling with original code before changing
+the game or drivers. Any packed game address attribution needs validated runtime
+bytes/callers. [PC619](../outputs/rct619/REPORT.md)'s prelaunch serial-reader failure
+and every corrected preparation failure remain retained; no failed runtime was
+rerun. The physical Xbox and distributed packages were untouched.
+
 [PC618](../outputs/rct618/REPORT.md) completes the matched saved-scene cost
 milestone, using [PC617](../outputs/rct617/REPORT.md)'s qualified continuous-work
 coordination. Over20.062 seconds, the game used19.3125 CPU seconds, the recorder

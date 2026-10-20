@@ -1,0 +1,99 @@
+{
+  "path": "C:\\xwn620\\helper001.iso",
+  "sha256": "eadef434bdbdf425e980bbd428cc05abf6bcadfa4b928bb9907fe25c225d9cee",
+  "bytes": 100352,
+  "files": {
+    "SUBJECT.EXE": {
+      "path": "/mnt/c/xwn620/build001/subject.exe",
+      "bytes": 12659,
+      "sha256": "52d64b0214f9d1871f42d16b3c729e37d5515273d91f533b340ea07ae8426c20",
+      "imports": {
+        "GDI32.dll": [
+          "CreateCompatibleDC",
+          "CreateDIBSection",
+          "DeleteDC",
+          "DeleteObject",
+          "GdiFlush",
+          "SelectObject",
+          "StretchDIBits"
+        ],
+        "KERNEL32.dll": [
+          "CloseHandle",
+          "CreateFileA",
+          "ExitProcess",
+          "FlushFileBuffers",
+          "GetCommandLineA",
+          "GetCurrentProcessId",
+          "GetCurrentThreadId",
+          "GetTickCount",
+          "OpenEventA",
+          "SetEvent",
+          "Sleep",
+          "VirtualAlloc",
+          "VirtualFree",
+          "WaitForSingleObject",
+          "WriteFile",
+          "lstrlenA"
+        ],
+        "USER32.dll": [
+          "wsprintfA"
+        ]
+      }
+    },
+    "RUN620.EXE": {
+      "path": "/mnt/c/xwn620/build001/run620.exe",
+      "bytes": 20999,
+      "sha256": "5e6dcf29d080a3e3daedccf55130e281250c4f33da8525fdc611bd634d497e66",
+      "imports": {
+        "ADVAPI32.dll": [
+          "AdjustTokenPrivileges",
+          "LookupPrivilegeValueA",
+          "OpenProcessToken"
+        ],
+        "KERNEL32.dll": [
+          "CloseHandle",
+          "CreateDirectoryA",
+          "CreateEventA",
+          "CreateFileA",
+          "CreateProcessA",
+          "ExitProcess",
+          "FlushFileBuffers",
+          "GetCommState",
+          "GetCurrentProcess",
+          "GetCurrentProcessId",
+          "GetCurrentThread",
+          "GetExitCodeProcess",
+          "GetLastError",
+          "GetModuleHandleA",
+          "GetProcAddress",
+          "GetProcessTimes",
+          "GetThreadContext",
+          "GetThreadTimes",
+          "GetTickCount",
+          "LoadLibraryA",
+          "QueryPerformanceCounter",
+          "QueryPerformanceFrequency",
+          "ResumeThread",
+          "SetCommState",
+          "SetCommTimeouts",
+          "SetEvent",
+          "SetLastError",
+          "SetThreadPriority",
+          "Sleep",
+          "SuspendThread",
+          "TerminateProcess",
+          "WaitForSingleObject",
+          "WriteFile",
+          "lstrcmpiA",
+          "lstrlenA"
+        ],
+        "USER32.dll": [
+          "ExitWindowsEx",
+          "wsprintfA"
+        ]
+      }
+    }
+  },
+  "copy_script": "@echo off\r\nif exist C:\\xwn620-kit goto fail\r\nmkdir C:\\xwn620-kit\r\ncopy D:\\SUBJECT.EXE C:\\xwn620-kit\\SUBJECT.EXE\r\nif errorlevel 1 goto fail\r\ncopy D:\\RUN620.EXE C:\\xwn620-kit\\RUN620.EXE\r\nif errorlevel 1 goto fail\r\nattrib -R C:\\xwn620-kit\\*.*\r\necho XWN620 READY - EJECT CD BEFORE RUNNING\r\nexit\r\n:fail\r\necho COPY FAILED\r\npause\r\n",
+  "readback_passed": true
+}

@@ -1,0 +1,99 @@
+{
+  "path": "C:\\xwn619\\helper001.iso",
+  "sha256": "7612ccaab3da45b7cd0076e9e61b2bdc173f6d8010acf1c42cbcda0b3cce0fda",
+  "bytes": 100352,
+  "files": {
+    "SUBJECT.EXE": {
+      "path": "/mnt/c/xwn619/build003/subject.exe",
+      "bytes": 12659,
+      "sha256": "d80fdf752563134c5092903919fc4b9dd9f6be5115c972e3bb738233b658888c",
+      "imports": {
+        "GDI32.dll": [
+          "CreateCompatibleDC",
+          "CreateDIBSection",
+          "DeleteDC",
+          "DeleteObject",
+          "GdiFlush",
+          "SelectObject",
+          "StretchDIBits"
+        ],
+        "KERNEL32.dll": [
+          "CloseHandle",
+          "CreateFileA",
+          "ExitProcess",
+          "FlushFileBuffers",
+          "GetCommandLineA",
+          "GetCurrentProcessId",
+          "GetCurrentThreadId",
+          "GetTickCount",
+          "OpenEventA",
+          "SetEvent",
+          "Sleep",
+          "VirtualAlloc",
+          "VirtualFree",
+          "WaitForSingleObject",
+          "WriteFile",
+          "lstrlenA"
+        ],
+        "USER32.dll": [
+          "wsprintfA"
+        ]
+      }
+    },
+    "RUN619.EXE": {
+      "path": "/mnt/c/xwn619/build003/run619.exe",
+      "bytes": 20999,
+      "sha256": "ac52346dc215ad86f7bc69509160be6662a99369b1f38c3b6d476952ba29d747",
+      "imports": {
+        "ADVAPI32.dll": [
+          "AdjustTokenPrivileges",
+          "LookupPrivilegeValueA",
+          "OpenProcessToken"
+        ],
+        "KERNEL32.dll": [
+          "CloseHandle",
+          "CreateDirectoryA",
+          "CreateEventA",
+          "CreateFileA",
+          "CreateProcessA",
+          "ExitProcess",
+          "FlushFileBuffers",
+          "GetCommState",
+          "GetCurrentProcess",
+          "GetCurrentProcessId",
+          "GetCurrentThread",
+          "GetExitCodeProcess",
+          "GetLastError",
+          "GetModuleHandleA",
+          "GetProcAddress",
+          "GetProcessTimes",
+          "GetThreadContext",
+          "GetThreadTimes",
+          "GetTickCount",
+          "LoadLibraryA",
+          "QueryPerformanceCounter",
+          "QueryPerformanceFrequency",
+          "ResumeThread",
+          "SetCommState",
+          "SetCommTimeouts",
+          "SetEvent",
+          "SetLastError",
+          "SetThreadPriority",
+          "Sleep",
+          "SuspendThread",
+          "TerminateProcess",
+          "WaitForSingleObject",
+          "WriteFile",
+          "lstrcmpiA",
+          "lstrlenA"
+        ],
+        "USER32.dll": [
+          "ExitWindowsEx",
+          "wsprintfA"
+        ]
+      }
+    }
+  },
+  "copy_script": "@echo off\r\nif exist C:\\xwn619-kit goto fail\r\nmkdir C:\\xwn619-kit\r\ncopy D:\\SUBJECT.EXE C:\\xwn619-kit\\SUBJECT.EXE\r\nif errorlevel 1 goto fail\r\ncopy D:\\RUN619.EXE C:\\xwn619-kit\\RUN619.EXE\r\nif errorlevel 1 goto fail\r\nattrib -R C:\\xwn619-kit\\*.*\r\necho XWN619 READY - EJECT CD BEFORE RUNNING\r\nexit\r\n:fail\r\necho COPY FAILED\r\npause\r\n",
+  "readback_passed": true
+}

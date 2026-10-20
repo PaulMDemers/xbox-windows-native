@@ -1,3 +1,68 @@
+# PC621 CLOSED PASS: matched saved-scene location milestone complete
+
+621 runtime closed normally20:28:26UTC2026-10-20.20.094s guest/20.095143685s host;
+game/main-thread20.046875 CPU seconds (13.78125 user,6.265625 kernel). Observer0
+at coarse resolution, not zero-overhead proof.240 saved-user snapshots:73 RCT,
+88 WINMM,78 ntdll,1 GDI32. Exact DLL address review maps WINMM to timeGetTime
+and its direct arithmetic helper; ntdll is a syscall-return site, not sleep proof.
+No kernel stacks/runtime code bytes or CPU-time sample percentages. All165600
+scenery pixels exact;9 private captures inspected;7003 files/315 dirs,five clean
+hives,registry restore,one normal shutdown. No forced exit; all owned processes
+closed. Read621/REPORT.md,NEXT001.md and final001. Timer polling is a lead only.
+
+620 original controls CLOSED PASS;619 CLOSED prelaunch failure/cleanup passed.
+Preserve every failure and archives619/620; never reopen/recollect/parent closed
+runtimes. Three exact DLLs read from immutable404 only;621 not reopened. Next is
+fresh original busy-versus-paced timer control before any retail change.
+No physical access; Xbox last dashboard/no hook;596 SOFTWARE cold-only.720p,
+launcher/packages, deferrals unchanged. Automation paused. No user input needed.
+
+# PC620 CLOSED PASS; PC621 retail sampling prepared
+
+620 qualified original sleep/arithmetic/copy/GDI controls,224 snapshots each,
+normal shutdown and cold checks. Samples distinguish arithmetic/copy/GDI;
+ntdll occurs in busy controls too and does not alone prove sleeping.
+Read620/REPORT.md and final001.619 remains CLOSED prelaunch failure.
+621 fresh404 cold0 passed6475 files/308 directories. Phase1 OPEN; runner launched
+once20:25:38UTC after copy/CD-eject. Sleep markers received; await bounded exit.
+Next: one621 boot,1024x768,copy503 assets,eject bothCDs,run621 once;
+normal exit then cold1,scene/counter/module review. Follow621 actual records.
+All620 processes closed. No physical access; Xbox last dashboard/no hook;
+596 SOFTWARE cold-only. Automation paused; user input not currently needed.
+Preserve all failures and archives; never reopen closed runtimes.
+
+# PC619 closed prelaunch failure;620 corrected control ready
+
+619 closed normally with6485 files/308 directories, five clean hives and one
+normal shutdown. No helper/workload/game launched: inherited host serial parser
+case<6 was incompatible with planned0..8. Build failures and rejected GUI plan
+are retained.619/final001 is CLOSED failed with cleanup passed. Never reopen it.
+
+620 compiled the same original workloads with namespace changes; serial reader
+now accepts0..8. Seven suspension cases,21 snapshot negatives, all18 START/END
+markers and five serial negatives pass.2-tool media readback passed. Fresh404 cold0 passed6475 files/308 directories.620 phase1 OPEN, booting;
+follow ntfs-phase1.json and C:/xwn620/pc001/phase1. Helper copied, CD ejected/read back; runner launched once20:08UTC via
+launch-once001. No screenshots/input during measured intervals; no retail attribution before qualification.
+620/archive001 archives only closed593 leaf with full roundtrip hash proof;
+619/archive001/002/003 map618/616/617/610/614. Keep cached save/reference exports
+and all archives. No physical access; Xbox last dashboard/no hook;596 SOFTWARE
+cold-only. Automation paused; no hardware input needed.
+
+# PC619 CPU-location qualification prepared
+
+Continuing after pushed618 milestone5c95b404. Original sleep/arithmetic/copy/GDI
+control sources compiled inbuild003; build001/002 formatting errors preserved.
+Build lease collision occurred before compilation while own inventory held it.
+Seven balanced-suspension cases and21 snapshot negatives passed; exact2-tool
+media readback passed. 619 fresh404 cold0 passed6475 files/308 directories. Phase1 OPEN; follow
+ntfs-phase1.json and C:/xwn619/pc001/phase1. Booting, runner not yet launched. No retail probe until original qualification.
+
+619/archive001 archives closed618 leaf; archive002 archives closed616/617
+leaves after full roundtrip/hash verification and dependency inventory. Never
+reopen/recollect/parent closed runtimes.22GiB admission/20GiB reserve includes
+WSL; recheck actual capacity. All earlier owned processes closed. No physical
+access; Xbox last dashboard/no hook,596 SOFTWARE cold-only; automation paused.
+
 # PC617/618 CLOSED PASS: matched RCT cost milestone complete
 
 2026-10-20:618 fresh404 runtime closed normally19:22:41UTC. Exact165600-pixel

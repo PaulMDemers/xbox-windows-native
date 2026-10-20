@@ -1,0 +1,83 @@
+{
+  "status": "failed",
+  "compiler_sha256": "8ab0685d97b322aad3c37fd362b26fa5b9408ff6dd55a536c0a2d48de1c22b18",
+  "space": {
+    "minimum_free_gib": 20.02,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c",
+        "free_bytes": 22890950656
+      },
+      {
+        "free_bytes": 22890946560,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "physical_access": false,
+  "commands": [
+    [
+      "/home/paul/xbox-windows-native/release-readiness403-bootstrap001/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc",
+      "-Os",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-nostdlib",
+      "-fno-stack-protector",
+      "-fno-builtin",
+      "-Wl,--entry,_mainCRTStartup@0",
+      "-Wl,--subsystem,console:5.0",
+      "-MD",
+      "-MF",
+      "subject.exe.d",
+      "-o",
+      "subject.exe",
+      "subject.c",
+      "-lkernel32",
+      "-luser32",
+      "-ladvapi32",
+      "-lgdi32",
+      "ranges.S"
+    ]
+  ],
+  "rows": [],
+  "headers": {},
+  "error": "CalledProcessError(1, ['/home/paul/xbox-windows-native/release-readiness403-bootstrap001/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc', '-Os', '-Wall', '-Wextra', '-Werror', '-nostdlib', '-fno-stack-protector', '-fno-builtin', '-Wl,--entry,_mainCRTStartup@0', '-Wl,--subsystem,console:5.0', '-MD', '-MF', 'subject.exe.d', '-o', 'subject.exe', 'subject.c', '-lkernel32', '-luser32', '-ladvapi32', '-lgdi32', 'ranges.S'])",
+  "files": {
+    "/mnt/c/xwn619/build001/counter.h": {
+      "bytes": 2644,
+      "sha256": "cb66cf5263df11b18cd32972fd6d5258d52ba63b5985eb6af6099463e3d4ca9e"
+    },
+    "/mnt/c/xwn619/build001/host_suspend.c": {
+      "bytes": 939,
+      "sha256": "3474a43787e155e14ff45177bd21baf7175ac26a3015cd47b3c4c061471f1366"
+    },
+    "/mnt/c/xwn619/build001/ranges.S": {
+      "bytes": 440,
+      "sha256": "befeb3c222e21afa5e899e8467d068af3d8a2438e55f24140664806df4c1fb14"
+    },
+    "/mnt/c/xwn619/build001/runner.c": {
+      "bytes": 6922,
+      "sha256": "edd84e7cec7020761a19ece30e12cd5b2e1cb29d072b53a254ad78f60f854543"
+    },
+    "/mnt/c/xwn619/build001/subject.c": {
+      "bytes": 3020,
+      "sha256": "25e51613c7d525a780b276e53ca46a3410b8d41c85518a821aa65b9a70054375"
+    },
+    "/mnt/c/xwn619/build001/subject.exe.d": {
+      "bytes": 22,
+      "sha256": "d1d3d940ca648f4d60f45b2484be535771e823bd180a7e7a1f8ee3c21c51cd95"
+    },
+    "/mnt/c/xwn619/build001/subject.exe.log": {
+      "bytes": 1264,
+      "sha256": "851d313a1afb6dcdaa7d01181ae93014307ec594b6b8c46cb068360604115d6d"
+    },
+    "/mnt/c/xwn619/build001/suspend.h": {
+      "bytes": 606,
+      "sha256": "c71e611df159802710cabe5221dbaedee3fa96bda22c27bc00b5ff0dced543c6"
+    }
+  }
+}
