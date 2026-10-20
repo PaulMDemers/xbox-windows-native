@@ -1,0 +1,84 @@
+{
+  "path": "C:\\xwn614\\helper001.iso",
+  "sha256": "cfa646d873f4f061d35863215990dcdd74fc412542da5e490b29da3c3b385b9a",
+  "bytes": 92160,
+  "files": {
+    "WORKER.EXE": {
+      "path": "/mnt/c/xwn614/build001/worker.exe",
+      "bytes": 12517,
+      "sha256": "7e698277323fea02c976dc729e07617cc810541bfdc700a24ecbf81bd19bef8d",
+      "imports": {
+        "KERNEL32.dll": [
+          "CloseHandle",
+          "CreateFileA",
+          "ExitProcess",
+          "FlushFileBuffers",
+          "GetCommState",
+          "GetCommandLineA",
+          "GetCurrentProcess",
+          "GetProcAddress",
+          "GetProcessTimes",
+          "GetTickCount",
+          "LoadLibraryA",
+          "OpenEventA",
+          "QueryPerformanceCounter",
+          "QueryPerformanceFrequency",
+          "SetCommState",
+          "SetCommTimeouts",
+          "SetEvent",
+          "Sleep",
+          "VirtualAlloc",
+          "VirtualFree",
+          "WaitForSingleObject",
+          "WriteFile",
+          "lstrlenA"
+        ],
+        "USER32.dll": [
+          "wsprintfA"
+        ]
+      }
+    },
+    "RUN614.EXE": {
+      "path": "/mnt/c/xwn614/build001/run614.exe",
+      "bytes": 14131,
+      "sha256": "8999f83a5af20e35a1e9c223b433b658025ec4a040078ad7c68192d1c357ed7a",
+      "imports": {
+        "ADVAPI32.dll": [
+          "AdjustTokenPrivileges",
+          "LookupPrivilegeValueA",
+          "OpenProcessToken"
+        ],
+        "KERNEL32.dll": [
+          "CloseHandle",
+          "CreateDirectoryA",
+          "CreateEventA",
+          "CreateFileA",
+          "CreateProcessA",
+          "ExitProcess",
+          "FlushFileBuffers",
+          "GetCurrentProcess",
+          "GetExitCodeProcess",
+          "GetLastError",
+          "GetProcAddress",
+          "GetProcessTimes",
+          "GetTickCount",
+          "LoadLibraryA",
+          "QueryPerformanceCounter",
+          "QueryPerformanceFrequency",
+          "SetEvent",
+          "SetLastError",
+          "TerminateProcess",
+          "WaitForSingleObject",
+          "WriteFile",
+          "lstrlenA"
+        ],
+        "USER32.dll": [
+          "ExitWindowsEx",
+          "wsprintfA"
+        ]
+      }
+    }
+  },
+  "copy_script": "@echo off\r\nif exist C:\\xwn614-kit goto fail\r\nmkdir C:\\xwn614-kit\r\ncopy D:\\WORKER.EXE C:\\xwn614-kit\\WORKER.EXE\r\nif errorlevel 1 goto fail\r\ncopy D:\\RUN614.EXE C:\\xwn614-kit\\RUN614.EXE\r\nif errorlevel 1 goto fail\r\nattrib -R C:\\xwn614-kit\\*.*\r\necho XWN614 READY - EJECT CD BEFORE RUNNING\r\nexit\r\n:fail\r\necho COPY FAILED\r\npause\r\n",
+  "readback_passed": true
+}

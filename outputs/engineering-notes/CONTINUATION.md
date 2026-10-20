@@ -1,3 +1,43 @@
+# PC614 closed PASS: host-correlated tick/process CPU control
+
+614 original workers completed with host/tick elapsed agreement within12.8ms.
+Five-second sleeps recorded0 CPU; four1.87s busy intervals recorded1.875s work CPU.
+Sampled busy cases had17 samples each. No observer CPU increment recorded; coarse
+15.625ms accounting is not zero-overhead proof. QPC elapsed remains wrong (~0.713s
+for5s) and diagnostic only. No game/FPS/Xbox/recorder-overhead result yet.
+Normal restart17:29:02UTC2026-10-20;6493 files/310 directories, one6006, five clean
+hives/raw chronology/tool/OS/seed checks passed. All614 processes/serial reader
+closed. Read outputs/rct614/REPORT.md and NEXT001.md. Next: fresh uninstrumented
+RCT exact PC593 scene, host-checked20s cost window, then matched tracer overhead.
+Never reopen/recollect/parent closed runtimes.613 stays CLOSED FAILED (clock and
+short-workload gates); compile failure, admission failure and partial archive
+batch retained.613 archive001 preserves603/604/605/607; archive002 completed599
+then rejected601 at stored shutdown-delta0.601/610 untouched.1,512,636,416 C bytes
+recovered losslessly;611 archive maps remain valid. Recheck22GiB admission/2GiB
+allowance/20GiB reserve including WSL before allocation. No waiver.
+Xbox unchanged/last dashboard/no hook;596 SOFTWARE cleanup cold-only. No reset
+needed. Protected720p/launcher/saves/ZIPs unchanged (no RCT in ZIPs). Other-console,
+sound/fullscreen/input/boot/1080i deferrals and paused automation unchanged.
+
+# PC613 closed failed; PC614 host-correlated control preparing
+
+613 exposed QPC/tick disagreement: two-second sleeps gave2.000s ticks versus
+about0.286s QPC/frequency26.52GHz. Busy work63-94ms was below100ms minimum and
+sampling cadence. No qualification/performance pass; no correction factor.
+Normal restart17:18:08UTC, one6006,6493 files/310 directories, five hives/raw,
+tools/OS/seed checks passed; all613 processes closed. Preserve compile001 warning,
+prelaunch space rejection, actual review failure and exit screenshot race.
+Read outputs/rct613/REPORT.md/NEXT001.md. Additional verified leaf archives:
+603/604/605/607 in archive001,599 in partial archive002.601 rejected at shutdown
+count guard;601/610 untouched.1,512,636,416 C bytes recovered losslessly. Existing
+611 archive maps remain valid. Never reopen/recollect/parent closed runtimes.
+614 is a fresh404 child with longer original workloads and bounded virtual-COM1
+markers timestamped on the host. Build, media and16 host negative checks passed;
+cold0 underway, no614 guest yet. Follow actual614 records. QPC remains diagnostic;
+no Xbox or game performance claim. Xbox unchanged/last dashboard/no hook;596
+SOFTWARE cleanup cold-only. No reset needed. Existing deferrals/paused automation
+and protected720p/launcher/saves/ZIPs unchanged; ZIPs exclude RCT.
+
 # PC612 closed PASS: exact saved-park graphics trace and cleanup
 
 Fresh404 child ran16:28:28-16:36:21UTC on2026-10-20. Loading exact PC593 save

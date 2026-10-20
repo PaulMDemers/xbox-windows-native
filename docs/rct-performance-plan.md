@@ -7,6 +7,18 @@ separates the watched Xbox result from PC controls and unresolved inputs.
 
 ## Save/load checkpoint and next measurement
 
+[PC613](../outputs/rct613/REPORT.md) exposed a timing problem in the PC fixture:
+a two-second sleep appeared as about 0.286 seconds through QPC/frequency. It failed
+qualification; the short busy workload also fell below the sampling interval.
+[PC614](../outputs/rct614/REPORT.md) then checked longer original workloads against
+independent host timestamps delivered through virtual COM1. Guest tick elapsed
+agreed within 12.8 ms, and busy/idle CPU accounting behaved as expected. QPC remains
+unreliable for elapsed time in these fixtures; no correction factor or driver
+patch was applied. The observer recorded no CPU increment at coarse resolution,
+which is not zero-overhead proof. These are synthetic controls, not game FPS or
+Xbox measurements. The next pristine RCT run must include host clock agreement
+on its own verified saved-scene measurement interval, before a traced comparison.
+
 [PC610](../outputs/rct610/REPORT.md) qualifies recorder DLL unload/reload using
 original code at a reused address with different instruction bytes. Pristine
 and traced behavior matched; unsafe pending/active states remain rejected.

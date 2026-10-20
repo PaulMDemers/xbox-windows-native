@@ -1,0 +1,62 @@
+{
+  "status": "failed",
+  "compiler_sha256": "8ab0685d97b322aad3c37fd362b26fa5b9408ff6dd55a536c0a2d48de1c22b18",
+  "space": {
+    "minimum_free_gib": 20.02,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c",
+        "free_bytes": 23663263744
+      },
+      {
+        "free_bytes": 23663263744,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "source_sha256": "d200e1417e7d4bad02360fbdf12ae4e562332d6c2e8118663545f1358d477e25",
+  "commands": [
+    [
+      "/home/paul/xbox-windows-native/release-readiness403-bootstrap001/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc",
+      "-Os",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-nostdlib",
+      "-fno-stack-protector",
+      "-fno-builtin",
+      "-Wl,--entry,_mainCRTStartup@0",
+      "-Wl,--subsystem,console:5.0",
+      "-MD",
+      "-MF",
+      "worker.exe.d",
+      "-DWORKER",
+      "-o",
+      "worker.exe",
+      "sampler.c",
+      "-lkernel32",
+      "-luser32",
+      "-ladvapi32"
+    ]
+  ],
+  "rows": [],
+  "headers": {},
+  "error": "CalledProcessError(1, ['/home/paul/xbox-windows-native/release-readiness403-bootstrap001/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc', '-Os', '-Wall', '-Wextra', '-Werror', '-nostdlib', '-fno-stack-protector', '-fno-builtin', '-Wl,--entry,_mainCRTStartup@0', '-Wl,--subsystem,console:5.0', '-MD', '-MF', 'worker.exe.d', '-DWORKER', '-o', 'worker.exe', 'sampler.c', '-lkernel32', '-luser32', '-ladvapi32'])",
+  "files": {
+    "/mnt/c/xwn613/build001/sampler.c": {
+      "bytes": 5957,
+      "sha256": "d200e1417e7d4bad02360fbdf12ae4e562332d6c2e8118663545f1358d477e25"
+    },
+    "/mnt/c/xwn613/build001/worker.exe.d": {
+      "bytes": 18855,
+      "sha256": "f83c7ff657d31ce68e3ff08e0453b327faa3d746ba7af529568cef97d37ba8ff"
+    },
+    "/mnt/c/xwn613/build001/worker.exe.log": {
+      "bytes": 488,
+      "sha256": "281960c86415e26998b03ce9f62103a6b12fdaa3c7b77e5003c0322dce5726b0"
+    }
+  }
+}
