@@ -1,3 +1,45 @@
+# Windows480p635 CLOSED; matching installed stack next
+
+635 is CLOSED and passed its descriptor/GDI/restart/integrity scope; strict event
+warnings remain. Never rerun/recollect/parent635 or634. Read635/REPORT.md and
+physical-inventory001.json. Console last verified at dashboard,720p protected,
+no hook/staging/launch. No owned host process remains. Automation PAUSED.
+
+Use retained E:/xwn415/demo assets only by verified physical/accepted-state hashes,
+and a fresh child of never-executed466. Match installed loader/HAL/miniport/display
+and ownership/storage binaries, retaining the633 native480p candidate. Keep
+fixture registry/setup differences explicit. Existing635 probe may be reused by
+exact binary identity on a NEW636 fixture; never use an executed parent. Complete
+bounded emulator evidence before a watched physical480p trial. Preserve ordinary
+720p and all earlier failures;20GiB projected reserve still applies.
+
+# Windows480p634 CLOSED: desktop/drawing/restart observed, primary lock failed
+
+Capacity recovered;634emu001 launched once. Actual Windows720x480x32 at60Hz;
+all three GDI full-window/upload/overlap readbacks have zero mismatches. Normal
+shutdown EventLog6006 count1, owned host/controller exit0, five hives and full
+allocation/protected-file audit pass. Complete probe remains FAILED because
+primary DirectDraw Lock returned0x887601b3 DDERR_CANTLOCKSURFACE; pitch was not
+reported. Strict event qualification also remains false: Ftdisk49 and Removable
+Storage Service116. No hardware launch or installed720p change.
+
+Read634/final-review001.json and audit001.json.634 is CLOSED: never rerun,
+recollect, or use its executed disk as a parent. Never-executed466 seed remains
+pinned and unchanged. Two HMP screendump attempts were unsupported; private
+read-only framebuffer views showed login then blank-password rejection. A
+single configured login using retained successful406 installation defaults
+reached the desktop/probe. Inputs used xemu-ui lease; no guest memory/register
+writes. Initial private hive library-path error and missing default-password
+lookup retained; no exact password match or unattended boot claim.
+
+Next635: independently query primary surface descriptor and the miniport's
+existing current-mode IOCTL to obtain actual stride; keep634 lock failure as a
+separate capability result. New bounded probe and fresh never-executed seed
+child, pinned native633 XBE unchanged. No functional driver patch or gate waiver.
+A watched physical480p trial follows enough Windows handoff evidence. Preserve
+ordinary720p. Automation PAUSED. C capacity now recovered, but recheck projected
+space each stage; E remains near reserve. Prior634 archive relocation applies.
+
 # Windows 480p634 prepared; launch blocked by host capacity
 
 The user authorized the next Windows validation. A fresh overlay was prepared

@@ -46,3 +46,14 @@ The633 native-initialization result and limitations remain unchanged, including
 its preserved reserved-sector equality failure. No new hardware qualification,
 live Windows switching, acceleration, additional-revision support, or release
 promotion is claimed.
+
+## Completed runtime
+
+Read final-review001.json and audit001.json: the previously blocked fixture ran
+once and is now CLOSED. Actual720x480x32/60Hz, all three GDI checks and normal
+restart passed their observations, with intact protected files/hives/allocation.
+Complete probe FAILED: primary Lock returned DDERR_CANTLOCKSURFACE0x887601b3,
+so no primary pitch was obtained. Strict events retain Ftdisk49 and Removable
+Storage Service116. Login required the retained installation credentials after
+a rejected blank login. Unsupported HMP screenshots and observer/hive-reader
+issues are preserved. No physical test or release qualification follows.
