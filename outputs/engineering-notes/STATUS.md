@@ -1,3 +1,43 @@
+#637 CLOSED: hardware observation needed
+
+637 is CLOSED: one accepted launch, early dashboard return, no probe result or
+new6006, all26 selected files unchanged and five hives parsed. Owned startup hook
+removed; original console at dashboard; no host processes running. Payloads
+remain only under E:/Applications/XWN480p637 and E:/xwn480p635. Ordinary720p and
+normal startup unchanged. Never rerun/recollect/reuse637's attempt namespace.
+
+User visual question pending: did Xromwell or Windows appear before return?
+After observation, a fully powered-off start is the next useful controlled
+comparison if user can reset. Prepare a NEW638 identity/probe/result namespace,
+keep633 candidate exact, and validate before launch. Do not blame mode switching
+or warm-state intermittency without evidence, and do not repeat identical boots.
+No hardware reset requested yet. Do not resume automation.
+
+636emu002 is CLOSED and passed selected installed-stack480p descriptor/GDI/
+normal-restart/full-emulator-allocation checks; strict Ftdisk49 and Removable
+Storage116 remain.636emu001 never launched;636preparation001 failed; keep both.
+635 passed its same scope on the earlier clean stack.634 remains failed on
+primary Lock (DDERR_CANTLOCKSURFACE). No live Windows mode switch is implemented.
+
+C has roughly27GiB free, E near20GiB. Enforce projected20GiB reserve includingWSL
+backing; no historical deletion/backing-chain move. Keep all code/binary pins,
+leases, one SITE/20second bound, hook-first cleanup and protected720p. Private
+Windows/firmware/captures/hives/credentials remain private. Final public checks
+and commit/push follow this note; use actual Git HEAD for the completed commit.
+
+#636 closed;637 physical480p test active
+
+Read636/final-review001.json and audit002.json. Do not rerun/recollect/parent
+636emu002. Emu001 NEVER launched, preparation001 incomplete, both preserved.
+637 is a distinct physical test: stage001 complete, one SITE accepted at
+2026-10-21T01:50:16Z. Remote launcher E:/Applications/XWN480p637/default.xbe,
+probe E:/xwn480p635/probe.exe, owned startup xwn480p637.cmd. Ordinary720p unchanged.
+Read637/observation001 and collection001; observer600second deadline. Removeowned
+hook FIRST on dashboard return; no retry launch. User visual question pending.
+Audit637 retained collection after complete using audit.py and offlinehive libs.
+If still offline at deadline, preserve console/hook state and ask for observation
+or reset only when needed. No automation resumed. Source/binary/space pins apply.
+
 # Windows480p635 CLOSED; matching installed stack next
 
 635 is CLOSED and passed its descriptor/GDI/restart/integrity scope; strict event
