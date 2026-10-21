@@ -1,0 +1,77 @@
+{
+  "status": "compiled",
+  "parent": "/home/paul/xbox-windows-native/build/resolution-e374-build001/source",
+  "parent_tree": "0a1b542e92c8697422892c9cfaed633a5aed0de7",
+  "tree": "70c0a6c5aff82537f489e7d18410d5980fa797a7",
+  "source": "/home/paul/xbox-windows-native/build/native480p633-build001/source",
+  "changes": {
+    "drivers/video/xwn_hd_profile.c": {
+      "before": "0bad5074fbd9054b1c4aa7726406bcbc98b67b9a875bdf26f4b9baf0920cbf2e",
+      "after": "37c8c8bd6d4eebe9f025d4dcef9a57a6638ac47034e7b924b101a08715d6cc32"
+    },
+    "drivers/video/xwn_hd_profile.h": {
+      "before": "c6147fb77d348d8de7fba1f90630276acd3dc80a33bbeee392dc451390213a58",
+      "after": "c3c2b19c89e41e92226352368241a1906b84a2b47533822fd9c6513c6e85b1dc"
+    },
+    "drivers/video/xwn_hd_adapter.c": {
+      "before": "30333610cfcc7761a36bd92b4f5260073b20a4b050bf4a160d3198f3483bf912",
+      "after": "2bea8d6773833a1e04ebc4bf9cde1a53cae641707de85e11ae89d9a5c02701de"
+    },
+    "drivers/video/xwn_hd_native.c": {
+      "before": "b3b216c96e4ca4fb69bd1ca1365dadbc21c64399ee68fcac07230587b720ac93",
+      "after": "176f67d5946846cc652eb109a40293b2a67fae8e38943b7b0532d276fe720a96"
+    }
+  },
+  "space": {
+    "minimum_free_gib": 20.125,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/home/paul/xbox-windows-native/build",
+        "free_bytes": 899608125440
+      },
+      {
+        "free_bytes": 21853630464,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "flags": "-DXWN_PHYSICAL_PREFLIGHT -DXWN_HD_RESERVATION=1 -DXWN_HD_TIMING_720P=1 -DXWN_HD_BOOT_MODE=3",
+  "command": [
+    "make",
+    "all",
+    "CC=/usr/bin/x86_64-linux-gnu-gcc-12",
+    "GITREV=xwn633-480p",
+    "EXTRA_CROM_CFLAGS=-DXWN_PHYSICAL_PREFLIGHT -DXWN_HD_RESERVATION=1 -DXWN_HD_TIMING_720P=1 -DXWN_HD_BOOT_MODE=3",
+    "LDFLAGS-ROM=-s -S -T /home/paul/xbox-windows-native/build/native480p633-build001/source/scripts/ldscript-crom.ld -Map=/mnt/c/xwn633/build001/image-crom.map"
+  ],
+  "gcc12_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "physical_access": false,
+  "guest_launch": false,
+  "started_utc": "2026-10-21T00:30:58.749886+00:00",
+  "outputs": {
+    "cromwell.log": {
+      "bytes": 246343,
+      "sha256": "12dd144385ac87384e5bf5a0e46af3e92d5cd1e40139a027e30359c345c03831"
+    },
+    "default.xbe": {
+      "bytes": 300912,
+      "sha256": "a53a09427f80411efee73ef53da0ec9829f8af0d27d404f5a3ff818e96b4bde4"
+    },
+    "image-crom.bin": {
+      "bytes": 288604,
+      "sha256": "99942ed2111475552e5166a34fe249ce43d923e87303265264aceae76264be50"
+    },
+    "image-crom.elf": {
+      "bytes": 324336,
+      "sha256": "9b7c38929c5804072fe4a2a3173aeb91507122e073051a83632f967b9a3584d7"
+    },
+    "image-crom.map": {
+      "bytes": 253208,
+      "sha256": "c444e5de5a1219104b328c97b1722d3910ad89bc351c56756342ae309f3da1cf"
+    }
+  },
+  "ended_utc": "2026-10-21T00:31:03.983728+00:00"
+}

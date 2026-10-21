@@ -1,6 +1,6 @@
 #ifdef XWN_HD_TIMING_720P
 /* SPDX-License-Identifier: GPL-2.0-or-later
- * Explicit 720p transaction. Hardware access is supplied by the native wrapper;
+ * Explicit progressive HDTV transaction. Hardware access is supplied by the native wrapper;
  * the same orchestration is exercised with modeled I/O in host tests.
  */
 #include "xwn_hd_adapter.h"
@@ -51,7 +51,9 @@ int xwn_hd_apply(const struct xwn_hd_io *io,const struct xwn_hd_request *r,volat
  *s=(struct xwn_hd_state){0};
  if(!io || !r || !io->r32 || !io->w32 || !io->r8 || !io->w8 ||
     !io->in16 || !io->in8 || !io->out16 || !io->out8 || !io->delay)return 0;
- if(r->mode!=XWN_HD_720P || r->encoder!=0 || r->cable!=3 || !(r->video_flags&2) ||
+ if((r->mode!=XWN_HD_720P && r->mode!=XWN_HD_480P) ||
+    r->encoder!=0 || r->cable!=3 ||
+    !(r->video_flags&(r->mode==XWN_HD_480P?8u:2u)) ||
     !xwn_hd_layout_valid(r->mode,r->ram,r->fb,r->reserved,r->hidden) ||
     !xwn_hd_get_profile(r->mode,&p))return 0;
  s->stage=1;s->vpll=io->r32(O,0x680508);s->pcrtc=io->r32(O,0x600804);

@@ -7,7 +7,7 @@ reads the boot-established scanout geometry and pitch, reports one mode, and
 accepts only mode index0. Merely adding640x480 to its enumeration would advertise
 a mode that the driver cannot actually set.
 
-The current work starts with a second, independently qualified480p boot profile.
+The current work is a separate480p boot profile, which still needs Windows qualification.
 That makes it possible to validate a lower-resolution desktop and the complete
 loader-to-Windows framebuffer handoff before changing resolution during a live
 Windows session. The normal720p launcher and recovery package stay intact.
@@ -45,14 +45,17 @@ the standalone hardware prerequisite; native480p Windows boot remains untested.
 1. Completed: watched stock-API transition on the original development console,
    exact staged-byte checks, durable result log and protected-file comparison.
    User-reported picture stability is recorded separately from API/CRC success.
-2. Establish a complete480p programming sequence from reviewed source and actual
-   hardware evidence. The old legacy encoder path ignores write statuses and
-   uses the previously unreliable6c read-modify-write; it is not an acceptable
-   shortcut. Timing snapshots alone are not a complete programming recipe.
-3. Add an explicit lower-resolution boot profile with bounded programming and
-   failure handling. Keep the64MiB/55MiB framebuffer/9MiB reservation contract
-   consistent across Xromwell, FreeLoader, bootvid and miniport. Validate geometry,
-   row pitch, pixel format, hidden storage and bounds before a Windows launch.
+2. Completed source preparation: [632](../outputs/mode-facts632/REPORT.md)
+   independently verified the missing480p programming facts on the original
+   console, including exact setter identity and comparison with known profiles.
+3. Implemented as an experimental separate loader:
+   [633](../outputs/native480p633/REPORT.md) selects720x48032bit while retaining
+   bounded encoder writes and the existing memory contract. Host tests and native
+   initialization against a matched emulator control pass. Full physical timing
+   equality and a480p Windows boot remain unqualified. The ordinary720p package
+   is unchanged. Historical feature/function names retain720p for compatibility;
+   the candidate explicitly builds with `XWN_HD_BOOT_MODE=3`. It is not yet an
+   end-user mode selector or a supported package.
 4. Qualify a480p Windows desktop, drawing, input, file persistence and normal
    restart, followed by the unchanged720p path. Only then expose a supported
    boot-mode selector or automatic selection policy.

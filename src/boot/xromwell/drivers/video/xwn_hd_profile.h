@@ -5,7 +5,7 @@
 #ifndef XWN_HD_PROFILE310_H
 #define XWN_HD_PROFILE310_H
 #include <stdint.h>
-enum xwn_hd_mode { XWN_HD_720P=1, XWN_HD_1080I=2 };
+enum xwn_hd_mode { XWN_HD_720P=1, XWN_HD_1080I=2, XWN_HD_480P=3 };
 struct xwn_hd_profile {
  uint32_t width,height,stride,visible_bytes,interlaced;
  uint8_t crtc[35];

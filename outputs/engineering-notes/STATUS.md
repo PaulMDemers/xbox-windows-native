@@ -1,3 +1,27 @@
+# Native480p633 built; scoped emulator initialization passes; Windows next
+
+632 recovered missing4034 mode programming facts with a new read-only physical
+probe. Exact setter digest/header/known profiles passed; lower-mode observable
+subset matches631.10 protected files unchanged, no hook/Windows/display change;
+one launch, initial collection timeout retained, collection002 complete. Console
+last confirmed dashboard.632 physical/emulator CLOSED, never recollect/rerun.
+
+633 adds explicit480p mode3, bounded existing programming and consistent geometry.
+Host129 profile checks and235552 modeled assertions pass, old profiles unchanged.
+Fresh compiled candidate SHAa53a09427f80411efee73ef53da0ec9829f8af0d27d404f5a3ff818e96b4bde4
+at C:/xwn633/build001/default.xbe; not physically staged/installed/launched.
+Emu004 reaches successful native wrapper return with exact text,720x480/2880
+contract,19 completed writes and matched stock-emulator timing. No Windows boot.
+Read outputs/native480p633/{REPORT,NEXT,final-review001}. Next identity634.
+
+Preserve633 failures:001 observer read bound,002 preparation path before launch,
+003 physical-vs-emulator timing mismatch,004 prelaunch space refusal. All actual
+runtimes CLOSED; strict reserved-sector disk mismatch remains FAILED. No process,
+breakpoint or hook remains. Three duplicate closed xemu copies reclaimed with
+exact recovery paths in633/duplicate-executables-reclaim001.json; no disks or
+capture evidence deleted. C/E near20GiB guard; Windows fixture must fit reserve.
+Ordinary720p unchanged; live Windows switching unimplemented; automation PAUSED.
+
 # Stock mode transitions631 physically qualified; native480p profile next
 
 Read outputs/mode-switch631/REPORT.md, physical-final001.json and NEXT.md.
