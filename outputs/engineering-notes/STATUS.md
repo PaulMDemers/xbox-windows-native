@@ -1,3 +1,33 @@
+# Windows 480p634 prepared; launch blocked by host capacity
+
+The user authorized the next Windows validation. A fresh overlay was prepared
+from the pinned, never-executed466 seed; no closed runtime is a parent.
+The 633 native480p candidate is unchanged. Probe build002 is NT5 PE32, imports
+were checked against the actual seed DLL exports, and all staged bytes read
+back correctly. Five hives and existing loader/display files remain unchanged.
+FATX allocation audit:277 directories,6555 files,zero orphans/errors.
+Independent host oracle:691200 pixel comparisons and14 negative cases pass;
+this is not a Windows drawing or mode result.
+
+The final192MiB projected-space check refused BEFORE a runner receipt or emulator
+process.634emu001 is PREPARED/NEVER LAUNCHED, not a closed/failed guest runtime.
+No physical contact, hook, launch, display change, or Windows result this turn.
+No owned host process remains. Ordinary720p and prior633 qualification unchanged.
+Read outputs/windows480p634/{REPORT,NEXT,host-review001}. Need recover stable C
+capacity above20GiB+192MiB before launching this already-prepared fixture once.
+User was asked to free1–2GiB or identify another local drive; response pending.
+Do not weaken the guard or repeatedly retry it while capacity is falling.
+
+Preserved failures: inventory001 expected an absent startup hook; build001
+missed a local memset helper (fixed only in build002); prelaunch001 space refusal.
+For capacity, one existing compressed closed561 archive moved byte-exactly from
+C:/xwn627/archives003/rct561-pc001-disk.qcow2.zst to
+E:/xwn634/retained-archives/rct561-pc001-disk.qcow2.zst.
+See634/archive-relocation001.json for hash and recovery mapping. No runnable
+disk/backing chain was moved or deleted. Previously authorized delivery587 ZIPs
+were already reclaimed in589; do not claim their space again. E is also near
+reserve. Automation stays PAUSED. Hardware question not needed until host passes.
+
 # Native480p633 built; scoped emulator initialization passes; Windows next
 
 632 recovered missing4034 mode programming facts with a new read-only physical
