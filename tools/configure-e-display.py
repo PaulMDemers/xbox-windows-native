@@ -27,9 +27,11 @@ def store(ftp,data):
     require(fetch(ftp,TARGET)==data,'Launcher readback mismatch')
 def validate_policy(policy):
     require(policy['target']==TARGET and set(policy['prerequisites'])==ALLOWED-{TARGET},'Wrong installation/policy')
-    require(set(policy['profiles'])=={'720p','1080i'},'Unexpected profile set')
+    # Accept retained two-mode packages as well as the qualified 480p extension.
+    require(set(policy['profiles']) in ({'720p','1080i'}, {'480p','720p','1080i'}),'Unexpected profile set')
     for row in list(policy['profiles'].values())+list(policy['prerequisites'].values()):
         require(len(row['sha256'])==64 and all(c in '0123456789abcdef' for c in row['sha256']) and 0<row['bytes']<1024*1024,'Invalid pin')
+    require(len({r['sha256'] for r in policy['profiles'].values()})==len(policy['profiles']),'Ambiguous profile pins')
 def inspect(ftp,policy):
     validate_policy(policy)
     for path,row in policy['prerequisites'].items():
@@ -51,7 +53,8 @@ def apply(ftp,policy,mode,data,receipt):
         require(inspect(ftp,policy)==(current,old),'Remote state changed')
         if old!=data:
             mutation_started=True;store(ftp,data)
-        save_new(receipt/'result.json',dict(applied=True,changed=old!=data,readback_sha256=sha(fetch(ftp,TARGET)),no_boot=True))
+        final=fetch(ftp,TARGET);require(final==data,'Final launcher readback mismatch')
+        save_new(receipt/'result.json',dict(applied=True,changed=old!=data,readback_sha256=sha(final),no_boot=True))
     except BaseException as exc:
         error=dict(applied=False,error=type(exc).__name__,rollback_verified=False)
         if mutation_started:
@@ -70,7 +73,7 @@ def restore(ftp,policy,receipt):
     return dict(restored=True,mode=intent['from_mode'],no_boot=True)
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('action',choices=['inspect','apply','restore']);p.add_argument('--policy',type=Path,required=True)
-    p.add_argument('--profile',choices=['720p','1080i']);p.add_argument('--launcher',type=Path);p.add_argument('--receipt',type=Path);a=p.parse_args()
+    p.add_argument('--profile',choices=['480p','720p','1080i']);p.add_argument('--launcher',type=Path);p.add_argument('--receipt',type=Path);a=p.parse_args()
     policy=read_json(a.policy);validate_policy(policy)
     if a.action=='apply':require(a.profile and a.launcher and a.receipt,'apply needs profile, launcher and fresh receipt')
     if a.action=='restore':require(a.receipt,'restore needs receipt')

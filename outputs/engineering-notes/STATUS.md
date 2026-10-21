@@ -1,3 +1,22 @@
+#644 selector prepared; physical selection/restore cycle pending
+
+Explicit480p choice added to existing E selector; legacy policies remain accepted.
+16 host fault-injection tests pass, including rollback and final-readback failure.
+Private archive C:/xwn644/xwn-display-selector644-002.zip is matched/pinned;
+package002 verifies exact staged source bytes. Archive001/host001 retained;
+policy line endings normalized only. Read outputs/display-selector644/REPORT.md
+and NEXT.md, plus docs/display-selector-recovery.md before a fresh watched run.
+
+No console contact, remote write, hook or SITE this turn; no owned host process.
+Original Xbox last observed at dashboard, not freshly queried. Normal720p and
+all existing releases unchanged.642/643 stay CLOSED; do not rerun/recollect.
+Next fresh hardware cycle: verify720p/prerequisites, backup, select480p, one
+watched launch and normal restart, restore720p and verify before returning.
+Physical selector cycle/recovery not yet qualified. Automatic policy, live
+Windows switching, other revisions and acceleration remain separate. Ftdisk49,
+boot intermittency and1080i limitations retained. Automation remains paused.
+C had23.6GB free before small archive work; no VM/WSL/disk or cleanup required.
+
 #642 and643 CLOSED/PASS: physical480p interaction and ordinary720p return
 
 642: user confirmed Notepad reopen and normal mouse window dragging. Exact

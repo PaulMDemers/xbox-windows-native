@@ -83,8 +83,12 @@ additional-console qualification or automatic selection is implied.
    and independent file/hive/event checks passed after another normal restart.
    Ftdisk49 and boot intermittency remain; the failed640 attempt is preserved.
    This completes the interaction prerequisite, not a boot-reliability claim.
-   Next implement and validate an explicit boot-mode selector with720p recovery,
-   followed by a conservative automatic selection policy.
+   The explicit boot-mode selector now accepts the pinned480p candidate and
+   retains720p recovery. [Selector644](../outputs/display-selector644/REPORT.md)
+   covers host transfer/rollback tests and a private matched archive. Its fresh
+   physical apply/restore cycle is pending; see the
+   [operator guide](display-selector-recovery.md). Conservative automatic
+   selection follows that qualification.
 5. Implement live Windows switching as a separate driver change: mode enumeration
    and validation, hardware programming, display/surface teardown and recreation,
    failed-change rollback, and DirectDraw/fullscreen restore. Test repeated

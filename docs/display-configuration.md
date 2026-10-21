@@ -39,6 +39,12 @@ does not establish the adapter's supported Xbox signal modes.
 
 ## Change the current E profile
 
+An experimental explicit **480p (720x480)** choice is now available for the
+qualified original Conexant console. See [selection and recovery instructions](display-selector-recovery.md)
+for the separately packaged pinned launcher and first 720p-to-480p-to-720p test.
+Host transfer/rollback tests pass; a physical selector cycle is still pending.
+Existing preview archives are unchanged. 720p remains the default.
+
 Use an extracted, matched demo preview package with its `resolution/` binaries
 and policy. The source checkout alone does not contain those binaries. Save work
 and return to UnleashX. Supply dashboard FTP credentials through process-local

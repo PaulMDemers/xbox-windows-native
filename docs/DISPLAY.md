@@ -45,6 +45,12 @@ new workload/integrity qualification is not claimed from this visual check.
 
 ## E selector in the demo preview bundle
 
+The source selector also accepts the new pinned480p candidate. Follow the
+[480p/720p selection and recovery guide](display-selector-recovery.md) with its
+separate matched archive; older preview bundles do not contain this launcher.
+The original console's480p interaction passed, but the extended selector's
+physical apply/restore cycle is pending. Keep720p as the default/recovery mode.
+
 Run from the extracted preview bundle on the development PC, with the console
 at UnleashX. Supply FTP credentials through `XWN_FTP_HOST`, `XWN_FTP_USER` and
 `XWN_FTP_PASSWORD` in that process's environment; do not save them in the repo.
