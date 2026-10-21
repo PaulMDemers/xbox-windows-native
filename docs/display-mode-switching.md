@@ -78,8 +78,11 @@ additional-console qualification or automatic selection is implied.
 4. Desktop, drawing, durable probe results and normal restart passed in 638.
    The [639 emulator test](../outputs/windows480p639/REPORT.md) also passed
    synthetic Notepad typing, save/reopen and exact cold file readback after a
-   normal restart. Physical input/save/reopen remains pending in prepared640,
-   followed by an observed return through the unchanged 720p path. Only then
+   normal restart. The physical [640 attempt](../outputs/windows480p640/REPORT.md) returned
+   before producing a result, so physical input/save/reopen remains unqualified.
+   The subsequent [641 control](../outputs/windows720p641/REPORT.md) reached the
+   desktop through the unchanged720p path and completed normal restart. This
+   does not isolate the cause of640's early return. Only then
    expose a supported boot-mode selector or automatic selection policy.
 5. Implement live Windows switching as a separate driver change: mode enumeration
    and validation, hardware programming, display/surface teardown and recreation,

@@ -1,3 +1,55 @@
+#640 and641 CLOSED; console at dashboard, no hook/process
+
+640: user-reported cold boot, accepted480p launch, immediate dashboard return;
+no probe/input/new events/6006. Hook removed FIRST. All27 selected files unchanged,
+five hives parse. Physical interactive test FAILED TO START, not a mode diagnosis.
+Read outputs/windows480p640/REPORT.md. Never rerun/recollect640.
+
+641: fresh ordinary720p control, no hook or remote file writes. User confirmed
+desktop and initiated normal Windows restart. Dashboard returned, one new6006,
+protected files andfive hives/history pass. Ftdisk49 remains. Observer exited0.
+Read outputs/windows720p641/REPORT.md, audit001.json and precise NEXT.md.
+Never rerun/recollect641. All owned host processes closed; original console is
+at dashboard. Ordinary720p/startup unchanged.640 owned E payloads remain only.
+
+Physical480p input/save/reopen remains open;638 watched drawing pass and639
+emulator interaction pass are separate. No supported boot selector/live Windows
+switch/other revision/acceleration promotion. Do not repeat identical failed
+boots until lucky. Future physical test needs fresh identity and specific new
+observation/justified diagnostic change with user available. Boot intermittency
+stays tabled; no new automatic launch or automation resumption.
+Preserve all failures,20GiB reserve,leases/pins,oneSITE20s and hook-first cleanup.
+
+#640 CLOSED/failed;641 ordinary720p control in progress
+
+640 user reported cold boot then immediate dashboard return. No probe/input,
+no new events/6006; all27 selected files unchanged and5 hives parse. Hook removed
+FIRST; observer exited0. Read640/REPORT.md and closure001.json. Never repeat640.
+
+641 is a fresh ordinary720p launcher comparison with NO hook or remote file writes.
+Read outputs/windows720p641/NEXT.md and actual preparation/launch/observation
+records. User is watching; request desktop observation and, only if it boots,
+manual Windows Start > Shut Down > Restart for collection. No automatic restart
+helper exists. OneSITE20s, bounded600second observer. Do not resend. If Windows
+remains running at deadline, preserve state and await user; no forced reset.
+This comparison changes mode/launcher and warm state, not isolated causation.
+
+No supported selector/live Windows switch/other revision/acceleration promotion.
+639 emulator remains CLOSED;638 watched physical drawing evidence remains valid.
+Ordinary720p/startup protected, dashboardC excluded, no automation resumed.
+
+#640 physical interactive run admitted after user-reported cold boot
+
+User is ready and reports cold boot.640 package pins checked, staging underway.
+Read windows480p640/stage001.json, launch001.json, observation001.json and
+collection001.json for actual state. Never resend accepted/uncertain SITE.
+Owned paths E:/Applications/XWN480p640 and E:/xwn480p640; hook xwn480p640.cmd.
+Remove owned hook FIRST on dashboard return. Interactive steps are drag Notepad,
+replace text with XBOX480, save/close, confirm reopened text, close;300s bound.
+Normal restart requested by probe. Await human observation, independently audit
+new collected file/result/hives/events; do not infer success from dashboard alone.
+Ordinary720p remains protected. No automation resumed.639 is CLOSED.
+
 #639 CLOSED;640 prepared locally, awaiting interactive hardware availability
 
 639 emulator scope passes:720x480x32/60Hz,primary stride2880,three zero-mismatch
