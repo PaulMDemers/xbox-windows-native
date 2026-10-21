@@ -1,3 +1,19 @@
+#642 blocked before build: user storage action pending
+
+User requested fresh watched480p interactive test; original Xbox last reported
+still at dashboard after641.642 source/controller/parser prepared; host checks
+pass. Build preflight refused at19,398,193,152 free bytes on C, below20.01GiB.
+Compiler never started; C:/xwn642/build001 absent. No physical contact/staging,
+hook/SITE/console change or owned process. Do not claim642 ready to launch.
+
+Read outputs/windows480p642/REPORT.md, build-preflight-failure001.json and NEXT.md.
+User asked to free about3GiB on C. E also near20GiB; no reserve waiver. Apparent
+emulator duplicates share21 hard links; sampled historical qcow disks already
+compressed. No deletion/move/decompression done. After actual capacity changes,
+recheck output+WSL backing, build then binary-review and stage/readback. No
+additional permission required for already-authorized test when user available.
+No automatic retries;640/641/639 remain CLOSED; ordinary720p preserved.
+
 #640 and641 CLOSED; console at dashboard, no hook/process
 
 640: user-reported cold boot, accepted480p launch, immediate dashboard return;
