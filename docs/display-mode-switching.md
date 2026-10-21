@@ -76,7 +76,9 @@ additional-console qualification or automatic selection is implied.
    the candidate explicitly builds with `XWN_HD_BOOT_MODE=3`. It is not yet an
    end-user mode selector or a supported package.
 4. Desktop, drawing, durable probe results and normal restart passed in 638.
-   Interactive input and general file save/reload at 480p still need checking,
+   The [639 emulator test](../outputs/windows480p639/REPORT.md) also passed
+   synthetic Notepad typing, save/reopen and exact cold file readback after a
+   normal restart. Physical input/save/reopen remains pending in prepared640,
    followed by an observed return through the unchanged 720p path. Only then
    expose a supported boot-mode selector or automatic selection policy.
 5. Implement live Windows switching as a separate driver change: mode enumeration

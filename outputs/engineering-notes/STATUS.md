@@ -1,3 +1,28 @@
+#639 CLOSED;640 prepared locally, awaiting interactive hardware availability
+
+639 emulator scope passes:720x480x32/60Hz,primary stride2880,three zero-mismatch
+GDI cases; synthetic Notepad input/save/reopen and normal restart. Cold file is
+exact XBOX480 (7 bytes), one new6006, protected assets/hives/history/full FATX
+allocation/qcow checks pass. Strict false:Ftdisk49 and RemovableStorage116.
+Private UI partially obscured by welcome window; exact content is verified by
+reads, not assumed from input injection. All owned host processes closed.
+Read outputs/windows480p639/REPORT.md and audit001.json. Never rerun/recollect/
+parent639. Earlier638 watched physical480p scope remains separate.
+
+640 is built and host-reviewed, NOT staged/launched. Read its precise NEXT.md.
+No console contact this turn, no hook; original console last known dashboard.
+User availability for interactive keyboard/mouse is the next required input.
+They will drag Notepad, replace text with XBOX480, save/close, verify reopen,
+close. Shared300second interaction bound then normal restart. Do not start
+until they are available. Follow oneSITE20s, leases/pins/readback and hook-first
+cleanup. After640 closes, separately observe ordinary720p return/readback.
+
+Keep ordinary720p/startup, dashboardC exclusion, private assets and20GiB reserve.
+No live Windows switch, supported selector, other-revision or acceleration
+promotion. No automation resumed.640 initial review import-path failure retained;
+corrected review and207 parser negatives/controller checks pass. Commit/push
+completed public records with exact frozen bytes; no private images or binaries.
+
 #638 CLOSED: watched physical480p Windows scope passes
 
 Read638/REPORT.md, final-review001.json and audit001.json. One accepted launch,
