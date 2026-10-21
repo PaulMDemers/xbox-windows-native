@@ -1,3 +1,24 @@
+# Stock mode transitions631 physically qualified; native480p profile next
+
+Read outputs/mode-switch631/REPORT.md, physical-final001.json and NEXT.md.
+Original Xbox completed720x480 ->1280x720 ->720x480; user confirmed stable output
+and automatic dashboard return. Durable log passes independent CRC/geometry
+checks; first/final low captured timing identical.10 protected Windows/startup/
+launcher files and2 staged files unchanged. One accepted launch. Collection001
+connection timeout preserved; bounded collection002 succeeded without relaunch.
+631 physical and emu are CLOSED; never reopen/recollect/rerun/parent. No hook,
+no owned host process. Console last confirmed dashboard. Owned E/XWNMode631
+application and log retained. Normal720p unchanged; no Windows launch this test.
+
+Native480p/live Windows switching remain unimplemented. Next632 is independent
+pure480p profile derivation and bounded ordered programming, then fresh build/
+fixture qualification and watched Windows boot. Resolve stale D:/xwn307 retained
+stock facts to a verified C/E input first; do not recapture firmware or invent
+unobserved values. Details/masks/provenance in NEXT.md. No632 artifacts yet.
+Earlier emulator one-byte reserved-sector equality failure remains FAILED.
+No GPU/additional-console/storage qualification inferred. RCT measurements and
+other revisions pending; automation PAUSED. Host C/E near20GiB reserve.
+
 # Existing-console mode switching:631 emulator prerequisite CLOSED
 
 User now prioritizes mode switching on original supported Xbox. Read

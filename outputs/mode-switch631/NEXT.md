@@ -1,39 +1,31 @@
-# Next: watched low/high/low transition, then native480p boot profile
+# Next: independently derived native480p boot profile
 
-631 build001 is available at C:/xwn631/build001/bin/default.xbe. Read its exact
-binary-review001.json and source pins. emu001 is CLOSED; never reopen, recollect,
-rerun or parent it. The mode/framebuffer trace passed; whole-disk equality failed
-with one reserved-sector byte change. Keep that failure and the scope limits in
-REPORT.md. Physical log writing was not tested by the read-only optical launch.
+631 physical001 is CLOSED. Read physical-final001.json and REPORT.md. The user
+confirmed stable720x480 ->1280x720 ->720x480 and automatic dashboard return.
+Collection002 verified the log and all10 protected files plus2 staged files.
+Collection001 connection timeout is preserved. There was exactly one launch.
+No hook or owned process remains; console last confirmed at UnleashX. Retain
+/E/Applications/XWNMode631 and its owner/default/log. Never reopen, recollect,
+rerun or parent closed631 physical or emulator attempts.
 
-User currently wants mode switching on the original supported development Xbox,
-before expanding revisions. Availability/watch question is pending; no physical
-contact/stage/launch yet. Do not mistake supplied1.6 inventory for this console.
+Next unused candidate632: derive a pure720x48032bit profile independently from
+reviewed stock4034 programming facts (mode code0x88080801 in pinned nxdk), then
+compare the observed subset against closed631 and applicable closed309 encoder
+facts. Pin retained private input identity before use. The old310 review script
+references D:/xwn307/physical001/kernel307.bin; that path is stale on this C/E
+host and the current retained location has not been resolved. Do not silently
+recapture firmware or fabricate the unobserved table values. Preserve readback
+masks/unknown bits and6c programmed46 versus readback0 distinctions.
 
-The isolated physical controller is prepared in physical.py; mock tests pass.
-Read physical-preparation001.json and preserve the initial host import failure.
-Before staging, create an evidence-backed physical-admission001.json only after
-actual readiness and separate scope review; no admission file currently exists.
-Use a new E application folder and writable output. Review exact staged XBE
-identity, original720p launcher/startup,
-protected binaries and E Windows hives/events before/after. No hook is needed.
-One SITE request with20second reply bound; never retry an accepted/uncertain
-request. Bound observation and preserve any failure or missing/truncated log.
-Do not infer picture stability from API/CRC success. Do not waive the failed
-whole-disk audit or promote an emulator image; explicitly review the separate
-standalone physical scope and recovery before admitting it.
+After pure profile and ordered sequence review, use a fresh source checkout and
+explicit separate480p build path. Keep the64MiB/55MiB/9MiB/316160-byte layout
+consistent through Xromwell/FreeLoader/bootvid/miniport. Include bounded SMBus,
+geometry/pitch readback, negative tests and failure behavior; do not reuse legacy
+unchecked6c RMW. Validate in a fresh owned fixture before a watched Windows boot.
+Preserve original E720p launcher, startup and packages. No new build/deployment
+or native functional patch exists yet. Live Windows switching remains later.
 
-Expected watched sequence is low-resolution pattern10seconds,720p pattern
-10seconds,low-resolution pattern10seconds, then dashboard request after another
-10seconds. Kernel/SDK calls can hang; no hard watchdog guarantee. On return,
-collect once and audit protected files. Original launcher never replaced.
-
-Then establish an independently reviewed complete480p programming sequence,
-bounded encoder writes, geometry/pitch readback and coordinated Windows handoff.
-Do not reuse the legacy unknown6c RMW or treat snapshots as a complete recipe.
-Windows currently has only inherited mode0; live switching is still unimplemented.
-
-Physical RCT cost measurement and additional-console support remain pending,
-followed by native acceleration.1.6 inventory630 stays CLOSED read-only. Existing
-automation remains PAUSED. C/E near20GiB reserve; use small C artifacts and check
-projected space including WSL backing. Next new candidate identity632.
+The emulator631 one-byte reserved-sector mismatch remains FAILED, not waived;
+no image promotion. Other-console support and physical RCT cost measurement are
+pending; sound/1080i/boot intermittency remain separate. Automation PAUSED.
+Use small C artifacts; recheck C/E projected20GiB guard including WSL backing.

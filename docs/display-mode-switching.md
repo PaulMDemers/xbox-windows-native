@@ -33,11 +33,18 @@ three stages. This does not establish physical picture quality, a480p Windows
 boot, or live Windows mode switching. See the report for the retained disk-audit
 failure and the limits of the read-only optical launch.
 
+The original development console subsequently passed the same watched sequence.
+The user reported stable output and automatic dashboard return; the collected
+log passed independent pixel/geometry checks, with identical first/final low-mode
+timing. Ten protected Windows/launcher/startup files were unchanged. See
+[physical closure](../outputs/mode-switch631/physical-final001.json). This completes
+the standalone hardware prerequisite; native480p Windows boot remains untested.
+
 ## Remaining implementation and qualification
 
-1. Complete a watched stock-API transition on the original development console,
-   with exact staged bytes, a fresh output path and protected-file checks. Record
-   picture stability and automatic dashboard return separately from API success.
+1. Completed: watched stock-API transition on the original development console,
+   exact staged-byte checks, durable result log and protected-file comparison.
+   User-reported picture stability is recorded separately from API/CRC success.
 2. Establish a complete480p programming sequence from reviewed source and actual
    hardware evidence. The old legacy encoder path ignores write statuses and
    uses the previously unreliable6c read-modify-write; it is not an acceptable

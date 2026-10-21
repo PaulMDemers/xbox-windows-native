@@ -1,3 +1,37 @@
+# Physical631 transition test CLOSED PASS within standalone scope
+
+The original development Xbox completed720x480 ->1280x720 ->720x480 at32bit.
+The user confirmed stable visible patterns and automatic return to UnleashX.
+The independently decoded durable log reports zero pixel mismatches, pitches
+2880/5120/2880 and CRCs7bd98b37/dfa8cb56/7bd98b37. All captured CRTC, MMIO and
+FP fields match between the first and final lower mode. See physical-final001.json,
+physical-collection002.json, physical-log001.txt and physical-observation001.json.
+
+Ten protected files, including the ordinary720p launcher/startup, five Windows
+hives, two event logs and video trace, are byte-identical before/after. Both
+staged files also match. No Windows launch, startup hook or console C access.
+One SITE launch was accepted. Collection001 timed out at connection before any
+file access; its incomplete receipt and separate failure record are retained.
+Collection002 succeeded without another launch. No owned host process remains.
+The owned E:/Applications/XWNMode631 folder and its three files remain retained;
+there is no automatic startup entry. Never rerun or recollect this closed attempt.
+
+This qualifies the standalone stock-API transition on this console. It does not
+qualify native480p Windows boot, live Windows mode changes, another encoder or
+GPU acceleration. The earlier emulator whole-disk equality failure below remains
+a failure. No disk image is promoted. The COMPLETE line precedes CloseHandle;
+log_ok alone is not proof of close return. Durable readback and independent
+user/FTP dashboard return provide the end-state evidence here.
+
+Next is a separate native480p boot profile. The measured720-wide mode has a
+consistent2880-byte pitch and1,382,400 visible bytes, but snapshots are only
+partial readback evidence, not the full ordered programming sequence. Derive
+remaining settings independently, retain explicit bounded writes and qualify the
+loader/Windows handoff before exposing mode selection. The ordinary720p package
+remains unchanged.
+
+## Earlier emulator and preparation record (preserved)
+
 #631 stock-API low/high/low emulator sequence completed
 
 Build001 and emu001 are retained; emu001 is CLOSED and must never be relaunched,
