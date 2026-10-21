@@ -7,10 +7,10 @@ reads the boot-established scanout geometry and pitch, reports one mode, and
 accepts only mode index0. Merely adding640x480 to its enumeration would advertise
 a mode that the driver cannot actually set.
 
-The current work is a separate480p boot profile, which still needs Windows qualification.
-That makes it possible to validate a lower-resolution desktop and the complete
-loader-to-Windows framebuffer handoff before changing resolution during a live
-Windows session. The normal720p launcher and recovery package stay intact.
+The separate 480p boot profile has now passed a watched Windows desktop and
+drawing test on the original development console. This validates a lower-mode
+boot handoff; live Windows resolution changes remain unimplemented. The normal
+720p launcher and recovery package stay intact.
 
 ## Initial mode-transition diagnostic
 
@@ -38,7 +38,25 @@ The user reported stable output and automatic dashboard return; the collected
 log passed independent pixel/geometry checks, with identical first/final low-mode
 timing. Ten protected Windows/launcher/startup files were unchanged. See
 [physical closure](../outputs/mode-switch631/physical-final001.json). This completes
-the standalone hardware prerequisite; native480p Windows boot remains untested.
+the standalone hardware prerequisite; the subsequent Windows result is below.
+
+## Watched Windows 480p result
+
+[Trial 638](../outputs/windows480p638/REPORT.md) reached the Windows desktop on
+our original console. The user saw the brief test pattern and automatic restart.
+Windows reported 720x480x32 at 60Hz; the DirectDraw primary descriptor reported a
+2880-byte stride. Full-window GDI upload/readback and overlapping copies in both
+directions returned zero pixel mismatches. The result survived restart, one new
+EventLog6006 confirmed normal shutdown, protected files matched and five hives
+parsed. The temporary startup hook was removed on dashboard return.
+
+The earlier 637 attempt returned before producing a probe result; it remains a
+failure. Trial 638 was an explicitly requested watched repeat without a reported power
+cycle. This pair does not establish a cause for boot intermittency. Ftdisk 49
+remains, and the physical audit covers selected files/hives rather than a full
+FATX allocation scan. Primary-surface Lock remains unsupported as observed in 634;
+the stride result comes from GetSurfaceDesc. No live mode switch, 640-wide mode,
+additional-console qualification or automatic selection is implied.
 
 ## Remaining implementation and qualification
 
@@ -52,13 +70,15 @@ the standalone hardware prerequisite; native480p Windows boot remains untested.
    [633](../outputs/native480p633/REPORT.md) selects720x48032bit while retaining
    bounded encoder writes and the existing memory contract. Host tests and native
    initialization against a matched emulator control pass. Full physical timing
-   equality and a480p Windows boot remain unqualified. The ordinary720p package
-   is unchanged. Historical feature/function names retain720p for compatibility;
+   equality remains unqualified. A watched Windows boot subsequently passed the
+   scope described above. The ordinary720p package is unchanged. Historical
+   feature/function names retain720p for compatibility;
    the candidate explicitly builds with `XWN_HD_BOOT_MODE=3`. It is not yet an
    end-user mode selector or a supported package.
-4. Qualify a480p Windows desktop, drawing, input, file persistence and normal
-   restart, followed by the unchanged720p path. Only then expose a supported
-   boot-mode selector or automatic selection policy.
+4. Desktop, drawing, durable probe results and normal restart passed in 638.
+   Interactive input and general file save/reload at 480p still need checking,
+   followed by an observed return through the unchanged 720p path. Only then
+   expose a supported boot-mode selector or automatic selection policy.
 5. Implement live Windows switching as a separate driver change: mode enumeration
    and validation, hardware programming, display/surface teardown and recreation,
    failed-change rollback, and DirectDraw/fullscreen restore. Test repeated

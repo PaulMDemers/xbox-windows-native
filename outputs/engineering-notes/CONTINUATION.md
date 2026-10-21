@@ -1,3 +1,42 @@
+#638 CLOSED: watched physical480p Windows scope passes
+
+Read638/REPORT.md, final-review001.json and audit001.json. One accepted launch,
+user-observed loading/desktop/pattern/restart. Actual720x480x32/60Hz, stride2880,
+three zero-mismatch GDI cases, durable result, one new6006, protected files and
+five parsed hives pass. Ftdisk49 remains; selected physical integrity only.
+Owned startup hook removed; console at dashboard; no owned host process.
+Ordinary720p/startup preserved. Payloads remain only in owned E paths.
+
+637 remains CLOSED/failed; user was not watching.638 was explicitly requested
+for observation with no asserted power cycle. No boot root cause inference.
+Never rerun/recollect/reuse either attempt.636 matched-stack emulator scope and
+635 earlier clean-stack scope pass;634 primary Lock failure remains separate.
+
+Next bounded work: interactive480p input/save-reload and observed720p return,
+then a reviewed boot-mode selector. Live Windows switching needs coordinated
+mode validation/programming, surface recreation and rollback; not implemented.
+Do not automatically relaunch hardware merely from this note. Existing user
+scope authorizes further work when continued; use fresh identities and leases,
+20GiB projected reserve, one SITE20s bound and hook-first cleanup. No dashboardC,
+private asset publication, firmware borrowing or automation resumption.
+
+#638 user-requested watched repeat being staged
+
+User did not watch637 and explicitly requested a new observation now.637 stays
+closed/failed. No power-cycle is claimed or requested for638. This run adds
+human screen observation; do not call it a controlled cold/warm comparison.
+
+638 uses unchanged633480p XBE and a new638 probe/result namespace. Source differs
+from635 only by635-to638 identities; same imports/subsystem/compiler, .text only
+changes the case immediate. Parser/controller tests pass. No new emulator run:
+636 remains the matched-stack behavior evidence. Ordinary720p is preserved.
+
+Read638 stage001/launch001/observation001/collection001 for actual state.
+New owned paths E:/Applications/XWN480p638, E:/xwn480p638, startup xwn480p638.cmd.
+One SITE with20second bound; observer600seconds; remove owned hook FIRST on return.
+Do not resend an accepted/uncertain launch. Await observed screens, collect and
+audit retained files/hives/events, then commit/push. No automation resumed.
+
 #637 CLOSED: hardware observation needed
 
 637 is CLOSED: one accepted launch, early dashboard return, no probe result or
