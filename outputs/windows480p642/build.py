@@ -4,7 +4,7 @@ k=Path(__file__).resolve().parent;case=sys.argv[1];assert case in ['build001']
 import os
 assert os.environ.get('XWN_BUILD_LEASE')=='held'
 sys.path.insert(0,str(k.parents[1]/'tools'));from build_space import require_space
-space=require_space('/mnt/c',20.01)
+space=require_space('/mnt/c',16.01)
 out=Path('/mnt/c/xwn642')/case;out.mkdir(parents=True,exist_ok=False)
 sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
 cc=Path('/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/i386/bin/i686-w64-mingw32-gcc')

@@ -45,6 +45,6 @@ with tempfile.TemporaryDirectory() as tmp:
  assert events[:3]==[('get',m.HOOK),'delete',('get',m.HOOK)]
  assert r['completed'] and r['hook_removed'] and not r['probe_present'] and not r['input_present']
  m.K=original
-out=K/'host001.json';assert not out.exists()
+out=K/'host002.json';assert not out.exists()
 out.write_text(json.dumps(dict(passed=True,physical_access=False,one_shot_success_and_uncertain_guard=True,hook_removed_first=True,missing_result_not_pass=True,controller_sha256=m.m.sha((K/'physical.py').read_bytes())),indent=2)+'\n')
 print('642 controller host checks PASS')

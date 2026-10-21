@@ -75,15 +75,16 @@ additional-console qualification or automatic selection is implied.
    feature/function names retain720p for compatibility;
    the candidate explicitly builds with `XWN_HD_BOOT_MODE=3`. It is not yet an
    end-user mode selector or a supported package.
-4. Desktop, drawing, durable probe results and normal restart passed in 638.
-   The [639 emulator test](../outputs/windows480p639/REPORT.md) also passed
-   synthetic Notepad typing, save/reopen and exact cold file readback after a
-   normal restart. The physical [640 attempt](../outputs/windows480p640/REPORT.md) returned
-   before producing a result, so physical input/save/reopen remains unqualified.
-   The subsequent [641 control](../outputs/windows720p641/REPORT.md) reached the
-   desktop through the unchanged720p path and completed normal restart. This
-   does not isolate the cause of640's early return. Only then
-   expose a supported boot-mode selector or automatic selection policy.
+4. Watched physical interaction now passes on the original console:
+   [642](../outputs/windows480p642/REPORT.md) confirmed normal mouse dragging,
+   Notepad typing/save/reopen, exact postrestart file bytes and normal shutdown
+   at720x480x32/60Hz. [643](../outputs/windows720p643/REPORT.md) then returned
+   through the unchanged720p launcher; the user reopened the same saved text,
+   and independent file/hive/event checks passed after another normal restart.
+   Ftdisk49 and boot intermittency remain; the failed640 attempt is preserved.
+   This completes the interaction prerequisite, not a boot-reliability claim.
+   Next implement and validate an explicit boot-mode selector with720p recovery,
+   followed by a conservative automatic selection policy.
 5. Implement live Windows switching as a separate driver change: mode enumeration
    and validation, hardware programming, display/surface teardown and recreation,
    failed-change rollback, and DirectDraw/fullscreen restore. Test repeated

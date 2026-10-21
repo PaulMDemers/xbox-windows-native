@@ -1,3 +1,73 @@
+#642 and643 CLOSED/PASS: physical480p interaction and ordinary720p return
+
+642: user confirmed Notepad reopen and normal mouse window dragging. Exact
+XBOX480 guest reads and postrestart file,720x480x32/60Hz,primary stride2880,
+zero GDI mismatches,new6006,protected assets/five hives/history passed. Hook
+removed FIRST; observer exited0. Read outputs/windows480p642/REPORT.md.
+
+643: unchanged ordinary720p launcher, NO hook or remote file writes. User
+confirmed reopening C:\xwn480p642\input.txt, then normal Windows restart.
+Exact file unchanged,28 selected before/after files,new6006,five hives/history
+pass. Read outputs/windows720p643/REPORT.md and precise NEXT.md. Both runs retain
+Ftdisk49 (strict false). No full physical FATX allocation scan. All owned host
+processes closed; console at dashboard; no hook. Never rerun/recollect642/643.
+
+Original-console watched interaction milestone is complete. Next is explicit
+recoverable boot-mode selection keeping default720p, AV-pack/encoder/flag gates,
+exact source/binary/package pins. Live Windows switching, automatic policy and
+other revisions remain separate. No boot-reliability/acceleration promotion;
+640 and all earlier failures retained. No automatic repeat or automation resume.
+
+User explicitly authorized current-space continuation.642/643-only16GiB reserve
+plus128MiB physical collection (build16.01GiB) was used; actual C~18GiB. Original
+20GiB preflight failure and host001 preserved; host002 qualifies changed642
+controller. Project-wide tools unchanged; no new VM/disk or historical deletion.
+
+#642 CLOSED/PASS;643 ordinary720p cross-restart file check launched
+
+642: watched Notepad save/reopen and mouse dragging confirmed. Exact guest and
+postrestart XBOX480 reads,720x480x32/60Hz/stride2880,zero GDI mismatches,one6006,
+protected assets/five hives/history pass. Ftdisk49 remains. Hook removed FIRST,
+observer exited0. Read642/REPORT.md. Never rerun/recollect642.
+
+643: accepted ordinary720p SITE2026-10-21T18:21:22.091378Z; NO test hook/remote
+file writes. Observer exec session62307 bounded600seconds. User asked to open
+C:\xwn480p642\input.txt via Start Run, confirm XBOX480, close without editing,
+then normal Windows restart. Read643 actual observation/collection; audit once
+on return. Do not resend. Human confirmation and independent retained bytes/
+new6006 are separate. If early return, preserve failure, no repeated launch.
+
+User authorized proceeding with available host space.642/643-only16GiB reserve
+plus128MiB collection; project-wide guard unchanged. Preserve failed preflight.
+No new VM/disk allocation, no historical deletion/move, no dashboardC access.
+Normal720p/startup protected; no live mode switch/selector/other-revision claim.
+
+#642 launched once; watched interactive test in progress
+
+One SITE accepted2026-10-21T18:17:22.253728Z. Observer exec session9001 polls
+bounded600seconds, removes owned hook FIRST on dashboard return, then collects.
+Read642 actual stage/launch/observation/collection records; do not resend.
+User asked to drag Notepad, Ctrl+A XBOX480 Ctrl+S close; verify reopen and close.
+Record Xromwell/Windows/Notepad observation and automatic restart separately.
+No success inferred until exact input/result and normal-shutdown audit pass.
+
+Build warning-free, namespace-only639 binary comparison PASS, host002/controller
+and parser checks PASS. Prior failed20GiB preflight preserved. User explicitly
+overrode reserve for this bounded run:642-only16GiB plus128MiB collection/0.01GiB
+build, project-wide tools unchanged.27 selected files captured and5 stage files
+read back. Protected720p unchanged, no dashboardC. No automatic boot repeats.
+
+#642 resumed: user explicitly authorizes proceeding with current space
+
+User says keep going, enough space for these runs.642-only reserve now16GiB,
+plus128MiB for physical collection and0.01GiB for build. Actual C~18.25GiB;
+no new VM/disk allocation. Project-wide20GiB tools/settings unchanged. Preserve
+prior build-preflight failure and host001; changed controller gets host002.
+Read642/storage-override001.json and actual stage/launch/observation/collection.
+Proceed with qualified633 loader/new642 probe and one watched interactive test.
+No hook/launch until validated staging; hook removed FIRST on dashboard return.
+No automatic repeat, no dashboardC, protected720p unchanged. User is available.
+
 #642 blocked before build: user storage action pending
 
 User requested fresh watched480p interactive test; original Xbox last reported

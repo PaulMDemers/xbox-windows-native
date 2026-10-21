@@ -14,14 +14,14 @@ def session():
  assert len(nodes)==1
  exec(compile(ast.Module(body=nodes,type_ignores=[]),'<private session environment>','exec'))
 def verify():
- m.ticket();assert shutil.disk_usage('C:/').free-128*1024**2>=20*1024**3
+ m.ticket();assert shutil.disk_usage('C:/').free-128*1024**2>=16*1024**3
  r=read(K.parent/'windows480p639/audit001.json');assert r['scoped_passed'] and r['cold_collection_complete'] and r['input_file_matches']
  assert read(K.parent/'windows480p639/closure001.json')['closed']
  assert read(K/'binary-review001.json')['passed']
  b=Path('C:/xwn633/build001/default.xbe').read_bytes();x=Path('C:/xwn642/build001/probe.exe').read_bytes()
  assert m.sha(b)=='a53a09427f80411efee73ef53da0ec9829f8af0d27d404f5a3ff818e96b4bde4'
  assert m.sha(x)==read(K.parent/'windows480p642/build001.json')['binary_sha256']
- tests=read(K/'host001.json');assert tests['passed'] and tests['controller_sha256']==m.sha(Path(__file__).read_bytes())
+ tests=read(K/'host002.json');assert tests['passed'] and tests['controller_sha256']==m.sha(Path(__file__).read_bytes())
  return b,x
 def protected():
  return ['/E/'+v['path'] for v in read(K.parent/'windows480p636/installed-inputs001.json')['files']]+[m.NORMAL,m.TARGET,'/E/winnt/system32/bootvid.dll','/E/winnt/system32/notepad.exe']
