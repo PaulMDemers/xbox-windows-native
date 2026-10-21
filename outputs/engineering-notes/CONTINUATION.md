@@ -1,3 +1,30 @@
+# Existing-console mode switching:631 emulator prerequisite CLOSED
+
+User now prioritizes mode switching on original supported Xbox. Read
+outputs/mode-switch631/REPORT.md and NEXT.md, docs/display-mode-switching.md.
+Build001/emu001: stock API720x480 ->1280x720 ->720x480 passes exact full pixels,
+geometry/pitch, page translations and final low timing restoration. All owned
+processes closed0, no remaining breakpoint/physical-memory mode. Never reopen,
+recollect, rerun or parent631emu001. No physical contact/stage/launch or hook.
+
+Strict whole-disk equality FAILED: one reserved-sector byte at1536 changed,
+matching historical307 sector hashes. Filesystem bytes inherited unchanged;
+QCOW/pins/EEPROM pass. Failure retained, not waived, not disk-promotion evidence.
+Optical D could not write log; physical log persistence not established. Native
+Windows mode switching remains unimplemented. Normal720p launcher unchanged.
+
+Physical controller prepared, mocked request/listing tests pass; initial host
+import failure preserved. No physical admission file exists. Next review
+isolated physical scope and watched480p/720p/480p run.
+Original-console availability/watch question pending. Then independently derive
+bounded480p native programming and coordinated Windows framebuffer handoff; do
+not use legacy unchecked6c RMW or snapshots as complete programming recipe.
+Live Windows mode changes follow boot-profile qualification. Next identity632.
+
+RCT physical measurement remains pending, then other revisions and acceleration.
+Inventory630 stays CLOSED read-only. Automation PAUSED. HostC/E near20GiB reserve;
+C:/xwn631 contains small private build/emu artifacts; no space cleanup this turn.
+
 # Additional-console inventory630 validated; no Windows launch
 
 User provided a report from a console identified by the user as1.6. Exact JSON
