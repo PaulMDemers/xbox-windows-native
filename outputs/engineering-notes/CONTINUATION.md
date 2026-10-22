@@ -1,3 +1,21 @@
+#646 user confirms720p desktop; normal restart/readback still pending
+
+User confirmed desktop and asked why480p fails / whether composite would help.
+Asked to confirm savedXBOX480 then normal Windows restart, keeping current adapter.
+Observer exec44493 remains bounded600s; read actual observation/collection before
+any action. No launch repeat or extra launch. No hook;720p already restored.
+
+Read-only comparison:645 used identical633480p XBE as successful642; shared
+protected executable hashes match. Launch directory differs (ordinaryXWNEBoot
+versus isolatedXWN480p642),642 had a probe hook, and mutable Windows hives/events
+changed between runs. Thus this is not an otherwise-identical controlled pair.
+Native480p code deliberately resets on unsupported gate or failed video setup;
+645 captured no stage/error distinguishing that path from other early boot failure.
+Do not assign the cause to adapter, mode or generic intermittency yet. Composite
+would select standard AV/480i, not exercise this HDTV-gated480p candidate; keep
+adapter for current comparison. A later targeted early-stage diagnostic or
+controlled launch-path comparison is preferable to identical repeated boots.
+
 #645 CLOSED failed boot/restored720p;646 recovery control launched once
 
 645: user saw black then exit; no new Windows events/6006, all28 selected files
