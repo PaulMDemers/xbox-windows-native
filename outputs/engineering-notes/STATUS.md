@@ -1,3 +1,22 @@
+# 666 prepared: saved IF comparison;665 build failure preserved
+
+Read context666 REPORT/NEXT and actual launch/run records before acting.
+665 closed with stddef.h freestanding compile failure,no physical access.
+666 uses builtin offsets and native-header preflight. Host/layout/49linked/
+51artifact checks pass;20 native/display sections unchanged. No CPU-state
+change. Original classification retained in BSS; final codes now compare saved
+pre/post flags only after IF-only admission rejection. Solidgreen means all
+three stages IFset; equal amber/off means pre snapshot missing,NOT the664 code.
+Missing/inconsistent/changed capture markers have distinct outcomes; no raw
+CPU history or Windows fix inferred. IF-set snapshot's after flags are copied.
+
+Fresh C:/xwn666,owned XWNLatch666; prepare/stage exact readback and source/index
+pins before one watched SITE with180sec receiver and retained firewall.
+Never repeat accepted/uncertain launch. No hook/Windows/automatic reset. Record
+held light/screen before requested recovery, then collect/audit once afterReady.
+Ordinary720p/savedXBOX480/releases protected;physical lease retained,build lease
+free,automation paused. No reopening closed664/665.
+
 # 664 CLOSED: IF code observed; allocator enables IF before video
 
 Read phase664 REPORT/NEXT,actual observation002/reconciliation/linked-audit/closure.

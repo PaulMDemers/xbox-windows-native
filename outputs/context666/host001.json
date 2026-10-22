@@ -1,0 +1,233 @@
+{
+  "status": "pass",
+  "physical_access": false,
+  "started_utc": "2026-10-22T23:20:43.430175+00:00",
+  "space": {
+    "minimum_free_gib": 20.05,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c/xwn666",
+        "free_bytes": 30570311680
+      },
+      {
+        "free_bytes": 30570311680,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "source_pins": {
+    "admission.h": "1ad9715f92d93fe2dac122061e7a8888eac8f0e12cad277a1fc0258d33d3cc40",
+    "build_host.py": "6255bcb5893d5a8b8baa2aae8983232c92d381a76d4c714f837dc3366134b46d",
+    "classify.c": "98986bca81d8a526181a3294e2cd267008d2ec3dfe30cad1c704d217c0792d81",
+    "classify.h": "305f22be57b2722a41058fb55d8d3179950e4e3a5bcc644c8dcff847a2778480",
+    "indication.h": "ff0f190c61369541f3e9c8b1ea1100428b929ccf36ed6218587e4d13b88d6461",
+    "layout.c": "f0a1c331c5848c146ebbcc612115ae2cfd8de705c700db4dec75f29b1e50dee2",
+    "nic.h": "278c70b4e414c83dd29cdcdff696f374238cbc550d60a79d5893d1d1862ac22c",
+    "receipt.h": "39ba0a28fe7fed28efec6e1e9003e8fee6df3227ad9ae7c540a1760753a11597",
+    "test.c": "c06a055b0a7801f35e09823160ba6c80e05ff737b07cf08bb6d93548c1d74764"
+  },
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "commands": [
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-std=c99",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-O1",
+      "-g",
+      "-fsanitize=address,undefined",
+      "-fno-pie",
+      "-no-pie",
+      "/mnt/c/xwn666/host001/source/classify.c",
+      "/mnt/c/xwn666/host001/source/test.c",
+      "-o",
+      "/mnt/c/xwn666/host001/test"
+    ],
+    [
+      "/mnt/c/xwn666/host001/test"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-O2",
+      "-std=c99",
+      "-I/mnt/c/xwn664/source001/drivers/video",
+      "-I/mnt/c/xwn664/source001/drivers/diag657",
+      "-I/mnt/c/xwn664/source001/drivers/diag656",
+      "/mnt/c/xwn666/host001/source/layout.c",
+      "-o",
+      "/mnt/c/xwn666/host001/layout"
+    ],
+    [
+      "/mnt/c/xwn666/host001/layout"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-m32",
+      "-O2",
+      "-std=c99",
+      "-I/mnt/c/xwn664/source001/drivers/video",
+      "-I/mnt/c/xwn664/source001/drivers/diag657",
+      "-I/mnt/c/xwn664/source001/drivers/diag656",
+      "-c",
+      "/mnt/c/xwn666/host001/source/layout.c",
+      "-o",
+      "/mnt/c/xwn666/host001/layout32.o"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-m32",
+      "-std=c99",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-O2",
+      "-ffreestanding",
+      "-fno-builtin",
+      "-fno-pic",
+      "-fno-pie",
+      "-c",
+      "/mnt/c/xwn666/host001/source/classify.c",
+      "-o",
+      "/mnt/c/xwn666/host001/nic-i386.o"
+    ],
+    [
+      "nm",
+      "-u",
+      "/mnt/c/xwn666/host001/nic-i386.o"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-m32",
+      "-O2",
+      "-nostdinc",
+      "-isystem",
+      "/mnt/c/xwn664/source001/include",
+      "-I/mnt/c/xwn666/host001/source",
+      "-Werror",
+      "-Wall",
+      "-Wextra",
+      "-ffreestanding",
+      "-fno-builtin",
+      "-fno-pic",
+      "-fno-pie",
+      "-c",
+      "/mnt/c/xwn666/host001/source/classify.c",
+      "-o",
+      "/mnt/c/xwn666/host001/native-headers.o"
+    ]
+  ],
+  "tests": {
+    "status": "pass",
+    "cases": 53760,
+    "boundary_checks": 12,
+    "context_cases": 288,
+    "context_boundaries": 6
+  },
+  "layout_header_pins": {
+    "drivers/video/readback651.h": "f1235920b15b2b0ae0de89419ea419091754b3ac98e7057731c1f65ed0abb49c",
+    "drivers/video/xwn_hd_adapter.h": "921de06909b6a88837dd1d8e51f3f3988777a9f67045c51338c578343f0d583a",
+    "drivers/video/xwn_hd_profile.h": "c3c2b19c89e41e92226352368241a1906b84a2b47533822fd9c6513c6e85b1dc",
+    "drivers/diag657/receipt.h": "39ba0a28fe7fed28efec6e1e9003e8fee6df3227ad9ae7c540a1760753a11597",
+    "drivers/diag656/admission.h": "1ad9715f92d93fe2dac122061e7a8888eac8f0e12cad277a1fc0258d33d3cc40"
+  },
+  "layout": {
+    "readback_bytes": 188,
+    "captured_offset": 0,
+    "flags_before_offset": 16,
+    "flags_after_offset": 20,
+    "pre_offset": 328,
+    "post_offset": 516,
+    "admission_flags_offset": 4
+  },
+  "artifacts": {
+    "compile-i386.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compile-i386.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compile-native-headers.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compile-native-headers.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compile.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compile.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "layout": {
+      "bytes": 15952,
+      "sha256": "c32d10ab77c560fc24ab3b1680653e88472d892c242e86fad7d4c4879bcb9a32"
+    },
+    "layout-compile.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "layout-compile.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "layout-i386.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "layout-i386.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "layout-test.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "layout-test.stdout": {
+      "bytes": 154,
+      "sha256": "26e241320a0fa1e6bede4e67cbb6af0b4ff0be37fff98fbc4e2be61c276e62a8"
+    },
+    "layout32.o": {
+      "bytes": 1468,
+      "sha256": "5e802c2867ee0118338a5cdf1dd98d8b1d1c6d44a72b4357095933e92aa4976d"
+    },
+    "native-headers.o": {
+      "bytes": 2260,
+      "sha256": "4c4f9c90160fc80665aa1329fe10e862c6ed48e9d6ba383a1f05425cdc70dccc"
+    },
+    "nic-i386.o": {
+      "bytes": 2260,
+      "sha256": "4c4f9c90160fc80665aa1329fe10e862c6ed48e9d6ba383a1f05425cdc70dccc"
+    },
+    "test": {
+      "bytes": 66600,
+      "sha256": "71e72c956f0073a2854c91ea139f461d5a2e03547c12e0fb1319c2d7886fe3e0"
+    },
+    "test.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "test.stdout": {
+      "bytes": 96,
+      "sha256": "951b521a12a4838aba280f16c9b9454472dc6678d1d3e0a32477cceae58ab2fc"
+    },
+    "undefined.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "undefined.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "ended_utc": "2026-10-22T23:20:45.481957+00:00"
+}

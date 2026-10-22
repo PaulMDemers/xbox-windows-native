@@ -1,0 +1,82 @@
+{
+  "status": "failed",
+  "physical_access": false,
+  "diagnostic_only": true,
+  "started_utc": "2026-10-22T23:19:47.036552+00:00",
+  "space": {
+    "minimum_free_gib": 20.05,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c/xwn665",
+        "free_bytes": 30627762176
+      },
+      {
+        "free_bytes": 30627762176,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "source_pins": {
+    "audit.py": "d9154247ad7dccb7e83f9a30cf1adbec9987f47295c42bff524a1626f9d08c7d",
+    "build.py": "7616c2e2521df3f04ca12519e217c5ae65367cba58a0d5ffce6a32717013212c",
+    "build_host.py": "7bf926c0a0847076b8ab7fe7f98684943ca825f897a9e385e4e1bd4b74b7607b",
+    "classify.c": "95c48ccea2f29ccb3ffa448680f866d1468dce7fc784d6256f583ff908160b70",
+    "classify.h": "f46c7fb0557fdfe41cafd2190f4c0a3852cb495b8f8e2948d9318b5d6998cc20",
+    "compiled.py": "333553ab22461287f71130bd42c5cf99f5d654dbc975c997a67411060e53ae2e",
+    "controller_review.py": "b9258220b3f9243f05f40520eba4dd1439c97e97be1a1b234d0521742878e7a6",
+    "export.c": "3c6e83eb867de2256b236209250e84699b07339a14d090d087226cafee34415f",
+    "layout.c": "f0a1c331c5848c146ebbcc612115ae2cfd8de705c700db4dec75f29b1e50dee2",
+    "listen.py": "f0ec7f7b919c96f021018842c81ecf8d7f10e419e928ac5c979a1bc45332a9c0",
+    "physical.py": "bb1e14d50ac697a2d3c664514886e79eb0b9ed9c26a0bb856b9a7c64c16ab285",
+    "review.py": "5f380edbf55052c97f02d80ba8408706d3578fe222e00f004fe8bbf6962c9f18",
+    "run.py": "0218004660bfc7be6f4e72add0ce6b1126826f852a8990e5b6662815d4ff7010",
+    "test.c": "573d6fc1c726fe01fa799c3144387fedc402381d1bc0f9033406f5adc1e02c96"
+  },
+  "commands": [
+    [
+      "git",
+      "-C",
+      "/mnt/c/xwn664/source001",
+      "checkout-index",
+      "--all",
+      "--prefix=/mnt/c/xwn665/source001/"
+    ],
+    [
+      "git",
+      "init",
+      "-q",
+      "/mnt/c/xwn665/source001"
+    ],
+    [
+      "git",
+      "-C",
+      "/mnt/c/xwn665/source001",
+      "add",
+      "-f",
+      "."
+    ],
+    [
+      "git",
+      "-C",
+      "/mnt/c/xwn665/source001",
+      "write-tree"
+    ],
+    [
+      "make",
+      "all",
+      "CC=/usr/bin/x86_64-linux-gnu-gcc-12",
+      "GITREV=xwn633-480p",
+      "EXTRA_CROM_CFLAGS=-DXWN_PHYSICAL_PREFLIGHT -DXWN_HD_RESERVATION=1 -DXWN_HD_TIMING_720P=1 -DXWN_HD_BOOT_MODE=3",
+      "LDFLAGS-ROM=-s -S -T /mnt/c/xwn665/source001/scripts/ldscript-crom.ld -Map=/mnt/c/xwn665/build001/image-crom.map"
+    ]
+  ],
+  "identity_header_sha256": "87543384780fc819ea793ff83263ef6bcbc1ef4505103f3cb86f5ec425184192",
+  "tree": "41480acf314e240ef33c970c1bf1d3edc268b479",
+  "flags": "-DXWN_PHYSICAL_PREFLIGHT -DXWN_HD_RESERVATION=1 -DXWN_HD_TIMING_720P=1 -DXWN_HD_BOOT_MODE=3",
+  "failure": "AssertionError(('build', 2))",
+  "ended_utc": "2026-10-22T23:20:00.894729+00:00"
+}
