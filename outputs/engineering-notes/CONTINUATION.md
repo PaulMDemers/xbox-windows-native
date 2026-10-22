@@ -1,3 +1,36 @@
+#657 capture/export/reset integrated and staged; administrator firewall step pending
+
+Read export657/REPORT.md, NEXT.md, build001.json, compiled-wrapper001.json,
+review001.json and stage001.json. Native caller freezes original651 result/state/
+trace/pre/post into unchanged655 packet before656 network effects. Diagnostic
+never continues into Windows: verified cleanup or pre-use rejection permits one
+bounded SMC reset; unsafe cleanup or failed reset holds. Original pre-capture/
+apply/post-capture prefix unchanged; original error0 is not fallback error30.
+
+78 actual linked i386 capture/bridge/encoder/reset cases pass with modeled apply,
+MMIO and sender.23 source/object checks and10 unchanged module-section comparisons
+pass. Three host LAN-addressed broadcasts received; NOT external firewall/NIC proof.
+Accepted/uncertain SITE mock cases issue once and reject reuse. No hardware launch.
+
+Private C:/xwn657/build001/default.xbe SHA256
+b7c193959640e945355d1b5de7f57d65708e8ae59752065edeffe73e868164d3
+is staged/readback at /E/Applications/XWNExport657/default.xbe.28 selected files
+captured twice; protected720p/startup/savedXBOX480 verified. No startup hook.
+Physical657 is PREPARED/STAGED, not closed. No SITE, receiver or Windows run yet.
+
+Firewall-open001 failed: Access is denied; no rule installed. User asked to run
+export657/Open-Firewall.ps1 in Administrator PowerShell. Fresh open002 validates
+an Xbox-only UDP50657/Python/LAN rule and starts an elevated cleanup helper that
+removes it on request or within10minutes. That privileged path is parsed but not
+executed. Once Ready and actual rule/readiness/expiry checked, run export657/run_v2.py
+ONCE; it owns receiver, launch, bounded observation and collection. Preserve silence,
+uncertain launch and any hold; do not launch without firewall admission or retry.
+
+All host builds/models closed; no active receiver/helper/hook. Console dashboard
+was freshly reachable during preparation/stage. Build lease released; physical
+lease retained; automation paused. Releases/recovery unchanged. No NIC/DMA/cache/
+PHY/timer or Windows qualification; Ftdisk49/Popup26 remain historical limitations.
+
 #656 sender and dormant native binding compiled; no console change
 
 Read net656/REPORT.md, NEXT.md, host004.json, native005.json and
