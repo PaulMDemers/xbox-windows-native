@@ -1,22 +1,21 @@
-# 663 launched once: await colors/gaps/screen observation
+# 663 CLOSED: resolve phase before interpreting IF
 
-Accepted SITE; receiver49672/run.py session70588 finishes180seconds independently.
-No collection before observation and requested recovery confirmation. Never
-relaunch. Read actual run/launch records and REPORT.md code table.
+Do not relaunch, recollect or parent this closed runtime. Read REPORT.md and
+observation001/reconciliation001/source-audit001/closure001.
 
-# 663: validate before one watched launch
+Next fresh diagnostic: give entry a unique LED cycle distinct under rotation
+from every final-result and timed-show cycle. Preserve capture/native CPU/NIC
+guards, existing classification, and interrupt state. Validate exact linked
+entry/final writes and retained-pattern failure paths before staging; a final
+latch failure can otherwise leave a misleading earlier signal. Use a fresh
+identity and owned paths, bounded capture, one SITE, and watched recovery.
 
-Read REPORT.md and actual build/host/compiled/review/controller records. Require
-all tests and unchanged native object sections, exact source/binary pins, protected
-preparation and staged readback. Run once with fresh receiver and verified
-persistent firewall. No closed662/661 runtime may be reopened or recollected.
+Separately trace actual linked pre-export callees/flag-changing instructions.
+The explicit BootPciInterruptEnable comes after the noreturn export, so its
+existence alone explains nothing here. Allocator STI exists but has not been
+shown on the earlier path. Do not force CLI, waive IF or infer raw flags from
+663's ambiguous signal. No extra console launch occurred during closeout.
 
-After accepted/uncertain SITE never retry. Ask for lasting LED colors, presence
-of dark gaps, and black-screen/dashboard state. Distinguish timed-show multicolor
-with gaps from continuous CPU alternation. Preserve uncertainty. Record before
-requesting manual recovery; await Ready, collect once, audit and reconcile.
-Runner owns receiver only, never collection. No hook/reset/Windows intended.
-
-No functional patch, safety-check relaxation or CPU-fault conclusion follows
-from a LED/model alone. Keep current physical lease and ordinary720p baseline.
-Build lease released after build; automation paused; user available to reset.
+Console dashboard; no hook or owned host process. Permanent firewall retained;
+ordinary720p/savedXBOX480/releases/recovery preserved. Physical lease retained,
+build lease free, automation paused. Selected integrity passed, not full FATX.

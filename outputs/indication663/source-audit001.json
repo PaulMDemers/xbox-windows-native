@@ -1,0 +1,21 @@
+{
+  "utc": "2026-10-22T22:38:05.329233+00:00",
+  "scope": "Read-only inspection of pinned source; no runtime or hardware operations",
+  "source_tree": "d584ce0b50ddfd58f8e7efeda7155b9e57b2a167",
+  "files": {
+    "boot/BootResetAction.c": "b27a08d5c4e18d331d2794ba0f50731d2768d5edc6addbeba3148a6b942612df",
+    "boot/BootStartup.S": "3dfbb3c3fedfaa36d6c2c7b8429e9575008c4be3b2b7bf28cb3fff95456b858f",
+    "lib/misc/BootLibrary.c": "9ee047b2a1cc68ae885c0ad5ee569648e12359bd7017d2a10bac878d29ff7312",
+    "drivers/video/BootVgaInitialization.c": "481e95c8335ba0d865b3ccddfc1b1acfaf0721e12045104e37c5d4d13573c4d4",
+    "drivers/video/xwn_hd_native.c": "8dfae50ced891423072ae08582746ee3d3931e3eef041b123a49ecdf182df4c8",
+    "drivers/diag656/native.c": "f549da4332e2b62ea052ca65182a89b6dab2d33e7aaeaee573f10f6d5b69c203"
+  },
+  "findings": [
+    "BootStartup.S start_linux begins with CLI.",
+    "BootResetAction calls video initialization at line95, before explicit BootPciInterruptEnable at115. Video calls XwnHdTry720 at161; its XwnExport657 is noreturn. The later explicit enable is not an explanation on this path.",
+    "BootLibrary malloc and free contain unconditional STI. Presence alone does not establish invocation before export.",
+    "Native inspection captures flags and rejects IF; no raw physical flags recovered.",
+    "Entry and IF result both use0x55. Resolve phase ambiguity before interpreting IF or changing state."
+  ],
+  "limits": "Source ordering only. Earlier initialization callees and actual linked paths need further audit; no full call graph or actual IF measurement."
+}

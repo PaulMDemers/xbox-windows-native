@@ -1,3 +1,20 @@
+# 663 CLOSED: even amber/off; entry-versus-IF ambiguity
+
+Read indication663/REPORT.md,NEXT.md and actual closure/reconciliation/source-audit.
+User observed even amber/off/blackheld. Final IF code and entry share0x55; final
+phase not independently established. No raw CPU predicate result or state change.
+One SITE, identity-matched180sec capture zero datagrams; receiver2/controller0,
+owned processes closed. Manual recovery then one collection/audit:28 unchanged
+files,5 parsed hives,savedXBOX480 intact,no newevents/normalshutdown. Dashboard,
+no hook. Permanent firewall verified/retained. No native NIC qualification.
+
+Next fresh probe must distinguish entry from all final and timed-show cycles
+and test retained-pattern failures. Audit linked pre-export IF-changing paths;
+ordinary explicit STI is after noreturn export, allocator STI invocation unknown.
+No CLI patch/guard waiver. Never rerun/recollect663. Ordinary720p/releases/recovery
+preserved;physical lease retained,build lease free,automation paused. Ftdisk49/
+Popup26 unresolved. No physical launch during closeout.
+
 # 663 LAUNCHED ONCE: held LED colors/gaps observation pending
 
 One SITE accepted 2026-10-22T22:31:54.174520+00:00. Receiver PID49672 under run.py

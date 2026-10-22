@@ -64,3 +64,23 @@ Source tree `d584ce0b50ddfd58f8e7efeda7155b9e57b2a167`; XBE SHA256 `635a6cc2eeb6
 and45 artifact reviews passed.20 native/display object sections unchanged.
 The19 LED code cycles are distinct under rotation; physical legibility remains
 an observation. Stage001 records exact readback. No physical result at preparation.
+
+## Closed physical result
+
+User observed even amber/off on a held black screen. If the final classifier
+and latch were reached, this matches the captured IF predicate. However the
+entry latch uses the same0x55 pattern: final phase was not independently
+established. Treat this as IF-versus-entry ambiguity, not a confirmed register
+value. Raw BSS/status was not recovered.
+
+One accepted launch; identity-matched180-second capture received zero datagrams.
+Receiver exited2, controller exited0 and owned processes are closed. User
+manually power-cycled; one collection/audit passed:28 files unchanged, five
+hives parsed, savedXBOX480 intact, no new events/normal shutdown. This is selected
+integrity, not full FATX qualification. Permanent firewall verified and retained.
+No hook, Windows launch or normal Windows restart. Ftdisk49/Popup26 unresolved.
+
+Read-only source review shows the ordinary explicit interrupt enable occurs
+after the video/export path. Allocator STI exists, but its execution before
+export has not been established. No functional or interrupt-state patch made.
+See observation001, reconciliation001, source-audit001 and closure001.
