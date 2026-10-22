@@ -1,3 +1,9 @@
+# 663 launched once: await colors/gaps/screen observation
+
+Accepted SITE; receiver49672/run.py session70588 finishes180seconds independently.
+No collection before observation and requested recovery confirmation. Never
+relaunch. Read actual run/launch records and REPORT.md code table.
+
 # 663: validate before one watched launch
 
 Read REPORT.md and actual build/host/compiled/review/controller records. Require

@@ -1,3 +1,15 @@
+# 663 LAUNCHED ONCE: held LED colors/gaps observation pending
+
+One SITE accepted 2026-10-22T22:31:54.174520+00:00. Receiver PID49672 under run.py
+exec session70588 captures180seconds in C:/xwn663/capture001. Runner owns no
+collection. Do not relaunch. LED colors/dark-gap/screen question sent; await
+observation,record before requested manual recovery ifheld. Collect/audit once
+after Ready. No hook,Windows or automaticreset intended. Read indication663
+REPORT.md,NEXT.md,actual run/launch/observation receipts. Codes: solidamber entry,
+R/A/G/dark delay,R/A/dark busy,G/A/dark status,R/G/dark completion. CPU codes
+unchanged and lack these multicolor dark gaps. Preserve ambiguous observations.
+Permanent firewall verified/retained; physical lease retained,automation paused.
+
 # 663 prepared: separate existing entry/show error returns
 
 Read indication663/REPORT.md,NEXT.md and actual stage/run/launch records. New
