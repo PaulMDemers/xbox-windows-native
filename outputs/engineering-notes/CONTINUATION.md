@@ -1,3 +1,31 @@
+# 661 CLOSED: CPU admission category indicated; recovery integrity passed
+
+Read admission661/REPORT.md,NEXT.md,observation001/002,reconciliation001 and
+closure001. User explicitly confirmed equal red/off on held black screen,
+matching A656_CPU=1. Exact predicate/raw status unknown; no CPU-fault claim.
+Fresh180-second identity-matched capture received zero datagrams; receiver exit2.
+One SITE only. User manually power-cycled; one collection/audit passed:28 files
+unchanged,five hives parse,savedXBOX480 intact,no newevents/6006. Console dashboard.
+All owned processes closed,no hook,permanent firewall verified/retained.
+
+Next fresh probe can classify stored NativeAdmission656 CPU fields without new
+hardware reads or relaxed guards. Distinguish early CR0/IF/CPUID rejection from
+later RAM/ESP checks; preserve unknown/multiple/inconsistent outcomes. Validate
+host/exact-linked paths and unchanged native code before physical staging.
+Never rerun/recollect661/660. Ordinary720p/releases/recovery preserved; physical
+lease retained,build lease free,automation paused. Ftdisk49/Popup26 unresolved.
+
+# 661 equal red/off observed: CPU admission category; recovery requested
+
+User clarified equal red on/off while screen stayed black. observation002.json
+matches A656_CPU=1 before send656; exact failed CPU predicate/raw status unknown.
+Initial observation001 ambiguity preserved and resolved by explicit cadence.
+Manual power-off/on to UnleashX requested; await Ready before collect/audit once.
+No relaunch. Receiver42180/run.py session39037 completes180seconds independently;
+read actual run/capture receipts before declaring result. No startup hook.
+Next diagnostic, after closing661, can classify stored CPU admission fields
+without altering guards or taking new hardware reads. No CPU-fault conclusion.
+
 # 661 observation: blinking red/black; cadence clarification pending
 
 User reports blinking red at a black screen. Do NOT treat CPU rejection as

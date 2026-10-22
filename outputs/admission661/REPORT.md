@@ -57,3 +57,24 @@ Twenty old object sections are unchanged. Source pins include every authored
 script. Native sender outcomes and raw IN/OUT remain modeled in linked tests.
 Controller accepted/uncertain one-shot tests passed. Preparation captured all
 28 selected files twice. Stage/readback status is recorded in stage001.json.
+
+## Physical result: closed661
+
+One SITE accepted at22:04:12.914443Z. User reported blinking red on black and
+explicitly confirmed equal on/off, distinguishing CPU admission from the brief
+red encoding-error code. This matches A656_CPU=1 before send656. Raw status and
+which CPU predicate failed remain unknown; no faulty-CPU conclusion follows.
+The source checks CR0, IF, CPUID features and later RAM/stack bounds. The later
+check is only reached after earlier segment/cache inspection checks succeed.
+
+The fresh identity-matched receiver ran180seconds, covering173.14seconds after
+launch, and received zero datagrams. Exit2 means no valid packet; receiver's
+launch_sent=false is its own lack of launch authority, not denial of the separate
+accepted SITE receipt. Permanent scoped firewall was verified and retained.
+
+After requested manual power-cycle, user replied Ready. One collection and audit
+passed:28 selected files unchanged, five hives parse, savedXBOX480 intact, events
+unchanged/no new6006. This is manual recovery, not Windows restart or full FATX
+proof. All owned processes exited; console at dashboard; no startup hook.
+Initial cadence ambiguity and its explicit resolution are preserved in
+observation001/002. See reconciliation001 and closure001. Never rerun this attempt.
