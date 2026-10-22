@@ -1,3 +1,31 @@
+#656 sender and dormant native binding compiled; no console change
+
+Read net656/REPORT.md, NEXT.md, host004.json, native005.json and
+review-native001.json. Dedicated post-capture nForce sender has finite timer/
+init/TX/stop loops, owned RX/TX buffers, descriptor+IRQ error checks and bus-master
+shutdown with separately retained cleanup status. Raw655 record stays immutable.
+Native binding rejects unknown paging/segments/MTRRs/PCI/BSS and uses explicit
+post-capture WBINVD; no mapping/MTRR/interrupt writes. No caller hook exists yet.
+
+Final host004:2007 sanitizer checks including175 injected I/O positions.
+Native005:1037 admission-model checks, final freestanding native compile and eight
+unchanged old-object .text/.rodata comparisons pass. Static native review passes;
+no object references NativeSend656. DO-NOT-LAUNCH.xbe is dormant, not a new test.
+No hardware DMA/link/timer/cache/packet-delivery or LAN/firewall proof exists.
+
+Preserve native001 missing-stddef compile failure, native002 implicit PCI helper
+warning rejection and native004 unnecessary PIE/GOT dependency review. Native005
+uses exact helper declarations and -Werror -fno-pic -fno-pie on new modules only.
+Earlier host/native instances closed and retained; source/artifact reuse only.
+
+Next integrate frozen capture/655 encoder/652 bridge into a fresh export/reset-
+only caller, prove ordering and bounded reset/hold behavior, resolve private LAN
+listener/attempt/build pins and stage/read back before one new physical attempt.
+No launch, VM/image, FTP write, hook, rollback or active receiver exists. All host
+processes closed, build lease released, physical lease retained, automation paused.
+Dashboard remains last user-observed state from654, not a fresh connectivity check.
+Ordinary720p/startup, savedXBOX480, releases and recovery unchanged.
+
 #655 host UDP prototype passes; native NIC sender remains next
 
 User proposed UDP broadcasts. Retained Xromwell already links Etherboot/nForce
