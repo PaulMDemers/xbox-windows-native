@@ -1,21 +1,18 @@
-# 667 staged; preflight001 failed before SITE, fresh controller002 pending
+# 667 launched once; observation/recovery pending
 
-Read actual build001/host001/boundary001/compiled001/review001 before acting.
-Host tests, four linked boundary cases,55 linked caller cases and57 artifact
-reviews passed.34 initializer/display/network object sections remain unchanged.
-Preparation and stage001 completed. run001 failed during protected baseline
-FTP readback (recv timeout, then QUIT426); zero SITE requests and no launch001.
-Receiver38464 and controller65003 closed. Preserve private capture001 as partial.
-Fresh run002/physical002/listen002/controller_review002 use new host receipts
-and capture002; only receipt paths changed, binary and launch guard unchanged.
-Do not rerun run001. Closed666 runtime is never reopened or recollected.
+SITE accepted 2026-10-22T23:48:58.029520+00:00. Receiver PID37036, run002 exec
+session48278,180sec capture C:/xwn667/capture002. No relaunch. Runner owns
+receiver only; manual observation/recovery/collection remain separate.
+Asked lasting light and screen. Await answer, record it, then request manual
+power-off/on and await Ready before one collection/audit. No hook/Windows/reset.
 
-After qualification, prepare/read back the unique E diagnostic, freeze source
-and binary hashes, review/stage exact bytes and commit/push. One watched launch
-with180-second identity receiver002 and retained persistent firewall. Report only
-the lasting LED/screen after initial indications. No Windows, hook or automatic
-restart. Await user recovery Ready before one collection and cold audit.
+667 solidgreen=IFclear before/set after memory detection; equalamber/off=IFset
+before/after; solidamber=missing/invalid; red/green=set/clear; two-green/two-off=
+clear/clear; equalred/off=unavailable. Eligible transition codes require saved
+pre/post display and admission IFset. No raw flags/first-writer/Windows cause
+proof. Use667 table, not666. Firewall verified and retained. Ordinary720p and
+savedXBOX480 protected; physical lease retained,build lease free,automation
+paused. Preserve preflight001 readback timeout/QUIT426/partialcapture; zeroSITE
+in that failed controller. Actual launch only in controller002.
 
-Use REPORT's667 LED table, not666's. Solidgreen means clear-to-set across memory
-detection; equalamber/off means already set beforehand. No first-writer or
-Windows boot cause claim. Keep ordinary720p and savedXBOX480 protected.
+After Ready, run physical002.py collect ONCE, then audit.py in WSL with the existing offline-disk library path. Do not collect while held or reopen closed666. Record capture002 outcome separately from LED inference.

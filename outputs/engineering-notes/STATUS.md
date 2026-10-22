@@ -1,3 +1,20 @@
+# 667 LAUNCHED ONCE: memory-boundary observation pending
+
+SITE accepted 2026-10-22T23:48:58.029520+00:00. Receiver PID37036, run002 exec
+session48278,180sec capture C:/xwn667/capture002. No relaunch. Runner owns
+receiver only; manual observation/recovery/collection remain separate.
+Asked lasting light and screen. Await answer, record it, then request manual
+power-off/on and await Ready before one collection/audit. No hook/Windows/reset.
+
+667 solidgreen=IFclear before/set after memory detection; equalamber/off=IFset
+before/after; solidamber=missing/invalid; red/green=set/clear; two-green/two-off=
+clear/clear; equalred/off=unavailable. Eligible transition codes require saved
+pre/post display and admission IFset. No raw flags/first-writer/Windows cause
+proof. Use667 table, not666. Firewall verified and retained. Ordinary720p and
+savedXBOX480 protected; physical lease retained,build lease free,automation
+paused. Preserve preflight001 readback timeout/QUIT426/partialcapture; zeroSITE
+in that failed controller. Actual launch only in controller002.
+
 # 667 preflight001 failed before launch; fresh controller002 prepared
 
 Read memory667 NEXT and preflight-failure001/run001. Protected720p FTP read
