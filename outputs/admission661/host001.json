@@ -1,0 +1,120 @@
+{
+  "status": "pass",
+  "physical_access": false,
+  "started_utc": "2026-10-22T21:58:46.942651+00:00",
+  "space": {
+    "minimum_free_gib": 20.05,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c/xwn661",
+        "free_bytes": 31094079488
+      },
+      {
+        "free_bytes": 31094079488,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "source_pins": {
+    "build_host.py": "3e5499c8c6b7e9704472ed8ec5c52703b6c34bf67031c91fcd300028363cac54",
+    "classify.c": "e8e26fd179028d9a4ae49442290f4bb117fe751852a90aed24ba8d550b336d4e",
+    "classify.h": "af0aea95bd219ad698496dbca0e6f8adca122f7cb9e17fef10f8297b95998225",
+    "indication.h": "ff0f190c61369541f3e9c8b1ea1100428b929ccf36ed6218587e4d13b88d6461",
+    "nic.h": "278c70b4e414c83dd29cdcdff696f374238cbc550d60a79d5893d1d1862ac22c",
+    "test.c": "9f2737456b0ca32d95d6c8963d80e0066c963dce3761b3703f1ca422259033df"
+  },
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "commands": [
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-std=c99",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-O1",
+      "-g",
+      "-fsanitize=address,undefined",
+      "-fno-pie",
+      "-no-pie",
+      "/mnt/c/xwn661/host001/source/classify.c",
+      "/mnt/c/xwn661/host001/source/test.c",
+      "-o",
+      "/mnt/c/xwn661/host001/test"
+    ],
+    [
+      "/mnt/c/xwn661/host001/test"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-m32",
+      "-std=c99",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-O2",
+      "-ffreestanding",
+      "-fno-builtin",
+      "-fno-pic",
+      "-fno-pie",
+      "-c",
+      "/mnt/c/xwn661/host001/source/classify.c",
+      "-o",
+      "/mnt/c/xwn661/host001/nic-i386.o"
+    ],
+    [
+      "nm",
+      "-u",
+      "/mnt/c/xwn661/host001/nic-i386.o"
+    ]
+  ],
+  "tests": {
+    "status": "pass",
+    "cases": 1680
+  },
+  "artifacts": {
+    "compile-i386.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compile-i386.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compile.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compile.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nic-i386.o": {
+      "bytes": 1248,
+      "sha256": "c9dbc1c130d6d0c399b18037b0a16fa7bbbf75117d1ed09d46d712d58aabf472"
+    },
+    "test": {
+      "bytes": 35424,
+      "sha256": "095a6e0324dba74cf0386b1f22a43cfda3e33c8b40a45b78a6d2a35510389746"
+    },
+    "test.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "test.stdout": {
+      "bytes": 31,
+      "sha256": "ad43c6dbd56edeb4b078b491ebfe37f4e04d60fda0c277bc0be912288f0a7a57"
+    },
+    "undefined.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "undefined.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "ended_utc": "2026-10-22T21:58:47.954069+00:00"
+}

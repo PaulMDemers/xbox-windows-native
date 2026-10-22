@@ -1,3 +1,22 @@
+# 661 prepared: persistent native-admission category diagnostic
+
+Read admission661/REPORT.md and NEXT.md, then latest stage/run/launch receipts.
+Only final classifier changed from660; native admission/sender remain unchanged.
+1,680 sanitizer cases,21 exact-linked cases,39 artifact reviews passed;20 old
+object sections unchanged. Native sender outcomes/rawIN/OUT remain modeled.
+Fresh source/build/identity/capture paths C:/xwn661, destination XWNLatch661.
+28 protected/selected files captured twice; no hook, ordinary720p preserved.
+Stage/readback pending or complete per actual stage001. No launch at this checkpoint.
+
+Next verify staged source pins and run once after stage passes. Permanent UDP
+rule verified by runner; fresh180-second receiver. Final light deliberately holds:
+red/off CPU,amber/off segments,red/green cache,green/amber PCI,red/amber DMA.
+Observe after15seconds; source category not raw context. Do not relax any guard.
+Ask user for held light/screen; record then request manual recovery. Collect once
+and audit only after dashboard return. Never rerun/recollect closed660 or661.
+No Windows/reset intended. User availability for manual recovery persists.
+Physical lease retained; build lease free; automation paused. Ftdisk49/Popup26 remain.
+
 # 660 CLOSED: native admission rejection indicated; recovered safely
 
 Read latch660/REPORT.md, NEXT.md and actual reconciliation/closure001 receipts.
