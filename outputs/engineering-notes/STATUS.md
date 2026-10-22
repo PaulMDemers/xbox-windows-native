@@ -1,3 +1,16 @@
+# 662 LAUNCHED ONCE: persistent CPU-predicate observation pending
+
+One SITE accepted 2026-10-22T22:15:34.368933+00:00. Receiver PID35388 under run.py
+exec session99373 captures180seconds in C:/xwn662/capture001. Runner owns no
+collection. Do not relaunch. Console deliberately holds; LED/screen/cadence
+question sent. Await observation, record then request manual recovery if held.
+Collect once/audit only after Ready/dashboard. No Windows/reset/hook intended.
+Read cpu662/REPORT.md,NEXT.md and actual run/launch/observation records.
+Red/off CR0,amber/off IF,red/green CPUID,green/amber RAM,red/amber ESP,
+green/off multiple relevant predicates. Short flashes have different meanings;
+clarify cadence. No raw-register recovery or CPU-fault inference from a LED.
+Permanent firewall verified/retained; physical lease retained, automation paused.
+
 # 662 prepared: captured CPU predicate classifier; no guard changes
 
 Read cpu662/REPORT.md,NEXT.md and actual stage/run/launch receipts. New probe

@@ -1,3 +1,9 @@
+# 662 launched once: await LED/screen/cadence observation
+
+One accepted SITE. Receiver35388/run.py session99373 completes180seconds. No
+collection until observation recorded and requested manual recovery confirmed.
+Never relaunch. See actual run/launch receipts and REPORT.md codes.
+
 # 662: qualify, stage and launch once
 
 Read REPORT.md and latest build/host/compiled/review/controller records. Before
