@@ -86,7 +86,10 @@ additional-console qualification or automatic selection is implied.
    The explicit boot-mode selector now accepts the pinned480p candidate and
    retains720p recovery. [Selector644](../outputs/display-selector644/REPORT.md)
    covers host transfer/rollback tests and a private matched archive. Its fresh
-   physical apply/restore cycle is pending; see the
+   physical transfer cycle passed in [645](../outputs/display-selector645/REPORT.md):
+   exact480p apply/readback and720p restoration succeeded. The intervening boot
+   showed black and returned without new Windows events, so a successful boot
+   cycle through the selector remains unqualified. See the
    [operator guide](display-selector-recovery.md). Conservative automatic
    selection follows that qualification.
 5. Implement live Windows switching as a separate driver change: mode enumeration

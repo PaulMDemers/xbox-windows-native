@@ -5,8 +5,11 @@ The experimental selector now accepts the qualified native 480p launcher.
 it does not switch resolution inside Windows. The 480p desktop is **720x480x32**,
 not 640x480. Original-console drawing and interaction passed trials 638 and 642;
 the saved file was also reopened through ordinary 720p in 643. The newly extended
-selector has host fault-injection coverage; its physical selection/restore cycle
-still needs a fresh watched test.
+selector has host fault-injection coverage. [Trial645](../outputs/display-selector645/REPORT.md)
+passed physical480p apply/readback and720p restoration, but the480p boot showed
+black and returned without new Windows events. A successful selector boot cycle
+is still pending. The frozen644 archive retains its original pre-test instructions;
+it has not been repackaged or silently updated.
 
 Use this only with the matching existing E installation on the qualified original
 Conexant console. The pinned 480p loader requires the HDTV AV-pack classification

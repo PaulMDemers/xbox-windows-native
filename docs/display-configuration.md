@@ -42,7 +42,8 @@ does not establish the adapter's supported Xbox signal modes.
 An experimental explicit **480p (720x480)** choice is now available for the
 qualified original Conexant console. See [selection and recovery instructions](display-selector-recovery.md)
 for the separately packaged pinned launcher and first 720p-to-480p-to-720p test.
-Host transfer/rollback tests pass; a physical selector cycle is still pending.
+Host transfer/rollback tests and645's physical apply/readback/restore pass.
+645's480p boot failed, so a successful selector boot cycle is still pending.
 Existing preview archives are unchanged. 720p remains the default.
 
 Use an extracted, matched demo preview package with its `resolution/` binaries

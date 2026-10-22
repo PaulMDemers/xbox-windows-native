@@ -1,3 +1,35 @@
+#645 CLOSED failed boot/restored720p;646 recovery control launched once
+
+645: user saw black then exit; no new Windows events/6006, all28 selected files
+unchanged after exact720p restore. Selector apply480p/readback/restore transfers
+passed, but480p boot through selector did not. Read display-selector645/REPORT.md.
+Offline hivex loader-path failure preserved; corrected retained-file audit passed
+selected integrity only. Observer exited0; no hook. Never rerun/recollect645.
+
+646: ordinary restored720p accepted2026-10-22T00:51:44.294319Z. No hook or remote
+writes. User asked to confirm desktop and savedXBOX480 then normal Windows restart.
+Observer bounded600s; follow actual646 observation/collection. Never resend SITE.
+No further launch planned this sequence.720p is already restored; no rollback
+outstanding. Record actual user response and normal6006 separately on return.
+No emulator allocated; original physical lease retained; dashboardC untouched.
+
+#645 selector480p launch accepted; watched restart and720p restoration pending
+
+One SITE accepted2026-10-22T00:49:09.237311Z through ordinary E XWNEBoot.
+The644 selector applied exact633480p bytes with private720p backup/readback at
+C:/xwn645/physical001/rollback480p.28 selected before files captured. No startup
+hook or new probe installed. User asked to verify savedXBOX480, drag Notepad,
+then normal Windows restart. Do not resend this launch.
+
+Read outputs/display-selector645 actual preparation/selection/launch/observation.
+Observer is bounded600s and on dashboard return restores captured720p before
+bulk collection. If still offline, leave state explicit and await user; no retry.
+720p restoration is OUTSTANDING until collection records restored720p true.
+No dashboardC writes. No new guest mode query: selected launcher plus human
+observation only. Use new645 audit after collection;642/643 remain CLOSED.
+All sources pinned by preparation001; do not edit controller after launch.
+Original physical lease retained. No emulator/WSL allocation; hostC~29.7GB free.
+
 #644 selector prepared; physical selection/restore cycle pending
 
 Explicit480p choice added to existing E selector; legacy policies remain accepted.
