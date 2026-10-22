@@ -1,3 +1,42 @@
+# 662 CLOSED: indication error observed; no CPU predicate result
+
+Read cpu662/REPORT.md,NEXT.md,observation001/002,reconciliation001,closure001.
+User confirmed solid amber on held black screen. Exact662 classifier matches
+entry/timed indication failure, native sender skipped, conditional on final
+latch success. Exact indication status unknown; no CPU predicate measurement.
+Preserve661 CPU-category result separately; do not reinterpret as662 evidence.
+One SITE; fresh180-second identity-matched capture zero datagrams,receiver exit2.
+User manually recovered; one collection/audit passed:28 files unchanged,5 hives
+parse,savedXBOX480 intact,no newevents/6006. Console dashboard,no hook/process.
+Permanent firewall verified/retained; no firewall-failure claim.
+
+Next fresh probe should distinguish existing entry/timed-show error returns
+(delay,busy,status,completion), preserving native guards and CPU classification
+when reached. Validate branches/actual linked mask writes before staging. Never
+rerun/recollect662/661 or repeat identical failed boots. No functional driver fix.
+Ordinary720p/releases/recovery preserved; physical lease retained,build lease
+free,automation paused. Historical Ftdisk49/Popup26 remain unresolved.
+
+# 662 held black/solid amber confirmed; manual recovery requested
+
+observation002 confirms black screen and solid amber. Exact662 classifier maps
+this to entry/timed indication failure and skipped sender, conditional on final
+latch success. CPU predicate remains unknown; exact indication error unobserved.
+Requested power-off/on to UnleashX; await Ready before collect/audit once.
+Receiver35388/run.py session99373 finishes independently; check run/capture.
+Do not relaunch. No hook or Windows/reset intended. Preserve661 CPU-category
+result separately;662 did not reproduce a measured CPU predicate outcome.
+
+# 662 solid amber reported: screen confirmation pending
+
+User reports Solid Amber. In exact662 classifier this is entry/timed indication
+failure, with sender skipped if final classifier/latch reached. It is NOT even
+amber/off IF rejection. CPU predicate remains unknown; no raw status recovered.
+Screen not yet reported; black-screen versus dashboard question pending.
+Do not request/reset/collect until observation resolves screen state. No relaunch.
+Receiver35388/run.py session99373 finishes180seconds independently; read actual
+run/capture before reporting result. No hook. Read cpu662/observation001.json.
+
 # 662 LAUNCHED ONCE: persistent CPU-predicate observation pending
 
 One SITE accepted 2026-10-22T22:15:34.368933+00:00. Receiver PID35388 under run.py

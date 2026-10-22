@@ -1,23 +1,19 @@
-# 662 launched once: await LED/screen/cadence observation
+# 662 closed: distinguish the preliminary indication failure
 
-One accepted SITE. Receiver35388/run.py session99373 completes180seconds. No
-collection until observation recorded and requested manual recovery confirmed.
-Never relaunch. See actual run/launch receipts and REPORT.md codes.
+Read REPORT.md,observation001/002,reconciliation001,audit001 and closure001.
+Solid amber/held black matches entry or timed indication failure; native sender
+skipped on that path. Exact code unknown, no CPU predicate result.661 separately
+indicated CPU admission category. Never retry/rerun/recollect662 or closed661.
 
-# 662: qualify, stage and launch once
+Before another CPU probe, use fresh source/identity/runtime to distinguish entry
+latch error from timed-show delay/busy/status/completion errors with a persistent
+final indication. Prefer reporting existing returned statuses without new hardware
+reads or relaxed native guards. Retain CPU predicate classification for cases that
+reach it; distinguish unknown and final-latch failure. Validate all branches and
+actual linked output masks before staging, then one watched launch if justified.
+Do not repeat identical failed boots until lucky or infer a functional fix.
 
-Read REPORT.md and latest build/host/compiled/review/controller records. Before
-staging require passed tests, exact source/binary pins and unchanged native
-inspection/admission/sender. Prepare protected files twice and stage/read back
-the unique candidate. Verify index bytes and repository checks before launch.
-
-Use run.py once: verify persistent firewall, bind fresh receiver, one bounded
-SITE. Runner owns receiver only, not collection. Ask for held LED and screen;
-differentiate even blink from short flash/long pause. After recording, request
-manual recovery and await Ready. Collect once, audit retained files, reconcile
-capture and close. Never rerun/recollect a launched/closed attempt.
-
-No guard changes or CPU-fault claim follows from modeled results. Exact observed
-CPU predicate/register values remain unknown until fresh physical evidence.
-Physical lease retained; no startup hook or ordinary720p changes. User is
-available to observe and manually reset. Automation remains paused.
+Console recovered to dashboard; no owned process/hook remains. Permanent firewall
+retained. Selected integrity passed; ordinary720p/savedXBOX480/releases/recovery
+preserved. Physical lease retained,build lease free,automation paused. No Windows
+restart/full FATX proof or native NIC qualification. Ftdisk49/Popup26 unresolved.

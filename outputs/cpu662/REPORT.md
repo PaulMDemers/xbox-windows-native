@@ -65,3 +65,24 @@ Source tree `5439d35bdf4b6d717cacbf83baf539b19869ec5e`; XBE SHA256 `830328312d05
 53,760 sanitizer cases plus12 boundary conditions,29 exact-linked cases and41
 artifact checks passed.20 old object sections remain unchanged. Native sender
 outcomes/rawIN/OUT are modeled; physical classification remains unobserved.
+
+## Physical outcome: closed662, indication failure
+
+One SITE accepted at22:15:34.368933Z. User reported Solid Amber and separately
+confirmed Black screen, solid amber. This matches nonzero entry or timed LED
+indication error in the final classifier; the native sender is skipped on that
+path. Exact error and raw status are unknown. Final-latch success is inferred
+from the observed code, not recovered BSS. No CPU predicate was identified.
+The661 CPU-category observation remains separate;662 does not override it.
+
+The fresh identity-matched receiver ran180seconds, covering171.85seconds after
+launch, and received zero datagrams (exit2). Its launch_sent=false concerns the
+receiver's lack of launch authority; the separate SITE was accepted once.
+Persistent scoped firewall was verified and retained; no firewall-failure claim.
+
+After requested manual power-cycle the user replied Ready. One collection and
+retained audit passed:28 selected files unchanged, five hives parse, savedXBOX480
+intact, no newevents/6006. This is manual recovery, not a normal Windows restart
+or full FATX audit. All owned host processes exited; no startup hook remains;
+console confirmed at dashboard. No retries. See observations001/002, recovery,
+collection, audit, reconciliation and closure001. Preserve this failed attempt.
