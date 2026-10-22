@@ -1,0 +1,1 @@
+Validate host/linked/source/controller, prepare and stage exact bytes, then one watched launch. Never reopen663 runtime. Record held light/screen before requesting recovery; collect once after Ready. Preserve ambiguity and permanent firewall.

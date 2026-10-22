@@ -1,0 +1,25 @@
+# 664: separate startup from final IF indication
+
+Source-only derivative of closed663. Only functional diagnostic change: entry
+SMC pattern0x55 becomes0xe1 (three red slots then one green, no dark slot).
+CPU classifier, native admission/sender, display and polling/timed code remain
+unchanged. No interrupt state change. Final amber/off is now distinct from all
+patterns explicitly requested before final latch. A failed final latch can
+still retain earlier patterns; partial/unobserved hardware effects stay unknown.
+
+Validate entry versus19 result cycles and timed dark/green-off; linked entry
+writes, retained entry on show/final busy, retained green/off on final busy
+after modeled IF rejection, and final status/completion failures. Raw I/O and
+sender outcomes are modeled; these tests do not prove hardware execution.
+
+Use fresh C:/xwn664, owned E:/Applications/XWNLatch664, fresh capture identity,
+one SITE and180-second receiver. No Windows, hook or automatic reset. User
+observation and manual recovery required. Keep ordinary720p and savedXBOX480.
+No hardware result yet. Preserve663 ambiguity and older failures.
+
+Qualified source tree fee04d21555adc4d6e9347ec797e529e6f674e14; XBE SHA256 236bff441cba516dd79ee1728e880f0a4eb4fbeae97e51422687b0eec7ac2514.
+53,760 sanitizer combinations plus12 boundaries,35 exact-linked cases and47
+artifact checks passed.20 unchanged native/display object sections. Entry is
+distinct from19 final codes and timed dark/green-off. Host pre-build shell
+parsing failure is retained in invocation-failure001; no build/console started
+from that rejected command. No physical result yet.

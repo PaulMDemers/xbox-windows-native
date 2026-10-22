@@ -1,3 +1,19 @@
+# 664 prepared: unique entry cycle, physical result pending
+
+Read phase664/REPORT.md,NEXT.md and actual launch/run receipts before acting.
+Source-only derivative of closed663; entry0xe1 is three red slots then green,
+no dark gap. Final IF remains even amber/off0x55. Classifier/native CPU/NIC/
+interrupt handling unchanged; no state patch.35 linked cases/47 artifact checks,
+53,760 host combinations+12 boundaries passed;20 unchanged object sections.
+Retained-entry and retained-green/off failures tested; raw I/O still modeled.
+
+Fresh C:/xwn664 and owned XWNLatch664. Prepare/stage exact readback before one
+180sec capture and one SITE with permanent firewall. Check actual receipts; do
+not retry accepted/uncertain launch. No hook/Windows/reset. Ask lasting pattern
+and screen; record before requested manual recovery, collect once after Ready.
+Never reopen663 runtime. Ordinary720p/savedXBOX480/releases/recovery preserved.
+Physical lease retained,build lease free,automation paused.
+
 # 663 CLOSED: even amber/off; entry-versus-IF ambiguity
 
 Read indication663/REPORT.md,NEXT.md and actual closure/reconciliation/source-audit.
