@@ -1,6 +1,7 @@
 # 658: post-capture LED status and persistent UDP firewall
 
-658 is prepared and staged; it has not launched. Closed657 received no UDP
+658 is CLOSED: one accepted launch, amber-only user observation, zero UDP
+datagrams, dashboard return and selected integrity passed. Closed657 received no UDP
 datagrams, so its silence does not establish whether the exporter, admission,
 sender or delivery path failed. This fresh diagnostic adds bounded LED status
 after freezing the original display capture. It never starts Windows.
@@ -76,14 +77,50 @@ The existing offline sandbox block was inspected read-only. Its user scope is a
 different local account from the current Paul receiver context. It was left
 untouched; this is not proof about previous receiver identities or other filters.
 
-## Lifecycle
+## Physical result
+
+One SITE was accepted at 2026-10-22T20:54:55.209548Z. The receiver ran from
+20:54:43.175261 to 20:57:43.175740 UTC, covering 167.97 seconds after the request,
+and received zero datagrams. Its exact status is `no-valid-packet`; exit 2 is
+preserved. It stopped at its deadline without forced termination. No retry.
+
+The user reported: "It only turned amber then went back to the dash". Neither
+the entry marker nor a complete four-slot result was observed. Amber's solid or
+flashing state was unspecified. This cannot be decoded as an encoder/admission/
+sender result and does not prove exporter execution. A failure before reaching
+the exporter and a failed indication remain distinct possibilities.
+
+One collection completed at 20:55:41.173133 UTC. All 28 selected files are
+byte-identical, five hives parse, event history is unchanged, and savedXBOX480 is
+intact. There are no new Windows events or normal-shutdown events. No Windows
+run was intended. This is selected-file integrity, not full FATX health proof.
+
+The static post-observation review found the intended SMC port sequence agrees
+with the retained byte-write implementation, and timer port 0x8008 agrees with
+TIMER_IO. It does not qualify physical indication, timer progress or execution.
+No functional change or admission relaxation was made in response to silence.
+
+Collection began 36.06 seconds after the request, so the dashboard was available
+by then. The intended entry and four result indications alone require about
+54 seconds. The complete sequence was not delivered with its intended timing.
+This is a host timestamp bound, not a precise reset time or proof of where
+execution stopped; see timing-observation001.json.
+
+See launch001, user-observation001, collection001, audit001, reconciliation001
+and closure001. Receiver47952 and the controller exited. The persistent rule was
+verified again after capture and retained. No startup hook exists. The dashboard
+is confirmed by both collection and user observation. Never rerun/recollect658
+or reuse its capture directory, identity or launched executable as a new attempt.
+
+## Preparation history
 
 28 selected files were captured twice before staging. Ordinary720p, ordinary
 startup and savedXBOX480 remain protected. No startup hook was installed. A fresh
 180-second listener and one 20-second-bounded SITE request are prepared. A watched
 readiness record and active firewall verification are required before launch.
-No receiver, capture or launch exists yet. All build/review processes are closed.
-Console was reachable at staging; physical lease retained, build lease free.
+At that checkpoint no receiver, capture or launch existed. Actual launch and
+closure are recorded above. All build/review processes are closed.
+Physical lease retained, build lease free.
 Automation remains paused. Earlier closed attempts must not be rerun/recollected.
 Historical Ftdisk49 and Popup26 remain unresolved. No Windows, normal restart,
 NIC/DMA/cache/timer, GPU or full FATX health claim follows from these host checks.

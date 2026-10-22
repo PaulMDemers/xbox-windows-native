@@ -1,3 +1,39 @@
+#658 CLOSED: amber-only observation, zero UDP packets, selected integrity passed
+
+Read indicate658/REPORT.md, NEXT.md, reconciliation001.json, audit001.json and
+closure001.json. One SITE accepted2026-10-22T20:54:55.209548Z.180-second receiver
+covered167.97seconds after request and receivedZEROdatagrams; exit2, no forced
+termination. User saw only amber then dashboard, no complete four-slot sequence.
+Exporter execution, native admission/sender/cleanup remain UNKNOWN. No retry.
+
+One collection completed20:55:41Z: all28selectedfiles unchanged, five hives parse,
+event history unchanged, savedXBOX480 intact, no new6006. No Windows intended;
+dashboard return is not normal Windows restart or full FATX health proof.
+Receiver47952/controller exited; no hook. Persistent Xbox-only UDP50657 rule
+verified after capture and intentionally retained. Console dashboard confirmed.
+
+Next qualify a fresh bounded indication control independently of network success,
+distinguishing exporter entry from SMC/timer indication failure. Static retained
+port comparison found no obvious address mismatch but does not prove execution.
+Preserve capture boundaries and explicitly record timing effects; no functional
+NIC/display patch or admission relaxation from silence. See precise NEXT.
+Never rerun/recollect658, reuse its identity/capture, or restart closed657.
+
+All owned host processes closed; physical lease retained, build lease free,
+automation paused. Ordinary720p/startup/savedXBOX480/releases/recovery preserved.
+Historical Ftdisk49/Popup26 unresolved. No native NIC/DMA/cache/timer qualification.
+
+#658 running: one accepted launch; UDP capture and watched observation pending
+
+Read indicate658/REPORT.md, NEXT.md and launch001/run001 receipts. One SITE
+accepted2026-10-22T20:54:55.209548Z; do not send another launch. Receiver47952
+owns a fresh180-second capture at C:/xwn658/capture001. Controller owns bounded
+observation and one collection; do not collect concurrently or rerun run.py.
+Persistent Xbox-only UDP50657 rule verified before launch and must remain.
+No startup hook; no Windows intended. User was asked for entry plus four LEDs.
+Outcome and LED sequence pending. Complete retained-byte audit after collection,
+reconcile capture and observation, close owned processes and update this record.
+
 #658 staged: persistent firewall installed; watched LED test pending
 
 Read indicate658/REPORT.md and NEXT.md, then latest actual receipts. Fresh658

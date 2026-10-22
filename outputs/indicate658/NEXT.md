@@ -1,23 +1,36 @@
-# Next: one watched 658 diagnostic
+# After658: qualify the indication path before another network attempt
 
-Read REPORT.md and the latest actual receipts first. Candidate658 is staged;
-persistent firewall installation and independent policy verification passed.
-No launch or receiver exists yet. User has been asked whether they can watch the
-LED sequence. Do not manufacture a watched-readiness record from script execution.
+Read REPORT.md, reconciliation001.json, audit001.json and closure001.json.
+Physical658 is CLOSED: one accepted SITE, user saw only amber then dashboard,
+zero UDP datagrams, 28 selected files unchanged and five hives parse. No complete
+LED code or native status was recovered. Dashboard availability was bounded by
+collection start at36.06seconds, shorter than the intended54-second indication
+sequence. This does not distinguish early exit from indication/timer failure. Receiver/controller exited; persistent
+Xbox-only UDP50657 rule remains installed and verified. No hook or Windows run.
+Never rerun/recollect658, reuse its identity or restart its receiver directory.
 
-When ready, preserve the direct user response in ready001.json with
-watching_four_network_indications=true, then run run.py once. It verifies the rule,
-starts a fresh 180-second receiver, validates source/binary/stage/protected pins,
-and issues one SITE request with a 20-second reply bound. Never retry an accepted
-or uncertain launch. Ask for entry plus four result signals and dashboard/hold.
+Next design a fresh bounded indication control that separates reaching the
+exporter from failure of the SMC/timer indication itself, without relying on
+network success. First independently validate its actual linked entry path,
+bounded waits, port access and reset/hold behavior. Existing host tests model
+hardware callbacks and cannot establish actual LED timing or bus completion.
+Retain original display capture boundaries and identify any added timing effects.
+Do not silently insert instrumentation before capture and call it equivalent.
 
-On return collect once, audit retained selected files/hives/events and reconcile
-the observed LED slots with the exact compiled classifier. Preserve ambiguity.
-No Windows is intended, so dashboard return is not normal Windows shutdown.
-Retain the persistent firewall rule. No hook exists. Close the owned receiver,
-record actual process/console state and the next unresolved question.
+No specific cause is established. Static port comparison found no obvious
+address mismatch, but does not qualify timer progress or physical transactions.
+Do not weaken native admission, alter mappings/interrupts/cache settings, or patch
+the functional display/NIC driver from missing packets or missing LED observations.
+An independent external inbound network control is also still missing; verified
+firewall policy alone does not prove delivery. Keep it separate from native sender
+qualification, with fresh identity, bounded capture and source/binary pins.
 
-If held or offline, do not send another launch. Preserve state and request a
-hardware reset only for recovery. A zero-packet result alone must not weaken
-native admission or justify speculative NIC/cache/interrupt changes. An external
-inbound path control remains separate work if no physical packet arrives.
+Prepare and review the next candidate before any launch. One 20-second-bounded
+SITE per admitted attempt; preserve uncertainty without retry. Existing user
+authorization permits routine launches. Ask for a watched observation only for
+a meaningful new indication, then collect once and audit retained bytes.
+
+Ordinary720p/startup/savedXBOX480, releases and recovery remain protected. Dashboard
+C is off limits. Physical lease retained, build lease free, automation paused.
+Historical Ftdisk49/Popup26 remain unresolved. No full FATX, Windows restart,
+NIC/DMA/cache/timer or GPU qualification is claimed.
