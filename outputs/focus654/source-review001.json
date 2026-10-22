@@ -1,0 +1,108 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "checks": [
+    {
+      "finding": "display precedes STI, USB, IDE and loader",
+      "file": "boot/BootResetAction.c",
+      "lines": [
+        95,
+        115,
+        191,
+        211,
+        230
+      ]
+    },
+    {
+      "finding": "pre/post capture precedes diagnostic; failure resets and halts before return",
+      "file": "drivers/video/xwn_hd_native.c",
+      "lines": [
+        44,
+        45,
+        47,
+        50,
+        51,
+        56,
+        58,
+        63
+      ]
+    },
+    {
+      "finding": "success wrapper performs further video writes before returning to boot",
+      "file": "drivers/video/BootVgaInitialization.c",
+      "lines": [
+        161,
+        163,
+        164
+      ]
+    },
+    {
+      "finding": "interrupt enable helper executes STI",
+      "file": "lib/misc/BootLibrary.c",
+      "lines": [
+        17,
+        17
+      ]
+    },
+    {
+      "finding": "IDE initialization changes bus-master state and initializes drives",
+      "file": "drivers/ide/BootIde.c",
+      "lines": [
+        659,
+        666,
+        667,
+        670,
+        671
+      ]
+    },
+    {
+      "finding": "Inspected FATX facade exposes file loading; no file-write API or direct sector-write call found",
+      "files": [
+        "fs/fatx/BootFATX.h",
+        "fs/fatx/BootFATX.c"
+      ]
+    },
+    {
+      "finding": "existing serial sender can wait forever",
+      "file": "drivers/pci/pci.c",
+      "lines": [
+        236,
+        239
+      ]
+    },
+    {
+      "finding": "loader disables interrupts later but then changes CPU/memory and moves image",
+      "file": "boot/LoadReactOS.c",
+      "lines": [
+        347,
+        359,
+        370,
+        373,
+        422
+      ]
+    },
+    {
+      "finding": "Inspected loader has no explicit651 snapshot handoff; RAM durability must not be assumed",
+      "file": "boot/LoadReactOS.c"
+    },
+    {
+      "finding": "PIO653 rejects IF set; cannot directly bind after normal STI without a design change"
+    }
+  ],
+  "sources": {
+    "boot/BootResetAction.c": "b27a08d5c4e18d331d2794ba0f50731d2768d5edc6addbeba3148a6b942612df",
+    "drivers/video/xwn_hd_native.c": "c4bade6880b5efa17dd88383c223d21048c86ea7d69b556d5f126234a6f1bb77",
+    "drivers/video/BootVgaInitialization.c": "481e95c8335ba0d865b3ccddfc1b1acfaf0721e12045104e37c5d4d13573c4d4",
+    "lib/misc/BootLibrary.c": "9ee047b2a1cc68ae885c0ad5ee569648e12359bd7017d2a10bac878d29ff7312",
+    "drivers/ide/BootIde.c": "5d5029d2468f001cd71903baae785929c7f832db09fcae6ac6a913f49bdaf83e",
+    "fs/fatx/BootFATX.h": "31c3646217080aefd4f9ff40bb0cdb8f11006385eee5780b33eb864699e900c1",
+    "fs/fatx/BootFATX.c": "3c7fd702a82a2895251335077986f4822814895c5b25465f7d01a8f1c5d3cd1a",
+    "drivers/pci/pci.c": "090a07eef7203cb72fafcc7a4e12635ce029355c1bd70a0dbde0fe66a986815e",
+    "boot/LoadReactOS.c": "127ed68dea652f9a0bf873dd420a122753aa39e8123f567f41c5895c6ce9a06d"
+  },
+  "source_sha256": "abbb2c3755a32da053d22d5e71861bc478000abed50be76d44ef9d794de0258b",
+  "tree": "2fda813f3b8109dfc6b70f6d37e21d2cf9a66d55",
+  "decision": "Do not integrate early/deferred PIO. Use one post-result comparison indication with unchanged capture/apply/reset path; it reports a masked subset only, not full snapshots.",
+  "initial_search_failure": "PowerShell did not expand wildcard path arguments in one rg query (OS error123); repeated using explicit directories. No source or runtime changed.",
+  "ended_utc": "2026-10-22T03:35:30.834442+00:00"
+}

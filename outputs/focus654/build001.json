@@ -1,0 +1,301 @@
+{
+  "status": "compiled",
+  "physical_access": false,
+  "guest_launch": false,
+  "started_utc": "2026-10-22T03:34:14.583601+00:00",
+  "space": {
+    "minimum_free_gib": 20.05,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c",
+        "free_bytes": 29861814272
+      },
+      {
+        "free_bytes": 29861814272,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "source_pins": {
+    "build.py": "4714b3472a1c17f29fdec2035787d8f2e3e4b59c5f39f0521ac771f103034292",
+    "led651.h": "a611604f8f0adc93a1f174a99d5504cbb3f6cdf2b90e5df7d80a975e1261ad8e",
+    "test.c": "4422ecb8a03123391c98e540e27de723eeffa0822b7cf25f4f185ea71586d93a"
+  },
+  "commands": [
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-std=c99",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-O1",
+      "-g",
+      "-fsanitize=address,undefined",
+      "-fno-pie",
+      "-no-pie",
+      "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/focus654",
+      "-I/mnt/c/xwn651/source001/drivers/video",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/focus654/test.c",
+      "-o",
+      "/mnt/c/xwn654/build001/test-host"
+    ],
+    [
+      "/mnt/c/xwn654/build001/test-host"
+    ],
+    [
+      "git",
+      "-C",
+      "/mnt/c/xwn651/source001",
+      "checkout-index",
+      "--all",
+      "--prefix=/mnt/c/xwn654/source001/"
+    ],
+    [
+      "git",
+      "init",
+      "-q",
+      "/mnt/c/xwn654/source001"
+    ],
+    [
+      "git",
+      "-C",
+      "/mnt/c/xwn654/source001",
+      "add",
+      "-f",
+      "."
+    ],
+    [
+      "git",
+      "-C",
+      "/mnt/c/xwn654/source001",
+      "write-tree"
+    ],
+    [
+      "make",
+      "all",
+      "CC=/usr/bin/x86_64-linux-gnu-gcc-12",
+      "GITREV=xwn633-480p",
+      "EXTRA_CROM_CFLAGS=-DXWN_PHYSICAL_PREFLIGHT -DXWN_HD_RESERVATION=1 -DXWN_HD_TIMING_720P=1 -DXWN_HD_BOOT_MODE=3",
+      "LDFLAGS-ROM=-s -S -T /mnt/c/xwn654/source001/scripts/ldscript-crom.ld -Map=/mnt/c/xwn654/build001/image-crom.map"
+    ],
+    [
+      "objcopy",
+      "-O",
+      "binary",
+      "--only-section=.text",
+      "/mnt/c/xwn651/source001/obj/xwn_hd_adapter.o",
+      "/mnt/c/xwn654/build001/xwn_hd_adapter-before.text"
+    ],
+    [
+      "objcopy",
+      "-O",
+      "binary",
+      "--only-section=.text",
+      "/mnt/c/xwn654/source001/obj/xwn_hd_adapter.o",
+      "/mnt/c/xwn654/build001/xwn_hd_adapter-after.text"
+    ],
+    [
+      "objcopy",
+      "-O",
+      "binary",
+      "--only-section=.text",
+      "/mnt/c/xwn651/source001/obj/xwn_hd_profile.o",
+      "/mnt/c/xwn654/build001/xwn_hd_profile-before.text"
+    ],
+    [
+      "objcopy",
+      "-O",
+      "binary",
+      "--only-section=.text",
+      "/mnt/c/xwn654/source001/obj/xwn_hd_profile.o",
+      "/mnt/c/xwn654/build001/xwn_hd_profile-after.text"
+    ],
+    [
+      "objcopy",
+      "-O",
+      "binary",
+      "--only-section=.text",
+      "/mnt/c/xwn651/source001/obj/BootLibrary.o",
+      "/mnt/c/xwn654/build001/BootLibrary-before.text"
+    ],
+    [
+      "objcopy",
+      "-O",
+      "binary",
+      "--only-section=.text",
+      "/mnt/c/xwn654/source001/obj/BootLibrary.o",
+      "/mnt/c/xwn654/build001/BootLibrary-after.text"
+    ]
+  ],
+  "host": {
+    "passed": true,
+    "cases": 9600,
+    "physical_access": false
+  },
+  "changed_parent_paths": [
+    "drivers/video/led651.h"
+  ],
+  "tree": "973e0e58f5310ba5c3a79842bbedba3a8a6469c0",
+  "parent_tree": "2fda813f3b8109dfc6b70f6d37e21d2cf9a66d55",
+  "flags": "-DXWN_PHYSICAL_PREFLIGHT -DXWN_HD_RESERVATION=1 -DXWN_HD_TIMING_720P=1 -DXWN_HD_BOOT_MODE=3",
+  "unchanged_object_text": {
+    "drivers/video/xwn_hd_adapter.o": "6d709d5c7fa1a4fe216f1de1773e22b716822fac2afb90321ebb1674f42dbe4d",
+    "drivers/video/xwn_hd_profile.o": "b20db96d464f095e420401938d102b656c8ad1fc60000aacebebc797122c7a02",
+    "lib/misc/BootLibrary.o": "2f1bfb824a214085be84de15828d525d080f8bd90849ec48a31565660ec7498a"
+  },
+  "outputs": {
+    "BootLibrary-after.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "BootLibrary-after.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "BootLibrary-after.text": {
+      "bytes": 1737,
+      "sha256": "2f1bfb824a214085be84de15828d525d080f8bd90849ec48a31565660ec7498a"
+    },
+    "BootLibrary-before.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "BootLibrary-before.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "BootLibrary-before.text": {
+      "bytes": 1737,
+      "sha256": "2f1bfb824a214085be84de15828d525d080f8bd90849ec48a31565660ec7498a"
+    },
+    "build.stderr": {
+      "bytes": 1748,
+      "sha256": "3a0d1437d24ebb95a316e73ca64d796bab189d048336f96bba0eb0f79bb6884c"
+    },
+    "build.stdout": {
+      "bytes": 137181,
+      "sha256": "960adb291284f3f8bb863d26bf46433c9c30c7602948cd5882d53731bf073f2c"
+    },
+    "compile-host.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compile-host.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "default.xbe": {
+      "bytes": 303120,
+      "sha256": "0457913a58cb6030c1b54a0078da2b96e8939f4070412c783aa4219241ab2bb1"
+    },
+    "export.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "export.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "host.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "host.stdout": {
+      "bytes": 53,
+      "sha256": "046c34e06f4aa7a77cbb7f8da1c0f476201688c9d75dafebc54aed5590002c84"
+    },
+    "image-crom.bin": {
+      "bytes": 290812,
+      "sha256": "1e39ae5a1689568e168e852f0731018094be8b1b5b1f6ab2795466d39f1efbf8"
+    },
+    "image-crom.elf": {
+      "bytes": 326720,
+      "sha256": "ba5985713051398cc3b8b2efb9209546d99a7e0698cf4ca216a66a533d7a51f4"
+    },
+    "image-crom.map": {
+      "bytes": 186697,
+      "sha256": "68b524a0891e70e77c886e7d748ce7546c8125d25df226cdb2d71c7bb3d93e8b"
+    },
+    "index.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "index.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "init.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "init.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "test-host": {
+      "bytes": 49288,
+      "sha256": "167c55021f474ac85ff500d8d2c4cc4a7c62dfe51f2c5dedb99c37127a343a72"
+    },
+    "tree.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "tree.stdout": {
+      "bytes": 41,
+      "sha256": "1674013514d6acae4d0660bfcfcf3611134244c2e3ba3fe6cf29eaf63aa9cdd5"
+    },
+    "xwn_hd_adapter-after.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "xwn_hd_adapter-after.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "xwn_hd_adapter-after.text": {
+      "bytes": 2751,
+      "sha256": "6d709d5c7fa1a4fe216f1de1773e22b716822fac2afb90321ebb1674f42dbe4d"
+    },
+    "xwn_hd_adapter-before.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "xwn_hd_adapter-before.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "xwn_hd_adapter-before.text": {
+      "bytes": 2751,
+      "sha256": "6d709d5c7fa1a4fe216f1de1773e22b716822fac2afb90321ebb1674f42dbe4d"
+    },
+    "xwn_hd_profile-after.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "xwn_hd_profile-after.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "xwn_hd_profile-after.text": {
+      "bytes": 189,
+      "sha256": "b20db96d464f095e420401938d102b656c8ad1fc60000aacebebc797122c7a02"
+    },
+    "xwn_hd_profile-before.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "xwn_hd_profile-before.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "xwn_hd_profile-before.text": {
+      "bytes": 189,
+      "sha256": "b20db96d464f095e420401938d102b656c8ad1fc60000aacebebc797122c7a02"
+    }
+  },
+  "ended_utc": "2026-10-22T03:34:49.195063+00:00"
+}

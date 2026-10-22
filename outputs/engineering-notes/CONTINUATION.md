@@ -1,3 +1,34 @@
+#654 staged, NO SITE: watched single-comparison readiness pending
+
+Read outputs/focus654/REPORT.md and NEXT.md. New source review resolves the
+transport boundary: failure resets before IDE init; success reaches IDE after
+STI, incompatible with653 IF-clear admission. No earlier IDE init, pending-bit
+clear, file-write API assumption or automatic storage logger is introduced.
+Full pre/post export remains unmet. Smaller question: does the captured timing
+subset match the requested480p profile after the existing setup result?
+
+Only651 led651.h changed in a fresh source export. Dark2s, then ONE20s indication:
+green/off=matched subset; red/off=CRTC mismatch; amber/off=FP/general mismatch;
+red/amber=both; red/green=unknown/outside supported result. Green is not boot
+success. Source capture/apply/reset unchanged;8 object text/rodata sections match.
+9,600 ASan/UBSan cases,100 exact compiled-wrapper cases and one-shot controller
+checks pass. No build/test failure. Raw rg wildcard search error123 retained.
+Existing timer can hang; code layout and indication timing still perturb behavior.
+
+XBE303120 bytes SHA256
+0457913a58cb6030c1b54a0078da2b96e8939f4070412c783aa4219241ab2bb1.
+Preparation captured28 selected files twice. Staged unique
+E:/Applications/XWNFocus654 owner+XBE with exact readback; ordinary720p/startup
+and savedXBOX480 protected. Dashboard reachable during staging. No hook/rollback,
+SITE, observer or owned process outstanding. Build lease released; original
+physical lease retained. Automation paused.651 and earlier runtimes CLOSED.
+
+Asked whether user is ready to watch ONE20-second LED indication and screen.
+Do not launch until that fresh response. Then record ready001, send one SITE
+with20s reply bound and start one bounded observer. Desktop requires normal
+Restart before collection. Keep failure/no-data outcomes and Ftdisk49/Popup26
+limitations. See precise654 NEXT; do not repeat a closed launch or expand storage.
+
 #653 diskless PIO prototype validated; hardware transport not admitted
 
 Read outputs/pio653/REPORT.md and NEXT.md. New callback-only backend integrates
