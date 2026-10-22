@@ -1,3 +1,60 @@
+# 659 CLOSED: solid green hold; manual recovery and integrity passed
+
+Read control659/REPORT.md, NEXT.md, observation001.json, reconciliation001.json,
+audit001.json and closure001.json. One SITE accepted at 21:34:45.417269Z. The user
+confirmed solid green AND a black screen. A bounded dashboard probe failed during
+the intentional hold. This matches entry-latch and original show658 success in
+this instrumented control. No raw BSS status or measured duration was recovered.
+No network, automatic reset or Windows run was intended.
+
+The user power-cycled as requested; the dashboard was confirmed and one collection
+completed at 21:36:50Z. All 28 selected files are unchanged, five hives parse,
+savedXBOX480 is intact, and events are unchanged with no new6006. Manual recovery
+is not normal Windows restart. No hook or receiver remains. The permanent firewall
+was verified and retained. All owned build, test and collection processes closed.
+
+Next: a fresh post-capture network probe with a persistent polling-only result
+latch, preserving admission/sender/local-completion/unsafe-cleanup distinctions
+and raw capture. 659 adds SMC transactions and removes network/reset; it does not
+explain658 or qualify native networking/timing. Validate actual linked paths before
+stage/launch, with fresh identity/capture and one SITE. No admission relaxation or
+functional driver patch from silence. Never rerun/recollect659,658,657. See exact
+NEXT. Controller001 wrong-path mock failure is preserved;002/v2 passed.
+
+Ordinary720p/startup/savedXBOX480/releases/recovery remain protected. Physical lease
+retained, build lease free, automation paused. Historical Ftdisk49/Popup26 unresolved.
+
+#659 LAUNCHED ONCE: intentional hold; watched LED observation pending
+
+One SITE accepted2026-10-22T21:34:45.417269Z through qualifiedphysical_v2.
+Do not launch again. Control intentionally holds and neverrequestsreset/network/
+Windows. User asked for persistent final LED and screenstate, availabletoreset.
+No receiver/hook/controllerprocess remains. Await observation, then ifheld request
+one manual powercycle; collectonce/auditretainedbytes afterdashboardreturns.
+Read control659/REPORT.md,NEXT.md,launch001.json,running001.json. 658/657closed.
+
+#659 staged: timer-independent LED result latch; intentional hold
+
+Read control659/REPORT.md and NEXT.md plus latest actual receipts. Source-only
+input from closed658; no closed runtime reused. Newcontrol freezes original
+capture, attempts amber/off entry, runs unchanged show658, latches final status
+without timer dependency, then HLT. NO network, automatic reset or Windows.
+XBE SHA256 e8698a90ecdf91c8d945fb3147aec1c3f65bbfd9879b7e0b500599e466505ed8.
+269 sanitizer cases,10 exactlinked control cases,29 artifact checks pass.
+18 unchanged oldsections include original indication and display caller.
+Raw IN/OUT modeled only; host success is not physical timing/SMC qualification.
+
+Controller001 FAILED wrongmockpath; preserved. Controller002 passes accepted/
+uncertain one-shot transport. Use physical_v2.py only; requires passedflag and
+exactcontrollerhash. V1 only prepared28selectedfiles, never launched. Stage/readback
+complete, no SITE at this checkpoint. User confirms available to reset.
+
+Next one launch, persistent light observation, then deliberate manual recovery
+if held. Collect once after dashboard return and audit retainedbytes. No hook,
+receiver or VM. Ordinary720p/startup/savedXBOX480 preserved. Permanentfirewall
+retained. Physicallease retained, buildlease free, automationpaused. Ftdisk49/
+Popup26 remain unresolved. Do not retry658/657 or inferfailurestage fromsilence.
+
 #658 CLOSED: amber-only observation, zero UDP packets, selected integrity passed
 
 Read indicate658/REPORT.md, NEXT.md, reconciliation001.json, audit001.json and
