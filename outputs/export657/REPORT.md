@@ -1,4 +1,35 @@
-#657 integrated capture/export/reset diagnostic, awaiting firewall elevation
+#657 physical attempt closed: no UDP datagrams, dashboard returned
+
+One SITE request was accepted at2026-10-22T20:24:30.401595Z. The owned receiver
+ran20:24:17.070238Z through20:26:17.075747Z, covering106.67seconds after the
+launch request, and received ZERO datagrams (not merely rejected/invalid packets).
+No launch retry or second collection occurred. The user confirmed dashboard
+state but did not observe the intervening screen sequence. Exporter execution,
+native admission, NIC result and cleanup status are therefore unknown; absence
+of packets does not identify which stage failed or prove a network fault.
+
+The user ran the administrator script. firewall-open002 passed exact scoped
+rule validation and started cleanup helper24512. run_v2 independently checked
+active rule/interface and started receiver43208. The console became reachable;
+collection001 completed20:25:16Z. All28 selected files are byte-identical, five
+hives parse, event history is preserved, and no new Windows events/6006 exist.
+This workload did not intend to run Windows; dashboard return is not a normal
+Windows restart. SavedXBOX480 and ordinary720p/startup remain unchanged.
+
+Receiver exited2 for silence. The cleanup helper removed its temporary rule at
+20:26:19Z; independent cleanup-verification001 finds no rule or either owned
+process. No hook was installed. Native cleanup itself remains unobserved.
+reconciliation001 ties the receiver private manifest to the exact staged XBE,
+identity and accepted launch. Receiver's launch_sent=false is its own lack of a
+launch operation; the controller separately records one accepted request.
+
+Physical657 is CLOSED. Never rerun/recollect it or reuse its token/capture/runtime.
+Build and source artifacts remain reusable by pin. No GPU/mode/NIC qualification.
+See NEXT.md for a fresh diagnostic that separates exporter entry, admission,
+sender and cleanup outcomes before considering any functional change.
+
+## Prepared qualification and preserved failures
+
 
 The native caller now freezes the original651 display result, state, trace and
 pre/post snapshots into652 data and encodes the unchanged655 packet before

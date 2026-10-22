@@ -1,3 +1,32 @@
+#657 CLOSED: zero UDP datagrams; dashboard returned and selected integrity passed
+
+Read export657/REPORT.md, NEXT.md, reconciliation001.json, audit001.json and
+closure001.json. User ran Administrator Open-Firewall.ps1; exact scoped open002
+rule and elevated cleanup readiness passed. run_v2 issued ONE accepted SITE at
+2026-10-22T20:24:30.401595Z.120-second receiver covered106.67seconds after request,
+received ZERO datagrams and exited2. No retry. User confirms dashboard but screen
+sequence is unknown. Exporter execution/admission/sender/native cleanup unknown;
+silence does not identify where execution stopped or prove a network problem.
+
+One collection completed20:25:16Z: all28 selected files unchanged, five hives
+parse, event history unchanged, no new Windows events or6006. No Windows run was
+intended; dashboard return is not normal Windows restart. Ordinary720p/startup
+and savedXBOX480 preserved; no hook. Receiver43208 and cleanup helper24512 exited.
+Scoped firewall removed20:26:19Z; independent verification finds no rule/process.
+Physical657 CLOSED; never rerun/recollect/reuse its identity or receiver runtime.
+
+Next prepare a fresh bounded diagnostic distinguishing exporter entry, native
+admission error, sender failed phase/error and cleanup status via an independently
+validated out-of-band indication. Use bounded657 SMC/timer code, preserve original
+capture and raw packet; do not weaken guards or alter functional display/NIC state
+based on silence. Fresh compile/model review, identity, receiver and admin firewall
+lifetime before another admitted launch. See exact NEXT; no further launch now.
+
+All owned host processes closed, no startup hook/firewall, console dashboard
+connected and user confirmed. Physical lease retained, build lease free,
+automation paused. Releases/recovery untouched. No NIC/DMA/cache/timer/Windows
+qualification; historical Ftdisk49/Popup26 remain unresolved.
+
 #657 capture/export/reset integrated and staged; administrator firewall step pending
 
 Read export657/REPORT.md, NEXT.md, build001.json, compiled-wrapper001.json,

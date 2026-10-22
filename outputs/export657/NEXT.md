@@ -1,34 +1,36 @@
-# Next: one receiver-qualified physical657 launch
+# After657: distinguish exporter/admission/sender/delivery before another launch
 
-Do not rebuild, reprepare or restage657. The exact candidate is already staged;
-no launch has occurred. Preserve failed firewall-open001 and all existing host
-records. Never reopen a closed host runtime or launch656's dormant artifacts.
+Read REPORT.md, run001, reconciliation001, audit001, user-observation001 and
+closure001. Physical657 is CLOSED: one accepted launch, zero datagrams, dashboard
+confirmed,28 selected files unchanged, five hives parse, no new Windows events.
+Receiver and elevated cleanup helper exited; scoped firewall rule absent.
+Never rerun/recollect657, reopen capture001, reuse its identity, or restart its
+expired firewall scripts. Keep all earlier build/controller/firewall failures.
 
-1. Wait for the user's Administrator PowerShell execution of Open-Firewall.ps1.
-   Inspect firewall-open002.json and actual scoped rule; confirm cleanup helper
-   PID/readiness and at least4minutes until expiration. If it failed or expired,
-   preserve that outcome and prepare a fresh explicit firewall attempt; do not
-   edit receipts or reuse an uncertain test.
-2. Run `C:/Python314/python.exe -B outputs/export657/run_v2.py` once from repo root.
-   It starts an exclusive120-second receiver, checks readiness and stage/protected
-   hashes, issues one SITE with20-second reply bound, then watches for dashboard
-   for at most150seconds. No missing-packet/uncertain-launch retry. No startup
-   hook exists; confirm ordinary startup first when dashboard returns.
-3. A concise observation may distinguish visible480p pattern/black and automatic
-   dashboard return. This workload deliberately does NOT run Windows. If held,
-   request a physical reset only after the bounded capture; keep DMA memory live.
-4. On return collect once (run_v2.py does this), then perform a fresh cold audit of
-   the28 selected files/five hives/events against this preparation. Existing654
-   audit source may be adapted into a fresh657 audit, not rerun/recollect654.
-   Verify owned receiver exit and elevated firewall helper removal receipt plus
-   actual absence. run_v2.py writes C:/xwn657/close-firewall.request in finally.
-5. Reconcile private capture001 manifest, peer, identity, packet bytes and exact
-   launched XBE. Publish decoded non-proprietary diagnostic fields and result
-   limits. Silence is inconclusive; receipt is not cleanup or Windows proof.
-   Preserve all transport/admission/observation failures. Update continuation,
-   review, repository checks, commit/push exact public bytes and close657 only
-   after actual process/console/cleanup state is accounted for.
+Next bounded work is a fresh source-only diagnostic design using exact657 as a
+source/artifact input, not a runtime parent. Add independently tested, bounded
+out-of-band indications for exporter entry, native admission error, sender
+error/failed phase, and safe-versus-unsafe cleanup. Preserve raw display packet
+and original pre/post-capture boundaries. Use657's bounded SMC/timer mechanism
+rather than legacy unbounded LED waits. Keep the first native rejection separate
+from TX failure and missing delivery. A pre-export failure must remain distinguishable
+from a post-export hold. Do not weaken the native admission guard or change NIC/
+cache/mapping/display settings based on this silence.
 
-No physical NIC/admission/cache/link data exists yet. Model tests do not predict
-that unknown hardware context will be admitted. Keep boot intermittency and
-1080i separate, ordinary720p protected, and avoid speculative functional patches.
+Qualify the new compiled caller and indication/error paths on host before a fresh
+physical candidate. If networking is attempted again, use new attempt/build tokens,
+receiver directory and scoped firewall lifetime; admin rule creation requires the
+user, as Windows explicitly denied this session. Prepare exact reviewable scripts
+and candidate first. Existing user authorization permits routine console launches.
+Ask for a concise watched indication only when the new probe is actually staged
+and admitted; do not repeat657 until lucky. Keep exactly one bounded SITE per
+attempt, record uncertainty without retry, and remove owned hooks first on return.
+
+A packet capture outside the application may help distinguish transport versus
+host delivery but requires separately admitted privileges and a narrowly scoped
+capture; do not disable the firewall. Current local-LAN broadcast test is not
+external inbound proof. No incoming bytes or native status were captured657.
+
+Continue protecting ordinary720p/startup/savedXBOX480, immutable releases and
+recovery. No Windows or normal-restart claim here; historical Ftdisk49/Popup26
+remain unresolved. Physical lease retained, build lease free, automation paused.
