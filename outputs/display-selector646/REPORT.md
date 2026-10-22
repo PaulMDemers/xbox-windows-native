@@ -1,4 +1,4 @@
-#646 IN PROGRESS: restored ordinary720p recovery boot
+#646 CLOSED/PASS: restored ordinary720p desktop and normal restart
 
 645 failed to reach the desktop, then the selector restored the exact ordinary
 720p launcher. This is a distinct recovery control with no remote file writes,
@@ -10,12 +10,22 @@ One SITE was accepted2026-10-22T00:51:44.294319Z. The user was asked to confirm 
 desktop, reopen savedXBOX480, then request normal Windows restart. No further
 launch is planned in this sequence. Do not resend the accepted request.
 
-Observer exec session44493 polls for at most600seconds after the accepted launch,
-then collects once on dashboard return. At119.2seconds FTP remained unavailable;
-that does not establish the screen or boot outcome. Read the latest actual
-observation001.json and any collection001.json before taking action.720p is
-already selected, with no outstanding rollback or hook. Human observation and
-new shutdown events are required separately before claiming recovery boot PASS.
+The user confirmed that Windows reached the desktop, then confirmed returning
+to the dashboard after restarting from Windows. The observer detected dashboard
+FTP at256.6seconds and collected once; it exited0.28 selected files were captured
+before/after. The protected launcher/driver/startup files are unchanged, five
+hives parse, event history is preserved, and one new EventLog6006 confirms normal
+shutdown. The retained XBOX480 file is unchanged. The user did not separately
+confirm reading that text in this run; exact collected bytes establish persistence.
 
-The public repository check passed43820 tracked files. All prior645 failures and
-records remain intact; never rerun/recollect645. This record is pending, not closure.
+The ordinary720p recovery boot and selected integrity checks pass. Ftdisk49 is
+the only new warning/error, so strict_passed remains false. This is selected-file
+and hive validation, not a full physical FATX allocation scan. No in-guest mode
+query was installed; configured720p is established by the pinned launcher and
+desktop behavior is a user observation. This was not a live mode switch.
+
+The original console is at the dashboard,720p remains selected, no hook/rollback
+or owned host process remains. No further launch occurred.645 remains a failed
+480p boot despite successful selector apply/restore transfers;646 success does
+not diagnose its cause or complete the480p selector boot cycle. Never rerun or
+recollect645/646. No other-revision, fullscreen or acceleration claim.

@@ -10,6 +10,9 @@ passed physical480p apply/readback and720p restoration, but the480p boot showed
 black and returned without new Windows events. A successful selector boot cycle
 is still pending. The frozen644 archive retains its original pre-test instructions;
 it has not been repackaged or silently updated.
+The restored720p recovery boot subsequently passed in
+[646](../outputs/display-selector646/REPORT.md), including the watched desktop,
+normal restart and selected-file/hive audit. Ftdisk49 remains.
 
 Use this only with the matching existing E installation on the qualified original
 Conexant console. The pinned 480p loader requires the HDTV AV-pack classification

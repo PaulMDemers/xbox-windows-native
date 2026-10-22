@@ -1,3 +1,24 @@
+#645/646 CLOSED:480p boot failed;720p recovery desktop/restart passed
+
+645 selector apply480p/readback/restore720p passed, but boot was black then exit;
+no new Windows events/6006.646 restored720p reached desktop (user confirmed),
+then user restarted Windows to dashboard. Independent collection/audit passed
+protected files,five hives/history,exact savedXBOX480 and one new6006. User did not
+separately confirm reading the text in646; exact retained bytes prove persistence.
+Ftdisk49 remains; strict false; no full physical FATX allocation scan.
+
+Observer44493 exited0. Console at dashboard, exact720p selected, no hook/rollback
+or owned process outstanding. No further launch queued. Never rerun/recollect
+645/646. Read outputs/display-selector646/REPORT.md and precise NEXT.md.
+
+Full480p selector boot-cycle qualification remains incomplete. Next design a
+bounded early-boot diagnostic distinguishing explicit480p setup/gate reset from
+other exits, or a controlled launcher-location comparison; do not repeat blindly.
+642/645 use identical480p XBE/protected code but differ in location,probe hook and
+mutable hives/events. Keep current adapter; composite is separate480i work.
+No functional timing patch, automatic-mode/other-revision/acceleration promotion.
+Automation stays paused. All earlier failures preserved.
+
 #646 user confirms720p desktop; normal restart/readback still pending
 
 User confirmed desktop and asked why480p fails / whether composite would help.

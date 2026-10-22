@@ -92,6 +92,9 @@ additional-console qualification or automatic selection is implied.
    cycle through the selector remains unqualified. See the
    [operator guide](display-selector-recovery.md). Conservative automatic
    selection follows that qualification.
+   [646](../outputs/display-selector646/REPORT.md) then verified the restored720p
+   desktop and normal restart, with protected files/hives and saved text intact.
+   Ftdisk49 remains; this recovery success does not diagnose the480p failure.
 5. Implement live Windows switching as a separate driver change: mode enumeration
    and validation, hardware programming, display/surface teardown and recreation,
    failed-change rollback, and DirectDraw/fullscreen restore. Test repeated
