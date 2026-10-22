@@ -1,3 +1,54 @@
+#651 CLOSED: observed desktop and normal restart; LED readback inconclusive
+
+One SITE accepted2026-10-22T02:48:55.931994+00:00. User reported flashing green,
+red/green flashing, then amber and Windows desktop. This does not resolve four
+failure slots; no register-match, byte-class or handshake code is assigned.
+User then reported Rebooting after normal Restart request. Dashboard FTP returned
+at260.4s; observer93223 collected once and exited0 at02:53:33Z. All28 selected
+files read twice; protected720p/startup and savedXBOX480 unchanged. Five hives
+parse, event history retained, one new EventLog6006. Normal restart + selected
+integrity pass; strict clean result false: Ftdisk49 and three shutdown rundll32
+Popup26 entries remain. No full allocation audit or actual output-mode measurement.
+No hook, rollback or owned host process remains; original physical lease retained.
+Console at dashboard by FTP. Automation paused. Isolated651 staged files retained.
+No second launch queued. No rerun/recollection of651 or earlier closed attempts.
+
+This is another successful diagnostic480p desktop run, not a functional fix or
+proof of repeatability.649 adapter bytes unchanged; new reads/layout can affect
+timing. No exact snapshot persisted externally, so failed-versus-successful
+register comparison remains unavailable. Next: design a durable, bounded receipt
+for actual pre/post setup state and validate it independently before any new
+physical candidate. Do not change clocks, pending bits, poll limits or output
+ordering based on this mixed history. See readback651/REPORT.md and NEXT.md.
+
+#651 user observed Windows desktop; normal Restart requested
+
+User reports: "They went quick but it was Flashing green, red/green flashing,
+then amber. Windows is on the desktop". Raw observation retained in651.
+Do not decode this as four failure slots; sequence is ambiguous. Desktop is
+observed, not a mode measurement or full qualification. Normal Start/Shut Down/
+Restart requested; waiting user and dashboard return. Observer session93223
+still owns the one collection within600s of02:48:55.931994Z launch. No hook.
+If observer deadline expires before restart, preserve that result and check
+collection_requested before any separately admitted single collection. No SITE
+retry. Ordinary720p/startup unchanged, original physical lease retained.
+
+#651 LAUNCHED once; observation and collection pending
+
+SITE accepted 2026-10-22T02:48:55.931994+00:00, reply 200 EXEC succeeded.
+User Proceed supplied four-slot watch readiness; ready001.json retained.
+Launch session36852 exited0. Observer session93223 started once and owns any
+collection; its600-second deadline is measured from launch. No duplicate SITE.
+Initial FTP probes at138.2/156.2s unavailable; actual screen and FOUR LED patterns
+pending user response. Do not infer dashboard return or Windows success.
+No startup hook exists. Ordinary720p/startup untouched; no rollback outstanding.
+Original physical lease retained; automation paused. No other launch queued.
+Read outputs/readback651/NEXT.md and REPORT.md for exact four-slot mapping:
+failed wait, masked timing comparison, sampled status class, handshake equality.
+First slot is phase-specific, not old generic red/green. RAM-only details unknown.
+After bounded observer, audit retained collection once if completed. If Windows
+opens, request normal Restart before collection. Never relaunch this attempt.
+
 #651 staged, NO SITE: four-slot watch readiness pending
 
 Read outputs/readback651/REPORT.md and precise NEXT.md.650 static review passes

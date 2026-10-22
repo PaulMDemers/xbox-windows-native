@@ -1,10 +1,11 @@
-#651 staged, NO SITE: timing readback and sampled-status diagnostic
+#651 CLOSED: desktop observed, normal restart verified, LED categories unresolved
 
 650's static review found that the intended480p timing values agree with the
 retained successful stock631 readings. It did not establish actual register
 state in the failing native launch. This candidate addresses that gap without
 changing the mode table, polling predicate/limit or functional output ordering.
-No651 physical result exists until launch, observation, collection and audit.
+The physical result and its limits are recorded below; the original staging
+checks and failed earlier attempts remain preserved.
 
 ## Candidate and access scope
 
@@ -87,7 +88,30 @@ NEXT.md before any launch. Ordinary720p/startup are protected; unique owned
 E:/Applications/XWNReadback651 only, no dashboardC access and no startup hook.
 Automation remains paused. No functional fix or expanded platform claim.
 
-Preparation and staging completed:28 selected baseline files, two staged files
-read back exactly; no launch request. User watch-readiness question is pending.
-Preparation observer9811 and staging process51059 exited0. No owned process
-remains; no hook/rollback. Existing physical lease retained.
+Preparation and staging completed before launch:28 selected baseline files and
+two staged files read back exactly. Preparation9811 and staging51059 exited0.
+The subsequent authorized physical attempt is closed below.
+
+## Physical result
+
+One SITE accepted at2026-10-22T02:48:55.931994+00:00. User observation verbatim:
+"They went quick but it was Flashing green, red/green flashing, then amber.
+Windows is on the desktop". Desktop is observed; the sequence is not an
+unambiguous four-slot failure receipt. No timing-register match, raw status
+class or handshake equality is inferred. RAM snapshots were not exported.
+
+After the requested normal Windows Restart, the user said "Rebooting". FTP
+was observed at260.4s; first probe was at138.2s, so earlier availability was
+not measured. Observer93223 collected once and exited0. Collection completed
+02:53:33Z. Five hives parse, event history is preserved, saved XBOX480 and all
+protected payloads/startup are unchanged. EventLog6006 occurs once. Ftdisk49 and
+three rundll32 shutdown Popup26 records remain; strict clean result is false.
+See audit001.json, collection001.json and closure001.json. No full allocation
+audit, physical mode measurement or new interaction workload was performed.
+
+This successful diagnostic boot does not fix or explain intermittent failures.
+The unchanged649 adapter code with a newly instrumented wrapper is not an
+otherwise identical timing control. No functional profile/poll/order change
+is justified by this outcome. No hook, rollback or owned host process remains;
+ordinary720p remains installed. Console is reachable at the dashboard. Unique
+651 staging is retained. Do not rerun or recollect this closed attempt.
