@@ -1,3 +1,51 @@
+# 660 CLOSED: native admission rejection indicated; recovered safely
+
+Read latch660/REPORT.md, NEXT.md and actual reconciliation/closure001 receipts.
+One SITE accepted21:46:15Z. User observed flashing red on held black screen,
+matching nonzero NativeAdmissionError656 before send656. Exact CPU/segment/cache/
+PCI/DMA category unknown; no raw BSS receipt. No admission relaxation justified.
+Fresh identity-matched 180-second receiver received zero datagrams; exit2.
+No firewall-failure conclusion; permanent scoped rule verified and retained.
+
+User manually power-cycled and replied Ready. One collection ended21:48:19Z;
+all28 selected files unchanged, five hives parse, savedXBOX480 intact, no new
+events/6006. Manual recovery is not normal Windows restart or full FATX proof.
+All owned processes exited; no hook. Console at dashboard. Never rerun/recollect660.
+Next fresh diagnostic should expose the existing admission category through a
+persistent LED, preserving guards and exact-linked host qualification first.
+Ordinary720p/startup/releases/recovery preserved; physical lease retained, build
+lease free, automation paused. Historical Ftdisk49/Popup26 remain unresolved.
+
+# 660 LAUNCHED ONCE: UDP receiver active; final-light observation pending
+
+One SITE accepted2026-10-22T21:46:15.189617Z. Receiver1564 owns fresh capture001
+under C:/xwn660 for180seconds. Run.py owns receiver/launch only; no collection.
+Do not launch again. Candidate deliberately holds, no reset/Windows. User asked
+for persistent final LED and screenstate, available for manual recovery. After
+recording observation request reset if held, then collect once/audit retainedbytes.
+Read latch660/REPORT.md,NEXT.md and actual run/launch/observation receipts.
+Permanentfirewall verified before launch and retained. No startup hook.
+
+# 660 prepared: network sender plus persistent result latch
+
+Read latch660/REPORT.md and NEXT.md, then latest stage/run/launch receipts.
+Fresh source tree ed35445d75bbf8bb255753fd67c1a0333a3c468f; XBE SHA256
+9e9c3f1c5ce95dc56b3cba42398cd745aaf05a3d8528d629643c4ffb3d7bedb5.
+Same pre-network entry/timed LED control as659, unchanged native sender/admission,
+then polling-only final status and deliberate hold. No reset or Windows.
+1,440 sanitizer cases,19 linked caller cases,32 artifact reviews pass. Native
+sender outcomes modeled;20 old sections unchanged. No physical NIC qualification.
+
+28 selected files captured twice; stage/readback in progress or complete per
+stage001. No launch at this checkpoint. Controller accepted/uncertain one-shot
+checks pass. Permanent Xbox-only UDP50657 rule reused after active verification.
+Run.py owns fresh180-second receiver and one SITE only, never collection. Ask
+for final light/screen, record hold, request manual recovery, collect/audit once.
+User available to reset. Do not retry or reopen closed659/658/657 runtimes.
+
+No hook. Ordinary720p/startup/savedXBOX480/releases/recovery preserved. Physical
+lease retained, build lease free, automation paused. Ftdisk49/Popup26 unresolved.
+
 # 659 CLOSED: solid green hold; manual recovery and integrity passed
 
 Read control659/REPORT.md, NEXT.md, observation001.json, reconciliation001.json,
