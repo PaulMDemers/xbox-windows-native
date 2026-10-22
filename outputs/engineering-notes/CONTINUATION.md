@@ -1,3 +1,13 @@
+# 661 observation: blinking red/black; cadence clarification pending
+
+User reports blinking red at a black screen. Do NOT treat CPU rejection as
+confirmed yet: equal red/off maps to CPU, but one red slot/three off maps to
+encoding failure. Cadence question is pending. No reset requested yet.
+Receiver42180/run.py session39037 still completing180-second capture; no collection.
+After observation is resolved or declared inconclusive, request manual recovery,
+then collect/audit once. Never relaunch661. No hook or Windows/reset intended.
+Read admission661/observation001.json and actual run/capture receipts.
+
 # 661 LAUNCHED ONCE: category observation pending; receiver active
 
 One SITE accepted at 2026-10-22T22:04:12.914443+00:00. Receiver PID 42180, owned by
