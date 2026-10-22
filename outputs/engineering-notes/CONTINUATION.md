@@ -1,3 +1,37 @@
+# 666 CLOSED: observed IFset before/after display and at admission
+
+Read context666 REPORT/NEXT and actual observation/reconciliation/closure.
+User solidgreen/blackheld maps context9: valid pre/post display IFset and IF-only
+early admission rejection. Not network success or raw register receipt. IF-set
+capture copies flags_after; no uninterrupted interval or first writer proven.
+One SITE,180sec identity-matched capture zero datagrams,receiver2/controller0.
+Manual recovery; one collection/audit28 unchanged files,5 parsed hives,saved
+XBOX480,no newevents/6006. Dashboard,no hook/process; firewall retained.
+
+Next fresh read-only EFLAGS captures immediately before/after memory detection;
+validate actual placement and unchanged initializer/allocator behavior.664
+linked allocator STI path and666 pre-display IFset motivate this boundary.
+No CLI patch/IF waiver or Windows/480p cause inferred. Preserve665 compile
+failure and every older result. Ordinary720p/releases/recovery protected;
+physical lease retained,build lease free,automation paused. Ftdisk49/Popup26
+unresolved. No new launch in closeout.
+
+# 666 solidgreen/black observed: manual recovery requested
+
+Read context666 observation001/capture-review001 and REPORT/NEXT. User reports
+solidgreen/blackheld, matching context9: IFset in present pre/post-display
+snapshots and IF-only early admission rejection. In666 green is NOT network
+success. This supports IF already set before display apply; allocator path
+from664 is consistent, not proven first writer. No raw flags/SMC status recovered.
+IF-set snapshot copies after from before, not two independent live readings.
+No physical NIC qualification or Windows boot cause inferred.
+
+Requested power-off/on to UnleashX; await Ready, then collect/audit once.
+Receiver/controller closed;180sec identity-matched capture zero datagrams.
+No hook/Windows/automatic reset; last console observation blackheld. No relaunch.
+Permanent firewall retained;ordinary720p protected. Physical lease retained,
+build lease free,automation paused. Preserve665 native compile failure.
+
 # 666 LAUNCHED ONCE: held IF-context indication pending
 
 SITE accepted 2026-10-22T23:23:03.181227+00:00. Receiver PID40160, run.py exec

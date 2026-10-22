@@ -41,3 +41,24 @@ Host53,760 original cases+12 boundaries,288 comparison cases+6 boundaries;
 actual-header layout checked in host and i386 compilation.49 exact-linked
 cases and51 artifact checks passed;20 native/display sections unchanged.
 Raw I/O and NativeSend outputs modeled; no physical result yet.
+
+## Closed physical result
+
+User reported solid green on the held black screen. Exact666 context9 maps
+present pre/post snapshots with IF set plus IF-only early admission rejection.
+The distinct entry and timed indications do not share solidgreen. This is
+observed classifier evidence, not raw flag/status readback. It locates IF-set
+state already at the pre-display snapshot; it does not identify the first writer.
+The earlier664 linked allocator-enable path remains a supported explanation,
+not a captured physical history. No CPU/driver/interrupt-state patch made.
+
+One launch; identity-matched180sec capture received zero datagrams. Receiver
+exit2/controller0 and owned host processes closed. User manually power-cycled;
+one collection/audit passed28 unchanged selected files,5 parsed hives,saved
+XBOX480 intact, no new events/6006. Dashboard, no hook; permanent firewall
+verified/retained. No normal Windows restart, full FATX check, successful mode
+set, network-success or Windows-boot-failure claim. Ftdisk49/Popup26 unresolved.
+
+Next fresh read-only flag samples immediately before and after memory detection
+can distinguish IF already enabled before that routine from enabling within it.
+Preserve ordinary initialization order and allocator/interrupt behavior.
