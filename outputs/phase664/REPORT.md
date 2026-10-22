@@ -32,3 +32,23 @@ resolves the cadence uncertainty in001. Treat as observed diagnostic code, not
 raw flags or final SMC completion receipt. Why IF was set is still unknown.
 Capture finished with zero datagrams; owned host processes closed. Manual
 recovery requested; no collection or shutdown-integrity claim yet.
+
+## Closed after manual recovery
+
+One collection/audit passed: all28 selected files unchanged,5 hives parse,
+savedXBOX480 intact, event history unchanged with no new events/6006. Console
+is at dashboard, no hook or owned host process. Firewall retained. This is
+selected-file integrity, not a full FATX check or normal Windows shutdown.
+
+Exact linked code review found BootDetectMemorySize calls malloc/free before
+video initialization. malloc executes STI at0x26122d6 and valid free at0x26122fe.
+Eight isolated allocator cases show normal returns enable IF regardless of
+incoming IF; free(NULL) leaves IF cleared. Internal allocator calls are modeled.
+This is a concrete earlier IF-enabling path consistent with the observed code,
+not a recovered physical instruction/flag history or a Windows boot fix.
+
+See linked_audit.py/linked-audit001.json for pins and bounded reproduction.
+The ordinary explicit BootPciInterruptEnable remains later than the diagnostic
+path; the allocator calls supply the earlier path missing in663's review.
+No source patch to firmware/allocator/driver/CPU state. Preserve663 ambiguity,
+662 indication failure,661 CPU category,Ftdisk49/Popup26 and all earlier failures.

@@ -1,3 +1,21 @@
+# 664 CLOSED: IF code observed; allocator enables IF before video
+
+Read phase664 REPORT/NEXT,actual observation002/reconciliation/linked-audit/closure.
+User confirmed even amber/off/blackheld. Exact664 code maps captured IF; startup
+is distinct. Evidence is observed code, not raw flags or final SMC status.
+One launch/180sec identity-matched capture,zero datagrams. User manual recovery;
+one collection/audit passed28 unchanged files,5 parsed hives,savedXBOX480,no new
+events/6006. Dashboard,no hook/process; permanent firewall retained.
+
+Read-only exact linked audit finds BootDetectMemorySize calls malloc/free before
+video; normal returns enable IF.8 isolated linked cases corroborate instruction
+behavior (allocator internals modeled), not physical flag history/Windows fix.
+Next fresh bounded read-only comparison of existing pre/post-display/admission
+flags; validate layouts and missing captures. No CLI patch or IF-gate waiver.
+Never reopen664 runtime. Preserve663 ambiguity/662 failure/661 category.
+Ordinary720p/releases/recovery protected;physical lease retained,build lease
+free,automation paused. Ftdisk49/Popup26 remain unresolved.
+
 # 664 even amber/off confirmed: manual recovery requested
 
 User clarified even flashing; observation002 resolves001 cadence ambiguity.

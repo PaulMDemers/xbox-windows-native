@@ -1,0 +1,85 @@
+{
+  "utc": "2026-10-22T23:12:03.990606+00:00",
+  "passed": true,
+  "physical_access": false,
+  "source_sha256": "e7d9eebce26c977557cddc21afc888149db5363e6f8b00aab4bccf942b380098",
+  "elf_sha256": "e818cdb3094a393b109d80bafef9c1e1251278ffd6587486ccfd4c6b6cc90fee",
+  "cases": [
+    {
+      "function": "malloc",
+      "incoming_IF": 0,
+      "outgoing_IF": 1,
+      "modeled_calls": [
+        "t_malloc"
+      ]
+    },
+    {
+      "function": "malloc",
+      "incoming_IF": 1,
+      "outgoing_IF": 1,
+      "modeled_calls": [
+        "t_malloc"
+      ]
+    },
+    {
+      "function": "free-valid",
+      "incoming_IF": 0,
+      "outgoing_IF": 1,
+      "modeled_calls": [
+        "t_free"
+      ]
+    },
+    {
+      "function": "free-valid",
+      "incoming_IF": 1,
+      "outgoing_IF": 1,
+      "modeled_calls": [
+        "t_free"
+      ]
+    },
+    {
+      "function": "free-null",
+      "incoming_IF": 0,
+      "outgoing_IF": 0,
+      "modeled_calls": []
+    },
+    {
+      "function": "free-null",
+      "incoming_IF": 1,
+      "outgoing_IF": 0,
+      "modeled_calls": []
+    },
+    {
+      "function": "free-invalid",
+      "incoming_IF": 0,
+      "outgoing_IF": 1,
+      "modeled_calls": []
+    },
+    {
+      "function": "free-invalid",
+      "incoming_IF": 1,
+      "outgoing_IF": 1,
+      "modeled_calls": []
+    }
+  ],
+  "scope": "Static linked call ordering plus isolated allocator execution. t_malloc/t_free effects modeled; no interrupt delivery or hardware execution.",
+  "linked_findings": [
+    "BootResetAction calls memory detection at0x2602e21 before video at0x2602e48; explicit interrupt enable is later at0x2602e9e.",
+    "BootDetectMemorySize calls malloc at0x2603c39 and free on its return branches.",
+    "malloc contains STI at0x26122d6; valid free contains STI at0x26122fe.",
+    "XwnHdTry720 calls noreturn XwnExport657."
+  ],
+  "disassembly_pins": {
+    "BootDetectMemorySize.txt": "def3f1d2d3e29b062a332a8359cc9b58de26ef1e5773ce33bf687c5a9956f337",
+    "BootResetAction.txt": "ced6d00247ff4036e7b12c389b8c717da88b89ce840857a5b49eca5350cf4e82",
+    "free.txt": "196d9802b042b0ffac746d1cab230a721dac7a9de0200b4ceee60cd45a056456",
+    "malloc.txt": "7c4b8bbb7f779f09a0f31ee9bf134bf423311206796489b47f2b9f5b1fa32f28",
+    "XwnHdTry720.txt": "89f588fc0ad6d4c670e4b06088ee6ccb65ebca75ceb78a8c0db8bed5b09ba880"
+  },
+  "source_pins": {
+    "boot/BootResetAction.c": "b27a08d5c4e18d331d2794ba0f50731d2768d5edc6addbeba3148a6b942612df",
+    "drivers/pci/pci.c": "090a07eef7203cb72fafcc7a4e12635ce029355c1bd70a0dbde0fe66a986815e",
+    "lib/misc/BootLibrary.c": "9ee047b2a1cc68ae885c0ad5ee569648e12359bd7017d2a10bac878d29ff7312"
+  },
+  "limits": "Supports a specific earlier IF-enabling path. Does not prove physical flag history, first writer, survival to inspect, interrupt delivery, or cause of Windows boot/display failures. No patch, state mutation or new launch."
+}
