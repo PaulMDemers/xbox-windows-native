@@ -1,3 +1,20 @@
+#647 diagnostic prepared/staged; LED/screen readiness pending, NO SITE
+
+Read outputs/video-exit647/REPORT.md and precise NEXT.md. Candidate build003
+adds an eight-second post-video-result LED marker, then original success/reset
+logic. Actual compiled adapter/profile text/data unchanged;70 host +56 compiled
+wrapper cases pass (modeled calls, not hardware).review003 passed. Build001 rejected
+for ambiguous solid LED colors; build002 failed on derived parent path before
+compile. Both preserved. Build003 exactSHA9c62cd343a6236363716a395e740f890de83b8a05d0bf5c8be9b1ca3f0b899b4.
+
+Staged only E:/Applications/XWNVideo647/owner.json and default.xbe with exact
+readback;28 selected baseline files captured. Normal720p and startup untouched,
+no hook, no dashboardC access, no SITE, no owned processes. Existing physical
+lease retained; build leases released. User asked whether ready to watch LED and
+screen; await that specific answer, then fresh ready001 and one bounded launch.
+No indicator is inconclusive; successful instrumented boot does not prove a fix.
+Do not edit frozen controller sources.645/646 stay CLOSED; no automatic repeats.
+
 #645/646 CLOSED:480p boot failed;720p recovery desktop/restart passed
 
 645 selector apply480p/readback/restore720p passed, but boot was black then exit;
