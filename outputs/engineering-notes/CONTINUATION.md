@@ -1,3 +1,30 @@
+#652 host receipt prototype validated; native transport remains unqualified
+
+Read outputs/receipt652/REPORT.md, FORMAT.md and NEXT.md. No physical access,
+new XBE, native hook, VM or console launch occurred.651 remains CLOSED.
+Implemented explicit little-endian1536-byte record plus a guarded one-shot
+three-sector callback protocol.17,025 ASan/UBSan checks,13,847 independent Python
+oracle checks and27 linked-i386 modeled-callback cases passed.1,401 field-bridge
+checks passed against actual651 types; bridge output matches independent oracle.
+All build/test processes exited; build leases released. Artifacts small C:/xwn652,
+reserve checked including WSL backing. No proprietary output published.
+
+Source review: video setup precedes IDE initialization; failure resets before
+reaching it. Old kernel file logger context cannot be assumed valid after native
+handoff. Current BootIdeWriteData ignores initial data-ready failure; do not reuse
+unchanged as early backend. Existing serial output also has an unbounded wait.
+Review001 failed on comment-spacing lookup; immutable original retained. Review002
+passes7 checks against pinned651 tree. These are source facts, not new disk errors.
+
+Next qualify bounded native transport and integrate the tested bridge; see precise
+NEXT. No actual disk backend, extent validator or hardware durability proof yet.
+Do not move IDE/USB/interrupt setup ahead of the display transaction, borrow
+firmware state, clear pending bits or change display polling/clock values to log.
+CRC/format validity is not flush acknowledgment; exact compiled tests model callbacks.
+Console last observed at dashboard after651 normal restart; no fresh FTP probe.
+Ordinary720p/startup unchanged, no hook/rollback/owned processes, physical lease
+retained and automation paused. No launch staged or queued; no user action needed.
+
 #651 CLOSED: observed desktop and normal restart; LED readback inconclusive
 
 One SITE accepted2026-10-22T02:48:55.931994+00:00. User reported flashing green,

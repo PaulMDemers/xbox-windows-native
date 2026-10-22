@@ -1,0 +1,165 @@
+{
+  "started_utc": "2026-10-22T03:01:43.094994+00:00",
+  "status": "passed",
+  "physical_access": false,
+  "guest_launch": false,
+  "native_candidate_built": false,
+  "commands": [
+    {
+      "name": "compile-host",
+      "args": [
+        "/usr/bin/x86_64-linux-gnu-gcc-12",
+        "-std=c99",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "-fno-pie",
+        "-no-pie",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/receipt652/receipt.c",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/receipt652/test-host.c",
+        "-o",
+        "/mnt/c/xwn652/host001/test-host"
+      ]
+    },
+    {
+      "name": "protocol",
+      "args": [
+        "/mnt/c/xwn652/host001/test-host",
+        "/mnt/c/xwn652/host001/synthetic-record.bin"
+      ]
+    },
+    {
+      "name": "oracle",
+      "args": [
+        "/usr/bin/python3",
+        "-B",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/receipt652/test_decode.py",
+        "/mnt/c/xwn652/host001/synthetic-record.bin"
+      ]
+    },
+    {
+      "name": "compile-i386",
+      "args": [
+        "/usr/bin/x86_64-linux-gnu-gcc-12",
+        "-std=c99",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-O1",
+        "-g",
+        "-m32",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-pic",
+        "-fno-pie",
+        "-fno-stack-protector",
+        "-c",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/receipt652/receipt.c",
+        "-o",
+        "/mnt/c/xwn652/host001/receipt-i386.o"
+      ]
+    },
+    {
+      "name": "undefined",
+      "args": [
+        "nm",
+        "-u",
+        "/mnt/c/xwn652/host001/receipt-i386.o"
+      ]
+    }
+  ],
+  "space": {
+    "minimum_free_gib": 20.02,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c",
+        "free_bytes": 29928329216
+      },
+      {
+        "free_bytes": 29928329216,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "source_pins": {
+    "decode.py": "8f1abb4f2341db0d1139d35d5ee8f6fbafa9dbd5f018eb07871992ca52439d1f",
+    "receipt.c": "fa5c90b1169ac49f89ab3a97619be61e94073f258649a54fda90b797e9298548",
+    "receipt.h": "39ba0a28fe7fed28efec6e1e9003e8fee6df3227ad9ae7c540a1760753a11597",
+    "test-host.c": "cbf72c79ad9e518e7b8f77a93b8e6978bd4e0d6cb79ce3087e81609e4dd16388",
+    "test_decode.py": "db12f630185c864433c2fd4993591fcf0a84654f3ef420760c85e99609b09e73",
+    "validate.py": "22d80040e076b316b2733c9bedb13ec3584dba75f773a99137f1042134011881"
+  },
+  "protocol": {
+    "checks": 17025,
+    "passed": true,
+    "physical_transport": false
+  },
+  "oracle": {
+    "passed": true,
+    "checks": 13847,
+    "scope": "synthetic format and corruption oracle; no hardware"
+  },
+  "undefined_symbols": "",
+  "artifacts": {
+    "compile-host.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compile-host.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compile-i386.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compile-i386.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "oracle.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "oracle.stdout": {
+      "bytes": 98,
+      "sha256": "a302a14b039d8c2dcfa80f065bcce6c4cbd69feb030f60ff2df875d514dd1393"
+    },
+    "protocol.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "protocol.stdout": {
+      "bytes": 58,
+      "sha256": "4be6634741390347cd2d8cce32cff9fb5c64e0c929cdd7cfa9fa672819e01165"
+    },
+    "receipt-i386.o": {
+      "bytes": 14452,
+      "sha256": "40c1b8236819d62c4bdcfd8aaa6570ba2e3be3326b87d3980520308c0ecad259"
+    },
+    "synthetic-record.bin": {
+      "bytes": 1536,
+      "sha256": "7ff9ff2d5c2676987d9e9d2eb0a58a976738a511e7caf507c64c2cfac7145e21"
+    },
+    "test-host": {
+      "bytes": 130096,
+      "sha256": "f6bd8851e6673eb20770110655bd34e13cf1fdbc7278846bb3e423af4a3bdd29"
+    },
+    "undefined.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "undefined.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "ended_utc": "2026-10-22T03:01:44.578169+00:00"
+}

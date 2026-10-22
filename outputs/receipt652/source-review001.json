@@ -1,0 +1,35 @@
+{
+  "passed": false,
+  "physical_access": false,
+  "scope": "static source feasibility; no transport qualification",
+  "sources": {
+    "boot/BootResetAction.c": {
+      "sha256": "b27a08d5c4e18d331d2794ba0f50731d2768d5edc6addbeba3148a6b942612df",
+      "bytes": 7697
+    },
+    "boot_xbe/xbeboot.S": {
+      "sha256": "b8ddf72f41a682d3868f1b801492b31005611c6868aa5927f54e5ce14bb94a2c",
+      "bytes": 13330
+    },
+    "drivers/ide/BootIde.c": {
+      "sha256": "5d5029d2468f001cd71903baae785929c7f832db09fcae6ac6a913f49bdaf83e",
+      "bytes": 39954
+    },
+    "drivers/pci/pci.c": {
+      "sha256": "090a07eef7203cb72fafcc7a4e12635ce029355c1bd70a0dbde0fe66a986815e",
+      "bytes": 19663
+    },
+    "drivers/video/xwn_hd_native.c": {
+      "sha256": "c4bade6880b5efa17dd88383c223d21048c86ea7d69b556d5f126234a6f1bb77",
+      "bytes": 3773
+    }
+  },
+  "checks": [
+    "video before interrupt enable, USB and IDE initialization",
+    "post-result capture before LED/reset; failure cannot return to later IDE setup",
+    "existing WriteData ignores its first data-ready failure; not admitted as backend"
+  ],
+  "source_tree": "2fda813f3b8109dfc6b70f6d37e21d2cf9a66d55",
+  "failure": "ValueError('substring not found')",
+  "ended_utc": "2026-10-22T03:06:26.240671+00:00"
+}
