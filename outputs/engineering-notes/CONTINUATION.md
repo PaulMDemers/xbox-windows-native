@@ -1,3 +1,19 @@
+#654 LAUNCHED once; sustained LED observation and collection pending
+
+SITE accepted at2026-10-22T19:11:37.130798+00:00; reply: 200 EXEC command succeeded..
+User Go for it supplied fresh watched readiness; ready001.json retained.
+Launch session95860 exited0. Observer session72550 started once and owns
+collection within600 seconds of launch. Do not send another SITE or duplicate
+collection. Actual LED/screen observation is pending. If Windows opens, request
+normal Restart before collection. If observer expires, preserve its result and
+check collection_requested before any separately admitted readback.
+
+ONE20-second comparison after dark2s: green/off=matched subset, red/off=CRTC,
+amber/off=FP/general, red/amber=both, red/green=unknown. Green is not Windows
+success. Report remains a masked subset, not a full stored snapshot. Existing
+timer can hang. No startup hook or rollback exists; protected720p/startup remain
+unchanged. Physical lease retained, automation paused. See focus654/NEXT.md.
+
 #654 staged, NO SITE: watched single-comparison readiness pending
 
 Read outputs/focus654/REPORT.md and NEXT.md. New source review resolves the
