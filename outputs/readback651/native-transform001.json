@@ -1,0 +1,18 @@
+[
+  {
+    "old": "#include \"led649.h\"",
+    "new": "#include \"led651.h\"\n#include \"readback651.h\"\nvolatile struct readback651 XwnReadback651Pre,XwnReadback651Post;\nstatic unsigned flags651(void){unsigned v;__asm__ __volatile__(\"pushfl; popl %0\":\"=r\"(v)::\"memory\");return v;}"
+  },
+  {
+    "old": "volatile unsigned XwnDiag649Status;",
+    "new": "volatile unsigned XwnDiag651Status;"
+  },
+  {
+    "old": " int result=xwn_hd_apply(&io,&r,&XwnHdState311);",
+    "new": " int result;unsigned comparison=4;\n XwnReadback651Pre=(struct readback651){0};XwnReadback651Post=(struct readback651){0};\n if(r.encoder==0 && r.cable==3 && (r.video_flags&(r.mode==XWN_HD_480P?8u:2u)) &&\n    xwn_hd_layout_valid(r.mode,r.ram,r.fb,r.reserved,r.hidden) && xwn_hd_get_profile(r.mode,&selected))\n  capture651(&io,&XwnReadback651Pre,flags651);\n result=xwn_hd_apply(&io,&r,&XwnHdState311);\n if(XwnHdState311.mutated) {\n  capture651(&io,&XwnReadback651Post,flags651);\n  if(xwn_hd_get_profile(r.mode,&selected))comparison=match651(&XwnReadback651Post,&selected);\n }"
+  },
+  {
+    "old": " XwnDiag649Status=led649_show((void *)&io,hd649_send,hd649_delay,result,XwnHdState311.stage,XwnHdState311.error,XwnTrace649.failed_wait,(XwnTrace649.failed_wait>=1 && XwnTrace649.failed_wait<=6)?XwnTrace649.edge[XwnTrace649.failed_wait-1].elapsed:0);",
+    "new": " XwnDiag651Status=led651_show((void *)&io,hd649_send,hd649_delay,result,XwnHdState311.stage,XwnHdState311.error,&XwnTrace649,comparison,XwnReadback651Post.captured,XwnReadback651Post.mm[17]);"
+  }
+]

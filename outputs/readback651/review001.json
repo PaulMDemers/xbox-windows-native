@@ -1,0 +1,64 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "compiled_video_sections": [
+    {
+      "object": "xwn_hd_profile.o",
+      "section": ".text",
+      "bytes": 189,
+      "sha256": "b20db96d464f095e420401938d102b656c8ad1fc60000aacebebc797122c7a02"
+    },
+    {
+      "object": "xwn_hd_profile.o",
+      "section": ".rodata",
+      "bytes": 739,
+      "sha256": "5e0ae0ae5714297f5c550b82470f4f81a2ccc8c28d1f419db5e67b685e458230"
+    },
+    {
+      "object": "BootInterrupts.o",
+      "section": ".text",
+      "bytes": 2944,
+      "sha256": "6f579bb8103f1b31ae84cd2aca40dd61f1e04b29ec51c2d842113df066dae533"
+    },
+    {
+      "object": "BootLibrary.o",
+      "section": ".text",
+      "bytes": 1737,
+      "sha256": "2f1bfb824a214085be84de15828d525d080f8bd90849ec48a31565660ec7498a"
+    }
+  ],
+  "prepared_only": true,
+  "timer_cases": 32,
+  "host_differential_scenarios": 44,
+  "host_led_cases": 5143,
+  "host_readback_cases": 2042,
+  "compiled_wrapper_cases": 140,
+  "compiled_adapter_cases": 10,
+  "xbe": {
+    "bytes": 303856,
+    "sha256": "97a3f1a1874aae98f260303b6e9ace5e27fbb324d2fdc24aab646726df4f1906"
+  },
+  "native649_recovered_exactly": true,
+  "adapter649_source_and_object_text_identical": true,
+  "trace_RAM_only": true,
+  "new_capture_callbacks_per_snapshot_IF_clear": {
+    "r32": 18,
+    "r8": 25,
+    "selector_w8": 24
+  },
+  "new_capture_callbacks_per_snapshot_IF_set": {
+    "r32": 18,
+    "r8": 0,
+    "selector_w8": 0
+  },
+  "instructions_changed_interrupt_state": false,
+  "limitations": [
+    "Only original reset path changes IF; snapshots do not use CLI/STI",
+    "Models do not prove physical readback, timing, LED or Windows boot",
+    "Post-result snapshot follows original fail blanking; it is not a pre-timeout atomic snapshot",
+    "Existing wait_us may hang if timer freezes; added reads/layout/indications perturb timing",
+    "Detailed snapshots remain RAM-only; human LED summaries are coarse",
+    "Masks cover the observed631 subset, not all registers or effective clock/routing",
+    "Status all-ones does not prove invalid MMIO; handshake equality does not prove completion"
+  ]
+}

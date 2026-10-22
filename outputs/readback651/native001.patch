@@ -1,0 +1,39 @@
+--- a/drivers/video/xwn_hd_native.c
++++ b/drivers/video/xwn_hd_native.c
+@@ -6,7 +6,16 @@
+ #include "boot.h"
+ #include "memory_layout.h"
+ #include "timer.h"
+-#include "xwn_hd_adapter.h"
++#include "xwn_hd_adapter.h"
++#include "led651.h"
++#include "readback651.h"
++volatile struct readback651 XwnReadback651Pre,XwnReadback651Post;
++static unsigned flags651(void){unsigned v;__asm__ __volatile__("pushfl; popl %0":"=r"(v)::"memory");return v;}
++#include "trace649.h"
++volatile unsigned XwnDiag651Status;
++unsigned xwn_timer649(void){return GetTimerTicks();}
++static int hd649_send(void *p,unsigned char a,unsigned char r,unsigned char v){return xwn_hd_smb_write((const struct xwn_hd_io *)p,a,r,v);}
++static void hd649_delay(void *p,unsigned us){const struct xwn_hd_io *io=p;io->delay(io->opaque,us);}
+ /* Historical feature/function names retained for the qualified720p build. */
+ #ifndef XWN_HD_BOOT_MODE
+ #define XWN_HD_BOOT_MODE XWN_HD_720P
+@@ -28,7 +37,17 @@
+  const struct xwn_hd_io io={0,hd_r32,hd_w32,hd_r8,hd_w8,hd_in16,hd_in8,hd_out16,hd_out8,hd_delay};
+  const struct xwn_hd_request r={XWN_HD_BOOT_MODE,(uint32_t)xbox_ram*1024u*1024u,FB_START&0x0fffffffu,FB_SIZE,316160u,encoder,cable,flags};
+  struct xwn_hd_profile selected;
+- int result=xwn_hd_apply(&io,&r,&XwnHdState311);
++ int result;unsigned comparison=4;
++ XwnReadback651Pre=(struct readback651){0};XwnReadback651Post=(struct readback651){0};
++ if(r.encoder==0 && r.cable==3 && (r.video_flags&(r.mode==XWN_HD_480P?8u:2u)) &&
++    xwn_hd_layout_valid(r.mode,r.ram,r.fb,r.reserved,r.hidden) && xwn_hd_get_profile(r.mode,&selected))
++  capture651(&io,&XwnReadback651Pre,flags651);
++ result=xwn_hd_apply(&io,&r,&XwnHdState311);
++ if(XwnHdState311.mutated) {
++  capture651(&io,&XwnReadback651Post,flags651);
++  if(xwn_hd_get_profile(r.mode,&selected))comparison=match651(&XwnReadback651Post,&selected);
++ }
++ XwnDiag651Status=led651_show((void *)&io,hd649_send,hd649_delay,result,XwnHdState311.stage,XwnHdState311.error,&XwnTrace649,comparison,XwnReadback651Post.captured,XwnReadback651Post.mm[17]);
+  if(result<0 || (XWN_HD_BOOT_MODE==XWN_HD_480P && result==0)){
+   if(result==0)XwnHdState311.error=30; /* Explicit480p profile refuses legacy fallback. */
+   /* Partial display setup cannot fall through into Windows or legacy setup.

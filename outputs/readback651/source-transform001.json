@@ -1,0 +1,8 @@
+{
+  "adapter_original_sha256": "8ea71c47940feec9f16d91a440e4fd50b5b0feac0e74d48d11e5ab9bc4da6bcd",
+  "old_edge": " unsigned i;\n for(i=0;i<VBLANK_POLLS;i++) {\n  s->vblank_polls++;\n  if((io->r8(O,0x6013da)&8)==wanted)return 1;\n  io->delay(O,10);\n }\n s->error=22;return 0;",
+  "new_edge": " unsigned i,slot=XwnTrace649.waits_started++;\n volatile struct xwn_edge649 *e=slot<6?&XwnTrace649.edge[slot]:0;\n if(e){e->wanted=wanted;e->begin=xwn_timer649();}\n for(i=0;i<VBLANK_POLLS;i++) {\n  unsigned value;\n  s->vblank_polls++;\n  value=io->r8(O,0x6013da);\n  if(e) {\n   if(!e->samples)e->first=value;\n   else {e->byte_changes+=(e->last!=value);e->bit_changes+=((e->last^value)&8)!=0;}\n   e->last=value;e->samples++;\n  }\n  if((value&8)==wanted) {\n   if(e){e->end=xwn_timer649();e->elapsed=e->end-e->begin;e->completed=1;}\n   XwnTrace649.waits_completed++;return 1;\n  }\n  io->delay(O,10);\n }\n if(e){e->end=xwn_timer649();e->elapsed=e->end-e->begin;}\n XwnTrace649.failed_wait=slot+1;\n s->error=22;return 0;",
+  "insertion": "\n#include \"trace649.h\"\nvolatile struct xwn_trace649 XwnTrace649;",
+  "init": "\n XwnTrace649=(struct xwn_trace649){0};",
+  "scope": "Reverse substitutions must reproduce pinned633 source exactly"
+}

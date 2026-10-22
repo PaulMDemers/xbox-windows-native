@@ -1,3 +1,27 @@
+#651 staged, NO SITE: four-slot watch readiness pending
+
+Read outputs/readback651/REPORT.md and precise NEXT.md.650 static review passes
+352 checks and114 retained631 comparisons; no new timing-table error identified.
+New651 adds pre/post-result snapshots of the known631 timing subset and reuses
+649 status samples. No functional profile/poll/order change or new status read.
+CRTC selector saved/restored; IF-set skips indexed access, no added CLI/STI.
+2042 capture/mask,5143 LED,44 differential,235552 retained assertions,140 linked
+wrapper/capture,10 linked adapter and32 compiled timer cases pass. Source/object
+adapter unchanged649; profile/timer/library unchanged633. Build lease released.
+
+XBE97a3f1a1874aae98f260303b6e9ace5e27fbb324d2fdc24aab646726df4f1906.
+Prepared28 selected files; staged unique E:/Applications/XWNReadback651 owner+XBE
+with exact readback. Normal720p/startup unchanged; no hook, rollback or SITE.
+No owned host process remains. Original physical lease retained, automation paused.
+Asked user readiness for FOUR8-second LED patterns separated by2-second dark
+pauses: failed wait, masked timing comparison, status class, handshake equality.
+Await actual readiness before ready001 and one bounded launch/observer. First
+pattern is now phase-specific (wait3 amber/off), NOT old generic red/green prefix.
+Status all-ones is not invalid-MMIO proof; handshake equality is not completion;
+matching subset is not effective clock/routing or Windows qualification. Details
+RAM-only; post-result follows original fail blanking. Timer can still hang.
+649/648/647 CLOSED: no repeat/recollection. No new launch queued elsewhere.
+
 #649 CLOSED: wait3 timeout with3M..36M raw timer delta
 
 SITE accepted2026-10-22T01:55:29.772509+00:00 once. User reports flashing amber
