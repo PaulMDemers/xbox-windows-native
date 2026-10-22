@@ -1,4 +1,26 @@
-#649 timer-path validation and elapsed-tick diagnostic
+#649 CLOSED: wait3 timeout, raw delta3M..36M ticks
+
+One SITE accepted at2026-10-22T01:55:29.772509+00:00. User reported "Flashing
+amber followed by flashing green rebooted to dash". The observed second/third
+codes map to failed wait3 (pair2 clear) and an unsigned timer difference from
+3000000 through36000000 ticks. No exact timestamps or status bytes were retrieved.
+The user did not separately confirm a black screen; no Windows desktop reported.
+
+This repeats648's phase class in a separate instrumented run and argues against
+an almost-immediate poll-loop exit, conditional on a consistent timer. Under the
+source's frequency assumption the broad category is about0.84..10 seconds; it is
+not a verified wall-clock measurement. It does not prove that scanout stopped,
+that the timer/adapter is defective, or that645 failed for the same reason.
+Nothing here justifies bypassing the wait, changing its predicate, or extending
+its limit. Next review status semantics and programmed timing/readback evidence.
+
+Dashboard FTP returned at65.7s. Observer22364 collected once and exited0. All28
+selected files are byte-identical; five hives parse, history and savedXBOX480 are
+intact, and no new Windows events/6006 exist. Selected integrity passes; Windows
+boot and normal restart do not. Ordinary720p/startup remain exact. No hook,
+rollback or owned process remains; isolated diagnostic files are retained.
+Evidence: launch001.json,user-observation001.json,observation001.json,
+collection001.json,audit001.json,closure001.json.649 is CLOSED; never rerun/recollect.
 
 648 is CLOSED. Its second amber/off indication mapped to wait3, the second-pair
 clear wait. It did not capture the failed wait's duration.649 tests the compiled
@@ -86,6 +108,6 @@ Read actual preparation/stage/launch records and NEXT.md before physical actions
 Preparation captured28 selected baseline files with repeated exact readback.
 Staging wrote only the unique E:/Applications/XWNTimer649 owner.json and XBE,
 then verified both. Normal720p/startup remain exact; no hook or dashboardC access.
-No SITE has been sent. Three-pattern watch readiness is pending. Build/staging
+Preparation/staging preceded the single watched launch reported above. All owned
 processes exited; existing physical lease retained. Detailed state is in the
-actual preparation001/stage001 records, not an assumed boot outcome.
+actual records, not an assumed boot outcome. No additional launch is queued.

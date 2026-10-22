@@ -1,26 +1,33 @@
-#649 staged, NO SITE: await three-pattern watch readiness
+#649 CLOSED: review status semantics and video timing before a functional change
 
-Read REPORT.md and actual build001/review001/host001/preparation001/stage001.
-No launch may be assumed; inspect launch001 if present before acting.648/647 and
-all previous closed runtimes stay closed. Do not rerun/recollect them.
-Exact candidate SHA845848b0f517ce3608a429310560a3d9529da8c43dc94a25e2276a70aeed92bc.
+Read REPORT.md and actual launch/user-observation/collection/audit/closure001.
+Second flashing amber + third flashing green map to wait3 and3M..36M raw ticks.
+Same phase class as648; these are separate instrumented runs. No exact timer or
+status-byte receipt. Consistent timer assumed; not a physical wall-clock proof.
+All28 selected files unchanged, no new events/6006; normal720p/startup exact.
+No hook, rollback or owned process. Isolated candidate files retained. Dashboard
+reachable.649/648/647 CLOSED: no repeat launch, recollection or runtime reuse.
 
-After staging completes, ask whether user can watch all three indications:
-red/green8s, dark2s, phase8s, dark2s, elapsed-category8s if error22 repeats.
-Record specific readiness in ready001; use physical.py launch once (20s reply
-bound), then observe.py once (600s). Never retry accepted/uncertain SITE.
-Ask second and third pattern plus screen/dashboard outcome. Third green/off is
-timer delta3M..36M, NOT setup/Windows success. If Windows opens instead, ask for
-normal Restart after observing. All detailed values remain RAM-only.
+Next perform a static review using pinned source and primary register evidence:
+- Verify what GPU offset0x6013da bit3 represents on the selected head and which
+ display-timing/enable state governs it. Do not conflate a status-bit value with
+ physical scanout or a latched interrupt. Identify documented read side effects.
+- Decode the intended633480p CRTC/extended timing fields and compare with the
+ existing source programming sequence,720p profile and qualified retained evidence.
+ Separate programmed constants from actual readback. Track retained VPLL/PCRTC
+ state and timing-update handshake as unknowns; never borrow firmware values.
+- Review whether later encoder/DAC/unblank writes depend on completing the poll,
+ so that a proposed observation distinguishes a circular dependency from a timer,
+ status-source or timing-programming problem. Do not assume one is the cause.
 
-Ordinary720p/startup are untouched, no hook/rollback. On dashboard return collect
-once then audit retained files once with known hivex loader path. If offline at
-deadline, preserve state and ask user observation/recovery, not another launch.
-Original wait_us can hang on frozen timer; instrumentation does not fix that.
+If the source review identifies missing physical facts, prepare a NEW bounded
+readback diagnostic with documented register semantics and a clear interpretation.
+Capture pre-write versus post-write state separately, using already-observed data
+where possible. Validate sampling/decoding and exact compiled code on the host
+before staged-byte verification and a watched launch. Use new kit/paths and leases.
+Keep detailed-state observability limits explicit; LED categories are not dumps.
 
-Interpret raw delta conservatively: source frequency and physical timer width
-are assumptions. Large category can mean a narrower counter wrap/backward jump.
-A near-expected tick count narrows the missing-transition question but does not
-prove scanout stopped. No longer timeout, pending-bit clearing, firmware-state
-borrowing, gate waiver or speculative functional patch. Record exact next step
-from actual result; no automatic further launch. Keep automation paused.
+No timeout expansion, early-success fallback, pending-bit clearing, interrupt or
+clock-state borrowing, validation waiver or speculative driver/profile patch.
+No extra hardware launch is queued. No diagnosis of645, boot-reliability fix,
+live switching, other-revision or acceleration promotion. Automation stays paused.

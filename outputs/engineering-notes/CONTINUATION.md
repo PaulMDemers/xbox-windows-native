@@ -1,3 +1,31 @@
+#649 CLOSED: wait3 timeout with3M..36M raw timer delta
+
+SITE accepted2026-10-22T01:55:29.772509+00:00 once. User reports flashing amber
+then flashing green, rebooted to dashboard. Candidate phase3 plus third-code
+3M..36M unsigned raw ticks. This argues against almost-immediate polling exit,
+conditional on timer consistency; no exact tick/status receipt or independent
+wall-clock capture. Same phase class as648, separate instrumented runs; no proof
+of stopped scanout, adapter/timer defect, cause of645 or a functional fix.
+Dashboard FTP returned65.7s; observer22364 exited0. All28 selected files unchanged,
+five hives/history and savedXBOX480 pass; no new Windows events/6006. No hook,
+rollback or owned process. Ordinary720p/startup exact; isolated649 files retained.
+Read outputs/poll-timer649/REPORT.md and precise NEXT.md.649/648/647 CLOSED;
+never rerun/recollect. Next static primary-source/status and programmed timing
+review, then justify any new bounded readback diagnostic before hardware launch.
+No timeout expansion, pending-bit clearing, firmware-state borrowing or gate
+waiver. No additional launch queued; automation paused; physical lease retained.
+
+#649 launched once; second/third LED observation and return pending
+
+SITE accepted2026-10-22T01:55:29.772509+00:00 through isolated XWNTimer649.
+User Proceed confirmed three-pattern watch readiness. Asked SECOND and THIRD
+patterns after dark pauses plus screen/dashboard result. Observer session22364
+is bounded600s and owns collection once; inspect actual records before acting.
+No repeat SITE. Ordinary720p/startup intact; no hook or rollback. Physical lease
+retained. On completed collection audit retained files once with known hivex path.
+Third pattern classifies unsigned raw timer delta, not physical seconds or boot
+success. No prior-run cause/fix claim. Read poll-timer649/REPORT.md and NEXT.md.
+
 #649 staged, NO SITE: timer-delta diagnostic watch readiness pending
 
 Read outputs/poll-timer649/REPORT.md and precise NEXT.md.32 compiled timer tests
