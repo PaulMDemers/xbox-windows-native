@@ -1,3 +1,21 @@
+# 662 prepared: captured CPU predicate classifier; no guard changes
+
+Read cpu662/REPORT.md,NEXT.md and actual stage/run/launch receipts. New probe
+reads only already stored NativeAdmission656 first5 fields after existing return.
+Classifies CR0/IF/CPUID early failures before later RAM/ESP; preserves multi-failure
+and inconsistent/missing outcomes. Native inspect/admission/sender unchanged.
+53,760 sanitizer combinations plus12 boundaries,29 exact-linked cases and41
+artifact checks pass;20 old object sections unchanged. Models not hardware proof.
+Fresh identity/source/build/capture C:/xwn662, remote XWNLatch662. Preparation
+captured28 files twice; stage pending or complete per stage001. No launch yet.
+
+Next exact staged verification then one run.py with fresh180-second receiver and
+verified persistent firewall. Ask held LED/screen, clarify cadence, record before
+requesting manual recovery. Collect/audit once after Ready. No hook/reset/Windows.
+Never rerun/recollect661 or a launched662. Ordinary720p/releases/recovery preserved.
+User available to reset. Physical lease retained, build lease free, automation
+paused. Ftdisk49/Popup26 remain unresolved. No CPU-fault or native NIC claim.
+
 # 661 CLOSED: CPU admission category indicated; recovery integrity passed
 
 Read admission661/REPORT.md,NEXT.md,observation001/002,reconciliation001 and
