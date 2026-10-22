@@ -1,3 +1,14 @@
+# 661 LAUNCHED ONCE: category observation pending; receiver active
+
+One SITE accepted at 2026-10-22T22:04:12.914443+00:00. Receiver PID 42180, owned by
+run.py under exec session39037, captures180seconds in C:/xwn661/capture001.
+No collection is owned by runner. No relaunch/recollection. Console deliberately
+holds; ask/await persistent LED and screen observation already requested.
+After observation, request manual recovery if held, then collect once and audit.
+No Windows/reset/startup hook intended. Permanent firewall verified and retained.
+Read admission661/REPORT.md,NEXT.md and actual launch/run/observation receipts.
+Current source prepared commit5bd2d83a; no NIC/physical safety qualification.
+
 # 661 prepared: persistent native-admission category diagnostic
 
 Read admission661/REPORT.md and NEXT.md, then latest stage/run/launch receipts.

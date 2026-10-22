@@ -1,3 +1,9 @@
+# 661 launched once: await held light; never relaunch
+
+Launch001 records acceptance; run001 owns receiver only (PID42180/session39037).
+Record user LED/screen observation before requesting manual recovery. Capture
+finishes independently at its180-second bound. Never collect before recovery.
+
 # 661: qualify before one watched launch
 
 Read REPORT.md and latest actual build/host/compiled/review/controller receipts.
