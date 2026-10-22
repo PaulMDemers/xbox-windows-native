@@ -23,3 +23,12 @@ artifact checks passed.20 unchanged native/display object sections. Entry is
 distinct from19 final codes and timed dark/green-off. Host pre-build shell
 parsing failure is retained in invocation-failure001; no build/console started
 from that rejected command. No physical result yet.
+
+## Watched result awaiting recovery
+
+User confirmed even amber flashing on the previously reported held black screen.
+This matches final IF rejection0x55; startup0xe1 is distinct. observation002
+resolves the cadence uncertainty in001. Treat as observed diagnostic code, not
+raw flags or final SMC completion receipt. Why IF was set is still unknown.
+Capture finished with zero datagrams; owned host processes closed. Manual
+recovery requested; no collection or shutdown-integrity claim yet.

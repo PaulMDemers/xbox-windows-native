@@ -1,3 +1,19 @@
+# 664 even amber/off confirmed: manual recovery requested
+
+User clarified even flashing; observation002 resolves001 cadence ambiguity.
+Exact664 code0x55 maps captured IF predicate; entry0xe1 and timed dark/green-off
+are distinct. This is observed diagnostic-code evidence, not raw flags/status
+readback. Do not infer why IF was set or alter interrupt state/waive guards.
+Final SMC completion status remains unknown; RAM/ESP later mismatches not ruled
+out. Preserve663 ambiguity and earlier failures separately.
+
+Requested power-off/on to UnleashX; await Ready before one collection/audit.
+Receiver/controller already closed;180sec capture zero datagrams,verified
+identity,permanent firewall retained. No hook or Windows/normal restart intended.
+Console last observed blackheld. No relaunch. Physical lease retained,build
+lease free,automation paused. After recovery audit, trace linked pre-export
+IF-changing paths and obtain bounded read-only context before any state patch.
+
 # 664 amber blinking/black hold: cadence clarification pending
 
 User reports Blinking Amber, black screen. Do not yet identify IF: even
