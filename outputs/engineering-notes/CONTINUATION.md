@@ -1,3 +1,29 @@
+#647 CLOSED: red/green LED identifies vertical-blank timeout class
+
+Read outputs/video-exit647/REPORT.md and precise NEXT.md. One accepted launch,
+user reports red/green + black + automatic dashboard return; indicator maps to
+stage255/error22. No durable register receipt or phase identity; do not assign
+prior645 cause or claim a fix. Three clear/set pairs share this timeout code.
+Dashboard returned63.7s; observer54446 exited0. All28 selected files unchanged,
+five hives/history and savedXBOX480 pass; no new events/6006. Windows boot failed.
+Ordinary720p/startup unchanged; no hook, rollback or owned process. Isolated647
+files remain staged; no cleanup needed for startup.647/645/646 CLOSED: no reruns.
+Next NEW diagnostic should capture failing clear/set pair and already-read status
+bytes with unchanged I/O/poll/reset semantics, then host boundary/failure tests
+and independent compiled review before any new watched hardware launch.
+No functional patch, composite substitution or capability promotion. Automation
+paused; existing physical lease retained. Host note encoding failure preserved.
+
+#647 launched once: user reports red/green, black screen, dashboard return
+
+Accepted SITE at2026-10-22T01:22:24.822046+00:00, exact build003 diagnostic.
+User reports red/green, black screen, rebooted to dash. This matches error22
+vertical-blank timeout in this instrumented run; no durable register/stage receipt.
+Do not assign prior645 cause or infer a functional fix. No further launch.
+Observer session54446 is bounded600s and owns collection once on dashboard return.
+Check actual observation/collection before any action; audit retained files once.
+Ordinary720p/startup untouched, no hook or rollback. Preserve all failed builds.
+
 #647 diagnostic prepared/staged; LED/screen readiness pending, NO SITE
 
 Read outputs/video-exit647/REPORT.md and precise NEXT.md. Candidate build003

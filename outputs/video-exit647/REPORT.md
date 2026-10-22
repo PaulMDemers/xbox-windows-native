@@ -1,4 +1,32 @@
-#647 prepared/staged: post-video-result diagnostic, no launch yet
+#647 CLOSED: red/green indication, black screen, dashboard return
+
+One SITE was accepted at2026-10-22T01:22:24.822046+00:00. User reported
+"Red/green black screen rebooted to dash". Duration was not separately reported.
+This matches the candidate's stage255/error22 indication: the vertical-blank
+poll timed out. It is an observed LED classification, not a durable register dump.
+It narrows this instrumented run; it does not retroactively diagnose645.
+
+Dashboard FTP returned at63.7 seconds; the bounded observer collected once and
+exited0. All28 selected before/after files are byte-identical. Five hives parse,
+event history is preserved, savedXBOX480 is intact, and no new Windows events or
+normal-shutdown6006 were recorded. Selected integrity passes; Windows boot and
+normal restart do not. No startup hook, rollback or owned process remains.
+Ordinary720p/startup remain unchanged. The isolated diagnostic files remain staged.
+
+Source inspection: error22 originates only in edge(), which samples bit3 of
+GPU offset0x6013da, with100000 iterations and a10us requested delay per failed
+sample. After stage4, three pairs require clear then set. This indication cannot
+distinguish which pair or whether clear/set was awaited. It also does not prove
+actual scanout stopped: a wrong status source, polling/timing behavior and output
+state remain hypotheses. The initial gate, sync check and first17 encoder writes
+precede this path; final encoder writes, readback checks and unblank follow it.
+These ordering statements derive from pinned source, not independently captured
+hardware registers. See NEXT.md for a diagnostic that preserves those semantics.
+
+Evidence: launch001.json,user-observation001.json,observation001.json,
+collection001.json,audit001.json,closure001.json. The host note-writing encoding
+failure is retained in note-write-failure001.json; explicit UTF-8 fixed it without
+another launch or collection. No new functional patch or capability promotion.
 
 This diagnostic derives from exact633 source tree
 70c0a6c5aff82537f489e7d18410d5980fa797a7. It adds an LED indication only AFTER
@@ -52,6 +80,6 @@ moved or deleted. Existing build lease was acquired and released for each build.
 Physical preparation captured28 selected files and confirmed ordinary720p plus
 normal startup. Staging wrote only the unique E:/Applications/XWNVideo647 folder,
 owner.json and default.xbe, with exact readback. No startup hook or XboxC access.
-The ordinary720p launcher remains unchanged. All host processes exited. No SITE
-has been sent. User watch readiness is pending. Do not launch without the specific
-LED/screen observation being available; see NEXT.md.645/646 remain closed.
+The ordinary720p launcher remains unchanged. Preparation/staging preceded the
+single watched launch reported above.647 and645/646 are now closed; never rerun
+or recollect those attempts. All host processes exited.

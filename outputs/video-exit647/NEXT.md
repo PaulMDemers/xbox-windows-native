@@ -1,26 +1,31 @@
-#647 staged; await LED/screen readiness, then at most one launch
+#647 CLOSED: narrow the vertical-blank timeout before changing behavior
 
-Read REPORT.md,review001/build002 failures,build003.json,compiled-host001.json,
-review003.json,host001.json and actual preparation001/stage001. No SITE yet.
-Exact built/staged SHA9c62cd343a6236363716a395e740f890de83b8a05d0bf5c8be9b1ca3f0b899b4.
-Original720p/startup remain exact. No hook or owned process. No existing runtime
-is being reused; source came from the retained build tree, not a closed VM.
+Read REPORT.md and actual launch/user-observation/collection/audit/closure001.
+One watched launch: red/green, black, automatic dashboard return. All28 selected
+files identical; no new Windows events. No hook, rollback or owned process.
+Ordinary720p remains selected. Do not rerun/recollect647 or any earlier runtime.
 
-User was asked whether ready to watch the eight-second LED indication and screen.
-After an explicit readiness reply, create ready001.json with watching_LED_and_screen
-true and the actual response. Recheck review003 pass, staged bytes and source pins.
-Use physical.py launch once (20s reply bound); never repeat accepted/uncertain.
-Start observe.py once, bounded600s, no hook. Ask for the full LED sequence, last
-screen and automatic dashboard return. If Windows opens, request normal Restart
-after the observation. Do not assume indicator absence locates the failure.
+Next prepare a NEW bounded diagnostic based on exact633/647 source. Capture
+which of the six clear/set waits failed, expected bit, first/last sampled byte,
+sample count and observed transitions, using the values already read by edge().
+Keep the same register address, predicates, poll bound, delays, write order and
+fail/reset path. No extra reads of status registers merely assumed side-effect
+free. Record that added RAM bookkeeping/code layout still perturb timing.
+Distinguish setup-before-writes from final context. Do not clear pending bits,
+borrow firmware state, increase timeout or bypass validation as a speculative fix.
 
-If offline at deadline, record state and ask hardware observation/recovery rather
-than another launch. On dashboard return collector captures fresh files once;
-normal720p requires no restore because it was never replaced. Run audit.py on
-retained files with the known private hivex library loader path, record observation
-separately, then close and commit. No additional automatic launch is authorized
-by a positive or negative result. A result narrows this instrumented run only.
+First add host cases for stuck-low/stuck-high at each of six waits, delayed
+transitions and boundary success/failure, checking unchanged writes and bounded
+failure. Existing633 tests only exercise one constant-low edge failure and a
+read-by-read toggling success model; neither establishes physical timing.
+Independently review the exact compiled candidate and how its bounded indication
+will distinguish all six phases without ambiguous ordinary boot colors. If a
+reliable state receipt cannot be obtained, retain that limitation explicitly.
+Use a new unique kit/build/remote path with source/binary pins and existing leases.
+Only then stage/readback and obtain a watched observation for the new question.
+No additional launch is queued by647's result.
 
-Preserve build001 review rejection,build002 path failure and all prior failures.
-Do not edit frozen controller/build sources after staging. No live switching,
-boot reliability,other-revision or acceleration promotion. Automation remains paused.
+A status-bit timeout is not yet proof of absent physical scanout or a bad adapter.
+The current result does not identify645's cause or establish a 480p reliability
+fix. Composite remains a separate480i path; keep the current adapter for this work.
+No live switching, other-revision or acceleration promotion. Automation paused.
