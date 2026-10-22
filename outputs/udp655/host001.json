@@ -1,0 +1,95 @@
+{
+  "status": "failed",
+  "physical_access": false,
+  "started_utc": "2026-10-22T19:25:11.991624+00:00",
+  "space": {
+    "minimum_free_gib": 20.05,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c",
+        "free_bytes": 29546147840
+      },
+      {
+        "free_bytes": 29546082304,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "source_pins": {
+    "outputs/udp655/build.py": "e2ed21b7831d9f1eb7e37d011a7f793909b4277bd6907f67ff47312716d3df8a",
+    "outputs/udp655/receiver.py": "f6650e7eab5f7e7999d59e734ae998b4fa3bdfa8a747b49d5fb4c97f5e5ce98d",
+    "outputs/udp655/test_receiver.py": "7b19d79931b005365eb3f5d200a29a703fa68eb79a2f25ee498def908c124169",
+    "outputs/udp655/packet.c": "07061f8f70b7b4efe27a5e95d9b1eee395331f4757324bda917a7166bf2ebe64",
+    "outputs/udp655/test_packet.c": "0b62ed6c4a958597dc852627663c5e260f78d01dc01dc17d76385a597d4e6496",
+    "outputs/udp655/packet.h": "3a34bbb0e039e71e29fbc1ceae02cbead7a7d33f37b7fdcbe18a95e5f2030cb4",
+    "outputs/receipt652/receipt.h": "39ba0a28fe7fed28efec6e1e9003e8fee6df3227ad9ae7c540a1760753a11597"
+  },
+  "commands": [
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-std=c99",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-O1",
+      "-g",
+      "-fsanitize=address,undefined",
+      "-fno-pie",
+      "-no-pie",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/udp655/packet.c",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/udp655/test_packet.c",
+      "-o",
+      "/mnt/c/xwn655/host001/test-packet"
+    ],
+    [
+      "/mnt/c/xwn655/host001/test-packet"
+    ],
+    [
+      "/usr/bin/python3",
+      "-B",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/udp655/test_receiver.py",
+      "--packets",
+      "/mnt/c/xwn655/host001/encoder.stdout",
+      "--output",
+      "/mnt/c/xwn655/host001/loopback001"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-m32",
+      "-std=c99",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-ffreestanding",
+      "-fno-builtin",
+      "-O2",
+      "-c",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/udp655/packet.c",
+      "-o",
+      "/mnt/c/xwn655/host001/packet-i386.o"
+    ],
+    [
+      "nm",
+      "-u",
+      "/mnt/c/xwn655/host001/packet-i386.o"
+    ]
+  ],
+  "encoder": {
+    "checks": 845,
+    "synthetic_records": 64
+  },
+  "receiver": {
+    "status": "pass",
+    "checks": 7035,
+    "synthetic_records": 64,
+    "loopback_captures": 6,
+    "physical_access": false,
+    "broadcast_network_path_tested": false
+  },
+  "failure": "AssertionError()",
+  "ended_utc": "2026-10-22T19:25:13.424360+00:00"
+}

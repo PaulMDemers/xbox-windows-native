@@ -1,3 +1,30 @@
+#655 host UDP prototype passes; native NIC sender remains next
+
+User proposed UDP broadcasts. Retained Xromwell already links Etherboot/nForce
+and UDP, but its current probe ignores reset failure, TX lacks ownership/completion
+checks, and timer-based delays can stall. No native call or hardware change made.
+See udp655/REPORT.md, FORMAT.md, source-audit001.json and precise NEXT.md.
+
+New pure RAM encoder retains result/stage/error and raw request/trace/pre/post
+flags in one772-byte packet. Receiver checks independent attempt/build identity,
+peer, length and CRC; preserves duplicates/conflicts/silence and never sends ACKs
+or launches. No disk backend or LED-only eligibility filter is used.
+
+host001 preserved:845 C sanitizer checks and7035 Python checks passed; final
+freestanding object check failed on unwanted _GLOBAL_OFFSET_TABLE_ dependency.
+Fresh host002 with explicit no-PIC/no-PIE passes all checks and has no undefined
+i386 symbols. windows001 independently passes7035 checks and six localhost
+captures with the same pinned bytes/source. No actual LAN broadcast, NIC/DMA,
+link, firewall or console delivery proof. All host processes/captures closed.
+
+No XBE, VM/image, console staging/launch, hook or rollback. Ordinary720p/startup
+and savedXBOX480 untouched; physical lease retained, automation paused. Dashboard
+is last user-observed state from closed654, not a fresh connectivity observation.
+All earlier closed runtimes remain closed. No GPU/revision capability promotion.
+Next bounded work: post-capture native sender with finite propagated init/TX/stop
+results, explicit NIC/MII side effects, valid DMA ownership and safe cleanup.
+Actual receiver LAN admission must precede any separately admitted launch.
+
 #654 CLOSED: red/green unknown comparison; dashboard return, no Windows result
 
 One SITE accepted2026-10-22T19:11:37.130798Z. User reported Red/green and then
