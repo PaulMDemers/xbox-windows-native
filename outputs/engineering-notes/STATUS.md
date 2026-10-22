@@ -1,3 +1,17 @@
+# 667 host-qualified: memory detection IF boundary
+
+Read outputs/memory667 REPORT/NEXT and actual records. Fresh source-only
+derivative of666; two read-only flags samples around unchanged memory detection.
+Host360 boundary cases/four linked transitions/55 caller cases/57 reviews pass;
+34 initializer/display/network sections unchanged. No CLI/STI patch or waiver.
+Prepared unique E diagnostic; inspect stage/launch receipts for actual state.
+One watched launch planned, deliberate black hold, no hook/Windows/reset.
+667 solidgreen=clear-to-set; evenamber/off=already set before detection.
+These require pre/post-display and admission IFset. Raw flags uncollected;
+no first-writer or Windows/480p cause inferred. All prior failures preserved.
+Ordinary720p/savedXBOX480/releases protected; firewall retained. Physical
+lease retained,build lease free,automation paused. Ftdisk49/Popup26 unresolved.
+
 # 666 CLOSED: observed IFset before/after display and at admission
 
 Read context666 REPORT/NEXT and actual observation/reconciliation/closure.
