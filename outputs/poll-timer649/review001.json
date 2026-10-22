@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "compiled_video_sections": [
+    {
+      "object": "xwn_hd_profile.o",
+      "section": ".text",
+      "bytes": 189,
+      "sha256": "b20db96d464f095e420401938d102b656c8ad1fc60000aacebebc797122c7a02"
+    },
+    {
+      "object": "xwn_hd_profile.o",
+      "section": ".rodata",
+      "bytes": 739,
+      "sha256": "5e0ae0ae5714297f5c550b82470f4f81a2ccc8c28d1f419db5e67b685e458230"
+    },
+    {
+      "object": "BootInterrupts.o",
+      "section": ".text",
+      "bytes": 2944,
+      "sha256": "6f579bb8103f1b31ae84cd2aca40dd61f1e04b29ec51c2d842113df066dae533"
+    },
+    {
+      "object": "BootLibrary.o",
+      "section": ".text",
+      "bytes": 1737,
+      "sha256": "2f1bfb824a214085be84de15828d525d080f8bd90849ec48a31565660ec7498a"
+    }
+  ],
+  "prepared_only": true,
+  "timer_cases_each_binary": 32,
+  "host_differential_scenarios": 44,
+  "host_led_cases": 516,
+  "compiled_wrapper_cases": 180,
+  "compiled_adapter_cases": 10,
+  "xbe": {
+    "bytes": 302608,
+    "sha256": "845848b0f517ce3608a429310560a3d9529da8c43dc94a25e2276a70aeed92bc"
+  },
+  "unchanged_original_native_after_removing_diagnostic": true,
+  "phase_masks": {
+    "1_clear": 80,
+    "2_set": 5,
+    "3_clear": 85,
+    "4_set": 165,
+    "5_clear": 245,
+    "6_set": 95,
+    "unknown": 0
+  },
+  "trace_RAM_only": true,
+  "adapter_callback_sequences_match_original_in_44_host_scenarios": true,
+  "limitations": [
+    "Modeled calls are not physical timing or LED proof",
+    "No indication is inconclusive, including SMBus signaling failure or an earlier boot exit",
+    "First green/off means setup success; third green/off means timer-delta range3M..36M, not boot success",
+    "Timer-width/frequency remain physical assumptions; frozen timer can stall unchanged wait_us",
+    "Two extra timer reads per started wait change timing; per-sample RAM bookkeeping changes timing; error22 indication adds twenty-eight requested seconds and SMC writes",
+    "Unique launcher location differs from645/647/648; no boot reliability or fix claim"
+  ]
+}

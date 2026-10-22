@@ -1,3 +1,24 @@
+#649 staged, NO SITE: timer-delta diagnostic watch readiness pending
+
+Read outputs/poll-timer649/REPORT.md and precise NEXT.md.32 compiled timer tests
+pass on retained648 and new649: ordinary target35 for10us, strict greater-than,
+modeled32-bit wrap; modeled24-bit/backward can exit early and frozen timer hangs
+within host budget. These are model findings, not physical timer faults.
+New candidate records two0x8008 timer reads per started status wait and reports
+phase plus raw-delta category.44 differential,516 LED,180 linked wrapper and10
+linked adapter cases pass; prelink profile/timer/library code remains unchanged.
+XBE845848b0f517ce3608a429310560a3d9529da8c43dc94a25e2276a70aeed92bc.
+
+Prepared28 selected files; staged isolated E:/Applications/XWNTimer649 owner+XBE
+with exact readback. Ordinary720p/startup untouched; no hook, rollback, SITE or
+owned process. Existing physical lease retained; build lease released. Asked
+user to watch red/green8s, pause2s, phase8s, pause2s, timer-category8s. Await reply,
+record ready001 then one bounded SITE/observer. Third green/off means3M..36M raw
+ticks, NOT boot success. Raw details stay RAM-only; timer width/frequency remain
+assumptions. Original wait_us can hang if timer freezes; request hardware recovery
+if offline at deadline, never relaunch.648/647 CLOSED; no rerun/recollection.
+No functional fix/gate waiver/timeout increase. Automation stays paused.
+
 #648 CLOSED: third wait identified; normal720p unchanged
 
 One SITE accepted2026-10-22T01:38:45.068843+00:00. User first said Amber and dash,
