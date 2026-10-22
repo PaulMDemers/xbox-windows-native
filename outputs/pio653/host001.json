@@ -1,0 +1,208 @@
+{
+  "started_utc": "2026-10-22T03:19:49.933759+00:00",
+  "status": "passed",
+  "physical_access": false,
+  "guest_launch": false,
+  "native_candidate_built": false,
+  "commands": [
+    {
+      "name": "compile-host",
+      "args": [
+        "/usr/bin/x86_64-linux-gnu-gcc-12",
+        "-std=c99",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-O1",
+        "-g",
+        "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/receipt652",
+        "-fsanitize=address,undefined",
+        "-fno-pie",
+        "-no-pie",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/pio653/pio.c",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/pio653/test.c",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/receipt652/receipt.c",
+        "-o",
+        "/mnt/c/xwn653/host001/test-host"
+      ]
+    },
+    {
+      "name": "protocol",
+      "args": [
+        "/mnt/c/xwn653/host001/test-host"
+      ]
+    },
+    {
+      "name": "compile-i386",
+      "args": [
+        "/usr/bin/x86_64-linux-gnu-gcc-12",
+        "-std=c99",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-O1",
+        "-g",
+        "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/receipt652",
+        "-m32",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-pic",
+        "-fno-pie",
+        "-fno-stack-protector",
+        "-c",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/pio653/pio.c",
+        "-o",
+        "/mnt/c/xwn653/host001/pio-i386.o"
+      ]
+    },
+    {
+      "name": "undefined",
+      "args": [
+        "nm",
+        "-u",
+        "/mnt/c/xwn653/host001/pio-i386.o"
+      ]
+    },
+    {
+      "name": "link",
+      "args": [
+        "ld",
+        "-m",
+        "elf_i386",
+        "-Ttext=0x100000",
+        "-e",
+        "admit653",
+        "/mnt/c/xwn653/host001/pio-i386.o",
+        "-o",
+        "/mnt/c/xwn653/host001/pio.elf"
+      ]
+    },
+    {
+      "name": "binary",
+      "args": [
+        "objcopy",
+        "-O",
+        "binary",
+        "/mnt/c/xwn653/host001/pio.elf",
+        "/mnt/c/xwn653/host001/pio.bin"
+      ]
+    },
+    {
+      "name": "symbols",
+      "args": [
+        "nm",
+        "-n",
+        "/mnt/c/xwn653/host001/pio.elf"
+      ]
+    }
+  ],
+  "space": {
+    "minimum_free_gib": 20.02,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c",
+        "free_bytes": 29916241920
+      },
+      {
+        "free_bytes": 29916241920,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "source_pins": {
+    "pio.c": "d2806f439b21995555040cab33dbf280b84c043586663d2c345cd176f842e753",
+    "pio.h": "b8743627f796fbcaad444d8c2546817227daac5dba44aed918d0f03001e0df1d",
+    "test.c": "ada7536782d940fdc40c515e80104215572466714b413ecd031803473c76ea1e",
+    "validate.py": "2a0d4e00c02e948bbd35ce711b4bac2e4d7f7bdd9cb611038d3ef7bbac1e12ef"
+  },
+  "receipt652_pins": {
+    "receipt.c": "fa5c90b1169ac49f89ab3a97619be61e94073f258649a54fda90b797e9298548",
+    "receipt.h": "39ba0a28fe7fed28efec6e1e9003e8fee6df3227ad9ae7c540a1760753a11597"
+  },
+  "protocol": {
+    "passed": true,
+    "checks": 25999,
+    "success_low_level_calls": 12645,
+    "physical_access": false
+  },
+  "undefined_symbols": "",
+  "artifacts": {
+    "binary.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "binary.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compile-host.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compile-host.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compile-i386.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compile-i386.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "link.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "link.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pio-i386.o": {
+      "bytes": 17448,
+      "sha256": "92056b768fd6294b7ac3a153f7a07157098fb6caa2b5c38c6971d31b6af6f09d"
+    },
+    "pio.bin": {
+      "bytes": 4820,
+      "sha256": "a539d2a672e647917f9f871d511990fe9b86e93bcb01e58eb6bd4802649f6260"
+    },
+    "pio.elf": {
+      "bytes": 19920,
+      "sha256": "2700d73bab983d41fcc0dbdb01fd51dddc8b2af5d2985af6a45319f22348751a"
+    },
+    "protocol.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "protocol.stdout": {
+      "bytes": 87,
+      "sha256": "e7638da36c4b9a12861cedd5c21a04e813b046bc7d1f58a54d1985dad8042e7b"
+    },
+    "symbols.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "symbols.stdout": {
+      "bytes": 308,
+      "sha256": "a0793f5b16fdec58d3b83cf2a73f2ff287afb5769faf370258b185c0c16525a2"
+    },
+    "test-host": {
+      "bytes": 211064,
+      "sha256": "34e953ae5955c58668828b0bd4b943522021fd5e04a782c78bad7017cc817efe"
+    },
+    "undefined.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "undefined.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "ended_utc": "2026-10-22T03:19:54.548151+00:00"
+}

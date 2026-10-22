@@ -1,3 +1,30 @@
+#653 diskless PIO prototype validated; hardware transport not admitted
+
+Read outputs/pio653/REPORT.md and NEXT.md. New callback-only backend integrates
+with receipt652 in host tests:25,999 ASan/UBSan checks and51 independent linked
+i386 controller-model cases passed. No physical ports, XBE, VM, image, FTP or
+console launch. No653 failures. All processes exited; build lease released.
+Exact source/compiler/private artifacts pinned; small C:/xwn653/host001 only.
+
+Key limit: normal ATA Status reads acknowledge interrupts. Prototype makes26
+acknowledgments on the modeled success path; permit_status_ack=0 rejects before
+I/O. Do not turn the model permit into native permission or call this passive.
+Finite polls do not prove bounded hardware callbacks or the required400ns delay.
+Map validation checks geometry, not live FATX ownership/non-overlap or E identity.
+No native caller/controller/RAM ownership or physical durability proof exists.
+
+Next bounded source task: trace existing success/failure paths and decide whether
+captured data can be exported after normal storage initialization without moving
+that initialization ahead of display measurement. Successful deferred export
+alone cannot capture the current early-reset failure. Resolve that boundary
+before more storage code; do not silently change cleanup/IRQ state or expand a
+storage subsystem indefinitely. See precise653 NEXT. No new launch queued.
+
+651 remains CLOSED, last observed dashboard after audited normal restart; LED
+order inconclusive. No fresh console probe. Ftdisk49/Popup26 limits remain.
+Ordinary720p/startup/recovery unchanged, no hook/rollback/owned process, physical
+lease retained and automation paused. No hardware input needed for653.
+
 #652 host receipt prototype validated; native transport remains unqualified
 
 Read outputs/receipt652/REPORT.md, FORMAT.md and NEXT.md. No physical access,
