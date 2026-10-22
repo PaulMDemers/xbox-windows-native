@@ -1,3 +1,21 @@
+# 663 prepared: separate existing entry/show error returns
+
+Read indication663/REPORT.md,NEXT.md and actual stage/run/launch records. New
+classifier separates entry error(solidamber), show delay(R/A/G/dark), busy(R/A/dark),
+status(G/A/dark), completion(R/G/dark), unknown(R/A/G withoutdark). CPU/sender
+classification unchanged; native display/inspection/admission/sender unchanged.
+53,760 sanitizer combinations+12 boundaries,31 linked cases,45 reviews pass;
+20 old sections unchanged;19 distinct LED cycles. Models not hardware proof.
+Fresh C:/xwn663 identity/source/build/capture; XWNLatch663 owned remote.28 files
+captured twice; stage pending/complete per stage001. No launch at checkpoint.
+
+Next exact staged checks then one run.py with fresh180-second receiver and
+verified permanent firewall. Ask held LED colors,dark gaps and screenstate.
+Record before requested manual recovery, collect/audit once after Ready. No hook,
+Windows or automatic reset. Never reopen closed662/661. Physical lease retained,
+build lease free,automation paused. Ordinary720p/savedXBOX480/releases/recovery
+preserved. Ftdisk49/Popup26 unresolved; no native NIC or CPU-fault conclusion.
+
 # 662 CLOSED: indication error observed; no CPU predicate result
 
 Read cpu662/REPORT.md,NEXT.md,observation001/002,reconciliation001,closure001.
