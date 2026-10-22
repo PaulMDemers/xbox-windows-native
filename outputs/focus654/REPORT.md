@@ -1,16 +1,30 @@
-#654: one sustained timing-readback comparison; physical observation pending
+#654 CLOSED: unknown comparison; dashboard return without Windows evidence
 
 This diagnostic answers one question: does the captured post-result timing
 subset match the requested480p profile? It replaces651's four-slot failure
 sequence with one20-second indication on both supported success and vblank
 failure outcomes. It is not a timing fix, complete snapshot export, or evidence
-of Windows boot. No physical launch/result exists yet; read actual stage/launch
-records and NEXT.md before continuing.
+of Windows boot. The physical result is recorded below; this attempt must not be rerun or recollected.
 
-Preparation and staging have completed:28 selected baseline files read twice;
-owner marker and XBE read back exactly at E:/Applications/XWNFocus654.
-No SITE, hook, rollback or observer exists. Dashboard was reachable during
-staging. Fresh watched readiness requested; no automatic launch is queued.
+One SITE was accepted2026-10-22T19:11:37.130798Z. The user reported "Red/green"
+and "Dashboard". This means unknown/incomplete capture or a setup outcome outside
+comparison eligibility. It does not establish a match, mismatch, error22, or any
+particular failed wait. No Windows desktop was reported.
+
+Observer72550 found FTP at61.1s, collected once and exited0 at19:12:50Z. All28
+selected files are unchanged. Five hives parse, event history is retained, and no
+new Windows events or EventLog6006 exist. Selected integrity passes; Windows boot,
+normal restart and strict clean result do not. No full FATX allocation audit was
+performed, and historical Ftdisk49/Popup26 remain unresolved.
+
+The first offline audit invocation failed because libhivex.so.0 was not on its
+loader path. audit-invocation001.json preserves that host failure. audit_v2.py
+with the explicit existing library path produced audit002.json from the retained
+collection; no new physical collection or launch occurred.
+
+No hook, rollback or owned process remains. Ordinary720p/startup and savedXBOX480
+are unchanged. Physical lease retained; automation paused. Console observed at
+dashboard. Unique654 files retained; no next launch queued. See closure001.json.
 
 ## Transport decision
 

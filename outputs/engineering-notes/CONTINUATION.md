@@ -1,3 +1,27 @@
+#654 CLOSED: red/green unknown comparison; dashboard return, no Windows result
+
+One SITE accepted2026-10-22T19:11:37.130798Z. User reported Red/green and then
+Dashboard. Under654 this is unknown/incomplete capture or an outcome outside
+comparison eligibility; neither match nor mismatch, and no specific setup error
+or failed wait can be inferred. No desktop reported or normal Restart requested.
+Observer72550 collected once at dashboard probe61.1s and exited0; collection
+completed19:12:50Z. All28 selected files unchanged; five hives parse, event history
+preserved and no new Windows events/6006. Selected integrity passes, boot/normal
+restart/strict result do not. Historical Ftdisk49/Popup26 remain unresolved.
+
+Offline audit invocation001 failed importing libhivex.so.0 because the loader
+path was absent. Failure preserved; audit_v2 with explicit existing library path
+produced audit002 from the same retained collection. No duplicate FTP collection
+or console launch. No hardware outcome attributed to that host import failure.
+
+654 and earlier runtimes CLOSED; no rerun/recollection. No hook/rollback/owned
+process remains. Ordinary720p/startup and savedXBOX480 unchanged. Original physical
+lease retained, automation paused. Isolated654 files retained; console at dashboard.
+No new test staged or queued. See focus654/REPORT.md, closure001.json and NEXT.md.
+Next distinguish an ineligible setup result from incomplete capture before any
+further physical comparison; retain original result/stage/error alongside validity.
+Do not infer a timing patch or expand the rejected storage route from this result.
+
 #654 LAUNCHED once; sustained LED observation and collection pending
 
 SITE accepted at2026-10-22T19:11:37.130798+00:00; reply: 200 EXEC command succeeded..
