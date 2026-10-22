@@ -1,3 +1,27 @@
+#658 staged: persistent firewall installed; watched LED test pending
+
+Read indicate658/REPORT.md and NEXT.md, then latest actual receipts. Fresh658
+is built, qualified and staged/read back. No SITE, receiver or capture exists.
+83 linked caller cases, sanitizer indication checks and23 review checks pass;
+16 old module sections unchanged. These are host/model results, not physical proof.
+Exact XBE SHA256 d67a7d9c355afc96509c501d9fab1aaf9c909cf34d62f04ce6d73290eef0d36d.
+
+User manually installed persistent XWN-DevelopmentXbox-UDP50657 after canceled
+UAC attempt. Install and independent ActiveStore/PersistentStore verification
+passed. Rule allows only configured Xbox UDP50657 on its LAN interface, any
+program/profile; no expiry. Keep it installed. Existing sandbox account block
+left untouched. Policy verification is not proof of external inbound delivery.
+
+Next wait for watched readiness, preserve ready001, then run indicate658/run.py
+ONCE. Green/off entry then four10-second LED slots distinguish admission/sender/
+cleanup status. Original capture frozen before indications/network; entry delay
+changes post-capture timing. No Windows intended. On return collect/audit once;
+retain ambiguity and all failures. Do not reopen closed657 or retry its silence.
+
+Ordinary720p/startup/savedXBOX480 preserved; no hook. All owned host processes
+closed. Dashboard last reachable at658 staging. Physical lease retained, build
+lease free, automation paused. Historical Ftdisk49/Popup26 unresolved.
+
 #657 CLOSED: zero UDP datagrams; dashboard returned and selected integrity passed
 
 Read export657/REPORT.md, NEXT.md, reconciliation001.json, audit001.json and
