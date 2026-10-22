@@ -1,3 +1,13 @@
+# 667 preflight001 failed before launch; fresh controller002 prepared
+
+Read memory667 NEXT and preflight-failure001/run001. Protected720p FTP read
+timed out; QUIT then426. ZeroSITE/no launch001; receiver38464/controller65003
+closed. Stage001 verified binary retained; no Windows/hook/console execution.
+New run002 uses physical002/listen002 and capture002, separate firewall/receiver
+receipts, same binary and exclusive launch001 guard. Controller cases pass.
+Never rerun run001 or overwrite partial capture001. User Proceed/availability
+continues; one fresh preflight, no retry of accepted/uncertain launches.
+
 # 667 host-qualified: memory detection IF boundary
 
 Read outputs/memory667 REPORT/NEXT and actual records. Fresh source-only
