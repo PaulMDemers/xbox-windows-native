@@ -1,0 +1,26 @@
+--- a/drivers/video/xwn_hd_native.c
++++ b/drivers/video/xwn_hd_native.c
+@@ -6,7 +6,12 @@
+ #include "boot.h"
+ #include "memory_layout.h"
+ #include "timer.h"
+-#include "xwn_hd_adapter.h"
++#include "xwn_hd_adapter.h"
++#include "led648.h"
++#include "trace648.h"
++volatile unsigned XwnDiag648Status;
++static int hd648_send(void *p,unsigned char a,unsigned char r,unsigned char v){return xwn_hd_smb_write((const struct xwn_hd_io *)p,a,r,v);}
++static void hd648_delay(void *p,unsigned us){const struct xwn_hd_io *io=p;io->delay(io->opaque,us);}
+ /* Historical feature/function names retained for the qualified720p build. */
+ #ifndef XWN_HD_BOOT_MODE
+ #define XWN_HD_BOOT_MODE XWN_HD_720P
+@@ -28,7 +33,8 @@
+  const struct xwn_hd_io io={0,hd_r32,hd_w32,hd_r8,hd_w8,hd_in16,hd_in8,hd_out16,hd_out8,hd_delay};
+  const struct xwn_hd_request r={XWN_HD_BOOT_MODE,(uint32_t)xbox_ram*1024u*1024u,FB_START&0x0fffffffu,FB_SIZE,316160u,encoder,cable,flags};
+  struct xwn_hd_profile selected;
+- int result=xwn_hd_apply(&io,&r,&XwnHdState311);
++ int result=xwn_hd_apply(&io,&r,&XwnHdState311);
++ XwnDiag648Status=led648_show((void *)&io,hd648_send,hd648_delay,result,XwnHdState311.stage,XwnHdState311.error,XwnTrace648.failed_wait);
+  if(result<0 || (XWN_HD_BOOT_MODE==XWN_HD_480P && result==0)){
+   if(result==0)XwnHdState311.error=30; /* Explicit480p profile refuses legacy fallback. */
+   /* Partial display setup cannot fall through into Windows or legacy setup.

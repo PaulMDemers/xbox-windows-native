@@ -1,3 +1,21 @@
+#648 staged, NO SITE: second LED-pattern readiness pending
+
+Read outputs/vblank-phase648/REPORT.md and precise NEXT.md. New phase-specific
+RAM trace samples existing reads only, preserves callback/write/poll/reset
+semantics in44 differential cases;52 LED,100 compiled wrapper and10 compiled
+adapter cases pass. Retained633 host assertions pass; profile object unchanged.
+Build001 exact-source guard failure preserved; build002 corrected line endings.
+XBE b55e84798b081421252a9852dc6c46b0e4a574deec876177f6a4d3b9f901198c.
+
+Prepared28 selected files; staged unique E:/Applications/XWNPhase648 owner+XBE
+with exact readback. Normal720p/startup unchanged; no hook, rollback, SITE or
+owned process. Existing physical lease retained; build lease released.
+Asked user to watch red/green8s, dark2s, second pattern8s if error22 repeats.
+Await that readiness; create ready001 then one bounded launch and observer.
+Second color identifies one of six waits; sampled bytes/counts remain RAM-only.
+No diagnostic timing/LED receipt proves a boot fix.647 remains CLOSED; no repeat.
+Automation paused. No new VM/disk; C/WSL guard passed; all failures retained.
+
 #647 CLOSED: red/green LED identifies vertical-blank timeout class
 
 Read outputs/video-exit647/REPORT.md and precise NEXT.md. One accepted launch,

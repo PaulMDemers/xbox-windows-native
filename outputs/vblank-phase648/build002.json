@@ -1,0 +1,219 @@
+{
+  "status": "compiled",
+  "physical_access": false,
+  "guest_launch": false,
+  "started_utc": "2026-10-22T01:31:24.553541+00:00",
+  "space": {
+    "minimum_free_gib": 20.02,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c",
+        "free_bytes": 30322782208
+      },
+      {
+        "free_bytes": 30322782208,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "original_native_recovered_exactly": true,
+  "original_adapter_recovered_exactly": true,
+  "gcc12_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "host_commands": [
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-std=c99",
+      "-O1",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=address,undefined",
+      "-fno-pie",
+      "-no-pie",
+      "-DXWN_HD_TIMING_720P",
+      "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/vblank-phase648",
+      "-I/home/paul/xbox-windows-native/build/native480p633-build001/source/drivers/video",
+      "-Dxwn_hd_apply=baseline_apply",
+      "-Dxwn_hd_smb_write=baseline_smb_write",
+      "-c",
+      "/home/paul/xbox-windows-native/build/native480p633-build001/source/drivers/video/xwn_hd_adapter.c",
+      "-o",
+      "/mnt/c/xwn648/build002/baseline.o"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-std=c99",
+      "-O1",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=address,undefined",
+      "-fno-pie",
+      "-no-pie",
+      "-DXWN_HD_TIMING_720P",
+      "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/vblank-phase648",
+      "-I/home/paul/xbox-windows-native/build/native480p633-build001/source/drivers/video",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/vblank-phase648/adapter-host.c",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/vblank-phase648/xwn_hd_adapter.c",
+      "/home/paul/xbox-windows-native/build/native480p633-build001/source/drivers/video/xwn_hd_profile.c",
+      "/mnt/c/xwn648/build002/baseline.o",
+      "-o",
+      "/mnt/c/xwn648/build002/adapter-host"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-std=c99",
+      "-O1",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=address,undefined",
+      "-fno-pie",
+      "-no-pie",
+      "-DXWN_HD_TIMING_720P",
+      "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/vblank-phase648",
+      "-I/home/paul/xbox-windows-native/build/native480p633-build001/source/drivers/video",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/vblank-phase648/led-host.c",
+      "-o",
+      "/mnt/c/xwn648/build002/led-host"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-std=c99",
+      "-O1",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=address,undefined",
+      "-fno-pie",
+      "-no-pie",
+      "-DXWN_HD_TIMING_720P",
+      "-I/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/vblank-phase648",
+      "-I/home/paul/xbox-windows-native/build/native480p633-build001/source/drivers/video",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native480p633/adapter-host.c",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/vblank-phase648/xwn_hd_adapter.c",
+      "/home/paul/xbox-windows-native/build/native480p633-build001/source/drivers/video/xwn_hd_profile.c",
+      "-o",
+      "/mnt/c/xwn648/build002/legacy-host"
+    ]
+  ],
+  "host": {
+    "adapter-host": {
+      "passed": true,
+      "output": "PASS 44 differential scenarios: exact callback sequence/state, phase and sampled-byte trace\n",
+      "hardware_io": "modeled callbacks",
+      "binary_sha256": "bc0e5794f5061aec687b9a0a3cfcee949b149d86f9805a8d67145040dbbe29ad"
+    },
+    "led-host": {
+      "passed": true,
+      "output": "PASS 52 LED cases, all phase codes and diagnostic-write failures\n",
+      "hardware_io": "modeled callbacks",
+      "binary_sha256": "1ff28e34edadf3d69756c0731c9be44fcc8b90a8cc3fe6fbee5b61dfa037c6f7"
+    },
+    "legacy-host": {
+      "passed": true,
+      "output": "PASS 235552\n",
+      "hardware_io": "modeled callbacks",
+      "binary_sha256": "12a0a19c9e0275e05f1630387670d743824c4893e13f39b7bcdd0504f14232e4"
+    }
+  },
+  "parent_tree": "70c0a6c5aff82537f489e7d18410d5980fa797a7",
+  "tree": "02061a7804f7e363880f2e32129fb90f205fdeb3",
+  "source": "/mnt/c/xwn648/source002",
+  "flags": "-DXWN_PHYSICAL_PREFLIGHT -DXWN_HD_RESERVATION=1 -DXWN_HD_TIMING_720P=1 -DXWN_HD_BOOT_MODE=3",
+  "command": [
+    "make",
+    "all",
+    "CC=/usr/bin/x86_64-linux-gnu-gcc-12",
+    "GITREV=xwn633-480p",
+    "EXTRA_CROM_CFLAGS=-DXWN_PHYSICAL_PREFLIGHT -DXWN_HD_RESERVATION=1 -DXWN_HD_TIMING_720P=1 -DXWN_HD_BOOT_MODE=3",
+    "LDFLAGS-ROM=-s -S -T /mnt/c/xwn648/source002/scripts/ldscript-crom.ld -Map=/mnt/c/xwn648/build002/image-crom.map"
+  ],
+  "source_pins": {
+    "adapter-host.c": "2a795a2ac501f0da9aba8940c311a6d766f72fe24f09b7871babafb5c5073c64",
+    "adapter002.patch": "08769cce96ccf702d0a5c93dc21a1e050e8086bf91f232a3b0d7b019cd8e8db4",
+    "build.py": "727711070ac00bf49f7221ad1a0d10f3dcc5384411f883e467d5299e319fe487",
+    "build002.py": "a577258281aea84044f12e251996507e0eb28028c22888d78188f613b09e2edf",
+    "diag647.h": "b3f631f5e3869e2dd77241105047608bb2db1c3a741c6eece66cb1d90c915a9a",
+    "led-host.c": "bbccaa61e081cfd8fd81bc3c8ae9736fcd3befa6459ecfe01499687cbec8d339",
+    "led648.h": "25327c30c4339a3db08076fc9dd61b6e861648d86e1751808046d26a7fe7badd",
+    "native002.patch": "136b181404ac323bd3b5a10c54669ca1f1d24b7483d205e8e670320bd94aa454",
+    "trace648.h": "da47894f4ee0502229dce3e04f3f63792e19bb2e49ea81b1c42a2e12451c8e8e",
+    "xwn_hd_adapter.c": "be929968c3b7cb847d5d76506d1274c9ae0e9be4d3c4c4d5662afa0e5d038d91",
+    "xwn_hd_native.c": "f32f76205b3bcf19073aade195edb23cd0de1337904d7023191db557db08b37a"
+  },
+  "outputs": {
+    "adapter-host": {
+      "bytes": 239264,
+      "sha256": "bc0e5794f5061aec687b9a0a3cfcee949b149d86f9805a8d67145040dbbe29ad"
+    },
+    "adapter-host-result.txt": {
+      "bytes": 92,
+      "sha256": "e18bcbbe5aed8613aff321085b3a4cb0d99fee7f68cb9ed5c9fee75d5cf0882e"
+    },
+    "baseline.o": {
+      "bytes": 148160,
+      "sha256": "8e378e83c64b412703f3eb94f8a78c91db1f6586bbabc940bde45f852bb3d7c8"
+    },
+    "cromwell.log": {
+      "bytes": 138929,
+      "sha256": "b1318d252a9a6c2fa311e43153651e7c17fbe913c5d80cd954bedd24dca3229c"
+    },
+    "default.xbe": {
+      "bytes": 302096,
+      "sha256": "b55e84798b081421252a9852dc6c46b0e4a574deec876177f6a4d3b9f901198c"
+    },
+    "host-compile0.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "host-compile1.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "host-compile2.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "host-compile3.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "image-crom.bin": {
+      "bytes": 289788,
+      "sha256": "51264e89dccfa3d33735aa5b2b72ce167d20d83734d8d8c8dd22ea65203bc614"
+    },
+    "image-crom.elf": {
+      "bytes": 325476,
+      "sha256": "ab7845e4b520040a4cd83e664c2ba4ba41924cb21ce6a0fcb25b54e18616ecc1"
+    },
+    "image-crom.map": {
+      "bytes": 186328,
+      "sha256": "7654a59b3e42136efeb10d142831aaaef9b49e0b874151742a1dfba507420e7d"
+    },
+    "led-host": {
+      "bytes": 45632,
+      "sha256": "1ff28e34edadf3d69756c0731c9be44fcc8b90a8cc3fe6fbee5b61dfa037c6f7"
+    },
+    "led-host-result.txt": {
+      "bytes": 65,
+      "sha256": "ccc32736e632bfe0e404f41965d36b07f1559c289274b82ab5fae8e1c50636eb"
+    },
+    "legacy-host": {
+      "bytes": 181120,
+      "sha256": "12a0a19c9e0275e05f1630387670d743824c4893e13f39b7bcdd0504f14232e4"
+    },
+    "legacy-host-result.txt": {
+      "bytes": 12,
+      "sha256": "ed6bc96e77e83d7f56ca146f85e8e006419191ddc3a7a0201a48fef9327e9e77"
+    }
+  },
+  "ended_utc": "2026-10-22T01:31:53.032565+00:00"
+}

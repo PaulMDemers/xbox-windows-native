@@ -1,0 +1,47 @@
+--- a/drivers/video/xwn_hd_adapter.c
++++ b/drivers/video/xwn_hd_adapter.c
+@@ -4,6 +4,8 @@
+  * the same orchestration is exercised with modeled I/O in host tests.
+  */
+ #include "xwn_hd_adapter.h"
++#include "trace648.h"
++volatile struct xwn_trace648 XwnTrace648;
+ #define BUS_POLLS 1000u
+ #define SYNC_POLLS 10000u
+ #define VBLANK_POLLS 100000u
+@@ -34,12 +36,25 @@
+  if(e){s->error=10u+(unsigned)e;return 0;}s->smb_completed++;return 1;
+ }
+ static int edge(const struct xwn_hd_io *io,volatile struct xwn_hd_state *s,unsigned wanted) {
+- unsigned i;
++ unsigned i,slot=XwnTrace648.waits_started++;
++ volatile struct xwn_edge648 *e=slot<6?&XwnTrace648.edge[slot]:0;
++ if(e)e->wanted=wanted;
+  for(i=0;i<VBLANK_POLLS;i++) {
++  unsigned value;
+   s->vblank_polls++;
+-  if((io->r8(O,0x6013da)&8)==wanted)return 1;
++  value=io->r8(O,0x6013da);
++  if(e) {
++   if(!e->samples)e->first=value;
++   else {e->byte_changes+=(e->last!=value);e->bit_changes+=((e->last^value)&8)!=0;}
++   e->last=value;e->samples++;
++  }
++  if((value&8)==wanted) {
++   if(e)e->completed=1;
++   XwnTrace648.waits_completed++;return 1;
++  }
+   io->delay(O,10);
+  }
++ XwnTrace648.failed_wait=slot+1;
+  s->error=22;return 0;
+ }
+ int xwn_hd_apply(const struct xwn_hd_io *io,const struct xwn_hd_request *r,volatile struct xwn_hd_state *s) {
+@@ -49,6 +64,7 @@
+  static const uint8_t attr[20]={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,1,0x4a,15,0,0};
+  if(!s)return 0;
+  *s=(struct xwn_hd_state){0};
++ XwnTrace648=(struct xwn_trace648){0};
+  if(!io || !r || !io->r32 || !io->w32 || !io->r8 || !io->w8 ||
+     !io->in16 || !io->in8 || !io->out16 || !io->out8 || !io->delay)return 0;
+  if((r->mode!=XWN_HD_720P && r->mode!=XWN_HD_480P) ||
