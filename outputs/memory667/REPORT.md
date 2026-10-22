@@ -64,3 +64,21 @@ this run. The linked allocator's existing STI paths are consistent with the
 observation; it does not identify the first instruction that enabled IF.
 Raw flags and final SMC status were not retrieved. UDP capture and recovery
 have their own receipts; the light does not prove network success.
+
+## Closure
+
+The180-second capture002 received zero datagrams. Receiver exit2/controller
+exit0; all owned host processes closed. User power-cycled to UnleashX, then
+one collection and audit passed:28 selected files unchanged, five registry
+hives parsed, savedXBOX480 intact, no new system/application events. This was
+manual recovery, not a normal Windows restart; no Windows run was attempted.
+No startup hook was installed. Ordinary720p and persistent firewall retained.
+Preflight001's read timeout/QUIT426 and partial capture remain separate from
+the single accepted launch in controller002. Never rerun/recollect this runtime.
+
+Next review should reconcile the allocator's existing unconditional interrupt
+enable with boot initialization and the polling sender's IF-clear admission
+contract. Audit the relevant call paths and requirements before proposing any
+change. These results do not justify simply clearing IF, borrowing firmware
+state, or bypassing admission. Additional physical probes should resolve a
+specific remaining question, not repeat this already-observed boundary.
