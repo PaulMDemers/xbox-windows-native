@@ -1,3 +1,17 @@
+# 664 amber blinking/black hold: cadence clarification pending
+
+User reports Blinking Amber, black screen. Do not yet identify IF: even
+amber/off0x55, short amber/long off0x11 and two amber/two off0x33 differ only
+in cadence. Asked equal versus longer-dark; await answer before recovery request.
+Initial commentary was too strong; observation001 explicitly preserves unknown
+cadence. Startup0xe1 is distinct. No raw CPU/status record or state change.
+
+Receiver completed180seconds, exit2/no-valid-packet; run.py session75710 exited0.
+No relaunch/collection/recovery yet. Console last observed blackheld; no hook.
+After cadence record, request power-off/on to dashboard; collect/audit once
+after Ready. Keep permanent firewall and ordinary720p. Read phase664 actual
+records; physical lease retained,build lease free,automation paused.
+
 # 664 LAUNCHED ONCE: held pattern/screen observation pending
 
 SITE accepted 2026-10-22T22:43:46.122860+00:00. Receiver PID37340, run.py exec
