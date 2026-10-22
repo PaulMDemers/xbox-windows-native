@@ -1,4 +1,30 @@
-#648 phase-specific vertical-blank diagnostic
+#648 CLOSED: second-pair clear wait timed out
+
+One SITE accepted at2026-10-22T01:38:45.068843+00:00. User first reported
+"Amber and returned to dash", then clarified "Amber flashing on/off after pause".
+The second amber/off code maps to failed_wait3: the second pair's clear wait.
+Under the validated candidate's semantics, the first clear/set pair completed,
+then the next clear predicate did not succeed within its sample limit. That is
+an inference from a human-observed phase code, not a durable register trace.
+No elapsed timer value or full sampled byte was retrieved. The user did not
+separately confirm a black screen. No Windows desktop was reported.
+
+Dashboard FTP returned at47.7s; observer34300 collected once and exited0. All28
+selected files are identical before/after. Five hives parse, history and saved
+XBOX480 are intact, and no new Windows events/6006 were recorded. Selected
+integrity passes; Windows boot and normal restart do not. Normal720p/startup
+remain exact; no hook, rollback or owned process remains. Diagnostic files stay
+in their isolated folder. No extra launch is queued; never rerun/recollect648.
+
+Read-only follow-up found that hd_delay calls wait_us, whose limit is computed
+using floating-point conversion and whose loop reads GetTimerTicks (TIMER_IO).
+Current compiled adapter/wrapper tests model delay callbacks, so they cannot
+establish physical elapsed time. This is a validation gap, not a demonstrated
+timer bug. Source hashes and limits are in source-followup001.json. See NEXT.md.
+
+Evidence: launch001.json,user-observation001.json,observation001.json,
+collection001.json,audit001.json,closure001.json.647 remains a separate closed
+run; this phase must not be assigned to it or645 retroactively.
 
 647 is CLOSED. Its watched red/green indication is consistent with error22 in
 that instrumented run, but did not identify which of six waits timed out.648
@@ -70,5 +96,5 @@ No automatic-mode, live-switching, other-revision or acceleration promotion.
 Physical state: preparation captured28 selected before files with repeated exact
 readback. Staging wrote only E:/Applications/XWNPhase648/owner.json and default.xbe
 in a unique folder, then verified exact bytes. No startup hook or dashboardC
-access. Normal720p remains unchanged. No SITE sent; awaiting a watched second
-LED indication. Build and staging processes exited; physical lease retained.
+access. This preparation preceded the single watched launch documented above.
+Normal720p remains unchanged. All owned processes exited; physical lease retained.

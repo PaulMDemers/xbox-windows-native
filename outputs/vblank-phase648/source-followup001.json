@@ -1,0 +1,23 @@
+{
+  "source": "C:/xwn648/source002",
+  "hashes": {
+    "drivers/video/xwn_hd_adapter.c": "be929968c3b7cb847d5d76506d1274c9ae0e9be4d3c4c4d5662afa0e5d038d91",
+    "drivers/video/xwn_hd_native.c": "f32f76205b3bcf19073aade195edb23cd0de1337904d7023191db557db08b37a",
+    "drivers/pci/BootInterrupts.c": "b8a7e00bcf4c49b36479506705be4b4cd99b3829a0cdbc27ef85c0e4a596449c",
+    "lib/misc/BootLibrary.c": "9ee047b2a1cc68ae885c0ad5ee569648e12359bd7017d2a10bac878d29ff7312"
+  },
+  "observations": [
+    "edge() requests delay10us after each failed sample, 100000 samples maximum",
+    "hd_delay calls wait_us",
+    "wait_us calculates COUNT_TO with floating-point conversion and loops on GetTimerTicks unsigned difference",
+    "GetTimerTicks reads TIMER_IO using IoInputDword",
+    "Current linked adapter and wrapper tests model delay callbacks; actual wait_us elapsed duration has not been measured in this run"
+  ],
+  "not_established": [
+    "actual physical timer delta",
+    "delay malfunction",
+    "timer width/frequency as verified hardware facts",
+    "scanout stopped",
+    "cause of prior645"
+  ]
+}

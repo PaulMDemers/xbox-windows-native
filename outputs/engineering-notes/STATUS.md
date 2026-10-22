@@ -1,3 +1,30 @@
+#648 CLOSED: third wait identified; normal720p unchanged
+
+One SITE accepted2026-10-22T01:38:45.068843+00:00. User first said Amber and dash,
+then clarified Amber flashing on/off after pause. Candidate maps that second
+code to failed_wait3: pair2 waiting for bit3 clear, after the first clear/set pair.
+This is LED/source inference, not durable sampled-byte or timer evidence. Black
+screen was not separately confirmed. Do not diagnose earlier645 retroactively.
+Dashboard FTP returned47.7s; observer34300 exited0. All28 selected files identical,
+five hives/history and savedXBOX480 pass; no new Windows events/6006. No hook,
+rollback or owned process. Ordinary720p/startup unchanged; diagnostic files kept.
+Read outputs/vblank-phase648/REPORT.md and precise NEXT.md.648/647 CLOSED; no
+reruns/recollection. Next independently qualify actual wait_us/timer behavior
+before a new bounded elapsed-time/status diagnostic; current tests model delays.
+No timeout expansion, gate waiver, pending-bit clearing or functional patch.
+No extra launch queued. Automation paused; existing physical lease retained.
+
+#648 launched once; second LED pattern and return pending
+
+Accepted SITE2026-10-22T01:38:45.068843+00:00 through isolated XWNPhase648.
+User said Proceed to watch readiness. Asked second LED pattern after dark pause
+and screen/dashboard outcome. Observer session34300 is bounded600s and owns
+collection once; inspect actual observation/collection before any action.
+No repeat SITE. Ordinary720p/startup unchanged; no hook or rollback outstanding.
+Source pins and staged bytes passed launch preflight. After dashboard collection,
+run retained-file audit once; preserve human observation separately. No fix claim.
+Read outputs/vblank-phase648/REPORT.md/NEXT.md and actual records.647 CLOSED.
+
 #648 staged, NO SITE: second LED-pattern readiness pending
 
 Read outputs/vblank-phase648/REPORT.md and precise NEXT.md. New phase-specific

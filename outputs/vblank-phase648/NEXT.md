@@ -1,26 +1,33 @@
-#648 staged, NO SITE: await second-pattern watch readiness
+#648 CLOSED: validate elapsed polling time before changing mode setup
 
-Read REPORT.md and actual preparation001/stage001/launch001 first. Do not assume
-a SITE has been sent.647 and all earlier closed runtimes remain closed.
-Exact build002 SHA is b55e84798b081421252a9852dc6c46b0e4a574deec876177f6a4d3b9f901198c.
-Review001 and host001 pass; 44 differential/52 LED/100 compiled wrapper/10 compiled
-adapter cases are host evidence, not physical proof. Build001 failure preserved.
+Read REPORT.md and actual user-observation/collection/audit/closure001. Second
+amber/off after pause identifies wait3 (pair2 clear) in this instrumented run.
+The first clear/set pair completed; no sampled-byte or elapsed-time receipt.
+All28 selected files unchanged; no new Windows events. Original720p/startup
+intact, no hook/rollback/owned process, isolated diagnostic files retained.
+Never rerun/recollect648/647 or another closed runtime. No SITE queued.
 
-If stage001 is complete and no launch exists, ask for readiness to watch BOTH
-indications: red/green about8s, dark2s, second pattern about8s, then automatic
-dashboard return on error22. Record the specific readiness response in ready001.
-Use physical.py launch once; it validates frozen sources/staged bytes and uses
-one SITE with20s reply bound. Never retry an accepted or uncertain launch.
-Start observe.py once, bounded600s. Ask the second LED pattern and screen result.
-If Windows opens instead, leave running for observation then normal Restart.
+Next independently inspect and test the exact compiled wait_us/GetTimerTicks
+path from the retained build (no closed runtime involved). Current compiled
+adapter/wrapper tests mock delay; do not assume100000 requested10us delays prove
+one physical second. Model monotonic, wrapping and discontinuous timer input,
+validate conversion/bounds and document timer-width/frequency assumptions. Inspect
+floating-point prerequisites without altering FPU/control/interrupt state.
+A host model cannot establish the physical timer or clock behavior.
 
-No startup hook exists. Ordinary720p/startup are not replaced; no rollback is due.
-On dashboard return observer collects once; run audit.py once against retained
-files with the known hivex loader path. Record LED observation separately from
-file/hive/event results. If offline at deadline, record actual state and ask for
-hardware recovery rather than another launch. No further automatic launch.
+Then design a NEW bounded diagnostic to report an elapsed-time category for the
+failed poll and distinguish it from a sustained status value. Prefer recording
+already-used timer values or explicitly reviewed read-only timer accesses; keep
+video register reads/writes, predicates, limits, reset logic and protected720p
+unchanged. Retain perturbation from added bookkeeping and LED timing explicitly.
+Validate source, binary, model bounds and indicator decoding before any staging.
+Use a new kit/build/owned E path, existing leases and exact preflight/readback.
+A subsequent physical result needs a watched observation; no automatic rerun.
 
-A missing second code is inconclusive. A recognized phase tells only which bit
-state was awaited; first/last sampled byte and counts remain RAM-only. Do not
-claim physical scanout stopped, identify645's cause, or change functional timing
-from this result alone. Retain original constraints and exact continuation.
+Do not increase timeout, clear pending bits, borrow firmware state, bypass a
+validation gate or apply a speculative driver/profile change. If adequate elapsed
+time is demonstrated, review the status source and scanout timing/clock readback
+with primary evidence before selecting a functional experiment. No assertion yet
+that scanout stopped, adapter failed, or timer is broken. No prior645 diagnosis,
+boot fix, live-mode switch, other-revision or acceleration promotion.
+Automation stays paused. Preserve every failed attempt and exact continuation.
