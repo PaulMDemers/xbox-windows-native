@@ -1,18 +1,17 @@
-# 667 launched once; observation/recovery pending
+# 667 solidgreen/black observed; recovery requested
 
-SITE accepted 2026-10-22T23:48:58.029520+00:00. Receiver PID37036, run002 exec
-session48278,180sec capture C:/xwn667/capture002. No relaunch. Runner owns
-receiver only; manual observation/recovery/collection remain separate.
-Asked lasting light and screen. Await answer, record it, then request manual
-power-off/on and await Ready before one collection/audit. No hook/Windows/reset.
+Read memory667 observation001/capture-review001/REPORT/NEXT. User solidgreen
+blackheld maps category3: IFclear before memory detection, IFset immediately
+after; saved pre/post-display and admission IFset. Existing linked allocator
+STI paths agree; no first enabling instruction, uninterrupted IF history, raw
+flags, SMC status, Windows/480p cause or NIC qualification proven.
 
-667 solidgreen=IFclear before/set after memory detection; equalamber/off=IFset
-before/after; solidamber=missing/invalid; red/green=set/clear; two-green/two-off=
-clear/clear; equalred/off=unavailable. Eligible transition codes require saved
-pre/post display and admission IFset. No raw flags/first-writer/Windows cause
-proof. Use667 table, not666. Firewall verified and retained. Ordinary720p and
-savedXBOX480 protected; physical lease retained,build lease free,automation
-paused. Preserve preflight001 readback timeout/QUIT426/partialcapture; zeroSITE
-in that failed controller. Actual launch only in controller002.
+One accepted SITE;180sec capture002 zero datagrams. Receiver37036 and
+controller48278 closed, exits2/0. Permanent firewall verified and retained.
+Requested power-off/on to UnleashX; await Ready before one collection/audit.
+Last observed console blackheld; no hook/Windows/automatic reset. Preserve
+preflight001 timeout/QUIT426 and partialcapture, all older closed attempts.
+Ordinary720p/savedXBOX480/releases protected; physical lease retained,build
+lease free,automation paused. Ftdisk49/Popup26 unresolved. No relaunch.
 
-After Ready, run physical002.py collect ONCE, then audit.py in WSL with the existing offline-disk library path. Do not collect while held or reopen closed666. Record capture002 outcome separately from LED inference.
+After Ready, record recovery, run physical002.py collect ONCE, then audit.py in WSL using the offline-disk library path. Do not reopen a closed runtime. Review exact collection and hives/events before closure. No functional interrupt-state patch or guard waiver.

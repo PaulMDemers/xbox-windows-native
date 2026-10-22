@@ -53,3 +53,14 @@ savedXBOX480, releases/recovery, permanent firewall and all prior failures.
 
 Actual build/review/stage/launch/outcome state is recorded in the adjacent JSON
 receipts and NEXT. No physical qualification is claimed by this design note.
+
+## Physical observation
+
+User reported "Solid green, black screen" after the single accepted launch.
+Under667's table this is category3: valid samples with IF clear before memory
+detection and set afterward, with the saved display/admission context still
+showing IF set. This narrows the transition to the observed call boundary in
+this run. The linked allocator's existing STI paths are consistent with the
+observation; it does not identify the first instruction that enabled IF.
+Raw flags and final SMC status were not retrieved. UDP capture and recovery
+have their own receipts; the light does not prove network success.
