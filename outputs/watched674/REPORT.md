@@ -85,4 +85,3 @@ Protected720p/startup/XBOX480/releases/private256 unchanged. Unique674Edir
 retained; buildleasefree,physicalleaseretained,firewallretained,automationpaused.
 Boot/1080i,Ftdisk49/Popup26 remain unresolved. No furtherlaunch promised in this
 sequence; no hardware action currently needed for host-only follow-up.
-
