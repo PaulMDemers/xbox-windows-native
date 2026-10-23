@@ -1,3 +1,12 @@
+# 672 CLOSED; fresh user-requested watched repeat674
+
+User reported flashing amber; initial marker/red pulse count unreported, exact
+status remains unknown. User explicitly requested Rerun it, then Ready after
+manual power-cycle. One672collection4456exit0 and audit001 passed:28selected
+files unchanged,5hives parse,XBOX480 intact,no new events. No hook. Receiver
+failure remains no capture conclusion, not zeroUDP. No closed672 runtime reuse.
+See closure001 and watched674 actual records for subsequent fresh attempt.
+
 # 672 physical result pending; receiver failed, no capture conclusion
 
 Read signal672 REPORT,NEXT,launch001,run001,receiver-failure001 and receiver673

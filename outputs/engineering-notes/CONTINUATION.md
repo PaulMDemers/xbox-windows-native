@@ -1,3 +1,27 @@
+# 674 fresh watched attempt staged;672 closed
+
+Read watched674 REPORT/NEXT and actual launch/run records. User explicitly
+requested Rerun it after672 flashingamber; earlier marker/pulse count unknown.
+User power-cycled and repliedReady.672onecollection/audit passed:28files
+unchanged,5hives parse,XBOX480 intact,no new events;nohook. Receiver failure
+preserved, not zeroUDP. Never recollect/rerun closed672.
+
+674 is a fresh source/build/token; every flatimage byte except48identitybytes
+matches672.40transport/17entry/6guard/69review checks pass. New receiver uses
+strict physical-candidate manifest before readiness; actual owned-child poll
+occurs after slow FTP reads before SITE.4controller checks pass incl child death
+while stage reads run, accepted/uncertain duplicate refusal.673helper retained.
+
+Staging/readbackpassed. Controllerexec5282 owns receiver30480,180second bound;
+read launch001/run001 for acceptance/completion; never resend accepted/uncertain.
+User available to watch/reset. Ask entrygreen/off,categoryandredpulsecounttwice;
+partial observation inconclusive. Aftercapture request manualreset, collect674
+once and audit with known libhivex LD_LIBRARY_PATH. No temporary startuphook.
+
+Protected720p/startup/XBOX480/releases/private256 unchanged at stage. Buildlease
+free,physical lease retained,firewall retained,automationpaused. Ftdisk49/Popup26,
+boot/1080i unchanged. No delivery/coherency/480pfix from hostmodels or LEDalone.
+
 # 672 physical result pending; receiver failed, no capture conclusion
 
 Read signal672 REPORT,NEXT,launch001,run001,receiver-failure001 and receiver673
