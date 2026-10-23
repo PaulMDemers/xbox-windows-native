@@ -85,3 +85,21 @@ Amber can be a final general failure mask or persist from earlier firmware;
 LED alone cannot distinguish them. Do not repeat this executable to seek a pass.
 Power-cycle recovery requested; collection/audit remains pending until dashboard
 return. See later recovery/collection records if they now exist.
+
+## Closed after manual recovery
+
+User replied Ready after the requested power-cycle. One read-only collection
+confirmed UnleashX and no temporary startup hook. All28 selected files remain
+byte-identical, five hives parse, savedXBOX480 is intact, and system/application
+events have no new records. This is a selected-file/hive/event audit, not a
+full FATX allocation scan or proof of normal Windows shutdown. No Windows run
+was intended or established. Receiver/controller/collector exited; no owned
+host processes remain. The unique diagnostic directory is retained onE.
+
+Audit001 failed importing libhivex.so.0 because LD_LIBRARY_PATH was absent.
+It is preserved. Audit002 used the same collected bytes with the retained
+offline-disk library directory configured; no physical recollection occurred.
+No packet delivery or exact failure stage was established. Next is a fresh
+host-only indication design with a distinct post-freeze entry marker and actual
+admission/send/cleanup status, so a final failure cannot be confused with the
+firmware's initial amber. Do not rerun/recollect the closed671 runtime.

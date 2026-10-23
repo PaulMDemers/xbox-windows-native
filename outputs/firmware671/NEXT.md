@@ -1,32 +1,30 @@
-# 671 capture complete; awaiting power-cycle recovery and collection
+# 671 CLOSED: zero UDP and ambiguous amber; protected files unchanged
 
-One SITE was accepted2026-10-23T00:28:25Z. User reported solidamber/heldblack.
-Receiver50752 captured zero datagrams over180seconds and closed exit2;
-controller8825 exited0. Permanent firewall verified/retained. No hook.
-Recovery requested: await Ready at UnleashX, then collect exactly once and audit.
-DO NOT stage, launch, rerun or recollect an already-completed phase. The
-pre-launch procedure below is retained for provenance, not another attempt.
-Amber is ambiguous with earlier firmware/hold; exact failure stage unproven.
+Read REPORT,observation001,capture-review001,collection001,audit002 and
+closure001. One accepted SITE, solidamber/heldblack reported, zero datagrams
+in180seconds. Receiver/controller closed. User power-cycled; one collection
+confirmed dashboard/no hook.28 selected files unchanged,5 hives parse,
+XBOX480 intact,no new events/6006. Not a full FATX scan or normal Windows boot.
+Audit001 missing libhivex.so.0 loader path failure preserved; audit002 fresh
+read-only parsing of the SAME collected bytes passed with LD_LIBRARY_PATH set
+to /home/paul/xbox-windows-native/toolchains/offline-disk/root/usr/lib/x86_64-linux-gnu.
+Never rerun, recollect or parent the closed671 runtime.
 
-Read REPORT,build001,execute001,entry001,review001,controller-review001 and
-preparation/stage/launch/run records. Follow actual records over this heading.
-Full image:40 transport cases,12 entry cases,60 reviews pass;34 original object
-sections unchanged. Explicit post-hardware-capture CLI boundary freezes saved
-producer RAM before copy/encode. Original capture flags, freeze boundary flags
-and later transport flags are separate. No ordinary startup/allocator change.
+Next fresh HOST-ONLY design/test of unambiguous terminal stage/error reporting:
+a distinct post-freeze entry indication plus actual native admission, send and
+cleanup status.671's amber may be the final general-failure mask or earlier
+firmware/hold; do not infer a specific gate/NIC failure from it. Validate codes,
+SMC failures, finite bounds, original-packet preservation and terminal hold
+against the exact linked caller before any new physical attempt.
 
-The user is available to watch/reset. Stage unique E:/Applications/XWNLatch671,
-read back exact bytes, verify firewall and bind receiver before one SITE request.
-Never repeat an accepted/uncertain launch. If already requested, only observe
-and collect. Receiver owns180 seconds, then closes. No Windows startup hook.
+Keep the explicit diagnostic post-capture freeze distinct from earlier hardware
+capture flags and later transport flags. Original capture may already have been
+interrupted; CLI excludes only maskable IRQs. Preserve every admission gate,
+no allocator/general driver patch,firmware-state borrow,pending-bit clear or
+ordinary-path change. No physical UDP/cache/DMA/480p qualification from host
+models. No identical boot to seek a pass.
 
-After LED/screen observation and receiver completion, request power-cycle to
-UnleashX, collect once with physical.py collect and perform relevant hive/event/
-file audit. Do not treat forced recovery as normal Windows shutdown. Preserve
-all failures. No old runtime reopened. Reconcile packets with exact attempt,
-build identity, stage pins and launch before attributing physical execution.
-
-No physical delivery/coherency/480p fix follows from host tests or LED alone.
-CLI excludes maskable IRQs only; earlier hardware capture may have been
-interrupted. Callback-count budgets assume transactions return. Keep protected
-720p/startup/XBOX480/releases/recovery. Firewall retained; automation paused.
+Console dashboard; no hook/owned host process. Unique E:/Applications/XWNLatch671
+retained. Normal720p/startup/XBOX480/releases/private256 protected. Build lease
+free,physical lease retained,firewall retained,automation paused. Ftdisk49 and
+Popup26 unresolved. No user action needed for host-only preparation.

@@ -1,3 +1,23 @@
+# 671 CLOSED: zeroUDP/ambiguousamber; recovery audit passed
+
+Read firmware671 REPORT/NEXT,observation001,capture-review001,collection001,
+audit002,closure001. One acceptedSITE,solidamber/heldblack,180sec zero packets.
+Final indication stage/native status unknown; no NIC/delivery/480p conclusion.
+User power-cycled, one collection confirmed dashboard/no hook.28files unchanged,
+5hives parse,XBOX480 intact,no newevents/6006. Not fullFATX or normalWindows
+shutdown proof. Preserve audit001 libhivex loader-path failure; fresh audit002
+used same collected bytes with proper LD_LIBRARY_PATH, no recollection.
+
+Next fresh HOST-ONLY unambiguous entry/final status design: distinct post-freeze
+marker plus actual admission/send/cleanup status; validate bounded SMC failure,
+packet preservation and terminal hold before new hardware. Never rerun/recollect
+closed671 or infer exact failure from amber. Full-image host40+12tests/60reviews
+retained. Original capture/freeze/transport flags separate; no gate waiver,
+allocator/driver patch,pending-bit clear,borrowed firmware or ordinary change.
+Dashboard,no hook/owned processes; uniqueE diagnostic retained; build lease
+free,physical lease retained,firewall retained,automation paused. Protected720p/
+XBOX480/releases/private256 intact. Ftdisk49/Popup26 unresolved. No user action.
+
 # 671 capture complete: solidamber/black, zero UDP; recovery requested
 
 Read firmware671 REPORT/NEXT,observation001,capture-review001 and run001.
