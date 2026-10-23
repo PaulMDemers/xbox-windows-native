@@ -1,3 +1,18 @@
+# 671 capture complete: solidamber/black, zero UDP; recovery requested
+
+Read firmware671 REPORT/NEXT,observation001,capture-review001 and run001.
+One accepted SITE; user solidamber/heldblack.180sec zero datagrams; receiver
+50752exit2/controller8825exit0 closed. Firewall verified/retained. No hook.
+No exact native status or final indication stage: amber may persist before
+final SMC write. No physical delivery or480p conclusion. No identical rerun.
+
+User asked to power-cycle to UnleashX; await Ready, then physical.py collect
+once and audit.py via WSL. Capture and run are completed, not a pending launch.
+Full-image host tests40+12 and60reviews pass; original capture/freeze/transport
+flags kept distinct. Protected720p/startup/XBOX480/releases/private256 unchanged
+at staging; post-recovery check pending. No owned host processes; build lease
+free,physical lease retained,automation paused. Ftdisk49/Popup26 unresolved.
+
 # 671 physical attempt accepted; solidamber/black observed, capture active
 
 Read firmware671 REPORT/NEXT and actual launch/run/observation records. Full

@@ -74,3 +74,14 @@ for current state; this report does not presume a successful physical result.
 
 Normal720p/startup, savedXBOX480, immutable releases and private256 recovery
 remain protected. Ftdisk49/Popup26 and boot intermittency remain unresolved.
+
+## Physical observation and capture result
+
+One SITE request accepted2026-10-23T00:28:25Z. User reported solid amber and
+a held black screen. The receiver captured zero datagrams in180 seconds and
+closed with exit2; controller exited0. Persistent firewall verification passed.
+No physical UDP delivery, exact sender error or final-stage execution established.
+Amber can be a final general failure mask or persist from earlier firmware;
+LED alone cannot distinguish them. Do not repeat this executable to seek a pass.
+Power-cycle recovery requested; collection/audit remains pending until dashboard
+return. See later recovery/collection records if they now exist.

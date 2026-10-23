@@ -1,4 +1,12 @@
-# 671 prepared for one watched physical terminal-UDP attempt
+# 671 capture complete; awaiting power-cycle recovery and collection
+
+One SITE was accepted2026-10-23T00:28:25Z. User reported solidamber/heldblack.
+Receiver50752 captured zero datagrams over180seconds and closed exit2;
+controller8825 exited0. Permanent firewall verified/retained. No hook.
+Recovery requested: await Ready at UnleashX, then collect exactly once and audit.
+DO NOT stage, launch, rerun or recollect an already-completed phase. The
+pre-launch procedure below is retained for provenance, not another attempt.
+Amber is ambiguous with earlier firmware/hold; exact failure stage unproven.
 
 Read REPORT,build001,execute001,entry001,review001,controller-review001 and
 preparation/stage/launch/run records. Follow actual records over this heading.
