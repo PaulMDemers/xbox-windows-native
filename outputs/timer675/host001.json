@@ -1,0 +1,323 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "commands": [
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-std=c99",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-fsanitize=address,undefined",
+      "-fno-pie",
+      "-no-pie",
+      "/mnt/c/xwn675/host001/source/probe.c",
+      "/mnt/c/xwn675/host001/source/nic.c",
+      "/mnt/c/xwn675/host001/source/indication.c",
+      "/mnt/c/xwn675/host001/source/test.c",
+      "-o",
+      "/mnt/c/xwn675/host001/test"
+    ],
+    [
+      "/mnt/c/xwn675/host001/test"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-m32",
+      "-march=i686",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-ffreestanding",
+      "-fno-builtin",
+      "-fno-pic",
+      "-fno-pie",
+      "-nostdinc",
+      "-isystem",
+      "/mnt/c/xwn674/source001/include",
+      "-I/mnt/c/xwn675/host001/source",
+      "-c",
+      "/mnt/c/xwn675/host001/source/probe.c",
+      "-o",
+      "/mnt/c/xwn675/host001/probe.o"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-m32",
+      "-march=i686",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-ffreestanding",
+      "-fno-builtin",
+      "-fno-pic",
+      "-fno-pie",
+      "-nostdinc",
+      "-isystem",
+      "/mnt/c/xwn674/source001/include",
+      "-I/mnt/c/xwn675/host001/source",
+      "-c",
+      "/mnt/c/xwn675/host001/source/native.c",
+      "-o",
+      "/mnt/c/xwn675/host001/native.o"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-m32",
+      "-march=i686",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-ffreestanding",
+      "-fno-builtin",
+      "-fno-pic",
+      "-fno-pie",
+      "-nostdinc",
+      "-isystem",
+      "/mnt/c/xwn674/source001/include",
+      "-I/mnt/c/xwn675/host001/source",
+      "-c",
+      "/mnt/c/xwn675/host001/source/nic.c",
+      "-o",
+      "/mnt/c/xwn675/host001/nic.o"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-m32",
+      "-march=i686",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-ffreestanding",
+      "-fno-builtin",
+      "-fno-pic",
+      "-fno-pie",
+      "-nostdinc",
+      "-isystem",
+      "/mnt/c/xwn674/source001/include",
+      "-I/mnt/c/xwn675/host001/source",
+      "-c",
+      "/mnt/c/xwn675/host001/source/indication.c",
+      "-o",
+      "/mnt/c/xwn675/host001/indication.o"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-m32",
+      "-c",
+      "/mnt/c/xwn675/host001/source/irq.S",
+      "-o",
+      "/mnt/c/xwn675/host001/irq.o"
+    ],
+    [
+      "ld",
+      "-m",
+      "elf_i386",
+      "-Ttext=0x100000",
+      "-e",
+      "terminal675",
+      "/mnt/c/xwn675/host001/probe.o",
+      "/mnt/c/xwn675/host001/native.o",
+      "/mnt/c/xwn675/host001/nic.o",
+      "/mnt/c/xwn675/host001/indication.o",
+      "/mnt/c/xwn675/host001/irq.o",
+      "-o",
+      "/mnt/c/xwn675/host001/probe.elf"
+    ],
+    [
+      "nm",
+      "-u",
+      "/mnt/c/xwn675/host001/probe.elf"
+    ],
+    [
+      "objcopy",
+      "-O",
+      "binary",
+      "/mnt/c/xwn675/host001/probe.elf",
+      "/mnt/c/xwn675/host001/probe.bin"
+    ],
+    [
+      "nm",
+      "-n",
+      "/mnt/c/xwn675/host001/probe.elf"
+    ],
+    [
+      "objdump",
+      "-d",
+      "/mnt/c/xwn675/host001/probe.elf"
+    ]
+  ],
+  "source_pins": {
+    "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/timer675/probe.c": "26818ab42476d2b69c3f6ca3f1d2a24c32618bd815b05d2fd2277b75b8664dd4",
+    "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/timer675/probe.h": "6b3b7fb4d781163263ce67d6926710bef8a4be9a675b40cfdcb055e8781b64be",
+    "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/timer675/native.c": "df262f3f942c9b91726159896e085da47e7d0002b10e9f3576a7ae38145c8d00",
+    "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/timer675/test.c": "fd29911e0ea351c6d23c3b48b3d3e7eca06c18f5fe80cb7d7e43bb3398572b23",
+    "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/timer675/build_host.py": "3a7567a1d46786659bf3e59bac7c9a6919c2ad101308bde24cfce04293f49fc3",
+    "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/terminal669/irq.S": "0eec09558e30a78f9945c5bc39fd4d4ec027348fd8991740f5d3bff912d8635c",
+    "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/net656/nic.h": "278c70b4e414c83dd29cdcdff696f374238cbc550d60a79d5893d1d1862ac22c",
+    "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/net656/nic.c": "578345651a6c89df3a914cc2dd33e28386c469e4a496066ceccfc18b106913b1",
+    "/mnt/c/xwn674/source001/drivers/diag657/indication.c": "cd9e555bf581f82814025fcbf49bf5cbf5cac540d68610491de2a384f2782132",
+    "/mnt/c/xwn674/source001/drivers/diag657/indication.h": "ff0f190c61369541f3e9c8b1ea1100428b929ccf36ed6218587e4d13b88d6461"
+  },
+  "space": {
+    "minimum_free_gib": 20.05,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c",
+        "free_bytes": 31213514752
+      },
+      {
+        "free_bytes": 31193206784,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "tests": {
+    "passed": true,
+    "assertion_groups": 2039,
+    "durations": 1000,
+    "max_timer_samples": 200001,
+    "timed_indicator_waits": 0
+  },
+  "artifacts": {
+    "binary.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "binary.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compile.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compile.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "disassembly.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "disassembly.stdout": {
+      "bytes": 113266,
+      "sha256": "135a083a2edadb0104f8b8a39ef1e59802e07141191a1a0b99fbc73fa945c37e"
+    },
+    "indication.o": {
+      "bytes": 2312,
+      "sha256": "5831a3ef9d31ac6b77d34697c37b6b93df7b2d703206d61d2ced1383ccc17bd4"
+    },
+    "indication32.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "indication32.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "irq.o": {
+      "bytes": 564,
+      "sha256": "ce1ee89a2d2beedca060ac992631af4078e81ca4775fa95ddebc30bac8381a7d"
+    },
+    "irq32.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "irq32.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "link.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "link.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "native.o": {
+      "bytes": 1360,
+      "sha256": "fdde8b01b5c97fdd9b7ff627674c68b41ee01c0b32609e88a4bf5748571a9ee2"
+    },
+    "native32.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "native32.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nic.o": {
+      "bytes": 7044,
+      "sha256": "83b49a5d793b9a8d0e95bf150fe370041c67efd5274860bbfdc0035ff1f521d0"
+    },
+    "nic32.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nic32.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "probe.bin": {
+      "bytes": 9152,
+      "sha256": "86b65b32dbd66c1f1322b11e7b8316bbdb00e31273d8f4c4272f291c63403071"
+    },
+    "probe.elf": {
+      "bytes": 14600,
+      "sha256": "5f5812cfe0e1e56bc9725c7936fc957216765db7016c279df55d596a837016c1"
+    },
+    "probe.o": {
+      "bytes": 1880,
+      "sha256": "edad7eb18622db3ea9e52abe33047260aa9245e77f9c07a0180259b6ab914414"
+    },
+    "probe32.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "probe32.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "symbols.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "symbols.stdout": {
+      "bytes": 614,
+      "sha256": "481a72021f58defd8b79e2651a778623707e0cb9ad84b02cde34114fce9373a8"
+    },
+    "test": {
+      "bytes": 220568,
+      "sha256": "d9f1d001b72d82b1d045905065b8663387db87f60c5f5a6cb64317859299c3f5"
+    },
+    "test.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "test.stdout": {
+      "bytes": 110,
+      "sha256": "8243bf61769391fe1b72a21f5326cd7ddb520af9b56cecefa97a6011c5deab5b"
+    },
+    "undefined.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "undefined.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "ended_utc": "2026-10-23T01:14:02.360754+00:00"
+}

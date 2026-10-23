@@ -1,3 +1,30 @@
+# 675 HOST-ONLY timer observability prototype complete
+
+Read timer675 REPORT/NEXT,host001,linked001,dark-paths001,review003,closure001.
+2039sanitizer groups,19isolatednative fixtures,8old-code dark paths,68reviews pass.
+No XBE/fullfirmware/console contact/installed change. All owned processes closed.
+Preserve review001 incl-regex false-positive and review002 sign-extendedEDX-port
+predicate failure; review003 corrects audit only, executable unchanged.
+
+Old674 LEDoff has multiple possible paths, including successful marker completion
+before transport; do not infer actual timer/SMC/NIC error. Newprobe wraps one
+UNCHANGED delay656, retains first64/last/count/rawreturn and flags. No software
+indicator waits or LEDoff mask. Existing write658 refuses a required delay,
+records failure and stops without retry; physical SMC viability unknown. Timer
+request is not calibration. Hypothetical24bit model is NOT Xbox counter evidence.
+No NICcall, no Windowscontinuation; nativeadapter ends CLI/HLT. IFguard does not
+exclude NMI/SMI/DMA. No timer repair/admission waiver/allocator/driver patch.
+
+Next fresh HOST-ONLY fullfirmware callsite/layout integration after existing
+postcapture freeze/encode, preserving original packet/capture evidence. Test
+entry/failure/hold paths and absence ofsender. This timer-only probe would expect
+no UDP; no staged physicaltest yet. Never reopen/recollect/rerun closed672/674.
+
+Console last dashboard674, nohook. Buildleasefree,physicalleaseretained,firewall
+retained,automationpaused. Protected720p/startup/XBOX480/releases/private256
+unchanged. Boot/1080i,Ftdisk49/Popup26 unresolved. No hardware input currently
+needed; source/binary prototype is not qualified for physical deployment.
+
 # 674 CLOSED: lights off/black observed, valid capture zero packets
 
 Read watched674 REPORT,NEXT,observation001,capture-review001,collection001,
