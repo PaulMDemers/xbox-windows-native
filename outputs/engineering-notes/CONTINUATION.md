@@ -1,3 +1,29 @@
+# 672 physical result pending; receiver failed, no capture conclusion
+
+Read signal672 REPORT,NEXT,launch001,run001,receiver-failure001 and receiver673
+REPORT/NEXT/test001. One SITE accepted2026-10-23T00:50:13Z. Receiver9132exit1
+and controller76024exit0 closed. Manifest fixture label was invalid; readiness
+was published before validation and child exit missed during slow staging.
+No capture summary: NOT zero datagrams, no delivery conclusion. Never relaunch.
+
+User asked for entry green/off, category and red pulse count; observation pending.
+Console deliberate black-screen hold expected, actual state not yet confirmed.
+After observation, request power-cycle to UnleashX, then one672 collection/audit.
+No temporary hook.28selectedfiles/720p/startup/XBOX480 unchanged at staging;
+post-reset audit pending.671 remains closed, no recollection.
+
+672 host2763groups/40transport/17entry/6guards/69reviews pass;34oldobjectsections
+unchanged. New marker must complete before native send, final code repeatedtwice,
+all errors terminal. Original capture/freeze/transport flags remain distinct.
+673 HOST-ONLY readiness helper21fake-socket/process checks pass. Future fresh
+controller must integrate strict pre-ready validation and final owned-child
+poll after slow FTP reads, then test complete one-shot pipeline. Do not change
+frozen672 scripts/config or silently retry. No admission/driver/allocator patch.
+
+No owned host processes; build lease free, physical lease retained,firewall
+retained,automation paused. Releases/private256 protected;Ftdisk49/Popup26 and
+boot/1080i limitations retained. Hardware observation/recovery is next user input.
+
 # 671 CLOSED: zeroUDP/ambiguousamber; recovery audit passed
 
 Read firmware671 REPORT/NEXT,observation001,capture-review001,collection001,
