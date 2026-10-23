@@ -1,0 +1,795 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "source_sha256": "e5cd343d5525b151c645ba42ca70ae4a94a38b9f3b7dee4265014ae0fc2ad9ca",
+  "image_sha256": "e14d56408c48f8196d69eade604c31e495702e571d9bcd2d526b024b9ca0d04b",
+  "source_tree": "f8c2b7aadf8f8537546428af471910b479671660",
+  "static_checks": [
+    "ELF pin",
+    "misleading name: APIC MSR read/write, no STI",
+    "IDT setup calls APIC helper",
+    "PCI setup executes CLI",
+    "linked reset order",
+    "memory detection calls allocation and release",
+    "allocator contains unconditional CLI/STI",
+    "diagnostic export before ordinary continuation",
+    "PIC master mask zero and Xromwell slave af",
+    "C handlers software guard is not CPU IF"
+  ],
+  "handler_cases": [
+    {
+      "handler": "IntHandlerCTimer0",
+      "kind": "timer",
+      "nInteruptable": 0,
+      "returned": true,
+      "modeled_calls": [],
+      "modeled_ports": [],
+      "vsync_model_value": 0
+    },
+    {
+      "handler": "IntHandler3VsyncC",
+      "kind": "vsync",
+      "nInteruptable": 0,
+      "returned": true,
+      "modeled_calls": [],
+      "modeled_ports": [],
+      "vsync_model_value": 1
+    },
+    {
+      "handler": "IntHandler4C",
+      "kind": "guarded4",
+      "nInteruptable": 0,
+      "returned": true,
+      "modeled_calls": [],
+      "modeled_ports": [],
+      "vsync_model_value": 0
+    },
+    {
+      "handler": "IntHandlerCSmc",
+      "kind": "smc-none",
+      "nInteruptable": 0,
+      "returned": true,
+      "modeled_calls": [
+        {
+          "name": "I2CTransmitByteGetReturn",
+          "args": [
+            16,
+            17
+          ]
+        }
+      ],
+      "modeled_ports": [
+        [
+          "in",
+          32768,
+          2,
+          0
+        ]
+      ],
+      "vsync_model_value": 0
+    },
+    {
+      "handler": "IntHandlerCSmc",
+      "kind": "smc-av",
+      "nInteruptable": 0,
+      "returned": true,
+      "modeled_calls": [
+        {
+          "name": "I2CTransmitByteGetReturn",
+          "args": [
+            16,
+            17
+          ]
+        },
+        {
+          "name": "I2CTransmitByteGetReturn",
+          "args": [
+            16,
+            4
+          ]
+        },
+        {
+          "name": "GetTimerTicks",
+          "args": []
+        },
+        {
+          "name": "GetTimerTicks",
+          "args": []
+        },
+        {
+          "name": "BootVgaInitializationKernelNG",
+          "args": [
+            40161728
+          ]
+        },
+        {
+          "name": "GetTimerTicks",
+          "args": []
+        },
+        {
+          "name": "GetTimerTicks",
+          "args": []
+        },
+        {
+          "name": "BootVgaInitializationKernelNG",
+          "args": [
+            40161728
+          ]
+        }
+      ],
+      "modeled_ports": [
+        [
+          "in",
+          32768,
+          2,
+          0
+        ]
+      ],
+      "vsync_model_value": 0
+    },
+    {
+      "handler": "IntHandlerCSmc",
+      "kind": "smc-power",
+      "nInteruptable": 0,
+      "returned": true,
+      "modeled_calls": [
+        {
+          "name": "I2CTransmitByteGetReturn",
+          "args": [
+            16,
+            17
+          ]
+        },
+        {
+          "name": "bprintf",
+          "args": [
+            40094086
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            512
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            260
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            1284
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            1540
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            2308
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            2564
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            2820
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            3332
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            3588
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            3844
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            4100
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            4612
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            4868
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            5124
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            5380
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            5636
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            5892
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            6148
+          ]
+        }
+      ],
+      "modeled_ports": [
+        [
+          "in",
+          32768,
+          2,
+          0
+        ]
+      ],
+      "vsync_model_value": 0
+    },
+    {
+      "handler": "IntHandlerCTimer0",
+      "kind": "timer",
+      "nInteruptable": 1,
+      "returned": true,
+      "modeled_calls": [],
+      "modeled_ports": [],
+      "vsync_model_value": 0
+    },
+    {
+      "handler": "IntHandler3VsyncC",
+      "kind": "vsync",
+      "nInteruptable": 1,
+      "returned": true,
+      "modeled_calls": [],
+      "modeled_ports": [],
+      "vsync_model_value": 1
+    },
+    {
+      "handler": "IntHandler4C",
+      "kind": "guarded4",
+      "nInteruptable": 1,
+      "returned": true,
+      "modeled_calls": [
+        {
+          "name": "bprintf",
+          "args": [
+            40094174
+          ]
+        }
+      ],
+      "modeled_ports": [],
+      "vsync_model_value": 0
+    },
+    {
+      "handler": "IntHandlerCSmc",
+      "kind": "smc-none",
+      "nInteruptable": 1,
+      "returned": true,
+      "modeled_calls": [
+        {
+          "name": "I2CTransmitByteGetReturn",
+          "args": [
+            16,
+            17
+          ]
+        }
+      ],
+      "modeled_ports": [
+        [
+          "in",
+          32768,
+          2,
+          0
+        ]
+      ],
+      "vsync_model_value": 0
+    },
+    {
+      "handler": "IntHandlerCSmc",
+      "kind": "smc-av",
+      "nInteruptable": 1,
+      "returned": true,
+      "modeled_calls": [
+        {
+          "name": "I2CTransmitByteGetReturn",
+          "args": [
+            16,
+            17
+          ]
+        },
+        {
+          "name": "I2CTransmitByteGetReturn",
+          "args": [
+            16,
+            4
+          ]
+        },
+        {
+          "name": "GetTimerTicks",
+          "args": []
+        },
+        {
+          "name": "GetTimerTicks",
+          "args": []
+        },
+        {
+          "name": "BootVgaInitializationKernelNG",
+          "args": [
+            40161728
+          ]
+        },
+        {
+          "name": "GetTimerTicks",
+          "args": []
+        },
+        {
+          "name": "GetTimerTicks",
+          "args": []
+        },
+        {
+          "name": "BootVgaInitializationKernelNG",
+          "args": [
+            40161728
+          ]
+        }
+      ],
+      "modeled_ports": [
+        [
+          "in",
+          32768,
+          2,
+          0
+        ]
+      ],
+      "vsync_model_value": 0
+    },
+    {
+      "handler": "IntHandlerCSmc",
+      "kind": "smc-power",
+      "nInteruptable": 1,
+      "returned": true,
+      "modeled_calls": [
+        {
+          "name": "I2CTransmitByteGetReturn",
+          "args": [
+            16,
+            17
+          ]
+        },
+        {
+          "name": "bprintf",
+          "args": [
+            40094086
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            512
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            260
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            1284
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            1540
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            2308
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            2564
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            2820
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            3332
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            3588
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            3844
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            4100
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            4612
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            4868
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            5124
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            5380
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            5636
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            5892
+          ]
+        },
+        {
+          "name": "I2CTransmitWord",
+          "args": [
+            16,
+            6148
+          ]
+        }
+      ],
+      "modeled_ports": [
+        [
+          "in",
+          32768,
+          2,
+          0
+        ]
+      ],
+      "vsync_model_value": 0
+    }
+  ],
+  "sender_cases": [
+    {
+      "name": "if-set",
+      "incoming_IF": 1,
+      "modeled_cpuid": 4128,
+      "modeled_cr0": 1,
+      "stopped_before_segment_read": false,
+      "admission_error": 1,
+      "transport_used": 0,
+      "hardware_io": 0,
+      "IF_preserved": true
+    },
+    {
+      "name": "if-set-no-features",
+      "incoming_IF": 1,
+      "modeled_cpuid": 0,
+      "modeled_cr0": 1,
+      "stopped_before_segment_read": false,
+      "admission_error": 1,
+      "transport_used": 0,
+      "hardware_io": 0,
+      "IF_preserved": true
+    },
+    {
+      "name": "if-clear",
+      "incoming_IF": 0,
+      "modeled_cpuid": 4128,
+      "modeled_cr0": 1,
+      "stopped_before_segment_read": true,
+      "admission_error": 0,
+      "transport_used": 0,
+      "hardware_io": 0,
+      "IF_preserved": true
+    },
+    {
+      "name": "if-clear-no-features",
+      "incoming_IF": 0,
+      "modeled_cpuid": 0,
+      "modeled_cr0": 1,
+      "stopped_before_segment_read": false,
+      "admission_error": 1,
+      "transport_used": 0,
+      "hardware_io": 0,
+      "IF_preserved": true
+    },
+    {
+      "name": "if-clear-bad-cr0",
+      "incoming_IF": 0,
+      "modeled_cpuid": 4128,
+      "modeled_cr0": 1073741825,
+      "stopped_before_segment_read": false,
+      "admission_error": 1,
+      "transport_used": 0,
+      "hardware_io": 0,
+      "IF_preserved": true
+    }
+  ],
+  "scope": "Fresh isolated linked-function executions; not a boot or interrupt-delivery simulation. No closed runtime reopened.",
+  "source_pins": {
+    "boot/BootResetAction.c": "d981c267539e9bd94459424276febd63d78dc500c09e0d7c45002dd067745675",
+    "boot/BootStartup.S": "3dfbb3c3fedfaa36d6c2c7b8429e9575008c4be3b2b7bf28cb3fff95456b858f",
+    "drivers/pci/BootInterrupts.c": "b8a7e00bcf4c49b36479506705be4b4cd99b3829a0cdbc27ef85c0e4a596449c",
+    "drivers/pci/pci.c": "090a07eef7203cb72fafcc7a4e12635ce029355c1bd70a0dbde0fe66a986815e",
+    "drivers/cpu/cputools.c": "8b269a75d4c96c68fd664c64fc4b13c8b03632677f258a3cc34e52083b30a23c",
+    "lib/misc/BootLibrary.c": "9ee047b2a1cc68ae885c0ad5ee569648e12359bd7017d2a10bac878d29ff7312",
+    "drivers/diag656/native.c": "f549da4332e2b62ea052ca65182a89b6dab2d33e7aaeaee573f10f6d5b69c203",
+    "drivers/diag656/admission.c": "5b871c36d262d6516568be8b2755b615eb87285729ebb57e8181df9579be7b84",
+    "drivers/diag656/nic.c": "578345651a6c89df3a914cc2dd33e28386c469e4a496066ceccfc18b106913b1",
+    "drivers/video/xwn_hd_native.c": "8dfae50ced891423072ae08582746ee3d3931e3eef041b123a49ecdf182df4c8",
+    "drivers/video/BootVgaInitialization.c": "481e95c8335ba0d865b3ccddfc1b1acfaf0721e12045104e37c5d4d13573c4d4"
+  },
+  "allocation_call_inventory": [
+    {
+      "path": "boot/BootFromDevice.c",
+      "line": 35,
+      "text": "szGrub = (char *)malloc(size);"
+    },
+    {
+      "path": "boot/BootFromDevice.c",
+      "line": 89,
+      "text": "config->nextConfigEntry = (CONFIGENTRY *)malloc(sizeof(CONFIGENTRY));"
+    },
+    {
+      "path": "boot/BootFromDevice.c",
+      "line": 93,
+      "text": "root = (CONFIGENTRY *)malloc(sizeof(CONFIGENTRY));"
+    },
+    {
+      "path": "boot/BootFromDevice.c",
+      "line": 119,
+      "text": "free(szGrub);"
+    },
+    {
+      "path": "boot/BootFromDevice.c",
+      "line": 135,
+      "text": "free(szGrub);"
+    },
+    {
+      "path": "boot/BootResetAction.c",
+      "line": 69,
+      "text": "// init malloc() and free() structures"
+    },
+    {
+      "path": "boot/LoadLinux.c",
+      "line": 186,
+      "text": "config = (CONFIGENTRY *)malloc(sizeof(CONFIGENTRY));"
+    },
+    {
+      "path": "boot/LoadLinux.c",
+      "line": 188,
+      "text": "free(fileinfo.buffer);"
+    },
+    {
+      "path": "boot/LoadLinux.c",
+      "line": 195,
+      "text": "config = (CONFIGENTRY *)malloc(sizeof(CONFIGENTRY));"
+    },
+    {
+      "path": "boot/LoadLinux.c",
+      "line": 197,
+      "text": "free(fileinfo.buffer);"
+    },
+    {
+      "path": "boot/LoadReactOS.c",
+      "line": 150,
+      "text": "config = (CONFIGENTRY *)malloc(sizeof(CONFIGENTRY));"
+    },
+    {
+      "path": "boot/LoadReactOS.c",
+      "line": 202,
+      "text": "config = (CONFIGENTRY *)malloc(sizeof(CONFIGENTRY));"
+    },
+    {
+      "path": "boot/LoadReactOS.c",
+      "line": 208,
+      "text": "free(fileinfo.buffer);"
+    },
+    {
+      "path": "boot/LoadReactOS.c",
+      "line": 259,
+      "text": "config = (CONFIGENTRY *)malloc(sizeof(CONFIGENTRY));"
+    },
+    {
+      "path": "drivers/pci/pci.c",
+      "line": 297,
+      "text": "fillstring = malloc(0x200);"
+    },
+    {
+      "path": "drivers/pci/pci.c",
+      "line": 325,
+      "text": "free(fillstring);"
+    },
+    {
+      "path": "drivers/video/BootVgaInitialization.c",
+      "line": 406,
+      "text": "regs = malloc(4);"
+    },
+    {
+      "path": "drivers/video/BootVgaInitialization.c",
+      "line": 423,
+      "text": "free(regs);"
+    },
+    {
+      "path": "drivers/video/BootVgaInitialization.c",
+      "line": 428,
+      "text": "free(newmode.encoder_regs);"
+    },
+    {
+      "path": "drivers/video/BootVideoHelpers.c",
+      "line": 216,
+      "text": "decdata = (struct jpeg_decdata *)malloc(sizeof(struct jpeg_decdata));"
+    },
+    {
+      "path": "drivers/video/BootVideoHelpers.c",
+      "line": 222,
+      "text": "pJpeg->pData = (unsigned char *)malloc(size);"
+    },
+    {
+      "path": "drivers/video/BootVideoHelpers.c",
+      "line": 250,
+      "text": "free(decdata);"
+    },
+    {
+      "path": "drivers/video/conexant.c",
+      "line": 89,
+      "text": "*reg_ptr = (void *)malloc(sizeof(char) * NUM_CONEXANT_REGS);"
+    },
+    {
+      "path": "drivers/video/conexant.c",
+      "line": 131,
+      "text": "*reg_ptr = (void *)malloc(sizeof(char) * NUM_CONEXANT_REGS);"
+    },
+    {
+      "path": "drivers/video/conexant.c",
+      "line": 186,
+      "text": "riva_out->encoder_regs = malloc((sizeof(char) * NUM_CONEXANT_REGS));"
+    },
+    {
+      "path": "drivers/video/focus.c",
+      "line": 64,
+      "text": "*encoder_regs = (void *) malloc(256*sizeof(char));"
+    },
+    {
+      "path": "drivers/video/focus.c",
+      "line": 197,
+      "text": "riva_out->encoder_regs = (void *)malloc(256*sizeof(char));"
+    },
+    {
+      "path": "drivers/video/xcalibur.c",
+      "line": 23,
+      "text": "*regs = (void *)malloc(0x90*sizeof(char)*4);"
+    },
+    {
+      "path": "drivers/video/xcalibur.c",
+      "line": 32,
+      "text": "riva_out->encoder_regs = (void *)malloc(0x90*sizeof(char)*4);"
+    }
+  ],
+  "disassembly_pins": {
+    "BootDetectMemorySize.txt": "c19c53c6f606e48383119463d8e83d6f83db6517cf3c6652814ccaa75949f31b",
+    "BootInterruptsWriteIdt.txt": "f756dda8283f5feada77d4c90751c15aef00e0035516d4c937f34cddd58595f5",
+    "BootPciPeripheralInitialization.txt": "1af1f797f07efbaca5e7a2c1d3c86a0f8a2325b5b00200778872457bb82826f1",
+    "BootResetAction.txt": "109d62c65e957a45f9c02838998db337714d906098b547d28f83661e75d33489",
+    "free.txt": "f2d032ffbcf9045d418dc90fe66aa723d595128b11cac841cc9a09e9f82f0ec1",
+    "intel_interrupts_on.txt": "08aa2d1319d1ad98f23c904c50446e329186bd61f91156761864a43c00568276",
+    "IntHandler3VsyncC.txt": "300e6d308754822236afa6c0a51f198b6639273453ecd299b3b13ac006843078",
+    "IntHandler4C.txt": "f7898c3d00552ab3671191ee982b34a95f42f47b4855dca7a857c30fcee6a0cc",
+    "IntHandlerCSmc.txt": "25fde6180d8eb593621bc03bc12ecc2697e9e3ab4c4d1dc43d7e8b021e632f12",
+    "IntHandlerCTimer0.txt": "d29c6b7a898117329bc0f9aeaf2eed18b4d6b2d6151a09dfe5a0b4317574fda5",
+    "malloc.txt": "6d017452f2e23d9d539eea15a0e43d96119c85795b237d91c91c26d1294a3fb4",
+    "NativeSend656.txt": "5b650f8813dafde427138384f90f963c2bc035d8f2c1b9bc7b7053d4eef63d42",
+    "XwnHdTry720.txt": "2db25e84a34bdf97a302c51f3d364881497f1d8bc9a02968c6c62c0180342db7"
+  },
+  "limits": "Handlers invoked as C functions, not delivered IRQs. Timer, SMC replies, video calls and CPUID modeled. IF-clear native case stops before SGDT and does not qualify later gates. Closed667 source/binary artifacts read only; no physical runtime opened.",
+  "ended_utc": "2026-10-22T23:57:37.745042+00:00"
+}

@@ -1,3 +1,23 @@
+# 668 CLOSED: interrupt contract audit; no console change
+
+Read contracts668 REPORT/NEXT and audit001/review001. Ten static checks,12
+handler cases,5 exact-linked native entry cases and31 provenance checks pass.
+IF-set sender rejects before PCI/NIC; nInteruptable0 is not a substitute:
+timer,VSync andSMC still perform work in isolated handler cases. CPU/I/O/calls
+modeled; no delivered IRQ, NIC qualification or Windows/480p cause claimed.
+Correction: intel_interrupts_on only changes APIC-base MSR, not CPU IF.
+
+Next fresh HOST-ONLY explicit terminal transport design after frozen capture.
+Keep original CPU state separate from deliberate transport effects; specify
+entry/reentry rejection, frozen bytes, cleanup/hold and state rules. Preserve
+all admission checks; later segment/cache/PCI/DMA gates remain unqualified.
+No allocator/driver patch, CLI insertion or new XBE/launch in668; do not silently
+change original evidence, borrow firmware state, clear pending bits or waive
+gates. No repeated667 boot. Source/binary artifacts read, closed runtime untouched.
+Dashboard last confirmed667; no hook/owned host process. Ordinary720p/releases/
+recovery/XBOX480 protected; firewall retained; physical lease retained,build
+lease free,automation paused. Ftdisk49/Popup26 unresolved.
+
 # 667 CLOSED: observed IF clear-to-set across memory detection
 
 Read memory667 REPORT/NEXT and actual reconciliation/closure. Solidgreen
