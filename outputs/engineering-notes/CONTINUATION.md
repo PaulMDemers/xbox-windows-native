@@ -1,3 +1,21 @@
+# 671 physical attempt accepted; solidamber/black observed, capture active
+
+Read firmware671 REPORT/NEXT and actual launch/run/observation records. Full
+firmware host tests pass:40 transport,12 entry,60 review checks. One accepted
+SITE at2026-10-23T00:28:25Z; owned E:/Applications/XWNLatch671 only; no hook.
+User reports solidamber/heldblack. Final indication is not established: amber
+could mean general failure or persist before a final SMC write. No exact native
+status, delivery or480p conclusion. Receiver50752 owns180seconds; controller
+execsession8825 owns its cleanup. Check run001 before proceeding; never relaunch.
+
+After capture completes, ask user to power-cycle to UnleashX, then collect once
+and audit. User explicitly available to watch/reset. Ordinary720p/startup,
+XBOX480/releases/private256 protected. No Windows boot/restart intended.
+Explicit post-capture CLI freeze precedes saved-RAM copy; original capture,
+freeze boundary and later transport flags remain distinct. Source/display/
+allocator/PCI/native admission unchanged; no gate waiver. CLI excludes maskable
+IRQs only. Firewall retained,automation paused,physical lease retained.
+
 # 670 CLOSED: actual native sender in host-only terminal integration
 
 Read native670 REPORT/NEXT,host003/execute003/review001/closure001. Forty
