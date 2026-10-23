@@ -1,3 +1,25 @@
+# 670 CLOSED: actual native sender in host-only terminal integration
+
+Read native670 REPORT/NEXT,host003/execute003/review001/closure001. Forty
+isolated i386 cases and97 artifact/scope checks pass. Actual655 codec,669
+lifecycle/IRQ helpers,656 native/admission/core and658 indication execute;
+PCI helpers and CPU/device context modeled, host linker layout synthetic.
+No XBE/console contact/boot/installed change. Original packet/entry flags stay
+separate from transport state. Three local frames/checksums in positive cases;
+all gate/failure paths hold, actual second terminal calls cause no furtherIO.
+No physical delivery/cache/DMA/IRQ exclusion, Windows or480p fix claimed.
+Preserve host001/002 missing-header compile failures and execute001 null-config
+harness assertion failure;execute00239pass and execute00340pass retained.
+
+Next fresh HOST-ONLY full-firmware callsite integration: producer frozen before
+encoding, exact identity/configured inputs, actualPCI helpers and BSS/DMA layout,
+terminal-only hold and failure tests. Host003 UD2 PCI stubs are not deployable.
+Keep every admission gate; no allocator patch, borrowed firmware state, pending
+bit clear, hidden IF change, ordinary-path change or identical boot retry.
+Console last dashboard667; no hook/owned processes; build lease free, physical
+lease retained, firewall retained, automation paused. Normal720p/startup,
+XBOX480/releases/private256 protected. Ftdisk49/Popup26 unresolved. No user action.
+
 # 669 CLOSED: host-only terminal transport prototype
 
 Read terminal669 REPORT/NEXT,host001/linked001/review001/closure001. Forty
