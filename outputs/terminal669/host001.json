@@ -1,0 +1,214 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "host_only": true,
+  "new_XBE": false,
+  "commands": [
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-std=c99",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-fsanitize=address,undefined",
+      "-fno-pie",
+      "-no-pie",
+      "/mnt/c/xwn669/host001/source/phase.c",
+      "/mnt/c/xwn669/host001/source/test.c",
+      "-o",
+      "/mnt/c/xwn669/host001/test"
+    ],
+    [
+      "/mnt/c/xwn669/host001/test"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-m32",
+      "-march=i686",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-ffreestanding",
+      "-fno-builtin",
+      "-fno-pic",
+      "-fno-pie",
+      "-nostdinc",
+      "-isystem",
+      "/mnt/c/xwn667/source001/include",
+      "-I/mnt/c/xwn669/host001/source",
+      "-c",
+      "/mnt/c/xwn669/host001/source/phase.c",
+      "-o",
+      "/mnt/c/xwn669/host001/phase.o"
+    ],
+    [
+      "nm",
+      "-u",
+      "/mnt/c/xwn669/host001/phase.o"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-m32",
+      "-c",
+      "/mnt/c/xwn669/host001/source/irq.S",
+      "-o",
+      "/mnt/c/xwn669/host001/irq.o"
+    ],
+    [
+      "ld",
+      "-m",
+      "elf_i386",
+      "-Ttext=0x100000",
+      "-e",
+      "irq_enter669",
+      "/mnt/c/xwn669/host001/irq.o",
+      "-o",
+      "/mnt/c/xwn669/host001/irq.elf"
+    ],
+    [
+      "objcopy",
+      "-O",
+      "binary",
+      "/mnt/c/xwn669/host001/irq.elf",
+      "/mnt/c/xwn669/host001/irq.bin"
+    ],
+    [
+      "objdump",
+      "-d",
+      "/mnt/c/xwn669/host001/irq.elf"
+    ],
+    [
+      "objdump",
+      "-dr",
+      "/mnt/c/xwn669/host001/phase.o"
+    ]
+  ],
+  "space": {
+    "minimum_free_gib": 20.05,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c",
+        "free_bytes": 31601889280
+      },
+      {
+        "free_bytes": 31601889280,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "source_pins": {
+    "build_host.py": "5a4727a27922cc50505d9ed84b5eb162cc59563ba19811a002ed998e024a8354",
+    "irq.S": "0eec09558e30a78f9945c5bc39fd4d4ec027348fd8991740f5d3bff912d8635c",
+    "linked.py": "84980add3c3bd972dc242db3078f90afcede417bc9af5538e7618b08bf77a373",
+    "phase.c": "a6fddc420b38de6d7b82456682a2b29f38aff15b11323c954e26ce5de6bc76fe",
+    "phase.h": "78f9a999dfd021a6183f9ff3e36c07764657ae381e70d4ac4b681780d7ebc0d8",
+    "test.c": "2a73ea9359d4638119eb4aeff75a9ab4bbed931a4ff31d6af5c59119327fbe2d"
+  },
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "tests": {
+    "passed": true,
+    "lifecycle_cases": 40,
+    "argument_and_phase_checks": 15
+  },
+  "artifacts": {
+    "core-disasm.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "core-disasm.stdout": {
+      "bytes": 11636,
+      "sha256": "fbfc8459542fc1f6065c36745ca4c3fc2f1d36d3f18a0f78794761448a3322b1"
+    },
+    "core-undefined.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "core-undefined.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "core32.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "core32.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "host-compile.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "host-compile.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "host-tests.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "host-tests.stdout": {
+      "bytes": 68,
+      "sha256": "60cc0fc91bb5f8f6e3166bc5feb0535e64febab0f72758c0b0378124f32ce2b5"
+    },
+    "irq-disasm.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "irq-disasm.stdout": {
+      "bytes": 917,
+      "sha256": "e0a739f3f4e210041daf058acdb9278aeda261bc683c9a2377cda0381f531371"
+    },
+    "irq-flat.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "irq-flat.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "irq-link.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "irq-link.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "irq.bin": {
+      "bytes": 27,
+      "sha256": "9735085406e339d047321371cebfe85c65e6c648eeffb265145de2968c1e73d3"
+    },
+    "irq.elf": {
+      "bytes": 4532,
+      "sha256": "6f65dbbfc32b1b601052532786dd8b4d3abf462d7c7c4b73191cafd766591aa1"
+    },
+    "irq.o": {
+      "bytes": 564,
+      "sha256": "ce1ee89a2d2beedca060ac992631af4078e81ca4775fa95ddebc30bac8381a7d"
+    },
+    "irq32.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "irq32.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "phase.o": {
+      "bytes": 1704,
+      "sha256": "57880f1d30e05d69ab35aa640cb42de1c7610b52103ec18988f56e7c0faf593a"
+    },
+    "test": {
+      "bytes": 101392,
+      "sha256": "b9026b19ce00b7dfc33c26e446431394d7aeb5347af17134be668a7decaa7833"
+    }
+  },
+  "ended_utc": "2026-10-23T00:06:24.580903+00:00"
+}

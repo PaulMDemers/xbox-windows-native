@@ -1,3 +1,24 @@
+# 669 CLOSED: host-only terminal transport prototype
+
+Read terminal669 REPORT/NEXT,host001/linked001/review001/closure001. Forty
+sanitizer lifecycle cases,15 argument/phase checks,6 isolated i386 helper
+cases and16 provenance checks pass. No XBE/console contact/installed change.
+Explicit proposed post-capture PUSHF/CLI/PUSHF preserves original flags separate
+from transport state; no STI/POPF. Sealed original and transport copy, atomic
+one-shot claim, reentry rejection, fault retention and terminal HELD on every
+claimed path. SENT is local result, not delivery. Native send callback MODELED.
+
+Next fresh HOST-ONLY integration with actual NativeSend656/result structures,
+codec/sealing, actual i386 ABI and noreturn indication/hold. Keep all admission
+gates; exercise rejection and cleanup before any new XBE/hardware attempt.
+No allocator patch, firmware borrow, pending-bit clear, gate waiver or boot
+retry. Never label modified transport state as original capture. CLI excludes
+maskable IRQs only; no NMI/SMI or wall-clock guarantee. Original667/668 closed
+evidence preserved. Console last dashboard667; no hook/owned host processes;
+ordinary720p/startup/XBOX480/releases/recovery protected. Firewall retained,
+physical lease retained,build lease free,automation paused. Ftdisk49/Popup26
+unresolved. No user action needed.
+
 # 668 CLOSED: interrupt contract audit; no console change
 
 Read contracts668 REPORT/NEXT and audit001/review001. Ten static checks,12
