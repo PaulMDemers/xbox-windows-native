@@ -1,15 +1,16 @@
-# Console compatibility work after the RCT measurements
+# Console compatibility and the incoming 1.6
 
 The working Windows package is qualified on the original development Xbox.
 Other console revisions remain unqualified. The next milestone is to expand that
-coverage before native GPU acceleration. Finish the physical RCT process-cost
-comparison first; the [PC caller measurement](../outputs/rct628/REPORT.md) is
-complete and does not establish Xbox performance.
+coverage before native GPU acceleration. The user has now prioritized preparing
+an incoming 1.6. The physical RCT process-cost comparison remains outstanding;
+the [PC caller measurement](../outputs/rct628/REPORT.md) does not establish Xbox performance.
 
-Physical tests on additional consoles are currently deferred. The source review
-and received inventory below remain useful preparation, not a queued request to
-boot an unqualified unit. Current work on the original console is summarized in
-[current status](current-status.md).
+Networking/timer tests are tabled. [680](../outputs/revision680/REPORT.md) provides
+a compiled, watched kernel-assisted 480p baseline tool for when the 1.6 arrives.
+[681](../outputs/xcal681/REPORT.md) contains the Xcalibur source review and tested
+host prototype. Neither qualifies Windows on 1.6; no native Xcalibur profile is
+installed or ready for a Windows launch. See [current status](current-status.md).
 
 ## First additional-console inventory
 
@@ -39,7 +40,7 @@ qualify Windows support.
 The relevant source constraints are concrete:
 
 - [The explicit timing adapter](../src/boot/xromwell/drivers/video/xwn_hd_adapter.c)
-  accepts only mode 720p, encoder value 0, cable value 3, the HD enable flag, and
+  accepts 720p or 480p, encoder value 0, cable value 3, the matching enable flag, and
   the exact reviewed layout. It rejects other requests before its hardware writes.
 - [The layout validator](../src/boot/xromwell/drivers/video/xwn_hd_profile.c)
   requires 64 MiB total RAM, framebuffer start at 55 MiB, a 9 MiB reservation,
@@ -50,8 +51,8 @@ The relevant source constraints are concrete:
   independently requires 64 MiB and the exact two-entry memory map in that build.
 - [The native timing wrapper](../src/boot/xromwell/drivers/video/xwn_hd_native.c)
   resets or halts after a partially applied display setup. An unsupported request
-  returns to the legacy setup path; that fallback is not a qualified alternative
-  Windows HD profile.
+  returns to the legacy setup path only for the default 720p selection; explicit
+  480p refuses it. That fallback is not a qualified alternative Windows HD profile.
 - [Legacy encoder detection](../src/boot/xromwell/drivers/video/BootVgaInitialization.c)
   labels the encoder Xcalibur if both earlier probes fail. The newer
   [inventory tool](../src/utilities/hardware-report/main.c) and
@@ -59,9 +60,11 @@ The relevant source constraints are concrete:
   `unidentified` instead. Review this discrepancy before using unknown hardware;
   do not turn an I2C failure into a support claim.
 
-No functional loader or driver change accompanies this review. Existing Focus
-and Xcalibur function names and branches are useful starting points, not proof
-that the shipped profile works with those encoders.
+No maintained loader or driver change accompanies this review. The separate681
+prototype corrects four-byte read handling and bounds modeled encoder transfers;
+it has no native I/O/timer binding yet. Legacy Xcalibur HDTV code always chooses
+its 480p table, regardless of the requested mode. Existing branches are useful
+starting points, not proof the shipped profile works with those encoders.
 
 ## Qualification sequence
 
@@ -69,9 +72,9 @@ that the shipped profile works with those encoders.
    the [tester instructions](testers.md). Record kernel version, RAM observation,
    encoder response, GPU/MCP revision, AV pack, dashboard modes and E free space.
    Keep personally identifying data, EEPROMs and firmware out of public reports.
-2. Group the reports by actual encoder/RAM/boot differences. Start with another
-   unit matching the development profile to isolate per-unit assumptions, then
-   tackle a different encoder. Treat RAM upgrades as a separate memory-map task.
+2. Group the reports by actual encoder/RAM/boot differences. For the incoming1.6,
+   start with the watched680 kernel baseline, then qualify a separate native
+   Xcalibur480p pattern before Windows. Treat RAM upgrades as a separate task.
 3. For a new profile, review timing, color format, stride, framebuffer extent,
    hidden/reserved memory and handoff consistency as one change. Validate pure
    calculations and rejected configurations before a watched hardware launch.

@@ -1,3 +1,33 @@
+# 680/681 Incoming 1.6 preparation; networking TABLED
+
+Read outputs/revision680/REPORT.md and NEXT.md, then outputs/xcal681/REPORT.md
+and NEXT.md. User has obtained a 1.6, arriving in a few hours; baseline hardware
+context is pending. 679 timer package remains local-only and is NOT queued.
+Networking cause remains unknown; preserve all 674-679 records. No physical
+contact, stage, launch or startup hook this turn. Last known original console
+was dashboard674/nohook; not polled. Automation remains paused.
+
+680 built a separate kernel-assisted 720x480x32/60 baseline utility with 20-second
+color/geometry pattern and exclusive E-root checkpoint reports. Build003 is the
+selected compiled artifact; 001/002 retained. Local kit:
+C:/xwn680/package001/xwn-video-baseline680.zip. Not staged, no runtime claim.
+NTSC HDTV+480p and64MiB required; kernel mode calls are not application-bounded,
+so first run must be watched with reset available. Revalidate actual new-console
+endpoint, revision provenance, BIOS/mod, cable, settings, free space and lease.
+
+681 contains a host-only checked Xcalibur block protocol/table prototype.
+66,164 ASan/UBSan cases plus pattern bounds pass. Four fresh isolated compiled
+legacy GPU geometry fixtures produce720x480/2880-byte stride/32-bit format.
+Not physical Xcalibur, clocks, boot, timing or Windows proof. No native I/O/timer
+binding or full-firmware candidate yet. Read NEXT for integration gates and
+keep Windows blocked until a separate native pattern is qualified.
+
+Maintained launcher/Windows driver and manifest unchanged. Protected720p,
+ordinary startup, XBOX480, immutable releases/private256 unchanged. 1080i,
+intermittency, Ftdisk49/Popup26 limitations remain. All host work finished;
+build lease released, existing hardware lease/firewall retained. No new agent
+or automation. The separate xemu fork audit chat continues independently.
+
 # 679 prepared locally; watched test deferred by user
 
 Read outputs/preparation679/REPORT.md and NEXT.md. Exact678 XBE copied and
