@@ -18,6 +18,7 @@ step, read [CONTINUATION](../outputs/engineering-notes/CONTINUATION.md) and
 | Build and check software graphics samples | [Sample ladder](graphics-samples.md) |
 | Understand RCT behavior and performance evidence | [Compatibility](rct-compatibility.md), [measurements](rct-performance-plan.md), [recording](rct-recording.md) |
 | Find archived local artifacts | [Artifact archive and restoration](ARTIFACT-ARCHIVE.md) |
+| Understand our emulator patches | [Local xemu changes](xemu-changes.md) |
 
 ## What works, and what remains open
 

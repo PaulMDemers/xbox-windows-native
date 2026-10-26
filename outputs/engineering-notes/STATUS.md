@@ -1,3 +1,19 @@
+# 679 prepared locally; watched test deferred by user
+
+Read outputs/preparation679/REPORT.md and NEXT.md. Exact678 XBE copied and
+verified at C:/xwn679/prepared001. No hardware contact/staging/launch/hook.
+Wait for user readiness in a few hours; no automation created. Proposed fresh
+679physical001 / E:/Applications/XWNTimer679 needs controller review and current
+baseline/lease/space/readback gates before one watched request. NoUDP/noWindows;
+held indication requires power-cycle. Lastknown console dashboard674/nohook.
+
+Local xemu audit verified11340 parent hashes and complete322 candidate manifest.
+Latest Windows fixture639 uses four logical changes in seven files: NVNET access
+alignment, optional BAR experiment, guarded CPU surface eviction, PRAMDAC latches.
+Separate Linux TX-batch fix is not included. Docs: docs/xemu-changes.md.
+No shared source, binaries or closed runtimes modified. All host work finished.
+678/677 remain closed; protected720p/startup/XBOX480/releases/private256 unchanged.
+
 # 678 HOST-ONLY timer integration complete; 677 launcher pins reconciled
 
 Read outputs/launcher677/REPORT.md and outputs/timer678/REPORT.md, then
