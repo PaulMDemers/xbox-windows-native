@@ -10,6 +10,13 @@ Use that plan for API probes, driver boundaries and game acceptance criteria.
 The [build-to-boot guide](build-to-boot.md) identifies the parallel installation
 work; 1080i experiments remain paused.
 
+Read [current status](current-status.md) and the latest
+[engineering continuation](../outputs/engineering-notes/CONTINUATION.md) before
+choosing a new experiment. A historical report's next step may already have
+completed or failed in a later attempt. Use the [artifact archive guide](ARTIFACT-ARCHIVE.md)
+to locate retained local artifacts; restore inputs without reopening a closed
+runtime or breaking a virtual-disk backing chain.
+
 ## Editing a profile
 
 1. Run `python3 tools/xwn.py verify` on the baseline.

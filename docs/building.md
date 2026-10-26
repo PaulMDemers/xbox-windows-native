@@ -79,6 +79,30 @@ python3 tools/xwn.py list
 python3 tools/xwn.py verify
 ```
 
+### Current checkout: launcher verification fails
+
+The October 26, 2026 documentation audit found that strict `verify` exits with status 1:
+four tracked files under `src/boot/xromwell/drivers/video/` differ from the
+launcher profile's recorded SHA-256 values in `upstream/components.json`:
+
+- `xwn_hd_adapter.c`
+- `xwn_hd_native.c`
+- `xwn_hd_profile.c`
+- `xwn_hd_profile.h`
+
+These are existing development-source differences, not edits made by the
+documentation or storage audit. The historical eight-profile compilation result
+below does not mean this checkout passes the original source pins. The launcher
+build command will also stop at that source gate before compilation.
+
+Preserve the failure. For a pinned reconstruction, use a separately reviewed
+checkout whose complete profile verifies against its matching manifest; do not
+overwrite the development tree or update hashes merely to make verification
+pass. A source/manifest promotion needs its own review and qualification.
+`--allow-modified` is a development mechanism, not a repair for this failure or
+proof that a new launcher matches the installed 720p package. The commands below
+describe the pinned workflow and remain conditional on successful verification.
+
 Choose your own paths. `CACHE` is a Git repository with the required ReactOS
 base; `ROSBE` is the installed toolchain directory containing `RosBE.sh`:
 

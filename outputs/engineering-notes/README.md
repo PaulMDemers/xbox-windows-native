@@ -1,6 +1,9 @@
 # Engineering handoff: native Windows on Xbox
 
-Written against the 0.1.0 physical milestone. These notes consolidate the main
+The platform/FATX essays below originated with the 0.1.0 physical milestone.
+For current work read [CONTINUATION](CONTINUATION.md) first, then [STATUS](STATUS.md)
+and the [maintained guide map](../../docs/current-status.md). Historical next-step
+statements are not current launch instructions. These notes consolidate the main
 lessons; the linked patches, reports and retained private artifacts are the
 detailed lab record. Findings from Windows/ReactOS are not automatically bugs
 in any Linux FATX implementation. No external project has been contacted.

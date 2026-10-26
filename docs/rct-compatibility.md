@@ -24,13 +24,25 @@ save across normal restart. The planned automated moved-view/reload comparison
 did not finish before the user's reboot, so exact scripted scene restoration
 remains distinct from the confirmed manual behavior. Its temporary registry
 entry was subsequently restored and read back, with a rollback copy retained.
-No Windows boot has yet tested that offline cleanup. Ftdisk49 remains.
+At 596 closure, no subsequent Windows boot had tested that offline cleanup.
+The later [interactive626 session](../outputs/rct626/REPORT.md) ran RCT and
+passed its own registry-restoration and normal-shutdown checks. Ftdisk49 remains.
 
 These results support moving on to rendering-path and performance measurements.
 They establish neither game FPS nor native GPU acceleration. RCT remains excluded
 from the separate Windows transfer ZIPs.
 
-## Initial graphics request observation
+## Graphics and performance boundary
+
+The initial lookup recorder below was followed by actual sampled GDI invocations
+and a verified saved-scene trace. [PC612](../outputs/rct612/REPORT.md) tied sampled
+`StretchDIBits` calls to a 1024×768 top-down 8-bit BI_RGB DIB.
+[PC628](../outputs/rct628/REPORT.md) then measured a checked paused scene and
+captured a specific RCT caller of `timeGetTime`. These are instrumented PC
+observations; physical game costs, FPS and native acceleration remain unmeasured.
+See the [measurement plan](rct-performance-plan.md) for the current next step.
+
+### Initial graphics request observation
 
 [PC599](../outputs/rct599/REPORT.md) reached the title and paused Forest Frontiers
 under a recorder validated with known Windows 2000 calls. It captured 237
@@ -41,8 +53,8 @@ retained in [598](../outputs/rct598/REPORT.md).
 
 This is an instrumented PC result, not a new Xbox test. Requested export names
 do not establish successful resolution, drawing calls, frame rate or acceleration.
-Actual invocations/interfaces and a matched performance control are next; see
-the [measurement plan](rct-performance-plan.md).
+Later invocation and process-cost controls are summarized above; this 599 result
+alone does not establish them.
 
 ## Initial installation controls
 

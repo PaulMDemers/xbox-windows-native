@@ -36,11 +36,14 @@ copy, text, bounds and transfer paths have been investigated. At 720p, the user
 confirmed clean text and full-window dragging. 1080i presentation remains open.
 The working demo contains no experimental GPU ownership or acceleration code.
 
-The display driver currently declines DirectDraw access to protect the private
-RAM primary's drawing model. The next [classic-game and Direct3D milestone](graphics-roadmap.md)
-will first measure the selected games' actual API requirements, then add the
-required surface/presentation support. Native NV2A acceleration needs a separate
-Windows ownership and synchronization design.
+The display driver declines hardware DirectDraw callbacks to protect the private
+RAM primary's drawing model. Default/HEL DirectDraw and the D3D7 RGB software
+renderer nevertheless pass scoped surface, offscreen and windowed presentation
+tests through the existing software stack. See the [sample ladder](graphics-samples.md)
+for the per-feature limits. RCT Deluxe has windowed compatibility evidence and
+PC measurements of its sampled GDI presentation path; physical game costs remain
+unmeasured. Native NV2A acceleration needs a separate Windows ownership and
+synchronization design, following the [graphics roadmap](graphics-roadmap.md).
 
 AC'97 integration provides audible login sounds and test tones. Exact stereo
 routing and broad audio compatibility remain unconfirmed.

@@ -6,6 +6,11 @@ coverage before native GPU acceleration. Finish the physical RCT process-cost
 comparison first; the [PC caller measurement](../outputs/rct628/REPORT.md) is
 complete and does not establish Xbox performance.
 
+Physical tests on additional consoles are currently deferred. The source review
+and received inventory below remain useful preparation, not a queued request to
+boot an unqualified unit. Current work on the original console is summarized in
+[current status](current-status.md).
+
 ## First additional-console inventory
 
 A [user-supplied 1.6 report](../outputs/inventory630/REPORT.md) passes the schema-2

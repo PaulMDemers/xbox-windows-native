@@ -1,3 +1,34 @@
+# 676 Workspace archive and documentation audit CLOSED
+
+Read outputs/workspace676/REPORT.md, closure001, validation001 and NEXT.md.
+221 old files (107.989GiB source) archived to
+D:/Xbox-Windows-Archive/2026-10-26 (106.293GiB compressed content).
+186 existing zst streams moved byte-identically;35 captures compressed.
+Every original removed only after archive decode/hash, source re-hash and durable
+receipt/pointer/journal. All221 records reconciled. No transfer errors; owned
+archive/test processes closed. Never rerun plan.json. Restore through receipt;
+closed runtimes remain closed. Guide: docs/ARTIFACT-ARCHIVE.md.
+
+Free at closure: C69.706GiB,E83.075GiB,D359.234GiB. D is healthy exFAT cold
+storage; host C/E-only assumption is obsolete. Raw disks/chains, SDKs/WSL,current
+674/675 builds/sources, releases/private256 retained. Inventory500949files,
+87reparse paths skipped. Preserve initial POSIX backing-name audit error and
+corrected002; no raw disk was moved. Full scope and private evidence pins in kit.
+
+Documentation agent audited maintained guides and repository evidence. RCT,
+480p/1.6, software graphics and recording instructions updated; frozen history
+retained. Nine archive tests and two actual restores pass;137host tests(skip10)
+pass;44760tracked working-tree payload scan passes (not full-history audit).
+Strict launcher source verification FAILS on existing xwn_hd_adapter.c,
+xwn_hd_native.c,xwn_hd_profile.c/.h pins. Source/manifest unchanged; no waiver.
+See docs/building.md and current-status.md before attempting a pinned build.
+
+Technical next remains675 fresh HOST-ONLY fullfirmware integration, preserving
+postcapture freeze/encoded packet and exact timer/SMC behavior;no NIC/Windows
+continuation, no hardware promotion. No console contact this maintenance.
+Last known dashboard674/nohook;physicallease/firewallretained,automationpaused.
+Protected720p/XBOX480 unchanged. Boot/1080i,Ftdisk49/Popup26 unresolved.
+
 # 675 HOST-ONLY timer observability prototype complete
 
 Read timer675 REPORT/NEXT,host001,linked001,dark-paths001,review003,closure001.

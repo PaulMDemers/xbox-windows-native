@@ -48,6 +48,7 @@ See the guide for each sample's arguments and required capture files.
 | `scenepresent` | [scenepresent.c](scenepresent.c) | [scenepresent.cmd](scenepresent.cmd) | [graphics_scenepresent.py](../../../tools/graphics_scenepresent.py) |
 | `sceneloop` | [sceneloop.c](sceneloop.c) | [sceneloop.cmd](sceneloop.cmd) | [graphics_sceneloop.py](../../../tools/graphics_sceneloop.py) |
 | `scenebench` | [scenebench.c](scenebench.c) | [scenebench.cmd](scenebench.cmd) | [graphics_scenebench.py](../../../tools/graphics_scenebench.py) |
+| `perspective` | [perspective.c](perspective.c) | [perspective.cmd](perspective.cmd) | [graphics_perspective.py](../../../tools/graphics_perspective.py) |
 
 `blend` still tests the original ideal alpha endpoints; the separate arithmetic
 characterization does not turn its failed endpoint result into a pass. `scene`
@@ -63,4 +64,5 @@ Later ladder rungs are explicitly planned; they do not return placeholder PASS.
 `scenebench` also builds the supporting `scene.exe`; copy both executables and
 its `.cmd` together. Its timings include pauses and capture I/O, not just drawing.
 
-Perspective rung: [source](perspective.c), [wrapper](perspective.cmd), [checker](../../../tools/graphics_perspective.py).
+`perspective` has NT5 PC controls; physical attempts produced no sample receipt.
+Keep that gap separate from the earlier combined-scene Xbox results.

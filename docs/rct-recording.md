@@ -17,9 +17,15 @@ restoration and Windows shutdown passed collection checks. That session is close
 its one-session launcher must not be rerun. A further recording session needs a
 fresh owned output identity. Video recording completion has not been reported.
 
+The steps below describe the **closed 624/626 session**, not a reusable launch
+command. For a new recording, prepare and verify a fresh one-session launcher
+with its own output identity first; use the Windows path from that new package.
+Do not rerun `C:\xwn624-kit\play624.exe` or remove its guard.
+
 1. Boot the ordinary Windows entry and wait for the desktop. The revised
    recording attempt installs no automatic game startup entry.
-2. Choose **Start → Run**, enter `C:\xwn624-kit\play624.exe`, and launch it once.
+2. Choose **Start → Run**, enter the fresh package's interactive launcher path,
+   and launch it once (the historical session used `C:\xwn624-kit\play624.exe`).
    If Windows Getting Started covers RCT, close that window normally.
 3. Choose **New Game → Forest Frontiers**, or load your existing saved park.
 4. Move around with **arrow keys** or **right-button dragging**. Window-edge

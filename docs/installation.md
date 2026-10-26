@@ -55,7 +55,8 @@ single-request journals; do not manually relaunch one without its test procedure
 
 **Do not use Windows F as scratch.** It maps to the protected dashboard C here.
 Do not assume these letters on a different console; verify its mapping first.
-The host PC's C/E drives are unrelated to Xbox partition letters.
+Host PC drive letters, including its archive drive, are unrelated to Xbox
+partition letters.
 
 ### Launch menu
 

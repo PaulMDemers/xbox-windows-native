@@ -29,8 +29,9 @@ The combined offscreen transform/texture/depth scene also passes on PC and Xbox.
 Two earlier physical depth launches returned without Windows receipts and remain
 failed; a fresh diagnostic completed the workload. Intermittent boot failures
 remain unresolved. Selected-input alpha arithmetic and windowed D3D presentation
-now have matched software controls. Full blending precision, games and GPU
-acceleration remain unqualified. See the
+now have matched software controls. RCT Deluxe also has scoped windowed
+play/save/input evidence; The Sims is untested. Full blending precision and GPU
+acceleration remain unqualified. See the [game results](rct-compatibility.md) and
 [sample results](graphics-samples.md).
 
 DirectX is a family of APIs. A game's DirectX requirement does not by itself mean
@@ -60,6 +61,9 @@ working on the development console does not qualify another revision. See the
 encoder and RAM restrictions and the qualification order.
 
 Keep the current720p development-console baseline and recovery route intact.
+Additional-unit physical testing is currently deferred; the received 1.6 inventory
+does not qualify its Windows boot/display path. See [current status](current-status.md)
+for the latest diagnostic boundary and outstanding physical measurements.
 Use watched initial boots on newly inventoried hardware, followed by display,
 input, storage/save and normal-restart checks. Do not infer motherboard revision
 from a failed encoder probe. Acceleration remains the following milestone.

@@ -5,7 +5,30 @@ That establishes a useful compatibility starting point, not a frame-rate or
 hardware-acceleration result. The current [compatibility record](rct-compatibility.md)
 separates the watched Xbox result from PC controls and unresolved inputs.
 
-## Save/load checkpoint and next measurement
+## Latest measurement and next step
+
+[PC628](../outputs/rct628/REPORT.md) completed the matched paused-park caller
+measurement after the original-code controls. The scenery matched all 165,600
+checked pixels before and after. RCT used 19.890625 CPU seconds over 20.016 guest
+seconds / 20.025054937 host seconds. All 87 captured fixed-version WINMM timer
+frames led to the same RCT return address, with the captured caller targeting
+`timeGetTime`. These bounded observations identify a caller, not call frequency,
+a percentage of CPU cost, game FPS or a demonstrated polling defect.
+
+The next performance experiment remains a bounded physical Xbox process-cost
+comparison with fresh clock/counter sanity and the same independently verified
+scene. The separate [recording626](../outputs/rct626/REPORT.md) confirms windowed
+play and arrow/right-button scrolling, but provides no game performance number.
+No game pacing patch or functional driver change is justified by these samples.
+Other-console hardware tests are deferred; native acceleration follows that
+compatibility work. [Current status](current-status.md) records the intervening
+display and timer/UDP diagnostic work.
+
+## Measurement history and save/load checkpoint
+
+The following sections retain the sequence of bounded measurements. A next-step
+statement in an earlier result describes its stage; 628 above is the current
+measurement boundary.
 
 [PC623](../outputs/rct623/REPORT.md) now qualifies the original busy-versus-paced
 timer comparison. Busy `timeGetTime` and `GetTickCount` loops used nearly one
@@ -129,8 +152,9 @@ failed/successful creation results and returned DirectDraw/surface methods with
 returns: successful DIB creation and32 sampled StretchDIBits calls from RCT,
 plus DirectDraw creation/release. Title and Forest Frontiers rendered; normal
 close, registry restoration and restart passed. The exact saved scene is now qualified by PC603/612. PC615 provides a clock-qualified uninstrumented cost baseline; PC618 supplies the matched instrumented case and bounded recorder process costs. The original subject is a recorder control, not a
-matched game-performance control. Current Xbox registry cleanup is cold readback
-verified but has not received a subsequent Windows boot.
+matched game-performance control. At that stage Xbox registry cleanup had only
+cold readback verification; the later626 interactive session passed its own
+registry-restoration and normal-shutdown checks.
 
 The [PC603 scene control](../outputs/rct603/REPORT.md) subsequently restored the
 exact retained PC593 park view, with all165600 checked scenery pixels matching
@@ -156,8 +180,9 @@ failed saved-scene objective; no game costs or acceleration result is available.
 The automated input comparison is qualified on [PC584](../outputs/rct584/REPORT.md):
 arrows and right-button dragging moved the view in both modes; edge scrolling
 moved it only in Full Screen mode. The matching Xbox583 launch produced no
-runner output, so those physical input checks remain pending. The watched
-Xbox565 building result remains the physical compatibility baseline.
+runner output and remains a failed attempt. Later physical590 and626 confirmed
+windowed arrows and right-button movement; fullscreen remains unqualified.
+The watched Xbox565 building and594/596 save/load results are separate evidence.
 
 The first cross-restart save helper stopped at its asset-verification gate
 before starting the game ([PC585](../outputs/rct585/REPORT.md)). Its corrected
@@ -218,8 +243,8 @@ including real inaccessible-page/truncated-header failures, with identical
 pristine/traced result logs. It reads at most four plus forty bytes and interprets
 only the bounded 40-byte BI_RGB policy; palette, masks and pixels are not captured.
 
-Next apply that qualified reader to actual RCT headers to establish format,
-dimensions and orientation.602 recorded the header pointer, not its contents;
+That reader was subsequently applied in612, establishing the sampled saved-park
+format described above.602 recorded the header pointer, not its contents;
 neither return768 nor client640x480 establishes the bitmap layout. Its early
 32-call cap also does not establish saved-park coverage. Qualify any new phase
 signaling or delayed arming on an original control before using it in the game,
@@ -263,7 +288,7 @@ module presence or a faster host model cannot qualify it.
 [PC607](../outputs/rct607/REPORT.md) qualifies the narrow recorder fix for606's
 absent CreateDIBSection output address. Original pristine/traced controls agree,
 including independently inspected returned bitmap objects and expected failure.
-The actual saved-park trace still needs a fresh game run;607 is no new game or
+The subsequent612 run supplied the saved-park trace;607 itself is no game or
 performance result. Non-NULL reads and DirectDraw checks remain strict.
 
 [PC608](../outputs/rct608/REPORT.md) stopped at copy admission because of a stale

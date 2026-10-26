@@ -2,12 +2,15 @@
 
 The working demo, source builds and recovery tests provide different evidence.
 Use the result that applies to the change you intend to make.
+The [current status and guide map](current-status.md) summarizes the latest
+engineering boundary; the table below retains both completed and failed gates.
 
 | Check | Result | Scope |
 |---|---|---|
 | Public dependency retrieval | Passed | Anonymous access to pinned ReactOS/Cromwell commits and RosBE archive |
 | RosBE bootstrap | Passed | Fresh private prefix on the development host; complete 6,587-entry receipt |
 | Component compilation | Passed | Eight separate profiles, ten component artifacts and the settings utility |
+| Current checkout strict source verification | Failed, October 26 audit | Four tracked Xromwell video files differ from the launcher manifest pins; historical compilation does not qualify this checkout. No hashes or source were changed to waive the gate ([build guidance](building.md#current-checkout-launcher-verification-fails)) |
 | HAL/network source correspondence | Passed | Historical-compiler reconstructions differ from installed binaries only in timestamps/checksum |
 | Windows input dependencies | Passed | Twelve exact matches to owned media; OEM-specific keyboard class documented |
 | Supplied Windows ISO identities | Passed | Full SHA-256/SHA-1, every ISO file read, selected full cabinets decompressed; independent Archive.org downloads byte-identical |
@@ -30,12 +33,19 @@ Use the result that applies to the change you intend to make.
 | Strict restored-system events | Failed | Ftdisk 49 retained; no waiver or event suppression |
 | Physical 720p desktop | User confirmed | Clean text and full-window dragging on the tested display |
 | Physical 1080i desktop | Defective | Text and motion defects remain; use 720p |
-| RollerCoaster Tycoon Deluxe | User observed title/menu, windowed Forest Frontiers and building on native Xbox; window-edge scrolling failed with the view still. Three supplied RCT editions also rendered in PC controls ([details](rct-compatibility.md)) | Arrow-key scrolling/right-button dragging untested; sound deferred. Sustained play, save/reload, repeatability and graphics API trace remain unqualified |
+| RollerCoaster Tycoon Deluxe | Native Xbox title/menu, windowed Forest Frontiers, building, manual save/load and arrow/right-button scrolling observed; persisted save checked across normal restart. Three editions rendered in PC controls ([details](rct-compatibility.md)) | Window-edge view stays still; fullscreen, sustained play and Xbox FPS unqualified; sound deferred. Exact scripted physical scene restoration is distinct from manual save/load |
+| RCT graphics/process measurements | Scoped PC results | Sampled saved-scene GDI DIB presentation and PC628 timer caller observed, with host-checked process costs; no physical game-cost/FPS result or acceleration proof ([measurement boundary](rct-performance-plan.md)) |
+| Physical 480p profile | Scoped drawing and interactive pass | 720×480×32 drawing in 638, Notepad dragging/save/reopen in 642, same file reopened under 720p in 643; boot intermittency remains |
+| Explicit 480p selector | Transfer/restore pass, boot failure retained | 645 apply/readback and 720p restoration passed; 480p boot returned black. 646 recovery desktop passed; no live Windows switching or automatic selection ([details](display-mode-switching.md)) |
+| Additional-console inventory | User-supplied 1.6 schema-2 report validated | Encoder unidentified, cable/HD-setting context incomplete, Windows unqualified; hardware testing deferred ([matrix](console-compatibility.md)) |
 | Original The Sims | Not yet tested | Exact edition, PC control, API requirements and physical play/save/reload remain to be established |
-| Native Direct3D / NV2A acceleration | Not qualified | Current display driver declines DirectDraw; no accelerated driver installed |
+| Native Direct3D / NV2A acceleration | Not qualified | Current display driver declines hardware DirectDraw callbacks; no accelerated driver installed |
 | Graphics ladder 00–02 | Modern host, NT5 PC and Xbox scoped pass | Six allowed cases; NT5 and Xbox each verify 129,024 bytes and reject 402 actual-evidence mutations. [Xbox438](../outputs/graphics-xbox438/REPORT.md) retains Ftdisk49 and two shutdown-time rundll32 popups; no primary/D3D/GPU qualification. HAL-only system-memory path remains excluded after the retained host crash |
 | Graphics ladder 03 | NT5 PC and Xbox scoped pass | Default/HEL primary presentation with exact HWND clipping, cover/move/uncover and neighboring GDI pixels. Each platform verifies 3,604,480 bytes and rejects 468 mutations. [Xbox442](../outputs/presentation442/REPORT.md) retains Ftdisk49 and two new shutdown rundll32 popups. No scanout/GPU/D3D claim |
-| Graphics ladder 04 | Complete NT5 PC pass at 24-bit; Xbox pending | All six format/backend cases verify 174,080 bytes, including palette changes and overlapping copies. Original 16-bit RGB32 failure retained; physical 451 produced no sample receipt. [450 evidence](../outputs/sprites-depth450/REPORT.md) |
+| Graphics ladder 04 | Complete NT5 PC 24-bit and Xbox 32-bit scoped passes | All six cases verify 174,080 bytes; [Xbox452](../outputs/sprites-retry452/REPORT.md) completed normal restart. Original 16-bit failure and 451 missing receipt remain |
+| Graphics ladder 05–09e | Scoped software controls on NT5 PC and Xbox | Lifecycle, discovery, triangles, textures, depth, transforms, combined scenes and presentation; selected-input alpha arithmetic passes but ideal endpoints fail. Sustained-scene Xbox clock checks pass; PC QPC durations unqualified. See the [per-rung matrix](graphics-samples.md#the-ladder) for exact limits |
+| Graphics ladder 09f | NT5 PC scoped pass; Xbox incomplete | Perspective interpolation passed PC controls; 557/558 produced no physical sample receipts |
+| Timer/UDP diagnostics | Physical 674 no datagrams; 675 host-only prototype | Lights-off/black observed at 674, followed by manual reset. 675 isolated fixtures and host checks do not identify the physical failure or qualify network transmission ([report](../outputs/timer675/REPORT.md)) |
 | RGB32 key diagnostic | Complete observation; keyed semantics fail | Both backends pass plain copies; three keys fail with/without clipping,134 pixels/backend. Full key values retained; all pixels match low16 comparison model, implementation not traced. [446 evidence](../outputs/key-semantics446/REPORT.md) |
 | RGB32 key diagnostic at24-bit desktop | Scoped NT5 PC pass | Exact446 binary passes both backends and92,160 bytes after verified16→24-bit switch; original mode restored. The initial Xbox attempt produced no receipt and remains a separate failure. [447 evidence](../outputs/key-depth447/REPORT.md) |
 | RGB32 key diagnostic on Xbox 32-bit desktop | Scoped physical pass | Default/HEL each pass 12 stages; 92,160 bytes exact, 19,592 mutations rejected; normal restart and unchanged 720p baseline. Ftdisk49 and one shutdown popup retained. [449 evidence](../outputs/key-retry449/REPORT.md) |

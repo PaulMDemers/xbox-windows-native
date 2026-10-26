@@ -14,7 +14,10 @@ Use **utilities preview 421 or later**, with hardware-report schema 2. The older
 417/417b utility can hang the Xbox while querying a documented hazardous PCI
 address; do not run it. The corrected scanner skips those addresses and completed
 on the development console (64 MiB, Conexant response, kernel 1.0.4034.1), saving a
-report and returning to dashboard FTP. Other hardware revisions remain untested.
+report and returning to dashboard FTP. A later user-supplied 1.6 schema-2 report
+[passed validation](../outputs/inventory630/REPORT.md), with an unidentified
+encoder; its auto-return was not observed here. That inventory is not Windows
+support. Additional-console Windows tests are currently deferred.
 See the [421 evidence](../outputs/inventory-pci421/REPORT.md).
 
 You need an original Xbox that already runs homebrew, a working dashboard with

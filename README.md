@@ -14,6 +14,7 @@ native GPU acceleration.
 
 ## Start here
 
+- **[Current status and guide map](docs/current-status.md)** — capabilities, remaining work and latest engineering handoff
 - **[External tester quick start](docs/testers.md)** — hardware report, installation checklist and results
 - [How it works and what we changed](docs/architecture.md)
 - [Find and edit the source](src/README.md)
@@ -36,10 +37,10 @@ native GPU acceleration.
 
 | Area | Current result | Limits |
 |---|---|---|
-| Boot | Dashboard → Xromwell → Windows | Matched boot chain required |
+| Boot | Dashboard → Xromwell → Windows | Matched boot chain required; intermittent failed launches remain |
 | Storage | Native FATX; file creation, copy, move and readback tested | Keep backups; strict event failures remain |
 | Graphics | Software desktop and HD framebuffer | No acceleration or live resolution switching |
-| Display | 720p text and full-window dragging confirmed clean | 1080i defects; other encoders need qualification |
+| Display | 720p baseline; separate 720×480 boot profile has scoped drawing/input/persistence results | No live switching; experimental 480p selector boot cycle unqualified; 1080i defects and other encoders remain |
 | Audio | Login sound and louder tones heard | Exact stereo routing unconfirmed |
 | Input | Standard mouse/keyboard | Device prompts and boot-time USB issues remain |
 | Network | Native networking; exact bidirectional TCP transfer on the fresh emulator assembly | Broad compatibility not established |
@@ -66,8 +67,9 @@ files; see [provenance](docs/provenance.md) for source and binary correspondence
 The next graphics target is playable original **RollerCoaster Tycoon and The
 Sims**, including input, sound and save/reload on a 64 MiB Xbox. Deluxe now reaches
 its title menu and renders Forest Frontiers in a watched native Xbox test.
-Building worked, but window-edge scrolling left the view still. Sound is deferred;
-save/reload and sustained play on Xbox remain unqualified. Three supplied
+Building, repeated manual save/load, arrow keys and right-button scrolling worked.
+Window-edge scrolling left the view still. Sound is deferred; fullscreen,
+sustained play and Xbox game FPS remain unqualified. Three supplied
 RCT editions also install and render a park in Windows 2000 PC controls; two
 pass a short same-session save/reload check. The Sims has not been tested.
 See the [RCT results and limitations](docs/rct-compatibility.md).
@@ -75,6 +77,12 @@ The [graphics roadmap](docs/graphics-roadmap.md) starts with exact
 game editions and DirectDraw/API probes, then the required legacy Direct3D work.
 Game compatibility, software rendering and native GPU acceleration are separate
 results. 720p remains the baseline; the 1080i investigation is paused.
+
+The current order is to finish the physical RCT cost comparison, qualify additional
+console profiles, then pursue native acceleration. Additional-unit hardware tests
+are deferred; the received Xbox 1.6 inventory does not qualify Windows support.
+The latest timer/UDP diagnostic work and its host-only limits are summarized in
+the [current status](docs/current-status.md).
 
 In parallel, installation needs a portable Windows registry conversion and a
 lossless solution for FATX's long-name limitation. The [build-to-boot guide](docs/build-to-boot.md)

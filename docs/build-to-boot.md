@@ -37,6 +37,10 @@ flowchart LR
 ```
 
 Do not jump from component artifacts or PC setup directly to the FTP step.
+The [current capability summary](current-status.md) distinguishes the prepared
+720p package from experimental 480p and other-console work. The optional archived
+developer artifacts described in the [archive guide](ARTIFACT-ARCHIVE.md) are not
+additional build prerequisites; use your own exact inputs and retain their receipts.
 
 ## 1. Collect the complete component set
 
@@ -44,6 +48,10 @@ The [build guide](building.md) defines `DEPS`, `BOOTSTRAP`, `CACHE` and `ROSBE`.
 Set them again if you opened a new terminal. Each profile needs a fresh output
 directory outside the repository, dependency cache and toolchain. To build the
 seven ReactOS-based profiles after dependency setup:
+
+First check the [current launcher verification failure](building.md#current-checkout-launcher-verification-fails).
+The development checkout is not presently a clean pinned eight-profile build.
+Do not bypass that gate to assemble a supposedly matched transfer package.
 
 ```sh
 DEPS="$HOME/xwn-dependencies-001"

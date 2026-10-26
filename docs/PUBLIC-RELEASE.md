@@ -15,7 +15,8 @@ is implied by the tester kit.
 
 Corrected inventory preview 421 has an emulator cold report readback and one
 successful development-console run with a saved report and dashboard return.
-Obsolete 417/417b utilities must not be used. Other encoders and revisions are
+Obsolete 417/417b utilities must not be used. A user-supplied 1.6 inventory later
+passed schema validation; its encoder remains unidentified and Windows is
 unqualified. The integrated Windows demo is physically tested on one 64 MiB
 Conexant console. Other revisions are test targets, not supported claims.
 

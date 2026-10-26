@@ -24,8 +24,11 @@ Rung 08c now has matched selected-input alpha arithmetic on NT5 PC and Xbox,
 with the endpoint precision limitation retained. Rung 08d now passes windowed
 D3D presentation on NT5 PC and Xbox. Rung 09a adds six XYZ transform controls
 on both. The combined offscreen scene also passes on PC and Xbox; combined
-windowed presentation now passes on both. Resource and performance measurement
-remain the next steps before game trials.
+windowed presentation now passes on both. Repeated process-cost and sustained
+scene controls are recorded below; Xbox sustained-scene clock checks passed.
+Perspective interpolation has a PC pass but no Xbox result. RCT game trials and
+PC profiling have also progressed; see [game compatibility](rct-compatibility.md)
+and [measurements](rct-performance-plan.md). Sample timings are not game FPS.
 The [game/D3D roadmap](graphics-roadmap.md) remains the larger goal.
 
 ## Start here
@@ -77,7 +80,7 @@ Windows automatically, and they do not impose a process watchdog.
 | 09d | Repeated scene process costs | Three separate scene processes per backend, exact pixel checks, CPU time and working-set/commit counters | PC and Xbox six-run process-cost controls pass; not FPS or in-process leak proof |
 | 09e | Sustained scene in one process | 2,560 repeated frames, calibrated API phase timings, five checked endpoints and memory before/after release | PC/Xbox scoped controls pass; PC QPC durations unqualified; Xbox clock cross-checks pass |
 | 09f | Perspective texture interpolation | Fixed projected outlines with constant, increasing, decreasing and scaled W; swapped UV control | NT5 PC default/HEL pass; Xbox attempt returned without test receipts |
-| 10 | Small game-like scenes | Scrolling isometric tiles and moving sprites, then a textured room; controls, audio and save/reload | Planned; precedes the actual game acceptance tests |
+| 10 | Small game-like scenes | Scrolling isometric tiles and moving sprites, then a textured room; controls, audio and save/reload | Planned; RCT compatibility trials proceeded separately and do not complete this rung |
 
 Do not require hardware acceleration for a software-compatible rung. An inventory
 success is not a rendering test, and a system-memory blit is not a GPU benchmark.

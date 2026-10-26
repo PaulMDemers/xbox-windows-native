@@ -5,7 +5,7 @@ ZIPs](build-test-kits.md). This page documents the packager and inventory build.
 
 | Package | Contents | Readiness |
 |---|---|---|
-| Utilities | Hardware-report XBE, host validators, source/notices and instructions | Corrected 421 utility passed emulator and first development-console inventory; other revisions unqualified |
+| Utilities | Hardware-report XBE, host validators, source/notices and instructions | Corrected 421 passed emulator/development-console controls; user-supplied 1.6 schema-2 report validated, with encoder still unidentified; no Windows qualification implied |
 | Windows E/720p preview | Matched boot chain, prepared Windows files/registry and manifest | Private delivery587 built and verified; second-console boot and general distribution unqualified |
 
 Windows, firmware, EEPROMs, dashboards and console-specific recovery material

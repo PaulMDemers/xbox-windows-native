@@ -2,7 +2,7 @@
 
 | Symptom | First checks |
 |---|---|
-| Blank screen after choosing Windows | Confirm the menu points to the current E launcher, not an old F profile; inspect through the dashboard file explorer |
+| Blank screen after choosing Windows | Confirm the current E launcher and record the last screen/LED. Identical launchers have both booted and returned early; a correct path does not rule out the unresolved intermittency. Follow [ordinary boot guidance](installation.md#already-configured-demo); never retry an accepted/uncertain diagnostic launch blindly |
 | Xromwell hangs before Windows | Disconnect the keyboard that caused prior boot hangs; keep the mouse connected before boot |
 | No mouse after hot-plugging | Input discovery can be blocked by hardware setup; connect the mouse before the next boot |
 | Found New Hardware wizards | Record the device name; cancel unsupported devices without disabling them |
@@ -11,6 +11,9 @@
 | Build refuses a changed hash | Inspect the source/tool difference; use explicit development mode for source edits, not an arbitrary compiler substitution |
 | Build output directory already exists | Preserve its log and use a fresh attempt directory |
 | Resolution selector refuses prerequisites | Stop and identify the installation/package mismatch; do not bypass hashes |
+| RCT window-edge scrolling stays still | This matches the tested Window mode; use arrow keys or right-button dragging. Fullscreen needs its own qualified mode path |
+| 480p selector copies successfully but Windows returns early | Transfer verification does not qualify boot reliability. Preserve the attempt and restore its exact 720p receipt; separate 480p interaction has passed, but the selector boot cycle remains unqualified |
+| UDP diagnostic receives no packets | Preserve receiver readiness, launch receipt and console observation. Firewall setup or a status LED alone does not prove transmission; the latest physical capture did not identify a cause |
 
 If Windows is responsive, save work and restart normally. If the dashboard is
 offline, that alone does not prove a crash: Windows may simply still be running.

@@ -5,6 +5,8 @@ Windows E/720p kit. The [587 delivery record](../outputs/delivery587/README.md)
 records the example that was actually packaged and verified. Its Windows files
 came from the stopped development installation, not a new installation from an
 ISO. Neither ZIP contains RCT.
+Additional-console testing is currently deferred; the procedure below documents
+how to prepare and verify a future test, without qualifying another unit.
 
 Commands below use Bash on Linux/WSL, Python 3.12+, and run from this repository's
 root. Use a short, new private working directory outside the repository. Keep

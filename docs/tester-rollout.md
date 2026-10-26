@@ -1,5 +1,10 @@
 # Tester rollout plan
 
+Additional-console hardware tests are currently deferred. This is the sequence
+for resuming them, not an instruction to launch Windows on an unreviewed unit.
+The received [1.6 inventory](../outputs/inventory630/REPORT.md) validates the
+report format but does not establish its encoder or Windows compatibility.
+
 ## First: inventory, without Windows installation
 
 Use the utilities preview to collect kernel, RAM, PCI, AV-pack and encoder
