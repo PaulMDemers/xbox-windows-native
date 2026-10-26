@@ -1,3 +1,32 @@
+# 684 physical timer closed; 685 native binding host tests closed
+
+Read outputs/video-clock684/RESULT.md and outputs/xcal-binding685/REPORT.md,
+then the precise outputs/xcal-binding685/NEXT.md. One new physical launch684
+returned to dashboard and yielded two twice-matching reports. Raw port0x8008
+shows high bits above24; measured~3.374624MHz against interrupt time, kernelQPC
+reports3.375MHz and closely shares raw values (not independent). SMBus entry/end
+status0. This is kernel-context observation, not native ownership or chip ID.
+
+Legacy3.579545MHz assumption is not supported here;1790ticks would be~530us,
+not a demonstrated short minimum delay or cause of old failures. Preserve684's
+old host-only candidate. Fresh685 uses1688ticks, finite limits, IF-set refusal,
+and actual native IN/OUT callbacks. Sanitizer3378 modeled successes plus failure
+checks and33 compiled32-bit instruction fixtures pass. No Xromwell integration,
+encoder write, new mode, Windows boot or accelerated capability is qualified.
+
+684/685 runtimes/fixtures are CLOSED; never rerun/recollect/parent them. Preserve
+seven individual build-lease refusals plus the three-check batch; no override.
+Preserve684 target001 wrong-drive greeting parse, corrected by target002 before
+staging. No C filesystem access, hook, ordinary launcher or release changes.
+Owned E/Applications/XWNVideoClock684 and two E-root reports retained. No host
+process or build lease outstanding. Hardware ticket retained, automation paused.
+Incoming unit last at dashboard with HDMI; do not assume reset availability for
+future deliberate holds. Networking679/1080i remain tabled. Original720p untouched.
+
+Next: positive encoder/controller context, then fresh pinned native integration
+and full-image tests before a watched pattern-only encoder trial. Do not borrow
+kernel GPU state or clear unknown pending bits. See685 NEXT for concrete gates.
+
 # 683 HDMI720p baseline CLOSED; incoming1.6 remains at dashboard
 
 Read outputs/hdmi683/RESULT.md and closure001.json. Fresh user HDMI/720p readiness

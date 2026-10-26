@@ -1,6 +1,6 @@
 # Current status and guide map
 
-Reviewed October 26, 2026 against the retained evidence through physical attempt 683.
+Reviewed October 26, 2026 against the retained evidence through physical684 and host binding685.
 This page summarizes supported observations; individual reports retain their
 original failures and scope. For the exact active attempt and next engineering
 step, read [CONTINUATION](../outputs/engineering-notes/CONTINUATION.md) and
@@ -30,7 +30,7 @@ step, read [CONTINUATION](../outputs/engineering-notes/CONTINUATION.md) and
 | RCT Deluxe | Windowed title/park/building, manual save/load and arrow-key/right-button scrolling on the development console; [626](../outputs/rct626/REPORT.md) confirms the later interactive session and cleanup | Window-edge scrolling stays still; fullscreen unqualified; sound deferred; no Xbox game FPS measurement |
 | Software D3D7 | Scoped offscreen and windowed RGB-renderer samples pass through combined scenes; sustained synthetic scene has Xbox clock checks | Exact ideal alpha endpoints remain failed; perspective interpolation has PC results only; synthetic timings are not game FPS |
 | Native GPU acceleration | No accelerated driver installed | Game rendering, a module name or software sample success is not NV2A acceleration |
-| Other Xbox revisions | User-identified 1.6: [composite kernel baseline682](../outputs/composite682/REPORT.md) displays proper bars and returns automatically; [HDMI720p baseline683](../outputs/hdmi683/RESULT.md) also passed | Native [Xcalibur prototype681](../outputs/xcal681/REPORT.md) remains host-only; no Windows qualification. This unit's GPU field differs from inventory630 |
+| Other Xbox revisions | User-identified 1.6: [composite kernel baseline682](../outputs/composite682/REPORT.md) displays proper bars and returns automatically; [HDMI720p baseline683](../outputs/hdmi683/RESULT.md) also passed | Native [Xcalibur binding685](../outputs/xcal-binding685/REPORT.md) passes compiled host tests; no Windows qualification. This unit's GPU field differs from inventory630 |
 | Packaging | Hardware-info utility and private prepared E/720p Windows ZIP recipes and [delivery587](../outputs/delivery587/README.md) | RCT excluded; private Windows assets are not public downloads; clean physical provisioning remains incomplete |
 | Installation/storage | Component builds and scoped prepared-image/emulator restore checks pass | Six clean-media FATX long-name exclusions, crypto failures and strict event failures remain; selected-file audits are not whole-volume health checks |
 
@@ -43,7 +43,7 @@ physical game-cost comparison remains outstanding. Compatibility work on other
 revisions is intended before acceleration. The user now has an incoming 1.6;
 kernel video baselines are active on that console, ahead of native integration.
 
-Networking/timer work is **tabled**, with [679's local package preserved](../outputs/revision680/REPORT.md)
+Earlier networking/timer work is **tabled**, with [679's local package preserved](../outputs/revision680/REPORT.md)
 and no pending launch. [678's host-only full-firmware timer integration](../outputs/timer678/REPORT.md)
 compiled a private XBE and passed 25 isolated full-image function fixtures;
 there was no console launch or installed change. It preserves the existing
@@ -58,9 +58,15 @@ observations and matching kernel geometry reports. Native Xcalibur integration
 and a separate pattern-only qualification remain next. The separate
 681 prototype passed 66,164 modeled protocol/profile cases and four compiled
 legacy GPU geometry fixtures. It does not establish physical output: native
-binding, encoder qualification and Windows handoff remain to be completed.
+encoder qualification, native integration and Windows handoff remain to be completed.
 
 The ordinary 720p configuration remains the baseline. 1080i is tabled, Ftdisk49
 and shutdown-popup limitations remain recorded, and closed test identities must
 not be rerun. Historical `outputs/` records and old bundle instructions describe
 their frozen packages; use the maintained guides above for new work.
+
+The new [read-only video prerequisite684](../outputs/video-clock684/RESULT.md)
+measured a timer rate consistent with3.375MHz and two clear SMBus status snapshots
+on this unit. [Binding685](../outputs/xcal-binding685/REPORT.md) uses that rate and
+passes33 compiled32-bit port/delay fixtures. No native encoder transaction or
+Windows test follows from those results; this does not resume networking.
