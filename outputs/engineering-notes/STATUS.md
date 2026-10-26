@@ -1,3 +1,27 @@
+# 678 HOST-ONLY timer integration complete; 677 launcher pins reconciled
+
+Read outputs/launcher677/REPORT.md and outputs/timer678/REPORT.md, then
+outputs/timer678/NEXT.md. Four stale launcher hashes and reference tree now
+match reviewed633 sources. All8 profiles verify; two fresh strict launcher
+builds and six compiled-wrapper fixtures pass. Default720p flags unchanged.
+Preserve677 validation001: /mnt/c changed244 file modes, zero blob changes;
+validation002 on Linux filesystem passed without a tree/source waiver.
+
+678 built fresh full firmware from674 sources plus exact675 probe. Export
+preserves freeze/copy/encode, then enters timer probe instead of old LED/sender.
+25 full-image function fixtures and313 provenance/layout checks pass;19 existing
+objects have unchanged text/rodata. Host models only, not boot/hardware proof.
+No console contact/staging/launch; no timer/SMC repair, NICcall or Windows route.
+Private C:/xwn678/build001, Linux timer678-source001; owned processes finished,
+buildlease released. Hardwarelease/firewall retained; automation paused.
+
+Next is a NEW watched timer-only physical attempt, pending current user readiness
+and availability to reset. Expected held black screen, noUDP. Preserve674's zero
+packets/lights-off observation; actual cause unknown. Current console state not
+polled: lastknown dashboard674/nohook. Never reuse closed runtime identities.
+Protected720p/startup/XBOX480/releases/private256 unchanged. Boot/1080i tabled;
+Ftdisk49/Popup26 unresolved. D archive676 retained; no further storage moves.
+
 # 676 Workspace archive and documentation audit CLOSED
 
 Read outputs/workspace676/REPORT.md, closure001, validation001 and NEXT.md.

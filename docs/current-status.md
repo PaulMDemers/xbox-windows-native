@@ -1,6 +1,6 @@
 # Current status and guide map
 
-Reviewed October 26, 2026 against the retained evidence through attempt 675.
+Reviewed October 26, 2026 against the retained evidence through attempt 678.
 This page summarizes supported observations; individual reports retain their
 original failures and scope. For the exact active attempt and next engineering
 step, read [CONTINUATION](../outputs/engineering-notes/CONTINUATION.md) and
@@ -24,7 +24,7 @@ step, read [CONTINUATION](../outputs/engineering-notes/CONTINUATION.md) and
 | Area | Current evidence | Boundary |
 | --- | --- | --- |
 | Development Xbox | Native Windows 2000 at 720p on the original 64 MiB Conexant console | Boot intermittency remains; a dashboard return does not prove normal Windows shutdown |
-| Current source verification | Strict launcher profile verification fails on four tracked video files | Historical builds remain evidence for their exact sources; see the [build boundary](building.md#current-checkout-launcher-verification-fails). No source/manifest waiver applied |
+| Current source verification | All eight profiles verify after 677 reconciled four stale launcher pins and its reference tree | Two fresh launcher builds and six compiled-wrapper fixtures passed; default remains 720p. No physical deployment or gate waiver; see the [build boundary](building.md#current-checkout-launcher-pins-reconciled) |
 | 480p | Separate 720×480×32 boot profile passed drawing, dragging, typing, save/reopen and later 720p readback in [638](../outputs/windows480p638/REPORT.md), [642](../outputs/windows480p642/REPORT.md), [643](../outputs/windows720p643/REPORT.md) | Selector apply/readback and recovery passed, but its 480p boot failed in [645](../outputs/display-selector645/REPORT.md); live Windows mode changes and automatic selection remain unimplemented |
 | RCT Deluxe | Windowed title/park/building, manual save/load and arrow-key/right-button scrolling on the development console; [626](../outputs/rct626/REPORT.md) confirms the later interactive session and cleanup | Window-edge scrolling stays still; fullscreen unqualified; sound deferred; no Xbox game FPS measurement |
 | Software D3D7 | Scoped offscreen and windowed RGB-renderer samples pass through combined scenes; sustained synthetic scene has Xbox clock checks | Exact ideal alpha endpoints remain failed; perspective interpolation has PC results only; synthetic timings are not game FPS |
@@ -42,11 +42,15 @@ physical game-cost comparison remains outstanding. Compatibility work on other
 revisions is intended before acceleration, but physical testing of those units
 is deferred in this conversation.
 
-The latest diagnostic work is [675's host-only timer observability prototype](../outputs/timer675/REPORT.md).
-It produced no XBE, console launch or installed change. The prior physical 674
+The latest diagnostic work is [678's host-only full-firmware timer integration](../outputs/timer678/REPORT.md).
+It compiled a private XBE and passed 25 isolated full-image function fixtures;
+there was no console launch or installed change. It preserves the existing
+capture and encoded packet, then runs the bounded timer probe and halts without
+calling the sender. Timer and SMC behavior are unchanged. The prior physical 674
 capture received no UDP datagrams; the user saw lights off on a black screen and
 then manually reset the console. Those observations do not identify a timer,
-SMC or network root cause. See the current handoff for the next integration gate.
+SMC or network root cause. A watched physical timer-only test remains next;
+it expects no UDP and requires a power-cycle after its held indication.
 
 The ordinary 720p configuration remains the baseline. 1080i is tabled, Ftdisk49
 and shutdown-popup limitations remain recorded, and closed test identities must

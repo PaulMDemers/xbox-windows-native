@@ -49,9 +49,9 @@ Set them again if you opened a new terminal. Each profile needs a fresh output
 directory outside the repository, dependency cache and toolchain. To build the
 seven ReactOS-based profiles after dependency setup:
 
-First check the [current launcher verification failure](building.md#current-checkout-launcher-verification-fails).
-The development checkout is not presently a clean pinned eight-profile build.
-Do not bypass that gate to assemble a supposedly matched transfer package.
+First run strict source verification and read the [launcher pin reconciliation](building.md#current-checkout-launcher-pins-reconciled).
+All eight profiles verify after review 677. Use WSL's Linux filesystem for fresh
+outputs; source verification and compilation do not replace package checks.
 
 ```sh
 DEPS="$HOME/xwn-dependencies-001"

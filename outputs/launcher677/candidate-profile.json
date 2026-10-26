@@ -1,0 +1,132 @@
+{
+  "name": "launcher",
+  "upstream": "cromwell",
+  "base_commit": "9fc54d0c7cbed7bc3c70373642d833684853011f",
+  "reference_tree": "70c0a6c5aff82537f489e7d18410d5980fa797a7",
+  "overlay": "src/boot/xromwell",
+  "files": [
+    {
+      "path": "Makefile",
+      "action": "write",
+      "mode": "100644",
+      "sha256": "f5d9797a85be7debf4ce584fb3ba9ad09e63b49a9860cb7d6b0aa12f56469126"
+    },
+    {
+      "path": "boot/BootResetAction.c",
+      "action": "write",
+      "mode": "100644",
+      "sha256": "b27a08d5c4e18d331d2794ba0f50731d2768d5edc6addbeba3148a6b942612df"
+    },
+    {
+      "path": "boot/LoadLinux.c",
+      "action": "write",
+      "mode": "100644",
+      "sha256": "ed843979572a9f97e0426f72d5dc58cd46d087f5d87913248e4b77794a3c58b1"
+    },
+    {
+      "path": "boot/LoadReactOS.c",
+      "action": "write",
+      "mode": "100644",
+      "sha256": "127ed68dea652f9a0bf873dd420a122753aa39e8123f567f41c5895c6ce9a06d"
+    },
+    {
+      "path": "boot_eth/eth_Startup.S",
+      "action": "write",
+      "mode": "100644",
+      "sha256": "792231db3b245d5a0b1cd364dbc879e85be13868dcbf9a821db4c10e8c9088e0"
+    },
+    {
+      "path": "boot_eth/eth_start.ld",
+      "action": "write",
+      "mode": "100644",
+      "sha256": "1ffccc8b03b0876e12b245cdcf35725fd3c629df8109730915da5b0ac60c7dc9"
+    },
+    {
+      "path": "boot_rom/2bBootStartBios.c",
+      "action": "write",
+      "mode": "100644",
+      "sha256": "a28ef014f48155eb37d5857ba3a24de67f95c4de23d6cf5bc0529d592c0b85da"
+    },
+    {
+      "path": "boot_vml/vml_Startup.S",
+      "action": "write",
+      "mode": "100755",
+      "sha256": "0b59b797b1c1d03fb298e5b5ec77b98dc51fcfa694a9ea8756f00d985b95f830"
+    },
+    {
+      "path": "boot_vml/vml_start.ld",
+      "action": "write",
+      "mode": "100755",
+      "sha256": "3db8de48946076ba81d0502d9bee97867bec11ff0c3762723c0a388117447ff4"
+    },
+    {
+      "path": "boot_xbe/xbeboot.S",
+      "action": "write",
+      "mode": "100755",
+      "sha256": "b8ddf72f41a682d3868f1b801492b31005611c6868aa5927f54e5ce14bb94a2c"
+    },
+    {
+      "path": "drivers/video/BootVgaInitialization.c",
+      "action": "write",
+      "mode": "100644",
+      "sha256": "481e95c8335ba0d865b3ccddfc1b1acfaf0721e12045104e37c5d4d13573c4d4"
+    },
+    {
+      "path": "drivers/video/Makefile",
+      "action": "write",
+      "mode": "100644",
+      "sha256": "98dff73b463992edef95cabd4400476598a3336c8b9fb3af37050afb52d62cff"
+    },
+    {
+      "path": "drivers/video/xwn_hd_adapter.c",
+      "action": "write",
+      "mode": "100644",
+      "sha256": "2bea8d6773833a1e04ebc4bf9cde1a53cae641707de85e11ae89d9a5c02701de"
+    },
+    {
+      "path": "drivers/video/xwn_hd_adapter.h",
+      "action": "write",
+      "mode": "100644",
+      "sha256": "921de06909b6a88837dd1d8e51f3f3988777a9f67045c51338c578343f0d583a"
+    },
+    {
+      "path": "drivers/video/xwn_hd_native.c",
+      "action": "write",
+      "mode": "100644",
+      "sha256": "176f67d5946846cc652eb109a40293b2a67fae8e38943b7b0532d276fe720a96"
+    },
+    {
+      "path": "drivers/video/xwn_hd_profile.c",
+      "action": "write",
+      "mode": "100644",
+      "sha256": "37c8c8bd6d4eebe9f025d4dcef9a57a6638ac47034e7b924b101a08715d6cc32"
+    },
+    {
+      "path": "drivers/video/xwn_hd_profile.h",
+      "action": "write",
+      "mode": "100644",
+      "sha256": "c3c2b19c89e41e92226352368241a1906b84a2b47533822fd9c6513c6e85b1dc"
+    },
+    {
+      "path": "include/memory_layout.h",
+      "action": "write",
+      "mode": "100644",
+      "sha256": "ff8ce576254e8d97e7252683817f08086bb88a01d4a1635b118a643ef50acc54"
+    },
+    {
+      "path": "scripts/ldscript-crom.ld",
+      "action": "write",
+      "mode": "100644",
+      "sha256": "beb3481147f12aa43bbeb4da4ca74570624ff7db89a165332176a340f223d1da"
+    }
+  ],
+  "build": {
+    "make_target": "all",
+    "flags": "-DXWN_PHYSICAL_PREFLIGHT -DXWN_HD_RESERVATION=1 -DXWN_HD_TIMING_720P=1",
+    "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4"
+  },
+  "artifacts": {
+    "xbe/xromwell.xbe": "default.xbe"
+  },
+  "checkout_byte_rules": []
+}

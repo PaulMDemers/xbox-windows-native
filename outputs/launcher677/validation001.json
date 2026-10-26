@@ -1,0 +1,107 @@
+{
+  "passed": false,
+  "physical_access": false,
+  "source_changed": false,
+  "manifest_promoted": false,
+  "commands": [
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-DXWN_HD_TIMING_720P=1",
+      "-std=c99",
+      "-O1",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=address,undefined",
+      "-fno-pie",
+      "-no-pie",
+      "/mnt/c/xwn677/host001/xwn_hd_profile.c",
+      "/mnt/c/xwn677/host001/profile-host.c",
+      "-o",
+      "/mnt/c/xwn677/host001/profile"
+    ],
+    [
+      "/mnt/c/xwn677/host001/profile"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-DXWN_HD_TIMING_720P=1",
+      "-std=c99",
+      "-O1",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=address,undefined",
+      "-fno-pie",
+      "-no-pie",
+      "/mnt/c/xwn677/host001/xwn_hd_profile.c",
+      "/mnt/c/xwn677/host001/xwn_hd_adapter.c",
+      "/mnt/c/xwn677/host001/adapter-host.c",
+      "-o",
+      "/mnt/c/xwn677/host001/adapter"
+    ],
+    [
+      "/mnt/c/xwn677/host001/adapter"
+    ]
+  ],
+  "space": {
+    "minimum_free_gib": 20.25,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c",
+        "free_bytes": 75758391296
+      },
+      {
+        "free_bytes": 75758325760,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "historical_record_sha256": "cdb774dfc32eccf618113f27cb6e2f1963839ab6d20c3c7e6fe5b31920df320b",
+  "original_verification_failure": "Changed source; use --allow-modified for development: ['drivers/video/xwn_hd_adapter.c', 'drivers/video/xwn_hd_native.c', 'drivers/video/xwn_hd_profile.c', 'drivers/video/xwn_hd_profile.h']",
+  "changes": [
+    {
+      "path": "drivers/video/xwn_hd_adapter.c",
+      "before": "30333610cfcc7761a36bd92b4f5260073b20a4b050bf4a160d3198f3483bf912",
+      "after": "2bea8d6773833a1e04ebc4bf9cde1a53cae641707de85e11ae89d9a5c02701de"
+    },
+    {
+      "path": "drivers/video/xwn_hd_native.c",
+      "before": "b3b216c96e4ca4fb69bd1ca1365dadbc21c64399ee68fcac07230587b720ac93",
+      "after": "176f67d5946846cc652eb109a40293b2a67fae8e38943b7b0532d276fe720a96"
+    },
+    {
+      "path": "drivers/video/xwn_hd_profile.c",
+      "before": "0bad5074fbd9054b1c4aa7726406bcbc98b67b9a875bdf26f4b9baf0920cbf2e",
+      "after": "37c8c8bd6d4eebe9f025d4dcef9a57a6638ac47034e7b924b101a08715d6cc32"
+    },
+    {
+      "path": "drivers/video/xwn_hd_profile.h",
+      "before": "c6147fb77d348d8de7fba1f90630276acd3dc80a33bbeee392dc451390213a58",
+      "after": "c3c2b19c89e41e92226352368241a1906b84a2b47533822fd9c6513c6e85b1dc"
+    }
+  ],
+  "old_tree": "0a1b542e92c8697422892c9cfaed633a5aed0de7",
+  "candidate_tree": "70c0a6c5aff82537f489e7d18410d5980fa797a7",
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "host_source_pins": {
+    "adapter-host.c": "bba1fabc02b723bc85a051bafb4c7ffdfdb75cc002cdd91cadc8c99583aa1c2e",
+    "profile-host.c": "4ac5f2468371ab330ad020cacd09322d364fbbf46c71b106a56c0e0659989a7a",
+    "xwn_hd_adapter.c": "2bea8d6773833a1e04ebc4bf9cde1a53cae641707de85e11ae89d9a5c02701de",
+    "xwn_hd_adapter.h": "921de06909b6a88837dd1d8e51f3f3988777a9f67045c51338c578343f0d583a",
+    "xwn_hd_profile.c": "37c8c8bd6d4eebe9f025d4dcef9a57a6638ac47034e7b924b101a08715d6cc32",
+    "xwn_hd_profile.h": "c3c2b19c89e41e92226352368241a1906b84a2b47533822fd9c6513c6e85b1dc"
+  },
+  "profile_checks": 129,
+  "adapter_checks": 235552,
+  "old_profiles_identical": true,
+  "compiled_480p_facts_match": true,
+  "builds": {},
+  "failure": "ValueError('Reconstructed tree differs: f5cb239dd2c0212ebe5bb9a4bba86c29e69a63b2')",
+  "ended_utc": "2026-10-26T19:06:52.545044+00:00"
+}

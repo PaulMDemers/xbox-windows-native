@@ -28,7 +28,8 @@ It does not require Windows or the NT5 component toolchain.
 - At least 20 GiB free on the output filesystem and WSL's Windows backing volume.
   This reserve is checked; it is not a build-size estimate.
 - A fresh output directory outside the repository, cache and toolchain. Prefer
-  WSL's Linux filesystem for compilation speed.
+  WSL's Linux filesystem to preserve Git file modes as well as compilation speed.
+  A Windows-mounted output can change executable bits and fail strict tree verification.
 
 ## Obtain the dependencies
 
@@ -79,29 +80,25 @@ python3 tools/xwn.py list
 python3 tools/xwn.py verify
 ```
 
-### Current checkout: launcher verification fails
+### Current checkout: launcher pins reconciled
 
-The October 26, 2026 documentation audit found that strict `verify` exits with status 1:
-four tracked files under `src/boot/xromwell/drivers/video/` differ from the
-launcher profile's recorded SHA-256 values in `upstream/components.json`:
+[Review 677](../outputs/launcher677/REPORT.md) resolved the four source-hash
+mismatches found by audit 676. The 480p source change in commit `c05553b9`
+had left the launcher manifest at its earlier source hashes and tree. The current
+four files match retained build 633 exactly. Two fresh strict reconstructions
+matched its complete tree, then compiled the default 720p and explicit 480p
+variants. The manifest now records those reviewed source hashes and tree.
 
-- `xwn_hd_adapter.c`
-- `xwn_hd_native.c`
-- `xwn_hd_profile.c`
-- `xwn_hd_profile.h`
+All eight profiles pass strict source verification. The launcher build flags
+still select 720p by default; no maintained source code was changed or gate
+bypassed. Sanitizer tests and six compiled-wrapper fixtures passed. This does
+not establish that a fresh binary matches the installed package or qualifies
+another Xbox. The earlier failure remains recorded in audit 676.
 
-These are existing development-source differences, not edits made by the
-documentation or storage audit. The historical eight-profile compilation result
-below does not mean this checkout passes the original source pins. The launcher
-build command will also stop at that source gate before compilation.
-
-Preserve the failure. For a pinned reconstruction, use a separately reviewed
-checkout whose complete profile verifies against its matching manifest; do not
-overwrite the development tree or update hashes merely to make verification
-pass. A source/manifest promotion needs its own review and qualification.
-`--allow-modified` is a development mechanism, not a repair for this failure or
-proof that a new launcher matches the installed 720p package. The commands below
-describe the pinned workflow and remain conditional on successful verification.
+Use a fresh output on WSL's Linux filesystem. Review 677's first reconstruction
+on `/mnt/c` failed because 244 files acquired executable bits; their contents
+were identical. The Linux-filesystem reconstruction passed without relaxing the
+complete-tree comparison. `--allow-modified` is not a repair for either failure.
 
 Choose your own paths. `CACHE` is a Git repository with the required ReactOS
 base; `ROSBE` is the installed toolchain directory containing `RosBE.sh`:
