@@ -1,3 +1,32 @@
+# 686 encoder presence closed; 687 bounded reader host fixtures closed
+
+Read outputs/encoder686/REPORT.md and outputs/xcal-entry687/REPORT.md, then
+outputs/xcal-entry687/NEXT.md. One physical kernel probe returned status0/value4
+at Xcalibur address E0; Conexant8A and FocusD4 returned C0000185. Failed-read
+values are invalid. Five reports collected twice identically; dashboard returned.
+Positive address response is not a unique chip ID or native block-I/O proof.
+No mode/encoder configuration write, Windows boot, hook or C filesystem access.
+
+687 adds host-only bounded cable/video configuration reads, preserving IF and
+refusing inherited busy/terminal status. Sanitizer delay checks,48 compiled
+port/config/delay cases and two compiled legacy/new sequences pass. Legacy read
+leaves completion status10 in the explicit W1C model; the checked reader refuses
+it. Checked successive reads acknowledge their own results. This identifies an
+integration ordering issue, not a physically observed native handoff failure.
+
+686 runtime and687 fixtures are CLOSED. Never rerun/recollect/parent their
+runtimes. No maintained driver/manifest or original720p change. Incoming unit
+last at dashboard with HDMI; owned E/Applications/XWNEncoder686 and five reports
+retained. No pending hook/launch or owned host process. Build lease released;
+hardware ticket retained; automation paused. Networking679/1080i remain tabled.
+
+Next: fresh pinned pattern-only native integration before legacy EEPROM reads,
+with earlier startup ownership review and actual pre-write context. Keep dirty
+status refusal; do not borrow firmware state or clear unknown pending work.
+Review GPU clock/interrupt setup and memory contract, then compiled full-image
+paths. Confirm watch/reset availability before any deliberate native hold.
+Only after that visible native pattern qualifies should Windows480p follow.
+
 # 684 physical timer closed; 685 native binding host tests closed
 
 Read outputs/video-clock684/RESULT.md and outputs/xcal-binding685/REPORT.md,

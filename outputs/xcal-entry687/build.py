@@ -1,0 +1,29 @@
+"""Build a fresh freestanding32-bit host fixture, not an XBE or native release."""
+import hashlib,json,os,subprocess,sys
+from pathlib import Path
+K=Path(__file__).resolve().parent;W=K.parents[1];O=Path('/mnt/c/xwn687/build001')
+assert os.environ.get('XWN_BUILD_LEASE')=='held'
+assert not O.exists() and not (K/'build001.json').exists()
+sys.path.insert(0,str(W/'tools'));from build_space import require_space
+r={'passed':False,'physical_access':False,'space':require_space(O,20.05),'sources':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in K.glob('*.[ch]')}}
+O.mkdir(parents=True)
+try:
+    cc=Path('/usr/bin/gcc-12').resolve();r['compiler_sha256']=hashlib.sha256(cc.read_bytes()).hexdigest()
+    assert r['compiler_sha256']=='e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4'
+    commands=[
+      ('sanitize_compile',[str(cc),'-std=c11','-O1','-g','-Wall','-Wextra','-Werror','-fsanitize=address,undefined','-fno-omit-frame-pointer',str(K/'test_delay.c'),'-o',str(O/'test')]),
+      ('sanitize_run',[str(O/'test')]),
+      ('compile32',[str(cc),'-m32','-Os','-ffreestanding','-fno-pie','-fno-pic','-fno-stack-protector','-Wall','-Wextra','-Werror','-nostdlib','-static','-no-pie','-Wl,-Ttext=0x100000,-e,native_read,--build-id=none',str(K/'native.c'),str(K/'xcal_bus.c'),str(K/'config.c'),'-o',str(O/'native.elf')]),
+      ('objcopy',['objcopy','-O','binary',str(O/'native.elf'),str(O/'native.bin')]),
+      ('symbols',['nm','-n',str(O/'native.elf')]),
+      ('disassembly',['objdump','-d',str(O/'native.elf')])]
+    for name,cmd in commands:
+        p=subprocess.run(cmd,capture_output=True,timeout=60)
+        (O/(name+'.stdout')).write_bytes(p.stdout);(O/(name+'.stderr')).write_bytes(p.stderr)
+        r[name]={'returncode':p.returncode,'stdout_sha256':hashlib.sha256(p.stdout).hexdigest(),'stderr':p.stderr.decode()}
+        assert p.returncode==0,(name,p.stderr.decode())
+    r['files']={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in O.iterdir() if p.is_file()}
+    r['passed']=True
+except BaseException as e:r['failure']=repr(e);raise
+finally:(K/'build001.json').write_text(json.dumps(r,indent=2)+'\n')
+print('PASS sanitizer delay models and actual32-bit binding build; no hardware access')

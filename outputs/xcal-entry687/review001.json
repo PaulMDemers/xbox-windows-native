@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "utc": "2026-10-26T23:52:48.642925+00:00",
+  "sources_match_build": true,
+  "private_build_files_match": true,
+  "legacy_binary_matches_retained677_wrapper_receipt": true,
+  "new_binary_matches_build_and_cpu_fixture": true,
+  "host_instruction_cases": 48,
+  "compiled_sequence_cases": 2,
+  "scope": "post-run pin and source review; no runtime rerun or physical claim",
+  "checks": [
+    "allowlist only SMC4 and EEPROM58..5b/96",
+    "entry busy or inherited terminal status refuses without writes",
+    "100000 polls; timeout does not clear unknown status",
+    "error bits take priority over done",
+    "failed read leaves output unchanged",
+    "IF preserved and IF-set operations refused"
+  ],
+  "limitations": [
+    "callback count bound is not an elapsed-time bound",
+    "exclusive bus ownership remains a native caller obligation",
+    "legacy/new sequence uses modeled write-one-to-clear status",
+    "native interrupt/cache/clock handoff and encoder output remain unqualified"
+  ],
+  "test_scripts": {
+    "build.py": "5d0d897f8f8c60c1b5c3f3bf558c21a8379bbd64e170f7cb7d0364ba68a9baee",
+    "cpu.py": "9ed2aa4fdfd31606d06b9ed09c764fa3b6881ddb51f61faa6b2a23a27523f790",
+    "handoff.py": "26919b64cc368454d871bdcc1efc0beb3845b68f3b2c0c927775c92d00c4b83b"
+  }
+}

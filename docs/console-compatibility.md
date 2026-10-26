@@ -15,6 +15,10 @@ host prototype. Neither qualifies Windows on 1.6; no native Xcalibur profile is
 installed or ready for a Windows launch. [684](../outputs/video-clock684/RESULT.md)
 adds physical timer/status observations; [685](../outputs/xcal-binding685/REPORT.md)
 adds a host-tested native binding. Neither programs the encoder on hardware.
+[686](../outputs/encoder686/REPORT.md) now records a positive kernel read at the
+Xcalibur address; it is presence evidence, not a unique chip ID.
+[687](../outputs/xcal-entry687/REPORT.md) adds bounded native configuration reads
+and compiled status-ownership comparisons. Native display remains unqualified.
 See [current status](current-status.md).
 
 ## First additional-console inventory
@@ -67,7 +71,8 @@ The relevant source constraints are concrete:
 
 No maintained loader or driver change accompanies this review. The separate681
 prototype corrects four-byte read handling and bounds modeled encoder transfers;
-it has no native I/O/timer binding yet. Legacy Xcalibur HDTV code always chooses
+685/687 add separate host-tested native I/O/timer/configuration bindings, not a
+qualified physical integration. Legacy Xcalibur HDTV code always chooses
 its 480p table, regardless of the requested mode. Existing branches are useful
 starting points, not proof the shipped profile works with those encoders.
 
@@ -78,8 +83,9 @@ starting points, not proof the shipped profile works with those encoders.
    encoder response, GPU/MCP revision, AV pack, dashboard modes and E free space.
    Keep personally identifying data, EEPROMs and firmware out of public reports.
 2. Group the reports by actual encoder/RAM/boot differences. For the incoming1.6,
-   start with the watched680 kernel baseline, then qualify a separate native
-   Xcalibur480p pattern before Windows. Treat RAM upgrades as a separate task.
+   kernel composite682 and HDMI720p683 baselines are complete, and686 adds a
+   positive Xcalibur-address response. Follow687 NEXT to qualify a separate
+   native Xcalibur480p pattern before Windows. Treat RAM upgrades separately.
 3. For a new profile, review timing, color format, stride, framebuffer extent,
    hidden/reserved memory and handoff consistency as one change. Validate pure
    calculations and rejected configurations before a watched hardware launch.

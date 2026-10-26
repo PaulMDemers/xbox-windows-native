@@ -1,6 +1,6 @@
 # Current status and guide map
 
-Reviewed October 26, 2026 against the retained evidence through physical684 and host binding685.
+Reviewed October 26, 2026 against the retained evidence through physical686 and host entry687.
 This page summarizes supported observations; individual reports retain their
 original failures and scope. For the exact active attempt and next engineering
 step, read [CONTINUATION](../outputs/engineering-notes/CONTINUATION.md) and
@@ -30,7 +30,7 @@ step, read [CONTINUATION](../outputs/engineering-notes/CONTINUATION.md) and
 | RCT Deluxe | Windowed title/park/building, manual save/load and arrow-key/right-button scrolling on the development console; [626](../outputs/rct626/REPORT.md) confirms the later interactive session and cleanup | Window-edge scrolling stays still; fullscreen unqualified; sound deferred; no Xbox game FPS measurement |
 | Software D3D7 | Scoped offscreen and windowed RGB-renderer samples pass through combined scenes; sustained synthetic scene has Xbox clock checks | Exact ideal alpha endpoints remain failed; perspective interpolation has PC results only; synthetic timings are not game FPS |
 | Native GPU acceleration | No accelerated driver installed | Game rendering, a module name or software sample success is not NV2A acceleration |
-| Other Xbox revisions | User-identified 1.6: [composite kernel baseline682](../outputs/composite682/REPORT.md) displays proper bars and returns automatically; [HDMI720p baseline683](../outputs/hdmi683/RESULT.md) also passed | Native [Xcalibur binding685](../outputs/xcal-binding685/REPORT.md) passes compiled host tests; no Windows qualification. This unit's GPU field differs from inventory630 |
+| Other Xbox revisions | User-identified 1.6: [composite kernel baseline682](../outputs/composite682/REPORT.md) displays proper bars and returns automatically; [HDMI720p baseline683](../outputs/hdmi683/RESULT.md) also passed | [686](../outputs/encoder686/REPORT.md) adds a positive Xcalibur-address response; [687](../outputs/xcal-entry687/REPORT.md) passes compiled configuration/handoff models. No native display or Windows qualification; this unit's GPU field differs from inventory630 |
 | Packaging | Hardware-info utility and private prepared E/720p Windows ZIP recipes and [delivery587](../outputs/delivery587/README.md) | RCT excluded; private Windows assets are not public downloads; clean physical provisioning remains incomplete |
 | Installation/storage | Component builds and scoped prepared-image/emulator restore checks pass | Six clean-media FATX long-name exclusions, crypto failures and strict event failures remain; selected-file audits are not whole-volume health checks |
 
@@ -70,3 +70,12 @@ measured a timer rate consistent with3.375MHz and two clear SMBus status snapsho
 on this unit. [Binding685](../outputs/xcal-binding685/REPORT.md) uses that rate and
 passes33 compiled32-bit port/delay fixtures. No native encoder transaction or
 Windows test follows from those results; this does not resume networking.
+
+[Encoder probe686](../outputs/encoder686/REPORT.md) got a successful kernel read
+at the Xcalibur address and failed reads at the older encoder addresses. This is
+positive presence evidence, not a unique chip ID. [Entry687](../outputs/xcal-entry687/REPORT.md)
+adds bounded cable/video readers and demonstrates why inserting them after the
+legacy EEPROM reader can encounter inherited completion status. Its48 compiled
+fixtures and two sequence models pass; actual native handoff and encoder output
+remain unqualified. The [next integration plan](../outputs/xcal-entry687/NEXT.md)
+preserves status ownership and precedes a separate watched native pattern trial.
