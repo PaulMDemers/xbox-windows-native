@@ -1,0 +1,61 @@
+diff --git a/src/utilities/video-baseline/main.c "b/outputs\\composite682\\main.c"
+index d07f7bdb..bcef00a1 100644
+--- a/src/utilities/video-baseline/main.c
++++ "b/outputs\\composite682\\main.c"
+@@ -1,5 +1,5 @@
+ /* SPDX-License-Identifier: MIT
+- * Kernel-assisted 480p baseline. No encoder writes, EEPROM or network code.
++ * Kernel-assisted composite 480i baseline. No encoder writes, EEPROM or network code.
+  * Kernel display calls are not bounded by this application. Watched test only.
+  */
+ #include <hal/debug.h>
+@@ -53,7 +53,7 @@ static int save_report(char *path, size_t size)
+ {
+     HANDLE file = INVALID_HANDLE_VALUE;
+     for (unsigned i = 0; i < 100; ++i) {
+-        snprintf(path, size, "E:\\xwn-video680-%02u.json", i);
++        snprintf(path, size, "E:\\xwn-video682-%02u.json", i);
+         file = CreateFileA(path, GENERIC_WRITE, 0, NULL, CREATE_NEW, FILE_ATTRIBUTE_NORMAL, NULL);
+         if (file != INVALID_HANDLE_VALUE) break;
+         if (GetLastError() != ERROR_FILE_EXISTS && GetLastError() != ERROR_ALREADY_EXISTS) return 1;
+@@ -116,20 +116,24 @@ int main(void)
+     MM_STATISTICS memory = {0};
+     memory.Length = sizeof(memory);
+     LONG memory_status = MmQueryStatistics(&memory);
+-    append("{\n  \"schema\":1,\"tool\":\"xwn-video-baseline680\",\n");
++    append("{\n  \"schema\":1,\"tool\":\"xwn-video-composite682\",\n");
+     append("  \"kernel\":[%u,%u,%u,%u],\"gpu_revision\":%u,\"mcp_revision\":%u,\n",
+            XboxKrnlVersion.Major, XboxKrnlVersion.Minor, XboxKrnlVersion.Build,
+            XboxKrnlVersion.Qfe, XboxHardwareInfo.GpuRevision, XboxHardwareInfo.McpRevision);
+     append("  \"settings\":%lu,\"memory_status\":%lu,\"pages\":%lu,\n",
+            (unsigned long)settings, (unsigned long)memory_status, (unsigned long)memory.TotalPhysicalPages);
++    append("  \"expected_signal\":\"480i-composite\",\n");
++    ULARGE_INTEGER free_bytes = {0}, total_bytes = {0};
++    BOOL space_ok = GetDiskFreeSpaceExA("E:\\", &free_bytes, &total_bytes, NULL);
++    append("  \"e_space\":{\"ok\":%s,\"free_bytes\":%llu},\n",
++           space_ok ? "true" : "false", (unsigned long long)free_bytes.QuadPart);
+     geometry("entry_geometry");
+-    /* This SDK forces progressive 480 only for NTSC HDTV + enable flag.
+-     * Do not call a 480-line PAL/SD mode progressive merely from its size. */
++    /* Composite uses the kernel SD path. No HD flag or EEPROM change.
++     * NTSC-only candidate; PAL requires a separate mode and observation. */
+     unsigned standard = settings & VIDEO_STANDARD_MASK;
+-    int eligible = (settings & VIDEO_ADAPTER_MASK) == AV_PACK_HDTV &&
+-                   (settings & VIDEO_MODE_480P) && (standard == 0x100 || standard == 0x200) &&
++    int eligible = (settings & VIDEO_ADAPTER_MASK) == AV_PACK_STANDARD && (standard == 0x100 || standard == 0x200) &&
+                    memory_status == 0 && memory.TotalPhysicalPages == 16384;
+-    append("  \"eligible_480p\":%s,\"requested_mode\":[720,480,32,60],\n", eligible ? "true" : "false");
++    append("  \"eligible_composite480i\":%s,\"requested_mode\":[720,480,32,60],\n", eligible ? "true" : "false");
+     if (checkpoint(eligible ? "before_kernel_mode" : "refused_configuration", 0) || !eligible) {
+         HalReturnToFirmware(HalRebootRoutine); return 2;
+     }
+@@ -141,7 +145,8 @@ int main(void)
+     append("  \"sdk_mode\":[%d,%d,%d,%d],\n", mode.width, mode.height, mode.bpp, mode.refresh);
+     /* Draw only through SDK-owned linear framebuffer at its confirmed size.
+      * Register observations are diagnostic data, never imported as a recipe. */
+-    if (!geometry_ok || mode.width != 720 || mode.height != 480 || mode.bpp != 32 ||
++    append("  \"progressive_geometry_match\":%s,\n", geometry_ok ? "true" : "false");
++    if (mode.width != 720 || mode.height != 480 || mode.bpp != 32 ||
+         mode.refresh != 60 || !XVideoGetFB()) {
+         checkpoint("unexpected_sdk_mode", 0); HalReturnToFirmware(HalRebootRoutine); return 4;
+     }

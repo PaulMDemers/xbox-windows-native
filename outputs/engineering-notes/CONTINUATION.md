@@ -1,3 +1,25 @@
+# 682 composite collected; 683 HDMI720p prepared, awaiting cable readiness
+
+Read outputs/composite682/REPORT.md and closure001.json. User identifies incoming
+console as1.6. Composite480i kernel baseline shows proper color bars on manual
+launch and returns automatically. Agent sent ONE SITE request (accepted), user
+separately launched manually; six reports establish two complete phase sequences.
+Preserve collection001/reachability001 timeouts, then successful collection002.
+No agent retry. Unit reports64MiB,kernel5838,GPU0xd3/MCP0xd5; old630 hadGPU0xe1,
+so identity with630 is not assumed. No native Xcalibur/Windows qualification.
+
+682 owned E tool/reports retained; no hook, ordinary launcher or C-file access.
+683 separately built1280x720 kernel baseline and host tests pass; NOT staged or
+launched. User asked to power off, attach HDMI, enable720p and confirm Ready.
+Wait for that answer before any dependent hardware work. Private endpoint config
+is C:/xwn683/connection.json; never publish credentials. Target address must be
+confirmed for this unit, not borrowed from original development console.
+
+Networking/679 remains tabled. 680/681 reports retained. Working720p installation
+on original Xbox untouched. Private skills now hold user-requested FTP defaults;
+both validate under WSL. No credentials in repository. Build leases released,
+hardware ticket retained, automation paused. No active host test process.
+
 # 680/681 Incoming 1.6 preparation; networking TABLED
 
 Read outputs/revision680/REPORT.md and NEXT.md, then outputs/xcal681/REPORT.md

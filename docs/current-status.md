@@ -1,6 +1,6 @@
 # Current status and guide map
 
-Reviewed October 26, 2026 against the retained evidence through attempt 681.
+Reviewed October 26, 2026 against the retained evidence through preparation 683.
 This page summarizes supported observations; individual reports retain their
 original failures and scope. For the exact active attempt and next engineering
 step, read [CONTINUATION](../outputs/engineering-notes/CONTINUATION.md) and
@@ -30,7 +30,7 @@ step, read [CONTINUATION](../outputs/engineering-notes/CONTINUATION.md) and
 | RCT Deluxe | Windowed title/park/building, manual save/load and arrow-key/right-button scrolling on the development console; [626](../outputs/rct626/REPORT.md) confirms the later interactive session and cleanup | Window-edge scrolling stays still; fullscreen unqualified; sound deferred; no Xbox game FPS measurement |
 | Software D3D7 | Scoped offscreen and windowed RGB-renderer samples pass through combined scenes; sustained synthetic scene has Xbox clock checks | Exact ideal alpha endpoints remain failed; perspective interpolation has PC results only; synthetic timings are not game FPS |
 | Native GPU acceleration | No accelerated driver installed | Game rendering, a module name or software sample success is not NV2A acceleration |
-| Other Xbox revisions | A user-supplied [1.6 inventory](../outputs/inventory630/REPORT.md), compiled [kernel baseline tool680](../outputs/revision680/REPORT.md), and [Xcalibur host prototype681](../outputs/xcal681/REPORT.md) | Incoming1.6 is now the priority; hardware access pending. No native Xcalibur binding or Windows qualification yet |
+| Other Xbox revisions | User-identified 1.6: [composite kernel baseline682](../outputs/composite682/REPORT.md) displays proper bars and returns automatically; [HDMI720p test683](../outputs/hdmi683/REPORT.md) prepared | Native [Xcalibur prototype681](../outputs/xcal681/REPORT.md) remains host-only; no Windows qualification. This unit's GPU field differs from inventory630 |
 | Packaging | Hardware-info utility and private prepared E/720p Windows ZIP recipes and [delivery587](../outputs/delivery587/README.md) | RCT excluded; private Windows assets are not public downloads; clean physical provisioning remains incomplete |
 | Installation/storage | Component builds and scoped prepared-image/emulator restore checks pass | Six clean-media FATX long-name exclusions, crypto failures and strict event failures remain; selected-file audits are not whole-volume health checks |
 
@@ -41,7 +41,7 @@ step, read [CONTINUATION](../outputs/engineering-notes/CONTINUATION.md) and
 Xbox costs, game FPS, a polling fix or a native acceleration result. The bounded
 physical game-cost comparison remains outstanding. Compatibility work on other
 revisions is intended before acceleration. The user now has an incoming 1.6;
-preparation 680/681 is the active work while access to that console is pending.
+kernel video baselines are active on that console, ahead of native integration.
 
 Networking/timer work is **tabled**, with [679's local package preserved](../outputs/revision680/REPORT.md)
 and no pending launch. [678's host-only full-firmware timer integration](../outputs/timer678/REPORT.md)
@@ -53,7 +53,8 @@ capture received no UDP datagrams; the user saw lights off on a black screen and
 then manually reset the console. Those observations do not identify a timer,
 SMC or network root cause. It is no longer the next physical test.
 
-Next is 680's watched kernel-assisted 480p pattern on the incoming 1.6. The separate
+The composite480i baseline682 is collected. HDMI720p test683 is prepared pending
+the user's cable-switch readiness. The separate
 681 prototype passed 66,164 modeled protocol/profile cases and four compiled
 legacy GPU geometry fixtures. It does not establish physical output: native
 binding, encoder qualification and Windows handoff remain to be completed.

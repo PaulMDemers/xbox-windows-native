@@ -6,8 +6,10 @@ coverage before native GPU acceleration. The user has now prioritized preparing
 an incoming 1.6. The physical RCT process-cost comparison remains outstanding;
 the [PC caller measurement](../outputs/rct628/REPORT.md) does not establish Xbox performance.
 
-Networking/timer tests are tabled. [680](../outputs/revision680/REPORT.md) provides
-a compiled, watched kernel-assisted 480p baseline tool for when the 1.6 arrives.
+Networking/timer tests are tabled. The console is here: [682](../outputs/composite682/REPORT.md)
+records proper composite480i bars and automatic dashboard return using the Xbox
+kernel. [683](../outputs/hdmi683/REPORT.md) prepares the next HDMI720p baseline.
+[680](../outputs/revision680/REPORT.md) retains the separate480p baseline tool.
 [681](../outputs/xcal681/REPORT.md) contains the Xcalibur source review and tested
 host prototype. Neither qualifies Windows on 1.6; no native Xcalibur profile is
 installed or ready for a Windows launch. See [current status](current-status.md).
