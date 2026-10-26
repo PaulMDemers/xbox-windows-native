@@ -1,3 +1,28 @@
+# 683 HDMI720p baseline CLOSED; incoming1.6 remains at dashboard
+
+Read outputs/hdmi683/RESULT.md and closure001.json. Fresh user HDMI/720p readiness
+recorded, one SITE accepted, user saw correct pattern and automatic return.
+Three exclusive reports collected twice byte-identically: pre-mode, pattern,
+restart request. Kernel reports1280x720x32/60, pitch5120, HDTV+720p enabled,
+64MiB/kernel5838/GPU0xd3/MCP0xd5. Owned staged bytes unchanged; unrelated E-root
+and application entries unchanged. No manual reset/relaunch, startup hook,
+Windows/hive/C-file access, or ordinary launcher modification. No error this run.
+Owned tool and three reports retained. No outstanding hook or host process.
+
+682 composite and683 HDMI establish Xbox-kernel display baselines on this
+user-identified1.6. They do NOT establish a native Xcalibur driver, Windows boot,
+positive encoder identification, GPU acceleration or a transferable memory map.
+Old630 GPU0xe1 remains separate. Never rerun/recollect these closed attempts.
+
+Next: use681 NEXT for a fresh host native Xcalibur480p binding/integration with
+bounded block transfers and delay validation; first native hardware trial must
+be pattern-only before Windows. Existing680 kernel480p tool is available for a
+separate reference if needed, not yet run here. Do not transplant kernel register
+state or bypass allocation/admission gates. No launch is pending. Current console
+is at dashboard with HDMI; user watched this run, revalidate for later launches.
+Networking/679 and1080i remain tabled. Hardware ticket retained; automation paused.
+Private user-default FTP credentials remain outside public Git.
+
 # 682 composite collected; 683 HDMI720p prepared, awaiting cable readiness
 
 Read outputs/composite682/REPORT.md and closure001.json. User identifies incoming

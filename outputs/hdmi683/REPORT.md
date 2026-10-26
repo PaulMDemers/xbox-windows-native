@@ -1,3 +1,9 @@
+# Current outcome
+
+Physical attempt683 is closed. See [RESULT.md](RESULT.md) for the successful
+watched HDMI720p kernel baseline and remaining native-driver limitations.
+The preparation narrative below is retained for provenance.
+
 # 683: HDMI720p kernel baseline prepared
 
 Fresh watched diagnostic for the incoming user-identified1.6 after682 composite.
