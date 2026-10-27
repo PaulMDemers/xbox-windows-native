@@ -1,3 +1,40 @@
+# Test741 CLOSED: native preservation prefix passes
+
+All15 native full-value checks passed, with cleanup mask0 (all20 saved-value
+comparisons matched) and selectors restored. Actual native CR0/CR3/CR4 are
+4001003b/0/610. This matches kernel740 preservation success, across different
+CPU contexts. It does not establish identical timing or fix the original full
+mode sequence. CR1b/CR22/CR33 were not data-written; no bit7 mask or guessed
+readback semantics were introduced. No geometry or encoder programming ran.
+
+One launch was accepted2026-10-27T22:20:30.516954UTC. User observed green/holding.
+First photo glare prevented a complete decode; failure and partial known fields
+are retained. Second photo independently decoded all416 bits with five sample
+offsets, three threshold policies and adjacent-row checks; known fields agree.
+The native result comes from that photo, not the kernel preparation files.
+
+After the user's confirmed manual power cycle, nine preparation reports were
+collected once. Audit passed22:27:37UTC: exact source/binary/stage pins, double
+readback, independently checked memory ownership and unrelated E entries.
+PCI/CRTC/sequencer, geometry and allocation plan match closed738 preparation.
+Pre-arm kernel CPU remains separate: flags646,CR0=8001003b,CR3=f000,CR4=610.
+Last persisted phase is handoff_armed; this was not a Windows boot/shutdown.
+
+No hook or owned host process/VM remains. Console authenticated at dashboard.
+All741/prior runtimes CLOSED: never relaunch, recollect or parent them. No new
+collection or audit failure. Earlier build/index/photo failures remain intact.
+
+Next is a source-level review of the first geometry block after the now-tested
+preservation prefix. Define bounded writes, readback contracts, owned buffer
+limits and recovery before a fresh diagnostic. Original704 failure attribution
+and CR22/CR33 write contracts remain unresolved. No full-mode repeat, predicate
+waiver, firmware-state replay, functional driver patch or Windows qualification.
+
+---
+
+Retained preparation history follows; the CLOSED status above supersedes its
+prelaunch status statements.
+
 # 741 native preservation control: prepared, no physical launch
 
 740 passed all15 full-value checks and20 cleanup comparisons on physical1.6

@@ -1,3 +1,15 @@
+# 741 CLOSED: native preservation prefix and cleanup pass
+
+All15 checks/full20-field cleanup pass, selectors1; nativeCPU4001003b/0/610.
+Second photo decoded416bits; first glare failure retained. Matches kernel740
+preservation result; no geometry/encoder/fullmode/Windows proof. User confirmed
+manual reset. Nine preparation reports collected once; auditPASS22:27:37UTC.
+Exact source/binary/stage and unrelated E entries verified; prep matches738.
+Console authenticated UnleashX; no hook/process/VM. All741/prior runtimes CLOSED.
+NEXT outputs/native-preserve741/NEXT.md: review bounded phase5 geometry access,
+owned buffer limits and recovery before a distinct diagnostic. No742 exists.
+Original704 failures and unresolved CR22/33 write contracts remain preserved.
+
 # 741 PHOTO COMPLETE: native preservation passes all15 checks
 
 User green/holding. Second photo independently decodes all416 bits with offset/
