@@ -1,3 +1,20 @@
+#708 launched once: native480p observation/photo pending
+
+NEW708 integrates the32KiB bridge and unchanged704 transaction. Strict native
+LPC BAR0=0/config84=8001; bounded PM progress check and early status bars added.
+Host checks pass:131379 ownership cases,12 fresh CPU fixtures,38 transaction
+model cases,45 nxdk page-builder cases,372 nxdk ownership cases. All VMs closed.
+Exact staged readback; one SITE accepted2026-10-27T05:13:07.663033+00:00.
+
+Asked whether blue kernel picture changed to green-top white-border/quadrants/
+CHECKER patch, colored bars, or black; hold/dashboard state pending. A green entry
+bar alone is not success. Obtain photo before manual reset if a picture exists.
+Do not request reset until result captured; do not poll/relaunch a held runtime.
+Read outputs/native-mode708/NEXT.md. Preparation files are NOT native results.
+No startup hook/Windows. After confirmed manual reset, collect exact new reports
+once and audit; no normal-shutdown inference. Build/xemu released; hardware
+retained, no host process, automation paused. Original720p protected.
+
 #707 CLOSED: watched kernel preflight passed; next NEW708 native integration
 
 User observed GREEN and automatic dashboard return. Nine fresh reports double-

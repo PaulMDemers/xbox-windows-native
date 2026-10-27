@@ -21,6 +21,9 @@ result and automatic return, with identical PCI/CRTC/sequencer observations.
 PCI/VGA baseline values are captured; the functional native launcher and watched
 mode-initialization test remain.
 Host models do not qualify scanout, external clocks or Windows on1.6.
+The [708 integrated native-mode experiment](../outputs/native-mode708/REPORT.md)
+has passed its host checks and was launched once; the screen observation is
+pending. It deliberately holds and is not yet a qualified physical mode change.
 
 ## Choose a guide
 
