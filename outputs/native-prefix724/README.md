@@ -1,3 +1,38 @@
+#724 CLOSED: native forward prefix passed; CR1b cleanup mismatch
+
+One accepted launch17:26:43UTC2026-10-27. User orange held picture/photo;
+photo002 decodes7245,11MMIO+4CRTC attempts, firstmismatchffffffff, cleanup0,
+CR1951,CR1b85,CR22fe. Immediate forward readbacks matched includingCR1b05;
+later cleanup reads85. Kernel723 kept05. Which operation/timing caused bit7
+return is unresolved. Other cleanup fields not exported; no full-mode/Windows
+qualification, no mask waiver or CR22 write. Network/boot/1080i remain tabled.
+
+User power-cycled; nine new prep files collected ONCE/double-read; audit001
+passed, stage/build/source and unrelated E entries exact. Kernel prep matches
+closed720 PCI/CRTC/SEQ/geometry/allocation-plan. Pre-arm file CPU286/8001003b/
+f000/610 is not final/native context. No hook/process/VM; console UnleashX.
+Preserve build001/002 and photo001 failures. Runtime724 closed; no new launch.
+
+NEXT outputs/native-prefix724/NEXT.md: new bounded CR1b reads after each
+existing cleanup step to identify first85 sample, keeping724 write sequence
+unchanged and stopping beforeCR22. Fresh validation/photo/reset; never reopen
+closed724. No native full-mode/driver fix claimed.
+
+#724 LAUNCHED: awaiting held picture/photo
+
+One SITE launch accepted2026-10-27T17:26:43.374871+00:00 after fresh source,
+local build and staged-byte verification. User confirmed1.6 at dashboard/HDMI,
+watch/reset available. No retry, startup hook or owned host process/VM.
+Console executing724; current screen/result NOT yet observed. Do not launch
+again or collect until observation/photo and subsequent user power-cycle Ready.
+The native test deliberately holds; kernel preparation refusal may return.
+
+NEXT: top/second bar and hold/black/dashboard observation, full13row photo
+against outputs/native-prefix724/optical-schema001.json, then request power
+cycle. Only after Ready collect once with physical002.py. Native numeric data
+must come from photo, not kernel preparation records. Build001/002 failures
+retained; build003 active. No complete mode-switch/Windows qualification.
+
 # Native setup-prefix724: staged, not launched
 
 This is the native-context counterpart of closed kernel-prefix723. It executes
