@@ -1,3 +1,14 @@
+# 734 LAUNCHED: await top-bar and automatic-return observation
+
+One accepted SITE at2026-10-27T20:29:41.928232+00:00. Preparation65d4d719.
+Staged/local bytes verified immediately before request. No hook. User confirmed
+1.6 UnleashX/HDMI and watch/reset readiness. Never retry accepted/uncertain launch.
+Await color and return observation before one collection/audit. No host VM/process.
+
+NEXT outputs/cr1b-read734/NEXT.md.32 raw CR1b samples before cleanup are separate
+from full-byte deferred checks and cleanup; no masks or extra data writes.
+Prior733/older runtimes CLOSED. Protected720p and ordinary launchers unchanged.
+
 # 734 STAGED: bounded CR1b reads before cleanup; no mask change
 
 Source review identifies FIFO/burst use but no verified NV2A bit7 contract.
