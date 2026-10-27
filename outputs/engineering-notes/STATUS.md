@@ -1,3 +1,14 @@
+# 747 CLOSED: native CR05 write and own-value recovery pass
+
+Photo416bits crosschecked: return/forward747, CR0531->3e->31, CR04after5d,
+cleanup0/0/0,selectors1,nativeCR04001003b. CR3/CR4 and individualH7 unexposed;
+CR04restoration aggregate-only. Usermanualreset; nineprep reports collected
+once,auditPASS23:45:33UTC. Exactsource/build/stage/unrelatedE entries pass;
+prep matches745. Native results remain photo-only, distinct from kernelprep.
+Three photo decoder failures preserved. Console authenticatedUnleashX; no
+hook/process/VM. All747/prior CLOSED. NEXT outputs/native-crtc-end747/NEXT.md:
+review next bounded CR00 step and baseline; no748yet. No fullmode/Windowsproof.
+
 # 747 PHOTO PASS: native CR05 accepted and restored; awaiting reset
 
 All416photo bits decoded and crosschecked; return/forward747, CR0531->3e->31,

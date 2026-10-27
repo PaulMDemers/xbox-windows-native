@@ -1,9 +1,11 @@
-#747 PHOTO PASS; waiting user reset
+# Test747 CLOSED
 
-Photo004/photo-review001 records all416bits, five offsets/three thresholds and
-352adjacent-row checks. NativeCR0531->3e->31; CR04after5d; cleanup0/0/0,
-selectors1, nativeCR04001003b. Usergreenholding. Failedphoto001..003preserved.
-No nativeCR3/CR4 or individualH7word exposure; nofullmode/Windowsproof.
-Request userpowercycle/Ready, then collect preparation records once and audit
-exactsource/build/stage/unrelatedE entries. No re-launch or manual probe launch.
-No hook/ownedprocess/VM. All746/priorCLOSED. Native results photo-only.
+Never rerun/recollect/parent this runtime. SeeREPORT.md/audit001.json and
+photo004/photo-review001. NativeCR05full-byte write/restoration passes after
+qualifiedprefix/H7/CR04; no fullmode/Windows proof. All747/prior CLOSED.
+
+Next review original CR00=(779/8)-5=92. Establish actual baseline, CR11 write
+protection, neighbor checks and reverse own-value recovery. Prepare unique
+bounded kernel checkpoint only after source/host checks; no748 exists yet.
+Native held counterpart afterward requires currentwatch/photo/reset readiness.
+Console authenticatedUnleashX; nohook/ownedprocess/VM. Keep earlier failures.
