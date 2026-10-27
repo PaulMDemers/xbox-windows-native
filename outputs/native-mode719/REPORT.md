@@ -37,3 +37,14 @@ nouveau/dispnv04/hw.c saves/restores FIFO control; hw.h distinguishes base, shad
 and extended locks; envytools PCRTC documentation lists no CR1b bit7 meaning.
 See source-review001.json for exact URLs and limits. No claim read-only/status,
 no bit7 mask, no assignment of718 values to717, no708/709 root-cause claim.
+
+One SITE accepted2026-10-27T15:32:31.064752+00:00 after fresh staged-byte
+readback. Watcher confirmed. Bar observation and full13-row photo requested.
+No reset request, repeat launch or collection. Native result pending.
+
+User green/holding, photo002 independently decoded: phase4/checkpoint5/return719,
+payload phase5/error719, six85 samples and mask3f. No setup-boundary change
+observed without CR1b data writes. Not proof of718 cause or bit7 semantics.
+Failed decoder001 preserved: sparse glare extra component; decoder002 rejects
+sparse components and checks all416bits plus352bits via adjacent-row geometry.
+Photo and raw data preserved before manual reset request. Collection pending.

@@ -1,23 +1,22 @@
-#719 staged and verified: CR1b setup-boundary observations, awaiting watcher
+#719 GREEN decoded: all six CR1b samples85; awaiting reset Ready
 
-718's failed restoration is CLOSED. It did not sample between initial85 and
-explicit target05 write, so setup could have changed bit7 before that write.
-719 samples six boundaries without any CR1b data writes: before setup, after
-SEQ1 blank,80d3 blank,CR1f57,80d3 enable andSEQ1 restore. Existing blank/unlock/
-output pair retained; no payload wait, new geometry/encoder/clock or CR22 writes.
-Green719 requires all six samples85 and restoration checks. Orange needs raw
-photo; no bit masking or repair. Read719/REPORT and optical-schema001.json.
+One SITE accepted2026-10-27T15:32:31.064752+00:00. User green/holding withphoto.
+photo002 decodes7190000d, bridge phase4/checkpoint5/return719, payload phase5/
+error719, six rawCR1b85 values, mask3f. All416bits threshold/offset checked and
+352middlebits independently cross-row checked. photo001 failure preserved:
+sparse glare component counted as extra cell;002 requires65percent component
+fill and retains all independent sampling checks. No expected values injected.
 
-190 instruction models,76 optical cases,12 CPU(all closed),23 nxdk page,
-372 compiled ownership and131379 host ownership pass. Payload5100 padded9916,
-16relocs/four absolute; bridge end558. Preserve failed compilepayload001 and
-review-failure001 (reverse namespace comparison; corrected forward comparison).
-Stage/readback complete; NO SITE request yet. Asked availability to watch,
-photograph all13rows, and reset. Wait reply; do not launch without watcher.
+719 writes no CR1b data. Its six observations show no change across initial,
+SEQ1blank,80d3blank,CR1f57,80d3enable,SEQ1restore in this run. This narrows the
+investigation toward718's explicit write but does not prove bit7 semantics or
+causation across runs. No full mode/Windows1.6 qualification.
 
-No hook/owned host process; build/xemu released, hardware ticket retained.
-Console dashboard at stage; original720p protected. All earlier runtimes CLOSED;
-automation and other work tabled. Exact schema:7190000d, bridge phase/checkpoint/
-return, payload phase/error, six samples, samplemask. Decode before reset; after
-resetReady collect once/audit. Correlation at a setup boundary is not bit7 semantics
-proof; no717 exact-error assignment,708/709 cause or Windows1.6 qualification.
+Photo preserved before reset request. Wait explicitReady, record readiness,
+collect ONCE and audit source/build/report/optical pins plus allocation aliases.
+719 uses payload002 (failedpayload001 retained), result212bytes, photo002 receipt
+and decoder002. Never rerun/recollect a closed runtime. After closure next review
+should distinguish a saved-value same-byte write from a changed-byte write,
+with fresh baseline and validated bounded recovery, before further hardware.
+No hook/owned host process; build/xemu released, hardware ticket retained;
+original720p protected; earlier runtimes CLOSED; other work/automation tabled.
