@@ -1,3 +1,14 @@
+#701 launched once; native GPU observation/photo pending
+
+One SITE accepted at 2026-10-27T03:26:07.159806+00:00 after contextual user
+confirmation (Proceed). No repeat. Asked top/second bar colors and hold/dashboard
+state; requested photo of all ten rows BEFORE reset. No result inferred yet.
+No reset requested, no collection, no startup hook. Native data is RAM/display
+only; preparation files hold separate pre-transfer observations.
+
+All host processes/VMs closed. Hardware ticket retained; automation paused.
+Original720p unchanged. Read native-gpu701/NEXT.md.
+
 # 701 staged; awaiting current watch/reset confirmation
 
 Read REPORT.md, review001.json and stage001.json. All host checks passed and

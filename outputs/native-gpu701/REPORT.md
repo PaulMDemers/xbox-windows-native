@@ -1,7 +1,7 @@
 # 701: read-only native GPU context
 
-Staged with exact readback; NOT launched. Current watch/reset confirmation is
-pending. The previous physical runtime699 is closed and must not be repeated.
+One launch accepted at 2026-10-27T03:26:07.159806+00:00. Bar observation and
+photo are pending; no reset or collection yet. The previous physical runtime699 is closed and must not be repeated.
 
 The kernel prepares the same checked1280x720 framebuffer and records additional
 PCRTC, pixel-clock/selection, PFB and CRTC39 observations before transfer. The

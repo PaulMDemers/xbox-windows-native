@@ -37,8 +37,8 @@ checked handoff and inherited kernel scanout; they do not initialize a native mo
 or qualify Windows1.6. [698](../outputs/xcal-protocol698/REPORT.md) tightens status
 handling in a host-only prototype. [699](../outputs/native-timer699/REPORT.md) captured a successful native bounded
 wait. [700](../outputs/xcal-sequence700/REPORT.md) adds linked encoder failure
-tests and GPU-state review. [701](../outputs/native-gpu701/REPORT.md) is staged
-for a read-only native GPU snapshot; current watch/reset confirmation is pending.
+tests and GPU-state review. [701](../outputs/native-gpu701/REPORT.md) launched once for a read-only native
+GPU snapshot; bar observation and photo are pending.
 See [current status](current-status.md).
 
 ## First additional-console inventory
