@@ -35,7 +35,9 @@ It was manually reset and collected; preparation state matches710. This qualifie
 only the baseline call on that run. Native mode initialization remains unproved;
 the [712 paired blank/restore test](../outputs/native-mode712/REPORT.md) has a
 reported black interval followed by the restored picture and GREEN hold. Its
-manual-reset collection is pending; encoder/geometry programming remains unqualified.
+manual-reset collection and audits passed, with the same preparation state as711.
+Encoder/geometry programming remains unqualified. Next isolate the extended-register
+unlock/check after blanking, while preserving the observed restoration path.
 
 ## Choose a guide
 

@@ -1,22 +1,30 @@
-#712 observed BLACK then restored GREEN hold; reset/collection pending
+#712 CLOSED: watched BLACK then restored picture/GREEN hold
 
-Read review001/source-review001/REPORT and actual launch receipt. Do not send
-another launch after accepted/uncertain SITE. Obtain whether initial BLUE picture
-was followed by a brief BLACK interval and restored same picture with GREEN
-second bar, another color, persistent black, or dashboard. A final green alone
-does not establish the physical blank interval; preserve missed observations.
+Read observation001/002, collection001, audit001 and closure001. User separately
+confirmed both the final green hold and black-then-return sequence. After a
+confirmed manual power-cycle, nine reports were double-read and audited once.
+PCI/CRTC/SEQ/geometry/allocation mappings equal711; all pins and independent
+alias checks pass. Last persisted phase handoff_armed is preparation only.
+Console at dashboard; no startup hook or owned process. Do not rerun/recollect712.
 
-Record the observation before requesting manual power-cycle to UnleashX. After
-confirmed Ready, write collection-ready001 and run physical.py collect ONCE.
-Audit exact source/binary/report pins, independent allocation/alias ranges and
-unrelated entries. Compare actual kernel baseline with711 without assuming it.
-Close with manual-reset semantics, never normal Windows shutdown. No hook.
+Next NEW713: isolate704's phase3 extended-register unlock immediately after
+blanking: CR1f write57 and check that CR11 matches its captured baseline. Preserve
+all712 baseline, bounded restoration and diagnostic result obligations. Never
+write CR11, clear pending bits, or add common PRAMDAC/CRTC setup, geometry,
+encoder or clock programming to this first boundary check. Restore visibility
+once on ordinary failure, without kernel calls/retries; report actual failure
+code/readbacks distinctly if needed. Do not try to restore CR1f by writing its
+readback: the key/read semantics are not interchangeable. Hold for manual reset.
 
-If picture/green returns, this qualifies only the paired blank/restore observation
-on this run, not either output gate independently or native mode initialization.
-If black persists, exact native phase remains unknown; do not repeat identical
-failure or promote register readback to scanout proof. Choose the next bounded
-boundary/status diagnostic only after collection/review. Encoder/geometry work
-remains gated on evidence.708/709/710/711 are CLOSED; never reopen their runtimes.
-Hardware ticket retained; build/xemu released; no host child; automation paused.
-Original720p/ordinary launcher protected; console C off limits; other work tabled.
+Review pinned primary-source handling and validate exact linked/relocated
+instructions, selector save/restore, CR11-change rejection, return codes, bounded
+blank restoration, allowed writes, allocation/stack and optical guards on fresh
+host fixtures before staging. A successful unlock-key request plus unchanged
+CR11 does NOT prove extended writes are unlocked; later changed-register
+readback must establish that. No functional fix or native-mode promotion.
+
+712 establishes one observed blank/restore pair, not each gate independently or
+the cause of708/709 failure. Preserve those failures and possible intermittency.
+708/709/710/711/712 are CLOSED. Hardware ticket retained, build/xemu released,
+automation paused. Original720p/ordinary launcher protected; console C off limits;
+other work tabled. No additional reset is currently needed.

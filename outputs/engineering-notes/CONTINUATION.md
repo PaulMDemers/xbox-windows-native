@@ -1,3 +1,20 @@
+#712 CLOSED: watched blank/restore passed; next extended-register unlock boundary
+
+User observed BLACK then picture returned, GREEN holding. After confirmed manual
+power-cycle, nine reports collected once/double-read and audited. PCI/CRTC/SEQ/
+geometry/allocation match711; source/binary/report pins, independent aliases and
+unrelated entries pass. Last file phase handoff_armed is preparation; native
+result remains separate optical evidence. No normal Windows shutdown claim.
+No encoder/geometry/clock/interrupt programming; no native mode/Windows1.6 proof.
+
+Next NEW713 isolate704 phase3: CR1f57 then CR11 unchanged check, retain712 bounded
+blank/restore and observable results. No CR11 write or common setup/geometry/
+encoder changes yet. An unlock-key request is not itself proof of write access.
+Fresh source/linked/model checks before stage; read native-mode712/NEXT.md.
+708/709 exact failure and intermittency remain unresolved.712 runtime CLOSED.
+Console at dashboard, no hook/host child; build/xemu released, hardware ticket
+retained; automation paused. Original720p protected; other work tabled.
+
 #712 observed: BLACK then picture restored, GREEN holding; reset/collection pending
 
 User confirmed final GREEN holding and separately "Saw black, then picture

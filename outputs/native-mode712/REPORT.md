@@ -61,9 +61,21 @@ A returned/held checkpoint is not a mode change or Windows1.6 qualification.
 No startup hook, Windows launch or console C access. Consult actual launch and
 collection receipts for runtime state; never retry an accepted launch.
 
-## Current physical observation
+## Closed physical result
 
 One SITE accepted2026-10-27T05:54:36.333099Z. User reported GREEN holding, then
-explicitly confirmed "Saw black, then picture returned." The paired operation
-has observed optical evidence. Manual power-cycle was requested; collection is
-pending confirmation. No normal shutdown or native mode qualification claimed.
+explicitly confirmed "Saw black, then picture returned." This supports the paired
+blank/restore observation on this run at retained720p. It does not independently
+separate the sequencer and ACPI gate effects or establish reliability.
+
+After the user's confirmed manual power-cycle, nine preparation records were
+collected once, read twice and audited. Last file phase is handoff_armed: these
+are pre-transfer records, not native RAM results. PCI, CRTC, sequencer, geometry
+and allocation mappings exactly match711. Independent alias/disjoint-range
+checks pass; all source/binary/report pins and unrelated entries are unchanged.
+
+712 is CLOSED. Console at dashboard, no startup hook or owned host process.
+Manual reset is not a normal Windows shutdown. Native mode initialization and
+Windows1.6 qualification remain unproved;708/709 exact failure stage remains
+unknown. Next isolate the extended-register unlock/check after blanking, with
+visible restoration before adding common setup, geometry or encoder writes.
