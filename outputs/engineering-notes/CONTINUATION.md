@@ -1,3 +1,22 @@
+#703 CLOSED: kernel480p retained through native handoff
+
+User observed green and supplied photo. Native VPLL0003c20d, selection100a0400,
+output21101101, CRTC25=10 and packed39/28/19/13=ff833a40 match collected kernel
+preparation. Pitch2560, format3, interlaceff, owned FB03eb4000/1228800 bytes.
+Clock values equal closed720p701; output control differs bybit0. No native mode
+programming or Windows qualification. PFB photo bit15 unknown dueglare;319 bits
+checked and middle256 independently cross-row checked. Keep optical failures.
+
+User manually power-cycled after capture; eight reports read twice, all frozen/
+private/stage hashes and unrelated entries verified. Runtime703 CLOSED. Never
+relaunch/recollect. No hook or host process; console at dashboard; hardware
+lease retained, build/emulator released, automation paused. Original720p intact.
+
+Next: complete source-backed native720x480 transaction integrating700/702 with
+reviewed blanking/unlock/setup/encoder/readback/settle/conditional enable. Do not
+mix703 kernel640x480 values with that recipe or use its smaller allocation.
+Read native-gpu703/NEXT.md. Networking/1080i/boot work remain tabled.
+
 #702 CLOSED: checked geometry component; next matched480p native capture
 
 354 linked geometry cases and32,770 allocation boundaries pass. Preserve the

@@ -1,10 +1,18 @@
 # Current status and guide map
 
-Reviewed October 26, 2026 against closed native timer699, component review700 and closed read-only GPU snapshot701 (UTC October27).
+Reviewed October 26, 2026 through closed geometry component702 and physical480p native snapshot703 (UTC October27).
 This page summarizes supported observations; individual reports retain their
 original failures and scope. For the exact active attempt and next engineering
 step, read [CONTINUATION](../outputs/engineering-notes/CONTINUATION.md) and
 [STATUS](../outputs/engineering-notes/STATUS.md).
+
+The incoming1.6 now has a watched kernel640x480p display retained through the
+checked native handoff ([703](../outputs/native-gpu703/REPORT.md)). Native clock
+and CRTC observations match kernel preparation; stride2560 is fully decoded.
+Its clock selection equals the earlier720p snapshot, while output control differs.
+One PFB photo bit is unknown due to glare. This is not native mode initialization
+or Windows1.6 qualification. The [702 geometry component](../outputs/xcal-geometry702/REPORT.md)
+passes linked bounds/readback tests; complete blanking/encoder/enable work remains.
 
 ## Choose a guide
 

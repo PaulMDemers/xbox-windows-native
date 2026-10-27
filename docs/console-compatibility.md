@@ -6,6 +6,15 @@ coverage before native GPU acceleration. The user has now prioritized preparing
 an incoming 1.6. The physical RCT process-cost comparison remains outstanding;
 the [PC caller measurement](../outputs/rct628/REPORT.md) does not establish Xbox performance.
 
+Latest: [703](../outputs/native-gpu703/REPORT.md) retained a kernel-prepared
+640x480p HDMI picture through the checked native handoff. Native clock/output
+and five CRTC bytes match the collected kernel snapshot; the full stride is2560.
+Clock coefficient/selection equal720p701, while output control differs. One PFB
+photo bit is unknown; no value was inferred for it. After manual reset all eight
+records and staged files verified. Native mode initialization and Windows1.6
+remain unqualified. [702](../outputs/xcal-geometry702/REPORT.md) adds a host-tested
+owned-framebuffer geometry substage, not a complete mode switch.
+
 Earlier networking/timer tests are tabled. The console is here: [682](../outputs/composite682/REPORT.md)
 records proper composite480i bars and automatic dashboard return using the Xbox
 kernel. [683](../outputs/hdmi683/RESULT.md) also passed the watched HDMI720p kernel baseline.
