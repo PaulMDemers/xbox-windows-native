@@ -1,3 +1,17 @@
+# 697 launched; user reports GREEN hold; raw-word photo pending
+
+One SITE accepted2026-10-27T02:26:54.767389Z after contextual user confirmation.
+User reports "Green holding" in response to handoff/result-bar question. This
+supports the reviewed4-byte response/pure completion/final known-flags-clear
+success indication. Raw data word/status/length have not been optically captured.
+Keep the console holding for a photo of all ten bit rows before requesting reset.
+No repeat launch or collection yet. No hook, Windows or encoder configuration.
+
+Native RAM is lost on reset; files contain pre-transfer preparation only. After
+photo/observation, request manual power-cycle and await dashboard confirmation,
+then collect697 once. No owned host process; hardware ticket retained, automation
+paused. Read697/NEXT.md. Do not infer a unique encoder ID or native initialization.
+
 # 697 native Xcalibur block-read probe staged; watch/reset reply pending
 
 Read outputs/native-xcal697/REPORT.md and NEXT.md. Fresh build001/extract001,
