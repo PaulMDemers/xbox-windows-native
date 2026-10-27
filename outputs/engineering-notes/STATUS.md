@@ -1,3 +1,15 @@
+# 735 STAGED: CPU-only work after first CR1b read; unattended authorized
+
+4093 fixed register-only iterations between direct reads1and2; unchanged data
+writes, full-byte predicate/recovery.60 actualCOFF and2353layout cases passed;
+14 schema negatives and linked bytes verified. Stage/readback complete. User
+now authorizes unattended self-reporting auto-return runs; ask only if stuck.
+No hook/process/VM. NEXT outputs/cr1b-work735/NEXT.md; no launch yet.
+
+NV3 NVIDIA-authored header identifies bit7 as underflow warning; cross-generation
+hypothesis only, not NV2A specification or mask admission. Protected720p and
+ordinary launchers unchanged. All734/prior runtimes CLOSED.
+
 # 734 CLOSED: CR1b changes05to85 inside direct-read block before cleanup
 
 One accepted launch20:29:41UTC2026-10-27; user ORANGE/automatic dashboard return.
