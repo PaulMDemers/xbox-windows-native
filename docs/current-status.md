@@ -1,6 +1,6 @@
 # Current status and guide map
 
-Reviewed October 27, 2026 through native CR19 test/restore diagnostic714; the retained480p handoff is703 and the larger720p pre-transaction checkpoint is710.
+Reviewed October 27, 2026 through native read-only setup capture715; the retained480p handoff is703 and the larger720p pre-transaction checkpoint is710.
 This page summarizes supported observations; individual reports retain their
 original failures and scope. For the exact active attempt and next engineering
 step, read [CONTINUATION](../outputs/engineering-notes/CONTINUATION.md) and
@@ -48,6 +48,11 @@ fresh host checks and produced a user-reported GREEN held result. Manual reset,
 nine-file collection and audit passed; preparation matches713. This supports one
 temporary pitch-register write/readback and restoration, not the full mode change.
 Next capture remaining common-setup register values before further write tests.
+The [715 read-only capture](../outputs/native-mode715/REPORT.md) passed fresh checks
+and held GREEN. The photo decodes all11 native values, matching both kernel passes.
+Manual reset, collection and audit passed. Only0x680630 differs from704 common
+PRAMDAC setup: actual3 versus target2. This is a focused test candidate, not a proven
+black-screen cause or a qualified mode change.
 
 ## Choose a guide
 

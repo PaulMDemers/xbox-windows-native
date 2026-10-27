@@ -1,0 +1,40 @@
+{
+  "utc": "2026-10-27T06:32:27.693574+00:00",
+  "purpose": "bounded read-only snapshot of exact11 offsets from704 common setup, not register programming",
+  "sources": [
+    {
+      "path": "C:/xwn700/source001/BootVgaInitialization.c",
+      "sha256": "481e95c8335ba0d865b3ccddfc1b1acfaf0721e12045104e37c5d4d13573c4d4",
+      "scope": "retained source issues writes at these common setup offsets; no status/interrupt/PLL locations selected"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/xemu-project/xemu/master/hw/xbox/nv2a/pramdac.c",
+      "access_date": "2026-10-27",
+      "scope": "inspected read handler has explicit cases and default zero; many chosen offsets not modeled. This is an emulator limitation, not proof of physical values or read side effects."
+    }
+  ],
+  "offsets": [
+    6817924,
+    6817928,
+    6817932,
+    6817936,
+    6817940,
+    6817944,
+    6817948,
+    6817920,
+    6817328,
+    6817868,
+    6817988
+  ],
+  "constraints": [
+    "32-bit aligned reads only",
+    "two separately recorded kernel passes; native first pass plus mismatch mask",
+    "no blank/unlock/register-data writes",
+    "no inferred kernel/native equality without native photo decode"
+  ],
+  "limits": [
+    "selected hardware control semantics are incompletely documented",
+    "two equal samples are not long-term stability proof",
+    "capture establishes observations, not permission to use values as firmware initialization"
+  ]
+}

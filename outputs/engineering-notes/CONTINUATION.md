@@ -1,3 +1,37 @@
+#715 CLOSED:11 native setup values match kernel;680630 actual3 versus target2
+
+GREEN holding, full photo decoded:416 bits threshold/offset checked;352 middle-row
+bits cross-row geometry checked. Signature7150000b and zero native mismatch.
+All11 native optical values equal both kernel passes. Nine preparation files
+collected after manual reset, audited; PCI/CRTC/SEQ/geometry/allocation match714.
+Only680630 differs from704 common PRAMDAC target (3 versus2). Not proof of708/709
+cause, six CRTC writes, full mode switch or Windows1.6. No native file dump claim.
+
+Next NEW716 source-review680630 semantics and justify bounded3->2->3 readback/
+restore under observed blank/restore; otherwise stay read-only. Fresh host/linked/
+model checks before any physical launch. Read native-mode715/NEXT and REPORT.
+Failed payload001 compile preserved; payload0025176 bytes padded9916, six absolute
+relocations.715 and all earlier runtimes CLOSED. Console dashboard, no hook/host
+child; build/xemu released, hardware ticket retained; original720p protected;
+automation paused; other work tabled.
+
+#715 GREEN holding: read-only capture; photo pending, do not reset yet
+
+One SITE accepted2026-10-27T06:33:51.629403+00:00. User reported GREEN holding.
+Optical0x715 supports stable two-pass native reads; numeric values and kernel/native
+comparison UNKNOWN until13-row photo decoded. Photo requested, reset NOT requested.
+Record/decode signature7150000b, mismatch mask and11 raw values before reset.
+Read outputs/native-mode715/REPORT and NEXT. Never repeat accepted launch.
+
+No native GPU-data programming/blank. Kernel saves both11-register passes; native
+first pass/mismatch rendered on gray panel.148 instruction/optical models,12 CPU
+(all closed),25 nxdk page,372 compiled ownership,131379 host ownership cases pass.
+Failed payload001 unused-helper compile retained in failure001/snapshots; qualified
+payload0025176 bytes padded9916,17 relocations/six absolute, result256 bytes.
+Console held pending photo; no hook/Windows/console C/host child. Build/xemu released,
+hardware ticket retained; earlier runtimes CLOSED; original720p protected;
+automation paused; other work tabled.
+
 #714 CLOSED: GREEN CR19 changed-readback and restoration checkpoint
 
 User GREEN holding, manual reset confirmed; nine preparation reports collected
