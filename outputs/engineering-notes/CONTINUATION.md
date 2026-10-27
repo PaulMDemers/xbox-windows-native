@@ -1,3 +1,11 @@
+# 748 STAGED: CR00 horizontal-total checkpoint
+
+Freshkernel748 CR00c8 guard/target5c, CR04/05 interaction checks and own-value
+restoration before output-enable.113COFF/2353layout plus source/schema/linked
+checks pass; uniqueE stage/readback pass. No launch/hook/ownedprocess/VM.
+Console authenticatedUnleashX. Routineauto-return authorization applies.
+All747/prior CLOSED. NEXT outputs/crtc-total748/NEXT.md.
+
 # 747 CLOSED: native CR05 write and own-value recovery pass
 
 Photo416bits crosschecked: return/forward747, CR0531->3e->31, CR04after5d,
