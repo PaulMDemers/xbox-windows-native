@@ -1,3 +1,21 @@
+#706 runtime CLOSED: larger allocations pass; kernel baseline captured
+
+One accepted kernel-only launch returned; nine reports double-read and audited.
+32KiB candidate allocation, eight scattered alias pages, full-copy comparisons
+and cleanup passed. Source01f00000, stub01ef8000, FB03c5c000/3686400. LPC BAR0=0,
+config84=8001; CR11=09(unlocked),CR21=ff,CR44=0,SEQ3/1/15/0/6. These are kernel
+observations, not native mode proof. User top-bar observation remains pending;
+record it separately, never relaunch/recollect closed706. No reset is needed.
+
+705 host stage is closed:131379 ownership cases,12 fresh CPU fixtures and30
+post-transition model cases pass. Preserve cpu001 GDT accessed-bit checksum
+failure and the unqualified LPC OR-rule review. Next NEW707 tighten admission,
+integrate the32KiB nxdk page/launcher, test fresh compiled pages/CPU/model paths,
+and add bounded observable refusal before a watched native480p transaction.
+Read outputs/native-preflight706/NEXT.md. No native transaction or Windows1.6
+proof yet. Console at dashboard; no hook/host process. Hardware ticket retained,
+build/xemu released, automation paused. Original720p and tabled work protected.
+
 #705 host stage CLOSED: larger native bridge; next kernel-only preflight
 
 Corrected page002/build002 passes131379 ownership cases,12 fresh actual QEMU
