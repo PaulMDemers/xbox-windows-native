@@ -1,3 +1,14 @@
+# 743 CLOSED: native horizontal timing and recovery predicates pass
+
+User green/holding; photo416bits independently decoded.743/743, both first
+mismatchesFFFFFFFF, cleanup0/0,selectors1,count7,nativeCPU4001003b/0/610.
+Individual native timing words unexposed; no fullmode/encoder/Windows proof.
+User manual reset;9 prep reports collected once,auditPASS22:56:09UTC. Exact
+source/build/stage and unrelatedE entries pass; prep matches741. Kernel pre-arm
+context remains distinct. Console authenticated UnleashX; no hook/process/VM.
+All743/prior CLOSED. NEXT outputs/native-horizontal743/NEXT.md: review next
+bounded horizontalCRTC access startingCR04. No744 exists. Preserve all failures.
+
 # 743 LAUNCHED: native horizontal checkpoint awaits observation
 
 User confirmed current watch/reset readiness. Exact source/build/stage verified;

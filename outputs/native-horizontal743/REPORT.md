@@ -1,3 +1,30 @@
+# 743 CLOSED: native horizontal checkpoint passes
+
+User observed green/holding and supplied a clear photo. All416 bits decode
+consistently across five sampling offsets, three threshold sets and352
+adjacent-row geometry cross-checks. Native return/forward743; prefix and
+horizontal first-mismatch fieldsFFFFFFFF, cleanup masks0/0, selectors1,
+horizontal checks7. Actual nativeCR0/3/4=4001003b/0/610.
+
+The compiled success predicate requires all15 preservation checks before the
+seven horizontal writes/checks. Its full20-field prefix and7-field horizontal
+saved-value cleanup predicates passed. The raw individual native timing words
+are not exposed in the photo or persisted to disk; this is predicate evidence,
+not a substitute dump. Kernel742 independently contains its own raw values.
+No visible480p switch, encoder/vertical/full-mode or Windows qualification.
+
+After the user confirmed a manual power cycle, nine preparation reports were
+collected once with identical double-read bytes. Audit passed22:56:09UTC.
+Source/build/stage identity, disjoint owned allocation/aliases and unrelated E
+entries pass. PCI/CRTC/sequencer/allocation/geometry preparation matches closed741.
+Pre-arm kernel context remains separate from native CPU values. Last durable
+phase is handoff_armed; manual reset is not a normal Windows shutdown.
+
+Console authenticated at UnleashX. No hook or owned host process/VM. All743 and
+prior runtimes CLOSED. New photo decoder001 is independently pinned; collection
+normalizer audit_collection004 differs frozen003 only in photo001/decoder001
+references. Keep original integration harness failure and CRCRLF source bytes.
+
 # 743 staged: native horizontal timing checkpoint
 
 742 completed on physical1.6 with all15 prefix and7 horizontal checks, full20+7
