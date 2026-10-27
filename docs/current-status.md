@@ -1,6 +1,6 @@
 # Current status and guide map
 
-Reviewed October 26, 2026 against the retained evidence through native block-read697, host protocol698 and active timer699 (UTC October27).
+Reviewed October 26, 2026 against closed native timer699, component review700 and staged read-only GPU snapshot701 (UTC October27).
 This page summarizes supported observations; individual reports retain their
 original failures and scope. For the exact active attempt and next engineering
 step, read [CONTINUATION](../outputs/engineering-notes/CONTINUATION.md) and
