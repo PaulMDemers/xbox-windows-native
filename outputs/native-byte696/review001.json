@@ -1,0 +1,114 @@
+{
+  "passed": true,
+  "utc": "2026-10-27T02:08:11.499040+00:00",
+  "scope": "One bounded native SMC cable byte read after checked handoff; no encoder initialization or Windows",
+  "template_sha256": "80e7eb496fdcea05f7aa50bb11fb53caa63f73b2eb4330b594bd37839747afe2",
+  "code_bytes": 1111,
+  "layout": {
+    "gdt": [
+      1216,
+      1248
+    ],
+    "pointer_records": [
+      1248,
+      1270
+    ],
+    "input": [
+      1280,
+      1296
+    ],
+    "native_context": [
+      1344,
+      1368
+    ],
+    "final_pretransfer_shadow": [
+      1408,
+      1440
+    ],
+    "native_io_data": [
+      1440,
+      1480
+    ],
+    "idt": [
+      1536,
+      3584
+    ],
+    "stack": [
+      3584,
+      4096
+    ]
+  },
+  "unchanged_kernel_allocation_policy": true,
+  "transition_unchanged_except_owned_table_pointer_offsets": true,
+  "protocol_source": {
+    "path": "outputs/xcal-visible689/config.c",
+    "sha256": "6b9289b184af22cb75e8e5bfb71e5623bc6f1aa7255c2234701e97edb5ff092e",
+    "scope": "Authored bounded byte-read protocol; added final-status/cable validation; new assembly marked GPL-2.0-or-later"
+  },
+  "reference": "Prior physical690 kernel cable read yielded1; current kernel HDMI720p eligibility is required; no extra kernel SMBus read added in696",
+  "command_writes": [
+    [
+      49156,
+      1,
+      33
+    ],
+    [
+      49160,
+      1,
+      4
+    ],
+    [
+      49154,
+      1,
+      10
+    ]
+  ],
+  "rules": [
+    "Expected PCI ID, IO enable, exact BAR; restore CF8 before SMBus access",
+    "Paint blue pending bar, then read/gate current16-bit entry status; no inherited status clear",
+    "One command only;1000008-bit polls maximum, retaining raw last status and count",
+    "Only pure done permits byte data read; done+error fails",
+    "Acknowledge only the observed owned terminal mask0036 once",
+    "Timeout never acknowledges, resets or retries; final16-bit sample retained even if late completion appears",
+    "Final busy/terminal bits are failure; expected cable1 required for green result",
+    "Software poll bound is not a hardware IO-cycle timeout; kernel mode APIs remain unbounded"
+  ],
+  "results": {
+    "1": "green: expected cable1, successful owned transaction and final known flags clear",
+    "2": "red: PCI identity",
+    "3": "cyan: IO disabled",
+    "4": "yellow: BAR mismatch",
+    "5": "orange: inherited busy",
+    "6": "magenta: inherited terminal",
+    "7": "blue: timeout",
+    "8": "red-orange: transaction error",
+    "9": "white: final busy/terminal",
+    "10": "violet: unexpected cable byte"
+  },
+  "display": "Nine MSB-left rows: PCI ID, command/status, BAR, entry status, last raw poll, data, final status, result code, poll count; x128, y200+48r,24x24cells at32px pitch. Independent green handoff bar remains.",
+  "models": {
+    "io": 33,
+    "cpu": 10,
+    "page": 9,
+    "policy": 19,
+    "max_instructions": 1066597,
+    "max_added_stack_bytes": 8
+  },
+  "preserved_failure": "build001 succeeded but io-review001 rejected timeout pixels because color table still had only7entries; stub001.S and all receipts retained; build002 extends table to11entries",
+  "limits": [
+    "CPU fixtures use PC PCI identity refusal, not Xbox transaction emulation",
+    "IO model tests execute linked native read/render bytes with synthetic port values, not hardware timing",
+    "Pre-file-write CPU sample is not native context; native results remain RAM/visible display",
+    "No general boot reliability, GPU acceleration or Windows1.6 qualification"
+  ],
+  "pins": {
+    "main.c": "8f1d18a843bfefa73b5fc717a476378ba4ef1cd0b313e2e5aefcb8917a2cfb10",
+    "stub.S": "e2d80bfc2dd74d06fc57e3efc531e3b66e386d207a4764ba1af6a2ecfc60eef7",
+    "page.c": "a8b35b7c8be2c00fd7265e30a36264bf469abf4f04178969d96b9d4ee60f38bb",
+    "plan.c": "57477e7b9fe3e16c654ebc4e51d98e0f021f0196836e1f7ee6bb87c4eba3365a",
+    "physical.py": "04718ea7d52cfeb95dbf6cdb0b2d3c76b1127bf458834fc267f84e3b71732e50",
+    "cpu.py": "0a89c0a0df183c0c215198447eafa85fc516332d6ad135bfa00c4e7e001c5e93",
+    "oracle.py": "f9f42cf0ba71e1504c0b0c0c1538b0c559a4051bdd8a4269444d81f13d73fe77",
+    "io_review002.py": "ea39f63761860d16f7c59ace655562bdcbdeb457fb45315bf2e03abf1e8d5736"
+  }
+}

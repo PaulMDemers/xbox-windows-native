@@ -1,0 +1,254 @@
+{
+  "passed": false,
+  "scope": "Actual linked native byte-read/render bytes; explicit Unicorn port models.\nStarts after the checked handoff. Does not model Xbox timing, bus or CPU transition.\nExact full transition is exercised separately in fresh diskless CPU fixtures.\n",
+  "template_sha256": "85235928ddebf2cfa454b830ba27145ce97aa6b1e388b848c2a93d1b5f60202a",
+  "poll_limit": 100000,
+  "cases": [
+    {
+      "name": "success",
+      "input": {
+        "name": "success",
+        "want": 1,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 0,
+        "zeros": 0,
+        "wait_status": 0,
+        "terminal": 16,
+        "data": 1,
+        "final": 0,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        0,
+        16,
+        1,
+        0,
+        1,
+        1
+      ],
+      "counts": {
+        "word": 2,
+        "poll": 1,
+        "data": 1,
+        "ack": 1
+      },
+      "writes": [
+        [
+          49156,
+          1,
+          33
+        ],
+        [
+          49160,
+          1,
+          4
+        ],
+        [
+          49154,
+          1,
+          10
+        ],
+        [
+          49152,
+          2,
+          16
+        ]
+      ],
+      "instructions": 366581,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "delayed",
+      "input": {
+        "name": "delayed",
+        "want": 1,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 0,
+        "zeros": 3,
+        "wait_status": 0,
+        "terminal": 16,
+        "data": 1,
+        "final": 0,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        0,
+        16,
+        1,
+        0,
+        1,
+        4
+      ],
+      "counts": {
+        "word": 2,
+        "poll": 4,
+        "data": 1,
+        "ack": 1
+      },
+      "writes": [
+        [
+          49156,
+          1,
+          33
+        ],
+        [
+          49160,
+          1,
+          4
+        ],
+        [
+          49154,
+          1,
+          10
+        ],
+        [
+          49152,
+          2,
+          16
+        ]
+      ],
+      "instructions": 366602,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "unknown_bits_preserved",
+      "input": {
+        "name": "unknown_bits_preserved",
+        "want": 1,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 64,
+        "zeros": 2,
+        "wait_status": 64,
+        "terminal": 80,
+        "data": 1,
+        "final": 64,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        64,
+        80,
+        1,
+        64,
+        1,
+        3
+      ],
+      "counts": {
+        "word": 2,
+        "poll": 3,
+        "data": 1,
+        "ack": 1
+      },
+      "writes": [
+        [
+          49156,
+          1,
+          33
+        ],
+        [
+          49160,
+          1,
+          4
+        ],
+        [
+          49154,
+          1,
+          10
+        ],
+        [
+          49152,
+          2,
+          16
+        ]
+      ],
+      "instructions": 366599,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "last_poll_success",
+      "input": {
+        "name": "last_poll_success",
+        "want": 1,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 0,
+        "zeros": 99999,
+        "wait_status": 0,
+        "terminal": 16,
+        "data": 1,
+        "final": 0,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        0,
+        16,
+        1,
+        0,
+        1,
+        100000
+      ],
+      "counts": {
+        "word": 2,
+        "poll": 100000,
+        "data": 1,
+        "ack": 1
+      },
+      "writes": [
+        [
+          49156,
+          1,
+          33
+        ],
+        [
+          49160,
+          1,
+          4
+        ],
+        [
+          49154,
+          1,
+          10
+        ],
+        [
+          49152,
+          2,
+          16
+        ]
+      ],
+      "instructions": 1066579,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    }
+  ],
+  "failure": "AssertionError()",
+  "ended_utc": "2026-10-27T02:04:41.032769+00:00"
+}

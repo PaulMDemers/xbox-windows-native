@@ -1,3 +1,31 @@
+# 696 CLOSED: reported native cable-byte read success; recovered and collected
+
+Read outputs/native-byte696/REPORT.md, analysis001.json and NEXT.md first.
+One accepted launch, user reported "Green, it is holding" in response to the
+handoff/result-bar question. Reviewed green predicate requires native SMC cable
+byte1 and final known busy/terminal flags clear. No independent photo/raw native
+capture in696; report success indication separately from file and model evidence.
+
+User manually power-cycled to dashboard. Eight reports each twice matched and
+local hashes verified; last phase handoff_armed, admission/copies passed. Staged
+files and unrelated entries unchanged. Persisted CPU remains pre-file-write;
+final/native RAM lost on reset. No normal Windows shutdown or encoder init claim.
+Incoming1.6 at HDMI dashboard. No hook/owned process; hardware ticket retained,
+build/emulator leases released, automation paused. Ordinary launcher untouched.
+
+Build002 uses1111 code bytes before relocated GDT4c0; pointer records end4f6,
+input500, context540, final shadow580..5a0, IO data5a0..5c8, IDT600..e00,
+stacke00..1000. Ten fresh CPU fixtures,33 IO models,9 page-builder and19 policy
+cases passed. All physical/host runtimes CLOSED; never rerun/recollect. Preserve
+build001/stub001/extract001 and io-review001: short color table produced wrong
+timeout pixels; build002 extends table to11entries and passed fresh validation.
+
+Next: new bounded native Xcalibur register read with strict block-length/error/
+owned-status/final-status checks and independent visible result before any encoder
+configuration writes. No next candidate built/staged. This does not explain689,
+fix general boot reliability or qualify Windows1.6. Original720p unchanged;
+networking679 and1080i tabled. Keep all earlier failure and private evidence.
+
 # 695 CLOSED: native PCI/status read photographed, recovered and collected
 
 Read outputs/native-status695/analysis001.json, REPORT.md and NEXT.md.

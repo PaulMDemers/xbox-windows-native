@@ -1,0 +1,1760 @@
+{
+  "passed": true,
+  "scope": "Actual linked native byte-read/render bytes; explicit Unicorn port models.\nStarts after the checked handoff. Does not model Xbox timing, bus or CPU transition.\nExact full transition is exercised separately in fresh diskless CPU fixtures.\n",
+  "template_sha256": "80e7eb496fdcea05f7aa50bb11fb53caa63f73b2eb4330b594bd37839747afe2",
+  "poll_limit": 100000,
+  "cases": [
+    {
+      "name": "success",
+      "input": {
+        "name": "success",
+        "want": 1,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 0,
+        "zeros": 0,
+        "wait_status": 0,
+        "terminal": 16,
+        "data": 1,
+        "final": 0,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        0,
+        16,
+        1,
+        0,
+        1,
+        1
+      ],
+      "counts": {
+        "word": 2,
+        "poll": 1,
+        "data": 1,
+        "ack": 1
+      },
+      "writes": [
+        [
+          49156,
+          1,
+          33
+        ],
+        [
+          49160,
+          1,
+          4
+        ],
+        [
+          49154,
+          1,
+          10
+        ],
+        [
+          49152,
+          2,
+          16
+        ]
+      ],
+      "instructions": 366581,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "delayed",
+      "input": {
+        "name": "delayed",
+        "want": 1,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 0,
+        "zeros": 3,
+        "wait_status": 0,
+        "terminal": 16,
+        "data": 1,
+        "final": 0,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        0,
+        16,
+        1,
+        0,
+        1,
+        4
+      ],
+      "counts": {
+        "word": 2,
+        "poll": 4,
+        "data": 1,
+        "ack": 1
+      },
+      "writes": [
+        [
+          49156,
+          1,
+          33
+        ],
+        [
+          49160,
+          1,
+          4
+        ],
+        [
+          49154,
+          1,
+          10
+        ],
+        [
+          49152,
+          2,
+          16
+        ]
+      ],
+      "instructions": 366602,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "unknown_bits_preserved",
+      "input": {
+        "name": "unknown_bits_preserved",
+        "want": 1,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 64,
+        "zeros": 2,
+        "wait_status": 64,
+        "terminal": 80,
+        "data": 1,
+        "final": 64,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        64,
+        80,
+        1,
+        64,
+        1,
+        3
+      ],
+      "counts": {
+        "word": 2,
+        "poll": 3,
+        "data": 1,
+        "ack": 1
+      },
+      "writes": [
+        [
+          49156,
+          1,
+          33
+        ],
+        [
+          49160,
+          1,
+          4
+        ],
+        [
+          49154,
+          1,
+          10
+        ],
+        [
+          49152,
+          2,
+          16
+        ]
+      ],
+      "instructions": 366599,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "last_poll_success",
+      "input": {
+        "name": "last_poll_success",
+        "want": 1,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 0,
+        "zeros": 99999,
+        "wait_status": 0,
+        "terminal": 16,
+        "data": 1,
+        "final": 0,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        0,
+        16,
+        1,
+        0,
+        1,
+        100000
+      ],
+      "counts": {
+        "word": 2,
+        "poll": 100000,
+        "data": 1,
+        "ack": 1
+      },
+      "writes": [
+        [
+          49156,
+          1,
+          33
+        ],
+        [
+          49160,
+          1,
+          4
+        ],
+        [
+          49154,
+          1,
+          10
+        ],
+        [
+          49152,
+          2,
+          16
+        ]
+      ],
+      "instructions": 1066579,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "timeout",
+      "input": {
+        "name": "timeout",
+        "want": 7,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 0,
+        "zeros": 100000,
+        "wait_status": 0,
+        "terminal": 16,
+        "data": 1,
+        "final": 0,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        0,
+        0,
+        4294967295,
+        0,
+        7,
+        100000
+      ],
+      "counts": {
+        "word": 2,
+        "poll": 100000,
+        "data": 0,
+        "ack": 0
+      },
+      "writes": [
+        [
+          49156,
+          1,
+          33
+        ],
+        [
+          49160,
+          1,
+          4
+        ],
+        [
+          49154,
+          1,
+          10
+        ]
+      ],
+      "instructions": 1066596,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "timeout_late_completion_no_ack",
+      "input": {
+        "name": "timeout_late_completion_no_ack",
+        "want": 7,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 0,
+        "zeros": 100000,
+        "wait_status": 0,
+        "terminal": 16,
+        "data": 1,
+        "final": 16,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        0,
+        0,
+        4294967295,
+        16,
+        7,
+        100000
+      ],
+      "counts": {
+        "word": 2,
+        "poll": 100000,
+        "data": 0,
+        "ack": 0
+      },
+      "writes": [
+        [
+          49156,
+          1,
+          33
+        ],
+        [
+          49160,
+          1,
+          4
+        ],
+        [
+          49154,
+          1,
+          10
+        ]
+      ],
+      "instructions": 1066597,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "busy",
+      "input": {
+        "name": "busy",
+        "want": 5,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 2048,
+        "zeros": 0,
+        "wait_status": 0,
+        "terminal": 16,
+        "data": 1,
+        "final": 0,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        2048,
+        4294967295,
+        4294967295,
+        4294967295,
+        5,
+        0
+      ],
+      "counts": {
+        "word": 1,
+        "poll": 0,
+        "data": 0,
+        "ack": 0
+      },
+      "writes": [],
+      "instructions": 366634,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "busy_and_terminal",
+      "input": {
+        "name": "busy_and_terminal",
+        "want": 5,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 2102,
+        "zeros": 0,
+        "wait_status": 0,
+        "terminal": 16,
+        "data": 1,
+        "final": 0,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        2102,
+        4294967295,
+        4294967295,
+        4294967295,
+        5,
+        0
+      ],
+      "counts": {
+        "word": 1,
+        "poll": 0,
+        "data": 0,
+        "ack": 0
+      },
+      "writes": [],
+      "instructions": 366638,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "inherited_0x2",
+      "input": {
+        "name": "inherited_0x2",
+        "want": 6,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 2,
+        "zeros": 0,
+        "wait_status": 0,
+        "terminal": 16,
+        "data": 1,
+        "final": 0,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        2,
+        4294967295,
+        4294967295,
+        4294967295,
+        6,
+        0
+      ],
+      "counts": {
+        "word": 1,
+        "poll": 0,
+        "data": 0,
+        "ack": 0
+      },
+      "writes": [],
+      "instructions": 366637,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "inherited_0x4",
+      "input": {
+        "name": "inherited_0x4",
+        "want": 6,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 4,
+        "zeros": 0,
+        "wait_status": 0,
+        "terminal": 16,
+        "data": 1,
+        "final": 0,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        4,
+        4294967295,
+        4294967295,
+        4294967295,
+        6,
+        0
+      ],
+      "counts": {
+        "word": 1,
+        "poll": 0,
+        "data": 0,
+        "ack": 0
+      },
+      "writes": [],
+      "instructions": 366637,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "inherited_0x10",
+      "input": {
+        "name": "inherited_0x10",
+        "want": 6,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 16,
+        "zeros": 0,
+        "wait_status": 0,
+        "terminal": 16,
+        "data": 1,
+        "final": 0,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        16,
+        4294967295,
+        4294967295,
+        4294967295,
+        6,
+        0
+      ],
+      "counts": {
+        "word": 1,
+        "poll": 0,
+        "data": 0,
+        "ack": 0
+      },
+      "writes": [],
+      "instructions": 366637,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "inherited_0x20",
+      "input": {
+        "name": "inherited_0x20",
+        "want": 6,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 32,
+        "zeros": 0,
+        "wait_status": 0,
+        "terminal": 16,
+        "data": 1,
+        "final": 0,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        32,
+        4294967295,
+        4294967295,
+        4294967295,
+        6,
+        0
+      ],
+      "counts": {
+        "word": 1,
+        "poll": 0,
+        "data": 0,
+        "ack": 0
+      },
+      "writes": [],
+      "instructions": 366637,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "inherited_0x36",
+      "input": {
+        "name": "inherited_0x36",
+        "want": 6,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 54,
+        "zeros": 0,
+        "wait_status": 0,
+        "terminal": 16,
+        "data": 1,
+        "final": 0,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        54,
+        4294967295,
+        4294967295,
+        4294967295,
+        6,
+        0
+      ],
+      "counts": {
+        "word": 1,
+        "poll": 0,
+        "data": 0,
+        "ack": 0
+      },
+      "writes": [],
+      "instructions": 366640,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "wrong_device",
+      "input": {
+        "name": "wrong_device",
+        "want": 2,
+        "pci_id": 1880129670,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 0,
+        "zeros": 0,
+        "wait_status": 0,
+        "terminal": 16,
+        "data": 1,
+        "final": 0,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        1880129670,
+        11534337,
+        49153,
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        2,
+        0
+      ],
+      "counts": {
+        "word": 0,
+        "poll": 0,
+        "data": 0,
+        "ack": 0
+      },
+      "writes": [],
+      "instructions": 285423,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "absent_device",
+      "input": {
+        "name": "absent_device",
+        "want": 2,
+        "pci_id": 4294967295,
+        "command": 4294967295,
+        "bar": 4294967295,
+        "entry": 0,
+        "zeros": 0,
+        "wait_status": 0,
+        "terminal": 16,
+        "data": 1,
+        "final": 0,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        2,
+        0
+      ],
+      "counts": {
+        "word": 0,
+        "poll": 0,
+        "data": 0,
+        "ack": 0
+      },
+      "writes": [],
+      "instructions": 285504,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "io_disabled",
+      "input": {
+        "name": "io_disabled",
+        "want": 3,
+        "pci_id": 28578014,
+        "command": 11534336,
+        "bar": 49153,
+        "entry": 0,
+        "zeros": 0,
+        "wait_status": 0,
+        "terminal": 16,
+        "data": 1,
+        "final": 0,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534336,
+        49153,
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        3,
+        0
+      ],
+      "counts": {
+        "word": 0,
+        "poll": 0,
+        "data": 0,
+        "ack": 0
+      },
+      "writes": [],
+      "instructions": 285430,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "wrong_bar",
+      "input": {
+        "name": "wrong_bar",
+        "want": 4,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 53249,
+        "entry": 0,
+        "zeros": 0,
+        "wait_status": 0,
+        "terminal": 16,
+        "data": 1,
+        "final": 0,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        53249,
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        4,
+        0
+      ],
+      "counts": {
+        "word": 0,
+        "poll": 0,
+        "data": 0,
+        "ack": 0
+      },
+      "writes": [],
+      "instructions": 285434,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "bar_not_io",
+      "input": {
+        "name": "bar_not_io",
+        "want": 4,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49152,
+        "entry": 0,
+        "zeros": 0,
+        "wait_status": 0,
+        "terminal": 16,
+        "data": 1,
+        "final": 0,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49152,
+        4294967295,
+        4294967295,
+        4294967295,
+        4294967295,
+        4,
+        0
+      ],
+      "counts": {
+        "word": 0,
+        "poll": 0,
+        "data": 0,
+        "ack": 0
+      },
+      "writes": [],
+      "instructions": 285432,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "bus_error_0x2",
+      "input": {
+        "name": "bus_error_0x2",
+        "want": 8,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 0,
+        "zeros": 0,
+        "wait_status": 0,
+        "terminal": 2,
+        "data": 1,
+        "final": 0,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        0,
+        2,
+        4294967295,
+        0,
+        8,
+        1
+      ],
+      "counts": {
+        "word": 2,
+        "poll": 1,
+        "data": 0,
+        "ack": 1
+      },
+      "writes": [
+        [
+          49156,
+          1,
+          33
+        ],
+        [
+          49160,
+          1,
+          4
+        ],
+        [
+          49154,
+          1,
+          10
+        ],
+        [
+          49152,
+          2,
+          2
+        ]
+      ],
+      "instructions": 366605,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "bus_error_0x4",
+      "input": {
+        "name": "bus_error_0x4",
+        "want": 8,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 0,
+        "zeros": 0,
+        "wait_status": 0,
+        "terminal": 4,
+        "data": 1,
+        "final": 0,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        0,
+        4,
+        4294967295,
+        0,
+        8,
+        1
+      ],
+      "counts": {
+        "word": 2,
+        "poll": 1,
+        "data": 0,
+        "ack": 1
+      },
+      "writes": [
+        [
+          49156,
+          1,
+          33
+        ],
+        [
+          49160,
+          1,
+          4
+        ],
+        [
+          49154,
+          1,
+          10
+        ],
+        [
+          49152,
+          2,
+          4
+        ]
+      ],
+      "instructions": 366605,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "bus_error_0x20",
+      "input": {
+        "name": "bus_error_0x20",
+        "want": 8,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 0,
+        "zeros": 0,
+        "wait_status": 0,
+        "terminal": 32,
+        "data": 1,
+        "final": 0,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        0,
+        32,
+        4294967295,
+        0,
+        8,
+        1
+      ],
+      "counts": {
+        "word": 2,
+        "poll": 1,
+        "data": 0,
+        "ack": 1
+      },
+      "writes": [
+        [
+          49156,
+          1,
+          33
+        ],
+        [
+          49160,
+          1,
+          4
+        ],
+        [
+          49154,
+          1,
+          10
+        ],
+        [
+          49152,
+          2,
+          32
+        ]
+      ],
+      "instructions": 366605,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "bus_error_0x12",
+      "input": {
+        "name": "bus_error_0x12",
+        "want": 8,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 0,
+        "zeros": 0,
+        "wait_status": 0,
+        "terminal": 18,
+        "data": 1,
+        "final": 0,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        0,
+        18,
+        4294967295,
+        0,
+        8,
+        1
+      ],
+      "counts": {
+        "word": 2,
+        "poll": 1,
+        "data": 0,
+        "ack": 1
+      },
+      "writes": [
+        [
+          49156,
+          1,
+          33
+        ],
+        [
+          49160,
+          1,
+          4
+        ],
+        [
+          49154,
+          1,
+          10
+        ],
+        [
+          49152,
+          2,
+          18
+        ]
+      ],
+      "instructions": 366606,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "bus_error_0x14",
+      "input": {
+        "name": "bus_error_0x14",
+        "want": 8,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 0,
+        "zeros": 0,
+        "wait_status": 0,
+        "terminal": 20,
+        "data": 1,
+        "final": 0,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        0,
+        20,
+        4294967295,
+        0,
+        8,
+        1
+      ],
+      "counts": {
+        "word": 2,
+        "poll": 1,
+        "data": 0,
+        "ack": 1
+      },
+      "writes": [
+        [
+          49156,
+          1,
+          33
+        ],
+        [
+          49160,
+          1,
+          4
+        ],
+        [
+          49154,
+          1,
+          10
+        ],
+        [
+          49152,
+          2,
+          20
+        ]
+      ],
+      "instructions": 366606,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "bus_error_0x30",
+      "input": {
+        "name": "bus_error_0x30",
+        "want": 8,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 0,
+        "zeros": 0,
+        "wait_status": 0,
+        "terminal": 48,
+        "data": 1,
+        "final": 0,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        0,
+        48,
+        4294967295,
+        0,
+        8,
+        1
+      ],
+      "counts": {
+        "word": 2,
+        "poll": 1,
+        "data": 0,
+        "ack": 1
+      },
+      "writes": [
+        [
+          49156,
+          1,
+          33
+        ],
+        [
+          49160,
+          1,
+          4
+        ],
+        [
+          49154,
+          1,
+          10
+        ],
+        [
+          49152,
+          2,
+          48
+        ]
+      ],
+      "instructions": 366606,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "bus_error_0x36",
+      "input": {
+        "name": "bus_error_0x36",
+        "want": 8,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 0,
+        "zeros": 0,
+        "wait_status": 0,
+        "terminal": 54,
+        "data": 1,
+        "final": 0,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        0,
+        54,
+        4294967295,
+        0,
+        8,
+        1
+      ],
+      "counts": {
+        "word": 2,
+        "poll": 1,
+        "data": 0,
+        "ack": 1
+      },
+      "writes": [
+        [
+          49156,
+          1,
+          33
+        ],
+        [
+          49160,
+          1,
+          4
+        ],
+        [
+          49154,
+          1,
+          10
+        ],
+        [
+          49152,
+          2,
+          54
+        ]
+      ],
+      "instructions": 366608,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "bus_error_0xff",
+      "input": {
+        "name": "bus_error_0xff",
+        "want": 8,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 0,
+        "zeros": 0,
+        "wait_status": 0,
+        "terminal": 255,
+        "data": 1,
+        "final": 0,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        0,
+        255,
+        4294967295,
+        0,
+        8,
+        1
+      ],
+      "counts": {
+        "word": 2,
+        "poll": 1,
+        "data": 0,
+        "ack": 1
+      },
+      "writes": [
+        [
+          49156,
+          1,
+          33
+        ],
+        [
+          49160,
+          1,
+          4
+        ],
+        [
+          49154,
+          1,
+          10
+        ],
+        [
+          49152,
+          2,
+          54
+        ]
+      ],
+      "instructions": 366612,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "final_busy",
+      "input": {
+        "name": "final_busy",
+        "want": 9,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 0,
+        "zeros": 0,
+        "wait_status": 0,
+        "terminal": 16,
+        "data": 1,
+        "final": 2048,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        0,
+        16,
+        1,
+        2048,
+        9,
+        1
+      ],
+      "counts": {
+        "word": 2,
+        "poll": 1,
+        "data": 1,
+        "ack": 1
+      },
+      "writes": [
+        [
+          49156,
+          1,
+          33
+        ],
+        [
+          49160,
+          1,
+          4
+        ],
+        [
+          49154,
+          1,
+          10
+        ],
+        [
+          49152,
+          2,
+          16
+        ]
+      ],
+      "instructions": 366581,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "final_pending",
+      "input": {
+        "name": "final_pending",
+        "want": 9,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 0,
+        "zeros": 0,
+        "wait_status": 0,
+        "terminal": 16,
+        "data": 1,
+        "final": 16,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        0,
+        16,
+        1,
+        16,
+        9,
+        1
+      ],
+      "counts": {
+        "word": 2,
+        "poll": 1,
+        "data": 1,
+        "ack": 1
+      },
+      "writes": [
+        [
+          49156,
+          1,
+          33
+        ],
+        [
+          49160,
+          1,
+          4
+        ],
+        [
+          49154,
+          1,
+          10
+        ],
+        [
+          49152,
+          2,
+          16
+        ]
+      ],
+      "instructions": 366581,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "error_and_final_busy",
+      "input": {
+        "name": "error_and_final_busy",
+        "want": 9,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 0,
+        "zeros": 0,
+        "wait_status": 0,
+        "terminal": 18,
+        "data": 1,
+        "final": 2048,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        0,
+        18,
+        4294967295,
+        2048,
+        9,
+        1
+      ],
+      "counts": {
+        "word": 2,
+        "poll": 1,
+        "data": 0,
+        "ack": 1
+      },
+      "writes": [
+        [
+          49156,
+          1,
+          33
+        ],
+        [
+          49160,
+          1,
+          4
+        ],
+        [
+          49154,
+          1,
+          10
+        ],
+        [
+          49152,
+          2,
+          18
+        ]
+      ],
+      "instructions": 366608,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "unexpected_cable_0",
+      "input": {
+        "name": "unexpected_cable_0",
+        "want": 10,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 0,
+        "zeros": 0,
+        "wait_status": 0,
+        "terminal": 16,
+        "data": 0,
+        "final": 0,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        0,
+        16,
+        0,
+        0,
+        10,
+        1
+      ],
+      "counts": {
+        "word": 2,
+        "poll": 1,
+        "data": 1,
+        "ack": 1
+      },
+      "writes": [
+        [
+          49156,
+          1,
+          33
+        ],
+        [
+          49160,
+          1,
+          4
+        ],
+        [
+          49154,
+          1,
+          10
+        ],
+        [
+          49152,
+          2,
+          16
+        ]
+      ],
+      "instructions": 366582,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "unexpected_cable_2",
+      "input": {
+        "name": "unexpected_cable_2",
+        "want": 10,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 0,
+        "zeros": 0,
+        "wait_status": 0,
+        "terminal": 16,
+        "data": 2,
+        "final": 0,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        0,
+        16,
+        2,
+        0,
+        10,
+        1
+      ],
+      "counts": {
+        "word": 2,
+        "poll": 1,
+        "data": 1,
+        "ack": 1
+      },
+      "writes": [
+        [
+          49156,
+          1,
+          33
+        ],
+        [
+          49160,
+          1,
+          4
+        ],
+        [
+          49154,
+          1,
+          10
+        ],
+        [
+          49152,
+          2,
+          16
+        ]
+      ],
+      "instructions": 366583,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "unexpected_cable_255",
+      "input": {
+        "name": "unexpected_cable_255",
+        "want": 10,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 0,
+        "zeros": 0,
+        "wait_status": 0,
+        "terminal": 16,
+        "data": 255,
+        "final": 0,
+        "base": 32501760
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        0,
+        16,
+        255,
+        0,
+        10,
+        1
+      ],
+      "counts": {
+        "word": 2,
+        "poll": 1,
+        "data": 1,
+        "ack": 1
+      },
+      "writes": [
+        [
+          49156,
+          1,
+          33
+        ],
+        [
+          49160,
+          1,
+          4
+        ],
+        [
+          49154,
+          1,
+          10
+        ],
+        [
+          49152,
+          2,
+          16
+        ]
+      ],
+      "instructions": 366590,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    },
+    {
+      "name": "relocated_success",
+      "input": {
+        "name": "relocated_success",
+        "want": 1,
+        "pci_id": 28578014,
+        "command": 11534337,
+        "bar": 49153,
+        "entry": 0,
+        "zeros": 0,
+        "wait_status": 0,
+        "terminal": 16,
+        "data": 1,
+        "final": 0,
+        "base": 32358400
+      },
+      "raw": [
+        2147504144,
+        28578014,
+        11534337,
+        49153,
+        0,
+        16,
+        1,
+        0,
+        1,
+        1
+      ],
+      "counts": {
+        "word": 2,
+        "poll": 1,
+        "data": 1,
+        "ack": 1
+      },
+      "writes": [
+        [
+          49156,
+          1,
+          33
+        ],
+        [
+          49160,
+          1,
+          4
+        ],
+        [
+          49154,
+          1,
+          10
+        ],
+        [
+          49152,
+          2,
+          16
+        ]
+      ],
+      "instructions": 366581,
+      "stack_bytes_used": 8,
+      "exact_pixels_and_guards": true,
+      "cf8_restored": true
+    }
+  ],
+  "ended_utc": "2026-10-27T02:06:13.054344+00:00"
+}
