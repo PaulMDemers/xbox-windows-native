@@ -1,32 +1,27 @@
-# Test745: native CR04 counterpart, preparation only
+# Test745 CLOSED: native CR04 write and recovery passed
 
-Closed kernel744 physically passed CR04 a7->5d->a7 with CR05 unchanged31
-and all prefix/H7/CRTC recovery checks passing. This distinct probe takes that
-exact transaction into native context with the previously qualified743
-frontend and bridge. The probe differs from744 only by namespace and explicit
-native CR0/CR3/CR4/IF admission. No closed runtime is reused.
+One SITE accepted23:17:28.139234UTC. User reported green/holding and supplied
+a full13-row photo. All416bits decoded using five sample offsets and three
+threshold sets per cell, plus352 adjacent-row geometry cross-checks. Results:
 
-The112-word result occupies5100..52c0 within the reserved5300 boundary.
-The13-row report exposes signature, return/forward status, three cleanup masks,
-CR04 before/checked/restored, selectors and actual native CR0/CR3/CR4. The
-individual native CR05 and H7 values remain unexposed; summary predicates alone
-cover those checks. Kernel744 raw values cannot substitute for native evidence.
+- Return and forward status:745.
+- CR04: a7 before,5d after write,a7 after own-value restoration.
+- Prefix,horizontal andCRTC cleanup masks:0; selectors restored:1.
+- Actual nativeCR0/CR3/CR4:4001003b/0/610.
 
-There is one additional CRTC data write, CR04=5d, after the preserving/H7
-prefix. Undo CR04 using this run's saved byte, then reverse H7; neither recovery
-may fail before output-enable. CR05 is never written. A failed restore may
-leave the screen black. Native code deliberately holds and cannot persist its
-post-handoff result to disk. Preparation reports are separate kernel evidence.
-Current watcher/photo/reset readiness is required before a single launch.
+Individual native CR05/H7 words are unexposed; aggregate success/recovery
+predicates alone qualify those checks. This is not a full mode switch or
+Windows result. Kernel744 raw readings are separate evidence.
 
-No CR05/other new CRTC geometry, vertical timing, encoder, scanout, clock,
-full-mode or Windows work is admitted by this preparation. Ordinary launcher,
-protected720p and prior releases remain unchanged. No startup hook is used.
+User manually power-cycled and confirmed UnleashX. Nine preparation reports
+collected once with exact double-read; audit001 passed23:20:13.588112UTC.
+Private build/source/staged bytes match; unrelatedE entries unchanged. PCI,
+CRTC,SEQ,allocation plan and geometry match closed743 preparation. Last
+persisted phase is handoff_armed; native results exist in the photo only.
+Pre-arm kernel CPU context remains distinct. Reset is not normal shutdown.
 
-Preparation completed:98 ELF cases,12 fresh disklessCPU contexts/refusals,
-88 relocated integration cases,76 optical cases,32 nxdk page-builder cases,
-372 nxdk ownership cases and131379 host ownership cases pass. All VMs closed.
-Source/linked review passed. Padded payload9916bytes (4472unpadded),13 absolute
-relocations/18total, result448bytes. Exact XBE SHA256:
+Preparation65da5a3c and launchcf05caf0 pushed.98ELF/12CPU/88integration/76optical/
+32page/372nxdk-plan/131379host-plan cases passed; allVMsclosed. No hook or owned
+host process. Exact XBE SHA256:
 6c89d7e48cbaaa0b5f9ff61a1bc6405374d8247dcae89e7faf276996e8e0cd44.
-UniqueE stage/readback complete; no745 launch or hook. Current watcher needed.
+Console authenticated at dashboard. All745/prior runtimes CLOSED. See NEXT.md.

@@ -1,18 +1,22 @@
-# Test745 launched; await observation and photo
+# Test745 CLOSED; review next bounded horizontal CRTC step
 
-One SITE accepted 2026-10-27T23:17:28.139234+00:00 after exact frozen
-source/build/stage verification and current user watch/reset confirmation.
-Preparation65da5a3c pushed. No hook or owned host process/VM. Console expected
-to hold; its current display is pending user observation. Do not retry launch.
+Kernel744 and native745 both pass CR04 target5d and own-value recovery to a7
+after the preserving/H7 prefix.745 photo exposes raw CR04 values, native CPU
+and zero cleanup masks; individual native CR05/H7 values remain unexposed.
+Nine preparation files collected once after user reset; audit001 passed.
+Console authenticated UnleashX, no hook/process/VM. All745/prior CLOSED.
 
-Record second bar/current screen and decode full 13-row photo using
-optical-schema001.json. Exposed: signature, return/forward status, prefix/H7/
-CRTC cleanup masks, CR04 before/checked/restored, selectors, native CR0/3/4.
-Individual native CR05/H7 words are unexposed. Keep kernel preparation context
-separate; no post-native disk persistence. After recording photo, request
-manual reset, then collect nine preparation reports once on authenticated
-dashboard return. Audit exact bytes and optical results before closure.
+Next review the following SetGPURegister CR05 read/modify/write in retained
+outputs/xcal-transaction704/gpu_legacy.c. It preserves upper three bits and
+sets low five from (((nvhtotal-32+16)/8)-1)&0x1f. For the retained target779,
+low bits1e plus admitted CR05 upper bits20 yield prospective3e. Establish
+full-byte readback, CR04/CR05 interaction and reverse own-value restoration
+before output-enable. Consider a new bounded kernel control after744 prefix
+and CR04, then native counterpart if justified. No746 kit or launch yet.
 
-All744/prior runtimes CLOSED; no rerun/recollection/runtime parenting.
-No CR05 data write, other new CRTC geometry, vertical/encoder/full mode or
-Windows work yet. Preserve any mismatch and all prior failed evidence.
+Retain CR11 protection/admission, blanking, indexed-register ownership and
+all historical failures. No guessed masks, snapshot-based restoration, gate
+waiver, other CRTC geometry, pitch, vertical/encoder/full-mode or Windows jump.
+Routine disk-reporting automatic-return tests are authorized. Intentional
+native holds require current watcher/photo/reset availability. Never rerun,
+recollect or parent any closed runtime.

@@ -1,3 +1,23 @@
+# 745 CLOSED: native CR04 write and own-value recovery pass
+
+Photo416bits cross-checked: return/forward745, CR04a7->5d->a7, cleanup0/0/0,
+selectors1, nativeCPU4001003b/0/610. Individual nativeCR05/H7 words unexposed;
+no full-mode/Windows proof. User manual reset; nine prep reports collected
+once,auditPASS23:20:13UTC. Exact source/build/stage and unrelatedE entries pass;
+prep matches743. Kernel context remains distinct; native results photo-only.
+Console authenticatedUnleashX; no hook/process/VM. All745/prior CLOSED.
+NEXT outputs/native-crtc745/NEXT.md: review next bounded CR05 step. No746yet.
+
+# 745 PHOTO PASS: native CR04 accepted and restored; awaiting reset
+
+All416 photo bits independently decoded and cross-checked. Native return and
+forward745; CR04a7->5d->a7, all three cleanup masks0, selectors1. Actual native
+CR0/3/4=4001003b/0/610. User green/holding. Individual native CR05/H7 words
+unexposed; aggregate predicates only. Photo private; public decoded evidence.
+User asked to power-cycle and reply Ready. No collection yet; console last
+observed held report. No hook/host process/VM. All744/prior CLOSED.
+NEXT outputs/native-crtc745/NEXT.md.
+
 # 745 LAUNCHED: native CR04 checkpoint awaits observation
 
 User confirmed current watch/reset readiness. Frozen source/build/stage verified;
