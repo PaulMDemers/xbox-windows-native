@@ -1,3 +1,11 @@
+# 744 STAGED: one CR04 checkpoint after qualified horizontal prefix
+
+Unique E stage/readback completed;98 COFF and2353 layout cases pass. CR04
+target5d; full CR04/CR05 checks and own-value restoration before output-enable.
+No launch/hook/VM; staging helper closed, authenticated dashboard. Failed
+generator and three memcpy-harness attempts retained; model004 passes unchanged
+compiled probe. NEXT outputs/crtc-start744/NEXT.md. All743/prior CLOSED.
+
 # 743 CLOSED: native horizontal timing and recovery predicates pass
 
 User green/holding; photo416bits independently decoded.743/743, both first
