@@ -1,3 +1,21 @@
+#725 STAGED, awaiting watched cleanup-step probe
+
+Closed724 is latest physical result: forward11MMIO+4CRTC readbacks matched,
+then cleanup7245 withCR1b85. New725 keeps identical data writes, adds four
+selector-preserving CR1b reads and copies existing immediate/final values.
+Six samples bracket cleanup; result296bytes. NoCR22 data write or retry/mask.
+
+Fresh payload/host002/build001 pass;12CPU VMs closed,59 integration cases
+(including five distinct transition points),76 optical,30nxdk page,372nxdk
+ownership checks pass. Linked bytes exact. Preserve host001 stale16-relocation
+assertion failure; fresh parser accepts exact17 (11absolute), bounds retained.
+
+Staged/readback verified /E/Applications/XWNMode725 only; NO launch yet.
+No hook/owned host process/VM; console UnleashX. Watch/reset readiness pending.
+NEXT outputs/native-prefix725/NEXT.md: one launch,13row photo, then power cycle
+and collect once. Additional reads affect timing; no causal/full-mode/Windows
+claim. Never reopen closed724/prior runtimes. Ordinary720p remains protected.
+
 #724 CLOSED: native forward prefix passed; CR1b cleanup mismatch
 
 One accepted launch17:26:43UTC2026-10-27. User orange held picture/photo;

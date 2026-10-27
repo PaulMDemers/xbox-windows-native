@@ -1,0 +1,61 @@
+{
+  "passed": true,
+  "rows": 13,
+  "columns": 32,
+  "bit_order": "MSB left white1 black0 gray background",
+  "offsets": [
+    0,
+    2176,
+    2256,
+    2260,
+    20740,
+    20744,
+    21000,
+    21004,
+    21008,
+    21012,
+    21016,
+    21020,
+    20816
+  ],
+  "names": [
+    "signature",
+    "bridge_phase",
+    "admission_stage",
+    "return_code",
+    "attempted_mmio",
+    "attempted_crtc",
+    "CR1b_immediate",
+    "CR1b_after_CR19_restore",
+    "CR1b_after_680630_restore",
+    "CR1b_after_gate4",
+    "CR1b_after_SEQ1_restore_and_readback",
+    "CR1b_final_cleanup",
+    "cleanup_ok"
+  ],
+  "expected_success": [
+    1917845517,
+    4,
+    5,
+    1829,
+    11,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    1
+  ],
+  "unreached_trace": "ffffffff",
+  "sample_semantics": [
+    "copy existing immediate CR1b read",
+    "extra selector-preserving read after CR19 restoration",
+    "extra selector-preserving read after680630 restoration",
+    "extra selector-preserving read after output gate4",
+    "extra selector-preserving read after SEQ1 restoration/readback",
+    "copy existing final CR1b cleanup read"
+  ],
+  "limits": "Four added reads can perturb timing; first changed sample brackets a boundary only; unexported MMIO/SEQ/CR11 cleanup checks may also fail"
+}
