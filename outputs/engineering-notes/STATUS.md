@@ -1,3 +1,11 @@
+# 741 DEFERRED: user requested prepare only, test later
+
+Preparation/stage complete and pushed1b199bb2. No741 launch sent. No hook or
+owned process/VM. No hardware access this turn; last authenticated dashboard
+state is from staging, not a new observation. Await user resumption and current
+watch/photo/reset availability before any intentional hold.
+NEXT outputs/native-preserve741/NEXT.md. All740/prior runtimes remain CLOSED.
+
 # 741 STAGED: native preservation control awaits watcher
 
 Exact E stage/readback verified.57 ELF/12 CPU/53 integration/76 optical/27 nxdk

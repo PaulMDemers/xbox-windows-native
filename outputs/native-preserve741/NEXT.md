@@ -1,3 +1,9 @@
+# 741 DEFERRED by user: prepare only, test later
+
+Do not launch until the user resumes hardware testing and confirms current
+watch/photo/reset availability. Preparation and exact stage are complete.
+No launch or additional hardware access was performed after this deferral.
+
 # 741 STAGED, not launched
 
 Ask current watch/photo/reset availability for intentional native hold; confirm
