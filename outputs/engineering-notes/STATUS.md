@@ -1,3 +1,16 @@
+# 731 LAUNCHED: await TOP bar and automatic return observation
+
+One accepted SITE at 2026-10-27T19:44:57.582684+00:00. Preparation433083f7.
+User confirmed1.6 UnleashX/HDMI and watch/reset readiness. Staged/local bytes
+verified immediately before request. Never retry accepted/uncertain launch.
+Await TOP bar color and automatic dashboard return. No hook installed. Record
+observation and collection-ready before one collection, then audit43rawwords.
+If black/held, preserve the observation before requesting a power cycle.
+
+NEXT outputs/latch-select731/NEXT.md. No owned host process/VM. Console state
+pending user observation; no success claim from accepted request.730/729/prior
+runtimes remain CLOSED. Protected720p/ordinary launchers unchanged.
+
 # 731 STAGED: bounded GR04 read-plane selection / CR22 reads
 
 Fresh build,27 actualCOFF cases,2353layout cases and main/probe/layout linked

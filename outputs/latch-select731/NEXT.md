@@ -7,8 +7,8 @@ and43 raw result words recorded. Green denotes completed/restored measurement,
 not proof of any CR22 interpretation. Equal values are explicitly inconclusive.
 
 Consult stage001.json: only completed=true admits launch after exact readback.
-No launch is currently requested. The watcher must confirm the1.6 is at UnleashX
-with HDMI and available for TOP bar/automatic-return observation and reset if needed.
+One launch was accepted2026-10-27T19:44:57.582684+00:00 after watcher readiness.
+Await TOP bar/automatic-return observation. Do not launch again.
 Use one SITE request with20second reply bound via physical.py; never retry an
 accepted or uncertain request. Preserve launch receipt and advance continuation.
 
