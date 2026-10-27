@@ -1,3 +1,24 @@
+# 697 CLOSED: native four-byte Xcalibur read optically captured
+
+The photo decodes ten MSB-left rows to 01b410de,00b00001,0000c001,
+00000000,00000010,00000002,00000000,00000001,0000017f,00000004.
+Both bars green: raw word2 (wire bytes02 00 00 00), length4, result1,
+383 polls, pure completion10 and final status0. Optical RAM/display evidence
+supports the bounded native read; no unique ID, encoder initialization or
+Windows1.6 claim. User confirmed manual power-cycle with "Ready".
+
+Eight preparation records read twice; private hashes, source pins, staged
+XBE/owner and unrelated directory entries verified. Runtime697 CLOSED: never
+rerun/recollect. CPU files are pre-file-write; native context was not persisted.
+Preserve photo001 calibration failure, successful photo002/cross-row review,
+and two host documentation-script failures described in closure001. Photo private.
+
+No hook, Windows, configuration write or owned host process. All ten VMs closed.
+Hardware ticket retained; build/emulator leases released; automation paused.
+Console at dashboard. Next: source review of Xcalibur register/protocol semantics
+and initialization prerequisites. Read native-xcal697/NEXT.md. Original720p and
+ordinary launcher unchanged; networking679/1080i/boot intermittency tabled.
+
 # 697 launched; user reports GREEN hold; raw-word photo pending
 
 One SITE accepted2026-10-27T02:26:54.767389Z after contextual user confirmation.

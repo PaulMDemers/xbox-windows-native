@@ -1,23 +1,24 @@
-# Current action: capture697 displayed raw values before reset
+# 697 closed: review initialization prerequisites next
 
-697 launch accepted once at2026-10-27T02:26:54.767389Z. User reports "Green
-holding". Success predicate supports a four-byte response with no bus error and
-final known busy/terminal flags clear. No raw word captured yet; no reset requested.
+Read closure001.json, photo002.json, photo-review001.json and collection001.json.
+Native address70/register00 block read: raw word00000002 (wire02 00 00 00),
+length4, result1,383 polls, lastpoll10, finalstatus0. Both bars green. All320
+bits stable across thresholds/offsets; adjacent-row resampling agrees on256bits.
+Preserve photo001 failed calibration and host documentation-script failures.
 
-1. Ask for a photo of the held screen with all ten bit rows visible. Use ordinary
-   chat for the attachment request, not the text-only async question tool. Preserve
-   photo privately; decode optical rows independently of expected values and keep
-   any calibration/decoding failure. A photo is not a register dump.
-2. Record raw word, status, result, poll count and block length only to the extent
-   visible. Do not treat raw word as unique ID without supported semantics. If no
-   photo can be supplied, retain the success-indication-only limitation explicitly.
-3. Then request manual power-cycle, wait for dashboard confirmation, write
-   collection-ready001.json and run physical.py collect once. No hook cleanup is
-   needed. Verify exact records/staged bytes/unrelated entries. File CPU sample
-   is pre-file-write; native values are RAM/display only. No normal shutdown claim.
-4. Close this runtime after evidence/collection; choose the next read/initialization
-   investigation from actual results. No gate waiver or encoder recipe transplant.
+User manually power-cycled after capture. Eight preparation records read twice
+and verified; stage/unrelated entries unchanged. 697physical001 is CLOSED.
+Never rerun/recollect/parent it. No hook or owned host process; all VMs closed.
+Hardware ticket retained, build/emulator leases released, automation paused.
+Console at dashboard; original720p/ordinary launcher unchanged.
 
-No repeat launch. All ten host VMs closed, no owned host process. Hardware ticket
-retained, build/emulator leases released, automation paused. Original720p and
-ordinary launcher untouched; networking679/1080i/boot intermittency tabled.
+Next: review Xcalibur register semantics, byte/block read differences and native
+initialization prerequisites. Earlier kernel byte-read4 is not the same
+measurement as this native block-read2. Establish width/command/state
+comparability before interpreting that difference. Neither is a unique ID claim.
+Use a fresh bounded probe only for a concrete unresolved hardware question.
+No speculative configuration writes, firmware recipe transplant or gate waiver.
+
+Minimal checked transition/read is not full BootStartup. Persisted CPU remains
+pre-file-write; final/native state was RAM/display only. No native initialization,
+Windows1.6 or acceleration proof. Networking679/1080i/boot issues stay tabled.

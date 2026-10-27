@@ -75,3 +75,38 @@ values use FFFFFFFF. Successful native execution deliberately holds for reset.
 
 Read the latest NEXT.md and launch/observation/collection records for current
 physical state. Host success and a staged executable are not a physical result.
+
+## Physical result and closure
+
+One accepted launch produced held green handoff/result bars. Ten MSB-left rows:
+
+| Field | Optical value |
+| --- | --- |
+| PCI ID | 01b410de |
+| PCI command/status | 00b00001 |
+| BAR | 0000c001 |
+| Entry status | 00000000 |
+| Last poll | 00000010 |
+| Raw assembled word | 00000002 |
+| Final status | 00000000 |
+| Result | 00000001 |
+| Poll count | 0000017f (383) |
+| Block length | 00000004 |
+
+The bounded native transaction received four bytes02 00 00 00 with pure
+completion and final known flags clear. This does not establish a unique ID or
+initialize the encoder. Earlier kernel byte-read4 is a different transaction;
+establish comparability before drawing a conclusion from different values.
+
+photo001 rejected calibration extrapolated from the left half. photo002 uses
+local component spacing and fits all isolated components, then samples all320
+cells at three thresholds and five offsets. White cells merge with the white
+quadrant. photo-review001 independently uses adjacent-row geometry for rows1..8;
+all256 bits agree. This is optical evidence, not a register dump. Photo private.
+
+After user-confirmed manual power-cycle, collection001 read eight preparation
+records twice. closure001 verifies private hashes and frozen source pins; staged
+XBE/owner and unrelated entries unchanged. No hook existed. Runtime697 closed;
+no repeat/recollection. Saved CPU is pre-file-write; native context is lost on
+reset. No Windows shutdown or Windows1.6 support claim. Closure also preserves
+two host documentation-script failures (report-key assumption and UTF-8 decode).
