@@ -1,3 +1,17 @@
+#728 LAUNCHED: awaiting bar/automatic return observation
+
+One SITE accepted2026-10-27T19:02:21.122652+00:00 after user Ready to watch
+and reset. Exact staged/local source and executable pins reverified.
+Preparation commit382e47ff. No repeat launch. No hook/Windows/native handoff.
+
+User TOP bar color and automatic dashboard return observation pending.
+After confirmed return, preserve observation001.json, collection-ready001.json,
+collect once and audit raw54words against727 optical evidence. If held/black,
+record before requesting reset. No inference from accepted launch alone.
+
+NEXT outputs/kernel-interaction728/NEXT.md. No owned host process/VM.
+727/prior runtimes CLOSED. Protected720p and deferred work unchanged.
+
 #728 STAGED: matched kernel-context minimal interaction
 
 Fresh kernel728 repeats727 register body/read order and54word layout; only
