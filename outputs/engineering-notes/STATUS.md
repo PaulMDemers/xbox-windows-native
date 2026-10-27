@@ -1,3 +1,11 @@
+# 744 LAUNCHED: one accepted CR04 control
+
+SITE accepted2026-10-27T23:08:05.947737UTC; preparationb5802744 pushed.
+Kernel-only auto-return, no hook/Windows/native handoff. Await bounded dashboard
+return then one collection/audit. Never retry accepted launch. No owned VM;
+bounded host dashboard observer may run. All743/prior CLOSED.
+NEXT outputs/crtc-start744/NEXT.md.
+
 # 744 STAGED: one CR04 checkpoint after qualified horizontal prefix
 
 Unique E stage/readback completed;98 COFF and2353 layout cases pass. CR04
