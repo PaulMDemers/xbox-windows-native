@@ -1,3 +1,34 @@
+#710 CLOSED: cyan native checkpoint before transaction; next baseline-only call
+
+User confirmed CYAN holding. After confirmed manual power-cycle, nine reports
+collected once and audited: last preparation phase handoff_armed, all source/
+binary/report pins exact, aliases disjoint, PCI/CRTC/SEQ/geometry/allocation
+mappings equal709. Optical cyan is separate evidence that native handoff/PCI/
+timer reached the pre-transaction checkpoint. No native mode programming/Windows.
+Fresh host checks:131379 ownership,12 CPU(all closed),40 instruction models,
+45 nxdk page cases,372 compiled ownership cases.710 runtime now CLOSED.
+
+Next NEW711: real transaction baseline-only call, deliberate distinct checkpoint
+return/HOLD before blank(g), no encoder/ACPI-control/mode-register writes. Fresh
+relocation/controlflow/rejection/optical tests first. Read native-mode710/NEXT.md.
+708/709 remain closed failures; exact failure phase/intermittency unresolved.
+Console at dashboard, no hook/host child; build/xemu released, hardware ticket
+retained; automation paused. Original720p protected; other work tabled.
+
+#710 launched once: pre-transaction held checkpoint; observation pending
+
+Fresh710 replaces only six bridge bytes with a jump around the704 transaction;
+all old bridge offsets and payload bytes retained. No native encoder/ACPI-control/
+GPU-MMIO programming. Fresh checks pass:131379 ownership cases,12 diskless CPU
+fixtures(all closed),40 instruction models,45 nxdk page cases,372 ownership cases.
+Exact staged readback; one SITE accepted at 2026-10-27T05:31:00.660085+00:00.
+Asked for GREEN top/CYAN second bar, another color, black and hold/dashboard.
+Record observation before reset; then manual power-cycle and collect once.
+Read outputs/native-mode710/NEXT.md. No second launch.708/709 remain CLOSED.
+Preparation files cannot prove native result. No Windows/hook/console C access.
+No host child; build/xemu released, hardware ticket retained, automation paused.
+Console may be holding; actual screen pending. Original720p protected.
+
 #709 CLOSED: watched BLUE kernel picture then BLACK; next isolated native hold
 
 708 black initial sequence unknown. User requested fresh watched709; namespace

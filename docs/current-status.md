@@ -1,6 +1,6 @@
 # Current status and guide map
 
-Reviewed October 27, 2026 through native mode experiment709; latest successful physical native handoff remains703.
+Reviewed October 27, 2026 through native checkpoint710; the retained480p handoff is703 and the larger720p pre-transaction checkpoint is710.
 This page summarizes supported observations; individual reports retain their
 original failures and scope. For the exact active attempt and next engineering
 step, read [CONTINUATION](../outputs/engineering-notes/CONTINUATION.md) and
@@ -25,8 +25,11 @@ The [708 integrated native-mode experiment](../outputs/native-mode708/REPORT.md)
 passed its host checks, but produced black output. The [709 watched repeat](../outputs/native-mode709/REPORT.md)
 showed the initial blue kernel picture followed by black. Preparation records
 match, but the native failure phase remains unknown; neither run qualifies the
-mode change. Both were manually reset and collected. A pre-transaction held
-checkpoint is next.
+mode change. Both were manually reset and collected. The [710 pre-transaction checkpoint](../outputs/native-mode710/REPORT.md) passed
+fresh host checks and visibly held CYAN after native handoff/PCI/timer admission.
+It was manually reset and collected; preparation state matches709. It intentionally
+stops before video programming, so it cannot qualify a mode change or identify
+the exact failure in708/709. Next is the transaction baseline phase before blanking.
 
 ## Choose a guide
 
