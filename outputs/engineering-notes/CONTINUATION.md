@@ -1,3 +1,20 @@
+#718 launched once: optical bridge/payload status; photo pending
+
+717 ORANGE cause unknown.718 retains namespace-only transaction/kernel and adds
+13-row gray-backed bit display on admitted framebuffer status paths, never
+bridge_fault. Signature7180000d; bridge phase/checkpoint/return, payload phase/
+error, CR1b saved/target/readback/restored, attempt flags, wait status. No masking
+or target change.12 CPU(all closed),76 isolated416-bit renderer cases,186 full
+transaction/optical models,23 nxdk page,372 compiled ownership,131379 host pass.
+Bridge end0x558; payload5120 padded9916,17relocs/four absolute.
+
+Exact staged readback; one SITE accepted2026-10-27T07:19:02.166180+00:00. Asked
+SECOND bar/hold and requested photo of all13rows. NO RESET REQUESTED. Record/decode
+photo before reset; do not infer error from color. Read718/NEXT and optical-schema.
+Then explicit resetReady, collect ONCE/audit. No hook/host child; build/xemu
+released, hardware ticket retained; original720p protected; earlier runtimes
+CLOSED; automation paused; other work tabled. No repeat accepted launch.
+
 #717 CLOSED failed native attempt: ORANGE, exact check unknown
 
 User reported Orange; hold and visible blank/return not separately reported.

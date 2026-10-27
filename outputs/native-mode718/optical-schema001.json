@@ -1,0 +1,78 @@
+{
+  "signature": "7180000d",
+  "white": 1,
+  "black": 0,
+  "bit_order": "MSB left",
+  "rows": [
+    {
+      "row": 0,
+      "name": "signature",
+      "owned_offset": null
+    },
+    {
+      "row": 1,
+      "name": "bridge_phase",
+      "owned_offset": "0x880"
+    },
+    {
+      "row": 2,
+      "name": "bridge_checkpoint_or_refusal",
+      "owned_offset": "0x8d0"
+    },
+    {
+      "row": 3,
+      "name": "bridge_return",
+      "owned_offset": "0x8d4"
+    },
+    {
+      "row": 4,
+      "name": "payload_phase",
+      "owned_offset": "0x5100"
+    },
+    {
+      "row": 5,
+      "name": "payload_error",
+      "owned_offset": "0x5104"
+    },
+    {
+      "row": 6,
+      "name": "saved_CR1b",
+      "owned_offset": "0x51b8"
+    },
+    {
+      "row": 7,
+      "name": "target_CR1b",
+      "owned_offset": "0x51bc"
+    },
+    {
+      "row": 8,
+      "name": "after_write_CR1b",
+      "owned_offset": "0x51c0"
+    },
+    {
+      "row": 9,
+      "name": "restored_CR1b",
+      "owned_offset": "0x51c4"
+    },
+    {
+      "row": 10,
+      "name": "write_attempted",
+      "owned_offset": "0x51c8"
+    },
+    {
+      "row": 11,
+      "name": "restore_attempted",
+      "owned_offset": "0x51cc"
+    },
+    {
+      "row": 12,
+      "name": "wait_status",
+      "owned_offset": "0x51ac"
+    }
+  ],
+  "interpretation": [
+    "phase2: bridge refused, payload uncalled",
+    "phase4: call returned, bridge_return and payload_error meaningful; checkpoint5 is just last bridge gate",
+    "success0x718 only; raw failure code decoded without masking"
+  ]
+}

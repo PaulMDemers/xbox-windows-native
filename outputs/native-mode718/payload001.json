@@ -1,0 +1,122 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "space": {
+    "minimum_free_gib": 20.05,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c/xwn718",
+        "free_bytes": 68232294400
+      },
+      {
+        "free_bytes": 68232228864,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "sources": {
+    "transaction718.c": "cc6a3f2b97f4e4f1a80460b5042e2fc36625000234b4d487d6f6b6d74f199c91",
+    "transaction.h": "d7889b2f7ac353b679c4f2d8bb92e2b7b70ac757f9a60b0b9bf84fbd684b9ae9",
+    "encoder.c": "a580a8b49bde55a0b44ed26567702038faf6494c2f54a28042b734b824d1a74d",
+    "gpu_legacy.c": "3c7ab984867a856acdf3b838e896463ece89bca2c6c78f9c3ec3562d7147d000",
+    "gpu_types.h": "651ceea5ecef7c399534759595a98f43e2a55057d1ccf9c37712fca3b1f553bb",
+    "xcal_bus.c": "4936bb84d5e32f977eed97feb89366955b41ef6830bd3341ab60aaf8d1b2c7ba",
+    "xcal_bus.h": "091e4e75c41a7820cec6f7f8b0fb84f4c4c7688f130dbd0604354b5685bac559",
+    "xcal_table.h": "31a5fbe1db9650fa2e5a2518e7c6bf71bb2eb2c9320baeb38142d93ca763f998",
+    "delay_candidate.h": "1223cd84fc04ca66a342833c718aae76eda40165fa0de21066c40e8d5cf2c6ce",
+    "delay718.h": "d05d19eb2df8d76b778db41bd142994f9e509b6b5cdad0170a9a979b836471b6"
+  },
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "compile32": {
+    "command": [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-m32",
+      "-Os",
+      "-ffreestanding",
+      "-fno-pie",
+      "-fno-pic",
+      "-fno-stack-protector",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-nostdlib",
+      "-static",
+      "-no-pie",
+      "-Wl,-Ttext=0x100000,-e,native_transaction704,--build-id=none,--emit-relocs",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-mode718/transaction718.c",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-mode718/encoder.c",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-mode718/xcal_bus.c",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-mode718/gpu_legacy.c",
+      "-o",
+      "/mnt/c/xwn718/payload001/native.elf"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  "relocations": {
+    "command": [
+      "readelf",
+      "-rW",
+      "/mnt/c/xwn718/payload001/native.elf"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "20d11efbf25f800da66aab3a13b25dc216987dab44f9d06a97d5f636cbe52630",
+    "stderr": ""
+  },
+  "objcopy": {
+    "command": [
+      "objcopy",
+      "-O",
+      "binary",
+      "/mnt/c/xwn718/payload001/native.elf",
+      "/mnt/c/xwn718/payload001/native.bin"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  "symbols": {
+    "command": [
+      "nm",
+      "-n",
+      "/mnt/c/xwn718/payload001/native.elf"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "84037b42e1156648a517890265fd3d6bff3a37ec0a79841dcf19da5093c58ab0",
+    "stderr": ""
+  },
+  "disassembly": {
+    "command": [
+      "objdump",
+      "-d",
+      "/mnt/c/xwn718/payload001/native.elf"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "b85009bfdc2af28159396db1a5dc0d0222c5f461f51c52310ee33e4490cb2b35",
+    "stderr": ""
+  },
+  "unpadded_bytes": 5120,
+  "unpadded_sha256": "5a94a2bf461ef766f3d901d836fb28ca376feb1611fb184a96d426452858a68d",
+  "diagnostic_checkpoint": 1816,
+  "payload_extent_bytes": 9916,
+  "files": {
+    "compile32.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compile32.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "disassembly.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "disassembly.stdout": "b85009bfdc2af28159396db1a5dc0d0222c5f461f51c52310ee33e4490cb2b35",
+    "native.bin": "5a94a2bf461ef766f3d901d836fb28ca376feb1611fb184a96d426452858a68d",
+    "native.elf": "05f7f15cab7df8059759f8266b7cbc68a8b6097afd7dde149e691840465d2cf4",
+    "objcopy.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "objcopy.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "payload.bin": "d6de01fe964988fcd37ae4e1a09d297b812a4e5e127451815e73359e45fb4901",
+    "relocations.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "relocations.stdout": "20d11efbf25f800da66aab3a13b25dc216987dab44f9d06a97d5f636cbe52630",
+    "symbols.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "symbols.stdout": "84037b42e1156648a517890265fd3d6bff3a37ec0a79841dcf19da5093c58ab0"
+  },
+  "ended_utc": "2026-10-27T07:15:03.154821+00:00"
+}

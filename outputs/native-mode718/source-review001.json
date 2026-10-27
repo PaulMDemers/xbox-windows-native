@@ -1,0 +1,52 @@
+{
+  "utc": "2026-10-27T07:17:20.684135+00:00",
+  "scope": "instrumentation only relative to717; native transaction and kernel namespace-only",
+  "payload_unchanged_except_namespace": true,
+  "new_bridge_calls": [
+    "after final native status bar on normal return with stack/guard checks passed",
+    "after admitted framebuffer bridge_refuse status bar"
+  ],
+  "not_called": "bridge_fault before/after admission, including corrupted stack; no new framebuffer writes there",
+  "report_bounds": {
+    "framebuffer_bytes": 3686400,
+    "pitch": 5120,
+    "gray_panel": [
+      112,
+      104,
+      1168,
+      640
+    ],
+    "first_cell": [
+      128,
+      120
+    ],
+    "cell": [
+      20,
+      20
+    ],
+    "spacing": [
+      32,
+      40
+    ],
+    "rows": 13,
+    "bits": 32,
+    "MSB_left": true,
+    "white": 1,
+    "black": 0
+  },
+  "memory": "fixed header/scratch/result offsets; framebuffer admitted by inherited ownership/header gates; uses owned stack, pushal/pop restore registers; no I/O/GPU writes in renderer",
+  "source_files": {
+    "bridge.S": "9f7bd4b7db90d199da56b2fe6597e5dd327593296dd4ee5e46d78baab51fc51d",
+    "optical_oracle.py": "63736e3e2dcf7df78a245e1f4f6e4434633597a5953736a11d52e2080243d77e",
+    "optical_review.py": "1c4b1b2dad0e32cf78e893a4469a1d5f34ca55106d73dafd4c21fdde8961d122",
+    "integration.py": "72d06329cc821dd0658b7141931fde260f2d96ced4a24ac6417984658bf129fd",
+    "cpu.py": "6f5b3f199ed04083016a04e1d9d8f50fbe695f67f3fd6ebd0a49eb3ad5c1a3f5"
+  },
+  "limits": [
+    "instrumentation adds time after result, does not diagnose the closed717 retroactively",
+    "color alone remains ambiguous; decode bridge phase/refusal/return and payload fields",
+    "bridge refusal field remains5 after successful prechecks and is not an error when phase4",
+    "payload fields remain zero when no call occurred; wait_status zero is not completion in that case",
+    "early bridge_fault still has no safe report; no newly assumed framebuffer on refusal"
+  ]
+}
