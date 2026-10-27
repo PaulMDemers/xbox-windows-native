@@ -1,14 +1,19 @@
-# 737 launched: await observation/photo, then manual recovery
+# Next: matched native deferred-prefix diagnostic;737 CLOSED
 
-One accepted SITE at2026-10-27T21:00:08.964844+00:00. Never repeat it.
-User is watching and available to reset. Ask/report second bar color, holding
-or black/dashboard, and obtain full13-row photo before requesting power cycle.
-Decode raw bits independently of expected values using optical-schema001.json.
-A color alone does not establish native register values or cleanup success.
+737 closes the minimal native CPU-work comparison. Do not repeat it. Kernel733
+batch-prefix deferred checks rejectedCR1b05vs85 while native724 used interleaved
+checks; the native full safe-prefix deferred order is not directly measured.
+Prepare fresh738 with733's eleven MMIO/four CRTC writes followed by unchanged
+ordered full-width/full-byte checks, transplanted into the validated native
+handoff context. Stop beforeCR22/CR33 data writes, geometry or encoder programming.
+No added delay, CR1b sample block, mask, repair or validation waiver. Keep full
+saved-value cleanup separately from forward status and export the exact first
+mismatch plus actual native context in the optical report.
 
-After photo capture, ask user to power-cycle to UnleashX. Only after confirmed
-return create collection-ready001.json and run physical.py collect once; audit
-preparation/source/binary/stage/ownership plus native optical evidence separately.
-No hook exists. Last persisted handoff_armed is not proof of native completion.
-No Windows shutdown claim after manual reset. All736/prior runtimes CLOSED.
-No owned host process/VM. No masks, repair writes or full modeset promotion.
+Validate actual emitted instructions, failure/recovery access traces, relocated
+bridge integration, ownership and optical bytes before fresh E staging. This
+requires a held photo/reset after readiness; no post-handoff file API is supported.
+Routine kernel auto-return work remains authorized unattended. No738 exists yet.
+All737/prior runtimes CLOSED; no recollection, relaunch or parenting. Console at
+UnleashX after manual reset, no hook or owned host process/VM. Protected720p
+and ordinary launchers unchanged; no full-mode/Windows1.6 qualification.

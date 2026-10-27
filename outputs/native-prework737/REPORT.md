@@ -1,3 +1,31 @@
+# 737 CLOSED: first native read85 after CPU-only work
+
+User observed orange and a held report. All416 photo bits agreed across isolated
+cell detection, five sample positions, three thresholds and adjacent-row checks.
+Raw rows:7370000d,4,5,7378,793a7efe,30085,20085,850085,30085,
+4001003b,0,610,102200f. Private photo hash is in photo001.json.
+
+After4,093 register-only iterations, the first direct and reselected CR1b reads
+were both85, before saved6303 restoration. Work checksum793a7efe is independently
+recomputed. Actual native CR0/3/4:4001003b/0/610. Final6303/CR1b85; summary reports
+full cleanup, selectors,32 unchanged late samples and completed work. Orange
+is the unchanged full-byte forward predicate rejecting05 versus85, code7378.
+
+This shows that a preceding post-write read or630 restoration is unnecessary to
+obtain85 in this minimal native sequence. Compared with727's immediate05 reads,
+added CPU work changes the observed result. No exact delay threshold, bit7
+semantics, full-mode safety or root cause of708/709 is established. It is not a
+matched full-prefix comparison to735/736, and no mask or repair was introduced.
+
+After photo capture, user confirmed a manual power cycle. Nine preparation
+reports collected once with identical double-read; audit001 PASS. PCI/CRTC/
+sequencer/geometry/allocation plan match727. Last disk phase handoff_armed is
+preparation only; native values come from the photo. Manual power cycle is not
+normal Windows shutdown. No hook or owned process/VM; console dashboard.
+All737/prior runtimes CLOSED. Preserve packaging review failures below.
+
+---
+
 # 737 staged: native CPU work before the first CR1b read
 
 This compares against native test727: the same minimal630/CR1b sequence, with

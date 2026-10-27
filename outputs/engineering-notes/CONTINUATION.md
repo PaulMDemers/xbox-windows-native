@@ -1,3 +1,16 @@
+# 737 CLOSED: native first/reselected85 after CPU-only work
+
+Photo decoded all416bits independently; return7378, checksum793a7efe, first/
+reselected85 before630 restoration. Actual native CPU4001003b/0/610. Full
+cleanup/selectors and32 unchanged late samples reported. User manually reset;
+nine preparation files collected once and audit001 PASS, matching727 preparation.
+No native result written to disk; photo and kernel pre-arm context stay distinct.
+
+NEXT outputs/native-prework737/NEXT.md: prepare738 native safe-prefix deferred
+checks matched to kernel733 register order. No738 created yet; no mask/repair,
+CR22/CR33 write, full mode or driver change. Console dashboard, no hook/process/
+VM. All737/prior runtimes CLOSED. Original720p/launchers protected.
+
 # 737 LAUNCHED: awaiting held native report and photo
 
 One accepted SITE2026-10-27T21:00:08.964844+00:00, preparation27b7439d.
