@@ -1,3 +1,23 @@
+#727 CLOSED: minimal interaction reproduces CR1b05->85
+
+One accepted launch18:47:11UTC2026-10-27. User green and photo001 decode:
+7270000d,4,5,727,10102,30085,20085,50005,30085,30085,30085,0,1022007.
+Baseline6303/CR1b85; prewrite6302/CR1b85; direct05/indexed05 after oneCR1b05
+write;85 after6303 restoration/output/late.32 late pairs, zero changes.
+Two630 writes, oneunlock, oneCR1b write; final restoration/selectors pass.
+
+Other prefix writes are not required for this observed transition in727.
+Timing/context and bit7 semantics unresolved. No full-mode/Windows/GPU claim.
+User power-cycled; nine records collected once/double-read. Audit001 passed
+pins/photo/ownership/unrelated E entries; preparation exactly matches726.
+Last persisted phase handoff_armed; native data optical only. Manual reset
+is not normal Windows shutdown. No727 failures. Runtime727 CLOSED.
+
+Console UnleashX; no hook/process/VM. NEXT outputs/native-interaction727/NEXT.md:
+fresh matched kernel-context interaction comparator, unchanged register body
+and raw samples; preserve kernel CPU context. No new build/staging/launch.
+Never reopen727/prior runtimes. Protected720p and deferred work unchanged.
+
 #727 STAGED: minimal CR1b/630 interaction; readiness pending
 
 New727 reduces725 to6302, unlock1f57, oneCR1b05 write, saved6303 restoration,
