@@ -1,0 +1,57 @@
+{
+  "tool": "xwn-kernel-mode722",
+  "report_lifecycle": [
+    "start",
+    "0:mode_requested",
+    "0:mode_captured",
+    "0:visible_captured",
+    "1:mode_requested",
+    "1:mode_captured",
+    "1:visible_captured",
+    "2:mode_requested",
+    "2:mode_captured",
+    "2:visible_captured",
+    "restart_requested"
+  ],
+  "modes": [
+    [
+      1280,
+      720,
+      32,
+      60
+    ],
+    [
+      720,
+      480,
+      32,
+      60
+    ],
+    [
+      1280,
+      720,
+      32,
+      60
+    ]
+  ],
+  "colors": [
+    "blue",
+    "green",
+    "cyan"
+  ],
+  "hold_ms": 12000,
+  "capture_words": 88,
+  "capture_fields": {
+    "0..2": "entry,critical,restored EFLAGS",
+    "3..5": "CR0/3/4",
+    "6..8": "CRTC/SEQ/graphics selectors",
+    "9..11": "selectors after restore",
+    "12": "selector restore equality",
+    "13..42": "30 offset/value MMIO samples",
+    "43..73": "31 index/value CRTC samples",
+    "74..78": "SEQ0..4",
+    "79..87": "graphics0..8"
+  },
+  "capture_is_atomic_across_hardware": false,
+  "sdk_mode_calls_bounded": false,
+  "automatic_return": "firmware dashboard return, not Windows shutdown"
+}

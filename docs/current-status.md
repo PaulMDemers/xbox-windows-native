@@ -1,3 +1,30 @@
+# 722 CLOSED: exact720x480 kernel mode cycle passed
+
+One launch accepted at2026-10-27T16:40:07.389661+00:00. User observed blue720p,
+green720x480p, cyan720p and automatic dashboard return. Eleven fresh reports
+collected ONCE with identical double-read; stage pins/unrelated E entries exact.
+All framebuffer/flags/selector audits passed. No manual reset, startup hook,
+owned process or VM. Build/emulator leases released; hardware ticket retained.
+Console at UnleashX. No Windows launch or normal Windows shutdown claim.
+
+All6 captures have CR1b85/CR22fe. MMIO/CRTC samples unchanged over each12second
+hold. Register680630 is3/2/3;680880 remains21101100. Working720x480 matches704's
+11 common PRAMDAC values;6 of14 timing values differ,8 of22 masked CRTC geometry
+checks differ, and commonCR19/1b/22 differ. This is comparison evidence, not a
+causal diagnosis or permission to substitute/replay kernel state.704 expects
+CR1b05 in setup, so721 failed85 restoration does not directly explain708/709.
+
+Fresh build001,771 compiled capture model cases and3445 layout/pixel cases pass;
+linked nonrelocation instructions exact in PE/XBE. No new build/test failures.
+No native1.6 mode-switch/Windows qualification. CR22 remains untouched by the
+diagnostic (supported kernel mode API owns programming). Network/boot/1080i
+remain tabled. Full evidence: outputs/kernel-mode722/RESULTS.md and audit001.json.
+
+NEXT: outputs/kernel-mode722/NEXT.md. Isolate the first native setup rejection
+before undocumentedCR22 writes, with new bounded source/build/host validation;
+no gate masks or borrowed timings. Never rerun/recollect/parent closed722.
+Any future hardware run needs fresh stage verification and watcher availability.
+
 # 721 CLOSED: CR1b mismatch reproduced under Xbox kernel
 
 One launch accepted at2026-10-27T16:24:19.552163+00:00. User observed orange and

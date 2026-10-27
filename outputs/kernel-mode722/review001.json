@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "utc": "2026-10-27T16:39:00.839561+00:00",
+  "checks": {
+    "build001.json": "bd9bc38ce1a302969c3c1e532c15197962623c3e3549d7c81e9a3de00d0288b9",
+    "model001.json": "88f0c1cf8b007d208865a85118b619c14b24ac9d869403e7d6bd38cbd38cc338",
+    "layout-model001.json": "d1c38b899855f6256db691e769de1a67da644183e58abfc1ec88fb8471ea32e6",
+    "link-review001.json": "94ee47a5b5c575e31df1e638516554ee0a3a42683d7193c32403c9166631adb4",
+    "layout-link-review001.json": "f8ba4d315cd67e02c4f463b72d2273700312b940cb93948d2671be8b8ef236ae",
+    "source-review001.json": "4c9926f3c2f16811aa4d803b35a60cb9101e22dc84b17437ec4247ccdec303f3",
+    "schema001.json": "65fb1595e0f9b925fa15e0274a2616f66e10d2b5b133db8906489e964881abaf",
+    "lineage001.json": "214c8526d3f45aeca757743666d6b92876ed2d8f402869896c89399467a2fed7"
+  },
+  "capture_cases": 771,
+  "layout_pixel_cases": 3445,
+  "max_modeled_critical_instructions": 1823,
+  "limits": [
+    "MMIO/control-register reads modeled, not hardware semantics proof.",
+    "Kernel mode/file APIs not time bounded; observer/reset available before launch.",
+    "No direct CR1b or CR22 data writes by diagnostic; supported kernel mode API does program hardware.",
+    "No mode-switch fix, Windows1.6 qualification or acceleration claim."
+  ],
+  "source_review": [
+    "Every mode reacquires framebuffer; verifies allocation, scanout, pitch, format, dimensions and every page before drawing.",
+    "Pattern loops limited by fixed two supported dimensions; compiled layout/pixel bounded tests and exact link bytes passed.",
+    "Capture finite30+31+5+9 reads; 48 selector writes, restored exact; no GPU data writes or port I/O allowed in compiled model.",
+    "Incoming interrupt flags saved/restored; no kernel calls inside capture critical section.",
+    "Existing E drive mapping validated; exclusive report create, flush, readback; no startup hook.",
+    "Final complete marker only after all modes; audit will require all11reports and operator observations."
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "utc": "2026-10-27T16:39:00.839561+00:00",
+  "scope": "Review working kernel modes against closed704 predicates; no runtime parent or functional driver patch",
+  "sources": {
+    "C:\\nxdk\\lib\\hal\\video.c": "3441a2d933b475a05d4edb1ff02bcdbc160f76b970d847169c0c4ca7d261dc2f",
+    "outputs\\xcal-transaction704\\transaction003.c": "6336794d817f0b801db939b2611c1832736acad598e71437f9ca87bc797a345b",
+    "outputs\\xcal-transaction704\\build004.json": "2941d0182ff26d9b0367c69e9ac0d3a3f1cf08f80ec68e2e1f3ab10dda41746c",
+    "outputs\\native-mode708\\host_build.py": "8479ce77619194b7517ab1bdc373c4047fb2d82d92263157dac71e145d591500"
+  },
+  "findings": [
+    "704 check_setup expects CR1b05, not saved85;721 restoration mismatch is not a demonstrated explanation for708/709 black.",
+    "704 checks CR22ff; its semantics remain undocumented and this diagnostic does not write its data register.",
+    "Kernel720x480p mode88080801 exists for NTSC-M/J HDTV;480p flag excludes480i in SDK filter.",
+    "704 exact native target is720x480, not closed703 kernel640x480; differences must retain mode identity.",
+    "SDK replaces framebuffer on mode calls;722 reacquires pointer, allocation and physical mapping each stage.",
+    "SDK mode API owns normal programming; capture routine writes only saved/restored index selectors.",
+    "No VBlank install, port I/O, interrupt-controller access, native handoff, encoder writes or CR0/3/4 writes in capture code.",
+    "Three12second pictures; durable records immediately after mode setup and after each visible hold.",
+    "Capture refusal returns to dashboard and preserves partial reports; API hangs can require user reset.",
+    "No register state will be replayed as firmware programming."
+  ],
+  "comparison_targets": {
+    "704_CR1b": 5,
+    "704_CR22": 255,
+    "704_680880": 554701056,
+    "704_680630": 2,
+    "704_dimensions": [
+      720,
+      480
+    ],
+    "704_pitch": 2880
+  },
+  "hardware_conclusion": "pending physical capture; none from models"
+}
