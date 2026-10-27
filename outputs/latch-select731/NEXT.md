@@ -1,27 +1,21 @@
-# 731 prepared: GR04 selection / CR22 observation
+# 731 CLOSED: selector-dependent CR22 readout measured
 
-Fresh build,27 COFF probe cases,2353 layout cases and linked-byte checks passed.
-No CR22/CR33 data writes, no native handoff, timing/blanking/gate changes or Windows.
-At most GR04=0/1/2/3/saved; unknown high bits refused. Actual critical CPU context
-and43 raw result words recorded. Green denotes completed/restored measurement,
-not proof of any CR22 interpretation. Equal values are explicitly inconclusive.
+Read REPORT.md and audit001.json. Planes0/1/2/3 returned FE/E7/5A/FF, identical
+for first/direct/reselected reads. Saved data, selectors and flags restored.
+One launch, seven reports collected once, user green/automatic dashboard return.
+No hook, owned host process or VM; console at UnleashX. Never rerun/recollect or
+parent731 or earlier closed runtimes. Ordinary720p and launcher remain unchanged.
 
-Consult stage001.json: only completed=true admits launch after exact readback.
-One launch was accepted2026-10-27T19:44:57.582684+00:00 after watcher readiness.
-Await TOP bar/automatic-return observation. Do not launch again.
-Use one SITE request with20second reply bound via physical.py; never retry an
-accepted or uncertain request. Preserve launch receipt and advance continuation.
+Next is fresh host/source work: incorporate the observed plane-dependent CR22
+read contract into an independently reviewed model of the original phase4
+validation, preserving the original predicate and every failure. Use source-only
+reuse and a new owned attempt; do not rerun closed730/704 models. Separate
+measured read behavior from unknown CR22 write effects. Review whether the
+predicate can distinguish storage validation from selected-latch contents, and
+prepare a bounded first-failure capture plan before proposing another console
+launch. Earlier CR1b/MMIO failures may prevent reaching CR22 at all.
 
-After the automatic return, record user observation, authorize collection with
-collection-ready001.json, and collect once with physical.py collect. No hook is
-installed. audit_collection.py verifies the seven fresh records, source/binary/
-stage identities, ownership and unrelated directory entries. Preserve partial
-reports/refusals/transfer failures rather than synthesizing success. If held or
-black, obtain observation before a user power cycle; do not assume normal shutdown.
-
-Interpret first/direct/reselected reads per actual GR04 readback. Compare final
-saved-state checks and flags. Never treat a green picture as CR22 writable-storage
-proof, infer a pending-bit mask, replaceff withfe, or promote native mode switching.
-730/729 and all earlier runtimes stay CLOSED; no reexecution or recollection.
-No owned VM/process remains after build/model completion. Protected720p and all
-other deferred work unchanged.
+Do not replace FF with FE, select plane3 to force FF, infer a writable mask,
+waive validation, replay firmware state, or claim the cause of708/709. No native
+1.6 mode-switch/Windows/acceleration promotion. CR22 write semantics remain open;
+no further hardware test is staged or accepted.

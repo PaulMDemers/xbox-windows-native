@@ -64,3 +64,40 @@ The source scaffold is reused from729, never its closed binary or runtime.
 Private build/config remain C:/xwn731. Remote destination is the unique owned
 E:/Applications/XWNMode731. No startup hook, ordinary launcher change or access
 to console C. See stage001.json and NEXT.md for current admission state.
+
+## Physical result: CLOSED
+
+One accepted launch at 2026-10-27T19:44:57.582684+00:00. The user observed
+"Green and returned to dash" without a manual reset. Seven new records were
+collected once with double-read checks; audit001 passed source/build/stage pins,
+framebuffer ownership, report ordering and unchanged unrelated directory entries.
+
+| GR04 requested and read back | CR22 first | Direct reread | Reselected read |
+| --- | --- | --- | --- |
+| 0 | FE | FE | FE |
+| 1 | E7 | E7 | E7 |
+| 2 | 5A | 5A | 5A |
+| 3 | FF | FF | FF |
+
+All values are hexadecimal. Four distinct stable values establish GR04-dependent
+CR22 readout on this 1.6 in the measured kernel context. This is consistent with
+the selected-latch interpretation from the pinned references. The measurement
+does not establish CR22 write effects or generalize these bytes to other runs.
+A fixed FF readback predicate is therefore not a context-independent test of
+ordinary byte storage: plane selection changes the observed byte without a CR22
+write. This does not identify the first failure of closed native runs708/709.
+
+Status0731; four completed selections and five GR04 data writes including restore.
+GR04 restored0, CR22 FE, CR33 11, 680630 3 and CR1b85 exactly match their saved
+values. Both index selectors restored. Actual critical CR0=80010031, CR3=0000F000,
+CR4=00000610; incoming/critical/restored EFLAGS=246/46/246. These are actual probe
+readings, distinct from earlier preparation context. No CR22/CR33 data write,
+blanking, timing, native handoff or Windows execution occurred.
+
+The console is at UnleashX; no startup hook, owned host process or VM remains.
+Automatic firmware dashboard return is recorded, not normal Windows shutdown.
+No build/model/review/stage/launch/collection/audit failure occurred in731.
+One documentation lookup used the nonexistent repository-root STATUS.md; the
+actual outputs/engineering-notes/STATUS.md was then read. No evidence was lost.
+Do not relaunch, recollect or parent this closed runtime. All prior failures and
+closed runs remain preserved; no functional mode-switch validation was changed.

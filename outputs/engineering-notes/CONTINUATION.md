@@ -1,3 +1,17 @@
+# 731 CLOSED: CR22 readout depends on GR04 plane selection
+
+One accepted launch19:44:57UTC2026-10-27; user GREEN/automatic dashboard return.
+Seven reports collected once/double-read; audit001PASS. GR04 requested/read
+0/1/2/3; CR22 FE/E7/5A/FF respectively, matching first/direct/reselected reads.
+All saved data, both selectors and incoming flags restored. This is physical
+selector-dependent readout evidence, not CR22 write semantics or708/709 cause.
+No CR22 write, native handoff, Windows, timing/gate change or validation waiver.
+
+Console at UnleashX, no hook/owned process/VM. All731/prior runtimes CLOSED.
+NEXT outputs/latch-select731/NEXT.md: fresh host model/source analysis with
+measured read behavior and unchanged predicate, then bounded first-failure
+capture design. No new hardware test staged. Protected720p unchanged.
+
 # 731 LAUNCHED: await TOP bar and automatic return observation
 
 One accepted SITE at 2026-10-27T19:44:57.582684+00:00. Preparation433083f7.
