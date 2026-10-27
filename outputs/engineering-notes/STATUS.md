@@ -1,3 +1,18 @@
+# 732 CLOSED HOST-ONLY: measured read-plane model and first-failure recorder
+
+Fresh unchanged704 build and RAM-only instrumentation build;48 cases each.
+All48 differential checks preserve register/port traces and acceptance/rejection;
+first-mismatch captures independently checked. Measured731 FE/E7/5A/FF readouts
+combined with three hypothetical write policies; no physical write-semantics
+claim.9phase4 accepts/39rejects per build. Stop before geometry; earlier MMIO or
+CR1b failure still short-circuits CR22. No functional predicate/write change.
+
+NEXT outputs/latch-model732/NEXT.md and CAPTURE-PLAN.md: bounded visible failure
+reporting and explicit CR22/CR33 write/restoration admission review before any
+new hardware kit. No kit staged/launch requested. Console last seen UnleashX
+following731, no hook/owned process/VM. All96 model instances finished. Prior
+runtimes stay CLOSED; no native1.6/Windows/acceleration promotion.720p unchanged.
+
 # 731 CLOSED: CR22 readout depends on GR04 plane selection
 
 One accepted launch19:44:57UTC2026-10-27; user GREEN/automatic dashboard return.

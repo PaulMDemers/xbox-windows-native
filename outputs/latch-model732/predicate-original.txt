@@ -1,0 +1,7 @@
+static int check_setup(volatile uint8_t *g,int after_geometry)
+{
+ for(unsigned i=0;i<sizeof(setup)/sizeof(setup[0]);++i)if(r32(g,setup[i][0])!=setup[i][1])return 0;
+ for(unsigned i=0;i<sizeof(cs)/sizeof(cs[0]);++i)
+  if(cr(g,cs[i][0])!=(after_geometry&&cs[i][0]==0x19?0x30:cs[i][1]))return 0;
+ return 1;
+}
