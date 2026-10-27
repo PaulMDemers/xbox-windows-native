@@ -1,3 +1,23 @@
+# 741 STAGED: native preservation control awaits watcher
+
+Exact E stage/readback verified.57 ELF/12 CPU/53 integration/76 optical/27 nxdk
+page/372 nxdk ownership/131379 host ownership cases pass; all VMs closed.
+Exact13 ELF relocations/8 absolute sites validated and linked bytes checked.
+Retain host002 count rejection and host003 compile bounds failure plus sources.
+No console launch yet, no hook/process/VM. Console authenticated dashboard.
+NEXT outputs/native-preserve741/NEXT.md: current watch/photo/reset availability
+needed for intentional hold. Active physical002.py, audit_collection002.py.
+740 closed/pushed d27cce71; all earlier runtimes CLOSED. No full-mode qualification.
+
+# 741 PREPARING: native preservation counterpart
+
+740 closed/pushed d27cce71; all15 physical checks and cleanup pass. Fresh741
+ELF57 cases pass. Host002 correctly rejected changed relocation count; failed
+receipt and source snapshot retained. Fresh host003 binds exact13 entries/8
+absolute sites. Native handoff/ownership/optical validation pending. No stage
+or launch. Console dashboard; no hook/process/VM. All740/prior runtimes CLOSED.
+NEXT outputs/native-preserve741/NEXT.md; native hold needs watch/photo/reset.
+
 # 740 CLOSED: kernel preservation prefix passes all15 checks
 
 One accepted launch, seven reports collected once and auditPASS. CR1b85/85/85;

@@ -1,0 +1,244 @@
+{
+  "passed": false,
+  "physical_access": false,
+  "space": {
+    "minimum_free_gib": 20.15,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c/xwn741",
+        "free_bytes": 62502305792
+      },
+      {
+        "free_bytes": 62502305792,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "commands": [
+    [
+      "as",
+      "--32",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-preserve741/bridge.S",
+      "-o",
+      "/mnt/c/xwn741/host003/bridge.o"
+    ],
+    [
+      "ld",
+      "-m",
+      "elf_i386",
+      "-Ttext=0",
+      "--entry=bridge_start",
+      "/mnt/c/xwn741/host003/bridge.o",
+      "-o",
+      "/mnt/c/xwn741/host003/bridge.elf"
+    ],
+    [
+      "objcopy",
+      "-O",
+      "binary",
+      "--only-section=.text",
+      "/mnt/c/xwn741/host003/bridge.elf",
+      "/mnt/c/xwn741/host003/bridge.bin"
+    ],
+    [
+      "nm",
+      "-n",
+      "/mnt/c/xwn741/host003/bridge.elf"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-std=c11",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=address,undefined",
+      "-I",
+      "/mnt/c/xwn741/host003",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-preserve741/page002.c",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-preserve741/page_tool.c",
+      "-o",
+      "/mnt/c/xwn741/host003/page-tool"
+    ]
+  ],
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "payload_inputs": {
+    "/mnt/c/xwn741/payload001/payload.bin": "f855a9906e111964d5676cce046ce9dc7fc5e8b7290a5d95d5ce4483c6f4c331",
+    "/mnt/c/xwn741/payload001/symbols.stdout": "ccdc05621885034a39a01caac41e4648f94731af30b5f5abbcd5dae3376e27d5",
+    "/mnt/c/xwn741/payload001/relocations.stdout": "56ff42489365e7756f0caa56e26198ac5fb4a20d822295375c3978125b2b7718"
+  },
+  "bridge_symbols": {
+    "bridge_start": 0,
+    "bridge_flat": 288,
+    "bridge_post": 328,
+    "bridge_hold": 973,
+    "bridge_refuse": 976,
+    "bridge_bar": 1013,
+    "bridge_report": 1049,
+    "report_background": 1073,
+    "report_row": 1091,
+    "report_value": 1111,
+    "report_bit": 1142,
+    "report_color": 1156,
+    "report_square": 1163,
+    "bridge_fault": 1198,
+    "bridge_check": 1202,
+    "status_colors": 1248,
+    "pci_select": 1276,
+    "report_offsets": 1316,
+    "bridge_code_end": 1368,
+    "__bss_start": 4096,
+    "_edata": 4096,
+    "_end": 4096,
+    "bridge_end": 4096
+  },
+  "metadata": [
+    1368,
+    288,
+    1198,
+    328,
+    218
+  ],
+  "relocations": [
+    {
+      "offset": 299,
+      "type": "R_386_PC32",
+      "symbol": "bounds704",
+      "symbol_value": 1048576,
+      "value": 4294966993
+    },
+    {
+      "offset": 678,
+      "type": "R_386_PC32",
+      "symbol": "probe741",
+      "symbol_value": 1049285,
+      "value": 27
+    },
+    {
+      "offset": 1101,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1052672,
+      "value": 1052704
+    },
+    {
+      "offset": 1147,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1052672,
+      "value": 1052708
+    },
+    {
+      "offset": 1448,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1052672,
+      "value": 1052696
+    },
+    {
+      "offset": 1455,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1052672,
+      "value": 1052700
+    },
+    {
+      "offset": 1534,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1052672,
+      "value": 1052704
+    },
+    {
+      "offset": 1557,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1052672,
+      "value": 1052700
+    },
+    {
+      "offset": 1934,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1052672,
+      "value": 1052704
+    },
+    {
+      "offset": 1978,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1052672,
+      "value": 1052650
+    },
+    {
+      "offset": 4248,
+      "type": "R_386_PC32",
+      "symbol": ".text",
+      "symbol_value": 1048576,
+      "value": 4294963048
+    },
+    {
+      "offset": 4288,
+      "type": "R_386_PC32",
+      "symbol": ".text",
+      "symbol_value": 1048576,
+      "value": 4294963226
+    },
+    {
+      "offset": 4336,
+      "type": "R_386_PC32",
+      "symbol": ".text",
+      "symbol_value": 1048576,
+      "value": 4294963669
+    }
+  ],
+  "failure": "AssertionError((['/usr/bin/x86_64-linux-gnu-gcc-12', '-std=c11', '-O1', '-Wall', '-Wextra', '-Werror', '-fsanitize=address,undefined', '-I', '/mnt/c/xwn741/host003', '/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-preserve741/page002.c', '/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-preserve741/page_tool.c', '-o', '/mnt/c/xwn741/host003/page-tool'], 'In file included from /usr/include/string.h:580,\\n                 from /mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-preserve741/page_tool.c:5:\\nIn function \u2018memcpy\u2019,\\n    inlined from \u2018main\u2019 at /mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-preserve741/page_tool.c:15:26:\\n/usr/include/x86_64-linux-gnu/bits/string_fortified.h:29:10: error: \u2018__builtin_memcpy\u2019 forming offset [64, 79] is out of the bounds [0, 64] of object \u2018payload_reloc\u2019 with type \u2018const struct reloc705[8]\u2019 [-Werror=array-bounds]\\n   29 |   return __builtin___memcpy_chk (__dest, __src, __len,\\n      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\\n   30 |                                  __glibc_objsize0 (__dest));\\n      |                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~\\nIn file included from /mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-preserve741/page_tool.c:7:\\n/mnt/c/xwn741/host003/payload_meta.h: In function \u2018main\u2019:\\n/mnt/c/xwn741/host003/payload_meta.h:2:30: note: \u2018payload_reloc\u2019 declared here\\n    2 | static const struct reloc705 payload_reloc[8]={{0x44d,0x101020},{0x47b,0x101024},{0x5a8,0x101018},{0x5af,0x10101c},{0x5fe,0x101020},{0x615,0x10101c},{0x78e,0x101020},{0x7ba,0x100fea}};\\n      |                              ^~~~~~~~~~~~~\\ncc1: all warnings being treated as errors\\n'))",
+  "sources": {
+    "audit_collection.py": "c3696abcb2a2e172f5ed7722ec033ea19b5a13e660559258c01fc4db8df04892",
+    "bridge.S": "e0e1b81bceeda1f3472fbf3dfb45fe48772383e2a6321f8cad8e2c2797bba137",
+    "build003.py": "e4eb146a98ecebd1b40d5843ef5570a0a22958ff0f8fd18271bfc9d38c3e8010",
+    "cpu002.py": "48299c3b4301a20bcc43b31b2dc8b9eb82a4cc64b9c130519011865f5574acde",
+    "fixture.S": "d11caf865ed2badac2baf15205cb28f50f386ea08a393228cd4c73cd80b89c7d",
+    "host_build002.py": "679b33949f11a04aa2e744e251c9154385987ffed3677702e60e107c7909c7ee",
+    "host_build003.py": "74d45810b90ba7db39452a58e521843a0c4dc1b92fbfbcf9012f35bde2271549",
+    "integration003.py": "b2b28edd90a721f72f14291ee440f9e5fe066633ef9d207663b5c642175635c2",
+    "layout.c": "0e3cf05cb3cd7592df2f20bd1cb9e6cf5824a2c7d3ec306718c3c1e72841b3f4",
+    "layout.h": "391c84922a83b5df4c9d9261d1f32a5bd9060bd4bc1600073a1761ce76345a29",
+    "linked_review002.py": "29c80baf95f2930b7c5c27e0c00a965aa5989bc4f708b6178eac77c7e3560c6a",
+    "main.c": "e4e3ddb4f5a8b9f894310a8a8eacd68374354cb10e1cb2eef3bbe36adbe11f9e",
+    "model.py": "e9c7a0836e918ea87dfb2f4e9dccb118b4baed910f9378c6858cf99c3db774ee",
+    "optical_oracle.py": "db5a622b0d5a835ab98b47205c125bd1a54a68891955369655e3a007861de2b1",
+    "optical_review002.py": "9ade2e91d8ab4beed3f1cc2cb5ca9877042164c2c4466cf2502c8c6eeac5d0e2",
+    "page.h": "551dc00fcb7da9c05995ebf73a81ad15a4995bc2a65998bd5e107f9fb6e3ea8c",
+    "page002.c": "003d05b615634d620010b8e71d65103a3892a5b02bcc792e1325b00d7348eba4",
+    "page_review002.py": "c7ed731f9cbadced266e106ed3f150f7f9dfe28e7093e3a8742da8550116b77c",
+    "page_tool.c": "86dacaab5ff87c498ed965f1b3511e08390e2a025e976cb4075ab72de2c3cb30",
+    "payload_build.py": "4b7d873ecd395fdf2bf9d4756a0514f2bd0c09266721e3aa17ec935fd45c3785",
+    "physical.py": "86d74ccd2a23aa98c7d9224db59af36168ed4460f1eda0b6a6cc1d1c3e91d5ec",
+    "plan.c": "e7ed40b4ebd27841393250570b7f4dfac10cd0b1876650b80457886f12b8dd1b",
+    "plan.h": "abcdb396316e453c2f4326999435bcee89c76a0c28f7fbf17cb249351b113aeb",
+    "plan_review002.py": "ed9e0f671d77c24050ddeeec508f1f3aa5761d06be21b8e66d4993f41e90cb69",
+    "plan_test.py": "0752f3d22c597a8c7bd947570ed243168d9a7d6074f6b6fed2eb687b767f928a",
+    "probe.c": "1285b0680853d42a0aaba4a053a7a1edc960ae2ff5a47f13686a222e836b91d8",
+    "probe.h": "f87ca6fedc6c613fe973093daf10232dedd910102ea081fa68f5fb4a468d0a6d",
+    "relocate002.py": "b167ea327f8cc177adaf97155a6c90edbcf6f22a25bf110b625618278f80ba62",
+    "relocate003.py": "c9f0c37ddf56cc743317328736217c923d9a863c1dd2483ace5ef480972b9192",
+    "review_prepare.py": "4657825d3ffd8d3e33ebc762cc0e0af3c0ca3017dcab0c982235dd17ff96f301",
+    "source_review.py": "0807121920d1933850b0898bcfe2a73164a7c4d3d1d532d7dcb36c15c6fbd40e",
+    "transaction.h": "b86aa9df8a8edaa0d9ae47eba126a71e546078678021f7302479b988584482b5",
+    "transaction741.c": "7011470922f52d5d6d4bb341139b2509a16b5dcbc1cc2370b543968ee399385a"
+  },
+  "files": {
+    "bridge-symbols.txt": "bdf4ec689bbfca99335dceaa85b1aca4c9bcbdd7bcb86d0c2c40278df39a2649",
+    "bridge.bin": "5ea4f345a4ecfaee139f6f0eaa422eee3a43ac761bbd64f52b3ba74671c271ef",
+    "bridge.elf": "cad0f6875bea73fb7133c0c77d06b52311f43be85a38fff64391da53f4a60c38",
+    "bridge.o": "0914827f1b13851d0152e2729188d09a403bdb8f169883fdd9dfa8b8272526ba",
+    "build.log": "3eb4b7b127026db1d32551103b2ab4fe36d8e9caae65e5f964007621621b9a40",
+    "payload.bin": "f855a9906e111964d5676cce046ce9dc7fc5e8b7290a5d95d5ce4483c6f4c331",
+    "payload_meta.h": "23724ba9d4881ac1d12384d83667a13e717f5692209bb010a6af5ece363cf872"
+  },
+  "ended_utc": "2026-10-27T21:43:42.575604+00:00"
+}
