@@ -1,3 +1,16 @@
+# 734 CLOSED: CR1b changes05to85 inside direct-read block before cleanup
+
+One accepted launch20:29:41UTC2026-10-27; user ORANGE/automatic dashboard return.
+Seven files collected once/double-read; audit001 and analysis001 PASS. Direct
+reads1..8=05,9..16=85; all16 reselected reads85.630 snapshots both2. No selector
+write/other GPU access occurs within the direct block. Forward deferred CR1b
+check rejects05vs85; all20 cleanup comparisons, selectors and flags restore.
+
+NEXT outputs/cr1b-read734/NEXT.md. Changing readback now measured before any
+cleanup or reselection; bit7 meaning/read-side-effects/time cause remain unknown.
+No guessed mask/extra write/full-mode promotion. Console UnleashX, no hook or
+owned process/VM. All734/prior runtimes CLOSED. Protected720p unchanged.
+
 # 734 LAUNCHED: await top-bar and automatic-return observation
 
 One accepted SITE at2026-10-27T20:29:41.928232+00:00. Preparation65d4d719.

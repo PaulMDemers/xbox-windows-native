@@ -1,13 +1,20 @@
-# 734 LAUNCHED: await observation, then one collection
+# 734 CLOSED: direct readback changes05 to85 without reselection/cleanup
 
-One accepted launch20:29:41UTC2026-10-27; preparation65d4d719. User confirmed
-1.6 UnleashX/HDMI and watch/reset. Never retry this accepted launch. No hook.
-Record top-bar color, automatic return/manual reset; if held/black preserve the
-observation before recovery. Then collection-ready001, one physical.py collect,
-and audit_collection.py. Keep failures, do not overwrite/recollect.
+Read REPORT.md, audit001.json and analysis001.json. First8 direct samples05,
+next8 direct85, all16 reselected85. Both630 snapshots2. Forward deferred CR1b
+check expected05/observed85; full-byte cleanup mask0, selectors/flags restored.
+User ORANGE/automatic dashboard. Seven reports collected once and audited.
+No hook/owned process/VM. Console at UnleashX. Never rerun/recollect/parent734.
 
-Read REPORT.md and schema001.json.112words; last36 contain counts, two630reads,
-16 direct then16 reselected CR1b samples. This fixed read order does not prove
-elapsed-time or selector causation. Forward full-byte rejection and cleanup are
-separate. No CR22/CR33 writes or native full-mode replay. No owned host process/VM.
-All733 and older runtimes CLOSED. Protected720p/ordinary launchers unchanged.
+Next: use this measured changing-readback evidence in the CR1b contract review.
+A delayed full-byte echo is not a stable programming verification in this run,
+but bit7's meaning remains unknown. Do not invent a writable mask or clear it.
+If primary documentation cannot establish it, design a distinct bounded control
+that separates read count from intervening CPU-only work with the SAME single05
+write and retained full-byte rejection. Use a fresh ID, host validation, exact
+build/stage/readback and watcher readiness. Do not repeat734 unchanged. Such a
+control would bracket dependencies, not automatically prove elapsed-time causes.
+
+CR22 selected-plane read behavior and CR22/CR33 write effects remain separate.
+No full-mode replay/native handoff/Windows1.6 qualification is admitted by734.
+Keep protected720p and ordinary launchers unchanged. All earlier runtimes CLOSED.

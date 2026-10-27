@@ -1,7 +1,24 @@
-# 734: CR1b observations before cleanup
+# 734 CLOSED: CR1b readback changes05 to85 before cleanup
 
-Prepared after physical733's full-byte rejection: expected05, observed85,
-with680630 still2 and successful cleanup. No734 physical result yet.
+One accepted launch20:29:41UTC2026-10-27. User observed ORANGE and automatic
+UnleashX return. Seven reports collected once with double-read verification;
+audit001 and analysis001 PASS. No manual reset, hook or owned host process/VM.
+
+Direct reads1..8 returned05; reads9..16 returned85. All16 later reselected reads
+returned85. The two630 snapshots were2. No selector write or other GPU access
+occurs within the direct block. The sequence includes CPU/RAM loop operations;
+it is not a cycle counter or a proof of read-triggered behavior.
+
+All15 writes and15 deferred checks completed; the first14 checks passed, the
+last CR1b check rejected05 versus85 (status7348). Cleanup mask0; all20 saved
+comparisons, three selectors and flags restored. Prefix results/context match
+733 exactly after excluding attempt-specific status IDs and appended samples.
+Actual critical CR0/3/4:8001003b/f000/610; flags246/46/246.
+
+This demonstrates changing readback before reselection or cleanup. It excludes
+needing630 restoration or selector reselection for this observed change; it
+establishes neither bit7 meaning nor a safe mask. It does not identify708/709's
+first native failure. No functional driver change is made.
 
 ## Source/access review
 
@@ -61,8 +78,8 @@ unchanged; no hook. This is not Windows1.6 or acceleration qualification.
 
 ## Physical lifecycle
 
-Stage001 completed with exact remote readback; watcher readiness is pending. No
-launch requested. Unique target
+Stage001 completed with exact remote readback. Readiness, one accepted launch,
+observation and collection are recorded separately. Unique target
 /E/Applications/XWNMode734; reports/E/xwn-mode734-*.json. Console C off limits.
 One accepted/uncertain SITE request is never retried. Expected status display
 15seconds then automatic dashboard return. Green means forward and cleanup
