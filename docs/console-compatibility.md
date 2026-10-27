@@ -1,8 +1,3 @@
-Native timer699 is now closed: photographed1705 ticks across87 reads, result1;
-nominal505.185us at the kernel-reported rate. No independent frequency calibration.
-Manual reset and eight-record collection passed. Native encoder programming and
-Windows1.6 remain unqualified; full checked480p sequence review is next.
-
 # Console compatibility and the incoming 1.6
 
 The working Windows package is qualified on the original development Xbox.
@@ -40,8 +35,10 @@ native cable read. [697](../outputs/native-xcal697/REPORT.md) optically captured
 four-byte encoder response (raw2, length4, final status0). These use a minimal
 checked handoff and inherited kernel scanout; they do not initialize a native mode
 or qualify Windows1.6. [698](../outputs/xcal-protocol698/REPORT.md) tightens status
-handling in a host-only prototype. [699](../outputs/native-timer699/REPORT.md) is
-launched once for a watched native timer observation; its result is pending.
+handling in a host-only prototype. [699](../outputs/native-timer699/REPORT.md) captured a successful native bounded
+wait. [700](../outputs/xcal-sequence700/REPORT.md) adds linked encoder failure
+tests and GPU-state review. [701](../outputs/native-gpu701/REPORT.md) is staged
+for a read-only native GPU snapshot; current watch/reset confirmation is pending.
 See [current status](current-status.md).
 
 ## First additional-console inventory
@@ -108,8 +105,8 @@ starting points, not proof the shipped profile works with those encoders.
 2. Group the reports by actual encoder/RAM/boot differences. For the incoming1.6,
    kernel composite682 and HDMI720p683 baselines are complete, and686 adds a
    positive Xcalibur-address response. Native checkpoint/read evidence now extends
-   through697; follow [699 NEXT](../outputs/native-timer699/NEXT.md) for the staged
-   timer prerequisite, then qualify a separate native Xcalibur480p pattern before
+   through699; follow [701 NEXT](../outputs/native-gpu701/NEXT.md) for the staged
+   read-only GPU context capture, then qualify a separate native Xcalibur480p pattern before
    Windows. Treat RAM upgrades separately.
 3. For a new profile, review timing, color format, stride, framebuffer extent,
    hidden/reserved memory and handoff consistency as one change. Validate pure

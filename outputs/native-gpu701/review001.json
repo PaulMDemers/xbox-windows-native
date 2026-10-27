@@ -1,0 +1,68 @@
+{
+  "passed": true,
+  "utc": "2026-10-27T03:21:37.025197+00:00",
+  "scope": "PCI-admitted read-only native GPU snapshot; kernel prepares720p, native does not reprogram it",
+  "xbe_sha256": "a9b0a329da94296a4a001f6c5cfa7a0d704fc3fccea3a7fb1d233df42a73727f",
+  "template_sha256": "3f41bee182ffd61c81e2c4c19fb3224a54e116827d84f52bcc1c224f6bf802e0",
+  "unchanged_after_namespace": {
+    "layout.c": true,
+    "layout.h": true,
+    "plan.c": true,
+    "plan.h": true,
+    "page.c": true,
+    "page.h": true,
+    "Makefile": true,
+    "fixture002.S": true,
+    "link.ld": true
+  },
+  "initial_native_transition_unchanged": true,
+  "code_bytes": 1019,
+  "layout": {
+    "gdt": 1216,
+    "data_start": 1440,
+    "data_end": 1488,
+    "idt": 1536,
+    "stack": 3584
+  },
+  "native_pci_precondition": {
+    "bdf": "01:00.0",
+    "id": "02a010de",
+    "memory_enable": true,
+    "bar0": [
+      "fd000000",
+      "fd000008"
+    ]
+  },
+  "native_mmio_reads": [
+    "fd600804",
+    "fd680508",
+    "fd68050c",
+    "fd680880",
+    "fd6013d4",
+    "fd6013d5",
+    "fd600800",
+    "fd100200"
+  ],
+  "crtc_indices": [
+    19,
+    25,
+    40,
+    57
+  ],
+  "allowed_native_control_writes": "CF8 and CRTC index selection only, both restored; no data/configuration/SMBus/clock/interrupt-status writes",
+  "models": {
+    "linked_reads_pixels": 18,
+    "full_cpu": 10,
+    "page": 9,
+    "plan": 19
+  },
+  "kernel_snapshot": "pre-transfer register snapshot and pre-file-write CPU are distinct from native optical rows and final RAM-only CPU shadow",
+  "scope_limits": [
+    "No native physical GPU result yet",
+    "Kernel mode API is not independently bounded",
+    "Reads do not qualify mode programming or clocks at another resolution",
+    "Native indexed reads temporarily change index selector, not CRTC data"
+  ],
+  "owned_host_processes": [],
+  "all_cpu_vms_closed": true
+}

@@ -1,8 +1,3 @@
-Native timer699 is now closed: photographed1705 ticks across87 reads, result1;
-nominal505.185us at the kernel-reported rate. No independent frequency calibration.
-Manual reset and eight-record collection passed. Native encoder programming and
-Windows1.6 remain unqualified; full checked480p sequence review is next.
-
 # Current status and guide map
 
 Reviewed October 26, 2026 against the retained evidence through native block-read697, host protocol698 and active timer699 (UTC October27).
@@ -35,7 +30,7 @@ step, read [CONTINUATION](../outputs/engineering-notes/CONTINUATION.md) and
 | RCT Deluxe | Windowed title/park/building, manual save/load and arrow-key/right-button scrolling on the development console; [626](../outputs/rct626/REPORT.md) confirms the later interactive session and cleanup | Window-edge scrolling stays still; fullscreen unqualified; sound deferred; no Xbox game FPS measurement |
 | Software D3D7 | Scoped offscreen and windowed RGB-renderer samples pass through combined scenes; sustained synthetic scene has Xbox clock checks | Exact ideal alpha endpoints remain failed; perspective interpolation has PC results only; synthetic timings are not game FPS |
 | Native GPU acceleration | No accelerated driver installed | Game rendering, a module name or software sample success is not NV2A acceleration |
-| Other Xbox revisions | User-identified1.6: kernel composite480i/HDMI720p baselines pass; minimal checked native handoff and [four-byte encoder read697](../outputs/native-xcal697/REPORT.md) observed | Native mode initialization and Windows remain unqualified. [699 timer prerequisite](../outputs/native-timer699/REPORT.md) launched; observation pending;689 full-startup failure phase remains unknown; this unit's GPU field differs from inventory630 |
+| Other Xbox revisions | User-identified1.6: kernel composite480i/HDMI720p baselines pass; minimal checked native handoff and [four-byte encoder read697](../outputs/native-xcal697/REPORT.md) observed | Native mode initialization and Windows remain unqualified. [699 timer observation](../outputs/native-timer699/REPORT.md) passed; [701 GPU snapshot](../outputs/native-gpu701/REPORT.md) staged, awaiting watched test;689 full-startup failure phase remains unknown; this unit's GPU field differs from inventory630 |
 | Packaging | Hardware-info utility and private prepared E/720p Windows ZIP recipes and [delivery587](../outputs/delivery587/README.md) | RCT excluded; private Windows assets are not public downloads; clean physical provisioning remains incomplete |
 | Installation/storage | Component builds and scoped prepared-image/emulator restore checks pass | Six clean-media FATX long-name exclusions, crypto failures and strict event failures remain; selected-file audits are not whole-volume health checks |
 

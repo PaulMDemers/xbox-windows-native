@@ -1,3 +1,31 @@
+#701 read-only GPU snapshot staged; current watch/reset reply pending
+
+700 host work is closed:608 linked encoder cases and256 rebuilt GPU geometry
+cases passed. Review exposed inherited CRTC/interlace and clock/scanout state;
+legacy framebuffer and interrupt helpers are excluded from new programming.
+
+701 keeps the checked720p kernel framebuffer/native transition and reads GPU
+PCI, clock/selection, output, packedCRTC13/19/28/39, scanout and PFB state. No
+native mode/encoder programming.18 linked I/O/pixel cases,10 full CPU fixtures,
+9 page and19 policy cases pass. All host processes/VMs closed. Exact staging
+readback passed at E:/Applications/XWNNative701; NO launch yet. Current user
+watch/reset availability requested. Read native-gpu701/NEXT.md. No startup hook.
+
+Original720p/ordinary launcher unchanged. Hardware ticket retained; build/emulator
+leases released, automation paused. Do not reopen closed699 or700 fixtures.
+
+#700 CLOSED: linked encoder component and GPU inheritance review
+
+608 encoder-only linked cases and256 rebuilt legacy GPU cases pass. No hardware
+access. Full480p initializer remains unqualified: clock/initial-state contract,
+interlace, owned framebuffer and fail-safe output sequencing remain open.
+Legacy tail helper uses inconsistent framebuffer offsets and writes interrupt
+status; exclude it. See xcal-sequence700/REPORT.md and NEXT.md.
+
+Console last confirmed at dashboard after699. No hook or owned host process.
+Original720p unchanged; networking/1080i/boot work tabled. Next: prepare narrowly
+scoped read-only native GPU context, distinct from pre-transfer kernel snapshot.
+
 #699 CLOSED: native bounded timer wait observed on1.6
 
 Photo independently decodes first FEB2F2E5, last FEB2F98E, elapsed1705 ticks,
