@@ -1,10 +1,11 @@
-# 735 STAGED: admitted unattended self-reporting control
+# 735 CLOSED: change after one read and bounded CPU-only work
 
-Source/review/build/stage hashes verified;60 execution and2353layout cases.
-User authorizes unattended auto-return runs until input is needed. Do not ask
-watcher permission again. One SITE then bounded dashboard check, collect once,
-audit. No hook. Unexpected offline/hold: preserve state and ask for reset.
+Read audit001/analysis001. First read05 then4093 register-only iterations;
+second and remaining reads85. Full-byte rejection retained; cleanup mask0.
+Seven new files collected once. No hook/process/VM; dashboard reachable.
 
-Compare direct first/second samples around4093 register-only iterations with734.
-Do not infer absolute timing, bit7 semantics or validation-mask safety. No
-functional mode/encoder/driver changes. All734/prior runtimes CLOSED.
+Next distinct control736: same CPU-only work BEFORE the first post-write read.
+No additional device data writes, mask or predicate change. Fresh source/build,
+actualCOFF tests and exact stage/readback; user authorizes unattended automatic
+return without watcher reapproval. Bound return wait and stop if offline.
+Do not infer bit7 semantics from elapsed work or NV3 labels.735/prior CLOSED.

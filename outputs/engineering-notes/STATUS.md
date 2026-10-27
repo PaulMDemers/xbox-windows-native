@@ -1,3 +1,24 @@
+# 735 CLOSED: second read85 after one05read and CPU-only work
+
+Unattended authorized launch20:42:43UTC; seven files collected once/auditPASS.
+First direct05,4093 register-only iterations, remaining15direct/all16indexed85.
+630 snapshots2; deferred CR1b05vs85 rejection; full cleanup/selectors/flags pass.
+Read-count-eight is not necessary. First-read-trigger versus independent change
+still open. Initial reachability timeout retained, second succeeded. Dashboard
+return inferred from durable firmware-return request and FTP, not screen sight.
+
+NEXT outputs/cr1b-work735/NEXT.md:736 moves work before first read. No hook or
+owned process/VM. All735/prior CLOSED; no masks or driver/full-mode promotion.
+
+# 735 LAUNCHED: bounded unattended CPU-work control
+
+One accepted SITE20:42:43UTC2026-10-27, preparationee547175. No hook. User
+explicitly authorized auto-return self-reporting tests without watcher input.
+Await bounded dashboard availability, then collect once/audit new reports.
+Never retry accepted/uncertain launch. If offline beyond180seconds preserve
+state and ask for recovery. No owned VM; host controller only while waiting.
+NEXT outputs/cr1b-work735/NEXT.md. All734/prior runtimes CLOSED.
+
 # 735 STAGED: CPU-only work after first CR1b read; unattended authorized
 
 4093 fixed register-only iterations between direct reads1and2; unchanged data
