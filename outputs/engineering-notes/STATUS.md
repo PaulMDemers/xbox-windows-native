@@ -1,3 +1,14 @@
+#729 LAUNCHED: awaiting TOP bar and automatic return observation
+
+One accepted SITE2026-10-27T19:10:45.887391+00:00 after confirmed watch/reset
+readiness and exact staged/local verification. Preparation commit20d33948.
+Do not retry. Await user TOP bar color and dashboard return; then record
+observation/collection-ready, collect ONCE and audit125rawwords. If black/held,
+preserve observation before requesting reset. No hook/owned process/VM.
+
+NEXT outputs/kernel-samples729/NEXT.md.728/prior runtimes CLOSED. No Windows
+or native modesetting, no promotion from accepted launch. Protected720p intact.
+
 #729 STAGED: blank/gate/sequencer boundary samples
 
 Fresh729 preserves728 data writes/CPUguard and adds32full630/CR1b pairs while

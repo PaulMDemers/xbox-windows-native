@@ -1,17 +1,13 @@
-#729 STAGED; ready to launch
+#729 LAUNCHED; observation pending
 
-Fresh E stage/readback passed. No launch. User watch/reset readiness confirmed.
-ready001.json recorded. Send ONE physical.py launch,20secondSITE.
-Never retry accepted/uncertain launch. Ask TOP bar color and automatic return.
-After confirmed dashboard, record observation/collection-ready; collect once,
-audit125words. If held/black, preserve observation before asking for reset.
+Single accepted SITE19:10:45UTC2026-10-27. No retry. User watching; await TOP
+bar and automatic return. After confirmed dashboard, record observation001
+and collection-ready001, physical.py collect ONCE, then audit_collection.py.
+If held/black, record first, then ask for reset. Seven reports expected.
+Green729; orange7295/7298; red other; magenta persistence error.
 
-Expected green729 fullbaseline/selectors, orange7295/7298, red other, magenta
-post-probe persistence failure. Seven exclusive E reports.32blank pairs before
-output restoration, aftergate4 pair/SEQ1 beforeSEQrestore, existinglate samples.
-First sampled change after a write is not causality proof; added reads alter timing.
-
-39 compiled-model and2353 layout cases passed; linked main/probe/layout bytes
-verified. Sources frozen, new E path /E/Applications/XWNMode729 exact. No729
-failed build/test/stage. No hook/owned process/VM. Console UnleashX. Protected
-720p unchanged.728/prior runtimes CLOSED; never reopen/recollect/parent.
+125rawwords: first54retain728 layout;54..85blank630,86..117blankCR1b,
+118..121blank count/changes/min/max,122..124aftergate630/CR1b/SEQ1 beforeSEQrestore.
+Extra reads change timing. No causal inference merely from a sampled boundary.
+No hook/owned hostprocess/VM. Preparation20d33948.728/prior CLOSED; protected
+720p unchanged. No fullmode/Windows claim.
