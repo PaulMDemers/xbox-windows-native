@@ -1,3 +1,16 @@
+# 733 LAUNCHED: await TOP bar and automatic-return observation
+
+One accepted SITE at2026-10-27T20:06:58.712475+00:00. Preparation7d1faf9c.
+User confirmed1.6 UnleashX/HDMI and watch/reset readiness. Staged/local bytes
+verified immediately before request. Never retry accepted/uncertain launch.
+Await TOP bar color and automatic return; no hook installed. Record observation
+and collection-ready before one collection, then audit76words. If black/held,
+preserve observation before reset. Forward_status and cleanup_mask are separate.
+
+NEXT outputs/batch-prefix733/NEXT.md. No owned host process/VM. Console state
+awaits observation; accepted launch is not a success result. No native handoff,
+CR22/CR33 data write or full-mode claim. Closed731/732/prior runtimes untouched.
+
 # 733 STAGED: batched setup prefix, no launch requested
 
 Fresh nxdk build,55 actualCOFF cases,2353layout cases,8 schema negatives and
