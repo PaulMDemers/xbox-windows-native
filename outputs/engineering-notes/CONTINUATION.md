@@ -1,3 +1,51 @@
+# 695 CLOSED: native PCI/status read photographed, recovered and collected
+
+Read outputs/native-status695/analysis001.json, REPORT.md and NEXT.md.
+Both bars photographed GREEN. Four optical rows independently decode01B410DE,
+00B00001,0000C001,00000000 at three thresholds: expected PCI identity, IO enabled,
+exact SMBus BAR and zero entry status after native transition. No bus transaction
+or encoder initialization attempted; no Windows1.6 qualification or689 cause claim.
+
+User manually power-cycled and confirmed dashboard. Eight reports each twice read
+matched; independent local hashes verified. Final persisted phase handoff_armed;
+allocation and both4096-byte copies passed. Staged files and unrelated E/apps
+entries unchanged. Persisted CPU is pre-file-write; native values are optical,
+not a recovered register dump. No normal Windows shutdown claimed. Incoming1.6
+at HDMI dashboard; no hook or owned host process. Hardware ticket retained;
+build/emulator leases released, automation paused. Ordinary launcher unchanged.
+
+All695 physical/host runs CLOSED; no rerun/recollection. Ten CPU fixtures,16 IO
+models,9 page-builder and19 policy cases passed. Preserve photo001 failed screen-
+corner projection and successful independent component decoder photo002; private
+photo not committed. Next: fresh single bounded native byte-read with visible
+phase/outcome and strict entry/owned-status gates; prove layout and actual code
+in new models before hardware. No next candidate built or staged. Preserve all
+prior failures; networking679,1080i and historical boot intermittency tabled.
+
+# 695 native PCI/status read GREEN; optical status zero, recovery pending
+
+Read outputs/native-status695/REPORT.md and NEXT.md first. One launch accepted
+2026-10-27T01:47:14.635499Z. User reported green and supplied a photo showing
+both bars green. Independent cell decoding at three thresholds yields PCI ID
+01B410DE, command/status00B00001, BAR0000C001, entry status00000000. This supports
+native PCI visibility and idle/clean entry status after the checked transition.
+No bus transaction, encoder initialization or Windows1.6 qualification yet.
+
+Manual power-cycle/dashboard confirmation requested; await reply then collect695
+once. No automatic return or normal Windows shutdown claimed. Native raw values
+are photo/RAM evidence, not a persisted register dump. Pre-transfer files pending.
+No new launch. No hook or owned host process; hardware ticket retained, build/
+emulator leases released, automation paused. Ordinary launcher/original720p unchanged.
+
+All ten fresh695 CPU fixtures pass and are closed;16 linked-byte IO models,
+9 page-builder and19 allocation-policy cases pass. The added routine saves/restores
+CF8 and conditionally reads C000 once; no device configuration/status writes.
+Preserve photo001 failed screen-corner calibration; photo002 separate component
+method passes without expected register values. Photo stays private. Preserve all
+closed694/earlier failures; never rerun/recollect. Next after closure: fresh bounded
+native byte-read with visible phase/result, strict entry/owned-status gates and
+new host tests. No next candidate built. Networking679 and1080i remain tabled.
+
 # 694 CLOSED: watched native green checkpoint, recovered and collected
 
 Read outputs/native-checkpoint694/analysis001.json, REPORT.md and NEXT.md.

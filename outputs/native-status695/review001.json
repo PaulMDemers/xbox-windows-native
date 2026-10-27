@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "utc": "2026-10-27T01:46:12.797118+00:00",
+  "scope": "Native PCI and SMBus entry-status read; no bus transaction; separate persistent framebuffer result",
+  "compiled_template": "2c947f4618dd342aa51ae3e2ed231e377f01010f28f37722decd9047e81403a5",
+  "code_bytes": 855,
+  "transition_source_through_green_unchanged_after_namespace": true,
+  "kernel_allocation_and_page_builder_unchanged_after_namespace": true,
+  "new_data_interval": [
+    1440,
+    1464
+  ],
+  "owned_stack_bytes_used_by_added_probe_max": 8,
+  "pci": "Read and retain CF8, select/read 0:1.1 offsets00/04/14, restore CF8 before all result branches. No CFC/device configuration writes.",
+  "smbus": "One16-bit read atC000 only after ID01b410de, commandIOenable, BARc001 checks. Busy0800 and terminal0036 remain refusal gates. No status/controller/SMC/encoder writes or transactions. Unread status sentinelffffffff.",
+  "display": "Green handoff header remains at8,8..1272,80. Independent result bar at8,96..1272,160. Four MSB-left32-bit rows atx128,y200+64r,24x32cells with32pixel pitch. White1/black0. Rows PCI ID, command/status, BAR, entry status.",
+  "results": {
+    "1": "green: no known busy/terminal bit",
+    "2": "red: PCI identity mismatch",
+    "3": "cyan: IO disabled",
+    "4": "yellow: BAR mismatch",
+    "5": "orange: busy (takes precedence over terminal)",
+    "6": "magenta: pending terminal bits"
+  },
+  "models": {
+    "cpu_fixtures": 10,
+    "io_states": 16,
+    "page_builder": 9,
+    "allocation_policy": 19
+  },
+  "limits": [
+    "CPU fixtures use PC PCI and reach the expected PCI identity refusal, not a simulated Xbox device",
+    "Unicorn IO uses explicit values, not hardware; exact event sequence and complete framebuffer independently checked",
+    "No native Xcalibur initialization, transaction success or Windows qualification",
+    "Persisted CPU sample stays pre-file-write; native raw state only visible panels/RAM and lost on reset"
+  ],
+  "pins": {
+    "main.c": "b4d368ccfdc0602e943d78bbad3e958633da2b169e82a432eb58592e5b871636",
+    "stub.S": "59eec460e34433b56653409bdc5074a49b67e5fab9a870195a02207602621b24",
+    "page.c": "3b63d6ef8ab59731b24f842baae2de4be5683faab211f9ad3aec6e9176ad9474",
+    "plan.c": "558682ae8273b713d0c6cf68f5bb784ad294b2e40bca166d12e4cfb9612c6e5c",
+    "physical.py": "0ccceffbd3b980ccec1f34c6ce667850fe6c149cdb69181953e8a1b52bf27a52",
+    "oracle.py": "870764b1f1ade6e47b7ec009c3ee9a99a55137c13713574e6825c3bb7e97093f",
+    "io_review.py": "521c5ee4e58193633dbef08481550884f985c5fab1cbbaecd4266b2e38d87f6e",
+    "cpu.py": "965fa75350e6db0593df56021970355c9f5c4b9f87b586fa5d24014cf4d12baf"
+  }
+}
