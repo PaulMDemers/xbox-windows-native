@@ -1,9 +1,9 @@
-# Test747 LAUNCHED
+#747 PHOTO PASS; waiting user reset
 
-One SITE accepted2026-10-27T23:39:57.748437UTC after user watch/reset readiness.
-Await second-bar color and full13-row photo; decode416bits independently using
-optical-schema001.json. No retry. Intentional native hold; no post-native disk
-persistence. Pre-arm kernel records must remain distinct. No hook/process/VM.
-After evidence capture ask user power-cycle/Ready, then collect preparation
-reports once and audit staged bytes/unrelatedE entries. All746/prior CLOSED.
-Preparationd583f6cb pushed. No full-mode/Windows claim.
+Photo004/photo-review001 records all416bits, five offsets/three thresholds and
+352adjacent-row checks. NativeCR0531->3e->31; CR04after5d; cleanup0/0/0,
+selectors1, nativeCR04001003b. Usergreenholding. Failedphoto001..003preserved.
+No nativeCR3/CR4 or individualH7word exposure; nofullmode/Windowsproof.
+Request userpowercycle/Ready, then collect preparation records once and audit
+exactsource/build/stage/unrelatedE entries. No re-launch or manual probe launch.
+No hook/ownedprocess/VM. All746/priorCLOSED. Native results photo-only.

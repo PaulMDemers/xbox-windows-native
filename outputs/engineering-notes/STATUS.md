@@ -1,3 +1,13 @@
+# 747 PHOTO PASS: native CR05 accepted and restored; awaiting reset
+
+All416photo bits decoded and crosschecked; return/forward747, CR0531->3e->31,
+CR04after5d, cleanup0/0/0, selectors1, nativeCR04001003b. Greenholding observed.
+CR3/CR4 and individualH7 unexposed; aggregate predicates only. Three photo
+component-decoder failures preserved; local reflected dark cells resolved with
+sampled contrast and independent adjacent-row crosschecks. Sourcephoto private.
+No reset/collection yet. Console last observed held report; no hook/process/VM.
+All746/priorCLOSED. NEXT outputs/native-crtc-end747/NEXT.md.
+
 # 747 LAUNCHED: native CR05 checkpoint awaits observation
 
 User confirmed current watch/reset readiness. Frozen source/build/stage verified;
