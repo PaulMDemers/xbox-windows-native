@@ -1,3 +1,19 @@
+# 745 STAGED: native CR04 counterpart awaits watcher
+
+UniqueE stage/readback complete;98ELF/12CPU/88integration/76optical/32page/
+372nxdk-plan/131379host-plan cases pass; allVMsclosed. Exactsource/linkedbytes
+frozen. No745launch/hook/hostprocess. Currentwatch/photo/reset readiness needed
+forintentionalnativehold. Kernel744physicalPASS closed/pushedbd3eb5bf. Console
+authenticatedUnleashX. NEXT outputs/native-crtc745/NEXT.md. All744/priorCLOSED.
+
+# 745 PREPARING: native CR04 counterpart
+
+744 closed/pushedbd3eb5bf: CR04a7->5d->a7,CR05unchanged31,all recovery pass.
+745 ELF98cases and fresh12CPUcases pass; allVMsclosed. Relocated integration
+and optical validation may be active. No745stage/launch/hook. Native hold
+needs current watcher/photo/reset availability after preparation. Console last
+authenticated UnleashX. NEXT outputs/native-crtc745/NEXT.md. All744/prior CLOSED.
+
 # 744 CLOSED: CR04 forward/readback and recovery pass
 
 Actual kernel744/744. CR04 a7->5d->a7; CR05 unchanged31. Prefix15/H7 and all
