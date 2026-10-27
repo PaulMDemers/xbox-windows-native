@@ -1,6 +1,7 @@
-# Test746 launched
+# Test746 CLOSED
 
-One SITE accepted23:29:22UTC. Await bounded authenticated dashboard return,
-then collect once and audit retained116words. No retry. If offline after bound,
-record exact state and ask for recovery. No hook/Windows/native handoff.
-Preparation37a7d013 pushed. All745/prior CLOSED.
+Do not rerun, recollect or parent this runtime. KernelCR05 passes; seeREPORT.md
+and audit001.json. Prepare fresh native747 source counterpart with full-byte
+CR05/CR04 interaction and recovery checks. Host tests and exact staging first;
+intentional hold needs current watch/photo/reset readiness. No new functional
+mode replay or Windows launch. Console authenticatedUnleashX, nohook/process/VM.

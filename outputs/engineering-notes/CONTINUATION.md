@@ -1,3 +1,12 @@
+# 746 CLOSED: kernel CR05 write and own-value recovery pass
+
+CR0531->3e->31; CR04a7->5d->a7 with CR04 unchanged by CR05. Prefix15/H7
+all match, cleanup0/0/0, selectors1. Seven reports collected once; auditPASS
+23:30:13UTC. Exact source/build/stage and unrelatedE entries pass. Authenticated
+automatic dashboard return; no visual/native/full-mode/Windows proof. No hook,
+owned process or VM. All746/prior CLOSED. NEXT outputs/crtc-end746/NEXT.md:
+prepare fresh native747 counterpart, then current watcher readiness for hold.
+
 # 746 LAUNCHED: one accepted CR05 control
 
 One SITE accepted2026-10-27T23:29:22.851790UTC after preparation37a7d013 pushed.
