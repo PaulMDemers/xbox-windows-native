@@ -1,3 +1,12 @@
+# 747 LAUNCHED: native CR05 checkpoint awaits observation
+
+User confirmed current watch/reset readiness. Frozen source/build/stage verified;
+one SITE accepted2026-10-27T23:39:57.748437UTC. Intentional native hold;
+no hook or owned host process/VM. Await second-bar/current-screen observation
+and full13-row photo. Native results are not disk-persisted. Do not retry or
+collect before user-confirmed reset. Preparationd583f6cb pushed. All746/prior
+runtimes CLOSED. NEXT outputs/native-crtc-end747/NEXT.md.
+
 # 747 STAGED: native CR05 counterpart awaits watcher
 
 Fresh native747104ELF/12CPU/94relocated-integration/76optical/32page/372nxdk-plan/
