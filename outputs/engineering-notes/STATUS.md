@@ -1,3 +1,15 @@
+# 741 PHOTO COMPLETE: native preservation passes all15 checks
+
+User green/holding. Second photo independently decodes all416 bits with offset/
+threshold and adjacent-row cross-checks; first-photo known fields agree.
+Return/forward741; no mismatch; cleanup mask0/selectors1;15 checks. Actual
+nativeCPU4001003b/0/610, separate from pre-arm kernel context. No full-mode proof.
+First photo glare/decoder failure retained. Active photo002 and collection
+auditor audit_collection003.py (only photo/decoder references changed).
+Request manual power cycle, then collect741 preparation files once after Ready.
+Console still holding; no hook/process/VM. All740/prior runtimes CLOSED.
+NEXT outputs/native-preserve741/NEXT.md. Never relaunch accepted741.
+
 # 741 PARTIAL PHOTO: forward/cleanup pass; CPU rows need clear photo
 
 User green/holding. Independent first9 rows give return/forward741, no first

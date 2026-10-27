@@ -1,3 +1,12 @@
+# 741 PHOTO COMPLETE; awaiting manual power cycle
+
+All13 rows of second photo decoded; native preservation/cleanup pass.
+Request power off/on and Ready at UnleashX. Then collect once via physical002.py;
+active auditor audit_collection003.py uses photo002.json/photo002.jpg and
+photo_decode002.py, preserving original glare failure. Its only delta from
+audit_collection002.py is those photo paths. Never relaunch or recollect.
+Kernel preparation and optical native result remain separate. No hook.
+
 # 741 HOLDING: clearer photo needed before reset
 
 First photo partial: all15 checks passed, cleanup mask0/selectors1; reflection
