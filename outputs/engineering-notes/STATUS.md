@@ -1,3 +1,18 @@
+# 733 CLOSED: deferred CR1b check rejects05 versus85; cleanup passes
+
+One accepted launch20:06:58UTC2026-10-27; user ORANGE/automatic dashboard return.
+Seven files collected once/double-read; audit001PASS. All15 prefix writes
+attempted, first14 checks pass; check15CR1b expected05/observed85.680630 read2.
+No CR22/CR33 writes. Forward rejection0x7338 survives independently; cleanup
+mask0, all20 saved comparisons plus three selectors and EFLAGS restored.
+
+Retained723 has equal saved11MMIO/fourCRTC and actual control registers, but
+immediate/finalCR1b05 rather than733deferred/final85. Read scheduling, flags and
+separate runs differ; no timing-only cause or native708/709 root-cause claim.
+NEXT outputs/batch-prefix733/NEXT.md: CR1b access-contract/predicate review, no
+guessed bit7 mask or repeat boot. Console UnleashX, no hook/owned process/VM.
+All733/prior runtimes CLOSED. Protected720p/ordinary launchers unchanged.
+
 # 733 LAUNCHED: await TOP bar and automatic-return observation
 
 One accepted SITE at2026-10-27T20:06:58.712475+00:00. Preparation7d1faf9c.

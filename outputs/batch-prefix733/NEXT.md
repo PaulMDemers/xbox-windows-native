@@ -1,15 +1,21 @@
-# 733 LAUNCHED: await watched result
+# 733 CLOSED: first deferred mismatch is CR1b05 versus85
 
-Read REPORT.md and schema001.json. Build,55 probe cases,2353 layout cases,
-negative schema review and linked bytes passed. Sources frozen in sources001.
-Check stage001.json: only completed=true and exact readback admit launch.
-One launch accepted2026-10-27T20:06:58.712475+00:00 after confirmed readiness.
-Await TOP bar and automatic dashboard return observation. Never relaunch.
-The one SITE request used a20second reply bound; accepted200 reply recorded. No startup hook. Stop before CR22/CR33 writes.
+Read REPORT.md, audit001.json and comparison001.json. All15 writes attempted;
+first14 checks pass, CR1b expected05/observed85 before recovery.680630 checked2.
+Full cleanup and selectors/flags restored; user orange/automatic dashboard.
+No CR22/CR33 data writes, native handoff or full-mode replay. No hook/process/VM.
+Console last seen UnleashX. Never rerun/recollect/parent733/732/731/prior runtimes.
 
-On dashboard return record observation and collection-ready001, collect once,
-audit locally with audit_collection.py. Report forward_status separately from
-aggregate code/cleanup_mask: orange may mean successful prefix plus changed
-CR1b cleanup byte. Do not infer a native/full-mode outcome. Preserve every
-refusal, failed readback and transport/audit failure. No automatic lucky retry.
-No closed731/732/prior runtime may be rerun, recollected or parented.
+Next: review the CR1b FIFO-control access contract and the unchanged original
+predicate using this concrete first-mismatch evidence. An85 read is now observed
+without680630 restoration; don't keep attributing the transition solely to the
+2-to3 restore. Different runs/read schedules are not an elapsed-time proof.
+Retain the raw full-byte rejection and determine independently which fields can
+be verified after programming. No guessed bit7 mask, pending-bit clear or extra
+CR1b write. If another probe is justified, use a fresh bounded design that can
+distinguish register semantics; no identical prefix/full-boot repeat.
+
+CR22 read-plane dependence and unknown CR22/CR33 write effects remain separate.
+Any corrected driver predicate needs primary-source/access evidence and negative
+validation, followed by new physical qualification. No functional patch, native
+mode switching, Windows1.6 or acceleration promotion from this result alone.

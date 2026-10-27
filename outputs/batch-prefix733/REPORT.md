@@ -66,3 +66,42 @@ Preparation included unsuccessful filename lookups for724 prepare.py/host.py;
 actual existing build/source files were then read. New web queries did not supply
 a verified NV2A CR22/CR33 full access/restoration contract; no firmware acquired.
 No full-mode or acceleration promotion. See stage001.json and NEXT.md for state.
+
+## Physical result: CLOSED
+
+One accepted launch2026-10-27T20:06:58.712475+00:00. User observed "Orange and
+back at the dash" with automatic return and no manual reset. Seven reports
+collected once with double-read equality. audit001 passed source/build/stage,
+allocation, schema, report-order and unrelated-directory checks.
+
+The aggregate and forward status are both0x7338: a forward check rejected.
+All11 MMIO and four CRTC writes were attempted. The first14 checks matched;
+check15 (zero-based14), CR1b, expected05 and observed85. There was no earlier
+mismatch. The680630 forward read was2. Thus85 was observed before recovery,
+without a preceding restoration of680630 to3 in this probe. No CR22/CR33 write
+or readback check from the full recipe was executed.
+
+Cleanup mask0: all20 full saved-state comparisons matched, including final
+CR1b85, CR1951,6806303,SEQ1=1,GR04=0,CR22FE andCR3311. All three index selectors
+and flags restored. Actual critical CR0/3/4=8001003B/0000F000/00000610;
+entry/critical/restored EFLAGS=246/46/246. Cleanup succeeded; it did not cause the
+orange result or erase the forward rejection.
+
+Retained723 comparison: the11 saved MMIO values, four saved CRTC values and
+actual critical CR0/3/4 match733.723's immediate CR1b read and final read were05;
+733's deferred and final reads are85. EFLAGS condition-code bits differ (723
+286/86/286 versus733246/46/246); both preserve incoming flags and clear IF in
+the critical section. Readback scheduling and instrumentation differ, and these
+are separate runs, so this is not proof that delay alone causes the difference.
+See comparison001.json for evidence identities and limits.
+
+The prior729 observation after680630 restoration remains valid for that run;
+733 now shows that restoration is not required to observe85 in this kernel
+prefix context. Bit7 meaning and a valid CR1b programming predicate remain open.
+Do not replace full-byte validation with an inferred mask or claim708/709's
+first failure is proved. No mode-switch, Windows1.6 or acceleration qualification.
+
+Console is at UnleashX; no hook, owned host process or VM.733 is CLOSED; never
+relaunch/recollect/parent it. No transport/collection/audit failure occurred.
+A follow-up documentation lookup for723 REPORT.md was absent; comparison used
+its retained, audited raw reports instead. All earlier failed evidence remains.
