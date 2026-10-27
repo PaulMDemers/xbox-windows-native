@@ -1,3 +1,37 @@
+#711 CLOSED: GREEN baseline-call checkpoint before blank; next guarded blank/restore
+
+User reported GREEN holding. After manual power-cycle, nine reports collected
+once and audited: PCI/CRTC/SEQ/geometry/allocation match710; independent aliases
+and source/binary/report pins pass. Last file phase handoff_armed is preparation;
+optical GREEN separately supports the distinct0x711 baseline return before blank.
+No mode/encoder programming or Windows1.6 qualification.711 now CLOSED.
+Fresh checks pass:131379 ownership,12 CPU(all closed),114 instruction models,
+23 nxdk page cases,372 compiled ownership cases. Preserve source-publication
+whitespace failure and exact executed snapshots in source-preservation001.json.
+
+Next NEW712: review/test bounded blank-and-restore-only diagnostic, exact admitted
+sequencer restoration, no encoder/geometry/clock/interrupt changes. Address loss
+of optical observability when blank before admission. Read native-mode711/NEXT.md.
+708/709 exact failure and intermittency remain unresolved; do not repeat blindly.
+Console at dashboard, no hook/host child; build/xemu released, hardware ticket
+retained; automation paused. Original720p protected; other work tabled.
+
+#711 launched once: baseline-only transaction call; observation pending
+
+711 calls the real704 baseline predicate then returns distinct0x711 BEFORE
+blank(g). Only index selectors are written/restored; no encoder/ACPI-control/
+mode programming. Raw payload5080 bytes, padded9916;15 relocations/four absolute.
+Fresh checks pass:131379 ownership,12 CPU(all closed),114 instruction models,
+23 compiled page cases,372 compiled ownership cases. Staged readback exact.
+One SITE accepted at 2026-10-27T05:41:57.001901+00:00.
+Asked TOP green and SECOND green/orange/cyan/other/black, hold/dashboard. Record
+observation before manual reset; collect once after confirmed dashboard. Read
+outputs/native-mode711/NEXT.md. No repeat accepted launch.710 remains CLOSED.
+GREEN means baseline checkpoint only, not mode/Windows1.6 support. Native result
+is optical/RAM, not the preparation files. No hook/console C access/host child;
+build/xemu released, hardware ticket retained, automation paused. Console may
+be holding; user observation pending. Original720p protected; other work tabled.
+
 #710 CLOSED: cyan native checkpoint before transaction; next baseline-only call
 
 User confirmed CYAN holding. After confirmed manual power-cycle, nine reports

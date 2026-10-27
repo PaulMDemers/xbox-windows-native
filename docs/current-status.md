@@ -1,6 +1,6 @@
 # Current status and guide map
 
-Reviewed October 27, 2026 through native checkpoint710; the retained480p handoff is703 and the larger720p pre-transaction checkpoint is710.
+Reviewed October 27, 2026 through native checkpoint711; the retained480p handoff is703 and the larger720p pre-transaction checkpoint is710.
 This page summarizes supported observations; individual reports retain their
 original failures and scope. For the exact active attempt and next engineering
 step, read [CONTINUATION](../outputs/engineering-notes/CONTINUATION.md) and
@@ -29,7 +29,11 @@ mode change. Both were manually reset and collected. The [710 pre-transaction ch
 fresh host checks and visibly held CYAN after native handoff/PCI/timer admission.
 It was manually reset and collected; preparation state matches709. It intentionally
 stops before video programming, so it cannot qualify a mode change or identify
-the exact failure in708/709. Next is the transaction baseline phase before blanking.
+the exact failure in708/709. The [711 baseline-only call](../outputs/native-mode711/REPORT.md) passed fresh
+host checks and produced the reported GREEN held checkpoint before blanking.
+It was manually reset and collected; preparation state matches710. This qualifies
+only the baseline call on that run. Native mode initialization remains unproved;
+next is a guarded blank/restore diagnostic before encoder or geometry changes.
 
 ## Choose a guide
 
