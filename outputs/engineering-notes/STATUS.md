@@ -1,3 +1,45 @@
+#699 user reports green held result; raw timer photo pending
+
+User replied "Yes green bar that’s holding" and "Green, holding". This supports
+the second-bar interval-reached indication; top bar was not separately confirmed.
+No timer values decoded yet. Obtain a photo of all ten bit rows BEFORE reset.
+No relaunch, reset request or collection. Native samples remain RAM/display only.
+All host processes closed; no startup hook. Read native-timer699/NEXT.md.
+
+#699 launched once; held timer observation/photo pending
+
+SITE accepted2026-10-27T02:58:09.306075Z after current user watch/reset and dashboard
+confirmation. No retry. Asked top/second bar colors and hold/dashboard state, and
+requested a photo of all ten bit rows BEFORE reset. Do not infer native timing
+from acceptance alone. No reset requested or collection yet; no startup hook.
+
+Kernel prepares720p; native probe only reads PCI/timer/RDTSC and paints its owned
+framebuffer. Native samples are RAM/display only; persisted records are pre-handoff.
+Read native-timer699/NEXT.md. All host VMs/processes closed, hardware ticket retained,
+automation paused. Original720p/ordinary launcher and closed697 unchanged.
+
+#699 timer probe staged; current watch/reset reply pending
+
+698 source/protocol review and host prototype are CLOSED.458766 sanitizer cases
+pass. Host-active bit3 and abort bit0 were missing from prior masks; new isolated
+helper also validates final status and leaves failed read output untouched.
+The byte4/block2 difference is consistent with the SMBus count byte, not a proven
+wire capture or unique encoder ID. No maintained driver changes.
+
+699 build002/extract001 passed22 timer/pixel models,10 full-transition CPU fixtures,
+9 page cases and19 policy cases. All VMs/host commands exited. Kernel mode setup
+is unchanged; native path reads8008 and RDTSC, with no SMBus or encoder writes.
+Exact staging readback passed on incoming1.6 at E:/Applications/XWNNative699.
+No launch yet. Watch/reset availability requested after staging; await the reply.
+No hook or Windows. Hardware ticket retained, build/emulator leases released,
+automation paused. Original720p/ordinary launcher and closed697 unchanged.
+
+Preserve699 build001 API-signature failure and page-review001 prerequisite-order
+failure. Corrected build002/page-review002 passed fresh checks. Read699/NEXT.md:
+one launch after readiness, capture second bar/ten optical rows BEFORE reset,
+then user-confirmed power-cycle and one collection. Native timer progress is not
+an independent frequency calibration. Networking/1080i/boot issues remain tabled.
+
 # 697 CLOSED: native four-byte Xcalibur read optically captured
 
 The photo decodes ten MSB-left rows to 01b410de,00b00001,0000c001,

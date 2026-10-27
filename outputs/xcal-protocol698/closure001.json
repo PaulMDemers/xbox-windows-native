@@ -1,0 +1,26 @@
+{
+  "utc": "2026-10-27T02:54:46.925251+00:00",
+  "closed": true,
+  "passed": true,
+  "scope": "Source/host prototype only; no native build, runtime or console access",
+  "host_cases": 458766,
+  "baseline_sources": {
+    "outputs/xcal681/xcal_bus.c": "84d02f0116f8f7e48ecf63888482a1a5c37a435e6828dfe5a1a7dd7a9ea80c81",
+    "outputs/xcal681/xcal_profile.c": "a546d4beefb1b661f8975f722047e2085705ff54b2d13341417cde450a1ba0fd",
+    "outputs/xcal-binding685/delay_candidate.h": "2832b7f5f26fcf328591aeb10a80feeb1a23f1a9909409cafe6d7af62b311ee9",
+    "outputs/native-xcal697/stub.S": "5500fd40a06e9f326360453256039f8f8b83c2c13ea9f31937764680efb55f09",
+    "outputs/native-xcal697/closure001.json": "e79f0c937e80694257e719865a3ace2778553f5d9fe628a1db9cdc88004a067e"
+  },
+  "findings": [
+    "Byte-only4 is consistent with receiving block count4 rather than payload2; inference from protocol and separate physical records, not a wire capture",
+    "Existing block helper checks bus busy0800 but omits host busy0008; terminal36/error26 omit abort0001",
+    "Old host helper publishes successful read without a final status check;698 withholds output until final known flags clear",
+    "Legacy write command1d sets extra bit10;698 host candidate uses block/start0d for both directions; no physical write qualification",
+    "Full native initialization still requires measured native timing, checked GPU/output sequence and a watched480p pattern before Windows"
+  ],
+  "physical697_reinterpretation": "The actual captured lastpoll10 and final0 have none of the newly checked flags; successful697 evidence remains valid in its original scope. Do not rerun it.",
+  "owned_host_processes": [],
+  "build_lease": "released",
+  "failures": [],
+  "next": "Read-only native timer699 on checked handoff; retain698 as unintegrated prototype until complete sequence validation"
+}

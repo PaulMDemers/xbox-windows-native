@@ -1,6 +1,6 @@
 # Current status and guide map
 
-Reviewed October 26, 2026 against the retained evidence through kernel allocation preflight693 (UTC October27).
+Reviewed October 26, 2026 against the retained evidence through native block-read697, host protocol698 and active timer699 (UTC October27).
 This page summarizes supported observations; individual reports retain their
 original failures and scope. For the exact active attempt and next engineering
 step, read [CONTINUATION](../outputs/engineering-notes/CONTINUATION.md) and
@@ -30,7 +30,7 @@ step, read [CONTINUATION](../outputs/engineering-notes/CONTINUATION.md) and
 | RCT Deluxe | Windowed title/park/building, manual save/load and arrow-key/right-button scrolling on the development console; [626](../outputs/rct626/REPORT.md) confirms the later interactive session and cleanup | Window-edge scrolling stays still; fullscreen unqualified; sound deferred; no Xbox game FPS measurement |
 | Software D3D7 | Scoped offscreen and windowed RGB-renderer samples pass through combined scenes; sustained synthetic scene has Xbox clock checks | Exact ideal alpha endpoints remain failed; perspective interpolation has PC results only; synthetic timings are not game FPS |
 | Native GPU acceleration | No accelerated driver installed | Game rendering, a module name or software sample success is not NV2A acceleration |
-| Other Xbox revisions | User-identified 1.6: [composite kernel baseline682](../outputs/composite682/REPORT.md) displays proper bars and returns automatically; [HDMI720p baseline683](../outputs/hdmi683/RESULT.md) also passed | [686](../outputs/encoder686/REPORT.md) adds a positive Xcalibur-address response. [689 native preflight](../outputs/xcal-visible689/REPORT.md) held solid amber/black without its success indication; phase unknown, manually reset. No native display or Windows qualification; this unit's GPU field differs from inventory630 |
+| Other Xbox revisions | User-identified1.6: kernel composite480i/HDMI720p baselines pass; minimal checked native handoff and [four-byte encoder read697](../outputs/native-xcal697/REPORT.md) observed | Native mode initialization and Windows remain unqualified. [699 timer prerequisite](../outputs/native-timer699/REPORT.md) launched; observation pending;689 full-startup failure phase remains unknown; this unit's GPU field differs from inventory630 |
 | Packaging | Hardware-info utility and private prepared E/720p Windows ZIP recipes and [delivery587](../outputs/delivery587/README.md) | RCT excluded; private Windows assets are not public downloads; clean physical provisioning remains incomplete |
 | Installation/storage | Component builds and scoped prepared-image/emulator restore checks pass | Six clean-media FATX long-name exclusions, crypto failures and strict event failures remain; selected-file audits are not whole-volume health checks |
 
@@ -85,8 +85,8 @@ C startup and passes27 full-image function fixtures. [689](../outputs/xcal-visib
 adds a bounded success signal and passes32 host cases, but its watched physical
 run showed solid amber/black and required a manual reset. That does not locate
 the stopping point or qualify native reads. The console returned to the dashboard
-and its staged files matched. Next is an early checkpoint independent of SMBus;
-no identical retry or encoder programming is planned from that observation.
+and its staged files matched. Later694-697 added independent display checkpoints
+and native read evidence;689 itself remains inconclusive and closed.
 
 [690](../outputs/framebuffer690/REPORT.md) confirms the kernel PCI/cable/settings
 match689 expectations and validates an owned720p framebuffer across900 pages. The
@@ -99,5 +99,18 @@ loader defect: the kernel can round the virtual reservation base, while the old
 wrapper reuses it as the physical execution address. Compiled failure models and
 actual kernel rounding agree on that risk.693 keeps those addresses separate and
 passes physical dual-copy/guard/cleanup checks. It has not entered native code,
-fixed the ordinary boot path or qualified Windows1.6; [native transition validation
-is next](../outputs/handoff-preflight693/NEXT.md).
+fixed the ordinary boot path or qualified Windows1.6. Later694 qualified a
+separate minimal transition; that is not a fix to the original full startup.
+
+[694-697](../outputs/native-xcal697/REPORT.md) now provide physical evidence of a
+checked minimal native handoff, framebuffer writes, PCI/status and bounded cable
+and encoder reads.697's photo shows raw word2, block length4, completion10 and
+final status0. All are closed after manual recovery and verified collection.
+They preserve kernel-established scanout; native mode initialization is unproven.
+
+[698](../outputs/xcal-protocol698/REPORT.md) explains the byte-versus-block length
+inference and adds stricter host-active/abort/final-status handling in an isolated
+host prototype.458766 modeled cases pass; no maintained driver change. The next
+[699 timer-only probe](../outputs/native-timer699/REPORT.md) is built, validated and
+launched once after watch/reset confirmation; its observation is pending. It has no native SMBus/encoder writes,
+Windows payload or startup hook. Its failed first build/page check are preserved.

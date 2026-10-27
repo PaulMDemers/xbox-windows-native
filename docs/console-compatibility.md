@@ -21,13 +21,22 @@ Xcalibur address; it is presence evidence, not a unique chip ID.
 and compiled status-ownership comparisons. [688/689](../outputs/xcal-visible689/REPORT.md)
 then link an early native read preflight. The watched689 run held solid amber/black,
 without its green/amber success signal, and was manually reset. Its failure phase
-is unknown; native reads, display and Windows remain unqualified.
+is unknown; that attempt did not qualify native reads, display or Windows.
 [690](../outputs/framebuffer690/REPORT.md) adds matching kernel PCI/cable/settings
 and a checked contiguous720p framebuffer with user-confirmed panels and automatic
 return. It does not qualify native handoff or display initialization.
 [693](../outputs/handoff-preflight693/REPORT.md) now validates kernel allocation,
 separate rounded-reservation/physical-target handling, two-page canary copies and
 cleanup. It has not performed the native transition or changed the ordinary loader.
+[694](../outputs/native-checkpoint694/REPORT.md) subsequently reached a checked
+native framebuffer checkpoint. [695](../outputs/native-status695/REPORT.md) decoded
+native PCI/status; [696](../outputs/native-byte696/REPORT.md) reported a successful
+native cable read. [697](../outputs/native-xcal697/REPORT.md) optically captured a
+four-byte encoder response (raw2, length4, final status0). These use a minimal
+checked handoff and inherited kernel scanout; they do not initialize a native mode
+or qualify Windows1.6. [698](../outputs/xcal-protocol698/REPORT.md) tightens status
+handling in a host-only prototype. [699](../outputs/native-timer699/REPORT.md) is
+launched once for a watched native timer observation; its result is pending.
 See [current status](current-status.md).
 
 ## First additional-console inventory
@@ -93,9 +102,10 @@ starting points, not proof the shipped profile works with those encoders.
    Keep personally identifying data, EEPROMs and firmware out of public reports.
 2. Group the reports by actual encoder/RAM/boot differences. For the incoming1.6,
    kernel composite682 and HDMI720p683 baselines are complete, and686 adds a
-   positive Xcalibur-address response. Follow [693 NEXT](../outputs/handoff-preflight693/NEXT.md)
-   to make early results observable, then qualify a separate native Xcalibur480p
-   pattern before Windows. Treat RAM upgrades separately.
+   positive Xcalibur-address response. Native checkpoint/read evidence now extends
+   through697; follow [699 NEXT](../outputs/native-timer699/NEXT.md) for the staged
+   timer prerequisite, then qualify a separate native Xcalibur480p pattern before
+   Windows. Treat RAM upgrades separately.
 3. For a new profile, review timing, color format, stride, framebuffer extent,
    hidden/reserved memory and handoff consistency as one change. Validate pure
    calculations and rejected configurations before a watched hardware launch.

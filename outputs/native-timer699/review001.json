@@ -1,0 +1,59 @@
+{
+  "passed": true,
+  "utc": "2026-10-27T02:52:09.765300+00:00",
+  "scope": "One native PM-timer wait with raw ticks/read-count and modeled RDTSC subtraction; no SMBus or encoder programming",
+  "build": "build002",
+  "template_sha256": "8e9f414620dfa2957bc86a830af056bd3dab785fad0c67cac33d66e062104bb7",
+  "xbe_sha256": "9c7b306e8ec0cb8cb692052c510eb133e00c39f067de309a422be5aa3d6448db",
+  "code_bytes": 1067,
+  "unchanged_after_namespace": {
+    "layout.c": true,
+    "layout.h": true,
+    "plan.c": true,
+    "plan.h": true,
+    "page.c": true,
+    "page.h": true,
+    "Makefile": true,
+    "fixture002.S": true,
+    "link.ld": true
+  },
+  "initial_native_transition_unchanged": true,
+  "kernel_delta": "Correct KeQueryPerformanceFrequency ABI and exact3375000Hz admission; CPU CPUID requires TSC bit in addition to SSE",
+  "timer_contract": {
+    "port": 32776,
+    "width": 4,
+    "threshold_ticks": 1688,
+    "max_step_or_elapsed": 33750,
+    "maximum_reads": 100001,
+    "arithmetic": "unsigned32 modular difference; reject backward/24-bit wrap/large gap",
+    "tsc": "Raw64-bit bracket delta, not serialized and not an independent frequency calibration"
+  },
+  "models": {
+    "linked_timer_pixels": 22,
+    "full_cpu": 10,
+    "page_cases": 9,
+    "policy_cases": 19
+  },
+  "layout": {
+    "code_end": 1067,
+    "gdt_start": 1216,
+    "data_start": 1440,
+    "data_end": 1492,
+    "idt_start": 1536,
+    "stack_start": 3584,
+    "page_end": 4096
+  },
+  "failures_preserved": [
+    "build001: wrong KeQueryPerformanceCounter signature; corrected only in build002; failed source and script retained",
+    "page-review001: dependent CPU page files not yet built; no hardware effects; page-review002 uses completed fresh CPU pages"
+  ],
+  "scope_limits": [
+    "No actual native timer result yet",
+    "Kernel API calls are not independently bounded",
+    "Measured684 rate is kernel-context evidence, not proof of post-handoff rate",
+    "No Windows payload or full BootStartup execution",
+    "No encoder or SMBus accesses in native timer path"
+  ],
+  "owned_host_processes": [],
+  "all_cpu_vms_closed": true
+}
