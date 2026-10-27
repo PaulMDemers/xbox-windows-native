@@ -1,3 +1,15 @@
+#726 LAUNCHED: green held result, photo pending
+
+One SITE accepted 2026-10-27T18:13:46.296106+00:00 after user watch/reset
+readiness and exact local/remote byte verification. User reports Green, holding.
+Green reports control completion and final restoration; intermediate CR1b
+behavior remains unknown until the13 optical rows are decoded. No repeat launch.
+
+Leave console holding for full report photo. Then decode independently before
+requesting power cycle. Only after Ready at dashboard, collect this attempt once.
+No hook/owned host process/VM. Preparation commit4bf6b99b; closed725 remains closed.
+No full-mode/Windows/acceleration claim. NEXT outputs/native-630726/NEXT.md.
+
 #726 STAGED: 630-only control, CR1b unwritten
 
 New726 is staged and read back; no launch yet. Watch/reset readiness pending.

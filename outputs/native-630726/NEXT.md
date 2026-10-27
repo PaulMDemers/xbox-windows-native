@@ -1,25 +1,16 @@
-# Next: watched 630-only control 726
+# Next: capture held726 optical report
 
-Staging and all reviews passed. No726 launch yet. The console is at UnleashX;
-watch/reset readiness was requested. No hook, VM or owned host process remains.
-Closed725 and earlier runtimes must not be relaunched or recollected.
+Single launch accepted at18:13:46UTC2026-10-27. User reports green, holding.
+Photo pending; no numeric rows yet. Leave console holding. No launch retry.
+No hook/owned host process/VM. Do not collect or request reset before photo.
 
-After explicit readiness, record ready001.json and launch once with physical.py.
-The controller verifies frozen local and remote bytes and bounds the one SITE
-reply to 20 seconds. Never retry an accepted or uncertain request.
+Decode the full13row photo independently against optical-schema001.json.
+Green reports completed control and final restoration, not a coupling result.
+The pairs distinguish baseline, blanking,6302,6303, output restore and late reads.
+No register-mask or full-mode/Windows qualification follows from this alone.
 
-Record the top and second bar and whether the picture holds. Obtain a full
-13-row photo before reset; decode against optical-schema001.json independently
-of the expected models. Green alone is not a numeric result. Native holds are
-deliberate; kernel refusal may return to the dashboard.
-
-Then ask for a power cycle back to UnleashX. Once Ready, record
-collection-ready001.json and collect this attempt once. Compare preparation
-files, source/binary pins, allocation bounds and unrelated E entries. Separate
-pre-arm files from native optical values. A manual power cycle is not normal
-Windows shutdown. Preserve any transport, launch or audit failure separately.
-
-Compare observed pairs with both unchanged and transition-sensitive models.
-Do not infer bit definitions, relax bit7 checks, program CR22, or promote full
-mode switching/Windows/acceleration from this control. Network/boot/1080i remain
-tabled and the ordinary720p path remains protected.
+After capture, ask power cycle to UnleashX. When Ready, create
+collection-ready001.json and collect once with physical.py. Verify pins,
+preparation, allocation bounds and unrelated E entries. Preserve failures.
+Manual reset is not normal Windows shutdown; native values are optical only.
+Closed725 and earlier runtimes remain closed. Ordinary720p remains protected.
