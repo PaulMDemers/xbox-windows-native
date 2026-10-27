@@ -1,3 +1,14 @@
+# Current action: manual recovery after observed GREEN hold
+
+Observation001 records the user's green header and held picture. Request power-
+cycle and await dashboard confirmation. Then create collection-ready001.json
+(dashboard_confirmed:true; manual reset, not normal Windows shutdown) and run
+physical.py collect exactly once. No new launch. File evidence is pre-transfer;
+RAM-only final/native context will not survive reset. Evaluate collected phases
+before closing694 or designing the next native read probe.
+
+The following is the preceding launch procedure, retained as history:
+
 # Next: observe and recover694; do not launch again
 
 One launch was accepted at2026-10-27T01:35:46.988119Z; see launch001.json.

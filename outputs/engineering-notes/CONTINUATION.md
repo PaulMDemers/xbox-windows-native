@@ -1,3 +1,17 @@
+# 694 GREEN held checkpoint observed; manual recovery and collection pending
+
+User reports: "Yes it is now green, and is holding." Exact reply retained in
+outputs/native-checkpoint694/observation001.json. This supports the reviewed
+post-paging native framebuffer write on incoming1.6, using inherited scanout.
+The earlier blue sequence was not separately described. No independently captured
+native registers, native Xcalibur initialization or Windows1.6 qualification.
+
+Manual power-cycle requested. Wait for user dashboard confirmation before writing
+collection-ready001.json or running physical.py collect once. Do not launch again.
+No hook, no owned host process; hardware ticket retained, automation paused.
+Final/native context is RAM-only and will be lost on reset; file records describe
+pre-transfer preparation. No automatic return/normal Windows shutdown claimed.
+
 # 694 launch accepted; physical observation and recovery pending
 
 At2026-10-27T01:35:46.988119Z, one SITE request received200 EXEC command
