@@ -1,3 +1,35 @@
+#716 CLOSED: GREEN PRAMDAC630 write/readback/restoration checkpoint
+
+One SITE, user GREEN holding; affirmative black/return answer not separately
+elaborated. Manual power-cycle Ready, nine preparation files collected once and
+audited. Source/binary/report pins and independent alias checks pass. PCI/CRTC/SEQ,
+geometry and allocation words match714/715. Optical0x716 supports specific630
+3->2->3 readback/restore, pitch/CR11 and final output checks, not numeric file dump.
+
+Immediate restoration does not prove630 can remain2 through full704 programming
+or exclude it from708/709 cause. Bit0 remains undocumented. Next NEW717 source-
+review CR1b85->05 and CR22fe->ff remaining common-setup differences, then minimal
+justified bounded test with fresh host/linked validation. Read716/REPORT and NEXT.
+716 and earlier runtimes CLOSED. Console dashboard, no hook/host child; build/xemu
+released, hardware ticket retained; original720p protected; automation paused;
+other work tabled. No717 build/stage/launch.
+
+#716 launched once: isolated PRAMDAC630 test/restoration; observation pending
+
+715 showed native/kernel630=3 versus704target2.716 replaces714CR19 pair with
+aligned6303->2->3, checks full readback, exact restoration/pitch/CR11, then rechecks
+630 after output restoration. Bit0 semantics unknown; source only associates
+control with Xcalibur output format. Not a driver fix or708/709 cause claim.
+184 instruction models,12 CPU(all closed),23 nxdk page,372 compiled ownership,
+131379 host ownership pass. Payload5120 padded9916,17relocs/four absolute.
+
+Exact staged readback; one SITE accepted2026-10-27T06:50:30.635274+00:00. Asked
+SECOND bar color, visible black/return and hold/dashboard. Record response before
+reset request; then wait Ready and collect ONCE/audit. No repeat accepted launch.
+Read outputs/native-mode716/REPORT and NEXT. No Windows/hook/console C/host child.
+Build/xemu released; hardware ticket retained. All earlier runtimes CLOSED;
+original720p protected; automation paused; other work tabled.
+
 # Current status and guide map
 
 Reviewed October 27, 2026 through native read-only setup capture715; the retained480p handoff is703 and the larger720p pre-transaction checkpoint is710.

@@ -1,0 +1,24 @@
+{
+  "utc": "2026-10-27T06:46:55.356632+00:00",
+  "primary_sources": [
+    {
+      "retained": "C:\\xwn700\\source001\\BootVgaInitialization.c",
+      "sha256": "481e95c8335ba0d865b3ccddfc1b1acfaf0721e12045104e37c5d4d13573c4d4",
+      "finding": "Xcalibur branch writes PRAMDAC630=2 with comment Leave GPU in YUV for Xcalibur; other branch writes0 for RGB. No documented bit0 semantics or restoration guarantee."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/envytools/envytools/master/rnndb/display/nv3_pramdac.xml",
+      "finding": "Read register map;630 not defined. Cannot infer bit0 from nearby controls."
+    },
+    {
+      "url": "https://github.com/torvalds/linux/blob/v6.12/drivers/gpu/drm/nouveau/dispnv04/nvreg.h",
+      "finding": "Versioned header did not identify630; raw HTTP429 retained as research limitation."
+    }
+  ],
+  "physical_evidence": "715 native two-pass stable630=3, matched both kernel passes, decoded photo and audit;712 observed blank/restore;714 limited write/restore held success.",
+  "justification": "Bounded diagnostic of the sole observed common-setup PRAMDAC difference. Retained source writes2 as output configuration, not a pending-bit acknowledgement. Require actual3, write2 once, read32, restore actual saved3 once, read32 again before restoring output. Readback and visible return are the experiment, not assumptions.",
+  "semantic_limit": "Bit0 remains undocumented. Do not label it a fix, a colorspace conversion result, or the cause of708/709. No proof of full mode setup or Windows1.6.",
+  "scope": "No geometry/timing/encoder/clock/pending/interrupt writes. Retains713 CR1f key and exactCR11 check plus712 blank/restore. Target register check also repeats after output restore.",
+  "failure_behavior": "All changed-register paths attempt saved3 restoration exactly once; existing output-restoration pair executes once. If final630 is not saved3,7164 overrides intermediate7168. Visible return is not guaranteed; user reset may be required.",
+  "model_limits": "Register write effects and output gate are modeled assumptions. Host checks verify control flow, width, order, detection and attempt bounds, not hardware semantics."
+}
