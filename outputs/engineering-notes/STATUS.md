@@ -1,3 +1,23 @@
+# 729 CLOSED: transition to85 observed while output still blank
+
+One accepted launch19:10:45UTC2026-10-27. User GREEN/automatic dashboard.
+Seven reports collected once/double-read; audit001PASS pins/ownership/entries.
+First after6303:05. FIRST extra blank sample:85; all32 blank samples85.
+Aftergate4 beforeSEQrestore:6303/CR1b85/SEQ21. AfterSEQrestore/32late:85,
+nochanges. Fullbaseline/selectors pass. No additional register data writes.
+
+Output restoration was unnecessary for this transition in729. No elapsed-time-
+only mechanism, bit7 semantics or708/709 root cause established. ActualCR0
+8001003b versus72880010031 (xor0a); contexts not identical. CR3f000/CR4610,
+flags246->046->246. Preparation PCI/CRTC/SEQ/geometry/framebuffer exactly equal.
+Sample fields match blank-delay-1 model, not physical mechanism proof.
+
+729 CLOSED; no failures. Console UnleashX; no hook/process/VM. NEXT outputs/
+kernel-samples729/NEXT.md: source-first review of uncovered full-mode CR22/CR33
+setup boundary and check_setup, preserving unknown semantics/pending-bit limits.
+No new candidate/write experiment specified or staged. Never reopen729/prior
+runtimes. Protected720p/deferred work unchanged. No Windows1.6 promotion.
+
 #729 LAUNCHED: awaiting TOP bar and automatic return observation
 
 One accepted SITE2026-10-27T19:10:45.887391+00:00 after confirmed watch/reset
