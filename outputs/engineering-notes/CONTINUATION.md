@@ -1,3 +1,21 @@
+#724 STAGED, awaiting watched native-prefix launch
+
+Closed723 green kernel prefix is the latest physical result. New724 stops
+beforeCR22:11MMIO+4CRTC writes, CR19/630/output cleanup; CR1b05 retained, not
+full baseline restoration. New native payload/bridge validated;12 fresh CPU
+VMs passed/closed,54 integration models,76 optical cases,30 nxdk page and372
+ownership cases passed. Exact tested object/payload bytes linked in PE/XBE.
+
+Preserve build001 undefinedVIDEO_MODE_724P and build002 parse error. Corrected
+main002.c/build003 passed. sources001 frozen; active physical002.py. Staged
+owned /E/Applications/XWNMode724 only, XBE readback verified. NO launch yet,
+no hook, no owned VM/process; console at UnleashX. Watch/reset readiness pending.
+No native full-mode/Windows/acceleration claim. Ordinary720p untouched.
+
+NEXT outputs/native-prefix724/NEXT.md: one accepted/uncertain launch at most,
+photo13rows before power cycle, then collect once and separate pre-arm files
+from native optical results. Never reopen closed723 or prior runtimes.
+
 #723 CLOSED: combined kernel setup prefix passed
 
 Accepted2026-10-27T16:52:53.493790+00:00. User GREEN and automatic dashboard
