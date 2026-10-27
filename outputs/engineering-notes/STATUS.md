@@ -1,3 +1,27 @@
+# 737 STAGED: native CPU-work comparison awaits watched run
+
+Frozen source and exact E stage/readback passed.12 CPU fixtures closed,
+51 compiled integration/76 optical/20 page/372 nxdk ownership/131379 host
+ownership cases passed. No physical launch. Native minimal727 sequence plus
+4,093 register-only iterations before first CR1b read; actual native CPU and
+first/final values exported in13 optical rows. No mask or driver change.
+
+NEXT outputs/native-prework737/NEXT.md. Need watcher/photo/reset for this
+intentional native hold; preparation files cannot replace native observations.
+Routine self-reporting auto-return tests remain authorized unattended.
+Console dashboard reachable; no hook or owned process/VM.736/prior CLOSED.
+736 closure pushed df858f78. No737 validation/stage failure; older failures kept.
+
+# 737 PREPARING: native CPU-work-before-read comparator
+
+Authored727 minimalnative sequence plus4093register-only iterations beforefirst
+read;13opticalrows export actualCPU and read/cleanup/work results. No launch.
+Payload/hostbuild and12freshCPUfixtures pass/allVMsclosed; compiledintegration
+andopticaltests running. NEXT outputs/native-prework737/NEXT.md.
+All736/prior CLOSED,736closed/pusheddf858f78. Consolelastdashboard; nohook.
+Routineautomaticreturntests authorizedunattended.737deliberateholdneedswatcher
+photo/reset afterconcreteverifiedstage. No driver/fullmode or bit7maskchange.
+
 # 736 CLOSED: first CR1b read85 after CPU work, cleanup passed
 
 All32reads85 after4093 register-only iterations preceding any post-write read.

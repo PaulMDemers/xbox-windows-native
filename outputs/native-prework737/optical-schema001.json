@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "rows": 13,
+  "columns": 32,
+  "bit_order": "MSB left white1 black0 gray background",
+  "offsets": [
+    0,
+    2176,
+    2256,
+    2260,
+    20960,
+    20864,
+    20932,
+    20944,
+    20884,
+    20756,
+    20760,
+    20764,
+    20904
+  ],
+  "names": [
+    "signature",
+    "bridge_phase",
+    "admission_stage",
+    "return_code",
+    "CPU_work_checksum",
+    "baseline_pair",
+    "after_unlock_prewrite_pair",
+    "first_direct_and_reselected_CR1b",
+    "last_of_32_late_pairs",
+    "native_CR0",
+    "native_CR3",
+    "native_CR4",
+    "summary"
+  ],
+  "pair_format": "630 full value if <=ffff shifted16 OR CR1b byte; ffffffff unreached or overflow; full value retained for checks",
+  "direct_indexed_format": "first direct byte after4093 register-only iterations shifted16 OR reselected byte; ffffffff unreached",
+  "summary": "bit0 full cleanup; bit1 selectors; bit2 late32/nochanges; bit3 work4093/counter0/checksum793a7efe; late count bits8..15;630 attempts bits16..23;CR1b attempt bit24",
+  "limits": "Green requires first/reselected05 and final baseline85 restoration. Orange retains failure; decode rows independently. CPU rows are actual native readings; kernel pre-arm context is different. No time calibration or bit7 mask."
+}
