@@ -1,0 +1,54 @@
+{
+  "words": 125,
+  "ranges": {
+    "0": "code",
+    "1": "630 attempts",
+    "2..4": "entry/critical/restored EFLAGS",
+    "5..7": "actual CR0/CR3/CR4",
+    "8..9": "saved selectors",
+    "10..11": "SEQ1 before/after",
+    "12..14": "before CR11/22/19",
+    "15..17": "after CR11/22/19",
+    "18": "full baseline cleanup",
+    "19": "selector restoration",
+    "20..25": "full630 at six stages",
+    "26..31": "fullCR1b at six stages",
+    "32..37": "packed stage pairs",
+    "38..41": "late count/changes/min/max",
+    "42": "summary",
+    "43..46": "CR1b attempts/unlock attempts/read/CR11",
+    "47..49": "prewrite630/CR1b/packed",
+    "50..52": "direct/reselected/packed CR1b",
+    "53": "packed attempts",
+    "54..85": "32 full630 reads while output still blank",
+    "86..117": "corresponding32 fullCR1b reads",
+    "118..121": "blank count/changes/min/max; changes/min/max include first after6303 sample",
+    "122..124": "full630/CR1b/SEQ1 aftergate4 beforeSEQ1 restore"
+  },
+  "stages": [
+    "baseline",
+    "blank",
+    "6302",
+    "saved6303",
+    "output restored",
+    "last of32 late pairs"
+  ],
+  "codes": {
+    "729": "direct/indexed05 and full baseline restored",
+    "7291": "CPU guard",
+    "7292": "baseline guard",
+    "7293": "blank guard",
+    "7295": "full baseline cleanup failed",
+    "7296": "selectors failed",
+    "7298": "630 or direct/indexed mismatch",
+    "7299": "prewrite guard"
+  },
+  "visible": {
+    "green": "729",
+    "orange": "7295 or7298",
+    "red": "other guard/failure",
+    "magenta": "post-call report persistence failed"
+  },
+  "expected_reports": 7,
+  "unreached": "Additional arrays and gate fields ffffffff; blank counts/min/max zero if no restore630 path"
+}

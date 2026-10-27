@@ -1,3 +1,20 @@
+#729 STAGED: blank/gate/sequencer boundary samples
+
+Fresh729 preserves728 data writes/CPUguard and adds32full630/CR1b pairs while
+blank, then fullpair/SEQ1 aftergate4 BEFORE restoringSEQ1.125rawwords saved
+after original flags restored. Strict final85 baseline check unchanged; no
+repair/mask/control-register write or additional GPUdata writes. Extra reads
+alter timing; observed boundaries do not establish write causality.
+
+39 actualCOFF modeled cases including03/57unlock reads and transitions during
+blank/aftergate/afterSEQ/late passed.2353layout cases and linkedmain/probe/layout
+bytes passed. Source equivalence excluding sampling additions verified.
+Fresh build and E stage/readback passed; no729failures. NO launch. Watch/reset
+readiness pending. NEXT outputs/kernel-samples729/NEXT.md.
+
+Console UnleashX; no hook/owned process/VM.728/prior runtimes CLOSED. Ordinary
+720p and deferred work unchanged. No modesetting/Windows/acceleration claim.
+
 #728 CLOSED: kernel minimal sequence returns85 at a later sampled boundary
 
 Single accepted launch19:02:21UTC2026-10-27. User green/automatic dashboard.
