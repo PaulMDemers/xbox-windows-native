@@ -1,28 +1,21 @@
-# Next: one watched native checkpoint
+# Next: observe and recover694; do not launch again
 
-694 is built, host-tested and staged; NOT launched. Read REPORT.md, review001.json
-and stage001.json. All eleven invoked host VMs are closed; no owned host process
-or startup hook. Build/emulator leases released, hardware ticket retained.
-Incoming1.6 last verified at its HDMI dashboard during staging. Automation paused.
+One launch was accepted at2026-10-27T01:35:46.988119Z; see launch001.json.
+Fresh watch/reset availability is recorded. The top-bar/screen question is pending.
+Do not rerun physical.py launch, any closed fixture, or an uncertain attempt.
 
-1. Obtain fresh watch/reset availability. The question is pending in this chat.
-   Do not infer availability from earlier tests. This probe deliberately holds.
-2. Record the reply in ready001.json with continue_authorized and
-   watch_reset_confirmed true only when supported. Run physical.py launch once;
-   it verifies source/build/staged pins and issues one SITE with a20-second bound.
-   Accepted or uncertain launch is never retried.
-3. Ask whether the top bar went BLUE then GREEN, stayed blue, showed red, or went
-   black, and whether it held or returned automatically. Record exact observation.
-   LED color is not this probe's success signal. No Windows should start.
-4. If held, ask the user to power-cycle after recording the observation. On their
-   dashboard confirmation, record collection-ready001.json and collect once.
-   Distinguish manual reset from an automatic refusal return. No normal Windows
-   shutdown can be claimed. Preserve failure receipts and exact report phases.
-5. Update REPORT/continuation with actual physical scope before proposing any
-   next probe. Green only supports this post-paging inherited-framebuffer write.
-   Native SMBus/Xcalibur reads and Windows1.6 remain unqualified. No ordinary
-   launcher patch, gate waiver, firmware recipe transplant or closed-run retry.
+1. Record exact user-observed BLUE/GREEN/RED/black sequence and hold versus return.
+   Acceptance alone does not prove native execution. LED color is not the signal.
+2. If held, ask for power-cycle after recording the observation. Wait for user
+   dashboard confirmation before creating collection-ready001.json with
+   dashboard_confirmed:true. Distinguish manual reset from automatic return.
+3. Run physical.py collect once, retain all phases and failures. No startup hook
+   was installed. No Windows shutdown can be claimed. Update REPORT and notes.
+4. Green supports only this native inherited-framebuffer write; it does not qualify
+   native Xcalibur setup, SMBus reads, or Windows1.6. Decide the next probe from
+   actual evidence, without patching the ordinary launcher or weakening gates.
 
-Keep build001, cpu-build001 and cpu-run002 failures. Current sources are build002;
-stub001.S preserves the initial assembly. Private binaries/configuration remain
-under C:/xwn694; public evidence contains no credentials or proprietary payload.
+No owned host process; all eleven invoked VMs closed, build/emulator leases
+released, hardware ticket retained, automation paused. Console state pending
+observation. Staged owned E path retained; original Conexant720p unchanged.
+Preserve build001, cpu-build001 and cpu-run002 failures. Private assets C:/xwn694.

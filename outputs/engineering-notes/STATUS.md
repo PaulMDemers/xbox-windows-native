@@ -1,3 +1,13 @@
+# 694 launch accepted; physical observation and recovery pending
+
+At2026-10-27T01:35:46.988119Z, one SITE request received200 EXEC command
+succeeded. Fresh user watch/reset availability is recorded in ready001.json.
+No repeat request. Actual top-bar/screen result is pending; acceptance does not
+prove native execution. Do not collect while the console may be held. First
+record the user observation, then request power-cycle if held and confirm the
+dashboard before collection. No startup hook; no Windows intended. No owned host
+process. Hardware ticket retained, automation paused. Follow694/NEXT.md.
+
 # 694 native checkpoint prepared and staged; watched launch pending
 
 Read outputs/native-checkpoint694/REPORT.md and NEXT.md first. Staging completed
