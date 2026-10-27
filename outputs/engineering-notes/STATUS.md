@@ -1,3 +1,22 @@
+#726 CLOSED: 630-only transition retains CR1b85
+
+One accepted launch18:13:46UTC2026-10-27. Green held result/photo001:
+7260000d,4,5,726,2,30085,30085,20085,30085,30085,30085,0,22007.
+6303->2->3; CR1b85 throughout six displayed stages and zero changes in32
+late pairs. Two writes and final cleanup/selectors pass; no CRTC data writes.
+
+User power-cycled. Collected nine preparation records once/double-read;
+audit001 passed exact sources/binaries/photo, allocation/alias bounds and
+unrelated E entries. PCI/CRTC/SEQ/geometry/allocation preparation matches725.
+Last file phase handoff_armed; native values are optical only. Manual reset
+is not normal Windows shutdown. Console UnleashX; no hook/process/VM.
+Preserve integration001 harness expectation failure. Runtime726 CLOSED.
+
+NEXT outputs/native-630726/NEXT.md: fresh minimal interaction control combining
+6302, oneCR1b05 write and saved6303 restoration, with raw stage samples.
+No new build/staging/launch. Do not reopen726/older runtimes or infer bit7
+semantics, a full-mode fix or Windows qualification. Ordinary720p protected.
+
 #726 PHOTO VERIFIED: 630-only transition leaves CR1b85
 
 One accepted launch; user green held picture. Photo001 independently decodes:
