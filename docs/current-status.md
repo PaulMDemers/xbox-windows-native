@@ -1,6 +1,6 @@
 # Current status and guide map
 
-Reviewed October 26, 2026 through closed geometry component702 and physical480p native snapshot703 (UTC October27).
+Reviewed October 27, 2026 through integrated host transaction704; latest physical evidence remains703.
 This page summarizes supported observations; individual reports retain their
 original failures and scope. For the exact active attempt and next engineering
 step, read [CONTINUATION](../outputs/engineering-notes/CONTINUATION.md) and
@@ -11,8 +11,10 @@ checked native handoff ([703](../outputs/native-gpu703/REPORT.md)). Native clock
 and CRTC observations match kernel preparation; stride2560 is fully decoded.
 Its clock selection equals the earlier720p snapshot, while output control differs.
 One PFB photo bit is unknown due to glare. This is not native mode initialization
-or Windows1.6 qualification. The [702 geometry component](../outputs/xcal-geometry702/REPORT.md)
-passes linked bounds/readback tests; complete blanking/encoder/enable work remains.
+or Windows1.6 qualification. The [704 integrated transaction](../outputs/xcal-transaction704/REPORT.md)
+passes880 linked model cases,32770 allocation boundaries and12 relocated cases.
+The larger native handoff package and physical mode-initialization test remain.
+Host models do not qualify scanout, external clocks or Windows on1.6.
 
 ## Choose a guide
 

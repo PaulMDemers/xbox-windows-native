@@ -1,0 +1,8 @@
+{
+  "passed": false,
+  "physical_access": false,
+  "finding": "Build001 required a kernel high framebuffer alias although the intended native bridge disables paging. The host harness mirrored that wrong address. It is not admitted for hardware.",
+  "resolution": "Keep transaction.c/build001/cpu001/cpu002 intact. transaction002.c and new build002/cpu003 require physical framebuffer pointer after paging-off.",
+  "source_change": "Only pointer admission changed; complete new CPU suite required.",
+  "ended_utc": "2026-10-27T04:25:28.812844+00:00"
+}

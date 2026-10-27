@@ -1,3 +1,23 @@
+#704 CLOSED: combined480p host transaction; next larger native bridge
+
+Final transaction003/build004 passes880 linked model cases and32770 bounds.
+Twelve relocated executions at four addresses plus nine rejection cases pass.
+Combines blanking/setup/geometry/encoder/VGA/readback/pattern/settle/enable.
+No XBE or console access; this is not physical480p initialization/Windows proof.
+Keep cpu001 fault-injection expectation failure, review001 high-alias rejection,
+review002 CR11-write rejection and three429 source-download responses. Final
+candidate uses physical FB, refuses locked CR11, never writes it, preserves
+clocks/PFB/interrupt state and requests reblank on any post-blank failure.
+
+Next NEW bridge:9916-byte payload cannot fit the old4KiB stub. Proposed32KiB
+owned allocation needs full page/alias/relocation/stack/table validation and
+fresh actual CPU-transition fixtures before a watched pattern. Capture/admit
+CR11/21/44 and retained VGA fields; no silent state changes to pass admission.
+Read outputs/xcal-transaction704/NEXT.md and SOURCE-REVIEW.md. Never reopen
+closed704/703/701 runtimes. Hardware last known at dashboard after703; no hook,
+VM/process or launch this turn, hardware ticket retained, build/xemu released,
+automation paused. Original720p protected; networking/1080i/boot/RCT tabled.
+
 #703 CLOSED: kernel480p retained through native handoff
 
 User observed green and supplied photo. Native VPLL0003c20d, selection100a0400,

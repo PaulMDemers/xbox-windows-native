@@ -6,7 +6,7 @@ coverage before native GPU acceleration. The user has now prioritized preparing
 an incoming 1.6. The physical RCT process-cost comparison remains outstanding;
 the [PC caller measurement](../outputs/rct628/REPORT.md) does not establish Xbox performance.
 
-Latest: [703](../outputs/native-gpu703/REPORT.md) retained a kernel-prepared
+Latest physical: [703](../outputs/native-gpu703/REPORT.md) retained a kernel-prepared
 640x480p HDMI picture through the checked native handoff. Native clock/output
 and five CRTC bytes match the collected kernel snapshot; the full stride is2560.
 Clock coefficient/selection equal720p701, while output control differs. One PFB
@@ -49,6 +49,12 @@ wait. [700](../outputs/xcal-sequence700/REPORT.md) adds linked encoder failure
 tests and GPU-state review. [701](../outputs/native-gpu701/REPORT.md) captured a native GPU snapshot; all
 six shared GPU registers and four CRTC bytes matched the pre-transfer snapshot.
 See [current status](current-status.md).
+
+Host follow-up [704](../outputs/xcal-transaction704/REPORT.md) integrates the480p
+transaction and passes880 modeled cases,32770 bounds and12 relocated executions.
+No XBE or physical mode initialization was performed. A larger checked native
+handoff package is still required; no additional console revision is supported.
+
 
 ## First additional-console inventory
 

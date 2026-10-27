@@ -1,0 +1,11 @@
+--- transaction.c
++++ transaction002.c
+@@ -98,7 +98,7 @@
+  if(!o)return T704_ARGUMENT;
+  *o=(struct result704){0};
+  if(!r||!g||!fb){o->error=T704_ARGUMENT;return o->error;}
+- if(!bounds704(r)||(uint32_t)g!=0xfd000000||(uint32_t)fb!=(0x80000000u+r->base)){o->error=T704_LAYOUT;return o->error;}
++ if(!bounds704(r)||(uint32_t)g!=0xfd000000||(uint32_t)fb!=r->base){o->error=T704_LAYOUT;return o->error;}
+  __asm__ volatile("pushfl;popl %0":"=r"(f));
+  if(f&0x200){o->error=T704_IF;return o->error;}
+  csel=g[0x6013d4];ssel=g[0xc03c4];gsel=g[0xc03ce];o->phase=1;

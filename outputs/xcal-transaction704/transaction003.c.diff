@@ -1,0 +1,21 @@
+--- transaction002.c
++++ transaction003.c
+@@ -109,13 +109,15 @@
+   * Physical admission still needs these previously uncaptured fields. */
+  if(!context(g)||r32(g,0x600800)!=r->base||r32(g,0x680838)!=1279||
+  r32(g,0x680818)!=719||pitch(g)!=5120||cr(g,0x28)!=0x83||cr(g,0x39)!=255||
+- (cr(g,0x21)&0xfa)!=0xfa||cr(g,0x44)!=0||(cr(g,9)&0x80)){
++ (o->saved_cr11&0x80)||(cr(g,0x21)&0xfa)!=0xfa||cr(g,0x44)!=0||(cr(g,9)&0x80)){
+   o->error=T704_BASELINE;goto done;
+  }
+  o->phase=2;o->blank_readback=blank(g);
+  if(!o->blank_readback){o->error=T704_BLANK;goto fail;}
+- o->phase=3;cw(g,0x1f,0x57);cw(g,0x11,(uint8_t)(o->saved_cr11&0x7f));
+- if(cr(g,0x11)!=(o->saved_cr11&0x7f)){o->error=T704_UNLOCK;goto fail;}
++ o->phase=3;cw(g,0x1f,0x57);
++ /* CR11 also contains legacy interrupt controls. Refuse a locked baseline
++  * above; never write this register merely to clear its protection bit. */
++ if(cr(g,0x11)!=o->saved_cr11){o->error=T704_UNLOCK;goto fail;}
+  /* CR1f readback is not the write key; later changed-register readbacks
+   * check whether writes took effect. Do not assume reading57 proves unlock. */
+  o->phase=4;

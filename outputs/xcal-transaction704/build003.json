@@ -1,0 +1,106 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "space": {
+    "minimum_free_gib": 20.05,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c/xwn704",
+        "free_bytes": 69548613632
+      },
+      {
+        "free_bytes": 69548548096,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "sources": {
+    "delay_candidate.h": "2832b7f5f26fcf328591aeb10a80feeb1a23f1a9909409cafe6d7af62b311ee9",
+    "encoder.c": "a580a8b49bde55a0b44ed26567702038faf6494c2f54a28042b734b824d1a74d",
+    "gpu_legacy.c": "5e686c6e875f9d9bb60a0955bedfb4978911f5a79bf1feaea47080d9d7fe5690",
+    "gpu_types.h": "1f7c61fa6599b4242f623f91ac849e47786ad726e9656a03b9fad6652b6198e9",
+    "transaction.c": "87876fe7f7c6ba06752945c2a9d433c33135ff2f793b2332637b6c8c1a9aa65d",
+    "transaction.h": "437fe90dc048ecbe07f456afd5cff048509c04b94822effeab4d61be19d453f7",
+    "transaction002.c": "aa0bd28b254ec5af8197dbff7bfadc422e5db1c7715074b6375e5ac2f18d184e",
+    "transaction003.c": "6336794d817f0b801db939b2611c1832736acad598e71437f9ca87bc797a345b",
+    "xcal_bus.c": "4936bb84d5e32f977eed97feb89366955b41ef6830bd3341ab60aaf8d1b2c7ba",
+    "xcal_bus.h": "091e4e75c41a7820cec6f7f8b0fb84f4c4c7688f130dbd0604354b5685bac559",
+    "xcal_table.h": "3d8cf98fcdcad12ec8f3c93a6f3244aa902266aa3ed8260617f051ccd9700a1d"
+  },
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "compile32": {
+    "command": [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-m32",
+      "-Os",
+      "-ffreestanding",
+      "-fno-pie",
+      "-fno-pic",
+      "-fno-stack-protector",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-nostdlib",
+      "-static",
+      "-no-pie",
+      "-Wl,-Ttext=0x100000,-e,native_transaction704,--build-id=none",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xcal-transaction704/transaction003.c",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xcal-transaction704/encoder.c",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xcal-transaction704/xcal_bus.c",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xcal-transaction704/gpu_legacy.c",
+      "-o",
+      "/mnt/c/xwn704/build003/native.elf"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  "objcopy": {
+    "command": [
+      "objcopy",
+      "-O",
+      "binary",
+      "/mnt/c/xwn704/build003/native.elf",
+      "/mnt/c/xwn704/build003/native.bin"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  "symbols": {
+    "command": [
+      "nm",
+      "-n",
+      "/mnt/c/xwn704/build003/native.elf"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "c42f8c36a18611355667753ba0ca8802549b071de462e8cb60ebecbd70cc29ca",
+    "stderr": ""
+  },
+  "disassembly": {
+    "command": [
+      "objdump",
+      "-d",
+      "/mnt/c/xwn704/build003/native.elf"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "0959e8f282fb016a9d0dda19aecaa78dc0fd92cd354690a03137428e641672b2",
+    "stderr": ""
+  },
+  "files": {
+    "compile32.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compile32.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "disassembly.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "disassembly.stdout": "0959e8f282fb016a9d0dda19aecaa78dc0fd92cd354690a03137428e641672b2",
+    "native.bin": "126594c9ae628e7920667339aaf5963fe86984816749c03085424a98370f125c",
+    "native.elf": "cccb8bf414ae792e24a65de376c29458e552773a825ab91db08c4f6ab7ca57ff",
+    "objcopy.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "objcopy.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "symbols.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "symbols.stdout": "c42f8c36a18611355667753ba0ca8802549b071de462e8cb60ebecbd70cc29ca"
+  },
+  "ended_utc": "2026-10-27T04:27:14.384195+00:00"
+}
