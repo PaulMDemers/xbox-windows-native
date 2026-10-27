@@ -1,0 +1,37 @@
+{
+  "utc": "2026-10-27T15:26:11.487106+00:00",
+  "question": "Does CR1b bit7 change during setup before any CR1b write?",
+  "evidence_gap": "718 sampled85 before blank/unlock and05 only after explicit target write; first transition cannot be attributed to the data write alone",
+  "sources": [
+    {
+      "url": "https://github.com/torvalds/linux/blob/v6.12/drivers/gpu/drm/nouveau/dispnv04/hw.c",
+      "finding": "Saves and restores CR1b through extended CRTC state helpers; does not establish NV2A bit7 semantics"
+    },
+    {
+      "url": "https://github.com/torvalds/linux/blob/v6.12/drivers/gpu/drm/nouveau/dispnv04/hw.h",
+      "finding": "Distinguishes CR11 base lock, CR21 shadow lock and CR1f extended lock. None establishes CR1b bit7 behavior; no lock changes beyond existing CR1f57"
+    },
+    {
+      "url": "https://envytools.readthedocs.io/en/latest/hw/display/nv3/pcrtc.html",
+      "finding": "Documents indexed CRTC access but CR1b absent from listed fields; no bit7 definition"
+    }
+  ],
+  "selected_probe": "Read CR1b before setup, afterSEQ1 blank, after80d3 blank, afterCR1f57, after80d3 enable, afterSEQ1 restore; no CR1b data write and no payload wait",
+  "limits": [
+    "Read-only refers to CR1b, not all hardware: established SEQ1/output pair and CR1f57 retained",
+    "No proof bit7 is status, latch or read-only; no bit masks or changed success criterion for718",
+    "Green719 requires all six raw bytes85 and existing restoration checks; orange needs raw photo",
+    "Reads inserted alter timing; correlation with setup stage is not hardware semantics proof",
+    "No NV2A mode or Windows1.6 qualification"
+  ],
+  "source_delta": [
+    "Namespace718 to719, replaced bounded CR1b test/restore with six observations and mask",
+    "Result extends208 to212bytes in existing256-byte slot; optical last row now mask at51d0",
+    "Removed unused delay include, freshpayload002 after preserved failed001",
+    "Namespace replacement also changes unreachable legacy pixel border threshold718 to719; compiled bounded entry never executes legacy drawing path"
+  ],
+  "research_failures": [
+    "Envytools GitHub directory fetch restricted; documentation URL accessible",
+    "Broad search results for unrelated chip CR1B registers rejected"
+  ]
+}
