@@ -48,3 +48,10 @@ observed without CR1b data writes. Not proof of718 cause or bit7 semantics.
 Failed decoder001 preserved: sparse glare extra component; decoder002 rejects
 sparse components and checks all416bits plus352bits via adjacent-row geometry.
 Photo and raw data preserved before manual reset request. Collection pending.
+
+CLOSED after explicit manual power-cycle Ready. Nine preparation records
+collected once/double-read; audit001 PASS for exact pins, alias ownership and
+unchanged unrelated entries. PCI/CRTC/SEQ/geometry/allocation match717/718.
+Optical result remains six85/mask3f, scope limited to these setup observations.
+No normal Windows shutdown. Dashboard, no hook/owned host process remains.
+Never relaunch or recollect this closed runtime.
