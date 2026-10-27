@@ -1,3 +1,21 @@
+#728 STAGED: matched kernel-context minimal interaction
+
+Fresh kernel728 repeats727 register body/read order and54word layout; only
+namespace/CPUadmission differ. Kernel paging/cache retained, boundedCLI restores
+original flags before file APIs. Two630 writes, oneunlock, oneCR1b05 maximum.
+Full85 final baseline check retained; no repair/mask/pending-bit change.
+
+34 compiled-model cases,2353 framebuffer/layout cases, linked main/probe/layout
+nonrelocation bytes and exact source/body/reporting review passed. Frozen
+source and remote E stage/readback match. Initial preparation command parse
+failure retained before execution; no build/model/staging failure. NO launch.
+Watcher/reset readiness question pending. NEXT outputs/kernel-interaction728/NEXT.md.
+
+Console UnleashX; no hook/owned process/VM. Kernel auto-return intended15seconds;
+post-call54rawwords durable in seven reports. Compare728 against727 optical
+without claiming timing identity, bit7 semantics, or modesetting/Windows fix.
+All727/prior runtimes CLOSED; ordinary720p and deferred work unchanged.
+
 #727 CLOSED: minimal interaction reproduces CR1b05->85
 
 One accepted launch18:47:11UTC2026-10-27. User green and photo001 decode:
