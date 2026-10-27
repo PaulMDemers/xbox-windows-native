@@ -1,3 +1,24 @@
+# 697 native Xcalibur block-read probe staged; watch/reset reply pending
+
+Read outputs/native-xcal697/REPORT.md and NEXT.md. Fresh build001/extract001,
+40 linked IO models,10 full-transition CPU fixtures,9 page-builder and19 policy
+cases pass. All VMs closed. Staging exact readback passed in E:/Applications/
+XWNNative697. No launch yet; fresh watch/reset availability requested. No hook,
+Windows payload or owned process. Hardware ticket retained; leases released;
+automation paused. Original720p/ordinary launcher unchanged.
+
+697 attempts one native address70/register00 block read, requiring exact4-byte
+length before FIFO reads. Done+error fails; only owned observed terminal bits
+are acknowledged; final busy/terminal flags reject. Timeout never acknowledges
+or retries. Raw value is not a unique ID claim. Kernel admission and transition
+unchanged after namespace; no extra native cable/EEPROM read and no encoder
+configuration writes. Code1143 below GDT4c0; IO data ends5cc before IDT600.
+
+Follow exact admission/launch/observation/manual-recovery/collection sequence.
+No closed696/earlier runtime rerun. Native result is visible/RAM; persisted CPU
+sample remains pre-file-write. No Windows1.6 or native initialization claim.
+Networking679,1080i and historical boot intermittency remain tabled.
+
 # 696 CLOSED: reported native cable-byte read success; recovered and collected
 
 Read outputs/native-byte696/REPORT.md, analysis001.json and NEXT.md first.
