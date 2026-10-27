@@ -1,3 +1,10 @@
+# 748 LAUNCHED: one accepted CR00 control
+
+SITEaccepted2026-10-27T23:56:13.939068UTC; preparation180a353e pushed.
+Kernel-only auto-return; no hook/Windows/nativehandoff. Bounded dashboard
+observer active; noVM. Never retry accepted launch. All747/prior CLOSED.
+NEXT outputs/crtc-total748/NEXT.md.
+
 # 748 STAGED: CR00 horizontal-total checkpoint
 
 Freshkernel748 CR00c8 guard/target5c, CR04/05 interaction checks and own-value

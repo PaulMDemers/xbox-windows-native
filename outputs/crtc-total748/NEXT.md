@@ -1,8 +1,6 @@
-#748 STAGED
+#748 LAUNCHED
 
-CR00 target5c after preservingprefix/H7/CR04/CR05.113COFF/2353layout and
-source/schema/linked checks pass. UniqueE stage/readback pass; no launch/hook/
-ownedprocess/VM. Console authenticatedUnleashX. All747/prior CLOSED.
-Commit/push prep, then routineauthorized automatic-return kernel test, oneSITE
-20second bound; never retry accepted/uncertain. On authenticateddashboard,
-collect once and audit124words. No native/fullmode/Windows claim.
+One SITEaccepted23:56:13UTC. Await bounded authenticateddashboard return, then
+collect once and audit124words. No retry. If offline afterbound, recordstate
+and request recovery. No hook/Windows/nativehandoff. Prep180a353e pushed.
+All747/prior CLOSED.
