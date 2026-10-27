@@ -1,0 +1,318 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "space": {
+    "minimum_free_gib": 20.15,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c/xwn712",
+        "free_bytes": 68881121280
+      },
+      {
+        "free_bytes": 68881121280,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "commands": [
+    [
+      "as",
+      "--32",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-mode712/bridge.S",
+      "-o",
+      "/mnt/c/xwn712/host001/bridge.o"
+    ],
+    [
+      "ld",
+      "-m",
+      "elf_i386",
+      "-Ttext=0",
+      "--entry=bridge_start",
+      "/mnt/c/xwn712/host001/bridge.o",
+      "-o",
+      "/mnt/c/xwn712/host001/bridge.elf"
+    ],
+    [
+      "objcopy",
+      "-O",
+      "binary",
+      "--only-section=.text",
+      "/mnt/c/xwn712/host001/bridge.elf",
+      "/mnt/c/xwn712/host001/bridge.bin"
+    ],
+    [
+      "nm",
+      "-n",
+      "/mnt/c/xwn712/host001/bridge.elf"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-std=c11",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=address,undefined",
+      "-I",
+      "/mnt/c/xwn712/host001",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-mode712/page002.c",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-mode712/page_tool.c",
+      "-o",
+      "/mnt/c/xwn712/host001/page-tool"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-std=c11",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-shared",
+      "-fPIC",
+      "-fsanitize=undefined",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-mode712/plan.c",
+      "-o",
+      "/mnt/c/xwn712/host001/plan.so"
+    ],
+    [
+      "python3",
+      "-B",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-mode712/plan_test.py",
+      "/mnt/c/xwn712/host001"
+    ],
+    [
+      "/mnt/c/xwn712/host001/page-tool",
+      "/mnt/c/xwn712/host001/bridge.bin",
+      "/mnt/c/xwn712/host001/payload.bin",
+      "/mnt/c/xwn712/host001/dual/page.bin",
+      "32440320",
+      "50331648"
+    ],
+    [
+      "/mnt/c/xwn712/host001/page-tool",
+      "/mnt/c/xwn712/host001/bridge.bin",
+      "/mnt/c/xwn712/host001/payload.bin",
+      "/mnt/c/xwn712/host001/identity/page.bin",
+      "32440320",
+      "50331648"
+    ],
+    [
+      "/mnt/c/xwn712/host001/page-tool",
+      "/mnt/c/xwn712/host001/bridge.bin",
+      "/mnt/c/xwn712/host001/payload.bin",
+      "/mnt/c/xwn712/host001/relocated/page.bin",
+      "32342016",
+      "50331648"
+    ],
+    [
+      "/mnt/c/xwn712/host001/page-tool",
+      "/mnt/c/xwn712/host001/bridge.bin",
+      "/mnt/c/xwn712/host001/payload.bin",
+      "/mnt/c/xwn712/host001/scatter/page.bin",
+      "32440320",
+      "50331648"
+    ]
+  ],
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "payload_inputs": {
+    "/mnt/c/xwn712/payload001/payload.bin": "286bbf6c682f858ace5f087fc3f2836f5f7c422326e4babbf4841cda10e4d22c",
+    "/mnt/c/xwn712/payload001/symbols.stdout": "cad357697bf5dc53cc1568253f495bf78c614bea62344e24311cc460d33db5dc",
+    "/mnt/c/xwn712/payload001/relocations.stdout": "96835cfeb44837c565d4af89abb1014c7432adfe677350265a6cdc06ae7850bc"
+  },
+  "bridge_symbols": {
+    "bridge_start": 0,
+    "bridge_flat": 288,
+    "bridge_post": 328,
+    "bridge_hold": 964,
+    "bridge_refuse": 967,
+    "bridge_bar": 999,
+    "bridge_fault": 1035,
+    "bridge_check": 1039,
+    "status_colors": 1088,
+    "pci_select": 1116,
+    "bridge_code_end": 1156,
+    "__bss_start": 4096,
+    "_edata": 4096,
+    "_end": 4096,
+    "bridge_end": 4096
+  },
+  "metadata": [
+    1156,
+    288,
+    1035,
+    328,
+    298
+  ],
+  "relocations": [
+    {
+      "offset": 382,
+      "type": "R_386_PC32",
+      "symbol": "bounds704",
+      "symbol_value": 1048656,
+      "value": 4294966990
+    },
+    {
+      "offset": 522,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1052672,
+      "value": 1052672
+    },
+    {
+      "offset": 540,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1052672,
+      "value": 1052673
+    },
+    {
+      "offset": 1219,
+      "type": "R_386_PC32",
+      "symbol": "xcal_read32",
+      "symbol_value": 1050830,
+      "value": 1031
+    },
+    {
+      "offset": 1244,
+      "type": "R_386_PC32",
+      "symbol": "xcal_write32",
+      "symbol_value": 1050862,
+      "value": 1038
+    },
+    {
+      "offset": 1503,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1052672,
+      "value": 1052704
+    },
+    {
+      "offset": 1803,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1052672,
+      "value": 1053280
+    },
+    {
+      "offset": 4752,
+      "type": "R_386_PC32",
+      "symbol": ".text",
+      "symbol_value": 1048576,
+      "value": 4294962544
+    },
+    {
+      "offset": 4772,
+      "type": "R_386_PC32",
+      "symbol": ".text",
+      "symbol_value": 1048576,
+      "value": 4294962531
+    },
+    {
+      "offset": 4792,
+      "type": "R_386_PC32",
+      "symbol": ".text",
+      "symbol_value": 1048576,
+      "value": 4294962584
+    },
+    {
+      "offset": 4832,
+      "type": "R_386_PC32",
+      "symbol": ".text",
+      "symbol_value": 1048576,
+      "value": 4294962762
+    },
+    {
+      "offset": 4880,
+      "type": "R_386_PC32",
+      "symbol": ".text",
+      "symbol_value": 1048576,
+      "value": 4294963602
+    },
+    {
+      "offset": 4920,
+      "type": "R_386_PC32",
+      "symbol": ".text",
+      "symbol_value": 1048576,
+      "value": 4294963657
+    },
+    {
+      "offset": 4968,
+      "type": "R_386_PC32",
+      "symbol": ".text",
+      "symbol_value": 1048576,
+      "value": 4294964021
+    },
+    {
+      "offset": 5016,
+      "type": "R_386_PC32",
+      "symbol": ".text",
+      "symbol_value": 1048576,
+      "value": 4294964534
+    },
+    {
+      "offset": 5048,
+      "type": "R_386_PC32",
+      "symbol": ".text",
+      "symbol_value": 1048576,
+      "value": 4294964534
+    },
+    {
+      "offset": 5080,
+      "type": "R_386_PC32",
+      "symbol": ".text",
+      "symbol_value": 1048576,
+      "value": 4294964530
+    }
+  ],
+  "sources": {
+    "bridge.S": "868fe4020f353c0ec497f82914bf18e0ace03e7729a1b824b3d043064b46822f",
+    "build.py": "9bfe07b722af12600dfd2fede3156dbb4cccb040a24f2a26d0bace71c6c52448",
+    "cpu.py": "98a44222fcecca2fa3088aca8b9b07c44787013942aa630b7d8f88140f4b7530",
+    "delay712.h": "e5175e92bf21ed6d4671b900d607ae16309159ecf71e00af5b7e19dd1b68fc90",
+    "delay_candidate.h": "1223cd84fc04ca66a342833c718aae76eda40165fa0de21066c40e8d5cf2c6ce",
+    "encoder.c": "a580a8b49bde55a0b44ed26567702038faf6494c2f54a28042b734b824d1a74d",
+    "fixture.S": "efa5d5268d96aba57b57100daaad4aac306cf74488d5e668d5fe8f48dc5ca069",
+    "gpu_legacy.c": "3c7ab984867a856acdf3b838e896463ece89bca2c6c78f9c3ec3562d7147d000",
+    "gpu_types.h": "651ceea5ecef7c399534759595a98f43e2a55057d1ccf9c37712fca3b1f553bb",
+    "host_build.py": "c39a6da2778e38016217943aff18184293921e5f22cb99592b70ad37f5999ee1",
+    "integration.py": "32d4e633509533483f17dafa039a66c1acdef5c41db761006887f7b2aaeb35a6",
+    "layout.c": "68233f19105f075c386b90677058e430d3a06e6a54e6aaafb32dc184db01d8b3",
+    "layout.h": "bbf7e8d6397d56e5788fd15cc6e6eb04a29defbec540207e561cbbcf07f12b61",
+    "main.c": "723c26b451a3919288d3e40e7ecce28600c9047e14014f76f0bbb42dc1992f31",
+    "page.h": "67942149d4781e378b1b1c33c16976538b46bc2ab100b1ab9b10f2c601bfb7ac",
+    "page002.c": "d9d0defa36120ca5ce1df973725304f4763163ac2dc5e746c903e7073f2c8978",
+    "page_review.py": "8dfdcee0bfbc4a62b705ccf6fd19d7f2c352bdb974255492a7dd7759734559cd",
+    "page_tool.c": "f8f1b0bee24e935906eadd51206808385c65e1f6346f71ae1dd6a14ea72f5bd3",
+    "payload_build.py": "74535e6dfa7a4dc505ce298e8fa737a46af8e7f013b3ac7f1baa3ac00931a2e3",
+    "physical.py": "ff97a79a30e40d2db212c66ef15b1fc251cb2f1657c222f2a6304dba9820e492",
+    "plan.c": "904d08b17d1d900e32a2079718100e5a80ce9df0d4568cb1c8dfed00d2c3c793",
+    "plan.h": "342f1732b9f49c42a17baa9ced546d1bcbbbfa38f5bfc19fc618ce5f192fc3f5",
+    "plan_review.py": "f7647fbb301cd9c31b188c8557944eeb7a2b74f033666b1a38f4b4bec9ab3c31",
+    "plan_test.py": "de5e172cdfc8687fba21ee62d844c0864b9a33f4bf31b610fcb0d759eabddb22",
+    "relocate.py": "b018a04e32ced4008e4e31d9bdfb0dbb5bed22a5c66d9a94499dd2b1c07c3c49",
+    "transaction.h": "f97b17118ab6b0213f5ab79c4b410b71774def8011d2fb5a4a51f85144cc93f3",
+    "transaction712.c": "50098e392cb133c38f6934c59bb2bef170865cea0b6a608bfee749cd41f5f5a3",
+    "xcal_bus.c": "4936bb84d5e32f977eed97feb89366955b41ef6830bd3341ab60aaf8d1b2c7ba",
+    "xcal_bus.h": "091e4e75c41a7820cec6f7f8b0fb84f4c4c7688f130dbd0604354b5685bac559",
+    "xcal_table.h": "31a5fbe1db9650fa2e5a2518e7c6bf71bb2eb2c9320baeb38142d93ca763f998"
+  },
+  "files": {
+    "bridge-symbols.txt": "8e108818023e2956213f6bb45f43ec971b7ecf1b0f7dfef0096b0a1852bbf5b9",
+    "bridge.bin": "c523ea8fa2701b1afb333e70acafe031413dbac0f95f6fb883dd7034a6dbfd00",
+    "bridge.elf": "0265f5b059d9c9a93f0894175e7d2c6774ae04d92e637830a06f6167ec7bffe2",
+    "bridge.o": "121591714f0881c5c5399b5b66967ee4a78e762dc65a3d4f4df419fd514303f5",
+    "build.log": "f21dbaa27425c298556b7dccf1654e2f770b66606e4f23d0906894dcfd2f7e0c",
+    "page-tool": "07d91c3ddd6feff3b2646766ea87b829ae252145c4c8a58f2c86fb0e61283896",
+    "payload.bin": "286bbf6c682f858ace5f087fc3f2836f5f7c422326e4babbf4841cda10e4d22c",
+    "payload_meta.h": "d7ebb173c29781139389df7864e3fc40941d4fd5934fb95009f9794398413e46",
+    "plan.so": "f12dd6acb05ae9991ce0a442baa24adfab4faa351dcf11d0216f2f5431d3f4ef",
+    "dual/page.bin": "0241a6af016af73ce2180748679792f535a1199941a21a23e1ddf6450ad160fa",
+    "identity/page.bin": "0241a6af016af73ce2180748679792f535a1199941a21a23e1ddf6450ad160fa",
+    "relocated/page.bin": "871f31c6aad3d92cc9b7448a5fc2406f3dd00e624b7f981d063816be02dcdfc1",
+    "scatter/page.bin": "0241a6af016af73ce2180748679792f535a1199941a21a23e1ddf6450ad160fa"
+  },
+  "ended_utc": "2026-10-27T05:51:36.022450+00:00"
+}

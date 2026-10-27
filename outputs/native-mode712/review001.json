@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "scope": "bounded blank/restore pair at unchanged720p, not native mode initialization",
+  "checks": {
+    "payload001.json": "ce7f11f151c9191eae318bc15dd2b20dbe064acebc5f4cc9cd16c3eb994964bf",
+    "host001.json": "a794340c82fed2a467266ea04231727a7923ba42302d10e56fc1f91b849138e3",
+    "host-plan001.json": "a8b6a71b3bbfb8b25b7629bbcde1a19d353922514f0a84aa723d30b39c46db56",
+    "cpu-build001.json": "d372a61f780df5edcb1011984a0fccbbf6f57a3b4de6516c359da541d944f5b2",
+    "cpu-run001.json": "0573954e15b3e0a172575c6c6d390b321d59702b4a27576ad2e3cae3f5f215ed",
+    "integration001.json": "1a24277c75ff724047a564567bb9ee6bae2493c10f2da1101a98d9e6162ec68a",
+    "build001.json": "e50e162cafc9b6a29b25017c0c7fbc82cb8c8eaaf5335c74b9aa15638bcda56e",
+    "page-review001.json": "2d658c2727f4dd895d1aac5401b36f8d8fce57996dfb911e8d88840ff7757897",
+    "plan-review001.json": "8e0bcb9c8d96db9afc4155386fe10a893647ab29365d125ab2f075cd4de6194b",
+    "source-review001.json": "d23eb591b9007879566d45d6eb72fa7c1353b5e778d446a63fe6d77979622e8c"
+  },
+  "unchanged_prior_baseline_predicate": true,
+  "native_seq1_required": 1,
+  "requests": [
+    "sequencer1=0x21",
+    "byte80d3=5",
+    "bounded PM wait",
+    "byte80d3=4",
+    "sequencer1=saved1"
+  ],
+  "restore_attempts": 1,
+  "maximum_wait_reads": 1000001,
+  "nominal_wait_ticks": 3375000,
+  "result_bytes": 176,
+  "payload_bytes": 5120,
+  "padded_payload_extent": 9916,
+  "absolute_relocations": 4,
+  "total_relocations": 17,
+  "fresh_CPU_cases": 12,
+  "fresh_models": 144,
+  "fresh_nxdk_page_cases": 23,
+  "fresh_nxdk_ownership_cases": 372,
+  "result_code": 1810,
+  "limitations": [
+    "ACPI output gate has no independent readback; dropped requests intentionally remain undetected in models",
+    "Only user observation can establish blank/visible restoration; green alone is software completion",
+    "Black hold does not reveal which phase ran; do not retry or infer completion",
+    "Inherited build.py docstring says baseline-only; actual712 blank/restore scope is recorded here and in transaction712/source review",
+    "No encoder/geometry/timing/clock/interrupt configuration change or Windows1.6 qualification"
+  ],
+  "utc": "2026-10-27T05:53:29.195540+00:00"
+}

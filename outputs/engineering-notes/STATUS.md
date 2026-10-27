@@ -1,3 +1,20 @@
+#712 observed: BLACK then picture restored, GREEN holding; reset/collection pending
+
+User confirmed final GREEN holding and separately "Saw black, then picture
+returned." This supports the paired blank/restore observation at unchanged720p;
+it does not identify the independent output-gate effect or qualify a mode change.
+One SITE accepted2026-10-27T05:54:36.333099+00:00. No repeat launch.
+User has been asked to power-cycle to UnleashX and reply Ready; do not collect
+until confirmed. Read outputs/native-mode712/NEXT.md and observation001/002.
+
+Fresh checks pass:131379 ownership,12 CPU(all closed),144 instruction models,
+23 nxdk page cases,372 compiled ownership cases. Native sequence requiresseq1=1,
+blanksseq1/80d3, bounded nominal1-second wait, one restore request even on timer
+or blank-check failure. No encoder/geometry/clock/interrupt changes. Native result
+is optical/RAM; files are preparation only. Build/xemu released, no host child,
+hardware ticket retained, no hook/console C access; automation paused.
+Original720p protected;708/709/710/711 remain CLOSED; other work tabled.
+
 #711 CLOSED: GREEN baseline-call checkpoint before blank; next guarded blank/restore
 
 User reported GREEN holding. After manual power-cycle, nine reports collected

@@ -1,6 +1,6 @@
 # Current status and guide map
 
-Reviewed October 27, 2026 through native checkpoint711; the retained480p handoff is703 and the larger720p pre-transaction checkpoint is710.
+Reviewed October 27, 2026 through native blank/restore diagnostic712; the retained480p handoff is703 and the larger720p pre-transaction checkpoint is710.
 This page summarizes supported observations; individual reports retain their
 original failures and scope. For the exact active attempt and next engineering
 step, read [CONTINUATION](../outputs/engineering-notes/CONTINUATION.md) and
@@ -33,7 +33,9 @@ the exact failure in708/709. The [711 baseline-only call](../outputs/native-mode
 host checks and produced the reported GREEN held checkpoint before blanking.
 It was manually reset and collected; preparation state matches710. This qualifies
 only the baseline call on that run. Native mode initialization remains unproved;
-next is a guarded blank/restore diagnostic before encoder or geometry changes.
+the [712 paired blank/restore test](../outputs/native-mode712/REPORT.md) has a
+reported black interval followed by the restored picture and GREEN hold. Its
+manual-reset collection is pending; encoder/geometry programming remains unqualified.
 
 ## Choose a guide
 

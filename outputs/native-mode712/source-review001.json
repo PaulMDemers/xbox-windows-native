@@ -1,0 +1,27 @@
+{
+  "utc": "2026-10-27T05:51:29.423066+00:00",
+  "pins": {
+    "BootVgaInitialization.c": {
+      "retained_source": "C:\\xwn700\\source001\\BootVgaInitialization.c",
+      "sha256": "481e95c8335ba0d865b3ccddfc1b1acfaf0721e12045104e37c5d4d13573c4d4"
+    },
+    "VideoInitialization.c": {
+      "retained_source": "C:\\xwn700\\source001\\VideoInitialization.c",
+      "sha256": "95087d026d543d9e0b07d972b129ef3029e87a4c9911632344abc6bec839a8db"
+    }
+  },
+  "source_locations": {
+    "disable": "BootVgaInitialization.c:180, byte80d3=5",
+    "enable": "BootVgaInitialization.c:439, byte80d3=4",
+    "sequencer_blank": "704 transaction003 blank() sets sequencer1 bit5; checked source retained"
+  },
+  "712_admission": "all711 baseline/PCI/decode checks plus exact native sequencer1=1; no unknown state accepted",
+  "restoration": "one byte80d3=4 then exact captured sequencer1=1, same704 enable order; attempted once even after blank-readback or bounded timer rejection",
+  "timer": "nominal3375000 ticks at kernel3375000Hz, maximum1000000 loop reads; reject jumps/backwards/24-bit wrap; no independent clock calibration",
+  "observability_decision": "paired bounded intervention tests whether the existing picture returns; no separate LED/UDP path is assumed or added. If black persists, no phase/result success inference; request manual reset after user observation",
+  "limitations": [
+    "ACPI request has no independent readback; models explicitly include undetected dropped gate writes",
+    "green means software sequence/readbacks completed, physical blank/restoration still require observation",
+    "not an encoder or mode change and not a functional driver fix"
+  ]
+}
