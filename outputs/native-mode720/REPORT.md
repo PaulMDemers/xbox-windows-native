@@ -1,0 +1,37 @@
+#720: one saved-value CR1b write control
+
+718's explicit85->05->85 attempt read back05 after restoration.719 read six85
+samples across setup without writing CR1b. Both runtimes are closed.720 tests
+one freshly saved85 write after confirming unchanged prewrite setup samples.
+No05 target, second CR1b write, mismatch retry, bitmask or functional driver fix.
+
+Native admission and output blank/restore remain. A changed setup sample refuses
+the write. After one byte write85, immediate readback is captured, then output
+is restored once and final sequencer/context/pitch/CR11 checked. No pending-bit,
+clock, timing, encoder, geometry orCR22 writes. A mismatch is reported and held;
+manual power-cycle is recovery. A green result does not prove an identical write
+was accepted: an ignored write also leaves85, covered explicitly by host tests.
+
+Result224bytes fits existing256-byte owned slot.13-row optical panel:7200000d,
+bridge phase/checkpoint/return, payload phase/error, initialCR1b, prewriteCR1b,
+writtenCR1b, immediate readback, after-output-restoreCR1b, write-attempt flag,
+samplemask. Full mask7f denotes six setup reads plus immediate write readback.
+Unobserved postwrite field isFFFFFFFF after admission setup, not a device value.
+Bridge phase4/checkpoint5 means returned call. Raw photo is required before reset.
+
+Green720 requires unchanged readings and final checks.7208 is immediate write
+mismatch;7207 changed setup/final sample;7204 final sequencer/context/pitch/CR11
+failure;7205 unlockCR11 check;7202 blank check;7201/7206 baseline rejection.
+Final7204 can supersede earlier error; raw write fields remain. No code alone
+proves why physical bit7 changes or resolves717/708/709 retrospectively.
+
+Fresh validation:204 instruction models,76 isolated optical cases,12 diskless
+CPU cases(all closed),23 nxdk page,372 compiled ownership and131379 host ownership
+cases. Payload5100 padded9916;16 relocations/four absolute; bridge code end558.
+Exact built bridge/payload embedded in XBE. Decimal719 geometry retained by
+specific identifier/path and diagnostic-code renaming, not global substitution.
+No failed build or test in720 preparation. Prior failures remain immutable.
+
+See source-review001.json for primary references retained from717/719 and limits.
+Host models verify access scope, count/order, refusal/restore flow, report and
+ownership. They do not prove hardware bit semantics or Windows1.6 mode support.

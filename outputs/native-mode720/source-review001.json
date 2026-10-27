@@ -1,0 +1,40 @@
+{
+  "utc": "2026-10-27T15:56:43.321809+00:00",
+  "question": "Does one unchanged saved85 CR1b write preserve85?",
+  "physical_basis": {
+    "718": "saved85 -> requested05/read05 -> requested85/read05; closed failure",
+    "719": "six85 setup samples, noCR1b data writes, mask3f and719; closed success for observations"
+  },
+  "sources": [
+    {
+      "retained_review": "outputs/native-mode717/source-review001.json",
+      "sha256": "5b960149cea5dcd267bf0c96c90545f605c8cf28d7a760fd3b7e390f9a543a50",
+      "basis": "Cromwell CR1b FIFO target and Linux saved FIFO writes; no NV2A bit7 definition"
+    },
+    {
+      "retained_review": "outputs/native-mode719/source-review001.json",
+      "sha256": "e4546d251d4f9ca403a8932a550567fb95e845c81ca200b30dc99ca3d900f369",
+      "basis": "CR1b write semantics unresolved; setup baseline now physically observed"
+    }
+  ],
+  "admission": "Require native baseline85 and all prewrite setup samples85; CR11 check unchanged. Refuse write on any prewrite change.",
+  "selected_boundary": "Exactly one byte write of freshly saved85, immediate read; capture after output restore; no repeated CR1b recovery request",
+  "recovery": "Existing output-enable and SEQ1 restore pair once; no CR1b retry. Final sequencer/context/pitch/CR11 exact checks. Held status requires manual power-cycle.",
+  "no_changes": [
+    "No request05",
+    "No CR22, geometry, encoder, clocks, firmware-state borrowing or pending-bit clearing",
+    "No full-mode or Windows1.6 promotion"
+  ],
+  "limits": [
+    "GREEN720 proves observed values remained85; identical write could have been ignored",
+    "Orange raw after-write/final readings do not by themselves define bit7 semantics",
+    "Cross-run difference narrows but does not prove708/709 or717 causes",
+    "Native output values are optical; kernel files are pre-handoff only"
+  ],
+  "source_delta": [
+    "Token/path/diagnostic hex renaming preserves all decimal719 geometry values",
+    "One saved-value write added after strict prewrite comparison; no secondCR1b write",
+    "Result212->224 bytes in existing256byte slot; optical table raw fields updated",
+    "Final pitch/CR11 reads added; no functional programming change beyond saved byte control"
+  ]
+}

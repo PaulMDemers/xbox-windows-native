@@ -1,0 +1,79 @@
+{
+  "signature": "7200000d",
+  "white": 1,
+  "black": 0,
+  "bit_order": "MSB left",
+  "rows": [
+    {
+      "row": 0,
+      "name": "signature",
+      "owned_offset": null
+    },
+    {
+      "row": 1,
+      "name": "bridge_phase",
+      "owned_offset": "0x880"
+    },
+    {
+      "row": 2,
+      "name": "bridge_checkpoint_or_refusal",
+      "owned_offset": "0x8d0"
+    },
+    {
+      "row": 3,
+      "name": "bridge_return",
+      "owned_offset": "0x8d4"
+    },
+    {
+      "row": 4,
+      "name": "payload_phase",
+      "owned_offset": "0x5100"
+    },
+    {
+      "row": 5,
+      "name": "payload_error",
+      "owned_offset": "0x5104"
+    },
+    {
+      "row": 6,
+      "name": "saved_CR1b",
+      "owned_offset": "0x51b8"
+    },
+    {
+      "row": 7,
+      "name": "before_write_CR1b",
+      "owned_offset": "0x51c4"
+    },
+    {
+      "row": 8,
+      "name": "written_CR1b",
+      "owned_offset": "0x51d4"
+    },
+    {
+      "row": 9,
+      "name": "after_write_CR1b",
+      "owned_offset": "0x51d8"
+    },
+    {
+      "row": 10,
+      "name": "after_output_restore_CR1b",
+      "owned_offset": "0x51cc"
+    },
+    {
+      "row": 11,
+      "name": "write_attempted",
+      "owned_offset": "0x51dc"
+    },
+    {
+      "row": 12,
+      "name": "samples_mask",
+      "owned_offset": "0x51d0"
+    }
+  ],
+  "interpretation": [
+    "phase4/checkpoint5 means returned call, not refusal",
+    "One saved85 write only; GREEN720 means unchanged reads, not proof device accepted an identical write",
+    "Mask bits0..5 setup samples; bit6 postwrite sample; full7f only when all observed",
+    "No second CR1b write or retry;7208 immediate read mismatch,7204 final sequencer/context/pitch/CR11 mismatch; raw fields survive"
+  ]
+}
