@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "utc": "2026-10-27T00:10:59.490702+00:00",
+  "source_binary_pins_match": true,
+  "compiled_full_image_cases": 32,
+  "controller_sha256": "e6b2039bad838c27d22b2d1b1b5776434ec7ee7b84b6802ff4a2fe47a9b436c5",
+  "one_SITE": true,
+  "reply_bound_seconds": 20,
+  "no_startup_hook": true,
+  "no_console_C_filesystem_access": true,
+  "write_scope": "PCI config selector restored; own SMBus read transactions/acknowledgements; after success only SMC LED pattern/control writes; no encoder/GPU/EEPROM configuration writes",
+  "context_scope": "post-BootStartup, before all BootResetAction C initialization; not untouched kernel context",
+  "limitations": [
+    "physical observation will be LED only; retained native RAM state is lost after reset",
+    "green/amber proves path reached first indicator write after seven reads, not that both LED acknowledgements completed",
+    "hardware failure has no distinct safe indication; unchanged LED does not identify cause",
+    "native clock and encoder programming remain unqualified",
+    "existing XBE allocation and assembly handoff unchanged; whole boot can fail before diagnostic"
+  ],
+  "manual_reset_required": true,
+  "no_automatic_retry": true,
+  "physical_result": null
+}

@@ -1,0 +1,194 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "deployed": false,
+  "commands": [
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/launcher677-validation002/default720/source",
+      "checkout-index",
+      "--all",
+      "--prefix=/home/paul/xbox-windows-native/xcal689-source001/"
+    ],
+    [
+      "git",
+      "init",
+      "-q",
+      "/home/paul/xbox-windows-native/xcal689-source001"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/xcal689-source001",
+      "add",
+      "-f",
+      "."
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/xcal689-source001",
+      "write-tree"
+    ],
+    [
+      "make",
+      "all",
+      "CC=/usr/bin/x86_64-linux-gnu-gcc-12",
+      "GITREV=xwn689-host",
+      "EXTRA_CROM_CFLAGS=-DXWN_HD_RESERVATION=1 -DXWN_HD_TIMING_720P=1 -DXWN_XCAL_ENTRY689=1",
+      "LDFLAGS-ROM=-s -S -T /home/paul/xbox-windows-native/xcal689-source001/scripts/ldscript-crom.ld -Map=/mnt/c/xwn689/build001/image-crom.map"
+    ],
+    [
+      "objcopy",
+      "-O",
+      "binary",
+      "/mnt/c/xwn689/build001/image-crom.elf",
+      "/mnt/c/xwn689/build001/image-crom.bin"
+    ],
+    [
+      "nm",
+      "-n",
+      "/mnt/c/xwn689/build001/image-crom.elf"
+    ],
+    [
+      "objdump",
+      "-d",
+      "/mnt/c/xwn689/build001/image-crom.elf"
+    ]
+  ],
+  "source_pins": {
+    "config.c": "6b9289b184af22cb75e8e5bfb71e5623bc6f1aa7255c2234701e97edb5ff092e",
+    "delay_candidate.h": "3ab98a08b986ab1816c33658951634296dbc9e95f0a45c9069888bf0681d3cf8",
+    "entry.c": "f10ebf17744492c3591f2ae445aa0a49b8dbb0e6b1d441f096595bde8c312a21",
+    "entry.h": "6ff41eba6918c98f954b530821a2ee90356fe93031dd3d68cebf886063a145f3",
+    "indicator.c": "22a8fd7da7faae63c2650eea4e3f20be2506fcecfb3e25c52db78e2974bf14be",
+    "native.c": "4e0f21839e77c485eee1df452077ccc96834cb3f1076938aafcbebebd961add1",
+    "xcal_bus.c": "edc959f25c88602ddb311740b7bf7ed53a488c8dbdecae2cb79f94c1123059d8",
+    "xcal_bus.h": "74a3d0d715d4c6b2ad867bf8646676a820fb58eca0307c4674b4a82abb11708f"
+  },
+  "space_source": {
+    "minimum_free_gib": 20.125,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/home/paul/xbox-windows-native",
+        "free_bytes": 896139538432
+      },
+      {
+        "free_bytes": 69949063168,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "space_output": {
+    "minimum_free_gib": 20.05,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c",
+        "free_bytes": 69949063168
+      },
+      {
+        "free_bytes": 69949063168,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "parent_tree": "70c0a6c5aff82537f489e7d18410d5980fa797a7",
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "tree": "afe14eb81367d8199328dece48d671baabf1e494",
+  "flags": "-DXWN_HD_RESERVATION=1 -DXWN_HD_TIMING_720P=1 -DXWN_XCAL_ENTRY689=1",
+  "changed_integration": {
+    "Makefile": "6044c9f98389c2deb58d2f393b8032a5998fd883513fab83b0410b0a1a8f6509",
+    "boot/Makefile": "049ae1249a6cc10c982a10835ff2153eaef50b9983f06e235dcfc717b5c36bc3",
+    "boot/BootResetAction.c": "40c939668a4114e805321f944e6c8f4227f87df0db00f696269658a478447a5f"
+  },
+  "artifacts": {
+    "binary.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "binary.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build.stderr": {
+      "bytes": 2073,
+      "sha256": "96b69fb5e0c4436fa67e0d798f8174fca59483bf66e4d5106f6ef5df1ae9954e"
+    },
+    "build.stdout": {
+      "bytes": 208771,
+      "sha256": "4bb77dcd3b792a22aeb12b9bd78872e2446049480576e2496222451c0ae93f3a"
+    },
+    "default.xbe": {
+      "bytes": 302672,
+      "sha256": "96016db66f620e7dd22210d67ded7a60936b593c2e8147c9b406d34c4bb96c0a"
+    },
+    "disassembly.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "disassembly.stdout": {
+      "bytes": 4049425,
+      "sha256": "2bfd4b6333ea2fd958e490ceb6daae271b35f6929b3b8126ffa3bbb695c5a520"
+    },
+    "export.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "export.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "image-crom.bin": {
+      "bytes": 290364,
+      "sha256": "200dd9b9e27d15d81694cd0fa786b1cea6b4004c5827b6a3a51a58f2c41b8c4e"
+    },
+    "image-crom.elf": {
+      "bytes": 326732,
+      "sha256": "e49268fd85a6748f5daebb987bc384f91159b5065e1fb01f29dde86554877776"
+    },
+    "image-crom.map": {
+      "bytes": 234640,
+      "sha256": "10875f9a184b8bea783a22d55859a91cf4e39d85fcfcd2b141068513e714961f"
+    },
+    "index.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "index.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "init.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "init.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "symbols.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "symbols.stdout": {
+      "bytes": 24862,
+      "sha256": "f295fb2cf7c0fa5f9aac0ff2e82444fb7994bb268dcb3c4a71fc178c1de31883"
+    },
+    "tree.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "tree.stdout": {
+      "bytes": 41,
+      "sha256": "de9f8e4ba65cb74d98ac6d26e3dbdc267dddf28a134d3b93514d665d1fa9ba9b"
+    }
+  },
+  "ended_utc": "2026-10-27T00:08:09.189268+00:00"
+}

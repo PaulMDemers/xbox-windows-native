@@ -1,3 +1,32 @@
+# 688 host entry and689 watched native preflight CLOSED
+
+Read outputs/xcal-native688/REPORT.md and outputs/xcal-visible689/REPORT.md,
+then outputs/xcal-visible689/NEXT.md. The separate full-image entry is before
+all BootResetAction C initialization. Source review found the legacy PCI audio
+SMBus command also precedes EEPROM. Compiled audio models retain terminal status
+and accept done+error.688 passes27 linked-image cases;689 adds bounded success-only
+SMC LED indication and passes32 cases. These are models, not physical boot proof.
+
+One689 SITE launch accepted. User observed SOLID AMBER and BLACK, not the expected
+green/amber. Failure phase unknown: native RAM record not collected, no read/driver
+qualification. User then power-cycled and confirmed dashboard. Staged bytes read
+back twice unchanged; unrelated E-root/app entries unchanged. This is not whole-
+volume health or normal Windows shutdown. No identical retry, encoder/GPU setup,
+Windows test, startup hook or console C filesystem access. Owned XWNXcal689 onE
+retained. All invoked688/689 host fixtures and689 runtime CLOSED; never reopen.
+
+No owned host process or build lease remains; hardware ticket retained, automation
+paused. Incoming1.6 last at dashboard with HDMI after manual reset. Original720p,
+maintained sources/manifests unchanged. Networking679/1080i remain tabled.
+
+Next: useful early result observability independent of SMBus before another native
+launch. Review a separately owned kernel-created diagnostic framebuffer/mapping
+or other bounded checkpoint; none implemented yet. Do not borrow firmware state,
+clear unknown pending status, change IF or weaken gates. A fresh read-only kernel
+PCI/config reference could check689 expectations but cannot identify native phase.
+Only then complete GPU/encoder pattern integration and watched480p qualification
+before Windows. Kernel682/683 and presence686 remain separate evidence.
+
 # 686 encoder presence closed; 687 bounded reader host fixtures closed
 
 Read outputs/encoder686/REPORT.md and outputs/xcal-entry687/REPORT.md, then

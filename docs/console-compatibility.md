@@ -18,7 +18,10 @@ adds a host-tested native binding. Neither programs the encoder on hardware.
 [686](../outputs/encoder686/REPORT.md) now records a positive kernel read at the
 Xcalibur address; it is presence evidence, not a unique chip ID.
 [687](../outputs/xcal-entry687/REPORT.md) adds bounded native configuration reads
-and compiled status-ownership comparisons. Native display remains unqualified.
+and compiled status-ownership comparisons. [688/689](../outputs/xcal-visible689/REPORT.md)
+then link an early native read preflight. The watched689 run held solid amber/black,
+without its green/amber success signal, and was manually reset. Its failure phase
+is unknown; native reads, display and Windows remain unqualified.
 See [current status](current-status.md).
 
 ## First additional-console inventory
@@ -84,8 +87,9 @@ starting points, not proof the shipped profile works with those encoders.
    Keep personally identifying data, EEPROMs and firmware out of public reports.
 2. Group the reports by actual encoder/RAM/boot differences. For the incoming1.6,
    kernel composite682 and HDMI720p683 baselines are complete, and686 adds a
-   positive Xcalibur-address response. Follow687 NEXT to qualify a separate
-   native Xcalibur480p pattern before Windows. Treat RAM upgrades separately.
+   positive Xcalibur-address response. Follow [689 NEXT](../outputs/xcal-visible689/NEXT.md)
+   to make early results observable, then qualify a separate native Xcalibur480p
+   pattern before Windows. Treat RAM upgrades separately.
 3. For a new profile, review timing, color format, stride, framebuffer extent,
    hidden/reserved memory and handoff consistency as one change. Validate pure
    calculations and rejected configurations before a watched hardware launch.

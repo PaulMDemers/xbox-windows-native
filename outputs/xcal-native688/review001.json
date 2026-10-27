@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "utc": "2026-10-27T00:06:21.738993+00:00",
+  "parent_tree": "70c0a6c5aff82537f489e7d18410d5980fa797a7",
+  "source_pins_match": true,
+  "retained_source_files": {
+    "boot/BootResetAction.c": "b27a08d5c4e18d331d2794ba0f50731d2768d5edc6addbeba3148a6b942612df",
+    "boot/BootStartup.S": "3dfbb3c3fedfaa36d6c2c7b8429e9575008c4be3b2b7bf28cb3fff95456b858f",
+    "drivers/pci/pci.c": "090a07eef7203cb72fafcc7a4e12635ce029355c1bd70a0dbde0fe66a986815e",
+    "drivers/pci/i2cio.c": "1bd2331de151bfe8453235e3469334b93f2d636dab94a3d5610594c4befe6b2e",
+    "drivers/video/BootVgaInitialization.c": "481e95c8335ba0d865b3ccddfc1b1acfaf0721e12045104e37c5d4d13573c4d4"
+  },
+  "findings": [
+    "BootPciPeripheralInitialization sends SMC audio command 0x0b00 before EEPROM read",
+    "I2CTransmitWord forwards to WriteToSMBus; compiled model leaves terminal status and accepts done+error",
+    "early diagnostic branch is before all C initialization and does not return",
+    "BootStartup assembly already changes CPU/cache/descriptor state; this entry is not untouched kernel context"
+  ],
+  "native_clock_qualified": false,
+  "physical_launch_admitted": false,
+  "reason": "no durable or user-visible result channel in688"
+}
