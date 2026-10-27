@@ -1,3 +1,10 @@
+# 746 LAUNCHED: one accepted CR05 control
+
+One SITE accepted2026-10-27T23:29:22.851790UTC after preparation37a7d013 pushed.
+Kernel self-reporting auto-return; no Windows/native handoff or startup hook.
+Bounded dashboard observer active; no VM. Never retry accepted launch.
+All745/prior CLOSED. NEXT outputs/crtc-end746/NEXT.md.
+
 # 746 STAGED: CR05 low-five-bit checkpoint
 
 Fresh kernel746 after closed744/745: CR05 target3e preserves own upper bits;
