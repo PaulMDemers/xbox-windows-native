@@ -1,3 +1,21 @@
+# 742 CLOSED: seven horizontal timing words pass and restore
+
+Actual kernel742/742;15 prefix+7 horizontal checks,20+7 cleanup fields pass.
+Own saved timing words restored before output-enable. Seven reports collected
+once; exact source/build/stage/unrelated E entries verified. Complete restart
+record and authenticated dashboard return; no visual observation/Windows proof.
+No hook/process/VM. All742/prior CLOSED. Preparation99be6781 pushed.
+NEXT outputs/horizontal-prefix742/NEXT.md: prepare distinct native counterpart,
+then current watcher/photo/reset readiness before intentional hold.
+
+# 742 LAUNCHED: one accepted horizontal checkpoint
+
+One SITE accepted2026-10-27T22:40:35.931431UTC after exact stage/source verification.
+Kernel-only auto-return diagnostic; no hook, no Windows/native handoff. Await
+bounded dashboard return, then collect new reports once. Do not retry launch.
+Preparation99be6781 pushed. No owned VM; host dashboard observer may be active.
+NEXT outputs/horizontal-prefix742/NEXT.md. All741/prior runtimes CLOSED.
+
 # 742 STAGED: ready for one bounded kernel diagnostic
 
 Unique E stage/readback verified.89 COFF and2353 framebuffer cases pass;

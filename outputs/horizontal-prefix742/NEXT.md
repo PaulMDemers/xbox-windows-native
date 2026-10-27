@@ -1,15 +1,18 @@
-# 742 preparation
+# 742 CLOSED; prepare native horizontal counterpart
 
-Kernel-only seven-horizontal-word checkpoint after the preserving prefix.
-Finish independent review/freeze, repository checks, unique E staging/readback
-and source commit before one admitted SITE launch. Routine auto-return hardware
-use is already authorized; no intentional hold or watcher requirement here.
+742 kernel-context result passes15 prefix checks,7 horizontal checks,20 prefix
+cleanup fields and7 horizontal recovery fields. Complete restart_requested and
+authenticated dashboard return; no user visual observation. All742/prior
+runtimes CLOSED. No hook or owned process/VM. Never rerun/recollect/parent.
 
-After bounded observation, authenticate dashboard and collect exact new files
-once. No hook is installed. If offline, retain accepted/uncertain launch state
-and ask for reset; do not retry. Audit all104 result words, own-value recovery,
-source/binary/stage identity and unrelated E entries before closure.
+Next: distinct743 native counterpart based on742 probe and741 handoff/report
+infrastructure. Keep104-word in-memory result and expose a13-row status/CPU
+report sufficient to distinguish prefix, horizontal, cleanup and selector
+failures. Preserve actual pre-arm versus native CPU context. Validate fresh
+ELF/COFF, linked bytes, complete bridge and negative CPU fixtures, optical
+schema and memory/ownership bounds before staging. Native success is not a
+visible low-resolution switch. No encoder/vertical/full-mode replay or Windows.
 
-No native counterpart, full mode change or Windows launch is authorized by a
-PASS alone. Review physical result and next bounded field group first. All741
-and prior runtimes remain CLOSED; keep704 and all prior failures intact.
+The native counterpart intentionally holds; once concretely staged ask for
+current watch/photo/reset readiness. Kernel routine launches remain authorized.
+No743 kit or launch existed when this closure was written.
