@@ -1,0 +1,38 @@
+{
+  "utc": "2026-10-27T16:18:36.275947+00:00",
+  "question": "Does the same-value write mismatch also occur while retaining Xbox kernel paging/cache context?",
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/torvalds/linux/v6.12/drivers/video/fbdev/nvidia/nv_hw.c",
+      "finding": "Byte indexed CRTC access saves/restores arbitration0 via1b. No NV2A bit7 definition."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/haiku/haiku/master/src/add-ons/accelerants/nvidia/engine/nv_crtc.c",
+      "finding": "FIFO programming shown for NV05M64, not NV2A. Values not transplanted."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/xemu-project/xemu/master/hw/xbox/nv2a/prmcio.c",
+      "finding": "Emulator forwards to VGA IO model. Not physical bit7 semantics evidence."
+    }
+  ],
+  "compiled720_review": {
+    "disassembly_sha256": "0da99cdbe516517209ad14b58f885af2d4e4b2166573d60a2142c6dd360831b9",
+    "finding": "At1004a0 saved EAX is recorded as requested;1004b5 selects1b;1004bc writes AL toFD6013d5; no mask.1004c1 reselects1b before1004c8 read."
+  },
+  "selection": "Kernel-only fresh app; same admitted720p, blank/unlock, one saved85 write, restore output. Brief explicitCLI/restore incoming flags; keep CR0/3/4 unchanged. Direct data read then selector read then indexed data read. Durable reports and15second colored status, dashboard return.",
+  "limits": [
+    "Kernel context versus native has several differences; not a single-variable cache test.",
+    "No additional data-write acceptance proof for85->85; write may be ignored.",
+    "No hardware semantics proof or full-mode708/709 attribution.",
+    "916 compiled-object models use modeled control-register reads and MMIO; no physical or full kernel runtime proof.",
+    "Kernel API calls remain unbounded; hardware may still require manual reset.",
+    "No new native bridge, Windows boot, encoder/clock/geometry/CR22 write, pending-bit clearing or CR1b retry."
+  ],
+  "outcomes": {
+    "direct05_selected05": "Native handoff and index reselection not necessary for this observed mismatch, subject to actual receipts.",
+    "direct85_selected05": "Access sequence or timing dependency; not proof index write causes change.",
+    "direct85_selected85": "Mismatch not reproduced in kernel context; ignored write remains possible.",
+    "other": "Preserve exact bytes/error; no masked pass."
+  },
+  "historical_cosmetic_note": "Frozen720 Makefile title still719. Public paths/schema/source/binary pins identify720;721 title corrected in new source only."
+}

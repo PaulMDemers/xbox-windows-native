@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "utc": "2026-10-27T16:19:44.290664+00:00",
+  "physical_access": false,
+  "scope": "Kernel-only saved85 control; raw direct and reselected readbacks; no native handoff",
+  "checks": {
+    "build001.json": "b1103f59663dd8cd4098b5a18c5de1030d55ca258d7ef53d35eb71edf75f767f",
+    "model001.json": "17d7536393c46e6101c4ba145c9abd409fd6ccd5027db09e2946d19e7847298b",
+    "link-review001.json": "a98e1513aeede02a0ad4bc2b0efbee0e1cd473a015ead57a23d39d0147f530bb",
+    "link-review002.json": "a73f93c975f8eb0dda964ee5767ca427197273ccce69fc32e6b3804b732bf98a",
+    "source-review001.json": "c60d220390ebd9fb52cc6390c8d148d06fea0e1c7fbe104f7f890b692cf330af",
+    "schema001.json": "fc857f69c3199f58cd85f366c77e508724d4f0bac1f2e2752efa21627412726d",
+    "lineage001.json": "8d9cc152292c54e1e5397f2c54da7374aea0aa01a06728ef2522956b349e99e3"
+  },
+  "models": 916,
+  "max_modeled_critical_instructions": 532,
+  "source_review": [
+    "Single saved85 data write after admission; no initial05 or retry.",
+    "Known blank/unlock/output pair retained; finalSEQ1/CR11 and selectors checked.",
+    "Entry EFLAGS saved, CLI explicit; restored exact flags before kernel file APIs; CR0/3/4 read only.",
+    "Source layout validators unchanged from720; kernel validates every framebuffer page.",
+    "Writes restricted in compiled models to exact byte registers and80d3 output pair, stack/result.",
+    "No native bridge or private allocation aliases, no Windows/hook.",
+    "Post-write file failures appear magenta; no automatic launch retry.",
+    "Automatic dashboard return request after15seconds is not Windows normal shutdown."
+  ],
+  "limits": [
+    "ModeledCR0/3/4 reads, not processor pagewalk proof.",
+    "Kernel APIs remain unbounded; a hang would need user reset.",
+    "Samevalue85->85 does not prove write acceptance.",
+    "No bit7 hardware definition found or functional mode fix."
+  ]
+}
