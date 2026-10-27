@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "scope": "single CR19 common-setup write51->10 and full-byte readback, restored51 before wait/output enable; temporary pitch change, not final mode switch",
+  "checks": {
+    "payload001.json": "2dc9cdc2e37ec1ea86f3bec222b5313633e77d01347a6703a97d113310504882",
+    "host001.json": "e7bfb8704a41d16f33f5c8d83c312642a13775ea2b941058e27700d825e09b33",
+    "host-plan001.json": "72a3cf6be26243dd0a172ca0079628deda3acf502fe5fea5be6c43952b19ff24",
+    "cpu-build001.json": "3556a0f4ae76c70c97fcd88b9df6e1a2fe7075b872a2d8354ced880cb14061a1",
+    "cpu-run001.json": "74c0d18d1068f1d448e38ae4742295620931d8c578893f121289d63183d21a4f",
+    "integration001.json": "2744f73d7b523a761d5dc4c561ca5c56ab4c0fb5d53baf75153b4069ffd7f9bd",
+    "build001.json": "7628fac7b65ce6962f16244c2387ac320702a6d098b3926dfc1796d90faa1139",
+    "page-review001.json": "a50ad96191d9274be42c6212abfe185dc3597e7ae9c31b39ca0d145d2e7ff8cf",
+    "plan-review001.json": "d081cb4fe73a584cbd1bcb3a58eb6fad414eefd7b539df44736ded87c9754392",
+    "source-review001.json": "86751ad6a283b26eba15138a6a3c01d995b8139f1c381d1b0e975df71abebe56"
+  },
+  "source_delta_reviewed": true,
+  "bridge_and_kernel_namespace_only": true,
+  "result_bytes": 208,
+  "payload_bytes": 5120,
+  "padded_payload_extent": 9916,
+  "absolute_relocations": 4,
+  "total_relocations": 17,
+  "fresh_CPU_cases": 12,
+  "fresh_models": 176,
+  "fresh_nxdk_page_cases": 23,
+  "fresh_nxdk_ownership_cases": 372,
+  "success_code": 1812,
+  "CR19_baseline_code": 28998,
+  "CR19_test_readback_code": 28999,
+  "CR19_restore_code": 29000,
+  "restoration_attempts": 1,
+  "forbidden": [
+    "CR11 write",
+    "CR1f read as key",
+    "CR19 writes other than test10 then saved51",
+    "timing/encoder/clock/interrupt writes"
+  ],
+  "limitations": [
+    "CR19 is a pitch register; intermediate pitch changes while blanked",
+    "successful CR19 readback is specific, not proof of all extended-register behavior or unlock-key causality",
+    "inherited model field no_encoder_geometry_clock_writes means no other geometry writes: CR19 is explicitly allowed and traced; see model-scope001",
+    "native RAM/optical result distinct from preparation files"
+  ],
+  "utc": "2026-10-27T06:21:41.895262+00:00"
+}

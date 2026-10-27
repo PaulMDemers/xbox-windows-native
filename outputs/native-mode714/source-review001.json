@@ -1,0 +1,29 @@
+{
+  "utc": "2026-10-27T06:19:42.719366+00:00",
+  "primary_sources": [
+    {
+      "url": "https://github.com/torvalds/linux/blob/v6.12/drivers/gpu/drm/nouveau/dispnv04/nvreg.h",
+      "finding": "CR19 repaint control0; bits7:5 hold pitch bits10:8; CR1f unlock key57. Cross-chip source, not physical NV2A proof."
+    },
+    {
+      "retained": "C:/xwn700/source001/BootVgaInitialization.c",
+      "sha256": "481e95c8335ba0d865b3ccddfc1b1acfaf0721e12045104e37c5d4d13573c4d4",
+      "finding": "common setup writes CR19=10; existing704 transaction follows this write and checks full byte"
+    }
+  ],
+  "raw_header_fetch_failed": "HTTP429; versioned GitHub page readable",
+  "selected_boundary": "one CR19 write51->10 and full-byte readback, then exact saved51 restore before wait/unblank",
+  "physical_admission": "713 recorded CR19=51, CR13=80, CR25=10, pitch5120; new native code independently checks existing pitch and exact CR19=51",
+  "arithmetic": "target CR19=10 removes upper pitch bits: unchanged CR13=80/CR25 bit5=0 yields1024-byte pitch while blank; restores5120 before output enable; smaller stride stays in retained framebuffer extent",
+  "scope": "temporary pitch-register test, not common setup complete, not final mode change",
+  "not_selected": [
+    "CR22 undocumented in retainedCromwell",
+    "CR1b FIFO tuning not needed for this isolated write",
+    "geometry/timing/encoder/clock/interrupt programming"
+  ],
+  "limitations": [
+    "same value restore must be read back",
+    "success supports this register write on this run, not all extended writes or unlock-key causality",
+    "no physical hardware result yet"
+  ]
+}

@@ -1,6 +1,6 @@
 # Current status and guide map
 
-Reviewed October 27, 2026 through native unlock/check diagnostic713; the retained480p handoff is703 and the larger720p pre-transaction checkpoint is710.
+Reviewed October 27, 2026 through native CR19 test/restore diagnostic714; the retained480p handoff is703 and the larger720p pre-transaction checkpoint is710.
 This page summarizes supported observations; individual reports retain their
 original failures and scope. For the exact active attempt and next engineering
 step, read [CONTINUATION](../outputs/engineering-notes/CONTINUATION.md) and
@@ -43,6 +43,11 @@ host checks and held GREEN after the unlock-key request, exact CR11 check and
 restoration. Manual reset and nine-file collection/audit are complete; preparation
 state matches712. This does not prove extended-register write access or native
 mode initialization. Next isolate common setup with changed-register readback.
+The [714 CR19 test/restore checkpoint](../outputs/native-mode714/REPORT.md) passed
+fresh host checks and produced a user-reported GREEN held result. Manual reset,
+nine-file collection and audit passed; preparation matches713. This supports one
+temporary pitch-register write/readback and restoration, not the full mode change.
+Next capture remaining common-setup register values before further write tests.
 
 ## Choose a guide
 

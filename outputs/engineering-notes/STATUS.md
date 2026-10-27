@@ -1,3 +1,42 @@
+#714 CLOSED: GREEN CR19 changed-readback and restoration checkpoint
+
+User GREEN holding, manual reset confirmed; nine preparation reports collected
+once/double-read and audited. Exact source/binary/report pins, independent aliases,
+allocation and unrelated entries pass. PCI/CRTC/SEQ/geometry/allocation match713.
+Optical0x714 supports specific CR19 write10/readback and saved51/pitch/CR11 restore
+before visible restoration. No separately witnessed blank interval, raw native
+result extraction, all-register/unlock-causality/full-mode/Windows1.6 proof.
+model-scope001 explicitly corrects inherited no-geometry-write label: CR19 is pitch.
+
+Next NEW715 capture remaining common-setup PRAMDAC values read-only, independently
+validate native versus kernel context, then choose bounded write/restore tests.
+No full704 retry or unobserved firmware programming. Read native-mode714/NEXT.
+714 and earlier runtimes CLOSED. Console dashboard, no hook/host child; build/xemu
+released, hardware ticket retained; original720p protected; automation paused.
+
+#714 GREEN holding: reset/collection pending
+
+User reported "Green, holding"; optical0x714 supports changedCR19=10 readback and
+restored51/pitch5120/CR11 plus output restoration. Not all extended registers,
+unlock-key causality, full mode switch or Windows1.6 qualification. Reset to
+UnleashX requested; collect ONCE after Ready, audit and close. Read714/NEXT.
+Console held pending reset; no hook/host child; no second SITE. Other state unchanged.
+
+#714 launched once: CR19 changed-readback/restoration; observation pending
+
+Adds only common-setup CR19 test51->10->51 while blanked. Native checks target
+readback, exact restoration, pitch5120 and CR11 unchanged before wait/unblank.
+176 instruction models,12 CPU(all closed),23 nxdk page,372 compiled ownership,
+131379 host ownership cases pass. model-scope001 qualifies inherited report label:
+CR19 is explicitly a temporary pitch/geometry write. No timing/encoder/clock/IRQ
+programming or full mode qualification. See native-mode714/REPORT and NEXT.
+
+Exact stage readback; one SITE accepted2026-10-27T06:22:35.501782+00:00. Asked final
+SECOND bar color and hold/black/dashboard. Record observation before reset request;
+collect ONCE after Ready. No repeat launch, Windows, hook, console C or host child.
+Build/xemu released; hardware ticket retained. Original720p protected; earlier
+runtimes CLOSED; automation paused; other work tabled.
+
 #713 CLOSED: GREEN unlock-key/CR11/restoration checkpoint
 
 User reported GREEN holding; manual power-cycle confirmed. Nine preparation files
