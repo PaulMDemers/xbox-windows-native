@@ -1,3 +1,24 @@
+#723 CLOSED: combined kernel setup prefix passed
+
+Accepted2026-10-27T16:52:53.493790+00:00. User GREEN and automatic dashboard
+return. Seven reports collected once/double-read; source/build/stage pins,
+framebuffer preparation and unrelated E entries verified. Code723,11MMIO+4CRTC
+writes matched, first_mismatchffffffff. CR19=51->10->51,630=3->2->3,
+CR1b=85->05->05; CR22fe unchanged and NEVER written. Output/SEQ/CR11/selectors
+cleanup passed. CR1b05 explicitly retained until firmware return; not full
+pre-run state restoration. Kernel context only, no native handoff or Windows.
+
+305 compiled probe model cases and2353 layout/pixel cases pass; exact linked
+nonrelocation bytes. No new failure. No hook/owned process/VM; build/emulator
+leases released, hardware ticket retained. Console at UnleashX. No boot/driver
+fix or native1.6 mode-switch claim. Preserve closed722 kernel mode comparison.
+
+NEXT outputs/kernel-prefix723/NEXT.md: fresh native counterpart of this prefix,
+stopping beforeCR22, with independent bridge/page/CPU/write validation and
+watcher/photo/reset. Kernel success does not prove native context works or locate
+708/709 failure. CR22 semantics still unknown; no gate mask or captured-state
+replay. Never rerun/recollect/parent723 runtime. No next test staged/launched.
+
 # 722 CLOSED: exact720x480 kernel mode cycle passed
 
 One launch accepted at2026-10-27T16:40:07.389661+00:00. User observed blue720p,

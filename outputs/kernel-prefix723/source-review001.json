@@ -1,0 +1,26 @@
+{
+  "utc": "2026-10-27T16:51:50.915014+00:00",
+  "source704_sha256": "6336794d817f0b801db939b2611c1832736acad598e71437f9ca87bc797a345b",
+  "probe_sha256": "db0c00e8fdc219285b5c3e25dd1e09bccb317195b049dec3eaefc5e0a7bf3df3",
+  "prefix_tables_exact": true,
+  "before_cr22": true,
+  "new_question": "Does the combined11MMIO+4CRTC prefix, includingCR1b05, read back as requested under kernel context? Individual restored-register observations did not cover this combination.",
+  "intentional_differences_from704": [
+    "Per-write diagnostic readbacks and stop on first mismatch, whereas704 batches writes before check_setup.",
+    "Kernel context retained, not native handoff.",
+    "Stop before CR22 and CR33 writes; no geometry/VGA/encoder programming.",
+    "Restore changedCR19/630 and output before recording; retainCR1b05 when attempted, never retry85."
+  ],
+  "admission": [
+    "HDTV NTSC-M/J with480p/720p,64MiB,GPUd3/MCPd5",
+    "Kernel PCI/CPU/geometry/framebuffer and every page verified",
+    "11 MMIO before values match known720p, CR14=0/17=e3/19=51/1b=85, CR22fe, SEQ1=1, CR11unlocked"
+  ],
+  "limits": [
+    "Passing prefix is not full704 reproduction, not proof native context behaves identically, and not a mode-switch fix.",
+    "Cleanup comparison explicitly permits retainedCR1b05; it is not full pre-run register restoration.",
+    "Writes may not read back faithfully; every mismatch retained, no retry or bit mask.",
+    "Kernel API hangs may need reset; automatic return is firmware restart not Windows shutdown.",
+    "XBE title retains CR1b wording from scaffolding; namespace723/report fields identify combined prefix."
+  ]
+}
