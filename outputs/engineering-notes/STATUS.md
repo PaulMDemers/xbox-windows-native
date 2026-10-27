@@ -1,3 +1,19 @@
+# 731 STAGED: bounded GR04 read-plane selection / CR22 reads
+
+Fresh build,27 actualCOFF cases,2353layout cases and main/probe/layout linked
+bytes passed. E-only unique stage/readback completed; no launch requested.
+GR04=0/1/2/3 then saved byte, at most5data writes. No CR22/CR33/timing/gate/blank/
+unlock writes, no native handoff or Windows. Unknown GR04 high bits refused.
+43rawwords record actual CPU context, selector/read samples and final full-byte
+cleanup. Green is completed/restored measurement; identical plane values remain
+inconclusive. No guessed mask, original full-mode gate change or acceleration.
+
+NEXT outputs/latch-select731/NEXT.md. Await watcher readiness at1.6 UnleashX/HDMI,
+then one SITE20second bounded request; no retry of accepted/uncertain launch.
+No hook/owned VM/process.730/729 and all earlier runtimes CLOSED. Ordinary720p
+preserved. No build/model/review/stage failure. No matched private5838 firmware
+identified in scoped searches; no firmware acquired or used as programming state.
+
 # 730 CLOSED HOST-ONLY: CR22 storage/readback assumption is suspect
 
 Fresh unchanged704 build byte-identical to704build004;12 compiled phase4

@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "primary_reference_manifest_sha256": "a4e6e819d6ed666405aabc6c003b89f443bac09c2978508fac5110923ac620b3",
+  "references": [
+    {
+      "repo": "envytools/envytools",
+      "branch": "master",
+      "path": "rnndb/display/nv_vga.xml",
+      "commit": "f102b82381f3f11cee113d16374c87091db039d9",
+      "url": "https://raw.githubusercontent.com/envytools/envytools/f102b82381f3f11cee113d16374c87091db039d9/rnndb/display/nv_vga.xml",
+      "sha256": "e2d8fbed5f5b77b06610b7207c8e2dab7cf8e77d5663930b152b9ad998aeff8c",
+      "matches_download": true
+    },
+    {
+      "repo": "bochs-emu/Bochs",
+      "branch": "master",
+      "path": "bochs/iodev/display/vgacore.cc",
+      "commit": "67980ad8f2775e80e6913d4f94b2e85fa4fe701f",
+      "url": "https://raw.githubusercontent.com/bochs-emu/Bochs/67980ad8f2775e80e6913d4f94b2e85fa4fe701f/bochs/iodev/display/vgacore.cc",
+      "sha256": "cdea5c9cc8d7f41983ae4552f3546248f3743e13aef374afeeaa17b8688cbd84",
+      "matches_download": true
+    }
+  ],
+  "source_basis": "Envytools GR04 READ_PLANE_SELECT and CR22 MEM_LATCH; Bochs standard two-bit plane selector supplies hypothesis only. No CR22 write is admitted.",
+  "main_scaffold_only_reporting_changes": true,
+  "max_GR04_writes": 5,
+  "CRTC_data_writes": 0,
+  "timing_gate_blank_unlock_writes": 0,
+  "memory_aperture_access": false,
+  "complete_saved_byte_restored": true,
+  "unknown_GR04_high_bits_refused": true,
+  "limits": [
+    "Unknown NV2A CR22 write behavior unchanged.",
+    "Equal plane readouts may mean identical latch contents or lack of selector dependence; inconclusive.",
+    "Distinct readouts support selector dependence, not full-mode cause or safe CR22 writes.",
+    "Diagnostic does not preload latches from unowned legacy aperture."
+  ]
+}
