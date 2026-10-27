@@ -37,8 +37,8 @@ checked handoff and inherited kernel scanout; they do not initialize a native mo
 or qualify Windows1.6. [698](../outputs/xcal-protocol698/REPORT.md) tightens status
 handling in a host-only prototype. [699](../outputs/native-timer699/REPORT.md) captured a successful native bounded
 wait. [700](../outputs/xcal-sequence700/REPORT.md) adds linked encoder failure
-tests and GPU-state review. [701](../outputs/native-gpu701/REPORT.md) launched once for a read-only native
-GPU snapshot; bar observation and photo are pending.
+tests and GPU-state review. [701](../outputs/native-gpu701/REPORT.md) captured a native GPU snapshot; all
+six shared GPU registers and four CRTC bytes matched the pre-transfer snapshot.
 See [current status](current-status.md).
 
 ## First additional-console inventory
@@ -105,8 +105,8 @@ starting points, not proof the shipped profile works with those encoders.
 2. Group the reports by actual encoder/RAM/boot differences. For the incoming1.6,
    kernel composite682 and HDMI720p683 baselines are complete, and686 adds a
    positive Xcalibur-address response. Native checkpoint/read evidence now extends
-   through699; follow [701 NEXT](../outputs/native-gpu701/NEXT.md) for the staged
-   read-only GPU context capture, then qualify a separate native Xcalibur480p pattern before
+   through701; follow [701 NEXT](../outputs/native-gpu701/NEXT.md) for complete
+   transaction design, then qualify a separate native Xcalibur480p pattern before
    Windows. Treat RAM upgrades separately.
 3. For a new profile, review timing, color format, stride, framebuffer extent,
    hidden/reserved memory and handoff consistency as one change. Validate pure

@@ -60,3 +60,34 @@ C access. The ordinary launcher and original Conexant720p installation remain
 unchanged. The frozen transport's inherited observation string mentions697;
 the actual last completed physical run is699, followed by user-confirmed reset
 and verified collection. Current readiness must be recorded separately.
+
+## Optical observation
+
+Both bars green. Ten optical rows:02a010de,02b00007,fd000000,00000003,
+0003c20d,100a0400,21101100,ff835180,03c5c000,03070003. All320 bits
+threshold/offset checked; middle256 independently cross-row checked. Native
+CRTC13/19/28/39 =80/51/83/ff. Raw readings are NOT programming values.
+
+Photo captured before requesting manual power-cycle. Await Ready/dashboard;
+then record collection-ready001 and collect once. No reset confirmation or
+collection yet. No repeat launch, startup hook or Windows. Host processes closed.
+Read native-gpu701/NEXT.md. Original720p unchanged.
+
+## Closed result
+
+Photo decodes02a010de,02b00007,fd000000,00000003,0003c20d,100a0400,
+21101100,ff835180,03c5c000,03070003. Both bars green. All320bits checked
+with thresholds/offsets; middle256 cross-row verified. Six shared MMIO values
+and CRTC13/19/28/39 match kernel snapshot exactly. Framebuffer matches owned
+allocation/scanout. This does not qualify480p initialization or clock selection.
+
+User power-cycled after photo capture and confirmed Ready. Eight preparation
+records read twice; source/binary/private pins, staged XBE/owner and unrelated
+entries verified. Runtime701 CLOSED: never relaunch/recollect. No hook, Windows
+or native mode/encoder/clock programming. Kernel prepared720p. No host processes.
+Console at dashboard; hardware ticket retained; automation paused.
+
+Next: source-backed complete480p transaction design and linked failure-path tests,
+using observed state only as a precondition, not copied firmware programming.
+Resolve pixel-clock selection and owned framebuffer contract before encoder writes.
+Read native-gpu701/NEXT.md. Original720p unchanged; networking/1080i/boot tabled.
