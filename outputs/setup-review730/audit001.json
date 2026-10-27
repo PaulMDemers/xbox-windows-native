@@ -1,0 +1,85 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "utc": "2026-10-27T19:26:40.447126+00:00",
+  "captures": [
+    {
+      "kit": "kernel-mode722",
+      "report": "xwn-mode722-02.json",
+      "sha256": "eda33ee7fd55c2df1fb6c81808953ad3418df89c5668a8a8c5b3201eeb0487d1",
+      "phase": "mode_captured",
+      "sdk_mode": [
+        1280,
+        720,
+        32,
+        60
+      ],
+      "CR22": 254,
+      "CR33": 17,
+      "meaning": "Retained complete kernel mode; NOT original704 phase4 post-write evidence."
+    },
+    {
+      "kit": "kernel-mode722",
+      "report": "xwn-mode722-05.json",
+      "sha256": "353abb8eebfbdfc908e3f894477e3148f881762848c2bdf28138ce102ba05314",
+      "phase": "mode_captured",
+      "sdk_mode": [
+        720,
+        480,
+        32,
+        60
+      ],
+      "CR22": 254,
+      "CR33": 17,
+      "meaning": "Retained complete kernel mode; NOT original704 phase4 post-write evidence."
+    },
+    {
+      "kit": "kernel-mode722",
+      "report": "xwn-mode722-08.json",
+      "sha256": "8e25e52d7f65405b4ac52662fa1df1ec7416f02716499fd8bb3e75f2a249970c",
+      "phase": "mode_captured",
+      "sdk_mode": [
+        1280,
+        720,
+        32,
+        60
+      ],
+      "CR22": 254,
+      "CR33": 17,
+      "meaning": "Retained complete kernel mode; NOT original704 phase4 post-write evidence."
+    },
+    {
+      "kit": "kernel-samples729",
+      "report": "xwn-mode729-03.json",
+      "sha256": "4c8cc626c82587a13d6e6505d9563c8e8910421708e514ce730d63fc9d29d2c8",
+      "phase": "kernel_context_captured",
+      "sdk_mode": [
+        1280,
+        720,
+        32,
+        60
+      ],
+      "CR22": 254,
+      "CR33": 17,
+      "meaning": "Retained complete kernel mode; NOT original704 phase4 post-write evidence."
+    }
+  ],
+  "local_inputs": {
+    "outputs\\xcal-transaction704\\transaction003.c": "6336794d817f0b801db939b2611c1832736acad598e71437f9ca87bc797a345b",
+    "outputs\\xcal-transaction704\\cpu005.py": "19f7a737c39c44a3ca9c60842adfe3c486541145ad6ceae1465520d3b30e6d7c",
+    "src\\boot\\xromwell\\drivers\\video\\BootVgaInitialization.c": "481e95c8335ba0d865b3ccddfc1b1acfaf0721e12045104e37c5d4d13573c4d4",
+    "outputs\\kernel-mode722\\collection001.json": "8aa2d9016dab6c8b813a7fe8132d44f564cae5396c536e4822e1f20c6715fdcc",
+    "outputs\\kernel-mode722\\audit001.json": "07d32060cf11333b9ab081020e8d3adce6eb9e34e1f0b8246d4853034f8ffe62",
+    "outputs\\kernel-samples729\\collection001.json": "7bbbd30639d3c491b8619839ba7ed6f7ebafb5ac6064150d0c536760d2bda4eb",
+    "outputs\\kernel-samples729\\audit001.json": "c607116e458f5ed42017ab57ec7bee3f5a78b29c9a5b0100b7c6e68128f8b337"
+  },
+  "unchanged_driver": true,
+  "old_model_assumption": "Default indexed CRTC writes store a byte and subsequent reads return it, including CR22; this is not a physical access specification.",
+  "limitations": [
+    "No new physical result or firmware trace.",
+    "CapturedFE does not establish CR22 post-write value in708/709.",
+    "CR1b or earlier MMIO failures can short-circuit before CR22 is read.",
+    "A simulatedFF latch passes even if the modeledCR22 write is ignored.",
+    "No inferred writable mask, omitted write, changed guard or modesetting patch."
+  ]
+}

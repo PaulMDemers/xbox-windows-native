@@ -1,3 +1,24 @@
+# 730 CLOSED HOST-ONLY: CR22 storage/readback assumption is suspect
+
+Fresh unchanged704 build byte-identical to704build004;12 compiled phase4
+counterfactual cases passed. CR22fe rejects; an ignored CR22 write withff readout
+passes. Earlier CR1b/MMIO rejection can short-circuit beforeCR22. No proof of
+708/709 cause. No predicate/write change, XBE, stage, launch or console access.
+
+Envytools namesCR22 MEM_LATCH without declaring NV2A write effects. Generic
+Bochs latch behavior is corroborating hypothesis only. Nouveau identifiesCR33
+LCD/routing; no complete NV2A writable mask established. Four retained722/729
+snapshots hash-checked:CR22fe/CR3311 in working720p and720x480p. Their complete
+kernel mode states are not704 post-write measurements. Old704 model's byte-bank
+storage assumption explicitly documented; no earlier evidence reclassified.
+
+Source pins/audit/build/model pass. No candidate failures. Source download
+browser429/404 and exploratory search misses retained; later downloads passed.
+Console last seen UnleashX after729; no hook/owned process/VM. No hardware action
+needed. NEXT outputs/setup-review730/NEXT.md: read-only access-semantics/provenance
+analysis before any CR22 write or validation change. No native1.6/Windows or
+acceleration promotion. All closed runtimes remain closed.
+
 # 729 CLOSED: transition to85 observed while output still blank
 
 One accepted launch19:10:45UTC2026-10-27. User GREEN/automatic dashboard.
