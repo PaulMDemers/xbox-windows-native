@@ -1,3 +1,11 @@
+# 736 STAGED: fixed CPU work before first post-write CR1b read
+
+Same4093 register-only iterations moved before first direct read; qualified
+write/check/recovery sequence retained.60actualCOFF/2353layout/14schema negatives
+and linked bytes passed. Stage/readback complete; no launch yet. User authorizes
+unattended automatic-return tests. NEXT outputs/cr1b-prework736/NEXT.md.
+No hook/process/VM. All735/prior CLOSED. No guessed mask or functional patch.
+
 # 735 CLOSED: second read85 after one05read and CPU-only work
 
 Unattended authorized launch20:42:43UTC; seven files collected once/auditPASS.
