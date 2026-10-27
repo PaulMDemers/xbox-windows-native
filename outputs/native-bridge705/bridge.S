@@ -1,0 +1,206 @@
+/* SPDX-License-Identifier: GPL-2.0-or-later
+ *32KiB owned-page bridge. All writes after paging-off are to owned RAM, PCI
+ * selector-restoration, or the separately checked transaction. No kernel call.
+ */
+.text
+.code32
+.balign 16
+.globl bridge_start,bridge_flat,bridge_post,bridge_hold,bridge_fault,bridge_end,bridge_code_end
+bridge_start:
+ call 1f
+1:pop %ebp
+ sub $(1b-bridge_start),%ebp
+ cmpl $0x584e0705,0x840(%ebp)
+ jne bridge_fault
+ cmp %ebp,0x844(%ebp)
+ jne bridge_fault
+ test $4095,%ebp
+ jne bridge_fault
+ cmp $0x1000000,%ebp
+ jb bridge_fault
+ cmp $0x1ff8000,%ebp
+ ja bridge_fault
+ cmpl $3686400,0x84c(%ebp)
+ jne bridge_fault
+ mov 0x848(%ebp),%edi
+ test $4095,%edi
+ jne bridge_fault
+ cmp $0x2000000,%edi
+ jb bridge_fault
+ cmp $(0x4000000-3686400),%edi
+ ja bridge_fault
+ cmp $0x2800000,%edi
+ jae 2f
+ lea 3686400(%edi),%eax
+ cmp $0x2600000,%eax
+ ja bridge_fault
+2:mov 0x850(%ebp),%eax
+ sub %ebp,%eax
+ sub $4096,%eax
+ cmp $9916,%eax
+ jae bridge_fault
+ mov %cr0,%eax
+ and $0x80000001,%eax
+ cmp $0x80000001,%eax
+ jne bridge_fault
+ mov %cr4,%eax
+ test $0x20,%eax
+ jne bridge_fault
+ call bridge_check
+ cmp 0x854(%ebp),%eax
+ jne bridge_fault
+ /* Touch both stack pages while paging is still active. Kernel admission
+  * separately byte-compares the copies and validates all page mappings. */
+ mov 0x6000(%ebp),%eax
+ mov 0x7ffc(%ebp),%eax
+ movl $1,0x880(%ebp)
+ cli
+ cld
+ sfence
+ mov %cr0,%eax
+ or $0x40000000,%eax
+ and $0xdfffffff,%eax
+ mov %eax,%cr0
+ wbinvd
+ lgdt 0x820(%ebp)
+ ljmp *0x828(%ebp)
+bridge_flat:
+ mov $0x18,%ax
+ mov %ax,%ds
+ mov %ax,%es
+ mov %ax,%ss
+ lea 0x8000(%ebp),%esp
+ xor %eax,%eax
+ mov %ax,%fs
+ mov %ax,%gs
+ lidt 0x830(%ebp)
+ mov %cr0,%eax
+ and $0x7fffffff,%eax
+ mov %eax,%cr0
+bridge_post:
+ xor %eax,%eax
+ mov %eax,%cr3
+ call bridge_check
+ cmp 0x854(%ebp),%eax
+ jne bridge_fault
+ mov %cr0,%eax
+ mov %eax,0x884(%ebp)
+ and $0xe0000001,%eax
+ cmp $0x40000001,%eax
+ jne bridge_fault
+ mov %cr3,%eax
+ mov %eax,0x888(%ebp)
+ mov %cr4,%eax
+ mov %eax,0x88c(%ebp)
+ pushfl
+ pop %eax
+ mov %eax,0x890(%ebp)
+ test $0x200,%eax
+ jne bridge_fault
+ mov %cs,%ax
+ cmp $0x10,%ax
+ jne bridge_fault
+ mov %ds,%ax
+ cmp $0x18,%ax
+ jne bridge_fault
+ mov %ss,%ax
+ cmp $0x18,%ax
+ jne bridge_fault
+ movl $2,0x880(%ebp)
+ /* Capture all three PCI functions; CF8 restored before any refusal. */
+ mov $0xcf8,%dx
+ inl %dx,%eax
+ mov %eax,0x8a0(%ebp)
+ lea pci_select-bridge_start(%ebp),%esi
+ lea 0x8a4(%ebp),%edi
+ mov $10,%ecx
+3:lodsl
+ outl %eax,%dx
+ add $4,%dx
+ inl %dx,%eax
+ sub $4,%dx
+ stosl
+ loop 3b
+ mov 0x8a0(%ebp),%eax
+ outl %eax,%dx
+ movl $1,0x8d0(%ebp)
+ cmpl $0x02a010de,0x8a4(%ebp)
+ jne bridge_hold
+ testl $2,0x8a8(%ebp)
+ jz bridge_hold
+ mov 0x8ac(%ebp),%eax
+ and $0xfffffff7,%eax
+ cmp $0xfd000000,%eax
+ jne bridge_hold
+ movl $2,0x8d0(%ebp)
+ cmpl $0x01b410de,0x8b0(%ebp)
+ jne bridge_hold
+ testl $1,0x8b4(%ebp)
+ jz bridge_hold
+ cmpl $0xc001,0x8b8(%ebp)
+ jne bridge_hold
+ /* LPC PM decode: retain both raw BAR0 and later-revision config84. Do not
+  * change either. Ambiguous maps are not admitted by this conservative check. */
+ movl $3,0x8d0(%ebp)
+ cmpl $0x01b210de,0x8bc(%ebp)
+ jne bridge_hold
+ testl $1,0x8c0(%ebp)
+ jz bridge_hold
+ cmpl $0x8001,0x8c4(%ebp)
+ je 4f
+ cmpl $0x8001,0x8c8(%ebp)
+ jne bridge_hold
+4:movl $4,0x8d0(%ebp)
+ /* Require the request to agree with the bridge's checked framebuffer. */
+ mov 0x848(%ebp),%eax
+ cmp %eax,0x5004(%ebp)
+ jne bridge_hold
+ lea 0x5100(%ebp),%eax
+ push %eax
+ pushl 0x848(%ebp)
+ push $0xfd000000
+ lea 0x5000(%ebp),%eax
+ push %eax
+ movl $3,0x880(%ebp)
+ call *0x850(%ebp)
+ add $16,%esp
+ mov %eax,0x8d4(%ebp)
+ lea 0x8000(%ebp),%eax
+ cmp %eax,%esp
+ jne bridge_fault
+ cmpl $0xa5a5a5a5,0x5ffc(%ebp)
+ jne bridge_fault
+ movl $4,0x880(%ebp)
+ sfence
+ wbinvd
+bridge_hold:
+ hlt
+ jmp bridge_hold
+bridge_fault:
+ cli
+ hlt
+ jmp bridge_fault
+bridge_check:
+ push %esi
+ xor %eax,%eax
+ xor %esi,%esi
+5:cmp $0x854,%esi
+ je 6f
+ cmp $0x880,%esi
+ jb 7f
+ cmp $0x900,%esi
+ jb 6f
+7:add (%ebp,%esi),%eax
+6:add $4,%esi
+ cmp $0x6000,%esi
+ jb 5b
+ pop %esi
+ ret
+.balign 4
+pci_select:
+ .long 0x80010000,0x80010004,0x80010010
+ .long 0x80000900,0x80000904,0x80000914
+ .long 0x80000800,0x80000804,0x80000810,0x80000884
+bridge_code_end:
+.org 4096,0
+bridge_end:

@@ -1,3 +1,18 @@
+#705 host stage CLOSED: larger native bridge; next kernel-only preflight
+
+Corrected page002/build002 passes131379 ownership cases,12 fresh actual QEMU
+CPU fixtures and30 post-transition bridge/transaction model cases. All VMs
+closed. Preserve cpu001 identity-checksum failure: CPU-set GDT accessed bit;
+page002 presets that bit without weakening the checksum. No console/XBE/hook.
+
+Physical admission is NOT complete. LPC BAR0/config84 OR check is not a qualified
+1.6 decode rule and does not reject all conflicting pairs. Kernel allocation,
+baseline CR11/21/44, timer obligations and early-refusal visibility remain open.
+Next NEW706 kernel-only allocation/context preflight, no native mode transaction.
+Read outputs/native-bridge705/NEXT.md. Latest physical remains closed703.
+Hardware last known at dashboard; no owned process; build/xemu released,
+hardware ticket retained, automation paused. Original720p protected.
+
 #704 CLOSED: combined480p host transaction; next larger native bridge
 
 Final transaction003/build004 passes880 linked model cases and32770 bounds.

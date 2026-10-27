@@ -1,6 +1,6 @@
 # Current status and guide map
 
-Reviewed October 27, 2026 through integrated host transaction704; latest physical evidence remains703.
+Reviewed October 27, 2026 through native bridge705 host validation; latest physical evidence remains703.
 This page summarizes supported observations; individual reports retain their
 original failures and scope. For the exact active attempt and next engineering
 step, read [CONTINUATION](../outputs/engineering-notes/CONTINUATION.md) and
@@ -13,7 +13,9 @@ Its clock selection equals the earlier720p snapshot, while output control differ
 One PFB photo bit is unknown due to glare. This is not native mode initialization
 or Windows1.6 qualification. The [704 integrated transaction](../outputs/xcal-transaction704/REPORT.md)
 passes880 linked model cases,32770 allocation boundaries and12 relocated cases.
-The larger native handoff package and physical mode-initialization test remain.
+The [705 larger bridge](../outputs/native-bridge705/REPORT.md) passes 12 diskless CPU
+fixtures and 30 bridge/transaction model cases. Kernel allocation and PCI/VGA
+preflight remain before any physical mode-initialization test.
 Host models do not qualify scanout, external clocks or Windows on1.6.
 
 ## Choose a guide
