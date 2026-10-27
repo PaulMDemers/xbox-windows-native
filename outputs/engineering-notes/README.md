@@ -1,3 +1,20 @@
+#727 STAGED: minimal CR1b/630 interaction; readiness pending
+
+New727 reduces725 to6302, unlock1f57, oneCR1b05 write, saved6303 restoration,
+plus output/selector handling. Captures direct data read then reselected read,
+prewrite pair, after6303/output/late pairs and change count. Full baseline
+restoration checks retained; no retry, repair, mask or other prefix data writes.
+
+Fresh payload/host/nxdk build and exact linked bytes passed.12 CPU VMs closed;
+50 integration,76 optical,20 nxdk page,372 nxdk and131379 host ownership cases
+passed. No727 failed build/test. Source frozen, remote stage/readback verified
+at /E/Applications/XWNMode727. NO launch yet; watcher/reset question pending.
+
+Console UnleashX; no hook/process/VM. NEXT outputs/native-interaction727/NEXT.md:
+Ready, one SITE, full13row photo, power cycle then one collection/audit.726 and
+prior runtimes stay CLOSED. No full-mode/Windows/GPU qualification. Ordinary720p
+protected; network/boot/1080i remain tabled.
+
 #726 CLOSED: 630-only transition retains CR1b85
 
 One accepted launch18:13:46UTC2026-10-27. Green held result/photo001:
