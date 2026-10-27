@@ -1,18 +1,23 @@
-# Next: one watched725 launch
+# Next: bounded630-only native control;725 CLOSED
 
-Await pending user watch/reset readiness. Write ready001.json with actual
-answer, continue_authorized and dashboard_confirmed. Use physical.py launch
-ONCE, which rechecks frozen sources/build and staged bytes,20second SITE bound.
-Never retry accepted/uncertain launch. No hook is installed.
+Never relaunch/recollect/parent725 runtime. Console UnleashX after power cycle,
+no hook/owned process/VM. Latest success collection002, audit002; preserve
+failed collection001 (no file access), audit001 (bad comparison filename),
+host001 (relocation count). Only one accepted physical launch.
 
-Ask second-bar color and hold/black/dashboard state. Request full13row photo
-outside the text-only async question tool. Decode independently against
-optical-schema001.json; preserve private photo and publish hash/decoded values.
-Do not infer native result from kernel preparation reports.
+725 firstCR1b85 sample followed680630 restoration2to3; immediate and afterCR19
+samples05. Causality, bit7 semantics and other cleanup fields remain unknown.
 
-Only after photo captured, request power cycle. On user Ready write
-collection-ready001.json and use physical.py collect ONCE. Audit preparation,
-source/build/stage pins, alias/allocation bounds and unrelated E entries; keep
-pre-arm files distinct from native context. Then close725/document/commit/push.
-No next experiment staged. NoCR22 write, mask waiver, repeatedCR1b write,
-encoder/timing replay or driver fix justified by modeled tests.
+Investigate local primary source definitions for680630/CR1b. Do not guess a
+register name or infer writable masks. A justified next physical control is
+native630-only3->2->3, leavingCR1b data entirely unwritten: record CR1b/630
+before, after2, after3 and a bounded set of later reads. Preserve output/gating,
+selector and context safeguards; require saved6303 and read back restoration.
+Use no additional encoder/timing/pending-bit or CR22 writes. Added read timing
+must be documented. Do not change driver behavior or waive bit7 checks yet.
+
+Build fresh source/binary pins, independent write/access/optical/CPU validation,
+owned E staging/readback, watcher/photo/reset readiness. One SITE20second reply
+bound; never retry accepted/uncertain launch. Photo before reset; collect exact
+new evidence once after dashboard return. No new experiment currently staged.
+Keep ordinary720p, network/boot/1080i and release recovery intact.

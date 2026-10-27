@@ -1,3 +1,35 @@
+#725 CLOSED: CR1b first85 after680630 restoration
+
+One launch17:45:19UTC2026-10-27. Orange held picture; photo001 raw13rows:
+7250000d,4,5,7255,11,4,05,05,85,85,85,85,0. ImmediateCR1b and afterCR19
+samples05; first85 after680630 restore2to3, then85 throughgate4/SEQ1/final.
+This brackets observation, not causality/bit7 semantics. Other cleanup fields
+unexported. NoCR22 write or full-mode/Windows/acceleration qualification.
+
+User power-cycled, console UnleashX. collection001 connection refused before
+file access; fresh transport002 collected nine reports ONCE/double-read.
+audit001 used nonexistent prior724collection002; fresh local audit002 corrected
+to724collection001 and passed. Preserve both failures plus host001 count failure.
+Pins/alias bounds and unrelated E entries verified; preparation matches724.
+No hook/owned process/VM. Runtime725 CLOSED; no new test staged/launched.
+
+NEXT outputs/native-prefix725/NEXT.md: source review then bounded630-only
+3->2->3 control withCR1b unwritten, fresh validation/photo/reset. No guessed
+semantics/masks or driver patch. Never reopen closed725/prior runtimes.
+
+#725 LAUNCHED: awaiting held report and photo
+
+Single SITE launch accepted2026-10-27T17:45:19.850012+00:00 after local and
+remote byte verification. User confirmed dashboard/HDMI and watch/reset ready.
+No retry, startup hook, owned process or VM. Console executing725; actual
+screen/result pending. Native hold is deliberate; kernel refusal may return.
+
+NEXT: top/second bar and hold/black/dashboard observation, full13row photo
+against outputs/native-prefix725/optical-schema001.json. Capture before asking
+for power cycle. After user Ready at dashboard, collect once with physical.py.
+No post-handoff file result exists; keep preparation versus native data distinct.
+Do not launch again. No full-mode/Windows qualification or CR22 write.
+
 #725 staged: CR1b readings through native cleanup
 
 No725 launch yet. Closed724 passed all forward writes/readbacks, then returned
