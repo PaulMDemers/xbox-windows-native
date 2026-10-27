@@ -1,3 +1,14 @@
+#727 LAUNCHED: awaiting held report and photo
+
+Single SITE accepted2026-10-27T18:47:11.077080+00:00 after explicit Ready and
+exact local/remote byte verification. Preparation commit12105269. No retry.
+User observation and photo pending; do not infer native success from acceptance.
+
+Leave console as-is for top/second bar observation and full13row photo.
+Decode raw readings before requesting power cycle; collect only after Ready
+at dashboard. No hook/owned host process/VM. Closed726/prior runtimes remain
+closed. NEXT outputs/native-interaction727/NEXT.md. No mode/Windows claim.
+
 # Native CR1b/630 interaction control727
 
 Closed726 retained CR1b85 while630 changed3->2->3 without CR1b writes. Closed725

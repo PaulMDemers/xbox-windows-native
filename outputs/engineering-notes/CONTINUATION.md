@@ -1,3 +1,14 @@
+#727 LAUNCHED: awaiting held report and photo
+
+Single SITE accepted2026-10-27T18:47:11.077080+00:00 after explicit Ready and
+exact local/remote byte verification. Preparation commit12105269. No retry.
+User observation and photo pending; do not infer native success from acceptance.
+
+Leave console as-is for top/second bar observation and full13row photo.
+Decode raw readings before requesting power cycle; collect only after Ready
+at dashboard. No hook/owned host process/VM. Closed726/prior runtimes remain
+closed. NEXT outputs/native-interaction727/NEXT.md. No mode/Windows claim.
+
 #727 STAGED: minimal CR1b/630 interaction; readiness pending
 
 New727 reduces725 to6302, unlock1f57, oneCR1b05 write, saved6303 restoration,
