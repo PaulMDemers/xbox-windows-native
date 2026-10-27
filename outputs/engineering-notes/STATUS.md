@@ -1,3 +1,29 @@
+#707 CLOSED: watched kernel preflight passed; next NEW708 native integration
+
+User observed GREEN and automatic dashboard return. Nine fresh reports double-
+read and audited.32KiB allocation/eight alias pages/full copies/cleanup pass.
+PCI/CRTC/sequencer values exactly equal706; LPC BAR0=0/config84=8001,
+CR11=09,CR21=ff,CR44=0. Kernel preparation evidence only, no native transaction.
+706/707 are CLOSED: never relaunch/recollect. Read native-preflight707/NEXT.md.
+
+Next NEW708 (707 was consumed by user-requested watched repeat): tighten LPC
+admission, integrate larger nxdk bridge/page builder, fresh actual CPU/model
+checks and bounded observable refusal before a watched native480p pattern.
+No hook, host VM/process. Console at dashboard; hardware ticket retained,
+build/xemu released; automation paused. Original720p protected; other work tabled.
+
+#707 launched once: user-requested watched kernel preflight repeat
+
+User missed706 optical observation and explicitly requested relaunch while
+watching. NEW707 differs only in namespace; fresh build and372 compiled-plan
+cases pass, source normalization matches706. Stage readback exact; SITE accepted
+2026-10-27T05:00:03.761297+00:00. Asked green/red top bar and automatic return.
+No second launch. Read outputs/native-preflight707/NEXT.md. No hook/native
+transition/Windows. Collect exact fresh reports once when dashboard reachable.
+706 remains CLOSED, not reopened. Future native integration becomes NEW708.
+Build/xemu released; hardware ticket retained; no host VM; automation paused.
+Original720p protected. User observation and707 collection pending.
+
 #706 runtime CLOSED: larger allocations pass; kernel baseline captured
 
 One accepted kernel-only launch returned; nine reports double-read and audited.

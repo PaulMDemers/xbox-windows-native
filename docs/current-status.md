@@ -1,6 +1,6 @@
 # Current status and guide map
 
-Reviewed October 27, 2026 through kernel preflight706; latest physical native handoff remains703.
+Reviewed October 27, 2026 through watched kernel preflight707; latest physical native handoff remains703.
 This page summarizes supported observations; individual reports retain their
 original failures and scope. For the exact active attempt and next engineering
 step, read [CONTINUATION](../outputs/engineering-notes/CONTINUATION.md) and
@@ -16,6 +16,8 @@ passes880 linked model cases,32770 allocation boundaries and12 relocated cases.
 The [705 larger bridge](../outputs/native-bridge705/REPORT.md) passes 12 diskless CPU
 fixtures and 30 bridge/transaction model cases. [706 kernel preflight](../outputs/native-preflight706/REPORT.md)
 passes the larger allocation, eight alias mappings, copy checks and cleanup.
+The [707 watched repeat](../outputs/native-preflight707/REPORT.md) confirms a green
+result and automatic return, with identical PCI/CRTC/sequencer observations.
 PCI/VGA baseline values are captured; the functional native launcher and watched
 mode-initialization test remain.
 Host models do not qualify scanout, external clocks or Windows on1.6.
