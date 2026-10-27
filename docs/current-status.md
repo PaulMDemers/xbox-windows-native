@@ -1,6 +1,6 @@
 # Current status and guide map
 
-Reviewed October 26, 2026 against the retained evidence through kernel framebuffer/reference690 (UTC October27).
+Reviewed October 26, 2026 against the retained evidence through kernel allocation preflight693 (UTC October27).
 This page summarizes supported observations; individual reports retain their
 original failures and scope. For the exact active attempt and next engineering
 step, read [CONTINUATION](../outputs/engineering-notes/CONTINUATION.md) and
@@ -93,3 +93,11 @@ match689 expectations and validates an owned720p framebuffer across900 pages. Th
 user saw the panels and automatic return. This does not prove post-handoff state
 or native writes; follow [690 NEXT](../outputs/framebuffer690/NEXT.md) for the
 framebuffer custody and full assembly-path review before another native launch.
+
+[691–693](../outputs/handoff-preflight693/REPORT.md) identify a concrete candidate
+loader defect: the kernel can round the virtual reservation base, while the old
+wrapper reuses it as the physical execution address. Compiled failure models and
+actual kernel rounding agree on that risk.693 keeps those addresses separate and
+passes physical dual-copy/guard/cleanup checks. It has not entered native code,
+fixed the ordinary boot path or qualified Windows1.6; [native transition validation
+is next](../outputs/handoff-preflight693/NEXT.md).

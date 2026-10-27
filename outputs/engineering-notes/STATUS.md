@@ -1,3 +1,32 @@
+# 691–693 allocation investigation CLOSED; rounded-base handling validated in kernel
+
+Read outputs/handoff-preflight693/REPORT.md and NEXT.md first. The compiled689
+wrapper models show unchecked null/status and rounded-address paths.691 safely
+refused a stub starting exactly32MiB.692's narrower upper limit obtained01eff000;
+NtAllocateVirtualMemory succeeded but returned01ef0000 and64KiB. This corroborates
+an unsafe modeled old-wrapper path, not the exact689 cause or historical boot fix.
+
+693 preserves physical target, returned reservation base and high pointer separately.
+It proves the requested page is contained before querying/copying. Actual low
+virtual01eff000 maps to physical000ba000; physical stub remains01eff000. Both1024-
+byte copies and3072-byte guards pass. All allocations freed, restart record complete,
+dashboard returned, eight reports twice matched. No native/paging transition yet.
+
+All invoked691–693 fixtures and runtimes CLOSED; never rerun/recollect. Preserve691
+hook-signature model failure and693500-instruction object-harness limit. Corrected
+models pass;693valid path550 instructions, maximum559. Kernel preflight is not
+native display or Windows1.6 qualification. User saw a red top/dashboard in the
+691/692 window; unique visual attribution is uncertain, both records show refusal.
+693 has no claimed visual observation. No ordinary loader/driver patch installed.
+
+No hook, pending launch or owned host process. Build lease released, hardware ticket
+retained, automation paused. Owned E paths retained; staged bytes and unrelated
+entries matched. Incoming1.6 at HDMI dashboard; original720p unchanged. Next is a
+fresh checked native transition and independent framebuffer checkpoint, with full
+compiled paging/far-jump/descriptor/stack/cache coverage before watched hardware.
+That transition is not implemented/staged. Use693/NEXT.md; no gate waiver, firmware
+state borrowing, unknown pending-bit clearing or identical689 retry.
+
 # 690 kernel framebuffer/reference check CLOSED
 
 Read outputs/framebuffer690/REPORT.md and its precise NEXT.md first. One watched

@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "change": "preserve original physical target separately from NtAllocateVirtualMemory in/out reservation base",
+  "safety_contract": [
+    "requested page aligned and fully contained in successful returned allocation",
+    "returned extent nonwrapping, page aligned, at most64KiB, below2GiB",
+    "query alias at requested address only after extent admission",
+    "copy1024 bytes into requested target and high original stub pointer; verify3072 tail bytes",
+    "all physical ranges checked, source/framebuffer overlaps rejected",
+    "release using returned allocation base; never requested interior address",
+    "no native transfer or ordinary launcher change"
+  ],
+  "validation": "sanitizer cases and19 actual nxdk-object cases, including short/displaced/oversized reservations",
+  "preserved_failure": "object-review001 stopped before first valid-case return at500 instruction harness ceiling; fresh002 uses2000, same valid case returns after550; max559 across19 cases",
+  "pins": {
+    "main.c": "f149f84c03e1cd3414b90823bd2c88806fb7986e60752d44f197fd0d2e5a710c",
+    "plan.c": "3812888cce1746bb4483f05a9032e4debae734ea7a32cf407da6fb24c6773c8d",
+    "plan.h": "930205fb6787b5aa08b336eb4688790da8d5762d44ef9bfacf0bc77810c32cb6",
+    "physical.py": "c89d841e9e3f4332a1dde13409b89df6638a295142100e4c2e0faffd710e70b9"
+  }
+}

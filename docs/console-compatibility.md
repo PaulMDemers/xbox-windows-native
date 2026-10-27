@@ -25,6 +25,9 @@ is unknown; native reads, display and Windows remain unqualified.
 [690](../outputs/framebuffer690/REPORT.md) adds matching kernel PCI/cable/settings
 and a checked contiguous720p framebuffer with user-confirmed panels and automatic
 return. It does not qualify native handoff or display initialization.
+[693](../outputs/handoff-preflight693/REPORT.md) now validates kernel allocation,
+separate rounded-reservation/physical-target handling, two-page canary copies and
+cleanup. It has not performed the native transition or changed the ordinary loader.
 See [current status](current-status.md).
 
 ## First additional-console inventory
@@ -90,7 +93,7 @@ starting points, not proof the shipped profile works with those encoders.
    Keep personally identifying data, EEPROMs and firmware out of public reports.
 2. Group the reports by actual encoder/RAM/boot differences. For the incoming1.6,
    kernel composite682 and HDMI720p683 baselines are complete, and686 adds a
-   positive Xcalibur-address response. Follow [690 NEXT](../outputs/framebuffer690/NEXT.md)
+   positive Xcalibur-address response. Follow [693 NEXT](../outputs/handoff-preflight693/NEXT.md)
    to make early results observable, then qualify a separate native Xcalibur480p
    pattern before Windows. Treat RAM upgrades separately.
 3. For a new profile, review timing, color format, stride, framebuffer extent,

@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "scope": "kernel allocation probe only, not native handoff admission",
+  "reviews": [
+    "Source allocation failures stop before physical query or copy",
+    "Stub allocation failures stop before physical query or copy",
+    "NtAllocateVirtualMemory status and in/out values recorded before admission",
+    "Changed base or region is released without querying/copying",
+    "Every source/stub page and final byte checked only within admitted allocation size/range",
+    "Identity alias allowed; source/framebuffer overlaps refused",
+    "1024-byte canary copied into both owned 4096-byte pages; remaining3072-byte guards checked",
+    "Virtual allocation released via returned base with MEM_RELEASE; successful contiguous allocations freed once",
+    "No executable stub, native transition, CR0/CR3 changes, CLI, encoder-register writes, unknown-status clearing or ordinary launcher patch",
+    "Kernel allocation/mode APIs have no application-enforced timeout",
+    "The extra SDK framebuffer changes live allocation state relative to689; this is a new preflight, not replay of689"
+  ],
+  "legacy_model": "five cases executing retained wrapper bytes before transfer; APIs modeled. source/stub NULL reaches MmGetPhysicalAddress(NULL), virtual failure/rounded base reaches unowned writes; no hardware cause proven",
+  "failed_model_attempt": "legacy-audit001 memory-hook callback signature; corrected fresh002 retained",
+  "pins": {
+    "main.c": "043e38a059371e91b62685c8aa9b67278ea41f47b4a6ef6e42e80da462cd6c87",
+    "layout.c": "c133d179581f8eab6e5806bbee61176c6601afe3d6d198d77f3f035583d0cf76",
+    "plan.c": "c27e581f760b3a91afd26d0f4a782fdccfefc5af820dc0c3ff561f9c6c123424",
+    "plan.h": "3b95b7a6d093f5da98cf3f1ba1692fc9f69d6e81efa586b175ba04d0e8b13484",
+    "physical.py": "adc449d2d0982ec8219b3baa244ddec7b1665bd3a95f7743cce28912c7f37105"
+  }
+}
