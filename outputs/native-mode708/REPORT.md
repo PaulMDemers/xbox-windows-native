@@ -68,3 +68,14 @@ The exact executed harness is preserved in cpu-source001.json with its original
 SHA256; cpu.py differs only by that removed space. Original CPU/build receipts
 are unchanged. Reconstruct that exact source from the snapshot when verifying
 those closed receipts. No executable or payload bytes changed.
+
+## Closed physical result
+
+User reports BLACK; initial blue-picture sequence and input signal status were
+not observed. User requested a watched rerun. After confirmed manual power-cycle,
+nine preparation reports were double-read and audited. Last persisted phase is
+handoff_armed, with admitted allocation and both copies exact. This does not prove
+native entry, encoder completion or the failure phase. No visible mode success.
+Staged bytes and unrelated entries unchanged. Runtime708 CLOSED; never recollect
+or relaunch. A fresh709 namespace is being prepared solely for the requested
+watched repeat. No functional fix is inferred or applied.

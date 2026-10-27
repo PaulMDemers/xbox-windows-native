@@ -1,3 +1,20 @@
+#709 CLOSED: watched BLUE kernel picture then BLACK; next isolated native hold
+
+708 black initial sequence unknown. User requested fresh watched709; namespace
+only, same bridge/payload. Fresh nxdk build/page45/plan372 checks pass. One709
+launch accepted2026-10-27T05:19:54.657329+00:00. User saw BLUE then BLACK.
+Both manually reset and collected once: nine reports each, last handoff_armed.
+709 PCI/CRTC/SEQ/geometry/allocation mappings exactly equal708. Both page copies
+and admission passed. Native execution/result/failure phase remain UNKNOWN.
+No visible native480p success, no normal-shutdown inference.708/709 CLOSED.
+
+Next NEW710: larger handoff/PCI/timer path with visible HOLD immediately before
+transaction call; no native mode/encoder programming. Fresh CPU/model checks
+before stage. Do not rerun identical full failure or speculate on a driver fix.
+Read outputs/native-mode709/NEXT.md. Console at dashboard, no hook/host process;
+hardware ticket retained, build/xemu released, automation paused. Original720p
+protected; other work tabled. No Windows1.6 qualification.
+
 #708 launched once: native480p observation/photo pending
 
 NEW708 integrates the32KiB bridge and unchanged704 transaction. Strict native

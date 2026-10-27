@@ -1,6 +1,6 @@
 # Current status and guide map
 
-Reviewed October 27, 2026 through watched kernel preflight707; latest physical native handoff remains703.
+Reviewed October 27, 2026 through native mode experiment709; latest successful physical native handoff remains703.
 This page summarizes supported observations; individual reports retain their
 original failures and scope. For the exact active attempt and next engineering
 step, read [CONTINUATION](../outputs/engineering-notes/CONTINUATION.md) and
@@ -22,8 +22,11 @@ PCI/VGA baseline values are captured; the functional native launcher and watched
 mode-initialization test remain.
 Host models do not qualify scanout, external clocks or Windows on1.6.
 The [708 integrated native-mode experiment](../outputs/native-mode708/REPORT.md)
-has passed its host checks and was launched once; the screen observation is
-pending. It deliberately holds and is not yet a qualified physical mode change.
+passed its host checks, but produced black output. The [709 watched repeat](../outputs/native-mode709/REPORT.md)
+showed the initial blue kernel picture followed by black. Preparation records
+match, but the native failure phase remains unknown; neither run qualifies the
+mode change. Both were manually reset and collected. A pre-transaction held
+checkpoint is next.
 
 ## Choose a guide
 
