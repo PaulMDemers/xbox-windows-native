@@ -1,3 +1,12 @@
+# 746 STAGED: CR05 low-five-bit checkpoint
+
+Fresh kernel746 after closed744/745: CR05 target3e preserves own upper bits;
+full CR05 and CR04 interaction readback, reverse own-value restoration.
+104COFF/2353layout plus independent source/schema/linked checks PASS; uniqueE
+stage/readback PASS. No launch/hook/owned process/VM. Console authenticated
+UnleashX. Routine auto-return authorization applies. All745/prior CLOSED.
+NEXT outputs/crtc-end746/NEXT.md. No full-mode, native or Windows claim.
+
 # 745 CLOSED: native CR04 write and own-value recovery pass
 
 Photo416bits cross-checked: return/forward745, CR04a7->5d->a7, cleanup0/0/0,
