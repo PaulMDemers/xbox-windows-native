@@ -1,20 +1,26 @@
-#720 photo decoded: same-value write mismatch; held orange, reset pending
+#720 CLOSED: saved-value CR1b write mismatch; preparation audit passed
 
-Photo001 signature7200000d; bridge phase4/checkpoint5/return7208; payload
-phase5/error7208. CR1b saved85, prewrite85, requested85, immediate05,
-after-output-restore05; write-attempted1, samples mask7f. All416bits agree
-across three thresholds/five offsets;352 middle-row bits independently agree
-using adjacent-row interpolation. Original photo remains private C:/xwn720.
+User power-cycled and replied Ready. Collected nine fresh preparation records
+ONCE, double-read exact; staged owner/XBE unchanged and unrelated E-root/apps
+entries unchanged. Source/binary/photo/schema pins and independent allocation/
+alias bounds checks passed. Kernel PCI/CRTC/sequencer/geometry/allocation values
+match closed718 and719. These are preparation observations, not native readback.
 
-The single same-value85 request sufficed for this observed readback change;
-it did not require first requesting05.719's no-write setup retained85.
-This does not establish bit7 semantics, the cause, or full-mode708/709 failure.
-No second CR1b write/retry/mask/driver patch.7208 survived final checks rather
-than being superseded by7204; this is bounded code-path evidence, not broad
-hardware restoration proof. Native saved-value control FAILED.
+Native photo7200000d: phase4/checkpoint5, payloadphase5, return/error7208;
+saved85/prewrite85/request85/immediate05/post-output05; attempted1, mask7f.
+The native saved-value control FAILED. No initial05 target or second CR1b write.
+719's setup-only samples remained85;720 narrows the observed difference to the
+single write/readback operation. Why bit7 reads differently remains unresolved.
+Do not infer bit7 semantics, a corrected mode driver, or708/709's root cause.
 
-Manual power-cycle requested after photo preservation; await explicitReady at
-UnleashX. Then
-collect720 ONCE and audit preparation/pins separately from native failure.
-No new launch or closed-runtime recollection. No startup hook or owned host
-process. Console currently held; normal Windows shutdown not applicable.
+Console is at UnleashX after MANUAL power-cycle, not normal Windows shutdown.
+No startup hook or owned host process; all12 CPU fixtures closed. Build/xemu
+leases released; hardware ticket retained. Original720p baseline protected.
+No new launch. Never rerun, recollect, or parent this closed physical runtime.
+
+Next: review the exact CR1b indexed read/write access and documented register
+semantics before designing a fresh bounded discriminator. Use retained source
+and immutable observations only; no speculative bit7 mask, retry/restore loop,
+CR22 write, encoder/timing change or functional driver promotion. Any new
+hardware probe needs fresh namespace, host validation, staged-byte readback,
+and available watcher/reset. Networking/bootintermittency/1080i remain tabled.
