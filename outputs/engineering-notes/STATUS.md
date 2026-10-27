@@ -1,3 +1,24 @@
+# 736 CLOSED: first CR1b read85 after CPU work, cleanup passed
+
+All32reads85 after4093 register-only iterations preceding any post-write read.
+No preceding read required to obtain85 under this sequence. Deferred full-byte
+check rejects05vs85; cleanup/selectors/flags pass. Seven files collected once;
+audit001/analysis001 PASS. Timeout/refusal retained, dashboard return inferred
+from restart_requested plus FTP; no visual observation or Windows shutdown claim.
+
+NEXT outputs/cr1b-prework736/NEXT.md: prepare native737 matched to minimal727,
+with CPU work before first read and optical actual context. No737 created yet.
+No hook or owned process/VM. Console dashboard; all736/prior runtimes CLOSED.
+No bit7 mask/semantic assumption, driver patch, full-mode or Windows promotion.
+
+# 736 LAUNCHED: CPU work before any post-write CR1b read
+
+One accepted SITE20:47:21UTC2026-10-27, preparation6a586a24. User authorized
+unattended self-reporting auto-return runs. No hook. Wait bounded dashboard
+reachability then collect once/audit. Never retry accepted/uncertain launch.
+If offline beyond180seconds stop and ask for recovery. All735/prior CLOSED.
+NEXT outputs/cr1b-prework736/NEXT.md. No owned VM; controller only during wait.
+
 # 736 STAGED: fixed CPU work before first post-write CR1b read
 
 Same4093 register-only iterations moved before first direct read; qualified
