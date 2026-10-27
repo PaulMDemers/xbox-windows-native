@@ -1,18 +1,11 @@
-# 738 launched: await status/photo before reset
+# 738 photo captured; await manual reset and collection
 
-One accepted SITE2026-10-27T21:16:00.990940+00:00. Do not repeat it.
-User is watching and available to reset. Obtain second bar color and complete
-13-row photo before requesting a power cycle. Decode independently of expected
-values using optical-schema001.json. Color alone is not a register result.
+Native report: return/forward7388, first mismatch14 CR1b expected05 observed85,
+15 checks completed, cleanup mask0, selectors1, CPU4001003b/0/610.
+Photo001 independently decoded all416bits; original photo private.
 
-Then ask user to power-cycle to UnleashX. After confirmed return, create
-collection-ready001.json and collect preparation reports once using physical.py.
-Audit frozen sources/binaries/stage/ownership and photo evidence separately.
-Native readings come from the photo; last disk phase handoff_armed is preparation.
-Inspect forward/returned status, first mismatch, full expected/observed values,
-cleanup mask, selectors, actual CR0/3/4 and completed-check count.
-
-No hook or owned host process/VM. All737/prior runtimes CLOSED. No Windows run
-or normal-shutdown claim; recovery will be manual. No masks/repair/fullmode
-promotion. Original704 includes further writes omitted here, so do not infer
-708/709's cause solely from this prefix test.
+Request power-cycle to UnleashX. Only after user confirmation, create
+collection-ready001.json and collect once with physical.py. Audit prep files,
+frozen bytes and optical evidence separately. No post-native disk result exists.
+Never repeat accepted launch; all737/prior runtimes CLOSED. No hook/process/VM.
+Do not infer original704/708/709 failure or NV2A bit7 semantics from this prefix.

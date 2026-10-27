@@ -1,3 +1,16 @@
+# 738 PHOTO CAPTURED: native deferred check rejects CR1b85 vs05
+
+User orange/holding; private photo independently decoded all416bits.
+Return/forward7388, first mismatch14 (CR1b), checked15; expected05/observed85.
+The preceding14 full-value checks passed. Cleanup mask0 and selectors1.
+Actual native CR0/3/4=4001003b/0/610, separate from kernel preparation.
+No added delay/sample block. This matches kernel733 first rejection, but does
+not identify the full704/708/709 failure or establish bit7 semantics.
+
+Console still holding; request manual power cycle, then collect preparation
+files once after confirmed dashboard. No hook/host process/VM. No new launch.
+NEXT outputs/native-batch738/NEXT.md. Prior runtimes remain CLOSED.
+
 # 738 LAUNCHED: awaiting native deferred-check report
 
 One accepted SITE2026-10-27T21:16:00.990940+00:00; preparation3245bdef.
