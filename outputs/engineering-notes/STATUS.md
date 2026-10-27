@@ -1,3 +1,13 @@
+# 743 LAUNCHED: native horizontal checkpoint awaits observation
+
+User confirmed current watch/reset readiness. Exact source/build/stage verified;
+one SITE accepted2026-10-27T22:53:17.845985UTC. Intentional native hold; no hook
+or owned host process/VM. Await second-bar/current-screen observation and full
+13-row photo. No success inferred from acceptance. Do not retry or collect
+before user-confirmed manual reset. Native results are not disk-persisted.
+Preparationbb9dcd25 pushed. All742/prior runtimes CLOSED.
+NEXT outputs/native-horizontal743/NEXT.md.
+
 # 743 STAGED: native horizontal counterpart awaits watcher
 
 UniqueE stage/readback complete; source/linked payload frozen.89ELF/12CPU/

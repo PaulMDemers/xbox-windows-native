@@ -1,26 +1,17 @@
-# 743 STAGED; await current watch/reset readiness
+# 743 LAUNCHED; await screen observation and full report photo
 
-Exact stagedXBE, source freeze and fresh validation pass. No743 launch yet.
-Console authenticated UnleashX during staging. No hook/owned process/VM.
-89ELF/12CPU/79integration/76optical/32page/372nxdk-plan/131379host-plan cases.
-AllCPU VMs closed. Keep integration002 harness failure and exactsource003.
+One SITE accepted2026-10-27T22:53:17.845985UTC after current user watch/reset
+confirmation and exact stage/source verification. No repeat launch. Intentional
+native hold; no hook or owned host process/VM. Await top/second-bar observation
+and full13-row photo before manual reset. A black screen is a result to preserve.
 
-Ask whether user is available to watch the1.6 and power-cycle afterward. Once
-ready, reauthenticate/reverify with physical002.py, recordready001 with current
-watch_and_reset_available, and send exactly one SITE with20second reply bound.
-Never retry accepted/uncertain launch. This deliberately holds a13-row report;
-ask bar color/current screen and request full-photo in ordinary chat. Failed
-horizontal recovery can leave black output; preserve that and request reset.
+Decode photo against optical-schema001; individual horizontal words are not
+shown. Keep kernel pre-arm and native CPU/results distinct. Do not infer values
+from742 or host models. Once captured, request powercycle and collect preparation
+files ONCE after userReady, using physical002.py collect. Review independent
+photo decoder/auditor as fresh versions; preserve all failures and frozen bytes.
+No collection while holding; no relaunch of accepted/uncertain743.
 
-Decode photo against optical-schema001. No expected-value substitution. Then
-request powercycle; onReady collect preparation files ONCE and audit exact
-source/build/stage/owned allocations/unrelatedE entries. Kernel prep and native
-optical outcomes remain distinct. Update photo auditor as a fresh version if
-needed; never overwrite a failed receipt or frozen source. No disk native result.
-
-After closure evaluate the native horizontal outcome before another field group.
-No full geometry/encoder/Windows/release promotion. All742/prior runtimes CLOSED.
-
-Preserve integration004.py CRCRLF bytes exactly: executed harness/source freeze
-pins them. whitespace-review001 records the standard diff failure and independent
-line-ending-only whitespace inspection; no content or functional gate changed.
+All742/prior physical runtimes CLOSED. No geometry/encoder/Windows promotion.
+Preparationbb9dcd25. Keep integration002 harness failure and exactsource003,
+plus integration004 CRCRLF bytes/whitespace-review001; all functional gates pass.
