@@ -1,3 +1,21 @@
+#726 STAGED: 630-only control, CR1b unwritten
+
+New726 is staged and read back; no launch yet. Watch/reset readiness pending.
+Probe725 bracketed CR1b05->85 after630 restoration, not causality. New control
+writes only6302 then saved3, plus output blank/restore and selector traffic.
+Six630/CR1b pairs and32 late reads distinguish blanking and transition behavior.
+No CRTC data writes; full-width/byte restoration checks retained.
+
+Fresh payload/host/build,12 CPU cases (all VMs closed),44 integration cases,
+76 optical,20 nxdk page and372 nxdk ownership cases passed; exact linked bytes.
+Preserve integration001 harness expectation failure; fresh integration002
+corrected CR19 low-bit baseline expectation, binary unchanged.
+
+Console UnleashX, no hook/owned process/VM. Only /E/Applications/XWNMode726
+staged. NEXT outputs/native-630726/NEXT.md: readiness, one SITE, full13row
+photo, power cycle, collect once. No full-mode/Windows/GPU claim. Closed725
+and earlier runtimes remain closed. Ordinary720p protected.
+
 # Engineering handoff: native Windows on Xbox
 
 The platform/FATX essays below originated with the 0.1.0 physical milestone.

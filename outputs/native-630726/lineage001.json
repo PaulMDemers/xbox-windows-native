@@ -1,0 +1,27 @@
+{
+  "utc": "2026-10-27T18:03:45.548937+00:00",
+  "source_parent": "native-prefix725 authored sources only; CLOSED runtime not reused",
+  "parent_commit": "60a70406",
+  "payload_harness_executed": "payload_build_executed.py",
+  "payload_harness_clarification": "payload_build.py subsequently changed two descriptive strings only; arguments and pinned C inputs unchanged",
+  "failed_attempts": {
+    "integration001.json": "Harness expected CR19 low-bit mutation to fail outer pitch check; mask excludes that bit; actual payload correctly refused at baseline7262. integration003.py / integration002.json correct expectation only."
+  },
+  "references": [
+    {
+      "url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/gpu/drm/nouveau/dispnv04/nvreg.h",
+      "finding": "CR1b named fifo control;680630 listed without bit definitions. No documented coupling established."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/torvalds/linux/master/drivers/gpu/drm/nouveau/dispnv04/hw.c",
+      "finding": "Saves/restores630 and CR1b separately; other NVIDIA families are not Xbox hardware proof."
+    }
+  ],
+  "local_source": {
+    "path": "src/boot/xromwell/drivers/video/BootVgaInitialization.c",
+    "sha256": "481e95c8335ba0d865b3ccddfc1b1acfaf0721e12045104e37c5d4d13573c4d4",
+    "finding": "Xcalibur branch writes630=2 with YUV comment; CR1b05 has arbitration0 comment. Neither explains observed bit7 behavior."
+  },
+  "hypothesis": "630-only transition may affect CR1b; alternative timing/blanking behavior retained",
+  "physical_result": null
+}
