@@ -1,3 +1,45 @@
+#717 CLOSED failed native attempt: ORANGE, exact check unknown
+
+User reported Orange; hold and visible blank/return not separately reported.
+Manual power-cycle Ready; nine prep files collected once/double-read and audited.
+Exact source/binary/report pins, independent aliases and unrelated entries pass;
+PCI/CRTC/SEQ/geometry/allocation match715/716. Preparation integrity is not native
+PASS. Orange is shared by bridge refusal and payload error; no numeric native
+result persisted. Do not infer CR1b write rejection/restoration or bit7 semantics.
+
+Next NEW718 add validated optical bridge phase/refusal/return and payload
+phase/error/saved/target/readback/restored values, preserving717 bounded test.
+No target change, bit7 masking, identical retry or708/709 cause claim. CR22 remains
+untouched. Read717/REPORT and NEXT.717 and all earlier runtimes CLOSED; console
+dashboard, no hook/host child; build/xemu released, hardware ticket retained;
+original720p protected; automation paused, other work tabled. No718 work yet.
+
+#717 ORANGE observed: reset/collection pending, exact error unknown
+
+User reported Orange for SECOND bar; no separate hold/black-return observation.
+Success0x717 not observed. Do not infer CR1b write rejection or restoration failure
+without raw native values. observation001 preserved. Reset to UnleashX requested;
+waitReady, collect ONCE, audit preparation integrity and close as failed native
+attempt. No repeat accepted launch. Next NEW718 add independently validated raw
+optical result/phase/readback fields while retaining bounded transaction; no bit7
+mask/target change. Read717/NEXT. No hook/host child; other state unchanged.
+
+#717 launched once: CR1b FIFO-control write/readback/restoration
+
+Source identifies CR1b as FIFO control; physical bit7 semantics unknown. New
+native test requires85, writes05 once, checks full byte, restores85 once and
+checks pitch/CR11 plus final CR1b after output restore. CR22 remains undocumented
+and untouched. No630/geometry/encoder/clock/interrupt changes or mode promotion.
+186 instruction models,12 CPU(all closed),23 nxdk page,372 compiled ownership,
+131379 host ownership pass. Payload5120 padded9916,17relocs/four absolute.
+
+Exact stage readback; one SITE accepted2026-10-27T07:04:52.868168+00:00. Asked
+visible blank/return, SECOND bar and hold/dashboard. Record response, request
+reset, waitReady and collect ONCE/audit. No repeat accepted launch. Read717/NEXT.
+No hook/host child; build/xemu released, hardware ticket retained. Original720p
+protected; earlier runtimes CLOSED; automation paused; other work tabled.
+Source review corrects716 wording: Linux header names630 but defines no bits.
+
 #716 CLOSED: GREEN PRAMDAC630 write/readback/restoration checkpoint
 
 One SITE, user GREEN holding; affirmative black/return answer not separately

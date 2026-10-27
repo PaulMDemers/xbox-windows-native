@@ -1,0 +1,55 @@
+{
+  "passed": true,
+  "utc": "2026-10-27T07:04:19.315652+00:00",
+  "scope": "indexed byteCR1b85->05->85 under inherited blank/restore; FIFO control bit7 semantics unknown, not sustained target qualification",
+  "checks": {
+    "payload001.json": "0a11829e94a32be6fc72437d0c43dda6db7234eb1b009444cd2a9c52b5f97602",
+    "host001.json": "66fff03730a7b9efc245ecaac665de75b6fed0b3227cc61d7b2afb1b20176cc8",
+    "host-plan001.json": "041ac1ee3e7fc70fb6e7734bfe60280bd669993ed483bfb59423b540e9f6ccf7",
+    "cpu-build001.json": "aee95c98f3767f0093532783f7605b70e834a21487a8655034cfc09068774ed2",
+    "cpu-run001.json": "ccba9567d30161eea4e10461a4e53fc820a3c2df3aeba58bb5fa738b43ab2b39",
+    "integration001.json": "2d4d604b486a92e5027444de1c5faf5253873105efb54183c10506e2052da797",
+    "build001.json": "aa5212c809f4cf11246b9f35aab0d6e497920bc3a8104e92b210530978d20cd8",
+    "page-review001.json": "05eb5db1d1ea354029ab0f901de59776033dae0c32017c6d27693cc57572c85f",
+    "plan-review001.json": "dd51671c34f5a19c53eff031e04ead695c7f9bd1afbbc5f743f367da3f25b4c0",
+    "source-review001.json": "5b960149cea5dcd267bf0c96c90545f605c8cf28d7a760fd3b7e390f9a543a50",
+    "lineage001.json": "088e54fca3ce956eda8fc2b5e45686a5f910835438eab61b5483ec0e1199f7db"
+  },
+  "bridge_and_kernel_namespace_only": true,
+  "source_delta_reviewed": true,
+  "linked_CR1b_stores": [
+    [
+      "  100413:\tc6 05 d4 13 60 fd 1b \tmovb   $0x1b,0xfd6013d4",
+      "  10041a:\ta2 d5 13 60 fd       \tmov    %al,0xfd6013d5"
+    ],
+    [
+      "  100452:\tc6 05 d4 13 60 fd 1b \tmovb   $0x1b,0xfd6013d4",
+      "  100459:\ta2 d5 13 60 fd       \tmov    %al,0xfd6013d5"
+    ]
+  ],
+  "linked_CR1b_selects": 6,
+  "result_bytes": 208,
+  "payload_bytes": 5120,
+  "padded_payload_extent": 9916,
+  "absolute_relocations": 4,
+  "total_relocations": 17,
+  "fresh_CPU_cases": 12,
+  "all_CPU_closed": true,
+  "fresh_models": 186,
+  "fresh_nxdk_page_cases": 23,
+  "fresh_nxdk_ownership_cases": 372,
+  "fresh_host_ownership_cases": 131379,
+  "success_code": 1815,
+  "restoration_attempts": 1,
+  "baseline_code": 29046,
+  "test_readback_code": 29047,
+  "restore_or_pitch_CR11_code": 29048,
+  "final_restore_code": 29044,
+  "limitations": [
+    "Models verify control flow not physical FIFO or gate semantics",
+    "Exact full-byte mismatch remains failure; no masking bit7",
+    "Immediate restore does not prove leaving05 for later setup",
+    "Native result optical; preparation files not execution proof",
+    "No full-mode, Windows1.6 or708/709 cause claim"
+  ]
+}

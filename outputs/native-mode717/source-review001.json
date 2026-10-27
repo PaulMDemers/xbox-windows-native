@@ -1,0 +1,37 @@
+{
+  "utc": "2026-10-27T07:01:59.530164+00:00",
+  "sources": [
+    {
+      "url": "https://github.com/torvalds/linux/blob/v6.12/drivers/gpu/drm/nouveau/dispnv04/nvreg.h",
+      "finding": "Defines CR1b as FIFO control and CR20 as low-water mark. No CR22 definition found. Bit7 of CR1b is not defined here."
+    },
+    {
+      "url": "https://github.com/torvalds/linux/blob/v6.12/drivers/gpu/drm/nouveau/dispnv04/crtc.c",
+      "finding": "Mode-set base calculates arbitration and assigns arb_burst to CR1b; CR20 gets low-water mark. Supports configuration/write usage, not NV2A bit7 semantics."
+    },
+    {
+      "url": "https://github.com/torvalds/linux/blob/v6.12/drivers/gpu/drm/nouveau/dispnv04/arb.c",
+      "finding": "Generation-specific burst encodings differ. Do not transplant Linux calculated values to NV2A; only test retained Cromwell target05, restoring observed85 immediately."
+    },
+    {
+      "retained": "C:/xwn700/source001/BootVgaInitialization.c",
+      "sha256": "481e95c8335ba0d865b3ccddfc1b1acfaf0721e12045104e37c5d4d13573c4d4",
+      "finding": "Common setup writes CR1b05 as arbitration0; CR22ff annotated unknown."
+    }
+  ],
+  "research_failures": [
+    "raw Linux nvreg.h and crtc.c returned HTTP429; versioned GitHub pages readable",
+    "guessed envytools nv1_pcrtc.xml returned404; not used"
+  ],
+  "correction_to716_source_review": "Linux header DOES identify NV_PRAMDAC_630 at00680630, but supplies no bit fields. Prior note saying header did not identify630 was too broad. This does not change716 code or observed results.",
+  "admission": "716 kernel readings CR1b85; new native independently requires85 after existing720p context and visibleSEQ1 checks. Same kernel and bridge with namespace only.",
+  "selected_boundary": "one indexed byteCR1b05 request/read, then saved85 restore/read before wait/unblank; finalCR1b read after output restoration; originalCR11/pitch checks retained",
+  "not_selected": "CR22 still undocumented; no write. No full common setup, geometry, encoder, clock or interrupt state change.",
+  "limits": [
+    "Bit7 semantics and writability on physical NV2A unknown; full-byte mismatched readback is a diagnostic failure, not license to mask it",
+    "FIFO target is not left active during visible test or qualified for sustained display",
+    "Primary Linux references span NVIDIA generations; no claim that their arithmetic applies to NV2A",
+    "Host models verify control flow/write width/order and one restore attempt, not physical FIFO behavior or visible restoration",
+    "Source-based configuration experiment, not pending-bit acknowledgement or functional driver patch"
+  ]
+}
