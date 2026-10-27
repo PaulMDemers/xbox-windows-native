@@ -1,3 +1,42 @@
+#713 CLOSED: GREEN unlock-key/CR11/restoration checkpoint
+
+User reported GREEN holding; manual power-cycle confirmed. Nine preparation files
+collected once/double-read; exact source/binary/report pins, independent aliases
+and unrelated entry checks pass. PCI/CRTC/SEQ/geometry/allocation match712.
+Last file phase handoff_armed is preparation; native success0x713 is optical.
+No independent blank-interval observation for713, extended write-access proof,
+normal Windows shutdown or native mode/Windows1.6 qualification.
+
+Next NEW714: isolate704 common-setup phase with minimal changed-register readback
+and bounded restoration; source review and fresh host checks before any launch.
+Read outputs/native-mode713/NEXT.md. No repeat of closed713 or708/709 failures.
+Console dashboard, no hook/host child; build/xemu released, hardware ticket retained.
+Original720p protected; automation paused; other work tabled.
+
+#713 observed GREEN holding: reset/collection pending
+
+User reported "Green, holding" after the single accepted launch. observation001
+records optical success0x713 for key request, exact CR11 check and restoration.
+No independent blank-interval observation for713 and no extended-write-access
+proof. Reset to UnleashX requested; wait for Ready, then collect ONCE and audit.
+Read outputs/native-mode713/NEXT.md. No repeat launch, Windows, hook or console C
+access. No host child; build/xemu released; hardware ticket retained.
+Original720p protected; earlier runtimes CLOSED; automation paused.
+
+#713 launched once: unlock-key/CR11 checkpoint; observation pending
+
+Adds one CR1f57 write after successful blank readback, then exact CR11 comparison.
+Never writes CR11 or common setup/geometry/encoder/clock/interrupt registers.
+Retains712 baseline and single bounded restoration path. GREEN means0x713 returned;
+not proof of extended write access.160 models/12 CPU(all closed)/23 nxdk page/
+372 compiled ownership cases and131379 host ownership cases pass. Exact stage
+readback; one SITE accepted at 2026-10-27T06:06:34.528479+00:00.
+Asked SECOND bar final color and hold/black/dashboard. Record result before
+requesting manual power-cycle; collect once after Ready. Read native-mode713/NEXT.
+No repeat accepted launch. Native result is RAM/optical, files preparation only.
+No Windows/hook/console C access/host child; build/xemu released, hardware ticket
+retained; automation paused. Original720p protected; earlier runtimes CLOSED.
+
 #712 CLOSED: watched blank/restore passed; next extended-register unlock boundary
 
 User observed BLACK then picture returned, GREEN holding. After confirmed manual

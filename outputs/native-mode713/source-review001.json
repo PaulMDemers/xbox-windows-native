@@ -1,0 +1,28 @@
+{
+  "utc": "2026-10-27T06:03:34.184165+00:00",
+  "pins": {
+    "BootVgaInitialization.c": {
+      "retained_source": "C:\\xwn700\\source001\\BootVgaInitialization.c",
+      "sha256": "481e95c8335ba0d865b3ccddfc1b1acfaf0721e12045104e37c5d4d13573c4d4"
+    },
+    "VideoInitialization.c": {
+      "retained_source": "C:\\xwn700\\source001\\VideoInitialization.c",
+      "sha256": "95087d026d543d9e0b07d972b129ef3029e87a4c9911632344abc6bec839a8db"
+    }
+  },
+  "unlock_source": "Pinned BootVgaInitialization.c:486-488: unlockCrtNv writes CR1f57",
+  "check_source": "704 transaction003 phase3 requires CR11 unchanged after unlock key; no CR11 write",
+  "preserved_baseline": "712 full predicate and single bounded blank/restore path",
+  "713_delta": "one CR1f57 write after blank readback, save subsequentCR11, reject mismatch0x7135 then restore visibility once",
+  "prohibited": [
+    "CR11 write",
+    "CR1f readback treated as write key",
+    "attempting to restore lock by writing captured read value",
+    "common setup/geometry/encoder/clock/interrupt programming"
+  ],
+  "scope_limits": [
+    "unchangedCR11 does not establish extended write access; model includes ignored unlock key",
+    "observed blank/restore is paired result, not independent gate verification",
+    "native result staysRAM/optical; persisted preparation cannot prove execution"
+  ]
+}

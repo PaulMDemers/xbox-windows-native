@@ -1,6 +1,6 @@
 # Current status and guide map
 
-Reviewed October 27, 2026 through native blank/restore diagnostic712; the retained480p handoff is703 and the larger720p pre-transaction checkpoint is710.
+Reviewed October 27, 2026 through native unlock/check diagnostic713; the retained480p handoff is703 and the larger720p pre-transaction checkpoint is710.
 This page summarizes supported observations; individual reports retain their
 original failures and scope. For the exact active attempt and next engineering
 step, read [CONTINUATION](../outputs/engineering-notes/CONTINUATION.md) and
@@ -38,6 +38,11 @@ reported black interval followed by the restored picture and GREEN hold. Its
 manual-reset collection and audits passed, with the same preparation state as711.
 Encoder/geometry programming remains unqualified. Next isolate the extended-register
 unlock/check after blanking, while preserving the observed restoration path.
+The [713 unlock/CR11 checkpoint](../outputs/native-mode713/REPORT.md) passed fresh
+host checks and held GREEN after the unlock-key request, exact CR11 check and
+restoration. Manual reset and nine-file collection/audit are complete; preparation
+state matches712. This does not prove extended-register write access or native
+mode initialization. Next isolate common setup with changed-register readback.
 
 ## Choose a guide
 
