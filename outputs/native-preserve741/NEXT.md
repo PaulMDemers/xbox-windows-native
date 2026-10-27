@@ -1,3 +1,10 @@
+# 741 HOLDING: clearer photo needed before reset
+
+First photo partial: all15 checks passed, cleanup mask0/selectors1; reflection
+prevents complete native CPU row verification. Retain photo001 failure and
+photo-partial001 known fields; obtain fresh photo from different angle and
+decode all13 rows without guessing. No reset or collection yet, no relaunch.
+
 # 741 LAUNCHED, awaiting observation/photo
 
 One SITE accepted22:20:30UTC after user Ready and exact fresh readback. No retry.

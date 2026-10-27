@@ -1,3 +1,14 @@
+# 741 PARTIAL PHOTO: forward/cleanup pass; CPU rows need clear photo
+
+User green/holding. Independent first9 rows give return/forward741, no first
+mismatch, expected/observed0, cleanup mask0, selectors1. Last row independently
+sampled with offset/threshold checks gives15 checks. Reflection obscures lower
+CPU rows; complete decode NOT admitted. photo001 decoder failure retained,
+photo-partial001 records known fields. Do not infer obscured bits from models.
+Request another photo from a different angle before manual reset/collection.
+Console still holding; no hook/host process/VM. No repeat launch.
+NEXT outputs/native-preserve741/NEXT.md. All740/prior runtimes CLOSED.
+
 # 741 LAUNCHED: native preservation result awaits observation
 
 User Ready resumed deferred test. Fresh authenticated dashboard and source/
