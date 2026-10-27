@@ -1,0 +1,20 @@
+{
+  "scope": "read-only kernel reference and separately allocated framebuffer, not native state qualification",
+  "references": {
+    "C:/nxdk/lib/hal/video.c": "3441a2d933b475a05d4edb1ff02bcdbc160f76b970d847169c0c4ca7d261dc2f",
+    "C:/nxdk/lib/xboxkrnl/xboxkrnl.h": "3e0350626872eb4593b251e2674713f2d8d0b29b32b6bdf0cfd9f51b6a091346",
+    "src/utilities/hardware-report/main.c": "eb25cac5a68e5183db3c64dada48ba8f8afeb73ed0471068bab6e398c2ae0960",
+    "src/boot/xromwell/include/memory_layout.h": "ff8ce576254e8d97e7252683817f08086bb88a01d4a1635b118a643ef50acc54"
+  },
+  "review": [
+    "PCI slot device | function<<5 matches maintained hardware-report implementation",
+    "Kernel byte transactions; no direct encoder writes or native handoff",
+    "Frame extent/scanout/allocation admission precedes page queries and drawing",
+    "900 pages plus final byte queried through kernel service",
+    "Pattern full buffer bounded to admitted 1280x720x32",
+    "SDK display and kernel byte reads not application-timeout bounded",
+    "Native reserved overlap is planning only, no native live reservation or ownership transfer proof"
+  ],
+  "host_failure_preserved": "object-review001 unresolved compiler memcpy; zero fixture execution; corrected harness002 has explicit memcpy helper",
+  "passed": true
+}

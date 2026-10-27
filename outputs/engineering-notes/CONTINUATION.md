@@ -1,3 +1,28 @@
+# 690 kernel framebuffer/reference check CLOSED
+
+Read outputs/framebuffer690/REPORT.md and its precise NEXT.md first. One watched
+kernel probe displayed the expected panels and returned automatically. All six
+reports collected twice: SMBus PCI01b410de, command00b00001, BARc001; kernel byte
+reads cable1, standard00400100, flags0e, encoder byte4. These match689 expectations
+in kernel context only;689 native failure phase and native block read are unknown.
+Framebuffer03c5c000..03fe0000,3686400 bytes,pitch5120,900 pages plus last byte
+matched; no overlap with planning ranges. This is not handoff survival/ownership
+or native display/Windows qualification. Never hard-code that physical address.
+
+Build and sanitizer checks pass;38 nxdk-object cases pass with explicit harness
+memcpy. Preserve object-review001 missing-helper failure (before cases) and first
+collection connection refusal. collection002 succeeds after user-confirmed return.
+All invoked690 fixtures/runtime CLOSED, no rerun/recollection. No hook or owned
+host process; build lease released, hardware ticket retained, automation paused.
+Owned E paths retained; staged bytes and unrelated directory entries unchanged.
+Incoming1.6 at dashboard with HDMI. Ordinary launcher/original720p untouched.
+
+Next is a separately owned framebuffer checkpoint across a fully audited native
+handoff: actual allocation/mapping/interval custody, entire assembly transfer,
+bounded observable stages, fresh compiled negative fixtures before new hardware.
+Do not borrow firmware setup, weaken IF/status gates or clear inherited status.
+Current690 has no native handoff. No new native test is staged. See690/NEXT.md.
+
 # 688 host entry and689 watched native preflight CLOSED
 
 Read outputs/xcal-native688/REPORT.md and outputs/xcal-visible689/REPORT.md,

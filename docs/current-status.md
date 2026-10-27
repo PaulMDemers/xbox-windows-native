@@ -1,6 +1,6 @@
 # Current status and guide map
 
-Reviewed October 26, 2026 against the retained evidence through host entry688 and physical preflight689.
+Reviewed October 26, 2026 against the retained evidence through kernel framebuffer/reference690 (UTC October27).
 This page summarizes supported observations; individual reports retain their
 original failures and scope. For the exact active attempt and next engineering
 step, read [CONTINUATION](../outputs/engineering-notes/CONTINUATION.md) and
@@ -87,3 +87,9 @@ run showed solid amber/black and required a manual reset. That does not locate
 the stopping point or qualify native reads. The console returned to the dashboard
 and its staged files matched. Next is an early checkpoint independent of SMBus;
 no identical retry or encoder programming is planned from that observation.
+
+[690](../outputs/framebuffer690/REPORT.md) confirms the kernel PCI/cable/settings
+match689 expectations and validates an owned720p framebuffer across900 pages. The
+user saw the panels and automatic return. This does not prove post-handoff state
+or native writes; follow [690 NEXT](../outputs/framebuffer690/NEXT.md) for the
+framebuffer custody and full assembly-path review before another native launch.
