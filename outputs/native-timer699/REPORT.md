@@ -61,3 +61,21 @@ The timer result/photo is pending; no native success or reset is inferred.
 User subsequently reports "Green, holding" (observation001.json). This is the
 interval-reached indication; raw timer measurements/photo remain pending.
 No reset requested or collection started. Top bar not separately confirmed.
+
+## Closed physical result
+
+Photo independently decodes first FEB2F2E5, last FEB2F98E, elapsed1705 ticks,
+87 timer reads, result1 and raw TSC delta375617. Both bars green. At the recorded
+kernel3375000Hz rate this is nominally505.185us; no independent calibration or
+serialized TSC claim. All320 bits threshold/offset checked;256 cross-row checked.
+
+User power-cycled after photo capture and confirmed Ready. Eight preparation
+records read twice; private hashes, source/binary pins, staged XBE/owner and
+unrelated directory entries verified. Native context remains RAM/display only.
+No native SMBus/encoder programming, Windows or startup hook. Kernel prepared720p.
+No owned host process/VM. Hardware ticket retained; automation paused. Console
+at dashboard. Runtime699 CLOSED: never rerun/recollect. Original720p unchanged.
+
+Next: complete480p GPU/output/encoder sequence review and linked failure tests
+using isolated698 status handling before a watched configuration-writing probe.
+Read native-timer699/NEXT.md. Networking/1080i/boot intermittency remain tabled.

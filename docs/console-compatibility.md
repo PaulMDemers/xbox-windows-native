@@ -1,3 +1,8 @@
+Native timer699 is now closed: photographed1705 ticks across87 reads, result1;
+nominal505.185us at the kernel-reported rate. No independent frequency calibration.
+Manual reset and eight-record collection passed. Native encoder programming and
+Windows1.6 remain unqualified; full checked480p sequence review is next.
+
 # Console compatibility and the incoming 1.6
 
 The working Windows package is qualified on the original development Xbox.

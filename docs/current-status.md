@@ -1,3 +1,8 @@
+Native timer699 is now closed: photographed1705 ticks across87 reads, result1;
+nominal505.185us at the kernel-reported rate. No independent frequency calibration.
+Manual reset and eight-record collection passed. Native encoder programming and
+Windows1.6 remain unqualified; full checked480p sequence review is next.
+
 # Current status and guide map
 
 Reviewed October 26, 2026 against the retained evidence through native block-read697, host protocol698 and active timer699 (UTC October27).
