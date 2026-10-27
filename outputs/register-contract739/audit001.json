@@ -1,0 +1,85 @@
+{
+  "passed": true,
+  "utc": "2026-10-27T21:32:54.998212+00:00",
+  "physical_access": false,
+  "runtime_reopened": false,
+  "type": "static source and recorded physical evidence audit; no new emulator or hardware execution",
+  "inputs": {
+    "C:\\xwn700\\source001\\BootVgaInitialization.c": "481e95c8335ba0d865b3ccddfc1b1acfaf0721e12045104e37c5d4d13573c4d4",
+    "outputs\\xcal-transaction704\\transaction003.c": "6336794d817f0b801db939b2611c1832736acad598e71437f9ca87bc797a345b",
+    "outputs\\kernel-mode722\\audit001.json": "07d32060cf11333b9ab081020e8d3adce6eb9e34e1f0b8246d4853034f8ffe62",
+    "outputs\\latch-select731\\audit001.json": "447b1d259e61138d48b546dea7055e8f2930313c67f1ec06a29fe52457d23c8b",
+    "outputs\\native-batch738\\comparison001.json": "79fc3016a5a6fc19e86abb56fc3a4ea1f1f2953a6df93073784dded84d608430"
+  },
+  "references": {
+    "haiku-engine-tree.json": {
+      "url": "https://api.github.com/repos/haiku/haiku/contents/src/add-ons/accelerants/nvidia/engine?ref=a12d4cd1a5bd457078cb3a53ce265a364c5528b7",
+      "bytes": 19832,
+      "sha256": "ea8730fdecdad92715bf6202faf6a248cc2ecce28af7ff1f33db3a3549f70b7b"
+    },
+    "haiku-driver-tree.json": {
+      "url": "https://api.github.com/repos/haiku/haiku/contents/headers/private/graphics/nvidia?ref=a12d4cd1a5bd457078cb3a53ce265a364c5528b7",
+      "bytes": 3244,
+      "sha256": "0026cc4750a80cc8a0b5a8f7f18a7c3d23130d2deb51b9091f7305fed787b5e4"
+    },
+    "haiku-nv_crtc.c": {
+      "url": "https://raw.githubusercontent.com/haiku/haiku/a12d4cd1a5bd457078cb3a53ce265a364c5528b7/src/add-ons/accelerants/nvidia/engine/nv_crtc.c",
+      "bytes": 34798,
+      "sha256": "a5ea405306a37d961f6b8697170a04951222a4d094f7263c8b0c37915ada2168"
+    },
+    "xemu-vga.c": {
+      "url": "https://raw.githubusercontent.com/xemu-project/xemu/dc10b4cea96e403d30c17ed53551fdaf023bc17f/hw/display/vga.c",
+      "bytes": 72369,
+      "sha256": "163f55055c4284e6fd43e79c2ce0c0faa6864abc91dd3637ac957f836806a1cf"
+    },
+    "xemu-prmcio.c": {
+      "url": "https://raw.githubusercontent.com/xemu-project/xemu/dc10b4cea96e403d30c17ed53551fdaf023bc17f/hw/xbox/nv2a/prmcio.c",
+      "bytes": 1769,
+      "sha256": "34b675362a7cd489521581a45372973ea6663455e11bab6e67e85e5b0ffe8d37"
+    },
+    "haiku-nv_macros.h": {
+      "url": "https://raw.githubusercontent.com/haiku/haiku/a12d4cd1a5bd457078cb3a53ce265a364c5528b7/headers/private/graphics/nvidia/nv_macros.h",
+      "bytes": 34332,
+      "sha256": "1ac1190720c2d3e709da43630c98e6b7ca2f53153703364e3a510fb035c78951"
+    },
+    "haiku-nv_general.c": {
+      "url": "https://raw.githubusercontent.com/haiku/haiku/a12d4cd1a5bd457078cb3a53ce265a364c5528b7/src/add-ons/accelerants/nvidia/engine/nv_general.c",
+      "bytes": 76088,
+      "sha256": "b2488a31e19b20d602a786297126226bafbe1d7a37fc708b0974ebdc673ab720"
+    },
+    "haiku-nv_info.c": {
+      "url": "https://raw.githubusercontent.com/haiku/haiku/a12d4cd1a5bd457078cb3a53ce265a364c5528b7/src/add-ons/accelerants/nvidia/engine/nv_info.c",
+      "bytes": 108259,
+      "sha256": "bfce4f39831e431e26a3002dcf4ad04d1b19a4afbd41e0891f4bc37bcbbcb8db"
+    }
+  },
+  "findings": {
+    "xemu_CRTC_read_is_byte_array": true,
+    "xemu_CRTC_write_is_byte_array_for_1b_22": true,
+    "xemu_CR22_read_does_not_select_GR04_plane": true,
+    "working_kernel_modes_CR1b": [
+      133,
+      133,
+      133
+    ],
+    "working_kernel_modes_CR22": [
+      254,
+      254,
+      254
+    ],
+    "measured731_planes": [
+      254,
+      231,
+      90,
+      255
+    ],
+    "Cromwell_recipe_contains_writes": true,
+    "whole_byte_readback_gate_in_authored704": true
+  },
+  "limits": [
+    "No NV2A CR1b bit7 contract newly established.",
+    "No CR22 write effect established.",
+    "Static xemu access-path gap, not a tested emulator patch or complete asynchronous call-graph proof.",
+    "Cromwell write recipe does not establish matching read semantics."
+  ]
+}

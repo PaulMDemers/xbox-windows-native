@@ -1,3 +1,24 @@
+# 740 STAGED: preservation control ready for automatic-return launch
+
+739 source/access review closed. Fresh740 verified11 MMIO/3 CRTC writes;
+CR1b/22/33 data writes omitted, full saved-byte preservation checks retained.
+56 probe/2353 layout cases and linked bytes/schema/source delta review pass.
+Exact E stage readback verified. No launch yet. No hook/process/VM.
+Console authenticated at dashboard. Routine automatic-return launch authorized.
+NEXT outputs/preserve-prefix740/NEXT.md. All738/prior runtimes CLOSED.
+No functional driver change, full-mode admission or Windows qualification.
+
+# 740 PREPARING: preserve CR1b/CR22/CR33 through kernel prefix
+
+739 host source review completed: upstream xemu CRTC storage cannot model
+observed CR1b/CR22 read behavior. No NV2A programming contract established.
+Fresh740 omits CR1b data write and compares its full saved byte; eleven MMIO
+and three CRTC writes, unchanged full-value cleanup. Distinct preservation
+control, not a704 validation waiver or functional driver patch.
+Build,56 compiled probe cases,2353 layout cases and linked-byte checks pass.
+No stage/launch yet; console last confirmed dashboard; no hook/process/VM.
+All738/prior runtimes CLOSED. NEXT outputs/preserve-prefix740/NEXT.md.
+
 # 738 CLOSED: native deferred-prefix matches kernel733 rejection
 
 Photo: first14 checks pass; CR1b05vs85 rejects at index14; cleanup mask0 and
