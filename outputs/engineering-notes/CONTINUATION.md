@@ -1,3 +1,16 @@
+# 733 STAGED: batched setup prefix, no launch requested
+
+Fresh nxdk build,55 actualCOFF cases,2353layout cases,8 schema negatives and
+linked main/probe/layout bytes passed. E-only stage/readback completed. Batch
+11MMIO+4CRTC prefix writes then deferred ordered checks; no CR22/CR33 data writes,
+native handoff or geometry. Forward_status remains separate from full-byte
+cleanup mask; CR1b may remain05 and is not falsely called restored to85.
+
+NEXT outputs/batch-prefix733/NEXT.md. Await1.6 UnleashX/HDMI watcher readiness,
+then one20second SITE request. Status15seconds, automatic dashboard return
+intended. No hook/owned host process/VM. Protected720p unchanged. No full-mode
+or acceleration promotion.731/732 and all previous runtimes CLOSED.
+
 # 732 CLOSED HOST-ONLY: measured read-plane model and first-failure recorder
 
 Fresh unchanged704 build and RAM-only instrumentation build;48 cases each.

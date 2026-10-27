@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "source_only": true,
+  "prefix_arrays_equal723": true,
+  "main_scaffold_only_reporting_changes": true,
+  "deferred_readback_no_interleaved_reads": true,
+  "cleanup_sequence": "CR19 saved;680630 saved;gate4;SEQ1 saved. No CR1b or CR22 restore write. Full-byte before/after mismatches retained.",
+  "independent_schema_cases": 55,
+  "rejected_schema_mutations": [
+    "flags",
+    "cleanup mask",
+    "count",
+    "raw checked value",
+    "code",
+    "attempted",
+    "first mismatch",
+    "mismatch actual"
+  ],
+  "prior_evidence": {
+    "kernel-prefix723/audit001.json": "41ac9fe5d7713325db810b83ee195e709c2c3a28d5a7dc9db05e14870b847bb7",
+    "native-prefix725/REPORT.md": "6df9e6f88caceb0a4a2fba9af424f74c39447c88d268da748477b80a94d5be75",
+    "latch-select731/audit001.json": "447b1d259e61138d48b546dea7055e8f2930313c67f1ec06a29fe52457d23c8b",
+    "latch-model732/audit001.json": "7eda1ba7d5dbf8a13e5199974063d83eaa01063e7724df09af98353d872444c1"
+  },
+  "limits": [
+    "Compared prefix omits CR22/CR33 writes; not exact replay of original full setup.",
+    "CPU context is kernel, not native flat context.",
+    "Added instrumentation and changed check scheduling alter timing.",
+    "CR1b05 may remain after the single write; cleanup reports mismatch without attempting85.",
+    "No CR22/CR33 programming contract established; no full-recipe admission.",
+    "Inherited main.c header comment names the731 source experiment; actual733 behavior is defined by probe.c and this reviewed schema."
+  ]
+}
