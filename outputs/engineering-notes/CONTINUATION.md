@@ -1,3 +1,44 @@
+#720 photo decoded: same-value write mismatch; held orange, reset pending
+
+Photo001 signature7200000d; bridge phase4/checkpoint5/return7208; payload
+phase5/error7208. CR1b saved85, prewrite85, requested85, immediate05,
+after-output-restore05; write-attempted1, samples mask7f. All416bits agree
+across three thresholds/five offsets;352 middle-row bits independently agree
+using adjacent-row interpolation. Original photo remains private C:/xwn720.
+
+The single same-value85 request sufficed for this observed readback change;
+it did not require first requesting05.719's no-write setup retained85.
+This does not establish bit7 semantics, the cause, or full-mode708/709 failure.
+No second CR1b write/retry/mask/driver patch.7208 survived final checks rather
+than being superseded by7204; this is bounded code-path evidence, not broad
+hardware restoration proof. Native saved-value control FAILED.
+
+Manual power-cycle requested after photo preservation; await explicitReady at
+UnleashX. Then
+collect720 ONCE and audit preparation/pins separately from native failure.
+No new launch or closed-runtime recollection. No startup hook or owned host
+process. Console currently held; normal Windows shutdown not applicable.
+
+#720 ORANGE holding: one accepted launch; photo pending, do not reset yet
+
+One SITE accepted2026-10-27T16:00:54.986132+00:00 after exact staged readback and
+source pins. User confirms Orange, holding. Full13-row photo requested; NO RESET
+REQUESTED. Color alone does not prove saved85 write changed CR1b or identify the
+failed check. Preserve/decode rawphoto before reset. See720/optical-schema001.
+
+Schema7200000d: bridge phase/checkpoint/return, payload phase/error, savedCR1b,
+prewriteCR1b,writtenCR1b,immediate readback,post-output readback,attempt flag,mask.
+Fullmask7f. Green720 would establish observed stability only, not write acceptance.
+7208 immediate mismatch;7207 setup/final sample change;7204 final checks may
+supersede earlier error. One saved85 request max, no05 target or register retry.
+
+After photo preservation request power-cycle, wait explicitReady, collect ONCE
+and audit. Never repeat accepted/uncertain launch or recollect closed runtime.
+No hook/owned host process; build/xemu released, hardware ticket retained;
+original720p protected. Earlier runtimes CLOSED; other work/automation tabled.
+Host validation204 instruction/76optical/12CPU(allclosed) and construction checks
+passed. No mode/Windows1.6 or hardware bit-semantics claim.
+
 #720 staged/verified: one saved85 CR1b write; awaiting watcher
 
 719 CLOSED: six raw85 samples through setup, mask3f, return719.718 CLOSED:
