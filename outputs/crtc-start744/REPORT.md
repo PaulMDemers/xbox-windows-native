@@ -1,14 +1,14 @@
-# Test744 preparation
+# Test744 CLOSED: CR04 write and recovery pass in kernel context
 
-Single CR04 target0x5d after the qualified preserving/H7 prefix. CR05 is read
-and must stay unchanged. Both CRTC bytes and H7 are checked against own saved
-values before output-enable. The kernel probe records112 words and returns to
-UnleashX automatically; no hook, native handoff or Windows launch.
+One accepted launch23:08:05.947737UTC; automatic dashboard return observed
+23:08:45UTC. Seven unique reports collected once and exact double-read audited
+23:09:03UTC. CR04 a7 -> 5d -> a7; unwritten CR05 remained31. Prefix15 and
+horizontal7 comparisons pass; all cleanup masks0, selectors1. Actual CPU
+8001003b/f000/610, flags246/46/246. Complete restart_requested persisted.
+No visual result, normal Windows shutdown, native or full-mode proof claimed.
 
-98 actual-COFF cases and2353 framebuffer/layout cases pass. Source/schema and
-linked PE/XBE checks pass. Exact XBE SHA256:
+98 COFF and2353 layout cases plus source/schema/linked checks passed. Prior
+generator and harness failures retained in FAILURES.md. Frozen XBE:
 77d2e8c5667a0e39008f359e3a1fe9d8324cd1ef58bd62a09344ccd60ac4b86b.
-All source-generation/harness failures are retained in FAILURES.md and their
-original sources/receipts. Active model is model004.py/model004.json.
-
-Physical outcome remains pending. No hardware success inferred from models.
+Preparationb5802744 and launch0609dce0 pushed. No hook/process/VM; console
+authenticated dashboard. All744/prior runtimes CLOSED. See NEXT.md.

@@ -1,8 +1,12 @@
-# Test744 launched; await bounded dashboard return
+# Test744 CLOSED; prepare native CR04 counterpart
 
-One accepted SITE at23:08:05.947737UTC. No retry. Preparationb5802744 pushed.
-No hook or owned VM. Bounded120second observer may be active. Collect once
-after authenticated return, audit exact saved bytes/schema and close. No
-Windows/native handoff or visual result inferred. If offline ask screen status.
-All743/prior CLOSED. If forward/recovery pass, prepare a separate native
-counterpart with current watcher readiness before its intentional hold.
+Physical kernel CR04 a7->5d->a7, CR05 unchanged31; all prefix/H7/CRTC
+cleanup and selectors pass. Seven reports collected once, audit001 PASS.
+Console authenticated UnleashX; no hook/process/VM. Never reopen744 or earlier
+runtimes. Source/evidence reuse only.
+
+Prepare distinct745 from743 bridge/frontend plus744 probe with explicit native
+CPU guard. Expose actual CR04/CR05 values and aggregate cleanup in its optical
+report; validate relocated image, CPU transitions and all pixels before stage.
+Current watch/photo/reset availability required before intentional native hold.
+No CR05 data write, further CRTC, vertical, encoder/fullmode or Windows yet.

@@ -1,3 +1,11 @@
+# 744 CLOSED: CR04 forward/readback and recovery pass
+
+Actual kernel744/744. CR04 a7->5d->a7; CR05 unchanged31. Prefix15/H7 and all
+cleanup masks pass,selectors1. Seven reports collected once,audit23:09:03UTC.
+Complete restart request and authenticated automatic dashboard return; no visual
+or Windows/native/fullmode proof. No hook/process/VM. All744/prior CLOSED.
+NEXT outputs/crtc-start744/NEXT.md: prepare distinct native counterpart745.
+
 # 744 LAUNCHED: one accepted CR04 control
 
 SITE accepted2026-10-27T23:08:05.947737UTC; preparationb5802744 pushed.
