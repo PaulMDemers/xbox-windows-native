@@ -1,32 +1,39 @@
-# Current action: manual recovery after observed GREEN hold
+# Next after694: bounded native reads with a visible result
 
-Observation001 records the user's green header and held picture. Request power-
-cycle and await dashboard confirmation. Then create collection-ready001.json
-(dashboard_confirmed:true; manual reset, not normal Windows shutdown) and run
-physical.py collect exactly once. No new launch. File evidence is pre-transfer;
-RAM-only final/native context will not survive reset. Evaluate collected phases
-before closing694 or designing the next native read probe.
+694 is CLOSED. User-observed GREEN held header supports the checked native
+framebuffer write after paging removal. User manually power-cycled; eight exact
+reports collected and local hashes verified. Incoming1.6 is at HDMI UnleashX.
+Read analysis001.json and REPORT.md. Do not rerun/recollect694 or any closed VM.
 
-The following is the preceding launch procedure, retained as history:
+The known-good diagnostic transition is narrower than689's full native entry.
+It does not establish689's failing phase, encoder initialization or Windows1.6.
+The next fresh diagnostic should distinguish transition success from read failure:
 
-# Next: observe and recover694; do not launch again
+1. Preserve694's verified allocation custody, owned descriptors/stack, explicit
+   cache/interrupt/paging changes and independent framebuffer checkpoint. Carry
+   over source/binary pins, but build a new uniquely named attempt and output path.
+2. Audit the native read path before adding it: PCI SMBus identity/IO enable/BAR,
+   entry status, bounded transaction outcome and final status. Keep all refusal
+   conditions. Do not clear unknown inherited pending bits, borrow firmware state,
+   write an encoder recipe or turn a rejected read into success. A protocol read
+   may require audited controller command writes; distinguish those from encoder
+   configuration. Start with the smallest useful read, not a Windows boot.
+3. Show phase and refusal/result codes directly through the admitted framebuffer,
+   independent of SMBus LED writes. Keep a distinct transition-success indication
+   so a subsequent read failure cannot hide the successful handoff. Ensure result
+   presentation is persistent and understandable before requesting watched hardware.
+4. Prove code/data/stack/table extents and full actual compiled transition in new
+   host fixtures, including native read negative outcomes and bounded timeouts.
+   Host IO models are not physical bus proof. Preserve failures. Any context in
+   files before transfer remains pre-write; do not relabel it as native capture.
+5. Acquire fresh watch/reset availability for the new deliberate hold; stage exact
+   bytes and send one bounded SITE request. Never retry an uncertain launch. After
+   observing and manual recovery, collect only that new attempt and audit custody.
 
-One launch was accepted at2026-10-27T01:35:46.988119Z; see launch001.json.
-Fresh watch/reset availability is recorded. The top-bar/screen question is pending.
-Do not rerun physical.py launch, any closed fixture, or an uncertain attempt.
-
-1. Record exact user-observed BLUE/GREEN/RED/black sequence and hold versus return.
-   Acceptance alone does not prove native execution. LED color is not the signal.
-2. If held, ask for power-cycle after recording the observation. Wait for user
-   dashboard confirmation before creating collection-ready001.json with
-   dashboard_confirmed:true. Distinguish manual reset from automatic return.
-3. Run physical.py collect once, retain all phases and failures. No startup hook
-   was installed. No Windows shutdown can be claimed. Update REPORT and notes.
-4. Green supports only this native inherited-framebuffer write; it does not qualify
-   native Xcalibur setup, SMBus reads, or Windows1.6. Decide the next probe from
-   actual evidence, without patching the ordinary launcher or weakening gates.
-
-No owned host process; all eleven invoked VMs closed, build/emulator leases
-released, hardware ticket retained, automation paused. Console state pending
-observation. Staged owned E path retained; original Conexant720p unchanged.
-Preserve build001, cpu-build001 and cpu-run002 failures. Private assets C:/xwn694.
+No next candidate is implemented or staged. No startup hook or owned host process.
+Build/emulator leases released; hardware ticket retained; automation paused.
+Original Conexant720p and ordinary launcher untouched. Networking679,1080i and
+historical boot intermittency remain tabled. Native Xcalibur initialization and
+Windows1.6 video-driver work follow evidence from these reads, not kernel mode
+success alone. Preserve694 build001/cpu-build001/cpu-run002 failures and all prior
+closed attempts. Private assets and credentials remain outside the public repo.

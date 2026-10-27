@@ -1,3 +1,30 @@
+# 694 CLOSED: watched native green checkpoint, recovered and collected
+
+Read outputs/native-checkpoint694/analysis001.json, REPORT.md and NEXT.md.
+One accepted launch; user observed GREEN header and held picture. User then
+confirmed the requested manual power-cycle to UnleashX. Eight reports were each
+read twice with identical bytes; independent local hashes match. Last phase is
+handoff_armed, as expected for a nonreturning native transition. No Windows or
+normal-shutdown claim. Staged files and unrelated E/apps directory entries match.
+
+Kernel records show source01f00000, physical stub/requested target01eff000,
+returned reservation01ef0000 size10000, low alias backing000bb000..000bbfff.
+All allocation gates and both4096-byte copies passed. Framebuffer03c5c000,
+3686400 bytes, pitch5120;900 pages plus last byte checked. Persisted CPU sample
+is PRE-FILE-WRITE: EFLAGS296, CR08001003b, CR3f000, CR4610, CS8/DS10/SS10.
+Final/native contexts were RAM-only, not captured and lost on reset. User green
+observation plus reviewed executed path supports the limited post-paging native
+framebuffer write. It is not native Xcalibur setup or Windows1.6 qualification,
+and does not establish689's failure cause or resolve general boot intermittency.
+
+694 physical run and all eleven invoked CPU VMs CLOSED; never rerun/recollect.
+Preserve all prior build/model failures. No hook or owned host process; hardware
+ticket retained, build/emulator leases released, automation paused. Incoming1.6
+at HDMI dashboard after collection; original720p/ordinary launcher untouched.
+Next is a fresh bounded native read diagnostic with framebuffer phase/results,
+compiled negative tests and current watch/reset availability before a new hold.
+No next test is built or staged. Networking679 and1080i remain tabled.
+
 # 694 GREEN held checkpoint observed; manual recovery and collection pending
 
 User reports: "Yes it is now green, and is holding." Exact reply retained in
