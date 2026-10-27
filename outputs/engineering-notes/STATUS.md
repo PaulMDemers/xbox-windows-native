@@ -1,3 +1,23 @@
+# 743 STAGED: native horizontal counterpart awaits watcher
+
+UniqueE stage/readback complete; source/linked payload frozen.89ELF/12CPU/
+79integration/76optical/32page/372nxdk-plan/131379host-plan cases pass; allVMs
+closed. Integration002 harness PCI-refusal assertion failure/source preserved;
+freshintegration004->integration003 passes with unchanged payload/bridge.
+No743 launch/hook/process. Console authenticated dashboard. NEXT:
+outputs/native-horizontal743/NEXT.md. Current watch/photo/reset readiness
+needed for intentional native hold.742 physicalPASS, all742/prior CLOSED.
+
+# 743 PREPARING: native horizontal counterpart
+
+742 closed/pushed fbb844ce.743 fresh payload and host page built;89 ELF and12
+CPU cases pass, all VMs closed. Integration002 harness incorrectly asserted
+horizontal success on a correctly refused PCI path; failure/source retained.
+Fresh integration004 -> integration003 running; no payload/bridge change.
+No743 stage/launch/hook. Console last authenticated at dashboard. Next details:
+outputs/native-horizontal743/NEXT.md. Native intentional hold needs current
+watch/photo/reset availability after all preparation gates. All742/prior CLOSED.
+
 # 742 CLOSED: seven horizontal timing words pass and restore
 
 Actual kernel742/742;15 prefix+7 horizontal checks,20+7 cleanup fields pass.
