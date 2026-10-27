@@ -1,0 +1,914 @@
+{
+  "passed": true,
+  "closed": true,
+  "space": {
+    "minimum_free_gib": 20.15,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c/xwn694/cpu003",
+        "free_bytes": 69413486592
+      },
+      {
+        "free_bytes": 69413486592,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "scope": "Fresh diskless QEMU CPU fixtures executing the exact linked nxdk page.\nNo Xbox kernel, DMA, NV2A, physical cache behavior or Windows is modeled.\n",
+  "cases": [
+    {
+      "name": "dual",
+      "index": 0,
+      "target": 32501760,
+      "alias": 35651584,
+      "fixture_fault_loop": 1048893,
+      "command": [
+        "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/bin/qemu-system-i386",
+        "-name",
+        "xwn694-dual",
+        "-L",
+        "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/qemu",
+        "-bios",
+        "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/seabios/bios.bin",
+        "-machine",
+        "pc,acpi=off,hpet=off",
+        "-accel",
+        "tcg,thread=single",
+        "-cpu",
+        "pentium3",
+        "-smp",
+        "1",
+        "-m",
+        "64",
+        "-vga",
+        "none",
+        "-display",
+        "none",
+        "-nic",
+        "none",
+        "-serial",
+        "none",
+        "-monitor",
+        "none",
+        "-qmp",
+        "unix:/tmp/xwn694-cpu003-dual.sock,server=on,wait=off",
+        "-S",
+        "-kernel",
+        "/mnt/c/xwn694/cpu003/dual/fixture.elf",
+        "-debugcon",
+        "file:/mnt/c/xwn694/cpu003/run-dual/debug.bin",
+        "-no-reboot",
+        "-d",
+        "int,cpu_reset",
+        "-D",
+        "/mnt/c/xwn694/cpu003/run-dual/cpu.log"
+      ],
+      "started": "2026-10-27T01:22:44.067237+00:00",
+      "closed": true,
+      "passed": true,
+      "pid": 557,
+      "registers": "\r\nCPU#0\r\nEAX=0000ff00 EBX=00100132 ECX=00000000 EDX=00000000\r\nESI=00101968 EDI=03064020 EBP=01eff000 ESP=01f00000\r\nEIP=01eff1ce EFL=00000046 [---Z-P-] CPL=0 II=0 A20=1 SMM=0 HLT=1\r\nES =0018 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nCS =0010 00000000 ffffffff 00cf9a00 DPL=0 CS32 [-R-]\r\nSS =0018 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nDS =0018 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nFS =0000 00000000 00000000 00000000\r\nGS =0000 00000000 00000000 00000000\r\nLDT=0000 00000000 0000ffff 00008200 DPL=0 LDT\r\nTR =0000 00000000 0000ffff 00008b00 DPL=0 TSS32-busy\r\nGDT=     01eff400 0000001f\r\nIDT=     01eff600 000007ff\r\nCR0=40000011 CR2=00000000 CR3=00000000 CR4=00000010\r\nDR0=00000000 DR1=00000000 DR2=00000000 DR3=00000000 \r\nDR6=ffff0ff0 DR7=00000400\r\nEFER=0000000000000000\r\nFCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80\r\nFPR0=0000000000000000 0000 FPR1=0000000000000000 0000\r\nFPR2=0000000000000000 0000 FPR3=0000000000000000 0000\r\nFPR4=0000000000000000 0000 FPR5=0000000000000000 0000\r\nFPR6=0000000000000000 0000 FPR7=0000000000000000 0000\r\nXMM00=0000000000000000 0000000000000000 XMM01=0000000000000000 0000000000000000\r\nXMM02=0000000000000000 0000000000000000 XMM03=0000000000000000 0000000000000000\r\nXMM04=0000000000000000 0000000000000000 XMM05=0000000000000000 0000000000000000\r\nXMM06=0000000000000000 0000000000000000 XMM07=0000000000000000 0000000000000000\r\n",
+      "phase_physical": 3,
+      "phase_alias": 1,
+      "neighbor_guards_intact": true,
+      "green_header_exact": true,
+      "exit_code": 0,
+      "ended": "2026-10-27T01:22:44.534654+00:00",
+      "files": {
+        "/mnt/c/xwn694/cpu003/run-dual/alias.bin": {
+          "sha256": "56922c19596e67b95cfdcb5ee08187338804bb4404209017cbb1d6a5072c7efe",
+          "bytes": 12288
+        },
+        "/mnt/c/xwn694/cpu003/run-dual/cpu.log": {
+          "sha256": "35e3ec151ba0967d8c0eb31a23258f1fc2064ed4cfd68b5c29034ec25cecc755",
+          "bytes": 2604
+        },
+        "/mnt/c/xwn694/cpu003/run-dual/debug.bin": {
+          "sha256": "df7e70e5021544f4834bbee64a9e3789febc4be81470df629cad6ddb03320a5c",
+          "bytes": 1
+        },
+        "/mnt/c/xwn694/cpu003/run-dual/fb.bin": {
+          "sha256": "227fe30b47bf8af4bd21a80a69f91b7e1da9b047aeb52a498106272ce2c876a3",
+          "bytes": 3686400
+        },
+        "/mnt/c/xwn694/cpu003/run-dual/qemu.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "/mnt/c/xwn694/cpu003/run-dual/registers.txt": {
+          "sha256": "4ee794b619f5c54c9580d3d232ea1d1b8ba5663d7503d22a9168225432e4b9e4",
+          "bytes": 1377
+        },
+        "/mnt/c/xwn694/cpu003/run-dual/target.bin": {
+          "sha256": "9b54b7c911b27aae9fde0b45e76d3b2b3067854586c15e57900628d2acc97b21",
+          "bytes": 12288
+        }
+      }
+    },
+    {
+      "name": "identity",
+      "index": 1,
+      "target": 32501760,
+      "alias": 32501760,
+      "fixture_fault_loop": 1048893,
+      "command": [
+        "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/bin/qemu-system-i386",
+        "-name",
+        "xwn694-identity",
+        "-L",
+        "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/qemu",
+        "-bios",
+        "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/seabios/bios.bin",
+        "-machine",
+        "pc,acpi=off,hpet=off",
+        "-accel",
+        "tcg,thread=single",
+        "-cpu",
+        "pentium3",
+        "-smp",
+        "1",
+        "-m",
+        "64",
+        "-vga",
+        "none",
+        "-display",
+        "none",
+        "-nic",
+        "none",
+        "-serial",
+        "none",
+        "-monitor",
+        "none",
+        "-qmp",
+        "unix:/tmp/xwn694-cpu003-identity.sock,server=on,wait=off",
+        "-S",
+        "-kernel",
+        "/mnt/c/xwn694/cpu003/identity/fixture.elf",
+        "-debugcon",
+        "file:/mnt/c/xwn694/cpu003/run-identity/debug.bin",
+        "-no-reboot",
+        "-d",
+        "int,cpu_reset",
+        "-D",
+        "/mnt/c/xwn694/cpu003/run-identity/cpu.log"
+      ],
+      "started": "2026-10-27T01:22:44.572912+00:00",
+      "closed": true,
+      "passed": true,
+      "pid": 561,
+      "registers": "\r\nCPU#0\r\nEAX=0000ff00 EBX=00100132 ECX=00000000 EDX=00000000\r\nESI=00101968 EDI=03064020 EBP=01eff000 ESP=01f00000\r\nEIP=01eff1ce EFL=00000046 [---Z-P-] CPL=0 II=0 A20=1 SMM=0 HLT=1\r\nES =0018 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nCS =0010 00000000 ffffffff 00cf9a00 DPL=0 CS32 [-R-]\r\nSS =0018 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nDS =0018 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nFS =0000 00000000 00000000 00000000\r\nGS =0000 00000000 00000000 00000000\r\nLDT=0000 00000000 0000ffff 00008200 DPL=0 LDT\r\nTR =0000 00000000 0000ffff 00008b00 DPL=0 TSS32-busy\r\nGDT=     01eff400 0000001f\r\nIDT=     01eff600 000007ff\r\nCR0=40000011 CR2=00000000 CR3=00000000 CR4=00000010\r\nDR0=00000000 DR1=00000000 DR2=00000000 DR3=00000000 \r\nDR6=ffff0ff0 DR7=00000400\r\nEFER=0000000000000000\r\nFCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80\r\nFPR0=0000000000000000 0000 FPR1=0000000000000000 0000\r\nFPR2=0000000000000000 0000 FPR3=0000000000000000 0000\r\nFPR4=0000000000000000 0000 FPR5=0000000000000000 0000\r\nFPR6=0000000000000000 0000 FPR7=0000000000000000 0000\r\nXMM00=0000000000000000 0000000000000000 XMM01=0000000000000000 0000000000000000\r\nXMM02=0000000000000000 0000000000000000 XMM03=0000000000000000 0000000000000000\r\nXMM04=0000000000000000 0000000000000000 XMM05=0000000000000000 0000000000000000\r\nXMM06=0000000000000000 0000000000000000 XMM07=0000000000000000 0000000000000000\r\n",
+      "phase_physical": 3,
+      "phase_alias": 3,
+      "neighbor_guards_intact": true,
+      "green_header_exact": true,
+      "exit_code": 0,
+      "ended": "2026-10-27T01:22:45.038242+00:00",
+      "files": {
+        "/mnt/c/xwn694/cpu003/run-identity/alias.bin": {
+          "sha256": "9aa249ed65e153e21943850259dd38d7f79153a3081242355f21982620c714dd",
+          "bytes": 12288
+        },
+        "/mnt/c/xwn694/cpu003/run-identity/cpu.log": {
+          "sha256": "35e3ec151ba0967d8c0eb31a23258f1fc2064ed4cfd68b5c29034ec25cecc755",
+          "bytes": 2604
+        },
+        "/mnt/c/xwn694/cpu003/run-identity/debug.bin": {
+          "sha256": "df7e70e5021544f4834bbee64a9e3789febc4be81470df629cad6ddb03320a5c",
+          "bytes": 1
+        },
+        "/mnt/c/xwn694/cpu003/run-identity/fb.bin": {
+          "sha256": "227fe30b47bf8af4bd21a80a69f91b7e1da9b047aeb52a498106272ce2c876a3",
+          "bytes": 3686400
+        },
+        "/mnt/c/xwn694/cpu003/run-identity/qemu.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "/mnt/c/xwn694/cpu003/run-identity/registers.txt": {
+          "sha256": "4ee794b619f5c54c9580d3d232ea1d1b8ba5663d7503d22a9168225432e4b9e4",
+          "bytes": 1377
+        },
+        "/mnt/c/xwn694/cpu003/run-identity/target.bin": {
+          "sha256": "9aa249ed65e153e21943850259dd38d7f79153a3081242355f21982620c714dd",
+          "bytes": 12288
+        }
+      }
+    },
+    {
+      "name": "relocated",
+      "index": 2,
+      "target": 32358400,
+      "alias": 35651584,
+      "fixture_fault_loop": 1048893,
+      "command": [
+        "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/bin/qemu-system-i386",
+        "-name",
+        "xwn694-relocated",
+        "-L",
+        "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/qemu",
+        "-bios",
+        "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/seabios/bios.bin",
+        "-machine",
+        "pc,acpi=off,hpet=off",
+        "-accel",
+        "tcg,thread=single",
+        "-cpu",
+        "pentium3",
+        "-smp",
+        "1",
+        "-m",
+        "64",
+        "-vga",
+        "none",
+        "-display",
+        "none",
+        "-nic",
+        "none",
+        "-serial",
+        "none",
+        "-monitor",
+        "none",
+        "-qmp",
+        "unix:/tmp/xwn694-cpu003-relocated.sock,server=on,wait=off",
+        "-S",
+        "-kernel",
+        "/mnt/c/xwn694/cpu003/relocated/fixture.elf",
+        "-debugcon",
+        "file:/mnt/c/xwn694/cpu003/run-relocated/debug.bin",
+        "-no-reboot",
+        "-d",
+        "int,cpu_reset",
+        "-D",
+        "/mnt/c/xwn694/cpu003/run-relocated/cpu.log"
+      ],
+      "started": "2026-10-27T01:22:45.075050+00:00",
+      "closed": true,
+      "passed": true,
+      "pid": 565,
+      "registers": "\r\nCPU#0\r\nEAX=0000ff00 EBX=00100132 ECX=00000000 EDX=00000000\r\nESI=00101968 EDI=03064020 EBP=01edc000 ESP=01edd000\r\nEIP=01edc1ce EFL=00000046 [---Z-P-] CPL=0 II=0 A20=1 SMM=0 HLT=1\r\nES =0018 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nCS =0010 00000000 ffffffff 00cf9a00 DPL=0 CS32 [-R-]\r\nSS =0018 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nDS =0018 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nFS =0000 00000000 00000000 00000000\r\nGS =0000 00000000 00000000 00000000\r\nLDT=0000 00000000 0000ffff 00008200 DPL=0 LDT\r\nTR =0000 00000000 0000ffff 00008b00 DPL=0 TSS32-busy\r\nGDT=     01edc400 0000001f\r\nIDT=     01edc600 000007ff\r\nCR0=40000011 CR2=00000000 CR3=00000000 CR4=00000010\r\nDR0=00000000 DR1=00000000 DR2=00000000 DR3=00000000 \r\nDR6=ffff0ff0 DR7=00000400\r\nEFER=0000000000000000\r\nFCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80\r\nFPR0=0000000000000000 0000 FPR1=0000000000000000 0000\r\nFPR2=0000000000000000 0000 FPR3=0000000000000000 0000\r\nFPR4=0000000000000000 0000 FPR5=0000000000000000 0000\r\nFPR6=0000000000000000 0000 FPR7=0000000000000000 0000\r\nXMM00=0000000000000000 0000000000000000 XMM01=0000000000000000 0000000000000000\r\nXMM02=0000000000000000 0000000000000000 XMM03=0000000000000000 0000000000000000\r\nXMM04=0000000000000000 0000000000000000 XMM05=0000000000000000 0000000000000000\r\nXMM06=0000000000000000 0000000000000000 XMM07=0000000000000000 0000000000000000\r\n",
+      "phase_physical": 3,
+      "phase_alias": 1,
+      "neighbor_guards_intact": true,
+      "green_header_exact": true,
+      "exit_code": 0,
+      "ended": "2026-10-27T01:22:45.542727+00:00",
+      "files": {
+        "/mnt/c/xwn694/cpu003/run-relocated/alias.bin": {
+          "sha256": "e4f4ec70757d827c648a82c89ce0bd6efc26716d1434dea43a7c5bbcf1745534",
+          "bytes": 12288
+        },
+        "/mnt/c/xwn694/cpu003/run-relocated/cpu.log": {
+          "sha256": "35e3ec151ba0967d8c0eb31a23258f1fc2064ed4cfd68b5c29034ec25cecc755",
+          "bytes": 2604
+        },
+        "/mnt/c/xwn694/cpu003/run-relocated/debug.bin": {
+          "sha256": "df7e70e5021544f4834bbee64a9e3789febc4be81470df629cad6ddb03320a5c",
+          "bytes": 1
+        },
+        "/mnt/c/xwn694/cpu003/run-relocated/fb.bin": {
+          "sha256": "227fe30b47bf8af4bd21a80a69f91b7e1da9b047aeb52a498106272ce2c876a3",
+          "bytes": 3686400
+        },
+        "/mnt/c/xwn694/cpu003/run-relocated/qemu.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "/mnt/c/xwn694/cpu003/run-relocated/registers.txt": {
+          "sha256": "004d6594e00e2c720daf9ef2b6677cd183afdaa1a333ddd4c6ec98b4f12fd759",
+          "bytes": 1377
+        },
+        "/mnt/c/xwn694/cpu003/run-relocated/target.bin": {
+          "sha256": "5846bcb403b87f2b591c501dcd29e8326c3d61022fa3f72f06c7643a86fb0dda",
+          "bytes": 12288
+        }
+      }
+    },
+    {
+      "name": "bad_magic",
+      "index": 3,
+      "target": 32501760,
+      "alias": 35651584,
+      "fixture_fault_loop": 1048913,
+      "command": [
+        "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/bin/qemu-system-i386",
+        "-name",
+        "xwn694-bad_magic",
+        "-L",
+        "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/qemu",
+        "-bios",
+        "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/seabios/bios.bin",
+        "-machine",
+        "pc,acpi=off,hpet=off",
+        "-accel",
+        "tcg,thread=single",
+        "-cpu",
+        "pentium3",
+        "-smp",
+        "1",
+        "-m",
+        "64",
+        "-vga",
+        "none",
+        "-display",
+        "none",
+        "-nic",
+        "none",
+        "-serial",
+        "none",
+        "-monitor",
+        "none",
+        "-qmp",
+        "unix:/tmp/xwn694-cpu003-bad_magic.sock,server=on,wait=off",
+        "-S",
+        "-kernel",
+        "/mnt/c/xwn694/cpu003/bad_magic/fixture.elf",
+        "-debugcon",
+        "file:/mnt/c/xwn694/cpu003/run-bad_magic/debug.bin",
+        "-no-reboot",
+        "-d",
+        "int,cpu_reset",
+        "-D",
+        "/mnt/c/xwn694/cpu003/run-bad_magic/cpu.log"
+      ],
+      "started": "2026-10-27T01:22:45.581687+00:00",
+      "closed": true,
+      "passed": true,
+      "pid": 569,
+      "registers": "\r\nCPU#0\r\nEAX=80000042 EBX=00100146 ECX=00000000 EDX=00000511\r\nESI=00101980 EDI=03f02000 EBP=01eff000 ESP=00180000\r\nEIP=01eff1d2 EFL=00000097 [--S-APC] CPL=0 II=0 A20=1 SMM=0 HLT=1\r\nES =0010 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nCS =0008 00000000 ffffffff 00cf9a00 DPL=0 CS32 [-R-]\r\nSS =0010 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nDS =0010 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nFS =0010 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nGS =0010 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nLDT=0000 00000000 0000ffff 00008200 DPL=0 LDT\r\nTR =0000 00000000 0000ffff 00008b00 DPL=0 TSS32-busy\r\nGDT=     00100158 00000017\r\nIDT=     00100180 000007ff\r\nCR0=80000011 CR2=00000000 CR3=03f00000 CR4=00000010\r\nDR0=00000000 DR1=00000000 DR2=00000000 DR3=00000000 \r\nDR6=ffff0ff0 DR7=00000400\r\nEFER=0000000000000000\r\nFCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80\r\nFPR0=0000000000000000 0000 FPR1=0000000000000000 0000\r\nFPR2=0000000000000000 0000 FPR3=0000000000000000 0000\r\nFPR4=0000000000000000 0000 FPR5=0000000000000000 0000\r\nFPR6=0000000000000000 0000 FPR7=0000000000000000 0000\r\nXMM00=0000000000000000 0000000000000000 XMM01=0000000000000000 0000000000000000\r\nXMM02=0000000000000000 0000000000000000 XMM03=0000000000000000 0000000000000000\r\nXMM04=0000000000000000 0000000000000000 XMM05=0000000000000000 0000000000000000\r\nXMM06=0000000000000000 0000000000000000 XMM07=0000000000000000 0000000000000000\r\n",
+      "phase_physical": 0,
+      "phase_alias": 0,
+      "neighbor_guards_intact": true,
+      "no_green_and_framebuffer_unchanged": true,
+      "exit_code": 0,
+      "ended": "2026-10-27T01:22:46.046242+00:00",
+      "files": {
+        "/mnt/c/xwn694/cpu003/run-bad_magic/alias.bin": {
+          "sha256": "b889eade5c67b2b1436b4eb99888c7bcec4d9b1bee5b0763ca2c511ea716daeb",
+          "bytes": 12288
+        },
+        "/mnt/c/xwn694/cpu003/run-bad_magic/cpu.log": {
+          "sha256": "35e3ec151ba0967d8c0eb31a23258f1fc2064ed4cfd68b5c29034ec25cecc755",
+          "bytes": 2604
+        },
+        "/mnt/c/xwn694/cpu003/run-bad_magic/debug.bin": {
+          "sha256": "df7e70e5021544f4834bbee64a9e3789febc4be81470df629cad6ddb03320a5c",
+          "bytes": 1
+        },
+        "/mnt/c/xwn694/cpu003/run-bad_magic/fb.bin": {
+          "sha256": "578c75dd9135d76c9cd959937a37b0c41b37446eba9ad72a22cb87b0ae301b49",
+          "bytes": 3686400
+        },
+        "/mnt/c/xwn694/cpu003/run-bad_magic/qemu.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "/mnt/c/xwn694/cpu003/run-bad_magic/registers.txt": {
+          "sha256": "6610538352b52527df2cf44211518f09dea9251eb0bf75d60866082b23e3d8e8",
+          "bytes": 1411
+        },
+        "/mnt/c/xwn694/cpu003/run-bad_magic/target.bin": {
+          "sha256": "b889eade5c67b2b1436b4eb99888c7bcec4d9b1bee5b0763ca2c511ea716daeb",
+          "bytes": 12288
+        }
+      }
+    },
+    {
+      "name": "bad_base",
+      "index": 4,
+      "target": 32501760,
+      "alias": 35651584,
+      "fixture_fault_loop": 1048913,
+      "command": [
+        "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/bin/qemu-system-i386",
+        "-name",
+        "xwn694-bad_base",
+        "-L",
+        "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/qemu",
+        "-bios",
+        "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/seabios/bios.bin",
+        "-machine",
+        "pc,acpi=off,hpet=off",
+        "-accel",
+        "tcg,thread=single",
+        "-cpu",
+        "pentium3",
+        "-smp",
+        "1",
+        "-m",
+        "64",
+        "-vga",
+        "none",
+        "-display",
+        "none",
+        "-nic",
+        "none",
+        "-serial",
+        "none",
+        "-monitor",
+        "none",
+        "-qmp",
+        "unix:/tmp/xwn694-cpu003-bad_base.sock,server=on,wait=off",
+        "-S",
+        "-kernel",
+        "/mnt/c/xwn694/cpu003/bad_base/fixture.elf",
+        "-debugcon",
+        "file:/mnt/c/xwn694/cpu003/run-bad_base/debug.bin",
+        "-no-reboot",
+        "-d",
+        "int,cpu_reset",
+        "-D",
+        "/mnt/c/xwn694/cpu003/run-bad_base/cpu.log"
+      ],
+      "started": "2026-10-27T01:22:46.083107+00:00",
+      "closed": true,
+      "passed": true,
+      "pid": 573,
+      "registers": "\r\nCPU#0\r\nEAX=80000042 EBX=00100146 ECX=00000000 EDX=00000511\r\nESI=00101980 EDI=03f02000 EBP=01eff000 ESP=00180000\r\nEIP=01eff1d2 EFL=00000006 [-----P-] CPL=0 II=0 A20=1 SMM=0 HLT=1\r\nES =0010 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nCS =0008 00000000 ffffffff 00cf9a00 DPL=0 CS32 [-R-]\r\nSS =0010 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nDS =0010 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nFS =0010 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nGS =0010 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nLDT=0000 00000000 0000ffff 00008200 DPL=0 LDT\r\nTR =0000 00000000 0000ffff 00008b00 DPL=0 TSS32-busy\r\nGDT=     00100158 00000017\r\nIDT=     00100180 000007ff\r\nCR0=80000011 CR2=00000000 CR3=03f00000 CR4=00000010\r\nDR0=00000000 DR1=00000000 DR2=00000000 DR3=00000000 \r\nDR6=ffff0ff0 DR7=00000400\r\nEFER=0000000000000000\r\nFCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80\r\nFPR0=0000000000000000 0000 FPR1=0000000000000000 0000\r\nFPR2=0000000000000000 0000 FPR3=0000000000000000 0000\r\nFPR4=0000000000000000 0000 FPR5=0000000000000000 0000\r\nFPR6=0000000000000000 0000 FPR7=0000000000000000 0000\r\nXMM00=0000000000000000 0000000000000000 XMM01=0000000000000000 0000000000000000\r\nXMM02=0000000000000000 0000000000000000 XMM03=0000000000000000 0000000000000000\r\nXMM04=0000000000000000 0000000000000000 XMM05=0000000000000000 0000000000000000\r\nXMM06=0000000000000000 0000000000000000 XMM07=0000000000000000 0000000000000000\r\n",
+      "phase_physical": 0,
+      "phase_alias": 0,
+      "neighbor_guards_intact": true,
+      "no_green_and_framebuffer_unchanged": true,
+      "exit_code": 0,
+      "ended": "2026-10-27T01:22:46.540022+00:00",
+      "files": {
+        "/mnt/c/xwn694/cpu003/run-bad_base/alias.bin": {
+          "sha256": "6b41adadfc3b49299b6282a4e8c9a5bbfccc609235afff8f621bec85acbaa355",
+          "bytes": 12288
+        },
+        "/mnt/c/xwn694/cpu003/run-bad_base/cpu.log": {
+          "sha256": "35e3ec151ba0967d8c0eb31a23258f1fc2064ed4cfd68b5c29034ec25cecc755",
+          "bytes": 2604
+        },
+        "/mnt/c/xwn694/cpu003/run-bad_base/debug.bin": {
+          "sha256": "df7e70e5021544f4834bbee64a9e3789febc4be81470df629cad6ddb03320a5c",
+          "bytes": 1
+        },
+        "/mnt/c/xwn694/cpu003/run-bad_base/fb.bin": {
+          "sha256": "578c75dd9135d76c9cd959937a37b0c41b37446eba9ad72a22cb87b0ae301b49",
+          "bytes": 3686400
+        },
+        "/mnt/c/xwn694/cpu003/run-bad_base/qemu.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "/mnt/c/xwn694/cpu003/run-bad_base/registers.txt": {
+          "sha256": "cefbd363d092edf2b8f88607ab6c2f7e43c6d12a030c186ddeb6ef4cdaef8c71",
+          "bytes": 1411
+        },
+        "/mnt/c/xwn694/cpu003/run-bad_base/target.bin": {
+          "sha256": "6b41adadfc3b49299b6282a4e8c9a5bbfccc609235afff8f621bec85acbaa355",
+          "bytes": 12288
+        }
+      }
+    },
+    {
+      "name": "fb_overlap",
+      "index": 5,
+      "target": 32501760,
+      "alias": 35651584,
+      "fixture_fault_loop": 1048913,
+      "command": [
+        "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/bin/qemu-system-i386",
+        "-name",
+        "xwn694-fb_overlap",
+        "-L",
+        "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/qemu",
+        "-bios",
+        "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/seabios/bios.bin",
+        "-machine",
+        "pc,acpi=off,hpet=off",
+        "-accel",
+        "tcg,thread=single",
+        "-cpu",
+        "pentium3",
+        "-smp",
+        "1",
+        "-m",
+        "64",
+        "-vga",
+        "none",
+        "-display",
+        "none",
+        "-nic",
+        "none",
+        "-serial",
+        "none",
+        "-monitor",
+        "none",
+        "-qmp",
+        "unix:/tmp/xwn694-cpu003-fb_overlap.sock,server=on,wait=off",
+        "-S",
+        "-kernel",
+        "/mnt/c/xwn694/cpu003/fb_overlap/fixture.elf",
+        "-debugcon",
+        "file:/mnt/c/xwn694/cpu003/run-fb_overlap/debug.bin",
+        "-no-reboot",
+        "-d",
+        "int,cpu_reset",
+        "-D",
+        "/mnt/c/xwn694/cpu003/run-fb_overlap/cpu.log"
+      ],
+      "started": "2026-10-27T01:22:46.575672+00:00",
+      "closed": true,
+      "passed": true,
+      "pid": 577,
+      "registers": "\r\nCPU#0\r\nEAX=02283000 EBX=00100146 ECX=00000000 EDX=00000511\r\nESI=00101980 EDI=01eff000 EBP=01eff000 ESP=00180000\r\nEIP=01eff1d2 EFL=00000087 [--S--PC] CPL=0 II=0 A20=1 SMM=0 HLT=1\r\nES =0010 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nCS =0008 00000000 ffffffff 00cf9a00 DPL=0 CS32 [-R-]\r\nSS =0010 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nDS =0010 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nFS =0010 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nGS =0010 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nLDT=0000 00000000 0000ffff 00008200 DPL=0 LDT\r\nTR =0000 00000000 0000ffff 00008b00 DPL=0 TSS32-busy\r\nGDT=     00100158 00000017\r\nIDT=     00100180 000007ff\r\nCR0=80000011 CR2=00000000 CR3=03f00000 CR4=00000010\r\nDR0=00000000 DR1=00000000 DR2=00000000 DR3=00000000 \r\nDR6=ffff0ff0 DR7=00000400\r\nEFER=0000000000000000\r\nFCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80\r\nFPR0=0000000000000000 0000 FPR1=0000000000000000 0000\r\nFPR2=0000000000000000 0000 FPR3=0000000000000000 0000\r\nFPR4=0000000000000000 0000 FPR5=0000000000000000 0000\r\nFPR6=0000000000000000 0000 FPR7=0000000000000000 0000\r\nXMM00=0000000000000000 0000000000000000 XMM01=0000000000000000 0000000000000000\r\nXMM02=0000000000000000 0000000000000000 XMM03=0000000000000000 0000000000000000\r\nXMM04=0000000000000000 0000000000000000 XMM05=0000000000000000 0000000000000000\r\nXMM06=0000000000000000 0000000000000000 XMM07=0000000000000000 0000000000000000\r\n",
+      "phase_physical": 0,
+      "phase_alias": 0,
+      "neighbor_guards_intact": true,
+      "no_green_and_framebuffer_unchanged": true,
+      "exit_code": 0,
+      "ended": "2026-10-27T01:22:47.039367+00:00",
+      "files": {
+        "/mnt/c/xwn694/cpu003/run-fb_overlap/alias.bin": {
+          "sha256": "1e876493f81338deea8e0316d68623dc98ec8df0330074e0294a5d7521447f78",
+          "bytes": 12288
+        },
+        "/mnt/c/xwn694/cpu003/run-fb_overlap/cpu.log": {
+          "sha256": "35e3ec151ba0967d8c0eb31a23258f1fc2064ed4cfd68b5c29034ec25cecc755",
+          "bytes": 2604
+        },
+        "/mnt/c/xwn694/cpu003/run-fb_overlap/debug.bin": {
+          "sha256": "df7e70e5021544f4834bbee64a9e3789febc4be81470df629cad6ddb03320a5c",
+          "bytes": 1
+        },
+        "/mnt/c/xwn694/cpu003/run-fb_overlap/fb.bin": {
+          "sha256": "578c75dd9135d76c9cd959937a37b0c41b37446eba9ad72a22cb87b0ae301b49",
+          "bytes": 3686400
+        },
+        "/mnt/c/xwn694/cpu003/run-fb_overlap/qemu.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "/mnt/c/xwn694/cpu003/run-fb_overlap/registers.txt": {
+          "sha256": "1125aa1111a559c0c70d91eefe47ce567c68257900bbea97df96cd2d5cf76d85",
+          "bytes": 1411
+        },
+        "/mnt/c/xwn694/cpu003/run-fb_overlap/target.bin": {
+          "sha256": "1e876493f81338deea8e0316d68623dc98ec8df0330074e0294a5d7521447f78",
+          "bytes": 12288
+        }
+      }
+    },
+    {
+      "name": "fb_extent",
+      "index": 6,
+      "target": 32501760,
+      "alias": 35651584,
+      "fixture_fault_loop": 1048913,
+      "command": [
+        "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/bin/qemu-system-i386",
+        "-name",
+        "xwn694-fb_extent",
+        "-L",
+        "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/qemu",
+        "-bios",
+        "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/seabios/bios.bin",
+        "-machine",
+        "pc,acpi=off,hpet=off",
+        "-accel",
+        "tcg,thread=single",
+        "-cpu",
+        "pentium3",
+        "-smp",
+        "1",
+        "-m",
+        "64",
+        "-vga",
+        "none",
+        "-display",
+        "none",
+        "-nic",
+        "none",
+        "-serial",
+        "none",
+        "-monitor",
+        "none",
+        "-qmp",
+        "unix:/tmp/xwn694-cpu003-fb_extent.sock,server=on,wait=off",
+        "-S",
+        "-kernel",
+        "/mnt/c/xwn694/cpu003/fb_extent/fixture.elf",
+        "-debugcon",
+        "file:/mnt/c/xwn694/cpu003/run-fb_extent/debug.bin",
+        "-no-reboot",
+        "-d",
+        "int,cpu_reset",
+        "-D",
+        "/mnt/c/xwn694/cpu003/run-fb_extent/cpu.log"
+      ],
+      "started": "2026-10-27T01:22:47.078062+00:00",
+      "closed": true,
+      "passed": true,
+      "pid": 581,
+      "registers": "\r\nCPU#0\r\nEAX=80000042 EBX=00100146 ECX=00000000 EDX=00000511\r\nESI=00101980 EDI=03fff000 EBP=01eff000 ESP=00180000\r\nEIP=01eff1d2 EFL=00000006 [-----P-] CPL=0 II=0 A20=1 SMM=0 HLT=1\r\nES =0010 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nCS =0008 00000000 ffffffff 00cf9a00 DPL=0 CS32 [-R-]\r\nSS =0010 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nDS =0010 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nFS =0010 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nGS =0010 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nLDT=0000 00000000 0000ffff 00008200 DPL=0 LDT\r\nTR =0000 00000000 0000ffff 00008b00 DPL=0 TSS32-busy\r\nGDT=     00100158 00000017\r\nIDT=     00100180 000007ff\r\nCR0=80000011 CR2=00000000 CR3=03f00000 CR4=00000010\r\nDR0=00000000 DR1=00000000 DR2=00000000 DR3=00000000 \r\nDR6=ffff0ff0 DR7=00000400\r\nEFER=0000000000000000\r\nFCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80\r\nFPR0=0000000000000000 0000 FPR1=0000000000000000 0000\r\nFPR2=0000000000000000 0000 FPR3=0000000000000000 0000\r\nFPR4=0000000000000000 0000 FPR5=0000000000000000 0000\r\nFPR6=0000000000000000 0000 FPR7=0000000000000000 0000\r\nXMM00=0000000000000000 0000000000000000 XMM01=0000000000000000 0000000000000000\r\nXMM02=0000000000000000 0000000000000000 XMM03=0000000000000000 0000000000000000\r\nXMM04=0000000000000000 0000000000000000 XMM05=0000000000000000 0000000000000000\r\nXMM06=0000000000000000 0000000000000000 XMM07=0000000000000000 0000000000000000\r\n",
+      "phase_physical": 0,
+      "phase_alias": 0,
+      "neighbor_guards_intact": true,
+      "no_green_and_framebuffer_unchanged": true,
+      "exit_code": 0,
+      "ended": "2026-10-27T01:22:47.540617+00:00",
+      "files": {
+        "/mnt/c/xwn694/cpu003/run-fb_extent/alias.bin": {
+          "sha256": "41d81892235e829db30cd2802f55a2f0041affe52d03762bb3f035d2b5510907",
+          "bytes": 12288
+        },
+        "/mnt/c/xwn694/cpu003/run-fb_extent/cpu.log": {
+          "sha256": "35e3ec151ba0967d8c0eb31a23258f1fc2064ed4cfd68b5c29034ec25cecc755",
+          "bytes": 2604
+        },
+        "/mnt/c/xwn694/cpu003/run-fb_extent/debug.bin": {
+          "sha256": "df7e70e5021544f4834bbee64a9e3789febc4be81470df629cad6ddb03320a5c",
+          "bytes": 1
+        },
+        "/mnt/c/xwn694/cpu003/run-fb_extent/fb.bin": {
+          "sha256": "578c75dd9135d76c9cd959937a37b0c41b37446eba9ad72a22cb87b0ae301b49",
+          "bytes": 3686400
+        },
+        "/mnt/c/xwn694/cpu003/run-fb_extent/qemu.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "/mnt/c/xwn694/cpu003/run-fb_extent/registers.txt": {
+          "sha256": "9986c20fb8ef66d5b175baa1621811ed3ce2bdca8da771786667aba4e44ce7b1",
+          "bytes": 1411
+        },
+        "/mnt/c/xwn694/cpu003/run-fb_extent/target.bin": {
+          "sha256": "41d81892235e829db30cd2802f55a2f0041affe52d03762bb3f035d2b5510907",
+          "bytes": 12288
+        }
+      }
+    },
+    {
+      "name": "missing_pte",
+      "index": 7,
+      "target": 32501760,
+      "alias": 35651584,
+      "fixture_fault_loop": 1048903,
+      "command": [
+        "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/bin/qemu-system-i386",
+        "-name",
+        "xwn694-missing_pte",
+        "-L",
+        "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/qemu",
+        "-bios",
+        "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/seabios/bios.bin",
+        "-machine",
+        "pc,acpi=off,hpet=off",
+        "-accel",
+        "tcg,thread=single",
+        "-cpu",
+        "pentium3",
+        "-smp",
+        "1",
+        "-m",
+        "64",
+        "-vga",
+        "none",
+        "-display",
+        "none",
+        "-nic",
+        "none",
+        "-serial",
+        "none",
+        "-monitor",
+        "none",
+        "-qmp",
+        "unix:/tmp/xwn694-cpu003-missing_pte.sock,server=on,wait=off",
+        "-S",
+        "-kernel",
+        "/mnt/c/xwn694/cpu003/missing_pte/fixture.elf",
+        "-debugcon",
+        "file:/mnt/c/xwn694/cpu003/run-missing_pte/debug.bin",
+        "-no-reboot",
+        "-d",
+        "int,cpu_reset",
+        "-D",
+        "/mnt/c/xwn694/cpu003/run-missing_pte/cpu.log"
+      ],
+      "started": "2026-10-27T01:22:47.580551+00:00",
+      "closed": true,
+      "passed": true,
+      "pid": 585,
+      "registers": "\r\nCPU#0\r\nEAX=80000042 EBX=0010013c ECX=00000000 EDX=00000511\r\nESI=00101978 EDI=03f02000 EBP=00000000 ESP=0017fff0\r\nEIP=00100148 EFL=00000086 [--S--P-] CPL=0 II=0 A20=1 SMM=0 HLT=1\r\nES =0010 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nCS =0008 00000000 ffffffff 00cf9a00 DPL=0 CS32 [-R-]\r\nSS =0010 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nDS =0010 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nFS =0010 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nGS =0010 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nLDT=0000 00000000 0000ffff 00008200 DPL=0 LDT\r\nTR =0000 00000000 0000ffff 00008b00 DPL=0 TSS32-busy\r\nGDT=     00100150 00000017\r\nIDT=     00100178 000007ff\r\nCR0=80000011 CR2=01eff000 CR3=03f00000 CR4=00000010\r\nDR0=00000000 DR1=00000000 DR2=00000000 DR3=00000000 \r\nDR6=ffff0ff0 DR7=00000400\r\nEFER=0000000000000000\r\nFCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80\r\nFPR0=0000000000000000 0000 FPR1=0000000000000000 0000\r\nFPR2=0000000000000000 0000 FPR3=0000000000000000 0000\r\nFPR4=0000000000000000 0000 FPR5=0000000000000000 0000\r\nFPR6=0000000000000000 0000 FPR7=0000000000000000 0000\r\nXMM00=0000000000000000 0000000000000000 XMM01=0000000000000000 0000000000000000\r\nXMM02=0000000000000000 0000000000000000 XMM03=0000000000000000 0000000000000000\r\nXMM04=0000000000000000 0000000000000000 XMM05=0000000000000000 0000000000000000\r\nXMM06=0000000000000000 0000000000000000 XMM07=0000000000000000 0000000000000000\r\n",
+      "phase_physical": 0,
+      "phase_alias": 0,
+      "neighbor_guards_intact": true,
+      "no_green_and_framebuffer_unchanged": true,
+      "exit_code": 0,
+      "ended": "2026-10-27T01:22:48.043064+00:00",
+      "files": {
+        "/mnt/c/xwn694/cpu003/run-missing_pte/alias.bin": {
+          "sha256": "f2ef2a003130f1d494047f4a8696929d686c67355421371fcd3262ee9b4e4931",
+          "bytes": 12288
+        },
+        "/mnt/c/xwn694/cpu003/run-missing_pte/cpu.log": {
+          "sha256": "befc671293acf71a3a641384c82180a5e393892940f72a0ecfe15c9d1c749796",
+          "bytes": 3563
+        },
+        "/mnt/c/xwn694/cpu003/run-missing_pte/debug.bin": {
+          "sha256": "df7e70e5021544f4834bbee64a9e3789febc4be81470df629cad6ddb03320a5c",
+          "bytes": 1
+        },
+        "/mnt/c/xwn694/cpu003/run-missing_pte/fb.bin": {
+          "sha256": "578c75dd9135d76c9cd959937a37b0c41b37446eba9ad72a22cb87b0ae301b49",
+          "bytes": 3686400
+        },
+        "/mnt/c/xwn694/cpu003/run-missing_pte/qemu.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "/mnt/c/xwn694/cpu003/run-missing_pte/registers.txt": {
+          "sha256": "588a7087840dd4240b4cf2cf7fef9c224c2bfcda58b188c6ec83e4ecd54d96df",
+          "bytes": 1411
+        },
+        "/mnt/c/xwn694/cpu003/run-missing_pte/target.bin": {
+          "sha256": "f2ef2a003130f1d494047f4a8696929d686c67355421371fcd3262ee9b4e4931",
+          "bytes": 12288
+        }
+      }
+    },
+    {
+      "name": "post_pg_ud2",
+      "index": 8,
+      "target": 32501760,
+      "alias": 35651584,
+      "fixture_fault_loop": 1048902,
+      "command": [
+        "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/bin/qemu-system-i386",
+        "-name",
+        "xwn694-post_pg_ud2",
+        "-L",
+        "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/qemu",
+        "-bios",
+        "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/seabios/bios.bin",
+        "-machine",
+        "pc,acpi=off,hpet=off",
+        "-accel",
+        "tcg,thread=single",
+        "-cpu",
+        "pentium3",
+        "-smp",
+        "1",
+        "-m",
+        "64",
+        "-vga",
+        "none",
+        "-display",
+        "none",
+        "-nic",
+        "none",
+        "-serial",
+        "none",
+        "-monitor",
+        "none",
+        "-qmp",
+        "unix:/tmp/xwn694-cpu003-post_pg_ud2.sock,server=on,wait=off",
+        "-S",
+        "-kernel",
+        "/mnt/c/xwn694/cpu003/post_pg_ud2/fixture.elf",
+        "-debugcon",
+        "file:/mnt/c/xwn694/cpu003/run-post_pg_ud2/debug.bin",
+        "-no-reboot",
+        "-d",
+        "int,cpu_reset",
+        "-D",
+        "/mnt/c/xwn694/cpu003/run-post_pg_ud2/cpu.log"
+      ],
+      "started": "2026-10-27T01:22:48.081693+00:00",
+      "closed": true,
+      "passed": true,
+      "pid": 589,
+      "registers": "\r\nCPU#0\r\nEAX=40000011 EBX=0010013b ECX=00000000 EDX=00000511\r\nESI=00101978 EDI=03000000 EBP=01eff000 ESP=01effff4\r\nEIP=01eff1d2 EFL=00000006 [-----P-] CPL=0 II=0 A20=1 SMM=0 HLT=1\r\nES =0018 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nCS =0010 00000000 ffffffff 00cf9a00 DPL=0 CS32 [-R-]\r\nSS =0018 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nDS =0018 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nFS =0000 00000000 00000000 00000000\r\nGS =0000 00000000 00000000 00000000\r\nLDT=0000 00000000 0000ffff 00008200 DPL=0 LDT\r\nTR =0000 00000000 0000ffff 00008b00 DPL=0 TSS32-busy\r\nGDT=     01eff400 0000001f\r\nIDT=     01eff600 000007ff\r\nCR0=40000011 CR2=00000000 CR3=03f00000 CR4=00000010\r\nDR0=00000000 DR1=00000000 DR2=00000000 DR3=00000000 \r\nDR6=ffff0ff0 DR7=00000400\r\nEFER=0000000000000000\r\nFCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80\r\nFPR0=0000000000000000 0000 FPR1=0000000000000000 0000\r\nFPR2=0000000000000000 0000 FPR3=0000000000000000 0000\r\nFPR4=0000000000000000 0000 FPR5=0000000000000000 0000\r\nFPR6=0000000000000000 0000 FPR7=0000000000000000 0000\r\nXMM00=0000000000000000 0000000000000000 XMM01=0000000000000000 0000000000000000\r\nXMM02=0000000000000000 0000000000000000 XMM03=0000000000000000 0000000000000000\r\nXMM04=0000000000000000 0000000000000000 XMM05=0000000000000000 0000000000000000\r\nXMM06=0000000000000000 0000000000000000 XMM07=0000000000000000 0000000000000000\r\n",
+      "phase_physical": 0,
+      "phase_alias": 1,
+      "neighbor_guards_intact": true,
+      "no_green_and_framebuffer_unchanged": true,
+      "exit_code": 0,
+      "ended": "2026-10-27T01:22:48.540257+00:00",
+      "files": {
+        "/mnt/c/xwn694/cpu003/run-post_pg_ud2/alias.bin": {
+          "sha256": "56922c19596e67b95cfdcb5ee08187338804bb4404209017cbb1d6a5072c7efe",
+          "bytes": 12288
+        },
+        "/mnt/c/xwn694/cpu003/run-post_pg_ud2/cpu.log": {
+          "sha256": "5b42d2f528d4b4ee1079e085c24a2113a831d6432442953002ac7066be82be4c",
+          "bytes": 3542
+        },
+        "/mnt/c/xwn694/cpu003/run-post_pg_ud2/debug.bin": {
+          "sha256": "df7e70e5021544f4834bbee64a9e3789febc4be81470df629cad6ddb03320a5c",
+          "bytes": 1
+        },
+        "/mnt/c/xwn694/cpu003/run-post_pg_ud2/fb.bin": {
+          "sha256": "578c75dd9135d76c9cd959937a37b0c41b37446eba9ad72a22cb87b0ae301b49",
+          "bytes": 3686400
+        },
+        "/mnt/c/xwn694/cpu003/run-post_pg_ud2/qemu.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "/mnt/c/xwn694/cpu003/run-post_pg_ud2/registers.txt": {
+          "sha256": "520a79d949bf0b45220ac1b27fe5621c244729e12c7644d73670987e433f188c",
+          "bytes": 1377
+        },
+        "/mnt/c/xwn694/cpu003/run-post_pg_ud2/target.bin": {
+          "sha256": "e7372f01bd19f4619c5235b222c875add0281500450d43df23d42e4de64ffaed",
+          "bytes": 12288
+        }
+      }
+    },
+    {
+      "name": "bad_gdt",
+      "index": 9,
+      "target": 32501760,
+      "alias": 35651584,
+      "fixture_fault_loop": 1048913,
+      "command": [
+        "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/bin/qemu-system-i386",
+        "-name",
+        "xwn694-bad_gdt",
+        "-L",
+        "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/qemu",
+        "-bios",
+        "/home/paul/xbox-windows-native/toolchains/qemu-pc/root/usr/share/seabios/bios.bin",
+        "-machine",
+        "pc,acpi=off,hpet=off",
+        "-accel",
+        "tcg,thread=single",
+        "-cpu",
+        "pentium3",
+        "-smp",
+        "1",
+        "-m",
+        "64",
+        "-vga",
+        "none",
+        "-display",
+        "none",
+        "-nic",
+        "none",
+        "-serial",
+        "none",
+        "-monitor",
+        "none",
+        "-qmp",
+        "unix:/tmp/xwn694-cpu003-bad_gdt.sock,server=on,wait=off",
+        "-S",
+        "-kernel",
+        "/mnt/c/xwn694/cpu003/bad_gdt/fixture.elf",
+        "-debugcon",
+        "file:/mnt/c/xwn694/cpu003/run-bad_gdt/debug.bin",
+        "-no-reboot",
+        "-d",
+        "int,cpu_reset",
+        "-D",
+        "/mnt/c/xwn694/cpu003/run-bad_gdt/cpu.log"
+      ],
+      "started": "2026-10-27T01:22:48.579948+00:00",
+      "closed": true,
+      "passed": true,
+      "pid": 596,
+      "registers": "\r\nCPU#0\r\nEAX=c0000011 EBX=00100146 ECX=00000000 EDX=00000511\r\nESI=00101980 EDI=03000000 EBP=01eff000 ESP=0017fff0\r\nEIP=00100152 EFL=00000086 [--S--P-] CPL=0 II=0 A20=1 SMM=0 HLT=1\r\nES =0010 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nCS =0008 00000000 ffffffff 00cf9a00 DPL=0 CS32 [-R-]\r\nSS =0010 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nDS =0010 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nFS =0010 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nGS =0010 00000000 ffffffff 00cf9300 DPL=0 DS   [-WA]\r\nLDT=0000 00000000 0000ffff 00008200 DPL=0 LDT\r\nTR =0000 00000000 0000ffff 00008b00 DPL=0 TSS32-busy\r\nGDT=     01eff400 0000001f\r\nIDT=     00100180 000007ff\r\nCR0=c0000011 CR2=00000000 CR3=03f00000 CR4=00000010\r\nDR0=00000000 DR1=00000000 DR2=00000000 DR3=00000000 \r\nDR6=ffff0ff0 DR7=00000400\r\nEFER=0000000000000000\r\nFCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80\r\nFPR0=0000000000000000 0000 FPR1=0000000000000000 0000\r\nFPR2=0000000000000000 0000 FPR3=0000000000000000 0000\r\nFPR4=0000000000000000 0000 FPR5=0000000000000000 0000\r\nFPR6=0000000000000000 0000 FPR7=0000000000000000 0000\r\nXMM00=0000000000000000 0000000000000000 XMM01=0000000000000000 0000000000000000\r\nXMM02=0000000000000000 0000000000000000 XMM03=0000000000000000 0000000000000000\r\nXMM04=0000000000000000 0000000000000000 XMM05=0000000000000000 0000000000000000\r\nXMM06=0000000000000000 0000000000000000 XMM07=0000000000000000 0000000000000000\r\n",
+      "phase_physical": 0,
+      "phase_alias": 1,
+      "neighbor_guards_intact": true,
+      "no_green_and_framebuffer_unchanged": true,
+      "exit_code": 0,
+      "ended": "2026-10-27T01:22:49.051077+00:00",
+      "files": {
+        "/mnt/c/xwn694/cpu003/run-bad_gdt/alias.bin": {
+          "sha256": "927ff907a39e8291d19f9e3271c3eaa0dae960f2ef3b9c25759f21db88c6a6c1",
+          "bytes": 12288
+        },
+        "/mnt/c/xwn694/cpu003/run-bad_gdt/cpu.log": {
+          "sha256": "f46f94717a1b03db62c6d351c8a13c1170b4731c1d048e28f54dc87d735acba0",
+          "bytes": 3576
+        },
+        "/mnt/c/xwn694/cpu003/run-bad_gdt/debug.bin": {
+          "sha256": "df7e70e5021544f4834bbee64a9e3789febc4be81470df629cad6ddb03320a5c",
+          "bytes": 1
+        },
+        "/mnt/c/xwn694/cpu003/run-bad_gdt/fb.bin": {
+          "sha256": "578c75dd9135d76c9cd959937a37b0c41b37446eba9ad72a22cb87b0ae301b49",
+          "bytes": 3686400
+        },
+        "/mnt/c/xwn694/cpu003/run-bad_gdt/qemu.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "/mnt/c/xwn694/cpu003/run-bad_gdt/registers.txt": {
+          "sha256": "00ee0a490bc60ccad310285a0da6e786bbc6efc10b65caa19b1fa37048ef4e42",
+          "bytes": 1411
+        },
+        "/mnt/c/xwn694/cpu003/run-bad_gdt/target.bin": {
+          "sha256": "8687d876d56079ee418b77dc1008734a33c51c2449c23afc3ee666e802baca8f",
+          "bytes": 12288
+        }
+      }
+    }
+  ],
+  "ended_utc": "2026-10-27T01:22:49.087168+00:00"
+}

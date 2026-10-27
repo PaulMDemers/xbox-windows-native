@@ -1,3 +1,27 @@
+# 694 native checkpoint prepared and staged; watched launch pending
+
+Read outputs/native-checkpoint694/REPORT.md and NEXT.md first. Staging completed
+with exact readback in owned E:/Applications/XWNNative694. No launch yet; fresh
+watch/reset availability requested. No startup hook, Windows payload or console C
+access. Incoming1.6 last verified at HDMI dashboard during staging. Original720p
+and ordinary launcher unchanged; networking679 and1080i remain tabled.
+
+The diagnostic preserves693 allocation custody, copies an owned4096-byte page to
+both execution addresses, then explicitly switches GDT/IDT/stack/cache/interrupt
+state and removes paging. BLUE kernel header should become GREEN only after
+native checks and a bounded framebuffer write; successful native path holds for
+manual power-cycle. This retained-scanout checkpoint is not encoder initialization.
+Persisted CPU sample is pre-file-write; final/native contexts are RAM-only.
+
+Exact linked template passes ten fresh CPU fixtures (three positive mappings,
+seven negative/fault cases), nine nxdk page-builder cases and nineteen memory-
+policy cases. All eleven invoked VMs closed. Preserve build001 SafeSEH failure,
+cpu-build001 assembler-label failure and cpu-run002 dump-command failure after
+modeled hold. CPU models are not physical cache/DMA/NV2A proof. Build/emulator
+leases released, hardware ticket retained, no owned host process; automation
+paused. Await fresh watch/reset reply, then one admitted launch and exact observed
+result/reset/collection. Never rerun closed fixtures or retry uncertain launches.
+
 # 691–693 allocation investigation CLOSED; rounded-base handling validated in kernel
 
 Read outputs/handoff-preflight693/REPORT.md and NEXT.md first. The compiled689

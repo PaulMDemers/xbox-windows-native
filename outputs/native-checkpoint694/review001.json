@@ -1,0 +1,78 @@
+{
+  "passed": true,
+  "utc": "2026-10-27T01:28:07.605436+00:00",
+  "purpose": "single owned-page native framebuffer checkpoint, not Xromwell/Windows/encoder initialization",
+  "compiled_template": "74ffa4d6855ad6d0152cda5e4494cb8f59109a2ded7aeb0c278dbf92ad8d5dbd",
+  "exact_linked_template_in_cpu_fixtures": true,
+  "nxdk_page_builder_matches_cpu_fixture_pages": true,
+  "plan_policy_unchanged_from693_after_namespace": true,
+  "layout": {
+    "code": [
+      0,
+      468
+    ],
+    "gdt": [
+      1024,
+      1056
+    ],
+    "descriptor_pointers": [
+      1056,
+      1078
+    ],
+    "input_descriptor": [
+      1280,
+      1296
+    ],
+    "native_stage_context": [
+      1344,
+      1368
+    ],
+    "final_pretransfer_shadow": [
+      1408,
+      1440
+    ],
+    "idt": [
+      1536,
+      3584
+    ],
+    "stack_reserve": [
+      3584,
+      4096
+    ]
+  },
+  "memory_contract": [
+    "original physical target remains numerical low virtual entry; returned reservation base kept only for ownership/release",
+    "entire4096-byte page copied and compared at both high stub pointer and admitted low target",
+    "same numerical own stack is mapped in both copies, so no unmapped stack window across paging removal",
+    "GDT/IDT/code/stack fit inside same owned page",
+    "kernel framebuffer allocation, every page and scanout geometry checked; native repeats extent and stub disjointness",
+    "kernel-entry accesses rely on normal nxdk flat ABI; recorded kernel selectors8/16/16, PE+PG and nonPAE required; own flat descriptors installed before paging removal"
+  ],
+  "state_changes": [
+    "after validation CLI explicitly disables maskable interrupts for irreversible handoff",
+    "SFENCE, set CR0.CD and clear NW, WBINVD; cache state change is deliberate diagnostic setup",
+    "load owned GDT, far jump CS10, DS/ES/SS18, owned stack, clear FS/GS, load owned IDT",
+    "clear CR0.PG and CR3; preserve CR4; no MSR, PCI, port, encoder or GPU-register writes",
+    "verify native PE/PG/IF/selectors/stack before bounded green-header write; SFENCE/WBINVD then HLT hold"
+  ],
+  "limits": [
+    "CPU fixtures model paging and instructions, not Xbox DMA/NMI timing, physical cache or NV2A",
+    "persisted CPU sample is pre-file-write; final shadow and native context are RAM-only and lost on power-cycle",
+    "green indicates post-paging diagnostic write, not native Xcalibur initialization",
+    "ordinary launcher and previous closed runtimes unchanged"
+  ],
+  "host_failures_preserved": [
+    "build001 missing SafeSEH metadata, build002 adds normal no-handler metadata",
+    "cpu-build001 reserved assembler label flat, fixture002 renames label",
+    "cpu-run002 HMP dump argument rejected after native hold; all VMs closed; cpu003 uses structured QMP pmemsave"
+  ],
+  "host_VMs_closed": 11,
+  "pins": {
+    "main.c": "eef55baa19702bbc3ed57e8d57e3836efa1b63c0363930ce18e04e2187e16e36",
+    "page.c": "31f58ce83600aa2aa8fe6a300af76cee04f2de4a70961592de092324f16ee872",
+    "page.h": "706de2bb69af969fea3214e9259cb3e24f97f195cd98fc33bdede050fd28516c",
+    "stub.S": "87c456f06befcb344f8567cf99082c274fb006d34bdea9ef1699f05274fd8d61",
+    "plan.c": "edf4d85f1b56942ab26cb555424ffc1ad6e79c626fd531f55fc6dee5a4936132",
+    "physical.py": "8eda0d6b19e7547cc055539a52e4be17d15985bed4da359f43ce530a97aafffb"
+  }
+}
