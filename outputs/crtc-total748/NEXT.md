@@ -1,6 +1,6 @@
-#748 LAUNCHED
+#748 CLOSED
 
-One SITEaccepted23:56:13UTC. Await bounded authenticateddashboard return, then
-collect once and audit124words. No retry. If offline afterbound, recordstate
-and request recovery. No hook/Windows/nativehandoff. Prep180a353e pushed.
-All747/prior CLOSED.
+Neverrerun/recollect/parent runtime. SeeREPORT.md/audit001.json. KernelCR00
+passes; prepare fresh native749source counterpart, validatebeforestage.
+Holdrequirescurrentwatch/photo/resetreadiness. No full-mode/Windows proof.
+ConsoleauthenticatedUnleashX; nohook/ownedprocess/VM. All748/priorCLOSED.

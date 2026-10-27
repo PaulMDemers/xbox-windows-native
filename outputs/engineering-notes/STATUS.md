@@ -1,3 +1,11 @@
+# 748 CLOSED: kernel CR00 write and own-value recovery pass
+
+CR00c8->5c->c8; CR04after5d/CR05after3e, bothrestored a7/31. Prefix15/H7pass,
+cleanup0/0/0/0,selectors1. Sevenreportscollectedonce;auditPASS23:56:53UTC.
+Exactsource/build/stage/unrelatedEentries pass. Authenticatedautomaticdashboard
+return; no visual/native/fullmode/Windows proof. No hook/ownedprocess/VM.
+All748/prior CLOSED. NEXT outputs/crtc-total748/NEXT.md: prepare native749.
+
 # 748 LAUNCHED: one accepted CR00 control
 
 SITEaccepted2026-10-27T23:56:13.939068UTC; preparation180a353e pushed.
