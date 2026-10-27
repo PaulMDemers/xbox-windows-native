@@ -1,3 +1,26 @@
+# 738 STAGED: native deferred safe-prefix checks await watcher
+
+56 ELF/12 CPU/53 relocated integration/76 optical/20 nxdk page/372 nxdk ownership/
+131379 host ownership cases passed; all VMs closed. Exact frozen source, linked
+bytes and E stage/readback verified. No physical launch. Native733 safe prefix
+with unchanged deferred full-value checks; stops before CR22/CR33 data writes.
+No delay/sample block, masks, repair or functional driver change.
+
+NEXT outputs/native-batch738/NEXT.md. Watch/photo/reset availability requested
+for intentional native hold. Console dashboard reachable, no hook/process/VM.
+737 closed/pushed23177665; all earlier runtimes CLOSED. No738 validation/stage
+failure. Original720p and ordinary launchers protected.
+
+# 738 PREPARING: native deferred safe-prefix comparison
+
+Fresh733 body with explicit native CPU guard, no delay/sample block, no masks
+or CR22/CR33 writes.737 handoff/frontend reused as authored source with exact
+fresh ten-absolute relocation recipe.56 ELF cases and12 fresh CPU fixtures
+passed/allVMsclosed; relocated integration/optical validation in progress.
+NEXT outputs/native-batch738/NEXT.md. No stage/launch yet. No hook.
+737 closed/pushed23177665; photo/native and kernel preparation evidence distinct.
+Console last confirmed dashboard. All737/prior runtimes CLOSED.
+
 # 737 CLOSED: native first/reselected85 after CPU-only work
 
 Photo decoded all416bits independently; return7378, checksum793a7efe, first/

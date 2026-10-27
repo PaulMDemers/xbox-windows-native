@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "rows": 13,
+  "columns": 32,
+  "bit_order": "MSB left white1 black0 gray background",
+  "offsets": [
+    0,
+    2176,
+    2260,
+    20740,
+    20752,
+    20756,
+    20760,
+    20856,
+    20848,
+    20780,
+    20784,
+    20788,
+    20764
+  ],
+  "names": [
+    "signature",
+    "bridge_phase",
+    "return_code",
+    "forward_status",
+    "first_mismatch_zero_based",
+    "expected",
+    "observed",
+    "cleanup_mask",
+    "selectors_restored",
+    "native_CR0",
+    "native_CR3",
+    "native_CR4",
+    "checks_completed"
+  ],
+  "cleanup_mask": "bits0..10 MMIO in setup order;11..14 CR14/17/19/1b;15SEQ1;16CR11;17GR04;18CR22;19CR33;0 means all saved-value cleanup comparisons passed",
+  "first_mismatch": "0..10 MMIO,11..14 CR14/17/19/1b;ffffffff no forward mismatch recorded, including preflight refusal; use code/phase/checkcount to interpret",
+  "limits": "Full32-bit raw expected/observed; no truncation/mask. Kernel pre-arm context is separate from native CR0/3/4. Stops before CR22/CR33 writes, geometry and encoder programming. No original full-mode failure attribution."
+}
