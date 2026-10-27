@@ -1,16 +1,17 @@
-# Next: capture held726 optical report
+# Next: collect726 after confirmed power cycle
 
-Single launch accepted at18:13:46UTC2026-10-27. User reports green, holding.
-Photo pending; no numeric rows yet. Leave console holding. No launch retry.
-No hook/owned host process/VM. Do not collect or request reset before photo.
+Photo captured and independently decoded; user green holding. CR1b remained85
+through630-only3->2->3; no later changes. Reset requested, Ready pending.
+Do not launch again. No hook/owned process/VM. Console holding until confirmation.
 
-Decode the full13row photo independently against optical-schema001.json.
-Green reports completed control and final restoration, not a coupling result.
-The pairs distinguish baseline, blanking,6302,6303, output restore and late reads.
-No register-mask or full-mode/Windows qualification follows from this alone.
+After Ready at UnleashX, create collection-ready001.json and collect once with
+physical.py. Run audit_collection.py locally against newly collected evidence.
+Preserve transport/audit failures separately. Preparation files are pre-arm;
+native results come only from the photo. Manual power cycle is not normal
+Windows shutdown. Verify source/binary pins, ownership and unrelated E entries.
 
-After capture, ask power cycle to UnleashX. When Ready, create
-collection-ready001.json and collect once with physical.py. Verify pins,
-preparation, allocation bounds and unrelated E entries. Preserve failures.
-Manual reset is not normal Windows shutdown; native values are optical only.
-Closed725 and earlier runtimes remain closed. Ordinary720p remains protected.
+After closure review725 versus726 and earlier saved-value controls before
+choosing a minimal interaction test.630-only does not reproduce05->85; earlier
+CR1b write and prefix context remain relevant. No speculative driver patch,
+bit7 masking, CR22 advance or full-mode qualification. Do not reopen closed
+runtimes. Protected720p and deferred network/boot/1080i remain unchanged.

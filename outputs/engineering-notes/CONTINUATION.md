@@ -1,3 +1,19 @@
+#726 PHOTO VERIFIED: 630-only transition leaves CR1b85
+
+One accepted launch; user green held picture. Photo001 independently decodes:
+7260000d,4,5,726,2,30085,30085,20085,30085,30085,30085,0,22007.
+6303->2->3; CR1b85 at all six sampled stages; zero changes in32 late pairs;
+two writes, final cleanup and selectors pass. Constant model matches.
+
+This control leaves CR1b unwritten and does not reproduce725's05->85 change.
+It does not exclude an interaction with explicitCR1b05 or the other prefix
+writes. No bit7 mask, full-mode/Windows or acceleration qualification.
+
+Console holding; user power cycle requested, Ready pending. No new launch,
+collection, hook, owned process or VM. Next: after Ready collect726 once with
+physical.py, then audit_collection.py. Photo stays private underC:/xwn726.
+Closed725 and earlier runtimes stay closed. Ordinary720p remains protected.
+
 #726 LAUNCHED: green held result, photo pending
 
 One SITE accepted 2026-10-27T18:13:46.296106+00:00 after user watch/reset
