@@ -1,11 +1,15 @@
-# 738 photo captured; await manual reset and collection
+# 738 CLOSED; next resolve original phase4 access contracts
 
-Native report: return/forward7388, first mismatch14 CR1b expected05 observed85,
-15 checks completed, cleanup mask0, selectors1, CPU4001003b/0/610.
-Photo001 independently decoded all416bits; original photo private.
+Read REPORT.md, comparison001.json and audit001.json. Same first CR1b rejection
+in native738 and kernel733: index14,05vs85,15checks,cleanup mask0. No added delay.
+Do not repeat this prefix or the already-answered delay/630-restoration controls.
 
-Request power-cycle to UnleashX. Only after user confirmation, create
-collection-ready001.json and collect once with physical.py. Audit prep files,
-frozen bytes and optical evidence separately. No post-native disk result exists.
-Never repeat accepted launch; all737/prior runtimes CLOSED. No hook/process/VM.
-Do not infer original704/708/709 failure or NV2A bit7 semantics from this prefix.
+Review original704 phase4 and732/CAPTURE-PLAN.md against primary access evidence.
+CR22/CR33 write/restoration admission and exact CR1b readback semantics remain
+unresolved. No full-mode repeat, guessed mask, plane forcing, status clearing,
+functional patch or qualification follows from738. Any fresh experiment needs
+a distinct question and independent source/host/ownership/linked-byte validation.
+
+User confirmed manual reset; nine preparation reports collected once, auditPASS.
+Console at UnleashX, no hook or owned host process/VM. All738/prior runtimes
+CLOSED: never recollect/relaunch/parent. No739 exists. Protected720p unchanged.

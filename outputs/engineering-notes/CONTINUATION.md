@@ -1,3 +1,16 @@
+# 738 CLOSED: native deferred-prefix matches kernel733 rejection
+
+Photo: first14 checks pass; CR1b05vs85 rejects at index14; cleanup mask0 and
+selectors1. Native CPU4001003b/0/610. Source body and compared result fields
+match kernel733 except namespace/CPU guard. No delay/sample block or mask.
+User manual reset confirmed; nine preparation files collected once, auditPASS.
+Exact sources/binaries/stage and unrelated E entries verified; prep matches737.
+
+NEXT outputs/native-batch738/NEXT.md: resolve original phase4 access contracts;
+no repeat prefix/delay experiment. CR22/CR33 admission and CR1b semantics remain
+unresolved; no full704/708/709 attribution or driver qualification. No739 exists.
+Console at UnleashX; no hook/process/VM. All738/prior runtimes CLOSED.
+
 # 738 PHOTO CAPTURED: native deferred check rejects CR1b85 vs05
 
 User orange/holding; private photo independently decoded all416bits.
