@@ -1,3 +1,21 @@
+# 747 STAGED: native CR05 counterpart awaits watcher
+
+Fresh native747104ELF/12CPU/94relocated-integration/76optical/32page/372nxdk-plan/
+131379host-plan cases pass. AllVMsclosed. Exactsource/linkedbytes frozen; uniqueE
+stage/readback complete. No747launch/hook/ownedprocess. Currentwatch/photo/reset
+readiness required for deliberatehold. Kernel746 physicalCR05success CLOSED
+and pushed2cf48f55. Console authenticatedUnleashX. All746/priorCLOSED.
+NEXT outputs/native-crtc-end747/NEXT.md. No fullmode/Windows/native result yet.
+
+# 747 PREPARING: native CR05 counterpart
+
+Kernel746 CLOSED/pushed2cf48f55: CR0531->3e->31, CR04/H7 recovery and selectors
+pass. Fresh native747 ELF104cases and12CPU fixtures pass; allVMsclosed.
+Relocated integration/optical tests may be active. No747stage/launch/hook.
+Console last authenticatedUnleashX. Need current watcher/photo/reset readiness
+only after full preparation for intentional hold. All746/priorCLOSED.
+NEXT outputs/native-crtc-end747/NEXT.md.
+
 # 746 CLOSED: kernel CR05 write and own-value recovery pass
 
 CR0531->3e->31; CR04a7->5d->a7 with CR04 unchanged by CR05. Prefix15/H7
