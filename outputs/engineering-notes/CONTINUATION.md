@@ -1,3 +1,22 @@
+# 742 STAGED: ready for one bounded kernel diagnostic
+
+Unique E stage/readback verified.89 COFF and2353 framebuffer cases pass;
+source/linked bytes frozen. Kernel-only horizontal timing write/readback and
+own-value recovery; automatic dashboard return, no hook. No launch sent yet.
+No owned VM/process. Routine self-reporting hardware use already authorized.
+NEXT outputs/horizontal-prefix742/NEXT.md. All741/prior runtimes CLOSED.
+
+# 742 PREPARED: bounded horizontal timing checkpoint
+
+Fresh kernel-only probe built;89 actual COFF negative/positive cases and2353
+framebuffer cases pass. Seven Cromwell horizontal words after the preserving
+prefix; recover own same-run words before output-enable. Recovery mismatch
+leaves output blank, persists result and requests firmware reboot. No new
+vertical/encoder/clock/scanout/CR1b22/33 writes or full-mode/Windows proof.
+Exact source freeze and linked PE/XBE checks pass. No742 launch yet.
+NEXT outputs/horizontal-prefix742/NEXT.md. All741/prior runtimes CLOSED.
+No hook or owned process/VM. Console last authenticated after741 collection.
+
 # 741 CLOSED: native preservation prefix and cleanup pass
 
 All15 checks/full20-field cleanup pass, selectors1; nativeCPU4001003b/0/610.
