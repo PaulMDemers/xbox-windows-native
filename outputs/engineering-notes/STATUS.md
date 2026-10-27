@@ -1,3 +1,42 @@
+#718 CLOSED: optical evidence identifies failed CR1b restoration
+
+The photo decoded all416 bits with threshold/offset checks and352 middle bits
+with independent adjacent-row geometry. Native CR1b saved85 -> target05/readback05;
+one restore85 attempt read back05. Bridge returned7184, payload phase5/error7184;
+wait not entered. The cause of bit7 not returning remains unknown. The panel
+cannot separately establish finalSEQ1/context checks. No717 exact-error inference
+or708/709 full-mode cause claim; no sustained05 or Windows1.6 qualification.
+
+Manual power-cycle Ready; nine preparation files collected ONCE and audited.
+Source/binary/report/photo pins and independent alias checks pass. PCI/CRTC/SEQ,
+geometry and allocation words match716/717. Preparation PASS is not native PASS.
+No reset or new launch pending. Console dashboard, no hook/owned host process;
+build/xemu released, hardware ticket retained; original720p protected, other work
+and automation tabled. All718 and earlier runtime attempts CLOSED.
+
+Next: source/read-only review of CR1b bit7 restoration before a fresh diagnostic.
+Do not mask bit7, write CR22 or repeat full-mode setup blindly. A future test must
+measure its own post-reset baseline; this collection contains pre-test readings.
+Read718/REPORT.md, observation001.json, audit001.json and NEXT.md.
+
+#718 photo decoded: failed CR1b restoration; awaiting reset Ready
+
+Photo/decoder/observation preserved. Native saved85 -> target05/readback05;
+one restore85 attempt read back05. Returned7184, phase5; wait not entered.
+The reason bit7 failed to return is unknown. No mask, retry or target change.
+
+Manual power-cycle to UnleashX requested after decoding. Wait explicit Ready,
+record collection-ready001, run physical.py collect ONCE, audit exact staged
+source/binary/report pins and preparation/aliases against716/717. Close native
+attempt as failed restoration even if preparation integrity passes. Native
+values are optical, not persisted files. A reset is not a normal Windows restart.
+
+Then source/read-only review of CR1b bit7 and restoration semantics before any
+new hardware experiment. Do not assign718's exact failure to717 or claim the
+708/709 cause is proved. Do not write CR22, mask bit7 or retry full mode blindly.
+All earlier runtimes CLOSED. No hook/host child; build/xemu released, hardware
+ticket retained; original720p protected, networking and other work tabled.
+
 #718 launched once: optical bridge/payload status; photo pending
 
 717 ORANGE cause unknown.718 retains namespace-only transaction/kernel and adds

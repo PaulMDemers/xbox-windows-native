@@ -28,4 +28,23 @@ payload5120 padded9916,17relocations/four absolute.
 
 One SITE accepted2026-10-27T07:19:02.166180+00:00 after exact stage readback.
 Asked SECOND bar and holding state; requested photo of all13rows and bars.
-Observation/photo pending. No reset requested. No repeat launch.
+Photo received and decoded: see photo001.json and observation001.json.
+All416 bits agree across three thresholds and five sample offsets;352 middle-row
+bits also agree using independently interpolated adjacent-row geometry.
+Bridge phase4/checkpoint5/return7184 and payload phase5/error7184 establish that
+transaction returned. CR1b saved85, target05, after-write05, restored05;
+write and restoration attempt flags both1. Wait statusFFFFFFFF: not entered.
+Target write readback succeeded; restore85 request read back05. Final7184
+supersedes earlier restoration error7188 in this source path. The panel does
+not separately establish finalSEQ1/context results or why bit7 failed to return.
+No inference about717 exact error or708/709 full-mode cause.
+Reset requested after photo preservation; awaiting Ready before one collection.
+No repeat launch, startup hook or owned host process.
+
+Closed after explicit manual power-cycle Ready. Collection001 read each of nine
+preparation records twice; audit001 verifies exact source/build/report/photo
+pins, independent allocation aliases and unchanged unrelated directory entries.
+PCI/CRTC/SEQ, geometry and allocation words match716/717. Preparation audit PASS
+is not native success. Native restoration FAILED; reason remains unresolved.
+Dashboard reached by manual reset, not a normal Windows shutdown. No hook or
+owned host process remains. Do not rerun or recollect this closed attempt.
