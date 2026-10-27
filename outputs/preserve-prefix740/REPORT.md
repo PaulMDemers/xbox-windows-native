@@ -18,3 +18,19 @@ Visual observation is not required or inferred. Audit uses persisted raw values.
 No geometry/encoder writes. Protected launchers and normal720p untouched.
 
 Staged and exact readback verified; no physical execution result yet. See NEXT.md and latest receipts.
+
+## Physical result: CLOSED
+
+One accepted launch21:39:46UTC, seven reports collected once after authenticated
+dashboard return. All15 checks pass, status740, cleanup mask0, selectors restored.
+Actual kernel CR0/3/4=8001003b/f000/610; EFLAGS246/46/246.
+CR1b before/check/after85/85/85; CR22fe/fe and CR3311/11. Original saved11 MMIO
+and4 CRTC values match733. Recovery restores6303 and CR1951.
+Full source/binary/stage pins and unrelated E entries verified. Visual color
+not observed; automatic firmware return inferred from recorded restart request
+and authenticated dashboard. This is not a Windows restart. No hook installed.
+No execution/build/stage/collection/audit failure. No owned process/VM remains.
+
+Next: fresh native counterpart of the same preservation control with independent
+CPU/relocation/ownership/report validation. It will hold for a photo and requires
+watch/reset availability before launch. No new full-mode driver admission.

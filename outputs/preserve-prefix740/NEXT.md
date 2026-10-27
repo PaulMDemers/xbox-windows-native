@@ -1,3 +1,3 @@
-# 740 staged
+# 740 CLOSED
 
-One authorized kernel-context automatic-return launch next. Exact E stage readback and all source/build/model/link checks pass. On authenticated dashboard return collect once and audit. Visual result unobserved unless user independently reports it. No native handoff or Windows; no hook. Preserve every failure; never repeat accepted launch or reopen closed runtimes.
+Prepare a fresh native counterpart preserving CR1b/CR22/CR33, with exact740 source delta plus native CPU guard. Independently validate emitted instructions, native CPU fixtures, relocation, ownership and optical report. Stage unique E bytes; require watcher/photo/reset availability before intentional hold. Never rerun/recollect740 or any closed runtime. Full704/708/709 cause and CR22/33 programming remain unresolved; no driver or Windows qualification.

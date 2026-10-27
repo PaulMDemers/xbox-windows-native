@@ -1,3 +1,22 @@
+# 740 CLOSED: kernel preservation prefix passes all15 checks
+
+One accepted launch, seven reports collected once and auditPASS. CR1b85/85/85;
+CR22fe/fe; CR3311/11; cleanup mask0/selectors1. Saved prefix matches733.
+Actual kernelCPU8001003b/f000/610; flags246/46/246. Visual unobserved; automatic
+firmware return inferred from report plus authenticated dashboard. No hook.
+Console at UnleashX; no owned process/VM. All740/prior runtimes CLOSED.
+NEXT outputs/preserve-prefix740/NEXT.md: fresh native preservation counterpart,
+independent validation, intentional hold needs watcher/photo/reset availability.
+No full-mode replay or driver qualification.739 static emulator access gap recorded.
+
+# 740 LAUNCHED: awaiting preserved-register report
+
+One accepted SITE2026-10-27T21:39:46.197209UTC; preparation22eaf1f0 pushed.
+Self-reporting kernel control, automatic dashboard return intended. No hook.
+No visual observation requested/inferred. Never retry this accepted launch.
+After bounded authenticated dashboard check, collect once and audit new files.
+NEXT outputs/preserve-prefix740/NEXT.md. All738/prior runtimes CLOSED.
+
 # 740 STAGED: preservation control ready for automatic-return launch
 
 739 source/access review closed. Fresh740 verified11 MMIO/3 CRTC writes;
