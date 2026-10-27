@@ -1,3 +1,18 @@
+#702 CLOSED: checked geometry component; next matched480p native capture
+
+354 linked geometry cases and32,770 allocation boundaries pass. Preserve the
+cpu001 redundant-write test expectation failure and cpu002 slow-harness stop;
+cpu003 passes with finite instruction/outer limits. No console access or XBE.
+Clock source review identifies TV pixel-clock selection but does not qualify
+physical routing/frequency; xemu lacks that selection model. No clock writes.
+
+Host-only substage validates an existing owned allocation, correct PCRTC_START,
+CR25 stride extension and every changed timing field. Complete blanking/unlock/
+encoder/settle/enable remain open. Next prepare703 kernel480p/native read-only
+comparison. Read xcal-geometry702/NEXT.md. Never reopen closed701.
+Console last at dashboard after701; no hook/process; hardware ticket retained,
+build/emulator leases released, automation paused. Original720p unchanged.
+
 #701 CLOSED: native GPU snapshot matches pre-transfer observations
 
 Photo decodes02a010de,02b00007,fd000000,00000003,0003c20d,100a0400,

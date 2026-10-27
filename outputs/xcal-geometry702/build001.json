@@ -1,0 +1,97 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "space": {
+    "minimum_free_gib": 20.05,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c/xwn702",
+        "free_bytes": 69783322624
+      },
+      {
+        "free_bytes": 69783310336,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "sources": {
+    "geometry.c": "0ef45e6e6c025bb510a1dbfc35b1fe3c83024fbaa5cc0175dcec17292ffbc5e8",
+    "geometry.h": "e4e900d0ab2e656cb0e7b19f25ac86ed5f873b28b79ea376168efbf3c79a08c8",
+    "gpu_legacy.c": "5e686c6e875f9d9bb60a0955bedfb4978911f5a79bf1feaea47080d9d7fe5690",
+    "gpu_types.h": "1f7c61fa6599b4242f623f91ac849e47786ad726e9656a03b9fad6652b6198e9"
+  },
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "compile32": {
+    "command": [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-m32",
+      "-Os",
+      "-ffreestanding",
+      "-fno-pie",
+      "-fno-pic",
+      "-fno-stack-protector",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-nostdlib",
+      "-static",
+      "-no-pie",
+      "-Wl,-Ttext=0x100000,-e,geometry702,--build-id=none",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xcal-geometry702/geometry.c",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/xcal-geometry702/gpu_legacy.c",
+      "-o",
+      "/mnt/c/xwn702/build001/native.elf"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  "objcopy": {
+    "command": [
+      "objcopy",
+      "-O",
+      "binary",
+      "/mnt/c/xwn702/build001/native.elf",
+      "/mnt/c/xwn702/build001/native.bin"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  "symbols": {
+    "command": [
+      "nm",
+      "-n",
+      "/mnt/c/xwn702/build001/native.elf"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "faa0f66ef1f6b3dc45a6e1bb83d2bbddbc663b53093ec48bdde29e7f437f0716",
+    "stderr": ""
+  },
+  "disassembly": {
+    "command": [
+      "objdump",
+      "-d",
+      "/mnt/c/xwn702/build001/native.elf"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "bc43f7ff8df53b317a96b151e7bd4375fdc4040002b66b97530c322b483d94a8",
+    "stderr": ""
+  },
+  "files": {
+    "compile32.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compile32.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "disassembly.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "disassembly.stdout": "bc43f7ff8df53b317a96b151e7bd4375fdc4040002b66b97530c322b483d94a8",
+    "native.bin": "856b707ae6fe75b112c8155c9021d7a0b374d65f3e8bd0b9e0d5355c3567fe06",
+    "native.elf": "846c4d3509f4614cce3b6d841da356b2b77a604520ba9a1d9758900a532992a4",
+    "objcopy.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "objcopy.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "symbols.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "symbols.stdout": "faa0f66ef1f6b3dc45a6e1bb83d2bbddbc663b53093ec48bdde29e7f437f0716"
+  },
+  "ended_utc": "2026-10-27T03:38:26.566400+00:00"
+}
