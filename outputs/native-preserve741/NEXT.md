@@ -1,3 +1,10 @@
+# 741 LAUNCHED, awaiting observation/photo
+
+One SITE accepted22:20:30UTC after user Ready and exact fresh readback. No retry.
+Await second bar color and full13-row photo. Preserve native optical result
+before requesting manual power cycle. After Ready/dashboard collect once with
+physical002.py and audit with audit_collection002.py. No startup hook.
+
 # 741 DEFERRED by user: prepare only, test later
 
 Do not launch until the user resumes hardware testing and confirms current

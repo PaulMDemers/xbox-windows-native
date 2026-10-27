@@ -1,3 +1,13 @@
+# 741 LAUNCHED: native preservation result awaits observation
+
+User Ready resumed deferred test. Fresh authenticated dashboard and source/
+binary/stage hashes verified. One SITE accepted2026-10-27T22:20:30.516954UTC.
+Intentional native hold; no hook or owned host process/VM. Await bar observation
+and full13-row photo. Do not repeat launch or collect before manual reset.
+Native result unknown; no success inferred from acceptance. Kernel preparation
+records are separate. All740/prior runtimes CLOSED.
+NEXT outputs/native-preserve741/NEXT.md; active physical002/audit_collection002.
+
 # 741 DEFERRED: user requested prepare only, test later
 
 Preparation/stage complete and pushed1b199bb2. No741 launch sent. No hook or
