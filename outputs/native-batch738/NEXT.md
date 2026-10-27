@@ -1,20 +1,18 @@
-# 738 staged: awaiting watcher availability
+# 738 launched: await status/photo before reset
 
-All source/build/host/linked/ownership/optical checks and stage readback passed.
-No launch sent. Watch/reset availability question pending for this deliberate
-native hold. Existing user authorization covers launches; the remaining input
-is availability to capture the report and recover the held console.
+One accepted SITE2026-10-27T21:16:00.990940+00:00. Do not repeat it.
+User is watching and available to reset. Obtain second bar color and complete
+13-row photo before requesting a power cycle. Decode independently of expected
+values using optical-schema001.json. Color alone is not a register result.
 
-On readiness, verify the frozen kit, save ready001.json exclusively, and send
-one SITE with a20-second reply bound. Never retry accepted/uncertain launch.
-Report TOP/SECOND bar and full13-row photo before requesting a power cycle.
-After confirmed dashboard return, collect preparation reports once and audit.
-Native values come from the photo; disk phase handoff_armed is preparation.
+Then ask user to power-cycle to UnleashX. After confirmed return, create
+collection-ready001.json and collect preparation reports once using physical.py.
+Audit frozen sources/binaries/stage/ownership and photo evidence separately.
+Native readings come from the photo; last disk phase handoff_armed is preparation.
+Inspect forward/returned status, first mismatch, full expected/observed values,
+cleanup mask, selectors, actual CR0/3/4 and completed-check count.
 
-Inspect raw returned status versus forward status, exact first mismatch and
-expected/observed values, cleanup mask and selector result, native CR0/3/4 and
-checkcount. Do not infer native full-mode708/709 cause:738 omits CR22/CR33 data
-writes present in704 before its check. No validation waiver, mask or extra write.
-
-All737/prior runtimes CLOSED. Console reachable at dashboard during staging.
-No hook or owned process/VM. Protected720p and ordinary launchers unchanged.
+No hook or owned host process/VM. All737/prior runtimes CLOSED. No Windows run
+or normal-shutdown claim; recovery will be manual. No masks/repair/fullmode
+promotion. Original704 includes further writes omitted here, so do not infer
+708/709's cause solely from this prefix test.
