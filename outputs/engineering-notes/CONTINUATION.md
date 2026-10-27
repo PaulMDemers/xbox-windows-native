@@ -1,3 +1,12 @@
+# 745 LAUNCHED: native CR04 checkpoint awaits observation
+
+User confirmed current watch/reset readiness. Frozen source/build/stage verified;
+one SITE accepted 2026-10-27T23:17:28.139234+00:00. Intentional native hold;
+no hook or owned host process/VM. Await second-bar/current-screen observation
+and full 13-row photo. Native results are not disk-persisted. Do not retry or
+collect before user-confirmed reset. Preparation65da5a3c pushed. All744/prior
+runtimes CLOSED. NEXT outputs/native-crtc745/NEXT.md.
+
 # 745 STAGED: native CR04 counterpart awaits watcher
 
 UniqueE stage/readback complete;98ELF/12CPU/88integration/76optical/32page/

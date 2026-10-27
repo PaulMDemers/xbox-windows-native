@@ -1,21 +1,18 @@
-# Test745 staged; await current watcher before intentional hold
+# Test745 launched; await observation and photo
 
-98 ELF, 12 CPU, 88 integration, 76 optical, 32 page-builder, 372 nxdk ownership
-and 131379 host ownership cases pass. Source, build, linked-byte and unique E
-stage/readback checks passed. All VMs are closed; no owned host process, hook
-or 745 launch. Console authenticated at UnleashX. All 744 and earlier runtimes
-are CLOSED; no rerun, recollection or runtime parenting.
+One SITE accepted 2026-10-27T23:17:28.139234+00:00 after exact frozen
+source/build/stage verification and current user watch/reset confirmation.
+Preparation65da5a3c pushed. No hook or owned host process/VM. Console expected
+to hold; its current display is pending user observation. Do not retry launch.
 
-Ask current watch/reset availability with HDMI on the 1.6. Once ready, verify
-frozen source/build/stage and issue one SITE with a 20-second bound. Do not retry accepted
-or uncertain launch. Ask for the second bar/current screen and full 13-row photo.
-Read optical-schema001.json: native CR04 before/checked/restored, return/forward
-status, three cleanup masks, selectors and actual native CR0/3/4 are exposed. CR05/H7
-individual words are not exposed. Do not substitute kernel 744 raw readings.
+Record second bar/current screen and decode full 13-row photo using
+optical-schema001.json. Exposed: signature, return/forward status, prefix/H7/
+CRTC cleanup masks, CR04 before/checked/restored, selectors, native CR0/3/4.
+Individual native CR05/H7 words are unexposed. Keep kernel preparation context
+separate; no post-native disk persistence. After recording photo, request
+manual reset, then collect nine preparation reports once on authenticated
+dashboard return. Audit exact bytes and optical results before closure.
 
-After photo decoding, record results and request a manual reset. On user Ready
-and authenticated dashboard return, collect nine preparation reports once with
-physical002.py. Audit source/stage/preparation and photo separately. No disk
-persistence after native handoff; reset is not normal Windows shutdown.
-Preserve any failed comparison. No CR05 data write, further CRTC programming,
-vertical timing, encoder, full mode replay or Windows yet.
+All744/prior runtimes CLOSED; no rerun/recollection/runtime parenting.
+No CR05 data write, other new CRTC geometry, vertical/encoder/full mode or
+Windows work yet. Preserve any mismatch and all prior failed evidence.
