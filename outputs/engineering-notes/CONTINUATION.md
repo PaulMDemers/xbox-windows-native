@@ -1,3 +1,17 @@
+# 734 STAGED: bounded CR1b reads before cleanup; no mask change
+
+Source review identifies FIFO/burst use but no verified NV2A bit7 contract.
+New734 preserves733 data writes/recovery/full-byte checks and appends16 direct
+then16 reselected CR1b reads while630 remains2, before recovery. Raw samples
+and ordered blocks do not prove timing or selector causality.59 actualCOFF
+cases,2353layout cases,12 schema negatives and linked bytes passed. Stage/readback
+complete; awaiting watcher readiness. No launch requested, no hook/process/VM.
+
+NEXT outputs/cr1b-read734/NEXT.md. Console1.6 dashboard/HDMI; one accepted or
+uncertain launch must never be retried. Protected720p and ordinary launchers
+unchanged. All733/prior runtimes remain CLOSED. No functional predicate waiver,
+CR22/CR33 data write, native mode replay, Windows1.6 or acceleration claim.
+
 # 733 CLOSED: deferred CR1b check rejects05 versus85; cleanup passes
 
 One accepted launch20:06:58UTC2026-10-27; user ORANGE/automatic dashboard return.

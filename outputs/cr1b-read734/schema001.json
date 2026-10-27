@@ -1,0 +1,45 @@
+{
+  "words": 112,
+  "ranges": {
+    "0": "aggregate status",
+    "1": "forward status retained regardless of cleanup",
+    "2..3": "MMIO/CRTC write counts",
+    "4..7": "first mismatch zero-based0..14 or FFFFFFFF; expected,observed,checked count",
+    "8..10": "entry/critical/restored EFLAGS",
+    "11..13": "actual critical CR0/3/4",
+    "14..16": "saved CRTC/sequencer/graphics selectors",
+    "17..18": "SEQ1 before/after",
+    "19..20": "CR11 before/after",
+    "21..22": "GR04 before/after",
+    "23..24": "CR22 before/after",
+    "25..26": "CR33 before/after",
+    "27": "unlock read informational",
+    "28..30": "selectors restored,cleanup_ok,cleanup mismatch bitmask",
+    "31..41": "11 MMIO saved",
+    "42..52": "11 MMIO checked",
+    "53..63": "11 MMIO after recovery",
+    "64..67": "four CRTC saved",
+    "68..71": "four CRTC checked",
+    "72..75": "four CRTC after recovery",
+    "76..77": "direct/indexed completed counts,16 each after prefix",
+    "78..79": "680630 after direct/indexed blocks, raw full width",
+    "80..95": "16 direct byte reads with CR1b left selected by write",
+    "96..111": "16 byte reads, each explicitly reselecting CR1b"
+  },
+  "status": {
+    "734": "forward prefix and full-byte cleanup match",
+    "7341": "CPU refusal",
+    "7342": "baseline refusal",
+    "7343": "blank check rejection",
+    "7344": "unlock/context rejection",
+    "7348": "forward deferred check rejection",
+    "7345": "cleanup mismatch; forward_status still authoritative",
+    "7346": "selector mismatch; forward_status still authoritative"
+  },
+  "cleanup_bits": {
+    "0..10": "MMIO",
+    "11..14": "CR14,17,19,1b",
+    "15..19": "SEQ1,CR11,GR04,CR22,CR33"
+  },
+  "scope": "733 qualified prefix/data-write/recovery sequence, appended32 CR1b observations before deferred checks; no predicate masking"
+}
