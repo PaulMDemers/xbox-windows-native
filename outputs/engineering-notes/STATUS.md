@@ -1,3 +1,23 @@
+#728 CLOSED: kernel minimal sequence returns85 at a later sampled boundary
+
+Single accepted launch19:02:21UTC2026-10-27. User green/automatic dashboard.
+Seven reports collected once/double-read; audit001PASS source/build/stage,
+framebuffer ownership and unrelated E entries. Actual728 direct05/indexed05;
+first after6303 remains05; after gate4/SEQ1 restore85;32late all85/nochanges.
+Full baseline/selectors pass.727 first after6303 was85. Both minimal sequences
+end85; timing/output/context unresolved. No bit7 or full-mode/Windows claim.
+
+Actual728 CR080010031/CR3f000/CR4610,EFLAGS246->046->246; pre-file context
+separate. PCI/CRTC/SEQ/geometry/framebuffer preparation exactly matches723/727.
+comparison001 broad modeled-vector mismatch retained: physical unlock03/model57;
+comparison002 stage/direct/late samples match, not mechanism proof. No waiver.
+Initial preparation parse failure retained; no build/launch/collection failure.
+
+Runtime728 CLOSED. Console UnleashX, no hook/process/VM. NEXT outputs/kernel-
+interaction728/NEXT.md: fresh bounded kernel samples after6303 while blank,
+after gate4 beforeSEQ restore, then afterSEQ restore. No new build/stage/launch.
+Never reopen728/earlier runtimes. Protected720p and deferred work unchanged.
+
 #728 LAUNCHED: awaiting bar/automatic return observation
 
 One SITE accepted2026-10-27T19:02:21.122652+00:00 after user Ready to watch
