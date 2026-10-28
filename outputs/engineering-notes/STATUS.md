@@ -1,3 +1,15 @@
+# 761 PHOTO PASS: CR01 display-end/recovery; manual reset pending
+
+User green/holding photo independently decoded416bits at five sampling offsets
+and three thresholds;352 adjacent-row cross-checks PASS. CR019f->59->9f,
+eight displayed recovery masks0 and final761. SecondCR05 mask and forwardstatus
+are not directly displayed; finalcode requires all nine masks and forward
+success in tested code. No native disk/fullmode/Windows1.6 proof. Photo private.
+Manual power-cycle requested, not yet confirmed. Last console observation held.
+No hook/owned process/VM. All760/prior CLOSED. NEXT outputs/native-crtc-end761/
+NEXT.md: wait for user Ready then collect once/double-read and audit preparation.
+Never relaunch761.
+
 # 761 LAUNCHED: native CR01 display-end held checkpoint
 
 One SITE accepted2026-10-28T03:28:37.253485UTC after current watch/reset readiness,

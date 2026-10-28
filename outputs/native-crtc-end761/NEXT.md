@@ -1,12 +1,13 @@
-# Test761 launched; await observation and photograph
+# Test761 photo PASS; wait for manual reset readiness
 
-One SITE accepted03:28:37.253485UTC; no retry. Current user watcher/reset
-availability recorded. Await top/second bar color and holding state, then full
-13-row photo. Preserve and independently decode photo against optical schema;
-never infer missing bits from expected results. Only after recording photo ask
-for manual power-cycle to UnleashX. After user Ready collect once/double-read
-and audit preparation/allocation/aliases/unrelated paths. No startup hook.
-All760/prior runtimes CLOSED; do not reopen. No owned host process/VM. Latest
-console state after launch unobserved. Eight masks and CR01triplet exposed;
-secondCR05 mask/forwardstatus/CPU/selectors/neighbors omitted optically. No
-native disk/fullmode/Windows1.6 proof. LaterCR02 write/CR17enable pending.
+Photo independently decodes final761, eight masks0, CR019f->59->9f. Preserve
+photo privately and decoded receipts publicly. Manual reset requested; await
+user Ready before connecting/collecting. Never relaunch761. On dashboard return
+there is no startup hook to remove. Collect preparation files once with double
+readback, audit exact source/build/staged bytes, allocation/aliases and unrelated
+paths; distinguish pre-native disk records from native optical evidence. Manual
+power-cycle is not normal Windows shutdown. All760/prior CLOSED. No owned host
+process/VM. SecondCR05 mask and forwardstatus/CPU/selectors/neighbors are not
+raw optical fields; final761 requires all nine recovery masks. No complete mode
+or Windows1.6 qualification. After closing761, next source-ordered operation is
+the later CR02 target59 write, followed separately by CR17 enable.

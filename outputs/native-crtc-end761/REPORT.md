@@ -43,3 +43,14 @@ Launch update: one SITE accepted2026-10-28T03:28:37.253485UTC after the user
 confirmed current watch/reset availability. Exact frozen source/index/build and
 remote staged bytes verified again. No retry, startup hook or owned host VM.
 Awaiting screen observation and photo; no physical success claimed yet.
+
+Photo result: user observed green/holding. Independent component decoding gives
+signature7610000d, final761, eight displayed recovery masks0, and CR01
+9f->59->9f. All416bits agree across five offsets and three thresholds;352
+adjacent-row cross-checks passed. Black channel median maximum87; minimum white
+mean median207.67. Photo retained privately with SHA256
+677110158414a6c3956344f02e0005f28e689f7dac87b7ff78a146461a2d84a8.
+Native CR01 write and own-value recovery passed this optical checkpoint.
+SecondCR05 mask is not directly displayed; final761 requires all nine masks.
+Manual reset requested; preparation collection/audit still pending. No normal
+shutdown, native disk, complete mode-switch or Windows1.6 qualification.
