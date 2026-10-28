@@ -42,3 +42,5 @@ The source generators are historical, not commands to rerun after qualification.
 Qualification complete:458 direct payload,448 full-path,76 optical,12 CPU(all closed),32 compiled page and372 ownership cases PASS. Linked executable checks and source review PASS. No physical evidence yet.
 
 Physical optical result: green held, native NVVSYNCSTART724 ->489 ->724, eight displayed recovery masks zero and final781. All416bits independently resampled; manual reset and preparation collection remain pending.
+
+CLOSED: manual reset confirmed, nine preparation records collected once/double; audit005 PASS. No hook or owned process/VM. Console authenticated at UnleashX. Audit005 corrects only004's stale payload receipt reference to qualified003; frozen004 preserved. Never rerun/recollect this attempt.
