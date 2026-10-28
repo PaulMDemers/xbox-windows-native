@@ -1,7 +1,7 @@
-# Test755 staged; not launched
+# Test755 launched; awaiting observation and photo
 
-After current user watch/photo/reset readiness, record ready001.json, verify
-frozen sources/build/staged bytes and issue exactly one physical003.py launch.
+Current readiness recorded. One launch accepted2026-10-28T01:23:30.741104UTC.
+Frozen source/build/stage verification passed. Do not launch again.
 One SITE request with20-second reply bound; do not retry accepted or uncertain.
 Ask second-bar color and held/black/dashboard state; obtain full13-row photo.
 Decode against optical-schema001.json without substituting expected values.

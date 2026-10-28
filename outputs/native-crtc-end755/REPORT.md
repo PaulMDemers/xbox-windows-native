@@ -22,3 +22,7 @@ manual reset and one collection/audit. No normal Windows shutdown is involved.
 Unique E stage and byte readback passed. No startup hook is installed. No
 755 launch has been requested. Console authenticated at dashboard; no owned
 host process or VM remains. Waiting for current watch/photo/reset readiness.
+
+Launch update: one SITE accepted2026-10-28T01:23:30.741104UTC after current
+user readiness and exact readback. Await visual result/full13-row photo.
+No repeat launch; no hook or owned host process/VM.
