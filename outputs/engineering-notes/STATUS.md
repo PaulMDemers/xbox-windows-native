@@ -1,3 +1,24 @@
+# 761 STAGED: native CR01 display-end and own recovery; watcher needed
+
+189 ELF,12 fresh CPU fixtures/allclosed,179 integration,76 optical,32page,
+372plan and source/link/bounds checks PASS.176words704bytes end53c0. Frozen
+source/index exact; unique E stage/readback PASS.13rows expose eight masks and
+CR01triplet; secondCR05 mask omitted optically, all nine still required by final
+success. No761launch/hook/owned process/VM. Console authenticated dashboard.
+All760/prior CLOSED. NEXT outputs/native-crtc-end761/NEXT.md: current watch,
+photo and reset readiness before intentional held native launch. No complete
+mode switch/Windows1.6 qualification. Preparation validated for watched test.
+
+# 761 PREPARING: native CR01 display-end and own recovery
+
+Kernel760 CLOSED PASS pushed94d8f229. Fresh761 source-only760probe/model002 and
+759frontend;176words704bytes end53c0 within initialized5400. Fresh validation
+pending; no761build/stage/launch yet.13rows expose eight masks/CR01triplet;
+secondCR05 mask omitted optically but all nine required by final success.
+No hook/owned process/VM. Console last authenticated dashboard after760.
+All760/prior CLOSED. NEXT outputs/native-crtc-end761/NEXT.md. Current watcher/
+photo/reset required before native hold. No fullmode/Windows1.6 qualification.
+
 # 760 CLOSED PASS: kernel CR01 display-end and own recovery
 
 One accepted launch; automatic firmware restart requested, dashboard authenticated
