@@ -1,3 +1,13 @@
+# 759 PHOTO PASS: CR17 clear/recovery; manual reset pending
+
+User green/holding photo decoded416bits, five offsets/three thresholds and352
+adjacent-row cross-checks. CR17e3->63->e3; eight recovery masks0; finalcode759.
+Direct forwardstatus, CPU/selectors/neighbors/prior individual recoveries are
+unexposed. No native disk/fullmode/Windows proof. Console last observed held;
+manual power-cycle requested, not yet confirmed. No hook or owned process/VM.
+All758/prior CLOSED. NEXT outputs/native-crtc-gate759/NEXT.md: wait for user Ready,
+then collect once/double-read and audit preparation. Never relaunch759.
+
 # 759 LAUNCHED: native CR17 clear/recovery held checkpoint
 
 One SITE accepted2026-10-28T02:29:32.774622UTC after current watch/reset readiness,

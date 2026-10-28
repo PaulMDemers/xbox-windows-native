@@ -1,3 +1,17 @@
+# Test759 photo PASS; manual reset and preparation audit pending
+
+The user observed green and holding. The private photo independently decodes
+CR17e3->63->e3, all eight recovery masks0, signature7590000d and finalcode759.
+All416bits agree at five sample offsets and three thresholds;352 adjacent-row
+cross-checks passed. Maximum black-channel median43; minimum white mean210.67.
+Raw forwardstatus is omitted by the frozen mapping; final759 requires forward
+and recovery success in the tested code. CPU/selectors/neighbors and prior
+individual recoveries are unexposed. No native disk result or fullmode proof.
+
+Manual power-cycle requested; user confirmation and one preparation collection
+are still pending. Console last observed holding. No hook or owned process/VM.
+All758/prior CLOSED. No second launch. Photo remains private.
+
 # Test759 launched; optical observation pending
 
 One SITE was accepted at2026-10-28T02:29:32.774622UTC after the user confirmed
