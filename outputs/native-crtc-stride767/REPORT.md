@@ -1,3 +1,17 @@
+# 767 OPTICAL PASS: CR19 upper stride; manual reset pending
+
+User Green, holding; private photo decoded signature7670000d, final767,
+eight displayed masks0 and CR19 own10/30/10. All416 bits agree at five offsets
+and three thresholds;352 adjacent-row checks. Four other recovery masks are
+not raw displayed; tested final767 requires all12 clear. CR13 is not displayed.
+Photo decoder001/002 component failures preserved;003 handles four lower-right
+cells joined to dark board edge by measured-spacing centers and actual pixels.
+No guest change or expected-bit substitution. Photo-review001 PASS.
+Manual power-cycle requested; Ready pending. No collection yet, hook or owned
+host process/VM. This is a native photo result, not fullmode/Windows1.6 proof.
+NEXT outputs/native-crtc-stride767/NEXT.md: after Ready collect preparation
+files once/double-read and independently audit. No repeat launch.
+
 # 767 LAUNCHED: native CR19 upper stride; observation pending
 
 One SITE accepted 2026-10-28T15:23:52.569953UTC after user Proceed to the

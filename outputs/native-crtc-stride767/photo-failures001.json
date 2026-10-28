@@ -1,0 +1,10 @@
+{
+  "scope": "photo decoding only; guest unchanged",
+  "failed": [
+    "photo_decode001.py/photo001.json",
+    "photo_decode002.py/photo002.json"
+  ],
+  "cause": "Lower-right black cells join the dark board edge under connected-component segmentation; wider bounding-box allowance did not separate them.",
+  "correction": "photo_decode003.py infers missing rightmost centers from adjacent measured spacing and samples actual pixels; all416 bits checked at five offsets/three thresholds and352 adjacent-row centers. No expected data values substituted.",
+  "private_photo": "C:/xwn767/photo001.jpg"
+}
