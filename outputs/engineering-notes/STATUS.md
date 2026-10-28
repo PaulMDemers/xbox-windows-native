@@ -1,3 +1,27 @@
+# 752 CLOSED: native CR02 change and restoration passed
+
+Photo verified CR02 9f->59->9f, return/forward752, all five cleanup masks0,
+selectors1 and nativeCR04001003b. First decoder reflection failure preserved;
+fresh002 independently checked all416bits. User manually power-cycled; nine
+preparation reports collected once/double-read. AuditPASS00:58:21UTC: exact
+sources/build/stage, allocation checks, unchanged unrelated E entries; preparation
+PCI/CRTC/SEQ/allocation/geometry matches749. Native results remain photo-only;
+no full mode/Windows1.6 or normal shutdown claim. Console authenticatedUnleashX;
+no hook or owned process/VM. All752/prior CLOSED.
+NEXT outputs/native-crtc-blank752/NEXT.md: fresh isolated kernel CR03 control.
+
+# 752 PHOTO PASS: awaiting manual reset and preparation collection
+
+User reports green/holding; private photo decoded all416bits with five sample
+positions, three thresholds and352 adjacent-row checks. CR02 9f->59->9f;
+return/forward752, all five recovery masks0, selectors1, nativeCR04001003b.
+First decoder failed one reflected dark cell; preserved photo001. Fresh002 uses
+independent global color thresholds; photo-review001 passes. No expected bit
+substitution. Native results are photo-only, not disk persistence/full mode or
+Windows proof. User asked to power-cycle and reply Ready; do not collect before
+that. No hook or owned process/VM; console last observed deliberately holding.
+All751/prior CLOSED. NEXT outputs/native-crtc-blank752/NEXT.md.
+
 # 752 LAUNCHED: watched native CR02 checkpoint
 
 User resumed with Ready after deferred preparation. Exact frozen sources/build002

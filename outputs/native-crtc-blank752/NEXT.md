@@ -1,25 +1,17 @@
-752 LAUNCHED ONCE: accepted 2026-10-28T00:54:42.207124+00:00. Await status/photo.
-Do not retry. No hook. Capture all13rows before manual reset; on Ready collect
-using physical003.py once, then independently audit preparation and photo.
-Historical preparation/deferment below is superseded by ready001/launch001.
+# 752 CLOSED
 
-USER DEFERRED: prepare only; test later. No launch. Await renewed current hardware readiness.
+Do not rerun/recollect/parent. See REPORT.md, audit001.json, photo-review001.json.
+Next prepare a fresh kernel-context CR03 horizontal-blank-end checkpoint from
+750 source only, carrying the now-qualified CR02 transaction. Follow pinned
+outputs/xcal-transaction704/gpu_legacy.c line58: preserve own CR03 upper3bits,
+replace lower5 with ((779/8)-1)&31 (=0); do not guess the own saved baseline.
+Qualify full-byte readback and unchanged CR00/02/04/05 neighbors, own-value
+reverse recovery, selectors and output-enable inhibition on any recovery failure.
+Do not combine the subsequent CR05 bit7 write (line59) into this checkpoint.
+Host negative outcomes, exact source/linked bytes and fresh stage/readback precede
+one authorized auto-return kernel launch. Then a separate fresh native counterpart
+with page result/guard extent checked (752 fixed the751 zeroing-bound failure).
 
-# 752 staged; awaiting watched native CR02 test
-
-Active physical003.py verifies build002 and frozen sources/review, staged unique
-E/Applications/XWNMode752. No launch yet. Obtain current1.6 UnleashX+HDMI and
-watch/photo/reset readiness. Record ready001; send one SITE with20-second reply
-bound. Never retry an accepted/uncertain launch. No hook installed.
-
-Deliberate hold exposes13 rows: signature,return,forward,prefix/H7/CRTC/CR00/CR02
-cleanup masks,CR02before/after/restored,selectors,nativeCR0. Target59 is source
-contract; neighbor readbacks/individual restoration/H7/CR3/CR4 unexposed.
-Capture/decode all416bits; preserve uncertainty. Then request manual reset and
-collect preparation files once on Ready; audit actual preparation separately from
-photo-only native results. No full mode or Windows proof.
-
-751 CLOSED after initialized-region fixture failure; no physical stage/launch.
-752 build001 failed before compiler invocation; build002 passes. First freeze
-helper receipt-name error preserved; review_prepare002 final freeze passes.
-Do not rerun old fixtures. No owned process/VM. Console authenticatedUnleashX.
+No full mode switch/Windows1.6 proof yet. Current console authenticatedUnleashX;
+no hook or owned process/VM. User available previously; fresh deliberate holds
+need current watch/photo/reset availability. Native results remain photo-only.
