@@ -1,3 +1,27 @@
+# 752 STAGED: native CR02 counterpart awaits watcher
+
+Kernel750 CLOSED/pushed7382f244: CR029f->59->9f; neighbors5c/5d/3e and recovery
+pass. Closed751 CPU initialization failure preserved; one VM closed. Fresh752
+zeros request/result through5400;532-byte result ends5314, stack starts6000.
+12 CPU fixtures (all closed),124 native ELF cases,114 relocated integrations,
+76 optical cases,32 page and372 plan cases pass. Source/layout/link/freeze pass.
+Build001 prerequisite failure and first freeze-helper receipt-name error retained;
+active build005->build002, freeze review_prepare002, physical003. Unique E stage
+and exact readback pass. No752launch/hook/process/VM. Console authenticated
+UnleashX. Await current watch/photo/reset availability for deliberate native hold.
+All751/prior CLOSED. NEXT outputs/native-crtc-blank752/NEXT.md.
+
+# 752 PREPARING after preserved751 host failure
+
+Kernel750 CLOSED/pushed7382f244: CR029f->59->9f and all recovery checks pass.
+Native751 CLOSED: first CPU fixture caught uninitialized optical report words
+beyond5300; one VM closed, no physical stage/launch. Fresh752 expands zeroed
+region to5400 for532-byte result through5314.12 CPU fixtures and124 native ELF
+cases pass; all VMs closed. Relocated integration remains running. Build001 was
+requested before integration receipt; prerequisite failure preserved, no compiler
+invoked. Fresh build002 planned after gates. No752stage/launch/hook.
+Console authenticatedUnleashX; NEXT outputs/native-crtc-blank752/NEXT.md.
+
 # 750 CLOSED: kernel CR02 change and restoration pass
 
 CR02 9f->59->9f; CR00/04/05 after CR02=5c/5d/3e. Prefix15/H7 and all
