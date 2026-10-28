@@ -1,11 +1,11 @@
-# Test764 staged; single kernel launch next
+# Test764 CLOSED PASS; fresh native765 next
 
-Record current authenticated dashboard and standing automatic-return diagnostic
-authorization. Launch once with20-second SITE reply bound; never retry accepted
-or uncertain launch. Bounded dashboard observation, then one double-read
-collection and frozen audit. No hook is installed. Preserve all failures.
+Never rerun/recollect/parent this runtime. Preserve first dashboard timeout and
+successful second check. Kernel CR17 forward63->e3->63 and all eleven aggregate
+recovery masks passed; no native mode-switch proof.
 
-After closure, prepare a fresh native counterpart only from source, with expanded
-initialized result space for200words5100..5420 and fresh bounds/page/CPU/relocation/
-optical validation. Current watcher/photo/reset readiness required before hold.
-All763/prior runtimes closed; do not rerun/recollect/parent them.
+Prepare fresh native765 from source-only764 and763frontend. Expand initialized
+result space for200words5100..5420 with fresh page/CPU/relocation/optical tests;
+retain32KiB allocation, guard and6000stack. Freeze/index/stage exact bytes.
+A held physical launch needs current watch/photo/reset readiness. No further
+kernel launch. Console authenticated dashboard; no hook/ownedVM/process.

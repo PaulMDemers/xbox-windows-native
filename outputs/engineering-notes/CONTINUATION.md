@@ -1,3 +1,15 @@
+# 764 CLOSED PASS: kernel CR17 forward enable and recovery
+
+CR1763->e3->63; all eleven aggregate recovery masks0 and earlier values restored.
+One accepted launch. First dashboard connection timeout preserved; second check
+succeeded. Seven files collected once/double-read; exact source/build/stage and
+unrelated entries audit PASS04:16:36UTC. Six3375000Hz/high0 clock rows. Visual
+unobserved, no manualreset reported, automaticreturn inferred; no Windowsshutdown.
+Consoleauthenticateddashboard; no hook/ownedVM/process. All764/prior CLOSED.
+NEXT outputs/crtc-reenable764/NEXT.md: fresh native765 with expanded resultspace
+and independent page/CPU/relocation/optical checks, then currentwatch/photo/reset.
+No fullmode/Windows1.6 proof; ordinary launcher/720p unchanged.
+
 # 764 LAUNCHED: automatic-return kernel CR17 enable control
 
 One SITE accepted2026-10-28T04:15:26.530609UTC after source/build/stage verification.

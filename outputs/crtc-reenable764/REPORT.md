@@ -17,3 +17,14 @@ the previous initialized5400 boundary with independent bounds/CPU/integration
 checks before use. This kernel result does not qualify native mode switching.
 
 Single launch accepted04:15:26UTC; collection/audit pending.
+
+## Closed physical result
+
+One accepted launch; first dashboard connection timed out and is retained in
+dashboard001. Second authenticated check returned with seven reports. Collected
+once, double-read, exact source/build/stage and unrelated entry audit PASS.
+CR17 forward63->e3->63, all eleven aggregate masks0, prior register values
+restored; six rows record3375000Hz/high0. Visual result unobserved. No manual
+reset reported; automatic dashboard return inferred with restart_requested.
+No Windows shutdown/native mode-switch proof. Audit002 only selects successful
+dashboard002 receipt; frozen original auditor unchanged. All764/prior CLOSED.
