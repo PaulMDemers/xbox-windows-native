@@ -1,3 +1,26 @@
+# 763 STAGED: native later CR02 same-value checkpoint
+
+Kernel762 CLOSED PASS pushed1b848c03. Fresh763 validation PASS:209ELF,199relocated
+integration,76whole-framebuffer,12CPU(allclosed),32page,372plan and source/link.
+188words752bytes5100..53f0 fitinitialized5400; guard/stack checked. Exactfrozen
+source/index and uniqueE stage/readback PASS. XBE131072bytes SHA256
+01dd854b1ce05b4d855c1c1a2a5112e056a33f58de475268f2ba9ab3b4392e6f.
+No763launch/hook/ownedhostprocess/VM. Consoleauthenticateddashboard.
+13rows exposeeightmasks+CR02secondtriplet; CR03/secondCR05 masks omitted, final763
+requiresallten. Same-value59write/undo drops unobservable by unchangedreadback.
+NEXT outputs/native-crtc-repeat763/NEXT.md: current watch/photo/reset readiness,
+then one launch. No fullmode/Windows1.6 qualification. All762/prior CLOSED.
+
+# 763 PREPARING: native later CR02 same-value control
+
+762 CLOSED PASS pushed1b848c03; no recollection. Fresh source-only762probe and
+761frontend,188words752bytes5100..53f0, initialized5400.13rows exposeeightmasks
+and CR02secondtriplet; CR03/secondCR05 masks omitted, finalcode requiresallten.
+Same-value59write/undo drops unobservable by unchangedreadback. FreshELF built;
+remaining model/CPU/integration/optical/source/nxdkchecks pending. No763stage/
+launch/hook/ownedVM. Consolelastauthenticateddashboard after762. NEXT complete
+validation, freeze/index/stage; current watcher/photo/reset required beforehold.
+
 # 762 CLOSED PASS: kernel later CR02 and recovery
 
 Single accepted launch returned automatically; seven files collected once with
