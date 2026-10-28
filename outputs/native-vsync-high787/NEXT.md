@@ -1,24 +1,22 @@
-# Test787 qualified: native CR07 sync-overflow recovery
+# Test787 LAUNCHED: native CR07 report pending
 
-Fresh source-only785 frontend/786probe, following CLOSED786kernel F0->74->F0.
-No787console stage/launch yet. 575direct native cases,565full-path cases,76complete
-renderer cases,12fresh diskless CPU cases (allclosed),32compiled page cases plus
-33near-boundary page cases,372compiled ownership cases, exactlinkedPE/XBE and
-independent source/layout checks PASS. All21recovery masks required; optical13rows
-show eight masks plus CR07before/after/restored. Thirteen masks and rawneighbors/
-CPU/selectors omitted; native result not persisted. No complete mode/Windows proof.
+SingleSITE accepted2026-10-28T23:33:15.028908UTC,20-secondreplybound; no retry.
+Qualified/pushed e5b6d13f, stage001 authenticated/readback exact at unique
+E/Applications/XWNMode787 on1.6 .66HDMI. XBE139264bytes SHA256
+8fe5fb1de10f5b84a9daa9f13313843f61ab3bfd73d85ccece455f21fd9ee59f.
+No startuphook/Windows/ordinarylauncher/protected720p change/dashboardC access.
+Native CR07 F0->74->F0 intended after prior prefix/horizontal/vertical transactions;
+eight CRTC neighbors checked. Deliberate hold/manualreset intended. Kernel refusal
+may return. Currentphysicalscreen unobserved; do not infer pass from launchreply.
 
-Payload15992bytes fits16384 with392bytes padding. Sameowned32KiB block; independently
-verified payload1000..5000,request5000..503c,zeroguard503c..5040,result5040..5770,
-A5guard5770..5800,IDT5800..6000,stack6000..8000. All256IDT entries,18relocations,
-pagechecksum/payloadbytes exact; no result/IDT overlap. Every VM and host test closed.
+NEXT after~23:35:15UTC askSECONDbarcolor and held/black/dashboard state. Obtain
+full13-row photo before reset and independently decode/review. Then requestpower
+cycle understandingOct28availability, collectonce/double ninepreparationrecords
+and audit exactsource/build/stage/allocation/aliases. Native reportisoptical only,
+notpersisted; preparationends handoff_armed. No launchretry or closedruntime reuse.
+All786/prior CLOSED. All12hostVMs closed; noownedhostprocess/emulatorrunning.
+575direct,565fullpath,76renderer,32+33compiledpage,372compiledplan and independent
+memorylayout/linkreviews pass.21masksrequired; eightshown/thirteenaggregateonly.
+Fullnative modes/Windows1.6/acceleration remainunproven. Pending userobservation.
 
-NEXT commit/push frozen sources then uniqueE/Applications/XWNMode787 stage/readback
-and one SITE20s launch on1.6 .66HDMI. StandingOct28 watch/reset authorization applies;
-no readiness question. After~2minutes ask heldbarcolor/photo; ifblack preserve
-observation and requestreset. Afterphoto decoding/review requestpowercycle, then
-collect once/double ninefreshpreparation records and audit. No repeat accepted/
-uncertainlaunch, no closedruntime reuse. No hook/Windows/ordinarylauncher/protected
-720p change/dashboardC access. Lastconsoleknown atUnleashX after786autoreturn.
-
-Recorded 2026-10-28T23:31:54.663467+00:00
+Recorded 2026-10-28T23:33:38.391082+00:00
