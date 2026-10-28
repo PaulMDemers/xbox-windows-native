@@ -1,3 +1,10 @@
+# 758 LAUNCHED: kernel CR17 clear/recovery control
+
+One SITE accepted2026-10-28T02:10:22.981348UTC. Preparation524d6db7 pushed.
+No retry. Bounded authenticated dashboard observation then one collection/audit.
+No startup hook/native handoff/Windows. No owned host process/VM. All757/prior
+CLOSED. Result not yet known. NEXT outputs/crtc-display-gate758/NEXT.md.
+
 # 758 STAGED: kernel CR17 bit7 clear/own recovery
 
 Fresh source-only756 extension after757closed.169actualCOFF cases,2353layout,
