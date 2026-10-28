@@ -1,3 +1,19 @@
+# Test771 CLOSED PASS: kernel NVVDISPEND own-value recovery
+
+OneSITE accepted16:51:59UTC; seven reports collected once/double after authenticated
+dashboard return. Independent audit PASS2026-10-28T16:52:50.873557UTC.
+NVVDISPEND719 ->479 ->719; four vertical neighbors and CR13/19 unchanged at all
+three observations. All14 recovery masks clear, output enabled after recovery.
+Unrelated E/apps entries and staged/source/build identities exact. Automatic return
+inferred; no visual observation or normal Windows shutdown/fullmode/Windows1.6 proof.
+Console authenticated dashboard; no hook/owned host process/VM. All771/prior CLOSED;
+never rerun/recollect/parent closed runtimes. Three host review failures retained;
+review004 passed, no guest/transport/launch/audit failures. Ordinary launcher and
+protected720p unchanged. NEXT fresh native772 from source-only770 frontend plus771
+probe: expanded256word result ends5500, independently prove CPU/page/relocation/
+optical/layout bounds and all new faults before stage. Native launch requires current
+watch/photo/reset readiness. No772 files/build/stage/launch yet.
+
 # Test771 launched: automatic-return result pending
 
 One SITE accepted2026-10-28T16:51:59.625754UTC; no retry. Exact source/index/build
