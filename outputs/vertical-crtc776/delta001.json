@@ -1,0 +1,79 @@
+{
+  "fields": [
+    "vc_before",
+    "vc_target",
+    "vc_attempted",
+    "vc_after",
+    "vc_restored",
+    "vc_cleanup_mask",
+    "vc_disp_before",
+    "vc_disp_after",
+    "vc_disp_restored",
+    "vc_total_before",
+    "vc_total_after",
+    "vc_total_restored",
+    "vc_syncstart_before",
+    "vc_syncstart_after",
+    "vc_syncstart_restored",
+    "vc_syncend_before",
+    "vc_syncend_after",
+    "vc_syncend_restored",
+    "vc_validstart_before",
+    "vc_validstart_after",
+    "vc_validstart_restored",
+    "vc_validend_before",
+    "vc_validend_after",
+    "vc_validend_restored",
+    "vc_c13_before",
+    "vc_c13_after",
+    "vc_c13_restored",
+    "vc_c19_before",
+    "vc_c19_after",
+    "vc_c19_restored"
+  ],
+  "init": " o->vc_after=0xffffffff;o->vc_restored=0xffffffff;o->vc_disp_after=0xffffffff;o->vc_disp_restored=0xffffffff;o->vc_total_after=0xffffffff;o->vc_total_restored=0xffffffff;o->vc_syncstart_after=0xffffffff;o->vc_syncstart_restored=0xffffffff;o->vc_syncend_after=0xffffffff;o->vc_syncend_restored=0xffffffff;o->vc_validstart_after=0xffffffff;o->vc_validstart_restored=0xffffffff;o->vc_validend_after=0xffffffff;o->vc_validend_restored=0xffffffff;o->vc_c13_after=0xffffffff;o->vc_c13_restored=0xffffffff;o->vc_c19_after=0xffffffff;o->vc_c19_restored=0xffffffff;\n",
+  "block": " /* Next pinned source-order word: NVVCRTC only; readonly775 baseline. */\n o->forward_status=0x77626;o->vc_before=R32(0x680808);\n o->vc_disp_before=R32(0x680800);o->vc_total_before=R32(0x680804);o->vc_syncstart_before=R32(0x68080c);o->vc_syncend_before=R32(0x680810);o->vc_validstart_before=R32(0x680814);o->vc_validend_before=R32(0x680818);o->vc_c13_before=cr(0x13);o->vc_c19_before=cr(0x19);\n if(o->vc_before!=719 || o->vc_disp_before!=479 || o->vc_total_before!=524 || o->vc_syncstart_before!=724 || o->vc_syncend_before!=729 || o->vc_validstart_before!=0 || o->vc_validend_before!=719 || o->vc_c13_before!=104 || o->vc_c19_before!=48)goto restore;\n o->vc_target=479u;o->vc_attempted=1;R32(0x680808)=o->vc_target;\n o->vc_after=R32(0x680808);o->vc_disp_after=R32(0x680800);o->vc_total_after=R32(0x680804);o->vc_syncstart_after=R32(0x68080c);o->vc_syncend_after=R32(0x680810);o->vc_validstart_after=R32(0x680814);o->vc_validend_after=R32(0x680818);o->vc_c13_after=cr(0x13);o->vc_c19_after=cr(0x19);\n if(o->vc_after!=o->vc_target || o->vc_disp_after!=o->vc_disp_before || o->vc_total_after!=o->vc_total_before || o->vc_syncstart_after!=o->vc_syncstart_before || o->vc_syncend_after!=o->vc_syncend_before || o->vc_validstart_after!=o->vc_validstart_before || o->vc_validend_after!=o->vc_validend_before || o->vc_c13_after!=o->vc_c13_before || o->vc_c19_after!=o->vc_c19_before)goto restore;\n",
+  "undo": " if(o->vc_attempted){R32(0x680808)=o->vc_before;o->vc_restored=R32(0x680808);o->vc_disp_restored=R32(0x680800);o->vc_total_restored=R32(0x680804);o->vc_syncstart_restored=R32(0x68080c);o->vc_syncend_restored=R32(0x680810);o->vc_validstart_restored=R32(0x680814);o->vc_validend_restored=R32(0x680818);o->vc_c13_restored=cr(0x13);o->vc_c19_restored=cr(0x19);if(o->vc_restored!=o->vc_before)o->vc_cleanup_mask|=1;if(o->vc_disp_restored!=o->vc_disp_before)o->vc_cleanup_mask|=2;if(o->vc_total_restored!=o->vc_total_before)o->vc_cleanup_mask|=4;if(o->vc_syncstart_restored!=o->vc_syncstart_before)o->vc_cleanup_mask|=8;if(o->vc_syncend_restored!=o->vc_syncend_before)o->vc_cleanup_mask|=16;if(o->vc_validstart_restored!=o->vc_validstart_before)o->vc_cleanup_mask|=32;if(o->vc_validend_restored!=o->vc_validend_before)o->vc_cleanup_mask|=64;if(o->vc_c13_restored!=o->vc_c13_before)o->vc_cleanup_mask|=128;if(o->vc_c19_restored!=o->vc_c19_before)o->vc_cleanup_mask|=256;}\n",
+  "neighbors": [
+    [
+      "vc_disp",
+      6817792,
+      479
+    ],
+    [
+      "vc_total",
+      6817796,
+      524
+    ],
+    [
+      "vc_syncstart",
+      6817804,
+      724
+    ],
+    [
+      "vc_syncend",
+      6817808,
+      729
+    ],
+    [
+      "vc_validstart",
+      6817812,
+      0
+    ],
+    [
+      "vc_validend",
+      6817816,
+      719
+    ],
+    [
+      "vc_c13",
+      19,
+      104
+    ],
+    [
+      "vc_c19",
+      25,
+      48
+    ]
+  ]
+}
