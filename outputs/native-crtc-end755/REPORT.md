@@ -33,3 +33,11 @@ CR03 8c -> 80 -> 8c, six cleanup masks0, selectors1, return/forward755.
 Black median max116 versus white minimum mean217. No expected values substituted.
 This is native optical checkpoint evidence only. Manual reset requested;
 collection/audit pending. Private photograph remains outside the repository.
+
+Closure: user confirmed manual power-cycle to dashboard. One collection with
+per-file double-read retrieved nine preparation phases through handoff_armed.
+Audit001 passed2026-10-28T01:28:17.276433UTC; exact binaries/sources and unrelated
+E directory entries verified. PCI/CRTC/SEQ/geometry/allocation values match the
+retained752 preparation record. No native result was written after handoff.
+Test755 is CLOSED. No startup hook, active owned VM or host process remains.
+Normal Windows shutdown is not claimed; this was a manual power-cycle.

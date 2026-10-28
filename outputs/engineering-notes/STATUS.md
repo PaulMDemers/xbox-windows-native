@@ -1,3 +1,14 @@
+# 755 CLOSED: native CR03 change and recovery pass
+
+Photo CR03 8c->80->8c, six cleanup masks0, selectors1. User manual power-cycle;
+nine preparation records collected once/double-read; auditPASS01:28:17UTC.
+Exact source/build/stage and allocation/alias checks pass; preparation matches
+retained752 PCI/CRTC/SEQ/geometry/allocations. Console authenticatedUnleashX.
+No hook/owned process/VM. No native disk result, normalWindows shutdown or full
+mode/Windows1.6 proof. NEXT outputs/native-crtc-end755/NEXT.md: fresh kernel756
+second CR05 bit7 write (3e->be), own full-byte recovery31, then native counterpart.
+All755/prior runtimes CLOSED; failures preserved. No further launch this turn.
+
 # 755 HELD: photo-qualified native CR03 pass, reset requested
 
 User green/holding. All416 photo bits decoded with five offsets/three thresholds

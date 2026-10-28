@@ -1,15 +1,25 @@
-# Test755 photo-qualified; awaiting manual reset confirmation
+# Test755 CLOSED: native CR03 checkpoint passes
 
-Current readiness recorded. One launch accepted2026-10-28T01:23:30.741104UTC.
-Frozen source/build/stage verification passed. Do not launch again.
-One SITE request with20-second reply bound; do not retry accepted or uncertain.
-User green/holding and full13-row photo decoded/reviewed successfully.
-CR03 8c->80->8c; all six masks0; selectors1. Manual reset requested, not confirmed.
-Then request manual power-cycle, record collection-ready001.json only upon
-user confirmation, collect once with physical003.py collect and audit exact
-preparation/source/build/remote identity. No post-native disk proof or normal
-Windows restart claim. All754/prior runtimes remain CLOSED.
+Do not rerun, recollect or parent this runtime. Nine preparation records collected
+once and double-read after user-confirmed manual power-cycle. Audit001 passes;
+all source/build/remote identities and allocation/alias checks pass. Preparation
+PCI/CRTC/SEQ/geometry/allocations match retained752 records. Native photo shows
+CR03 8c->80->8c, six cleanup masks0 and selectors1. No native disk persistence,
+normal Windows shutdown, full-mode change or Windows1.6 boot proof.
 
-Expected successful report:7550000d,755,755, six zero masks,8c,80,8c,1.
-This is an isolated native CR03 checkpoint, not full1.6 mode or Windows proof.
-Next horizontal CR05 bit7 step remains unimplemented and unqualified.
+Next: fresh kernel756 checkpoint for the second CR05 write in pinned
+outputs/xcal-transaction704/gpu_legacy.c line59, after the qualified CR03 step:
+  (current_CR05 & ~0x80) | ((((779/8)-1)&0x20)<<2)
+Expected selected-input intermediate CR05 3e->be, preserving bits0..6; full
+original CR05 remains31 and must be restored in own-value reverse cleanup.
+Keep the two CR05 writes and their readbacks distinguishable. Capture CR03 and
+CR00/02/04 neighbors; expose attempted/target/observed/recovery explicitly.
+Test dropped/incorrect second writes, neighbor changes, restoration failure,
+and recovery precedence/output-inhibit before physical use. Retain all prior
+failure evidence, explicit clock3375000/high0 and token-aware namespace rename.
+Fresh native counterpart only after kernel checkpoint and independent host checks.
+Do not add CR17/CR01/pitch/vertical/encoder/PLL steps or borrow firmware values.
+
+Console authenticated at UnleashX after manual reset. No hook or owned host
+process/VM remains. Current hardware lease/config remains private. Kernel
+bounded autoreturn authorized; deliberate native hold needs current watcher.
