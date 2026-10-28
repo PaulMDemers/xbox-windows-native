@@ -1,3 +1,13 @@
+# Test767 launched; held observation pending
+
+One SITE accepted15:23:52UTC. Do not retry or recollect a closed runtime.
+Await status color and complete13-row photo; preserve and independently decode
+against optical-schema001.json before requesting manual power-cycle.
+After reset Ready, collect preparation files once/double-read and audit.
+No startup hook or owned host process/VM. Actual console outcome pending.
+
+Prior staged plan (launch step already consumed):
+
 # Test767 staged; watched native run next
 
 Kernel766 CLOSED PASS, native767 fresh validation complete. Unique E staging

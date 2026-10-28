@@ -1,3 +1,14 @@
+# 767 LAUNCHED: native CR19 upper stride; observation pending
+
+One SITE accepted 2026-10-28T15:23:52.569953UTC after user Proceed to the
+watch/photo/reset question. Frozen source/index/build and remote bytes exact;
+authenticated dashboard before launch. Deliberate hold intended; status color
+and full13-row photo pending. No retry, startup hook or owned host process/VM.
+No hardware success inferred from acceptance. All766/prior remain CLOSED.
+NEXT outputs/native-crtc-stride767/NEXT.md: preserve user observation/photo,
+then request manual reset; collect preparation records once after Ready.
+Ordinary launcher/protected720p unchanged; no fullmode/Windows1.6 proof.
+
 # Test767: native CR19 upper stride, staged; awaiting watched test
 
 Source-only kernel766 probe and native765 frontend; all older runtimes remain
