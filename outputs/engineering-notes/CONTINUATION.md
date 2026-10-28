@@ -1,3 +1,13 @@
+# 756 STAGED: kernel second CR05 bit7 checkpoint
+
+Fresh source-only754 extension after native755 pass.153-word record separately
+captures second CR05 target/after/undo and CR00/02/03/04 neighbors. Expected
+31->3e->be->3e->31; intermediate undo failure inhibits output.152 COFF cases,
+2353 layout cases,10 clock cases and independent source/schema/linked checks
+pass. Failed clock-model001 retained (old harness stack offsets;002 correct).
+Unique E stage/readback pass. No launch/hook/owned process/VM. Console dashboard
+authenticated. NEXT outputs/crtc-blank-bit756/NEXT.md. All755/prior CLOSED.
+
 # 755 CLOSED: native CR03 change and recovery pass
 
 Photo CR03 8c->80->8c, six cleanup masks0, selectors1. User manual power-cycle;
