@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "utc": "2026-10-28T01:07:23.077382+00:00",
+  "outcome": "CLOSED clock-reference refusal; no CR03 test executed",
+  "reported_frequency_low32": 3375000,
+  "erroneous_comparison_constant": 3375300,
+  "intended_constant": 3375000,
+  "cause": "prepare.py broad namespace replacement changed decimal3375000; source comparison repeated same replacement and missed it",
+  "object_disassembly_excerpt": "\n     147:\tff 15 00 00 00 00    \tcall   *0x0\n\t\t\t149: dir32\t__imp__HalReturnToFirmware@4\n     14d:\ta1 00 00 00 00       \tmov    0x0,%eax\n\t\t\t14e: dir32\t__imp__KeQueryPerformanceFrequency@0\n     152:\tff d0                \tcall   *%eax\n     154:\t89 94 24 5c 05 00 00 \tmov    %edx,0x55c(%esp)\n     15b:\t89 84 24 58 05 00 00 \tmov    %eax,0x558(%esp)\n     162:\t8b 8c 24 58 05 00 00 \tmov    0x558(%esp),%ecx\n     169:\t89 e0                \tmov    %esp,%eax\n     16b:\t89 48 04             \tmov    %ecx,0x4(%eax)\n     16e:\tc7 00 00 00 00 00    \tmovl   $0x0,(%eax)\n\t\t\t170: dir32\t??_C@_0BP@BFANFHLD@?5?5?$CCkernel_qpc_frequency?$CC?3?$CFlu?0?6?$AA@\n     174:\te8 00 00 00 00       \tcall   179 <_main+0x179>\n\t\t\t175: DISP32\t_append\n     179:\t8b 84 24 58 05 00 00 \tmov    0x558(%esp),%eax\n     180:\t8b 8c 24 5c 05 00 00 \tmov    0x55c(%esp),%ecx\n     187:\t35 c4 80 33 00       \txor    $0x3380c4,%eax\n     18c:\t09 c8                \tor     %ecx,%eax\n     18e:\t74 27                \tje     1b7 <_main+0x1b7>\n     190:\teb 00                \tjmp    192 <_main+0x192>\n     192:\t8d 05 00 00 00 00    \tlea    0x0,%eax\n\t\t\t194: dir32\t??_C@_0BI@GJGPJDDE@clock_reference_refused?$AA@\n     198:\t31 c9                \txor    %ecx,%ecx\n     19a:\t89 04 24             \tmov    %eax,(%esp)\n     19d:\tc7 44 24 04 00 00 00 \tmovl   $0x0,0x4(%esp)\n     1a4:\t00 \n     1a5:\te8 00 00 00 00       \tcall   1aa <_main+0x1aa>\n\t\t\t1a6: DISP32\t_checkpoint\n     1aa:\tc7 04 24 01 00 00 00 \tmovl   $0x1,(%esp)\n     1b1:\tff 15 00 00 00 00    \tcall   *0x0\n\t\t\t1b3: dir32\t__imp__HalReturnToFirmware@4\n     1b7:\t8b 84 24 8c 05 00 00 \tmov    0x58c(%esp),%ea",
+  "audit001_failure_retained": true,
+  "exact_sources_build_stage_collection": true,
+  "before_video_mode_or_probe": true,
+  "normal_windows_shutdown": false,
+  "native_or_CR03_proof": false,
+  "hook": false,
+  "dashboard_authenticated": true,
+  "physical_access": false
+}

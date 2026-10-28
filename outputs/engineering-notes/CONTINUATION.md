@@ -1,3 +1,14 @@
+# 753 CLOSED: clock guard refused before video/CR03
+
+Two reports collected once: start and clock_reference_refused. Logged frequency
+3375000; actual compiled comparison3375300. Broad namespace750->753 substitution
+changed decimal clock constant and expected-source review repeated same error.
+138 probe tests excluded main clock gate. Audit001 failure retained; independent
+refusal-audit001 confirms cause. No video mode or CR03 probe, hook or process/VM.
+Console authenticatedUnleashX. Fresh754 must use token-aware renaming, correct
+3375000/full64 logging and actual main clock-gate tests. All753/prior CLOSED.
+NEXT outputs/crtc-blank-end753/NEXT.md.
+
 # 753 LAUNCHED: one accepted CR03 kernel checkpoint
 
 SITE accepted 2026-10-28T01:04:54.737899+00:00; preparationa369cb36 pushed.

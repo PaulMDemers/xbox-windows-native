@@ -1,10 +1,7 @@
-753 LAUNCHED ONCE; do not retry. Await authenticated dashboard then collect once.
+# 753 CLOSED after clock refusal
 
-# 753 staged and frozen
-
-One bounded SITE launch via physical.py after readiness based on current
-user Proceed and authenticated staging. No hook; automatic return after15sec.
-Do not retry accepted/uncertain launch. Bounded authenticated dashboard check,
-then one collection and audit_collection.py. Preserve all failures. Audit reads
-143 result words independently; no visual observation unless user provides it.
-All752/prior CLOSED. Native counterpart only after kernel753 is closed/qualified.
+Never rerun/recollect/parent. Fresh754 source-only corrective attempt: token-aware
+namespace replacement; independent frequency3375000 guard and full64 logging;
+actual main clock-gate instruction tests before new build/stage/launch. CR03
+probe hardware remains untested. Preserve audit001 failure and refusal-audit001.
+No hook/VM/process. Console authenticatedUnleashX.
