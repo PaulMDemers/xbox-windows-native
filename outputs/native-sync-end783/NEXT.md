@@ -1,22 +1,28 @@
-# Test783 optical PASS; manual reset/preparation collection pending
+# Test783 CLOSED PASS: native NVVSYNCEND recovery
 
-Single launch22:11:26UTC. User reports green, holding and supplied full13-row
-photo. Fresh decoder003/reviewer003 PASS: signature7830000d, final783, eight
-raw cleanup masks0, NVVSYNCEND729 ->492 ->729. All416bits independently checked
-at five offsets/three thresholds plus352 adjacent-row interpolated samples.
-Maximum black-channel median47; minimum white mean207. No decode failure.
-Eleven omitted cleanup masks aggregate-only through final status; neighbors,
-selectors/CPU and earlier individual recovery values not exposed raw.
+Single SITE accepted22:11:26UTC; user green-held photo decoded/reviewed:
+NVVSYNCEND729 ->492 ->729; eight displayed cleanup masks0, final783.
+All416bits at five offsets/three thresholds plus352 adjacent-row checks PASS.
+Eleven omitted masks aggregate-only; neighbor/selector/CPU details not raw.
+Manual power-cycle confirmed. Dashboard authenticated22:18:30UTC; nine preparation
+reports collected once/double, audit005 PASS22:18:33UTC. Exact source/build/stage/
+private files, allocation alias/disjoint bounds and unrelatedE/apps entries pass.
+Compared with closed752 records, PCI/CRTC/sequencer/geometry match; allocation
+addresses differ with bounds PASS. Native result optical-only; persisted reports
+stop at handoff_armed. No normalshutdown/fullmode/Windows1.6/acceleration claim.
 
-User has been asked to power-cycle, return to UnleashX and reply Ready. Await
-confirmation before authenticated dashboard check/collection. Console last
-observed held; no startup hook/owned host process/VM. No repeat launch. Private
-photo retainedC:/xwn783/photo001.jpg, never staged. Frozen prelaunch41source
-hashes unchanged; postlaunch decoder/reviewer are separate evidence.
+No startup hook/owned host process/VM; all12CPU fixtures closed. Console at
+UnleashX; protected720p/ordinary launcher unchanged. Preserve failed-Os payload003,
+reviewer006padding assumption, staging-failure001ignored link.ld. Fresh-Oz004
+13688bytes fit unchanged14080reserve and received fresh497direct/487full-path/
+76optical/12CPU qualification; no instruction equivalence claim across flags.
+All783/prior runtimes CLOSED; never rerun/recollect/parent a closed runtime.
 
-NEXT after reset collect nine expected preparation reports once/double, run
-frozen audit005 against exact source/build/stage/photo. Preparation ends at
-handoff_armed; native result photo-only. Do not close until audit. All782/prior
-CLOSED, no recollection/relaunch. No fullmode/Windows1.6/acceleration or normal
-shutdown claim. Protected720p/ordinary launcher unchanged; all prior783 failures
-preserved. Next source-order register only after closure and a fresh attempt.
+NEXT fresh kernel784 for pinned source-order NVVVALIDEND at0x680818:
+legacy704gpu_legacy.c82 sets yres-1; target480-1=479, physical prior baseline719.
+Use source-only782 extension, check all eight neighboring timing/pitch values
+and own-value restoration, exact schema/host fault coverage/linked bytes before
+stage. Native counterpart only after kernel qualification. Anticipate a430-word
+result and revalidate exact native reserve bounds and payload size independently;
+do not infer safety from783. Standing watch/reset authority applies today. No784
+source/build/stage/launch exists yet. Later CRTC7/10 operations remain untouched.
