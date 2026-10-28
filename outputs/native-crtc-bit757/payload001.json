@@ -1,0 +1,114 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "space": {
+    "minimum_free_gib": 20.05,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c",
+        "free_bytes": 62439124992
+      },
+      {
+        "free_bytes": 62439124992,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "sources": {
+    "transaction757.c": "be4c52e5113ac4b4b06e762961157920a879998656c9601e34b28611d931155d",
+    "transaction.h": "013e52793136af64f41ca393f1465746f0192ad0f5143a4a815f224c21d45842",
+    "probe.c": "040e0abca0cee27eac09cc07361905a6876c257f445bb65444df05bb20a05a95",
+    "probe.h": "c36e3768ffd7ecd13c3cff1a1c59c7feebc00f4e80a3f754b80b5b345465bc1f"
+  },
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "compile32": {
+    "command": [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-m32",
+      "-Os",
+      "-ffreestanding",
+      "-fno-pie",
+      "-fno-pic",
+      "-fno-stack-protector",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-nostdlib",
+      "-static",
+      "-no-pie",
+      "-Wl,-Ttext=0x100000,-e,native_transaction704,--build-id=none,--emit-relocs",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-crtc-bit757/transaction757.c",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-crtc-bit757/probe.c",
+      "-o",
+      "/mnt/c/xwn757/payload001/native.elf"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  "relocations": {
+    "command": [
+      "readelf",
+      "-rW",
+      "/mnt/c/xwn757/payload001/native.elf"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "6cec8b6ae8ebb1fe9ccc0c3a447c69c505d64a7d6ea0b81765588155f57a7e35",
+    "stderr": ""
+  },
+  "objcopy": {
+    "command": [
+      "objcopy",
+      "-O",
+      "binary",
+      "/mnt/c/xwn757/payload001/native.elf",
+      "/mnt/c/xwn757/payload001/native.bin"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  "symbols": {
+    "command": [
+      "nm",
+      "-n",
+      "/mnt/c/xwn757/payload001/native.elf"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "92948c86638e444a4660840ff12373c2fc0e18bb1e0cc145cb8e164392bdad1f",
+    "stderr": ""
+  },
+  "disassembly": {
+    "command": [
+      "objdump",
+      "-d",
+      "/mnt/c/xwn757/payload001/native.elf"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "30fb5605f32c0307beac33a9156eae2d890f317fc082ead5a9d0c520ad22f838",
+    "stderr": ""
+  },
+  "unpadded_bytes": 8568,
+  "unpadded_sha256": "cb5210ae19bd016c647980e502eea7f9faad0e06ded11d203dfdcfdb7be00f25",
+  "diagnostic_checkpoint": 1879,
+  "payload_extent_bytes": 9916,
+  "files": {
+    "compile32.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compile32.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "disassembly.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "disassembly.stdout": "30fb5605f32c0307beac33a9156eae2d890f317fc082ead5a9d0c520ad22f838",
+    "native.bin": "cb5210ae19bd016c647980e502eea7f9faad0e06ded11d203dfdcfdb7be00f25",
+    "native.elf": "317d51a7d1bac91494a1ceb2935bdedf88cf5c78782af825516a9c104c7a0eb0",
+    "objcopy.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "objcopy.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "payload.bin": "974df34fd9c575f77fa158502c795b291a17102b71df365d332295cc28885fd1",
+    "relocations.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "relocations.stdout": "6cec8b6ae8ebb1fe9ccc0c3a447c69c505d64a7d6ea0b81765588155f57a7e35",
+    "symbols.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "symbols.stdout": "92948c86638e444a4660840ff12373c2fc0e18bb1e0cc145cb8e164392bdad1f"
+  },
+  "ended_utc": "2026-10-28T01:39:19.903488+00:00"
+}
