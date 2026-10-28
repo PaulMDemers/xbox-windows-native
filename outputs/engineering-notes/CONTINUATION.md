@@ -1,3 +1,16 @@
+# 768 CLOSED BASELINE REFUSAL: CR22 FA, required FE
+
+OneSITE16:01:57UTC; automatic dashboard return inferred. Sevenreports collected
+once/double-read, independent integrity/schema audit PASS16:03:01UTC. Actual
+code7682 baseline refusal, zero setupMMIO/CRTC and CR13 attempts; NOT CR13PASS.
+Only admission-value difference from766 is CR22FA vsFE. Kernel-context CRTC
+capture differs from767 only atCR22; PCI/sequencer/mode equal. Cause unknown.
+No CR22 write/guard waiver. Console authenticateddashboard; nohook/VM/process.
+All768/priorCLOSED; never repeat/recollect/parent closedruntime.
+NEXT outputs/crtc-stride-low768/NEXT.md: obtain10second cold-powercycle readiness
+before fresh independently validated attempt. Preserve allreview/packaging
+failures. No fullmode/Windows1.6; ordinarylauncher/protected720p unchanged.
+
 # 768 LAUNCHED: kernel CR13 low stride
 
 One SITE accepted2026-10-28T16:01:57.154969UTC. Frozen source/index/build and

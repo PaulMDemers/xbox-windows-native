@@ -1,3 +1,21 @@
+# Test768 CLOSED BASELINE REFUSAL; cold-reset input needed
+
+Collection/audit complete, no further access to768runtime. CR22FA differs from
+qualifiedFE before any diagnostic register write; CR13 was not attempted.
+Cause unknown, no gate waiver or CR22 write. Consoleatdashboard, nohook/process.
+
+Request full power-off10seconds then UnleashX Ready on1.6HDMI, with no manual
+launch. This changes the startup condition before a fresh unique kernel attempt;
+it does not guarantee FE. Reuse only retained source, with fresh namespace,
+source/binary/host/model/schema/link and stage readback qualification. All
+original guards remain. If fresh run refuses again, do not continue repeated
+boots; design bounded read-only CR22 context/stability observation separately.
+Native CR13 counterpart remains deferred pending admitted kernel evidence.
+Active768 controllerphysical003/audit_collection003 are historical only.
+Full originalmodel001 retained privately; compactmodel002 has identical data.
+
+Prior chronology follows:
+
 # 768 LAUNCHED: kernel CR13 low stride
 
 One SITE accepted2026-10-28T16:01:57.154969UTC. Frozen source/index/build and
