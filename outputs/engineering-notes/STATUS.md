@@ -1,3 +1,33 @@
+# Test772 qualified: native NVVDISPEND checkpoint; no launch
+
+Fresh native ELF309 and relocated299 fault cases PASS. All12 diskless CPU
+fixtures closed,76 whole-frame optical checks,32 compiled page cases and372
+ownership cases PASS. Actual PE/XBE links and independent source/schema/bounds
+review PASS. Payload001 fixed-extent failure retained; payload002 raw12664,
+padded12800 fits1000..4200 before IDT4800. Result256words ends5500; guard and
+stack unchanged. Final772 requires all14 recovery masks; eight raw masks and
+719/479/719 are optical, six masks omitted raw. No full-mode/Windows1.6 proof.
+No hardware launch/hook/owned host process/VM; console last authenticated
+dashboard after771. All771/prior CLOSED. Ordinary launcher/protected720p unchanged.
+NEXT freeze index, commit/push, uniqueE stage/readback, then request current
+watch/photo/reset readiness before one held native launch. No retry of accepted
+or uncertain SITE. See outputs/native-vertical-end772/NEXT.md.
+
+# Test772 PREPARING: native NVVDISPEND counterpart; no launch
+
+Kernel771 CLOSED PASS and pushed020a709d. Fresh772 uses source-only770 frontend
+and771 probe. Payload001 build rejected its old9916-byte extent; raw12664 bytes
+retained privately. Payload002 with12800-byte contract passes, ending at4200
+before IDT4800. Result256words5100..5500, unchanged guard5500..6000 and stack.
+Direct ELF309 fault cases and fresh host page construction pass. Relocated
+integration qualification running; fresh CPU fixtures built, not yet run.
+No XBE build/stage/launch/hook. Console last authenticated dashboard after771;
+no new hardware access. All771/prior closed; no runtime reuse. No functional
+driver or mode promotion. Current next: finish CPU/integration/optical and linked
+XBE qualification, freeze/review exact bytes, stage uniqueE path, then request
+current watch/photo/reset readiness for deliberate native hold.
+See outputs/native-vertical-end772/NEXT.md. Ordinary launcher/protected720p unchanged.
+
 # Test771 CLOSED PASS: kernel NVVDISPEND own-value recovery
 
 OneSITE accepted16:51:59UTC; seven reports collected once/double after authenticated
