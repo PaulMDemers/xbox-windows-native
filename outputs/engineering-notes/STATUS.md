@@ -1,3 +1,14 @@
+# 769 STAGED: fresh cold-condition CR13 test
+
+User Ready confirms requested10second cold power cycle. Fresh namespace-only
+kernel from768:278COFF/2353layout/10clock/source/schema/linkPASS; exactindex
+and uniqueEstage/readbackPASS. No769failures. XBE122880bytes SHA256
+ e549a138ac43eb6eb1d0c502e34cab216835c6ddc11841636b84335bca6b7674.
+CR22FEguard unchanged; no CR22write/waiver. No launch/hook/VM/ownedhostprocess.
+All768/priorCLOSED. NEXT outputs/crtc-stride-cold769/NEXT.md: one bounded
+kernellaunch then collection/audit. Second refusal stops further repeatedboots.
+No native/fullmode/Windows1.6proof; ordinarylauncher/protected720p unchanged.
+
 # 768 CLOSED BASELINE REFUSAL: CR22 FA, required FE
 
 OneSITE16:01:57UTC; automatic dashboard return inferred. Sevenreports collected
