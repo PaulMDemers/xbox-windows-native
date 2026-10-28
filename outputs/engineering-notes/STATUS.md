@@ -1,3 +1,17 @@
+# 767 CLOSED PASS: native CR19 upper stride and recovery
+
+Manual reset Ready; nine preparation files collected once/double-read.
+Independent audit PASS2026-10-28T15:48:14UTC: frozen source/build/stage exact,
+allocation/aliases and unrelated E/apps entries unchanged; retained752 PCI,
+CRTC, sequencer, allocation and geometry preparation values match.
+Photo-only native final767, eight displayed masks0, CR19 own10/30/10.
+Four masks omitted raw; final767 requires all12 clear. CR13 raw values unseen.
+Last persisted phase handoff_armed; manual power-cycle, not normal shutdown.
+Console authenticated dashboard; no hook/owned host process/VM. All767/prior
+CLOSED: never rerun/recollect/parent runtime. Preserve photo001/002 failures.
+NEXT outputs/native-crtc-stride767/NEXT.md: fresh source-only kernel768 CR13
+low-byte stride operation; independent validation first. No fullmode/Windows1.6.
+
 # 767 OPTICAL PASS: CR19 upper stride; manual reset pending
 
 User Green, holding; private photo decoded signature7670000d, final767,

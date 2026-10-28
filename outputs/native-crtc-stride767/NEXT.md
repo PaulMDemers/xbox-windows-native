@@ -1,3 +1,23 @@
+# Test767 CLOSED PASS; next separate operation is CR13
+
+Do not rerun/recollect/parent767 or any older runtime. All9 preparation files
+are preserved and audited; console authenticated dashboard after manual reset.
+No hook/owned host process/VM. Native photo-only final767 and CR19 10/30/10;
+eight masks directly zero, four other masks and CR13 raw readings not shown.
+
+Next fresh kernel768, SOURCE ONLY from766 and accepted767 findings: extend
+pinned gpu_legacy.c source order with NvSetCrtc(0x13,m & 0xff), after CR19 upper
+stride. Target720 pixels,4bytes/pixel: m=(720/8)*4=360=0x168, lowbyte0x68.
+Independently confirm formula/context and baseline before writing. Separate
+fresh-before/forward/own-restored readings; preserve all neighbor/selector and
+inherited recovery checks. Do not collapse CR19 recovery or waive a failure.
+Host object/layout/model/clock/link checks and exact frozen stage readback
+precede one automatic-return kernel launch. Native counterpart needs fresh
+relocation/CPU/optical validation and current watch/photo/reset availability.
+No full-mode replay, encoder/PLL/vertical changes or Windows1.6 claims.
+
+Prior chronology follows:
+
 # Test767 optical PASS; reset Ready and collection pending
 
 Photo-review001 passes CR19 10/30/10, eight raw masks0 and final767. Preserve
