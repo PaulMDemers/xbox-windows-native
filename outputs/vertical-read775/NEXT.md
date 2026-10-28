@@ -1,10 +1,8 @@
-# Test775 staged: read-only vertical baseline
+# Test775 launched: awaiting bounded automatic return
 
-UniqueE stage/source/build readback PASS. No launch yet; authenticated dashboard.
-Qualification pushed00afc9fe. No startup hook/VM/owned host process. All774/prior
-CLOSED. NEXT one SITE20second reply bound, never accepted/uncertain retry. Wait
-for bounded automatic return, collect once/double and audit actual raw readings.
-Notify user if stuck beyond roughly two minutes. Standing authorization applies.
-No custom timing writes, native handoff, fullmode or Windows1.6 proof.
-Ordinary launcher/protected720p unchanged. See this kit's README and review001.
+One SITE accepted 2026-10-28T19:26:53.768951+00:00; reply200. No repeat launch. Read-only vertical
+snapshot; actual result not yet collected. No hook/owned VM/host process.
+All774/prior CLOSED. NEXT authenticated dashboard return, collect once/double,
+local audit; if offline beyond roughly two minutes notify available user.
+Ordinary launcher/protected720p unchanged; no native/fullmode/Windows proof.
 
