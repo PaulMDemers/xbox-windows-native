@@ -1,3 +1,10 @@
+# 754 LAUNCHED: corrected CR03 automatic-return checkpoint
+
+One SITE accepted 2026-10-28T01:11:49.645252+00:00; preparationc55edcc1 pushed.
+No startup hook/native handoff/Windows. Do not repeat. Bounded authenticated
+dashboard observation then one collection/audit. All753/prior CLOSED; no VM.
+NEXT outputs/crtc-blank-end754/NEXT.md.
+
 # 754 STAGED: corrected clock gate and isolated CR03 checkpoint
 
 753 CLOSED clock-refusal retained.754 token-aware namespace keeps3375000;

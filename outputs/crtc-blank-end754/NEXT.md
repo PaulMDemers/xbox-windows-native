@@ -1,3 +1,5 @@
+754 LAUNCHED ONCE; do not retry. Await authenticated dashboard then collect once.
+
 # 754 staged and frozen
 
 Fresh corrected clock gate, full64 logging; CR03 transaction unchanged753.
