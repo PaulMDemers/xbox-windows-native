@@ -1,3 +1,14 @@
+# 764 STAGED: kernel CR17 forward enable and saved-value recovery
+
+228 COFF,2353layout,10clock and independent source/schema/link checks PASS.
+Frozen sources/index and uniqueE stage/readback PASS. Adds CR1763->e3->63 while
+outer blanking remains applied, then unwinds prior writes; all eleven aggregate
+masks required. No764launch/hook/nativehandoff/ownedVM/process. Consoleauthenticated
+dashboard. All763/prior CLOSED. NEXT outputs/crtc-reenable764/NEXT.md: one
+standing-authorized automatic-return kernel launch and exact collection/audit.
+Future native200word result ends5420; must expand initialized5400 with fresh
+bounds/CPU/integration tests. No fullmode/Windows1.6 claim.
+
 # 763 CLOSED PASS: native later CR02 same-value checkpoint
 
 Photo decoded final763,eight displayed zero recovery masks and CR0259->59->59;
