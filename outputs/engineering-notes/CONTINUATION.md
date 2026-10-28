@@ -1,3 +1,13 @@
+# 754 CLOSED: kernel CR03 change and recovery pass
+
+Correct frequency3375000/high0. CR03 8c->80->8c; CR00/02/04/05 neighbors
+5c/59/5d/3e. Prefix15/H7 and six cleanup masks pass; selectors1. Seven reports
+collected once/double-read; auditPASS01:12:36UTC. Automatic firmware restart
+requested and dashboard authenticated; no visual/normalWindows shutdown claim.
+753 clock-refusal failure preserved. No hook/owned process/VM. All754/prior
+CLOSED. NEXT outputs/crtc-blank-end754/NEXT.md: fresh native755 counterpart,
+143word result ends533c, preserve zeroingthrough5400 and explicit optical limits.
+
 # 754 LAUNCHED: corrected CR03 automatic-return checkpoint
 
 One SITE accepted 2026-10-28T01:11:49.645252+00:00; preparationc55edcc1 pushed.

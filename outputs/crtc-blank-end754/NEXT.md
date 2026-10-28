@@ -1,10 +1,12 @@
-754 LAUNCHED ONCE; do not retry. Await authenticated dashboard then collect once.
+# 754 CLOSED
 
-# 754 staged and frozen
-
-Fresh corrected clock gate, full64 logging; CR03 transaction unchanged753.
-Next one authorized SITE with20sec bound via physical.py. No hook. Automatic
-return intended. Never retry accepted/uncertain launch. Bounded authenticated
-dashboard observation, one collection, audit_collection.py, verify frequency
-low3375000/high0 separately.753 CLOSED and neverrerun. Native counterpart only
-after actual kernelCR03 result and restoration qualified.
+Next fresh native755 counterpart from754 probe and752 frontend source only.
+Keep native CPU guard distinct.143words572bytes end533c from5100;752zero5400
+is sufficient but prove initialized range/guard and stack6000 before launch.
+Expose all six cleanup masks plus CR03before/after/restored and selectors in13
+optical rows; nativeCR0 can be omitted only with explicit exposure limitation.
+Revalidate native ELF, CPU, relocated integration, optical, page/plan/link and
+independent source checks. Use token-aware namespace substitution; independently
+verify3375000 and all other numeric constants. Unique E stage after tests.
+Deliberate hold requires current watch/photo/reset readiness. No fullmode or
+Windows1.6 qualification. Console authenticatedUnleashX; no hook/process/VM.
