@@ -1,3 +1,24 @@
+# 768 STAGED: kernel CR13 low stride; launch pending
+
+278COFF/2353layout/10clock and corrected review005 PASS. Original pretty model
+exceeds5MiB repository limit: retained private with hash, publicmodel002 has
+identical parsed data. Preserve reviewer001/002/004 and repository failures;
+no guest changes. Exact stage/readback PASS, XBE122880bytes SHA256
+ a669e273593405f7cbdd5f5698d7b3212499313e70899267820b1ea995f07b53.
+Active controllerphysical003 (original stage physical.py hash retained),
+review005/sources005; audit_collection003. No launch/hook/ownedVM/process.
+NEXT outputs/crtc-stride-low768/NEXT.md. All767/prior CLOSED.
+
+# 768 PREPARED: kernel CR13 low stride
+
+Fresh278COFF/2353layout/10clock and source/schema/link checksPASS;232words.
+CR13 target68 after CR19=30, own80 recovery beforeCR19; all13masks required.
+Reviewer001 whitespace and002 receipt-name failures preserved;003PASS,
+guest unchanged. No768stage/launch/hook/VM/ownedhostprocess. Consolelastdashboard.
+All767/priorCLOSED. NEXT outputs/crtc-stride-low768/NEXT.md: exactfreeze/stage,
+one bounded automatic-return kernel launch then collection/audit.
+No fullmode/Windows1.6 proof; ordinarylauncher/protected720p unchanged.
+
 # 767 CLOSED PASS: native CR19 upper stride and recovery
 
 Manual reset Ready; nine preparation files collected once/double-read.

@@ -1,0 +1,23 @@
+{
+  "fields": [
+    "c13_before",
+    "c13_target",
+    "c13_attempted",
+    "c13_after",
+    "c13_restored",
+    "c13_cleanup_mask",
+    "c19_before_c13",
+    "c19_after_c13",
+    "c17_after_c13",
+    "c0_after_c13",
+    "c1_after_c13",
+    "c2_after_c13",
+    "c3_after_c13",
+    "c4_after_c13",
+    "c5_after_c13",
+    "c19_restored_c13"
+  ],
+  "init": " o->c13_after=o->c13_restored=o->c19_after_c13=o->c17_after_c13=o->c0_after_c13=o->c1_after_c13=o->c2_after_c13=o->c3_after_c13=o->c4_after_c13=o->c5_after_c13=o->c19_restored_c13=0xffffffff;\n",
+  "block": " /* Next original stride low byte: pixelDepth is four bytes, m=360. */\n o->forward_status=0x76820;o->c13_before=cr(0x13);o->c19_before_c13=cr(0x19);\n if(o->c13_before!=o->c13_after_c19b || o->c19_before_c13!=o->c19b_after)goto restore;\n o->c13_target=((720u/8u)*4u)&0xff;\n o->c13_attempted=1;cw(0x13,(uint8_t)o->c13_target);\n o->c13_after=cr(0x13);o->c19_after_c13=cr(0x19);o->c17_after_c13=cr(0x17);\n o->c0_after_c13=cr(0);o->c1_after_c13=cr(1);o->c2_after_c13=cr(2);o->c3_after_c13=cr(3);o->c4_after_c13=cr(4);o->c5_after_c13=cr(5);\n if(o->c13_after!=o->c13_target || o->c19_after_c13!=o->c19_before_c13 || o->c17_after_c13!=o->c17b_target || o->c0_after_c13!=o->c0_target || o->c1_after_c13!=o->c1_target || o->c2_after_c13!=o->c2b_target || o->c3_after_c13!=o->c3_target || o->c4_after_c13!=93 || o->c5_after_c13!=o->c5b_target)goto restore;\n",
+  "undo": " if(o->c13_attempted){cw(0x13,(uint8_t)o->c13_before);o->c13_restored=cr(0x13);o->c19_restored_c13=cr(0x19);if(o->c13_restored!=o->c13_before)o->c13_cleanup_mask|=1;if(o->c19_restored_c13!=o->c19_before_c13)o->c13_cleanup_mask|=2;}\n"
+}
