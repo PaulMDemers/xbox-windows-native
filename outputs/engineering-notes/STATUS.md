@@ -1,3 +1,10 @@
+# 753 LAUNCHED: one accepted CR03 kernel checkpoint
+
+SITE accepted 2026-10-28T01:04:54.737899+00:00; preparationa369cb36 pushed.
+Automatic-return kernel diagnostic, no native handoff/Windows/startup hook.
+No retry. Bounded authenticated dashboard observation then one collection/audit.
+All752/prior CLOSED. No owned VM. NEXT outputs/crtc-blank-end753/NEXT.md.
+
 # 753 STAGED: kernel CR03 horizontal blank-end checkpoint
 
 Fresh source-only750 extension after native752 closure. Captured CR038c,

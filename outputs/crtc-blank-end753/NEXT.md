@@ -1,3 +1,5 @@
+753 LAUNCHED ONCE; do not retry. Await authenticated dashboard then collect once.
+
 # 753 staged and frozen
 
 One bounded SITE launch via physical.py after readiness based on current
