@@ -1,10 +1,16 @@
+# Test765 PHOTO PASS; await user reset Ready
+
+Photo and native values preserved; no further photo needed. User manualpowercycle
+requested; do not collect until Ready. Then one double-read preparationcollection
+and exact source/build/stage/allocation/alias audit. Native result is photo-only.
+No new launch or closed runtime reuse. No hook/ownedVM/process; last screenheld.
+
 # Test765 LAUNCHED; await held report and photo
 
 All fresh validation and exact source/index/build/stage checks PASS. One SITE
 accepted2026-10-28T04:26:19.182299UTC; do not launch again.
 User confirmed watch/reset readiness and HDMI/dashboard before launch. No
-hook/ownedVM/process. Actual held screen observation/photo pending. Preserve
-all13rows before asking manualpowercycle; do not collect until userresetReady.
+hook/ownedVM/process. Photo preserved and decoded; userresetReady pending.
 
 Expected final765 requiresall11 masks. Displayed eightmaskrows omitCR03,
 secondCR05,firstCR17. Expected secondCR17triplet63/e3/63; no unseen read assumed.

@@ -1,3 +1,17 @@
+# 765 PHOTO PASS; manual reset requested, collection pending
+
+User Green, holding; private photo decoded7650000d/final765, eight displayed
+zero recovery masks and CR17second63->e3->63.416bits each fiveoffsets/three
+thresholds agree;352adjacentrow crosschecksPASS. Blackmax116/white meanmin208.67.
+CR03,secondCR05,firstCR17 aggregate masks not displayed individually; tested
+final765 requiresforward success and all11 clear. No unseen fields substituted.
+Photo preserved privately; only derived numeric evidence public. Manualpowercycle
+requested; currentReady pending. Consolelastobservedholding; no hook/ownedVM/
+process. Do not collect or relaunch yet. All764/prior CLOSED.
+NEXT outputs/native-crtc-reenable765/NEXT.md: userresetReady, then exact one
+preparationcollection/double-read/audit. Native resultphoto-only; no normal
+shutdown/fullmode/Windows1.6qualification. Ordinary launcher720p unchanged.
+
 # 765 LAUNCHED: watched native CR17 forward-enable control
 
 Current user confirmed Ready to watch and reset with HDMI/dashboard. Exact

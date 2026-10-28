@@ -39,3 +39,13 @@ Unique E stage and exact readback PASS. Awaiting watcher readiness; not launched
 User confirmed current watch/photo/reset readiness. Exact frozen index, source,
 build and remote staged bytes reverified. One SITE accepted2026-10-28T04:26:19.182299UTC.
 Actual screen/photo pending; no retry, startup hook or owned host process/VM.
+
+## Native optical result; collection pending
+
+User reported green, holding. Private photo independently decoded signature
+7650000d, final765, eight displayed zero masks and CR17second63/e3/63. All416bits
+agree across five offsets and three thresholds;352adjacent-row crosschecksPASS.
+Black median channel max116; white median mean min208.67. The three omitted
+aggregate masks remain unexposed; tested final765 requires all11 clear. No
+native disk result or complete mode-switch/Windows1.6 proof. Manual power-cycle
+requested; userReady and one preparation-file collection/audit still pending.
