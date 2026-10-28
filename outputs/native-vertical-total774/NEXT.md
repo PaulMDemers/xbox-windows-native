@@ -1,10 +1,17 @@
-# Test774 launched: native vertical-total checkpoint
+# Test774 optical PASS; awaiting manual reset and preparation collection
 
-Single SITE requested 2026-10-28T18:42:06.872773+00:00; reply 200 EXEC command succeeded.. No retry. Native held report intended; actual screen not yet observed.
-Await photo/status. If held or stuck after roughly two minutes notify user. Decode exact13rows before requesting reset; after confirmed reset collect preparation once/double and audit. No repeat launch.
-All773/prior CLOSED. Kernel773749->524->749 PASS; native774 not yet
-qualified physically. All host gates PASS, twelve CPU fixtures closed; retained
-integration003 harness-offset failure fixed in fresh integration004 receipt.
-No hook/owned host process/VM. Ordinary launcher/protected720p unchanged.
-No fullmode/Windows1.6 proof. Today watch/reset authorization applies.
+User reports green/holding. Private photo decoded by fresh002: signature7740000d,
+final774; eight displayed cleanup masks zero; NVVTOTAL749->524->749.
+All416bits agree at five offsets and three thresholds;352 adjacent-row checks.
+Seven omitted raw masks remain aggregate-only through final success code.
+Photo001 decode failed row11 cell isolation (dark gray right margin joined black);
+retained. Photo002 tightens component black threshold only, no substituted values.
+Actual black maximum16, minimum white mean204. Fresh reviewer002 PASS.
+Console last observed held report, manual reset NOT yet confirmed. No hook/VM/
+owned host process. All773/prior CLOSED. No native disk/fullmode/Windows proof.
+NEXT user power-cycle to UnleashX; once Ready record confirmation, collect774
+preparation once/double, run audit_collection002.py -> audit002.json locally.
+Frozen original audit_collection.py retained;002 follows new photo receipt pins.
+No repeat launch. Ordinary launcher/protected720p unchanged. Today watch/reset
+availability applies. Preserve integration003 and photo001 failures.
 
