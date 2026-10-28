@@ -1,3 +1,25 @@
+# 770 STAGED: native CR13 counterpart; launch pending
+
+278 ELF/268 relocated/76 optical/12 CPU (allclosed)/32page/372plan and independent
+source/bounds/link checks PASS. Exact frozen index and unique E-stage readback PASS.
+XBE131072bytes SHA256 ed333551a5a43d0b210760d402eb9655641f676b22bfa4d022a45d84a24bb051.
+No770 failures/launch/hook/owned host process/VM. Console authenticated dashboard.
+Await current watch/reset readiness for intentional hold. NEXT precise protocol:
+outputs/native-crtc-stridelow770/NEXT.md. All769/prior CLOSED. CR13 target68,
+own80 recovery; eight raw masks plus CR13triplet displayed, five masks omitted
+raw but final770 requiresall13. No fullmode/Windows1.6 or normalshutdown proof.
+Ordinarylauncher/protected720p unchanged. Kernel769 PASS and768 refusal retained.
+
+# 770 PREPARING: native CR13 counterpart; no console launch
+
+Source-only767 frontend plus audited769 probe; expanded result928bytes within
+reserved area; native admission guards unchanged. Fresh build and278 ELF cases
+PASS. Full relocated/optical tests running;12 diskless CPU fixtures built.
+No XBE/stage/launch/startup hook. Console last authenticated dashboard after769.
+All769/prior CLOSED. NEXT outputs/native-crtc-stridelow770/NEXT.md.
+Requires complete tests, freeze and stage before current watch/photo/reset request.
+No fullmode/Windows1.6 proof; ordinarylauncher/protected720p unchanged.
+
 # 769 CLOSED PASS: kernel CR13 low stride after cold reset
 
 Single launch accepted16:16:18UTC; automatic dashboard return inferred.
