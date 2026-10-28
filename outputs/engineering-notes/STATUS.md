@@ -1,3 +1,14 @@
+# 749 PHOTO PASS: native CR00 changes and restores correctly
+
+All416 photo bits decoded/cross-checked: return/forward749, CR00c8->5c->c8,
+CR05afterCR00=3e, cleanup masks0/0/0/0, selectors1, nativeCR04001003b.
+Green held image observed. CR3/4, CR04after and individual H7 words unexposed;
+CR04/05 restoration aggregate-only. First decoder missed a reflected dark cell;
+failed evidence retained, revised decode independently cross-checked.
+User reset requested; no reset confirmation or collection yet. Console last
+observed held; no hook/owned process/VM. All748/prior CLOSED.
+NEXT outputs/native-crtc-total749/NEXT.md. No full mode or Windows proof.
+
 # 749 GREEN HOLD: awaiting full photo
 
 User reports green and holding. Raw native values remain unverified until the

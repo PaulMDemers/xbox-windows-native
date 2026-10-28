@@ -1,13 +1,14 @@
-User reports green and holding; photo still pending. Do not reset or collect yet.
+# 749 photo captured; awaiting reset confirmation
 
-# 749 launched; awaiting held report
+User asked to power-cycle and leave UnleashX. Do not launch again. On Ready,
+record collection-ready001, collect preparation reports once with physical002.py,
+and audit exact frozen source/build/stage plus unrelated E entries. Compare
+preparation and kernel CPU readings separately from photo-only native results.
+No startup hook was installed. No owned host process or VM.
 
-One SITE accepted at2026-10-28T00:20:09.050754UTC. No retry. No hook or owned
-host process/VM. Console result unobserved; intentional native hold expected.
-Await user second-bar/current-screen observation and full13-row photo.
-Decode all416 bits against optical-schema001; preserve uncertain/failed reads.
-Native CR00 before/after/restored, CR05 after CR00, aggregate recovery masks,
-selectors and CR0 are exposed; CR3/4 and individual H7 words are unexposed.
-Only after photo capture ask for manual reset. On Ready collect preparation
-records once and audit exact hashes plus unrelated E entries. Native result
-is not disk-persisted. All748/prior CLOSED. No full mode/Windows claim.
+Photo002/review001:416 bits, return/forward749, cleanup masks0/0/0/0,
+CR00c8->5c->c8, CR05after3e, selectors1, nativeCR04001003b. First photo decode
+failure preserved. CR3/4, CR04after and individual H7 values unexposed;
+CR04/05 recovery aggregate-only. No full mode/Windows/shutdown claim.
+All748/prior runtimes CLOSED. After closure, review next bounded original
+horizontal sequence step; do not silently advance beyond this checkpoint.
