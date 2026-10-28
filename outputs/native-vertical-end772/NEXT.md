@@ -1,12 +1,12 @@
-# Test772 STAGED, not launched
+# Test772 LAUNCHED; awaiting photo
 
-Qualified sources committed56423d0b; stage001 completed with exact readback.
-Console authenticated dashboard. No hook, owned host process or VM.
-Await current watch/photo/reset readiness before one native held launch.
-Record ready001, reverify frozen/build/stage bytes, send one SITE with20second
-reply bound. Never retry accepted/uncertain launch. Expect13-row report; green
-indicates final772 and all14 masks clear. Need photo for eight raw masks and
-NVVDISPEND719/479/719. Six masks omitted raw, no native disk result.
-After recorded photo request manual power-cycle, then collect once/double-read
-and independently audit retained preparation files and decoded private photo.
-All771/prior CLOSED. No full-mode/Windows1.6 proof. Retain payload001 size failure.
+One SITE accepted2026-10-28T17:53:07.377707UTC; never retry accepted/uncertain launch.
+User ready to watch/reset. No optical outcome yet. Console may be deliberately
+holding native report. No hook, owned host process or VM.
+Await second-bar color and private13-row photo. Independently decode416 bits;
+expect signature7720000d, final772, eight zero displayed recovery masks and
+NVVDISPEND719/479/719. Six masks omitted raw; final772 requiresall14 clear.
+Do not substitute expected values for photo evidence. After capture/review, ask
+manual power-cycle to dashboard; collect preparation files once/double-read and
+audit locally. No native disk result, normal shutdown or complete mode proof.
+All771/prior CLOSED. Retain payload001 failure and unchanged qualified payload002.

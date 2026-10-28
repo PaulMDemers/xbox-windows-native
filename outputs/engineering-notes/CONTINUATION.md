@@ -1,3 +1,16 @@
+# Test772 LAUNCHED: awaiting held optical observation
+
+User confirmed current watch/photo/reset readiness. Frozen source/HEAD/build and
+exact staged bytes reverified; single SITE accepted2026-10-28T17:53:07.377707UTC.
+No retry. Native NVVDISPEND719 ->479 ->719 checkpoint intentionally holds; screen
+and native outcome not yet observed. Await second-bar color and13-row photo.
+No host process/VM/startup hook. Console may be holding native test; do not send
+another launch or collect while running. After photo recorded, request manual
+power-cycle; on confirmed dashboard collect once/double-read and audit locally.
+No normal Windows shutdown or full-mode/Windows1.6 proof. All771/prior CLOSED.
+Payload001 size failure retained, qualified payload002 unchanged. Ordinary
+launcher/protected720p unchanged. Precise next: outputs/native-vertical-end772/NEXT.md.
+
 # Test772 STAGED: awaiting current watcher/reset readiness
 
 Source qualification pushed56423d0b; exact source/HEAD and unique owned E-stage
