@@ -1,3 +1,10 @@
+# 762 LAUNCHED: automatic-return kernel control
+
+One SITE accepted2026-10-28T03:53:39UTC. No retry/hook/native handoff/ownedVM.
+Bounded dashboard observation then one double-read collection/audit pending.
+Frozen source/index/stage checks PASS. All761/prior CLOSED.
+NEXT outputs/crtc-repeat-blank762/NEXT.md; do not resend launch.
+
 # 762 STAGED: later CR02 source-ordered same-value control
 
 209 actualCOFF,2353layout,10clock and independent source/schema/link checks PASS.
