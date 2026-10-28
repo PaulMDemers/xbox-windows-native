@@ -1,3 +1,12 @@
+# 756 CLOSED PASS: second CR05 bit7 and own recovery
+
+One accepted launch, automatic firmware restart requested, dashboard authenticated.
+Seven phases collected once/double-read; auditPASS01:37:17UTC. CR05 sequence
+31->3e->be->3e->31; CR00/02/03/04 neighbors5c/59/80/5d; seven recovery masks0,
+selectors restored. Clock3375000/high0. No visual or normalWindows shutdown claim.
+No hook/owned process/VM. All756/prior CLOSED. NEXT outputs/crtc-blank-bit756/NEXT.md:
+fresh native757 counterpart;153words end5364 fits zero5400; explicit optical limits.
+
 # 756 LAUNCHED: second CR05 bit7 kernel checkpoint
 
 One SITE accepted2026-10-28T01:36:30.641952UTC. Preparation87cc1324 pushed.

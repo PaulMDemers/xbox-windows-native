@@ -16,3 +16,11 @@ mutation checks pass. No native handoff/full-mode/Windows evidence implied.
 Unique E stage/readback passed. No startup hook or launch yet. No owned VM or
 host process. Kernel automatic return is authorized. Console authenticated at
 UnleashX during stage. Sources frozen before stage; new kit attributes set.
+
+CLOSED physical result: one SITE accepted01:36:30.641952UTC; authenticated
+UnleashX01:37:01.113784UTC. Seven phases collected once/double-read, auditPASS
+01:37:17.512418UTC. CR05 31->3e->be->3e->31, CR00/02/03/04 neighbors5c/59/80/5d,
+all seven recovery masks0, selectors restored, output enable attempted only after
+recovery. Six non-start reports show clock3375000/high0. No manual reset or visual
+observation; restart_requested plus authenticated dashboard supports automatic
+firmware return, not normal Windows shutdown. No hook/owned process/VM remains.
