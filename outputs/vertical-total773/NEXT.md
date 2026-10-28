@@ -1,3 +1,12 @@
+# Test773 staged: kernel vertical-total checkpoint
+
+Exact source/HEAD/build and unique E-stage readback PASS; qualification pushed
+78aef45c. Console authenticated dashboard. No launch/hook/owned host process/VM.
+All772/prior CLOSED. Standing authorization permits today's launches and resets;
+no repeated readiness question. NEXT one SITE20secondbound, no retry; bounded
+return check, once/double collection, local audit. No fullmode/Windows1.6 proof.
+Ordinary launcher/protected720p unchanged. See outputs/vertical-total773/NEXT.md.
+
 # Test773 qualified: kernel vertical-total checkpoint
 
 Source-only closed771 extension adds NVVTOTAL680804 own749 ->524 ->749,
