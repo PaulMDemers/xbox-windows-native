@@ -1,0 +1,79 @@
+{
+  "fields": [
+    "vs_before",
+    "vs_target",
+    "vs_attempted",
+    "vs_after",
+    "vs_restored",
+    "vs_cleanup_mask",
+    "vs_disp_before",
+    "vs_disp_after",
+    "vs_disp_restored",
+    "vs_total_before",
+    "vs_total_after",
+    "vs_total_restored",
+    "vs_crtc_before",
+    "vs_crtc_after",
+    "vs_crtc_restored",
+    "vs_syncstart_before",
+    "vs_syncstart_after",
+    "vs_syncstart_restored",
+    "vs_syncend_before",
+    "vs_syncend_after",
+    "vs_syncend_restored",
+    "vs_validend_before",
+    "vs_validend_after",
+    "vs_validend_restored",
+    "vs_c13_before",
+    "vs_c13_after",
+    "vs_c13_restored",
+    "vs_c19_before",
+    "vs_c19_after",
+    "vs_c19_restored"
+  ],
+  "init": " o->vs_after=0xffffffff;o->vs_restored=0xffffffff;o->vs_disp_after=0xffffffff;o->vs_disp_restored=0xffffffff;o->vs_total_after=0xffffffff;o->vs_total_restored=0xffffffff;o->vs_crtc_after=0xffffffff;o->vs_crtc_restored=0xffffffff;o->vs_syncstart_after=0xffffffff;o->vs_syncstart_restored=0xffffffff;o->vs_syncend_after=0xffffffff;o->vs_syncend_restored=0xffffffff;o->vs_validend_after=0xffffffff;o->vs_validend_restored=0xffffffff;o->vs_c13_after=0xffffffff;o->vs_c13_restored=0xffffffff;o->vs_c19_after=0xffffffff;o->vs_c19_restored=0xffffffff;\n",
+  "block": " /* Next pinned source-order word: NVVVALIDSTART same-value zero write. */\n o->forward_status=0x77828;o->vs_before=R32(0x680814);\n o->vs_disp_before=R32(0x680800);o->vs_total_before=R32(0x680804);o->vs_crtc_before=R32(0x680808);o->vs_syncstart_before=R32(0x68080c);o->vs_syncend_before=R32(0x680810);o->vs_validend_before=R32(0x680818);o->vs_c13_before=cr(0x13);o->vs_c19_before=cr(0x19);\n if(o->vs_before!=0 || o->vs_disp_before!=479 || o->vs_total_before!=524 || o->vs_crtc_before!=479 || o->vs_syncstart_before!=724 || o->vs_syncend_before!=729 || o->vs_validend_before!=719 || o->vs_c13_before!=104 || o->vs_c19_before!=48)goto restore;\n o->vs_target=0u;o->vs_attempted=1;R32(0x680814)=o->vs_target;\n o->vs_after=R32(0x680814);o->vs_disp_after=R32(0x680800);o->vs_total_after=R32(0x680804);o->vs_crtc_after=R32(0x680808);o->vs_syncstart_after=R32(0x68080c);o->vs_syncend_after=R32(0x680810);o->vs_validend_after=R32(0x680818);o->vs_c13_after=cr(0x13);o->vs_c19_after=cr(0x19);\n if(o->vs_after!=o->vs_target || o->vs_disp_after!=o->vs_disp_before || o->vs_total_after!=o->vs_total_before || o->vs_crtc_after!=o->vs_crtc_before || o->vs_syncstart_after!=o->vs_syncstart_before || o->vs_syncend_after!=o->vs_syncend_before || o->vs_validend_after!=o->vs_validend_before || o->vs_c13_after!=o->vs_c13_before || o->vs_c19_after!=o->vs_c19_before)goto restore;\n",
+  "undo": " if(o->vs_attempted){R32(0x680814)=o->vs_before;o->vs_restored=R32(0x680814);o->vs_disp_restored=R32(0x680800);o->vs_total_restored=R32(0x680804);o->vs_crtc_restored=R32(0x680808);o->vs_syncstart_restored=R32(0x68080c);o->vs_syncend_restored=R32(0x680810);o->vs_validend_restored=R32(0x680818);o->vs_c13_restored=cr(0x13);o->vs_c19_restored=cr(0x19);if(o->vs_restored!=o->vs_before)o->vs_cleanup_mask|=1;if(o->vs_disp_restored!=o->vs_disp_before)o->vs_cleanup_mask|=2;if(o->vs_total_restored!=o->vs_total_before)o->vs_cleanup_mask|=4;if(o->vs_crtc_restored!=o->vs_crtc_before)o->vs_cleanup_mask|=8;if(o->vs_syncstart_restored!=o->vs_syncstart_before)o->vs_cleanup_mask|=16;if(o->vs_syncend_restored!=o->vs_syncend_before)o->vs_cleanup_mask|=32;if(o->vs_validend_restored!=o->vs_validend_before)o->vs_cleanup_mask|=64;if(o->vs_c13_restored!=o->vs_c13_before)o->vs_cleanup_mask|=128;if(o->vs_c19_restored!=o->vs_c19_before)o->vs_cleanup_mask|=256;}\n",
+  "neighbors": [
+    [
+      "vs_disp",
+      6817792,
+      479
+    ],
+    [
+      "vs_total",
+      6817796,
+      524
+    ],
+    [
+      "vs_crtc",
+      6817800,
+      479
+    ],
+    [
+      "vs_syncstart",
+      6817804,
+      724
+    ],
+    [
+      "vs_syncend",
+      6817808,
+      729
+    ],
+    [
+      "vs_validend",
+      6817816,
+      719
+    ],
+    [
+      "vs_c13",
+      19,
+      104
+    ],
+    [
+      "vs_c19",
+      25,
+      48
+    ]
+  ]
+}
