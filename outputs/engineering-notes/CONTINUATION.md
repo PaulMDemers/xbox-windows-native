@@ -1,3 +1,13 @@
+# 765 LAUNCHED: watched native CR17 forward-enable control
+
+Current user confirmed Ready to watch and reset with HDMI/dashboard. Exact
+frozen index/source/build/stage reverified; one SITE accepted2026-10-28T04:26:19.182299UTC.
+No retry/hook/ownedVM/process. Deliberate nativehold intended; actual screen
+and full13row photo pending. Do not reset/collect before preserving report.
+All764/prior CLOSED. No765result or fullmode/Windows1.6 claim.
+NEXT outputs/native-crtc-reenable765/NEXT.md: observation/photo, then userreset
+Ready before one preparationcollection/audit. No furtherlaunch.
+
 # 765 STAGED: native CR17 forward enable; watcher needed
 
 764 CLOSED PASS pushedae64322f. Fresh765228ELF,218integration,76optical,

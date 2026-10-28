@@ -33,3 +33,9 @@ XBE131072bytes SHA256
 c49709b60b8207850bdd2a46b5ef729d90b6f4f8d90e4e5614dd48deff581a9a.
 
 Unique E stage and exact readback PASS. Awaiting watcher readiness; not launched.
+
+## Launch
+
+User confirmed current watch/photo/reset readiness. Exact frozen index, source,
+build and remote staged bytes reverified. One SITE accepted2026-10-28T04:26:19.182299UTC.
+Actual screen/photo pending; no retry, startup hook or owned host process/VM.

@@ -1,10 +1,10 @@
-# Test765 STAGED; await current watch/photo/reset readiness
+# Test765 LAUNCHED; await held report and photo
 
-All fresh validation and exact source/index/build/stage checks PASS. No765launch.
-Console authenticated dashboard with HDMI1.6. No hook/ownedVM/process.
-Ask current watch/photo/reset readiness, then verify frozen sources and staged
-bytes and send one SITE with20-second bound. Do not retry accepted/uncertain
-launch. This deliberately holds; photograph all13rows before manualpowercycle.
+All fresh validation and exact source/index/build/stage checks PASS. One SITE
+accepted2026-10-28T04:26:19.182299UTC; do not launch again.
+User confirmed watch/reset readiness and HDMI/dashboard before launch. No
+hook/ownedVM/process. Actual held screen observation/photo pending. Preserve
+all13rows before asking manualpowercycle; do not collect until userresetReady.
 
 Expected final765 requiresall11 masks. Displayed eightmaskrows omitCR03,
 secondCR05,firstCR17. Expected secondCR17triplet63/e3/63; no unseen read assumed.
