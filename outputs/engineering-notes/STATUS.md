@@ -1,3 +1,13 @@
+# 755 STAGED: native CR03 checkpoint awaiting watched hold
+
+Kernel754 CLOSED PASS;753 clock-refusal preserved.755 source, ELF138,
+integration128, optical76, nxdk page32/ownership372 and12 fresh CPU fixtures
+pass; allVMsclosed. Linked bytes and143-word initialized bounds pass. Unique
+E stage/readback complete; no755launch/hook/owned process. Current watch/photo/
+reset question pending. NEXT outputs/native-crtc-end755/NEXT.md. Thirteen rows
+expose six masks, CR03 triplet and selectors; nativeCR0/3/4 and individual
+neighbors unexposed. No fullmode/Windows1.6 qualification. Allprior CLOSED.
+
 # 754 CLOSED: kernel CR03 change and recovery pass
 
 Correct frequency3375000/high0. CR03 8c->80->8c; CR00/02/04/05 neighbors
