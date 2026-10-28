@@ -1,3 +1,10 @@
+# 756 LAUNCHED: second CR05 bit7 kernel checkpoint
+
+One SITE accepted2026-10-28T01:36:30.641952UTC. Preparation87cc1324 pushed.
+No retry. No hook/native handoff/Windows. Bounded authenticated dashboard check,
+then one collection/audit. No owned host process/VM; all755/prior CLOSED.
+NEXT outputs/crtc-blank-bit756/NEXT.md.
+
 # 756 STAGED: kernel second CR05 bit7 checkpoint
 
 Fresh source-only754 extension after native755 pass.153-word record separately

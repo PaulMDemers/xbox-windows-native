@@ -1,7 +1,7 @@
-# Test756 staged; no launch yet
+# Test756 launched; awaiting bounded return/collection
 
-One authorized kernel automatic-return launch after commit/push. Verify exact
-staged bytes, record readiness and issue one SITE with20-second reply bound.
+One SITE accepted2026-10-28T01:36:30.641952UTC after exact staged-byte check.
+Readiness recorded and preparation87cc1324 pushed. No repeat launch.
 Never retry accepted/uncertain launch. Bounded authenticated dashboard observation;
 on return no hook exists, collect new seven phases once/double-read and audit
 full153-word result. Preserve every refusal/failure, no identical lucky retries.
