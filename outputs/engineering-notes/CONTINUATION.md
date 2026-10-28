@@ -1,3 +1,18 @@
+# Test786 launched; automatic-return collection pending
+
+Single SITE accepted2026-10-28T23:13:06.997739UTC. Exact staged/readback XBE matches
+qualified146c15a0. Kernel CR07 sync-overflow control, F0->74->F0 with eight CRTC
+neighbors, following inherited prefix/seven vertical words. No hook/Windows/native
+handoff/ordinary launcher or protected720p change. Auto return after15seconds
+intended; no screen observation yet. No retry. Check dashboard after settling,
+collect seven fresh reports once/double and audit. If offline after~2minutes ask
+user screen state before any further action. No owned host process/VM running.
+
+The controller's inherited launch observation string names an earlier NVVDISPEND
+checkpoint; actual frozen source, owner manifest and result schema identify CR07
+control786. Preserve that descriptive limitation; it does not identify a second
+launch. All785/prior remain CLOSED. No787 build/stage/launch exists.
+
 # Test786 qualified: kernel CR07 vertical-sync overflow control
 
 Fresh source-only extension of closed784, following closed native785. First
