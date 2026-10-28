@@ -1,3 +1,24 @@
+# 762 STAGED: later CR02 source-ordered same-value control
+
+209 actualCOFF,2353layout,10clock and independent source/schema/link checks PASS.
+Fresh CR02 capture guarded by prior59, target59, six neighbors, newest-first
+own recovery;188words752bytes. Two dropped same-value controls are correctly
+indistinguishable; wrong-write-plus-dropped-undo is detected and inhibits output.
+Frozen source/index and uniqueE stage/readback PASS. No762launch/hook/native
+handoff/ownedVM. Console authenticated dashboard. All761/prior CLOSED.
+NEXT outputs/crtc-repeat-blank762/NEXT.md: save preparation then one authorized
+bounded automatic-return kernel launch, collection/audit. No fullmode proof.
+
+# 762 PREPARING: later CR02 source-ordered same-value control
+
+Fresh source-only760 extension after761 CLOSED PASS. LaterCR02 fresh capture,
+guarded59 target, six neighbors and newest-first own recovery;188words752bytes
+future end53f0. Same-value dropped write/undo indistinguishable by readback;
+explicit model controls required. NoCR17enable/latermode operations. Build and
+independent validation pending; no stage/launch/hook/ownedVM. Console last
+authenticated dashboard after761 manual reset. All761/prior CLOSED.
+NEXT outputs/crtc-repeat-blank762/NEXT.md.
+
 # 761 CLOSED PASS: native CR01 display-end and own recovery
 
 Photo decodesCR019f->59->9f, eight displayed masks0 and final761;416bits/five
