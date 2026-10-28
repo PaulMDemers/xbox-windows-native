@@ -1,3 +1,29 @@
+# Test770 CLOSED PASS: native CR13 low stride and own-value recovery
+
+Private photo decoded7700000d/final770, eight zero raw recovery masks and
+CR13 80 -> 68 -> 80. All416 bits agree at five offsets/three thresholds;
+352 adjacent-row checks PASS, black max18 and white mean minimum218.
+Five additional masks omitted raw; tested final770 requires all13 clear.
+User reset Ready; nine preparation reports collected once/double-read.
+Independent audit PASS2026-10-28T16:34:37.991887UTC: source/build/stage exact,
+allocation/alias checks and unrelated E/apps entries unchanged. Retained752
+PCI/CRTC/sequencer/allocation/geometry preparation values all match.
+Last persisted phase handoff_armed; native result photo-only. Manual power-cycle,
+not normal Windows shutdown. Console authenticated dashboard; no hook/owned
+host process/VM. All770/prior CLOSED: never rerun/recollect/parent runtime.
+
+NEXT: fresh kernel771, source-only769 extension to the next pinned source-order
+word NVVDISPEND(0x680800): observed preparation719, target479 for480lines.
+Capture/validate fresh baseline, forward readback, own restored value and neighbors;
+recover newest-first before CR13, preserve all prior recovery and output guards.
+Independently validate object/layout/clock/schema/link/source and freeze/stage
+before a single automatic-return kernel launch. Native follow-up needs separate
+CPU/page/relocation/optical qualification and current watch/reset availability.
+See next-source-plan001.json; no771 build/stage/launch yet. Missing later vertical
+snapshot values680808/680814 remain unknown. No fullmode/Windows1.6 proof;
+ordinarylauncher/protected720p unchanged. Preserve kernel768 refusal and769cold
+comparison without causal boot/reliability claims.
+
 # Test770 launched: held observation pending
 
 Single SITE accepted2026-10-28T16:29:52.786698UTC after current user watch/reset
