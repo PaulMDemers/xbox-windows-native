@@ -1,3 +1,9 @@
+# 764 LAUNCHED: automatic-return kernel CR17 enable control
+
+One SITE accepted2026-10-28T04:15:26.530609UTC after source/build/stage verification.
+No retry/hook/nativehandoff/ownedVM. Bounded dashboard observation then one
+collection/audit pending. All763/prior CLOSED. NEXT outputs/crtc-reenable764/NEXT.md.
+
 # 764 STAGED: kernel CR17 forward enable and saved-value recovery
 
 228 COFF,2353layout,10clock and independent source/schema/link checks PASS.
