@@ -1,3 +1,11 @@
+# 768 LAUNCHED: kernel CR13 low stride
+
+One SITE accepted2026-10-28T16:01:57.154969UTC. Frozen source/index/build and
+remote bytes exact; automatic return intended. Actual outcome pending.
+No retry/hook/ownedVM/process. All767/priorCLOSED. Activephysical003.
+NEXT bounded dashboard observation, collect once/double-read, audit_collection003.
+No fullmode/Windows1.6 proof. Ordinarylauncher/protected720p unchanged.
+
 # 768 STAGED: kernel CR13 low stride; launch pending
 
 278COFF/2353layout/10clock and corrected review005 PASS. Original pretty model
