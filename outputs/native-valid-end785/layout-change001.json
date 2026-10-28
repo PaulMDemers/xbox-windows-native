@@ -1,0 +1,77 @@
+{
+  "allocation_bytes": 32768,
+  "old_payload_reserve": 14080,
+  "failed_raw_size": 14744,
+  "new_payload_reserve": 15360,
+  "regions": {
+    "bridge_and_descriptors": [
+      0,
+      4096
+    ],
+    "payload": [
+      4096,
+      19456
+    ],
+    "payload_guard": [
+      19456,
+      20480
+    ],
+    "request": [
+      20480,
+      20540
+    ],
+    "request_result_guard": [
+      20540,
+      20736
+    ],
+    "result": [
+      20736,
+      22456
+    ],
+    "result_guard": [
+      22456,
+      22528
+    ],
+    "IDT": [
+      22528,
+      24576
+    ],
+    "stack": [
+      24576,
+      32768
+    ]
+  },
+  "stack_low_guard_word": 24576,
+  "IDTR_limit": 2047,
+  "no_allocation_address_policy_change": true,
+  "no_probe_source_change": true,
+  "required_fresh_checks": [
+    "all256IDTentries and descriptor pointer",
+    "zero result and guard extents",
+    "payload relocation and exact binary",
+    "CPUtransition/fault handler on four mappings and negative cases",
+    "direct/fullpath/optical cases"
+  ],
+  "edits": {
+    "main.c": {
+      "before": "adfbdb47854b0d121b52539ebc419132181a0fbac8d552ff7c5b001cfe049c39",
+      "after": "7b01b0e4ddae55e95bae0e2fa93d49a579a555eb8f1b7f1e9f5a8d1c3e8dff88"
+    },
+    "page002.c": {
+      "before": "8f324adfc0ebcde1579c46a886d3f589edf7df9863194e5aafaaa1c748c24194",
+      "after": "63d4cdd19aade21383bc3fb3408cce90940382a5aaa89a808156436654ab2f39"
+    },
+    "page_tool003.c": {
+      "before": "f7828e2c4eb9435d0cff903bf5c6a5e290b8c232140d27a96fb2d3dbccfd008c",
+      "after": "6115d85a584fadd8731cc888188d8e7fdd847749b2f48f623a5fc9b35df71985"
+    },
+    "page_review003.py": {
+      "before": "45cbc668a91dad37f4ef6c323857c47ef5c4e08b16e8065b5f2340e86cd42bb1",
+      "after": "869936eab35140d81ec42053fbea3b9967e65fb4bf06153762ed79e6e54eae0c"
+    },
+    "bridge.S": {
+      "before": "ade9d8b9611783b70654f3bc47383f61e6585e7defe743e5c8f5060441e5c525",
+      "after": "712ac89c4cb129def513f0f3abdc16fff3c8f9acec209351522779b7a27daaf7"
+    }
+  }
+}

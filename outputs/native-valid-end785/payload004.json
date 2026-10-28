@@ -1,0 +1,96 @@
+{
+  "passed": false,
+  "physical_access": false,
+  "space": {
+    "minimum_free_gib": 20.05,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c",
+        "free_bytes": 54400430080
+      },
+      {
+        "free_bytes": 54400430080,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "sources": {
+    "transaction785.c": "cf3b086bcbb5e2668e4ec4e5936108c63e1e708277a6e051cee9c0ada258706b",
+    "transaction.h": "e5b5594e45ebc8f3d3e13d426f047b8330c9cacc46090f00c4f8959002df440a",
+    "probe.c": "8889168bdffc98b3c73478ab952a3a93d87eb9d81fafeb11d746952fdfa5e906",
+    "probe.h": "df0ac805a5e14f424ba0aa79e90a71dfba10ec070454b8b81557fd0bdbd5f783"
+  },
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "compile32": {
+    "command": [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-m32",
+      "-Oz",
+      "-ffreestanding",
+      "-fno-pie",
+      "-fno-pic",
+      "-fno-stack-protector",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-nostdlib",
+      "-static",
+      "-no-pie",
+      "-Wl,-Ttext=0x100000,-e,native_transaction704,--build-id=none,--emit-relocs,-z,max-page-size=0x20",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-valid-end785/transaction785.c",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-valid-end785/probe.c",
+      "-o",
+      "/mnt/c/xwn785/payload004/native.elf"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  "relocations": {
+    "command": [
+      "readelf",
+      "-rW",
+      "/mnt/c/xwn785/payload004/native.elf"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "7c6487ac1ecf6f3072cbad7fbb14916ec2045e0c56cffeefe93f47becc94168f",
+    "stderr": ""
+  },
+  "objcopy": {
+    "command": [
+      "objcopy",
+      "-O",
+      "binary",
+      "/mnt/c/xwn785/payload004/native.elf",
+      "/mnt/c/xwn785/payload004/native.bin"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr": ""
+  },
+  "symbols": {
+    "command": [
+      "nm",
+      "-n",
+      "/mnt/c/xwn785/payload004/native.elf"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "f3558e7114854c464277626d435314ae87c37d6f78eca45fbe6339ed0a3e6e31",
+    "stderr": ""
+  },
+  "disassembly": {
+    "command": [
+      "objdump",
+      "-d",
+      "/mnt/c/xwn785/payload004/native.elf"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "c3ec364896a42815512f72fafe066c84be447ec8ff0b16d9c56b748b9a820121",
+    "stderr": ""
+  },
+  "failure": "AssertionError()",
+  "ended_utc": "2026-10-28T22:35:17.066837+00:00"
+}
