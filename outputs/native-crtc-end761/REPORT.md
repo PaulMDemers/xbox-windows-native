@@ -1,56 +1,34 @@
-# Test761 preparation: native CR01 display-end checkpoint
+# Test761 CLOSED PASS
 
-Source-only extension of closed kernel760 and native759. No closed runtime is
-reused. The new operation captures its own CR01 byte, writes `(720 / 8) - 1`
-(`59`), checks six neighboring bytes, and restores the saved CR01 byte before
-reversing the earlier operations. No later CR02 write or CR17 enable is added.
-The ordinary Windows launcher and protected720p configuration are unchanged.
+One SITE launch accepted2026-10-28T03:28:37.253485UTC. User observed green and
+holding. Independent private-photo decoding shows final761, eight displayed
+zero recovery masks and CR019f->59->9f. All416bits agree at five sampling offsets
+and three thresholds;352 adjacent-row cross-checks passed. Native CR01 target59
+write and own saved-value recovery passed this physical checkpoint.
 
-The result structure is176words/704bytes, located at page offset5100..53c0.
-The existing initialized extent ends5400; the guard is5400..6000 and the
-stack6000..8000. Native CPU admission remains paging off, CR3zero, interrupts
-disabled, non-PAE and the existing cache-state predicate. There are no added
-control-register writes, CR1b/CR22/CR33 data writes or borrowed firmware state.
+The second CR05 recovery mask is omitted from the13-row picture. It is still
+required, together with all other recovery masks and forward checks, by final761.
+Its raw value is not a direct optical observation. Forwardstatus, CPU/selectors,
+neighbors and individual prior restorations are likewise not exposed.
 
-The13-row optical report exposes signature, finalcode, eight aggregate recovery
-masks and CR01 before/after/restored. The second CR05 recovery mask is omitted
-from the picture to fit CR01's complete triplet. It is still checked by the
-payload and required for final761. A green final status is therefore the
-program's combined result, not a direct observation of that omitted mask.
-Forward status, CPU registers, selectors, neighbor readbacks and prior
-individual restoration values are also unexposed. See optical-schema001.json.
+User Ready confirmed the requested manual power-cycle. Nine preparation files
+were collected once with double readback. Local audit03:33:24UTC passed exact
+source/build/staged bytes, independent allocation/alias bounds and unchanged
+unrelated directory entries. Five groups (PCI/CRTC/SEQ readings, allocation plan
+and geometry) match retained752 preparation evidence; no closed runtime reopened.
+Last persisted phase handoff_armed precedes native execution. Native result is
+photo evidence, not a post-native disk result. Manual reset is not normal shutdown.
 
-Host validation is preparation evidence, not physical timing, caching or mode
-proof. This native probe deliberately holds, requires a photographed report and
-manual reset, and cannot write a post-native disk result. Pre-handoff preparation
-files will be collected only after the photo and reset. A manual reset is not a
-normal Windows shutdown. Complete1.6 mode switching and Windows remain unqualified.
-
-Preserve kernel760/model001's decimal/hex fault-injection mistake;761 starts
-from corrected model002. Fault names c23-after-c1-read and c1-c23-coupling mean
-CR17 (decimal23). No prior failure is superseded by this preparation.
-
-Fresh preparation checks passed189 ELF cases,12 diskless CPU fixtures (all
-closed),179 relocated execution cases,76 whole-framebuffer optical cases,
-32 compiled page-builder cases and372 compiled ownership-plan cases. Source
-comparison, initialized bounds, relocation and PE/XBE linked-byte checks passed.
-Frozen source and Git index bytes match. The unique E/Applications/XWNMode761
-package was staged and read back exactly; no startup hook or console C access.
-XBE SHA256 ed4ab5772f241fddcf48e558b9753f8e7b21af7986b0ba4497884eb03e6e6c24,
-131072bytes. No launch yet. Current watcher/photo/reset readiness is required.
-
-Launch update: one SITE accepted2026-10-28T03:28:37.253485UTC after the user
-confirmed current watch/reset availability. Exact frozen source/index/build and
-remote staged bytes verified again. No retry, startup hook or owned host VM.
-Awaiting screen observation and photo; no physical success claimed yet.
-
-Photo result: user observed green/holding. Independent component decoding gives
-signature7610000d, final761, eight displayed recovery masks0, and CR01
-9f->59->9f. All416bits agree across five offsets and three thresholds;352
-adjacent-row cross-checks passed. Black channel median maximum87; minimum white
-mean median207.67. Photo retained privately with SHA256
+Fresh host checks passed189 ELF cases,12 diskless CPU fixtures/allclosed,
+179 integration,76 optical,32page and372plan cases plus source/link checks.
+Result176words704bytes at5100..53c0 fits initialized5400; guards/stack verified.
+XBE SHA256 ed4ab5772f241fddcf48e558b9753f8e7b21af7986b0ba4497884eb03e6e6c24.
+Photo retained privately, SHA256
 677110158414a6c3956344f02e0005f28e689f7dac87b7ff78a146461a2d84a8.
-Native CR01 write and own-value recovery passed this optical checkpoint.
-SecondCR05 mask is not directly displayed; final761 requires all nine masks.
-Manual reset requested; preparation collection/audit still pending. No normal
-shutdown, native disk, complete mode-switch or Windows1.6 qualification.
+No startup hook or owned host process/VM remains. Console authenticated dashboard.
+All761/prior runtimes CLOSED. No further launch in this collection turn.
+
+No complete mode-switch, Windows1.6 or acceleration qualification follows.
+Next source-ordered operation is the later CR02 target59 write, followed by
+separate CR17 enable. Preserve760 model001's decimal/hex injection failure and
+all earlier failures. See NEXT.md.

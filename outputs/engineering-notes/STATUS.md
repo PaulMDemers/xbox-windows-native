@@ -1,3 +1,17 @@
+# 761 CLOSED PASS: native CR01 display-end and own recovery
+
+Photo decodesCR019f->59->9f, eight displayed masks0 and final761;416bits/five
+sampling offsets/three thresholds plus352 cross-checks PASS. User manual
+power-cycle confirmed; nine preparation files collected once/double-read;
+auditPASS03:33:24UTC. Exact source/build/stage, allocation/aliases and unrelated
+directory checks PASS. Retained752 preparation comparison all five groups equal.
+SecondCR05 mask omitted optically; final761 requires all nine masks. Last disk
+phase handoff_armed; native results are photo-only. No normalWindows/fullmode/
+Windows1.6 qualification. Console authenticated dashboard; no hook/owned host
+process/VM. All761/prior CLOSED. No further launch in this collection turn.
+NEXT outputs/native-crtc-end761/NEXT.md: fresh source-ordered laterCR02 target59
+write, then separateCR17enable. Never rerun/recollect/parent closed runtime.
+
 # 761 PHOTO PASS: CR01 display-end/recovery; manual reset pending
 
 User green/holding photo independently decoded416bits at five sampling offsets
