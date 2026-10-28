@@ -1,7 +1,7 @@
-# Test774 staged: native vertical-total checkpoint
+# Test774 launched: native vertical-total checkpoint
 
-Staged and exact readback; no launch yet. Console authenticated dashboard.
-One SITE with20second bound; never retry accepted/uncertain launch. Then notify after roughly two minutes for photo/reset.
+Single SITE requested 2026-10-28T18:42:06.872773+00:00; reply 200 EXEC command succeeded.. No retry. Native held report intended; actual screen not yet observed.
+Await photo/status. If held or stuck after roughly two minutes notify user. Decode exact13rows before requesting reset; after confirmed reset collect preparation once/double and audit. No repeat launch.
 All773/prior CLOSED. Kernel773749->524->749 PASS; native774 not yet
 qualified physically. All host gates PASS, twelve CPU fixtures closed; retained
 integration003 harness-offset failure fixed in fresh integration004 receipt.
