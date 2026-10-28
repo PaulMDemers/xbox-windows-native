@@ -1,22 +1,23 @@
-# Test785 LAUNCHED; held optical report pending
+# Test785 optical PASS; reset and preparation collection pending
 
-Single SITE accepted2026-10-28T22:50:00.687207UTC. Exact stage/readback PASS to
-E/Applications/XWNMode785. No retry. User standing Oct28 watch/reset authorization
-applies. Expected native diagnostic deliberately holds; actual screen not yet
-observed. Ask second-bar color/holding state and photo after about22:52UTC.
-Do not reset until the report is captured. No collection-ready/collection yet.
+User reports Green, holding and supplies fresh photo. Decoder004 and independent
+review004 PASS416bits at5offsets/3thresholds plus352 adjacent-row checks:
+signature7850000d, final785, eight displayed masks zero, NVVVALIDEND719->479->719.
+Final status requires all20 recovery masks clear; twelve masks remain aggregate-
+only. Raw native neighbors/CPU/selectors not exposed. This is native register
+transaction/recovery evidence, not full mode switching or Windows1.6 support.
 
-Qualified build/source evidence pushed132f4a22:536 direct,12 CPU(all closed),
-526 full-path,76 optical,32 page,372 ownership plus independent layout and linked
-bytes PASS.14744-byte payload in15360 reserve; same32KiB allocation; owned IDT
-5800..6000, result5100..57b8. Preparation namespace failure and initial payload004
-capacity failure preserved. No hook, Windows launch, ordinary launcher change,
-protected720p change or dashboardC access. All owned host test processes exited.
-All784/prior CLOSED. No native/fullmode result yet. Optical13rows expose8 masks
-and NVVVALIDEND before/after/restored;12masks aggregate-only, all20 required clear.
+Preserve decoder003 failure: strict candidate extraction missed3 pale white cells
+in first row(29/32). Fresh004 uses minimum150+mean180 candidate threshold; unchanged
+independent classification checks all416bits. No values inferred from expected
+output. Original private photo retained C:/xwn785/photo001.jpg; never publish.
+Audit_collection006.py is the fresh local auditor for photo004/reviewer004; frozen
+005 preserved unchanged. All41 frozen prelaunch sources remain exact.
 
-NEXT capture exact fresh photo, decode/review416bits against785 schema; only then
-request power-cycle. On userReady authenticate dashboard and collect nine fresh
-preparation reports once/double, audit locally and close. Never recollect/relaunch
-this accepted runtime. No future probe starts before this attempt is closed.
+Reset requested after capture. Console last observed held green; manual power-cycle
+not yet confirmed. No collection-ready/collection/audit exists. NEXT on userReady:
+authenticate dashboard, collect nine preparation reports once/double via
+physical003.py collect, then audit_collection006.py and close. No new launch or
+recollection of any closed runtime. No hook/Windows/ordinary launcher/protected720p
+change. All owned host processes exited. All784/prior CLOSED.
 
