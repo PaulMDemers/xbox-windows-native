@@ -1,30 +1,26 @@
-# Native757: second CR05 bit7 checkpoint prepared
+# Native757 CLOSED PASS
 
-Kernel756 closed with CR05 31 -> 3e -> be -> 3e -> 31, preserved neighbors,
-seven zero recovery masks, and selectors restored. This fresh native counterpart
-uses the same register transaction after the qualified prefix, seven horizontal
-words, and CR04/05/00/02/03 sequence. It is staged, not launched or qualified.
+One launch was accepted at2026-10-28T01:48:11.534509UTC. The user observed green
+and holding and supplied a private photo. Independent decoding of416bits passed
+five sampling offsets, three thresholds, and352 adjacent-row cross-checks.
+The13rows show7570000d,757,757,seven zero recovery masks,3e,be,3e.
+Thus the native second CR05 bit7 change and intermediate undo passed optically.
+Original/final CR05=31 is covered by the aggregate CRTC mask, not directly shown.
+Selectors, individual neighbors/prior restorations, H7 and CPU values are unexposed.
 
-Host verification passed: 152 ELF cases, 12 fresh diskless CPU fixtures (all
-closed), 142 integration cases, 76 complete optical-framebuffer cases, 32 page
-cases, 372 ownership-plan cases, exact linked/payload/source checks. The expanded
-153-word result ends at allocation+5364 inside the existing zeroed area ending
-5400, below the stack at6000. Payload remains within its9916-byte padded extent.
-The initial host001 invocation failed before compilation; FAILURES.md preserves
-that attempt. Corrected WSL host002 and nxdk build002 are the frozen inputs.
+After the requested manual power-cycle, user Ready confirmed dashboard state.
+Nine fresh preparation files were collected once with double readback. Audit at
+01:51:11UTC passed source/build/stage pins, independent allocation/alias checks,
+and unchanged unrelated directory entries. PCI/CRTC/SEQ, allocation plan and
+geometry match retained752 preparation. This compares retained evidence only;
+no closed runtime was reopened. Last persisted phase is handoff_armed, before
+native execution. The native result is the photograph, not a disk result.
 
-Unique E:/Applications/XWNMode757 stage and exact readback passed. No startup
-hook, Windows launch, dashboard C access, or owned host process remains.
-Source/index hashes match sources001.json. Binary and private configuration
-remain outside the repository. stage001.json records exact remote identities.
+Host verification:152 ELF cases,12 fresh closed diskless CPU fixtures,142integration,
+76optical,32page,372plan and exact linked/source checks passed. Failed host001
+invocation remains preserved; active artifacts are host002/build002. The private
+photo, binaries and configuration are not public. All757/prior attempts CLOSED.
 
-The held 13-row report exposes signature, return code, forward status, seven
-recovery masks, and second CR05 before/after/intermediate undo: 3e -> be -> 3e.
-Original/final CR05=31 is covered by the aggregate CRTC recovery mask, not a
-separate optical row. Selectors, individual neighbors, prior intermediate
-restorations, H7 values and CPU control registers are not directly exposed.
-No full mode change, Windows1.6, or acceleration result is claimed.
-
-Current watch/photo/reset readiness is required before the single launch.
-A recovery failure may leave a black screen; success deliberately holds.
-See NEXT.md and optical-schema001.json.
+No hook or owned host process/VM remains. Manual reset is not normal Windows
+shutdown. No complete mode-switch, Windows1.6 or acceleration claim follows.
+Next source-ordered work is CR17 display-control qualification; see NEXT.md.

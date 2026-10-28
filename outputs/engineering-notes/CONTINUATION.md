@@ -1,3 +1,24 @@
+# 757 CLOSED PASS: native second CR05 bit7 and recovery
+
+Photo independently decodes3e->be->3e and seven zero recovery masks;416bits,
+five offsets/three thresholds,352 cross-checks. User manual power-cycle confirmed;
+nine preparation files collected once/double-read; auditPASS01:51:11UTC.
+Exact source/build/stage and independent allocation/alias checks passed. Retained
+752 preparation comparison all five groups equal. Console authenticated dashboard.
+No startup hook/owned host process/VM. No native disk result/normalshutdown/
+fullmode/Windows1.6 proof. All757/prior CLOSED. No further launch this turn.
+NEXT outputs/native-crtc-bit757/NEXT.md: fresh kernel CR17 bit7 clear/own recovery
+control, then counterpart; later CR01/02/display-enable and pitch/vertical pending.
+
+# 757 PHOTO PASS: manual reset confirmed; collecting preparation
+
+User green/holding;416 photo bits independently decoded with five offsets/three
+thresholds and352 adjacent-row cross-checks. CR05 second3e->be->3e; seven recovery
+masks0. No native disk result/fullmode/Windows proof. User Ready confirms requested
+manual power-cycle to dashboard. One collection/audit now pending; no repeat
+launch. No startup hook/owned host process/VM. All756/prior CLOSED.
+NEXT outputs/native-crtc-bit757/NEXT.md.
+
 # 757 LAUNCHED: native second CR05 held checkpoint
 
 One SITE accepted2026-10-28T01:48:11.534509UTC after current user watch/reset
