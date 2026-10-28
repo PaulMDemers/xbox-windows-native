@@ -1,3 +1,15 @@
+# 759 CLOSED PASS: native CR17 clear and own recovery
+
+Photo decodesCR17e3->63->e3, eight masks0 and final759;416bits/five offsets/
+three thresholds plus352 cross-checks PASS. User manual power-cycle confirmed;
+nine preparation files collected once/double-read and auditPASS02:33:22UTC.
+Exact source/build/stage, allocation/alias and unrelated directory checks PASS.
+Retained752 preparation comparison all five groups equal. Console authenticated
+at dashboard; no hook/owned host process/VM. All759/prior CLOSED. No native disk,
+normalWindows shutdown/fullmode/Windows1.6 proof. No further launch this turn.
+NEXT outputs/native-crtc-gate759/NEXT.md: fresh source-ordered kernel CR01 control,
+then counterpart with explicit optical/bounds changes; later enable/pitch pending.
+
 # 759 PHOTO PASS: CR17 clear/recovery; manual reset pending
 
 User green/holding photo decoded416bits, five offsets/three thresholds and352
