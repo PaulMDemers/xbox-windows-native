@@ -1,3 +1,5 @@
+User reports green and holding; photo still pending. Do not reset or collect yet.
+
 # 749 launched; awaiting held report
 
 One SITE accepted at2026-10-28T00:20:09.050754UTC. No retry. No hook or owned

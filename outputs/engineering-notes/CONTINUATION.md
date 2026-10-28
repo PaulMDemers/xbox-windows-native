@@ -1,3 +1,11 @@
+# 749 GREEN HOLD: awaiting full photo
+
+User reports green and holding. Raw native values remain unverified until the
+full13-row photo is decoded. Top bar not separately confirmed. No reset or
+collection yet. Console held; no hook or owned host process/VM. One accepted
+launch only, f6cdf094 pushed. All748/prior CLOSED.
+NEXT outputs/native-crtc-total749/NEXT.md.
+
 # 749 LAUNCHED: native CR00 checkpoint awaits observation
 
 One SITE request accepted at2026-10-28T00:20:09.050754UTC after current user
