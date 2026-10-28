@@ -1,3 +1,14 @@
+# 758 CLOSED PASS: kernel CR17 clear and own recovery
+
+One accepted launch; automatic firmware restart requested and dashboard
+authenticated02:11:31UTC. Seven phases collected once/double-read; auditPASS
+02:11:43UTC. CR17e3->63->e3; CR00/02/03/04/05 neighbors5c/59/80/5d/be;
+eight recovery masks0, selectors restored. Clock3375000/high0. No visual or
+normalWindows shutdown claim. No hook/owned process/VM. All758/prior CLOSED.
+NEXT outputs/crtc-display-gate758/NEXT.md: fresh native counterpart,164words
+end5390 fits existingzero5400. Thirteen-row mapping must explicitly omit forward
+status to expose all eight masks plus CR17 triplet. No fullmode/Windows proof.
+
 # 758 LAUNCHED: kernel CR17 clear/recovery control
 
 One SITE accepted2026-10-28T02:10:22.981348UTC. Preparation524d6db7 pushed.
