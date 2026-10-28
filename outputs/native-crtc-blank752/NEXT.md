@@ -1,3 +1,8 @@
+752 LAUNCHED ONCE: accepted 2026-10-28T00:54:42.207124+00:00. Await status/photo.
+Do not retry. No hook. Capture all13rows before manual reset; on Ready collect
+using physical003.py once, then independently audit preparation and photo.
+Historical preparation/deferment below is superseded by ready001/launch001.
+
 USER DEFERRED: prepare only; test later. No launch. Await renewed current hardware readiness.
 
 # 752 staged; awaiting watched native CR02 test

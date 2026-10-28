@@ -1,3 +1,13 @@
+# 752 LAUNCHED: watched native CR02 checkpoint
+
+User resumed with Ready after deferred preparation. Exact frozen sources/build002
+and remote staged bytes verified. One SITE accepted 2026-10-28T00:54:42.207124+00:00.
+Deliberate native hold; awaiting status and full13-row photo. No retry, no startup
+hook, no owned host process/VM. Current console screen pending user observation.
+Do not reset until photo captured; then request manual power-cycle and collect
+preparation files once on Ready. All751/prior runtimes CLOSED.
+NEXT outputs/native-crtc-blank752/NEXT.md. No full mode/Windows claim.
+
 # 752 PREPARED ONLY: user deferred hardware test
 
 User selected Prepare only; test later. No launch requested or sent. Keep frozen
