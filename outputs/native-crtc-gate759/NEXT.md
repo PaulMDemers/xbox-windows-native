@@ -1,11 +1,9 @@
-# Test759 staged; current watcher needed
+# Test759 launched; observation and photo pending
 
-Obtain current watch/photo/reset readiness with1.6 at UnleashX and HDMI connected.
-Record ready001, verify frozen source/index/build and remote bytes, then issue
-one SITE request with20-second bound. Never retry an accepted/uncertain launch.
-Observe TOP/SECOND bars and preserve full13-row photo. Decode independently
-without substituting expected values, then request manual power-cycle. Only
-collect once after dashboard readiness, audit exact preparation and sources.
-No hook installed. Do not rerun/recollect/parent any closed758/prior runtime.
-No new test until759 is closed. CR01 is next source-ordered operation afterward;
-CR17 final enable, pitch/vertical/encoder/PLL/full mode remain unqualified.
+Do not launch again. Await TOP/SECOND bars and full13-row photograph. Preserve
+and decode photo independently, then request manual power-cycle to UnleashX.
+Only after user reset/dashboard readiness, collect once and audit preparation.
+No startup hook. No owned host process/VM. All758/prior runtimes CLOSED.
+Report exposes finalcode, eight masks and CR17 triplet; forwardstatus, CPU,
+selectors, neighbors and prior individual restorations are not directly exposed.
+No native disk/fullmode/Windows1.6 proof. CR01 remains later source-ordered work.

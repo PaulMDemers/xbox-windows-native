@@ -1,4 +1,11 @@
-# Test759 staged: native CR17 clear and own recovery
+# Test759 launched; optical observation pending
+
+One SITE was accepted at2026-10-28T02:29:32.774622UTC after the user confirmed
+watch/reset readiness. Exact source/index/build and staged bytes verified.
+No retry, startup hook or owned host process/VM. The deliberate hold is intended;
+actual post-launch picture is not yet observed. All758/prior remain CLOSED.
+
+# Preparation record: native CR17 clear and own recovery
 
 Kernel758 closed successfully. This native counterpart changes only admission
 context and the explicit optical report mapping relative to that transaction.
@@ -19,7 +26,7 @@ CPU, selectors, neighbor values and individual previous recoveries are not
 exposed directly. Final759 requires forward and recovery success in tested code.
 This is not native disk persistence, full mode switching or Windows1.6 proof.
 
-No759 launch yet. Console authenticated at dashboard during staging; no owned
+At preparation there was no759 launch. Console authenticated at dashboard during staging; no owned
 host process/VM remains. Current watch/photo/reset readiness is required for
 this intentionally held native test. All758/prior runtimes remain CLOSED.
 Active sources/build/reviews and limits are pinned in sources001/review001.
