@@ -1,3 +1,13 @@
+# 760 CLOSED PASS: kernel CR01 display-end and own recovery
+
+One accepted launch; automatic firmware restart requested, dashboard authenticated
+02:53:03UTC. Seven phases collected once/double-read; auditPASS02:53:20UTC.
+CR019f->59->9f; neighbors5c/59/80/5d/be/63; nine recovery masks0; selectors
+restored. Clock3375000/high0. No visual/normalWindows/nativehandoff claim.
+No hook/owned process/VM; all760/prior CLOSED. NEXT outputs/crtc-display-end760/
+NEXT.md: fresh native counterpart,176words end53c0, explicit13row omission;
+current watcher/photo/reset required. Later CR02/display-enable pending.
+
 # 760 LAUNCHED: kernel CR01 display-end control
 
 One SITE accepted2026-10-28T02:52:27.991841UTC; preparation2b4933a9 pushed.
