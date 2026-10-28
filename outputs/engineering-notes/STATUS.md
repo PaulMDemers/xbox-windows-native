@@ -1,3 +1,51 @@
+# Test787 qualified: native CR07 sync-overflow recovery
+
+Fresh source-only785 frontend/786probe, following CLOSED786kernel F0->74->F0.
+No787console stage/launch yet. 575direct native cases,565full-path cases,76complete
+renderer cases,12fresh diskless CPU cases (allclosed),32compiled page cases plus
+33near-boundary page cases,372compiled ownership cases, exactlinkedPE/XBE and
+independent source/layout checks PASS. All21recovery masks required; optical13rows
+show eight masks plus CR07before/after/restored. Thirteen masks and rawneighbors/
+CPU/selectors omitted; native result not persisted. No complete mode/Windows proof.
+
+Payload15992bytes fits16384 with392bytes padding. Sameowned32KiB block; independently
+verified payload1000..5000,request5000..503c,zeroguard503c..5040,result5040..5770,
+A5guard5770..5800,IDT5800..6000,stack6000..8000. All256IDT entries,18relocations,
+pagechecksum/payloadbytes exact; no result/IDT overlap. Every VM and host test closed.
+
+NEXT commit/push frozen sources then uniqueE/Applications/XWNMode787 stage/readback
+and one SITE20s launch on1.6 .66HDMI. StandingOct28 watch/reset authorization applies;
+no readiness question. After~2minutes ask heldbarcolor/photo; ifblack preserve
+observation and requestreset. Afterphoto decoding/review requestpowercycle, then
+collect once/double ninefreshpreparation records and audit. No repeat accepted/
+uncertainlaunch, no closedruntime reuse. No hook/Windows/ordinarylauncher/protected
+720p change/dashboardC access. Lastconsoleknown atUnleashX after786autoreturn.
+
+Recorded 2026-10-28T23:31:54.663467+00:00
+
+# Test787 native CR07 candidate: host qualification in progress
+
+Fresh source-only785 frontend/786probe. Payload00515992bytes fits16384 reserve
+with392bytes padding. Proposed/new builder layout: payload1000..5000,
+request5000..503c, zero guard503c..5040, result5040..5770 (460words1840bytes),
+A5guard5770..5800, IDT5800..6000, stack6000..8000. Same32KiB ownership policy.
+575direct native instruction cases PASS; 12fresh diskless CPU cases PASS and all
+closed. Exact ELF sections/18relocations pass. Full-path integration004 and optical
+renderer run still pending; no physical admission, stage or launch yet.
+Host process running under xemu lease: integration005.py then optical_review002.py.
+No emulator VM remains; source/host/payload pins retained. Additional near-size
+page refusal and independent complete memory-layout checks prepared.
+
+NEXT finish pending integration/optical, nxdkbuild006, compiledpage/plan/link checks,
+source_review.py, page_boundary004.py and review_prepare002.py. Preserve any failure
+under fresh artifacts/attempts; do not waive gates. Freeze/exactstage/commitpush then
+uniqueE/Applications/XWNMode787 on .66 once under standingOct28 watch/reset authority.
+Ask held color/photo after~2minutes. Prior786/prior allCLOSED; no recollect/relaunch.
+Last console known atUnleashX after786automatic return. No hook/ordinarylauncher/
+protected720p change or dashboardC access. Fullnative modes/Windows1.6 unproven.
+
+Recorded 2026-10-28T23:27:59.220162+00:00
+
 # Test786 CLOSED PASS: kernel CR07 vertical-sync overflow recovery
 
 Single SITE accepted23:13:06.997739UTC. Dashboard authenticated23:13:39UTC;
