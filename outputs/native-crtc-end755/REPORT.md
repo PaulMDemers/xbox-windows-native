@@ -26,3 +26,10 @@ host process or VM remains. Waiting for current watch/photo/reset readiness.
 Launch update: one SITE accepted2026-10-28T01:23:30.741104UTC after current
 user readiness and exact readback. Await visual result/full13-row photo.
 No repeat launch; no hook or owned host process/VM.
+
+Photo update: user reports green/holding. All416 bits decoded independently,
+five sample offsets and three thresholds each plus352 adjacent-row checks.
+CR03 8c -> 80 -> 8c, six cleanup masks0, selectors1, return/forward755.
+Black median max116 versus white minimum mean217. No expected values substituted.
+This is native optical checkpoint evidence only. Manual reset requested;
+collection/audit pending. Private photograph remains outside the repository.

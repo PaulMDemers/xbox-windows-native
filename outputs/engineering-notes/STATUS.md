@@ -1,3 +1,13 @@
+# 755 HELD: photo-qualified native CR03 pass, reset requested
+
+User green/holding. All416 photo bits decoded with five offsets/three thresholds
+and352 adjacent-row cross-checks:7550000d,755,755,sixzero masks,8c,80,8c,1.
+CR03 change/recovery and selector restoration pass optically. No native disk
+result or complete mode/Windows proof. Photo private; decoded receipts public.
+Manual power-cycle requested; NOT yet confirmed. Do not reconnect/collect until
+user reports dashboard. No repeat launch/hook/host process/VM. Allprior CLOSED.
+NEXT outputs/native-crtc-end755/NEXT.md.
+
 # 755 LAUNCHED: native CR03 held checkpoint
 
 One SITE accepted2026-10-28T01:23:30.741104UTC after current user watch/reset
