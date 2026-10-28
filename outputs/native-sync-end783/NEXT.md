@@ -1,11 +1,18 @@
-# Test783 staged and verified; single launch next
+# Test783 single launch accepted; native optical observation pending
 
-Qualified783 sources committed/pushed1ae39855. Authenticated dashboard, unique
-E/Applications/XWNMode783 owner and135168byte XBE read back exact. XBE SHA256
-1d27711f070e90fc9d6a4faa68334caee3bba6a58da2bcfed4c7aa4409370e87.
-No hook/Windows, no owned process/VM. Frozen source41 hashes exact. No new launch
-sent yet. NEXT one bounded SITE under standing watch/reset authorization, record
-outcome and ask held color/photo after about two minutes. Never retry accepted/
-uncertain launch. Eleven masks aggregate-only; eight displayed raw. All782/prior
-CLOSED. Preserve783-Os size failure,006padding assumption and ignored-link.ld
-staging failure. No fullmode/Windows1.6/acceleration claim; protected720p unchanged.
+SITE accepted2026-10-28T22:11:26.391604UTC; no retry. Qualified/staged native
+NVVSYNCEND729 ->492 ->729 diagnostic deliberately holds its13-row report.
+Hardware state after launch is not yet observed. No startup hook/Windows, no
+owned host process/VM; all12CPU fixtures closed. Protected720p/ordinary launcher
+unchanged. No fullmode/Windows1.6/acceleration claim.
+
+NEXT at approximately22:13:26UTC ask second-bar color and held/black/dashboard
+state, then obtain full13-row photo. Decode against frozen optical-schema001,
+review all416bits independently, record raw/aggregate limits, then request manual
+power-cycle. Only after reset/authenticated dashboard collect new preparation
+files once/double and audit005. Persisted preparation ends at handoff_armed;
+photo is separate native evidence. Do not collect/rerun closed782/prior runtimes.
+
+Preserve failed-Os payload003, reviewer006padding assumption, ignored-link.ld
+staging failure. Fresh-Oz004/newreview007 and all host qualifications passed;
+frozen41source bytes exact. Eleven cleanup masks aggregate-only, eight raw.
