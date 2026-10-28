@@ -1,3 +1,11 @@
+# 750 CLOSED: kernel CR02 change and restoration pass
+
+CR02 9f->59->9f; CR00/04/05 after CR02=5c/5d/3e. Prefix15/H7 and all
+recovery masks pass; selectors1. One accepted launch, automatic authenticated
+UnleashX return. Seven reports collected once/double-read, auditPASS00:31:51UTC.
+No visual observation or native/full mode/Windows proof. No hook/process/VM.
+All750/prior CLOSED. NEXT outputs/crtc-blank-start750/NEXT.md: fresh native751.
+
 # 750 LAUNCHED: one accepted kernel CR02 control
 
 SITE accepted2026-10-28T00:30:45.239134UTC; preparationb90c66c1 pushed.
