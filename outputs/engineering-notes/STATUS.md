@@ -1,3 +1,13 @@
+# 761 LAUNCHED: native CR01 display-end held checkpoint
+
+One SITE accepted2026-10-28T03:28:37.253485UTC after current watch/reset readiness,
+exact source/index/build and remote readback verification. Preparation8709d339
+pushed. No retry. Await TOP/SECOND bar observation and full13-row photograph.
+No hook or owned host process/VM. Post-launch screen not yet observed; deliberate
+hold intended. All760/prior CLOSED. Native result not yet known. SecondCR05
+mask omitted optically; all nine still required for final761. No native disk,
+fullmode or Windows1.6 qualification. NEXT outputs/native-crtc-end761/NEXT.md.
+
 # 761 STAGED: native CR01 display-end and own recovery; watcher needed
 
 189 ELF,12 fresh CPU fixtures/allclosed,179 integration,76 optical,32page,

@@ -38,3 +38,8 @@ Frozen source and Git index bytes match. The unique E/Applications/XWNMode761
 package was staged and read back exactly; no startup hook or console C access.
 XBE SHA256 ed4ab5772f241fddcf48e558b9753f8e7b21af7986b0ba4497884eb03e6e6c24,
 131072bytes. No launch yet. Current watcher/photo/reset readiness is required.
+
+Launch update: one SITE accepted2026-10-28T03:28:37.253485UTC after the user
+confirmed current watch/reset availability. Exact frozen source/index/build and
+remote staged bytes verified again. No retry, startup hook or owned host VM.
+Awaiting screen observation and photo; no physical success claimed yet.
