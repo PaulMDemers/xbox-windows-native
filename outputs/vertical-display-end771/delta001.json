@@ -1,0 +1,63 @@
+{
+  "fields": [
+    "v_before",
+    "v_target",
+    "v_attempted",
+    "v_after",
+    "v_restored",
+    "v_cleanup_mask",
+    "vtotal_before",
+    "vtotal_after",
+    "vtotal_restored",
+    "vsyncstart_before",
+    "vsyncstart_after",
+    "vsyncstart_restored",
+    "vsyncend_before",
+    "vsyncend_after",
+    "vsyncend_restored",
+    "vvalidend_before",
+    "vvalidend_after",
+    "vvalidend_restored",
+    "c13_v_before",
+    "c13_v_after",
+    "c13_v_restored",
+    "c19_v_before",
+    "c19_v_after",
+    "c19_v_restored"
+  ],
+  "init": " o->v_after=0xffffffff;o->v_restored=0xffffffff;o->vtotal_after=0xffffffff;o->vtotal_restored=0xffffffff;o->vsyncstart_after=0xffffffff;o->vsyncstart_restored=0xffffffff;o->vsyncend_after=0xffffffff;o->vsyncend_restored=0xffffffff;o->vvalidend_after=0xffffffff;o->vvalidend_restored=0xffffffff;o->c13_v_after=0xffffffff;o->c13_v_restored=0xffffffff;o->c19_v_after=0xffffffff;o->c19_v_restored=0xffffffff;\n",
+  "block": " /* Next pinned source-order word: vertical display end only. */\n o->forward_status=0x77122;o->v_before=R32(0x680800);\n o->vtotal_before=R32(0x680804);o->vsyncstart_before=R32(0x68080c);o->vsyncend_before=R32(0x680810);o->vvalidend_before=R32(0x680818);o->c13_v_before=cr(0x13);o->c19_v_before=cr(0x19);\n if(o->v_before!=719 || o->vtotal_before!=749 || o->vsyncstart_before!=724 || o->vsyncend_before!=729 || o->vvalidend_before!=719 || o->c13_v_before!=104 || o->c19_v_before!=48)goto restore;\n o->v_target=480u-1u;o->v_attempted=1;R32(0x680800)=o->v_target;\n o->v_after=R32(0x680800);o->vtotal_after=R32(0x680804);o->vsyncstart_after=R32(0x68080c);o->vsyncend_after=R32(0x680810);o->vvalidend_after=R32(0x680818);o->c13_v_after=cr(0x13);o->c19_v_after=cr(0x19);\n if(o->v_after!=o->v_target || o->vtotal_after!=o->vtotal_before || o->vsyncstart_after!=o->vsyncstart_before || o->vsyncend_after!=o->vsyncend_before || o->vvalidend_after!=o->vvalidend_before || o->c13_v_after!=o->c13_v_before || o->c19_v_after!=o->c19_v_before)goto restore;\n",
+  "undo": " if(o->v_attempted){R32(0x680800)=o->v_before;o->v_restored=R32(0x680800);o->vtotal_restored=R32(0x680804);o->vsyncstart_restored=R32(0x68080c);o->vsyncend_restored=R32(0x680810);o->vvalidend_restored=R32(0x680818);o->c13_v_restored=cr(0x13);o->c19_v_restored=cr(0x19);if(o->v_restored!=o->v_before)o->v_cleanup_mask|=1;if(o->vtotal_restored!=o->vtotal_before)o->v_cleanup_mask|=2;if(o->vsyncstart_restored!=o->vsyncstart_before)o->v_cleanup_mask|=4;if(o->vsyncend_restored!=o->vsyncend_before)o->v_cleanup_mask|=8;if(o->vvalidend_restored!=o->vvalidend_before)o->v_cleanup_mask|=16;if(o->c13_v_restored!=o->c13_v_before)o->v_cleanup_mask|=32;if(o->c19_v_restored!=o->c19_v_before)o->v_cleanup_mask|=64;}\n",
+  "neighbors": [
+    [
+      "vtotal",
+      6817796,
+      749
+    ],
+    [
+      "vsyncstart",
+      6817804,
+      724
+    ],
+    [
+      "vsyncend",
+      6817808,
+      729
+    ],
+    [
+      "vvalidend",
+      6817816,
+      719
+    ],
+    [
+      "c13_v",
+      19,
+      104
+    ],
+    [
+      "c19_v",
+      25,
+      48
+    ]
+  ]
+}
