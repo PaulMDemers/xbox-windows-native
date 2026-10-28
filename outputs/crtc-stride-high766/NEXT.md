@@ -1,13 +1,14 @@
-# 766 staged; single automatic-return kernel run next
+# 766 CLOSED PASS; native CR19 upper-stride control next
 
-Verify frozen staged bytes/index, then one SITE request with20-second reply
-bound under standing autonomous-kernel authorization. Never retry uncertain or
-accepted launch. Poll without launching; once dashboard authenticated, collect
-seven new reports once/double-read and audit source/build/stage, clock, geometry,
-raw216word result, unrelated E/apps entries. No hook installed. If offline beyond
-bounded observation, stop and ask screen/reset. No repeated boots until lucky.
+Do not rerun/recollect/parent this closed runtime. Physical kernel766 passed
+CR19 high-stride10/30/10 with own recovery and inherited51; CR13 read-only80,
+all twelve masks0. Source-only766 probe plus closed765 native front end may seed
+a fresh767 kit. Independently validate actual native object, relocation, CPU,
+page bounds and optical rows. Result216words5100..5460 must be initialized
+through5500 before entry; retain guardto6000 and stack6000..8000. No scope leap.
 
-After closure and evidence review, native767 counterpart requires independently
-validated bounds, CPU, relocations and optical layout plus current watcher/reset
-readiness. Do not rerun/recollect/parent closed764/765 or any earlier runtime.
-CR13 low-byte write is a later separate step; keep it read-only here.
+Current watch/photo/reset confirmation is required before the deliberately held
+native run. Prepare until then. No CR13lowbyte write yet; it follows the native
+high-stride result in original source order. No later vertical/encoder/PLL work,
+no fullmode/Windows1.6 claim. Preserve766model001 failed injection-scope evidence
+and model002 correction; every earlier closed attempt/failure remains intact.

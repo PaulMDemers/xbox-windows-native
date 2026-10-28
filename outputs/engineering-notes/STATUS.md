@@ -1,3 +1,14 @@
+# 766 CLOSED PASS: kernel CR19 upper stride
+
+One SITE15:08:52UTC; seven reports collectedonce/double-read, auditPASS15:09:40UTC.
+PhysicalCR1910/30/10 then inherited51; CR13read-only80 throughout; all12masks0.
+Exactsource/build/stage, allocation, selectors, six3375000Hz/high0 clockrows and
+unrelatedE/appsPASS. Visualunobserved; automaticreturn inferred, notnormalWindows
+shutdown. Consoleauthenticateddashboard; nohook/VM/ownedhostprocess. All766/prior
+CLOSED. NEXT outputs/crtc-stride-high766/NEXT.md: source-onlynative767, fresh
+object/CPU/page/relocation/opticalvalidation, currentwatch/photo/resetbeforehold.
+No fullmode/Windows1.6proof. Preserve766model001 failure/model002correction.
+
 # 766 LAUNCHED: kernel CR19 upper stride
 
 One SITE accepted2026-10-28T15:08:52.652435UTC. Frozen build/index/stage exact;
