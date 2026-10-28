@@ -1,0 +1,79 @@
+{
+  "fields": [
+    "sy_before",
+    "sy_target",
+    "sy_attempted",
+    "sy_after",
+    "sy_restored",
+    "sy_cleanup_mask",
+    "sy_disp_before",
+    "sy_disp_after",
+    "sy_disp_restored",
+    "sy_total_before",
+    "sy_total_after",
+    "sy_total_restored",
+    "sy_crtc_before",
+    "sy_crtc_after",
+    "sy_crtc_restored",
+    "sy_validstart_before",
+    "sy_validstart_after",
+    "sy_validstart_restored",
+    "sy_syncend_before",
+    "sy_syncend_after",
+    "sy_syncend_restored",
+    "sy_validend_before",
+    "sy_validend_after",
+    "sy_validend_restored",
+    "sy_c13_before",
+    "sy_c13_after",
+    "sy_c13_restored",
+    "sy_c19_before",
+    "sy_c19_after",
+    "sy_c19_restored"
+  ],
+  "init": " o->sy_after=0xffffffff;o->sy_restored=0xffffffff;o->sy_disp_after=0xffffffff;o->sy_disp_restored=0xffffffff;o->sy_total_after=0xffffffff;o->sy_total_restored=0xffffffff;o->sy_crtc_after=0xffffffff;o->sy_crtc_restored=0xffffffff;o->sy_validstart_after=0xffffffff;o->sy_validstart_restored=0xffffffff;o->sy_syncend_after=0xffffffff;o->sy_syncend_restored=0xffffffff;o->sy_validend_after=0xffffffff;o->sy_validend_restored=0xffffffff;o->sy_c13_after=0xffffffff;o->sy_c13_restored=0xffffffff;o->sy_c19_after=0xffffffff;o->sy_c19_restored=0xffffffff;\n",
+  "block": " /* Next pinned source-order word: NVVSYNCSTART, target489 from GPU_PARAMETER. */\n o->forward_status=0x7802a;o->sy_before=R32(0x68080c);\n o->sy_disp_before=R32(0x680800);o->sy_total_before=R32(0x680804);o->sy_crtc_before=R32(0x680808);o->sy_validstart_before=R32(0x680814);o->sy_syncend_before=R32(0x680810);o->sy_validend_before=R32(0x680818);o->sy_c13_before=cr(0x13);o->sy_c19_before=cr(0x19);\n if(o->sy_before!=724 || o->sy_disp_before!=479 || o->sy_total_before!=524 || o->sy_crtc_before!=479 || o->sy_validstart_before!=0 || o->sy_syncend_before!=729 || o->sy_validend_before!=719 || o->sy_c13_before!=104 || o->sy_c19_before!=48)goto restore;\n o->sy_target=489u;o->sy_attempted=1;R32(0x68080c)=o->sy_target;\n o->sy_after=R32(0x68080c);o->sy_disp_after=R32(0x680800);o->sy_total_after=R32(0x680804);o->sy_crtc_after=R32(0x680808);o->sy_validstart_after=R32(0x680814);o->sy_syncend_after=R32(0x680810);o->sy_validend_after=R32(0x680818);o->sy_c13_after=cr(0x13);o->sy_c19_after=cr(0x19);\n if(o->sy_after!=o->sy_target || o->sy_disp_after!=o->sy_disp_before || o->sy_total_after!=o->sy_total_before || o->sy_crtc_after!=o->sy_crtc_before || o->sy_validstart_after!=o->sy_validstart_before || o->sy_syncend_after!=o->sy_syncend_before || o->sy_validend_after!=o->sy_validend_before || o->sy_c13_after!=o->sy_c13_before || o->sy_c19_after!=o->sy_c19_before)goto restore;\n",
+  "undo": " if(o->sy_attempted){R32(0x68080c)=o->sy_before;o->sy_restored=R32(0x68080c);o->sy_disp_restored=R32(0x680800);o->sy_total_restored=R32(0x680804);o->sy_crtc_restored=R32(0x680808);o->sy_validstart_restored=R32(0x680814);o->sy_syncend_restored=R32(0x680810);o->sy_validend_restored=R32(0x680818);o->sy_c13_restored=cr(0x13);o->sy_c19_restored=cr(0x19);if(o->sy_restored!=o->sy_before)o->sy_cleanup_mask|=1;if(o->sy_disp_restored!=o->sy_disp_before)o->sy_cleanup_mask|=2;if(o->sy_total_restored!=o->sy_total_before)o->sy_cleanup_mask|=4;if(o->sy_crtc_restored!=o->sy_crtc_before)o->sy_cleanup_mask|=8;if(o->sy_validstart_restored!=o->sy_validstart_before)o->sy_cleanup_mask|=16;if(o->sy_syncend_restored!=o->sy_syncend_before)o->sy_cleanup_mask|=32;if(o->sy_validend_restored!=o->sy_validend_before)o->sy_cleanup_mask|=64;if(o->sy_c13_restored!=o->sy_c13_before)o->sy_cleanup_mask|=128;if(o->sy_c19_restored!=o->sy_c19_before)o->sy_cleanup_mask|=256;}\n",
+  "neighbors": [
+    [
+      "sy_disp",
+      6817792,
+      479
+    ],
+    [
+      "sy_total",
+      6817796,
+      524
+    ],
+    [
+      "sy_crtc",
+      6817800,
+      479
+    ],
+    [
+      "sy_validstart",
+      6817812,
+      0
+    ],
+    [
+      "sy_syncend",
+      6817808,
+      729
+    ],
+    [
+      "sy_validend",
+      6817816,
+      719
+    ],
+    [
+      "sy_c13",
+      19,
+      104
+    ],
+    [
+      "sy_c19",
+      25,
+      48
+    ]
+  ]
+}

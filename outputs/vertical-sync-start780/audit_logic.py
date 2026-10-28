@@ -1,0 +1,216 @@
+"""Independent 370-word physical result checks; models are not hardware evidence."""
+from prefix_schema import validate as prefix_validate
+
+TARGET=[719,779,719,0,738,770,719]
+BASELINE=[1279,1649,1279,0,1389,1429,1279]
+
+def validate(v):
+ assert len(v)==370 and all(type(n)==int and 0<=n<=0xffffffff for n in v)
+ code,forward=v[:2];before,checked,restored=v[76:83],v[83:90],v[90:97]
+ attempted,count,first,mask,enabled,expected,observed=v[97:104]
+ c4,c4check,c4restore,c4attempt,cm,c5,c5check,c5restore=v[104:112]
+ c5target,c5attempt,c5after,c4after=v[112:116]
+ c0,c0target,c0attempt,c0after,c0restore,zm,c4after0,c5after0=v[116:124]
+ c2,c2target,c2attempt,c2after,c2restore,bm,c0after2,c4after2,c5after2=v[124:133]
+ c3,c3target,c3attempt,c3after,c3restore,em,c0after3,c2after3,c4after3,c5after3=v[133:143]
+ c5bbefore,c5btarget,c5battempt,c5bafter,c5bundo,nm,c0afterb,c2afterb,c3afterb,c4afterb=v[143:153]
+ c17,c17target,c17attempt,c17after,c17undo,dm,c0after17,c2after17,c3after17,c4after17,c5after17=v[153:164]
+ c1,c1target,c1attempt,c1after,c1undo,fm,c0after1,c2after1,c3after1,c4after1,c5after1,c17after1=v[164:176]
+ c2bb,c2bt,c2ba,c2bv,c2bu,rm,c0after2b,c1after2b,c3after2b,c4after2b,c5after2b,c17after2b=v[176:188]
+ c17bb,c17bt,c17ba,c17bv,c17bu,sm,c0after17b,c1after17b,c2after17b,c3after17b,c4after17b,c5after17b=v[188:200]
+ c19bb,c19bt,c19ba,c19bv,c19bu,tm,c13b,c13v,c17v,c0v,c1v,c2v,c3v,c4v,c5v,c13u=v[200:216]
+ c13before,c13target,c13attempt,c13after,c13undo,um,c19before13,c19after13,c17after13,c0after13,c1after13,c2after13,c3after13,c4after13,c5after13,c19undo13=v[216:232]
+ vb,vt,va,vf,vu,vm=v[232:238]
+ nb=[v[238+3*i] for i in range(6)];na=[v[239+3*i] for i in range(6)];nu=[v[240+3*i] for i in range(6)]
+ assert va in [0,1] and 0<=vm<128
+ if forward in [0x780,0x78022,0x78024,0x78026,0x78028,0x7802a]:
+  assert va==int([vb]+nb==[719,749,724,729,719,104,48])
+  if va:
+   assert vt==479 and vm==sum(1<<i for i,(a,b) in enumerate(zip([vu]+nu,[vb]+nb)) if a!=b)
+   assert (vf==479 and na==nb)==(forward in [0x780,0x78024,0x78026,0x78028,0x7802a])
+  else:assert vt==vm==0 and vf==vu==0xffffffff and na==nu==[0xffffffff]*6 and forward==0x78022
+ else:assert v[232:238]==[0,0,0,0xffffffff,0xffffffff,0] and v[238:256]==[0,0xffffffff,0xffffffff]*6
+ qb,qt,qa,qf,qu,qm=v[256:262]
+ qnb=[v[262+3*i] for i in range(6)];qna=[v[263+3*i] for i in range(6)];qnu=[v[264+3*i] for i in range(6)]
+ assert qa in [0,1] and 0<=qm<128
+ if forward in [0x780,0x78024,0x78026,0x78028,0x7802a]:
+  assert qa==int([qb]+qnb==[749,479,724,729,719,104,48])
+  if qa:
+   assert qt==524 and qm==sum(1<<i for i,(a,b) in enumerate(zip([qu]+qnu,[qb]+qnb)) if a!=b)
+   assert (qf==524 and qna==qnb)==(forward in [0x780,0x78026,0x78028,0x7802a])
+  else:assert qt==qm==0 and qf==qu==0xffffffff and qna==qnu==[0xffffffff]*6 and forward==0x78024
+ else:assert v[256:262]==[0,0,0,0xffffffff,0xffffffff,0] and v[262:280]==[0,0xffffffff,0xffffffff]*6
+ wb,wt,wa,wf,wu,wm=v[280:286]
+ wnb=[v[286+3*i] for i in range(8)];wna=[v[287+3*i] for i in range(8)];wnu=[v[288+3*i] for i in range(8)]
+ assert wa in [0,1] and 0<=wm<512
+ if forward in [0x780,0x78026,0x78028,0x7802a]:
+  assert wa==int([wb]+wnb==[719,479,524,724,729,0,719,104,48])
+  if wa:
+   assert wt==479 and wm==sum(1<<i for i,(a,b) in enumerate(zip([wu]+wnu,[wb]+wnb)) if a!=b)
+   assert (wf==479 and wna==wnb)==(forward in [0x780,0x78028,0x7802a])
+  else:assert wt==wm==0 and wf==wu==0xffffffff and wna==wnu==[0xffffffff]*8 and forward==0x78026
+ else:assert v[280:286]==[0,0,0,0xffffffff,0xffffffff,0] and v[286:310]==[0,0xffffffff,0xffffffff]*8
+ xb,xt,xa,xf,xu,xm=v[310:316]
+ xnb=[v[316+3*i] for i in range(8)];xna=[v[317+3*i] for i in range(8)];xnu=[v[318+3*i] for i in range(8)]
+ assert xa in [0,1] and 0<=xm<512
+ if forward in [0x780,0x78028,0x7802a]:
+  assert xa==int([xb]+xnb==[0,479,524,479,724,729,719,104,48])
+  if xa:
+   assert xt==0 and xm==sum(1<<i for i,(a,b) in enumerate(zip([xu]+xnu,[xb]+xnb)) if a!=b)
+   assert (xf==0 and xna==xnb)==(forward in [0x780,0x7802a])
+  else:assert xt==xm==0 and xf==xu==0xffffffff and xna==xnu==[0xffffffff]*8 and forward==0x78028
+ else:assert v[310:316]==[0,0,0,0xffffffff,0xffffffff,0] and v[316:340]==[0,0xffffffff,0xffffffff]*8
+ yb,yt,ya,yf,yu,ym=v[340:346]
+ ynb=[v[346+3*i] for i in range(8)];yna=[v[347+3*i] for i in range(8)];ynu=[v[348+3*i] for i in range(8)]
+ assert ya in [0,1] and 0<=ym<512
+ if forward in [0x780,0x7802a]:
+  assert ya==int([yb]+ynb==[724,479,524,479,0,729,719,104,48])
+  if ya:
+   assert yt==489 and ym==sum(1<<i for i,(a,b) in enumerate(zip([yu]+ynu,[yb]+ynb)) if a!=b)
+   assert (yf==489 and yna==ynb)==(forward==0x780)
+  else:assert yt==ym==0 and yf==yu==0xffffffff and yna==ynu==[0xffffffff]*8 and forward==0x7802a
+ else:assert v[340:346]==[0,0,0,0xffffffff,0xffffffff,0] and v[346:]==[0,0xffffffff,0xffffffff]*8
+ assert c13attempt in [0,1] and um in [0,1,2,3]
+ assert c19ba in [0,1] and tm in [0,1,2,3]
+ assert c17ba in [0,1] and sm in [0,1]
+ assert c2ba in [0,1] and rm in [0,1]
+ assert c1attempt in [0,1] and fm in [0,1]
+ assert c17attempt in [0,1] and dm in [0,1]
+ assert c5battempt in [0,1] and nm in [0,1]
+ assert c3attempt in [0,1] and em in [0,1]
+ assert c2attempt in [0,1] and bm in [0,1]
+ assert c0attempt in [0,1] and zm in [0,1]
+ assert c5attempt in [0,1]
+ assert c4attempt in [0,1] and 0<=cm<4
+ assert forward in [0x780,0x7801,0x7802,0x7803,0x7804,0x7808,0x7809,0x780b,0x780d,0x780e,0x78010,0x78012,0x78014,0x78016,0x78018,0x7801a,0x7801c,0x7801e,0x78020,0x78022,0x78024,0x78026,0x78028,0x7802a]
+ assert enabled in [0,1] and 0<=mask<128
+ # Validate the original prefix independently, retaining its exact full-byte checks.
+ p=v[:76].copy();p[1]=0x780 if forward in [0x7809,0x780b,0x780d,0x780e,0x78010,0x78012,0x78014,0x78016,0x78018,0x7801a,0x7801c,0x7801e,0x78020,0x78022,0x78024,0x78026,0x78028,0x7802a] else forward
+ p[0]=p[1] if forward==0x7801 else 0x7806 if not v[28] else 0x7805 if forward!=0x7802 and v[30] else p[1]
+ prefix=prefix_validate(p)
+ if forward in [0x7801,0x7802]:
+  assert attempted==count==mask==enabled==expected==observed==0
+  assert first==0xffffffff and checked==restored==[0xffffffff]*7
+  assert code==p[0]
+ else:
+  assert before==BASELINE
+  assert mask==sum(1<<i for i,(a,b) in enumerate(zip(before,restored)) if a!=b)
+  assert enabled==int(mask==0 and cm==0 and zm==0 and bm==0 and em==0 and nm==0 and dm==0 and fm==0 and rm==0 and sm==0 and tm==0 and um==0 and vm==0 and qm==0 and wm==0 and xm==0 and ym==0)
+  assert code==(0x7806 if not v[28] else 0x7802b if ym else 0x78029 if xm else 0x78027 if wm else 0x78025 if qm else 0x78023 if vm else 0x78021 if um else 0x7801f if tm else 0x7801d if sm else 0x7801b if rm else 0x78019 if fm else 0x78017 if dm else 0x78015 if nm else 0x78013 if em else 0x78011 if bm else 0x780f if zm else 0x780c if cm else 0x780a if mask else 0x7805 if v[30] else forward)
+  if forward in [0x780,0x7809,0x780b,0x780d,0x780e,0x78010,0x78012,0x78014,0x78016,0x78018,0x7801a,0x7801c,0x7801e,0x78020,0x78022,0x78024,0x78026,0x78028,0x7802a]:
+   assert attempted==7
+   if forward in [0x780,0x780b,0x780d,0x780e,0x78010,0x78012,0x78014,0x78016,0x78018,0x7801a,0x7801c,0x7801e,0x78020,0x78022,0x78024,0x78026,0x78028,0x7802a]:
+    assert count==7 and first==0xffffffff and checked==TARGET and expected==observed==0
+   else:
+    assert 0<=first<7 and count==first+1
+    assert checked[:first]==TARGET[:first] and checked[first]!=TARGET[first]
+    assert [expected,observed]==[TARGET[first],checked[first]]
+    assert checked[first+1:]==[0xffffffff]*(6-first)
+  else:
+   assert attempted==count==expected==observed==0 and first==0xffffffff
+   assert checked==[0xffffffff]*7
+  if mask or cm or zm or bm or em or nm or dm or fm or rm or sm or tm or um or vm or qm or wm or xm or ym:assert v[18]==0x21 and v[30]&(1<<15)
+ if forward in [0x7801,0x7802]:
+  assert c4attempt==cm==0 and [c4check,c4restore,c5check,c5restore]==[0xffffffff]*4
+  if forward==0x7801:assert c4==c5==0
+ else:
+  assert [c4,c5]==[0xa7,0x31]
+  assert cm==int(c4restore!=c4)+2*int(c5restore!=c5)
+  assert c4attempt==int(forward in [0x780,0x780b,0x780d,0x780e,0x78010,0x78012,0x78014,0x78016,0x78018,0x7801a,0x7801c,0x7801e,0x78020,0x78022,0x78024,0x78026,0x78028,0x7802a])
+  if c4attempt:
+   assert c4check<=255 and c5check<=255
+   assert (c4check==93 and c5check==c5)==(forward in [0x780,0x780d,0x780e,0x78010,0x78012,0x78014,0x78016,0x78018,0x7801a,0x7801c,0x7801e,0x78020,0x78022,0x78024,0x78026,0x78028,0x7802a])
+  else:assert c4check==c5check==0xffffffff
+ assert c5attempt==int(forward in [0x780,0x780d,0x780e,0x78010,0x78012,0x78014,0x78016,0x78018,0x7801a,0x7801c,0x7801e,0x78020,0x78022,0x78024,0x78026,0x78028,0x7802a])
+ if c5attempt:
+  assert c5target==((c5check&0xe0)|0x1e) and c5after<=255 and c4after<=255
+  assert (c5after==c5target and c4after==93)==(forward in [0x780,0x780e,0x78010,0x78012,0x78014,0x78016,0x78018,0x7801a,0x7801c,0x7801e,0x78020,0x78022,0x78024,0x78026,0x78028,0x7802a])
+ else:assert c5target==0 and c5after==c4after==0xffffffff
+ assert c0attempt==int(forward in [0x780,0x780e,0x78010,0x78012,0x78014,0x78016,0x78018,0x7801a,0x7801c,0x7801e,0x78020,0x78022,0x78024,0x78026,0x78028,0x7802a])
+ if forward in [0x7801,0x7802]:
+  assert zm==0 and c0restore==0xffffffff
+  if forward==0x7801:assert c0==0
+ else:
+  assert c0==0xc8 and zm==int(c0restore!=c0)
+ if c0attempt:
+  assert c0target==92 and c0after<=255 and c4after0<=255 and c5after0<=255
+  assert (c0after==92 and c4after0==93 and c5after0==62)==(forward in [0x780,0x78010,0x78012,0x78014,0x78016,0x78018,0x7801a,0x7801c,0x7801e,0x78020,0x78022,0x78024,0x78026,0x78028,0x7802a])
+ else:assert c0target==0 and [c0after,c4after0,c5after0]==[0xffffffff]*3
+ assert c2attempt==int(forward in [0x780,0x78010,0x78012,0x78014,0x78016,0x78018,0x7801a,0x7801c,0x7801e,0x78020,0x78022,0x78024,0x78026,0x78028,0x7802a])
+ if forward in [0x7801,0x7802]:
+  assert bm==0 and c2restore==0xffffffff
+  if forward==0x7801:assert c2==0
+ else:assert c2==0x9f and bm==int(c2restore!=c2)
+ if c2attempt:
+  assert c2target==89 and all(n<=255 for n in [c2after,c0after2,c4after2,c5after2])
+  assert (c2after==89 and c0after2==92 and c4after2==93 and c5after2==62)==(forward in [0x780,0x78012,0x78014,0x78016,0x78018,0x7801a,0x7801c,0x7801e,0x78020,0x78022,0x78024,0x78026,0x78028,0x7802a])
+ else:assert c2target==0 and [c2after,c0after2,c4after2,c5after2]==[0xffffffff]*4
+ assert c3attempt==int(forward in [0x780,0x78012,0x78014,0x78016,0x78018,0x7801a,0x7801c,0x7801e,0x78020,0x78022,0x78024,0x78026,0x78028,0x7802a])
+ if forward in [0x7801,0x7802]:
+  assert em==0 and c3restore==0xffffffff
+  if forward==0x7801:assert c3==0
+ else:assert c3==0x8c and em==int(c3restore!=c3)
+ if c3attempt:
+  assert c3target==((c3&0xe0)|((779//8-1)&31)) and all(n<=255 for n in [c3after,c0after3,c2after3,c4after3,c5after3])
+  assert (c3after==c3target and c0after3==92 and c2after3==89 and c4after3==93 and c5after3==62)==(forward in [0x780,0x78014,0x78016,0x78018,0x7801a,0x7801c,0x7801e,0x78020,0x78022,0x78024,0x78026,0x78028,0x7802a])
+ else:assert c3target==0 and [c3after,c0after3,c2after3,c4after3,c5after3]==[0xffffffff]*5
+ assert c5battempt==int(forward in [0x780,0x78014,0x78016,0x78018,0x7801a,0x7801c,0x7801e,0x78020,0x78022,0x78024,0x78026,0x78028,0x7802a])
+ if c5battempt:
+  assert c5bbefore==c5after3==62 and c5btarget==((c5bbefore&127)|128)
+  assert all(n<=255 for n in [c5bafter,c5bundo,c0afterb,c2afterb,c3afterb,c4afterb])
+  assert nm==int(c5bundo!=c5bbefore)
+  assert (c5bafter==190 and [c0afterb,c2afterb,c3afterb,c4afterb]==[92,89,128,93])==(forward in [0x780,0x78016,0x78018,0x7801a,0x7801c,0x7801e,0x78020,0x78022,0x78024,0x78026,0x78028,0x7802a])
+ else:assert v[143:153]==[0,0,0,0xffffffff,0xffffffff,0,0xffffffff,0xffffffff,0xffffffff,0xffffffff]
+ if forward in [0x780,0x78016,0x78018,0x7801a,0x7801c,0x7801e,0x78020,0x78022,0x78024,0x78026,0x78028,0x7802a]:
+  assert c17<=255
+  assert c17attempt==int(c17==v[69])
+  if c17attempt:
+   assert c17target==(c17&127) and all(n<=255 for n in [c17after,c17undo,c0after17,c2after17,c3after17,c4after17,c5after17])
+   assert dm==int(c17undo!=c17)
+   assert (c17after==c17target and [c0after17,c2after17,c3after17,c4after17,c5after17]==[92,89,128,93,190])==(forward in [0x780,0x78018,0x7801a,0x7801c,0x7801e,0x78020,0x78022,0x78024,0x78026,0x78028,0x7802a])
+  else:assert v[154:164]==[0,0,0xffffffff,0xffffffff,0,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff]
+ else:assert v[153:164]==[0,0,0,0xffffffff,0xffffffff,0,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff]
+ assert c1attempt==int(forward in [0x780,0x78018,0x7801a,0x7801c,0x7801e,0x78020,0x78022,0x78024,0x78026,0x78028,0x7802a])
+ if c1attempt:
+  assert c1<=255 and c1target==89 and all(n<=255 for n in [c1after,c1undo,c0after1,c2after1,c3after1,c4after1,c5after1,c17after1])
+  assert fm==int(c1undo!=c1)
+  assert (c1after==89 and [c0after1,c2after1,c3after1,c4after1,c5after1,c17after1]==[92,89,128,93,190,99])==(forward in [0x780,0x7801a,0x7801c,0x7801e,0x78020,0x78022,0x78024,0x78026,0x78028,0x7802a])
+ else:assert v[164:176]==[0,0,0,0xffffffff,0xffffffff,0,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff]
+ if forward in [0x780,0x7801a,0x7801c,0x7801e,0x78020,0x78022,0x78024,0x78026,0x78028,0x7802a]:
+  assert c2bb<=255 and c2ba==int(c2bb==c2after1)
+  if c2ba:
+   assert c2bb==c2bt==89 and all(n<=255 for n in [c2bv,c2bu,c0after2b,c1after2b,c3after2b,c4after2b,c5after2b,c17after2b])
+   assert rm==int(c2bu!=c2bb)
+   assert (c2bv==89 and [c0after2b,c1after2b,c3after2b,c4after2b,c5after2b,c17after2b]==[92,89,128,93,190,99])==(forward in [0x780,0x7801c,0x7801e,0x78020,0x78022,0x78024,0x78026,0x78028,0x7802a])
+  else:assert v[177:188]==[0,0,0xffffffff,0xffffffff,0,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff]
+ else:assert v[176:188]==[0,0,0,0xffffffff,0xffffffff,0,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff]
+ if forward in [0x780,0x7801c,0x7801e,0x78020,0x78022,0x78024,0x78026,0x78028,0x7802a]:
+  assert c17bb<=255 and c17ba==int(c17bb==c17after2b)
+  if c17ba:
+   assert c17bb==99 and c17bt==((c17bb&127)|128) and all(n<=255 for n in [c17bv,c17bu,c0after17b,c1after17b,c2after17b,c3after17b,c4after17b,c5after17b])
+   assert sm==int(c17bu!=c17bb)
+   assert (c17bv==227 and [c0after17b,c1after17b,c2after17b,c3after17b,c4after17b,c5after17b]==[92,89,89,128,93,190])==(forward in [0x780,0x7801e,0x78020,0x78022,0x78024,0x78026,0x78028,0x7802a])
+  else:assert v[189:200]==[0,0,0xffffffff,0xffffffff,0,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff]
+ else:assert v[188:200]==[0,0,0,0xffffffff,0xffffffff,0,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff,0xffffffff]
+ if forward in [0x780,0x7801e,0x78020,0x78022,0x78024,0x78026,0x78028,0x7802a]:
+  assert c19bb<=255 and c13b<=255 and c19ba==int(c19bb==v[70] and c13b==128)
+  if c19ba:
+   assert c19bb==16 and c19bt==((c19bb&31)|32) and all(n<=255 for n in [c19bv,c19bu,c13v,c17v,c0v,c1v,c2v,c3v,c4v,c5v,c13u])
+   assert tm==int(c19bu!=c19bb)+2*int(c13u!=c13b)
+   assert (c19bv==48 and [c13v,c17v,c0v,c1v,c2v,c3v,c4v,c5v]==[128,227,92,89,89,128,93,190])==(forward in [0x780,0x78020,0x78022,0x78024,0x78026,0x78028,0x7802a])
+  else:assert v[201:206]==[0,0,0xffffffff,0xffffffff,0] and v[207:216]==[0xffffffff]*9
+ else:assert v[200:216]==[0,0,0,0xffffffff,0xffffffff,0,0]+[0xffffffff]*9
+ if forward in [0x780,0x78020,0x78022,0x78024,0x78026,0x78028,0x7802a]:
+  assert c13before<=255 and c19before13<=255 and c13attempt==int(c13before==c13v and c19before13==c19bv)
+  if c13attempt:
+   assert c13before==128 and c19before13==48 and c13target==104
+   assert all(n<=255 for n in [c13after,c13undo,c19after13,c17after13,c0after13,c1after13,c2after13,c3after13,c4after13,c5after13,c19undo13])
+   assert um==int(c13undo!=c13before)+2*int(c19undo13!=c19before13)
+   assert (c13after==104 and [c19after13,c17after13,c0after13,c1after13,c2after13,c3after13,c4after13,c5after13]==[48,227,92,89,89,128,93,190])==(forward in [0x780,0x78022,0x78024,0x78026,0x78028,0x7802a])
+  else:assert v[217:222]==[0,0,0xffffffff,0xffffffff,0] and v[223:232]==[0xffffffff]*9
+ else:assert v[216:232]==[0,0,0,0xffffffff,0xffffffff,0,0]+[0xffffffff]*9
+ return {'vertical_sync_start':{'before':yb,'target':yt,'attempted':ya,'after':yf,'restored':yu,'cleanup_mask':ym,'neighbors_before':ynb,'neighbors_after':yna,'neighbors_restored':ynu},'vertical_valid_start':{'before':xb,'target':xt,'attempted':xa,'after':xf,'restored':xu,'cleanup_mask':xm,'neighbors_before':xnb,'neighbors_after':xna,'neighbors_restored':xnu,'same_value_drop_indistinguishable':True},'vertical_crtc':{'before':wb,'target':wt,'attempted':wa,'after':wf,'restored':wu,'cleanup_mask':wm,'neighbors_before':wnb,'neighbors_after':wna,'neighbors_restored':wnu},'vertical_total':{'before':qb,'target':qt,'attempted':qa,'after':qf,'restored':qu,'cleanup_mask':qm,'neighbors_before':qnb,'neighbors_after':qna,'neighbors_restored':qnu},'vertical_display_end':{'before':vb,'target':vt,'attempted':va,'after':vf,'restored':vu,'cleanup_mask':vm,'neighbors_before':nb,'neighbors_after':na,'neighbors_restored':nu},'cr13':{'before':c13before,'target':c13target,'attempted':c13attempt,'after':c13after,'restored':c13undo,'cleanup_mask':um,'CR19_before_after_recovered':[c19before13,c19after13,c19undo13],'neighbors_after':[c17after13,c0after13,c1after13,c2after13,c3after13,c4after13,c5after13]},'cr19_second':{'before':c19bb,'target':c19bt,'attempted':c19ba,'after':c19bv,'intermediate_restored':c19bu,'cleanup_mask':tm,'CR13_before_after_recovered':[c13b,c13v,c13u],'neighbors_after':[c17v,c0v,c1v,c2v,c3v,c4v,c5v]},'cr17_second':{'before':c17bb,'target':c17bt,'attempted':c17ba,'after':c17bv,'intermediate_restored':c17bu,'cleanup_mask':sm,'neighbors_after':[c0after17b,c1after17b,c2after17b,c3after17b,c4after17b,c5after17b]},'cr02_second':{'before':c2bb,'target':c2bt,'attempted':c2ba,'after':c2bv,'intermediate_restored':c2bu,'cleanup_mask':rm,'neighbors_after':[c0after2b,c1after2b,c3after2b,c4after2b,c5after2b,c17after2b],'same_value_write_observability':'dropped same-value write/undo cannot be distinguished by unchanged readback'},'cr01':{'before':c1,'target':c1target,'attempted':c1attempt,'after':c1after,'restored':c1undo,'cleanup_mask':fm,'neighbors_after':[c0after1,c2after1,c3after1,c4after1,c5after1,c17after1]},'cr17':{'before':c17,'target':c17target,'attempted':c17attempt,'after':c17after,'restored':c17undo,'cleanup_mask':dm,'CR00_after':c0after17,'CR02_after':c2after17,'CR03_after':c3after17,'CR04_after':c4after17,'CR05_after':c5after17},'cr05_second':{'before':c5bbefore,'target':c5btarget,'attempted':c5battempt,'after':c5bafter,'intermediate_restored':c5bundo,'cleanup_mask':nm,'CR00_after':c0afterb,'CR02_after':c2afterb,'CR03_after':c3afterb,'CR04_after':c4afterb},'cr03':{'before':c3,'target':c3target,'attempted':c3attempt,'after':c3after,'restored':c3restore,'cleanup_mask':em,'CR00_after':c0after3,'CR02_after':c2after3,'CR04_after':c4after3,'CR05_after':c5after3},'cr02':{'before':c2,'target':c2target,'attempted':c2attempt,'after':c2after,'restored':c2restore,'cleanup_mask':bm,'CR00_after':c0after2,'CR04_after':c4after2,'CR05_after':c5after2},'cr00':{'before':c0,'target':c0target,'attempted':c0attempt,'after':c0after,'restored':c0restore,'cleanup_mask':zm,'CR04_after':c4after0,'CR05_after':c5after0},'cr04':{'before':c4,'checked':c4check,'after_CR05':c4after,'restored':c4restore,'attempted':c4attempt,'target':93},'cr05':{'before':c5,'checked_before_write':c5check,'after':c5after,'restored':c5restore,'target':c5target,'attempted':c5attempt},'crtc_recovery_mask':cm,'code':code,'forward_status':forward,'prefix':prefix,
+         'horizontal_before':before,'horizontal_checked':checked,'horizontal_restored':restored,
+         'horizontal_checked_count':count,'horizontal_first_mismatch':None if first==0xffffffff else first,
+         'horizontal_cleanup_mask':mask,'output_enable_attempted':bool(enabled),
+         'CPU':v[11:14],'flags':v[8:11],'scope':'kernel horizontal prefix plus five vertical words; not a visible mode switch'}
