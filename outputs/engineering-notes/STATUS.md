@@ -1,3 +1,12 @@
+# 749 LAUNCHED: native CR00 checkpoint awaits observation
+
+One SITE request accepted at2026-10-28T00:20:09.050754UTC after current user
+watch/reset confirmation and exact frozen source/build/stage verification.
+Preparation70a69b56 pushed. Deliberate native hold; no startup hook or owned host
+process/VM. Await second-bar observation and full13-row photo. Native results
+are photo-only. Do not retry or collect before user-confirmed reset.
+All748/prior runtimes CLOSED. NEXT outputs/native-crtc-total749/NEXT.md.
+
 # 749 STAGED: native CR00 counterpart awaits watcher
 
 Kernel748 is closed and pushed at56365ec5. Native749 passes113 ELF cases,
