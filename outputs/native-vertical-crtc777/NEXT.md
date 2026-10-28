@@ -1,12 +1,21 @@
-# Test777 awaiting user observation/photo
+# Test777 CLOSED PASS: native NVVCRTC recovery
 
-Single SITE accepted19:50:02UTC; after two minutes, status question sent19:52UTC.
-Physical outcome unknown: no dashboard return or pass asserted. Intentional hold
-expected. No repeat launch, startup hook, owned host process or VM.12CPU fixtures
-closed. Qualification/stage/launch pushed075861bf. All776/prior CLOSED.
-NEXT receive second-bar color and full13-row photo; decode actual pixels against
-frozen optical-schema001, record raw values/limits, then request power-cycle.
-After user Ready authenticate dashboard, collect once/double, run corrected local
-audit_collection003 (002 is inactive prior-total template). Do not recollect any
-closed runtime. Native result is photo-only; no fullmode/Windows1.6 proof.
-Ordinary launcher/protected720p unchanged. Standing watcher/reset consent today.
+User green-held photo003/reviewer003: NVVCRTC719->479->719, final777,
+eight displayed cleanup masks zero; all416bits checked at five offsets/three
+thresholds with352adjacent-row cross-checks. Eight omitted masks and native
+neighbor/CPU/selector detail remain aggregate-only via final status.
+Manual power-cycle confirmed; nine preparation reports collected once/double.
+Local audit004 PASS2026-10-28T19:58:40.404020UTC. Sources/build/stage exact,
+unrelatedE/apps entries unchanged; allocation aliases/disjoint bounds PASS.
+Preparation stops at handoff_armed; native result photo-only, no normalshutdown.
+Retain photo002 checker failure (row6 found29cells); fresh003 corrected geometry
+without guest change/relaunch. No hook/owned host process/VM. Console authenticated
+UnleashX; all777/prior CLOSED, never rerun/recollect/parent closed runtime.
+Ordinary launcher/protected720p unchanged; no fullmode/Windows1.6/acceleration.
+NEXT new kernel778 control for pinned next source-order NVVVALIDSTART680814
+same-value0 write/own0 recovery, preserving every earlier qualified operation
+and checking neighboring vertical/stride values. Same-value dropped writes
+cannot be distinguished by readback; preserve that limit. Qualify independent
+actual-code fault paths/schema/link/bounds before stage; native counterpart only
+after physical kernel result. No778source/build/stage/launch yet. Today's
+standing watch/reset consent applies; no repeat readiness question needed.

@@ -1,3 +1,41 @@
+# Test777 CLOSED PASS: native NVVCRTC recovery
+
+User green-held photo003/reviewer003: NVVCRTC719->479->719, final777,
+eight displayed cleanup masks zero; all416bits checked at five offsets/three
+thresholds with352adjacent-row cross-checks. Eight omitted masks and native
+neighbor/CPU/selector detail remain aggregate-only via final status.
+Manual power-cycle confirmed; nine preparation reports collected once/double.
+Local audit004 PASS2026-10-28T19:58:40.404020UTC. Sources/build/stage exact,
+unrelatedE/apps entries unchanged; allocation aliases/disjoint bounds PASS.
+Preparation stops at handoff_armed; native result photo-only, no normalshutdown.
+Retain photo002 checker failure (row6 found29cells); fresh003 corrected geometry
+without guest change/relaunch. No hook/owned host process/VM. Console authenticated
+UnleashX; all777/prior CLOSED, never rerun/recollect/parent closed runtime.
+Ordinary launcher/protected720p unchanged; no fullmode/Windows1.6/acceleration.
+NEXT new kernel778 control for pinned next source-order NVVVALIDSTART680814
+same-value0 write/own0 recovery, preserving every earlier qualified operation
+and checking neighboring vertical/stride values. Same-value dropped writes
+cannot be distinguished by readback; preserve that limit. Qualify independent
+actual-code fault paths/schema/link/bounds before stage; native counterpart only
+after physical kernel result. No778source/build/stage/launch yet. Today's
+standing watch/reset consent applies; no repeat readiness question needed.
+
+# Test777 native photo PASS; awaiting manual reset
+
+User reports green, holding. Photo003 plus independent reviewer003 decode all
+416bits at five offsets/three thresholds and352adjacent-row cross-checks:
+NVVCRTC719->479->719, final777, eight displayed recovery masks zero. Eight
+omitted masks and native neighbor/CPU/selector details remain aggregate-only.
+Failed photo002 row-spacing checker retained (row6 found29cells); corrected003
+groups actual component row gaps with no expected values in pixel classification.
+No guest change/relaunch. Exact photo privateC:/xwn777/photo001.jpg.
+Console holding; manual reset requested next. No hook/owned process/VM.
+NEXT user power-cycle/Ready, authenticate dashboard, collect preparation once/
+double; audit_collection004.py -> audit004.json follows photo003. Templates002
+and003 inactive. Preparation cannot substitute native photo; no normalshutdown,
+fullmode/Windows1.6/acceleration proof. All776/prior CLOSED;777notyetclosed.
+Ordinary launcher/protected720p unchanged. No accepted/uncertain repeat launch.
+
 # Test777 awaiting user observation/photo
 
 Single SITE accepted19:50:02UTC; after two minutes, status question sent19:52UTC.

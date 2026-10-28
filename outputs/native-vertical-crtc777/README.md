@@ -23,9 +23,13 @@ optical_review002.py, source_review.py, build006.py, page_review003.py,
 plan_review003.py, linked_review004.py and review_prepare.py. Controllers enforce
 frozen sources and bytes. See NEXT.md for the actual process/launch state.
 
-Active future local collection auditor: audit_collection003.py -> audit003.json.
+Active local collection auditor: audit_collection004.py -> audit004.json.
 Inherited audit_collection002.py is an INACTIVE source template containing the
-prior total-register triplet; never run it for777. Photo decoder/reviewer will
-be created against the actual photograph, retaining any failed attempts.
+prior total-register triplet. Auditor003 is also inactive because it references
+failed photo002. Fresh photo003/reviewer003 decode the actual777 photograph;
+failed decoder002 and its receipt remain immutable.
 Do not publish private binaries, firmware, photos, credentials or proprietary
 media. Closed runtimes are never reopened, recollected or used as parents.
+
+Current photo003/reviewer003 PASS; failed photo002 retained. Active collection
+auditor is now audit_collection004.py (002/003 inactive). See NEXT.md.
