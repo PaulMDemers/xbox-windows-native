@@ -1,23 +1,15 @@
-# Test762 staged: later CR02 write
+# 762 CLOSED PASS: kernel later CR02 and recovery
 
-Source-only760 extension after native761 CLOSED PASS. The original mode sequence
-writes CR02 again after CR01 and before CR17enable. This probe captures the
-current CR02 byte, checks it against the earlier readback, writes59, checks six
-neighbors and reverses its own write first before older recovery operations.
-No display-enable, pitch, vertical, PLL or encoder steps are added.
+Single accepted launch returned automatically; seven files collected once with
+double-read and audited PASS. CR02 second write/readback59->59->59, six neighbors
+correct, all ten aggregate recovery masks0; CR019f->59->9f and originalCR029f
+restored. Clock3375000/high0 in six rows. Visual result not watched. Same-value
+write/undo drops remain unobservable by unchanged readback; no fullmode proof.
+Console authenticated dashboard, no hook/ownedVM/host process. All762/prior
+CLOSED; never rerun/recollect/parent closed runtimes. NEXT fresh native763
+counterpart with188word bounds and explicit optical omissions before stage;
+current watcher/photo/reset readiness required for native hold.
 
-This is a same-value write: expected59->59->59. Readback cannot distinguish a
-dropped forward write or dropped same-value undo. Two explicit model controls
-pass with identical raw results; a wrong-write-plus-dropped-undo control fails
-and keeps output disabled. Matching readback does not establish a value change.
-The earlier first CR02 operation retains its separate full own-value restoration.
-
-Fresh209 actualCOFF execution cases,2353layout cases,10 actual clock-gate cases,
-independent schema mutation/source/order checks and PE/XBE linked-byte reviews
-passed. The188-word752-byte result would end53f0 at future native offset5100;
-a native counterpart still needs fresh bounds/CPU/relocation/optical validation.
-Clock remains3375000 with highword0. Exact frozen source and Git index match.
-The unique E/Applications/XWNMode762 package was staged and read back exactly.
-No startup hook or dashboardC access, no nativehandoff or Windows launch.
-No physical result yet. No complete mode-switch/Windows1.6 qualification.
-Preserve760model001 and all earlier failures; no closed runtime reused.
+Kernel audit: audit001.json. Clock: clock-audit001.json. Exact source/build/stage,
+allocation and unrelated E/app directory entries passed. No Windows shutdown
+or native handoff occurred. Prior failures and immutable releases retained.

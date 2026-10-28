@@ -1,12 +1,10 @@
-# Test762 staged; one automatic-return kernel launch next
+# Test762 CLOSED; source-only native763 next
 
-Fresh source/object/schema/clock/layout/link and frozen/index/stage checks PASS.
-Save/push preparation then one standing-authorized kernel launch,20-second SITE
-reply bound. Never retry accepted/uncertain launch. Bounded dashboard observation
-then one double-read collection and audit. No startup hook exists. Persist any
-transport/launch failure. All761/prior CLOSED. Current console authenticated
-at dashboard, no owned VM/process. Same-valueCR02write/undo drops are unobservable
-by readback alone; wrong-value recovery failure still inhibits output. NoCR17
-forward enable or later operations. After physical closure, fresh native
-counterpart must prove188word bounds and optical omissions and require current
-watch/photo/reset availability before hold. No fullmode/Windows1.6 proof.
+Do not rerun, recollect or reuse this closed runtime. Fresh source-only763 may
+combine762 probe with761 native frontend,188words752bytes5100..53f0 within5400.
+Prove fresh ELF execution, CPU/page/relocation/optical/model/source checks;
+explicitly name two omitted masks in13-row report while requiring all ten for
+final success. Same-value59->59->59 cannot prove write effect. Freeze/index/stage
+before asking current watcher/photo/reset readiness. No763 launch yet. No hook,
+owned host process or VM. Console authenticated dashboard. CR17 forward enable
+and later mode steps remain separate; no fullmode or Windows1.6 qualification.
