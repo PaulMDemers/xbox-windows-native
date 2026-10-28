@@ -1,3 +1,58 @@
+# Test784 CLOSED PASS: kernel NVVVALIDEND recovery
+
+Single SITE accepted22:29:59UTC. First dashboard check22:30:21..36 timed out;
+preserved dashboard001. Fresh check authenticated22:31:44; seven reports collected
+once/double. Audit002 PASS22:31:56: NVVVALIDEND719 ->479 ->719, eight neighbors
+[479,524,479,0,489,492,104,48] unchanged; all20recovery masks clear. Exact frozen
+source/build/stage/private files and unrelatedE/apps entries pass. Auto return
+inferred from reports/authentication; no user visual observation or normalWindows
+shutdown claim. Console atUnleashX; nohook/ownedhostprocess/VM/ordinarylauncher
+or protected720p change. All784/prior CLOSED; never rerun/recollect/parent runtime.
+
+536COFFfault cases,2353layout,10clock, linked bytes/review003 PASS. Preserve
+review001spacing match and002receiptname failures. Complete5553668byte model
+exceeds5MiBperfile: original unchanged local receipt, exact two public text parts
+plusrestore_model.py/manifest; repo49910filesPASS beforephysical stage. No gatewaiver.
+
+NEXT fresh native785 source-only783frontend plus784probe, nativeCPUguard. New
+430word1720byte result at5100..57b8; zero initialized and disjoint stack/IDT/payload
+mustbe freshlyproved. Retained783-Ozpayload13688of14080leaves392bytes; do NOT
+assume newcodefits. Independentlybuild/check size, bytes, page/CPU/direct/fullpath/
+optical gates beforeconsole staging. Display13rows finalstatus/eightmasks/new
+valid-endtriplet; twelve other masks aggregate-only. No785source/build/stage/launch
+yet. Later CRTC7/10 remainuntouched. Standingwatch/resetauthority appliesOct28.
+
+# Test784 launched; bounded dashboard observation pending
+
+Single SITE accepted2026-10-28T22:29:59.382865UTC. No retry. First dashboard probe
+22:30:21..36 timed out; preserve dashboard001.json. Collection has NOT started.
+No hook installed. Console current display unknown; no manual reset requested yet.
+Observe until roughly22:32UTC, then ask user if still offline. Do not claim return
+or closed status before fresh authenticated check, one collection and local audit.
+
+Qualified536COFF/2353layout/10clock and exact links/review003. Repository passed
+49910files after exact full model split into text parts. All783/prior CLOSED.
+
+# Test784 staged; single launch pending
+
+Fresh kernel NVVVALIDEND control, source-only782 extension, target719 ->479 ->719.
+536 actual COFF fault cases,2353 layout cases,10 clock cases and all linked byte
+checks pass. Independent review003 PASS; exact frozen index source bytes checked.
+Review001 spacing-sensitive source match and002 receipt-renaming error preserved;
+no probe change. Repository size failure001 preserved: full5553668-byte model
+split into exact ordered public text parts; restore_model.py verifies/reconstructs
+original unchanged receipt. No result discarded. Fresh report430words/1720bytes.
+
+Unique /E/Applications/XWNMode784 XBE+owner staged/readback verified. No SITE sent
+at this checkpoint. PrivateC:/xwn784; private connection targets1.6 .66 HDMI.
+No startup hook, Windows launch, ordinarylauncher or protected720p change. No
+owned VM/process. All783/prior CLOSED, never reopen/recollect/parent runtimes.
+
+NEXT after repository checks, one SITE with20sbound; no accepted/uncertain retry.
+Observe bounded automatic return, collect seven new reports once/double and audit.
+If offline after about2min ask user state/reset under today's standing authority.
+Native785 only after kernel closure and fresh qualified preparation.
+
 # Test783 CLOSED PASS: native NVVSYNCEND recovery
 
 Single SITE accepted22:11:26UTC; user green-held photo decoded/reviewed:
