@@ -1,0 +1,79 @@
+{
+  "fields": [
+    "se_before",
+    "se_target",
+    "se_attempted",
+    "se_after",
+    "se_restored",
+    "se_cleanup_mask",
+    "se_disp_before",
+    "se_disp_after",
+    "se_disp_restored",
+    "se_total_before",
+    "se_total_after",
+    "se_total_restored",
+    "se_crtc_before",
+    "se_crtc_after",
+    "se_crtc_restored",
+    "se_validstart_before",
+    "se_validstart_after",
+    "se_validstart_restored",
+    "se_syncstart_before",
+    "se_syncstart_after",
+    "se_syncstart_restored",
+    "se_validend_before",
+    "se_validend_after",
+    "se_validend_restored",
+    "se_c13_before",
+    "se_c13_after",
+    "se_c13_restored",
+    "se_c19_before",
+    "se_c19_after",
+    "se_c19_restored"
+  ],
+  "init": " o->se_after=0xffffffff;o->se_restored=0xffffffff;o->se_disp_after=0xffffffff;o->se_disp_restored=0xffffffff;o->se_total_after=0xffffffff;o->se_total_restored=0xffffffff;o->se_crtc_after=0xffffffff;o->se_crtc_restored=0xffffffff;o->se_validstart_after=0xffffffff;o->se_validstart_restored=0xffffffff;o->se_syncstart_after=0xffffffff;o->se_syncstart_restored=0xffffffff;o->se_validend_after=0xffffffff;o->se_validend_restored=0xffffffff;o->se_c13_after=0xffffffff;o->se_c13_restored=0xffffffff;o->se_c19_after=0xffffffff;o->se_c19_restored=0xffffffff;\n",
+  "block": " /* Next pinned source-order word: NVVSYNCEND, nvvstart489+3=492. */\n o->forward_status=0x7822c;o->se_before=R32(0x680810);\n o->se_disp_before=R32(0x680800);o->se_total_before=R32(0x680804);o->se_crtc_before=R32(0x680808);o->se_validstart_before=R32(0x680814);o->se_syncstart_before=R32(0x68080c);o->se_validend_before=R32(0x680818);o->se_c13_before=cr(0x13);o->se_c19_before=cr(0x19);\n if(o->se_before!=729 || o->se_disp_before!=479 || o->se_total_before!=524 || o->se_crtc_before!=479 || o->se_validstart_before!=0 || o->se_syncstart_before!=489 || o->se_validend_before!=719 || o->se_c13_before!=104 || o->se_c19_before!=48)goto restore;\n o->se_target=492u;o->se_attempted=1;R32(0x680810)=o->se_target;\n o->se_after=R32(0x680810);o->se_disp_after=R32(0x680800);o->se_total_after=R32(0x680804);o->se_crtc_after=R32(0x680808);o->se_validstart_after=R32(0x680814);o->se_syncstart_after=R32(0x68080c);o->se_validend_after=R32(0x680818);o->se_c13_after=cr(0x13);o->se_c19_after=cr(0x19);\n if(o->se_after!=o->se_target || o->se_disp_after!=o->se_disp_before || o->se_total_after!=o->se_total_before || o->se_crtc_after!=o->se_crtc_before || o->se_validstart_after!=o->se_validstart_before || o->se_syncstart_after!=o->se_syncstart_before || o->se_validend_after!=o->se_validend_before || o->se_c13_after!=o->se_c13_before || o->se_c19_after!=o->se_c19_before)goto restore;\n",
+  "undo": " if(o->se_attempted){R32(0x680810)=o->se_before;o->se_restored=R32(0x680810);o->se_disp_restored=R32(0x680800);o->se_total_restored=R32(0x680804);o->se_crtc_restored=R32(0x680808);o->se_validstart_restored=R32(0x680814);o->se_syncstart_restored=R32(0x68080c);o->se_validend_restored=R32(0x680818);o->se_c13_restored=cr(0x13);o->se_c19_restored=cr(0x19);if(o->se_restored!=o->se_before)o->se_cleanup_mask|=1;if(o->se_disp_restored!=o->se_disp_before)o->se_cleanup_mask|=2;if(o->se_total_restored!=o->se_total_before)o->se_cleanup_mask|=4;if(o->se_crtc_restored!=o->se_crtc_before)o->se_cleanup_mask|=8;if(o->se_validstart_restored!=o->se_validstart_before)o->se_cleanup_mask|=16;if(o->se_syncstart_restored!=o->se_syncstart_before)o->se_cleanup_mask|=32;if(o->se_validend_restored!=o->se_validend_before)o->se_cleanup_mask|=64;if(o->se_c13_restored!=o->se_c13_before)o->se_cleanup_mask|=128;if(o->se_c19_restored!=o->se_c19_before)o->se_cleanup_mask|=256;}\n",
+  "neighbors": [
+    [
+      "se_disp",
+      6817792,
+      479
+    ],
+    [
+      "se_total",
+      6817796,
+      524
+    ],
+    [
+      "se_crtc",
+      6817800,
+      479
+    ],
+    [
+      "se_validstart",
+      6817812,
+      0
+    ],
+    [
+      "se_syncstart",
+      6817804,
+      489
+    ],
+    [
+      "se_validend",
+      6817816,
+      719
+    ],
+    [
+      "se_c13",
+      19,
+      104
+    ],
+    [
+      "se_c19",
+      25,
+      48
+    ]
+  ]
+}
