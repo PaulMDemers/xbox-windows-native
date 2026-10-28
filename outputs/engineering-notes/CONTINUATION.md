@@ -1,3 +1,23 @@
+# 760 STAGED: kernel CR01 display-end and own recovery
+
+189 actualCOFF,2353layout,10clock and independent source/schema/link checks PASS.
+Fresh own CR01 byte capture; target59, six neighbors, own newest-first recovery
+and ninth recovery mask.176words704bytes. Model001 decimal/hex injection error
+retained; corrected model002 passes unchanged guest. Exact source/index/private
+build and unique E stage/readback PASS. No760launch, hook, nativehandoff or owned
+VM. Console authenticated dashboard. All759/prior CLOSED. NEXT outputs/
+crtc-display-end760/NEXT.md: one authorized bounded automatic-return kernel
+launch then collection/audit. No fullmode/Windows1.6 qualification.
+
+# 760 PREPARING: kernel CR01 display-end control
+
+Source-only758 extension after759 CLOSED PASS. New CR01 target59 with fresh own
+byte capture, six neighbors, newest-first own recovery and failure output inhibit.
+No later CR02/display-enable changes.176words704bytes; future native end53c0
+needs fresh bounds/report proof. Build/model/source review underway; no stage or
+launch. No hook/owned VM. Console last authenticated dashboard after759 reset.
+All759/prior CLOSED. NEXT outputs/crtc-display-end760/NEXT.md.
+
 # 759 CLOSED PASS: native CR17 clear and own recovery
 
 Photo decodesCR17e3->63->e3, eight masks0 and final759;416bits/five offsets/
