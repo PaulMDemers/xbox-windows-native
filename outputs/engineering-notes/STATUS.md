@@ -1,3 +1,15 @@
+# 758 STAGED: kernel CR17 bit7 clear/own recovery
+
+Fresh source-only756 extension after757closed.169actualCOFF cases,2353layout,
+10clock and independent source/schema/linked checks PASS.164words656bytes;
+fresh CR17 read checked against prefix before clear, five neighbor checks,
+newest-first own recovery; recovery failure inhibits output. Model001 faulty
+before-read injection retained; corrected model002 passes unchanged build.
+Exact source/index/private build and unique E stage/readback PASS. No launch,
+hook or owned process/VM. Console authenticated dashboard. All757/prior CLOSED.
+NEXT outputs/crtc-display-gate758/NEXT.md: one authorized bounded automatic-return
+launch, then collection/audit. No native/fullmode/Windows1.6 claim.
+
 # 757 CLOSED PASS: native second CR05 bit7 and recovery
 
 Photo independently decodes3e->be->3e and seven zero recovery masks;416bits,
