@@ -1,3 +1,17 @@
+# Test772 optical PASS: awaiting manual reset and collection
+
+User reports green/holding. Private photo independently decoded: signature7720000d,
+final772, eight displayed recovery masks zero; NVVDISPEND719 ->479 ->719.
+All416 bits agree at five offsets/three thresholds,352 adjacent-row checks PASS;
+black max24, minimum white mean207.67. Final772 requires all14 masks in tested
+code; six omitted raw. Neighbor values and native CPU/selectors not exposed raw.
+This is physical native checkpoint/recovery evidence, not complete mode or Windows.
+Console deliberately holding; manual reset NOT yet confirmed. No hook/host process/VM.
+NEXT ask manual power-cycle to UnleashX; only after Ready collect preparation files
+once/double-read and audit locally. Do not launch again. All771/prior CLOSED.
+Ordinary launcher/protected720p unchanged; payload001 size failure retained.
+See outputs/native-vertical-end772/NEXT.md.
+
 # Test772 LAUNCHED: awaiting held optical observation
 
 User confirmed current watch/photo/reset readiness. Frozen source/HEAD/build and

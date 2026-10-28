@@ -1,12 +1,10 @@
-# Test772 LAUNCHED; awaiting photo
+# Test772 optical PASS; awaiting manual reset
 
-One SITE accepted2026-10-28T17:53:07.377707UTC; never retry accepted/uncertain launch.
-User ready to watch/reset. No optical outcome yet. Console may be deliberately
-holding native report. No hook, owned host process or VM.
-Await second-bar color and private13-row photo. Independently decode416 bits;
-expect signature7720000d, final772, eight zero displayed recovery masks and
-NVVDISPEND719/479/719. Six masks omitted raw; final772 requiresall14 clear.
-Do not substitute expected values for photo evidence. After capture/review, ask
-manual power-cycle to dashboard; collect preparation files once/double-read and
-audit locally. No native disk result, normal shutdown or complete mode proof.
-All771/prior CLOSED. Retain payload001 failure and unchanged qualified payload002.
+Photo001 and independent photo-review001 passed: signature7720000d/final772,
+eight zero raw recovery masks and NVVDISPEND719/479/719. Six masks omitted raw;
+final772 requiresall14.416bits/five offsets/three thresholds and352 adjacent-row
+checks agree. User green/holding; native result photo-only, not disk persisted.
+Manual reset NOT yet confirmed. No hook, host process or VM. Ask power-cycle to
+UnleashX, then record Ready, collect once/double-read via physical003.py collect,
+and audit_collection.py locally. Preserve exact source/build/stage pins and all
+failures. No new launch; all771/prior CLOSED. No fullmode/Windows1.6 proof.
