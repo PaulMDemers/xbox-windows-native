@@ -1,3 +1,13 @@
+# 754 STAGED: corrected clock gate and isolated CR03 checkpoint
+
+753 CLOSED clock-refusal retained.754 token-aware namespace keeps3375000;
+full64 frequency logged.10 actual main clock-fragment cases,138 CR03 COFF cases,
+2353 layout cases, independent source/schema and exact linked bytes pass. Unique
+E stage/readback pass. No754launch/hook/owned process/VM. Console authenticated
+UnleashX. Next one authorized automatic-return kernel launch then bounded
+observation/collection/audit. No native/fullmode/Windows proof.
+NEXT outputs/crtc-blank-end754/NEXT.md. All753/prior CLOSED.
+
 # 753 CLOSED: clock guard refused before video/CR03
 
 Two reports collected once: start and clock_reference_refused. Logged frequency
