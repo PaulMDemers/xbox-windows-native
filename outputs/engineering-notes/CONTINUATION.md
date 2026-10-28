@@ -1,3 +1,23 @@
+# 759 STAGED: native CR17 clear and own recovery; watcher needed
+
+169 ELF cases,12 fresh CPU fixtures/allclosed,159 integration,76 optical,
+32page/372plan and source/link/bounds checks PASS.164words end5390, eight masks
+and CR17 triplet exposed; direct forwardstatus/CPU/selectors/neighbors omitted.
+Frozen source/index exact; unique E stage/readback PASS. No759launch or hook;
+console authenticated dashboard. No owned host process/VM. All758/prior CLOSED.
+NEXT outputs/native-crtc-gate759/NEXT.md: current watch/photo/reset readiness
+before intentional held native launch. No fullmode/Windows1.6 qualification.
+
+# 759 PREPARING: native CR17 clear and own recovery
+
+Kernel758 CLOSED PASS, pushed8847e0ef. Native759 payload/host build,169 ELF
+cases and12 fresh CPU fixtures PASS/allclosed. Integration and optical checks
+running; no759 XBE build/stage/launch yet.164words656bytes end5390 within
+existingzero5400.13rows expose eight masks and CR17 triplet; forwardstatus
+explicitly omitted. No hook or owned VM; last console state authenticated
+dashboard after758. Current native watch/photo/reset readiness needed later.
+NEXT outputs/native-crtc-gate759/NEXT.md. No fullmode/Windows1.6 proof.
+
 # 758 CLOSED PASS: kernel CR17 clear and own recovery
 
 One accepted launch; automatic firmware restart requested and dashboard
