@@ -1,3 +1,18 @@
+# 763 CLOSED PASS: native later CR02 same-value checkpoint
+
+Photo decoded final763,eight displayed zero recovery masks and CR0259->59->59;
+416bits/five offsets/three thresholds plus352adjacent-row checksPASS. CR03 and
+secondCR05 masks are omitted optically; finalcode requiresallten. Unchanged
+readback cannot distinguish dropped same-value write/undo or prove writeeffect.
+User manualpowercycleReady; nine preparationfiles collectedonce/double-read,
+auditPASS04:06:23UTC. Exactsource/build/stage, allocation/alias bounds and unrelated
+entriesPASS; five retained752 preparationcomparisonsmatch. No runtime reopened.
+Lastpersistedphasehandoff_armed; native result photo-only; no normalshutdown.
+Consoleauthenticateddashboard; no hook/ownedhostprocess/VM. All763/prior CLOSED.
+NEXT outputs/native-crtc-repeat763/NEXT.md: fresh source-ordered CR17 bit7 enable
+control, with expanded initializedresultspace and independent kernel/native
+validation. No furtherlaunch in thiscollectionturn. No fullmode/Windows1.6 proof.
+
 # 763 LAUNCHED: watched native later CR02 checkpoint
 
 Current user confirmed Ready to watch and reset with HDMI/dashboard. One SITE

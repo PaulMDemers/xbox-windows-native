@@ -1,33 +1,27 @@
-# 763 LAUNCHED: watched native later CR02 checkpoint
+# Test763 CLOSED PASS
 
-Current user confirmed Ready to watch and reset with HDMI/dashboard. One SITE
-accepted2026-10-28T04:03:55.335195UTC after exact source/build/stage verification.
-Deliberate native hold intended; current screen observation and private13-row
-photo pending. No retry, hook or owned host process/VM. Do not collect/reset
-before photo preservation if picture holds. All762/prior CLOSED. No763result
-or fullmode/Windows1.6 claim. NEXT outputs/native-crtc-repeat763/NEXT.md.
+One launch accepted2026-10-28T04:03:55.335195UTC. User observed green and holding.
+Private photo independently decoded final763,eight zero aggregate recovery
+masks and laterCR0259->59->59. All416bits agreed at five sampling offsets and
+three thresholds;352adjacent-row crosschecks passed. Black max channel124;
+white minimum mean213. Photo SHA256 d8780c9cae65fdae9315334dd2c583e7b990212c1b4361a08dbcf226e55051a4.
 
-# Test763 staged; no physical launch yet
+CR03 and secondCR05 recovery masks are omitted from the13-row picture. Final763
+requires all ten masks plus forward success in the tested code; omitted raw
+values are not direct observations. Same-value write/undo drops cannot be
+identified by unchanged59readback. No changed-value or fullmode claim follows.
 
-Source-only762 probe and761 native frontend. The added operation is the later
-CR02 target59 write after CR01, followed by newest-first saved-value recovery.
-Fresh guarded CR02 capture must match the preceding readback. Six neighboring
-registers are checked. CR17 forward enable and later mode operations are absent.
+After user-confirmed manual power-cycle, nine preparationfiles were collected
+once with double readback. Audit04:06:23UTC passed exact sources/binaries/stage,
+independent allocation/alias bounds and unchanged unrelated E/app entries.
+Five groups match retained752 preparation: PCI,CRTC,sequencer,allocationplan,
+geometry. No closed runtime reopened. Last diskphase is handoff_armed; native
+results come from the photo, not disk. Manual reset is not normal shutdown.
 
-Validation passed209 actualELF cases,199 relocated bridge/integration cases,
-76 whole-framebuffer renderer cases,12 diskless CPU fixtures(allclosed),32page
-and372plan cases, independent source/bounds/report and exact object/XBE link
-checks. Payload8568bytes padded9916;188resultwords occupy5100..53f0 below5400.
-No previous runtime reopened. Frozen source/index and unique E staging/readback
-passed. XBE SHA25601dd854b1ce05b4d855c1c1a2a5112e056a33f58de475268f2ba9ab3b4392e6f.
-
-The13-row report contains signature,finalcode,eight masks,and the laterCR02
-before/after/restored values. CR03 and secondCR05 aggregate masks are omitted
-from the picture; final763 still requires all ten masks clear. Other unexposed
-values include forwardstatus,CPU,selectors,neighbor and prior individual readings.
-A59->59->59 result cannot distinguish dropped same-value forward/undo writes;
-negative controls preserve this limitation. Wrong-value failed undo is detected
-and keeps output disabled. This is no fullmode,Windows1.6 or acceleration proof.
-
-No launch or startup hook. Console authenticated dashboard; no ownedVM/process.
-Await current watch/photo/reset readiness for the deliberately held native run.
+Fresh host qualification passed209ELF,199integration,76optical,12CPU(allclosed),
+32page,372plan,source,bounds and exact object/XBE link checks.188words752bytes
+occupy5100..53f0 inside initialized5400. XBE131072bytes SHA256
+01dd854b1ce05b4d855c1c1a2a5112e056a33f58de475268f2ba9ab3b4392e6f.
+Console authenticated dashboard; no startuphook or owned process/VM. All763
+and prior runtimes CLOSED. No complete mode-switch,Windows1.6 or acceleration
+qualification. Next is the separate source-ordered CR17 bit7 enable operation.
