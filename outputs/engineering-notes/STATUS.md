@@ -1,3 +1,23 @@
+# 749 STAGED: native CR00 counterpart awaits watcher
+
+Kernel748 is closed and pushed at56365ec5. Native749 passes113 ELF cases,
+12 CPU fixtures (all closed),103 relocated integration cases,76 optical cases,
+32 page-builder cases and372 nxdk plan cases. Source comparison and exact linked
+bytes pass. Frozen source/build and unique E stage readback pass.
+No749 launch, startup hook, owned host process or VM. Console authenticated at
+UnleashX. Await current watch/photo/reset readiness for the deliberate hold.
+All748/prior runtimes remain CLOSED. No full mode switch or Windows1.6 proof.
+NEXT outputs/native-crtc-total749/NEXT.md.
+
+# 749 PREPARING: native CR00 counterpart
+
+Kernel748 CLOSED/pushed56365ec5: CR00c8->5c->c8, CR04/05interaction andall
+recoverychecks pass. Freshnative749 ELF113cases/12CPUfixturespass; allVMsclosed.
+Relocatedintegration/optical checks may beactive. No749stage/launch/hook.
+ConsolelastauthenticatedUnleashX. Currentwatch/photo/resetreadiness needed
+onlyafterprepared deliberatehold. All748/prior CLOSED.
+NEXT outputs/native-crtc-total749/NEXT.md.
+
 # 748 CLOSED: kernel CR00 write and own-value recovery pass
 
 CR00c8->5c->c8; CR04after5d/CR05after3e, bothrestored a7/31. Prefix15/H7pass,
