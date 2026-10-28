@@ -1,3 +1,5 @@
+USER DEFERRED: prepare only; test later. No launch. Await renewed current hardware readiness.
+
 # 752 staged; awaiting watched native CR02 test
 
 Active physical003.py verifies build002 and frozen sources/review, staged unique

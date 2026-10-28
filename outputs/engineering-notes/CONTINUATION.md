@@ -1,3 +1,11 @@
+# 752 PREPARED ONLY: user deferred hardware test
+
+User selected Prepare only; test later. No launch requested or sent. Keep frozen
+Test752 staged; preparation65e8ca63 pushed. Do not create readiness/launch until
+the user resumes and confirms current watch/photo/reset availability. No hook or
+owned process/VM. Console last authenticated UnleashX; current screen unobserved.
+All751/prior runtimes CLOSED. NEXT outputs/native-crtc-blank752/NEXT.md.
+
 # 752 STAGED: native CR02 counterpart awaits watcher
 
 Kernel750 CLOSED/pushed7382f244: CR029f->59->9f; neighbors5c/5d/3e and recovery
