@@ -1,3 +1,10 @@
+# 750 LAUNCHED: one accepted kernel CR02 control
+
+SITE accepted2026-10-28T00:30:45.239134UTC; preparationb90c66c1 pushed.
+Automatic-return kernel checkpoint, no native handoff/Windows/startup hook.
+Bounded authenticated dashboard observation next; no retry of accepted launch.
+All749/prior CLOSED. No owned VM. NEXT outputs/crtc-blank-start750/NEXT.md.
+
 # 750 STAGED: kernel CR02 blank-start checkpoint
 
 Fresh CR02 target59 from own baseline9f, after qualified prefix/H7/CR04/05/00.
