@@ -1,3 +1,12 @@
+# 763 LAUNCHED: watched native later CR02 checkpoint
+
+Current user confirmed Ready to watch and reset with HDMI/dashboard. One SITE
+accepted2026-10-28T04:03:55.335195UTC after exact source/build/stage verification.
+Deliberate native hold intended; current screen observation and private13-row
+photo pending. No retry, hook or owned host process/VM. Do not collect/reset
+before photo preservation if picture holds. All762/prior CLOSED. No763result
+or fullmode/Windows1.6 claim. NEXT outputs/native-crtc-repeat763/NEXT.md.
+
 # Test763 staged; no physical launch yet
 
 Source-only762 probe and761 native frontend. The added operation is the later

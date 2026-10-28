@@ -1,3 +1,14 @@
+# Test763 launched; observation/photo pending
+
+One SITE accepted04:03:55UTC. Never relaunch. Await current second-bar color and
+held/black/dashboard observation, then request full13-row photo in chat if
+holding. Keep photo private; decode against optical-schema001 and independently
+crosscheck. Preserve result before requesting power-cycle. After user Ready,
+collectonce/double-read and audit preparation. No hook/owned process/VM. All762
+and prior CLOSED. Do not infer PASS from color alone. No native diskresult.
+
+## Prepared protocol (historical, launch already completed)
+
 # Test763 staged; current hardware observation readiness required
 
 Save/push preparation. Ask whether1.6 is atUnleashX withHDMI and user available
