@@ -1,0 +1,63 @@
+{
+  "fields": [
+    "vt_before",
+    "vt_target",
+    "vt_attempted",
+    "vt_after",
+    "vt_restored",
+    "vt_cleanup_mask",
+    "vt_disp_before",
+    "vt_disp_after",
+    "vt_disp_restored",
+    "vt_syncstart_before",
+    "vt_syncstart_after",
+    "vt_syncstart_restored",
+    "vt_syncend_before",
+    "vt_syncend_after",
+    "vt_syncend_restored",
+    "vt_validend_before",
+    "vt_validend_after",
+    "vt_validend_restored",
+    "vt_c13_before",
+    "vt_c13_after",
+    "vt_c13_restored",
+    "vt_c19_before",
+    "vt_c19_after",
+    "vt_c19_restored"
+  ],
+  "init": " o->vt_after=0xffffffff;o->vt_restored=0xffffffff;o->vt_disp_after=0xffffffff;o->vt_disp_restored=0xffffffff;o->vt_syncstart_after=0xffffffff;o->vt_syncstart_restored=0xffffffff;o->vt_syncend_after=0xffffffff;o->vt_syncend_restored=0xffffffff;o->vt_validend_after=0xffffffff;o->vt_validend_restored=0xffffffff;o->vt_c13_after=0xffffffff;o->vt_c13_restored=0xffffffff;o->vt_c19_after=0xffffffff;o->vt_c19_restored=0xffffffff;\n",
+  "block": " /* Next pinned source-order word: vertical total only. */\n o->forward_status=0x77324;o->vt_before=R32(0x680804);\n o->vt_disp_before=R32(0x680800);o->vt_syncstart_before=R32(0x68080c);o->vt_syncend_before=R32(0x680810);o->vt_validend_before=R32(0x680818);o->vt_c13_before=cr(0x13);o->vt_c19_before=cr(0x19);\n if(o->vt_before!=749 || o->vt_disp_before!=479 || o->vt_syncstart_before!=724 || o->vt_syncend_before!=729 || o->vt_validend_before!=719 || o->vt_c13_before!=104 || o->vt_c19_before!=48)goto restore;\n o->vt_target=524u;o->vt_attempted=1;R32(0x680804)=o->vt_target;\n o->vt_after=R32(0x680804);o->vt_disp_after=R32(0x680800);o->vt_syncstart_after=R32(0x68080c);o->vt_syncend_after=R32(0x680810);o->vt_validend_after=R32(0x680818);o->vt_c13_after=cr(0x13);o->vt_c19_after=cr(0x19);\n if(o->vt_after!=o->vt_target || o->vt_disp_after!=o->vt_disp_before || o->vt_syncstart_after!=o->vt_syncstart_before || o->vt_syncend_after!=o->vt_syncend_before || o->vt_validend_after!=o->vt_validend_before || o->vt_c13_after!=o->vt_c13_before || o->vt_c19_after!=o->vt_c19_before)goto restore;\n",
+  "undo": " if(o->vt_attempted){R32(0x680804)=o->vt_before;o->vt_restored=R32(0x680804);o->vt_disp_restored=R32(0x680800);o->vt_syncstart_restored=R32(0x68080c);o->vt_syncend_restored=R32(0x680810);o->vt_validend_restored=R32(0x680818);o->vt_c13_restored=cr(0x13);o->vt_c19_restored=cr(0x19);if(o->vt_restored!=o->vt_before)o->vt_cleanup_mask|=1;if(o->vt_disp_restored!=o->vt_disp_before)o->vt_cleanup_mask|=2;if(o->vt_syncstart_restored!=o->vt_syncstart_before)o->vt_cleanup_mask|=4;if(o->vt_syncend_restored!=o->vt_syncend_before)o->vt_cleanup_mask|=8;if(o->vt_validend_restored!=o->vt_validend_before)o->vt_cleanup_mask|=16;if(o->vt_c13_restored!=o->vt_c13_before)o->vt_cleanup_mask|=32;if(o->vt_c19_restored!=o->vt_c19_before)o->vt_cleanup_mask|=64;}\n",
+  "neighbors": [
+    [
+      "vt_disp",
+      6817792,
+      479
+    ],
+    [
+      "vt_syncstart",
+      6817804,
+      724
+    ],
+    [
+      "vt_syncend",
+      6817808,
+      729
+    ],
+    [
+      "vt_validend",
+      6817816,
+      719
+    ],
+    [
+      "vt_c13",
+      19,
+      104
+    ],
+    [
+      "vt_c19",
+      25,
+      48
+    ]
+  ]
+}
