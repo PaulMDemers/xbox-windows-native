@@ -1,3 +1,27 @@
+# Test786 CLOSED PASS: kernel CR07 vertical-sync overflow recovery
+
+Single SITE accepted23:13:06.997739UTC. Dashboard authenticated23:13:39UTC;
+seven fresh reports collected once/double. Audit001 PASS23:14:12.283415UTC:
+CR07 F0->74->F0, eight CRTC neighbors EC/60/D4/CF/CF/ED/FF/10 unchanged; all21
+recovery masks clear. Frozen sources/build/stage/private reports and unrelatedE/
+apps entries pass. Automatic dashboard return inferred, no visual observation or
+normal Windows shutdown claim. Console atUnleashX, nohook/ownedhostprocess/VM.
+No ordinary launcher/protected720p change or dashboardC access. All786/priorCLOSED.
+
+575COFF fault cases,2353layout,10clock, links and review004 qualified. Preserve
+review003 wrong prior closure filename failure and inherited launch observation
+string's stale NVVDISPEND label; exactsource/ownermanifest/schema identifyCR07.
+Full native mode switching, Windows1.6 and acceleration remain unproven.
+
+NEXT fresh native787: source-only785 frontend/786probe. 460word result cannot use
+old5100..5830 because IDT starts5800. Independently build and qualify fresh layout,
+payload extent/relocations, CPU/direct/full-path/optical/access/restore gates before
+XBE stage. Candidate packing request5000..503c, result5040..5770, guard5770..5800,
+IDT5800..6000, stack6000..8000; payload1000..5000 capped16384, no spare gap before
+request. These are proposed bounds, not qualified yet. No787source/build/stage/
+launch exists. Standing Oct28 watch/reset authority applies; after qualified
+native launch ask picture/photo after~2minutes. No repeat closed runtime.
+
 # Test786 launched; automatic-return collection pending
 
 Single SITE accepted2026-10-28T23:13:06.997739UTC. Exact staged/readback XBE matches
