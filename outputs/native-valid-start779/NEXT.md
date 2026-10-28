@@ -1,11 +1,12 @@
-# Test779 staged: native NVVVALIDSTART recovery
+# Test779 launched: native report awaiting observation
 
-UniqueE stage/readback PASS; exact source/build/review pins. Qualification
-pushedb5b9b099. Authenticated UnleashX, no launch yet, no hook/process/VM.
-NEXT one SITE20second bound under standing watch/reset authority today; native
-hold intended. After roughly two minutes request status and full13row photo;
-decode against frozen optical-schema001 before reset, then preparation collection
-once/double and audit. No same-value effect/fullmode/Windows1.6 claim. All778/prior
-CLOSED; ordinarylauncher/protected720p unchanged. Do not repeat accepted or
-uncertain launch. Ten raw masks omitted; finalcode requiresall17clear.
+One SITE accepted2026-10-28T20:24:00.800260UTC, reply200; no retry. Intentional
+native hold expected, actualscreen/result unknown. No startup hook/owned host
+process/VM; all12fresh CPU fixtures closed. All778/prior CLOSED.
+NEXT after roughly two minutes request second-bar color and full13row photo.
+Decode against frozen optical-schema001; seven masks,target0 and0/0/0 triplet
+expected, ten masks andneighbor/CPU/selector detail aggregate-only. Do not infer
+pass fromcolor or preparation files. After capturedphoto ask power-cycle/Ready,
+collect preparation once/double and audit locally. No fullmode/Windows1.6 proof;
+ordinarylauncher/protected720p unchanged. Today's standing watch/reset consent.
 
