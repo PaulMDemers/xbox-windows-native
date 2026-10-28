@@ -1,3 +1,12 @@
+# Test771 launched: automatic-return result pending
+
+One SITE accepted2026-10-28T16:51:59.625754UTC; no retry. Exact source/index/build
+and stage bytes reverified. NVVDISPEND719->479->719 kernel checkpoint with six
+neighbor checks, all prior recovery. Await bounded authenticated dashboard return,
+then collect once/double and local audit. No hook/owned host process/VM.
+Console launched; screen unobserved. All770/prior CLOSED. No fullmode/Windows1.6
+proof. Ordinary launcher/protected720p unchanged. Next outputs/vertical-display-end771/NEXT.md.
+
 # Test771 STAGED: kernel NVVDISPEND checkpoint
 
 Exact frozen index/build and unique E-stage readback PASS. Source/schema review004,
