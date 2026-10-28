@@ -1,21 +1,22 @@
-# Test785 qualified; next single native NVVVALIDEND launch
+# Test785 LAUNCHED; held optical report pending
 
-Fresh native785 qualification PASS:536 direct execution cases,12 CPU fixtures
-(all VMs closed),526 full-path cases,76 whole-framebuffer renderer cases,
-32 nxdk page-builder cases,372 ownership cases, exact ELF/object/PE/XBE bytes,
-source review and independent four-page layout/IDT review. Final review001 pins
-all checks; sources001 pins all source bytes. Active freeze reviewer003. Payload
-14744 bytes,15360 reserve, unchanged32KiB allocation; native instructions exactly
-match failed-capacity payload004. Owned IDT is5800..6000; result5100..57b8.
-Preserve preparation namespace guard failure and payload004 overflow failure.
+Single SITE accepted2026-10-28T22:50:00.687207UTC. Exact stage/readback PASS to
+E/Applications/XWNMode785. No retry. User standing Oct28 watch/reset authorization
+applies. Expected native diagnostic deliberately holds; actual screen not yet
+observed. Ask second-bar color/holding state and photo after about22:52UTC.
+Do not reset until the report is captured. No collection-ready/collection yet.
 
-No785 console stage/launch yet. All owned build/emulator processes ended; all
-CPU VMs closed. Console last authenticated atUnleashX22:31:44UTC after784.
-Next verify frozen staged bytes/repository, commit/push qualification, then stage
-uniqueE/Applications/XWNMode785 and issue one SITE with20-second reply bound.
-Standing Oct28 watch/reset authority applies; ask held status after two minutes.
-Do not repeat an accepted/uncertain launch. No hook, ordinary launcher, dashboardC,
-protected720p or Windows change. All784/prior attempts remain CLOSED. No full-mode
-or acceleration claim.785 optical report exposes8 masks and719/479/719 triplet;
-12 additional masks aggregate-only through final status, all20 required clear.
+Qualified build/source evidence pushed132f4a22:536 direct,12 CPU(all closed),
+526 full-path,76 optical,32 page,372 ownership plus independent layout and linked
+bytes PASS.14744-byte payload in15360 reserve; same32KiB allocation; owned IDT
+5800..6000, result5100..57b8. Preparation namespace failure and initial payload004
+capacity failure preserved. No hook, Windows launch, ordinary launcher change,
+protected720p change or dashboardC access. All owned host test processes exited.
+All784/prior CLOSED. No native/fullmode result yet. Optical13rows expose8 masks
+and NVVVALIDEND before/after/restored;12masks aggregate-only, all20 required clear.
+
+NEXT capture exact fresh photo, decode/review416bits against785 schema; only then
+request power-cycle. On userReady authenticate dashboard and collect nine fresh
+preparation reports once/double, audit locally and close. Never recollect/relaunch
+this accepted runtime. No future probe starts before this attempt is closed.
 
