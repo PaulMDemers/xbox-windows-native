@@ -1,3 +1,16 @@
+# 749 CLOSED: native CR00 checkpoint passes
+
+Photo verified CR00c8->5c->c8, CR05after3e, return/forward749, all four cleanup
+masks zero, selectors1 and nativeCR04001003b. User manually power-cycled.
+Nine preparation reports collected once and double-read; auditPASS at
+2026-10-28T00:24:55.872916UTC. Exact source/build/stage and unrelated E entries
+pass. PCI/CRTC/SEQ/allocation/geometry equal closed747 preparation.
+Native results remain photo-only; kernel pre-arm CPU context is distinct.
+First photo decoder failure preserved. Console authenticatedUnleashX; no startup
+hook or owned host process/VM. All749/prior runtimes CLOSED.
+NEXT outputs/native-crtc-total749/NEXT.md: bounded CR02 blank-start checkpoint.
+No full native mode switch or Windows1.6 qualification yet.
+
 # 749 PHOTO PASS: native CR00 changes and restores correctly
 
 All416 photo bits decoded/cross-checked: return/forward749, CR00c8->5c->c8,

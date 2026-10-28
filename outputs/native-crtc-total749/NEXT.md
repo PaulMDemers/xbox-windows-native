@@ -1,14 +1,18 @@
-# 749 photo captured; awaiting reset confirmation
+# 749 CLOSED
 
-User asked to power-cycle and leave UnleashX. Do not launch again. On Ready,
-record collection-ready001, collect preparation reports once with physical002.py,
-and audit exact frozen source/build/stage plus unrelated E entries. Compare
-preparation and kernel CPU readings separately from photo-only native results.
-No startup hook was installed. No owned host process or VM.
+Never rerun, recollect or parent this runtime. Preparation and optical audit
+passed; see REPORT.md and audit001.json. Console authenticated UnleashX;
+no startup hook, owned host process or VM. All749/prior runtimes CLOSED.
 
-Photo002/review001:416 bits, return/forward749, cleanup masks0/0/0/0,
-CR00c8->5c->c8, CR05after3e, selectors1, nativeCR04001003b. First photo decode
-failure preserved. CR3/4, CR04after and individual H7 values unexposed;
-CR04/05 recovery aggregate-only. No full mode/Windows/shutdown claim.
-All748/prior runtimes CLOSED. After closure, review next bounded original
-horizontal sequence step; do not silently advance beyond this checkpoint.
+Next original source step is CR02=(crtchdispend/8)-1, following CR00.
+Pinned outputs/xcal-transaction704/gpu_legacy.c line56 and retained720 target
+imply0x59. Actual749 kernel preparation CR02 baseline0x9f; CR11=0x09.
+Review a fresh bounded kernel750 candidate with full-byte target checking,
+neighbor interaction checks, reverse own-value restoration and output-enable
+inhibition on recovery mismatch. Do not replay CR03, later CR05 high bit,
+CR17/CR01, pitch or vertical/encoder steps yet. Source reuse only.
+Validate actual compiled instructions, negative/recovery cases and exact linked
+bytes before stage/readback and launch. Routine auto-return authorization applies.
+If kernel checkpoint qualifies, prepare native counterpart under the same gates;
+its deliberate hold requires current watch/photo/reset availability.
+No full mode or Windows claim from these isolated checkpoints.
