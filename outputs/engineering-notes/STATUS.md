@@ -1,3 +1,15 @@
+# 766 STAGED: CR19 upper stride; no launch yet
+
+Source-ordered kernel probe extends closed764/765 to CR19 upper stride bits.
+Expected10/30/10 then inherited51; CR13 read-only80 with recovery-preservation
+mask.216words864bytes; fresh253COFF/2353layout/10clock and schema/source/link
+checksPASS. Model001 fresh-read injection scope failure retained; model002
+corrected harness only, guest unchanged. UniqueE stage/readbackPASS, dashboard
+authenticated. No hook/VM/ownedhostprocess; no fullmode/Windows1.6 claim.
+NEXT outputs/crtc-stride-high766/NEXT.md: one automatic-return kernel launch,
+collection and audit; native counterpart only after fresh validation/watch/reset.
+All765/prior CLOSED. Ordinary launcher/protected720p unchanged.
+
 # 765 CLOSED PASS: native CR17 forward enable and recovery
 
 Photo final765/eight displayed zero masks/CR17second63->e3->63. All416bits agree
