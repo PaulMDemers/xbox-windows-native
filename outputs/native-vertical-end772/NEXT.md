@@ -1,12 +1,12 @@
-# Test772 qualified, not launched
+# Test772 STAGED, not launched
 
-All required host checks PASS; frozen sources001 and review001.
-Payload001 size failure retained; payload002 passes with12800-byte extent.
-All12 CPU VMs closed. No physical result yet; no hook or host process.
-Next: exact index verification, repository checks, commit/push; stage unique
-/E/Applications/XWNMode772 and read back. Ask current watch/photo/reset readiness
-before native hold. On accepted/uncertain launch never retry. Expect13-row photo,
-NVVDISPEND719/479/719 and eight zero raw masks; final772 requiresall14.
-After manual reset, collect once/double-read and audit retained preparation files
-plus independent private photo decode/review. No full-mode/Windows1.6 proof.
-All771/prior CLOSED; never rerun/recollect/parent their runtimes.
+Qualified sources committed56423d0b; stage001 completed with exact readback.
+Console authenticated dashboard. No hook, owned host process or VM.
+Await current watch/photo/reset readiness before one native held launch.
+Record ready001, reverify frozen/build/stage bytes, send one SITE with20second
+reply bound. Never retry accepted/uncertain launch. Expect13-row report; green
+indicates final772 and all14 masks clear. Need photo for eight raw masks and
+NVVDISPEND719/479/719. Six masks omitted raw, no native disk result.
+After recorded photo request manual power-cycle, then collect once/double-read
+and independently audit retained preparation files and decoded private photo.
+All771/prior CLOSED. No full-mode/Windows1.6 proof. Retain payload001 size failure.

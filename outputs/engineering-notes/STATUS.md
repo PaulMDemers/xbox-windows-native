@@ -1,3 +1,18 @@
+# Test772 STAGED: awaiting current watcher/reset readiness
+
+Source qualification pushed56423d0b; exact source/HEAD and unique owned E-stage
+readback PASS. No launch requested, no hook/owned host process/VM. Console
+authenticated UnleashX during staging. All771/prior CLOSED; never reuse runtime.
+Native NVVDISPEND719 ->479 ->719 after qualified horizontal/CRTC prefix; six
+neighbors checked and all14 recovery masks required. Eight raw masks and triplet
+shown in13-row optical report; six masks omitted raw. Payload001 size failure
+retained; payload002 fixed12800-byte contract passed all host/linked bounds checks.
+No full-mode/Windows1.6/acceleration claim. Ordinary launcher/protected720p unchanged.
+NEXT wait for current watch/photo/reset readiness, then reverify and one SITE
+launch20second reply bound, never retry accepted/uncertain. Capture photo, request
+manual reset, collect preparation reports once/double-read and audit locally.
+See outputs/native-vertical-end772/NEXT.md.
+
 # Test772 qualified: native NVVDISPEND checkpoint; no launch
 
 Fresh native ELF309 and relocated299 fault cases PASS. All12 diskless CPU
