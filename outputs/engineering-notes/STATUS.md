@@ -1,3 +1,14 @@
+# 753 STAGED: kernel CR03 horizontal blank-end checkpoint
+
+Fresh source-only750 extension after native752 closure. Captured CR038c,
+source-derived target80, full byte and CR00/02/04/05 neighbor checks, own-value
+reverse recovery.138 COFF instruction cases and2353 layout cases pass; exact
+linked/source/schema validation and unique E stage/readback pass. No753launch
+or hook; no owned process/VM. Console authenticatedUnleashX. User authorized
+continued automatic-return diagnostics. Next one SITE launch, bounded dashboard
+observation, one collection and independent audit. No native/fullmode/Windows
+claim. All752/prior CLOSED. NEXT outputs/crtc-blank-end753/NEXT.md.
+
 # 752 CLOSED: native CR02 change and restoration passed
 
 Photo verified CR02 9f->59->9f, return/forward752, all five cleanup masks0,
