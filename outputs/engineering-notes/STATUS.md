@@ -1,3 +1,12 @@
+# 760 LAUNCHED: kernel CR01 display-end control
+
+One SITE accepted2026-10-28T02:52:27.991841UTC; preparation2b4933a9 pushed.
+Standing automatic-return kernel authorization and source/index/build/remote
+checks verified. No retry. Bounded authenticated dashboard observation followed
+by one collection/audit pending. No startup hook/nativehandoff/Windows or owned
+host process/VM. All759/prior CLOSED. NEXT outputs/crtc-display-end760/NEXT.md.
+Result not yet known.
+
 # 760 STAGED: kernel CR01 display-end and own recovery
 
 189 actualCOFF,2353layout,10clock and independent source/schema/link checks PASS.

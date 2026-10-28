@@ -1,11 +1,7 @@
-# Test760 staged; one bounded kernel launch next
+# Test760 launched; bounded return observation then collection
 
-Verify exact frozen/index/build and staged bytes and record readiness from
-standing user authorization and authenticated dashboard. One SITE request with
-20-second reply bound; never retry accepted/uncertain launch. Observe dashboard
-return boundedly, collect once/double-read, audit176words/source/clock/preparation.
-Record every refusal/failure; dashboard return alone is not normal shutdown.
-No startup hook/native handoff/Windows. All759/prior CLOSED. On an offline hold,
-record exact state and ask for recovery; do not send another launch.
-After a justified kernel result, fresh native counterpart needs176word bounds
-and explicit report mapping; current watcher/photo/reset readiness is required.
+One launch accepted02:52:27.991841UTC. Never launch again. Authenticate dashboard
+within a bounded observation; then collect once/double-read and audit exact176word
+record plus clock/source/build/stage. No hook; no native or Windows launch.
+If offline beyond bound, preserve state and request recovery. All759/prior CLOSED.
+No visual observation claimed. Automatic firmware restart is not Windows shutdown.
