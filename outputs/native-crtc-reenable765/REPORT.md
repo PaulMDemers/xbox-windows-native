@@ -49,3 +49,13 @@ Black median channel max116; white median mean min208.67. The three omitted
 aggregate masks remain unexposed; tested final765 requires all11 clear. No
 native disk result or complete mode-switch/Windows1.6 proof. Manual power-cycle
 requested; userReady and one preparation-file collection/audit still pending.
+
+## Closed after manual reset
+
+User confirmed Ready after power-cycle. Nine preparation files collected once
+with double-read equality. Audit PASS04:29:03UTC: source/build/stage pins, private
+report bytes, allocations/aliases and unrelated E entries verified. All five
+retained752 preparation comparisons match; no closed runtime reopened.
+Last persisted phase is handoff_armed. Native result remains photo-only; no
+normal shutdown or native post-handoff disk evidence. Test765 CLOSED PASS.
+Console authenticated at dashboard; no hook/owned host process/VM remains.

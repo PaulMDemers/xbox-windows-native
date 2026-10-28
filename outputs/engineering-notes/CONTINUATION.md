@@ -1,3 +1,17 @@
+# 765 CLOSED PASS: native CR17 forward enable and recovery
+
+Photo final765/eight displayed zero masks/CR17second63->e3->63. All416bits agree
+across5offsets/3thresholds;352adjacentrowchecksPASS. Three aggregate masks omitted
+raw; tested final765 requiresall11. UsermanualpowercycleReady; ninepreparation
+files collectedonce/double-read, auditPASS04:29:03UTC. Exactsource/build/stage,
+privatebytes/allocation/alias/unrelatedentriesPASS; five retained752comparisons
+match. Lastdiskphasehandoff_armed; native resultphoto-only; no normalshutdown.
+Consoleauthenticateddashboard; no hook/ownedhostprocess/VM. All765/prior CLOSED.
+NEXT outputs/native-crtc-reenable765/NEXT.md: source-ordered pitchCR19/CR13
+control after exact target/baseline review, independent kernel thennativechecks.
+No furtherlaunch in thiscollectionturn. No fullmode/Windows1.6proof. Preserve
+765linked-review003pathfailure/004correction andall earlier failures.
+
 # 765 PHOTO PASS; manual reset requested, collection pending
 
 User Green, holding; private photo decoded7650000d/final765, eight displayed

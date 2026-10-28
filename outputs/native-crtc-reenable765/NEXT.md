@@ -1,24 +1,22 @@
-# Test765 PHOTO PASS; await user reset Ready
+# Test765 CLOSED PASS; pitch controls next
 
-Photo and native values preserved; no further photo needed. User manualpowercycle
-requested; do not collect until Ready. Then one double-read preparationcollection
-and exact source/build/stage/allocation/alias audit. Native result is photo-only.
-No new launch or closed runtime reuse. No hook/ownedVM/process; last screenheld.
+Do not rerun/recollect/parent this closed runtime. Kernel764 and native765
+qualify CR17 forward63/e3/63 with own recovery in this bounded horizontal prefix.
+Photo shows eight zero aggregate masks; final765 requires all eleven. CR03,
+secondCR05 and firstCR17 masks are omitted raw fields. No fullmode/Windows1.6proof.
 
-# Test765 LAUNCHED; await held report and photo
+The next original source block in pinned xcal-transaction704/gpu_legacy.c is
+line stride: m=(xres/8)*pixelDepth, CR19 upper stride bits preserving low5, then
+CR13 lowbyte. Review exact720x480x32 targets and current values first. Prepare
+a new bounded source-ordered kernel control with fresh capture, own-value undo,
+neighbor checks and output disabled through recovery. Do not borrow state,
+waive refusal gates or skip failed evidence. No later vertical/encoder/PLL work.
+Native counterpart only after independently validated kernel evidence and fresh
+page/CPU/relocation/optical checks; current watch/photo/reset before any hold.
 
-All fresh validation and exact source/index/build/stage checks PASS. One SITE
-accepted2026-10-28T04:26:19.182299UTC; do not launch again.
-User confirmed watch/reset readiness and HDMI/dashboard before launch. No
-hook/ownedVM/process. Photo preserved and decoded; userresetReady pending.
-
-Expected final765 requiresall11 masks. Displayed eightmaskrows omitCR03,
-secondCR05,firstCR17. Expected secondCR17triplet63/e3/63; no unseen read assumed.
-Expanded results5100..5420 initializedthrough5500, guardto6000 tested.
-After photo capture and userresetReady, collect preparation files once/double-read
-and audit. Native results are photo-only. No normalWindowsrestart proof.
-
-All764/prior CLOSED; never rerun/recollect/parent. Preserve764dashboardtimeout
-and765linked-review003pathfailure; active reviewer004 corrected pathonly. No
-fullmode/Windows1.6support claim. Next original source block is pitchCR19/CR13,
-but choose a new bounded step only after765closure.
+765 result200words5100..5420 initialized5500, guardto6000, stack6000..8000.
+Preserve those bounds as result grows. Latest closed audit verifies all nine
+preparationfiles; no native post-handoff disk result. Console authenticated
+dashboard after user manualpowercycle; no hook/ownedhostprocess/VM. No further
+launch in this collection turn. Preserve linked-review003 path failure and004
+path-only correction. Ordinary launcher and protected720p remain unchanged.
