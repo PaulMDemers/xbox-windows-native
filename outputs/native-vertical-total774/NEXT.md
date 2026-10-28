@@ -1,17 +1,21 @@
-# Test774 optical PASS; awaiting manual reset and preparation collection
+# Test774 CLOSED PASS: native vertical-total recovery
 
-User reports green/holding. Private photo decoded by fresh002: signature7740000d,
-final774; eight displayed cleanup masks zero; NVVTOTAL749->524->749.
-All416bits agree at five offsets and three thresholds;352 adjacent-row checks.
-Seven omitted raw masks remain aggregate-only through final success code.
-Photo001 decode failed row11 cell isolation (dark gray right margin joined black);
-retained. Photo002 tightens component black threshold only, no substituted values.
-Actual black maximum16, minimum white mean204. Fresh reviewer002 PASS.
-Console last observed held report, manual reset NOT yet confirmed. No hook/VM/
-owned host process. All773/prior CLOSED. No native disk/fullmode/Windows proof.
-NEXT user power-cycle to UnleashX; once Ready record confirmation, collect774
-preparation once/double, run audit_collection002.py -> audit002.json locally.
-Frozen original audit_collection.py retained;002 follows new photo receipt pins.
-No repeat launch. Ordinary launcher/protected720p unchanged. Today watch/reset
-availability applies. Preserve integration003 and photo001 failures.
+Manual power-cycle confirmed by user; nine preparation reports collected once
+with double readback. Local audit002 PASS2026-10-28T19:03:26.593209UTC.
+Native photo002/reviewer002: NVVTOTAL749->524->749, final774, eight displayed
+cleanup masks zero; all416bits checked at five offsets/three thresholds and352
+adjacent-row points. Seven omitted masks remain aggregate-only; all15 required
+by final status. Preparation files stop at handoff_armed; native result photo-only.
+Source/build/stage exact, unrelatedE/apps entries unchanged, allocation aliases
+and disjoint bounds PASS. PCI/CRTC/sequencer/geometry match retained752; allocation
+addresses differ but independently valid. Manual reset is not normal shutdown.
+Retain integration003 harness-offset failure and photo001 cell-isolation failure;
+fresh integration004 and photo002 fixed their checkers without guest changes.
+No hook/owned host process/VM. Console authenticated UnleashX. All774/prior CLOSED;
+never rerun/recollect/parent closed runtimes. Ordinary launcher/protected720p
+unchanged. No complete native mode switch, Windows1.6 or acceleration proof.
+NEXT inspect pinned source-order NVVCRTC680808 operation and its full neighbor/
+undo requirements before a fresh kernel775 control, then native counterpart if
+justified. No775 source/build/stage/launch yet. Today's standing watch/reset
+availability applies; no repeat readiness question. Preserve all prior evidence.
 
