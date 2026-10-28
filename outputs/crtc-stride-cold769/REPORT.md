@@ -1,3 +1,12 @@
+# 769 LAUNCHED: cold-condition CR13 control
+
+One SITE accepted2026-10-28T16:16:18.657265UTC after user cold-reset Ready.
+Frozen source/index/build and remote bytes exact. Automatic dashboard return
+intended; actual outcome pending. No retry/startup hook/VM/owned host process.
+All768/prior CLOSED. NEXT bounded dashboard observation, collect once/double,
+audit_collection.py. A second baseline refusal stops repeated boots.
+No fullmode/Windows1.6 proof; ordinarylauncher/protected720p unchanged.
+
 # 769 STAGED: fresh cold-condition CR13 test
 
 User Ready confirms requested10second cold power cycle. Fresh namespace-only
