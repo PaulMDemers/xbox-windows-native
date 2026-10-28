@@ -1,3 +1,11 @@
+# 766 LAUNCHED: kernel CR19 upper stride
+
+One SITE accepted2026-10-28T15:08:52.652435UTC. Frozen build/index/stage exact;
+no retry/hook/VM/ownedhostprocess. Automatic return intended; actual outcome
+pending. No Windows/nativehand-off. All765/prior CLOSED. NEXT
+outputs/crtc-stride-high766/NEXT.md: bounded dashboard observation, collect
+once/double-read, audit. Do not infer success from FTP or replay this attempt.
+
 # 766 STAGED: CR19 upper stride; no launch yet
 
 Source-ordered kernel probe extends closed764/765 to CR19 upper stride bits.
