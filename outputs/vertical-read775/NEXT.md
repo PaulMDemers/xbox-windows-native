@@ -1,18 +1,10 @@
-# Test775 qualified: read-only vertical baseline before new writes
+# Test775 staged: read-only vertical baseline
 
-Native774 CLOSED PASS pushed6c71e23d. Retained reports omit NVVCRTC680808 and
-NVVVALIDSTART680814. Fresh775 uses source-only773 kernel frontend with new
-read-only probe: seven vertical registers,21reads in forward/reverse/forward
-passes, raw30words persisted. No custom timing/selector/interrupt-state writes
-in probe; SDK720p setup and selector-preserving context capture remain frontend.
-49 actual COFF tests,2353 framebuffer,10clock and linked PE/XBE checks PASS;
-independent source/schema review PASS with25 rejected corruptions. No failure.
-No775stage/launch/hook/VM; console last authenticated dashboard after774.
-All774/prior CLOSED. Ordinary launcher/protected720p unchanged.
-NEXT uniqueE stage/readback, one SITE20secondbound, no accepted/uncertain retry.
-Automatic dashboard return intended after15seconds; notify if still offline
-beyond roughly two minutes. Then collect once/double and audit locally. Today's
-watch/reset authorization applies, no repeated readiness question. Unknown new
-register values must come from this physical readback before a fresh write test.
-No native/fullmode/Windows1.6/acceleration proof.
+UniqueE stage/source/build readback PASS. No launch yet; authenticated dashboard.
+Qualification pushed00afc9fe. No startup hook/VM/owned host process. All774/prior
+CLOSED. NEXT one SITE20second reply bound, never accepted/uncertain retry. Wait
+for bounded automatic return, collect once/double and audit actual raw readings.
+Notify user if stuck beyond roughly two minutes. Standing authorization applies.
+No custom timing writes, native handoff, fullmode or Windows1.6 proof.
+Ordinary launcher/protected720p unchanged. See this kit's README and review001.
 
