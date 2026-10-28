@@ -1,0 +1,335 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "space": {
+    "minimum_free_gib": 20.15,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c/xwn765",
+        "free_bytes": 62501666816
+      },
+      {
+        "free_bytes": 62501666816,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "commands": [
+    [
+      "as",
+      "--32",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-crtc-reenable765/bridge.S",
+      "-o",
+      "/mnt/c/xwn765/host002/bridge.o"
+    ],
+    [
+      "ld",
+      "-m",
+      "elf_i386",
+      "-Ttext=0",
+      "--entry=bridge_start",
+      "/mnt/c/xwn765/host002/bridge.o",
+      "-o",
+      "/mnt/c/xwn765/host002/bridge.elf"
+    ],
+    [
+      "objcopy",
+      "-O",
+      "binary",
+      "--only-section=.text",
+      "/mnt/c/xwn765/host002/bridge.elf",
+      "/mnt/c/xwn765/host002/bridge.bin"
+    ],
+    [
+      "nm",
+      "-n",
+      "/mnt/c/xwn765/host002/bridge.elf"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-std=c11",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=address,undefined",
+      "-I",
+      "/mnt/c/xwn765/host002",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-crtc-reenable765/page002.c",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-crtc-reenable765/page_tool003.c",
+      "-o",
+      "/mnt/c/xwn765/host002/page-tool"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-std=c11",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-shared",
+      "-fPIC",
+      "-fsanitize=undefined",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-crtc-reenable765/plan.c",
+      "-o",
+      "/mnt/c/xwn765/host002/plan.so"
+    ],
+    [
+      "python3",
+      "-B",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-crtc-reenable765/plan_test.py",
+      "/mnt/c/xwn765/host002"
+    ],
+    [
+      "/mnt/c/xwn765/host002/page-tool",
+      "/mnt/c/xwn765/host002/bridge.bin",
+      "/mnt/c/xwn765/host002/payload.bin",
+      "/mnt/c/xwn765/host002/dual/page.bin",
+      "32440320",
+      "50331648"
+    ],
+    [
+      "/mnt/c/xwn765/host002/page-tool",
+      "/mnt/c/xwn765/host002/bridge.bin",
+      "/mnt/c/xwn765/host002/payload.bin",
+      "/mnt/c/xwn765/host002/identity/page.bin",
+      "32440320",
+      "50331648"
+    ],
+    [
+      "/mnt/c/xwn765/host002/page-tool",
+      "/mnt/c/xwn765/host002/bridge.bin",
+      "/mnt/c/xwn765/host002/payload.bin",
+      "/mnt/c/xwn765/host002/relocated/page.bin",
+      "32342016",
+      "50331648"
+    ],
+    [
+      "/mnt/c/xwn765/host002/page-tool",
+      "/mnt/c/xwn765/host002/bridge.bin",
+      "/mnt/c/xwn765/host002/payload.bin",
+      "/mnt/c/xwn765/host002/scatter/page.bin",
+      "32440320",
+      "50331648"
+    ]
+  ],
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "payload_inputs": {
+    "/mnt/c/xwn765/payload001/payload.bin": "cef49e63ecf51495e2a6594d79caf2d7e705571a162818f3400e8ed6b2c89160",
+    "/mnt/c/xwn765/payload001/symbols.stdout": "4b8199bd8a226912bddd2659405eb6545cd26a952a1c7a3e7c1639003963a0b2",
+    "/mnt/c/xwn765/payload001/relocations.stdout": "ad85486854b2577ec9e92e68f0a8c15d211c758f2fd825cddd73605ab10f3ea1"
+  },
+  "bridge_symbols": {
+    "bridge_start": 0,
+    "bridge_flat": 288,
+    "bridge_post": 328,
+    "bridge_hold": 973,
+    "bridge_refuse": 976,
+    "bridge_bar": 1013,
+    "bridge_report": 1049,
+    "report_background": 1073,
+    "report_row": 1091,
+    "report_value": 1111,
+    "report_bit": 1142,
+    "report_color": 1156,
+    "report_square": 1163,
+    "bridge_fault": 1198,
+    "bridge_check": 1202,
+    "status_colors": 1248,
+    "pci_select": 1276,
+    "report_offsets": 1316,
+    "bridge_code_end": 1368,
+    "__bss_start": 4096,
+    "_edata": 4096,
+    "_end": 4096,
+    "bridge_end": 4096
+  },
+  "metadata": [
+    1368,
+    288,
+    1198,
+    328,
+    218
+  ],
+  "relocations": [
+    {
+      "offset": 299,
+      "type": "R_386_PC32",
+      "symbol": "bounds704",
+      "symbol_value": 1048576,
+      "value": 4294966993
+    },
+    {
+      "offset": 678,
+      "type": "R_386_PC32",
+      "symbol": "probe765",
+      "symbol_value": 1049285,
+      "value": 27
+    },
+    {
+      "offset": 1725,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1056768,
+      "value": 1056896
+    },
+    {
+      "offset": 1771,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1056768,
+      "value": 1056900
+    },
+    {
+      "offset": 1801,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1056768,
+      "value": 1056800
+    },
+    {
+      "offset": 1888,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1056768,
+      "value": 1056800
+    },
+    {
+      "offset": 2261,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1056768,
+      "value": 1056888
+    },
+    {
+      "offset": 2268,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1056768,
+      "value": 1056892
+    },
+    {
+      "offset": 2347,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1056768,
+      "value": 1056896
+    },
+    {
+      "offset": 2370,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1056768,
+      "value": 1056892
+    },
+    {
+      "offset": 2535,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1056768,
+      "value": 1056800
+    },
+    {
+      "offset": 5634,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1056768,
+      "value": 1056800
+    },
+    {
+      "offset": 5658,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1056768,
+      "value": 1056800
+    },
+    {
+      "offset": 5957,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1056768,
+      "value": 1056896
+    },
+    {
+      "offset": 6003,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1056768,
+      "value": 1056746
+    },
+    {
+      "offset": 8440,
+      "type": "R_386_PC32",
+      "symbol": ".text",
+      "symbol_value": 1048576,
+      "value": 4294958856
+    },
+    {
+      "offset": 8480,
+      "type": "R_386_PC32",
+      "symbol": ".text",
+      "symbol_value": 1048576,
+      "value": 4294959034
+    },
+    {
+      "offset": 8528,
+      "type": "R_386_PC32",
+      "symbol": ".text",
+      "symbol_value": 1048576,
+      "value": 4294959477
+    }
+  ],
+  "sources": {
+    "bridge.S": "820bee01eba32628f5c3d3653977ab3ad47d837d51a433f1ff325884d92f43e3",
+    "build005.py": "c039fd4cc727bc4a5e7a2941ae414230b99f34858cd756330cbbde709669092a",
+    "cpu002.py": "ebf594cc09b8bdb8b5b45597342e6934997862b88303a759c8be14fcd12247da",
+    "extend_integration.py": "e84422fe3366a3e32ef2f2044652a53ca139d634d3048435b90122e97c16bf2f",
+    "fixture.S": "efa5d5268d96aba57b57100daaad4aac306cf74488d5e668d5fe8f48dc5ca069",
+    "host_build005.py": "f3386239ccac055d9cf4e58e2469571436f726fb3b182c136e6a0f5fe5e5a7b0",
+    "integration004.py": "f175fd54e6b33ffa85e1426d12bd3da5979432047e09f5b93d4ca7893b6a88e7",
+    "layout.c": "4fa64546cb8c9c6ab25b65ed8fed3099e56e37bda42ce81fb83dee3d52005129",
+    "layout.h": "bbf7e8d6397d56e5788fd15cc6e6eb04a29defbec540207e561cbbcf07f12b61",
+    "linked_review003.py": "00348979d479bf0248941aa85af43d5169a77b75660880c0cbc7d1d6ceb3efb5",
+    "main.c": "0fc58beae1430d08e2763796fba4902917f4c9463f8202c2bf524ab38b7f7d7e",
+    "model.py": "ff698b7a0ed008dbcdab4889fa9590f006d9a6f59048e89f2fba087f30c6ff38",
+    "optical_oracle.py": "63736e3e2dcf7df78a245e1f4f6e4434633597a5953736a11d52e2080243d77e",
+    "optical_review002.py": "d79b7cc8879193f09226a1b0567550f9d0e862c7bb1c550e234dcbf36313ac16",
+    "page.h": "67942149d4781e378b1b1c33c16976538b46bc2ab100b1ab9b10f2c601bfb7ac",
+    "page002.c": "d84c771b0706cc9b50674922b48579ae98dba5b648956cc3f10f7f614378013a",
+    "page_review003.py": "f74e8ac69560cd651e11b5ca4f63982c399026a7d82b8e4dd718548a7c8707d2",
+    "page_tool003.c": "4346f6ffafefa640be7aa7a0f0a956c534abe00c0cd76ae25006db932dd2a907",
+    "payload_build.py": "8f9bf530f56c84f7bb379dd6fc62c60253402e93e74022fd49315b5e36be2b28",
+    "physical003.py": "bba0d0736704e046738fbd87dc28750068603a196f0a099ee326ddc16ab1c138",
+    "plan.c": "904d08b17d1d900e32a2079718100e5a80ce9df0d4568cb1c8dfed00d2c3c793",
+    "plan.h": "342f1732b9f49c42a17baa9ced546d1bcbbbfa38f5bfc19fc618ce5f192fc3f5",
+    "plan_review003.py": "cf1dcad8f0a6e5f351df19c86dbbf28fa6246aa7631c584f1a39d1f272f51e08",
+    "plan_test.py": "de5e172cdfc8687fba21ee62d844c0864b9a33f4bf31b610fcb0d759eabddb22",
+    "prepare.py": "0b1c87aa1cb18322b9ad01af46f8cb56ce51b2618e5fd62bc4c1597e1d8dc4fb",
+    "probe.c": "84aa0dd326701e5e9822940ecbaa16f0bc7d2e8079720d95314ab08a9b276713",
+    "probe.h": "7a4b4c2789b59fae36e69634b44245d00d8b866d0e02e5c59c04041919aaa160",
+    "relocate003.py": "679f243100ecfab7ef61bdd8b0db384139f4fb7a48a2166682160aea441a04cb",
+    "review_prepare.py": "70dc936740d1a38f3af8cdafbc4c49c53087b0f4690790298e83215a1f8bba06",
+    "source_review.py": "94669e7cab55c11338de5f01afcdef02175e35c2ed2bb98000fc204d1b57c712",
+    "transaction.h": "b4cfa9c4d7e27e7ce22306d4bdf4cd1bec7290418ed4f8bfc9b6f1e1d06f59a8",
+    "transaction765.c": "0c32ce6cc6329fe02caaf207393f34814126cdc26c993a67c90d8175c0dbbdd9"
+  },
+  "files": {
+    "bridge-symbols.txt": "bdf4ec689bbfca99335dceaa85b1aca4c9bcbdd7bcb86d0c2c40278df39a2649",
+    "bridge.bin": "f311f01a2e14fc09b5913d2792b1f6c6820916e7cb7bdd77da0ed6da690d02ab",
+    "bridge.elf": "4a2d28225375f8a690998dd8a446db01ca8c03e347fdbcbefa3f54955c4bfe05",
+    "bridge.o": "db5e317b086ee2d325a7297d9f277725318114c891d250e50a0d867ddbf7ac39",
+    "build.log": "df7a32b10774fa79ca8623b4af6a95c7e0bbbe8daa07b6c5878a81cb87d9ff51",
+    "page-tool": "dab637ce29b1d07189d17a7a01b79508f1a3755f39681661e3df5c19003b330a",
+    "payload.bin": "cef49e63ecf51495e2a6594d79caf2d7e705571a162818f3400e8ed6b2c89160",
+    "payload_meta.h": "ec4e70f8b63cad3d789c72ff487a65d993f32fe6526bfd50ef9852e169f25aec",
+    "plan.so": "408bad0d56cc3999a71fca4063deae94e38d04ea82854fb19b28970359774c47",
+    "dual/page.bin": "4154bccfda73cf43700cb76b85f216ca47299e7ee3a0dc9448cb4af24d8fe5ee",
+    "identity/page.bin": "4154bccfda73cf43700cb76b85f216ca47299e7ee3a0dc9448cb4af24d8fe5ee",
+    "relocated/page.bin": "d9676a8fcbe85bde771b5bae2b40afe1fb4454677b234685557aa5f0c3bc5355",
+    "scatter/page.bin": "4154bccfda73cf43700cb76b85f216ca47299e7ee3a0dc9448cb4af24d8fe5ee"
+  },
+  "ended_utc": "2026-10-28T04:19:31.341212+00:00"
+}

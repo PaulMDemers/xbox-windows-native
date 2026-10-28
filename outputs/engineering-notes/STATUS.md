@@ -1,3 +1,28 @@
+# 765 STAGED: native CR17 forward enable; watcher needed
+
+764 CLOSED PASS pushedae64322f. Fresh765228ELF,218integration,76optical,
+12CPU(allclosed),32page,372plan and independent source/link checksPASS.
+Linked-review003 receiptpathfailure preserved; new004 pathonlycorrectionPASS.
+Frozen sources/index and uniqueE stage/readbackPASS. XBE131072bytes SHA256
+c49709b60b8207850bdd2a46b5ef729d90b6f4f8d90e4e5614dd48deff581a9a.
+Result200words5100..5420; initialized5500/guard6000/stack6000..8000 tested.
+13rows:eightmasks+CR17secondtriplet; CR03,secondCR05,firstCR17 omitted optically;
+final765 requiresall11. No765launch/hook/ownedVM/process. Consoleauthenticated
+dashboard. All764/prior CLOSED. NEXT outputs/native-crtc-reenable765/NEXT.md:
+currentwatch/photo/reset readiness, thenoneacceptedlaunch andheldphoto.
+No fullmode/Windows1.6proof; ordinary launcher/720p unchanged.
+
+# 765 PREPARING: native CR17 forward enable
+
+764 CLOSED PASS pushedae64322f. Fresh source-only764probe/763frontend;200words
+5100..5420 nowinitializedthrough5500, guardto6000 and stack6000..8000 retained.
+Fresh payload/host/CPUfixtures built;228ELFcasesPASS; relocated/optical/CPU/nxdk
+checks pending. No765stage/launch/hook/ownedVM; models running underlease.
+Prebuild namespace inspection corrected before compilation; no runtime reused.
+Report13rows exposes eightmasks+CR17secondtriplet; CR03,secondCR05,firstCR17
+omitted optically, final765 requiresall11. No fullmode/Windows1.6proof.
+NEXT finishvalidation/freeze/stage; currentwatch/photo/reset before nativehold.
+
 # 764 CLOSED PASS: kernel CR17 forward enable and recovery
 
 CR1763->e3->63; all eleven aggregate recovery masks0 and earlier values restored.
