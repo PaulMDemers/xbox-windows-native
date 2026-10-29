@@ -1,17 +1,20 @@
-# Test793 QUALIFIED with controller correction; no stage/launch yet
+# Test793 LAUNCHED; held native photo pending
 
-Qualified payload and tests unchanged from7df627e8. Readiness preflight failed
-beforeFTP because physical005 requested nonexistent plan-review002; broad filename
-replacement had changed that reference. Preserve readiness-failure001 and old
-helper/freeze. New physical006 names existing passedplan-review001 plus fresh
-review003/sources003. controller-review001 PASS: exact three-reference-only diff,
-prior frozen sources/receipts intact; m.verify() PASS including143360byte XBE
-SHA256 d89e83aa28e2cdbad594bbd2e3c0eb7c58a5f6c4bf92742a3167578ff7e99083.
+Qualified7df627e8 and controller correctionb347573b pushed. StandingOct28 local
+watch/reset authenticated, exact stage/readback passed. Single SITE accepted
+2026-10-29T02:07:47.356573UTC,20second reply bound/no retry. XBE d89e83aa28e2cdbad594bbd2e3c0eb7c58a5f6c4bf92742a3167578ff7e99083,
+unique E/Applications/XWNMode793. Deliberate native hold expected; actual picture,
+status and outcome unknown until photo. No hook or owned hostprocess/VM. No
+ordinarylauncher/protected720p/dashboardC changes. All792/prior runtimes CLOSED.
 
-Activephysical006/review_prepare003; other qualification gates unchanged. All
-hostprocesses/VMs closed, nohook, no793FTP/stage/launch yet. Preserve earlier
-integration timeout, page harness overlap and tooling failures. NEXT commit/push
-correction, authenticate standingOct28watch/reset, exactstage/readback and one
-SITE20s. After two minutes obtain heldphoto; user checkslegibility thenresets
-without separateReady. Authenticate before one-timecollection. No CR16/later
-writes or nativefullmode/Windows1.6desktop/3D claim. All792/priorruntimesclosed.
+NEXT after abouttwo minutes ask secondbar/currentpicture and legible full13row
+photo. Decode independently against frozen optical-schema001: signature7930000D,
+status, eight masks, CR06before/after/restored. ExpectedEC/0C/EC only comparison,
+never substitute expectedbits.16othermasks aggregate-only. Preserve photo privately.
+User checkslegibility then power-cycles without separateReady; authenticate
+UnleashX before fresh collection-ready001 and physical006 collectONCE. Do not
+collect before returned/reset or rerunlaunch. Preparation files are pre-handoff,
+not native disk evidence. Audit source/build/stage/report/allocation/ownership
+and photo pins beforeclosure. If consoleoffline ask recoveryonlywhenneeded.
+Preserve integration timeout/pageharness overlap/tooling/readiness failures.
+No CR16/later writes, nativefullmode/Windows1.6desktop/acceleration claim.
