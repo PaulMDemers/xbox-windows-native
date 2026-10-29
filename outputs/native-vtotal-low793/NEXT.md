@@ -1,26 +1,17 @@
-# Test793 QUALIFIED; stage and physical launch pending
+# Test793 QUALIFIED with controller correction; no stage/launch yet
 
-Native CR06 vertical-total low byte, exact kernel792 probe except namespace and
-nativeCPUguard; source-only791 frontend with independently checked larger layout.
-694 direct cases,684 fresh full bridge cases,76 optical,12 CPU fixtures allclosed,
-131379 hostallocation,32+33 compiledpage and372 compiledallocation cases PASS.
-Actual19704byte payload fits20480;550word result ends68D8; IDT7000..7800 and
-stack7800..8000 disjoint. Maximum modeled stack write100bytes of2048. Exact
-source/ELF/COFF/PE/XBE checks and review002/sources002 frozen. No hardware proofyet.
+Qualified payload and tests unchanged from7df627e8. Readiness preflight failed
+beforeFTP because physical005 requested nonexistent plan-review002; broad filename
+replacement had changed that reference. Preserve readiness-failure001 and old
+helper/freeze. New physical006 names existing passedplan-review001 plus fresh
+review003/sources003. controller-review001 PASS: exact three-reference-only diff,
+prior frozen sources/receipts intact; m.verify() PASS including143360byte XBE
+SHA256 d89e83aa28e2cdbad594bbd2e3c0eb7c58a5f6c4bf92742a3167578ff7e99083.
 
-Preserve integration005 failed600second bound after680cases; freshintegration006
-passed684 with900second bound. page-review001 failed host stack/payload overlap;
-freshpage-review002 and boundary001 pass with separate harness stack, immutable
-payload/guard checks. Production payload unchanged. Keep generator-failure001,
-documentation-failure001 and link-reference-correction001; no failed evidence
-removed/reclassified. Active build008, integration008, page_review005,
-page_boundary006, source_review002, review_prepare002, physical005.
-
-No ownedhostprocess/VM, hook or793stage/launch. .66 lastauthenticatedUnleashX HDMI.
-All792/prior runtimes CLOSED. NEXT exact public staged-byte review/check/commit/push,
-then authenticate standingOct28availability, stage/readback and oneSITE20s launch.
-Heldphoto shows signature/status/eightmasks/CR06before-after-restored;16othermasks
-aggregate-only. User checksphoto and resets without separateReady; authenticate
-before one-timecollection, askonlyifoffline. No CR16/later operations, fullnative
-modeswitch, Windows1.6 desktop or acceleration claim. Ordinarylauncher/protected
-720p/dashboardC untouched.
+Activephysical006/review_prepare003; other qualification gates unchanged. All
+hostprocesses/VMs closed, nohook, no793FTP/stage/launch yet. Preserve earlier
+integration timeout, page harness overlap and tooling failures. NEXT commit/push
+correction, authenticate standingOct28watch/reset, exactstage/readback and one
+SITE20s. After two minutes obtain heldphoto; user checkslegibility thenresets
+without separateReady. Authenticate before one-timecollection. No CR16/later
+writes or nativefullmode/Windows1.6desktop/3D claim. All792/priorruntimesclosed.

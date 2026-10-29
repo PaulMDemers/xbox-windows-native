@@ -19,9 +19,9 @@ directories/receipts and the existing build/emulator resource leases. Sequence:
 payload_build005.py; host_build005.py; cpu002.py build; model.py;
 integration008.py; optical_review002.py; cpu002.py run; link_review008.py;
 build008.py; page_review005.py; page_boundary006.py; plan_review003.py;
-linked_review004.py; source_review002.py; review_prepare002.py.
+linked_review004.py; source_review002.py; review_prepare003.py.
 
-physical005.py stages, launches and collects using private connection configuration,
+physical006.py stages, launches and collects using private connection configuration,
 unique E paths, exact readback, one SITE request with a20second reply bound and no
 launch retry. No startup hook, dashboard C access, ordinary launcher or protected
 720p change. Native execution deliberately holds for a photograph and power-cycle.
@@ -47,7 +47,7 @@ before any build or launch. Neither failure is relabeled as a pass.
 Qualification completed:694 direct native cases,684 complete bridge cases,
 76 optical cases,12 closed CPU fixtures,131379 host allocation cases,32+33
 compiled page cases and372 compiled allocation cases. Exact ELF/PE/XBE/source
-review passed. review002/sources002 freeze the active inputs. restore_model.py
+review passed. review003/sources003 freeze the active inputs. restore_model.py
 verifies/reconstructs exact model001 from hashed public text chunks.
 
 page-review001 is FAILED and retained: the enlarged payload overlapped the old
@@ -56,3 +56,8 @@ harness stack at20F000, check payload immutability and a lower stack guard, and
 pass exact page comparison. Production inputs did not change. Also preserve
 qualification-failure001/002, generator-failure001, documentation-failure001 and
 link-reference-correction001. No failed receipt is relabeled or overwritten.
+
+Readiness-failure001 occurred beforeFTP: controller005 named a nonexistent plan
+receipt. controller006 corrects that exact reference and names a new freeze;
+controller-review001 verifies no production or launch-logic change. Prior helper,
+review002/sources002 and all earlier qualification evidence remain immutable.
