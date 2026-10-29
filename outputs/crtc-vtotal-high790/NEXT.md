@@ -1,11 +1,11 @@
-# Test790 qualified; physical stage/launch next
+# Test790 single launch accepted; bounded dashboard observation pending
 
-Source/build/schema/link checks PASS; no physical stage/launch yet. CR07 second
-operation preserves74 afterCR10=E9; restores ownCR07 beforeCR10 and earlierCR07.
-NoCR06/CR16/later operation. Same-value drop is explicitly unobservable.
+SingleSITE accepted2026-10-29T00:47:55.596920UTC (Oct28local),20secondreplybound,
+no retry. Qualifiedpusheda66f937a; uniqueE/Applications/XWNMode790 stage/readback
+exact. Kernel control adds secondCR07 verticaltotal74/74/74 afterCR10; same-value
+limitation explicit. Auto-return after15sec intended. No visual/result yet.
+No hook, Windows/nativehandoff, ordinarylauncher/protected720p change or consoleC.
+No ownedhostprocess/VM remains. Next authenticate dashboard, collectfresh once,
+audit sevenreports and all23recoverymasks; ifoffline~2min requestscreen/reset.
+All789/priorruntime CLOSED. Fullnative/Windows1.6 remainunproved.
 
-Use standingOct28local authorization, exact pinned physical.py stage/readback,
-oneSITE20s. Auto-return expected after15sec. Authenticate dashboard once after
-bounded observation, then one collection and local audit. If stilloffline after
-~2minutes request user screen/reset; no retry launch. Native/Windows not proved.
-All789andearlier runtimes remain CLOSED; no recollection/rerun/parenting.
