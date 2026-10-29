@@ -1,0 +1,104 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "qualification": false,
+  "space": {
+    "minimum_free_gib": 20.05,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c/xwn804",
+        "free_bytes": 53121277952
+      },
+      {
+        "free_bytes": 53121277952,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "sources": {
+    "transaction804.c": "24964c4e52bdf972a1c3c2e955644fb9af228b55491ca864b26209faeaea8fdf",
+    "transaction.h": "2f79a2b571c1e391fff3055ef326ecf391bdc1df36c4c6840e0c8c52c0ac7bf9",
+    "probe-native.c": "3a604ddc98d51f34eadb095b3d4be6cb82d47d8b9fec9adafcd24d21362661ad",
+    "probe-compact-native.c": "ce0d848a102ba65fdd89eda3b695b7aeb1e9ee8bca45fcbe564b40e64e6905b8",
+    "probe.h": "bf8eece3a59f26ec09c3379de1c6a8dec8feced23a985512b96d0cac1b4274ad",
+    "probe-shared-read-native.c": "008010f10a62314a485394439c72e47f65b2055b0e615866d685614187997898",
+    "probe-shared-native.c": "30981f6d6154571f45a10c219005e3169b42d5c0c708eb2ac35c15cb9b7fac0b"
+  },
+  "variants": [
+    {
+      "name": "shared-read",
+      "command": [
+        "/usr/bin/x86_64-linux-gnu-gcc-12",
+        "-m32",
+        "-Oz",
+        "-ffreestanding",
+        "-fno-pie",
+        "-fno-pic",
+        "-fno-stack-protector",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-nostdlib",
+        "-static",
+        "-no-pie",
+        "-Wl,-Ttext=0x100000,-e,native_transaction704,--build-id=none,--emit-relocs,-z,max-page-size=0x20",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-vblank-overflow804/transaction804.c",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-vblank-overflow804/probe-shared-read-native.c",
+        "-o",
+        "/mnt/c/xwn804/measure002/shared-read/native.elf"
+      ],
+      "raw_bytes": 22828,
+      "files": {
+        "binary.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "compile.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "compile.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "disassembly.stdout": "d2bf0243f58ff809bf32b1186cc7f3c5e74c2393e0206bc639cc827d5b611230",
+        "native.bin": "3f2121fc7d3d9518090ebe29d60ff97ffd013f2183385b4d2b36eb730e8243f6",
+        "native.elf": "404123e20e6ffd83b3d6a3458acdc30d63a06fd6d59f93e4c8f350df81a989db",
+        "relocations.stdout": "cb409d04b80bbea6d86059e7296cf17b0742d5b91317c9df100784739879484e",
+        "sections.stdout": "7c67d63c6a934b58fff156ca365a5f99daf97d7aad0956d3a2e8a3dda4aa3d9a",
+        "symbols.stdout": "6f8365e5897e7ed5c4e786c5188660748fec756bfcd69515a77ed2bf873fb15a"
+      }
+    },
+    {
+      "name": "shared-read-write",
+      "command": [
+        "/usr/bin/x86_64-linux-gnu-gcc-12",
+        "-m32",
+        "-Oz",
+        "-ffreestanding",
+        "-fno-pie",
+        "-fno-pic",
+        "-fno-stack-protector",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-nostdlib",
+        "-static",
+        "-no-pie",
+        "-Wl,-Ttext=0x100000,-e,native_transaction704,--build-id=none,--emit-relocs,-z,max-page-size=0x20",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-vblank-overflow804/transaction804.c",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-vblank-overflow804/probe-shared-native.c",
+        "-o",
+        "/mnt/c/xwn804/measure002/shared-read-write/native.elf"
+      ],
+      "raw_bytes": 22592,
+      "files": {
+        "binary.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "compile.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "compile.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "disassembly.stdout": "e06a03ebe59eb9e55668f3333bf09ffe2017416705d4869e9535734a444715ab",
+        "native.bin": "0fb6697b20a0158cc4a66194b6a112d74c70f9d671737db57b3df6042cef37d3",
+        "native.elf": "f5355334a71c87879f416ac8f92c2a04db3a0bcd2cd9ff7ff2bccdd21fa91698",
+        "relocations.stdout": "c939c1e38ccba691fd5ab52defe1b9e65f7f4416f1672570171d9750d0b8a157",
+        "sections.stdout": "5203dd027218b02da5973653fda1c9950bddd87f2a165359f620dd6cd933d728",
+        "symbols.stdout": "36b2a3aeb4c55f5acb9f477e9e181602120c9613c56a3020a52e6ad655af165c"
+      }
+    }
+  ],
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "utc": "2026-10-29T06:23:37.330991+00:00"
+}

@@ -1,3 +1,27 @@
+# Test804 QUALIFIED: native CR07 blank-start overflow
+
+Source-only continuation from CLOSED801 and CLOSED803. No804 physical stage or
+launch yet; no hook. Actual original/selected ELF894-case equivalence,884 full
+bridge cases,76 full-framebuffer checks and12 fresh diskless CPU fixtures PASS.
+All12 VMs closed. Selected native payload22592/padded22656,700-word result,
+768-byte stack; relocation, guards, IDT, linked XBE and exact source checks PASS.
+Page-builder34 plus boundary35, ownership372. Exact sources frozen in sources001.
+Expected CR07 36 ->3E ->36 and all29 aggregate recovery masks clear;13 optical
+rows expose eight masks plus final status and new register values. No physical
+result, full-mode switch or Windows desktop claim. Next stage/readback unique
+E/Applications/XWNMode804 and one bounded SITE; user standing photo/reset workflow.
+Follow outputs/native-vblank-overflow804/NEXT.md. Preserve all earlier failures.
+
+# Test804 PREPARING: native CR07 blank-start overflow
+
+Source-only continuation from CLOSED801 and CLOSED803. No804 physical stage or
+launch. Dashboard001 authenticated1.6 .66 HDMI; fresh E namespace absent. No hook.
+894-case original/selected actual-ELF result and device-trace equivalence PASS.
+Selected shared CRTC helpers22592 bytes, padded22656;700-word result; retained
+768-byte stack. Size alternatives and exact qualification inputs preserved.
+Full integration/optical execution is running;12 fresh CPU fixtures built but
+not run. No Windows/full-mode claim. Follow outputs/native-vblank-overflow804/NEXT.md.
+
 # Test803 CLOSED PASS: corrected kernel CR07 blank-start overflow
 
 One accepted SITE, one collection, seven reports and audit002 PASS. CR07 readback
