@@ -1,3 +1,31 @@
+# Test799 QUALIFIED: native CR12 display-end low byte
+
+Fresh source-only closed797/798 derivation.814 native ELF cases,804 fullbridge
+cases,76 full-frame report cases,12 diskless CPU contexts/refusals(allclosed),
+ownership/page/ELF/PE/XBE checks passed. Stack use100/512bytes; result2560bytes,
+request6b80,result6bc0..75c0,guard75c0..7600,IDT7600..7e00,stack7e00..8000.
+Frozen review001/sources001. XBE c964c7794cf03ee67a1395cb71e2ed29993e78d60f0c852d12196394e003601b.
+Preserved payload006 reserve rejection and rejected-layout001 original sources;
+corrected payload007 raw23416/padded23424 passes. No gate waiver or runtime reuse.
+
+User renewed availability to watch/photo/reset on Oct29. Next authenticate/stage
+unique E/Applications/XWNMode799 and readback, then ONE20s SITE request. No799
+stage/launch yet; nohook/VM/process. Nativephoto required; kernelpreparation does
+not contain native results. Report displays8/27masks;19 aggregate-only. NoWindows
+or full-mode claim. Earlier attempts CLOSED;798 close53591960 is pushed.
+
+# Test799 preparation: native CR12 control, no physical launch yet
+
+Kernel798 CLOSED PASS in53591960. User renewed watch/photo/reset availability.
+799 fresh payload006 was rejected for size23416 >reserve23040 before any stage.
+Original sources and failure retained in rejected-layout001/ and payload006.json.
+Fresh payload007 passes with23424-byte reserve in the same32KiB ownership envelope;
+request6b80,result6bc0..75c0,guard75c0..7600,IDT7600..7e00,stack7e00..8000.
+Direct native814cases passed. Fullbridge804, CPU12, stack/bounds/optical/link
+qualification still pending; do not stage or launch without the fresh freeze.
+No799 hook/stage/launch or console change. Source-only derivation from closed797/798.
+Console1.6 .66 at dashboard HDMI when last authenticated. No Windows1.6 claim.
+
 # Test798 CLOSED PASS: kernel CR12 display-end low byte
 
 One accepted launch04:20:47.340583UTC, onecollection7 fresh reports through
