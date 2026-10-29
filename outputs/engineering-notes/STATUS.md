@@ -1,3 +1,13 @@
+# Test796 LAUNCHED: kernel CR07 display-end overflow
+
+Qualified de512bf3; stage/readback exact. One SITE accepted at 2026-10-29T03:14:46.889801+00:00.
+No retry. Automatic dashboard return intended after15seconds; no visual result
+assumed. No hook, owned host process or VM; dashboardC and launcher unchanged.
+NEXT authenticate dashboard after settling, then ONE collection and audit of
+seven disk reports. Do not collect if authentication fails. No Windows launched.
+All795/prior runtimes closed; no replay/recollection. Standing Oct28local
+unattended automatic-return authorization applies.
+
 # Test796 qualified: CR07 display-end overflow control
 
 Fresh kernel796 adds only the next pinned704 operation: CR07 display-end
