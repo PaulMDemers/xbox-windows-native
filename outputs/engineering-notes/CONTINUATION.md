@@ -1,3 +1,15 @@
+# Test804 LAUNCHED: native CR07 blank-start overflow
+
+One SITE accepted2026-10-29T06:49:32.024743Z, reply200. Qualified source commit
+ba25fc07, stage001 exact binary/owner readback, unique E/Applications/XWNMode804.
+No startup hook, Windows launch or ordinary-launcher change. Intentional native
+hold for13-row photo/manual reset. Actual screen/native result not yet observed.
+Do not retry launch. User photographs then resets without a separate Ready prompt.
+After bounded observation request bar/photo, decode against optical-schema001,
+authenticate dashboard and collect preparation records exactly once. All12 host
+CPU fixtures closed, no owned host process/VM. No full-mode or Windows1.6 claim.
+Follow outputs/native-vblank-overflow804/NEXT.md.
+
 # Test804 QUALIFIED: native CR07 blank-start overflow
 
 Source-only continuation from CLOSED801 and CLOSED803. No804 physical stage or
