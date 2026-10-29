@@ -1,3 +1,20 @@
+# Test798 CLOSED PASS: kernel CR12 display-end low byte
+
+One accepted launch04:20:47.340583UTC, onecollection7 fresh reports through
+restart_requested. Disk result CF ->DF ->CF, all27 recovery masks clear.
+Audit002PASS: exact frozen build/source/stage, framebuffer and selectors, unrelated
+E/root/app entries unchanged. Automated dashboard return inferred from final report
+and authenticated FTP04:23UTC; no visual observation or Windows shutdown claim.
+No hook or owned process/VM. Console1.6 .66 dashboard HDMI; protected720p unchanged.
+
+Preserve model001 allowlist failure, pre-stage layout receipt-name failure, initial
+return connection refused, and premature audit001 missing-input failure. Corrected
+model002/physical002/audit_collection003 ->audit002 all pass; no second launch.
+Qualified6bc8b672, correctedcontroller36798602, launchrecordaaf372c5.
+NEXT separately qualify native799 (source-only798/797 derivation) with new memory
+bounds and fullbridge/CPU/optical checks; watch/reset availability question pending.
+No799 build/stage/launch yet. Do not rerun/recollect/runtime-parent closed798.
+
 # Test798 LAUNCHED: dashboard return not yet confirmed
 
 One SITE accepted at04:20:47.340583UTC using physical002. No hook. Initial
