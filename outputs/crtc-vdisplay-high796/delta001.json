@@ -1,0 +1,79 @@
+{
+  "fields": [
+    "cd7_before",
+    "cd7_target",
+    "cd7_attempted",
+    "cd7_after",
+    "cd7_restored",
+    "cd7_cleanup_mask",
+    "cd7_c6_before",
+    "cd7_c6_after",
+    "cd7_c6_restored",
+    "cd7_c9_before",
+    "cd7_c9_after",
+    "cd7_c9_restored",
+    "cd7_c10_before",
+    "cd7_c10_after",
+    "cd7_c10_restored",
+    "cd7_c12_before",
+    "cd7_c12_after",
+    "cd7_c12_restored",
+    "cd7_c15_before",
+    "cd7_c15_after",
+    "cd7_c15_restored",
+    "cd7_c16_before",
+    "cd7_c16_after",
+    "cd7_c16_restored",
+    "cd7_c18_before",
+    "cd7_c18_after",
+    "cd7_c18_restored",
+    "cd7_c25_before",
+    "cd7_c25_after",
+    "cd7_c25_restored"
+  ],
+  "init": " o->cd7_after=0xffffffff;o->cd7_restored=0xffffffff;o->cd7_c6_after=0xffffffff;o->cd7_c6_restored=0xffffffff;o->cd7_c9_after=0xffffffff;o->cd7_c9_restored=0xffffffff;o->cd7_c10_after=0xffffffff;o->cd7_c10_restored=0xffffffff;o->cd7_c12_after=0xffffffff;o->cd7_c12_restored=0xffffffff;o->cd7_c15_after=0xffffffff;o->cd7_c15_restored=0xffffffff;o->cd7_c16_after=0xffffffff;o->cd7_c16_restored=0xffffffff;o->cd7_c18_after=0xffffffff;o->cd7_c18_restored=0xffffffff;o->cd7_c25_after=0xffffffff;o->cd7_c25_restored=0xffffffff;\n",
+  "block": " /* CRTC_VDISPEND overflow bits: yres480 minus1, preserve unrelated CR07 bits. */\n o->forward_status=0x7963a;o->cd7_before=cr(7);\n o->cd7_c6_before=cr(0x6);o->cd7_c9_before=cr(0x9);o->cd7_c10_before=cr(0x10);o->cd7_c12_before=cr(0x12);o->cd7_c15_before=cr(0x15);o->cd7_c16_before=cr(0x16);o->cd7_c18_before=cr(0x18);o->cd7_c25_before=cr(0x25);\n if(o->cd7_before!=0x74 || o->cd7_c6_before!=0xc || o->cd7_c9_before!=0x60 || o->cd7_c10_before!=0xe9 || o->cd7_c12_before!=0xcf || o->cd7_c15_before!=0xcf || o->cd7_c16_before!=0x8c || o->cd7_c18_before!=0xff || o->cd7_c25_before!=0x10)goto restore;\n o->cd7_target=(o->cd7_before&0xbdu)|(((480u-1u)>>3)&0x40u)|(((480u-1u)>>7)&0x02u);o->cd7_attempted=1;cw(7,o->cd7_target);\n o->cd7_after=cr(7);o->cd7_c6_after=cr(0x6);o->cd7_c9_after=cr(0x9);o->cd7_c10_after=cr(0x10);o->cd7_c12_after=cr(0x12);o->cd7_c15_after=cr(0x15);o->cd7_c16_after=cr(0x16);o->cd7_c18_after=cr(0x18);o->cd7_c25_after=cr(0x25);\n if(o->cd7_after!=o->cd7_target || o->cd7_c6_after!=o->cd7_c6_before || o->cd7_c9_after!=o->cd7_c9_before || o->cd7_c10_after!=o->cd7_c10_before || o->cd7_c12_after!=o->cd7_c12_before || o->cd7_c15_after!=o->cd7_c15_before || o->cd7_c16_after!=o->cd7_c16_before || o->cd7_c18_after!=o->cd7_c18_before || o->cd7_c25_after!=o->cd7_c25_before)goto restore;\n",
+  "undo": " if(o->cd7_attempted){cw(7,o->cd7_before);o->cd7_restored=cr(7);o->cd7_c6_restored=cr(0x6);o->cd7_c9_restored=cr(0x9);o->cd7_c10_restored=cr(0x10);o->cd7_c12_restored=cr(0x12);o->cd7_c15_restored=cr(0x15);o->cd7_c16_restored=cr(0x16);o->cd7_c18_restored=cr(0x18);o->cd7_c25_restored=cr(0x25);if(o->cd7_restored!=o->cd7_before)o->cd7_cleanup_mask|=1;if(o->cd7_c6_restored!=o->cd7_c6_before)o->cd7_cleanup_mask|=2;if(o->cd7_c9_restored!=o->cd7_c9_before)o->cd7_cleanup_mask|=4;if(o->cd7_c10_restored!=o->cd7_c10_before)o->cd7_cleanup_mask|=8;if(o->cd7_c12_restored!=o->cd7_c12_before)o->cd7_cleanup_mask|=16;if(o->cd7_c15_restored!=o->cd7_c15_before)o->cd7_cleanup_mask|=32;if(o->cd7_c16_restored!=o->cd7_c16_before)o->cd7_cleanup_mask|=64;if(o->cd7_c18_restored!=o->cd7_c18_before)o->cd7_cleanup_mask|=128;if(o->cd7_c25_restored!=o->cd7_c25_before)o->cd7_cleanup_mask|=256;}\n",
+  "neighbors": [
+    [
+      "cd7_c6",
+      6,
+      12
+    ],
+    [
+      "cd7_c9",
+      9,
+      96
+    ],
+    [
+      "cd7_c10",
+      16,
+      233
+    ],
+    [
+      "cd7_c12",
+      18,
+      207
+    ],
+    [
+      "cd7_c15",
+      21,
+      207
+    ],
+    [
+      "cd7_c16",
+      22,
+      140
+    ],
+    [
+      "cd7_c18",
+      24,
+      255
+    ],
+    [
+      "cd7_c25",
+      37,
+      16
+    ]
+  ]
+}
