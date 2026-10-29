@@ -1,0 +1,9 @@
+{
+  "stage": "host COFF model001",
+  "failure": "Inherited write allowlist rejected the newly intended CR12 before its dedicated handler; zero cases completed. No hardware access.",
+  "retained": [
+    "model.py",
+    "model001.json"
+  ],
+  "correction": "model002 adds CR12 to allowed register set; existing dedicated handler validates context, value, write count, blanked output and reverse order. Compiled files unchanged."
+}

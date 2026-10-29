@@ -1,0 +1,1 @@
+Test798 qualified kernel-context CR12 low-byte control. Next: authenticated dashboard, stage exact XBE, one bounded SITE launch, one collection and independent audit. No native hold or Windows launch. Preserve failed model001; active corrected model002 passes814 cases. Native799 requires separate qualification and renewed watch/reset availability.

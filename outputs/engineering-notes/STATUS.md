@@ -1,3 +1,18 @@
+# Test798 qualified: CR12 display-end low-byte kernel control
+
+Fresh source-only closed796 derivation adds CR12 CF -> DF -> CF after thirdCR07.
+Restores own CR12 before the thirdCR07 undo, eight explicit neighbors, new recovery
+mask and output-inhibit gate. Passed814 actualCOFF cases,2353 layout cases,10
+actualcompiled clock cases, independent source/schema and PE/XBE link checks.
+No physical result yet. Failed model001 preserved: inherited register allowlist
+omitted CR12; corrected model002 adds guarded CR12 access, compiled bytes unchanged.
+
+XBE41932f5ed72b8d5ff034ea83caebf417335b11c0e4217b362fe3cd058dff4c4f.
+No798 stage or launch yet; no host VM/process/hook. All earlier runtimes closed.
+Next authenticated dashboard, exact staging, one20s SITE request, bounded return,
+onecollection and audit. Native799 remains unbuilt and needs separate fresh bounds
+qualification plus renewed watch/reset availability. No Windows1.6 desktop claim.
+
 # Test797 CLOSED PASS: native CR07 display-end overflow
 
 Photo001 independently decoded7970000D/final797, CR07 74 ->36 ->74 and eight
