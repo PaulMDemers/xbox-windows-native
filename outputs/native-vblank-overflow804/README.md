@@ -1,3 +1,5 @@
+Test804 is CLOSED PASS. See NEXT.md, audit001.json and photo-review001.json.
+
 # Native804: CR07 vertical-blank-start overflow
 
 Source-only successor to CLOSED801 and CLOSED803. Kernel803 observed CR07

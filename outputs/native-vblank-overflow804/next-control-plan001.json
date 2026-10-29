@@ -1,0 +1,41 @@
+{
+  "preparation_only": true,
+  "physical_access": false,
+  "source": "outputs/xcal-transaction704/gpu_legacy.c",
+  "source_sha256": "5e686c6e875f9d9bb60a0955bedfb4978911f5a79bf1feaea47080d9d7fe5690",
+  "source_line": 103,
+  "operation": "NvSetCrtc(pbRegs, 0x15, ((gpu->yres - 1) & 0xff));",
+  "next_attempt": "Fresh kernel805 CR15 vertical-blank-start low byte; then independently qualified native806",
+  "baseline_evidence": "Closed803 saved kernel control report, source-only analysis;804 photo proves CR07 change and recovery but omits CR15 raw",
+  "baseline_evidence_sha256": "8da948fa4077abc181274b7c30475568d6dc6c6b5ae92f5fe699592114463297",
+  "kernel803_CR15_neighbor_values": [
+    207,
+    207,
+    207
+  ],
+  "expected_before_after_restored": [
+    207,
+    223,
+    207
+  ],
+  "neighbor_admission": {
+    "CR06": 12,
+    "CR07": 62,
+    "CR09": 64,
+    "CR10": 233,
+    "CR12": 223,
+    "CR16": 140,
+    "CR18": 255,
+    "CR25": 16
+  },
+  "required": [
+    "Admit newly measured baseline CR15 and eight neighbors before writing",
+    "Recover own saved CR15 before CR07 blank and CR09 recovery",
+    "Fresh actual compiled mismatch/drop/coupling/cleanup coverage with all29 prior masks",
+    "Recheck result structure expansion and all source/frontend/layout/clock/controller pins",
+    "Unique E namespace, exact readback, one bounded SITE; collect/audit automatic return",
+    "Native806 requires fresh payload/result/IDT/guard/stack sizing;804 padding is only64bytes"
+  ],
+  "new_build_stage_launch": false,
+  "closed_runtime_reuse": false
+}
