@@ -1,10 +1,19 @@
-# Test800 LAUNCHED: awaiting automatic return and collection
+# Test800 CLOSED PASS: kernel CR09 vertical-blank-start bit5
 
-One SITE accepted2026-10-29T05:02:18.682793UTC,20s bound; no retry. Qualified
-48c6ea84; staged/readback XBE4fb3a1073c8f96364fa627bcd5be57ea95162a95a0052503d7ee9db84cb2be10
-at E/Applications/XWNMode800. No hook; no owned host process/VM. CR09 control
-60 ->40 ->60 intended, not yet physically observed. Await dashboard then one
-collection/audit seven fresh reports. Do not relaunch. If offline after bounded
-observation ask screen/reset. Earlier attempts CLOSED; no fullmode/Windows claim.
+One accepted launch, one collection of seven fresh reports through restart_requested.
+CR09 60 -> 40 -> 60; all 28 recovery masks clear and eight neighbors unchanged.
+Audit001 passed exact frozen source/build/stage and unrelated E entries. Visual
+result was not observed; automatic return inferred from restart record plus
+authenticated dashboard003. Preserve early dashboard002 connection refusal and
+audit-lineage001: separately named auditor selects dashboard003, no frozen edit.
+No hook or owned running host process/VM. No normal Windows shutdown, full mode
+switch, Windows 1.6 desktop or acceleration claim. This runtime is CLOSED.
 
-Next: authenticate dashboard return, collect once, audit exact new evidence.
+Next: prepare fresh native801 from closed799 frontend and closed800 probe SOURCES
+ONLY. Measure payload first:799 uses23416 of23424 payload bytes inside32KiB;
+the new transaction/result cannot inherit that admission without new bounds.
+Resolve code size/layout, then qualify direct ELF, full bridge, stack/guards,
+ownership/page/CPU, optical and linked bytes before any stage or launch.
+User standing watch/photo/reset authorization persists. Console1.6 .66 HDMI is
+at the dashboard. No801 stage or launch. Never reopen closed runtimes.
+
