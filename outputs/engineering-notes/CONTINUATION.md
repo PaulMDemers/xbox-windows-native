@@ -1,3 +1,21 @@
+# Test790 qualified: shared CR07 vertical-total overflow preservation
+
+Latest closed789 passed CR10 D4/E9/D4 with optical recovery evidence. Fresh790
+kernel source-only788 now qualified:654 actualCOFF outcomes,2353 allocation
+cases,10 actual clock-fragment cases, linked PE/XBE and independent source/schema
+review. Target from pinned704 crtcvtotal524 is74 ->74 ->74, so unchanged readback
+cannot distinguish a dropped same-value write. Shared-neighbor faults and reverse
+cleanup are checked; noCR06/CR16/later operation added.
+
+No790stage/launch yet. Consolelastauthenticated .66 UnleashX HDMI after789manual
+reset; nohook/ownedprocess/VM. Ordinarylauncher/protected720p and dashboardC untouched.
+NEXT outputs/crtc-vtotal-high790/NEXT.md: bounded single kernel launch, auto-return,
+exactreadback and freshcollection/audit. StandingOct28local availability applies.
+All789/priorruntime CLOSED. Nativecounterpart needs fresh memory-layout proof:
+new2080byte result would overlap old789IDT. Fullnative video/Windows1.6/3D remain
+unproved. Desktop gates: finish remaining timing/blanking/overflow setup, qualify
+combined native picture, integrate boot/display path, then desktop/input/restart.
+
 # Test789 CLOSED PASS: native CR10 sync-start low-byte recovery
 
 Photo decoded7890000D / final789, CR10 D4 -> E9 -> D4; all eight displayed
