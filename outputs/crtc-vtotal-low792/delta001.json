@@ -1,0 +1,79 @@
+{
+  "fields": [
+    "ct6_before",
+    "ct6_target",
+    "ct6_attempted",
+    "ct6_after",
+    "ct6_restored",
+    "ct6_cleanup_mask",
+    "ct6_c7_before",
+    "ct6_c7_after",
+    "ct6_c7_restored",
+    "ct6_c9_before",
+    "ct6_c9_after",
+    "ct6_c9_restored",
+    "ct6_c10_before",
+    "ct6_c10_after",
+    "ct6_c10_restored",
+    "ct6_c12_before",
+    "ct6_c12_after",
+    "ct6_c12_restored",
+    "ct6_c15_before",
+    "ct6_c15_after",
+    "ct6_c15_restored",
+    "ct6_c16_before",
+    "ct6_c16_after",
+    "ct6_c16_restored",
+    "ct6_c18_before",
+    "ct6_c18_after",
+    "ct6_c18_restored",
+    "ct6_c25_before",
+    "ct6_c25_after",
+    "ct6_c25_restored"
+  ],
+  "init": " o->ct6_after=0xffffffff;o->ct6_restored=0xffffffff;o->ct6_c7_after=0xffffffff;o->ct6_c7_restored=0xffffffff;o->ct6_c9_after=0xffffffff;o->ct6_c9_restored=0xffffffff;o->ct6_c10_after=0xffffffff;o->ct6_c10_restored=0xffffffff;o->ct6_c12_after=0xffffffff;o->ct6_c12_restored=0xffffffff;o->ct6_c15_after=0xffffffff;o->ct6_c15_restored=0xffffffff;o->ct6_c16_after=0xffffffff;o->ct6_c16_restored=0xffffffff;o->ct6_c18_after=0xffffffff;o->ct6_c18_restored=0xffffffff;o->ct6_c25_after=0xffffffff;o->ct6_c25_restored=0xffffffff;\n",
+  "block": " /* CRTC_VTOTAL low byte after the second CR07 operation. */\n o->forward_status=0x79236;o->ct6_before=cr(6);\n o->ct6_c7_before=cr(0x7);o->ct6_c9_before=cr(0x9);o->ct6_c10_before=cr(0x10);o->ct6_c12_before=cr(0x12);o->ct6_c15_before=cr(0x15);o->ct6_c16_before=cr(0x16);o->ct6_c18_before=cr(0x18);o->ct6_c25_before=cr(0x25);\n if(o->ct6_before!=0xec || o->ct6_c7_before!=0x74 || o->ct6_c9_before!=0x60 || o->ct6_c10_before!=0xe9 || o->ct6_c12_before!=0xcf || o->ct6_c15_before!=0xcf || o->ct6_c16_before!=0xed || o->ct6_c18_before!=0xff || o->ct6_c25_before!=0x10)goto restore;\n o->ct6_target=(524u&0xffu);o->ct6_attempted=1;cw(6,o->ct6_target);\n o->ct6_after=cr(6);o->ct6_c7_after=cr(0x7);o->ct6_c9_after=cr(0x9);o->ct6_c10_after=cr(0x10);o->ct6_c12_after=cr(0x12);o->ct6_c15_after=cr(0x15);o->ct6_c16_after=cr(0x16);o->ct6_c18_after=cr(0x18);o->ct6_c25_after=cr(0x25);\n if(o->ct6_after!=o->ct6_target || o->ct6_c7_after!=o->ct6_c7_before || o->ct6_c9_after!=o->ct6_c9_before || o->ct6_c10_after!=o->ct6_c10_before || o->ct6_c12_after!=o->ct6_c12_before || o->ct6_c15_after!=o->ct6_c15_before || o->ct6_c16_after!=o->ct6_c16_before || o->ct6_c18_after!=o->ct6_c18_before || o->ct6_c25_after!=o->ct6_c25_before)goto restore;\n",
+  "undo": " if(o->ct6_attempted){cw(6,o->ct6_before);o->ct6_restored=cr(6);o->ct6_c7_restored=cr(0x7);o->ct6_c9_restored=cr(0x9);o->ct6_c10_restored=cr(0x10);o->ct6_c12_restored=cr(0x12);o->ct6_c15_restored=cr(0x15);o->ct6_c16_restored=cr(0x16);o->ct6_c18_restored=cr(0x18);o->ct6_c25_restored=cr(0x25);if(o->ct6_restored!=o->ct6_before)o->ct6_cleanup_mask|=1;if(o->ct6_c7_restored!=o->ct6_c7_before)o->ct6_cleanup_mask|=2;if(o->ct6_c9_restored!=o->ct6_c9_before)o->ct6_cleanup_mask|=4;if(o->ct6_c10_restored!=o->ct6_c10_before)o->ct6_cleanup_mask|=8;if(o->ct6_c12_restored!=o->ct6_c12_before)o->ct6_cleanup_mask|=16;if(o->ct6_c15_restored!=o->ct6_c15_before)o->ct6_cleanup_mask|=32;if(o->ct6_c16_restored!=o->ct6_c16_before)o->ct6_cleanup_mask|=64;if(o->ct6_c18_restored!=o->ct6_c18_before)o->ct6_cleanup_mask|=128;if(o->ct6_c25_restored!=o->ct6_c25_before)o->ct6_cleanup_mask|=256;}\n",
+  "neighbors": [
+    [
+      "ct6_c7",
+      7,
+      116
+    ],
+    [
+      "ct6_c9",
+      9,
+      96
+    ],
+    [
+      "ct6_c10",
+      16,
+      233
+    ],
+    [
+      "ct6_c12",
+      18,
+      207
+    ],
+    [
+      "ct6_c15",
+      21,
+      207
+    ],
+    [
+      "ct6_c16",
+      22,
+      237
+    ],
+    [
+      "ct6_c18",
+      24,
+      255
+    ],
+    [
+      "ct6_c25",
+      37,
+      16
+    ]
+  ]
+}
