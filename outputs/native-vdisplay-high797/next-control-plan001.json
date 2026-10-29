@@ -1,0 +1,34 @@
+{
+  "scope": "Next unbuilt control contract; no qualification, stage or launch",
+  "source": "outputs/xcal-transaction704/gpu_legacy.c",
+  "source_sha256": "5e686c6e875f9d9bb60a0955bedfb4978911f5a79bf1feaea47080d9d7fe5690",
+  "line": 97,
+  "operation": "CR12 = (yres - 1) & 0xff",
+  "yres": 480,
+  "expected_before_target_restored": [
+    207,
+    223,
+    207
+  ],
+  "basis": "Closed796 kernel tuple and closed797 aggregate-success prefix; CR12 raw neighbor in kernel796 is CF. Native797 photo does not expose neighbor tuple.",
+  "required_order": "After thirdCR07 display-end write; restore own saved CR12 before undoing thirdCR07. Preserve the rest of the prefix and selector/output recovery.",
+  "neighbor_baseline": {
+    "CR06": 12,
+    "CR07": 54,
+    "CR09": 96,
+    "CR10": 233,
+    "CR15": 207,
+    "CR16": 140,
+    "CR18": 255,
+    "CR25": 16
+  },
+  "must_test": [
+    "Actual compiled baseline and each before/after/undo read mismatch",
+    "Dropped/wrong forward and restore writes",
+    "Adjacent-register coupling and inherited cleanup-mask propagation",
+    "Independent result-schema mutations and output-inhibition checks",
+    "Kernel-context automatic-return control with exact disk report before native version",
+    "Fresh native payload/stack/IDT/result/alias allocation proof before native launch"
+  ],
+  "limits": "No driver change authorized by this planning record; not a new runtime parent, no copying closed runtime state, no expected results substituted for evidence."
+}
