@@ -1,3 +1,21 @@
+# Test799 CLOSED PASS: native CR12 display-end low byte
+
+Photo decoded CF -> DF -> CF; all eight displayed recovery masks clear, final799
+passed. Nineteen omitted masks are aggregate-only. Independent optical review
+passed all416bits with352 adjacent-row checks. One accepted launch and one collection
+of nine preparation reports through handoff_armed; audit001PASS exact source/build/
+stage, allocation boundaries and unrelated E entries. Native result is photo-only.
+Dashboard authenticated after standing photo-then-manual-power-cycle workflow.
+No hook, owned host process or running VM. No normal Windows shutdown claim.
+Preserve payload006 reserve rejection and rejected-layout001; no gate waiver.
+
+Next: fresh kernel800 CR09 vertical-blank-start bit5 control from closed798 SOURCE
+ONLY, exact pinned704 operation; intended60 ->40 ->60 after CR12=DF. Independently
+qualify fresh harness, fault tests, bounds, linked binary and stage readback before
+one automatic-return launch. Then separately qualify native801. See799/NEXT.md and
+next-control-plan001.json. No800 build/stage/launch yet. All earlier attempts CLOSED;
+never rerun/recollect/runtime-parent. Full mode switching and Windows1.6 remain unproved.
+
 # Test799 LAUNCHED: awaiting held optical report
 
 One SITE accepted2026-10-29T04:45:22.797651UTC via physical007,20s bound; no retry.

@@ -1,0 +1,29 @@
+{
+  "preparation_only": true,
+  "physical_access": false,
+  "source": "outputs/xcal-transaction704/gpu_legacy.c",
+  "source_sha256": "5e686c6e875f9d9bb60a0955bedfb4978911f5a79bf1feaea47080d9d7fe5690",
+  "source_line": 100,
+  "operation": "NvSetCrtc(pbRegs, 9, b | (((gpu->yres - 1)>> 4) & 0x20));",
+  "next_attempt": "Fresh kernel800 CR09 vertical-blank-start bit5 control, then independently qualified native801",
+  "source_only_derivation": "closed798 source, with corrected model002/physical002/audit_collection003",
+  "baseline_CR09": 96,
+  "target_formula": "(saved_CR09 & 0xdf) | (((480 - 1) >> 4) & 0x20)",
+  "target_CR09": 64,
+  "expected_before_after_restored": [
+    96,
+    64,
+    96
+  ],
+  "basis": "799 audited kernel-preparation CR09 baseline and completed CR12 prefix; new actual baseline admission required",
+  "required": [
+    "Pin all source bytes and new attributes before staging",
+    "Add actual-baseline and neighboring CRTC admission/readback checks; reverse CR09 before CR12",
+    "Exercise forward mismatch, dropped write, neighbor disturbance, and restoration failures",
+    "Qualify fresh layout, source, linked binary, clock, and full kernel harness before one launch",
+    "Use unique owned E path; stage/readback; one SITE with 20-second reply bound",
+    "Collect/audit automatic-return kernel control before native qualification"
+  ],
+  "new_build_stage_launch": false,
+  "closed_runtime_reuse": false
+}
