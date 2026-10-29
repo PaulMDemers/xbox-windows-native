@@ -1,23 +1,31 @@
-# Test789 LAUNCHED; held optical result pending
+# Test789 CLOSED PASS: native CR10 sync-start low-byte recovery
 
-Single SITE accepted2026-10-29T00:31:25.806415UTC (Oct28local),20secondreplybound,
-no retry. Qualified/pushed9c15f1fe, uniqueE/Applications/XWNMode789 staged and
-readback exact. StandingOct28local watcher/reset authority recordedready001.
-Native CR10 D4/E9/D4 afterCR07=74, restoreCR10beforeCR07; deliberate reporthold.
-No visual result yet. Nohook/Windows/ordinarylauncher/protected720p change or
-consoleC access. All12hostVMs closed, no ownedhostprocess remains.
+Photo decoded7890000D / final789, CR10 D4 -> E9 -> D4; all eight displayed
+recovery masks zero.416bits independently checked at5offsets/3thresholds plus352
+adjacent-row interpolated checks. Fourteen other masks aggregate-only through
+finalsuccess; neighbor/CPU/selector/prior-recovery raw values not photographed.
+The physical result is optical, not native disk persistence or a fullmodeswitch.
 
-NEXT after~2minutes askSECONDwidebar and held/black/dashboard state; requestfull
-13-rowphoto. Decode exact7890000D signature, finalstatus789, eightmasks andCR10
-before/after/restored. Fourteen masks aggregate-only; native results not persisted.
-Only after photo capture request powercycle; authenticate dashboard and collect
-new preparationfiles once/double withphysical004.py, audit locally. Do not launch
-again or collect before recovery readiness. All788/priorruntime CLOSED.
+User reported green/holding, supplied photo, then confirmed manual powercycle.
+Fresh authenticated collection001 retrieved nine preparationreports once/double;
+audit006 PASS2026-10-29T00:35:49.190033UTC. Lastpersistedphase handoff_armed.
+Exact frozen sources/build/stage/readback, independent allocation/alias bounds,
+privatephoto/report hashes and unrelatedE/apps entries passed. PCI/CRTC/sequence/
+geometry match prior752 retained preparation evidence; allocationplan differs
+and was independently admitted, not borrowed. Manualreset is not normalshutdown.
 
-Sources001/review001 freeze qualifiedactive files. Activebuild007 main004/layout004,
-host003, cpu-build002/cpu-run002, integration007/integration005, source_review002,
-physical004.614direct,604fullpath,76optical,12CPUclosed,131379hostownership,
-32+33compiledpage,372compiledownership andlinked/source/layout checksPASS.
-18KiBpayloadreserve,6KiBstack, same32KiBallocation;100bytesmodeledstackwrites.
-Preparationfailures001/002/003, failedintegration004 and correctedfrontend
-constants retained. No fullnative modeswitch/Windows1.6/acceleration claim.
+ConsoleUnleashX .66 HDMI; nohook/ownedhostprocess/VM, no ordinarylauncher or
+protected720p change, dashboardC untouched. All789/priorruntime CLOSED: no
+relaunch/recollection/parenting. Retain all preparation failures and corrections.
+Qualifiedsource commit9c15f1fe, launchrecord5998b633; closure commit follows.
+
+NEXT fresh bounded kernel790 source-only788, following pinned704 gpu_legacy.c
+lines87..89: CR07 vertical-total overflow bits5/0 after CR10. Derive target from
+exact retained timing input; preserve same-value limitations if this write is
+unchanged. Capture before/after/undo and affected/shared neighbor bytes; restore
+this secondCR07 operation beforeCR10 and earlierCR07. Do not includeCR06/CR16
+or later writes yet. Require actualCOFF fault/cleanup/model/schema/link review,
+source/binary pins, exactstage/readback, oneSITE20s and boundedauto-return before
+fresh native counterpart. No790source/build/stage/launch created this turn.
+StandingOct28local watch/reset authority remains; fullnative modeswitch,
+Windows1.6 and acceleration remain unproved.
