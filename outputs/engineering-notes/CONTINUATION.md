@@ -1,3 +1,53 @@
+# Native811 CLOSED PASS; next kernel CR18 line-compare control
+
+Native811 launched once at 22:13:30 UTC; user supplied a green held photo and
+reported back at the dashboard under the standing photo/power-cycle workflow.
+Fresh dashboard002 authenticated, nine preparation reports collected once,
+and audit003 passed. Native evidence is photo002/photo-review003: CR09
+line-compare 40 -> 40 -> 40; eight displayed recovery masks zero, 24 others
+aggregate-only through final0x811. Same-value write effectiveness is not proved.
+Preserve photo001 geometric decode failure; photo002 corrected row geometry
+without expected-value classification. No full-mode or Windows desktop proof.
+
+810 is also CLOSED PASS (one launch/collection);809 remains CLOSED refusal.
+No hook, no owned host experiment or VM. Console authenticated at dashboard
+following user power cycle; this is not a normal Windows shutdown.
+Next fresh812: source-only CR18 line-compare byte control, independently
+qualified in host tests before any stage/launch. Native counterpart requires
+physical kernel control PASS. CR1A/CR25/CR28/CR2D and combined-mode work remain
+unadmitted. Keep ordinary launcher and protected720p unchanged.
+Review-only22:50 UTC; no new experiment after23:00 UTC.
+
+# Test811 launched; awaiting native photo and reset
+
+One native811 SITE accepted2026-10-29T22:13:30UTC after exact stage readback and
+closed physical810 PASS. Deliberate held report expected; no observed native
+result yet. User advised to photograph full report and power-cycle after checking
+legibility. Do not infer a reset or send another launch. No startup hook, Windows
+launch, or owned host VM/process. Await photo, then authenticate dashboard and
+collect811 preparation files once. Native evidence is separate from preparation.
+
+810 CLOSED PASS: one launch and collection; raw0x810, CR09 linecompare40/40/40,
+recovery checks clear. Same-value write effectiveness remains unproved.
+return-audit001 binds postlaunch dashboard003 because frozen auditor referred to
+prelaunch dashboard002. Preserve note-update-failure001 (cp1252), repaired UTF-8.
+All809 refusals and earlier failures retained. No Windows1.6 desktop proof.
+Review-only22:50UTC; no experiments after23:00UTC.
+
+# Test810 CLOSED PASS; native811 admitted for staging
+
+User clarified the reported reboot was a power-off/back-on in response to the
+requested cold cycle; exact off duration was not independently timed. One810
+SITE accepted22:10:03UTC; dashboard003 authenticated22:10:57UTC, followed by
+single collection and independent audit002 PASS. Raw return0x810; CR09 linecompare
+40/40/40 and recovery clear. Same-value write effectiveness is not proved.
+return-audit001 binds the post-launch dashboard003; frozen auditor used the
+prelaunch dashboard002. No hook, no Windows shutdown claim, no owned VM/process.
+809 baseline refusal remains CLOSED. 810 is CLOSED; never rerun/recollect it.
+Next: fresh811 stage/readback and one native held launch; user is available to
+photograph/reset. 811 host qualification remains frozen; no Windows desktop proof.
+Review-only22:50UTC, stop experiments23:00UTC.
+
 # Awaiting cold-start confirmation; host qualification published
 
 Test811 host qualification is pushed as28ced8f9. Twelve CPU fixtures are closed;
