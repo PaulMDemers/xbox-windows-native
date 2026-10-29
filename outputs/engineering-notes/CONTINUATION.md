@@ -1,3 +1,66 @@
+# Test793 QUALIFIED; stage and physical launch pending
+
+Native CR06 vertical-total low byte, exact kernel792 probe except namespace and
+nativeCPUguard; source-only791 frontend with independently checked larger layout.
+694 direct cases,684 fresh full bridge cases,76 optical,12 CPU fixtures allclosed,
+131379 hostallocation,32+33 compiledpage and372 compiledallocation cases PASS.
+Actual19704byte payload fits20480;550word result ends68D8; IDT7000..7800 and
+stack7800..8000 disjoint. Maximum modeled stack write100bytes of2048. Exact
+source/ELF/COFF/PE/XBE checks and review002/sources002 frozen. No hardware proofyet.
+
+Preserve integration005 failed600second bound after680cases; freshintegration006
+passed684 with900second bound. page-review001 failed host stack/payload overlap;
+freshpage-review002 and boundary001 pass with separate harness stack, immutable
+payload/guard checks. Production payload unchanged. Keep generator-failure001,
+documentation-failure001 and link-reference-correction001; no failed evidence
+removed/reclassified. Active build008, integration008, page_review005,
+page_boundary006, source_review002, review_prepare002, physical005.
+
+No ownedhostprocess/VM, hook or793stage/launch. .66 lastauthenticatedUnleashX HDMI.
+All792/prior runtimes CLOSED. NEXT exact public staged-byte review/check/commit/push,
+then authenticate standingOct28availability, stage/readback and oneSITE20s launch.
+Heldphoto shows signature/status/eightmasks/CR06before-after-restored;16othermasks
+aggregate-only. User checksphoto and resets without separateReady; authenticate
+before one-timecollection, askonlyifoffline. No CR16/later operations, fullnative
+modeswitch, Windows1.6 desktop or acceleration claim. Ordinarylauncher/protected
+720p/dashboardC untouched.
+
+# Test793 fresh full bridge qualification running; no physical launch
+
+Direct694 native cases,76 optical cases,131379 allocation cases and12 diskless
+CPU fixtures PASS; all VMs closed. integration005 FAILED at600second internal
+budget after680cases, four remaining. Receipt and duration retained. Fresh
+integration008 -> integration006 changes only deadline900seconds/receipt, payload
+and oracle unchanged; outer bound1100seconds. Owned exec session91357 running.
+Generator-failure001 retained: nonexistent replacement-token assertion before
+review_prepare002 creation; corrected exact tuple, no original source change.
+
+NEXT finish full684 fresh cases, build008 -> build002, compiled page/boundary/plan/
+link checks, source_review002 and review_prepare002 -> review002/sources002.
+Then review/stage exact public bytes, commit/push; physical005 exact stage/readback,
+one SITE20second launch. No793 XBE/stage/launch/hook yet. .66 last authenticated
+UnleashX HDMI after792. All792/prior runtimes CLOSED. No new hardware access.
+Photo implies user checked and reset; authenticate before one-time collection,
+ask only if offline. StandingOct28 local watch/reset applies. No CR16/later writes,
+fullmode/Windows1.6 or acceleration claim.
+
+# Test793 preparation; full bridge qualification running
+
+Source-only791 frontend plus exact792 probe except namespace/nativeCPUguard.
+694 direct native instruction cases,76 optical cases,131379 allocation cases and
+12 fresh disklessCPU fixtures passed; all12 VMs closed. Full684case bridge run is
+in progress with a900second bound, owned exec session14823. No XBE build, staging,
+physical launch or startup hook yet. All792/prior runtimes CLOSED.
+
+NEXT finish bridge run; preserve any failure before a separately named repair.
+Then build007, compiled page/boundary/plan and linked checks, independent source/
+layout/schema review and source freeze. Review public artifacts and exact staged
+bytes before commit/push. Only then authenticate .66 UnleashX HDMI and stage/read
+back a fresh XWNMode793. One SITE20second request, no accepted/uncertain retry.
+Held photo and user standing reset workflow; no separate Ready-reset question.
+After photo decode, authenticate and collect new preparation files exactly once.
+No CR16/later operations or Windows/3D capability claims.
+
 # Test792 CLOSED PASS: kernel CR06 vertical-total low byte
 
 Single accepted launch1fcc6ceb after qualified49f8fe30. Authenticated automatic
