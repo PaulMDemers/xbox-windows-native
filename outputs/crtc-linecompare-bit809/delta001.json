@@ -1,0 +1,79 @@
+{
+  "fields": [
+    "cl9_before",
+    "cl9_target",
+    "cl9_attempted",
+    "cl9_after",
+    "cl9_restored",
+    "cl9_cleanup_mask",
+    "cl9_c6_before",
+    "cl9_c6_after",
+    "cl9_c6_restored",
+    "cl9_c7_before",
+    "cl9_c7_after",
+    "cl9_c7_restored",
+    "cl9_c10_before",
+    "cl9_c10_after",
+    "cl9_c10_restored",
+    "cl9_c12_before",
+    "cl9_c12_after",
+    "cl9_c12_restored",
+    "cl9_c15_before",
+    "cl9_c15_after",
+    "cl9_c15_restored",
+    "cl9_c16_before",
+    "cl9_c16_after",
+    "cl9_c16_restored",
+    "cl9_c18_before",
+    "cl9_c18_after",
+    "cl9_c18_restored",
+    "cl9_c25_before",
+    "cl9_c25_after",
+    "cl9_c25_restored"
+  ],
+  "init": " o->cl9_after=0xffffffff;o->cl9_restored=0xffffffff;o->cl9_c6_after=0xffffffff;o->cl9_c6_restored=0xffffffff;o->cl9_c7_after=0xffffffff;o->cl9_c7_restored=0xffffffff;o->cl9_c10_after=0xffffffff;o->cl9_c10_restored=0xffffffff;o->cl9_c12_after=0xffffffff;o->cl9_c12_restored=0xffffffff;o->cl9_c15_after=0xffffffff;o->cl9_c15_restored=0xffffffff;o->cl9_c16_after=0xffffffff;o->cl9_c16_restored=0xffffffff;o->cl9_c18_after=0xffffffff;o->cl9_c18_restored=0xffffffff;o->cl9_c25_after=0xffffffff;o->cl9_c25_restored=0xffffffff;\n",
+  "block": " /* CRTC_LINECOMP bit6, pinned704 m=0x3ff; same-value at this baseline. */\n o->forward_status=0x80946;o->cl9_before=cr(9);\n o->cl9_c6_before=cr(0x6);o->cl9_c7_before=cr(0x7);o->cl9_c10_before=cr(0x10);o->cl9_c12_before=cr(0x12);o->cl9_c15_before=cr(0x15);o->cl9_c16_before=cr(0x16);o->cl9_c18_before=cr(0x18);o->cl9_c25_before=cr(0x25);\n if(o->cl9_before!=0x40 || o->cl9_c6_before!=0xc || o->cl9_c7_before!=0x3e || o->cl9_c10_before!=0xe9 || o->cl9_c12_before!=0xdf || o->cl9_c15_before!=0xdf || o->cl9_c16_before!=0x8c || o->cl9_c18_before!=0xff || o->cl9_c25_before!=0x10)goto restore;\n o->cl9_target=(o->cl9_before&0xbfu)|((0x3ffu>>3)&0x40u);o->cl9_attempted=1;cw(9,o->cl9_target);\n o->cl9_after=cr(9);o->cl9_c6_after=cr(0x6);o->cl9_c7_after=cr(0x7);o->cl9_c10_after=cr(0x10);o->cl9_c12_after=cr(0x12);o->cl9_c15_after=cr(0x15);o->cl9_c16_after=cr(0x16);o->cl9_c18_after=cr(0x18);o->cl9_c25_after=cr(0x25);\n if(o->cl9_after!=o->cl9_target || o->cl9_c6_after!=o->cl9_c6_before || o->cl9_c7_after!=o->cl9_c7_before || o->cl9_c10_after!=o->cl9_c10_before || o->cl9_c12_after!=o->cl9_c12_before || o->cl9_c15_after!=o->cl9_c15_before || o->cl9_c16_after!=o->cl9_c16_before || o->cl9_c18_after!=o->cl9_c18_before || o->cl9_c25_after!=o->cl9_c25_before)goto restore;\n",
+  "undo": " if(o->cl9_attempted){cw(9,o->cl9_before);o->cl9_restored=cr(9);o->cl9_c6_restored=cr(0x6);o->cl9_c7_restored=cr(0x7);o->cl9_c10_restored=cr(0x10);o->cl9_c12_restored=cr(0x12);o->cl9_c15_restored=cr(0x15);o->cl9_c16_restored=cr(0x16);o->cl9_c18_restored=cr(0x18);o->cl9_c25_restored=cr(0x25);if(o->cl9_restored!=o->cl9_before)o->cl9_cleanup_mask|=1;if(o->cl9_c6_restored!=o->cl9_c6_before)o->cl9_cleanup_mask|=2;if(o->cl9_c7_restored!=o->cl9_c7_before)o->cl9_cleanup_mask|=4;if(o->cl9_c10_restored!=o->cl9_c10_before)o->cl9_cleanup_mask|=8;if(o->cl9_c12_restored!=o->cl9_c12_before)o->cl9_cleanup_mask|=16;if(o->cl9_c15_restored!=o->cl9_c15_before)o->cl9_cleanup_mask|=32;if(o->cl9_c16_restored!=o->cl9_c16_before)o->cl9_cleanup_mask|=64;if(o->cl9_c18_restored!=o->cl9_c18_before)o->cl9_cleanup_mask|=128;if(o->cl9_c25_restored!=o->cl9_c25_before)o->cl9_cleanup_mask|=256;}\n",
+  "neighbors": [
+    [
+      "cl9_c6",
+      6,
+      12
+    ],
+    [
+      "cl9_c7",
+      7,
+      62
+    ],
+    [
+      "cl9_c10",
+      16,
+      233
+    ],
+    [
+      "cl9_c12",
+      18,
+      223
+    ],
+    [
+      "cl9_c15",
+      21,
+      223
+    ],
+    [
+      "cl9_c16",
+      22,
+      140
+    ],
+    [
+      "cl9_c18",
+      24,
+      255
+    ],
+    [
+      "cl9_c25",
+      37,
+      16
+    ]
+  ]
+}
