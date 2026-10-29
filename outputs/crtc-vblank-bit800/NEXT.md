@@ -1,10 +1,10 @@
-# Test800 qualified; not yet launched
+# Test800 LAUNCHED: awaiting automatic return and collection
 
-Authenticate the 1.6 HDMI dashboard, stage/readback unique XWNMode800 on E.
-One SITE,20-second reply bound; never retry accepted/uncertain. No hook.
-Expected CR09 60 ->40 ->60, all28 recovery masks zero. Host results do not
-prove hardware behavior. Automatic return is intended after15seconds.
-After return: one collection and audit exact sources/build/stage, seven fresh
-reports, full670-word result and unrelated E entries. Preserve all failures.
-If held/offline after bounded observation, ask user for current screen/reset.
-Then qualify a fresh native801 bridge separately; closed runtimes never reused.
+One SITE accepted2026-10-29T05:02:18.682793UTC,20s bound; no retry. Qualified
+48c6ea84; staged/readback XBE4fb3a1073c8f96364fa627bcd5be57ea95162a95a0052503d7ee9db84cb2be10
+at E/Applications/XWNMode800. No hook; no owned host process/VM. CR09 control
+60 ->40 ->60 intended, not yet physically observed. Await dashboard then one
+collection/audit seven fresh reports. Do not relaunch. If offline after bounded
+observation ask screen/reset. Earlier attempts CLOSED; no fullmode/Windows claim.
+
+Next: authenticate dashboard return, collect once, audit exact new evidence.
