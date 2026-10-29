@@ -1,0 +1,323 @@
+{
+  "passed": false,
+  "physical_access": false,
+  "space": {
+    "minimum_free_gib": 20.15,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c/xwn801",
+        "free_bytes": 53526548480
+      },
+      {
+        "free_bytes": 53526548480,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "commands": [
+    [
+      "as",
+      "--32",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-vblank-bit801/bridge002.S",
+      "-o",
+      "/mnt/c/xwn801/host004/bridge.o"
+    ],
+    [
+      "ld",
+      "-m",
+      "elf_i386",
+      "-Ttext=0",
+      "--entry=bridge_start",
+      "/mnt/c/xwn801/host004/bridge.o",
+      "-o",
+      "/mnt/c/xwn801/host004/bridge.elf"
+    ],
+    [
+      "objcopy",
+      "-O",
+      "binary",
+      "--only-section=.text",
+      "/mnt/c/xwn801/host004/bridge.elf",
+      "/mnt/c/xwn801/host004/bridge.bin"
+    ],
+    [
+      "nm",
+      "-n",
+      "/mnt/c/xwn801/host004/bridge.elf"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-std=c11",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=address,undefined",
+      "-I",
+      "/mnt/c/xwn801/host004",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-vblank-bit801/page002.c",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-vblank-bit801/page_tool003.c",
+      "-o",
+      "/mnt/c/xwn801/host004/page-tool"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-std=c11",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-shared",
+      "-fPIC",
+      "-fsanitize=undefined",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-vblank-bit801/plan.c",
+      "-o",
+      "/mnt/c/xwn801/host004/plan.so"
+    ],
+    [
+      "python3",
+      "-B",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-vblank-bit801/plan_test002.py",
+      "/mnt/c/xwn801/host004"
+    ],
+    [
+      "/mnt/c/xwn801/host004/page-tool",
+      "/mnt/c/xwn801/host004/bridge.bin",
+      "/mnt/c/xwn801/host004/payload.bin",
+      "/mnt/c/xwn801/host004/dual/page.bin",
+      "32440320",
+      "50331648"
+    ]
+  ],
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "payload_inputs": {
+    "/mnt/c/xwn801/payload007/payload.bin": "3238efddf88b3f75ffabc811869f5d2bad5fd6fe192a5039a3fb5e1ff71b1434",
+    "/mnt/c/xwn801/payload007/symbols.stdout": "4a981ca8b71e92d50b069cfa9241689da80259f19f57dd3db9664dce6c0e8f6e",
+    "/mnt/c/xwn801/payload007/relocations.stdout": "98a4297c462fe1dfa9f1ca0c8b1f66466a573552822436bbb7940de81a3485cb"
+  },
+  "bridge_symbols": {
+    "bridge_start": 0,
+    "bridge_flat": 288,
+    "bridge_post": 328,
+    "bridge_hold": 973,
+    "bridge_refuse": 976,
+    "bridge_bar": 1013,
+    "bridge_report": 1049,
+    "report_background": 1073,
+    "report_row": 1091,
+    "report_value": 1111,
+    "report_bit": 1142,
+    "report_color": 1156,
+    "report_square": 1163,
+    "bridge_fault": 1198,
+    "bridge_check": 1202,
+    "status_colors": 1248,
+    "pci_select": 1276,
+    "report_offsets": 1316,
+    "bridge_code_end": 1368,
+    "__bss_start": 4096,
+    "_edata": 4096,
+    "_end": 4096,
+    "bridge_end": 4096
+  },
+  "metadata": [
+    1368,
+    288,
+    1198,
+    328,
+    216
+  ],
+  "relocations": [
+    {
+      "offset": 295,
+      "type": "R_386_PC32",
+      "symbol": "bounds704",
+      "symbol_value": 1048576,
+      "value": 4294966997
+    },
+    {
+      "offset": 670,
+      "type": "R_386_PC32",
+      "symbol": "probe801",
+      "symbol_value": 1049275,
+      "value": 25
+    },
+    {
+      "offset": 726,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1070464,
+      "value": 1070464
+    },
+    {
+      "offset": 1087,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1070464,
+      "value": 1071264
+    },
+    {
+      "offset": 1131,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1070464,
+      "value": 1071268
+    },
+    {
+      "offset": 1161,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1070464,
+      "value": 1071168
+    },
+    {
+      "offset": 1248,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1070464,
+      "value": 1071168
+    },
+    {
+      "offset": 1621,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1070464,
+      "value": 1071256
+    },
+    {
+      "offset": 1628,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1070464,
+      "value": 1071260
+    },
+    {
+      "offset": 1707,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1070464,
+      "value": 1071264
+    },
+    {
+      "offset": 1730,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1070464,
+      "value": 1071260
+    },
+    {
+      "offset": 1893,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1070464,
+      "value": 1071168
+    },
+    {
+      "offset": 20619,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1070464,
+      "value": 1071168
+    },
+    {
+      "offset": 20641,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1070464,
+      "value": 1071168
+    },
+    {
+      "offset": 21155,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1070464,
+      "value": 1071264
+    },
+    {
+      "offset": 21199,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1070464,
+      "value": 1071130
+    },
+    {
+      "offset": 22808,
+      "type": "R_386_PC32",
+      "symbol": ".text",
+      "symbol_value": 1048576,
+      "value": 4294944488
+    },
+    {
+      "offset": 22848,
+      "type": "R_386_PC32",
+      "symbol": ".text",
+      "symbol_value": 1048576,
+      "value": 4294944664
+    },
+    {
+      "offset": 22896,
+      "type": "R_386_PC32",
+      "symbol": ".text",
+      "symbol_value": 1048576,
+      "value": 4294945099
+    }
+  ],
+  "failure": "AssertionError((['/mnt/c/xwn801/host004/page-tool', '/mnt/c/xwn801/host004/bridge.bin', '/mnt/c/xwn801/host004/payload.bin', '/mnt/c/xwn801/host004/dual/page.bin', '32440320', '50331648'], \"=================================================================\\n==462==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7fffb10bbbc8 at pc 0x63fc64b81d11 bp 0x7fffb10bb890 sp 0x7fffb10bb880\\nREAD of size 4 at 0x7fffb10bbbc8 thread T0\\n    #0 0x63fc64b81d10 in page705 (/mnt/c/xwn801/host004/page-tool+0x5d10) (BuildId: bfe3f79c88510f98408c43a73a55ba0310aa908b)\\n    #1 0x63fc64b831cd in main (/mnt/c/xwn801/host004/page-tool+0x71cd) (BuildId: bfe3f79c88510f98408c43a73a55ba0310aa908b)\\n    #2 0x7fb4d682a600  (/usr/lib/x86_64-linux-gnu/libc.so.6+0x2a600) (BuildId: 066527e430a32768d82741e00b81eebb1a872294)\\n    #3 0x7fb4d682a717 in __libc_start_main (/usr/lib/x86_64-linux-gnu/libc.so.6+0x2a717) (BuildId: 066527e430a32768d82741e00b81eebb1a872294)\\n    #4 0x63fc64b813e4 in _start (/mnt/c/xwn801/host004/page-tool+0x53e4) (BuildId: bfe3f79c88510f98408c43a73a55ba0310aa908b)\\n\\nAddress 0x7fffb10bbbc8 is located in stack of thread T0 at offset 312 in frame\\n    #0 0x63fc64b82b76 in main (/mnt/c/xwn801/host004/page-tool+0x6b76) (BuildId: bfe3f79c88510f98408c43a73a55ba0310aa908b)\\n\\n  This frame has 8 object(s):\\n    [48, 64) 'badbase' (line 20)\\n    [80, 100) 'meta' (line 16)\\n    [144, 164) 'badfb' (line 22)\\n    [208, 312) 'rel' (line 15) <== Memory access at offset 312 overflows this variable\\n    [352, 4448) 'code' (line 10)\\n    [4576, 27616) 'payload' (line 10)\\n    [27872, 60768) 'guard' (line 10)\\n    [61024, 93920) 'original' (line 10)\\nHINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork\\n      (longjmp and C++ exceptions *are* supported)\\nSUMMARY: AddressSanitizer: stack-buffer-overflow (/mnt/c/xwn801/host004/page-tool+0x5d10) (BuildId: bfe3f79c88510f98408c43a73a55ba0310aa908b) in page705\\nShadow bytes around the buggy address:\\n  0x7fffb10bb900: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\\n  0x7fffb10bb980: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\\n  0x7fffb10bba00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\\n  0x7fffb10bba80: 00 00 f1 f1 f1 f1 f1 f1 00 00 f2 f2 00 00 04 f2\\n  0x7fffb10bbb00: f2 f2 f2 f2 00 00 04 f2 f2 f2 f2 f2 00 00 00 00\\n=>0x7fffb10bbb80: 00 00 00 00 00 00 00 00 00[f2]f2 f2 f2 f2 00 00\\n  0x7fffb10bbc00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\\n  0x7fffb10bbc80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\\n  0x7fffb10bbd00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\\n  0x7fffb10bbd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\\n  0x7fffb10bbe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\\nShadow byte legend (one shadow byte represents 8 application bytes):\\n  Addressable:           00\\n  Partially addressable: 01 02 03 04 05 06 07 \\n  Heap left redzone:       fa\\n  Freed heap region:       fd\\n  Stack left redzone:      f1\\n  Stack mid redzone:       f2\\n  Stack right redzone:     f3\\n  Stack after return:      f5\\n  Stack use after scope:   f8\\n  Global redzone:          f9\\n  Global init order:       f6\\n  Poisoned by user:        f7\\n  Container overflow:      fc\\n  Array cookie:            ac\\n  Intra object redzone:    bb\\n  ASan internal:           fe\\n  Left alloca redzone:     ca\\n  Right alloca redzone:    cb\\n==462==ABORTING\\n\"))",
+  "sources": {
+    "bridge002.S": "ddf9ba976545c3877de7ab58c6819d7cd1978c347a95ce810f4a7b6b9da268f1",
+    "build010.py": "5ac5f170f2c35c1f272c13a59b8d342571aebad7fdc2003bc7c0ec8c9c10611c",
+    "compact001.py": "a99e6eb9adc00ab0afb045fc5d08ae6ded5d1fa5de06418726123e51dd57f628",
+    "cpu003.py": "965d9364132804e5e8c954ce116869f83bf967620d889ed9b94c2daba41d9b8b",
+    "equivalence001.py": "339571c5bf733a210587832e8108ab5d0b715939ee4515690aceb0625f651a52",
+    "extend_integration.py": "3080f369c8f021038619830c5488bfd2618bc041b70a6002af89d6da8551d4a1",
+    "fixture.S": "2a299903b2a2573cd998b259b89b7a5d400376d2c7d1ed676e54f07af1dc7085",
+    "host_build006.py": "d307299d215783ace2c291d0ff627cd8ff153f2f0bf50311c5401f1a9d60145a",
+    "integration010.py": "3474d00dff053f5d432388a0fb4e737ef920f609874f610c31ac54719d08b4cc",
+    "layout.h": "bbf7e8d6397d56e5788fd15cc6e6eb04a29defbec540207e561cbbcf07f12b61",
+    "layout004.c": "13646d0fecd9f3c8525214bb84ff93832d47c5ea32c5f3d4a56ee1d462562299",
+    "linked_review005.py": "7aa5657190c909fa43ee0895b71bee97fa180415dcdd2082ee99d91230c49e07",
+    "link_review010.py": "cd28218aa96be5c19a12267dae40fec0e6b4b08b6271bace78d8917b5a5d0056",
+    "main004.c": "959a64557807874255b86c6db6151212ea55d775e6f095a0785507164fbd8277",
+    "measure001.py": "7d771f36aae05cd22c37ba88747347707d9734b3f34bef453467d064827d7192",
+    "measure002.py": "ff0eca75fba6d6f00fcd29cd0a68078f7f2a1fde46ee4b8a7d5ee0ad4325bafb",
+    "measure003.py": "4824a61907f184604dbd1171cffbb3cadf17b22f93c9705ad41f7dca4056fe78",
+    "model001.py": "75ce5a4d4540216a85c9905b10d1276185dbf2d793794c3739eb9a8910aa73b4",
+    "model002.py": "6aeace0889e665bb21dcaaaa8d83b1e016e2dc4a99dd6db0df273d26b75ad3c2",
+    "optical_oracle.py": "63736e3e2dcf7df78a245e1f4f6e4434633597a5953736a11d52e2080243d77e",
+    "optical_review003.py": "3071cc2a08c21b4e9beda5b80caaabc54912197ee55e7a1d973a8680091f7f1c",
+    "page.h": "67942149d4781e378b1b1c33c16976538b46bc2ab100b1ab9b10f2c601bfb7ac",
+    "page002.c": "714908f73e9c43395cc1c46e1e177795e9f39605944441e94c61eeb3b5f9d492",
+    "page_boundary007.py": "60e4145925e6bcfcd7759f5501ab41a9da60b8eaf921223885dd685db712f94b",
+    "page_review006.py": "6bf2067952d884c14ea5163f2d3a0f110a1d37146fac4ec760f952a97605c6a6",
+    "page_tool003.c": "d1fd26adb51aed9a29e006ae856059421ec6df13fcfd1904cf2f57192626b06f",
+    "payload_build007.py": "b212b8f1baf60cc2dfddedb82dbe1b485c6b2e4c43e3845892863548d7e754c2",
+    "physical007.py": "adeb9c17ce4be9549abfa6a77ef1d4404c24562d8b7fbad371ee954a7cfe2d96",
+    "plan.c": "904d08b17d1d900e32a2079718100e5a80ce9df0d4568cb1c8dfed00d2c3c793",
+    "plan.h": "342f1732b9f49c42a17baa9ced546d1bcbbbfa38f5bfc19fc618ce5f192fc3f5",
+    "plan_review003.py": "b8e7cbf149c0e9fcfb5197d569a21416793fd3e171343a368fc9c7d1f7e89e7e",
+    "plan_test002.py": "74ab03a50e805a7919c3ac1a5b7b008cc292409d3aed546c74fcfd0b1638dfbe",
+    "prepare_frontend.py": "48ea0c2593350615320bf51203dbd79c843c96b72f0ac324be7bc9edb12b8b91",
+    "probe-compact.c": "121e81b1e2e22b19970763e2e7a6900632542d76b0291219e8855fe431d6a9f0",
+    "probe.c": "ddfaa375c5658bab90bd4dcc82e9c01f7b8e710090595aef9f2a5a61a89906d2",
+    "probe.h": "ea62a72ec53386e86d21dbf85eee994b422063d521cbda26b82b616badaede8a",
+    "relocate003.py": "539fb906ae948f1807cb62fb8e37091b2ade374801ea33243cb23a1f5a738c6f",
+    "relocate004.py": "22681558e01bc50382ef69abe4bad541be4a7a15a006a5775e424269e031f76e",
+    "transaction.h": "3f104bc8b0d558cefe8bdad2cbf33665fcecf7fad2d925689f2357baa364a945",
+    "transaction801.c": "3d8975bc2feb8af2af589f94bd08880b3d61f0862682d3e119a658a9a1092835"
+  },
+  "files": {
+    "bridge-symbols.txt": "bdf4ec689bbfca99335dceaa85b1aca4c9bcbdd7bcb86d0c2c40278df39a2649",
+    "bridge.bin": "a8248a5939eed0009b4901c4333e92e6ba82a71b2bc448b8897717eef73fe50d",
+    "bridge.elf": "43c1c4206ebbba1611f3fd163a5ca7e016eb391a02272bef235101977333c367",
+    "bridge.o": "8f46bdad9bdd06d147990dd26ed9fc872da92f9deb7f177736b0d68f48a9cc6e",
+    "build.log": "c1f2b0f76aa2536bc464b575c1b911f31d53e048a0de0e699fdbbcee8d999f68",
+    "page-tool": "7d7038d9583e3d1c8d62737b1accc306fed46a72a17f8e6538819766b8e239fc",
+    "payload.bin": "3238efddf88b3f75ffabc811869f5d2bad5fd6fe192a5039a3fb5e1ff71b1434",
+    "payload_meta.h": "a47dcff98328b8d153a13bc0e41c545fa0ab6aa84b103d4b3f87b745d5325a90",
+    "plan.so": "c31012e3890008f7d5666837f95488160b732f9004cf6a868689c0bdc2f377cc"
+  },
+  "ended_utc": "2026-10-29T05:13:39.574051+00:00"
+}

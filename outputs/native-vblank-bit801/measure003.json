@@ -1,0 +1,98 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "qualification": false,
+  "space": {
+    "minimum_free_gib": 20.05,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c/xwn801",
+        "free_bytes": 53554388992
+      },
+      {
+        "free_bytes": 53554388992,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "sources": {
+    "transaction801.c": "3d8975bc2feb8af2af589f94bd08880b3d61f0862682d3e119a658a9a1092835",
+    "transaction.h": "3f104bc8b0d558cefe8bdad2cbf33665fcecf7fad2d925689f2357baa364a945",
+    "probe-compact.c": "121e81b1e2e22b19970763e2e7a6900632542d76b0291219e8855fe431d6a9f0",
+    "probe.h": "ea62a72ec53386e86d21dbf85eee994b422063d521cbda26b82b616badaede8a"
+  },
+  "variants": [
+    {
+      "name": "compact",
+      "command": [
+        "/usr/bin/x86_64-linux-gnu-gcc-12",
+        "-m32",
+        "-Oz",
+        "-ffreestanding",
+        "-fno-pie",
+        "-fno-pic",
+        "-fno-stack-protector",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-nostdlib",
+        "-static",
+        "-no-pie",
+        "-Wl,-Ttext=0x100000,-e,native_transaction704,--build-id=none,--emit-relocs,-z,max-page-size=0x20",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-vblank-bit801/transaction801.c",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-vblank-bit801/probe-compact.c",
+        "-o",
+        "/mnt/c/xwn801/measure003/compact/native.elf"
+      ],
+      "raw_bytes": 22936,
+      "files": {
+        "binary.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "compile.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "compile.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "disassembly.stdout": "3fded94413ab5418bb6ef363fccfbab31944c1cb0d2471cbc0c4cffb410aa809",
+        "native.bin": "b7ebc8b049118d3ea36c8e0265508853ddb7595d92b83224611d1ad2d5cf0dad",
+        "native.elf": "a988f3a29d5aab8da553edbe4a3f49d6a5dca8a6a99987b1c83202f77d6ecdb7",
+        "symbols.stdout": "4a981ca8b71e92d50b069cfa9241689da80259f19f57dd3db9664dce6c0e8f6e"
+      }
+    },
+    {
+      "name": "compact-noinline",
+      "command": [
+        "/usr/bin/x86_64-linux-gnu-gcc-12",
+        "-m32",
+        "-Oz",
+        "-fno-inline",
+        "-ffreestanding",
+        "-fno-pie",
+        "-fno-pic",
+        "-fno-stack-protector",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-nostdlib",
+        "-static",
+        "-no-pie",
+        "-Wl,-Ttext=0x100000,-e,native_transaction704,--build-id=none,--emit-relocs,-z,max-page-size=0x20",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-vblank-bit801/transaction801.c",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-vblank-bit801/probe-compact.c",
+        "-o",
+        "/mnt/c/xwn801/measure003/compact-noinline/native.elf"
+      ],
+      "raw_bytes": 21720,
+      "files": {
+        "binary.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "compile.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "compile.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "disassembly.stdout": "a43bb43882a38c92397b9789c8e20784e557b64fc9aa6e95c206880f95662c94",
+        "native.bin": "4221ad0330778ff594e7ef4f92dab5fab518f5f877572ac5390441875be5cfbd",
+        "native.elf": "d05a853a2cbf71716c484d609b326c9d02db465066b2b724d60b457fd1ef890d",
+        "symbols.stdout": "c5c7c244b3a92117134e6164be22916d109028c9ecb08da37699731f7f52d945"
+      }
+    }
+  ],
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "utc": "2026-10-29T05:09:54.209547+00:00"
+}

@@ -1,0 +1,66 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "qualification": false,
+  "space": {
+    "minimum_free_gib": 20.05,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c/xwn801",
+        "free_bytes": 53563973632
+      },
+      {
+        "free_bytes": 53563973632,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "sources": {
+    "transaction801.c": "3d8975bc2feb8af2af589f94bd08880b3d61f0862682d3e119a658a9a1092835",
+    "transaction.h": "3f104bc8b0d558cefe8bdad2cbf33665fcecf7fad2d925689f2357baa364a945",
+    "probe.c": "ddfaa375c5658bab90bd4dcc82e9c01f7b8e710090595aef9f2a5a61a89906d2",
+    "probe.h": "ea62a72ec53386e86d21dbf85eee994b422063d521cbda26b82b616badaede8a"
+  },
+  "variants": [
+    {
+      "name": "noinline-align4",
+      "command": [
+        "/usr/bin/x86_64-linux-gnu-gcc-12",
+        "-m32",
+        "-Oz",
+        "-fno-inline",
+        "-mpreferred-stack-boundary=2",
+        "-ffreestanding",
+        "-fno-pie",
+        "-fno-pic",
+        "-fno-stack-protector",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-nostdlib",
+        "-static",
+        "-no-pie",
+        "-Wl,-Ttext=0x100000,-e,native_transaction704,--build-id=none,--emit-relocs,-z,max-page-size=0x20",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-vblank-bit801/transaction801.c",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-vblank-bit801/probe.c",
+        "-o",
+        "/mnt/c/xwn801/measure002/noinline-align4/native.elf"
+      ],
+      "raw_bytes": 23416,
+      "files": {
+        "binary.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "compile.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "compile.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "disassembly.stdout": "184ec611c2559279060ecb936fad602c7dc0455ddb18699007bfcad45b00544b",
+        "native.bin": "0e6dfba4a6445f9861c563bdb3d7a87ea31a9f6c09751e2c677fbf9ae5168e7c",
+        "native.elf": "1eb5c371940705e9f9e0cdaa0473b5367d29a57ffd74d9287331dca62cd3b5b9",
+        "symbols.stdout": "42070b38ad189d3887e6a695d439b49ec7bb221462d54b1a23f26312c21b9079"
+      }
+    }
+  ],
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "utc": "2026-10-29T05:09:02.581034+00:00"
+}
