@@ -1,3 +1,19 @@
+# Test800 QUALIFIED: kernel CR09 vertical-blank-start bit5
+
+Fresh closed798 source-only derivation following CLOSED native799 PASS88f58d10.
+CR09 target (60 & DF) | (((480-1)>>4)&20) =40, saved-value restoration60 before
+CR12 reversal. Eight neighbor checks;28 total recovery masks. Build001,854 actual
+COFF cases,2353 layout cases,10 clock cases, source/schema/mutation review and
+three linked-object reviews PASS. Exact model receipt preserved in four text
+chunks. Active physical.py controller reviewed, no hook. XBE SHA256
+4fb3a1073c8f96364fa627bcd5be57ea95162a95a0052503d7ee9db84cb2be10.
+
+No800 stage/launch yet. Next authenticate1.6 .66 HDMI dashboard, stage/readback
+unique E/Applications/XWNMode800, then ONE20s SITE. Automatic return after15s;
+collect new seven reports once, audit exact frozen bytes/entries/results. No
+Windows or full mode claim. User permits automatic-return tests; native801
+requires separate qualification and watch/photo/reset. All prior runtimes CLOSED.
+
 # Test799 CLOSED PASS: native CR12 display-end low byte
 
 Photo decoded CF -> DF -> CF; all eight displayed recovery masks clear, final799
