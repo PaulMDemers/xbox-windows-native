@@ -1,3 +1,31 @@
+# Test788 CLOSED PASS: kernel CR10 vertical-sync-start low-byte recovery
+
+One SITE accepted00:08:57UTC Oct29 (Oct28local). First dashboard check refused;
+second authenticated00:10:02UTC. Seven fresh reports collected once/double.
+Audit002 PASS00:10:12.906409UTC: CR10 D4->E9->D4; CR07 stays74 throughCR10,
+then F0 restored. Eight new neighbors EC/74/60/CF/CF/ED/FF/10 unchanged; all22
+recovery masks clear. Frozen source/build/stage/private reports and unrelatedE/
+apps entries exact. Automatic dashboard return inferred, no visual observation
+or Windowsnormalshutdown claim. No hook/ownedhostprocess/VM; consoleUnleashX.
+Ordinarylauncher/protected720p unchanged, dashboardC untouched. All788/priorCLOSED.
+
+Preserve preparation-failure001 (clock replacement assertion before source write),
+dashboard001 connection-refused and collection-entry-failure001 (missing readiness
+stopped before collection creation/access). Successful dashboard002/collection001/
+audit002 are distinct. No repeated launch or recollection. 614COFF,2353layout,
+10clock, linked-byte and strictschema/mutation checks passed.
+
+NEXT fresh native789 counterpart, source-only787 frontend/788probe. Native payload
+needs new extent/layout qualification:787reserve16384 has392bytes left, insufficient
+to assume new code fits. Proposed reserve20480 ending6000; request6000..603c,
+result6040..67E8, guard67E8..6800, IDT6800..7000, stack7000..9000. This is only
+proposed; verify allocation/aliases, CPU/access/link/relocation/optical/fullpath
+and exact new build before console stage. Finalmask gates all22; show latestCR10
+with eight masks and document omitted aggregate-only masks. No789files yet.
+No complete native modeswitch/Windows1.6/acceleration claim. StandingOct28local
+watch/reset authority applies; ask held screen/photo after~2minutes, no new
+readiness question. Native hold needs manual reset after result capture.
+
 # Test788 LAUNCHED; automatic-return collection pending
 
 Single SITE accepted2026-10-29T00:08:57.216066UTC,20secondreplybound, no retry.
