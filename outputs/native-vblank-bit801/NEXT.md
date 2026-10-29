@@ -1,24 +1,19 @@
-# Test801 QUALIFIED: native CR09 vertical-blank-start bit5
+# Test801 LAUNCHED: awaiting native report photo
 
-Corrected original/compact ELF each854 cases, exact result/access equivalence,
-844 fullbridge cases,76 fullframe optical cases and12 diskless CPU contexts/
-refusals PASS; all VMs closed. nxdk page33/boundary34/ownership372 cases and
-linked ELF/PE/XBE checks PASS. Source/layout/optical review001 frozen.
-Native CR09 intended60 ->40 ->60;28 total recovery masks,8 displayed and20
-aggregate-only. Raw22968/padded23040,670dword result,768byte stack; maximum
-modeled stack use100bytes. No physical result yet.
+One SITE accepted 2026-10-29T05:40:46.984353+00:00 on the 1.6 HDMI console.
+Qualified source commit28f58648; stage001 exact readback; launch001 reply200.
+XBE977edc826e20228fb25dc79a4466904070762a4f2a440ff27a1ae07ef0351f90.
+Native CR09 intended60 ->40 ->60; deliberate held report/manual reset.
+No physical result claimed yet. Console may be holding; no repeat launch.
+No startup hook, Windows launch, dashboard C access or owned running host VM.
 
-Active payload008/probe-compact-native.c, host007/bridge003.S, cpu005,
-integration012 ->integration010, build012 ->build002, physical007.
-XBE 977edc826e20228fb25dc79a4466904070762a4f2a440ff27a1ae07ef0351f90
-Preserve qualification-failure001..003, rejected-host004/rejected-cpu001,
-invalid model001/002 native qualification and failed integration008/009.
-Complete large execution JSON retained losslessly in receipt envelopes;
-restore_receipts001.py reconstructs exact bytes without reopening any runtime.
+Next decode the user's13-row photo against optical-schema001; green alone
+is insufficient. User photographs then resets without a separate Ready request.
+Authenticate dashboard before one new preparation collection, then audit and
+close this attempt. Do not recollect a closed runtime. 28 recovery masks total,
+8 displayed,20 aggregate-only. This is not full-mode or Windows desktop proof.
 
-Next commit/push exact frozen public bytes, stage/readback unique
-E/Applications/XWNMode801, then ONE20s SITE. Dashboard001 authenticated .66;
-no801 stage or launch yet. No hook or owned running host process/VM.
-User permits held tests with photo then reset, without a separate Ready question.
-Capture13 rows then authenticate dashboard before one new preparation collection.
-No full-mode, Windows1.6 desktop or acceleration claim. Earlier runtimes CLOSED.
+Qualification:854 original/compact cases,844 fullbridge,76 optical and12 CPU
+fixtures passed; all VMs closed. Earlier rejected CPU/layout/ASan candidates
+remain preserved. Publication review retains108 generated whitespace-only
+blank lines to preserve frozen tested bytes; functional gates remain intact.
