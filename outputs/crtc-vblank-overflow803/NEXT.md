@@ -1,21 +1,18 @@
-# Test803 QUALIFIED: corrected kernel CR07 blank-start overflow control
+# Test803 CLOSED PASS: corrected kernel CR07 blank-start overflow
 
-Fresh source-only derivation from CLOSED FAILED802; fixed PCI0:1+84 expected
-literal8001, independently pinned all frontend hardware constants. Actual COFF
-frontend26 cases, register894 cases, layout2353, clock10 and linked source/binary
-checks PASS. Intended CR07 36 ->3E ->36;29 recovery masks,700-word result.
-No native handoff or Windows launch. Existing720p configuration is unchanged.
+One accepted SITE, one collection, seven reports and audit002 PASS. CR07 readback
+36 ->3E ->36; all29 recovery masks clear and eight new neighbor triples unchanged.
+Compiled frontend hardware check now correctly admits PCI8001. Existing720p
+configuration preserved. Automatic dashboard return inferred from restart_requested,
+no manual reset reported and authenticated dashboard004; no visual observation.
+Dashboard003 timeout retained, never retried launch. All qualification failures,
+failed802 runtime and exact source/build/stage pins preserved. No hook, owned host
+process/VM, native handoff or Windows launch. Do not recollect/relaunch803.
 
-Preserve rejected build001/source substitution, frontend-model001 section-size
-failure, review001 wrong receipt name, dashboard001 local missing configuration;
-qualification-failure001..003 explain them. Active build002, model003,
-frontend_model002, review002, controller_review002. Full model receipts retained
-losslessly with restore_receipts001; raw large JSON is private/ignored.
-
-Dashboard002 authenticated at1.6 .66 HDMI; no803 stage or launch yet. No hook,
-owned host process or VM. Next commit/push exact frozen bytes, stage/readback
-unique E path and send one SITE with20-second bound, never retry. After automatic
-return authenticate dashboard003, collect ONCE, audit and close. User standing
-authorization permits this automatic-return control with no visual observation.
-If successful, fresh native804 requires new payload/result/stack layout because
-closed801 had only72bytes payload reserve. No full-mode/Windows1.6 desktop claim.
+Next native804 uses closed801 frontend and closed803 transaction SOURCES only.
+Measure first:801 payload22968/padded23040 had only72bytes reserve;700-word result
+also requires120 more bytes. Requalify payload, result, IDT, guard and stack bounds,
+actual-ELF equivalence, full framebuffer/control-flow and diskless CPU fixtures
+before any physical stage. No full-mode switching or Windows1.6 desktop claim.
+Console1.6 .66 HDMI is at dashboard; standing photo-then-reset workflow applies
+only after a newly admitted native attempt. No804 physical stage/launch yet.
