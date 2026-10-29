@@ -38,3 +38,9 @@ Qualification passed:654 direct,644 complete-path,76 optical,12CPUfixtures close
 stack write100bytes of4096. Exact ELF/PE/XBE/source review passed; review001.json
 is frozen. No791physical launch yet. restore_reports.py reconstructs exact
 model001.json from public hashed text chunks; no runtime is reopened.
+
+Physical result CLOSED PASS:photo791 final791, eight displayed masks clear,
+CR07total74/74/74; fifteen masks aggregate-only and same-value limitation remains.
+User power-cycled; nine fresh preparationreports collected/audited exact.
+No normalWindows shutdown/native disk/fullmode proof. Never rerun/recollect/parent
+this closedruntime. Read NEXT.md for the fresh source-only next operation.

@@ -1,22 +1,30 @@
-# Test791 optical PASS; manual reset and preparation collection pending
+# Test791 CLOSED PASS: native shared CR07 vertical-total preservation
 
-User supplied freshphoto. Decoded7910000D/final791; eight displayed recovery
-masks zero; sharedCR07 total74 ->74 ->74. All416bits checked atfive offsets and
-three thresholds, plus352 adjacent-row interpolated checks. photo001 and
-photo-review001 PASS; no decodefailure. Privatephoto retainedC:/xwn791/photo001.jpg,
-SHA2569506a335d1bb95f7b183fa954ec49a1019f762f73cd39a12bb355e1188174889.
-Fifteen other masks aggregate-only throughfinalsuccess; native neighbors/CPU/
-selectors notexposedraw. Same-value write/dropundo indistinguishable. This is
-preservation/optical evidence, not fullnative modeswitch orWindows1.6 proof.
+Photo decoded7910000D/final791, CR07total74 ->74 ->74, eight shown masks zero.
+416bits independently checked at5offsets/3thresholds plus352 adjacent-row checks.
+Fifteen other masks aggregate-only throughfinalsuccess. Same-value write/dropundo
+indistinguishable; neighbors/CPU/selectors omittedraw. Native optical preservation
+is not a complete modeswitch, Windows1.6 desktop or native disk-persistence proof.
 
-Reset requested; awaitingReady. No manualreset confirmation or collection yet.
-Console deliberatelyholds untilpowercycle; noownedhostprocess/VM, nohook, no
-ordinarylauncher/protected720p/dashboardC change. Singlelaunch10bee194; qualified
-93974014. All790/priorruntime CLOSED;791 remainsopen pendingexactcollection.
+User confirmedmanualpowercycle. Freshauthenticated collection001 retrievednine
+preparationreports; lastpersistedphase handoff_armed. audit001 PASS: frozen
+source/build/stage/readback/report pins, independentallocation/aliasbounds, photo
+pins and unrelatedE/apps entries. Compared withretained752 preparation, PCI/CRTC/
+sequencer/geometry match; newallocationplan is independentlyadmitted, notborrowed.
+Manualreset is not normalWindows shutdown. Preserve readiness-helper-failure001
+(missinghost Python timezone data, beforeFTP/action), correctedusingWindowsdata.
 
-NEXT onReady authenticate dashboard and recordmanualreset, collect791preparation
-files once usingphysical004.py, then independent source/build/stage/report and
-allocation/alias audit plusphoto pins. Do notsendanotherlaunch. Retain allfailures.
-Manualreset is not normalWindows shutdown. Afterclosure the next pinned704
-operation is CR06 total lowbyte; no792source/build/stage/launch yet.
+Console .66 UnleashX HDMI. Nohook, ownedhostprocess/VM, ordinarylauncher/protected
+720p change or dashboardC access. Qualified93974014, launch10bee194, optical
+e152cb41. All791/priorruntimes CLOSED: no rerun/recollect/runtimeparenting.
+
+NEXT fresh bounded kernel792 source-only790, following exactpinned704 gpu_legacy.c
+nextCR06 vertical-total low-byte operation aftersharedCR07 total. Derivefromexact
+crtcvtotal524; capture before/target/after/undo and affected/sharedneighbors,
+restore before the newCR07total, CR10 and earlierCR07 operations. Do notaddCR16
+or laterwrites yet. RequireactualCOFF fault/cleanup/schema/source/linkchecks,
+exactstage/readback, oneSITE20s and auto-return beforefreshnativecounterpart.
+No792source/build/stage/launch yet. StandingOct28local watch/reset applies.
+Remainingdesktop gates: finish native timing/setup, provecombinedstablepicture,
+integrate Windowsboot/display, verifydesktop/input/restart. No3D claims.
 
