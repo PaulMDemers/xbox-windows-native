@@ -1,0 +1,79 @@
+{
+  "fields": [
+    "c10_before",
+    "c10_target",
+    "c10_attempted",
+    "c10_after",
+    "c10_restored",
+    "c10_cleanup_mask",
+    "c10_c6_before",
+    "c10_c6_after",
+    "c10_c6_restored",
+    "c10_c7_before",
+    "c10_c7_after",
+    "c10_c7_restored",
+    "c10_c9_before",
+    "c10_c9_after",
+    "c10_c9_restored",
+    "c10_c12_before",
+    "c10_c12_after",
+    "c10_c12_restored",
+    "c10_c15_before",
+    "c10_c15_after",
+    "c10_c15_restored",
+    "c10_c16_before",
+    "c10_c16_after",
+    "c10_c16_restored",
+    "c10_c18_before",
+    "c10_c18_after",
+    "c10_c18_restored",
+    "c10_c25_before",
+    "c10_c25_after",
+    "c10_c25_restored"
+  ],
+  "init": " o->c10_after=0xffffffff;o->c10_restored=0xffffffff;o->c10_c6_after=0xffffffff;o->c10_c6_restored=0xffffffff;o->c10_c7_after=0xffffffff;o->c10_c7_restored=0xffffffff;o->c10_c9_after=0xffffffff;o->c10_c9_restored=0xffffffff;o->c10_c12_after=0xffffffff;o->c10_c12_restored=0xffffffff;o->c10_c15_after=0xffffffff;o->c10_c15_restored=0xffffffff;o->c10_c16_after=0xffffffff;o->c10_c16_restored=0xffffffff;o->c10_c18_after=0xffffffff;o->c10_c18_restored=0xffffffff;o->c10_c25_after=0xffffffff;o->c10_c25_restored=0xffffffff;\n",
+  "block": " /* Second CRTC_VSYNCSTART operation: CR10 low byte, after qualified CR07 bits. */\n o->forward_status=0x78832;o->c10_before=cr(0x10);\n o->c10_c6_before=cr(0x6);o->c10_c7_before=cr(0x7);o->c10_c9_before=cr(0x9);o->c10_c12_before=cr(0x12);o->c10_c15_before=cr(0x15);o->c10_c16_before=cr(0x16);o->c10_c18_before=cr(0x18);o->c10_c25_before=cr(0x25);\n if(o->c10_before!=0xd4 || o->c10_c6_before!=0xec || o->c10_c7_before!=0x74 || o->c10_c9_before!=0x60 || o->c10_c12_before!=0xcf || o->c10_c15_before!=0xcf || o->c10_c16_before!=0xed || o->c10_c18_before!=0xff || o->c10_c25_before!=0x10)goto restore;\n o->c10_target=489u&0xffu;o->c10_attempted=1;cw(0x10,o->c10_target);\n o->c10_after=cr(0x10);o->c10_c6_after=cr(0x6);o->c10_c7_after=cr(0x7);o->c10_c9_after=cr(0x9);o->c10_c12_after=cr(0x12);o->c10_c15_after=cr(0x15);o->c10_c16_after=cr(0x16);o->c10_c18_after=cr(0x18);o->c10_c25_after=cr(0x25);\n if(o->c10_after!=o->c10_target || o->c10_c6_after!=o->c10_c6_before || o->c10_c7_after!=o->c10_c7_before || o->c10_c9_after!=o->c10_c9_before || o->c10_c12_after!=o->c10_c12_before || o->c10_c15_after!=o->c10_c15_before || o->c10_c16_after!=o->c10_c16_before || o->c10_c18_after!=o->c10_c18_before || o->c10_c25_after!=o->c10_c25_before)goto restore;\n",
+  "undo": " if(o->c10_attempted){cw(0x10,o->c10_before);o->c10_restored=cr(0x10);o->c10_c6_restored=cr(0x6);o->c10_c7_restored=cr(0x7);o->c10_c9_restored=cr(0x9);o->c10_c12_restored=cr(0x12);o->c10_c15_restored=cr(0x15);o->c10_c16_restored=cr(0x16);o->c10_c18_restored=cr(0x18);o->c10_c25_restored=cr(0x25);if(o->c10_restored!=o->c10_before)o->c10_cleanup_mask|=1;if(o->c10_c6_restored!=o->c10_c6_before)o->c10_cleanup_mask|=2;if(o->c10_c7_restored!=o->c10_c7_before)o->c10_cleanup_mask|=4;if(o->c10_c9_restored!=o->c10_c9_before)o->c10_cleanup_mask|=8;if(o->c10_c12_restored!=o->c10_c12_before)o->c10_cleanup_mask|=16;if(o->c10_c15_restored!=o->c10_c15_before)o->c10_cleanup_mask|=32;if(o->c10_c16_restored!=o->c10_c16_before)o->c10_cleanup_mask|=64;if(o->c10_c18_restored!=o->c10_c18_before)o->c10_cleanup_mask|=128;if(o->c10_c25_restored!=o->c10_c25_before)o->c10_cleanup_mask|=256;}\n",
+  "neighbors": [
+    [
+      "c10_c6",
+      6,
+      236
+    ],
+    [
+      "c10_c7",
+      7,
+      116
+    ],
+    [
+      "c10_c9",
+      9,
+      96
+    ],
+    [
+      "c10_c12",
+      18,
+      207
+    ],
+    [
+      "c10_c15",
+      21,
+      207
+    ],
+    [
+      "c10_c16",
+      22,
+      237
+    ],
+    [
+      "c10_c18",
+      24,
+      255
+    ],
+    [
+      "c10_c25",
+      37,
+      16
+    ]
+  ]
+}
