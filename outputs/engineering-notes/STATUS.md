@@ -1,3 +1,30 @@
+# Test795 CLOSED PASS: native CR16 blank-end recovery
+
+Photo001 decoded7950000D/final795: CR16 ED ->8C ->ED; eight displayed masks clear.
+All416bits independently resampled atfiveoffsets/threethresholds plus352 adjacent
+row samples. Seventeen masks aggregate-only; neighbor/CPU/selector raw omitted.
+No full mode, Windows1.6 desktop,3D or normal-shutdown proof.
+
+One accepted launch02:57:07.695849UTC; one collection ofninefresh preparation
+reports through handoff_armed; audit001PASS exactsource/binary/stage/photo pins,
+independent allocation/alias bounds and unrelatedE/apps entries. User standing
+photo-then-reset workflow plus independently authenticated dashboard is reset
+basis; not a new explicitReady reply. No repeat launch or collection.
+
+Qualified cd630642, launch71a4abd8. Preserve qualification-failure001: first bridge
+scratch substitution error, caught before hardware; corrected bridge002 andfresh
+host004/integration007/CPU003 passed. CPU002 fixtures built but never run. All
+VMs/processes closed; no hook. Console1.6 .66 UnleashX HDMI. Ordinary launcher,
+protected720p and dashboardC unchanged. All795/prior runtimes CLOSED; never
+rerun/recollect/runtimeparent. Source-only derivation remains permitted.
+
+NEXT fresh kernel796 adds next pinned704 operation: CR07 display-end overflow,
+(saved &BD) | (((480-1)>>3)&40) | (((480-1)>>7)&02), expected74 ->36 ->74
+at this prefix. Own-value undo beforeCR16, adjacent-register checks andactual
+compiled fault/cleanup/layout/clock/source/link qualification before launch.
+No796 source/build/stage/launch yet. Then a separately qualified native counterpart.
+Standing Oct28local watch/reset and photo/reset authorization still applies.
+
 # Test795 LAUNCHED: native CR16 photo pending
 
 Qualified cd630642 pushed. Dashboard authenticated under standing Oct28 local

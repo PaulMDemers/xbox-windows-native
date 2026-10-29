@@ -50,3 +50,5 @@ workflow is not evidence of a normal Windows shutdown. See NEXT.md for live stat
 
 Qualification completed:734 direct,724 full-bridge,76 optical,12 closed CPU,131379 host ownership,32+33 compiled page and372 compiled allocation cases pass. Exact frozen review001/sources001 and linked bytes pass. Physical outcome pending.
 XBE SHA256 1425e9662c58a6b1505549e3709b51370e3f742d3a41d3cb507cf325b9521209.
+
+Physical CLOSED PASS: photo001/independent photo-review001 show CR16 ED/8C/ED, eight clear displayed masks and final795. Nine preparation records collected once and audit001 passed. Manual power-cycle inferred from standing workflow plus authenticated dashboard, not normal Windows shutdown. All795 runtimes closed; never rerun or recollect.
