@@ -1,3 +1,22 @@
+# Awaiting cold-start confirmation; host qualification published
+
+Test811 host qualification is pushed as28ced8f9. Twelve CPU fixtures are closed;
+all host experiments have ended. Test810 remains staged, never launched. At
+20:23UTC asked user to power1.6 off for10seconds and return toUnleashX with HDMI.
+No reply yet; elapsed time does not satisfy the cold-condition launch gate.
+No physical probe is running or known stuck; last authenticated state dashboard.
+No startup hook. Do not send a launch before explicit cold confirmation.
+
+Source-only desktop integration review is in
+xbox16-desktop-boundaries-20261029.md with hashed source manifest. Remaining
+GPU-helper tail includes CR18,CR1A,CR25,CR28,CR2D, followed by combined native
+mode/output and loader/Windows validation. No driver code changed.
+
+Next on confirmation: write cold-ready001/ready001 truthfully, one810 launch,
+bounded dashboard wait, single collection and independent raw-result audit.
+Only physical810PASS admits811. Preserve any refusal without blind retries.
+Deadline23:00UTC; review-only22:50UTC. Existing automation remains active.
+
 # Test811 host-qualified; cold810 hardware control pending
 
 Test810 remains staged with exact readback, NOT launched. Test809 is CLOSED:
