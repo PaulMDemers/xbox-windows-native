@@ -1,3 +1,21 @@
+# Test795 LAUNCHED: native CR16 photo pending
+
+Qualified cd630642 pushed. Dashboard authenticated under standing Oct28 local
+watch/reset authorization; exact stage/readback passed in E/Applications/XWNMode795.
+One SITE accepted at 2026-10-29T02:57:07.695849+00:00. No retry. XBE SHA256
+1425e9662c58a6b1505549e3709b51370e3f742d3a41d3cb507cf325b9521209.
+
+Deliberate native hold expected; actual screen/color/status unknown until user
+photo. No hook, owned host process or VM. Ordinary launcher/protected720p and
+console dashboardC untouched. All794/prior runtimes remain closed.
+
+NEXT after roughly two minutes request the second bar color and full13-row photo.
+User will power-cycle after verifying the photo, without a separate Ready reply.
+Decode/independently review photo, then authenticate dashboard before ONE collection
+of795 preparation records. Never relaunch accepted795. No Windows shutdown or
+full-mode/desktop/acceleration proof. Preserve qualification-failure001 and all
+old failed inputs; corrected bridge qualification remains frozen.
+
 # Test795 qualified: native CR16 vertical blank-end recovery
 
 Closed kernel794 passed CR16 ED ->8C ->ED with seven audited disk reports.
