@@ -1,23 +1,19 @@
-# Test791 qualified; native shared CR07 vertical-total preservation
+# Test791 LAUNCHED; held native optical result pending
 
-Fresh source-only789 frontend plus790 probe qualified:654 nativeELF outcomes,
-644 complete-path cases,76 whole-framebuffer optical cases,12 disklessCPU fixtures
-allclosed,131379 hostownership cases,32+33 compiledpage and372 compiledownership
-cases. Exactlinked PE/XBE and independent source/layout checksPASS. No preparation
-failure in791. Actualpayload18456 padded19456; same32768byte ownedallocation:
-payload1000..5c00, request5c00..5c3c, result5c40..6460, guard6460..6800,
-IDT6800..7000, stack7000..8000. Maximum modeledstackwrites100bytes of4096.
+Qualified/pushed93974014; stage/readback exact; singleSITE accepted
+2026-10-29T01:10:10.645481UTC (Oct28local),20secondreplybound/no retry.
+Native sharedCR07 total74/74/74 afterCR10; same-value limitation explicit.
+Intentional held13rowreport; result notyetobserved. Nohook/Windows launch,
+ordinarylauncher/protected720p or dashboardC change. Noownedhostprocess/VM remains.
 
-Adds sharedCR07 verticaltotal74/74/74 afterCR10, reverse beforeCR10/earlierCR07.
-Same-value write/dropundo remains indistinguishable;23 recoverymasks required.
-Eightmask report plus before/after/restored;15 other masks aggregate-only.
-NoCR06/CR16/laterwrites or fullnative/Windows1.6 proof. No791stage/launch yet.
-No ownedhostprocess/VM; nohook/ordinarylauncher/protected720p/dashboardC change.
-Consolelastauthenticated .66 UnleashX HDMI after790 auto-return. All790/prior
-runtimes CLOSED. StandingOct28local watch/reset applies.
+NEXT after~2minutes request secondbar color and full13rowphoto. Decode with exact
+optical-schema001 plus independent threshold/row review; onlythen requestmanual
+powercycle. OnReady authenticate and collect preparationrecords once, audit exact
+frozen sources/build/stage/readback/ownership and unrelatedE/apps. Native results
+areoptical; diskrecords stopbeforehandoff. Do not claim normalshutdown fromreset.
+All790/priorruntimes CLOSED. Fullnative video/Windows1.6 remainunproved.
 
-NEXT: freeze exactbytes and commit/push, authenticate dashboard, stage/readback
-unique XWNMode791, oneSITE20s/no retry. About2minutes afterlaunch requestscreen
-andphoto, then manualreset and freshpreparationcollection/audit. Fullnative
-picture then Windowsdesktop/input/restart remain the desktop gates; no3D.
+Preserved readiness-helper-failure001: Python timezone database absent beforeany
+FTP/action. InstalledWindows timezone data validated Oct28local; no frozenbuild
+change and no repeatedphysicalattempt. Standingwatch/reset authority recorded.
 
