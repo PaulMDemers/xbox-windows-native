@@ -1,0 +1,10 @@
+{
+  "stage": "actual COFF harness qualification",
+  "failures": [
+    {"receipt":"model003.json","reason":"Inherited write allowlist omitted the newly added CR15 transaction; stopped at first CR15 write."},
+    {"receipt":"model004.json","reason":"Inherited 18050 instruction limit reached during baseline recovery; model005 retains a bounded 20000 instruction limit and the existing exact return/stack/guard/device assertions."}
+  ],
+  "binary_changed": false,
+  "physical_access": false,
+  "resolution": "model005 adds only CR15 to the allowlist and the increased finite instruction ceiling; earlier failures preserved"
+}
