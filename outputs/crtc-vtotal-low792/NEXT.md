@@ -1,12 +1,18 @@
-# Test792 LAUNCHED; bounded automatic return and collection pending
+# Test792 CLOSED PASS: kernel CR06 vertical-total low byte
 
-Qualified/pushed49f8fe30. Exact stage/readback passed; oneSITE accepted
-2026-10-29T01:32:30.568377UTC,20second reply bound/no retry. Kernel-context
-CR06 total lowbyte EC->0C->EC after secondCR07. Intended15second return.
-No hook, Windows/ordinarylauncher/protected720p change or dashboardC access.
-No ownedhostprocess/VM. All791/prior runtimes CLOSED;792 remainsopen.
+Single accepted launch1fcc6ceb after qualified49f8fe30. Authenticated automatic
+return; onecollection7reports through restart_requested. Independent audit001
+PASS: source/build/stage/readback/report pins, allocation and unrelatedE/apps.
+CR06 EC ->0C ->EC; all24 recovery masks clear, selectors/flags restored.
+No visual observation; disk evidence qualifies this bounded kernel operation,
+not a complete native modeswitch, Windows1.6 desktop or normalWindows shutdown.
+No failures. Console .66 UnleashX HDMI, nohook or ownedhostprocess/VM; no ordinary
+launcher/protected720p/dashboardC change.792 and allpriorruntimes CLOSED.
 
-NEXT authenticate dashboard after bounded observation, collect7reports once,
-audit550word schema/source/build/stage/readback/allocation/ownership. No repeated
-launch. User's photo-reset workflow applies to future held native tests.
+NEXT fresh native793 source-only791 frontend plus exact792 probe exceptnamespace/
+nativeCPUguard. Enlarged550word result and payload require independently proven
+bounds before anylaunch. Full actualnative/bridge/CPU/optical/build/link review;
+then onstandingavailability oneSITE20s and heldphoto. User checksphoto and resets
+without separateReady; authenticate dashboard before one-timecollection.
+No CR16 or laterwrites yet; no793source/build/stage/launch atthisclosure.
 
