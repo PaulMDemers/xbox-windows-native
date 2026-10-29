@@ -1,3 +1,17 @@
+# Test799 LAUNCHED: awaiting held optical report
+
+One SITE accepted2026-10-29T04:45:22.797651UTC via physical007,20s bound; no retry.
+Unique E/Applications/XWNMode799 staged/readback exact, c964c7794cf03ee67a1395cb71e2ed29993e78d60f0c852d12196394e003601b.
+Qualified364ac060, byteattributes42c718a2 pushed. User renewed watch/photo/reset
+availability. Native CR12 CF/DF/CF intended, not yet observed. Console may be holding;
+nohook, no owned host process/VM. Do not infer PASS from launch or kernel logs.
+
+Next preserve/photo-decode13 rows (signature7990000D, return799,8selectedmasks,
+CR12before/after/restored);19 omittedmasks aggregate-only. User photographs then
+resets without Ready question; authenticate dashboard before onecollection/audit.
+Do not relaunch, rerun/recollect earlierclosed attempts or claim Windows support.
+Preserve rejected payload006 and fresh qualifiedpayload007 layout/stack evidence.
+
 # Test799 QUALIFIED: native CR12 display-end low byte
 
 Fresh source-only closed797/798 derivation.814 native ELF cases,804 fullbridge

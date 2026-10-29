@@ -1,13 +1,11 @@
-#799 next action
+#799 active attempt — do not relaunch
 
-All fresh qualification receipts and the frozen source checks passed. User has renewed watch/photo/reset availability for this attempt. No799
-stage or launch exists yet. Kernel798 and all earlier attempts remain closed.
+One SITE accepted at2026-10-29T04:45:22.797651UTC. Await the held-report photo and
+screen observation. No native physical result yet. No startup hook or owned VM.
 
-After qualification, authenticate the1.6 dashboard with its active private config,
-stage/read back the unique799 application, and send exactly one SITE request with
-a20-second reply bound. Never retry an accepted or uncertain launch.
-
-After the held report, preserve the user's photo and independently decode all13
-rows. The user photographs then resets without a separate Ready prompt; verify
-the dashboard before one collection. Audit exact sources, build, stage and fresh
-preparation records, keeping native photo evidence separate from kernel records.
+Independently decode all13 rows against optical-schema001, preserving private
+photo identity and ambiguity. User photographs then power-cycles without a
+separate Ready prompt; authenticate dashboard before ONE collection. Native
+results come from the photograph; kernel preparation files prove preparation.
+Audit exact source/build/stage and unrelated E entries, preserve every failure,
+and close799 only after collection/audit. All earlier runtimes remain CLOSED.
