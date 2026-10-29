@@ -1,0 +1,79 @@
+{
+  "fields": [
+    "ct16_before",
+    "ct16_target",
+    "ct16_attempted",
+    "ct16_after",
+    "ct16_restored",
+    "ct16_cleanup_mask",
+    "ct16_c6_before",
+    "ct16_c6_after",
+    "ct16_c6_restored",
+    "ct16_c7_before",
+    "ct16_c7_after",
+    "ct16_c7_restored",
+    "ct16_c9_before",
+    "ct16_c9_after",
+    "ct16_c9_restored",
+    "ct16_c10_before",
+    "ct16_c10_after",
+    "ct16_c10_restored",
+    "ct16_c12_before",
+    "ct16_c12_after",
+    "ct16_c12_restored",
+    "ct16_c15_before",
+    "ct16_c15_after",
+    "ct16_c15_restored",
+    "ct16_c18_before",
+    "ct16_c18_after",
+    "ct16_c18_restored",
+    "ct16_c25_before",
+    "ct16_c25_after",
+    "ct16_c25_restored"
+  ],
+  "init": " o->ct16_after=0xffffffff;o->ct16_restored=0xffffffff;o->ct16_c6_after=0xffffffff;o->ct16_c6_restored=0xffffffff;o->ct16_c7_after=0xffffffff;o->ct16_c7_restored=0xffffffff;o->ct16_c9_after=0xffffffff;o->ct16_c9_restored=0xffffffff;o->ct16_c10_after=0xffffffff;o->ct16_c10_restored=0xffffffff;o->ct16_c12_after=0xffffffff;o->ct16_c12_restored=0xffffffff;o->ct16_c15_after=0xffffffff;o->ct16_c15_restored=0xffffffff;o->ct16_c18_after=0xffffffff;o->ct16_c18_restored=0xffffffff;o->ct16_c25_after=0xffffffff;o->ct16_c25_restored=0xffffffff;\n",
+  "block": " /* CRTC_VBLANKEND: preserve bit7 and replace low seven bits from total524. */\n o->forward_status=0x79438;o->ct16_before=cr(0x16);\n o->ct16_c6_before=cr(0x6);o->ct16_c7_before=cr(0x7);o->ct16_c9_before=cr(0x9);o->ct16_c10_before=cr(0x10);o->ct16_c12_before=cr(0x12);o->ct16_c15_before=cr(0x15);o->ct16_c18_before=cr(0x18);o->ct16_c25_before=cr(0x25);\n if(o->ct16_before!=0xed || o->ct16_c6_before!=0xc || o->ct16_c7_before!=0x74 || o->ct16_c9_before!=0x60 || o->ct16_c10_before!=0xe9 || o->ct16_c12_before!=0xcf || o->ct16_c15_before!=0xcf || o->ct16_c18_before!=0xff || o->ct16_c25_before!=0x10)goto restore;\n o->ct16_target=(o->ct16_before&0x80u)|(524u&0x7fu);o->ct16_attempted=1;cw(0x16,o->ct16_target);\n o->ct16_after=cr(0x16);o->ct16_c6_after=cr(0x6);o->ct16_c7_after=cr(0x7);o->ct16_c9_after=cr(0x9);o->ct16_c10_after=cr(0x10);o->ct16_c12_after=cr(0x12);o->ct16_c15_after=cr(0x15);o->ct16_c18_after=cr(0x18);o->ct16_c25_after=cr(0x25);\n if(o->ct16_after!=o->ct16_target || o->ct16_c6_after!=o->ct16_c6_before || o->ct16_c7_after!=o->ct16_c7_before || o->ct16_c9_after!=o->ct16_c9_before || o->ct16_c10_after!=o->ct16_c10_before || o->ct16_c12_after!=o->ct16_c12_before || o->ct16_c15_after!=o->ct16_c15_before || o->ct16_c18_after!=o->ct16_c18_before || o->ct16_c25_after!=o->ct16_c25_before)goto restore;\n",
+  "undo": " if(o->ct16_attempted){cw(0x16,o->ct16_before);o->ct16_restored=cr(0x16);o->ct16_c6_restored=cr(0x6);o->ct16_c7_restored=cr(0x7);o->ct16_c9_restored=cr(0x9);o->ct16_c10_restored=cr(0x10);o->ct16_c12_restored=cr(0x12);o->ct16_c15_restored=cr(0x15);o->ct16_c18_restored=cr(0x18);o->ct16_c25_restored=cr(0x25);if(o->ct16_restored!=o->ct16_before)o->ct16_cleanup_mask|=1;if(o->ct16_c6_restored!=o->ct16_c6_before)o->ct16_cleanup_mask|=2;if(o->ct16_c7_restored!=o->ct16_c7_before)o->ct16_cleanup_mask|=4;if(o->ct16_c9_restored!=o->ct16_c9_before)o->ct16_cleanup_mask|=8;if(o->ct16_c10_restored!=o->ct16_c10_before)o->ct16_cleanup_mask|=16;if(o->ct16_c12_restored!=o->ct16_c12_before)o->ct16_cleanup_mask|=32;if(o->ct16_c15_restored!=o->ct16_c15_before)o->ct16_cleanup_mask|=64;if(o->ct16_c18_restored!=o->ct16_c18_before)o->ct16_cleanup_mask|=128;if(o->ct16_c25_restored!=o->ct16_c25_before)o->ct16_cleanup_mask|=256;}\n",
+  "neighbors": [
+    [
+      "ct16_c6",
+      6,
+      12
+    ],
+    [
+      "ct16_c7",
+      7,
+      116
+    ],
+    [
+      "ct16_c9",
+      9,
+      96
+    ],
+    [
+      "ct16_c10",
+      16,
+      233
+    ],
+    [
+      "ct16_c12",
+      18,
+      207
+    ],
+    [
+      "ct16_c15",
+      21,
+      207
+    ],
+    [
+      "ct16_c18",
+      24,
+      255
+    ],
+    [
+      "ct16_c25",
+      37,
+      16
+    ]
+  ]
+}
