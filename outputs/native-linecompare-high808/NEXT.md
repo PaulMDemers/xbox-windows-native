@@ -1,14 +1,25 @@
-# Test808 LAUNCHED: awaiting held optical report
+# Test808 CLOSED PASS: native CR07 line-compare preservation
 
-Qualified commit 9f0d076f is pushed. Unique E:\Applications\XWNMode808
-stage/readback passed. One SITE accepted at 2026-10-29T19:00:09.990518Z;
-reply 200 EXEC command succeeded. No retry, startup hook, Windows launch,
-owned host process or running VM. Console may now be holding its native report.
-No physical result inferred from acceptance. User will photograph and reset.
+Photo independently decoded: signature8080000D, return808, eight displayed
+recovery masks zero, CR07 before/after/restored3E/3E/3E. All416 bits checked
+at five offsets and three thresholds, plus352 adjacent-row checks.
+Twenty-three omitted masks remain aggregate-only through final success.
+Same-value write/undo drops are indistinguishable; no effective-change claim.
 
-Next: independently decode the full 13-row photo against optical-schema001;
-then authenticate dashboard, record collection-ready001 and collect exactly once.
-Do not relaunch808 or recollect CLOSED806/807. Preserve all qualification pins.
-Expected optical signature8080000D, return808, eight displayed masks clear,
-then CR07 before/after/restored3E/3E/3E. Same-value drops are indistinguishable;
-23 other masks remain aggregate-only. No full mode/Windows1.6 support claim.
+One SITE accepted19:00:09.990518UTC. User standing photo/reset workflow,
+then dashboard002 authenticated. Single collection has nine exact preparation
+reports ending handoff_armed; native result is photo-only. Audit003 PASS:
+source/build pins, private file hashes, allocation/alias bounds and unrelated
+E directory entries checked. No hook, Windows launch, owned process or VM.
+Console is at dashboard after manual reset; no normal-shutdown claim.
+Never relaunch, recollect or runtime-parent CLOSED808 or earlier runs.
+
+Preserve failed audit002: source adaptation changed register680630 to680830;
+fresh audit003 corrected the local assertion and rechecked the same collected
+bytes. No physical effect. Earlier publication/preparation notes retained.
+
+Next fresh kernel-context control: CR09 line-compare bit6 (pinned704 source
+line109), then its qualified native counterpart. Later CR18 low and CR1A
+remain unadmitted. Prepare unique IDs, independently check actual write and
+recovery effects, qualify before staging. No full mode switch or Windows1.6
+desktop support established. Native networking remains tabled.
