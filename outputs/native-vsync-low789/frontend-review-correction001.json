@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "utc": "2026-10-29T00:21:56.666265+00:00",
+  "source_review_finding": "global initial layout substitution also changed unrelated physical-page eligibility and firmware reservation",
+  "rejected_frontend": "main.c/layout.c (not built into an XBE, never launched)",
+  "corrected_frontend": "main004.c/layout004.c",
+  "corrections": [
+    "keep64MiB16384physicalpages",
+    "keeppriorfirmwarereservationB0000..B5000"
+  ],
+  "candidate_native_bytes_changed": false,
+  "host003_scope": "bridge/page/plan construction; its recorded original frontend files were not compiled",
+  "new_frontend_validation_required": [
+    "nxdk build007",
+    "page/plan/layout COFF and linked bytes",
+    "source_review002"
+  ]
+}
