@@ -1,22 +1,14 @@
-# Test806 QUALIFIED: native CR15 vertical-blank-start low byte
+# Test806 LAUNCHED: native CR15 vertical-blank-start low byte
 
-Original/selected native ELF934-case exact equivalence,924 complete bridge cases,
-76 renderer cases and12 fresh closed CPU fixtures PASS. Compiled ownership372,
-page34/boundary35, ELF/linked XBE and independent source/layout checks PASS.
-Payload23648 bytes padded23744 starts0xb00 in unchanged32KiB allocation;
-730-word result, disjoint guards/IDT and unchanged768-byte stack independently
-verified. Sources frozen in sources001, admission in review001. Build002 XBE
-SHA256: 4bb9265bd42f0490532fd1db8b57aee29b87896f34c32c775d4442e7d1f3437a.
+One SITE accepted 2026-10-29T16:01:09.454453+00:00, reply200. Qualified sourcecommit7dfc2cb4;
+stage001 exact XBE/owner readback PASS, ready001 standing watch/reset authorization.
+No startup hook or Windows launch. Intentional held optical report; no runtime
+result yet. No owned host process or running VM. Do not retry the launch.
 
-No806 stage or SITE yet. Dashboard001 authenticated1.6 .66 HDMI. No startup
-hook, console writes, owned process or running VM. Original/selected model and
-full bridge receipts retained losslessly in compressed public diagnostic text.
-Preserve qualification-failure001/002; cpu005 was built but never run, cpu006
-is admitted. No physical/native result, full mode or Windows1.6 desktop claim.
-
-Next exact staging/readback through physical009, one20-second SITE and held
-photo report. Expected13 rows:8060000d,806,eight zero recovery masks,CF/DF/CF.
-Twenty-two omitted masks remain aggregate-only. User photographs then resets;
-authenticate dashboard and collect preparation records once. Never retry an
-accepted/uncertain launch, or reopen any CLOSED runtime.
+Next after roughly two minutes ask second-bar color and receive a legible photo.
+Expected13 rows8060000d,806,eight zero recovery masks,CF/DF/CF; decode actual
+pixels independently, retain unknowns. Twenty-two masks are aggregate-only.
+User photographs then resets under the standing workflow; authenticate dashboard,
+collect nine preparation records once, audit and close. Preparation logs do not
+prove native result or normal Windows shutdown. Never reopen CLOSED runtimes.
 Follow outputs/native-vblank-low806/NEXT.md.
