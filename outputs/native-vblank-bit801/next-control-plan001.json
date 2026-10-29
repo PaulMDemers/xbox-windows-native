@@ -1,0 +1,41 @@
+{
+  "preparation_only": true,
+  "physical_access": false,
+  "source": "outputs/xcal-transaction704/gpu_legacy.c",
+  "source_sha256": "5e686c6e875f9d9bb60a0955bedfb4978911f5a79bf1feaea47080d9d7fe5690",
+  "source_line": 102,
+  "operation": "NvSetCrtc(pbRegs, 7, b | (((gpu->yres - 1) >> 5) & 0x08));",
+  "next_attempt": "Fresh kernel802 CR07 vertical-blank-start bit3, then separately qualified native803",
+  "baseline_evidence": "Closed800 saved preparation/control report, source-only analysis;801 photo proves CR09 change/recovery but does not expose CR07 raw",
+  "baseline_evidence_sha256": "f233d819ba5053663ccc8de298ba509960e157350c20c2295f0eebc22282b38a",
+  "kernel800_CR07_neighbor_values": [
+    54,
+    54,
+    54
+  ],
+  "expected_before_after_restored": [
+    54,
+    62,
+    54
+  ],
+  "neighbor_admission": {
+    "CR06": 12,
+    "CR09": 64,
+    "CR10": 233,
+    "CR12": 223,
+    "CR15": 207,
+    "CR16": 140,
+    "CR18": 255,
+    "CR25": 16
+  },
+  "required": [
+    "New actual baseline admission before CR07 write",
+    "Reverse own CR07 saved value before CR09 recovery",
+    "Fresh mismatch/drop/coupling/cleanup fault coverage and all prior masks",
+    "Source/binary/layout/clock/controller qualification before staging",
+    "Unique E namespace, exact readback, one bounded SITE, collect/audit automatic return",
+    "Native803 must independently remeasure code/result/stack bounds;801 payload has only72 bytes margin"
+  ],
+  "new_build_stage_launch": false,
+  "closed_runtime_reuse": false
+}
