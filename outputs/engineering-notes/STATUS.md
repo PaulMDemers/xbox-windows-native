@@ -1,3 +1,61 @@
+# Test808 QUALIFIED: native CR07 line-compare high bit
+
+Original/bitmap native ELFs passed974 cases with identical760-word results
+and device traces. Relocated bridge964 cases, whole-framebuffer renderer76,
+12 diskless CPU fixtures (all closed), nxdk page34/boundary35/plan372 and
+linked executable byte checks PASS. Source/bitmap/layout independent review
+PASS. Frozen sources001; review001 pins all qualification receipts.
+XBE SHA256 a7f02edb0ddfdd4577f782aa2c128cbaa62098dee0e49a9093ff6701c9334caf.
+
+Payload24032 bytes padded24256 at0900..67c0, result6800..73e0. IDT and
+768-byte stack unchanged; maximum modeled stack usage116 bytes.
+Bitmap initializes the same398 fields; hardware operations unchanged.
+Instruction counts differ; no physical timing claim. No console change yet.
+Dashboard001 authenticated. No stage, SITE, hook, owned process or running VM.
+
+CR07 line-compare stays3E/3E/3E; same-value write/undo drops cannot be
+distinguished. Eight displayed masks and final aggregate success require
+all31 clear;23 omitted masks remain aggregate-only. No full mode switching,
+encoder change or Windows1.6 desktop support claim.
+
+Next exact unique808 stage/readback, one20-second SITE, held13-row photo.
+Standing authorization covers watch/reset; user resets after a legible photo
+without another Ready question. Then authenticate dashboard and collect once.
+Never reopen CLOSED806/807. Later CR09bit6, CR18 and CR1A remain unadmitted.
+Preserve preparation-note001 documentation encoding failure, no physical effect.
+Follow outputs/native-linecompare-high808/NEXT.md.
+
+# Test808 qualification in progress: native CR07 line-compare high bit
+
+Fresh source derivation only from CLOSED806 frontend and CLOSED807 probe.
+Dashboard001 authenticated;808 namespace absent. No physical stage or launch yet.
+No startup hook or Windows run.
+807 is CLOSED PASS; never relaunch, recollect or runtime-parent it.
+
+The expanded760-word result and original native payload no longer fit806's
+allocation. Bitmap initialization preserves398 sentinel fields and shares only
+the CR read/write helpers. Original28376 bytes becomes24032; both compiled
+native ELFs passed974 fault cases with identical760-word results, register
+reads/writes and port traces. Instruction counts differ; no physical timing
+claim. Candidate reserves24256 bytes at0900..67c0 inside the same32KiB page.
+Request67c0..67fc, result6800..73e0, guard73e0..7500, IDT7500..7d00,
+stack7d00..8000. Every boundary and relocation must pass independent checks.
+
+Active qualification: integration012.py -> integration010.json, then12 fresh
+diskless CPU fixtures via cpu006.py. Next source_review001, optical_review005,
+build013, page/plan/linked reviews, compressed receipts and review_prepare001.
+Do not stage until all checks pass and frozen bytes are committed/pushed.
+
+Physical protocol after qualification: authenticated dashboard, unique owned
+E/Applications/XWNMode808 stage/readback, one20-second SITE only. Native holds
+a13-row report; user takes a legible photo and resets without another Ready
+question. Report CR07 before/after/restored should be3E/3E/3E. Same-value write
+and undo drops are inherently indistinguishable. Eight displayed masks plus
+final aggregate status;23 other masks are aggregate-only. No encoder change,
+full mode switch or Windows1.6 desktop claim.
+
+Follow outputs/native-linecompare-high808/NEXT.md.
+
 # Test807 CLOSED PASS: kernel CR07 line-compare high bit
 
 One accepted SITE, one collection of seven complete disk reports, audit002 PASS.
