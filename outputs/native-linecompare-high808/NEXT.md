@@ -12,4 +12,3 @@ Do not relaunch808 or recollect CLOSED806/807. Preserve all qualification pins.
 Expected optical signature8080000D, return808, eight displayed masks clear,
 then CR07 before/after/restored3E/3E/3E. Same-value drops are indistinguishable;
 23 other masks remain aggregate-only. No full mode/Windows1.6 support claim.
-
