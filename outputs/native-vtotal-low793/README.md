@@ -61,3 +61,10 @@ Readiness-failure001 occurred beforeFTP: controller005 named a nonexistent plan
 receipt. controller006 corrects that exact reference and names a new freeze;
 controller-review001 verifies no production or launch-logic change. Prior helper,
 review002/sources002 and all earlier qualification evidence remain immutable.
+
+Physical CLOSED PASS: photo002 independently decodes CR06 EC/0C/EC, eight clear
+raw masks and passing final793. Sixteen masks aggregate-only. Nine preparation
+reports collected once and audit001 passed. User standing photo/reset workflow
+plus authenticated dashboard is the reset basis; no separate Ready reply or
+normal Windows shutdown. Photo001 failed on an off-grid candidate and is retained.
+No full native mode switch or Windows1.6 desktop proof. See NEXT.md.
