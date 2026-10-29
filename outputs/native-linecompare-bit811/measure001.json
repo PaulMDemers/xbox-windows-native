@@ -1,0 +1,175 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "qualification": false,
+  "space": {
+    "minimum_free_gib": 20.05,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c",
+        "free_bytes": 51055226880
+      },
+      {
+        "free_bytes": 51055226880,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "sources": {
+    "transaction811.c": "16a8df57745c037f50029adf297e26e738c3f8194732f766222ff7d25ce76a8d",
+    "transaction.h": "f3adfd8b52747a1106d41b07b2d296821aa3794f41faab392ec83073ace0a90e",
+    "probe-native.c": "f8a7cbf08dbc15b877fe84afe49b78ddc113622036d34b86686e2c9501f5f60f",
+    "probe-compact-native.c": "8b577f953221074645072a184c0b1c431e057d04416bb0d1f34ba2501c389030",
+    "probe-shared-native.c": "54b20620006c90930a203582aad92fd6bea486cccffe42aeac3a3b9b304b6a5a",
+    "probe.h": "a3d6993047adeadac8f18e451a81cd563c4a8febdbb921df98d34474fbc4c55c"
+  },
+  "variants": [
+    {
+      "name": "original-native",
+      "command": [
+        "/usr/bin/x86_64-linux-gnu-gcc-12",
+        "-m32",
+        "-Oz",
+        "-ffreestanding",
+        "-fno-pie",
+        "-fno-pic",
+        "-fno-stack-protector",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-nostdlib",
+        "-static",
+        "-no-pie",
+        "-Wl,-Ttext=0x100000,-e,native_transaction704,--build-id=none,--emit-relocs,-z,max-page-size=0x20",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-linecompare-bit811/transaction811.c",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-linecompare-bit811/probe-native.c",
+        "-o",
+        "/mnt/c/xwn811/measure001/original-native/native.elf"
+      ],
+      "raw_bytes": 29624,
+      "files": {
+        "binary.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "compile.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "compile.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "disassembly.stdout": "14c34acd3352660897ecda42ddfb2e48682d37722df46b21d65c0dee495af80a",
+        "native.bin": "d2d9d59a302e522ed59da9bee3f1965ecf92dc2234a0748a9f5a129b44ac99a3",
+        "native.elf": "3bdbc75b509148624ceb7c85b71d591c8ffb0fd1206f6f9cd6614fa2bcf7f3f1",
+        "relocations.stdout": "fcb159e62087ec4cafc3ef43145d9789b993f5e16014a478fe0249084936e871",
+        "sections.stdout": "f0a0532a0c64266af34067827a5bb864bf40980fa72d39142489be1e9368ab7b",
+        "symbols.stdout": "c4453d995a4fe62313d72700bbd518831cbe5f9c4adf7ba679742dfac3a29cac"
+      }
+    },
+    {
+      "name": "compact-native",
+      "command": [
+        "/usr/bin/x86_64-linux-gnu-gcc-12",
+        "-m32",
+        "-Oz",
+        "-ffreestanding",
+        "-fno-pie",
+        "-fno-pic",
+        "-fno-stack-protector",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-nostdlib",
+        "-static",
+        "-no-pie",
+        "-Wl,-Ttext=0x100000,-e,native_transaction704,--build-id=none,--emit-relocs,-z,max-page-size=0x20",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-linecompare-bit811/transaction811.c",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-linecompare-bit811/probe-compact-native.c",
+        "-o",
+        "/mnt/c/xwn811/measure001/compact-native/native.elf"
+      ],
+      "raw_bytes": 27576,
+      "files": {
+        "binary.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "compile.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "compile.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "disassembly.stdout": "44c43ad027a441c00b525665d4ccdb9bcb8ac8ad1f42f28e7e55272f5cc2f345",
+        "native.bin": "8949e25c447484a14a461a5327bf4acbfaf51271b561127d95ff99a5f6e20a9e",
+        "native.elf": "8e8f7f3b567d0eeb8617c67d2e0e6c732ab5ee1a02840fba861ccab6afe0bab5",
+        "relocations.stdout": "ca6f42371c498b383c93d33b03a4f9768183bc5d58a719f14902bd7cd40c5bfe",
+        "sections.stdout": "9d6375d56d41687efc70962545abe60b9e069213bfc7a43f3798eed9d64b16c5",
+        "symbols.stdout": "2079affb9c96c148701e55e83848250839e6a03123e912b59416f82d0687c6f6"
+      }
+    },
+    {
+      "name": "shared-native",
+      "command": [
+        "/usr/bin/x86_64-linux-gnu-gcc-12",
+        "-m32",
+        "-Oz",
+        "-ffreestanding",
+        "-fno-pie",
+        "-fno-pic",
+        "-fno-stack-protector",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-nostdlib",
+        "-static",
+        "-no-pie",
+        "-Wl,-Ttext=0x100000,-e,native_transaction704,--build-id=none,--emit-relocs,-z,max-page-size=0x20",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-linecompare-bit811/transaction811.c",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-linecompare-bit811/probe-shared-native.c",
+        "-o",
+        "/mnt/c/xwn811/measure001/shared-native/native.elf"
+      ],
+      "raw_bytes": 25792,
+      "files": {
+        "binary.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "compile.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "compile.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "disassembly.stdout": "4e99fc968760d24979686b435daa635fad3a559c8980c97d265c05069a8ff887",
+        "native.bin": "b8366ebc34dcb3cf4f61bddbe1b91c2dcea1c89d88b31a4112d5c847a8da054b",
+        "native.elf": "1187a63b0c6b5fc4e941de08e3b0aa7d9e5a121fcd04304e8193c6e879931bdb",
+        "relocations.stdout": "b2588aa1da98121819156ff67e36415f05810348cc81616b6950a565d671e2c9",
+        "sections.stdout": "1d45d442364036b63c104c5ccb2e3ac12a99fd7210dda6e8b323d48e2e907b11",
+        "symbols.stdout": "da71c0de9ff00b5e08adbdac148508481120ddb6178deb114dd369e4bc1f12f2"
+      }
+    },
+    {
+      "name": "shared-no-unwind",
+      "command": [
+        "/usr/bin/x86_64-linux-gnu-gcc-12",
+        "-m32",
+        "-Oz",
+        "-fno-asynchronous-unwind-tables",
+        "-fno-unwind-tables",
+        "-ffreestanding",
+        "-fno-pie",
+        "-fno-pic",
+        "-fno-stack-protector",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-nostdlib",
+        "-static",
+        "-no-pie",
+        "-Wl,-Ttext=0x100000,-e,native_transaction704,--build-id=none,--emit-relocs,-z,max-page-size=0x20",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-linecompare-bit811/transaction811.c",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-linecompare-bit811/probe-shared-native.c",
+        "-o",
+        "/mnt/c/xwn811/measure001/shared-no-unwind/native.elf"
+      ],
+      "raw_bytes": 25592,
+      "files": {
+        "binary.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "compile.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "compile.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "disassembly.stdout": "0c47ea5cb5d3116d6e9154146fc7e5e0c891ea7535c9a71235d6c381d8bb6bfa",
+        "native.bin": "958759615682d8d2e78cb3bae5afa3d9e7201435f7c78184625710e354697af9",
+        "native.elf": "3e8ea6b28bbd3ea279371dc63a34db53303ed7a4f4798b811f12a5113eb3477f",
+        "relocations.stdout": "0d2af13b6525180258623dffa9a1626199b41e9ced1de1f2566677975e5753f2",
+        "sections.stdout": "4796028bcb54996ab57b653530099d1e14d47a22405c5c0240dba59fc6866442",
+        "symbols.stdout": "8aaf407fef7dc2f5dac8cba7fafe27b500417c4b6f1502e685f4b2113220f9b7"
+      }
+    }
+  ],
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "utc": "2026-10-29T19:46:33.304464+00:00"
+}

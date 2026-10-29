@@ -1,0 +1,69 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "qualification": false,
+  "space": {
+    "minimum_free_gib": 20.05,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c/xwn811",
+        "free_bytes": 51006197760
+      },
+      {
+        "free_bytes": 51006197760,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "sources": {
+    "transaction811.c": "16a8df57745c037f50029adf297e26e738c3f8194732f766222ff7d25ce76a8d",
+    "transaction.h": "f3adfd8b52747a1106d41b07b2d296821aa3794f41faab392ec83073ace0a90e",
+    "probe-native.c": "f8a7cbf08dbc15b877fe84afe49b78ddc113622036d34b86686e2c9501f5f60f",
+    "probe-compact-native.c": "8b577f953221074645072a184c0b1c431e057d04416bb0d1f34ba2501c389030",
+    "probe-shared-native.c": "54b20620006c90930a203582aad92fd6bea486cccffe42aeac3a3b9b304b6a5a",
+    "probe-pairs-native.c": "342bfc87d9075b6102300a4f38f40a49275529ea07fdf0f618c4930b15474079",
+    "probe.h": "a3d6993047adeadac8f18e451a81cd563c4a8febdbb921df98d34474fbc4c55c"
+  },
+  "variants": [
+    {
+      "name": "pairs-native",
+      "command": [
+        "/usr/bin/x86_64-linux-gnu-gcc-12",
+        "-m32",
+        "-Oz",
+        "-ffreestanding",
+        "-fno-pie",
+        "-fno-pic",
+        "-fno-stack-protector",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-nostdlib",
+        "-static",
+        "-no-pie",
+        "-Wl,-Ttext=0x100000,-e,native_transaction704,--build-id=none,--emit-relocs,-z,max-page-size=0x20",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-linecompare-bit811/transaction811.c",
+        "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-linecompare-bit811/probe-pairs-native.c",
+        "-o",
+        "/mnt/c/xwn811/measure003/pairs-native/native.elf"
+      ],
+      "raw_bytes": 23212,
+      "files": {
+        "binary.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "compile.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "compile.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "disassembly.stdout": "b6e1d96bf3568ae3473345951bb87d0062019d0e4859afd60f0d716eb585c879",
+        "native.bin": "903e4f4318b030ebb1cbc3870c71383149eec4cb9a717192c1729aa33c732f4e",
+        "native.elf": "c402debea514093b7861797fff9da78fbde6a24f564b4fd07df38f8f344a074e",
+        "relocations.stdout": "270c99050831c53b01e94c2763b14b8697b0f8d6b04bf182b1339b8d4c7ab1bd",
+        "sections.stdout": "c49efe79e13e11c44f60ace77100154fa4cb8b28d497a1a09765507a7a3fd69a",
+        "symbols.stdout": "c41de70400fc8549edb9968e271a245a60621f49a48ad501df555942d2fc5dcb"
+      }
+    }
+  ],
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "utc": "2026-10-29T19:49:12.828466+00:00"
+}
