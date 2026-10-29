@@ -23,7 +23,7 @@ link_review008.py, build007.py, page_review004.py, page_boundary005.py,
 plan_review003.py, linked_review004.py, source_review002.py, review_prepare002.py.
 physical004.py is the active stage/launch/collect controller. It uses private
 configuration, unique E paths, exact readback, one20secondSITE reply bound and
-no launch retry. Qualification completed: review001.json is PASS. Physical staging and launch are pending.
+no launch retry. Qualification completed: review001.json is PASS. Physical staging/readback passed; one launch accepted00:31:25UTC Oct29. Optical result is pending.
 
 Preserve preparation-failure001/002/003 and failed integration004. failed-layout001
 contains exact initial host002 source snapshots only; none is an admitted build
