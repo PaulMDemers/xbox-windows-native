@@ -22,3 +22,7 @@ Unique E/Applications/XWNMode794, source/build/stage readback, one SITE with a
 20-second reply bound, automatic dashboard return intended after15seconds.
 No startup hook, ordinary launcher/Windows/protected720p changes or dashboardC.
 Standing photo/reset workflow remains active for later held native tests.
+
+Physical result: CLOSED PASS; CR16 ED ->8C ->ED with all recovery masks clear.
+Seven disk reports audited; picture unobserved. Preserve early dashboard timeout
+and preflight/audit001 failure; audit002 passed after one actual collection.
