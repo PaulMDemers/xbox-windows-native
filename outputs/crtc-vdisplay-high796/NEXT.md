@@ -1,3 +1,19 @@
+# Test796 CLOSED PASS; native797 preparation in progress
+
+Kernel796 returned automatically and its seven fresh disk reports passed audit001.
+CR07 display-end overflow74 ->36 ->74; all26 recovery masks clear. No visual
+observation assumed. This is kernel-context register evidence, not native or
+Windows1.6 desktop proof. Qualified de512bf3, one accepted03:14:46.889801UTC
+launch, one collection; no hook/ordinary launcher/dashboardC change.
+
+Native797 candidate build005 was rejected before hardware:22200-byte raw payload
+exceeds its22016-byte reserve. Preserve original build005 and all its inputs.
+No797 host fixture/XBE/stage/launch. NEXT revise and independently prove layout,
+then direct compiled oracle, complete bridge, CPU, optical and linked bounds
+before any native launch. Existing795/796/prior runtimes CLOSED; source-only reuse.
+All host processes/VMs closed, console1.6 .66 HDMI authenticated dashboard.
+Standing Oct28local photo/reset workflow applies; no Ready prompt needed.
+
 # Test796 LAUNCHED: kernel CR07 display-end overflow
 
 Qualified de512bf3; stage/readback exact. One SITE accepted at 2026-10-29T03:14:46.889801+00:00.
