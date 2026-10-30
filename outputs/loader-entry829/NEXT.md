@@ -1,10 +1,15 @@
-# Loader829 launched; entry-boundary observation pending
+# Loader829 CLOSED PASS: full Xromwell entry admission
 
-One SITE accepted2026-10-30 06:15:26 UTC (200), no retry. Fresh full Xromwell
-entry stops after unchanged admission checks, before native mode transaction.
-Expected green bit report on success, orange refusal, black still unlocalized.
-User observation requested. Deliberate hold; no startup hook or owned host runtime.
-47 linked-entry modeled cases and13 fresh CPU-copy fixtures passed; all closed.
-Qualification and828 closure pushedbdaf8f33. No Windows result or mode proof.
-Next record actual screen/photo, then confirmed power off/on and dashboard auth
-before once-only829 preparation collection. Do not reopen CLOSED826/827/828.
+Photo decodes phase7/error0, seven completed reads, final SMBus status0;
+CR0=60010033, CR3=800, CR4=610, incoming framebuffer03c5c000. This proves
+full startup and unchanged entry admission on the physical1.6, before mode
+transaction. No Windows or mode-transition proof. Explicit user power off/on;
+dashboard authenticated, nine preparation records collected once and audited.
+No hook or owned host runtime. Never relaunch/recollect/runtime-parent829.
+
+Next fresh830: preserve the full826 transaction and admission, add independently
+validated post-transaction phase/error reporting visible when scanout is blank.
+Investigate bounded owned SMC LED reporting; no new probe staged or launched yet.
+Do not borrow firmware state, clear inherited SMBus status or weaken a predicate.
+Dashboard was independently authenticated; routine launches remain authorized.
+Automation remains paused; later direct tonight authorization governs this work.
