@@ -1,3 +1,14 @@
+# Loader826 launched; physical observation pending
+
+One SITE accepted 2026-10-30 05:25:10 UTC (200); no retry. Dashboard and staged
+bytes authenticated before launch. Fresh full Xromwell early-entry diagnostic
+holds before Windows; green pattern or orange refusal report expected. Black
+alone is unlocalized. User asked for screen observation. No startup hook or
+owned host runtime. Qualification pushed9973a958; repository checks passed53309
+tracked files and exact frozen staged sources. No physical success inferred.
+Next record observation; after actual power off/on and authenticated dashboard,
+collect826 staged-byte/directory audit once. Never reopen CLOSED825.
+
 # Loader826 staged and host-qualified; no SITE yet
 
 Fresh full Xromwell early-entry candidate, separate from ordinary launcher.

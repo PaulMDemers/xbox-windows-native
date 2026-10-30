@@ -49,3 +49,6 @@ a fresh continuation integration through FreeLoader and the Windows miniport.
 Frozen imported gpu_preserving.c retains its historical trailing blank line;
 gpu_types.h retains historical mixed indentation. Narrow attributes preserve
 their exact compiled bytes while checking new source normally.
+
+One SITE accepted at2026-10-30 05:25:10UTC with200 response. User observation
+pending; deliberate hold, no Windows and no hook. No repeat launch admitted.
