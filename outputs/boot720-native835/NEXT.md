@@ -1,42 +1,33 @@
-# Fixed720p Windows boot835: built, installation in progress
+# Fixed720p Windows boot835 staged; next ONE launch
 
-User redirected work from mode-setting probes to an actual720p Windows desktop.
-Do not resume mismatch832. Do not run further encoder/timing experiments.
+User stopped the mode-setting campaign and requested a1.6 Windows desktop at720p.
+Do not build/launch mismatch832 or resume encoder/timing probes.
 
-Capacity834 CLOSED PASS: one accepted SITE, automatic dashboard return, report
-collected once. E geometry standard, free5,029,838,848bytes. F is not exposed by
-dashboard FTP;834 kernel query reports a raw2238759936byte partition6, not proof
-of a usable filesystem. No physical C access or existing Windows installation.
+E installation COMPLETE:6563 payload files /703289963bytes, every file read back
+exactly; full journal reconciliation PASS. New roots E:/winnt, E:/documents and
+settings, E:/program files, E:/Applications/XWN16Boot835. No overwrite, deletion
+or console C access. Normal startup leaves Windows running. Five hives parsed;
+Windows C maps standard dashboard E. Existing Windows drivers are unchanged.
 
-835 chain002 built from source-only677 Cromwell and334 stock-E FreeLoader.
-retail64 profile preserves kernel-established1280x720x32/pitch5120; retains
-timings and encoder, changes only scanout base to03700000 with existing9MiB
-Windows reservation. Bypasses AGP reset, GPU PCI reconstruction and destructive
-128M detection. FreeLoader validates exact64M multiboot map before using it.
-Existing Windows framebuffer/bootvid/HAL binaries retained from owned343 package.
-No speculative mode-setting or functional Windows display-driver patch.
+Three fresh boot executables and owner835.json staged and verified. Source/binary
+pins: launch-source-pins001.json, chain002.json, build001.json, stage001.json.
+Loader retains kernel-established1280x720x32/pitch5120, uses03700000 with existing
+9MiB retail64 reservation, skips legacy mode setup/AGP reset/GPU PCI reconstruction
+and destructive128M probing. FreeLoader validates the exact retail64 map.
 
-Host qualification:14 actual retention logic cases,14 map cases, binary call-path
-audit,37 bridge page checks,164177 allocation checks,13 fresh diskless CPU cases
-(all processes closed). Scope is logic and CPU handoff, not physical Windows PASS.
-chain001 compile failure (missing forward declaration) preserved; source002 and
-chain002 correct only that declaration. host005/cpu009 refused stale chain001;
-host006/cpu010 pass against chain002. Frontend build001 passes. Legacy tool field
-inside prep JSON still says831; actual835 output namespace, XBE, sources and owner
-manifest identify this fresh attempt. No test831 runtime files are reused.
+Host checks:14 retention and14 map cases, compiled call-path audit,37 bridge page
+checks,164177 allocation cases,13 fresh CPU fixtures (all closed). Not physical
+Windows evidence. Failed compile/host checks are preserved in host-failures.md.
 
-Active create-only uploader: outputs/boot720-native835/install001.py, private
-C:/xwn835/install001, tool session52966. It is installing6,563 immutable private
-payload files from E:/xwn343/bundle002/stock-e-1080i-001.zip. Readback every file;
-three boot executables withheld until separate qualification/staging. Check
-installation001.json and private writes.jsonl; NEVER restart a failed uploader
-without a fresh reconciliation. No Windows launch has occurred. No startup hook.
-Console must stay at dashboard until upload finishes; do not send another launch.
+Capacity834 CLOSED PASS;831 CLOSED FAIL. Never reopen either.835 has NOT launched
+at this checkpoint. Installer exited0; dashboard authenticated during staging.
+No startup hook or owned host runtime. Automation paused; direct work authorized.
 
-Next: reconcile completed journal with package001, stage freshly built freeldr.sys,
-rosload.exe and kernel frontend default.xbe under E:/Applications/XWN16Boot835,
-readback and pin all. Commit/push public source/evidence, then ONE20s SITE EXEC.
-Poll dashboard; ask for actual screen after about2min if it stays offline. Windows
-normal startup exits and leaves desktop running; no automatic shutdown is expected.
-Record visible desktop separately from durable/normal-shutdown qualification.
-Keep ordinary/protected720p paths and dashboard C untouched. Automation stays paused.
+Next commit/push preparation records then ONE20s SITE EXEC to the unique835 XBE.
+Expected blue preparation, loader text, then Windows desktop; no automatic return
+with normal startup. After about2min obtain actual screen evidence. Offline FTP
+does not prove failure or Windows boot. Preserve state and never relaunch835.
+On dashboard return authenticate and collect fresh xwn-boot835 reports once.
+Legacy JSON tool field says831; namespace/XBE/owner pins identify fresh835.
+Prefer normal Windows restart if desktop works; power off/on only for a stuck
+pre-Windows attempt. Preserve ordinary/protected720p and dashboard C.
