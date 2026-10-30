@@ -52,3 +52,8 @@ their exact compiled bytes while checking new source normally.
 
 One SITE accepted at2026-10-30 05:25:10UTC with200 response. User observation
 pending; deliberate hold, no Windows and no hook. No repeat launch admitted.
+
+CLOSED FAIL: user observed black holding. Power off/on followed by authenticated
+dashboard collection passed unchanged staged bytes and unrelated directories.
+No native memory result or Windows evidence. Entry inherited layout remains
+unproven:825 explicitly selected720p,826 did not. Fresh read-only probe next.

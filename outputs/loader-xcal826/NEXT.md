@@ -1,5 +1,8 @@
-Await physical826 observation. Do not repeat SITE. Green pattern establishes
-early Xromwell transition only; orange report needs photo decoding; black alone
-is unlocalized. After actual power off/on, authenticate dashboard and collect
-826 staged-byte/directory audit once. No hook or owned host runtime. Continue
-toward Windows only with a fresh qualified attempt based on the actual result.
+# Loader826 CLOSED FAIL: black-screen hold, successful post-power-cycle audit
+
+User observed black holding; no initial stage observed. Power off/on confirmed,
+dashboard authenticated and staged-byte/directory audit collected once passed.
+No hook or owned host runtime. Failure is not localized; no Windows result.
+Do not relaunch/recollect826. Next fresh kernel read-only entry-layout probe
+checks the unproven assumption that the dashboard supplies the720p layout which
+825 explicitly established. It will not select a mode, draw or enter native code.
