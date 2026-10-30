@@ -1,3 +1,49 @@
+Stage836 complete: eight fresh owned boot files read back; nine installed Windows files unchanged. Next ONE launch after committing evidence. No hook or owned host runtime.
+
+# Boot836 fixed720p FATX root fix qualified; next create-only stage and one launch
+
+Boot835 CLOSED FAIL at FreeLoader SYSTEM.ALT error, before NT kernel. Photo and
+preparation collected once; all11 critical files unchanged. Dashboard authenticated
+12:02:50 UTC. No owned hook/runtime. Never relaunch/recollect/runtime-parent835.
+
+Concrete loader defect: FatBufferDirectory treated FATX root as one fixed cluster.
+E had1071 live entries (256 fit its16KiB first cluster). WINNT was newly appended;
+LIST ordering is not a raw slot measurement, so physical causality remains inferred.
+Actual C regression reproduces truncation, patched fragmented-root cases pass.
+836 follows FATX cluster1 chain, preserving existing volume layout, and refuses
+zero-size directory buffer after chain-count failure. No timing/encoder change.
+
+Fresh source-only exports/source001.json; fatx-root.patch; root001.json (before2,
+after9 cases). Chain002, retention/map14+14, page37/allocation164177, diskless CPU13
+passed; all fixture VMs closed. Fresh nxdk frontend build001 passed. Pins frozen
+launch-source-pins001.json. Existing Windows baseline hives/drivers/startup untouched.
+
+Next physical.py stage (new E:/Applications/XWN16Boot836), exact readback, commit,
+then ONE SITE via physical.py launch,20-second bound. Poll read-only after2min and
+request actual screen. No retries after acceptance/uncertainty. On dashboard return
+no hook to remove, collect836 once. Do not mistake FTP absence for Windows success.
+Old automation remains paused; direct user Windows720p work authorized.
+
+# Boot835: FreeLoader SYSTEM.ALT error; awaiting dashboard return
+
+Photo screen001.json shows "Could not load SYSTEM.ALT hive!" with a readable
+dialog over repetitive green glyphs. The fixed720p path reached Windows hive
+loading, but NT kernel entry and desktop are not proved. Primary SYSTEM failure
+is unresolved; alternate failure does not establish a missing/corrupt primary.
+
+One launch only, accepted 2026-10-30T11:45:56.944843+00:00. No retry. User was
+asked to power off/on and leave UnleashX; confirmation remains pending. Do not
+launch until dashboard is independently authenticated. No hook was installed.
+After return, authenticate owner, collect835 preparation once, then audit the
+installed SYSTEM against package/stage hashes before any repair. Preserve failed
+attempt and photo privately. No owned host runtime. Automation remains paused.
+
+Continue fixed720p Windows boot diagnosis only. Mode-setting campaign remains
+stopped. Existing Windows drivers unchanged; installation6563 files read back.
+Source-only investigation: actual loader includes separate hive initialize/check
+dialogs. Inspect primary file open/read and boot path; do not blindly add ALT.
+Boot835 remains OPEN pending collection; never relaunch this attempt.
+
 # Fixed720p Windows boot835 launched once; screen observation pending
 
 One SITE accepted at 2026-10-30T11:45:56.944843+00:00. No retry. Windows boot intended.

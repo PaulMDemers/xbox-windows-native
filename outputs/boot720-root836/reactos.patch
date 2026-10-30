@@ -1,0 +1,44 @@
+--- a/boot/freeldr/freeldr/freeldr.c
++++ b/boot/freeldr/freeldr/freeldr.c
+@@ -181,7 +181,7 @@
+     /* Independent launcher and Windows root both live on stock partition 1. */
+     if (strcmp(FrLdrBootPath, "multi(0)disk(0)rdisk(0)partition(1)") != 0 ||
+         !NT_SUCCESS(RtlStringCbCatA(FrLdrBootPath, sizeof(FrLdrBootPath),
+-                                   "\\Applications\\XWN16Boot835")))
++                                   "\\Applications\\XWN16Boot836")))
+         XwnStop("XWNFAIL: unexpected FATX E-boot launcher device");
+ #elif defined(XBOX_NATIVE_FATX_IO_PREFLIGHT) || defined(XBOX_NATIVE_FATX_NT5_PREFLIGHT)
+     /* The Xromwell launcher passes the FATX device, not the image directory. */
+--- a/boot/freeldr/freeldr/lib/fs/fat.c
++++ b/boot/freeldr/freeldr/lib/fs/fat.c
+@@ -466,13 +466,12 @@
+ 
+     TRACE("FatBufferDirectory() DirectoryStartCluster = %d RootDirectory = %s\n", DirectoryStartCluster, (RootDirectory ? "TRUE" : "FALSE"));
+ 
+-    /*
+-     * For FAT32, the root directory is nothing special. We can treat it the same
+-     * as a subdirectory.
+-     */
+-    if (RootDirectory && Volume->FatType == FAT32)
+-    {
+-        DirectoryStartCluster = Volume->RootDirStartCluster;
++    /* FAT32 and FATX roots are cluster chains, like subdirectories.
++     * The existing FATX layout places cluster 1 at RootDirSectorStart;
++     * reading only RootDirSectors hides entries beyond its first cluster. */
++    if (RootDirectory && (Volume->FatType == FAT32 || ISFATX(Volume->FatType)))
++    {
++        DirectoryStartCluster = ISFATX(Volume->FatType) ? 1 : Volume->RootDirStartCluster;
+         RootDirectory = FALSE;
+     }
+ 
+@@ -504,6 +503,10 @@
+     {
+         *DirectorySize = FatCountClustersInChain(Volume, DirectoryStartCluster) * Volume->SectorsPerCluster * Volume->BytesPerSector;
+     }
++
++    /* A failed chain read must not allocate a header-only buffer. */
++    if (*DirectorySize == 0)
++        return NULL;
+ 
+     //
+     // Attempt to allocate memory for directory buffer
