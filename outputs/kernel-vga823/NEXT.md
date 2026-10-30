@@ -1,1 +1,1 @@
-823 qualified, staged/read back; one SITE next, then bounded return and single collection. No hook.
+CLOSED. No relaunch/recollection/runtime parent. Next fresh824 tests palette PAS access with exact checks retained.

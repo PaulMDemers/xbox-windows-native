@@ -1,0 +1,1 @@
+Exact824 stage/readback and host qualification complete. One launch only, then authenticated dashboard, one collection and actual-result audit. Require user visible-pattern observation if software passes. No native or Windows proof.

@@ -1,3 +1,18 @@
+# Kernel823 CLOSED: attribute palette0 write did not take effect
+
+Phase7/error11; first failing VGA read bank3,index0,actual0,expected1. All148
+encoder transactions complete; sequencer/graphics checks passed. Dashboard
+authenticated,7 records collected once,audit001 passed,flags286/086/286 restored.
+No hooks/host runtimes. Fresh824 tests documented PAS0 palette access while
+blank, with all expected values unchanged; prior host model lacked ownership.
+Windows/native mode remain unproved. Never relaunch/recollect CLOSED818-823.
+
+# Kernel823 launched: first VGA mismatch recorder
+
+One SITE accepted04:05:15UTC, no retry. No changed hardware access or predicate;
+records first failing bank/index/actual/expected. Automatic return expected.
+No hook or host runtime. Next authenticate and collect823 once.822 CLOSED.
+
 # Kernel822 CLOSED: geometry and encoder passed, VGA readback failed
 
 Phase7/error11;148/148 encoder transfers and144 table delays completed. No
