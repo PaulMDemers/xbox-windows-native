@@ -1,3 +1,12 @@
+# Native825 launched; visible result pending
+
+One SITE accepted 2026-10-30 04:36:35 UTC; no retry. Native probe deliberately
+holds after entry. More than two minutes elapsed; user asked for actual screen
+observation. No dashboard return or native completion inferred. No startup hook.
+All owned host CPU fixtures closed. Kernel824 user correction "Showed*" confirms
+visible pattern and automatic return. Next record825 observation, authenticate
+dashboard after power-cycle, collect preparation once and audit. No Windows proof.
+
 # Native825 staged and qualified; no SITE yet
 
 Fresh825 retains818 native identity framebuffer and bridge contracts; applies
