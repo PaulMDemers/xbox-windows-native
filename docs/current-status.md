@@ -1,3 +1,5 @@
+838 screen requested after two minutes. Dashboard poll001 timed out; Windows progress/result unknown. No further launch. See awaiting-screen001.json.
+
 # Test838 launched once; awaiting Windows screen
 
 Accepted 2026-10-30T15:13:16.848664+00:00. No retry. Fixed720p boot with isolated FATX
