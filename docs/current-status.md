@@ -1,3 +1,26 @@
+# Loader829 entry-only boundary staged; no SITE yet
+
+828 CLOSED FAIL after verified720p handoff_armed;9 prep reports audited once.
+Fresh829 retains exact828 bridge and admission checks, changes full Xromwell
+entry to report and hold BEFORE mode transaction. Green phase7 means entry
+admitted; orange carries refusal; black remains unlocalized before report.
+47 linked-entry models,37 page cases,164177 allocation cases and13 fresh CPU
+copy/refusal fixtures pass; all VMs closed. cpu001 failed due mechanical offset
+rename and stale fixture size; retained. host003/cpu002 superseded before run.
+Stage/readback passed; no hook/owned runtime. Next one routine-authorized SITE829,
+observe status/report; collect once after actual power off/on and dashboard auth.
+No Windows desktop claim. Automation remains paused; direct tonight work authorized.
+
+# Loader828 CLOSED FAIL; verified720p preparation, native outcome unlocalized
+
+User observed black. After confirmed power off/on,9 preparation files collected
+once and audited:1280x720 pitch5120,900 framebuffer pages, allocation/alias
+checks and copies pass, last saved handoff_armed. No native result words.
+No hook/host runtime; dashboard authenticated. Do not relaunch/recollect828.
+Next fresh829 stops after full Xromwell entry admission, before mode-changing
+transaction, reports actual context on verified incoming framebuffer. This
+separates startup/admission from blanked mode failure. No Windows proof.
+
 # Loader828 launched; physical observation pending
 
 One SITE accepted2026-10-30 05:53:30 UTC (200); no retry. New kernel720p
