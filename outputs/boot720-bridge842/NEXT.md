@@ -1,3 +1,19 @@
+# Test842 launched once; awaiting Windows screen
+
+SITE accepted at 2026-10-30T16:35:30.214789+00:00. No retry. Use physical003.py ONLY.
+Fixed720p retained; existing Windows AGP bridge initialization restored and
+critical window/bus/IRQ readback required before Windows. GPU PCI setup and
+AGP reset remain skipped; no encoder/CRTC timing change. Display miniport
+unchanged. Fresh SYSTEM baseline restored with exact readback. Source-only
+reuse, no failed runtime parent. Preparation4cf51912 pushed. No hook or owned
+host runtime; all CPU fixtures closed. Old automation remains paused.
+
+After2min obtain screen. If desktop leave running. If blue photograph LOAD842
+and XWN842; if loader text capture it. Capture evidence before user power off/on,
+then authenticate dashboard and collect842 once. No dashboard return assumed.
+841 CLOSED: VideoPort loaded, no observed miniport request; no relaunch or
+recollection. Direct user request remains Windows desktop at fixed720p.
+
 # Test842 qualified: restored Windows AGP bridge setup, fixed720p retained
 
 841 CLOSED: VideoPort loaded, no miniport open/read/image notification. Existing
