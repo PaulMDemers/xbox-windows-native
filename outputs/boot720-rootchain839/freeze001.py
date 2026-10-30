@@ -1,0 +1,18 @@
+"""Freeze qualified839 sources; isolated driver, ordinary retained720p boot."""
+import hashlib,json
+from pathlib import Path
+K=Path(__file__).resolve().parent;W=K.parents[1];A=W/'outputs/boot720-fatpage838'
+read=lambda p:json.loads(p.read_text());sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+assert read(A/'closed001.json')['state']=='CLOSED'
+records=['source001','baseline001','root001','fatpage002','driver002','driver-host002','driver-review001','qualify002','chain002','host006','cpu-build010','cpu-run010','build001']
+for n in records[2:]:assert read(K/(n+'.json'))['passed']
+assert read(K/'cpu-run010.json')['closed']
+assert read(K/'source001.json')['retention_unchanged_sha256']==read(A/'source001.json')['retention_unchanged_sha256']
+assert read(K/'source001.json')['loader_fat_unchanged_sha256']==read(A/'source001.json')['loader_fat_unchanged_sha256']
+pins={p.name:sha(p) for p in K.iterdir() if p.is_file() and (p.suffix in ['.py','.c','.h','.S','.ld','.patch'] or p.name in ['Makefile','.gitattributes']+[n+'.json' for n in records])}
+out=K/'launch-source-pins001.json';assert not out.exists();out.write_text(json.dumps(pins,indent=2)+'\n')
+note='# Fresh839 qualified: FATX root-chain size/traversal and label EOF bound\n\n838 CLOSED after photo E8380001(27,4000,40,4000), site39 ReadVolumeLabel.\nRoot FCB was sized to one16KiB cluster. Earlier FAT-table page fix got past the\n837 failure. User power off/on confirmed; dashboard authenticated; collected\nonce and cold audited. Ten installed critical files/logs unchanged. No desktop.\nNever relaunch/recollect/runtime-parent838; source-only reuse with exact pins.\n\n839 counts the FATX root chain at mount with bounded cycle/range/overflow checks,\nstores its full allocation size separately from physical layout, and sizes its\nFCB/cache accordingly. Root cluster1 uses FAT chain traversal and its correct\nsector address; FAT12/16 fixed-root behavior remains. Cached volume-label scan\nstops at EOF even if no end marker. Existing FATX root-growth refusal remains;\nthis is existing-chain access, not a root-extension implementation. Metadata\npage-window fix and diagnostic guard retained. Read-only count and no on-disk\nformat changes. Isolated loader driver override only; installed Windows unchanged.\n720p retention and FreeLoader root fix source bytes unchanged.\n\nHost actual C:106 root-chain/EOF cases including fragmented chains, label beyond\nfirst cluster, full directory without end marker, loops, invalid links, failed\nreads, size overflow, and unchanged FAT16 dispatch. Old code reproduces exact838\nstop. FAT page1429 cases, diagnostic62 cases, import/residency, retention/map,\ncopy/memory checks and13 diskless CPU fixtures passed; all VMs closed. Host\nsubstitutes do not qualify NT runtime/persistence. Source cleanup reviewed.\n\nNext stage unique E:/Applications/XWN16Boot839, exact readback and one SITE20s.\nNo hook or host runtime. After2min obtain screen/stop and XWN839 ring. If desktop\nleave running. If held, capture evidence then power off/on; authenticate dashboard\nand collect once. Ordinary startup intact; old automation paused.\n'
+(K/'NEXT.md').write_text(note)
+(A/'NEXT.md').write_text('# Boot838 CLOSED: root volume-label EOF overrun\n\nSee screen001.json, collection001.json, audit001.json, closed001.json.\nNo relaunch/recollection. Next: ../boot720-rootchain839/NEXT.md\n')
+for p in [W/'outputs/engineering-notes/CONTINUATION.md',W/'outputs/engineering-notes/STATUS.md',W/'docs/current-status.md']:p.write_bytes(note.encode()+b'\n'+p.read_bytes())
+print('839 exact launch inputs frozen; no launch requested')

@@ -1,0 +1,153 @@
+{
+  "passed": true,
+  "space": {
+    "minimum_free_gib": 20.1,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c/xwn839",
+        "free_bytes": 42659479552
+      },
+      {
+        "free_bytes": 42659479552,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "physical_access": false,
+  "commands": [
+    [
+      "as",
+      "--32",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/boot720-rootchain839/bridge.S",
+      "-o",
+      "/mnt/c/xwn839/host006/bridge.o"
+    ],
+    [
+      "ld",
+      "-m",
+      "elf_i386",
+      "-Ttext=0",
+      "--entry=bridge_start",
+      "/mnt/c/xwn839/host006/bridge.o",
+      "-o",
+      "/mnt/c/xwn839/host006/bridge.elf"
+    ],
+    [
+      "objcopy",
+      "-O",
+      "binary",
+      "--only-section=.text",
+      "/mnt/c/xwn839/host006/bridge.elf",
+      "/mnt/c/xwn839/host006/bridge.bin"
+    ],
+    [
+      "nm",
+      "-n",
+      "/mnt/c/xwn839/host006/bridge.elf"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-shared",
+      "-fPIC",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=undefined",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/boot720-rootchain839/page.c",
+      "-o",
+      "/mnt/c/xwn839/host006/page.so"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-shared",
+      "-fPIC",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=undefined",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/boot720-rootchain839/plan.c",
+      "-o",
+      "/mnt/c/xwn839/host006/plan.so"
+    ],
+    [
+      "python3",
+      "-B",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/boot720-rootchain839/plan_test.py",
+      "/mnt/c/xwn839/host006"
+    ]
+  ],
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "firmware": {
+    "sha256": "cdd2e7b51c8f8b6c23457074c647e64d29a5cf696de664e2497bb9ab6602069c",
+    "bytes": 282556,
+    "source_only_reuse": true
+  },
+  "bridge_symbols": {
+    "bridge_start": 0,
+    "bridge_flat": 264,
+    "bridge_post": 304,
+    "copy_source_safe": 526,
+    "copy_source_sum": 533,
+    "copy_target_sum": 586,
+    "bridge_hold": 623,
+    "bridge_fault": 627,
+    "bridge_check": 631,
+    "bridge_code_end": 677,
+    "bridge_end": 2304,
+    "__bss_start": 4096,
+    "_edata": 4096,
+    "_end": 4096
+  },
+  "page_cases": 37,
+  "sources": {
+    "bridge.S": "7bcb7f8715a60f0c80322d615be62b3a236678b6bfa89a568c39c74790c322ee",
+    "build-chain002.py": "20a4671a0935922277c15039e57bf3a11e735d11761d6de9496bdbdb5e0e5a78",
+    "build-driver002.py": "56634d0565c43c3821486279978aefc7d06898e96e5961a993af2b42e4c2f803",
+    "build001.py": "5200e8e7d686ba64e89bd89a56439323f57aeb8d9b1b0a977a19744669626343",
+    "cache839.c": "9b1212d4fc33afe0313b71a6f4b40e8b2de2b1783cc4626f048a23bd8f5cd6fe",
+    "cache839.h": "3b7f81de701d64adfbd15c84d26fbeeaa650f02e109a4749be717e9c1f4f36ef",
+    "cpu005.py": "2202f4c102221b3e9e7b8fc141882fa08e962d0ed95b56c4bd1f792a0918f33e",
+    "fixture.S": "d96452bed6288c401fe98ce97f93d59db286725aacc7ad7cc52fec72c47e0a1e",
+    "freeze001.py": "ca9ad08c38c2f6e0684c00677be632bfebb5314b7e068c6472e6cae21c2fad4c",
+    "host006.py": "0e97cc867d23131aa239a3d7cb484fe9034e763255f93b2ede7491dfc84841ce",
+    "layout.c": "3c1a535fb96cfd806585849404c15e8efe683ce2b5c86f5a2ff68e4c0458470b",
+    "layout.h": "391c84922a83b5df4c9d9261d1f32a5bd9060bd4bc1600073a1761ce76345a29",
+    "main.c": "cfd015c093a5f04fe84ec4cc0f525a0026880deab9f37591781092d0d93e3133",
+    "page.c": "32c08203da5e8fc0093b78e3b0e475a7628540e55b6178a19639e0004a106caf",
+    "page.h": "f216e2270986e916e91ac9f08d93169260661c40412e1dda9ee003824d60b246",
+    "physical.py": "1ceefda1214841a50d6e4fa4c19527389aa9373fbe57741fea6bc519436311f2",
+    "plan.c": "43867ec11fb400fb10ad322a209534e5fe40bd51e43f27643a19a467492a683a",
+    "plan.h": "403e25b34a77579baf37ff46cf22c3b867053d3866ffe48ee14aa35a20cdf143",
+    "plan_test.py": "c3455ada5b02c4f2161331fb8da9a9563910e2c24d9e5bb5b0d272314c510a57",
+    "prepare-source.py": "b93381094bb3da0236bf3cba0684c8424004e7ea8a6eeef4de943fde5c3d4375",
+    "qualify-chain.py": "3703cd95143764c2eef8bd21ae21b73478d40e81f875b073c419ee6321dd65df",
+    "qualify-chain002.py": "9ec4253114fb6abd0debea182812c562beffd4ae0fcbaf129e8790c879acc9d2",
+    "qualify-driver002.py": "d6530bc66d35524852997b151441f74ec181112000ca774951b2479e0a24226b",
+    "qualify-fatpage002.py": "47c21a49b3510aefef5dff519859797f563378d883d9d774ee107fc951282a38",
+    "qualify-root.py": "42dc95e7f2bf3b1f5e741cd0e59e53fe8b838103f38c3a8a97efb5b90fe48ff9",
+    "retain835.c": "3719cc6d8069172e8efedefde97614188e413ca9222824463b82ad17ed5d55ed",
+    "review-driver.py": "d43b3df6de796240245d77c6b7f4460712d6f468570bb95e82acdaf394636fbd",
+    "root839.c": "5934dc3a09e2148a8268d40206513b315b66d643dc7f027ee74aca9114930b97"
+  },
+  "files": {
+    "bridge.bin": "6ad841e2cfeddd586d002463fdf02746ac51029468e5fd56e858d4df3ee5b843",
+    "bridge.elf": "ce9a6bffe2b050c536074268398774e21db9a4bcc289b3e97a4d1b5014e49b30",
+    "bridge.o": "cb1feda595ac65f41f5e7dca6dbea8e03266d440efd4467a901c065c3325c8ed",
+    "build.log": "d7c681bf9a27f6b5d71eab25619bc68c4de476f574420051710a6259ae5f141a",
+    "embed.h": "f464909626b8578547bf08dc6e46c3e647d380e847d946ddddd1a4f7a94b95fc",
+    "page.so": "be034ae99eb2607f112bbffcd3e8f35da042c1551e734a15f52c85aee72c9c9b",
+    "plan.so": "e37443efcc49e19fff2d9da21bfd59ad1d192012aeaf184d9614f70db9c0ebdf",
+    "symbols.txt": "a843054bae78cf0f99bec920f822b1883274a109d3e7822c94449cbf88ca7f33",
+    "synthetic.bin": "a3911d86b82165894a524707fbe2c5252b6e443fef72f95e5c0553ef698432a8",
+    "dual/page.bin": "d17b2381a3423db0d36baaa34bd5ad4bd08427e16cadc58d6c2129c590362037",
+    "identity/page.bin": "d17b2381a3423db0d36baaa34bd5ad4bd08427e16cadc58d6c2129c590362037",
+    "relocated/page.bin": "47b5ec3de75b38ca5553756583c0c89fa5a983c8fb094c71f0e4bf04836110cf",
+    "scatter/page.bin": "d17b2381a3423db0d36baaa34bd5ad4bd08427e16cadc58d6c2129c590362037"
+  },
+  "utc": "2026-10-30T15:28:03.296999+00:00"
+}

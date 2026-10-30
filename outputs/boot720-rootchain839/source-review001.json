@@ -1,0 +1,8 @@
+{
+  "scope": "Source review before isolated839 physical test",
+  "cleanup": "Root-size helper runs before volume FCB/list insertion; mount failure tears down FAT cache/FCB. FAT FCB destructor skips parent list removal.",
+  "layout": "FatXRootSize separate from FatInfo dataStart/rootStart/rootDirectorySectors; regular-file cluster numbering unchanged.",
+  "io": "Four FirstCluster==1 fast paths restricted to non-FATX; actual chain/sector helpers tested; full NT paging IO remains physical qualification.",
+  "growth": "Existing FATX root extension refusal and FileSize write guard preserved; access to existing root chain only.",
+  "audit_query_failure": "One WSL grep command containing unquoted parenthesis failed at shell parse; read-only query repeated without parentheses."
+}

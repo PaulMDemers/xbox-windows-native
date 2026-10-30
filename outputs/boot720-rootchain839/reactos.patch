@@ -1,0 +1,22 @@
+--- a/boot/freeldr/freeldr/freeldr.c
++++ b/boot/freeldr/freeldr/freeldr.c
+@@ -181,7 +181,7 @@
+     /* Independent launcher and Windows root both live on stock partition 1. */
+     if (strcmp(FrLdrBootPath, "multi(0)disk(0)rdisk(0)partition(1)") != 0 ||
+         !NT_SUCCESS(RtlStringCbCatA(FrLdrBootPath, sizeof(FrLdrBootPath),
+-                                   "\\Applications\\XWN16Boot838")))
++                                   "\\Applications\\XWN16Boot839")))
+         XwnStop("XWNFAIL: unexpected FATX E-boot launcher device");
+ #elif defined(XBOX_NATIVE_FATX_IO_PREFLIGHT) || defined(XBOX_NATIVE_FATX_NT5_PREFLIGHT)
+     /* The Xromwell launcher passes the FATX device, not the image directory. */
+--- a/boot/freeldr/freeldr/ntldr/winldr.c
++++ b/boot/freeldr/freeldr/ntldr/winldr.c
+@@ -615,7 +615,7 @@
+     // It's not loaded, we have to load it
+     RtlStringCbPrintfA(FullPath, sizeof(FullPath), "%s%wZ", BootPath, FilePath);
+ 
+-    /* Isolated838 diagnostic: only this boot uses its private FATX image.
++    /* Isolated839 diagnostic: only this boot uses its private FATX image.
+      * Keep the installed registry, service name and Windows image untouched. */
+     if (_stricmp(DllName, "xwnfatx.sys") == 0)
+     {

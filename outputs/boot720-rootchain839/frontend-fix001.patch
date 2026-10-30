@@ -1,0 +1,20 @@
+--- a/main.c
++++ b/main.c
+@@ -81,7 +81,7 @@
+ {
+     static const unsigned offsets[] = {
+         0x600800, 0x680800, 0x680804, 0x68080c, 0x680810, 0x680818,
+-        0x680820, 0x680824, 0x68082c, 0x680830, 0x680839,
++        0x680820, 0x680824, 0x68082c, 0x680830, 0x680838,
+         0x680630, 0x68084c, 0x680880, 0x6808c4,
+         0x600804, 0x680508, 0x68050c, 0x100200
+     };
+@@ -97,7 +97,7 @@
+     for (unsigned i = 0; i < sizeof(offsets)/sizeof(offsets[0]); ++i)
+         append("%s[%u,%lu]", i ? "," : "", offsets[i], (unsigned long)VIDEOREG(offsets[i]));
+     append("]},\n");
+-    return VIDEOREG(0x680839) == 1279 && VIDEOREG(0x680818) == 719 &&
++    return VIDEOREG(0x680838) == 1279 && VIDEOREG(0x680818) == 719 &&
+            8 * (((crtc[1] & 0xe0) << 3) | crtc[0]) == 5120 && (crtc[2] & 15) == 3;
+ }
+ 
