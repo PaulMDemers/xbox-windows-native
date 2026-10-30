@@ -1,0 +1,17 @@
+{
+  "decl": " uint32_t mc_before[10],mc_target[4],mc_attempted,mc_after[40],mc_undo[40],mc_cleanup_mask,mc_forward_mask;\n",
+  "helpers": "/* Pinned704 final four geometry controls, in source order. All writes\n * remain blanked, followed by own saved-value recovery in reverse order.\n * Strict720p-derived baseline admission; an unexpected value refuses writes.\n * CR25/28/2D are same-value controls on this admitted baseline. */\nstatic const uint8_t mc_regs[10]={0x1a,0x25,0x28,0x2d,0x13,0x19,0x17,0x18,7,9};\nstatic const uint8_t mc_baseline[10]={0,0x10,0x83,0,0x68,0x30,0xe3,0xff,0x3e,0x40};\n__attribute__((noinline)) int controls_forward814(struct result814 *o)\n{\n o->forward_status=0x81450;\n for(unsigned j=0;j<10;++j){o->mc_before[j]=cr(mc_regs[j]);if(o->mc_before[j]!=mc_baseline[j])o->mc_forward_mask|=1u<<j;}\n if(o->mc_forward_mask)return 0;\n o->mc_target[0]=4;o->mc_target[1]=0x10;o->mc_target[2]=0x83;o->mc_target[3]=o->mc_before[3]&0xe0;\n for(unsigned i=0;i<4;++i){\n  o->forward_status=0x81450+i;o->mc_attempted=i+1;cw(mc_regs[i],(uint8_t)o->mc_target[i]);\n  for(unsigned j=0;j<10;++j){\n   uint32_t v=cr(mc_regs[j]);o->mc_after[10*i+j]=v;\n   if(v!=(j<=i?o->mc_target[j]:o->mc_before[j]))o->mc_forward_mask|=1u<<j;\n  }\n  if(o->mc_forward_mask)return 0;\n }\n return 1;\n}\n__attribute__((noinline)) void controls_restore814(struct result814 *o)\n{\n for(unsigned n=o->mc_attempted;n>0;--n){\n  unsigned i=n-1;cw(mc_regs[i],(uint8_t)o->mc_before[i]);\n  for(unsigned j=0;j<10;++j){\n   uint32_t v=cr(mc_regs[j]);o->mc_undo[10*i+j]=v;\n   if(v!=(j<i?o->mc_target[j]:o->mc_before[j]))o->mc_cleanup_mask|=1u<<j;\n  }\n }\n}\n",
+  "init": " for(unsigned j=0;j<40;++j)o->mc_after[j]=o->mc_undo[j]=0xffffffff;\n",
+  "result_words": 917,
+  "source_only": true,
+  "parent": {
+    "main.c": "43112711d1ac7bcdf92f947712d58e4b71c791e3983b5b8c0c5056b05bd0e0a7",
+    "probe.c": "855d693de76bf63dee9c6f7768eaeefb6ad20d80346428ac0d3a9a5702a84089",
+    "probe.h": "35b17f8a51374465af3de3c26311fae0f61929cb43e6cac3213bfe2fff8a42e6",
+    "layout.c": "4fa64546cb8c9c6ab25b65ed8fed3099e56e37bda42ce81fb83dee3d52005129",
+    "layout.h": "bbf7e8d6397d56e5788fd15cc6e6eb04a29defbec540207e561cbbcf07f12b61",
+    "Makefile": "496fcf9a53baeae2e044accc0c4fde6286fb3114da956a21092738ed52131990",
+    "build.py": "6783c2743e5ab63a4c9bda178fc0d278b0acc9cc2a19aa26b5664883064b2b81"
+  },
+  "recipe_sha256": "6336794d817f0b801db939b2611c1832736acad598e71437f9ca87bc797a345b"
+}
