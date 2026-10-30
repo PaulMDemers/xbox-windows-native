@@ -1,3 +1,29 @@
+# Kernel819 CLOSED: phase5 geometry check failed before encoder
+
+Actual disk result: phase5,error9; width720,height480,pitch2880, owned framebuffer
+start, format83/interlaceFF read back. Encoder attempted0, output-enable0;
+failure reblanked and firmware returned. Incoming flags286 restored exactly,
+masked086 during the transaction. Seven records collected once, audit passed
+for evidence integrity; physical transaction FAILED. No native/Windows claim.
+
+Next fresh820 adds read-only raw register snapshots to identify the particular
+geometry/setup comparison. No functional gate is weakened. Ordinary720p and
+startup unchanged; no hook/host process. Never recollect/relaunch CLOSED818/819.
+
+# Kernel819 launched once: full transaction recorder
+
+SITE accepted2026-10-30T03:19:05Z after authenticated dashboard and exact stage
+readback. Full818 transaction in kernel context with checked high alias and IF
+restoration; saves40 result words, phase/error, then firmware return. Expected
+success pattern15s; failures may stay black until reboot. No Windows or hook.
+No owned host VM/process. Never retry accepted819. Native818 CLOSED black with
+unknown phase; its nine preparation records and audit are preserved.
+
+Next: authenticate dashboard return, collect819 once, audit actual phase/error
+and IF restoration. Kernel results do not establish native or Windows support.
+If offline beyond two minutes, report held state and request power-off/on.
+User renewed tonight work; expired automation remains PAUSED.
+
 # Native818 CLOSED: black screen after handoff; phase unknown
 
 User explicitly powered off/on and returned to UnleashX. Dashboard002
