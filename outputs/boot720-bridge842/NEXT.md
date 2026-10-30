@@ -1,3 +1,5 @@
+842 screen requested after >2min. Dashboard poll001 timed out; Windows result unknown. Await user screen; no launch or collection. Use physical003.py. No hook or owned host runtime. Preparation4cf51912 and launch eb600852 pushed.
+
 # Test842 launched once; awaiting Windows screen
 
 SITE accepted at 2026-10-30T16:35:30.214789+00:00. No retry. Use physical003.py ONLY.
