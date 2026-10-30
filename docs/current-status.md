@@ -1,3 +1,9 @@
+# Test843 reached the Windows 2000 desktop with working mouse input
+
+The user confirmed the desktop and mouse are working on the physical Xbox 1.6. The mouse was connected before launch. This is the second desktop boot with the fixed 720p profile, following a fresh restoration of the baseline registry for 843.
+
+843 remains open at the desktop. Next, request Shut down from Windows and record the observed final screen or power state. After power-off, turn the Xbox on to UnleashX, authenticate the dashboard independently, then collect once with physical004.py and audit the cold files. No hook or owned host runtime. See outputs/boot720-input843/desktop-input001.json.
+
 # Test843 launched once: waiting for desktop and mouse input
 
 Single SITE accepted 2026-10-30T17:07:27.515955+00:00. Mouse left connected before boot per user. Preparation 6c4188b7 pushed. Windows expected to stay running; desktop, input and shutdown not yet verified. No hook or owned host runtime. Do not retry or collect while running. Use physical004.py only. Once at desktop, user can move mouse and open Start to test both movement and click. If ineffective, leave Windows running and report exactly what is visible; if successful, normal Windows shutdown and independent dashboard authentication are the next separate checks. Test842 remains CLOSED, with unclean dashboard return.
