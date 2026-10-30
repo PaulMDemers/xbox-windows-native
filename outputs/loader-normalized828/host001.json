@@ -1,0 +1,128 @@
+{
+  "passed": false,
+  "space": {
+    "minimum_free_gib": 20.1,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c",
+        "free_bytes": 48502636544
+      },
+      {
+        "free_bytes": 48502571008,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "physical_access": false,
+  "commands": [
+    [
+      "as",
+      "--32",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/loader-normalized828/bridge.S",
+      "-o",
+      "/mnt/c/xwn828/host001/bridge.o"
+    ],
+    [
+      "ld",
+      "-m",
+      "elf_i386",
+      "-Ttext=0",
+      "--entry=bridge_start",
+      "/mnt/c/xwn828/host001/bridge.o",
+      "-o",
+      "/mnt/c/xwn828/host001/bridge.elf"
+    ],
+    [
+      "objcopy",
+      "-O",
+      "binary",
+      "--only-section=.text",
+      "/mnt/c/xwn828/host001/bridge.elf",
+      "/mnt/c/xwn828/host001/bridge.bin"
+    ],
+    [
+      "nm",
+      "-n",
+      "/mnt/c/xwn828/host001/bridge.elf"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-shared",
+      "-fPIC",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=undefined",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/loader-normalized828/page.c",
+      "-o",
+      "/mnt/c/xwn828/host001/page.so"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-shared",
+      "-fPIC",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=undefined",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/loader-normalized828/plan.c",
+      "-o",
+      "/mnt/c/xwn828/host001/plan.so"
+    ],
+    [
+      "python3",
+      "-B",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-visible825/plan_test004.py",
+      "/mnt/c/xwn828/host001"
+    ]
+  ],
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "firmware": {
+    "sha256": "c838c1678fc08c4e2be92226ae84c67fc65d5c35114f57f65e42202d82cebd22",
+    "bytes": 297468,
+    "source_only_reuse": true
+  },
+  "bridge_symbols": {
+    "bridge_start": 0,
+    "bridge_flat": 264,
+    "bridge_post": 304,
+    "copy_source_safe": 526,
+    "copy_source_sum": 533,
+    "copy_target_sum": 586,
+    "bridge_hold": 623,
+    "bridge_fault": 627,
+    "bridge_check": 631,
+    "bridge_code_end": 677,
+    "bridge_end": 2304,
+    "__bss_start": 4096,
+    "_edata": 4096,
+    "_end": 4096
+  },
+  "failure": "AssertionError()",
+  "sources": {
+    "bridge.S": "7bcb7f8715a60f0c80322d615be62b3a236678b6bfa89a568c39c74790c322ee",
+    "host.py": "f3d8718be76fd014bda788d2192bb04514d1f7d77a0564ca11a0e0c0cbb01334",
+    "layout.c": "3c1a535fb96cfd806585849404c15e8efe683ce2b5c86f5a2ff68e4c0458470b",
+    "layout.h": "391c84922a83b5df4c9d9261d1f32a5bd9060bd4bc1600073a1761ce76345a29",
+    "main.c": "3e6f61b88db0a9d95b1f3a5f672a27ceb7dc84b60adffba29c242ef213ab3092",
+    "page.c": "7c76794437723e8524e757fe4835372bb148ad0aadfddc878d4d0564fc7e333d",
+    "page.h": "984ba3c9267da3d87b8a5a69434f1e3b2acb8ee6ba7cc4136105877a5c8733fe",
+    "plan.c": "43867ec11fb400fb10ad322a209534e5fe40bd51e43f27643a19a467492a683a",
+    "plan.h": "403e25b34a77579baf37ff46cf22c3b867053d3866ffe48ee14aa35a20cdf143"
+  },
+  "files": {
+    "bridge.bin": "6ad841e2cfeddd586d002463fdf02746ac51029468e5fd56e858d4df3ee5b843",
+    "bridge.elf": "ce9a6bffe2b050c536074268398774e21db9a4bcc289b3e97a4d1b5014e49b30",
+    "bridge.o": "cb1feda595ac65f41f5e7dca6dbea8e03266d440efd4467a901c065c3325c8ed",
+    "build.log": "d7c681bf9a27f6b5d71eab25619bc68c4de476f574420051710a6259ae5f141a",
+    "page.so": "f220bc3bc2f52e8409be6c02363874c0481bf5087a7d2949bfab7ded33e851eb",
+    "plan.so": "3f6c2d736bceda4be3be05a45c5d1717639c8b4dc6cdfa089f81723c476c86ba",
+    "symbols.txt": "a843054bae78cf0f99bec920f822b1883274a109d3e7822c94449cbf88ca7f33"
+  },
+  "utc": "2026-10-30T05:47:24.682678+00:00"
+}

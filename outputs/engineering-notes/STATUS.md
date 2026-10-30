@@ -1,3 +1,26 @@
+# Loader828 staged: explicit720p before exact Xromwell826 firmware
+
+827 CLOSED PASS measured entry1920x1080 pitch7680 base01f9a200, contradicting
+826 incoming720p assumption; not proof of826 failure phase. New828 uses825
+kernel mode/geometry/allocator frontend, fresh owned paging-off RAM-copy bridge,
+and exact826 firmware.37 page tests, existing allocation suite and13 fresh
+diskless CPU cases passed; all VMs closed. Host001 negative-test address error
+retained; host002 fixes only test. Native/full-firmware execution remains unproved.
+Stage/readback passed, no SITE828 yet; dashboard authenticated, no hook/runtime.
+Next one routine-authorized SITE828, observe blue then green/orange/black hold,
+collect once only after actual power off/on and authenticated dashboard.
+No Windows support claim. Never relaunch/recollect CLOSED826/827.
+
+# Entry-layout827 CLOSED PASS; normalize mode before fresh loader handoff
+
+Read-only entry sample measured1920x1080, pitch7680, framebuffer0x1f9a200.
+No mode selection or native transition. Automatic dashboard return authenticated;
+exact report/staged-byte/directory collection passed once. No hook/owned runtime.
+This violates826 incoming720p admission but does not locate826 failure phase.
+Next fresh828 establishes/verifies720p using825 kernel frontend, then hands the
+exact826 firmware to a qualified owned bridge. No Windows support claim.
+Never relaunch/recollect826 or827. Direct tonight authorization remains active.
+
 # Entry-layout827 staged; no SITE yet
 
 Fresh read-only kernel application records current display registers before any
