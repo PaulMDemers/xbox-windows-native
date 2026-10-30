@@ -1,0 +1,353 @@
+{
+  "physical_access": false,
+  "space": {
+    "minimum_free_gib": 22,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/home/paul/xbox-windows-native",
+        "free_bytes": 894120914944
+      },
+      {
+        "free_bytes": 47680704512,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "parents": {
+    "cromwell": {
+      "tree": "9833cf18ebd7185015e17ef76ad49b5ba079dd18",
+      "path": "/home/paul/xbox-windows-native/boot720836-source001/cromwell",
+      "source_only": true
+    },
+    "reactos": {
+      "tree": "518cef50eef456605c042e8777533a00e913dbc2",
+      "path": "/home/paul/xbox-windows-native/boot720836-source001/reactos",
+      "source_only": true
+    },
+    "fatx": {
+      "tree": "8e12297ca0ed53383fe9aaebef152c26aee5a43b",
+      "path": "/home/paul/xbox-windows-native/build/fatx-directory-order-001/source",
+      "source_only": true
+    }
+  },
+  "changes": {
+    "cromwell/boot/BootResetAction.c": {
+      "before": "eccae66ccb17e39712c5075c78a10041b34334428328d8331df0267a053e3a71",
+      "after": "ddafc4f011fbb7ab76b9de09cc0ed232dbbb860d5ddc5425bc5a7437610e7177"
+    },
+    "reactos/boot/freeldr/freeldr/freeldr.c": {
+      "before": "932622c9db5f302f7e8717bb6bbc40e426c4e3f4bfdee0a5c17b9312fec15c50",
+      "after": "a7daae7eb3c59f0d34091fa92a4f997fc91219e65418e69e1fc09201cbddbe8f"
+    },
+    "reactos/boot/freeldr/freeldr/ntldr/winldr.c": {
+      "before": "74f79b8259632127c9dc8fdff01d616a931c9d450466e3b0dbefab7e7e2a7b46",
+      "after": "4f6ddce8a3231beb30e1c430abb35499bcb9a7d8313c188de17c0a0e6f7283fd"
+    },
+    "fatx/drivers/filesystems/vfatfs/direntry.c": {
+      "before": "8e4b96df8e45a6ea32ce5dd0b0ef41b2c2625be462c2e88bf14ded504b877b5f",
+      "after": "a86e29545accb968dd85a26e9cc97ab6549537d563c86ff6048f1a5d35a18cd9"
+    },
+    "fatx/drivers/filesystems/vfatfs/dirwr.c": {
+      "before": "9abec019a84ec2d31342d6453454e0533416e4952f90cd1cc83f1d370666f113",
+      "after": "79246a0e1c4a51a224c6fd7f17916a18e7971049780e916a568660d6e7f2f427"
+    },
+    "fatx/drivers/filesystems/vfatfs/fat.c": {
+      "before": "2750dc76e80aecd5b61d19b86d2f45b32833c7dba58f1f8dcf9d21005d6a05aa",
+      "after": "3e9c40173beb65e1580c6b65ce4efe37aa41fdea88a06df208686d09a2b1f3b6"
+    },
+    "fatx/drivers/filesystems/vfatfs/fsctl.c": {
+      "before": "6a3af3a01f41df619166f4d87bb6dad52713885f11bc0f6b2e5cd8d58d605e0a",
+      "after": "13249dd5d2f80805141b668eaf9ca369f4b6334ce08d991106cf8b9c08a37c7b"
+    },
+    "fatx/drivers/filesystems/vfatfs/volume.c": {
+      "before": "9e8e19b99ce0c4b4a20f73609885caf4012fd53b3bbb5f40f0f3713804109374",
+      "after": "352f00fa195a22d04003a91248480e8cacc719b9ed86d351d7bb83754dd73fef"
+    },
+    "fatx/drivers/filesystems/vfatfs/vfat.h": {
+      "before": "6ffd4d5020c076503c31eb0552d8a4de7b5b350bd265f3a2daf83223c86f472c",
+      "after": "f7ef5d8d93d0cdd3ce514f90d600d5bf8cbbd74b4536953852d6fc2e176740dd"
+    },
+    "fatx/drivers/filesystems/vfatfs/iface.c": {
+      "before": "da485689d8ed5456e084cb6d0c74f6661f6a180373a5ecbad1151da7d62c5409",
+      "after": "75f2303966f2bd2fed4ae63c785512989c14f779de24f9ef41faa3e8bc8cf838"
+    },
+    "fatx/drivers/filesystems/vfatfs/CMakeLists.txt": {
+      "before": "7fbd371e344084a0cccba4b2d1f63000508b7a788cc8b60d816f945286d45586",
+      "after": "05144f9c5e958c962820ea4c86e4bb5697b41a143a86159412d35fd3245a03ab"
+    }
+  },
+  "trees": {
+    "cromwell": "cee715c5c2dc909b912002320d05e6184df0554a",
+    "reactos": "66983523dd147725f202c9dcd7691a9ecf03049d",
+    "fatx": "a5ad0dd888869f2483b8e3ce1d0a8ec7821a2f33"
+  },
+  "cache_sites": {
+    "1": {
+      "file": "direntry.c",
+      "line": 81,
+      "api": "CcMapData",
+      "source": "CcMapData(Fcb->FileObject, &FileOffset, sizeof(FAT_DIR_ENTRY), MAP_WAIT, &Context, (PVOID*)&FatDirEntry);"
+    },
+    "2": {
+      "file": "direntry.c",
+      "line": 148,
+      "api": "CcMapData",
+      "source": "CcMapData(Fcb->FileObject, &FileOffset, sizeof(FATX_DIR_ENTRY), MAP_WAIT, &Context, (PVOID*)&FatXDirEntry);"
+    },
+    "3": {
+      "file": "direntry.c",
+      "line": 233,
+      "api": "CcMapData",
+      "source": "CcMapData(pDirFcb->FileObject, &FileOffset, PAGE_SIZE, MAP_WAIT, pContext, pPage);"
+    },
+    "4": {
+      "file": "direntry.c",
+      "line": 274,
+      "api": "CcMapData",
+      "source": "CcMapData(pDirFcb->FileObject, &FileOffset, PAGE_SIZE, MAP_WAIT, pContext, pPage);"
+    },
+    "5": {
+      "file": "direntry.c",
+      "line": 311,
+      "api": "CcMapData",
+      "source": "CcMapData(pDirFcb->FileObject, &FileOffset, PAGE_SIZE, MAP_WAIT, pContext, pPage);"
+    },
+    "6": {
+      "file": "direntry.c",
+      "line": 441,
+      "api": "CcMapData",
+      "source": "CcMapData(pDirFcb->FileObject, &FileOffset, PAGE_SIZE, MAP_WAIT, pContext, pPage);"
+    },
+    "7": {
+      "file": "direntry.c",
+      "line": 544,
+      "api": "CcMapData",
+      "source": "CcMapData(pDirFcb->FileObject, &FileOffset, PAGE_SIZE, MAP_WAIT, pContext, pPage);"
+    },
+    "8": {
+      "file": "direntry.c",
+      "line": 587,
+      "api": "CcMapData",
+      "source": "CcMapData(pDirFcb->FileObject, &FileOffset, PAGE_SIZE, MAP_WAIT, pContext, pPage);"
+    },
+    "9": {
+      "file": "dirwr.c",
+      "line": 165,
+      "api": "CcPinRead",
+      "source": "CcPinRead(pFcb->parentFcb->FileObject, &Offset, SizeDirEntry, PIN_WAIT, &Context, (PVOID*)&PinEntry);"
+    },
+    "10": {
+      "file": "dirwr.c",
+      "line": 228,
+      "api": "CcPinRead",
+      "source": "CcPinRead(pFcb->parentFcb->FileObject, &Offset, PAGE_SIZE, PIN_WAIT, &Context, (PVOID*)&pDirEntry);"
+    },
+    "11": {
+      "file": "dirwr.c",
+      "line": 323,
+      "api": "CcPinRead",
+      "source": "CcPinRead(pDirFcb->FileObject, &FileOffset, DeviceExt->FatInfo.BytesPerCluster, PIN_WAIT, &Context, (PVOID*)&pFatEntry);"
+    },
+    "12": {
+      "file": "dirwr.c",
+      "line": 384,
+      "api": "CcPinRead",
+      "source": "CcPinRead(pDirFcb->FileObject, &FileOffset, DeviceExt->FatInfo.BytesPerCluster, PIN_WAIT, &Context, (PVOID*)&pFatEntry);"
+    },
+    "13": {
+      "file": "dirwr.c",
+      "line": 403,
+      "api": "CcPinRead",
+      "source": "CcPinRead(pDirFcb->FileObject, &FileOffset, SizeDirEntry, PIN_WAIT, &Context, (PVOID*)&pFatEntry);"
+    },
+    "14": {
+      "file": "dirwr.c",
+      "line": 737,
+      "api": "CcPinRead",
+      "source": "CcPinRead(ParentFcb->FileObject, &FileOffset, nbSlots * sizeof(FAT_DIR_ENTRY), PIN_WAIT, &Context, (PVOID*)&pFatEntry);"
+    },
+    "15": {
+      "file": "dirwr.c",
+      "line": 760,
+      "api": "CcPinRead",
+      "source": "CcPinRead(ParentFcb->FileObject, &FileOffset, size, PIN_WAIT, &Context, (PVOID*)&pFatEntry);"
+    },
+    "16": {
+      "file": "dirwr.c",
+      "line": 774,
+      "api": "CcPinRead",
+      "source": "CcPinRead(ParentFcb->FileObject, &FileOffset, nbSlots * sizeof(FAT_DIR_ENTRY) - size, PIN_WAIT, &Context, (PVOID*)&pFatEntry);"
+    },
+    "17": {
+      "file": "dirwr.c",
+      "line": 821,
+      "api": "CcPinRead",
+      "source": "CcPinRead((*Fcb)->FileObject, &FileOffset, DeviceExt->FatInfo.BytesPerCluster, PIN_WAIT, &Context, (PVOID*)&pFatEntry);"
+    },
+    "18": {
+      "file": "dirwr.c",
+      "line": 963,
+      "api": "CcPinRead",
+      "source": "CcPinRead(ParentFcb->FileObject, &FileOffset, sizeof(FATX_DIR_ENTRY), PIN_WAIT, &Context, (PVOID*)&pFatXDirEntry);"
+    },
+    "19": {
+      "file": "dirwr.c",
+      "line": 1029,
+      "api": "CcPinRead",
+      "source": "CcPinRead(pFcb->parentFcb->FileObject, &Offset, PAGE_SIZE, PIN_WAIT, &Context, (PVOID*)&pDirEntry);"
+    },
+    "20": {
+      "file": "dirwr.c",
+      "line": 1120,
+      "api": "CcPinRead",
+      "source": "CcPinRead(pFcb->parentFcb->FileObject, &Offset, PAGE_SIZE, PIN_WAIT, &Context, (PVOID*)&pDirEntry);"
+    },
+    "21": {
+      "file": "fat.c",
+      "line": 45,
+      "api": "CcMapData",
+      "source": "if (!CcMapData(DeviceExt->FATFileObject, &Offset, ChunkSize, MAP_WAIT, &Context, &BaseAddress))"
+    },
+    "22": {
+      "file": "fat.c",
+      "line": 104,
+      "api": "CcMapData",
+      "source": "CcMapData(DeviceExt->FATFileObject, &Offset, ChunkSize, MAP_WAIT, &Context, &BaseAddress);"
+    },
+    "23": {
+      "file": "fat.c",
+      "line": 149,
+      "api": "CcMapData",
+      "source": "CcMapData(DeviceExt->FATFileObject, &Offset, DeviceExt->FatInfo.FATSectors * DeviceExt->FatInfo.BytesPerSector, MAP_WAIT, &Context, &BaseAddress);"
+    },
+    "24": {
+      "file": "fat.c",
+      "line": 209,
+      "api": "CcPinRead",
+      "source": "CcPinRead(DeviceExt->FATFileObject, &Offset, ChunkSize, PIN_WAIT, &Context, &BaseAddress);"
+    },
+    "25": {
+      "file": "fat.c",
+      "line": 273,
+      "api": "CcPinRead",
+      "source": "CcPinRead(DeviceExt->FATFileObject, &Offset, DeviceExt->FatInfo.FATSectors * DeviceExt->FatInfo.BytesPerSector, PIN_WAIT, &Context, &BaseAddress);"
+    },
+    "26": {
+      "file": "fat.c",
+      "line": 348,
+      "api": "CcPinRead",
+      "source": "CcPinRead(DeviceExt->FATFileObject, &Offset, ChunkSize, PIN_WAIT, &Context, &BaseAddress);"
+    },
+    "27": {
+      "file": "fat.c",
+      "line": 406,
+      "api": "CcMapData",
+      "source": "CcMapData(DeviceExt->FATFileObject, &Offset, DeviceExt->FatInfo.FATSectors * DeviceExt->FatInfo.BytesPerSector, MAP_WAIT, &Context, &BaseAddress);"
+    },
+    "28": {
+      "file": "fat.c",
+      "line": 466,
+      "api": "CcMapData",
+      "source": "CcMapData(DeviceExt->FATFileObject, &Offset, ChunkSize, MAP_WAIT, &Context, &BaseAddress);"
+    },
+    "29": {
+      "file": "fat.c",
+      "line": 521,
+      "api": "CcMapData",
+      "source": "CcMapData(DeviceExt->FATFileObject, &Offset, ChunkSize, MAP_WAIT, &Context, &BaseAddress);"
+    },
+    "30": {
+      "file": "fat.c",
+      "line": 595,
+      "api": "CcPinRead",
+      "source": "CcPinRead(DeviceExt->FATFileObject, &Offset, DeviceExt->FatInfo.FATSectors * DeviceExt->FatInfo.BytesPerSector, PIN_WAIT, &Context, &BaseAddress);"
+    },
+    "31": {
+      "file": "fat.c",
+      "line": 649,
+      "api": "CcPinRead",
+      "source": "CcPinRead(DeviceExt->FATFileObject, &Offset, ChunkSize, PIN_WAIT, &Context, &BaseAddress);"
+    },
+    "32": {
+      "file": "fat.c",
+      "line": 690,
+      "api": "CcPinRead",
+      "source": "CcPinRead(DeviceExt->FATFileObject, &Offset, ChunkSize, PIN_WAIT, &Context, &BaseAddress);"
+    },
+    "33": {
+      "file": "fat.c",
+      "line": 896,
+      "api": "CcPinRead",
+      "source": "CcPinRead(DeviceExt->VolumeFcb->FileObject, &Offset, Length, PIN_WAIT, &Context, (PVOID *)&Sector);"
+    },
+    "34": {
+      "file": "fat.c",
+      "line": 974,
+      "api": "CcPinRead",
+      "source": "CcPinRead(DeviceExt->VolumeFcb->FileObject, &Offset, Length, PIN_WAIT, &Context, (PVOID *)&Sector);"
+    },
+    "35": {
+      "file": "fat.c",
+      "line": 1082,
+      "api": "CcPinRead",
+      "source": "CcPinRead(DeviceExt->VolumeFcb->FileObject, &Offset, Length, PIN_WAIT, &Context, (PVOID *)&Sector);"
+    },
+    "36": {
+      "file": "fat.c",
+      "line": 1167,
+      "api": "CcPinRead",
+      "source": "CcPinRead(DeviceExt->VolumeFcb->FileObject, &Offset, Length, PIN_WAIT, &Context, (PVOID *)&Sector);"
+    },
+    "37": {
+      "file": "fat.c",
+      "line": 1257,
+      "api": "CcPinRead",
+      "source": "CcPinRead(DeviceExt->VolumeFcb->FileObject, &Offset, Length, PIN_WAIT, &Context, (PVOID *)&Sector);"
+    },
+    "38": {
+      "file": "fsctl.c",
+      "line": 390,
+      "api": "CcMapData",
+      "source": "CcMapData(pFcb->FileObject, &FileOffset, SizeDirEntry, MAP_WAIT, &Context, (PVOID*)&Entry);"
+    },
+    "39": {
+      "file": "fsctl.c",
+      "line": 458,
+      "api": "CcMapData",
+      "source": "CcMapData(pFcb->FileObject, &FileOffset, SizeDirEntry, MAP_WAIT, &Context, (PVOID*)&Entry);"
+    },
+    "40": {
+      "file": "volume.c",
+      "line": 335,
+      "api": "CcPinRead",
+      "source": "CcPinRead(pRootFcb->FileObject, &FileOffset, SizeDirEntry, PIN_WAIT, &Context, (PVOID*)&Entry);"
+    },
+    "41": {
+      "file": "volume.c",
+      "line": 370,
+      "api": "CcPinRead",
+      "source": "CcPinRead(pRootFcb->FileObject, &FileOffset, SizeDirEntry, PIN_WAIT, &Context, (PVOID*)&Entry);"
+    },
+    "42": {
+      "file": "volume.c",
+      "line": 405,
+      "api": "CcPinRead",
+      "source": "CcPinRead(pRootFcb->FileObject, &FileOffset, SizeDirEntry, PIN_WAIT, &Context, (PVOID*)&Entry);"
+    }
+  },
+  "new_diagnostic_sources": {
+    "cache837.c": "6ff024ffc76b3b4048c41d72bbc09585ccae5f9963a14831e047c674b92c986b",
+    "cache837.h": "81e9b1a913fd7b7bec0a58c6463dd6249f6d59a45f60fee58322e3499a1333c0"
+  },
+  "retention_unchanged_sha256": "3719cc6d8069172e8efedefde97614188e413ca9222824463b82ad17ed5d55ed",
+  "loader_fat_unchanged_sha256": "d6abab83f78eb81951e9887b43eabf3dacbc768295a5745db6cc471a95fba9df",
+  "amendment": {
+    "reason": "driver001 link failure: absent NTAPI declaration made HalDisplayString cdecl",
+    "before": "56762f4ebf99ba3f5e14d365a0fde03eff4a44bdf43ef953e2901d30e3d91db3",
+    "after": "6ff024ffc76b3b4048c41d72bbc09585ccae5f9963a14831e047c674b92c986b",
+    "failure": "driver001.json; private driver001/build.log"
+  }
+}
