@@ -1,3 +1,20 @@
+# Native813 CLOSED PASS; remaining mode controls next
+
+Native813 photo independently decoded and reviewed: CR18 FF -> FF -> FF,
+eight displayed recovery masks clear; 25 other masks aggregate-only through
+final status 0x813. Same-value write effectiveness remains unproved.
+User reported green and back at dash after the standing photo/power-off-on
+workflow. Dashboard002 authenticated; nine preparation phases collected once;
+audit002 PASS. Audit001 stale photo-review filename failure is preserved.
+No startup hook, Windows launch, normal Windows shutdown, or owned host VM.
+Never relaunch, recollect, or runtime-parent CLOSED813.
+
+Next: fresh kernel-context remaining mode-control qualification, starting with
+CR1A (target04), then qualified native counterpart. CR25/28/2D, combined native
+visible mode, and Windows handoff remain unproved. Review the pinned704 sequence
+and evidence for baseline values before admitting any new writes. Source-only
+reuse with pins is permitted. User renewed work tonight; automation stays PAUSED.
+
 # Native813 qualification and physical checkpoint
 
 User renewed work after23:00UTC toward a Windows1.6 desktop tonight. Expired
