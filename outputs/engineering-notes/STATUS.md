@@ -1,3 +1,18 @@
+# Test841 launched once; awaiting Windows screen
+
+SITE accepted at 2026-10-30T16:13:24.165894+00:00. No retry. Use physical003.py ONLY
+(build003, driver003, source002, freeze002). Fresh fixed720p Windows boot with
+RAM-only display-load observations. Clean immutable SYSTEM restored/read back;
+installed display driver and ordinary startup unchanged. Preparation21931099
+pushed. No hooks or owned host runtime; all diskless CPU fixtures closed.
+
+After2min obtain screen. If blue screen photograph LOAD841 and XWN841 rows.
+If desktop leave running. If held, capture evidence then user power off/on;
+authenticate dashboard, collect841 once and audit. No dashboard return assumed.
+839 and840 CLOSED; no relaunch/recollection/runtime parenting. Old automation
+paused; direct user desktop request active. Report tool label inherited839;
+unique841 output namespace, launch owner and hashes identify this attempt.
+
 # Test841 qualified: observe display image loading during fixed720p boot
 
 839 CLOSED B4;840 read-only PCI inventory CLOSED after automatic dashboard
