@@ -1,0 +1,151 @@
+{
+  "passed": true,
+  "space": {
+    "minimum_free_gib": 20.1,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c/xwn838",
+        "free_bytes": 45045653504
+      },
+      {
+        "free_bytes": 45045649408,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "physical_access": false,
+  "commands": [
+    [
+      "as",
+      "--32",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/boot720-fatpage838/bridge.S",
+      "-o",
+      "/mnt/c/xwn838/host006/bridge.o"
+    ],
+    [
+      "ld",
+      "-m",
+      "elf_i386",
+      "-Ttext=0",
+      "--entry=bridge_start",
+      "/mnt/c/xwn838/host006/bridge.o",
+      "-o",
+      "/mnt/c/xwn838/host006/bridge.elf"
+    ],
+    [
+      "objcopy",
+      "-O",
+      "binary",
+      "--only-section=.text",
+      "/mnt/c/xwn838/host006/bridge.elf",
+      "/mnt/c/xwn838/host006/bridge.bin"
+    ],
+    [
+      "nm",
+      "-n",
+      "/mnt/c/xwn838/host006/bridge.elf"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-shared",
+      "-fPIC",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=undefined",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/boot720-fatpage838/page.c",
+      "-o",
+      "/mnt/c/xwn838/host006/page.so"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-shared",
+      "-fPIC",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=undefined",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/boot720-fatpage838/plan.c",
+      "-o",
+      "/mnt/c/xwn838/host006/plan.so"
+    ],
+    [
+      "python3",
+      "-B",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/boot720-fatpage838/plan_test.py",
+      "/mnt/c/xwn838/host006"
+    ]
+  ],
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "firmware": {
+    "sha256": "e2895e16829afdad0e829dc9a5a2d1ab67c7c461ab435168ce92a80f554028a2",
+    "bytes": 282556,
+    "source_only_reuse": true
+  },
+  "bridge_symbols": {
+    "bridge_start": 0,
+    "bridge_flat": 264,
+    "bridge_post": 304,
+    "copy_source_safe": 526,
+    "copy_source_sum": 533,
+    "copy_target_sum": 586,
+    "bridge_hold": 623,
+    "bridge_fault": 627,
+    "bridge_check": 631,
+    "bridge_code_end": 677,
+    "bridge_end": 2304,
+    "__bss_start": 4096,
+    "_edata": 4096,
+    "_end": 4096
+  },
+  "page_cases": 37,
+  "sources": {
+    "bridge.S": "7bcb7f8715a60f0c80322d615be62b3a236678b6bfa89a568c39c74790c322ee",
+    "build-chain002.py": "625bd04fb4efbd61ad286e81c9e0a52442ac2cb8f6ffa6c5a3f5fab69983140a",
+    "build-driver002.py": "67cf7944043d1bf0729f957ac915bbfb97254880f5eb8b55ab3724e5925516a1",
+    "build001.py": "c917ea696dee4fdda05f8e6f109694231933736179fe8047fb1e6cff2a370904",
+    "cache838.c": "615644426f0f449895103463f5afc551a964a225d7177ae15e268ab4b7a2dc87",
+    "cache838.h": "05d388de523bfa866d8da363545455ec62c3ed5378f70f8cbb4b2842b5378d45",
+    "cpu005.py": "65277874cc840fa2302ac91f165b75c59e55d8efcf78374128e7f446e75ecdbd",
+    "fixture.S": "d96452bed6288c401fe98ce97f93d59db286725aacc7ad7cc52fec72c47e0a1e",
+    "host006.py": "e07ae7ec0594a6167ef0c5e6c4827b715ffbe0e4d50d22e53cd37fe5f16ad183",
+    "layout.c": "3c1a535fb96cfd806585849404c15e8efe683ce2b5c86f5a2ff68e4c0458470b",
+    "layout.h": "391c84922a83b5df4c9d9261d1f32a5bd9060bd4bc1600073a1761ce76345a29",
+    "main.c": "4f7759cb1a1be3de38e370202109c746459ba6a0d7912ece4b376de59c406478",
+    "page.c": "32c08203da5e8fc0093b78e3b0e475a7628540e55b6178a19639e0004a106caf",
+    "page.h": "f216e2270986e916e91ac9f08d93169260661c40412e1dda9ee003824d60b246",
+    "physical.py": "d23a4b4169a24f64c09cb58450148200665456f150799675b201bc88f7f8527d",
+    "plan.c": "43867ec11fb400fb10ad322a209534e5fe40bd51e43f27643a19a467492a683a",
+    "plan.h": "403e25b34a77579baf37ff46cf22c3b867053d3866ffe48ee14aa35a20cdf143",
+    "plan_test.py": "c3455ada5b02c4f2161331fb8da9a9563910e2c24d9e5bb5b0d272314c510a57",
+    "prepare-source.py": "0c39fec26f6a1b405e9a477ee3d1aa6fa434a52b0c566f75a172107a41a48687",
+    "prepare-source002.py": "6b329beb709994cc58f5e611b94bb7cb4d917ab409d8e754d743c58946a2ae4d",
+    "qualify-chain.py": "0631bb0e9488d8366b259bb300ba81d40c36f6fc0d7511022fa483ee5e50c7a7",
+    "qualify-driver002.py": "a53d7fe6b166f260d48dfdcc310a2b2e32d64ae4c0d347e7a7c48bc96ca72de6",
+    "qualify-fatpage.py": "7a10d2068a581bafdbda26738d54b040fc09c907ca4e99a4c71d113c462aec9c",
+    "qualify-fatpage002.py": "dfbb92daa1e60520e68cd7a414d67689f96496d85b372f9409ee62103b495be6",
+    "retain835.c": "3719cc6d8069172e8efedefde97614188e413ca9222824463b82ad17ed5d55ed",
+    "review-driver.py": "f6c99d777fa54f09dc5a08f7a140f1567b27c442e3ede4e98ccae5d123cb7903"
+  },
+  "files": {
+    "bridge.bin": "6ad841e2cfeddd586d002463fdf02746ac51029468e5fd56e858d4df3ee5b843",
+    "bridge.elf": "ce9a6bffe2b050c536074268398774e21db9a4bcc289b3e97a4d1b5014e49b30",
+    "bridge.o": "cb1feda595ac65f41f5e7dca6dbea8e03266d440efd4467a901c065c3325c8ed",
+    "build.log": "d7c681bf9a27f6b5d71eab25619bc68c4de476f574420051710a6259ae5f141a",
+    "embed.h": "23b20c6f6202c5d2099a1384c675b7ebabf88745325328219d009b8687b7d228",
+    "page.so": "0c224115e667332eb5ab80ce7966b9d2e20bb5f24aa4e719ad6884157b747ec0",
+    "plan.so": "939ea0586134d8939c86768341037db19514ddddf13bc9d987e14a651fb30a9b",
+    "symbols.txt": "a843054bae78cf0f99bec920f822b1883274a109d3e7822c94449cbf88ca7f33",
+    "synthetic.bin": "a3911d86b82165894a524707fbe2c5252b6e443fef72f95e5c0553ef698432a8",
+    "dual/page.bin": "d17b2381a3423db0d36baaa34bd5ad4bd08427e16cadc58d6c2129c590362037",
+    "identity/page.bin": "d17b2381a3423db0d36baaa34bd5ad4bd08427e16cadc58d6c2129c590362037",
+    "relocated/page.bin": "47b5ec3de75b38ca5553756583c0c89fa5a983c8fb094c71f0e4bf04836110cf",
+    "scatter/page.bin": "d17b2381a3423db0d36baaa34bd5ad4bd08427e16cadc58d6c2129c590362037"
+  },
+  "utc": "2026-10-30T15:09:46.080693+00:00"
+}
