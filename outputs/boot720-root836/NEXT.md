@@ -1,3 +1,9 @@
+# Boot836 launched once: awaiting Windows screen observation
+
+One SITE accepted 2026-10-30T12:09:37.870479+00:00. No retry. Fixed720p boot with FATX root-chain fix; Windows startup leaves desktop running. No hook, no owned host runtime. Baseline hives and drivers unchanged. Preparation and staging pushed a40752b1.
+
+Next after about two minutes: read-only dashboard poll and actual screen report. If desktop, leave it running. If stuck, preserve screen before power off/on; authenticate dashboard and collect836 once. Do not repeat this launch or infer kernel entry from FTP absence. Boot835 CLOSED, no recollection/runtime parenting. Old automation remains paused.
+
 Stage836 complete: eight fresh owned boot files read back; nine installed Windows files unchanged. Next ONE launch after committing evidence. No hook or owned host runtime.
 
 # Boot836 fixed720p FATX root fix qualified; next create-only stage and one launch
