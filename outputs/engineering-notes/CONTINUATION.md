@@ -1,3 +1,20 @@
+# Kernel820 CLOSED: CR19 address alias mismatches fixed expectation
+
+Phase5/error9, encoder attempts0. Raw register comparisons isolate CR19=31
+versus hardcoded30; owned FB03c5c000 projects start-address bits11. All other
+captured setup/geometry fields match. Evidence audit passed; transaction failed.
+No Windows/native proof. No hook/owned host process; dashboard authenticated.
+Next821: full-byte address-derived CR19 validation and alias-aware host model;
+unchanged hardware write sequence. Never recollect/relaunch CLOSED818-820.
+
+# Kernel820 launched: raw geometry snapshots pending
+
+One SITE accepted03:33:53UTC; no retry. Exact819 transaction with60 additional
+read-only register observations after return. No changed predicates or encoder
+sequence. Automatic firmware return expected; no hook, Windows or host VM.
+Next authenticate dashboard, collect820 once, decode actual100-word result.
+CLOSED818/819 never relaunch/recollect. User extended tonight work.
+
 # Kernel819 CLOSED: phase5 geometry check failed before encoder
 
 Actual disk result: phase5,error9; width720,height480,pitch2880, owned framebuffer
