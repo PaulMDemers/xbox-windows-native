@@ -1,18 +1,14 @@
-# Loader830 staged: mode transaction with independent LED report
+# Loader830 launched once; front-panel LED counts pending
 
-829 CLOSED PASS and pushed503c2c02: full Xromwell entry phase7/error0 physically
-captured. User power off/on confirmed; dashboard independently authenticated.
-Fresh830 retains admission and complete826 GPU/encoder transaction, adds bounded
-SMC7/8 LED reporting after return. Orange3s separator, red flashes=phase, green
-flashes=error, repeated; success is11 red/1 green. No framebuffer restoration.
-If reporting bus/timer fails, stop without retry or inherited-status clearing.
+One SITE accepted2026-10-30 10:02:00UTC (200), no retry. Fresh full Xromwell
+transaction plus bounded post-return LED report. User asked to count red phase
+flashes then green error flashes after the long orange separator; repeats.
+Screen may be black or green pattern. No actual native outcome inferred yet.
+No hook/owned host runtime; all13 CPU fixtures closed. Qualification and source
+pins pushed6d8ff7d3. No Windows launch. Deliberate hold before Windows.
 
-47 entry/startup cases,912 linked transaction plus32770 reservation cases,
-196841 compiledLED cases,18 linked reporting paths,37 page tests and13 fresh
-CPU-copy fixtures passed; all VMs closed. Linked001 fixture-offset failure and
-supersededhost004 preparation preserved; candidate firmware unchanged by those
-harness corrections. Exact source/binary pins and E-only stage/readback passed.
-No830 SITE yet, no hook or owned host runtime. Next one routine-authorized launch;
-ask actual front-panel LED counts and screen state. Deliberate hold before Windows.
-After explicit power off/on authenticate dashboard, collect once and audit830.
-No Windows desktop proof; no CLOSED run may be reopened. Automation stays paused.
+Next record actual LED counts and screen state; if no report, preserve unknown
+failure rather than assume mode failure phase. After explicit user power off/on,
+authenticate dashboard, collect830 preparation once and audit. No collection yet.
+829 CLOSED PASS, never reopen. Automation remains paused; direct authorization
+continues. LED reporter stops permanently on any bus/timer error without retry.
