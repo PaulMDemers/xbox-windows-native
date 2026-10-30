@@ -1,3 +1,5 @@
+836 screen observation requested after two minutes. First read-only poll timed out; this does not prove a crash or Windows success. No host runtime or hook remains. See awaiting-screen001.json.
+
 # Boot836 launched once: awaiting Windows screen observation
 
 One SITE accepted 2026-10-30T12:09:37.870479+00:00. No retry. Fixed720p boot with FATX root-chain fix; Windows startup leaves desktop running. No hook, no owned host runtime. Baseline hives and drivers unchanged. Preparation and staging pushed a40752b1.
