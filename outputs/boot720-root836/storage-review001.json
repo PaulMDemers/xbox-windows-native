@@ -1,0 +1,21 @@
+{
+  "physical_access": false,
+  "driver_changed": false,
+  "installed_driver_sha256": "ba62acbb7dedf30154baba8d4cc2cf457f1a3e499bf7800e31011fba0e96d6a9",
+  "exact_source_tree": "8e12297ca0ed53383fe9aaebef152c26aee5a43b",
+  "source_path": "/home/paul/xbox-windows-native/build/fatx-directory-order-001/source",
+  "source_only_reuse": true,
+  "findings": [
+    "vfatMakeRootFCB publishes one cluster for FATX root FileSize, ValidDataLength and AllocationSize.",
+    "NextCluster, OffsetToCluster and read/write paths treat FirstCluster1 as a fixed FAT12/16 root, including FATX.",
+    "FATXGetNextDirEntry checks requested page offset against RFCB.FileSize before CcMapData. Therefore root truncation alone does not establish the observed bugcheck path.",
+    "Photo fault is MmMapViewInSystemCache+0xfb reading [edi+0x18] after following [edi+0x1c]; bugcheck address18 implies EDI zero at this instruction.",
+    "Historical rename-boundary004 reached the identical instruction with invalid cache offsetfffff000 through FATXDelEntry; this is a comparison only, not evidence that836 has the same caller."
+  ],
+  "next": [
+    "Authenticate dashboard after user power off/on, collect836 once and preserve installed metadata/binary changes before repair.",
+    "Establish offending cache operation and file/offset using retained logs or a fresh bounded diagnostic/reproduction before attributing this crash to root sizing.",
+    "Any FATX root-chain candidate must cover root size, cluster dispatch, read/write routing and cache extent consistently; preserve FAT12/16 fixed roots and validate fragmented root handling."
+  ],
+  "evidence_limit": "No physical kernel dump or call stack. No candidate driver built or deployed. Fixed720p retained boot reached Windows kernel; desktop not reached."
+}

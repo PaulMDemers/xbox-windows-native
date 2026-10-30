@@ -1,33 +1,21 @@
-836 screen observation requested after two minutes. First read-only poll timed out; this does not prove a crash or Windows success. No host runtime or hook remains. See awaiting-screen001.json.
+Source review836: exact installed FATX build8e12297c/binaryba62acbb confirmed.
+Root-size and FirstCluster1 fixed-root assumptions are real source limitations,
+but FATX enumeration bounds its cache maps. They do not by themselves establish
+the STOP0A cause. Historical same-PC rename failure used invalid cache offset;
+836 has no stack/offset capture. No driver patched/built/deployed. Next collect
+836 after authenticated dashboard return, preserve file/log changes, then obtain
+an offending operation/offset or controlled reproducer. See storage-review001.json.
 
-# Boot836 launched once: awaiting Windows screen observation
+# Boot836 reached Windows kernel; STOP0A at ntoskrnl+46167
 
-One SITE accepted 2026-10-30T12:09:37.870479+00:00. No retry. Fixed720p boot with FATX root-chain fix; Windows startup leaves desktop running. No hook, no owned host runtime. Baseline hives and drivers unchanged. Preparation and staging pushed a40752b1.
+User photo screen001.json: IRQL_NOT_LESS_OR_EQUAL, arguments18,2,0,8244F167,
+kernel base82409000 timestamp4b7a1bd5. Readable Windows blue screen, not desktop.
+FATX root fix passed the previous SYSTEM.ALT boundary. Do not infer root cause
+from the fault address alone. See fault-analysis001.json for pinned symbol mapping.
 
-Next after about two minutes: read-only dashboard poll and actual screen report. If desktop, leave it running. If stuck, preserve screen before power off/on; authenticate dashboard and collect836 once. Do not repeat this launch or infer kernel entry from FTP absence. Boot835 CLOSED, no recollection/runtime parenting. Old automation remains paused.
+836 remains OPEN pending return/collection. User asked to power off/on and leave
+UnleashX. Independently authenticate dashboard, no hook to remove, collect836 once,
+audit installed files and boot traces. No relaunch. No owned host runtime.
+Next diagnose Windows kernel failure with fixed720p retained; no mode probes.
+835 CLOSED. Old automation paused, direct Windows desktop work authorized.
 
-Stage836 complete: eight fresh owned boot files read back; nine installed Windows files unchanged. Next ONE launch after committing evidence. No hook or owned host runtime.
-
-# Boot836 fixed720p FATX root fix qualified; next create-only stage and one launch
-
-Boot835 CLOSED FAIL at FreeLoader SYSTEM.ALT error, before NT kernel. Photo and
-preparation collected once; all11 critical files unchanged. Dashboard authenticated
-12:02:50 UTC. No owned hook/runtime. Never relaunch/recollect/runtime-parent835.
-
-Concrete loader defect: FatBufferDirectory treated FATX root as one fixed cluster.
-E had1071 live entries (256 fit its16KiB first cluster). WINNT was newly appended;
-LIST ordering is not a raw slot measurement, so physical causality remains inferred.
-Actual C regression reproduces truncation, patched fragmented-root cases pass.
-836 follows FATX cluster1 chain, preserving existing volume layout, and refuses
-zero-size directory buffer after chain-count failure. No timing/encoder change.
-
-Fresh source-only exports/source001.json; fatx-root.patch; root001.json (before2,
-after9 cases). Chain002, retention/map14+14, page37/allocation164177, diskless CPU13
-passed; all fixture VMs closed. Fresh nxdk frontend build001 passed. Pins frozen
-launch-source-pins001.json. Existing Windows baseline hives/drivers/startup untouched.
-
-Next physical.py stage (new E:/Applications/XWN16Boot836), exact readback, commit,
-then ONE SITE via physical.py launch,20-second bound. Poll read-only after2min and
-request actual screen. No retries after acceptance/uncertainty. On dashboard return
-no hook to remove, collect836 once. Do not mistake FTP absence for Windows success.
-Old automation remains paused; direct user Windows720p work authorized.
