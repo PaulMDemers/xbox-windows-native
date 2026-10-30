@@ -1,1 +1,1 @@
-822 staged and verified. One launch next, bounded dashboard observation, one collection and actual result audit. No native/Windows claim.
+CLOSED. Do not relaunch/recollect/runtime-parent. Fresh823 records exact first VGA mismatch without changed reads/writes or predicates.

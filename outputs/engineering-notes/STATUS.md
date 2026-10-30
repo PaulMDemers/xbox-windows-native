@@ -1,3 +1,12 @@
+# Kernel822 CLOSED: geometry and encoder passed, VGA readback failed
+
+Phase7/error11;148/148 encoder transfers and144 table delays completed. No
+pixels drawn, no output enable. User saw black then automatic dashboard return;
+seven records collected once, audit001 passed, flags282/082/282 restored.
+No hooks or host runtimes. Next fresh kernel-vga823 adds only four result words
+for first VGA bank/index/actual/expected mismatch. Hardware accesses unchanged.
+No Windows/native proof. Never relaunch/recollect CLOSED818-822.
+
 # Kernel822 staged: address-aware CR19 full-byte validation
 
 Physical821 closed with actual30/31 address alias; failure records retained.
