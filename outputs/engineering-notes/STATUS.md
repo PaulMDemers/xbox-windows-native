@@ -1,3 +1,5 @@
+841 screen requested after >2min. Dashboard poll001 timed out; Windows result unknown. No further launch or collection. Await user screen/LOAD841 evidence. Use physical003.py after confirmed power off/on and authenticated dashboard. No hook or owned host runtime. Preparation21931099 and launch6b3f842d pushed.
+
 # Test841 launched once; awaiting Windows screen
 
 SITE accepted at 2026-10-30T16:13:24.165894+00:00. No retry. Use physical003.py ONLY
