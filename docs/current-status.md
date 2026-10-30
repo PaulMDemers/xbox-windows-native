@@ -1,3 +1,9 @@
+# Test843 shutdown requested, dashboard return pending
+
+The user initiated shutdown after confirming desktop and mouse operation. The photograph shows the Found New Hardware banner for the Standard OpenHCD PCI to USB Host Controller. The user reports force-ending the banner with no interactive setup wizard seen. Shutdown completion and the cause of the apparent stall are unresolved. A dashboard check timed out. The photo is retained privately and identified in shutdown-screen001.json.
+
+Await the user's power outcome. If Windows remains stalled, use the power button off/on, then independently authenticate UnleashX. No hook was installed. Collect once via physical004.py, audit the cold files, and compare SetupAPI and system event history to the end of the retained 842 logs. The 843 preflight restored primary hives and their transaction logs. It left the earlier SetupAPI and event history in place.
+
 # Test843 reached the Windows 2000 desktop with working mouse input
 
 The user confirmed the desktop and mouse are working on the physical Xbox 1.6. The mouse was connected before launch. This is the second desktop boot with the fixed 720p profile, following a fresh restoration of the baseline registry for 843.
