@@ -1,3 +1,28 @@
+# Kernel822 staged: address-aware CR19 full-byte validation
+
+Physical821 closed with actual30/31 address alias; failure records retained.
+Fresh822 build,190 compiled transaction cases,26 frontend cases,2353 layout
+cases, linked bytes and controller reviews pass. Exact E-only stage/readback
+complete; no SITE yet, no hook, no host runtime. Dashboard authenticated.
+Next one launch822 and one collection, preserve actual result. Kernel evidence
+is not native or Windows support. All hardware writes unchanged.
+
+# Kernel821 CLOSED: framebuffer-address alias physically isolated
+
+CR19 reads30 immediately before existing PCRTC_START03c5c000 write,31
+immediately after. Same phase5/error9; encoder not attempted. Automatic return
+authenticated and seven records collected once. Audit001 hardcoded old flags
+failed; audit002 confirms exact actual282/082/282 restoration. Both retained.
+No hook/host process/Windows. Next fresh822 fully checks CR19 against owned
+address and stride; all hardware writes unchanged. Host qualification ongoing.
+
+# Kernel821 launched: read-only framebuffer-address alias checkpoint
+
+One SITE accepted03:47:35UTC. Existing checks/writes unchanged; added CR19
+reads immediately before/after existing framebuffer-address write. Automatic
+return expected; no hook, Windows or host process. Next authenticate dashboard
+and collect once. Never retry accepted821 or recollect CLOSED818-820.
+
 # Kernel820 CLOSED: CR19 address alias mismatches fixed expectation
 
 Phase5/error9, encoder attempts0. Raw register comparisons isolate CR19=31
