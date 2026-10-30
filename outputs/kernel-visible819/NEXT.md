@@ -1,0 +1,1 @@
+Prepared819: authenticate dashboard, stage/readback, one launch. Observe bounded return, collect once, audit actual phase/error. No native success inference. No startup hook or Windows launch. Do not repeat CLOSED818.
