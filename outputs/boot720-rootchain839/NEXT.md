@@ -1,3 +1,15 @@
+# Test839 launched once; awaiting screen
+
+Accepted 2026-10-30T15:33:19.351386+00:00. No retry. Use physical002.py only.
+Fixed720p with isolated FATX page-window and existing-root-chain repairs plus
+active diagnostic839. Installed Windows driver/hives unchanged. Preparation
+pushed0a9095f3. No hook or owned host runtime. CPU fixtures closed.
+
+After2min obtain screen/stop and XWN839 rows. If desktop leave running. If held
+capture evidence then power off/on; authenticate dashboard and collect839 once.
+838 CLOSED; no relaunch/recollection/runtime parenting. Automation paused;
+direct user Windows desktop work active.
+
 839 staged and readback verified: nine owned files, ten installed baseline files unchanged. Use physical002.py ONLY for this attempt (build002/qualify002); freeze002.py pins final inputs. No hook or host runtime. Next one SITE after commit/push.
 
 # Fresh839 qualified: FATX root-chain size/traversal and label EOF bound
