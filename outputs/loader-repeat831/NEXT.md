@@ -1,16 +1,14 @@
-# Loader831 staged: user-requested exact native830 repeat
+# Loader831 launched once; watched repeat observation pending
 
-User explicitly requested rerun after830 held an unspecified pattern with green
-console LED. Dashboard authenticated;830 preparation collected once (nine phases
-through handoff_armed) and audit passed.830 CLOSED INCONCLUSIVE; no native phase
-or mode success inferred. Exact return mechanism not separately confirmed.
+User explicitly requested rerun. Advance notice and launch-now announcement were
+sent. One SITE accepted2026-10-30 10:17:46UTC (200); no retry.831 native firmware
+was freshly rebuilt byte-identical to830; only frontend report namespace/title
+changed. Qualification and830 closure pushedcab51525. No hook or host runtime.
+Deliberate hold before Windows. Expected initial blue preparation, then native
+pattern/refusal/black; optional repeating LED code after transaction return.
 
-Fresh831 source rebuild produces byte-identical830 native firmware; all native
-C, bridge/page and predicates unchanged. Frontend changes only report namespace
-and display title.37 page/allocation tests and13 fresh CPU-copy fixtures pass;
-all VMs closed. Identical native linked-code qualification pinned in equivalence.
-E-only staging/readback passed; no831 SITE yet. No hook or owned host runtime.
-Next announce imminent launch, send one SITE20s, record actual screen and optional
-LED counts. Familiar held-screen photo workflow; no outcome inferred from green
-power LED alone. After actual dashboard return, collect831 once and audit.
-No Windows launch; direct user authorization continues; automation paused.
+Next obtain actual held-screen photo and any observed LED counts. Do not infer
+mode PASS from green console LED or unspecified pattern. After actual power off/on
+and authenticated dashboard return, collect831 preparation once and audit.
+No831 collection yet.830 CLOSED INCONCLUSIVE, never reopen or use runtime state.
+Direct user work authorization continues; automation remains paused.
