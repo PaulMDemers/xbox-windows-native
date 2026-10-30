@@ -1,3 +1,5 @@
+839 user reports BLUE SCREEN. Stop code and XWN839 rows not yet available; photograph needed. Console held; no power-cycle confirmation. Do not relaunch/collect. Use physical002.py after authenticated return. See screen-pending001.json.
+
 839 screen requested after two minutes. Dashboard poll001 timed out; Windows progress/result unknown. Use physical002.py; no further launch. See awaiting-screen001.json.
 
 # Test839 launched once; awaiting screen
