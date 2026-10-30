@@ -1,3 +1,5 @@
+839 screen requested after two minutes. Dashboard poll001 timed out; Windows progress/result unknown. Use physical002.py; no further launch. See awaiting-screen001.json.
+
 # Test839 launched once; awaiting screen
 
 Accepted 2026-10-30T15:33:19.351386+00:00. No retry. Use physical002.py only.
