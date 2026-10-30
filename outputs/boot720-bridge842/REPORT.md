@@ -1,3 +1,11 @@
+# Test842 closed: desktop confirmed; mouse hot-plug did not work
+
+The user reached the Windows 2000 desktop on the physical 1.6, reported no response from a mouse plugged in after boot, and returned to UnleashX without a clean Windows shutdown. Dashboard authenticated, no hook, one collection and cold audit. Do not relaunch, recollect, or use the runtime as a parent.
+
+The Windows miniport trace changed from baseline: 44 events, zero lost, successful framebuffer acquisition at physical 0x03700000. This corroborates the Windows display path, not an independent mode query. The new SetupAPI tail records one OpenHCD controller completing install and another starting interface installation; it contains no mouse/HID install. This does not identify the cause of missing input. The five primary hives and relevant logs were preserved privately; none of their headers declares missing file bytes. Clean shutdown/persistence is unqualified.
+
+See closed001.json, input-video-cold001.json, hive-length001.json, collection001.json and audit001.json. Follow outputs/boot720-input843/NEXT.md.
+
 # Test842: USER-CONFIRMED WINDOWS 2000 DESKTOP ON XBOX1.6
 
 User reports: "The system has settled on the windows 2000 desktop."

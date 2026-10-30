@@ -1,3 +1,19 @@
+843 staged with nine owned files read back byte-for-byte; all ten installed critical hashes match the working baseline. Build003 refused a transcription change in the expected SDK ID before invoking make; failure preserved. Build004 used the verified original SDK ID and passed. Use physical004.py only. All 13 diskless CPU fixtures closed. No startup hook. No SITE sent at staging.
+
+# Test843: fixed 720p boot with mouse connected at launch
+
+Fresh source-only reproduction of the successful 842 profile. Only attempt identifiers, diagnostics and owned paths changed. No USB, display, startup or mode-setting change. Five immutable primary hives and matching logs were verified against the installed package; preimages preserved privately. The prior post-desktop trace and SetupAPI delta remain preserved. This is a fresh baseline boot, not persistence validation.
+
+842 is CLOSED. Dashboard authenticated; no hook. Use physical004.py for unique /E/Applications/XWN16Boot843 only. Stage/readback, verify exact Git bytes, commit/push, one bounded SITE; never retry accepted/uncertain launch. Observe desktop and test cursor movement/Start button. Leave Windows running until input is established; if it works, request ordinary Windows shutdown to qualify that separate milestone. Do not infer return, shutdown, or USB success from a timeout. No unrelated historical probes or automation.
+
+# Test842 closed: desktop confirmed; mouse hot-plug did not work
+
+The user reached the Windows 2000 desktop on the physical 1.6, reported no response from a mouse plugged in after boot, and returned to UnleashX without a clean Windows shutdown. Dashboard authenticated, no hook, one collection and cold audit. Do not relaunch, recollect, or use the runtime as a parent.
+
+The Windows miniport trace changed from baseline: 44 events, zero lost, successful framebuffer acquisition at physical 0x03700000. This corroborates the Windows display path, not an independent mode query. The new SetupAPI tail records one OpenHCD controller completing install and another starting interface installation; it contains no mouse/HID install. This does not identify the cause of missing input. The five primary hives and relevant logs were preserved privately; none of their headers declares missing file bytes. Clean shutdown/persistence is unqualified.
+
+See closed001.json, input-video-cold001.json, hive-length001.json, collection001.json and audit001.json. Follow outputs/boot720-input843/NEXT.md.
+
 # Test842: USER-CONFIRMED WINDOWS 2000 DESKTOP ON XBOX1.6
 
 User reports: "The system has settled on the windows 2000 desktop."

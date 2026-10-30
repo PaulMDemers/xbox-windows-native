@@ -1,0 +1,22 @@
+--- a/boot/BootResetAction.c
++++ b/boot/BootResetAction.c
+@@ -85,7 +85,7 @@
+         PciReadDword(0,30,0,0x24)!=0xf7f0f000 ||
+         (PciReadDword(0,30,0,0x18)&0x00ffffff)!=0x00010100 ||
+         (PciReadDword(0,30,0,0x3c)&0xffff)!=7) {
+-        printk("XWN842: bridge setup readback failed; Windows not launched\n");
++        printk("XWN843: bridge setup readback failed; Windows not launched\n");
+         __asm__ __volatile__("cli");for(;;)__asm__ __volatile__("hlt");
+     }
+ #endif
+@@ -252,8 +252,8 @@
+         entry.bootType = BOOT_FATX;
+         entry.bootSystem = SYS_REACTOS;
+         strcpy(entry.title, "XWN loader diagnostic");
+-        strcpy(entry.szPath, "/Applications/XWN16Boot842/freeldr.sys");
+-        printk("XWN: loading isolated E:/Applications/XWN16Boot842/freeldr.sys\n");
++        strcpy(entry.szPath, "/Applications/XWN16Boot843/freeldr.sys");
++        printk("XWN: loading isolated E:/Applications/XWN16Boot843/freeldr.sys\n");
+         BootFromDevice(&entry);
+         printk("XWN: loader failed. No fallback boot. Reboot to dashboard.\n");
+         __asm__ __volatile__("cli");
