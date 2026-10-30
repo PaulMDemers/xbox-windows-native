@@ -1,0 +1,44 @@
+--- transaction003.c
++++ transaction818.c
+@@ -1,5 +1,5 @@
+ /* SPDX-License-Identifier: GPL-2.0-or-later
+- * HOST-ONLY transaction candidate; no XBE or physical admission.
++ * Fresh818 complete-mode diagnostic; physical admission requires fresh host checks.
+  * Source recipe: pinned Cromwell Xcalibur720x480. VGA lock/attribute access
+  * review: Linux v6.12 nouveau dispnv04/hw.h. See SOURCE-REVIEW.md for limits.
+  * Never touch interrupt pending/enables, VPLL/selection or PFB configuration.
+@@ -45,7 +45,7 @@
+  {0x680890,0x10000000},{0x680894,0x10000000},{0x680898,0x10000000},
+  {0x68089c,0x10000000},{0x680880,0x21101100},{0x680630,2},
+  {0x68084c,0x00801080},{0x6808c4,0x40801080}};
+-static const uint8_t cs[][2]={{0x14,0},{0x17,0xe3},{0x19,0x10},{0x1b,5},{0x22,255},{0x33,0x11}};
++static const uint8_t cs[][2]={{0x14,0},{0x17,0xe3},{0x19,0x10}};
+ static const uint32_t timing[][2]={{0x680800,479},{0x680804,524},{0x680808,479},
+  {0x68080c,489},{0x680810,492},{0x680814,0},{0x680818,479},{0x680820,719},
+  {0x680824,779},{0x680828,719},{0x68082c,738},{0x680830,770},{0x680834,0},{0x680838,719}};
+@@ -53,7 +53,7 @@
+  {4,255,0x5d},{5,0x9f,0x9e},{6,255,0x0c},{7,255,0x3e},{9,0x60,0x40},
+  {0x10,255,0xe9},{0x12,255,0xdf},{0x13,255,0x68},{0x15,255,0xdf},
+  {0x16,0x7f,0x0c},{0x17,255,0xe3},{0x18,255,255},{0x19,255,0x30},
+- {0x1a,255,4},{0x25,255,0x10},{0x28,255,0x83},{0x2d,31,0},{0x39,255,255}};
++ {0x1a,255,0x3c},{0x25,255,0x10},{0x28,255,0x83},{0x2d,31,0},{0x39,255,255}};
+ static const uint8_t preserved[][2]={{3,0xe0},{5,0x60},{9,0x9f},{0x16,0x80},{0x2d,0xe0},{0x11,0x7f}};
+ static const uint8_t seq[]={3,0x21,15,0,6},gr[]={0,0,0,0,0,0x40,5,15,255};
+ static uint8_t av(unsigned i){return i<15?(uint8_t)(i+1):i==15?1:i==16?0x4a:i==17?15:0;}
+@@ -61,6 +61,7 @@
+ {(void)g[0x6013da];g[0x6013c0]=(uint8_t)(i|0x20);}
+ static int check_setup(volatile uint8_t *g,int after_geometry)
+ {
++ if(cr(g,0x1b)!=0x85 || cr(g,0x22)!=0xfe || cr(g,0x33)!=0x11)return 0;
+  for(unsigned i=0;i<sizeof(setup)/sizeof(setup[0]);++i)if(r32(g,setup[i][0])!=setup[i][1])return 0;
+  for(unsigned i=0;i<sizeof(cs)/sizeof(cs[0]);++i)
+   if(cr(g,cs[i][0])!=(after_geometry&&cs[i][0]==0x19?0x30:cs[i][1]))return 0;
+@@ -107,7 +108,7 @@
+  /* Do not alter shadow/owner routing. Require the source-defined unlocked
+   * shadow masks and primary owner; reject doublescan rather than inheriting it.
+   * Physical admission still needs these previously uncaptured fields. */
+- if(!context(g)||r32(g,0x600800)!=r->base||r32(g,0x680838)!=1279||
++ if(cr(g,0x1a)!=0x38||cr(g,0x1b)!=0x85||cr(g,0x22)!=0xfe||cr(g,0x33)!=0x11||!context(g)||r32(g,0x600800)!=r->base||r32(g,0x680838)!=1279||
+  r32(g,0x680818)!=719||pitch(g)!=5120||cr(g,0x28)!=0x83||cr(g,0x39)!=255||
+  (o->saved_cr11&0x80)||(cr(g,0x21)&0xfa)!=0xfa||cr(g,0x44)!=0||(cr(g,9)&0x80)){
+   o->error=T704_BASELINE;goto done;

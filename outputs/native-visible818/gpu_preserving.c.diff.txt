@@ -1,0 +1,15 @@
+--- gpu_legacy.c
++++ gpu_preserving.c
+@@ -110,10 +110,10 @@
+ 	NvSetCrtc(pbRegs, 0x18, (m & 0xff));
+ 	// CRTC_REPAINT1
+ 	if (gpu->xres < 1280) {
+-		b = 0x04;
++		b = NvGetCrtc(pbRegs, 0x1a) | 0x04;
+ 	}
+ 	else {
+-		b = 0x00;
++		b = NvGetCrtc(pbRegs, 0x1a) & ~0x04;
+ 	}
+ 	NvSetCrtc(pbRegs, 0x1a, b);
+ 	// Overflow bits
