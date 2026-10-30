@@ -1,1 +1,1 @@
-Exact824 stage/readback and host qualification complete. One launch only, then authenticated dashboard, one collection and actual-result audit. Require user visible-pattern observation if software passes. No native or Windows proof.
+CLOSED PASS kernel transaction plus user-visible pattern. Never relaunch/recollect824. Fresh native825 must qualify CR19 address-aware validation and PAS0 palette access with native identity framebuffer, relocated payload and actual page transition before physical launch. Windows remains unproved.

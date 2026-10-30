@@ -1,3 +1,23 @@
+# Native825 staged and qualified; no SITE yet
+
+Fresh825 retains818 native identity framebuffer and bridge contracts; applies
+CR19 setup/geometry address check and PAS0 palette access proven by824.
+906 transaction cases,24 relocated paths,12 fresh CPU cases(all VMs closed),
+418 ownership and45+46 compiled page cases passed. Failed initial host port
+and GDT preparation typo retained in failed-host001-sources; no console access
+with those bytes. Exact linked payload and controller review passed.
+No825 SITE yet. No hook. Xbox dashboard authenticated. Native/Windows unproved.
+
+# Kernel824 CLOSED PASS: complete visible720x480 mode transaction
+
+User confirmed green-topped pattern and automatic return. Phase11/error1,
+345600 pixels verified,148 encoder transfers; seven records collected once,
+audit001 passed, flags286/086/286 restored. No hook/host runtime. Dashboard
+authenticated. Two demonstrated issues: CR19 start-address alias and palette
+PAS access. Next fresh native825 applies those corrections with identity-FB
+and relocation/CPU tests. No native full-mode or Windows support claim yet.
+Never relaunch/recollect CLOSED818-824. Direct tonight authorization active.
+
 # Kernel823 CLOSED: attribute palette0 write did not take effect
 
 Phase7/error11; first failing VGA read bank3,index0,actual0,expected1. All148

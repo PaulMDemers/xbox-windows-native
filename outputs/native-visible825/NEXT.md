@@ -1,0 +1,1 @@
+Fresh825 exact staging complete; host checks PASS (906 direct,24 relocated,12 CPU,418 ownership,45+46 page). One launch then visible pattern observation; deliberately holds after native entry. No hook. No Windows. Preserve host failures model001/model002 and failed-host001 sources.
