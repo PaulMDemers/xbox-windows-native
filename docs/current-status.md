@@ -1,3 +1,46 @@
+# Test842 qualified: restored Windows AGP bridge setup, fixed720p retained
+
+841 CLOSED: VideoPort loaded, no miniport open/read/image notification. Existing
+Windows binding remains intact.840 kernel inventory showed64MiB bridge prefetch
+window; existing Windows GPU resource record/working trace uses128MiB. Retained
+boot had skipped the whole normal bridge initializer.842 re-enables its exact
+existing13 PCI writes, all to00:1e.0; GPU PCI initialization and AGP reset remain
+excluded. Critical window/bus/IRQ readback must pass before Windows starts.
+No encoder/CRTC timing change. Miniport unchanged. This is not yet a proven fix.
+
+Host exact bridge block20cases, observer21cases, cache62cases, retention/map,
+imports/residency, copy/allocation and13 diskless CPU cases passed. All CPU
+fixtures closed. Source-only reuse from841 with pins, no failed runtime parent.
+SYSTEM restored from immutable package after preserving incomplete841 hive;
+exact readback verified. An initial restoration-helper import failure occurred
+before hardware access and is retained. Use restore-system002.py if reviewing.
+
+Next unique E:/Applications/XWN16Boot842 stage/readback, commit/push, one SITE20s
+via physical003.py. After2min obtain screen; if desktop leave it running. If
+blue, capture LOAD842/XWN842, then user power off/on and authenticate dashboard
+before one collection/audit. No hook or owned host runtime. Ordinary startup
+unchanged; old automation paused; direct user desktop work active.
+
+# Test841 CLOSED: VideoPort loaded; miniport not requested
+
+User photo shows video-driver-initialization failure (STOP header cropped).
+LOAD841 notification registration succeeded. VideoPort:1open,3reads,1image;
+xboxvnt5 and xwnown:0opens/reads/images. Eight visible cache values per row are
+in bounds. User reports back at dashboard; authenticated16:23:59UTC; collected
+once and audited16:24:14. No hook, no owned host process. No normal Windows
+shutdown evidence. SYSTEM changed and again declares12KiB beyond cold file;
+other critical files and logs unchanged. Never relaunch/recollect/runtime-parent841.
+
+Fresh842 source-only preparation restores the existing Windows AGP bridge PCI
+initialization in retained720p boot. The retained path had suppressed bridge setup
+as well as GPU setup. Inventory840 shows64MiB prefetch window; baseline Windows
+GPU resources/working trace use128MiB. Other inherited bridge fields differ too.
+This is an evidence-based boot candidate, not a proven cause or desktop result.
+GPU PCI setup, AGP reset, modesetting and encoder writes remain excluded. Defined
+bridge window/bus/IRQ readback must pass before Windows. RAM load observations
+retained with842 namespace. Clean SYSTEM restoration required before next boot.
+No842 launch yet. Old automation paused; direct Windows desktop work active.
+
 841 screen requested after >2min. Dashboard poll001 timed out; Windows result unknown. No further launch or collection. Await user screen/LOAD841 evidence. Use physical003.py after confirmed power off/on and authenticated dashboard. No hook or owned host runtime. Preparation21931099 and launch6b3f842d pushed.
 
 # Test841 launched once; awaiting Windows screen

@@ -1,0 +1,62 @@
+--- a/boot/BootResetAction.c
++++ b/boot/BootResetAction.c
+@@ -240,8 +240,8 @@
+         entry.bootType = BOOT_FATX;
+         entry.bootSystem = SYS_REACTOS;
+         strcpy(entry.title, "XWN loader diagnostic");
+-        strcpy(entry.szPath, "/Applications/XWN16Boot841/freeldr.sys");
+-        printk("XWN: loading isolated E:/Applications/XWN16Boot841/freeldr.sys\n");
++        strcpy(entry.szPath, "/Applications/XWN16Boot842/freeldr.sys");
++        printk("XWN: loading isolated E:/Applications/XWN16Boot842/freeldr.sys\n");
+         BootFromDevice(&entry);
+         printk("XWN: loader failed. No fallback boot. Reboot to dashboard.\n");
+         __asm__ __volatile__("cli");
+--- a/drivers/pci/pci.c
++++ b/drivers/pci/pci.c
+@@ -487,7 +487,7 @@
+ 	IoOutputByte(0x80cf, 0x08); // Set C32KHZ pin to be pin function
+ 	IoOutputWord(0x8020, IoInputWord(0x8020)|0x200); // ack any preceding ACPI int
+ 
+-#ifndef XWN_RETAIN_720_835
++/* Windows bridge setup is independent of retained GPU timings. */
+ 	// Bus 0, Device 1e, Function 0 = nForce AGP Host to PCI Bridge
+ 	PciWriteDword(BUS_0, DEV_1e, FUNC_0, 4, PciReadDword(BUS_0, DEV_1e, FUNC_0, 4) | 7 );
+ 	PciWriteDword(BUS_0, DEV_1e, FUNC_0, 0x18, (PciReadDword(BUS_0, DEV_1e, FUNC_0, 0x18) &0xffffff00));
+@@ -506,6 +506,7 @@
+ 	PciWriteDword(BUS_0, DEV_1e, FUNC_0, 0x30, 0xdf758fa3);
+ 	PciWriteDword(BUS_0, DEV_1e, FUNC_0, 0x38, 0xb785fccc);
+ 
++#ifndef XWN_RETAIN_720_835
+ 	// Bus 1, Device 0, Function 0 = NV2A GeForce3 Integrated GPU
+ 	PciWriteDword(BUS_1, DEV_0, FUNC_0, 4, PciReadDword(BUS_1, DEV_0, FUNC_0, 4) | 7 );
+ 	PciWriteDword(BUS_1, DEV_0, FUNC_0, 0x3c, (PciReadDword(BUS_1, DEV_0, FUNC_0, 0x3c) &0xffff0000) | 0x0103 );  // should get vid irq!!
+@@ -515,7 +516,7 @@
+ 	PciWriteDword(BUS_1, DEV_0, FUNC_0, 0x0c, 0x0);
+ 	PciWriteDword(BUS_1, DEV_0, FUNC_0, 0x18, 0x08);
+ 
+-#endif /* Retained GPU and AGP bridge configuration. */
++#endif /* Retained GPU configuration; bridge initialized above. */
+ 	// Enable Serial COM1 by default if not already enabled
+ 	if (!LpcGetSerialState()) {
+ 		LpcSetSerialState(1);
+--- a/boot/BootResetAction.c
++++ b/boot/BootResetAction.c
+@@ -78,6 +78,18 @@
+ 	// initialize the PCI devices
+ 	//bprintf("BOOT: starting PCI init\n");
+ 	BootPciPeripheralInitialization();
++#ifdef XWN_RETAIN_720_835
++    /* Defined bridge windows must match the ordinary Windows boot contract.
++     * No GPU BAR, encoder, CRTC timing or AGP reset writes are enabled. */
++    if (PciReadDword(0,30,0,0x20)!=0xfdf0fd00 ||
++        PciReadDword(0,30,0,0x24)!=0xf7f0f000 ||
++        (PciReadDword(0,30,0,0x18)&0x00ffffff)!=0x00010100 ||
++        (PciReadDword(0,30,0,0x3c)&0xffff)!=7) {
++        printk("XWN842: bridge setup readback failed; Windows not launched\n");
++        __asm__ __volatile__("cli");for(;;)__asm__ __volatile__("hlt");
++    }
++#endif
++
+ 	// Reset the AGP bus and start with good condition
+ #ifndef XWN_RETAIN_720_835
+ 	BootAGPBUSInitialization();

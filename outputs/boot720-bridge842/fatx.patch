@@ -1,0 +1,680 @@
+--- a/drivers/filesystems/vfatfs/fsctl.c
++++ b/drivers/filesystems/vfatfs/fsctl.c
+@@ -387,7 +387,7 @@
+ 
+         _SEH2_TRY
+         {
+-            Cache841Map(38, pFcb->FileObject, &FileOffset, SizeDirEntry, MAP_WAIT, &Context, (PVOID*)&Entry);
++            Cache842Map(38, pFcb->FileObject, &FileOffset, SizeDirEntry, MAP_WAIT, &Context, (PVOID*)&Entry);
+         }
+         _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+         {
+@@ -459,7 +459,7 @@
+ 
+                     _SEH2_TRY
+                     {
+-                        Cache841Map(39, pFcb->FileObject, &FileOffset, SizeDirEntry, MAP_WAIT, &Context, (PVOID*)&Entry);
++                        Cache842Map(39, pFcb->FileObject, &FileOffset, SizeDirEntry, MAP_WAIT, &Context, (PVOID*)&Entry);
+                     }
+                     _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+                     {
+--- a/drivers/filesystems/vfatfs/vfat.h
++++ b/drivers/filesystems/vfatfs/vfat.h
+@@ -1261,12 +1261,12 @@
+ NTSTATUS VfatBuildPagingMap(PDEVICE_EXTENSION DeviceExt, PVFATFCB Fcb);
+ 
+ 
+-VOID Cache841Initialize(VOID);
+-BOOLEAN Cache841Map(ULONG Site,PFILE_OBJECT FileObject,PLARGE_INTEGER Offset,ULONG Length,ULONG Flags,PVOID *Bcb,PVOID *Buffer);
+-BOOLEAN Cache841Pin(ULONG Site,PFILE_OBJECT FileObject,PLARGE_INTEGER Offset,ULONG Length,ULONG Flags,PVOID *Bcb,PVOID *Buffer);
++VOID Cache842Initialize(VOID);
++BOOLEAN Cache842Map(ULONG Site,PFILE_OBJECT FileObject,PLARGE_INTEGER Offset,ULONG Length,ULONG Flags,PVOID *Bcb,PVOID *Buffer);
++BOOLEAN Cache842Pin(ULONG Site,PFILE_OBJECT FileObject,PLARGE_INTEGER Offset,ULONG Length,ULONG Flags,PVOID *Bcb,PVOID *Buffer);
+ 
+ NTSTATUS FatXRootSize839(PDEVICE_EXTENSION DeviceExt, PULONG Size);
+ 
+-VOID Load841Initialize(VOID);
+-VOID Load841Open(PFILE_OBJECT File, NTSTATUS Status);
+-VOID Load841Read(PVFAT_IRP_CONTEXT Context,NTSTATUS Status,ULONG Requested,LARGE_INTEGER Offset);
++VOID Load842Initialize(VOID);
++VOID Load842Open(PFILE_OBJECT File, NTSTATUS Status);
++VOID Load842Read(PVFAT_IRP_CONTEXT Context,NTSTATUS Status,ULONG Requested,LARGE_INTEGER Offset);
+--- a/drivers/filesystems/vfatfs/rw.c
++++ b/drivers/filesystems/vfatfs/rw.c
+@@ -910,7 +910,7 @@
+     }
+ 
+ ByeBye:
+-    Load841Read(IrpContext, Status, Length, ByteOffset);
++    Load842Read(IrpContext, Status, Length, ByteOffset);
+     return Status;
+ }
+ 
+--- a/drivers/filesystems/vfatfs/direntry.c
++++ b/drivers/filesystems/vfatfs/direntry.c
+@@ -78,7 +78,7 @@
+ 
+             _SEH2_TRY
+             {
+-                Cache841Map(1, Fcb->FileObject, &FileOffset, sizeof(FAT_DIR_ENTRY), MAP_WAIT, &Context, (PVOID*)&FatDirEntry);
++                Cache842Map(1, Fcb->FileObject, &FileOffset, sizeof(FAT_DIR_ENTRY), MAP_WAIT, &Context, (PVOID*)&FatDirEntry);
+             }
+             _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+             {
+@@ -145,7 +145,7 @@
+ 
+             _SEH2_TRY
+             {
+-                Cache841Map(2, Fcb->FileObject, &FileOffset, sizeof(FATX_DIR_ENTRY), MAP_WAIT, &Context, (PVOID*)&FatXDirEntry);
++                Cache842Map(2, Fcb->FileObject, &FileOffset, sizeof(FATX_DIR_ENTRY), MAP_WAIT, &Context, (PVOID*)&FatXDirEntry);
+             }
+             _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+             {
+@@ -230,7 +230,7 @@
+ 
+         _SEH2_TRY
+         {
+-            Cache841Map(3, pDirFcb->FileObject, &FileOffset, PAGE_SIZE, MAP_WAIT, pContext, pPage);
++            Cache842Map(3, pDirFcb->FileObject, &FileOffset, PAGE_SIZE, MAP_WAIT, pContext, pPage);
+         }
+         _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+         {
+@@ -271,7 +271,7 @@
+ 
+                 _SEH2_TRY
+                 {
+-                    Cache841Map(4, pDirFcb->FileObject, &FileOffset, PAGE_SIZE, MAP_WAIT, pContext, pPage);
++                    Cache842Map(4, pDirFcb->FileObject, &FileOffset, PAGE_SIZE, MAP_WAIT, pContext, pPage);
+                 }
+                 _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+                 {
+@@ -308,7 +308,7 @@
+ 
+                 _SEH2_TRY
+                 {
+-                    Cache841Map(5, pDirFcb->FileObject, &FileOffset, PAGE_SIZE, MAP_WAIT, pContext, pPage);
++                    Cache842Map(5, pDirFcb->FileObject, &FileOffset, PAGE_SIZE, MAP_WAIT, pContext, pPage);
+                 }
+                 _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+                 {
+@@ -438,7 +438,7 @@
+ 
+             _SEH2_TRY
+             {
+-                Cache841Map(6, pDirFcb->FileObject, &FileOffset, PAGE_SIZE, MAP_WAIT, pContext, pPage);
++                Cache842Map(6, pDirFcb->FileObject, &FileOffset, PAGE_SIZE, MAP_WAIT, pContext, pPage);
+             }
+             _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+             {
+@@ -541,7 +541,7 @@
+ 
+         _SEH2_TRY
+         {
+-            Cache841Map(7, pDirFcb->FileObject, &FileOffset, PAGE_SIZE, MAP_WAIT, pContext, pPage);
++            Cache842Map(7, pDirFcb->FileObject, &FileOffset, PAGE_SIZE, MAP_WAIT, pContext, pPage);
+         }
+         _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+         {
+@@ -584,7 +584,7 @@
+ 
+             _SEH2_TRY
+             {
+-                Cache841Map(8, pDirFcb->FileObject, &FileOffset, PAGE_SIZE, MAP_WAIT, pContext, pPage);
++                Cache842Map(8, pDirFcb->FileObject, &FileOffset, PAGE_SIZE, MAP_WAIT, pContext, pPage);
+             }
+             _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+             {
+--- a/drivers/filesystems/vfatfs/CMakeLists.txt
++++ b/drivers/filesystems/vfatfs/CMakeLists.txt
+@@ -1,7 +1,7 @@
+ 
+ list(APPEND SOURCE
+-    cache841.c
+-    load841.c
++    cache842.c
++    load842.c
+     root839.c
+     blockdev.c
+     cleanup.c
+--- a/drivers/filesystems/vfatfs/volume.c
++++ b/drivers/filesystems/vfatfs/volume.c
+@@ -332,7 +332,7 @@
+     FileOffset.QuadPart = 0;
+     _SEH2_TRY
+     {
+-        Cache841Pin(40, pRootFcb->FileObject, &FileOffset, SizeDirEntry, PIN_WAIT, &Context, (PVOID*)&Entry);
++        Cache842Pin(40, pRootFcb->FileObject, &FileOffset, SizeDirEntry, PIN_WAIT, &Context, (PVOID*)&Entry);
+     }
+     _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+     {
+@@ -367,7 +367,7 @@
+                 FileOffset.u.LowPart += PAGE_SIZE;
+                 _SEH2_TRY
+                 {
+-                    Cache841Pin(41, pRootFcb->FileObject, &FileOffset, SizeDirEntry, PIN_WAIT, &Context, (PVOID*)&Entry);
++                    Cache842Pin(41, pRootFcb->FileObject, &FileOffset, SizeDirEntry, PIN_WAIT, &Context, (PVOID*)&Entry);
+                 }
+                 _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+                 {
+@@ -402,7 +402,7 @@
+             Status = STATUS_SUCCESS;
+             _SEH2_TRY
+             {
+-                Cache841Pin(42, pRootFcb->FileObject, &FileOffset, SizeDirEntry, PIN_WAIT, &Context, (PVOID*)&Entry);
++                Cache842Pin(42, pRootFcb->FileObject, &FileOffset, SizeDirEntry, PIN_WAIT, &Context, (PVOID*)&Entry);
+             }
+             _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+             {
+--- a/drivers/filesystems/vfatfs/cache841.c
++++ b/drivers/filesystems/vfatfs/cache841.c
+@@ -3,17 +3,17 @@
+  * This is not a filesystem repair. No allocation/name/chain policy is changed.
+  * All code/data here stays resident; bugcheck callback reads only this ring. */
+ #include "vfat.h"
+-#include "cache841.h"
++#include "cache842.h"
+ NTHALAPI VOID NTAPI HalDisplayString(PCH String);
+ 
+ typedef struct {
+     ULONG Sequence, Site, OffsetLow, OffsetHigh, Length, SizeLow, SizeHigh, Flags;
+-} CACHE841_ROW;
+-static volatile CACHE841_ROW Rows841[16];
+-static volatile LONG Sequence841;
+-static KBUGCHECK_CALLBACK_RECORD Callback841;
++} CACHE842_ROW;
++static volatile CACHE842_ROW Rows842[16];
++static volatile LONG Sequence842;
++static KBUGCHECK_CALLBACK_RECORD Callback842;
+ 
+-static char *hex841(char *p, ULONG v)
++static char *hex842(char *p, ULONG v)
+ {
+     static const char digits[]="0123456789ABCDEF";
+     int i;
+@@ -21,48 +21,48 @@
+     *p++=' ';
+     return p;
+ }
+-static VOID NTAPI callback841(PVOID Buffer, ULONG Length)
++static VOID NTAPI callback842(PVOID Buffer, ULONG Length)
+ {
+-    ULONG end=(ULONG)Sequence841, n, first=end>3?end-3:1;
++    ULONG end=(ULONG)Sequence842, n, first=end>3?end-3:1;
+     char line[112], *p;
+     UNREFERENCED_PARAMETER(Buffer);UNREFERENCED_PARAMETER(Length);
+-    HalDisplayString("\nXWN841: sequence site offsetHi offsetLo length sizeHi sizeLo flags\n");
++    HalDisplayString("\nXWN842: sequence site offsetHi offsetLo length sizeHi sizeLo flags\n");
+     for (n=first;n<=end;n++) {
+-        volatile CACHE841_ROW *r=&Rows841[n&15];
++        volatile CACHE842_ROW *r=&Rows842[n&15];
+         if(r->Sequence!=n) continue;
+-        p=line;p=hex841(p,n);p=hex841(p,r->Site);
+-        p=hex841(p,r->OffsetHigh);p=hex841(p,r->OffsetLow);
+-        p=hex841(p,r->Length);p=hex841(p,r->SizeHigh);p=hex841(p,r->SizeLow);p=hex841(p,r->Flags);
++        p=line;p=hex842(p,n);p=hex842(p,r->Site);
++        p=hex842(p,r->OffsetHigh);p=hex842(p,r->OffsetLow);
++        p=hex842(p,r->Length);p=hex842(p,r->SizeHigh);p=hex842(p,r->SizeLow);p=hex842(p,r->Flags);
+         *p++='\n';*p=0;HalDisplayString(line);
+     }
+ }
+-VOID Cache841Initialize(VOID)
++VOID Cache842Initialize(VOID)
+ {
+-    KeInitializeCallbackRecord(&Callback841);
+-    if (!KeRegisterBugCheckCallback(&Callback841,callback841,(PVOID)Rows841,sizeof(Rows841),(PUCHAR)"XWN841"))
+-        KeBugCheckEx(0xE8410002,0,0,0,0);
++    KeInitializeCallbackRecord(&Callback842);
++    if (!KeRegisterBugCheckCallback(&Callback842,callback842,(PVOID)Rows842,sizeof(Rows842),(PUCHAR)"XWN842"))
++        KeBugCheckEx(0xE8420002,0,0,0,0);
+ }
+-static VOID check841(ULONG Site,PFILE_OBJECT FileObject,PLARGE_INTEGER Offset,ULONG Length)
++static VOID check842(ULONG Site,PFILE_OBJECT FileObject,PLARGE_INTEGER Offset,ULONG Length)
+ {
+     PVFATFCB fcb=(PVFATFCB)FileObject->FsContext;
+-    ULONG n=(ULONG)InterlockedIncrement(&Sequence841);
+-    volatile CACHE841_ROW *r=&Rows841[n&15];
++    ULONG n=(ULONG)InterlockedIncrement(&Sequence842);
++    volatile CACHE842_ROW *r=&Rows842[n&15];
+     LARGE_INTEGER size;
+-    if (!fcb) KeBugCheckEx(0xE8410003,Site,(ULONG_PTR)FileObject,0,0);
++    if (!fcb) KeBugCheckEx(0xE8420003,Site,(ULONG_PTR)FileObject,0,0);
+     size=fcb->RFCB.FileSize;
+     r->Sequence=0;r->Site=Site;r->OffsetLow=Offset->LowPart;r->OffsetHigh=Offset->HighPart;
+     r->Length=Length;r->SizeLow=size.LowPart;r->SizeHigh=size.HighPart;r->Flags=fcb->Flags;
+     InterlockedExchange((PLONG)&r->Sequence,(LONG)n);
+-    if (cache841_bad(Offset->QuadPart,Length,size.QuadPart))
+-        KeBugCheckEx(0xE8410001,Site,Offset->LowPart,Length,size.LowPart);
++    if (cache842_bad(Offset->QuadPart,Length,size.QuadPart))
++        KeBugCheckEx(0xE8420001,Site,Offset->LowPart,Length,size.LowPart);
+ }
+-BOOLEAN Cache841Map(ULONG Site,PFILE_OBJECT FileObject,PLARGE_INTEGER Offset,ULONG Length,ULONG Flags,PVOID *Bcb,PVOID *Buffer)
++BOOLEAN Cache842Map(ULONG Site,PFILE_OBJECT FileObject,PLARGE_INTEGER Offset,ULONG Length,ULONG Flags,PVOID *Bcb,PVOID *Buffer)
+ {
+-    check841(Site,FileObject,Offset,Length);
++    check842(Site,FileObject,Offset,Length);
+     return CcMapData(FileObject,Offset,Length,Flags,Bcb,Buffer);
+ }
+-BOOLEAN Cache841Pin(ULONG Site,PFILE_OBJECT FileObject,PLARGE_INTEGER Offset,ULONG Length,ULONG Flags,PVOID *Bcb,PVOID *Buffer)
++BOOLEAN Cache842Pin(ULONG Site,PFILE_OBJECT FileObject,PLARGE_INTEGER Offset,ULONG Length,ULONG Flags,PVOID *Bcb,PVOID *Buffer)
+ {
+-    check841(Site,FileObject,Offset,Length);
++    check842(Site,FileObject,Offset,Length);
+     return CcPinRead(FileObject,Offset,Length,Flags,Bcb,Buffer);
+ }
+--- a/drivers/filesystems/vfatfs/cache841.h
++++ b/drivers/filesystems/vfatfs/cache841.h
+@@ -1,6 +1,6 @@
+ /* SPDX-License-Identifier: GPL-2.0-or-later */
+ /* Diagnostic arithmetic only. Valid mappings are forwarded without changes. */
+-static unsigned cache841_bad(long long offset, unsigned length, long long size)
++static unsigned cache842_bad(long long offset, unsigned length, long long size)
+ {
+     unsigned long long limit;
+     if (offset < 0 || size < 0) return 1;
+--- a/drivers/filesystems/vfatfs/dirwr.c
++++ b/drivers/filesystems/vfatfs/dirwr.c
+@@ -162,7 +162,7 @@
+     Offset.u.LowPart = dirIndex * SizeDirEntry;
+     _SEH2_TRY
+     {
+-        Cache841Pin(9, pFcb->parentFcb->FileObject, &Offset, SizeDirEntry, PIN_WAIT, &Context, (PVOID*)&PinEntry);
++        Cache842Pin(9, pFcb->parentFcb->FileObject, &Offset, SizeDirEntry, PIN_WAIT, &Context, (PVOID*)&PinEntry);
+     }
+     _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+     {
+@@ -225,7 +225,7 @@
+         Offset.u.LowPart = (StartIndex * sizeof(FATX_DIR_ENTRY) / PAGE_SIZE) * PAGE_SIZE;
+         _SEH2_TRY
+         {
+-            Cache841Pin(10, pFcb->parentFcb->FileObject, &Offset, PAGE_SIZE, PIN_WAIT, &Context, (PVOID*)&pDirEntry);
++            Cache842Pin(10, pFcb->parentFcb->FileObject, &Offset, PAGE_SIZE, PIN_WAIT, &Context, (PVOID*)&pDirEntry);
+         }
+         _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+         {
+@@ -320,7 +320,7 @@
+             }
+             _SEH2_TRY
+             {
+-                Cache841Pin(11, pDirFcb->FileObject, &FileOffset, DeviceExt->FatInfo.BytesPerCluster, PIN_WAIT, &Context, (PVOID*)&pFatEntry);
++                Cache842Pin(11, pDirFcb->FileObject, &FileOffset, DeviceExt->FatInfo.BytesPerCluster, PIN_WAIT, &Context, (PVOID*)&pFatEntry);
+             }
+             _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+             {
+@@ -381,7 +381,7 @@
+                                            DeviceExt->FatInfo.BytesPerCluster);
+             _SEH2_TRY
+             {
+-                Cache841Pin(12, pDirFcb->FileObject, &FileOffset, DeviceExt->FatInfo.BytesPerCluster, PIN_WAIT, &Context, (PVOID*)&pFatEntry);
++                Cache842Pin(12, pDirFcb->FileObject, &FileOffset, DeviceExt->FatInfo.BytesPerCluster, PIN_WAIT, &Context, (PVOID*)&pFatEntry);
+             }
+             _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+             {
+@@ -400,7 +400,7 @@
+             FileOffset.u.LowPart = (*start + nbSlots) * SizeDirEntry;
+             _SEH2_TRY
+             {
+-                Cache841Pin(13, pDirFcb->FileObject, &FileOffset, SizeDirEntry, PIN_WAIT, &Context, (PVOID*)&pFatEntry);
++                Cache842Pin(13, pDirFcb->FileObject, &FileOffset, SizeDirEntry, PIN_WAIT, &Context, (PVOID*)&pFatEntry);
+             }
+             _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+             {
+@@ -734,7 +734,7 @@
+         /* one cluster */
+         _SEH2_TRY
+         {
+-            Cache841Pin(14, ParentFcb->FileObject, &FileOffset, nbSlots * sizeof(FAT_DIR_ENTRY), PIN_WAIT, &Context, (PVOID*)&pFatEntry);
++            Cache842Pin(14, ParentFcb->FileObject, &FileOffset, nbSlots * sizeof(FAT_DIR_ENTRY), PIN_WAIT, &Context, (PVOID*)&pFatEntry);
+         }
+         _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+         {
+@@ -757,7 +757,7 @@
+         i = size / sizeof(FAT_DIR_ENTRY);
+         _SEH2_TRY
+         {
+-            Cache841Pin(15, ParentFcb->FileObject, &FileOffset, size, PIN_WAIT, &Context, (PVOID*)&pFatEntry);
++            Cache842Pin(15, ParentFcb->FileObject, &FileOffset, size, PIN_WAIT, &Context, (PVOID*)&pFatEntry);
+         }
+         _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+         {
+@@ -771,7 +771,7 @@
+         FileOffset.u.LowPart += size;
+         _SEH2_TRY
+         {
+-            Cache841Pin(16, ParentFcb->FileObject, &FileOffset, nbSlots * sizeof(FAT_DIR_ENTRY) - size, PIN_WAIT, &Context, (PVOID*)&pFatEntry);
++            Cache842Pin(16, ParentFcb->FileObject, &FileOffset, nbSlots * sizeof(FAT_DIR_ENTRY) - size, PIN_WAIT, &Context, (PVOID*)&pFatEntry);
+         }
+         _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+         {
+@@ -818,7 +818,7 @@
+         FileOffset.QuadPart = 0;
+         _SEH2_TRY
+         {
+-            Cache841Pin(17, (*Fcb)->FileObject, &FileOffset, DeviceExt->FatInfo.BytesPerCluster, PIN_WAIT, &Context, (PVOID*)&pFatEntry);
++            Cache842Pin(17, (*Fcb)->FileObject, &FileOffset, DeviceExt->FatInfo.BytesPerCluster, PIN_WAIT, &Context, (PVOID*)&pFatEntry);
+         }
+         _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+         {
+@@ -960,7 +960,7 @@
+     FileOffset.u.LowPart = Index * sizeof(FATX_DIR_ENTRY);
+     _SEH2_TRY
+     {
+-        Cache841Pin(18, ParentFcb->FileObject, &FileOffset, sizeof(FATX_DIR_ENTRY), PIN_WAIT, &Context, (PVOID*)&pFatXDirEntry);
++        Cache842Pin(18, ParentFcb->FileObject, &FileOffset, sizeof(FATX_DIR_ENTRY), PIN_WAIT, &Context, (PVOID*)&pFatXDirEntry);
+     }
+     _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+     {
+@@ -1026,7 +1026,7 @@
+             Offset.u.LowPart = (i * sizeof(FAT_DIR_ENTRY) / PAGE_SIZE) * PAGE_SIZE;
+             _SEH2_TRY
+             {
+-                Cache841Pin(19, pFcb->parentFcb->FileObject, &Offset, PAGE_SIZE, PIN_WAIT, &Context, (PVOID*)&pDirEntry);
++                Cache842Pin(19, pFcb->parentFcb->FileObject, &Offset, PAGE_SIZE, PIN_WAIT, &Context, (PVOID*)&pDirEntry);
+             }
+             _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+             {
+@@ -1117,7 +1117,7 @@
+     Offset.u.LowPart = (StartIndex * sizeof(FATX_DIR_ENTRY) / PAGE_SIZE) * PAGE_SIZE;
+     _SEH2_TRY
+     {
+-        Cache841Pin(20, pFcb->parentFcb->FileObject, &Offset, PAGE_SIZE, PIN_WAIT, &Context, (PVOID*)&pDirEntry);
++        Cache842Pin(20, pFcb->parentFcb->FileObject, &Offset, PAGE_SIZE, PIN_WAIT, &Context, (PVOID*)&pDirEntry);
+     }
+     _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+     {
+--- a/drivers/filesystems/vfatfs/load841.c
++++ b/drivers/filesystems/vfatfs/load841.c
+@@ -6,47 +6,47 @@
+ typedef struct {
+     volatile LONG Opens, Reads, Images;
+     ULONG OpenStatus, ReadStatus, Offset, Requested, Returned, Size, Flags, Tail;
+-} LOAD841_ROW;
+-static LOAD841_ROW LoadRows841[3];
+-static KBUGCHECK_CALLBACK_RECORD LoadCallback841;
+-static NTSTATUS NotifyStatus841;
+-static const WCHAR *Names841[]={L"xboxvnt5.sys",L"videoprt.sys",L"xwnown.dll"};
+-static ULONG identify841(PUNICODE_STRING Name)
++} LOAD842_ROW;
++static LOAD842_ROW LoadRows842[3];
++static KBUGCHECK_CALLBACK_RECORD LoadCallback842;
++static NTSTATUS NotifyStatus842;
++static const WCHAR *Names842[]={L"xboxvnt5.sys",L"videoprt.sys",L"xwnown.dll"};
++static ULONG identify842(PUNICODE_STRING Name)
+ {
+     ULONG i,j,n,start;
+     if (!Name || !Name->Buffer || (Name->Length&1)) return 3;
+     n=Name->Length/sizeof(WCHAR);
+     for(i=0;i<3;i++) {
+-        ULONG count=0;while(Names841[i][count])count++;
++        ULONG count=0;while(Names842[i][count])count++;
+         if(n<count)continue;
+         start=n-count;
+         if(start && Name->Buffer[start-1]!=L'\\' && Name->Buffer[start-1]!=L'/')continue;
+         for(j=0;j<count;j++) {
+             WCHAR c=Name->Buffer[start+j];if(c>=L'A'&&c<=L'Z')c+=L'a'-L'A';
+-            if(c!=Names841[i][j])break;
++            if(c!=Names842[i][j])break;
+         }
+         if(j==count)return i;
+     }
+     return 3;
+ }
+-static VOID NTAPI image841(PUNICODE_STRING Name,HANDLE ProcessId,PIMAGE_INFO Info)
++static VOID NTAPI image842(PUNICODE_STRING Name,HANDLE ProcessId,PIMAGE_INFO Info)
+ {
+-    ULONG i=identify841(Name);
++    ULONG i=identify842(Name);
+     if(i<3 && !ProcessId && Info && Info->SystemModeImage)
+-        InterlockedIncrement(&LoadRows841[i].Images);
++        InterlockedIncrement(&LoadRows842[i].Images);
+ }
+-VOID Load841Open(PFILE_OBJECT File, NTSTATUS Status)
++VOID Load842Open(PFILE_OBJECT File, NTSTATUS Status)
+ {
+-    ULONG i;if(!File)return;i=identify841(&File->FileName);if(i>=3)return;
+-    LoadRows841[i].OpenStatus=Status;InterlockedIncrement(&LoadRows841[i].Opens);
++    ULONG i;if(!File)return;i=identify842(&File->FileName);if(i>=3)return;
++    LoadRows842[i].OpenStatus=Status;InterlockedIncrement(&LoadRows842[i].Opens);
+ }
+-VOID Load841Read(PVFAT_IRP_CONTEXT Context,NTSTATUS Status,ULONG Requested,LARGE_INTEGER Offset)
++VOID Load842Read(PVFAT_IRP_CONTEXT Context,NTSTATUS Status,ULONG Requested,LARGE_INTEGER Offset)
+ {
+-    ULONG i;PFILE_OBJECT file=Context->FileObject;PVFATFCB fcb;LOAD841_ROW *r;
+-    if(!file)return;fcb=file->FsContext;i=identify841(&file->FileName);
++    ULONG i;PFILE_OBJECT file=Context->FileObject;PVFATFCB fcb;LOAD842_ROW *r;
++    if(!file)return;fcb=file->FsContext;i=identify842(&file->FileName);
+     /* Cache-manager stream file objects may have no FileName. */
+-    if(i>=3 && fcb)i=identify841(&fcb->PathNameU);
+-    if(i>=3)return;r=&LoadRows841[i];
++    if(i>=3 && fcb)i=identify842(&fcb->PathNameU);
++    if(i>=3)return;r=&LoadRows842[i];
+     r->ReadStatus=Status;r->Offset=Offset.LowPart;r->Requested=Requested;
+     r->Returned=NT_SUCCESS(Status)?(ULONG)Context->Irp->IoStatus.Information:0;
+     r->Flags=Context->Irp->Flags;r->Size=fcb?fcb->RFCB.FileSize.LowPart:0;r->Tail=0xffffffff;
+@@ -58,33 +58,33 @@
+     }
+     InterlockedIncrement(&r->Reads);
+ }
+-static char *hex841(char *p,ULONG v)
++static char *hex842(char *p,ULONG v)
+ {
+     static const char d[]="0123456789ABCDEF";int i;
+     for(i=28;i>=0;i-=4)*p++=d[(v>>i)&15];*p++=' ';return p;
+ }
+-static VOID NTAPI dump841(PVOID Buffer,ULONG Length)
++static VOID NTAPI dump842(PVOID Buffer,ULONG Length)
+ {
+     ULONG i;char line[120],*p;UNREFERENCED_PARAMETER(Buffer);UNREFERENCED_PARAMETER(Length);
+-    HalDisplayString("\nLOAD841 files: 0=xboxvnt5 1=videoprt 2=xwnown; notify-status ");
+-    p=hex841(line,NotifyStatus841);*p++='\n';*p=0;HalDisplayString(line);
++    HalDisplayString("\nLOAD842 files: 0=xboxvnt5 1=videoprt 2=xwnown; notify-status ");
++    p=hex842(line,NotifyStatus842);*p++='\n';*p=0;HalDisplayString(line);
+     HalDisplayString("id opens openStatus reads images readStatus fileSize flags\n");
+-    for(i=0;i<3;i++) {LOAD841_ROW *r=&LoadRows841[i];p=line;
+-        p=hex841(p,i);p=hex841(p,r->Opens);p=hex841(p,r->OpenStatus);p=hex841(p,r->Reads);
+-        p=hex841(p,r->Images);p=hex841(p,r->ReadStatus);p=hex841(p,r->Size);p=hex841(p,r->Flags);
++    for(i=0;i<3;i++) {LOAD842_ROW *r=&LoadRows842[i];p=line;
++        p=hex842(p,i);p=hex842(p,r->Opens);p=hex842(p,r->OpenStatus);p=hex842(p,r->Reads);
++        p=hex842(p,r->Images);p=hex842(p,r->ReadStatus);p=hex842(p,r->Size);p=hex842(p,r->Flags);
+         *p++='\n';*p=0;HalDisplayString(line);
+     }
+     HalDisplayString("id lastOffset requested returned EOFbyte(FFFFFFFF=not observed)\n");
+-    for(i=0;i<3;i++) {LOAD841_ROW *r=&LoadRows841[i];p=line;
+-        p=hex841(p,i);p=hex841(p,r->Offset);p=hex841(p,r->Requested);p=hex841(p,r->Returned);p=hex841(p,r->Tail);
++    for(i=0;i<3;i++) {LOAD842_ROW *r=&LoadRows842[i];p=line;
++        p=hex842(p,i);p=hex842(p,r->Offset);p=hex842(p,r->Requested);p=hex842(p,r->Returned);p=hex842(p,r->Tail);
+         *p++='\n';*p=0;HalDisplayString(line);
+     }
+ }
+-VOID Load841Initialize(VOID)
++VOID Load842Initialize(VOID)
+ {
+-    ULONG i;for(i=0;i<3;i++)LoadRows841[i].Tail=0xffffffff;
+-    NotifyStatus841=PsSetLoadImageNotifyRoutine(image841);
+-    KeInitializeCallbackRecord(&LoadCallback841);
+-    if(!KeRegisterBugCheckCallback(&LoadCallback841,dump841,LoadRows841,sizeof(LoadRows841),(PUCHAR)"LOAD841"))
+-        KeBugCheckEx(0xE8410004,0,0,0,0);
++    ULONG i;for(i=0;i<3;i++)LoadRows842[i].Tail=0xffffffff;
++    NotifyStatus842=PsSetLoadImageNotifyRoutine(image842);
++    KeInitializeCallbackRecord(&LoadCallback842);
++    if(!KeRegisterBugCheckCallback(&LoadCallback842,dump842,LoadRows842,sizeof(LoadRows842),(PUCHAR)"LOAD842"))
++        KeBugCheckEx(0xE8420004,0,0,0,0);
+ }
+--- a/drivers/filesystems/vfatfs/fat.c
++++ b/drivers/filesystems/vfatfs/fat.c
+@@ -48,7 +48,7 @@
+     Offset.QuadPart = ROUND_DOWN(FATOffset, ChunkSize);
+     _SEH2_TRY
+     {
+-        if (!Cache841Map(21, DeviceExt->FATFileObject, &Offset, ChunkSize, MAP_WAIT, &Context, &BaseAddress))
++        if (!Cache842Map(21, DeviceExt->FATFileObject, &Offset, ChunkSize, MAP_WAIT, &Context, &BaseAddress))
+         {
+             NT_ASSERT(FALSE);
+             return STATUS_UNSUCCESSFUL;
+@@ -107,7 +107,7 @@
+     Offset.QuadPart = ROUND_DOWN(FATOffset, ChunkSize);
+     _SEH2_TRY
+     {
+-        Cache841Map(22, DeviceExt->FATFileObject, &Offset, ChunkSize, MAP_WAIT, &Context, &BaseAddress);
++        Cache842Map(22, DeviceExt->FATFileObject, &Offset, ChunkSize, MAP_WAIT, &Context, &BaseAddress);
+     }
+     _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+     {
+@@ -152,7 +152,7 @@
+     Offset.QuadPart = 0;
+     _SEH2_TRY
+     {
+-        Cache841Map(23, DeviceExt->FATFileObject, &Offset, DeviceExt->FatInfo.FATSectors * DeviceExt->FatInfo.BytesPerSector, MAP_WAIT, &Context, &BaseAddress);
++        Cache842Map(23, DeviceExt->FATFileObject, &Offset, DeviceExt->FatInfo.FATSectors * DeviceExt->FatInfo.BytesPerSector, MAP_WAIT, &Context, &BaseAddress);
+     }
+     _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+     {
+@@ -212,7 +212,7 @@
+             Offset.QuadPart = ROUND_DOWN(i * 2, ChunkSize);
+             _SEH2_TRY
+             {
+-                Cache841Pin(24, DeviceExt->FATFileObject, &Offset, ChunkSize, PIN_WAIT, &Context, &BaseAddress);
++                Cache842Pin(24, DeviceExt->FATFileObject, &Offset, ChunkSize, PIN_WAIT, &Context, &BaseAddress);
+             }
+             _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+             {
+@@ -276,7 +276,7 @@
+     Offset.QuadPart = 0;
+     _SEH2_TRY
+     {
+-        Cache841Pin(25, DeviceExt->FATFileObject, &Offset, DeviceExt->FatInfo.FATSectors * DeviceExt->FatInfo.BytesPerSector, PIN_WAIT, &Context, &BaseAddress);
++        Cache842Pin(25, DeviceExt->FATFileObject, &Offset, DeviceExt->FatInfo.FATSectors * DeviceExt->FatInfo.BytesPerSector, PIN_WAIT, &Context, &BaseAddress);
+     }
+     _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+     {
+@@ -351,7 +351,7 @@
+             Offset.QuadPart = ROUND_DOWN(i * 4, ChunkSize);
+             _SEH2_TRY
+             {
+-                Cache841Pin(26, DeviceExt->FATFileObject, &Offset, ChunkSize, PIN_WAIT, &Context, &BaseAddress);
++                Cache842Pin(26, DeviceExt->FATFileObject, &Offset, ChunkSize, PIN_WAIT, &Context, &BaseAddress);
+             }
+             _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+             {
+@@ -409,7 +409,7 @@
+     Offset.QuadPart = 0;
+     _SEH2_TRY
+     {
+-        Cache841Map(27, DeviceExt->FATFileObject, &Offset, DeviceExt->FatInfo.FATSectors * DeviceExt->FatInfo.BytesPerSector, MAP_WAIT, &Context, &BaseAddress);
++        Cache842Map(27, DeviceExt->FATFileObject, &Offset, DeviceExt->FatInfo.FATSectors * DeviceExt->FatInfo.BytesPerSector, MAP_WAIT, &Context, &BaseAddress);
+     }
+     _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+     {
+@@ -469,7 +469,7 @@
+         Offset.QuadPart = ROUND_DOWN(i * 2, ChunkSize);
+         _SEH2_TRY
+         {
+-            Cache841Map(28, DeviceExt->FATFileObject, &Offset, ChunkSize, MAP_WAIT, &Context, &BaseAddress);
++            Cache842Map(28, DeviceExt->FATFileObject, &Offset, ChunkSize, MAP_WAIT, &Context, &BaseAddress);
+         }
+         _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+         {
+@@ -524,7 +524,7 @@
+         Offset.QuadPart = ROUND_DOWN(i * 4, ChunkSize);
+         _SEH2_TRY
+         {
+-            Cache841Map(29, DeviceExt->FATFileObject, &Offset, ChunkSize, MAP_WAIT, &Context, &BaseAddress);
++            Cache842Map(29, DeviceExt->FATFileObject, &Offset, ChunkSize, MAP_WAIT, &Context, &BaseAddress);
+         }
+         _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+         {
+@@ -598,7 +598,7 @@
+     Offset.QuadPart = 0;
+     _SEH2_TRY
+     {
+-        Cache841Pin(30, DeviceExt->FATFileObject, &Offset, DeviceExt->FatInfo.FATSectors * DeviceExt->FatInfo.BytesPerSector, PIN_WAIT, &Context, &BaseAddress);
++        Cache842Pin(30, DeviceExt->FATFileObject, &Offset, DeviceExt->FatInfo.FATSectors * DeviceExt->FatInfo.BytesPerSector, PIN_WAIT, &Context, &BaseAddress);
+     }
+     _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+     {
+@@ -652,7 +652,7 @@
+     Offset.QuadPart = ROUND_DOWN(FATOffset, ChunkSize);
+     _SEH2_TRY
+     {
+-        Cache841Pin(31, DeviceExt->FATFileObject, &Offset, ChunkSize, PIN_WAIT, &Context, &BaseAddress);
++        Cache842Pin(31, DeviceExt->FATFileObject, &Offset, ChunkSize, PIN_WAIT, &Context, &BaseAddress);
+     }
+     _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+     {
+@@ -693,7 +693,7 @@
+     Offset.QuadPart = ROUND_DOWN(FATOffset, ChunkSize);
+     _SEH2_TRY
+     {
+-        Cache841Pin(32, DeviceExt->FATFileObject, &Offset, ChunkSize, PIN_WAIT, &Context, &BaseAddress);
++        Cache842Pin(32, DeviceExt->FATFileObject, &Offset, ChunkSize, PIN_WAIT, &Context, &BaseAddress);
+     }
+     _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+     {
+@@ -902,7 +902,7 @@
+     /* Go through Cc for this */
+     _SEH2_TRY
+     {
+-        Cache841Pin(33, DeviceExt->VolumeFcb->FileObject, &Offset, Length, PIN_WAIT, &Context, (PVOID *)&Sector);
++        Cache842Pin(33, DeviceExt->VolumeFcb->FileObject, &Offset, Length, PIN_WAIT, &Context, (PVOID *)&Sector);
+     }
+     _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+     {
+@@ -980,7 +980,7 @@
+     /* Go through Cc for this */
+     _SEH2_TRY
+     {
+-        Cache841Pin(34, DeviceExt->VolumeFcb->FileObject, &Offset, Length, PIN_WAIT, &Context, (PVOID *)&Sector);
++        Cache842Pin(34, DeviceExt->VolumeFcb->FileObject, &Offset, Length, PIN_WAIT, &Context, (PVOID *)&Sector);
+     }
+     _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+     {
+@@ -1088,7 +1088,7 @@
+     /* Go through Cc for this */
+     _SEH2_TRY
+     {
+-        Cache841Pin(35, DeviceExt->VolumeFcb->FileObject, &Offset, Length, PIN_WAIT, &Context, (PVOID *)&Sector);
++        Cache842Pin(35, DeviceExt->VolumeFcb->FileObject, &Offset, Length, PIN_WAIT, &Context, (PVOID *)&Sector);
+     }
+     _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+     {
+@@ -1173,7 +1173,7 @@
+     /* Go through Cc for this */
+     _SEH2_TRY
+     {
+-        Cache841Pin(36, DeviceExt->VolumeFcb->FileObject, &Offset, Length, PIN_WAIT, &Context, (PVOID *)&Sector);
++        Cache842Pin(36, DeviceExt->VolumeFcb->FileObject, &Offset, Length, PIN_WAIT, &Context, (PVOID *)&Sector);
+     }
+     _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+     {
+@@ -1263,7 +1263,7 @@
+     /* Go through Cc for this */
+     _SEH2_TRY
+     {
+-        Cache841Pin(37, DeviceExt->VolumeFcb->FileObject, &Offset, Length, PIN_WAIT, &Context, (PVOID *)&Sector);
++        Cache842Pin(37, DeviceExt->VolumeFcb->FileObject, &Offset, Length, PIN_WAIT, &Context, (PVOID *)&Sector);
+     }
+     _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+     {
+--- a/drivers/filesystems/vfatfs/create.c
++++ b/drivers/filesystems/vfatfs/create.c
+@@ -1143,7 +1143,7 @@
+     if (NT_SUCCESS(Status))
+         IrpContext->PriorityBoost = IO_DISK_INCREMENT;
+ 
+-    Load841Open(IrpContext->FileObject, Status);
++    Load842Open(IrpContext->FileObject, Status);
+     return Status;
+ }
+ 
+--- a/drivers/filesystems/vfatfs/iface.c
++++ b/drivers/filesystems/vfatfs/iface.c
+@@ -126,8 +126,8 @@
+     }
+ #endif
+ 
+-    Cache841Initialize();
+-    Load841Initialize();
++    Cache842Initialize();
++    Load842Initialize();
+     return STATUS_SUCCESS;
+ }
+ 

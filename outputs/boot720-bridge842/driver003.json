@@ -1,0 +1,83 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "space": {
+    "minimum_free_gib": 21.5,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/home/paul/xbox-windows-native/boot720842-source001",
+        "free_bytes": 883562348544
+      },
+      {
+        "free_bytes": 38354612224,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "source_tree": "deb06b15f2723645f9572cc372e16431d5c9ea3d",
+  "tool_sha256": {
+    "RosBE.sh": "1d04daf7393952441c62691bb7735042d236b0196778f1632f0a4383476143b7",
+    "bin/cmake": "049737b62e2803fd657041cf65b6bb6de7756db377c92c686c63eec373604e75",
+    "bin/ninja": "371e855768aa214225d4b17f49902cdd2b2daa8764514134524b07282c9e9e07",
+    "i386/bin/i686-w64-mingw32-gcc": "83015512671faaa0dbe6f043a0107f79c049f4268a67e39955388a8d9a0182e5"
+  },
+  "definitions": {
+    "ARCH": "i386",
+    "SARCH": "xbox",
+    "OARCH": "pentium",
+    "CMAKE_BUILD_TYPE": "Release",
+    "DBG": "OFF",
+    "KDBG": "OFF",
+    "PCH": "OFF",
+    "ENABLE_CCACHE": "OFF",
+    "CMAKE_C_FLAGS": "-D_WIN2K_COMPAT_SLIST_USAGE"
+  },
+  "commands": [
+    [
+      "cmake",
+      "-S",
+      "/home/paul/xbox-windows-native/boot720842-source001/fatx",
+      "-B",
+      "/home/paul/xbox-windows-native/boot720842-source001/driver-build",
+      "-G",
+      "Ninja",
+      "-DCMAKE_TOOLCHAIN_FILE=/home/paul/xbox-windows-native/boot720842-source001/fatx/toolchain-gcc.cmake",
+      "-DARCH=i386",
+      "-DSARCH=xbox",
+      "-DOARCH=pentium",
+      "-DCMAKE_BUILD_TYPE=Release",
+      "-DDBG=OFF",
+      "-DKDBG=OFF",
+      "-DPCH=OFF",
+      "-DENABLE_CCACHE=OFF",
+      "-DCMAKE_C_FLAGS=-D_WIN2K_COMPAT_SLIST_USAGE"
+    ],
+    [
+      "cmake",
+      "--build",
+      "/home/paul/xbox-windows-native/boot720842-source001/driver-build",
+      "--target",
+      "vfatfs",
+      "--",
+      "-j4"
+    ]
+  ],
+  "artifacts": {
+    "build.log": {
+      "bytes": 49344,
+      "sha256": "067d25e85fdab188163e506ff97e0e4d0c14eb7a43cb8282d8b3b81ac92f4036"
+    },
+    "commands.sh": {
+      "bytes": 515,
+      "sha256": "8a4846368840a6e765eaf5d21a3892f0bf5bd6e59fabb0104807164d2608c4ba"
+    },
+    "xwnfatx.sys": {
+      "bytes": 173902,
+      "sha256": "5f5bee4bb437143937ab0b1ffc3e7929236f6b8b439154587799338152ecfdc7"
+    }
+  },
+  "utc": "2026-10-30T16:30:16.759757+00:00"
+}
