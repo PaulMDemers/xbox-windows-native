@@ -1,3 +1,40 @@
+# Test841 qualified: observe display image loading during fixed720p boot
+
+839 CLOSED B4;840 read-only PCI inventory CLOSED after automatic dashboard
+return. Fresh841 retains720p and prior functional FATX repairs. Adds only RAM
+observation of display image opens, reads, EOF byte and kernel-image notifications.
+No miniport, PCI, timing or encoder change. Display driver remains installed
+baseline. Clean immutable SYSTEM restored after private839 preimage preservation,
+exact readback verified. No failed runtime parent. Ordinary startup untouched.
+
+Host observer21cases, cache62cases, retention/map tests, image import/residency,
+copy/allocation tests and13 diskless CPU cases passed. All CPU fixtures closed.
+Host tests substitute APIs; next physical Windows boot remains unqualified.
+Source preparation001 failed on a comment-only namespace assumption; fresh002
+used. Observer host001 failed on stale expected status after a newer read;
+host002 corrected assertion passed with unchanged observer. Failures retained.
+
+Next stage unique E:/Applications/XWN16Boot841, readback, commit/push and one
+SITE20s. After2min obtain screen. If B4 capture LOAD841 rows and XWN841 rows.
+If desktop leave running. No automatic return, no hook. Then user power off/on,
+authenticate dashboard and collect once. Never relaunch CLOSED runs. Old
+automation paused; direct user Windows desktop work remains active.
+
+# Inventory840 CLOSED PASS; preparing diagnostic Windows boot841
+
+840 read-only kernel PCI inventory automatically returned; one collection.
+GPU1:0 ID02A010DE, header0, BAR0FD000000, framebuffer BAR1F0000008,
+IRQ3/pin1. Bridge0:30 type1, primary0/secondary1/subordinate1; memory window
+FD000000-FE7FFFFF and prefetchF0000000-F3FFFFFF. Some other bridge fields are
+unusual; this inventory alone does not identify Windows PnP failure. No PCI or
+mode-setting writes; console authenticated dashboard; no hook/owned host runtime.
+Never relaunch/recollect/runtime-parent840.
+
+839 CLOSED B4. Fresh841 planned: same720p and functional FATX repairs, RAM-only
+observations of display image opens, reads and load notifications printed on
+bugcheck. Installed display driver unchanged. Restore clean immutable SYSTEM
+before boot; retain truncated839 hive privately. No841 launch yet.
+
 # Test839 CLOSED: Windows video initialization failure
 
 User power off/on confirmed. Dashboard authenticated15:41:08UTC; collected once,
