@@ -1,3 +1,7 @@
+# Native825 visible mode transition confirmed
+
+[Native825](../outputs/native-visible825/REPORT.md) passed the observed blue-to-green native mode transition. Preparation audit passed after manual power off/on; no native result words were persisted. Xbox1.6 Windows desktop remains unproved. Next is separately gated Xromwell initialization and reserved-framebuffer handoff. No hook or host runtime remains.
+
 #725 CLOSED: CR1b first85 after680630 restoration
 
 One launch17:45:19UTC2026-10-27. Orange held picture; photo001 raw13rows:

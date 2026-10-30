@@ -1,3 +1,22 @@
+# Native825 CLOSED PASS: visible mode transition; Windows integration next
+
+User saw initial blue picture change to green and hold. Following explicit power
+off/on, dashboard authenticated and nine preparation records collected once.
+Local audit passed exact source/binary/report hashes, allocations, selectors and
+handoff_armed checks. Native result words are not persisted; visible transition
+is user evidence. No Windows desktop proof. No hook or owned host runtime.
+Never relaunch/recollect825. Fresh source-only integration follows qualified825
+transaction; adapt to actual loader reserved framebuffer and CPU/mapping contract.
+Preserve protected720p and all closed failures. Tonight direct authorization active.
+
+# Native825 visible transition confirmed; held, collection pending
+
+User saw initial blue picture change to green and remain holding. This is actual
+native visible mode-transition evidence, not Windows desktop or persisted native
+result-word proof. Border/checkerboard not separately described. No hook. No owned
+host fixtures running. Request power off/on, authenticate dashboard, collect exact
+preparation records once and audit before closing825 or admitting another launch.
+
 # Native825 launched; visible result pending
 
 One SITE accepted 2026-10-30 04:36:35 UTC; no retry. Native probe deliberately
