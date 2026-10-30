@@ -1,3 +1,5 @@
+Loader826 is staged for a separate early Xromwell integration test. Full-image host checks passed; no826 launch or Windows desktop proof yet. See outputs/loader-xcal826/REPORT.md.
+
 # Native825 visible mode transition confirmed
 
 [Native825](../outputs/native-visible825/REPORT.md) passed the observed blue-to-green native mode transition. Preparation audit passed after manual power off/on; no native result words were persisted. Xbox1.6 Windows desktop remains unproved. Next is separately gated Xromwell initialization and reserved-framebuffer handoff. No hook or host runtime remains.

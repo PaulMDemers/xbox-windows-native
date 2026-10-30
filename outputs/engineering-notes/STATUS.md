@@ -1,3 +1,16 @@
+# Loader826 staged and host-qualified; no SITE yet
+
+Fresh full Xromwell early-entry candidate, separate from ordinary launcher.
+Build003 passes912 linked transaction cases,32770 reservation cases and47
+entry/assembly fixtures. Exact XBE-embedded firmware reviewed. Fixed Windows
+framebuffer physical03700000 separated from actual incoming scanout. Native
+PCI/cable/EEPROM/encoder/timer admission precedes transaction; failures refuse.
+Build001 linker collision retained; build002 source and test results preserved.
+Stage/readback passed on1.6 at authenticated dashboard; no hook/host runtime.
+Next one authorized SITE for826; deliberate hold, green pattern or orange report.
+No Windows claim. Original XBE allocation/bootstrap remains a stated limitation.
+Never relaunch/recollect CLOSED825. Direct tonight authorization remains active.
+
 # Native825 CLOSED PASS: visible mode transition; Windows integration next
 
 User saw initial blue picture change to green and hold. Following explicit power

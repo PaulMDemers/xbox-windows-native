@@ -1,0 +1,93 @@
+{
+  "passed": false,
+  "physical_access": false,
+  "deployed": false,
+  "commands": [
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/launcher677-validation002/default720/source",
+      "checkout-index",
+      "--all",
+      "--prefix=/home/paul/xbox-windows-native/xcal826-source001/"
+    ],
+    [
+      "git",
+      "init",
+      "-q",
+      "/home/paul/xbox-windows-native/xcal826-source001"
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/xcal826-source001",
+      "add",
+      "-f",
+      "."
+    ],
+    [
+      "git",
+      "-C",
+      "/home/paul/xbox-windows-native/xcal826-source001",
+      "write-tree"
+    ],
+    [
+      "make",
+      "all",
+      "CC=/usr/bin/x86_64-linux-gnu-gcc-12",
+      "GITREV=xwn826-host",
+      "EXTRA_CROM_CFLAGS=-DXWN_HD_RESERVATION=1 -DXWN_HD_TIMING_720P=1 -DXWN_XCAL_ENTRY826=1",
+      "LDFLAGS-ROM=-s -S -T /home/paul/xbox-windows-native/xcal826-source001/scripts/ldscript-crom.ld -Map=/mnt/c/xwn826/build001/image-crom.map"
+    ]
+  ],
+  "source_pins": {
+    "delay_candidate.h": "2832b7f5f26fcf328591aeb10a80feeb1a23f1a9909409cafe6d7af62b311ee9",
+    "encoder.c": "659f03157a077590cf3a3188c73f59e5db39c24bbbdda7c1141b28913e5ac19d",
+    "entry.c": "a9874729a8f258180aa21e1b6402d9948e8547b4e942f562c9d1b1158d0b9446",
+    "gpu_preserving.c": "53b2eaa3557bb31464ed4f249c19cd8e6a997cd96a989ad7682521ecc23f2263",
+    "gpu_types.h": "1f7c61fa6599b4242f623f91ac849e47786ad726e9656a03b9fad6652b6198e9",
+    "transaction.h": "ab5d7e5abff4f4eee27feacb778c499268942370a5d6b87dd6db9ff8ff3142a8",
+    "transaction826.c": "96b7d1d5713498677c43074331de6fdbf0de5ec4795438c661cd579f47149581",
+    "xcal_bus.c": "e8527996a26d29b8a8da07374bddf1d61d5c3d9449f21f1bffd6ccdc132cda27",
+    "xcal_bus.h": "942c3acd9d5d215a868ff065eb5fc991a08d80f5a26d8fb723cc80677fabf533",
+    "xcal_table.h": "3d8cf98fcdcad12ec8f3c93a6f3244aa902266aa3ed8260617f051ccd9700a1d"
+  },
+  "space_source": {
+    "minimum_free_gib": 20.125,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/home/paul/xbox-windows-native",
+        "free_bytes": 895986163712
+      },
+      {
+        "free_bytes": 48379486208,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "space_output": {
+    "minimum_free_gib": 20.05,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c",
+        "free_bytes": 48379482112
+      },
+      {
+        "free_bytes": 48379482112,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "parent_tree": "70c0a6c5aff82537f489e7d18410d5980fa797a7",
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "tree": "959aadceb8559f998c19a47c3698950a2222ee9a",
+  "flags": "-DXWN_HD_RESERVATION=1 -DXWN_HD_TIMING_720P=1 -DXWN_XCAL_ENTRY826=1",
+  "failure": "AssertionError(('build', 2, b\"erriding recipe for target 'script'\\n/home/paul/xbox-windows-native/xcal826-source001/Rules.make:64: warning: ignoring old recipe for target 'script'\\n/home/paul/xbox-windows-native/xcal826-source001/Rules.make:23: warning: overriding recipe for target 'first_rule'\\n/home/paul/xbox-windows-native/xcal826-source001/Rules.make:23: warning: ignoring old recipe for target 'first_rule'\\n/home/paul/xbox-windows-native/xcal826-source001/Rules.make:32: warning: overriding recipe for target 'BootPerformPicChallengeResponseAction.o'\\n/home/paul/xbox-windows-native/xcal826-source001/Rules.make:32: warning: ignoring old recipe for target 'BootPerformPicChallengeResponseAction.o'\\n/home/paul/xbox-windows-native/xcal826-source001/Rules.make:64: warning: overriding recipe for target 'script'\\n/home/paul/xbox-windows-native/xcal826-source001/Rules.make:64: warning: ignoring old recipe for target 'script'\\n/usr/bin/x86_64-linux-gnu-ld.bfd: /home/paul/xbox-windows-native/xcal826-source001/obj/VideoInitialization.o: in function `SetGPURegister':\\n/home/paul/xbox-windows-native/xcal826-source001/drivers/video/VideoInitialization.c:85: multiple definition of `SetGPURegister'; /home/paul/xbox-windows-native/xcal826-source001/obj/xcal826_gpu_preserving.o:/home/paul/xbox-windows-native/xcal826-source001/boot/xcal826_gpu_preserving.c:31: first defined here\\n/usr/bin/x86_64-linux-gnu-ld.bfd: warning: obj/image-crom.elf has a LOAD segment with RWX permissions\\nmake: *** [Makefile:223: obj/image-crom.bin] Error 1\\n\"))",
+  "ended_utc": "2026-10-30T05:06:35.456756+00:00"
+}

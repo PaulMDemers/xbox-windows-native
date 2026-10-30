@@ -1,0 +1,36 @@
+/* SPDX-License-Identifier: GPL-2.0-or-later */
+#ifndef XWN_TRANSACTION704_H
+#define XWN_TRANSACTION704_H
+#include "xcal_bus.h"
+#include "delay_candidate.h"
+/* Caller must independently establish page ownership, aliases, CPU context,
+ * PCI mappings and timer rate. These fields enforce a contract, not its proof.
+ * 826 uses the fixed nine-MiB loader reservation, not an nxdk allocation.
+ * pattern_extent describes required bytes, not a successful memory test.
+ * incoming_base is independently read from PCRTC_START before any mode write.
+ */
+struct request704 {
+ uint32_t ram,base,reserved_bytes,pattern_extent,reservation_checked,identity_checked;
+ uint32_t width,height,pitch,depth,confirmed_xcalibur,cable_byte,flags;
+ uint32_t timer_hz,tv_path_confirmed,incoming_base;
+};
+struct encoder704 {
+ uint32_t attempted,completed,table_completed,delay_completed,phase,error;
+ uint32_t reg,is_read,read_value;
+ struct xcal_trace bus;
+ struct delay_observation delay;
+};
+struct result704 {
+ uint32_t phase,error,blank_readback,enable_requested,pixels_verified;
+ uint32_t width,height,pitch,start,format,interlace;
+ uint32_t saved_cr11,saved_cr21,preserved[6];
+ struct encoder704 encoder;
+ struct delay_observation settle;
+};
+enum { T704_OK=1,T704_ARGUMENT,T704_LAYOUT,T704_IF,T704_BASELINE,
+ T704_BLANK,T704_UNLOCK,T704_SETUP,T704_GEOMETRY,T704_ENCODER,
+ T704_READBACK,T704_DRAW,T704_SETTLE,T704_ENABLE };
+int bounds704(const struct request704 *);
+int encoder704(const struct xcal_bus *,uint32_t (*)(void *),void *,struct encoder704 *);
+int native_transaction704(const struct request704 *,volatile uint8_t *,volatile uint32_t *,struct result704 *);
+#endif
