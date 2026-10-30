@@ -1,3 +1,14 @@
+# Test838 launched once; awaiting Windows screen
+
+Accepted 2026-10-30T15:13:16.848664+00:00. No retry. Fixed720p boot with isolated FATX
+metadata page-window fix and active cache diagnostic. Installed driver/hives
+unchanged. Preparation pushed4f30a9b6. No hook or owned host runtime.
+
+After2min request screen/stop parameters and XWN838 ring lines. If desktop leave
+running. If held capture evidence then power off/on; authenticate dashboard and
+collect838 once. Never relaunch accepted attempt. 837 CLOSED; no recollection.
+Automation paused; direct user Windows desktop work continues.
+
 838 staged and verified: nine owned files read back and ten installed Windows critical files unchanged. No hook or host runtime. Next one bounded SITE after evidence commit/push.
 
 # Fresh838 qualified: FATX metadata page-window repair; next stage and boot
