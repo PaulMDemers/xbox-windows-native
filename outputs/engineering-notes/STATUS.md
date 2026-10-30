@@ -1,3 +1,24 @@
+# Test839 CLOSED: Windows video initialization failure
+
+User power off/on confirmed. Dashboard authenticated15:41:08UTC; collected once,
+then cold audited (audit001 comparison failed after reads; audit002 finalized from
+retained bytes offline). STOP B4(0,0,0,50000), no extent diagnostic stop, no desktop.
+Trace unchanged against immutable baseline. Nine of ten critical files unchanged;
+SYSTEM changed and its header declares12KiB beyond actual file length. Complete
+hive walk has13 errors; selected display bindings unchanged. Forced poweroff is
+not normal shutdown or persistence qualification. Raw hive retained privately.
+No hooks or owned host runtime. Console authenticated UnleashX. Never relaunch,
+recollect or runtime-parent839. Old automation paused; direct desktop work active.
+
+Next: fresh840 read-only PCI bridge/GPU inventory, automatic dashboard return;
+no mode/encoder/timing writes. Establish display discovery before any boot change.
+Restore a validated clean SYSTEM baseline before next Windows attempt; retain
+839 preimage and exact readback. Current hive is not a valid runtime parent.
+See outputs/boot720-rootchain839/closed001.json, audit002.json,
+display-cold001.json and system-diff003.json (explicitly incomplete).
+
+839 photo: STOP B4(0,0,0,50000), video driver failed to initialize. No diagnostic extent stop. Four XWN839 rows captured; pending power-cycle confirmation and one cold collection/audit via physical002.py. Investigate exact installed display configuration/driver; preserve720p.
+
 839 user reports BLUE SCREEN. Stop code and XWN839 rows not yet available; photograph needed. Console held; no power-cycle confirmation. Do not relaunch/collect. Use physical002.py after authenticated return. See screen-pending001.json.
 
 839 screen requested after two minutes. Dashboard poll001 timed out; Windows progress/result unknown. Use physical002.py; no further launch. See awaiting-screen001.json.
