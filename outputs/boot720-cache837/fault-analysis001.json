@@ -1,0 +1,24 @@
+{
+  "evidence": "screen001.json",
+  "site": 29,
+  "function": "FAT32CountAvailableClusters",
+  "file": "fat.c",
+  "request": {
+    "offset": 1245184,
+    "length": 16384,
+    "stream_size": 1253376,
+    "overrun": 8192
+  },
+  "flags": {
+    "value": 4,
+    "meaning": "FCB_IS_FAT"
+  },
+  "source_facts": [
+    "FATX table size rounds to4096 bytes in fsctl.c",
+    "FAT stream AllocationSize, FileSize, ValidDataLength all equal FATSectors*BytesPerSector",
+    "fat.c CACHEPAGESIZE uses max(BytesPerCluster,PAGE_SIZE)",
+    "FAT32CountAvailableClusters maps a full ChunkSize at each iteration"
+  ],
+  "conclusion": "Confirmed FAT metadata map beyond the stream allocation in837. This is an evidence-backed candidate for836 kernel crash, not proof of identical call stack.",
+  "proposed_fix": "Page-sized FATX metadata maps throughout fat.c, retain standard FAT policy and active diagnostic guard; source and runtime qualification required."
+}
