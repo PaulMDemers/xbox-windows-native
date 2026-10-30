@@ -1,3 +1,11 @@
+837 screen requested after two minutes. Read-only dashboard poll timed out; Windows progress and diagnostic result remain unknown. See awaiting-screen001.json. No further launch.
+
+# Boot837 launched once; awaiting screen evidence
+
+Accepted 2026-10-30T13:08:29.774328+00:00. No retry. Fixed720p Windows boot with isolated cache diagnostic under owned837 loader folder. Installed driver/hives unchanged. Preparation pushed a4bb1e16. No owned host runtime or hook.
+
+After two minutes request screen; capture stop parameters and XWN837 ring lines if present. If desktop, leave running. If held, preserve evidence then request power off/on, authenticate dashboard, collect837 once. Never relaunch accepted attempt. 835/836 CLOSED. Automation paused; direct user work continues.
+
 837 staging complete: nine fresh owned files read back, ten installed Windows files unchanged. Next ONE launch after committing evidence. No hook or owned host runtime.
 
 # Fresh837 isolated cache diagnostic qualified; next stage and one boot
