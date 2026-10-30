@@ -1,0 +1,54 @@
+--- a/boot/freeldr/freeldr/arch/i386/xbox/xboxmem.c
++++ b/boot/freeldr/freeldr/arch/i386/xbox/xboxmem.c
+@@ -116,6 +116,17 @@
+ VOID
+ XboxMemInit(VOID)
+ {
++#ifdef XWN_RETAIN_720_835
++    INT count, i;
++    memory_map_t *map = XboxGetMultibootMemoryMap(&count);
++    if (!map || count != 2)
++        FrLdrBugCheckWithMessage(0, __FILE__, __LINE__, "retained720 retail64 map absent");
++    for (i=0;i<count;i++)
++        if (!XwnHdMapEntryValid(i,map[i].base_addr_low,map[i].base_addr_high,
++                map[i].length_low,map[i].length_high,map[i].type))
++            FrLdrBugCheckWithMessage(0, __FILE__, __LINE__, "retained720 retail64 map invalid");
++    InstalledMemoryMb = 64;
++#else
+     PCI_TYPE1_CFG_BITS PciCfg1;
+     UCHAR ControlRegion[TEST_SIZE];
+     PVOID MembaseTop = (PVOID)(64 * 1024 * 1024);
+@@ -166,6 +177,7 @@
+     WRITE_PORT_ULONG(PCI_TYPE1_ADDRESS_PORT, PciCfg1.u.AsULONG);
+     WRITE_PORT_ULONG((PULONG)PCI_TYPE1_DATA_PORT, InstalledMemoryMb * 1024 * 1024 - 1);
+ 
++#endif
+     AvailableMemoryMb = InstalledMemoryMb;
+ 
+     XboxInitializePCI();
+--- a/boot/freeldr/freeldr/freeldr.c
++++ b/boot/freeldr/freeldr/freeldr.c
+@@ -181,7 +181,7 @@
+     /* Independent launcher and Windows root both live on stock partition 1. */
+     if (strcmp(FrLdrBootPath, "multi(0)disk(0)rdisk(0)partition(1)") != 0 ||
+         !NT_SUCCESS(RtlStringCbCatA(FrLdrBootPath, sizeof(FrLdrBootPath),
+-                                   "\\Applications\\XWNEBoot")))
++                                   "\\Applications\\XWN16Boot835")))
+         XwnStop("XWNFAIL: unexpected FATX E-boot launcher device");
+ #elif defined(XBOX_NATIVE_FATX_IO_PREFLIGHT) || defined(XBOX_NATIVE_FATX_NT5_PREFLIGHT)
+     /* The Xromwell launcher passes the FATX device, not the image directory. */
+--- a/boot/freeldr/freeldr/pcat.cmake
++++ b/boot/freeldr/freeldr/pcat.cmake
+@@ -472,3 +472,12 @@
+     target_compile_definitions(freeldr_pe PRIVATE XBOX_NATIVE_FATX_E_BOOT=1)
+     target_compile_definitions(freeldr_common PRIVATE XBOX_NATIVE_FATX_E_BOOT=1)
+ endif()
++
++option(XWN_RETAIN_720_835 "Retain kernel-established Xbox1.6 retail64 720p" OFF)
++if(XWN_RETAIN_720_835)
++    if(NOT XBOX_NATIVE_FATX_E_BOOT OR NOT XBOX_NT5_HD_RESERVATION)
++        message(FATAL_ERROR "retained720 requires stock E and exact HD reservation")
++    endif()
++    target_compile_definitions(freeldr_pe PRIVATE XWN_RETAIN_720_835=1)
++    target_compile_definitions(freeldr_common PRIVATE XWN_RETAIN_720_835=1)
++endif()

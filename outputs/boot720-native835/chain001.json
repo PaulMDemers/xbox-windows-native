@@ -1,0 +1,122 @@
+{
+  "passed": false,
+  "physical_access": false,
+  "space": {
+    "minimum_free_gib": 21.5,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/home/paul/xbox-windows-native/boot720835-source001",
+        "free_bytes": 895131873280
+      },
+      {
+        "free_bytes": 49528193024,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "commands": [
+    [
+      "cmake",
+      "-S",
+      "/home/paul/xbox-windows-native/boot720835-source001/reactos",
+      "-B",
+      "/home/paul/xbox-windows-native/boot720835-source001/nt5",
+      "-G",
+      "Ninja",
+      "-DCMAKE_TOOLCHAIN_FILE=/home/paul/xbox-windows-native/boot720835-source001/reactos/toolchain-gcc.cmake",
+      "-DARCH=i386",
+      "-DSARCH=xbox",
+      "-DOARCH=pentium",
+      "-DCMAKE_BUILD_TYPE=Release",
+      "-DDBG=OFF",
+      "-DKDBG=OFF",
+      "-DPCH=OFF",
+      "-DENABLE_CCACHE=OFF",
+      "-DXBOX_NT5_HAL=ON",
+      "-DXBOX_NATIVE_PREFLIGHT=OFF",
+      "-DXBOX_NATIVE_IO_PREFLIGHT=ON",
+      "-DXBOX_NATIVE_EXTENDED_READ_PREFLIGHT=OFF",
+      "-DXBOX_NATIVE_EXTENDED_NT5_BOOT=OFF",
+      "-DXBOX_NATIVE_FATX_F_BOOT=OFF",
+      "-DXBOX_NATIVE_VOLUME_PREFLIGHT=OFF",
+      "-DXBOX_NATIVE_NT5_HANDOFF=ON",
+      "-DXBOX_NATIVE_NT5_ENTER=ON",
+      "-DXBOX_NATIVE_NT5_AUTORUN=ON",
+      "-DXBOX_NT5_VIDEO_ADAPTER_DIAGNOSTIC=OFF",
+      "-DXBOX_NT5_VIDEO_TRACE=ON",
+      "-DXBOX_NT5_VIDEO_PNP_DIAGNOSTIC=ON",
+      "-DXBOX_NT5_VIDEO_DIAGNOSTIC=ON",
+      "-DXBOX_NT5_VIDEO_ENTRY_DIAGNOSTIC=OFF",
+      "-DXBOX_NT5_FRAMEBUFFER_ONLY_PCI=ON",
+      "-DXBOX_NT5_VIDEO_TRACE_REUSE=ON",
+      "-DXBOX_NT5_SHARED_FRAMEBUFFER=ON",
+      "-DXBOX_NT5_HD_RESERVATION=ON",
+      "-DXBOX_NATIVE_FATX_E_BOOT=ON",
+      "-DXWN_RETAIN_720_835=ON"
+    ],
+    [
+      "cmake",
+      "--build",
+      "/home/paul/xbox-windows-native/boot720835-source001/nt5",
+      "--target",
+      "freeldr",
+      "rosload",
+      "--",
+      "-j4"
+    ]
+  ],
+  "source_record_sha256": "4222af2325cd56e6e1de9fa5a85f8a6b1650a56838c8134f4d98513656776645",
+  "tool_sha256": {
+    "RosBE.sh": "1d04daf7393952441c62691bb7735042d236b0196778f1632f0a4383476143b7",
+    "bin/cmake": "049737b62e2803fd657041cf65b6bb6de7756db377c92c686c63eec373604e75",
+    "bin/ninja": "371e855768aa214225d4b17f49902cdd2b2daa8764514134524b07282c9e9e07",
+    "i386/bin/i686-w64-mingw32-gcc": "83015512671faaa0dbe6f043a0107f79c049f4268a67e39955388a8d9a0182e5"
+  },
+  "gcc12_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "definitions": {
+    "ARCH": "i386",
+    "SARCH": "xbox",
+    "OARCH": "pentium",
+    "CMAKE_BUILD_TYPE": "Release",
+    "DBG": "OFF",
+    "KDBG": "OFF",
+    "PCH": "OFF",
+    "ENABLE_CCACHE": "OFF",
+    "XBOX_NT5_HAL": "ON",
+    "XBOX_NATIVE_PREFLIGHT": "OFF",
+    "XBOX_NATIVE_IO_PREFLIGHT": "ON",
+    "XBOX_NATIVE_EXTENDED_READ_PREFLIGHT": "OFF",
+    "XBOX_NATIVE_EXTENDED_NT5_BOOT": "OFF",
+    "XBOX_NATIVE_FATX_F_BOOT": "OFF",
+    "XBOX_NATIVE_VOLUME_PREFLIGHT": "OFF",
+    "XBOX_NATIVE_NT5_HANDOFF": "ON",
+    "XBOX_NATIVE_NT5_ENTER": "ON",
+    "XBOX_NATIVE_NT5_AUTORUN": "ON",
+    "XBOX_NT5_VIDEO_ADAPTER_DIAGNOSTIC": "OFF",
+    "XBOX_NT5_VIDEO_TRACE": "ON",
+    "XBOX_NT5_VIDEO_PNP_DIAGNOSTIC": "ON",
+    "XBOX_NT5_VIDEO_DIAGNOSTIC": "ON",
+    "XBOX_NT5_VIDEO_ENTRY_DIAGNOSTIC": "OFF",
+    "XBOX_NT5_FRAMEBUFFER_ONLY_PCI": "ON",
+    "XBOX_NT5_VIDEO_TRACE_REUSE": "ON",
+    "XBOX_NT5_SHARED_FRAMEBUFFER": "ON",
+    "XBOX_NT5_HD_RESERVATION": "ON",
+    "XBOX_NATIVE_FATX_E_BOOT": "ON",
+    "XWN_RETAIN_720_835": "ON"
+  },
+  "error": "CalledProcessError(1, ['/home/paul/xbox-windows-native/toolchains/RosBE-2.2.1/RosBE.sh', '/home/paul/xbox-windows-native/boot720835-source001/reactos', '0', 'i386'])",
+  "artifacts": {
+    "commands.sh": {
+      "bytes": 1124,
+      "sha256": "1f29c7e384f8b3c8c788dd3f4ac810783a9231a81dc2ee55cd6eaf1436dd8b33"
+    },
+    "nt5.log": {
+      "bytes": 52357,
+      "sha256": "9a4a72a9189733a2527124d7bfb1803000e3315df67725a20de80f02dcc79e58"
+    }
+  },
+  "ended_utc": "2026-10-30T10:48:03.755440+00:00"
+}

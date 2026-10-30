@@ -1,0 +1,146 @@
+/**
+ * Common library functions for video initialization
+ *
+ * Oliver Schwartz, May 2003
+ */
+
+/***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+
+
+/* Isolated exact helpers/function from the pinned legacy source. */
+#include <stdint.h>
+typedef uint8_t u8; typedef uint32_t u32;
+#include "gpu_types.h"
+static u8 NvGetCrtc(volatile u8 * pbRegs, int nIndex) {
+	pbRegs[0x6013d4]=nIndex;
+	return pbRegs[0x6013d5];
+}
+
+static void NvSetCrtc(volatile u8 * pbRegs, int nIndex, u8 b) {
+	pbRegs[0x6013d4]=nIndex;
+	pbRegs[0x6013d5]=b;
+}
+
+void XcalSetGPURegister826(const GPU_PARAMETER* gpu, u8 *pbRegs) {
+	u8 b;
+	u32 m = 0;
+	// NVHDISPEND
+	*((volatile u32 *)&pbRegs[0x680820]) = gpu->crtchdispend - 1;
+	// NVHTOTAL
+	*((volatile u32 *)&pbRegs[0x680824]) = gpu->nvhtotal;
+	// NVHCRTC
+	*((volatile u32 *)&pbRegs[0x680828]) = gpu->xres - 1;
+	// NVHVALIDSTART
+	*((volatile u32 *)&pbRegs[0x680834]) = 0;
+	// NVHSYNCSTART
+	*((volatile u32 *)&pbRegs[0x68082c]) = gpu->nvhstart;
+	// NVHSYNCEND = NVHSYNCSTART + 32
+	*((volatile u32 *)&pbRegs[0x680830]) = gpu->nvhstart+32;
+	// NVHVALIDEND
+	*((volatile u32 *)&pbRegs[0x680838]) = gpu->xres - 1;
+	// CRTC_HSYNCSTART = h_total - 32 (heuristic)
+	m = gpu->nvhtotal - 32;
+	NvSetCrtc(pbRegs, 4, m/8);
+	// CRTC_HSYNCEND = CRTC_HSYNCSTART + 16
+	NvSetCrtc(pbRegs, 5, (NvGetCrtc(pbRegs, 5)&0xe0) | ((((m + 16)/8)-1)&0x1f) );
+	// CRTC_HTOTAL = nvh_total (heuristic)
+	NvSetCrtc(pbRegs, 0, (gpu->nvhtotal/8)-5);
+	// CRTC_HBLANKSTART = crtchdispend
+	NvSetCrtc(pbRegs, 2, ((gpu->crtchdispend)/8)-1);
+	// CRTC_HBLANKEND = CRTC_HTOTAL = nvh_total
+	NvSetCrtc(pbRegs, 3, (NvGetCrtc(pbRegs, 3)&0xe0) |(((gpu->nvhtotal/8)-1)&0x1f));
+	NvSetCrtc(pbRegs, 5, (NvGetCrtc(pbRegs, 5)&(~0x80)) | ((((gpu->nvhtotal/8)-1)&0x20)<<2) );
+	// CRTC_HDISPEND
+	NvSetCrtc(pbRegs, 0x17, (NvGetCrtc(pbRegs, 0x17)&0x7f));
+	NvSetCrtc(pbRegs, 1, ((gpu->crtchdispend)/8)-1);
+	NvSetCrtc(pbRegs, 2, ((gpu->crtchdispend)/8)-1);
+	NvSetCrtc(pbRegs, 0x17, (NvGetCrtc(pbRegs, 0x17)&0x7f)|0x80);
+	// CRTC_LINESTRIDE = (xres / 8) * pixelDepth
+	m=(gpu->xres / 8) * gpu->pixelDepth;
+	NvSetCrtc(pbRegs, 0x19, (NvGetCrtc(pbRegs, 0x19)&0x1f) | ((m >> 3) & 0xe0));
+	NvSetCrtc(pbRegs, 0x13, (m & 0xff));
+	// NVVDISPEND
+	*((volatile u32 *)&pbRegs[0x680800]) = gpu->yres - 1;
+	// NVVTOTAL
+	*((volatile u32 *)&pbRegs[0x680804]) = gpu->nvvtotal;
+	// NVVCRTC
+	*((volatile u32 *)&pbRegs[0x680808]) = gpu->yres - 1;
+	// NVVVALIDSTART
+	*((volatile u32 *)&pbRegs[0x680814]) = 0;
+	// NVVSYNCSTART
+	*((volatile u32 *)&pbRegs[0x68080c])=gpu->nvvstart;
+	// NVVSYNCEND = NVVSYNCSTART + 3
+	*((volatile u32 *)&pbRegs[0x680810])=(gpu->nvvstart+3);
+	// NVVVALIDEND
+	*((volatile u32 *)&pbRegs[0x680818]) = gpu->yres - 1;
+	// CRTC_VSYNCSTART
+	b = NvGetCrtc(pbRegs, 7) & 0x7b;
+	NvSetCrtc(pbRegs, 7, b | ((gpu->crtcvstart >> 2) & 0x80) | ((gpu->crtcvstart >> 6) & 0x04));
+	NvSetCrtc(pbRegs, 0x10, (gpu->crtcvstart & 0xff));
+	// CRTC_VTOTAL
+	b = NvGetCrtc(pbRegs, 7) & 0xde;
+	NvSetCrtc(pbRegs, 7, b | ((gpu->crtcvtotal >> 4) & 0x20) | ((gpu->crtcvtotal >> 8) & 0x01));
+	NvSetCrtc(pbRegs, 6, (gpu->crtcvtotal & 0xff));
+	// CRTC_VBLANKEND = CRTC_VTOTAL
+	b = NvGetCrtc(pbRegs, 0x16) & 0x80;
+	NvSetCrtc(pbRegs, 0x16, b |(gpu->crtcvtotal & 0x7f));
+	// CRTC_VDISPEND = yres
+	b = NvGetCrtc(pbRegs, 7) & 0xbd;
+	NvSetCrtc(pbRegs, 7, b | (((gpu->yres - 1) >> 3) & 0x40) | (((gpu->yres - 1) >> 7) & 0x02));
+	NvSetCrtc(pbRegs, 0x12, ((gpu->yres - 1) & 0xff));
+	// CRTC_VBLANKSTART
+	b = NvGetCrtc(pbRegs, 9) & 0xdf;
+	NvSetCrtc(pbRegs, 9, b | (((gpu->yres - 1)>> 4) & 0x20));
+	b = NvGetCrtc(pbRegs, 7) & 0xf7;
+	NvSetCrtc(pbRegs, 7, b | (((gpu->yres - 1) >> 5) & 0x08));
+	NvSetCrtc(pbRegs, 0x15, ((gpu->yres - 1) & 0xff));
+	// CRTC_LINECOMP
+	m = 0x3ff; // 0x3ff = disable
+	b = NvGetCrtc(pbRegs, 7) & 0xef;
+	NvSetCrtc(pbRegs, 7, b | ((m>> 4) & 0x10));
+	b = NvGetCrtc(pbRegs, 9) & 0xbf;
+	NvSetCrtc(pbRegs, 9, b | ((m >> 3) & 0x40));
+	NvSetCrtc(pbRegs, 0x18, (m & 0xff));
+	// CRTC_REPAINT1
+	if (gpu->xres < 1280) {
+		b = NvGetCrtc(pbRegs, 0x1a) | 0x04;
+	}
+	else {
+		b = NvGetCrtc(pbRegs, 0x1a) & ~0x04;
+	}
+	NvSetCrtc(pbRegs, 0x1a, b);
+	// Overflow bits
+	/*
+	b = ((hTotal   & 0x040) >> 2)
+		| ((vDisplay & 0x400) >> 7)
+		| ((vStart   & 0x400) >> 8)
+		| ((vDisplay & 0x400) >> 9)
+		| ((vTotal   & 0x400) >> 10);
+	*/
+	b = (((gpu->nvhtotal / 8 - 5) & 0x040) >> 2)
+		| (((gpu->yres - 1) & 0x400) >> 7)
+		| ((gpu->crtcvstart & 0x400) >> 8)
+		| (((gpu->yres - 1) & 0x400) >> 9)
+		| ((gpu->crtcvtotal & 0x400) >> 10);
+	NvSetCrtc(pbRegs, 0x25, b);
+
+	b = gpu->pixelDepth;
+	if (b >= 3) b = 3;
+	/* switch pixel mode to TV */
+	b  |= 0x80;
+	NvSetCrtc(pbRegs, 0x28, b);
+
+	b = NvGetCrtc(pbRegs, 0x2d) & 0xe0;
+	if ((gpu->nvhtotal / 8 - 1) >= 260) {
+		b |= 0x01;
+	}
+	NvSetCrtc(pbRegs, 0x2d, b);
+}
+

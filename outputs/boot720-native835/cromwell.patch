@@ -1,0 +1,98 @@
+--- a/boot/BootResetAction.c
++++ b/boot/BootResetAction.c
+@@ -44,7 +44,12 @@
+ //
+ //  BootResetAction()
+ 
++extern void XwnRetain720Entry835(void);
++extern void XwnRetain720Mode835(CURRENT_VIDEO_MODE_DETAILS *);
+ extern void BootResetAction ( void ) {
++#ifdef XWN_RETAIN_720_835
++    XwnRetain720Entry835();
++#endif
+ 	bool fMbrPresent=false;
+ 	bool fSeenActive=false;
+ 	int nFATXPresent=false;
+@@ -74,7 +79,9 @@
+ 	//bprintf("BOOT: starting PCI init\n");
+ 	BootPciPeripheralInitialization();
+ 	// Reset the AGP bus and start with good condition
++#ifndef XWN_RETAIN_720_835
+ 	BootAGPBUSInitialization();
++#endif
+ 
+ 	// We disable The CPU Cache
+        	cache_disable();
+@@ -84,7 +91,11 @@
+        	cache_enable();
+        	//setup_ioapic();
+ 	// We look how much memory we have ..
++#ifdef XWN_RETAIN_720_835
++	xbox_ram=64; /* Verified by kernel frontend and exact multiboot contract. */
++#else
+ 	BootDetectMemorySize();
++#endif
+ 
+ 	BootEepromReadEntireEEPROM();
+ 
+@@ -92,7 +103,11 @@
+         // clear the Video Ram
+ 	memset((void *)FB_START,0x00,FB_SIZE);
+ 
+-	BootVgaInitializationKernelNG((CURRENT_VIDEO_MODE_DETAILS *)&vmode);
++#ifdef XWN_RETAIN_720_835
++    XwnRetain720Mode835((CURRENT_VIDEO_MODE_DETAILS *)&vmode);
++#else
++    BootVgaInitializationKernelNG((CURRENT_VIDEO_MODE_DETAILS *)&vmode);
++#endif
+ 
+ 	{ // decode and malloc backdrop bitmap
+ 		extern int _start_backdrop;
+@@ -225,8 +240,8 @@
+         entry.bootType = BOOT_FATX;
+         entry.bootSystem = SYS_REACTOS;
+         strcpy(entry.title, "XWN loader diagnostic");
+-        strcpy(entry.szPath, "/Applications/XWNEBoot/freeldr.sys");
+-        printk("XWN: loading isolated E:/Applications/XWNEBoot/freeldr.sys\n");
++        strcpy(entry.szPath, "/Applications/XWN16Boot835/freeldr.sys");
++        printk("XWN: loading isolated E:/Applications/XWN16Boot835/freeldr.sys\n");
+         BootFromDevice(&entry);
+         printk("XWN: loader failed. No fallback boot. Reboot to dashboard.\n");
+         __asm__ __volatile__("cli");
+--- a/drivers/pci/pci.c
++++ b/drivers/pci/pci.c
+@@ -487,6 +487,7 @@
+ 	IoOutputByte(0x80cf, 0x08); // Set C32KHZ pin to be pin function
+ 	IoOutputWord(0x8020, IoInputWord(0x8020)|0x200); // ack any preceding ACPI int
+ 
++#ifndef XWN_RETAIN_720_835
+ 	// Bus 0, Device 1e, Function 0 = nForce AGP Host to PCI Bridge
+ 	PciWriteDword(BUS_0, DEV_1e, FUNC_0, 4, PciReadDword(BUS_0, DEV_1e, FUNC_0, 4) | 7 );
+ 	PciWriteDword(BUS_0, DEV_1e, FUNC_0, 0x18, (PciReadDword(BUS_0, DEV_1e, FUNC_0, 0x18) &0xffffff00));
+@@ -514,6 +515,7 @@
+ 	PciWriteDword(BUS_1, DEV_0, FUNC_0, 0x0c, 0x0);
+ 	PciWriteDword(BUS_1, DEV_0, FUNC_0, 0x18, 0x08);
+ 
++#endif /* Retained GPU and AGP bridge configuration. */
+ 	// Enable Serial COM1 by default if not already enabled
+ 	if (!LpcGetSerialState()) {
+ 		LpcSetSerialState(1);
+--- a/boot/Makefile
++++ b/boot/Makefile
+@@ -1,5 +1,5 @@
+ EXTRA_CFLAGS := -I$(TOPDIR)/fs/grub -I$(TOPDIR)/fs/fatx -I$(TOPDIR)/lib/crypt -I$(TOPDIR)/drivers/flash -I$(TOPDIR)/drivers/cpu -I$(TOPDIR)/drivers/ide
+ 
+-O_TARGET := LoadLinux.o LoadReactOS.o BootStartup.o BootResetAction.o BootFromDevice.o
++O_TARGET := retain835.o LoadLinux.o LoadReactOS.o BootStartup.o BootResetAction.o BootFromDevice.o
+ 
+ include $(TOPDIR)/Rules.make
+--- a/Makefile
++++ b/Makefile
+@@ -85,6 +85,7 @@
+ 
+ OBJECTS-CROM = $(TOPDIR)/obj/BootStartup.o
+ OBJECTS-CROM += $(TOPDIR)/obj/BootResetAction.o
++OBJECTS-CROM += $(TOPDIR)/obj/retain835.o
+ OBJECTS-CROM += $(TOPDIR)/obj/i2cio.o
+ OBJECTS-CROM += $(TOPDIR)/obj/pci.o
+ OBJECTS-CROM += $(TOPDIR)/obj/BootVgaInitialization.o
