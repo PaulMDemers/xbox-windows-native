@@ -18,4 +18,3 @@ UnleashX. Independently authenticate dashboard, no hook to remove, collect836 on
 audit installed files and boot traces. No relaunch. No owned host runtime.
 Next diagnose Windows kernel failure with fixed720p retained; no mode probes.
 835 CLOSED. Old automation paused, direct Windows desktop work authorized.
-
