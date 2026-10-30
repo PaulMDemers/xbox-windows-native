@@ -1,25 +1,14 @@
-# Native818 launched once: combined visible mode pending
+# Native818 black-screen hold: recovery and collection pending
 
-One SITE accepted at2026-10-30T02:34:00Z after authenticated dashboard001,
-exact frozen source/build checks and uniqueE staging/readback. Native deliberate
-hold; observation/photo and subsequent user power-cycle pending. Never retry.
-No startup hook or Windows launch. All12 fresh CPU VMs closed; no host emulator
-left running. Expired automation remains PAUSED; user renewed tonight work.
+User reports black screen; initial stages were not watched. No visible-mode
+PASS and no native failure phase can be inferred. One launch only. User asked
+to power off/on and leave UnleashX; reset not yet confirmed. No relaunch.
+No startup hook, Windows launch or owned host VM. Original720p untouched.
 
-Candidate combines full source-backed704 encoder/VGA/output-enable path with
-qualified817 preservingCR1A(bit2), CR1b/22/33. Success requires the actual720x480
-border/quadrant/checker pattern. Postblank failure reblanks and holds. NoWindows.
-
-Host:model001881 cases plus32770 bounds;integration00316 relocated cases;
-CPU00612 contexts/refusals;plan164177;compiled page45+46 andownership418;
-exact object/PE/XBE/ELF relocation checks passed. Integration001/002 execution
-bounds and link-review012 missing-rodata enumeration failure retained. No
-candidate modification to make those checks pass. Documentation prep first
-failed cp1252 decode; UTF8 used on untouched canonical sources afterward.
-
-Next: get visible outcome. User photographs then powers off/on under standing
-workflow. Authenticate dashboard, collect nine prep phases once and audit.
-No automatic-return or Windows shutdown inference. If complete mode succeeds,
-proceed to fresh Windows display/handoff integration; if black, preserve unknown
-native phase and diagnose this bounded path. Never recollect CLOSED817.
+Next: independently authenticate dashboard after recovery, collect818 once,
+audit preparation and close physical attempt with phase unknown. Consider a
+fresh self-reporting kernel-context complete-transaction control to capture
+actual phase/error and transport status on disk, rather than an identical
+unobservable native retry. Qualify its IF restoration and bounded return first.
+Kernel-context results would not establish native-mode or Windows support.
 
