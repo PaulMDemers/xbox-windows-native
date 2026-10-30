@@ -1,3 +1,47 @@
+# Native817 CLOSED PASS: preserving mode controls
+
+Photo decoded and independently reviewed: final status 0x817, CR1A38 ->3C;
+last raw3C is after CR2D undo BEFORE its own undo, not final restoration.
+Seven displayed cleanup masks and one forward mask are zero;27 other cleanup
+masks and final own CR1A restoration are aggregate-only through strict success.
+Same-value CR25/28/2D controls do not prove effective writes.
+
+User Green, ready under standing photo/power-off-on workflow. Dashboard002
+authenticated; nine kernel preparation reports collected once; audit001 PASS.
+No startup hook, Windows launch, normal Windows shutdown or owned host VM.
+All817 runtime work CLOSED: never relaunch/recollect/runtime-parent. Pinned
+source-only reuse allowed. Tail002 and invocation failures remain preserved.
+
+Next: fresh combined visible native mode candidate based on817's preserving
+prefix and source-backed704 encoder/VGA sequence. Review remaining writes,
+validate complete control flow, bounds and failure reporting before staging.
+Then Windows handoff/display integration. Full visible low mode and Windows1.6
+desktop remain unproved; do not infer either from green recovery reports.
+User renewed tonight work; expired automation remains PAUSED.
+
+# Native817 launched once; held report pending
+
+One SITE accepted at 2026-10-30 02:00:22 UTC after authenticated dashboard001,
+exact source/build checks and unique E staging/readback. Native hold intended;
+actual color, execution outcome and power-cycle/dashboard return not yet observed.
+No second launch. No startup hook or Windows launch. All12 host CPU VMs closed.
+Expired automation remains paused; user renewed tonight work toward desktop.
+
+Next: obtain the fresh817 photo and reported power-off/on; independently
+authenticate dashboard before collecting nine preparation phases once. Decode
+against optical-schema001: seven cleanup masks and one forward mask;27 additional
+cleanup masks aggregate-only. CR1A raw rows are before, after, then AFTER CR2D
+undo BEFORE own undo (expected38/3C/3C). The last row is NOT final restoration.
+Final own CR1A restore is aggregate-only through the strict cleanup/final status.
+After qualified817 closure, admit a combined visible-mode test, then Windows
+handoff. Complete native visible mode and Windows1.6 desktop remain unproved.
+
+Fresh917-word native payload mirrors CLOSED816 except native CPU guard. Its
+40KiB allocation/ten alias pages, larger payload/result/IDT/stack regions were
+independently checked before staging. Closed813/816 reused as pinned source only.
+Tail002 stale CPU-checker failure and WSL/Windows-Unicorn invocation failure are
+preserved; corrected tail003 passes146 cases. No waiver or driver modification.
+
 # Kernel816 CLOSED PASS: bit2-only CR1A and remaining controls
 
 One accepted launch, seven records collected once, automatic dashboard return

@@ -1,0 +1,588 @@
+{
+  "passed": true,
+  "physical_access": false,
+  "space": {
+    "minimum_free_gib": 20.15,
+    "checks": [
+      {
+        "kind": "output filesystem",
+        "path": "/mnt/c/xwn817",
+        "free_bytes": 49415315456
+      },
+      {
+        "free_bytes": 49415315456,
+        "path": "C:\\",
+        "kind": "WSL backing volume"
+      }
+    ],
+    "scope": "Preflight reserve, not a guarantee against concurrent host writes"
+  },
+  "commands": [
+    [
+      "as",
+      "--32",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-mode-controls817/bridge003.S",
+      "-o",
+      "/mnt/c/xwn817/host007/bridge.o"
+    ],
+    [
+      "ld",
+      "-m",
+      "elf_i386",
+      "-Ttext=0",
+      "--entry=bridge_start",
+      "/mnt/c/xwn817/host007/bridge.o",
+      "-o",
+      "/mnt/c/xwn817/host007/bridge.elf"
+    ],
+    [
+      "objcopy",
+      "-O",
+      "binary",
+      "--only-section=.text",
+      "/mnt/c/xwn817/host007/bridge.elf",
+      "/mnt/c/xwn817/host007/bridge.bin"
+    ],
+    [
+      "nm",
+      "-n",
+      "/mnt/c/xwn817/host007/bridge.elf"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-std=c11",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=address,undefined",
+      "-I",
+      "/mnt/c/xwn817/host007",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-mode-controls817/page002.c",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-mode-controls817/page_tool003.c",
+      "-o",
+      "/mnt/c/xwn817/host007/page-tool"
+    ],
+    [
+      "/usr/bin/x86_64-linux-gnu-gcc-12",
+      "-std=c11",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-shared",
+      "-fPIC",
+      "-fsanitize=undefined",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-mode-controls817/plan.c",
+      "-o",
+      "/mnt/c/xwn817/host007/plan.so"
+    ],
+    [
+      "python3",
+      "-B",
+      "/mnt/c/Users/Paul/Documents/Codex/2026-10-02/xbox-windows-feasibility/outputs/native-mode-controls817/plan_test004.py",
+      "/mnt/c/xwn817/host007"
+    ],
+    [
+      "/mnt/c/xwn817/host007/page-tool",
+      "/mnt/c/xwn817/host007/bridge.bin",
+      "/mnt/c/xwn817/host007/payload.bin",
+      "/mnt/c/xwn817/host007/dual/page.bin",
+      "32440320",
+      "50331648"
+    ],
+    [
+      "/mnt/c/xwn817/host007/page-tool",
+      "/mnt/c/xwn817/host007/bridge.bin",
+      "/mnt/c/xwn817/host007/payload.bin",
+      "/mnt/c/xwn817/host007/identity/page.bin",
+      "32440320",
+      "50331648"
+    ],
+    [
+      "/mnt/c/xwn817/host007/page-tool",
+      "/mnt/c/xwn817/host007/bridge.bin",
+      "/mnt/c/xwn817/host007/payload.bin",
+      "/mnt/c/xwn817/host007/relocated/page.bin",
+      "32342016",
+      "50331648"
+    ],
+    [
+      "/mnt/c/xwn817/host007/page-tool",
+      "/mnt/c/xwn817/host007/bridge.bin",
+      "/mnt/c/xwn817/host007/payload.bin",
+      "/mnt/c/xwn817/host007/scatter/page.bin",
+      "32440320",
+      "50331648"
+    ]
+  ],
+  "compiler_sha256": "e53063edf46fe26e22d8c79258856275784c07b199aac441e345aabd62092ad4",
+  "payload_inputs": {
+    "/mnt/c/xwn817/payload008/payload.bin": "6b115939f6739f42d65eac77007816318458b1cec161368a92cfcb914affd8cd",
+    "/mnt/c/xwn817/payload008/symbols.stdout": "836b1924b5d9e9c72757fdebae113b63503f387fb0dacefe0d2bf4b747a9fad7",
+    "/mnt/c/xwn817/payload008/relocations.stdout": "f9a44199acc9f10b9668d0a2d2d9b5f9271aca45c7c2bcb5fa74dfb23e5ea929"
+  },
+  "bridge_symbols": {
+    "bridge_start": 0,
+    "bridge_flat": 288,
+    "bridge_post": 328,
+    "bridge_hold": 973,
+    "bridge_refuse": 976,
+    "bridge_bar": 1013,
+    "bridge_report": 1049,
+    "report_background": 1073,
+    "report_row": 1091,
+    "report_value": 1111,
+    "report_bit": 1142,
+    "report_color": 1156,
+    "report_square": 1163,
+    "bridge_fault": 1198,
+    "bridge_check": 1202,
+    "status_colors": 1248,
+    "pci_select": 1276,
+    "report_offsets": 1316,
+    "bridge_code_end": 1368,
+    "bridge_end": 2304,
+    "__bss_start": 4096,
+    "_edata": 4096,
+    "_end": 4096
+  },
+  "metadata": [
+    1368,
+    288,
+    1198,
+    328,
+    216
+  ],
+  "relocations": [
+    {
+      "offset": 295,
+      "type": "R_386_PC32",
+      "symbol": "bounds704",
+      "symbol_value": 1048576,
+      "value": 4294966997
+    },
+    {
+      "offset": 670,
+      "type": "R_386_PC32",
+      "symbol": "probe817",
+      "symbol_value": 1049767,
+      "value": 517
+    },
+    {
+      "offset": 798,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072768
+    },
+    {
+      "offset": 810,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072756
+    },
+    {
+      "offset": 932,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072768
+    },
+    {
+      "offset": 966,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072768
+    },
+    {
+      "offset": 1094,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072768
+    },
+    {
+      "offset": 1121,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072768
+    },
+    {
+      "offset": 1253,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072640
+    },
+    {
+      "offset": 1625,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072896
+    },
+    {
+      "offset": 1669,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072900
+    },
+    {
+      "offset": 1780,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072800
+    },
+    {
+      "offset": 2110,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072888
+    },
+    {
+      "offset": 2117,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072892
+    },
+    {
+      "offset": 2188,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072896
+    },
+    {
+      "offset": 2211,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072892
+    },
+    {
+      "offset": 2247,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072780
+    },
+    {
+      "offset": 2288,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072800
+    },
+    {
+      "offset": 2300,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072781
+    },
+    {
+      "offset": 16975,
+      "type": "R_386_PC32",
+      "symbol": "controls_forward817",
+      "symbol_value": 1049350,
+      "value": 4294951091
+    },
+    {
+      "offset": 16998,
+      "type": "R_386_PC32",
+      "symbol": "controls_restore817",
+      "symbol_value": 1049644,
+      "value": 4294951362
+    },
+    {
+      "offset": 17034,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072576
+    },
+    {
+      "offset": 17233,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072512
+    },
+    {
+      "offset": 17432,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072448
+    },
+    {
+      "offset": 17631,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072384
+    },
+    {
+      "offset": 17830,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072320
+    },
+    {
+      "offset": 18029,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072256
+    },
+    {
+      "offset": 18228,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072192
+    },
+    {
+      "offset": 18427,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072128
+    },
+    {
+      "offset": 18626,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072064
+    },
+    {
+      "offset": 18825,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072000
+    },
+    {
+      "offset": 19024,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1071936
+    },
+    {
+      "offset": 19223,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1071872
+    },
+    {
+      "offset": 19422,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1071808
+    },
+    {
+      "offset": 19612,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1071744
+    },
+    {
+      "offset": 19768,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1071680
+    },
+    {
+      "offset": 19924,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1071616
+    },
+    {
+      "offset": 20080,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1071552
+    },
+    {
+      "offset": 20236,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1071488
+    },
+    {
+      "offset": 20388,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1071452
+    },
+    {
+      "offset": 20518,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1071424
+    },
+    {
+      "offset": 21428,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072800
+    },
+    {
+      "offset": 21450,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072800
+    },
+    {
+      "offset": 22030,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072896
+    },
+    {
+      "offset": 22072,
+      "type": "R_386_32",
+      "symbol": ".rodata",
+      "symbol_value": 1071424,
+      "value": 1072758
+    },
+    {
+      "offset": 24440,
+      "type": "R_386_PC32",
+      "symbol": ".text",
+      "symbol_value": 1048576,
+      "value": 4294942856
+    },
+    {
+      "offset": 24480,
+      "type": "R_386_PC32",
+      "symbol": ".text",
+      "symbol_value": 1048576,
+      "value": 4294943032
+    },
+    {
+      "offset": 24528,
+      "type": "R_386_PC32",
+      "symbol": ".text",
+      "symbol_value": 1048576,
+      "value": 4294943467
+    },
+    {
+      "offset": 24548,
+      "type": "R_386_PC32",
+      "symbol": ".text",
+      "symbol_value": 1048576,
+      "value": 4294943458
+    },
+    {
+      "offset": 24568,
+      "type": "R_386_PC32",
+      "symbol": ".text",
+      "symbol_value": 1048576,
+      "value": 4294943450
+    },
+    {
+      "offset": 24612,
+      "type": "R_386_PC32",
+      "symbol": ".text",
+      "symbol_value": 1048576,
+      "value": 4294943458
+    },
+    {
+      "offset": 24660,
+      "type": "R_386_PC32",
+      "symbol": ".text",
+      "symbol_value": 1048576,
+      "value": 4294943704
+    },
+    {
+      "offset": 24704,
+      "type": "R_386_PC32",
+      "symbol": ".text",
+      "symbol_value": 1048576,
+      "value": 4294943783
+    }
+  ],
+  "sources": {
+    "bitmap001.py": "94160e2a03bd0c93e4883f9cfbf0c88d80a4332f311c70802ed5e1ebf3dbfbf8",
+    "bridge003.S": "f24344cb07e31889e525543a239231a3466fbc706f3c4bcd26c678d32d021864",
+    "build015.py": "125887337299b8f988505fd6bcabafd1e181f78d24ac8a70687324a0679c5fe1",
+    "compact_recovery001.py": "c9d6ffe1520e3ca3c40ccb58e80d64dfe87f1e8d5a65562db0295655b330b085",
+    "cpu006.py": "4ccbe6ee8c5f9517b97c2be36d3292c12fd9649350c6a6b10623030a58ca3dea",
+    "fixture.S": "084b0d21cc336c534348b159bb9fc03dd863eff58a6397e3b3f5514c5e43246c",
+    "host_build009.py": "94d91f50e13b4863c374a665dd62a26864d1a1aa7492c77e4c9ee21910f017ea",
+    "integration001.py": "d60b815995333595c35e9d0ab3d8f1c7879c2400d095b8438865e38c6ef25110",
+    "layout.h": "bbf7e8d6397d56e5788fd15cc6e6eb04a29defbec540207e561cbbcf07f12b61",
+    "layout004.c": "13646d0fecd9f3c8525214bb84ff93832d47c5ea32c5f3d4a56ee1d462562299",
+    "linked_review007.py": "a849f304484a7ccbcda4812beb8adc54e807689f15680df941145d1066d9d5c4",
+    "link_review012.py": "746dec0b9bece308a1978e6116c21e55ebe0bc689eb7b0953e5d12511754445c",
+    "main004.c": "4a920b980662d2122cf79b89fb871b47bcc04d7616bd2599b23b130691c3ec15",
+    "measure001.py": "9d438c182be2bb434a984486cd24d7adf34154fa0fe05b9a9a11a57058765241",
+    "measure002.py": "07e08154150a01ae93b9d171035cb20afd0af662a55c97bb154eed1f1406eb5f",
+    "measure003.py": "bb921720be26680197cda4002239c3ea8256042aa69c9b384dad909423daceb3",
+    "optical_oracle.py": "63736e3e2dcf7df78a245e1f4f6e4434633597a5953736a11d52e2080243d77e",
+    "optical_review005.py": "7de278f82334542465d79b6296c8317a827ecde77a6af9b960d458e7c08c5a9a",
+    "page.h": "67942149d4781e378b1b1c33c16976538b46bc2ab100b1ab9b10f2c601bfb7ac",
+    "page002.c": "f1111cf251ea8281977e9f27ca9ea425270c1048e3d051a7ef53aabdae495fa3",
+    "page_boundary009.py": "b7f04bed97cfa5fdc4cb5c64a871853919ca97deea6f698dd981109652274038",
+    "page_review008.py": "90919d4eea0943055009a49c4a9a0f4e7498c93e16f2a0fb1d0a650ad260d57a",
+    "page_tool003.c": "1051b5588f41deae287043f730598e7446a139b49c1b66aa6daef672710c0603",
+    "payload_build008.py": "677ee21eeb7574b8182d674f15cf0665d4ea73b9d676946c2d927acfd9d73060",
+    "plan.c": "17af90d817db10431b976d677d66cd9138b280526f77b70afebb5d3c3d404da4",
+    "plan.h": "40b6377263660ed474a1541b43ea12922c4af8b9db154635afb31ed325e6f797",
+    "plan_review003.py": "37ae9f4c8868cbf288c1cdf67ce5963503da16f8ed4ccbac9fd99897b21257c8",
+    "plan_test004.py": "dbeecc05ffb11497cb7e1f2919ba4bbf8d90f207db1427dd3c7087b3dfb1368f",
+    "prefix002.py": "b500b4c877ba79ad9002457dee7ffab0541505a6a929b124455d8d88ef437733",
+    "prepare001.py": "1eed1fee2d58096da8e1276b0acc0d7cbf7ed667a3da91a9d9a8339db4eb54a4",
+    "prepare002.py": "fe6f041fb5a369f928b91b81afc1d8ebf347e47b621db5ff043c7f3245002ab3",
+    "probe-bitmap-native.c": "4e4fd052b084d66d387b602aeb76ebb3dd583b89b90142e046bdbe14b22db4e0",
+    "probe-native.c": "f2eaac808084a1f72f3e761f1932e71c2cafb0ce05331583b63008a226ddeb22",
+    "probe-pairs-native.c": "05344ae1bb106b8339330306ae45f1afcd8d4544f0e154a0c6c846121e2308b7",
+    "probe.h": "3056b2e397a3139e1cd11a2aeb5e5d89ccec33560482782560a210b3408b89cb",
+    "relocate003.py": "3f231c5c0a3f9239114a58f2a2853d8f014c35183a92077f3ffb36b0304d2fc5",
+    "relocate004.py": "106575b88ea1f8a0552f303a12c87886be901c1c7ed1ba90c9244182011aa5da",
+    "tail002.py": "a03b135baedc03ab8047a716fd776b02cd0b15876f091fea085a366d017d15ba",
+    "transaction.h": "f7765eb74ac8bc98c6b2e9a2d195e165bca4122ff13d771d9813aaf1d6247e4c",
+    "transaction817.c": "45479e36f89a8e1c5dce6e905291404f11022fe9b3efd4ab689d715ee8a3c611"
+  },
+  "files": {
+    "bridge-symbols.txt": "9f95feea5b30b67b0c9c3a3a88f527a499e1dcb006500651fe31a3dc9cc1fcc0",
+    "bridge.bin": "f1a9cb735ee7406284cf13928ee77e49c4570d41cf231d8f013d7716f6072713",
+    "bridge.elf": "5738f7690ea7163da787987dc3c3753eecd386bc7f2699de572d5efcc3c8d57c",
+    "bridge.o": "fbcb5713c02b30ebaaa24121540c985959eb13be2d62920a31402563b72e2732",
+    "build.log": "b90a8cc06f99459e3cbca9a51264b3536a158ff2d6f6c63063e3d4b03be58701",
+    "page-tool": "ff2e117e27aea5d3b0ed769c398b2fe0b7fa0e3c4b264e28d25e7ea471085b63",
+    "payload.bin": "6b115939f6739f42d65eac77007816318458b1cec161368a92cfcb914affd8cd",
+    "payload_meta.h": "51b5769b32d3c92a88bb3e5e1c54d00e345431f704e066e8cb8ed339a6c4cce1",
+    "plan.so": "a3572a1af68cac69e39ab9e269259e547bb38c1a6c3cb2f923a87f37f7a09bd0",
+    "dual/page.bin": "dbaabe3f24898e40d46ab774bc09901eb3ebd3792c4c76c68bb39478e75b80ff",
+    "identity/page.bin": "dbaabe3f24898e40d46ab774bc09901eb3ebd3792c4c76c68bb39478e75b80ff",
+    "relocated/page.bin": "70b2e639c9472958fb5c4b5102d22bcf7664082b7376b748511b9ca1576b107a",
+    "scatter/page.bin": "dbaabe3f24898e40d46ab774bc09901eb3ebd3792c4c76c68bb39478e75b80ff"
+  },
+  "ended_utc": "2026-10-30T01:45:47.441719+00:00"
+}
