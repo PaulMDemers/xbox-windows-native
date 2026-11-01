@@ -1,3 +1,7 @@
+# Test847: dashboard observed after 480p launcher request
+
+On the physical Xbox 1.0, the 480p launcher delta from the matched 720p installation was requested once and the dashboard accepted the command. Paul reports, “It’s just sitting on the dashboard.” No screen transition or Windows desktop was reported; do not infer an automatic return or a specific failure stage. This is not a fresh install of the full 480p ZIP. Do not retry, collect or change console state without a separately authorized plan. See outputs/bundle-config844/observation847.json.
+
 # Test846: corrected dashboard capacity attribution
 
 Paul clarified that the earlier 481 MB dashboard reading was C, not E; he reports E showed 556 MB then and shows 556 MB now. This is a retrospective correction and current user report, not a separate historical measurement or live query. Preserve the original 846 capacity receipt and completed transaction journal unchanged; check current E free space again before any future transfer. See outputs/bundle-deploy846/capacity-correction001.json.

@@ -1,0 +1,13 @@
+{
+  "scope": "Host-only analysis of the fixed 480p package and prior successful 642 physical evidence; no console access.",
+  "package_sha256": "02dac3111407e5f5bae2bab94e534ba4fd83f8cbc8f8f79dbefb5bdf5cbab032",
+  "xbe_sha256": "a53a09427f80411efee73ef53da0ec9829f8af0d27d404f5a3ff818e96b4bde4",
+  "xbe_path_behavior": "The XBE contains the absolute E loader path /Applications/XWNEBoot/freeldr.sys twice; it does not contain XWN480p642. The XBE is not self-relative for that loader path.",
+  "prior_642": "The same XBE was launched from E/Applications/XWN480p642/default.xbe and used the independently protected E/Applications/XWNEBoot chain. The user observed Windows desktop and interaction in that run.",
+  "freeldr_sha256": "8723fc175cc490f0c3cd1650e9c91ab97e9ed04108734ad6202e6f0653804697",
+  "freeldr_path_behavior": "The packaged FreeLoader contains the E Applications XWNEBoot path; its hash matches the 642 protected baseline.",
+  "rosload_sha256": "62f3620183cb2c7b1aa575d9908df3e54e043cd5bf62c1c8a291954e9876f4b1",
+  "hardware_gates": "The native 480p adapter requires 64 MiB RAM, the Conexant encoder, the HDTV cable type, the 480p-enabled video flag, and the reviewed framebuffer/reservation layout. Unsupported explicit 480p refuses legacy fallback.",
+  "evidence": ["outputs/native480p633/build.py", "outputs/native480p633/xwn_hd_adapter.c", "outputs/native480p633/xwn_hd_native.c", "outputs/native480p633/xwn_hd_profile.c", "outputs/resolution-e374/cromwell.patch", "outputs/windows480p642/physical.py", "outputs/windows480p642/stage001.json", "outputs/windows480p642/REPORT.md"],
+  "limits": "Static path and gate consistency does not establish which gate or stage, if any, explains 847. The user reported the dashboard without describing a transition."
+}
