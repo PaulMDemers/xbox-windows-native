@@ -77,14 +77,14 @@ def validate_manifest(m):
                     'e/applications/xwneboot/rosload.exe', 'e/winnt/system32/config/system',
                     'e/winnt/system32/ntoskrnl.exe'}
         require(required <= seen, 'Incomplete boot payload')
-        require(m.get('profile') == 'e-720p', 'Only the reviewed E/720p layout is supported')
+        require(m.get('profile') in ('e-720p', 'e-1080i', 'e-720x480', 'e-640x480', 'e-1024x576'), 'Unknown E display profile')
     else:
         require(m.get('profile') == 'inventory', 'Unknown utility profile')
         require('e/applications/xwninfo/default.xbe' in seen, 'Missing inventory XBE')
     return files
 
 
-def collect(root, kind):
+def collect(root, kind, profile=None):
     require(root.is_dir() and not any(p.is_symlink() or getattr(p, 'is_junction', lambda: False)()
             for p in (root, *root.absolute().parents)), 'Expected a regular staging directory without redirected ancestors')
     rows = []
@@ -100,7 +100,7 @@ def collect(root, kind):
         require(p.stat().st_size <= 256*1024**2, 'File size bound')
         data = p.read_bytes()
         rows.append(dict(path=name, bytes=len(data), sha256=digest(data)))
-    m = dict(schema=1, kind=kind, profile='e-720p' if kind == 'windows-e-preview' else 'inventory',
+    m = dict(schema=1, kind=kind, profile=(profile or 'e-720p') if kind == 'windows-e-preview' else 'inventory',
              console_target='E', qualification='experimental-not-hardware-qualified', files=rows, directories=directories,
              limits='Hashes establish package integrity, not bootability, safety, licensing or hardware compatibility. No credentials, uploads or activation.')
     validate_manifest(m)
@@ -145,7 +145,7 @@ def build(root, manifest, output, private_windows=False):
     m = decode(manifest.read_bytes())
     rows = validate_manifest(m)
     require(m['kind'] != 'windows-e-preview' or private_windows, 'Windows input requires --private-windows; no redistribution clearance implied')
-    actual = collect(root, m['kind'])
+    actual = collect(root, m['kind'], m['profile'])
     require(actual['files'] == rows and actual['directories'] == m['directories'], 'Staging files/directories changed since planning')
     require(not output.exists() and not output.resolve().is_relative_to(root.resolve()), 'Fresh output outside staging required')
     # Exclusive creation; a failed partial archive remains evidence and must not be used.
@@ -205,6 +205,7 @@ def main():
     sub = p.add_subparsers(dest='command', required=True)
     plan = sub.add_parser('plan'); plan.add_argument('--root', type=Path, required=True)
     plan.add_argument('--kind', choices=KINDS, required=True); plan.add_argument('--output', type=Path, required=True)
+    plan.add_argument('--profile', choices=('e-720p', 'e-1080i', 'e-720x480', 'e-640x480', 'e-1024x576'), help='Windows profile label; no hardware qualification implied')
     pack = sub.add_parser('build'); pack.add_argument('--root', type=Path, required=True)
     pack.add_argument('--manifest', type=Path, required=True); pack.add_argument('--output', type=Path, required=True)
     pack.add_argument('--private-windows', action='store_true')
@@ -215,7 +216,8 @@ def main():
     a = p.parse_args()
     if a.command == 'plan':
         require(not a.output.resolve().is_relative_to(a.root.resolve()), 'Plan must be outside staging')
-        m = collect(a.root, a.kind)
+        require(not a.profile or a.kind == 'windows-e-preview', 'Profile is Windows-only')
+        m = collect(a.root, a.kind, a.profile)
         with a.output.open('x', encoding='utf-8') as f: json.dump(m, f, indent=2); f.write('\n')
         print(f"Planned {len(m['files'])} files; review contents and provenance before building")
     elif a.command == 'build':

@@ -1,0 +1,11 @@
+--- a/boot/freeldr/freeldr/freeldr.c
++++ b/boot/freeldr/freeldr/freeldr.c
+@@ -181,7 +181,7 @@
+     /* Independent launcher and Windows root both live on stock partition 1. */
+     if (strcmp(FrLdrBootPath, "multi(0)disk(0)rdisk(0)partition(1)") != 0 ||
+         !NT_SUCCESS(RtlStringCbCatA(FrLdrBootPath, sizeof(FrLdrBootPath),
+-                                   "\\Applications\\XWN16Boot843")))
++                                   "\\Applications\\XWNEBoot")))
+         XwnStop("XWNFAIL: unexpected FATX E-boot launcher device");
+ #elif defined(XBOX_NATIVE_FATX_IO_PREFLIGHT) || defined(XBOX_NATIVE_FATX_NT5_PREFLIGHT)
+     /* The Xromwell launcher passes the FATX device, not the image directory. */

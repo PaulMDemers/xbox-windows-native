@@ -1,0 +1,134 @@
+{
+  "schema": 3,
+  "selection_model": "fixed boot-selected profile; no dynamic Windows mode switching",
+  "historical_legacy_console": {
+    "identity": "original development Xbox, Xbox 1.0 lineage, Conexant",
+    "profiles": [
+      {
+        "profile": "1024x576",
+        "resolution": "1024x576x32",
+        "evidence": "Two physical Windows boots passed graphics pixel checks, bounded timing loops, normal restart/EventLog6006, expected driver/helper hashes, and valid trace records.",
+        "qualification": "Physical repeat-boot video scope passed; no full allocation/hive audit or extended storage soak repeated.",
+        "miniport_sha256": "3e74a5c35b68d7fa0e047b4ba9cec25e7ec0ea5a94e796fc07508f667fcc85cf",
+        "source_tree": "329a29d61af1620a9fc005b0d8fcfb9e1a937d20",
+        "private_overlay_sha256": "44c613e74b8a82e1494cc60140e3ceee27d53df4762e1ede97e22800242857e5",
+        "references": [
+          "outputs/video-trace-reuse-settled/README.md",
+          "outputs/video-trace-reuse-settled/qualification.json"
+        ],
+        "limitations": [
+          "F-based non-HD legacy chain; driver overlay only, not a full system archive",
+          "A valid 4096-byte trace file is required"
+        ]
+      },
+      {
+        "profile": "720x480p",
+        "resolution": "720x480x32 @ 60 Hz",
+        "evidence": "Physical watched Windows loading/desktop/pattern/restart in 638; user-confirmed Notepad save/reopen and mouse dragging in 642; ordinary 720p return in 643.",
+        "qualification": "Scoped interaction and selected file/hive integrity; no full FATX scan.",
+        "loader_sha256": "a53a09427f80411efee73ef53da0ec9829f8af0d27d404f5a3ff818e96b4bde4",
+        "component_hash_manifest": "outputs/windows480p642/stage001.json",
+        "source_pin_manifest": "outputs/windows480p642/runtime-pins001.json",
+        "candidate_source_report": "outputs/native480p633/REPORT.md",
+        "references": [
+          "outputs/windows480p638/REPORT.md",
+          "outputs/windows480p642/REPORT.md",
+          "outputs/windows720p643/REPORT.md"
+        ],
+        "limitations": [
+          "Not live mode switching",
+          "Not qualified as a released selector profile",
+          "Early-load intermittency remains unresolved"
+        ]
+      },
+      {
+        "profile": "720p",
+        "resolution": "1280x720x32 @ 60 Hz",
+        "evidence": "Physical Windows fixed-profile desktop and workload on original development console; supported HD baseline for tested Conexant/HDTV setup.",
+        "release": "v0.2.0",
+        "archive": "D:/Codex-archive/xbox-windows-native/0.2.0/xwn-0.2.0-hd-overlay.zip",
+        "archive_sha256": "474957aa6d2eb4cd8c3818a26ad0568e4b9c104b8159891c065b1491c8f6930d",
+        "launcher_sha256": "c2bd899182caf0f076f8999feac1f48457fc4e6ad201ec358c06781f5740945f",
+        "source_revision": "25b41b7ea47850cab21c649d9661ffd18497348e",
+        "source_evidence_zip_sha256": "7dec63ec58b9c9e2d880b375f4abe1df5c18c3fbdaf5ea0666de9dd5c5b4143f",
+        "history_bundle_sha256": "17921714e66988b75a3c967190e4a4dc578eca4baf6f696d2b9230cd7d883ccb",
+        "private_e_snapshot_sha256": "3130dc218a0114f7f16326ec22b2a920de2c1b0e6ff28c0a4e97c4653151b814",
+        "private_e_snapshot_description": "Development-console E/720p snapshot; no other-console boot tested.",
+        "references": [
+          "outputs/release-0.2.0/README.md",
+          "outputs/release-0.2.0/bundle.json",
+          "outputs/delivery587/windows-package001.json"
+        ]
+      },
+      {
+        "profile": "1080i",
+        "resolution": "1920x1080x32 interlaced",
+        "evidence": "Physical Windows workload in 324 and phase-attribution runs in 347.",
+        "qualification": "Experimental; later visible field/text/drag defects unresolved.",
+        "release": "v0.2.0",
+        "archive_sha256": "474957aa6d2eb4cd8c3818a26ad0568e4b9c104b8159891c065b1491c8f6930d",
+        "launcher_sha256": "bd8e58f2e1c934074b15d3df1208f9caa7acb22243325083f26a7fe9fd30daf6",
+        "source_revision": "25b41b7ea47850cab21c649d9661ffd18497348e",
+        "source_evidence_zip_sha256": "7dec63ec58b9c9e2d880b375f4abe1df5c18c3fbdaf5ea0666de9dd5c5b4143f",
+        "history_bundle_sha256": "17921714e66988b75a3c967190e4a4dc578eca4baf6f696d2b9230cd7d883ccb",
+        "references": [
+          "outputs/hd-physical324/REPORT.md",
+          "outputs/hd-phase-physical347/REPORT.md",
+          "docs/1080i-investigation.md"
+        ]
+      }
+    ],
+    "shared_v02_overlay_components": {
+      "freeldr.sys": "cd1b1b34d97b645bf0cee1588034a0d39dbe2c28ba5aa9589bd032209370b3bf",
+      "loader/xboxbvid.dll": "0c8f5d494016a72e098134072d340aa83252fada2739b538b9be5a633d20623f",
+      "rosload.exe": "2611e8e04956d42394efee1fc56c2476eaa1c937d5334d9006c1411a6f9765c4",
+      "F/winnt/system32/drivers/xboxvnt5.sys": "74ccdc9fc7b26fe76919941fe978822b1fb538c7814343b0f0755d99e661c1dd",
+      "F/winnt/system32/xwnown.dll": "b23b94ac12c9f507e3d905d9de905dcff9a8fd53c2fba4336fb830e97666101d"
+    },
+    "not_qualified_defaults": [
+      {
+        "resolution": "640x480",
+        "evidence": "XboxVnt5 Device0 stores 640x480 defaults in the demo registry; effective Windows runtime mode was not measured in that record.",
+        "reference": "outputs/baseline-compare415/REPORT.md"
+      }
+    ]
+  },
+  "current_console_profiles": [
+    {
+      "identity": "Xbox 1.6 target used in attempts 842/843; separate from user-reported inventory630 unit",
+      "profile": "720p",
+      "resolution": "1280x720x32 @ 60 Hz",
+      "evidence": "842 physical user-confirmed Windows desktop. 843 repeat physical desktop; mouse attached before launch and working input confirmed. Shutdown hung and user restarted manually.",
+      "qualification": "Supported observed desktop profile; normal shutdown not qualified.",
+      "source_trees": {
+        "cromwell": "8936f433027bbbeb5ad27572c96c758836f433ae",
+        "reactos": "507946208da61a2811726cdeed35bad0b3ff2505",
+        "fatx": "deb06b15f2723645f9572cc372e16431d5c9ea3d"
+      },
+      "references": [
+        "outputs/boot720-bridge842/desktop-profile001.json",
+        "outputs/boot720-bridge842/launch-source-pins001.json",
+        "outputs/boot720-input843/REPORT.md",
+        "outputs/boot720-input843/closed001.json"
+      ],
+      "limitations": [
+        "No independent desktop screenshot or mode query",
+        "Shutdown hang/manual restart"
+      ]
+    },
+    {
+      "identity": "Separate reported Xbox 1.6 inventory630 unit",
+      "profile": null,
+      "evidence": "User-supplied hardware inventory only; GPU revision e1/MCP d5; encoder unidentified.",
+      "qualification": "No Windows profile established by inventory alone.",
+      "reference": "outputs/inventory630/REPORT.md"
+    }
+  ],
+  "bundle_constraints": [
+    "Fixed boot profile per bundle",
+    "Do not conflate legacy development-console packages with Xbox 1.6",
+    "The v0.2.0 archive is a matched overlay, not a complete E OS installation",
+    "Private snapshots and Windows/user data must not be published"
+  ],
+  "registry_comparison_receipt": "outputs/bundle-config844/registry-semantic-comparison.json"
+}

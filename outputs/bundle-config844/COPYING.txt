@@ -1,0 +1,33 @@
+PRIVATE XBOX WINDOWS BUNDLES - COPYING AND CHANGING PROFILES
+
+Each ZIP contains a complete E installation for one fixed profile. Keep these
+archives private: they include a Windows installation and profile data.
+On a PC, compare the ZIP's SHA-256 with its sidecar, extract into a fresh
+folder, and run the supplied host/tester_bundle.py verify command.
+
+Before installing, back up the target console's own E contents using binary FTP.
+Preserve that backup separately for that Xbox, including your Windows documents.
+Allow at least 1.25 GiB free on E. The managed roots are E:\WINNT,
+E:\Documents and Settings, E:\Program Files, E:\Applications\XWNEBoot,
+and E:\xwndemo372. Do not touch dashboard C, saves, firmware or keys.
+
+For an empty target, copy the CONTENTS of the extracted E folder to dashboard E,
+preserving hidden files, names and empty folders. Copy
+E:\Applications\XWNEBoot\default.xbe last. Download a readback to a fresh PC
+folder retaining its E directory; use the package's verify-tree --console-only
+command, first with --defer-launcher and again after the launcher is copied.
+Launch the XWNEBoot default.xbe only after the complete readback passes.
+
+To try a different profile on the same Xbox, first back up the complete current
+installation and any documents created in it. From the dashboard, remove only
+the five managed roots if they are the installation you intend to replace;
+preserve all unrelated files and your backups. Then copy and verify the next
+package as above. These packages have the same paths and should not be merged.
+To return to a previous installation, restore its own verified backup, preserving
+the same paths and copying its launcher last. A different console's backup is
+not a recovery copy for this console.
+
+Connect a mouse before starting Windows. Record the actual console, cable,
+display, selected package hash and observed boot, input, restart or forced reset.
+Read the profile-specific limitations in the ZIP and delivery index. Packaging
+and host verification do not prove a new hardware boot.

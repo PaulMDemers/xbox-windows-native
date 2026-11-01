@@ -1,0 +1,29 @@
+--- a/main.c
++++ b/main.c
+@@ -54,14 +54,9 @@
+ 
+ static int save_report(char *path, size_t size)
+ {
+-    HANDLE file = INVALID_HANDLE_VALUE;
+-    for (unsigned i = 0; i < 100; ++i) {
+-        snprintf(path, size, "E:\\xwn-boot843-%02u.json", i);
+-        file = CreateFileA(path, GENERIC_WRITE, 0, NULL, CREATE_NEW, FILE_ATTRIBUTE_NORMAL, NULL);
+-        if (file != INVALID_HANDLE_VALUE) break;
+-        if (GetLastError() != ERROR_FILE_EXISTS && GetLastError() != ERROR_ALREADY_EXISTS) return 1;
+-    }
+-    if (file == INVALID_HANDLE_VALUE) return 2;
++    snprintf(path, size, "E:\\Applications\\XWNEBoot\\boot-report.json");
++    HANDLE file = CreateFileA(path, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
++    if (file == INVALID_HANDLE_VALUE) return 1;
+     DWORD written = 0;
+     IO_STATUS_BLOCK io;
+     int ok = WriteFile(file, report, (DWORD)used, &written, NULL) && written == used;
+@@ -109,7 +104,7 @@
+     int rc = overflow ? 6 : save_report(path, sizeof(path));
+     used = saved_used;
+     if (!rc && !strcmp(phase, "before_kernel_mode"))
+-        append("  \"start_record\":\"%s\",\n", path + 3); /* E-root basename, no JSON escapes. */
++        append("  \"status_record\":\"boot-report.json\",\n");
+     return rc;
+ }
+ 
