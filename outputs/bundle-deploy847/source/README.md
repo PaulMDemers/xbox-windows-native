@@ -25,6 +25,19 @@ This leaves changed hives, logs, documents and other user data in place. Before
 any write it also streams a complete backup of all five managed E roots,
 including extra files, plus the preserved 642 owner markers.
 
+Any watched physical run through this controller would test a verified mode
+delta on top of the previously booted common 1.0 tree, with hives, logs and
+documents allowed to contain user changes. It would not be a first-install
+boot of the exact full ZIP. The common-tree digest identifies the package
+archives only; the controller does not claim that current E still has that full
+digest after Windows has run.
+
+Before preflight, transfer and launch, the controller verifies the immutable
+boot path: FreeLoader, `freeldr.ini`, rosload, Xbox HAL, Xbox boot-video DLL,
+NT5 kernel, `bootvid.dll`, Xbox video miniport, `xwnown.dll`, `framebuf.dll`,
+`win32k.sys` and `videoprt.sys`. The mode-dependent FATX driver and
+`default.xbe` are checked against the selected source or target profile.
+
 The existing `xwnsetup.cmd` must match the common package hash and be the only
 `.cmd` in the Startup folder. It is checked and left untouched. A detected
 startup command or hook stops the attempt. Every profile transfer requires a

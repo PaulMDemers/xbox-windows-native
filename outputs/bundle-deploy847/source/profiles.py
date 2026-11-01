@@ -12,7 +12,7 @@ import tester_bundle as bundle
 from common import sha, sha_file
 
 PINS_PATH = Path(__file__).resolve().with_name('profile-pins.json')
-PINS_SHA256 = '8197367b708c589d68bcdfd22e7b30ec9dcb2766ca9ca44f2ba9d9acafa82e3a'
+PINS_SHA256 = 'd81420b8297d72953caf9e2794b7e8874243c867af7fc2100585fd8d91487a81'
 PROFILE_PATHS = {
     'launcher': 'E/Applications/XWNEBoot/default.xbe',
     'xwnfatx': 'E/winnt/system32/drivers/xwnfatx.sys',
@@ -82,8 +82,7 @@ def verify_source_profile(ftp, source_profile: str, *, retrieve, list_dir):
         raise ValueError('Unsupported current profile')
     source = table['profiles'][source_profile]
     expected = [source['launcher'], source['xwnfatx']]
-    expected.extend({'path': path, **table['shared_boot_and_startup'][path]}
-                     for path in (PROFILE_PATHS['freeldr'], PROFILE_PATHS['rosload'], PROFILE_PATHS['startup']))
+    expected.extend({'path': path, **item} for path, item in table['shared_boot_and_startup'].items())
     observed = {}
     for item in expected:
         remote = '/' + item['path']

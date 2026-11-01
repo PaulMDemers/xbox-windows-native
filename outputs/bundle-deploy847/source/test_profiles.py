@@ -104,8 +104,7 @@ class ProfileTests(unittest.TestCase):
                 item = profile[key]
                 selected['/' + item['path']] = z.read(item['path'])
             for path, item in table['shared_boot_and_startup'].items():
-                if path.endswith(('freeldr.sys', 'rosload.exe', 'xwnsetup.cmd')):
-                    selected['/' + path] = z.read(path)
+                selected['/' + path] = z.read(path)
         # Unrelated changed user data is present, but current profile identity
         # depends only on known boot files and the normal startup surface.
         selected['/E/Documents and Settings/Win2K/My Documents/changed.txt'] = b'user changed data'
@@ -118,6 +117,13 @@ class ProfileTests(unittest.TestCase):
                                       list_dir=__import__('preflight')._list_dir)
         self.assertEqual(state['profile'], 'e-720p')
         self.assertTrue(any(p.endswith('changed.txt') for p in selected))
+        incomplete = dict(selected)
+        incomplete['/E/winnt/system32/bootvid.dll'] = b'wrong boot video'
+        dirs_incomplete = set(dirs)
+        ftp_bad = MockFTP(incomplete, dirs_incomplete)
+        with self.assertRaisesRegex(ValueError, 'Current profile pin mismatch'):
+            verify_source_profile(ftp_bad, 'e-720p', retrieve=__import__('common').retrieve,
+                                  list_dir=__import__('preflight')._list_dir)
         selected['/E/Documents and Settings/All Users/Start Menu/Programs/Startup/diagnostic.cmd'] = b'hook'
         parts='/E/Documents and Settings/All Users/Start Menu/Programs/Startup/diagnostic.cmd'.strip('/').split('/')[:-1]
         cur='/' + parts[0]; dirs.add(cur)

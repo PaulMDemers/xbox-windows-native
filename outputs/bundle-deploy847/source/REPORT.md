@@ -11,12 +11,22 @@ the only physical session.
 - 720p to 480p changes only the fixed-mode XBE. A transition to or from 1080i also changes the FATX driver. Each profile's XBE is written last. The shared startup script is verified and never written. User hives, logs, documents and all other managed-root extras are preserved in place; the current full managed tree is backed up before any transfer.
 - 1080i remains experimental: the historic text and movement/drag artifacts are unresolved. Neither assembled 480p nor 1080i archive has been physically boot-tested.
 
+Any later physical observation through this controller would be a test of the
+verified 1.0 mode-specific file delta on top of a previously booted common tree
+with mutable user hives, logs and documents. It would not establish a
+first-install boot from the exact full ZIP. The common-tree digest is an
+archive-to-archive comparison; it is not asserted for the live E tree after
+Windows changes it. Preflight, transfer and launch recheck the immutable boot
+chain, including `freeldr.ini`, HAL, Xbox boot video, `ntoskrnl.exe`,
+`bootvid.dll`, the Xbox video miniport and Windows video support files.
+
 ## Guards and limits
 
 - Target revision, source profile, endpoint and two preserved historical owner markers are checked; the F-volume owner marker is also checked against the pinned evidence. The 846 receipt and local marker preimages must verify.
 - Every attempt has a profile-specific lock and receipt. The shared 846 helper adds the cross-profile host lease and hardware-ticket check. Incomplete/uncertain transfer journals are not retried. Launch is a separate one-shot operation with durable intent and no automatic retry.
 - The controller requires a recent conservative E capacity receipt before transfer and retains a 20 GiB host reserve. No operation changes dashboard C, saves, firmware, keys, startup or live Windows display settings.
 - Preflight failure 846/001 is preserved in `PREFLIGHT-001-FAILURE.json`: the old listing parser incorrectly applied its per-file capture ceiling to an unrelated 805,306,368-byte root item. The corrected scanner lists root entries but downloads only selected managed roots and explicitly pinned markers; selected files are streamed. The mock fixture covers that root item.
+- A separate 846 root-key casing defect was fixed for future receipts: `/E` is now keyed as `/e` internally and remains present in the package directory map. Its regression checks the root mount path explicitly. The frozen 846/002 receipt is not rewritten by this change.
 
 ## Offline checks
 
