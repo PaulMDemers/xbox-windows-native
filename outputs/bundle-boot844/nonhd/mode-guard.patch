@@ -1,0 +1,23 @@
+--- a/drivers/video/BootVgaInitialization.c
++++ b/drivers/video/BootVgaInitialization.c
+@@ -110,6 +110,9 @@
+ 	VIDEO_AV_MODE=I2CTransmitByteGetReturn(0x10, 0x04);
+ #endif
+ 	av_type = DetectAvType();
++	if (av_type != AV_COMPOSITE && av_type != AV_SVIDEO && av_type != AV_SCART_RGB) {
++		__asm__ __volatile__("cli"); for (;;) __asm__ __volatile__("hlt");
++	}
+ 	gpu.av_type = av_type;
+ 
+    	memset((void *)pvmode,0,sizeof(CURRENT_VIDEO_MODE_DETAILS));
+@@ -117,8 +120,8 @@
+ 	//Focus driver (presumably XLB also) doesnt do widescreen yet - only blackscreens otherwise.
+ 	if(((u8 *)&eeprom)[0x96]&0x01 && video_encoder == ENCODER_CONEXANT) { // 16:9 widescreen TV
+ 		pvmode->m_nVideoModeIndex=VIDEO_MODE_1024x576;
+-	} else { // 4:3 TV
+-		pvmode->m_nVideoModeIndex=VIDEO_PREFERRED_MODE;
++	} else { // Fixed profile: refuse before scanout or encoder programming.
++		__asm__ __volatile__("cli"); for (;;) __asm__ __volatile__("hlt");
+ 	}
+ 
+         // If the client hasn't set the frame buffer start address, assume

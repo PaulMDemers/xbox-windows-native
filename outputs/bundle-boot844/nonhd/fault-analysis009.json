@@ -1,0 +1,181 @@
+{
+  "scope": "Read-only 009 bugcheck memory and disk PE comparison. Stack matches are candidates, not an unwound return chain.",
+  "bugcheck": [
+    "0x1e",
+    "0xc0000005",
+    "0xf8f7d01f",
+    "0x0",
+    "0xc0600241"
+  ],
+  "cr2": "c0600241",
+  "module": {
+    "name": "openhci.sys",
+    "base": "0xf8f78000",
+    "entry": "0xf8f7918e",
+    "size": 24576
+  },
+  "rva": "0x501f",
+  "disk_sha256": "dbfffa9d880f03d9b22590e3550a1535b35eaea0b76c3bb03294f95378ff8e7c",
+  "preferred_image_base": "0x10000",
+  "size_of_image": "0x5fc0",
+  "sections": [
+    {
+      "name": ".text",
+      "start_rva": "0x2c0",
+      "end_rva": "0x5000",
+      "contains_fault": false,
+      "characteristics": "0x68000020"
+    },
+    {
+      "name": ".rdata",
+      "start_rva": "0x5000",
+      "end_rva": "0x5160",
+      "contains_fault": true,
+      "characteristics": "0x48000040"
+    },
+    {
+      "name": ".data",
+      "start_rva": "0x5160",
+      "end_rva": "0x5280",
+      "contains_fault": false,
+      "characteristics": "0xc8000040"
+    },
+    {
+      "name": "INIT",
+      "start_rva": "0x5280",
+      "end_rva": "0x5880",
+      "contains_fault": false,
+      "characteristics": "0xe2000020"
+    },
+    {
+      "name": ".rsrc",
+      "start_rva": "0x5880",
+      "end_rva": "0x5c80",
+      "contains_fault": false,
+      "characteristics": "0x4a000040"
+    },
+    {
+      "name": ".reloc",
+      "start_rva": "0x5c80",
+      "end_rva": "0x5fc0",
+      "contains_fault": false,
+      "characteristics": "0x42000040"
+    }
+  ],
+  "nearby_import_slots": [
+    {
+      "library": "HAL.DLL",
+      "name": "KfRaiseIrql",
+      "slot": "0xf8f7d000",
+      "mapped_value": "0x825aef30"
+    },
+    {
+      "library": "HAL.DLL",
+      "name": "KfAcquireSpinLock",
+      "slot": "0xf8f7d004",
+      "mapped_value": "0x825b0040"
+    },
+    {
+      "library": "HAL.DLL",
+      "name": "KeStallExecutionProcessor",
+      "slot": "0xf8f7d008",
+      "mapped_value": "0x825af567"
+    },
+    {
+      "library": "HAL.DLL",
+      "name": "KfLowerIrql",
+      "slot": "0xf8f7d00c",
+      "mapped_value": "0x825aef40"
+    },
+    {
+      "library": "HAL.DLL",
+      "name": "KfReleaseSpinLock",
+      "slot": "0xf8f7d010",
+      "mapped_value": "0x825b0050"
+    },
+    {
+      "library": "NTOSKRNL.EXE",
+      "name": "ExAllocatePoolWithTag",
+      "slot": "0xf8f7d018",
+      "mapped_value": "0x82472540"
+    },
+    {
+      "library": "NTOSKRNL.EXE",
+      "name": "ExfInterlockedPushEntryList",
+      "slot": "0xf8f7d01c",
+      "mapped_value": "0x8246c164"
+    },
+    {
+      "library": "NTOSKRNL.EXE",
+      "name": "InterlockedIncrement",
+      "slot": "0xf8f7d020",
+      "mapped_value": "0x8246c238"
+    },
+    {
+      "library": "NTOSKRNL.EXE",
+      "name": "ExfInterlockedPopEntryList",
+      "slot": "0xf8f7d024",
+      "mapped_value": "0x8246c150"
+    },
+    {
+      "library": "NTOSKRNL.EXE",
+      "name": "KeSetTimerEx",
+      "slot": "0xf8f7d028",
+      "mapped_value": "0x82433492"
+    },
+    {
+      "library": "NTOSKRNL.EXE",
+      "name": "KeInitializeSpinLock",
+      "slot": "0xf8f7d02c",
+      "mapped_value": "0x8246c510"
+    },
+    {
+      "library": "NTOSKRNL.EXE",
+      "name": "ExFreePool",
+      "slot": "0xf8f7d030",
+      "mapped_value": "0x82472b24"
+    },
+    {
+      "library": "NTOSKRNL.EXE",
+      "name": "IoDeleteDevice",
+      "slot": "0xf8f7d034",
+      "mapped_value": "0x8242631a"
+    },
+    {
+      "library": "NTOSKRNL.EXE",
+      "name": "KeSynchronizeExecution",
+      "slot": "0xf8f7d038",
+      "mapped_value": "0x82470a20"
+    },
+    {
+      "library": "NTOSKRNL.EXE",
+      "name": "KeInitializeTimer",
+      "slot": "0xf8f7d03c",
+      "mapped_value": "0x8243340c"
+    },
+    {
+      "library": "NTOSKRNL.EXE",
+      "name": "IofCallDriver",
+      "slot": "0xf8f7d040",
+      "mapped_value": "0x82425df4"
+    },
+    {
+      "library": "NTOSKRNL.EXE",
+      "name": "IoCreateDevice",
+      "slot": "0xf8f7d044",
+      "mapped_value": "0x824a738c"
+    }
+  ],
+  "trap_frame": {
+    "source": "Microsoft NT5 _KTRAP_FRAME offsets, physical 0x2aa5514 (virtual 0xf9017514)",
+    "eip": "0xf8f7d01f",
+    "eax": "0xc0600241",
+    "ebp": "0xf90175dc",
+    "edx": "0xf8f7a53e",
+    "esi": "0xf8f7a509",
+    "saved_ebp_word": "0x3fff",
+    "return_at_ebp_plus_4": "0xf8f799ec",
+    "interpretation": "openHCI+0x19e7 calls openHCI+0x2508, which calls its USBD_GetPdoRegistryParameter thunk; its continuation is +0x253e. EIP is instead unaligned inside openHCI IAT. The saved EBP is not a valid frame link, so this is not a full unwind. Earlier tentative association of a separate stack value with a DMA adapter call is not established."
+  },
+  "private_full_receipt_sha256": "19cbf57389b981903bd8b5e472a8a6428f365ea0a118e3768a7bfb3cf56f9c65"
+}
