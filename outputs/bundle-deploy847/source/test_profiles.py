@@ -91,6 +91,18 @@ class ProfileTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'Incomplete archive target inventory'):
             transfer847.index_archive_targets(files, {next(iter(targets)): next(iter(targets.values()))})
 
+    def test_shared_pin_lookup_is_case_insensitive_and_unambiguous(self):
+        shared = {'E/documents and settings/all users/start menu/programs/startup/xwnsetup.cmd':
+                  {'sha256': 'd' * 64}}
+        self.assertEqual(transfer847.lookup_shared_pin(shared,
+                                                       '/e/DOCUMENTS AND SETTINGS/ALL USERS/START MENU/PROGRAMS/STARTUP/XWNSETUP.CMD'),
+                         {'sha256': 'd' * 64})
+        with self.assertRaisesRegex(ValueError, 'missing or ambiguous'):
+            transfer847.lookup_shared_pin(shared, '/E/missing.cmd')
+        with self.assertRaisesRegex(ValueError, 'missing or ambiguous'):
+            transfer847.lookup_shared_pin({**shared, next(iter(shared)).lower(): {'sha256': 'e' * 64}},
+                                          '/E/documents and settings/all users/start menu/programs/startup/xwnsetup.cmd')
+
     def test_both_target_archives_and_full_neutral_tree_are_pinned(self):
         table = pins()
         for profile in ('e-720x480', 'e-1080i'):

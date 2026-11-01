@@ -78,6 +78,14 @@ def index_archive_targets(manifest_files, archive_targets):
     return rows, targets
 
 
+def lookup_shared_pin(shared_pins, remote_path):
+    """Find one shared dependency pin without assuming JSON key casing."""
+    key = remote_path.lstrip('/').casefold()
+    matches = [pin for path, pin in shared_pins.items() if path.casefold() == key]
+    require(len(matches) == 1, 'Shared boot/startup pin missing or ambiguous')
+    return matches[0]
+
+
 def run(archive: Path, receipt: Path, preflight_sha256: str, capacity: Path, capacity_sha256: str,
         identity: Path, identity_sha256: str, config: Path, dashboard_ip: str,
         attempt: str, *, ftp_factory=None, ticket_check=None, lock_path=None):
@@ -110,7 +118,7 @@ def run(archive: Path, receipt: Path, preflight_sha256: str, capacity: Path, cap
     require(old_launcher['exists'] and old_launcher['before_sha256'] == table['profiles'][source_profile]['launcher']['sha256'],
             'Current launcher preimage is not the selected source profile')
     startup_target = targets[STARTUP.casefold()]
-    startup_pin = table['shared_boot_and_startup'][STARTUP[1:].lower()]
+    startup_pin = lookup_shared_pin(table['shared_boot_and_startup'], STARTUP)
     require(startup_target['exists'] and startup_target['before_sha256'] == startup_pin['sha256'],
             'Normal startup script changed; refusing to touch it')
     for path, row in pre['files'].items():
