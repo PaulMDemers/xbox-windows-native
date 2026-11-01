@@ -49,6 +49,35 @@ def _save_journal_line(stream, row):
     os.fsync(stream.fileno())
 
 
+def index_archive_targets(manifest_files, archive_targets):
+    """Index manifest paths in the same absolute form used by preflight receipts."""
+    rows = {}
+    for row in manifest_files:
+        path = row['path']
+        if not path.startswith('E/'):
+            continue
+        key = ('/' + path).casefold()
+        require(key not in rows, 'Duplicate case-insensitive path in archive manifest')
+        rows[key] = row
+    targets = {}
+    for path, row in archive_targets.items():
+        if row.get('kind') != 'file':
+            continue
+        require(path.startswith('/') and not path.startswith('//'), 'Archive target path is not absolute')
+        key = path.casefold()
+        require(key not in targets, 'Duplicate case-insensitive file target in preflight receipt')
+        targets[key] = row
+    require(set(rows) == set(targets), 'Incomplete archive target inventory')
+    for key, item in rows.items():
+        target = targets[key]
+        require(target.get('archive_path', '').casefold() == item['path'].casefold(),
+                'Archive target path differs from manifest')
+        require(target.get('expected_sha256') == item['sha256']
+                and target.get('expected_bytes') == item['bytes'],
+                'Archive target content pin differs from manifest')
+    return rows, targets
+
+
 def run(archive: Path, receipt: Path, preflight_sha256: str, capacity: Path, capacity_sha256: str,
         identity: Path, identity_sha256: str, config: Path, dashboard_ip: str,
         attempt: str, *, ftp_factory=None, ticket_check=None, lock_path=None):
@@ -73,12 +102,7 @@ def run(archive: Path, receipt: Path, preflight_sha256: str, capacity: Path, cap
     base_delta = expected_delta(source_profile, profile, manifest)
     require(base_delta == pre['mode_delta'], 'Mode delta changed since preflight')
     capacity_obj, capacity_raw = load_capacity(capacity, capacity_sha256, dashboard_ip)
-    rows = {row['path'].casefold(): row for row in manifest['files'] if row['path'].startswith('E/')}
-    targets = {path.casefold(): row for path, row in pre['archive_targets'].items() if row['kind'] == 'file'}
-    require(set(rows) == set(targets), 'Incomplete archive target inventory')
-    for path, item in rows.items():
-        require(targets[path]['expected_sha256'] == item['sha256'] and targets[path]['expected_bytes'] == item['bytes'],
-                'Archive target inventory mismatch')
+    rows, targets = index_archive_targets(manifest['files'], pre['archive_targets'])
     # The only mutable targets are the mode launcher and, when needed, the HDTV FATX driver.
     delta_paths = {('/' + row['path']).casefold(): row for row in base_delta}
     require(set(delta_paths) == {('/' + row['path']).casefold() for row in pre['mode_delta']}, 'Invalid write set')

@@ -67,6 +67,30 @@ class MockFTP:
 
 
 class ProfileTests(unittest.TestCase):
+    def test_archive_target_index_matches_receipt_absolute_paths(self):
+        files = [
+            {'path': 'E/Applications/XWNEBoot/default.xbe', 'bytes': 12, 'sha256': 'a' * 64},
+            {'path': 'E/winnt/system32/drivers/xwnfatx.sys', 'bytes': 34, 'sha256': 'b' * 64},
+            {'path': 'F/private-marker.json', 'bytes': 5, 'sha256': 'c' * 64},
+        ]
+        targets = {
+            '/E/applications/xwneboot/default.xbe': {
+                'kind': 'file', 'archive_path': files[0]['path'], 'expected_bytes': 12,
+                'expected_sha256': 'a' * 64,
+            },
+            '/e/WINNT/system32/drivers/XWNFATX.SYS': {
+                'kind': 'file', 'archive_path': files[1]['path'], 'expected_bytes': 34,
+                'expected_sha256': 'b' * 64,
+            },
+            '/E/Applications/XWNEBoot': {'kind': 'directory', 'archive_path': 'E/Applications/XWNEBoot'},
+        }
+        rows, indexed = transfer847.index_archive_targets(files, targets)
+        self.assertEqual(set(rows), {'/e/applications/xwneboot/default.xbe',
+                                     '/e/winnt/system32/drivers/xwnfatx.sys'})
+        self.assertEqual(set(rows), set(indexed))
+        with self.assertRaisesRegex(ValueError, 'Incomplete archive target inventory'):
+            transfer847.index_archive_targets(files, {next(iter(targets)): next(iter(targets.values()))})
+
     def test_both_target_archives_and_full_neutral_tree_are_pinned(self):
         table = pins()
         for profile in ('e-720x480', 'e-1080i'):
