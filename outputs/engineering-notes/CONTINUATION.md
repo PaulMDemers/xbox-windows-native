@@ -1,3 +1,11 @@
+# Test852: retained 480p status code
+
+Paul reported LED group counts 5, 3, 3, 1, 1. Under the diagnostic's subtract-one encoding, these decode to stage 4, error 22, detail 0: a vertical-retrace-status edge timeout. The encoding does not identify which of the six clear/set waits timed out, the sampled status byte or the underlying cause; it is not a Windows boot result and does not establish that another attempt had the same failure. Continue holding the 480p package pending investigation. See outputs/bundle-config844/observation852.json.
+
+# Tests850–851: 480p diagnostic marker and corrected preflight
+
+Paul reports 850 remained flashing red/amber with a black screen after 30 seconds. This is consistent with the instrumented diagnostic's held 0xf5 display-transaction failure marker before Windows; it does not identify the failed operation, exclude an LED-write failure or unrelated hang, or establish that 847 followed the same path. Paul power-cycled and reported returning to the dashboard. 849 used an incorrect encoder address; 851's corrected 0x8a probe responded, with EEPROM, HDTV, 64 MiB and video-flag prerequisites reported true. The response alone does not establish encoder identity or native transaction success. Hold further 480p package launches pending separately reviewed investigation. See outputs/bundle-config844/observation850-851.json.
+
 # Test847: dashboard observed after 480p launcher request
 
 On the physical Xbox 1.0, the 480p launcher delta from the matched 720p installation was requested once and the dashboard accepted the command. Paul reports, “It’s just sitting on the dashboard.” No screen transition or Windows desktop was reported; do not infer an automatic return or a specific failure stage. This is not a fresh install of the full 480p ZIP. Do not retry, collect or change console state without a separately authorized plan. See outputs/bundle-config844/observation847.json.

@@ -1,0 +1,13 @@
+{
+  "attempt": "852",
+  "console": "physical Xbox 1.0",
+  "source": "user-reported LED group counts",
+  "reported_group_counts": [5, 3, 3, 1, 1],
+  "decoding_rule": "Subtract one from each group: stage, error tens, error units, detail tens, detail units.",
+  "decoded_stage": 4,
+  "decoded_error": 22,
+  "decoded_detail": 0,
+  "interpretation": "Assuming the five groups and colors were counted correctly, the diagnostic reported a vertical-retrace-status edge timeout in stage 4. Its encoding does not identify which of the six clear/set waits timed out or the sampled status values.",
+  "limits": "This is a human-observed diagnostic code, not a Windows boot result or full causal diagnosis. LED and timer operations perturb timing, and their wall-clock duration is not guaranteed. Do not infer that a different attempt failed at the same phase.",
+  "evidence": ["outputs/native480p-error852/README.md", "outputs/native480p-error852/error852.patch", "outputs/native480p633/xwn_hd_adapter.c", "outputs/timing-review650/REPORT.md"]
+}
