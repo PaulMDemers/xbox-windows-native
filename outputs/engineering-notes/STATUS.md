@@ -1,3 +1,7 @@
+# Test846: corrected dashboard capacity attribution
+
+Paul clarified that the earlier 481 MB dashboard reading was C, not E; he reports E showed 556 MB then and shows 556 MB now. This is a retrospective correction and current user report, not a separate historical measurement or live query. Preserve the original 846 capacity receipt and completed transaction journal unchanged; check current E free space again before any future transfer. See outputs/bundle-deploy846/capacity-correction001.json.
+
 # Test846: packaged 1.0 desktop, Start and Restart observed
 
 The complete 1.0 fixed-720p E package e1837395ac915fd1446bf115fc713a9e267df9c79667a2cff018f11cb8415915 was installed with complete managed-root preimages retained and 6568 package files plus 22 preserved extras read back. A local root-directory audit defect stopped the first transaction before writes; a pinned, audited continuation completed. One SITE was accepted, and the user confirms desktop and Start menu work and reports return to UnleashX after Windows Restart. No display-resolution readout or mouse observation was supplied; power-off, shutdown-log audit, repeat boot and persistence remain untested. Do not retry, collect, reset or power-cycle without further user direction. See outputs/bundle-deploy846/launch-result001.json. Five private packages are listed in D:/xwn844/DELIVERY-012.json; 1024x576 has emulator-only evidence.
