@@ -1,6 +1,10 @@
-# 1.6 self-contained bundle installed and launched once
+# Test845: packaged 1.6 desktop and mouse working
 
-All 6569 managed E files match xbox16-720p-002.zip, SHA b711fe0f7d660f1eb921bbfef902c174bb45616eb6c522ee6971dee48a3ca81d. Interrupted transfer was recovered from verified partial state. 607 preimages are preserved. One bounded SITE accepted. Await user desktop/input result. No second launch or power cycle. See outputs/bundle-deploy845/launch-result001.json. NonHD emulator preparation resumed separately; original-console HD and 720x480 archives ready for package tests. Four archives listed in D:/xwn844/DELIVERY-002.json.
+The user confirms the Windows desktop and mouse work on the physical 1.6 after the single packaged boot. The complete managed E installation was read back before launch; the package SHA is b711fe0f7d660f1eb921bbfef902c174bb45616eb6c522ee6971dee48a3ca81d. Shutdown, repeat boot and persistence are not established. The earlier 843 shutdown stalled. Keep the current Windows session running; do not launch again, collect, reset or power-cycle without further user direction. See outputs/bundle-deploy845/desktop-input001.json and launch-result001.json.
+
+# Earlier state: 1.6 self-contained bundle installed and launched once
+
+All 6569 managed E files match xbox16-720p-002.zip, SHA b711fe0f7d660f1eb921bbfef902c174bb45616eb6c522ee6971dee48a3ca81d. Interrupted transfer was recovered from verified partial state. 607 preimages are preserved. One bounded SITE accepted; the later user observation is recorded above. No second launch or power cycle. See outputs/bundle-deploy845/launch-result001.json. NonHD emulator preparation resumed separately; original-console HD and 720x480 archives ready for package tests. Four archives listed in D:/xwn844/DELIVERY-002.json.
 
 # Test843 closed after manual restart
 
