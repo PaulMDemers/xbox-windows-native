@@ -1,3 +1,7 @@
+# 1.6 self-contained bundle installed and launched once
+
+All 6569 managed E files match xbox16-720p-002.zip, SHA b711fe0f7d660f1eb921bbfef902c174bb45616eb6c522ee6971dee48a3ca81d. Interrupted transfer was recovered from verified partial state. 607 preimages are preserved. One bounded SITE accepted. Await user desktop/input result. No second launch or power cycle. See outputs/bundle-deploy845/launch-result001.json. NonHD emulator preparation resumed separately; original-console HD and 720x480 archives ready for package tests. Four archives listed in D:/xwn844/DELIVERY-002.json.
+
 # Test843 closed after manual restart
 
 Windows 2000 desktop and mouse worked with the mouse connected before boot. The console stayed on the shutdown screen and the user restarted it. UnleashX authenticated and collection and cold audit completed once. Console left at the dashboard. No hook or owned host processes. No relaunch, recollection or runtime parenting of 843.

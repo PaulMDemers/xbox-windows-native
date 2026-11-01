@@ -1,3 +1,15 @@
+# 1.6 self-contained bundle installed and launched once
+
+All 6569 managed E files match xbox16-720p-002.zip, SHA b711fe0f7d660f1eb921bbfef902c174bb45616eb6c522ee6971dee48a3ca81d. Interrupted transfer was recovered from verified partial state. 607 preimages are preserved. One bounded SITE accepted. Await user desktop/input result. No second launch or power cycle. See outputs/bundle-deploy845/launch-result001.json. NonHD emulator preparation resumed separately; original-console HD and 720x480 archives ready for package tests. Four archives listed in D:/xwn844/DELIVERY-002.json.
+
+# Bundle845 deployment partial, recovery under review
+
+1.6 authenticated at192.168.50.66. Private b711... archive D:/xwn844/xbox16-720p-002/xbox16-720p-002.zip. Full preflight saved607 differing preimages from6569files to D:/xwn845/preflight001. Apply created3 directories and verified609 writes, then timed out15sec on directoryLIST. No unmatchedwriteintent, launcher notuploaded, noSITE. Do not launchpartialinstallation or restartapply. bundle_implementation is coding separate journal-linked recovery and parent must review beforewrites. Originaljournal preserved D:/xwn845/preflight001/apply.jsonl. Heavy nonHD emulator seed PID387 stopped, leaseheld, session34588; resume only after FTP recovery complete. Sourcecommit staging inprogress, checkrepositorysession35327. Other profiles completed and indexed D:/xwn844/DELIVERY-002.json. User1.6 remains atdashboard; no useraction needed currently.
+
+# November 1 bundle delivery work active
+
+User directs parent to manage proactive-subagents coding. Deliver self-contained unzip/copy-to-E per-mode Windows bundles, Xbox1.6 first then original1.0, covering historically working configurations. Dynamic mode switching deferred. Agents config_inventory, bundle_implementation and boot_profiles own discovery/packager/boot source respectively. Parent independently reviews artifacts. New working kits outputs/bundle-config844 and outputs/bundle-boot844, private packages D:/xwn844. All completed843 runtime closed. User has now brought1.6 to dashboard for package test. Deployment must preserve current E files first, authenticate identity, review exact matched package, one bounded SITE. No deployment requested yet in this phase. Inventory revision attribution was initially wrong and is under correction:842/843 are current1.6 720p, older physical modes are original dev console. Actual historical1024x576 also found,640registry default alone insufficient.1.6 launcher xbe003 repeat-use report lifecycle fixed, parent code review and host150writes pass, physical test pending.
+
 # Test843 closed after manual restart
 
 Windows 2000 desktop and mouse worked with the mouse connected before boot. The console stayed on the shutdown screen and the user restarted it. UnleashX authenticated and collection and cold audit completed once. Console left at the dashboard. No hook or owned host processes. No relaunch, recollection or runtime parenting of 843.
