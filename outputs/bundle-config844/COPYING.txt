@@ -5,11 +5,17 @@ archives private: they include a Windows installation and profile data.
 On a PC, compare the ZIP's SHA-256 with its sidecar, extract into a fresh
 folder, and run the supplied host/tester_bundle.py verify command.
 
-Before installing, back up the target console's own E contents using binary FTP.
-Preserve that backup separately for that Xbox, including your Windows documents.
-Allow at least 1.25 GiB free on E. The managed roots are E:\WINNT,
+Before installing on a populated E, make a complete binary-FTP copy of the
+console's entire E tree to a new, console-specific PC folder. Include hidden
+files and empty directories; keep original names and paths. Read the copy back
+from E into a second fresh folder and compare file counts, sizes and hashes.
+Keep both copies private and untouched, including all Windows documents and
+any prior profile. Do not rely on a backup from another Xbox. If a complete,
+readback-verified backup cannot be made, stop before changing E. Allow at least
+1.25 GiB free on E. The package-managed roots are E:\WINNT,
 E:\Documents and Settings, E:\Program Files, E:\Applications\XWNEBoot,
-and E:\xwndemo372. Do not touch dashboard C, saves, firmware or keys.
+and E:\xwndemo372. Preserve all other E paths. Do not touch dashboard C,
+saves, firmware or keys.
 
 For an empty target, copy the CONTENTS of the extracted E folder to dashboard E,
 preserving hidden files, names and empty folders. Copy
@@ -18,14 +24,18 @@ folder retaining its E directory; use the package's verify-tree --console-only
 command, first with --defer-launcher and again after the launcher is copied.
 Launch the XWNEBoot default.xbe only after the complete readback passes.
 
-To try a different profile on the same Xbox, first back up the complete current
-installation and any documents created in it. From the dashboard, remove only
-the five managed roots if they are the installation you intend to replace;
-preserve all unrelated files and your backups. Then copy and verify the next
-package as above. These packages have the same paths and should not be merged.
-To return to a previous installation, restore its own verified backup, preserving
-the same paths and copying its launcher last. A different console's backup is
-not a recovery copy for this console.
+Treat each ZIP as one complete fixed-profile installation. Install or change
+only one profile at a time; never merge package trees or mix files from two
+profiles. Before replacing an existing installation, make and readback-verify a
+new full-E backup as above, then preserve a separate copy of every file under
+the five managed roots and record which package paths were absent before the
+change. Replace only those five roots; leave unrelated E paths untouched. Copy
+the new package and verify its complete readback as above before launching.
+For rollback, restore the saved preimages at their original paths and remove
+only paths recorded as absent-before that were created by this replacement.
+Verify the restored tree against the saved inventory. Do not erase the backup
+or previous profile until the new one has been separately proven and backed up.
+A different console's backup is not a recovery copy for this console.
 
 Connect a mouse before starting Windows. Record the actual console, cable,
 display, selected package hash and observed boot, input, restart or forced reset.
