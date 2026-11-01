@@ -1,3 +1,7 @@
+# Test846: packaged 1.0 desktop and Start menu working
+
+The complete 1.0 fixed-720p E package e1837395ac915fd1446bf115fc713a9e267df9c79667a2cff018f11cb8415915 was installed with complete managed-root preimages retained and 6568 package files plus 22 preserved extras read back. A local root-directory audit defect stopped the first transaction before writes; a pinned, audited continuation completed. One SITE was accepted, and the user confirms desktop and Start menu work. No display-resolution readout or mouse observation was supplied; shutdown, repeat boot and persistence are untested. Keep Windows running; do not retry, collect, reset or power-cycle without further user direction. See outputs/bundle-deploy846/launch-result001.json. Five private packages are listed in D:/xwn844/DELIVERY-011.json; 1024x576 has emulator-only evidence.
+
 # Test845: packaged 1.6 desktop and mouse working
 
 The user confirms the Windows desktop and mouse work on the physical 1.6 after the single packaged boot. The complete managed E installation was read back before launch; the package SHA is b711fe0f7d660f1eb921bbfef902c174bb45616eb6c522ee6971dee48a3ca81d. Shutdown, repeat boot and persistence are not established. The earlier 843 shutdown stalled. Keep the current Windows session running; do not launch again, collect, reset or power-cycle without further user direction. See outputs/bundle-deploy845/desktop-input001.json and launch-result001.json.
