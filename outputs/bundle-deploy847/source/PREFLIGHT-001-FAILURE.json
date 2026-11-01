@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "attempt": "bundle-deploy846-preflight001",
+  "evidence_owner": "parent operator",
+  "operation": "read-only target inventory; no profile files retrieved after root listing failure",
+  "result": "failed closed",
+  "failure": {
+    "stage": "FTP LIST /E",
+    "cause": "The parser applied its 256 MiB per-file backup limit to every root listing entry, including an unrelated file sized 805306368 bytes.",
+    "effect": "Preflight stopped before backup capture, target writes, or launch."
+  },
+  "correction": {
+    "change": "Root listing now parses names and sizes without applying selected-file capture limits. Inventory descends only into the five managed Windows roots and explicitly pinned identity-marker parents. Selected managed files are streamed to local preimages, up to 8 GiB each and 128 GiB total.",
+    "guard": "The unrelated large E-root file is never RETR'd.",
+    "mock_check": "The 846 and 847 offline suites include an 805306368-byte unrelated E-root listing entry and assert no RETR for it."
+  },
+  "source": "Parent operator's direct report; the failed output was not present in the host receipt directory when this record was prepared.",
+  "physical_writes": false,
+  "launch_requested": false,
+  "credentials_recorded": false
+}
