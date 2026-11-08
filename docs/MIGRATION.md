@@ -4,7 +4,9 @@ This is a migration checklist, not a claim that a clean-machine bootstrap has
 been tested. Read [current status](current-status.md) and the latest
 [continuation](../outputs/engineering-notes/CONTINUATION.md) first: later
 observations supersede earlier handoffs. A Git clone alone does not contain the
-private inputs, recovery material, local build products or all evidence.
+private inputs, recovery material, local build products or all evidence. See the
+[November 8 migration inventory](../outputs/migration-20261108/INVENTORY.md) for
+the recorded host-specific locations and transfer state.
 
 ## Preserve the old machine first
 
@@ -167,3 +169,23 @@ not fix that gap. Ftdisk 49 remains a strict qualification failure; boot,
 shutdown and hardware/profile support have scoped evidence only. The 1080i
 text/motion defects remain unresolved. Keep backups and review the latest
 status before planning any installation or physical test.
+
+## Private package input export
+
+After reviewing `tools/migration-inputs.py`, use its `export` action with a new
+private destination outside the checkout and input directories. It verifies
+pinned input hashes, deduplicates by SHA-256, retains a 20 GiB reserve and
+checks every copied blob. It preserves original recipes and produces local
+path-remapped copies. On the new host, verify the transferred bundle, then rebind it:
+
+```powershell
+python tools/migration-inputs.py bind <BUNDLE> --checkout <CHECKOUT>
+```
+The manifest contains old private paths and must remain private.
+
+The guarded 1024x576 JSON recipe references build004.json by hash `adaaf528...`,
+but the tracked file hashes `290ff7f6...`; the exporter records the discrepancy
+and marks that recipe unavailable. The actual delivered 1024x576-F-002 uses the
+separate F-derived helper. Its pinned private archives and overlays are included,
+but the original helper has hard-coded paths and requires manual path review; no
+portable F-derived rebuild is claimed. Keep the delivered ZIP and its index.
