@@ -1,6 +1,8 @@
 # Moving development to another machine
 
-Use this guide to transfer the source, pinned tools and private package inputs.
+Recreate the build environment from the repository using
+[Environment setup](ENVIRONMENT-SETUP.md). A WSL export or copied SDK installation
+is not required. Transfer only the private inputs needed for your next task.
 Clean-machine import and bootstrap validation remain pending. Read [current status](current-status.md) and the latest
 [continuation](../outputs/engineering-notes/CONTINUATION.md) first: later
 observations supersede earlier handoffs. A Git clone alone does not contain the
@@ -61,50 +63,37 @@ kit is a private snapshot, not a qualified fresh installation on another console
 
 The November 8 migration folder includes a compact `release-packages` copy
 of these five ZIPs, their referenced issues/evidence and delivery index. Its
-`copied-files.json` records verified hashes. Copy the complete migration folder;
-the older `D:/xwn844` staging trees are not required to use these packages.
+`copied-files.json` records verified hashes. Copy `release-packages` only if you
+want the already assembled test ZIPs; the older staging trees are not required.
 
-## Transfer the WSL development environment
+## Small transfer set
 
-The quickest route to the existing development environment is to transfer a
-verified WSL export **and** the separately inventoried Windows-host inputs,
-private archive, package files and recovery data. The archive alone does not
-contain the live WSL toolchains, source/build inputs or all external fixtures.
-The current distribution is `Ubuntu` under WSL 2; it was stopped when checked.
-An export preserves Linux files, including installed toolchains and potentially
-credentials or private data, so protect it as a private backup. It does not
-include Windows files accessed through `/mnt/c`, `/mnt/d` or `/mnt/e`.
+Clone the public repository on the destination and follow
+[Environment setup](ENVIRONMENT-SETUP.md) to install the host prerequisites,
+fetch pinned upstream sources and build RosBE. Build caches and old build
+outputs are not environment prerequisites.
 
-After confirming there are no active WSL tasks, leases or writers, choose an
-unused destination with sufficient free space and export from PowerShell:
+From `D:/Xbox-Windows-Migration/2026-11-08`, select only what you need:
 
-```powershell
-wsl --list --verbose
-wsl --export Ubuntu 'D:\private-transfer\Ubuntu-xwn.tar'
-Get-FileHash -Algorithm SHA256 'D:\private-transfer\Ubuntu-xwn.tar'
-```
+| Item | Purpose | Size |
+| --- | --- | --- |
+| `package-inputs/` | Pinned private Windows/package inputs and local recipes | 662,967,386 blob bytes, plus small manifests |
+| `release-packages/` | Optional ready-to-copy packages and their supporting records | 1,630,975,664 bytes |
+| `source.bundle` | Optional offline Git clone instead of fetching GitHub | See local file size |
 
-Create the destination directory first; retain the old distribution and record
-and independently compare the export hash after transfer. On the new machine,
-install WSL 2, choose a new distribution name and an empty private install
-location, then import the verified export:
+For source development alone, none of these is a compiler prerequisite. For
+reassembling the existing Windows packages, keep `package-inputs`: owned Windows
+files and prepared hives are not recreated by installing a compiler. Copy the
+ready-made release packages only when needed for installation/testing. The
+private input plus release subset is about 2.14 GiB, not 130 GB.
 
-```powershell
-wsl --import Ubuntu-XWN 'C:\WSL\Ubuntu-XWN' 'D:\private-transfer\Ubuntu-xwn.tar' --version 2
-wsl --distribution Ubuntu-XWN --exec /bin/bash -lc 'pwd; python3 --version; git --version'
-```
-
-Import may default to root. Configure the intended Linux user according to the
-new distribution's WSL configuration, without exposing credentials. The Linux
-home paths in the export normally remain the same; Windows volume letters and
-`/mnt/<letter>` paths can change. Restore external inputs to the recorded
-locations or update local path variables and configuration deliberately, then
-verify each referenced file and disk backing chain. Do not edit historical
-receipts to conceal path changes. Re-establish source-host and console access
-credentials separately through the new host's private credential store or
-interactive prompts; do not rely on copied secrets or publish the export.
-Check the imported toolchain receipt and run the host checks below before any
-new build. Export/import has not been validated on a new machine.
+The large `Ubuntu-build-environment.tar` and `windows-toolchains.tar` are optional
+old-host recovery backups. **Do not include them in the routine migration.**
+Neither archive is needed to follow the fresh setup procedure. Historical disk
+chains and recovery archives may remain on old storage until separately needed;
+retention is not an instruction to transfer them onto every development host.
+Recreate credentials privately on each machine. Never copy historical lease
+files as active ownership records.
 
 ## Set up the new host
 
@@ -145,11 +134,14 @@ provenance](BUILD-CURRENT.md).
 
 For the packaged 1.6 720p chain, retain the specific source trees, patches and
 binary pins in [bundle-boot844](../outputs/bundle-boot844/README.md), including
-its 843 boot-loaded FATX driver. Its recorded Linux tree is under
-`/home/paul/xbox-windows-native/bundle-boot844-source001`; check its identity after
-import. Its pinned Windows-side artifacts are in the private package input
+its 843 boot-loaded FATX driver. Its historical Linux tree was under
+`/home/paul/xbox-windows-native/bundle-boot844-source001`; that path is provenance,
+not an instruction to copy the old WSL filesystem. Its pinned Windows-side artifacts are in the private package input
 export. Use the recipe and its linked build records when reconstructing
-that package. The general component commands cover their own manifest profiles.
+that package. [The source-lineage guide](BUNDLE-SOURCE-RECONSTRUCTION.md) maps
+the committed preparations back to the public profile trees. Historical scripts
+need path parameterization; the general component commands cover their own
+manifest profiles.
 
 The hardware-report utility uses nxdk revision
 `58427c078b4ccb0121f359b6b6c536b3b2914976` and its pinned submodules and

@@ -14,6 +14,9 @@ acceleration. Profile-specific evidence and remaining limits are recorded below.
 
 ## Start here
 
+For a new development machine, follow [fresh environment setup](docs/ENVIRONMENT-SETUP.md).
+No WSL image or copied toolchain is required.
+
 - **[Move development to a new machine](docs/MIGRATION.md)** — source setup, private packages, pinned tools and WSL transfer
 - **[Current status and guide map](docs/current-status.md)** — capabilities, remaining work and latest engineering handoff
 - **[External tester quick start](docs/testers.md)** — hardware report, installation checklist and results

@@ -1,6 +1,11 @@
 # Machine migration preparation
 
-Prepared November 8, 2026. Start with [the migration guide](../../docs/MIGRATION.md).
+Prepared November 8, 2026. Updated after review: fresh environment recreation
+is the default; the large environment archives below are optional local recovery
+backups and are excluded from routine migration. See
+[Environment setup](../../docs/ENVIRONMENT-SETUP.md).
+
+Start with [the migration guide](../../docs/MIGRATION.md).
 Private transfer material is under `D:/Xbox-Windows-Migration/2026-11-08`.
 The original storage remains available for destination validation and historical
 disk-chain recovery. No console or emulator was launched.
@@ -72,3 +77,18 @@ tests remain pending. Host archive and source checks do not establish those
 outcomes. Before further console work, establish its actual current state and
 resolve Test853's missing observation. Copied lease files and process IDs do
 not establish ownership on a new host.
+
+## Fresh setup follow-up
+
+The user's requested migration path now installs the host prerequisites and
+rebuilds tools from pinned public sources. The full environment archives are
+optional old-host recovery backups, excluded from the routine transfer list.
+The current private package inputs total 662,967,386 blob bytes; ready-made
+release packages are an optional additional 1,630,975,664 bytes.
+
+[Fresh setup checks](fresh-setup-checks.json) record the Ubuntu GCC download,
+package metadata check, matching compiler hash and successful APT prerequisite
+simulation. A package extraction attempt on a Windows-mounted volume failed
+on symlink creation and is preserved privately; stream verification succeeded.
+This was not a pristine OS installation or a full fresh build. The existing
+repository fetch/bootstrap procedures remain the build-environment entry point.

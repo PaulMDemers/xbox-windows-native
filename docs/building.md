@@ -18,6 +18,10 @@ packaging commands, checksums and delivery checks for each kit.
 For the standalone inventory XBE, use the separate [nxdk utility build](tester-bundles.md#build-the-hardware-report-xbe).
 It does not require Windows or the NT5 component toolchain.
 
+For a fresh Linux/WSL machine, start with [Environment setup](ENVIRONMENT-SETUP.md).
+It includes the OS packages, Python command, launcher compiler pin and separate
+nxdk setup. No old environment archive is required.
+
 ## Requirements
 
 - Linux or WSL, Python 3.12+ (including `tarfile.data_filter`), Git, Make and normal build utilities.
