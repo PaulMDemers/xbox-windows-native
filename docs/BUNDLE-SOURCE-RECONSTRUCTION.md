@@ -15,9 +15,19 @@ represented by two supported `xwn.py` profiles:
 | Cromwell | Cromwell `9fc54d0c7cbed7bc3c70373642d833684853011f` | `70c0a6c5aff82537f489e7d18410d5980fa797a7` | `launcher` |
 
 The rows and overlays are recorded in [components.json](../upstream/components.json).
-Use the public fetch and `xwn.py source` procedure in [building.md](building.md)
-to materialize those two trees in fresh Linux or WSL output directories. The
-profile trees are the parents used by [prepare835.py](../outputs/boot720-review833/prepare835.py).
+After fetching dependencies as described in [Environment setup](ENVIRONMENT-SETUP.md),
+materialize both profile trees in fresh Linux or WSL output directories (do not
+create those output directories beforehand):
+
+```sh
+DEPS="$HOME/xwn-dependencies-001"  # replace with your fetch output
+python3 tools/xwn.py source --profile loader --cache "$DEPS/reactos" --output "$HOME/xwn-source-loader-001"
+python3 tools/xwn.py source --profile launcher --cache "$DEPS/cromwell" --output "$HOME/xwn-source-launcher-001"
+```
+
+The trees are in each output directory’s `source/` subdirectory. Keep the
+cache while using these outputs: the source workspaces borrow its Git objects.
+These profile trees are the parents used by [prepare835.py](../outputs/boot720-review833/prepare835.py).
 
 The 843 FATX tree is a separate branch. Its exact base is the same ReactOS
 commit, with the ordered patch series in
@@ -26,6 +36,10 @@ The series has 87 pinned patches; all listed patch files are present in this
 repository. From a clean checkout of that exact ReactOS commit, run:
 
 ```sh
+DEPS="$HOME/xwn-dependencies-001"  # replace with your fetch output
+FATX_BASE="$HOME/xwn-source-fatx843-001"
+git clone --no-checkout "$DEPS/reactos" "$FATX_BASE"
+git -C "$FATX_BASE" checkout --detach afc0127e8f937ab68503d715d948844973756aa1
 python3 tools/apply-series.py --source "$FATX_BASE" --manifest outputs/fatx-directory-order/manifest.json
 ```
 
@@ -72,7 +86,11 @@ Some tracked utility sources already contain their final amendments; replaying
 a prior preparation against those files can differ from its original receipt.
 Use the recorded before/after hashes and patches to distinguish historical
 intermediate bytes from final sources. The entire chain has not been replayed
-in this documentation pass.
+in this documentation pass. No portable script currently automates this chain:
+parameterizing and validating the nine steps, reproducing their intermediate
+utility inputs, building the resulting artifacts, and independently resolving
+the private package inputs remain separate work. The ready ZIPs and retained
+Windows ISOs have not been verified to supply the exact historical inputs.
 
 For a portable reconstruction, create a separate workspace outside the repo
 and parameterize each script's repository root, prior source input, and new

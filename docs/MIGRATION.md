@@ -6,40 +6,27 @@ is not required. Transfer only the private inputs needed for your next task.
 Clean-machine import and bootstrap validation remain pending. Read [current status](current-status.md) and the latest
 [continuation](../outputs/engineering-notes/CONTINUATION.md) first: later
 observations supersede earlier handoffs. A Git clone alone does not contain the
-private inputs, recovery material, local build products or all evidence. See the
-[November 8 migration report](../outputs/migration-20261108/REPORT.md) and
-[inventory](../outputs/migration-20261108/INVENTORY.md) for verified transfer
-contents, host-specific locations and remaining validation.
+private inputs, recovery material, local build products or all evidence. The [November 8 migration report](../outputs/migration-20261108/REPORT.md)
+and [inventory](../outputs/migration-20261108/INVENTORY.md) describe an earlier,
+larger export and host-specific locations; they are historical records, not
+an inventory of the lean transfer.
 
-## Preserve the old machine first
+## Choose what to transfer
 
-1. Record the checkout commit, branch, `git status --short`, remotes and any
-   uncommitted or untracked work. Review untracked files before transferring or
-   committing them: some are private captures even when their extensions are
-   normally allowed. Preserve changes separately until reviewed. Do not clean
-   the checkout or retire the old disks until the destination has been checked.
-2. Inventory private Windows media and licensing, prepared E trees, console
-   recovery/preimage backups, EEPROM/firmware, user data, build outputs and
-   receipts, and private package ZIPs and their checksums. Transfer only data
-   you are entitled to use, using encrypted private storage. Keep these outside
-   the public checkout; never add credentials, Windows files, hives, firmware,
-   disk images or private captures to Git or a public release.
-3. Preserve VM disk **backing chains together**, their configs and associated
-   source/executable identities. Stop writers before copying and verify hashes at
-   both ends. Old closed runtimes are evidence, not seeds to launch or parent.
-   [Archive restoration](ARTIFACT-ARCHIVE.md) explains the private D: archive,
-   its pointer and receipt files, and the Python 3.14 restore helper. Transfer
-   the archive and its indexes together if needed; recorded D: paths will need
-   mapping on the new host. Preserve the original copies during verification.
-4. Preserve the historical private kits in `E:\Xbox-Test-Kits\2026-10-19`,
-   and the later profile packages and supporting files under `D:\xwn844`.
-   The latest package index is `D:\xwn844\DELIVERY-016.json`. Preserve
-   matching preimages, manifests and sidecars alongside them. See the table below.
-5. Record the selected xemu source, executable, configuration and disk chain
-   when emulator work is needed. [Local xemu changes](xemu-changes.md) describes
-   the audited 322 candidate and distinguishes it from stock xemu. Firmware
-   and disk fixtures are private; copying a source checkout does not recreate
-   them or establish the identity of a different executable.
+For routine development, clone the repository and follow the fresh environment
+setup. Transfer the ready-to-deploy profile ZIPs and the essential privately
+owned media needed for your work separately. Keep private media and packages
+outside the public checkout. A WSL export, old SDK, historical disk images,
+build outputs and the old private package-input export are not part of this
+lean transfer. The ready ZIPs are finished packages; their presence does not
+establish that the original intermediate archives, hives and overlays required
+by the historical assembler can be regenerated from them or from an ISO.
+
+If the old machine is still available, record its revision and review any local
+changes before relying on the clone. Recreate credentials privately and review
+console recovery needs separately. The lean transfer does not preserve VM disk
+backing chains, console-specific backups or historical private evidence; a
+future task requiring one of these needs a separate source for it.
 
 ## Package inventory and current evidence
 
@@ -61,39 +48,24 @@ and the index's linked known-issues and evidence files before further work.
 The historical 587 hardware kit reuses the qualified 421 scanner; its Windows
 kit is a private snapshot, not a qualified fresh installation on another console.
 
-The November 8 migration folder includes a compact `release-packages` copy
-of these five ZIPs, their referenced issues/evidence and delivery index. Its
-`copied-files.json` records verified hashes. Copy `release-packages` only if you
-want the already assembled test ZIPs; the older staging trees are not required.
+The ready-to-deploy set contains these five ZIPs, with the delivery index
+and associated issue and evidence records. Verify each ZIP against the hashes
+above after copying it. The 480p package remains on hold; the evidence limits
+in the table apply even when a checksum matches.
 
-## Small transfer set
+## Rebuild scope
 
-Clone the public repository on the destination and follow
-[Environment setup](ENVIRONMENT-SETUP.md) to install the host prerequisites,
-fetch pinned upstream sources and build RosBE. Build caches and old build
-outputs are not environment prerequisites.
-
-From `D:/Xbox-Windows-Migration/2026-11-08`, select only what you need:
-
-| Item | Purpose | Size |
-| --- | --- | --- |
-| `package-inputs/` | Pinned private Windows/package inputs and local recipes | 662,967,386 blob bytes, plus small manifests |
-| `release-packages/` | Optional ready-to-copy packages and their supporting records | 1,630,975,664 bytes |
-| `source.bundle` | Optional offline Git clone instead of fetching GitHub | See local file size |
-
-For source development alone, none of these is a compiler prerequisite. For
-reassembling the existing Windows packages, keep `package-inputs`: owned Windows
-files and prepared hives are not recreated by installing a compiler. Copy the
-ready-made release packages only when needed for installation/testing. The
-private input plus release subset is about 2.14 GiB, not 130 GB.
-
-The large `Ubuntu-build-environment.tar` and `windows-toolchains.tar` are optional
-old-host recovery backups. **Do not include them in the routine migration.**
-Neither archive is needed to follow the fresh setup procedure. Historical disk
-chains and recovery archives may remain on old storage until separately needed;
-retention is not an instruction to transfer them onto every development host.
-Recreate credentials privately on each machine. Never copy historical lease
-files as active ownership records.
+A fresh clone and the public dependencies can reconstruct the eight supported
+component profile trees and build them using the documented toolchains. They
+do **not** currently provide a verified one-command rebuild of the latest 844
+boot chain or its complete Windows packages. The 844 source lineage requires
+portable versions of nine historical preparation stages and a checked replay;
+see [the source-lineage guide](BUNDLE-SOURCE-RECONSTRUCTION.md). The existing
+package recipes pin private intermediate ZIPs, overlays and records. The lean
+transfer omits the historical package-input export, and neither the retained
+ready ZIPs nor Windows media have been verified as substitutes for those exact
+inputs. Reassembly therefore requires additional reconstruction and validation;
+do not claim that a fresh clone and ISO alone recreate the delivered ZIPs.
 
 ## Set up the new host
 
@@ -132,13 +104,13 @@ The eight profiles are independent. A complete one-command clean reconstruction
 of the current combined E demo is not established; see [current build
 provenance](BUILD-CURRENT.md).
 
-For the packaged 1.6 720p chain, retain the specific source trees, patches and
-binary pins in [bundle-boot844](../outputs/bundle-boot844/README.md), including
+For the packaged 1.6 720p chain, consult the specific source-tree identities,
+patches and binary pins in [bundle-boot844](../outputs/bundle-boot844/README.md), including
 its 843 boot-loaded FATX driver. Its historical Linux tree was under
 `/home/paul/xbox-windows-native/bundle-boot844-source001`; that path is provenance,
-not an instruction to copy the old WSL filesystem. Its pinned Windows-side artifacts are in the private package input
-export. Use the recipe and its linked build records when reconstructing
-that package. [The source-lineage guide](BUNDLE-SOURCE-RECONSTRUCTION.md) maps
+not an instruction to copy the old WSL filesystem. The historical recipe also pins private Windows-side artifacts that are not
+included in the lean transfer. Use the recipe and its linked build records to
+identify and reconstruct those inputs before attempting package assembly. [The source-lineage guide](BUNDLE-SOURCE-RECONSTRUCTION.md) maps
 the committed preparations back to the public profile trees. Historical scripts
 need path parameterization; the general component commands cover their own
 manifest profiles.
@@ -181,22 +153,13 @@ shutdown and hardware/profile support have scoped evidence only. The 1080i
 text/motion defects remain unresolved. Keep backups and review the latest
 status before planning any installation or physical test.
 
-## Private package input export
+## Historical package input export
 
-After reviewing `tools/migration-inputs.py`, use its `export` action with a new
-private destination outside the checkout and input directories. It verifies
-pinned input hashes, deduplicates by SHA-256, retains a 20 GiB reserve and
-checks every copied blob. It preserves original recipes and produces local
-path-remapped copies. On the new host, verify the transferred bundle, then rebind it:
-
-```powershell
-python tools/migration-inputs.py bind <BUNDLE> --checkout <CHECKOUT>
-```
-The manifest contains old private paths and must remain private.
-
-The guarded 1024x576 JSON recipe references build004.json by hash `adaaf528...`,
-but the tracked file hashes `290ff7f6...`; the exporter records the discrepancy
-and marks that recipe unavailable. The actual delivered 1024x576-F-002 uses the
-separate F-derived helper. Its pinned private archives and overlays are included,
-but the original helper has hard-coded paths and requires manual path review; no
-portable F-derived rebuild is claimed. Keep the delivered ZIP and its index.
+`tools/migration-inputs.py` describes and verifies the historical private
+inputs when those files are available. Its `bind` action requires a complete
+export containing `originals`, `recipes`, `blobs`, and `manifest.json`; it
+cannot manufacture omitted inputs from a ready package. The lean transfer does
+not include this export. The guarded 1024x576 recipe also has a recorded source
+record hash mismatch; the delivered F-derived helper has hard-coded paths and
+has not been made into a portable rebuild. Retain the delivered ZIP and its
+index for that profile.

@@ -1,3 +1,7 @@
+> Historical optional procedure only. The user superseded the expanded archive
+> on November 8, 2026 with a maximum 62 GB lean transfer. Follow MIGRATION.md;
+> do not copy the historical C/D/E archive folders for this migration.
+
 # Xbox research history handoff
 
 This document describes the handoff procedure and planned locations. It does not by itself establish that staging, verification, or the external copy has completed. Check the final overview and its referenced manifests and logs for the actual status. Older receipts under Save are historical records; where they conflict, the final overview supersedes them.

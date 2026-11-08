@@ -1,3 +1,20 @@
+# Lean migration supersedes expanded retention - November 8, 2026
+
+The user rejected the expanded historical archive and imposed a maximum 62 GB
+transfer. Only C:/Users/Paul/Desktop/Save is the copy-off set: ready Windows
+profile packages, Windows/RCT media, a source bundle and small documentation.
+Do not copy the excluded C history folder or D/E history archives. Completed
+test artifacts, build trees, SDKs and emulator disks are not migration inputs.
+Earlier expanded-retention instructions below are superseded. Follow
+[Migration](../../docs/MIGRATION.md) and the final Save README and manifest.
+
+Source development starts with a fresh clone and ENVIRONMENT-SETUP.md. All
+eight component profile manifests verify, but portable end-to-end rebuilding
+of the latest 844 package is not yet established. The source-lineage guide
+records that gap; retaining historical binaries is not its resolution. Ready
+packages retain their individual validation limits (480p remains on hold).
+No console/emulator launch is authorized by these migration notes.
+
 # Expanded history preservation - November 8, 2026
 
 The user will wipe C:, D:, and E: and copy the staged preservation folders
