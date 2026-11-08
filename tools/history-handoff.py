@@ -139,6 +139,8 @@ def verify(args):
         header = json.loads(next(f))
         if header.get('type') != 'header' or header.get('version') != 1:
             raise ValueError('invalid manifest header')
+        if args.skip_reparse and not header.get('allow_reparse'):
+            raise ValueError('--skip-reparse requires a manifest recorded with --allow-reparse')
         if header.get('metadata_only') and not args.metadata_only:
             raise ValueError('metadata-only manifest requires --metadata-only verification')
         def rebase(value):
@@ -182,6 +184,9 @@ def verify(args):
                 path = roots[idx]
             else:
                 path = roots[idx].joinpath(*safe_relative(rel).parts)
+            if kind == 'reparse' and args.skip_reparse:
+                counts['reparse'] += 1
+                continue
             no_links(path.parent if kind == 'reparse' else path)
             st = os.lstat(path)
             if kind == 'file':
@@ -215,9 +220,11 @@ def verify(args):
             actual[{'file': 'files', 'dir': 'dirs', 'reparse': 'reparse'}[kind]] += 1
             if kind == 'file':
                 actual['bytes'] += st.st_size
+    if args.skip_reparse:
+        actual['reparse'] = counts['reparse']  # Excluded or present links do not affect content verification.
     if actual != counts:
         raise ValueError('actual directory totals differ: ' + str(actual))
-    print(('METADATA-ONLY' if args.metadata_only else 'SHA-256') + ' verification complete: ' + str(counts), flush=True)
+    print(('METADATA-ONLY' if args.metadata_only else 'SHA-256') + (' verification (reparse points skipped): ' if args.skip_reparse else ' verification complete: ') + str(counts), flush=True)
 
 
 def main():
@@ -232,6 +239,7 @@ def main():
     ver = sub.add_parser('verify')
     ver.add_argument('--manifest', required=True)
     ver.add_argument('--location', choices=('source', 'destination'), required=True)
+    ver.add_argument('--skip-reparse', action='store_true', help='ignore reparse records and actual reparse count for copies made excluding junctions')
     ver.add_argument('--rebase', nargs=2, action='append', metavar=('OLDROOT', 'NEWROOT'), help='map a manifest root prefix to its copied location; may be repeated')
     ver.add_argument('--metadata-only', action='store_true', help='check sizes and timestamps instead of hashing; weaker verification')
     args = parser.parse_args()

@@ -74,6 +74,17 @@ class HandoffTests(unittest.TestCase):
             parent = cleanup.parent
             cleanup.rmdir()
             cleanup = parent
+    def test_skip_missing_reparse_but_check_files(self):
+        self.assertEqual(self.inventory().returncode, 0)
+        rows = [json.loads(line) for line in self.manifest.read_text().splitlines()]
+        rows[0]['allow_reparse'] = True
+        rows.insert(-1, {'type': 'reparse', 'root': 0, 'path': 'missing-link', 'target': 'elsewhere'})
+        rows[-1]['reparse'] += 1
+        self.manifest.write_text('\n'.join(json.dumps(row) for row in rows) + '\n')
+        self.assertNotEqual(self.verify().returncode, 0)
+        self.assertEqual(self.run_tool('verify', '--manifest', self.manifest, '--location', 'source', '--skip-reparse').returncode, 0)
+        (self.src / 'file').write_text('world', encoding='utf-8')
+        self.assertNotEqual(self.run_tool('verify', '--manifest', self.manifest, '--location', 'source', '--skip-reparse').returncode, 0)
     def test_relative_escape_refusal(self):
         self.assertEqual(self.inventory().returncode, 0)
         rows = self.manifest.read_text().splitlines()
