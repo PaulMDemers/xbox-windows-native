@@ -1,3 +1,16 @@
+# Expanded history preservation - November 8, 2026
+
+The user will wipe C:, D:, and E: and copy the staged preservation folders
+externally first. Follow docs/HISTORY-HANDOFF.md. The staging roots are
+C:/Users/Paul/Desktop/Save, D:/Save-Xbox-History, and E:/Save-Xbox-History-E.
+Check the private final overview and manifests for actual completion status.
+Original drive-relative paths are mirrored under history/C, history/D, and
+history/E. Absolute QCOW parent references are not rewritten. Restore their
+namespace or work on disposable copies before resuming research.
+The full OS/toolchain exports are excluded; the three WSL research trees are
+archived separately. Keep earlier receipts unchanged. No hardware or emulator
+launch is part of this migration. Existing pending launch notes are historical.
+
 # Current handoff - November 8, 2026
 
 The active task is migration and release preservation. Start with
@@ -1454,7 +1467,7 @@ user saw the panels and automatic return. This does not prove post-handoff state
 or native writes; follow [690 NEXT](../outputs/framebuffer690/NEXT.md) for the
 framebuffer custody and full assembly-path review before another native launch.
 
-[691–693](../outputs/handoff-preflight693/REPORT.md) identify a concrete candidate
+[691ï¿½693](../outputs/handoff-preflight693/REPORT.md) identify a concrete candidate
 loader defect: the kernel can round the virtual reservation base, while the old
 wrapper reuses it as the physical execution address. Compiled failure models and
 actual kernel rounding agree on that risk.693 keeps those addresses separate and

@@ -1,4 +1,15 @@
-# Final selected project handoff
+# Selected project handoff, followed by full research-history staging
+
+The user subsequently confirmed that C:, D:, and E: will all be wiped and
+requested preservation of historical research on current disks for copying
+off-machine. The original selected-save receipts below remain immutable.
+The expanded handoff procedure is in [HISTORY-HANDOFF.md](../../docs/HISTORY-HANDOFF.md).
+Its planned locations are the Desktop Save folder, D:/Save-Xbox-History, and
+E:/Save-Xbox-History-E. The private final overview and manifests establish the
+actual completion state; this source document does not certify an external copy.
+The historical exclusion/undecided wording below describes the earlier stage.
+
+## Original selected-save scope
 
 On November 8, the user requested the final preservation set under
 `C:/Users/Paul/Desktop/Save` before wiping the machine. Core files were copied

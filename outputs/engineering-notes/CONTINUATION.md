@@ -1,3 +1,16 @@
+# Expanded history preservation - November 8, 2026
+
+The user will wipe C:, D:, and E: and copy the staged preservation folders
+externally first. Follow docs/HISTORY-HANDOFF.md. The staging roots are
+C:/Users/Paul/Desktop/Save, D:/Save-Xbox-History, and E:/Save-Xbox-History-E.
+Check the private final overview and manifests for actual completion status.
+Original drive-relative paths are mirrored under history/C, history/D, and
+history/E. Absolute QCOW parent references are not rewritten. Restore their
+namespace or work on disposable copies before resuming research.
+The full OS/toolchain exports are excluded; the three WSL research trees are
+archived separately. Keep earlier receipts unchanged. No hardware or emulator
+launch is part of this migration. Existing pending launch notes are historical.
+
 # Migration handoff - November 8, 2026
 
 User requests artifact cleanup, source synchronization and a portable development
