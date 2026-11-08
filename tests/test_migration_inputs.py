@@ -11,6 +11,26 @@ spec.loader.exec_module(m)
 
 
 class MigrationInputsTest(unittest.TestCase):
+    def test_public_recipe_source_records_match_checkout_bytes(self):
+        # The guarded recipe has a separately documented historical mismatch.
+        for name in m.NAMES:
+            if name == 'xbox10-1024x576-guarded.json':
+                continue
+            with self.subTest(recipe=name):
+                config = json.loads((m.CONFIG / name).read_text(encoding='utf-8'))
+                for record in config['source_records']:
+                    with self.subTest(source=record['source']):
+                        path = m.ROOT / record['source']
+                        self.assertEqual(m.sha(path), record['sha256'])
+
+    def test_bundle_boot_source_bytes_match_build_receipt(self):
+        root = m.ROOT / 'outputs/bundle-boot844'
+        receipt = json.loads((root / 'xbe003.json').read_text(encoding='utf-8'))
+        for name in ('Makefile', 'main.c', 'layout.c', 'layout.h',
+                     'plan.c', 'plan.h', 'page.c', 'page.h'):
+            with self.subTest(source=name):
+                self.assertEqual(m.sha(root / name), receipt['files'][name]['sha256'])
+
     def test_bind_verifies_and_remaps_then_refuses_corruption(self):
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
