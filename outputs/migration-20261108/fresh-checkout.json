@@ -1,0 +1,44 @@
+{
+  "date": "2026-11-08",
+  "revision": "08b55c3aadf1cfcb7990072d421709244e6e4e05",
+  "checkout": {
+    "method": "Independent local file-URI clone with --no-hardlinks and --depth 1, subsequently fetched at the reviewed revision",
+    "shallow": true,
+    "alternates_file_present": false,
+    "clean_after_checks": true,
+    "free_space_gib_after_checks": 32.98,
+    "cleanup": "Retained: automatic command approval rejected the requested removal of the owned clean test clone."
+  },
+  "source_verification": {
+    "command": "python -B tools/xwn.py verify",
+    "passed": true,
+    "profiles": ["fatx", "framebuffer", "loader", "display", "launcher", "audio", "hal", "network"]
+  },
+  "migration_input_tests": {
+    "command": "python -B -m unittest discover -s tests -p test_migration_inputs.py -v",
+    "passed": true,
+    "tests": 4,
+    "scope": "Includes synthetic temporary-bundle binding and corruption checks, checkout recipe records, and eight authored source hashes."
+  },
+  "transferred_private_bundle": {
+    "original_recipe_and_helper_hashes_verified": 6,
+    "blob_sizes_and_hashes_verified": 22,
+    "public_recipe_source_records_matching": {
+      "xbox16-720.json": 9,
+      "xbox10-720-matched.json": 8,
+      "xbox10-480p-matched.json": 9,
+      "xbox10-1080i.json": 3
+    },
+    "guarded_recipe": {
+      "matching_source_records": 6,
+      "mismatching_source_records": 1,
+      "mismatch": "outputs/bundle-boot844/nonhd/build004.json",
+      "expected_sha256": "adaaf5285634ac2a29051900f43f85367603b05ab6eff7b28fc5a25bc5f51373",
+      "checkout_sha256": "290ff7f61d78ed925de5c5ada49b2eae3f5a64144ef46f0aeca96c0964537a86",
+      "disposition": "Known historical mismatch; guarded recipe remains unavailable."
+    },
+    "canonical_recipes_modified": false,
+    "scope": "Read-only hash comparisons; actual binding of this private bundle was not run because it would rewrite canonical recipes."
+  },
+  "limitations": "Local Windows checkout and host checks only. No clean-machine bootstrap, full component build, emulator or console access was performed."
+}

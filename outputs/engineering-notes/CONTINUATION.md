@@ -2,7 +2,7 @@
 
 User requests artifact cleanup, source synchronization and a portable development
 handoff. Start with docs/MIGRATION.md, docs/current-status.md and
-outputs/migration-20261108/INVENTORY.md. Pending launch instructions below are
+outputs/migration-20261108/REPORT.md and INVENTORY.md. Pending launch instructions below are
 historical and superseded by the migration task. No console was accessed.
 
 Current private packages are indexed by D:/xwn844/DELIVERY-016.json. Tests845

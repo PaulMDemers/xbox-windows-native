@@ -1,12 +1,13 @@
 # Moving development to another machine
 
-This is a migration checklist, not a claim that a clean-machine bootstrap has
-been tested. Read [current status](current-status.md) and the latest
+Use this guide to transfer the source, pinned tools and private package inputs.
+Clean-machine import and bootstrap validation remain pending. Read [current status](current-status.md) and the latest
 [continuation](../outputs/engineering-notes/CONTINUATION.md) first: later
 observations supersede earlier handoffs. A Git clone alone does not contain the
 private inputs, recovery material, local build products or all evidence. See the
-[November 8 migration inventory](../outputs/migration-20261108/INVENTORY.md) for
-the recorded host-specific locations and transfer state.
+[November 8 migration report](../outputs/migration-20261108/REPORT.md) and
+[inventory](../outputs/migration-20261108/INVENTORY.md) for verified transfer
+contents, host-specific locations and remaining validation.
 
 ## Preserve the old machine first
 
@@ -57,6 +58,11 @@ its diagnostic into a package qualification. Consult the latest continuation
 and the index's linked known-issues and evidence files before further work.
 The historical 587 hardware kit reuses the qualified 421 scanner; its Windows
 kit is a private snapshot, not a qualified fresh installation on another console.
+
+The November 8 migration folder includes a compact `release-packages` copy
+of these five ZIPs, their referenced issues/evidence and delivery index. Its
+`copied-files.json` records verified hashes. Copy the complete migration folder;
+the older `D:/xwn844` staging trees are not required to use these packages.
 
 ## Transfer the WSL development environment
 
@@ -137,6 +143,14 @@ The eight profiles are independent. A complete one-command clean reconstruction
 of the current combined E demo is not established; see [current build
 provenance](BUILD-CURRENT.md).
 
+For the packaged 1.6 720p chain, retain the specific source trees, patches and
+binary pins in [bundle-boot844](../outputs/bundle-boot844/README.md), including
+its 843 boot-loaded FATX driver. Its recorded Linux tree is under
+`/home/paul/xbox-windows-native/bundle-boot844-source001`; check its identity after
+import. Its pinned Windows-side artifacts are in the private package input
+export. Use the recipe and its linked build records when reconstructing
+that package. The general component commands cover their own manifest profiles.
+
 The hardware-report utility uses nxdk revision
 `58427c078b4ccb0121f359b6b6c536b3b2914976` and its pinned submodules and
 runtime libraries. Follow [its build guide](tester-bundles.md#build-the-hardware-report-xbe);
@@ -162,6 +176,11 @@ receipts or sidecars and check the full backing-chain dependencies before using
 them. A checksum proves bytes, not license, console compatibility, or that a
 package is safe to deploy. Acquire the shared resource lease before any build,
 emulator or hardware activity where one is in use; follow [development](development.md).
+
+Use fresh lease state on the new host. Copied process IDs and old lease files
+do not establish current ownership. When using several development machines,
+coordinate a single owner for each physical console before staging or launching.
+Keep credentials and machine path mappings local to each host.
 
 Clean Windows media conversion still lacks a portable registry converter and a
 lossless solution for six FATX-incompatible names. The current kit recipes do

@@ -6,11 +6,11 @@ It combines FATX storage, software-rendered graphics, AC'97 audio and desktop
 input. xemu is a separate development/test environment; the physical console
 runs Windows natively.
 
-The integrated demo is usable for desktop applications on the tested 64 MiB,
-Conexant-equipped Xbox. **720p is recommended:** text and full-window dragging
-were confirmed clean on the test display. The 1080i path boots, but its text and
-motion defects remain unresolved. Graphics are software-rendered, without
-native GPU acceleration.
+Fixed 720p packages reached the Windows desktop on the tested Xbox 1.0 and 1.6
+consoles. Text and full-window dragging were confirmed clean on the original
+Conexant test display. The historical 1080i path boots, but its text and motion
+defects remain unresolved. Graphics are software-rendered, without native GPU
+acceleration. Profile-specific evidence and remaining limits are recorded below.
 
 ## Start here
 
@@ -41,7 +41,7 @@ native GPU acceleration.
 | Boot | Dashboard → Xromwell → Windows | Matched boot chain required; intermittent failed launches remain |
 | Storage | Native FATX; file creation, copy, move and readback tested | Keep backups; strict event failures remain |
 | Graphics | Software desktop and HD framebuffer | No acceleration or live resolution switching |
-| Display | 720p baseline; separate 720×480 boot profile has scoped drawing/input/persistence results | No live switching; experimental 480p selector boot cycle unqualified; 1080i defects and other encoders remain |
+| Display | Fixed 720p packages on Xbox 1.0 and 1.6; historical 720×480 drawing/input/persistence results | Current 1.0 480p package held; 1080i defects remain; no live switching |
 | Audio | Login sound and louder tones heard | Exact stereo routing unconfirmed |
 | Input | Standard mouse/keyboard | Device prompts and boot-time USB issues remain |
 | Network | Native networking; exact bidirectional TCP transfer on the fresh emulator assembly | Broad compatibility not established |
