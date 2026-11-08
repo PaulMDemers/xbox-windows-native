@@ -14,6 +14,7 @@ native GPU acceleration.
 
 ## Start here
 
+- **[Move development to a new machine](docs/MIGRATION.md)** — source setup, private packages, pinned tools and WSL transfer
 - **[Current status and guide map](docs/current-status.md)** — capabilities, remaining work and latest engineering handoff
 - **[External tester quick start](docs/testers.md)** — hardware report, installation checklist and results
 - [How it works and what we changed](docs/architecture.md)
@@ -78,11 +79,14 @@ game editions and DirectDraw/API probes, then the required legacy Direct3D work.
 Game compatibility, software rendering and native GPU acceleration are separate
 results. 720p remains the baseline; the 1080i investigation is paused.
 
-The current order is to finish the physical RCT cost comparison, qualify additional
-console profiles, then pursue native acceleration. Additional-unit hardware tests
-are deferred; the received Xbox 1.6 inventory does not qualify Windows support.
-The latest timer/UDP diagnostic work and its host-only limits are summarized in
-the [current status](docs/current-status.md).
+The current delivery work covers separate fixed video profiles. The packaged
+Xbox 1.6 720p build reached the Windows desktop with working mouse input in test
+845. The packaged Xbox 1.0 720p build reached the desktop and Start menu in test
+846, followed by a reported return to UnleashX after Windows Restart. The 1.0
+480p package is held after a retrace-status timeout, 1080i retains text and motion
+defects, and the current 1024x576 E package has emulator-only evidence. See
+[current status](docs/current-status.md) and the package inventory in the
+[migration guide](docs/MIGRATION.md) for the exact qualification limits.
 
 In parallel, installation needs a portable Windows registry conversion and a
 lossless solution for FATX's long-name limitation. The [build-to-boot guide](docs/build-to-boot.md)

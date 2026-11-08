@@ -1,3 +1,26 @@
+# Current handoff - November 8, 2026
+
+The active task is migration and release preservation. Start with
+[the migration guide](MIGRATION.md) and
+[the artifact inventory](../outputs/migration-20261108/INVENTORY.md).
+The history below preserves earlier observations. Its pending launch requests
+are superseded by this handoff.
+
+| Profile | Latest package evidence |
+| --- | --- |
+| Xbox 1.6, 720p | Package 845 reached desktop with working mouse. Earlier 843 shutdown stalled. Package shutdown, repeat boot and persistence remain unqualified. |
+| Xbox 1.0, 720p | Package 846 reached desktop and Start. User reported return to UnleashX after Windows Restart. |
+| Xbox 1.0, 480p | Held after 852 retrace-status timeout. 853 staged and manual launch requested, with no result supplied. |
+| Xbox 1.0, 1080i | Historical text/motion defects. Current assembled ZIP has no physical boot result. |
+| Xbox 1.0, 1024x576 | Current E package has emulator desktop/input evidence only. |
+
+Five private archives and checksums are indexed by `D:/xwn844/DELIVERY-016.json`.
+See the migration guide for exact filenames and hashes. No console state was
+established during migration. Authenticate each console afresh before hardware
+work and resolve Test853's outstanding observation.
+
+## Historical handoffs
+
 # Test843 closed after manual restart
 
 Windows 2000 desktop and mouse worked with the mouse connected before boot. The console stayed on the shutdown screen and the user restarted it. UnleashX authenticated and collection and cold audit completed once. Console left at the dashboard. No hook or owned host processes. No relaunch, recollection or runtime parenting of 843.

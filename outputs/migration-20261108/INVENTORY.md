@@ -1,0 +1,11 @@
+# Migration inventory, 2026-11-08
+
+This is a read-only partial inventory. No console or emulator was launched and no files were removed. Preserve private data outside public Git.
+
+- Source history and working changes: preserve this repository, its component base commits and patches; see `docs/MIGRATION.md`, `docs/building.md`, and `upstream/dependencies.json`.
+- Ubuntu is the only registered WSL distribution, version 2, observed stopped. Its private ext4.vhdx had 151,086,170,112 logical bytes. Export the distribution to a private destination and verify import and builds on the new host before discarding the original. The distribution may contain sensitive data beyond this project.
+- Build prerequisites: Linux/WSL, Python 3.12+, exact upstream Git bases, RosBE 2.2.1, recorded GCC 12 and the pinned toolchain receipt. Build on a Linux filesystem and reserve at least 20 GiB on both output and WSL backing volumes. See `docs/building.md` for exact requirements and bootstrap.
+- The development archive `D:/Xbox-Windows-Archive/2026-10-26` contains 221 verified old artifacts, 106.293 GiB stored, plus private indexes, receipts and restore helper. Preserve archive and repository-side location pointers together. `docs/ARTIFACT-ARCHIVE.md` describes restoration and filesystem metadata limitations. Raw virtual disks and backing chains were excluded from that archive pass; do not delete or move them without a fresh dependency audit.
+- `D:/xwn844/DELIVERY-016.json` indexes five private Windows profile ZIPs, qualification, and issues. Preserve delivery manifest, associated notes and evidence, and referenced ZIPs. Windows media, console-owned firmware/EEPROM, private snapshots and personal data must stay private.
+- Other historical paths on C:, D: and E: contain attempt data, disk chains and release/recovery materials. This partial inventory does not classify those paths for deletion. Prior inventory counted 1,560 QCOW headers and 1,166 backing references; paths and chains may have changed since then.
+- The byte comparison of one extracted delivery staging tree with its ZIP had not completed at the time this note was written. No staging tree was selected for deletion. Capacity and cleanup require fresh measurement and complete file-level verification.

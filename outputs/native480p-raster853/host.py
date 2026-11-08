@@ -1,0 +1,6 @@
+from pathlib import Path
+import subprocess,json,hashlib
+K=Path(__file__).resolve().parent; B=Path('/home/paul/xbox-windows-native/build/native480p-raster853/source/drivers/video');H=K.parent/'native480p633';O=Path('/mnt/d/xwn853/host001');assert not O.exists();O.mkdir(parents=True)
+(O/'marker.c').write_text('volatile unsigned XwnFailStage852, XwnDetail852;\n')
+args=['/usr/bin/gcc-12','-DXWN_HD_TIMING_720P=1','-std=c99','-O1','-g','-Wall','-Wextra','-Werror','-fsanitize=address,undefined','-fno-pie','-no-pie','-I'+str(B),str(B/'xwn_hd_profile.c'),str(B/'xwn_hd_adapter.c'),str(H/'adapter-host.c'),str(O/'marker.c'),'-o',str(O/'adapter')]
+r=subprocess.run(args,capture_output=True);assert not r.returncode,r.stderr.decode();r=subprocess.run([str(O/'adapter')],capture_output=True,timeout=60);assert not r.returncode and not r.stderr,(r.returncode,r.stderr.decode());print(r.stdout.decode().splitlines()[-1]);(K/'host001.json').write_text(json.dumps({'passed':True,'scope':'Existing modeled 633 adapter sanitizer suite against instrumented adapter, error bookkeeping globals stubbed; no real SMC, timer, launcher or physical execution.','result':r.stdout.decode().splitlines()[-1],'adapter_sha256':hashlib.sha256((B/'xwn_hd_adapter.c').read_bytes()).hexdigest()},indent=2)+'\n')

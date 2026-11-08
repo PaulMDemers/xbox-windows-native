@@ -1,3 +1,16 @@
+# Migration handoff - November 8, 2026
+
+User requests artifact cleanup, source synchronization and a portable development
+handoff. Start with docs/MIGRATION.md, docs/current-status.md and
+outputs/migration-20261108/INVENTORY.md. Pending launch instructions below are
+historical and superseded by the migration task. No console was accessed.
+
+Current private packages are indexed by D:/xwn844/DELIVERY-016.json. Tests845
+and846 establish scoped packaged 720p desktop results on 1.6 and1.0 respectively.
+480p is held after852's stage4/error22 timeout. Test853 was staged and a manual
+launch requested, with no user result recorded. Current console state is unknown.
+Before further hardware work authenticate the consoles and resolve that result.
+
 # Test852: retained 480p status code
 
 Paul reported LED group counts 5, 3, 3, 1, 1. Under the diagnostic's subtract-one encoding, these decode to stage 4, error 22, detail 0: a vertical-retrace-status edge timeout. The encoding does not identify which of the six clear/set waits timed out, the sampled status byte or the underlying cause; it is not a Windows boot result and does not establish that another attempt had the same failure. Continue holding the 480p package pending investigation. See outputs/bundle-config844/observation852.json.
@@ -29250,3 +29263,10 @@ Dashboard visibility is not user-confirmed; do not reinstall it to refresh notes
 Host C: free space is about19.7GiB after these builds. The20GiB fresh-build
 preflight should block additional source builds until reviewed artifacts can be
 archived safely; no backing chains or source caches were removed.
+
+## Xbox 1.0 480p marker follow-up (2026-11-01)
+
+- The watched 848 manual launch was reported as "Loader or black screen, then UnleashX." This is an observed screen sequence; the loader stage was not identified. The one-shot FTP launch command had previously returned `200 EXEC command succeeded`, which is not evidence Windows booted.
+- Authenticated 1.0 identity and F ownership matched before staging marker build 850. All 11 current fixed-480p boot/profile pins matched. Six selected E: setup-log, registry-hive, and event-log hashes were unchanged from the post-848 baseline; unchanged files do not establish whether loader dispatch occurred.
+- Marker 850 build 002 (`faa4bdae01125bb4e769d4b83d8e055e4be8623b6eec522c09a18dd2727ed46d`, 301200 bytes) is staged at `E:\Applications\XWN480p850-002\default.xbe`; only its owner marker and XBE are present and independently read back. No launch was sent. User should launch this exact path manually once while watching screen and LEDs. No C:, startup, or settings access/change.
+- Receipts: private local capture and audit under `D:\xwn850\physical002`; non-private observation summary at `outputs/native480p-marker850/physical-observation-848.json`.

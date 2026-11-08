@@ -1,0 +1,8 @@
+from pathlib import Path
+import re,subprocess,tempfile,json
+K=Path(__file__).resolve().parent;f=Path('/home/paul/xbox-windows-native/build/native480p-marker850-002/source/drivers/video/xwn_hd_native.c').read_text();m=re.search(r'void XwnMarker850\(unsigned pattern\)\{.*?\n\}',f,re.S);assert m
+stub='''#include <assert.h>\n#include <stddef.h>\nstruct xwn_hd_io {void *opaque;void *a,*b,*c,*d,*e,*f,*g,*h;void (*delay)(void*,unsigned);};\nstatic void *hd_r32,*hd_w32,*hd_r8,*hd_w8,*hd_in16,*hd_in8,*hd_out16,*hd_out8;\nstatic unsigned calls,delays,reg[2],val[2],fail;\nstatic void hd_delay(void *p,unsigned n){(void)p;assert(n==1000);delays++;}\nstatic int xwn_hd_smb_write(const struct xwn_hd_io *i,unsigned a,unsigned r,unsigned v){(void)i;assert(a==0x10);reg[calls]=r;val[calls]=v;return ++calls==fail;}\n'''
+tail='''\nint main(void){for(unsigned pattern=0;pattern<256;pattern++)for(fail=0;fail<3;fail++){calls=delays=0;XwnMarker850(pattern);assert(calls==(fail==1?1:2));assert(reg[0]==8&&val[0]==pattern);if(calls==2)assert(reg[1]==7&&val[1]==1);assert(delays==(fail?0:3000));}return 0;}\n'''
+with tempfile.TemporaryDirectory() as d:
+ p=Path(d)/'test.c';p.write_text(stub+m.group()+tail);exe=Path(d)/'test';r=subprocess.run(['gcc-12','-Wall','-Wextra','-Werror','-fsanitize=address,undefined','-fno-pie','-no-pie',str(p),'-o',str(exe)],capture_output=True);assert r.returncode==0,r.stderr.decode();subprocess.run([str(exe)],check=True)
+(K/'host-marker002.json').write_text(json.dumps({'passed':True,'cases':768,'scope':'Actual marker function compiled with modeled SMBus and timer; each pattern and each first/second write failure, no device or timing fidelity.'},indent=2)+'\n');print('marker cases 768 passed')

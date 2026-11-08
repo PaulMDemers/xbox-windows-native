@@ -1,3 +1,16 @@
+# Migration handoff - November 8, 2026
+
+User requests artifact cleanup, source synchronization and a portable development
+handoff. Start with docs/MIGRATION.md, docs/current-status.md and
+outputs/migration-20261108/INVENTORY.md. Pending launch instructions below are
+historical and superseded by the migration task. No console was accessed.
+
+Current private packages are indexed by D:/xwn844/DELIVERY-016.json. Tests845
+and846 establish scoped packaged 720p desktop results on 1.6 and1.0 respectively.
+480p is held after852's stage4/error22 timeout. Test853 was staged and a manual
+launch requested, with no user result recorded. Current console state is unknown.
+Before further hardware work authenticate the consoles and resolve that result.
+
 # Test852: retained 480p status code
 
 Paul reported LED group counts 5, 3, 3, 1, 1. Under the diagnostic's subtract-one encoding, these decode to stage 4, error 22, detail 0: a vertical-retrace-status edge timeout. The encoding does not identify which of the six clear/set waits timed out, the sampled status byte or the underlying cause; it is not a Windows boot result and does not establish that another attempt had the same failure. Continue holding the 480p package pending investigation. See outputs/bundle-config844/observation852.json.

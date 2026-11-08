@@ -1,0 +1,62 @@
+--- a/boot/BootResetAction.c
++++ b/boot/BootResetAction.c
+@@ -87,6 +87,8 @@
+ 	BootDetectMemorySize();
+ 
+ 	BootEepromReadEntireEEPROM();
++	extern void XwnMarker850(unsigned);
++	XwnMarker850(0x05); /* early native: PCI, RAM and EEPROM initialized */
+ 
+         // Load and Init the Background image
+         // clear the Video Ram
+@@ -227,6 +229,7 @@
+         strcpy(entry.title, "XWN loader diagnostic");
+         strcpy(entry.szPath, "/Applications/XWNEBoot/freeldr.sys");
+         printk("XWN: loading isolated E:/Applications/XWNEBoot/freeldr.sys\n");
++        XwnMarker850(0xa5); /* dispatch: about to call loader */
+         BootFromDevice(&entry);
+         printk("XWN: loader failed. No fallback boot. Reboot to dashboard.\n");
+         __asm__ __volatile__("cli");
+--- a/drivers/video/xwn_hd_adapter.c
++++ b/drivers/video/xwn_hd_adapter.c
+@@ -56,6 +56,7 @@
+     !(r->video_flags&(r->mode==XWN_HD_480P?8u:2u)) ||
+     !xwn_hd_layout_valid(r->mode,r->ram,r->fb,r->reserved,r->hidden) ||
+     !xwn_hd_get_profile(r->mode,&p))return 0;
++ extern void XwnMarker850(unsigned); XwnMarker850(0x0f); /* guard passed */
+  s->stage=1;s->vpll=io->r32(O,0x680508);s->pcrtc=io->r32(O,0x600804);
+  /* Retain clocks/PCRTC configuration; observations are not new programming values. */
+  s->mutated=1;io->out8(O,0x80d3,5);
+--- a/drivers/video/xwn_hd_native.c
++++ b/drivers/video/xwn_hd_native.c
+@@ -24,20 +24,29 @@
+ static void hd_out16(void *o,uint16_t p,uint16_t v){(void)o;IoOutputWord(p,v);}
+ static void hd_out8(void *o,uint16_t p,uint8_t v){(void)o;IoOutputByte(p,v);}
+ static void hd_delay(void *o,unsigned us){(void)o;wait_us(us);}
++/* Bounded transfers, but peripheral and timer failures have no wall-clock guarantee. */
++void XwnMarker850(unsigned pattern){
++ const struct xwn_hd_io io={0,hd_r32,hd_w32,hd_r8,hd_w8,hd_in16,hd_in8,hd_out16,hd_out8,hd_delay};
++ unsigned i;
++ if(xwn_hd_smb_write(&io,0x10,0x08,pattern) || xwn_hd_smb_write(&io,0x10,0x07,1)) return;
++ for(i=0;i<3000;i++) hd_delay(0,1000);
++}
+ int XwnHdTry720(CURRENT_VIDEO_MODE_DETAILS *mode,unsigned encoder,unsigned cable,unsigned flags){
+  const struct xwn_hd_io io={0,hd_r32,hd_w32,hd_r8,hd_w8,hd_in16,hd_in8,hd_out16,hd_out8,hd_delay};
+  const struct xwn_hd_request r={XWN_HD_BOOT_MODE,(uint32_t)xbox_ram*1024u*1024u,FB_START&0x0fffffffu,FB_SIZE,316160u,encoder,cable,flags};
+  struct xwn_hd_profile selected;
++ XwnMarker850(0xf0); /* guard invocation */
+  int result=xwn_hd_apply(&io,&r,&XwnHdState311);
+  if(result<0 || (XWN_HD_BOOT_MODE==XWN_HD_480P && result==0)){
+   if(result==0)XwnHdState311.error=30; /* Explicit480p profile refuses legacy fallback. */
+   /* Partial display setup cannot fall through into Windows or legacy setup.
+    * Request the same quick reset as the existing SMC helper, with a bounded
+    * transaction. If hardware does not reset, halt with state retained. */
+-  (void)xwn_hd_smb_write(&io,0x10,0x02,0x01);
++  XwnMarker850(result==0 ? 0x50 : 0xf5); /* hold at guard or transaction failure */
+   __asm__ __volatile__("cli" ::: "memory");
+   for(;;)__asm__ __volatile__("hlt");
+  }
++ if(result==1) XwnMarker850(0xff); /* display transaction completed */
+  if(result==1 && xwn_hd_get_profile(XWN_HD_BOOT_MODE,&selected)){
+   mode->width=selected.width;mode->height=selected.height;mode->xmargin=0;mode->ymargin=0;
+  }
